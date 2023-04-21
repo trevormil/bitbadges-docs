@@ -1,3 +1,0 @@
-# CosmWASM
-
-TODO

@@ -5,6 +5,7 @@
 * [👋 BitBadges Overview](README.md)
 * [🏆 How It Works](overview/how-it-works.md)
 * [🏅 Creating a Badge](overview/creating-a-badge.md)
+* [🪙 Getting $BADGE](overview/getting-usdbadge.md)
 * [👀 Vision](overview/vision.md)
 * [🛣 Roadmap](overview/roadmap.md)
 * [👨💻 Contributing](overview/contributing.md)
@@ -33,13 +34,14 @@
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
-  * [Create Badge w/ CosmWasm](for-developers/tutorials/create-badge-w-cosmwasm.md)
+  * [Create Badge w/ CosmWasm](for-developers/tutorials/cosmwasm.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
 
 ## ⛓ Blockchain
 
 * [Overview](blockchain/overview.md)
 * [Run a Node](blockchain/run-a-node.md)
+* [Staking $BADGE](blockchain/staking-usdbadge.md)
 
 ## 💻 Website
 

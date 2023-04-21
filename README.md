@@ -43,7 +43,7 @@ How do we aim to achieve our goal?
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
-BitBadges offers an L1 blockchain built with Cosmos SDK that enables the cross issuance of digital tokens (e.g. an Ethereum user can seamlessly issue a badge to a Cosmos user).
+BitBadges offers an L1 delegated proof-of-stake blockchain built with Cosmos SDK that enables the cross issuance of digital tokens (e.g. an Ethereum user can seamlessly issue a badge to a Cosmos user).
 
 {% content-ref url="broken-reference" %}
 [Broken link](broken-reference)

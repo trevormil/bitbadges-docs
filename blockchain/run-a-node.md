@@ -5,6 +5,16 @@ Below, we will walk you through a tutorial for setting up and running a BitBadge
 This also means documentation is similar, so if you are having problems with this tutorial, you can also visit Cosmos SDK node documentation, such as [Cosmos SDK - Running a Node](https://docs.cosmos.network/main/run-node/keyring) or [Cosmos Tutorials - Run in Production](https://tutorials.cosmos.network/tutorials/9-path-to-prod/) documentation.\
 
 
+**Chain IDs**
+
+Wherever a chain ID is required, the following should be used:
+
+"bitbadges\_1-1" - betanet chain
+
+"bitbadges\_1-2" - testnet chain
+
+
+
 **Step 0: Fetch Source Code**
 
 Clone the source code from [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).
@@ -32,15 +42,15 @@ Then, initialize your chain with
 bitbadgeschaind init <moniker> --chain-id CHAIN_ID
 ```
 
-Replace CHAIN\_ID with "bitbadges\_1-1" for the betanet chain.
-
 Next, you will need to overwrite the genesis file with the agreed upon version. We have conveniently provided in the root directory: **./genesis.json**.
 
 ```bash
 cp ./genesis.json ~/.bitbadgeschaind/config/genesis.json
 ```
 
-**Step 2: Setup Validator Keys**
+**Step 2: Setup Validator Keys**&#x20;
+
+This step is only required if you are running a validator.
 
 Follow the steps in [https://docs.cosmos.network/main/run-node/keyring](https://docs.cosmos.network/main/run-node/keyring) and/or [https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to setup your validators' keys. Replace **simd** with **bitbadgeschaind** or **myproject** with **bitbadgeschain**.
 
@@ -90,14 +100,39 @@ Instead of relaunching your software every time, it is a good idea to set it up 
 
 See [**https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service**](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service)&#x20;
 
+**Step 7: Join Validator Set?**
 
+If you want to run a validator and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to pay for gas and your added stake.
 
+<pre><code><strong>bitbadgeschaind tx staking create-validator [path/to/validator.json] [flags]
+</strong></code></pre>
 
+Example:
 
+```
+bitbadgeschaind tx staking create-validator /path/to/validator.json \
+  --chain-id="name_of_chain_id" \
+  --gas="auto" \
+  --gas-adjustment="1.2" \
+  --gas-prices="0.025badge" \
+  --from=mykey
+```
 
+where `validator.json` contains:
 
-\
+```
+{
+  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"BnbwFpeONLqvWqJb3qaUbL5aoIcW3fSuAp9nT3z5f20="},
+  "amount": "1000000badge",
+  "moniker": "my-moniker",
+  "website": "https://myweb.site",
+  "security": "security-contact@gmail.com",
+  "details": "description of your validator",
+  "commission-rate": "0.10",
+  "commission-max-rate": "0.20",
+  "commission-max-change-rate": "0.01",
+  "min-self-delegation": "1"
+}
+```
 
-
-
-
+and pubkey can be obtained by using `simd tendermint show-validator` command.
