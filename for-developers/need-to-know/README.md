@@ -2,7 +2,9 @@
 
 Before building with BitBadges, we strongly recommend you read through the pages in this section to understand the behind the scenes of BitBadges.
 
-Also if you haven't already, read the [How It Works](../../overview/how-it-works.md) section for understanding the core concepts of badges and badge collections. This section assumes you have a basic understanding of blockchains and Cosmos SDK.
+Also if you haven't already, read the [How It Works](../../overview/how-it-works.md) section for understanding the core concepts of badges and badge collections.&#x20;
+
+This section also assumes you have a basic understanding of blockchains and [Cosmos SDK](https://docs.cosmos.network/main).
 
 **Can't find what you are looking for?**
 

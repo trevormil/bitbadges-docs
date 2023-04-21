@@ -14,7 +14,7 @@ Note the examples below show how to broadcast directly to a running blockchain n
 with&#x20;
 
 ```typescript
-BITBADGES_API_URL + '/api/v0/broadcast'
+https://api.bitbadges.io/api/v0/broadcast
 ```
 
 ### Examples
