@@ -33,7 +33,8 @@
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
-  * [CosmWASM](for-developers/tutorials/cosmwasm.md)
+  * [Create Badge w/ CosmWasm](for-developers/tutorials/create-badge-w-cosmwasm.md)
+  * [Running a Node](for-developers/tutorials/running-a-node.md)
 
 ## ⛓ Blockchain
 
