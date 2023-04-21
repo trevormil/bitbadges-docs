@@ -4,7 +4,7 @@ Note this is a non-technical explanation. See the [For Developers](broken-refere
 
 ### Badge vs $BADGE
 
-Whenever we say $BADGE, we are referring to the L1 BitBadges blockchain token. This is not to be confused with badges / badge collections.
+Whenever we say $BADGE, we are referring to the BitBadges blockchain token used for paying transaction fees and staking. This is not to be confused with badges / badge collections.
 
 ### Badge Collections
 
