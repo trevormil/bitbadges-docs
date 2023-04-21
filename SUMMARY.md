@@ -6,6 +6,8 @@
 * [🏆 How It Works](overview/how-it-works.md)
 * [🏅 Creating a Badge](overview/creating-a-badge.md)
 * [🪙 Getting $BADGE](overview/getting-usdbadge.md)
+* [🤝 Staking $BADGE](overview/staking-usdbadge.md)
+* [📊 Block Explorers](overview/block-explorers.md)
 * [👀 Vision](overview/vision.md)
 * [🛣 Roadmap](overview/roadmap.md)
 * [👨💻 Contributing](overview/contributing.md)
@@ -41,7 +43,6 @@
 
 * [Overview](blockchain/overview.md)
 * [Run a Node](blockchain/run-a-node.md)
-* [Staking $BADGE](blockchain/staking-usdbadge.md)
 
 ## 💻 Website
 

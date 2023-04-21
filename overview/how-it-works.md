@@ -2,6 +2,10 @@
 
 Note this is a non-technical explanation. See the [For Developers](broken-reference) section for further technical explanations.
 
+### Badge vs $BADGE
+
+Whenever we say $BADGE, we are referring to the L1 BitBadges blockchain token. This is not to be confused with badges / badge collections.
+
 ### Badge Collections
 
 Collections are the core concept of BitBadges. Collections can contain anywhere from 1 to 2^64 - 1 badges.&#x20;

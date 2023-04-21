@@ -9,13 +9,13 @@ This also means documentation is similar, so if you are having problems with thi
 
 Wherever a chain ID is required, the following should be used:
 
-"bitbadges\_1-1" - betanet chain
+"bitbadges\_1-1" - betanet chain ID
 
-"bitbadges\_1-2" - testnet chain
+"bitbadges\_1-2" - testnet chain ID
 
 
 
-**Step 0: Fetch Source Code**
+**Pre-Req: Fetch Source Code**
 
 Clone the source code from [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).
 
