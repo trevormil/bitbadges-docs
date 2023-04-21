@@ -31,7 +31,7 @@
   * [✉ Tx Msg Interfaces](for-developers/need-to-know/tx-msg-interfaces.md)
   * [🖊 Standards](for-developers/need-to-know/standards.md)
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
-* [🧑🏫 Tutorials](for-developers/tutorials/README.md)
+* [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [CosmWASM](for-developers/tutorials/cosmwasm.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 
