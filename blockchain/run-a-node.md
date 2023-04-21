@@ -102,7 +102,7 @@ See [**https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a
 
 **Step 7: Join Validator Set?**
 
-If you want to run a validator and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to pay for gas and your added stake.
+If you want to run a validator (standard nodes can ignore this step) and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to pay for gas and your added stake.&#x20;
 
 <pre><code><strong>bitbadgeschaind tx staking create-validator [path/to/validator.json] [flags]
 </strong></code></pre>
