@@ -9,6 +9,7 @@
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
 * [📊 Block Explorers](overview/block-explorers.md)
+* [🏫 Governance](overview/governance.md)
 * [👀 Vision](overview/vision.md)
 * [🛣 Roadmap](overview/roadmap.md)
 * [👨💻 Contributing](overview/contributing.md)
