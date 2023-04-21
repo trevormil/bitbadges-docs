@@ -1,6 +1,6 @@
 # Overview
 
-The core of BitBadges is the BitBadges L1 blockchain built with [Cosmos SDK](https://docs.cosmos.network/main) and [Ignite CLI](https://docs.ignite.com/). The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).
+The core of BitBadges is the BitBadges L1 blockchain built with [Cosmos SDK](https://docs.cosmos.network/main) and [Ignite CLI](https://docs.ignite.com/). The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). The blockchain supports the Inter-Blockchain Communication Protocol (IBC).
 
 **Goal**
 
