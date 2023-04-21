@@ -3,6 +3,7 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
+* [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🏆 How It Works](overview/how-it-works.md)
 * [🏅 Creating a Badge](overview/creating-a-badge.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
