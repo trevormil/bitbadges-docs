@@ -9,9 +9,9 @@ This also means documentation is similar, so if you are having problems with thi
 
 Wherever a chain ID is required, the following should be used:
 
-"bitbadges\_1-1" - betanet chain ID
+"bitbadges\_1-1" - mainnet chain ID (NOT ACTIVE YET)
 
-"bitbadges\_1-2" - testnet chain ID
+"bitbadges\_1-2" - betanet chain ID
 
 
 

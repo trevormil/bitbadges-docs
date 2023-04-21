@@ -31,8 +31,8 @@ For any other transaction types on BitBadges, just replaces **createMessageSend*
 import { createMessageSend } from 'bitbadgesjs-transactions'
 
 const chain = {
-  chainId: 9000,
-  cosmosChainId: 'bitbadges_1-1',
+  chainId: 2,
+  cosmosChainId: 'bitbadges_1-2',
 }
 
 const sender = {
