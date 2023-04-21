@@ -1,6 +1,6 @@
 # 🚴♂ Getting Started
 
-**Build Any Tool with These Steps**
+**Perform Any Action with These Steps**
 
 1. Gain familiarity with the [BitBadges API](broken-reference) and [SDK](broken-reference).
 2. Do you need additional data or functionality not offered by the BitBadges API? Run your own [indexer](../indexer-api/indexer.md) and customize the data you store! If not, use the [BitBadges API](broken-reference) for your backend.

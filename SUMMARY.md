@@ -4,6 +4,7 @@
 
 * [👋 BitBadges Overview](README.md)
 * [🏆 How It Works](overview/how-it-works.md)
+* [🏅 Creating a Badge](overview/creating-a-badge.md)
 * [👀 Vision](overview/vision.md)
 * [🛣 Roadmap](overview/roadmap.md)
 * [👨💻 Contributing](overview/contributing.md)
@@ -30,7 +31,8 @@
   * [✉ Tx Msg Interfaces](for-developers/need-to-know/tx-msg-interfaces.md)
   * [🖊 Standards](for-developers/need-to-know/standards.md)
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
-* [🧑🏫 Tutorials](for-developers/tutorials.md)
+* [🧑🏫 Tutorials](for-developers/tutorials/README.md)
+  * [CosmWASM](for-developers/tutorials/cosmwasm.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 
 ## ⛓ Blockchain
