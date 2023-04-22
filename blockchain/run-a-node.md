@@ -2,7 +2,11 @@
 
 Below, we will walk you through a tutorial for setting up and running a BitBadges blockchain node. The BitBadges blockchain is built with Cosmos SDK, so if you have previous experience running a Cosmos SDK blockchain node, it will be very similar.&#x20;
 
-This also means documentation is similar, so if you are having problems with this tutorial, you can also visit Cosmos SDK node documentation, such as [Cosmos SDK - Running a Node](https://docs.cosmos.network/main/run-node/keyring) or [Cosmos Tutorials - Run in Production](https://tutorials.cosmos.network/tutorials/9-path-to-prod/) documentation.\
+This also means documentation is similar, so if you are having problems with this tutorial, you can also visit Cosmos SDK node documentation, such as [Cosmos SDK - Running a Node](https://docs.cosmos.network/main/run-node/keyring) or [Cosmos Tutorials - Run in Production](https://tutorials.cosmos.network/tutorials/9-path-to-prod/) documentation.
+
+**Running a Validator Node on Betanet?**
+
+For betanet, validators are incentivized by receiving extra mainnet $BADGE upon launch. To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.\
 
 
 **Chain IDs**

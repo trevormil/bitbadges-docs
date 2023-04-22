@@ -6,7 +6,9 @@ It is delegated because token holders can delegate their stake ($BADGE) to trust
 
 ### **Become a Validator**
 
-If you want to become a validator and stake directly by running a validating node, see [here](../blockchain/run-a-node.md).
+If you want to become a validator and stake directly by running a validating node, see [here](../blockchain/run-a-node.md).&#x20;
+
+For betanet, validators are incentivized by receiving extra mainnet $BADGE upon launch. To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.
 
 ### Delegate
 
