@@ -19,11 +19,9 @@ https://api.bitbadges.io/api/v0/broadcast
 
 ### Examples
 
-#### Create a MsgSend Transaction
+#### Create a Transaction
 
 The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
-
-
 
 For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, createTxMsgUpdateUris, ...)** and update the parameters accordingly.
 

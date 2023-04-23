@@ -17,6 +17,4 @@ Note that CouchDB uses an [optimistic conflict resolution system](https://docs.c
 
 ### Running with Docker
 
-**TODO**
-
 [https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker)
