@@ -1,8 +1,8 @@
 # Broadcasting and Signing Txs
 
-To learn more about broadcasting transactions with Cosmos SDK, see [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
+To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
 
-For the transaction Msg types offered by BitBadges, see [Tx Msg Interfaces](../for-developers/need-to-know/tx-msg-interfaces.md).
+For the transaction Msg types offered by BitBadges, see [Tx Msg Interfaces](../for-developers/need-to-know/msgs.md).
 
 The recommended way to broadcast a transaction is by using the [BitBadges SDK](broken-reference)**.** The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
 

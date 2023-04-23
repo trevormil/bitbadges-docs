@@ -7,13 +7,17 @@ description: >-
 
 # 👋 BitBadges Overview
 
+<figure><img src=".gitbook/assets/bitbadges_letters.png" alt=""><figcaption></figcaption></figure>
+
 ## Overview&#x20;
 
-BitBadges offers an open-source, community-driven suite of tools focused on cross-chain issuance of digital tokens (badges). Check it out at [https://bitbadges.io](https://bitbadges.io).
+BitBadges offers an open-source, community-driven suite of tools focused on cross-chain issuance of digital tokens (badges). Check out the BitBadges app at [https://bitbadges.io](https://bitbadges.io). To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
 Our goal is simple.&#x20;
 
 **Enable tokenization for any use case such that creating and sending badges is as easy as sending an emoji on iMessage, sending a Tweet, or attaching a file to an email.**
+
+BitBadges helps users establish social identity and reputation through blockchain technology and badges, allowing the viewing of positive achievements and negative reputation (e.g. scammer badge). BitBadges aims to support a developer ecosystem of unique projects that use its blockchain, API, and other provided tools. Lastly, BitBadges also aims to enable a peer-to-peer creator economy for individuals to offer services via badges (e.g. gated content, ticketing).
 
 ## Use Cases
 

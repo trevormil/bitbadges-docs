@@ -1,8 +1,12 @@
 # ❓ FAQ
 
+**Badge vs $BADGE?**
+
+Whenever we say $BADGE, we are referring to the BitBadges blockchain token used for paying transaction fees and staking. This is not to be confused with badges / badge collections.
+
 **Why is there a need for BitBadges?**
 
-Over the past couple years, digital collectibles have taken the crypto industry by storm. We have all seen the mania (e.g. Justin Bieber buying a Bored Ape for $1.3 million). We have also all heard that digital blockchain tokens have been touted to revolutionize almost any sector you can think of.&#x20;
+Over the past couple years, digital collectibles have taken the crypto industry by storm. We have all seen the mania (e.g. buying digital rock JPEGs for $1.3 million). You also may have heard that digital blockchain tokens have been touted to revolutionize almost any sector you can think of.
 
 However, the BitBadges team noticed that the current solutions are not sufficient for these revolutions can take place. The current solutions only offer simple buy / sell / transfer functionality for tokens on a specific blockchain. BitBadges wants to help blockchain tokens realize their potential by building the necessary infrastructure!
 
