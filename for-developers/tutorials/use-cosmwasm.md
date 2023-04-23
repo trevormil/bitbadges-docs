@@ -20,7 +20,7 @@ This tutorial assumes some understanding of Rust and CosmWASM. Both these topics
 
 
 
-It is recommended that you test everything on a testnet before deploying for real.
+It is always recommended that you test everything on a testnet before deploying for real.
 
 **Step 1: Create Contract**
 
@@ -61,7 +61,7 @@ raw_log: '[....{"key":"code_id","value":"4"}....]'
 Then, you instantiate the contract via:
 
 ```
-bitbadgeschaind tx  wasm instantiate code_id_from_above {} --label "your label" --no-admin --from=<address> --gas=auto -y
+bitbadgeschaind tx wasm instantiate code_id_from_above {} --label "your label" --no-admin --from=<address> --gas=auto -y
 ```
 
 This will then return a contract address in the raw\_log output. Or, you can query the contract address by code\_id using the wasm query commands.

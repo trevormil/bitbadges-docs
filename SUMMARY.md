@@ -38,7 +38,7 @@
   * [🖊 Standards](for-developers/need-to-know/standards.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
-  * [Creating Claims](for-developers/tutorials/creating-claims.md)
+  * [Merkle Trees for Claims](for-developers/tutorials/merkle-trees-for-claims.md)
   * [Use CosmWasm](for-developers/tutorials/use-cosmwasm.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
 
