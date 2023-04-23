@@ -13,10 +13,6 @@ For certain requests, we require the user to be authenticated via [Blockin](http
 
 ### **Routes**
 
-#### Status
-
-* `POST /api/v0/status`
-
 #### Search
 
 * `POST /api/v0/search/:searchValue`
@@ -71,4 +67,8 @@ For certain requests, we require the user to be authenticated via [Blockin](http
 #### Faucet
 
 * `POST /api/v0/faucet`
+
+#### Status
+
+* `POST /api/v0/status`
 
