@@ -2,7 +2,7 @@
 
 **What are ID Ranges?**
 
-A core type behind the scenes in BitBadges s the IdRange type.
+A core type behind the scenes in BitBadges is the IdRange type.
 
 The IdRange type is simple. It is a struct that defines a start and an end number. IdRanges are used mainly for badge IDs but also for other uses like account ID ranges.
 

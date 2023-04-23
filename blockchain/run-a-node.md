@@ -54,7 +54,7 @@ cp ./genesis.json ~/.bitbadgeschaind/config/genesis.json
 
 **Step 2: Setup Validator Keys**&#x20;
 
-This step is only required if you are running a validator.
+This step is only required if you are planning to run a validating node.
 
 Follow the steps in [https://docs.cosmos.network/main/run-node/keyring](https://docs.cosmos.network/main/run-node/keyring) and/or [https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to setup your validators' keys. Replace **simd** with **bitbadgeschaind** or **myproject** with **bitbadgeschain**.
 
@@ -89,7 +89,7 @@ Being part of a network with a known IP address can be a security or service ris
 
 **Step 5: Start Blockchain**
 
-Make sure the signing service setup in Step 2 is started and running (this link may be helpful [https://docs.cosmos.network/main/run-node/run-production](https://docs.cosmos.network/main/run-node/run-production)).
+Make sure the signing service (if you set one up in Step 2) is started and running (this link may be helpful [https://docs.cosmos.network/main/run-node/run-production](https://docs.cosmos.network/main/run-node/run-production)).
 
 Next, you can simply start your blockchain with
 
@@ -106,7 +106,7 @@ See [**https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a
 
 **Step 7: Join Validator Set?**
 
-If you want to run a validator (standard nodes can ignore this step) and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to pay for gas and your added stake.&#x20;
+If you want to run a validator (standard nodes can ignore this step) and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to cover gas and your stake.&#x20;
 
 <pre><code><strong>bitbadgeschaind tx staking create-validator [path/to/validator.json] [flags]
 </strong></code></pre>

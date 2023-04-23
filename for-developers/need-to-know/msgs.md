@@ -38,11 +38,11 @@ Below, we will provide the documentation for the Msgs from our x/badges module.&
 ### Pre-Notes
 
 * The **creator** field for each message is the transaction sender's cosmos address. This is automatically added by the blockchain. You will not need to specify this.
-* You may see unrecognized types. Within the next pages of this section, we explain how each type is defined and what they are.&#x20;
+* You may see unrecognized types. In the following pages, we provide more detailed explanations for each type. We will provide a brief summary, but refer to the following pages for further details.
 
 ### **MsgNewCollection**
 
-Creates a new badge collection. See [collections](collections.md) for more detailed explanations on each field and how collections are stored on-chain.&#x20;
+Creates a new badge collection.
 
 **collectionUri** and **badgeUris** defined the metadata for the collection and badges.
 
@@ -105,9 +105,9 @@ message MsgMintBadge {
 
 Note that if the CanUpdateUris permission is turned off / disabled, the existing collectionUri and badgeUris cannot be edited, so it will give an error if you try and change anything. For badgeUris, you are allowed to append new BadgeUris for the newly created badges, but you can not edit existing ones. You may leave either or both blank to say not to update anything.
 
-#### **MsgClaimBadge**
+### **MsgClaimBadge**
 
-Claim a badge that is currently claimable. If needed, provide a whitelistProof or codeProof with a valid SHA256 Merkle path to the respective root.&#x20;
+Claim a badge that is currently claimable. If needed, provide a whitelistProof or codeProof with a valid SHA256 Merkle path to the respective root. See [Creating Claims](../tutorials/creating-claims.md) for a tutorial.
 
 ```protobuf
 message MsgClaimBadge {
@@ -131,13 +131,9 @@ message ClaimProof {
 }
 ```
 
-**TODO Provide Example**
+### **MsgTransferBadge**
 
-
-
-#### **MsgTransferBadge**
-
-Transfers the badges defined in [**transfers**](transfers.md) from the provided **from** account ID to those defined in the **transfers** field. **from** can be another user besides the calling user, but they will need adequate approvals.
+Transfers the badges defined in [**transfers**](transfers.md) from the provided **from** account ID to those defined in the **transfers** field. **from** can be another user besides the calling user, but they will need adequate approvals set.
 
 ```protobuf
 message MsgTransferBadge {
@@ -148,7 +144,7 @@ message MsgTransferBadge {
 }
 ```
 
-#### **MsgDeleteCollection**
+### **MsgDeleteCollection**
 
 Deletes a collection.
 
@@ -159,9 +155,9 @@ message MsgDeleteCollection {
 }
 ```
 
-#### **MsgRegisterAddresses**
+### **MsgRegisterAddresses**
 
-Register addresses on the blockchain. Used if a user is new and does not have an account ID yet.
+Register addresses on the blockchain. Assigns a new user an account ID.
 
 ```protobuf
 message MsgRegisterAddresses {
@@ -170,7 +166,7 @@ message MsgRegisterAddresses {
 }
 ```
 
-#### **MsgRequestTransferManager**
+### **MsgRequestTransferManager**
 
 Request the manager role to be transferred to you. If the manager role is to be transferred, the recipient needs to make a request first.
 
@@ -186,7 +182,7 @@ message MsgRequestTransferManager {
 
 
 
-#### **MsgTransferManager**
+### **MsgTransferManager**
 
 Transfer the manager role to a new user. If the manager role is to be transferred, the recipient needs to make a request first.
 
@@ -198,7 +194,7 @@ message MsgTransferManager {
 }
 ```
 
-#### **MsgSetApproval**
+### **MsgSetApproval**
 
 Sets an approval for a specific address to transfer badges on your behalf.
 
@@ -211,7 +207,7 @@ message MsgSetApproval {
 }
 ```
 
-#### **MsgUpdateBytes**
+### **MsgUpdateBytes**
 
 Updates the bytes field.
 
@@ -223,7 +219,7 @@ message MsgUpdateBytes {
 }
 ```
 
-#### **MsgUpdateUris**
+### **MsgUpdateUris**
 
 Updates the collectionUri and badgeUris.
 
@@ -236,7 +232,7 @@ message MsgUpdateUris {
 }
 ```
 
-#### **MsgUpdatePermissions**
+### **MsgUpdatePermissions**
 
 Updates the permissions for the collection. See [permissions](permissions.md).
 
@@ -248,7 +244,7 @@ message MsgUpdatePermissions {
 }
 ```
 
-#### **MsgUpdateDisallowedTransfers**
+### **MsgUpdateDisallowedTransfers**
 
 Updates the disallowed transfers field.
 

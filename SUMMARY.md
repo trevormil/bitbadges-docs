@@ -34,10 +34,11 @@
   * [➡ Transfers](for-developers/need-to-know/transfers.md)
   * [☑ Permissions](for-developers/need-to-know/permissions.md)
   * [🎁 Claims](for-developers/need-to-know/claims.md)
-  * [🖊 Standards](for-developers/need-to-know/standards.md)
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
+  * [🖊 Standards](for-developers/need-to-know/standards.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
+  * [Creating Claims](for-developers/tutorials/creating-claims.md)
   * [Use CosmWasm](for-developers/tutorials/use-cosmwasm.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
 

@@ -11,25 +11,64 @@ See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api
 
 For certain requests, we require the user to be authenticated via [Blockin](http://localhost:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](authentication.md) for how to authenticate users.
 
-### Error Handling
+### **Routes**
 
-| Error Code | Description            |
-| ---------- | ---------------------- |
-| 500        | Internal server error. |
-| 401        | Unauthorized request.  |
+#### Status
 
-If an error occurs, the response body will be in the format of:
+* `POST /api/v0/status`
 
-```json
-{ 
-  "error": "Error message" 
-}
-```
+#### Search
 
-### Route Parameters
+* `POST /api/v0/search/:searchValue`
 
-The following route parameters are used in the API:
+#### Collections
 
-* `:id`: Collection ID
-* `:badgeId`: Badge ID
-* `:accountNum`: Account ID
+* `POST /api/v0/collection/batch`
+* `POST /api/v0/collection/query`
+* `POST /api/v0/collection/:id`
+* `POST /api/v0/collection/:id/:badgeId/owners`
+* `POST /api/v0/collection/:id/metadata`
+* `POST /api/v0/collection/:id/balance/:accountNum`
+* `POST /api/v0/collection/:id/:badgeId/activity`
+* `POST /api/v0/collection/:id/refreshMetadata`
+* `POST /api/v0/collection/:id/:badgeId/refreshMetadata`
+* `POST /api/v0/collection/:id/codes`
+* `POST /api/v0/collection/:id/password/:claimId/:password`
+* `POST /api/v0/collection/:id/addAnnouncement`
+
+#### User
+
+* `POST /api/v0/user/batch`
+* `POST /api/v0/user/:accountNum/id`
+* `POST /api/v0/user/:address/address`
+* `POST /api/v0/user/:accountNum/portfolio`
+* `POST /api/v0/user/:accountNum/activity`
+* `POST /api/v0/user/updateAccount`
+
+#### IPFS
+
+* `POST /api/v0/addToIpfs`
+* `POST /api/v0/addMerkleTreeToIpfs`
+
+#### Blockin Auth
+
+* `POST /api/v0/auth/getChallenge`
+* `POST /api/v0/auth/verify`
+* `POST /api/v0/auth/logout`
+
+#### Browse
+
+* `POST /api/v0/browse`
+
+#### Broadcast
+
+* `POST /api/v0/broadcast`
+
+#### Fetch Arbitrary Metadata
+
+* `POST /api/v0/metadata`
+
+#### Faucet
+
+* `POST /api/v0/faucet`
+

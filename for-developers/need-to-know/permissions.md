@@ -11,4 +11,8 @@ Each badge collection will define the privileges that the manager has. There are
 
 Permissions are packed within a struct as a uint on the blockchain in the order they appear above (CanUpdateDisallowed is the rightmost bit). Leading zeroes must be applied. So for example, to set all six permissions to true, you will set it to 0011 1111 in binary which is 63.
 
-To convert between number format and a more human-readable struct format, use the **GetPermissionsNumber TODO** from the [BitBadges SDK](broken-reference).
+To convert between number format and a more human-readable struct format, use the permissions functions from the [BitBadges SDK](broken-reference).
+
+```typescript
+import { GetPermissions, GetPermissionNumberValue } from 'bitbadgesjs-utils';
+```

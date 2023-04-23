@@ -51,6 +51,4 @@ If 2, each address is limited to only claim once.&#x20;
 
 **Examples**
 
-**Creating whitelist / merkle trees**&#x20;
-
-**TODO**
+See [Creating Claims](../tutorials/creating-claims.md) for a tutorial.
