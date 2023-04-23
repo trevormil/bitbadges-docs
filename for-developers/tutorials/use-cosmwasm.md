@@ -1,6 +1,6 @@
 # Use CosmWasm
 
-IMPORTANT: Note that when CosmWasm interacts with the badges module (i.e. creates and broadcasts a [Tx Msg](../need-to-know/tx-msg-interfaces.md) from the contract), the creator field (calling address) will always be the contract's address / account ID number, NOT THE ORIGINAL USER's address / account ID number. In other words, Cosmos SDK does not have a Solidity **tx.origin** equivalent.
+IMPORTANT: Note that when CosmWasm interacts with the badges module (i.e. creates and broadcasts a [Tx Msg](../need-to-know/tx-msg-interfaces.md)), the creator field (calling address) of the Msg will always be the contract's address / account ID number, NOT THE ORIGINAL USER's address / account ID number. In other words, Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent.
 
 
 
