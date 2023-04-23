@@ -38,7 +38,7 @@ Note that you can also use an optimizer instead of **build.sh** to further optim
 
 
 
-If you want to develop in your own directory (i.e. not cloning the repo above), note that the bitbadges-cosmwasm import in Cargo.toml for these contracts is a local path import. You can import the published package version from **TODO**.
+If you want to develop in your own directory (i.e. not cloning the repo above), note that the bitbadges-cosmwasm import in Cargo.toml for these contracts is a local path import. You can import the published package version (see [bitbadges-cosmwasm](https://crates.io/crates/bitbadges-cosmwasm)).
 
 
 
