@@ -20,7 +20,7 @@ This tutorial assumes some understanding of Rust and CosmWASM. Both these topics
 
 
 
-It is recommeded you test everything on a testnet before deploying for real.
+It is recommended that you test everything on a testnet before deploying for real.
 
 **Step 1: Create Contract**
 
