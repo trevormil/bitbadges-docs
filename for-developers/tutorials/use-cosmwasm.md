@@ -46,7 +46,7 @@ At the end of Step 1, you should have a compiled .wasm file.
 
 **Step 2: Storing and Instantiating the Contract**
 
-This step assumes that you are running a node and have familiarity with the CLI. We plan to create a simple user interface in the future.
+This step assumes that you are running a node and have familiarity with the CLI. You can also check out other tools such as [https://github.com/cryptechdev/wasm-deploy](https://github.com/cryptechdev/wasm-deploy) to deploy without running a node. We plan to create a simple user interface for deployment in the future (or this could be an idea for a community-built tool).
 
 ```
 bitbadgeschaind tx wasm store /path/to/contract.wasm --from=<address> --chain-id=<chain-id> --gas=auto -y
