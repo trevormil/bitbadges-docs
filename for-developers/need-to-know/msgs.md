@@ -11,9 +11,9 @@ The documentation for the pre-written modules can be found [here](https://docs.c
 
 ## Submitting / Broadcasting Transactions
 
-You can submit / broadcast your transactions (Msgs) to the BitBadges team's node via [this tutorial using the BitBadges SDK](../../sdk/broadcasting-and-signing-txs.md).&#x20;
+You can create / submit / broadcast your transactions (Msgs) to the BitBadges team's official node via [the BitBadges SDK](../../sdk/broadcasting-and-signing-txs.md). This is the recommended option. You do not have to run a node and only need to ever use TypeScript.
 
-Using the above tutorial is the recommended method, but you can also interact with other nodes (i.e. one you run yourself or other BitBadges nodes). See [https://docs.cosmos.network/main/run-node/interact-node](https://docs.cosmos.network/main/run-node/interact-node) for your options. There are plenty of resources out there for interacting with a Cosmos SDK node.
+Using the above tutorial is the recommended method, but you can also interact with other nodes (i.e. one you run yourself or other BitBadges nodes). See [https://docs.cosmos.network/main/run-node/interact-node](https://docs.cosmos.network/main/run-node/interact-node) and [https://docs.cosmos.network/main/run-node/txs](https://docs.cosmos.network/main/run-node/txs) for your options. There are plenty of resources out there for interacting with a Cosmos SDK node.
 
 ## Badge Msg Types
 

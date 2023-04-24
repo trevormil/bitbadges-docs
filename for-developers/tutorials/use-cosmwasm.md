@@ -22,11 +22,17 @@ This tutorial assumes some understanding of Rust and CosmWASM. Both these topics
 
 It is always recommended that you test everything on a testnet before deploying for real.
 
+**Pre-Notes**
+
+* Note that the examples below show how to submit WASM transactions (MsgStoreCode, MsgInstantiateContract, MsgExecuteContract) via the CLI interface, but WASM transactions are normal transactions and can be signed / broadcasted in any method that you wish (for example, with the BitBadges SDK [here](../../sdk/broadcasting-and-signing-txs.md) or with other methods [here](../need-to-know/msgs.md)).
+
+
+
 **Step 1: Create Contract**
 
-Create your contract. Examples can be found at [https://github.com/bitbadges/bitbadges-cosmwasm-bindings/contracts](https://github.com/bitbadges/bitbadges-cosmwasm-bindings/contracts) for interacting with the BitBadges badge module.&#x20;
+Create your contract. Examples can be found [here ](https://github.com/BitBadges/bitbadges-cosmwasm-bindings/tree/master/contracts/register\_addresses)for interacting with the badge module.&#x20;
 
-**NOTE:** The BitBadges bindings from the above repository do not cover messages that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`. See corresponding documentation if you want to interact with other modules as well. For this tutorial, we will focus on interacting with the badges module only.
+**NOTE:** The BitBadges bindings from the above repository do not cover messages from pre-written modules that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`. See corresponding documentation if you want to interact with other pre-written modules as well. For this tutorial, we will focus on interacting with the badges module only.
 
 
 

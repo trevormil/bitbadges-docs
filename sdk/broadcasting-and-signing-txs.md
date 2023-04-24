@@ -6,7 +6,7 @@ For the transaction Msg types offered by BitBadges, see [Tx Msg Interfaces](../f
 
 The recommended way to broadcast a transaction is by using the [BitBadges SDK](broken-reference)**.** The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
 
-Note the examples below show how to broadcast directly to a running blockchain node. For broadcasting via the BitBadges blockchain node, in the examples below, simply replace
+Note the examples below show how to broadcast directly to any running blockchain node. For broadcasting to the BitBadges blockchain node, in the examples below, simply replace
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>`http://URL:1317${generateEndpointBroadcast()}`
 </strong></code></pre>
@@ -19,11 +19,64 @@ https://api.bitbadges.io/api/v0/broadcast
 
 ### Examples
 
+**Fetching Account Details**
+
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../indexer-api/api/users.md). You can also query a node directly.
+
+This will return the user's cosmos address, account ID, sequence (nonce), and public key.&#x20;
+
+For a user who has not submitted a transaction yet, the fetched public key will be null. You can get the public key as shown below.&#x20;
+
+Note that the user will need $BADGE to pay for gas as well (and as a result, they will be registered and have an account ID number).
+
+
+
+**Get Public Key - Metamask / ETH**
+
+```typescript
+const getPublicKey = async (cosmosAddress: string) => {
+    const message = 'Please sign this message, so we can generate your public key';
+
+    let sig = await window.ethereum.request({
+        method: 'personal_sign',
+        params: [message, cosmosToEth(cosmosAddress)],
+    })
+
+    const msgHash = ethers.utils.hashMessage(message);
+    const msgHashBytes = ethers.utils.arrayify(msgHash);
+    const pubKey = ethers.utils.recoverPublicKey(msgHashBytes, sig);
+
+
+    const pubKeyHex = pubKey.substring(2);
+    const compressedPublicKey = Secp256k1.compressPubkey(new Uint8Array(Buffer.from(pubKeyHex, 'hex')));
+    const base64PubKey = Buffer.from(compressedPublicKey).toString('base64')
+    return base64PubKey;
+}
+```
+
+**Get Public Key - Keplr / Cosmos**
+
+```typescript
+import { CHAIN_DETAILS } from 'bitbadgesjs-utils';
+
+const getPublicKey = async (_cosmosAddress: string) => {
+    const chain = CHAIN_DETAILS;
+    
+    const account = await window?.keplr?.getKey(chain.cosmosChainId)
+    if (!account) return '';
+    const pk = Buffer.from(account.pubKey).toString('base64')
+    
+    return pk;
+}
+```
+
 #### Create a Transaction
 
 The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
 
 For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, createTxMsgUpdateUris, ...)** and update the parameters accordingly.
+
+Note that if you need an account ID number for a parameter to a create function (e.g. MsgTransferBadge requires account numbers), you have to register them first (see [Accounts](../for-developers/need-to-know/accounts.md)).&#x20;
 
 ```ts
 import { createMessageSend } from 'bitbadgesjs-transactions'
@@ -37,7 +90,7 @@ const sender = {
   accountAddress: 'cosmos....',
   sequence: 1,
   accountNumber: 9,
-  pubkey: 'AgTw+4v0daIrxsNSW4FcQ+IoingPseFwHO1DnssyoOqZ',
+  pubkey: '....', 
 }
 
 const fee = {
