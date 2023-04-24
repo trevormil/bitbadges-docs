@@ -6,7 +6,7 @@ The delegated part is because token holders can delegate their stake ($BADGE) to
 
 
 
-Betanet validators and stakers will receive extra mainnet $BADGE upon launch via the airdrop.
+
 
 ### Option 1: Delegate
 
@@ -14,7 +14,7 @@ For most users, delegating is the preferred option. You can delegate your $BADGE
 
 **How to Delegate?**
 
-Visit TODO
+Visit TODO. We will launch an interface upon mainnet. There is no incentive to stake during betanet.
 
 Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
 
@@ -22,5 +22,5 @@ Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.networ
 
 If you want to become a validator and stake directly by running a validating node, see [here](../blockchain/run-a-node.md).&#x20;
 
-To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.
+Betanet validators will receive extra mainnet $BADGE upon launch via the airdrop. To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.
 
