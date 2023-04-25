@@ -49,6 +49,7 @@
 
 * [Overview](blockchain/overview.md)
 * [Run a Node](blockchain/run-a-node.md)
+* [REST API Docs](blockchain/rest-api-docs.md)
 
 ## 💻 Website
 
