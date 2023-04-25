@@ -117,4 +117,4 @@ const executeTx = await createTxMsgExecuteContractCompat(...txDetails, msgExecut
 
 **Step 4: Build a dApp**
 
-Once you have done the previous three steps, you are ready to build a dApp, so users can interact with your contract! See [Build a dApp](build-a-dapp.md).
+Once you have done the previous three steps, you should build a dApp frontend, so users can interact with your contract! See [Build a dApp](build-a-dapp.md).
