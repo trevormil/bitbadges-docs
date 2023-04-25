@@ -73,3 +73,4 @@
 
 * [Overview](sdk/overview.md)
 * [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)
+* [Documentation](sdk/documentation.md)
