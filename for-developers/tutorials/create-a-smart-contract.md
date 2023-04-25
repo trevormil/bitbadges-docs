@@ -24,9 +24,7 @@ It is always recommended that you test everything on a testnet before deploying 
 
 **Pre-Notes**
 
-* Note that the examples below show how to submit WASM transactions (MsgStoreCode, MsgInstantiateContract, MsgExecuteContract) via the CLI interface, but WASM transactions are normal transactions and can be signed / broadcasted in any method that you wish (for example, with the BitBadges SDK [here](../../sdk/broadcasting-and-signing-txs.md) or with other methods [here](../need-to-know/msgs.md)).
-
-
+* Note that the examples below show how to submit WASM transactions (MsgStoreCode, MsgInstantiateContract, MsgExecuteContract) via the CLI interface. Currently, the BitBadges SDK does not support these Msgs, so CLI is the recommended option here. However, the SDK does support a MsgExecuteContractCompat which is an Ethereum compatible version of MsgExecuteContract. This can be used in the same way as MsgExecuteContract with slightly different syntax (see Step 3).
 
 **Step 1: Create Contract**
 
