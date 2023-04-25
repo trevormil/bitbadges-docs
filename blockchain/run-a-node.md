@@ -15,7 +15,7 @@ Wherever a chain ID is required, the following should be used:
 
 "bitbadges\_1-1" - mainnet chain ID (NOT ACTIVE YET)
 
-"bitbadges\_1-2" - betanet chain ID
+"bitbadges\_2-1" - betanet chain ID
 
 
 
@@ -46,10 +46,14 @@ Then, initialize your chain with
 bitbadgeschaind init <moniker> --chain-id CHAIN_ID
 ```
 
-Next, you will need to overwrite the genesis file with the agreed upon version. We have conveniently provided in the root directory: **./genesis.json**.
+Next, you will need to overwrite the genesis file with the agreed upon version. We have conveniently provided in the root directory: **./testnet.genesis.json** and **./mainnet.genesis.json**. The testnet one should be used for betanet.
 
 ```bash
-cp ./genesis.json ~/.bitbadgeschaind/config/genesis.json
+cp ./testnet.genesis.json ~/.bitbadgeschaind/config/genesis.json
+```
+
+```
+cp ./mainnet.genesis.json ~/.bitbadgeschaind/config/genesis.json
 ```
 
 **Step 2: Setup Validator Keys**&#x20;

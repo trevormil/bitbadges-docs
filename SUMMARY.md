@@ -7,6 +7,7 @@
 * [🏆 How It Works](overview/how-it-works.md)
 * [🏅 Creating a Badge](overview/creating-a-badge.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
+* [💳 Supported Wallets](overview/supported-wallets.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
 * [📊 Block Explorers](overview/block-explorers.md)
@@ -26,6 +27,7 @@
 
 * [🧠 Need to Know](for-developers/need-to-know/README.md)
   * [👤 Accounts](for-developers/need-to-know/accounts.md)
+  * [👥 Accounts (Technical)](for-developers/need-to-know/accounts-technical.md)
   * [✉ Msgs](for-developers/need-to-know/msgs.md)
   * [🎖 Collections](for-developers/need-to-know/collections.md)
   * [🔢 ID Ranges](for-developers/need-to-know/id-ranges.md)
