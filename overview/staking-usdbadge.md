@@ -14,7 +14,7 @@ For most users, delegating is the preferred option. You can delegate your $BADGE
 
 **How to Delegate?**
 
-Visit TODO. We will launch an interface upon mainnet. There is no incentive to stake during betanet.
+Visit TODO. We will launch an interface upon mainnet. There is no incentive to delegate during betanet.
 
 Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
 
