@@ -2,7 +2,7 @@
 
 In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens or creating a new account. Each Cosmos SDK module can define their own Msg types based on their specific functionality. For example, the staking module defines Msgs for actions related to staking, such as creating a validator or delegating tokens. The governance module defines Msgs for submitting and voting on proposals to change the parameters of the blockchain. This modular approach allows developers to add and remove functionality as needed, and enables interoperability between different blockchains that use the Cosmos SDK.&#x20;
 
-The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK, including the staking module and bank module (a full list can be found in [app.go](https://github.com/BitBadges/bitbadgeschain/blob/master/app/app.go)). However, the x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined.
+The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK, including the staking module and bank module (a full list can be found in [app.go](https://github.com/BitBadges/bitbadgeschain/blob/master/app/app.go)). However, the x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also wrote an x/wasmx module which helps to create compatible smart contracts.
 
 The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules). Some common Msgs from pre-written modules you may need include:
 
@@ -17,9 +17,11 @@ Using the above tutorial is the recommended method, but you can also interact wi
 
 ## Badge Msg Types
 
-Below, we will provide the documentation for the Msgs from our x/badges module.&#x20;
+Below, we will provide the documentation for the Msgs from our x/badges and x/wasmx module.&#x20;
 
 ### Overview
+
+**x/badges**
 
 * [MsgNewCollection](msgs.md#msgnewcollection) - Creates a new badge collection and distributes badges.
 * [MsgMintBadge](msgs.md#msgmintbadge) - Adds badges to a collection and distributes badges.
@@ -34,6 +36,10 @@ Below, we will provide the documentation for the Msgs from our x/badges module.&
 * [MsgUpdateUris](msgs.md#msgupdateuris) - Update the metadata URIs
 * [MsgUpdateDisallowedTransfers](msgs.md#msgupdatedisallowedtransfers) - Update the transferability
 * [MsgUpdateBytes](msgs.md#msgupdatebytes) - Update the bytes field
+
+**x/wasmx**
+
+* [MsgExecuteContractCompat](../tutorials/create-a-smart-contract.md) - Helper Msg to support executing contracts from Ethereum wallets for EIP712
 
 ### Pre-Notes
 
