@@ -1,4 +1,4 @@
-# Use CosmWasm
+# Create a Smart Contract
 
 CosmWasm Version: For compatibility with the most recent Cosmos SDK versions, we use a fork of the main CosmWasm code created by Notional Labs ([https://github.com/notional-labs/wasmd](https://github.com/notional-labs/wasmd)).&#x20;
 
@@ -82,6 +82,8 @@ Your contract is now deployed on the blockchain and ready to be interacted with.
 
 **Step 3: Interacting with the Contract**
 
+**Option 1: CLI**
+
 Finally, you can interact with your contract via the execute command. The example below is for registering addresses using the MsgRegisterAddresses command.
 
 ```
@@ -89,3 +91,30 @@ bitbadgeschaind tx wasm execute contract_address '{"registerAddressesMsg": {"add
 ```
 
 Note that even though snake\_case may be used in the contracts / Rust, the badge modules use camelCase as seen in the command above.
+
+**Option 2 (Recommended): SDK**
+
+The BitBadges SDK offers a **createTxMsgExecuteContractCompat** function which allows you to create, sign, and broadcast an execute contract Msg within JavaScript (see [Broadcasting Txs](../../sdk/broadcasting-and-signing-txs.md)). This allows you to create dApps and a frontend for your contract.&#x20;
+
+Note that the **MsgExecuteContractCompat** is not the standard **MsgExecuteContract** that is found within the pre-written x/wasm module. **MsgExecuteContractCompat** is a Msg for our written x/wasmx module which helps with compatibility with EIP712 and Ethereum wallet support. It simply is  a helper Msg that parses everything in a compatible manner and then calls the actual **MsgExecuteContract** from x/wasmx.&#x20;
+
+**Example**
+
+Note replace with values for your contract. **msg** should be a JSON encoded string with the details of your function call.
+
+```typescript
+import { MessageMsgExecuteContractCompat, createTxMsgExecuteContractCompat } from 'bitbadgesjs-transactions';
+
+const msgExecuteContract: MessageMsgExecuteContractCompat = {
+    sender: "cosmos1uqxan5ch2ulhkjrgmre90rr923932w38tn33gu", //enter sender adress here
+    contract: "cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr", // 
+    msg: '{"registerAddressesMsg": {"addressesToRegister": ["cosmos1hsk6jryyqjfhp5dhc55tc9jtckygx0eph6dd02"]}}',
+    funds: '1badge'
+}
+const executeTx = await createTxMsgExecuteContractCompat(...txDetails, msgExecuteContract);
+
+```
+
+**Step 4: Build a dApp**
+
+Once you have done the previous three steps, you are ready to build a dApp, so users can interact with your contract! See [Build a dApp](build-a-dapp.md).

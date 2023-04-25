@@ -38,8 +38,9 @@
   * [🖊 Standards](for-developers/need-to-know/standards.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
+  * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
   * [Merkle Trees for Claims](for-developers/tutorials/merkle-trees-for-claims.md)
-  * [Use CosmWasm](for-developers/tutorials/use-cosmwasm.md)
+  * [Create a Smart Contract](for-developers/tutorials/create-a-smart-contract.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
 
 ## ⛓ Blockchain
