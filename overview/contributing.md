@@ -8,4 +8,4 @@ Additionally, you can contribute by building on top of BitBadges. This can be an
 
 **Rewarding Developers**
 
-In the future, we plan to host hackathons and setup a developer funding pool where developers are rewarded for contributing and building with BitBadges.
+In the future, we plan to host hackathons, bug bounties, and setup a developer funding pool where developers are rewarded for contributing and building with BitBadges.
