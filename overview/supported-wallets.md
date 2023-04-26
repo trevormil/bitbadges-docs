@@ -2,10 +2,9 @@
 
 **Ethereum**
 
-Metamask
-
-
+We use WalletConnect to support over 100 Ethereum wallets such as Metamask, Ledger, and many more (see full list [https://explorer.walletconnect.com/?type=wallet](https://explorer.walletconnect.com/?type=wallet)).
 
 **Cosmos**
 
-Keplr
+Keplr - [https://www.keplr.app/](https://www.keplr.app/)
+
