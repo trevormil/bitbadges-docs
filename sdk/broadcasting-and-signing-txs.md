@@ -118,6 +118,8 @@ const msg = createMessageSend(chain, sender, fee, memo, params)
 
 After creating the transaction we need to send the payload to metamask so it can be signed. With that signature we are going to add a Web3Extension to the Cosmos Transactions and broadcast it to the Cosmos node.
 
+Option 1:&#x20;
+
 ```ts
 // Follow the previous step to generate the msg object
 import { cosmosToEth } from 'bitbadgesjs-address-converter'
@@ -130,16 +132,58 @@ import {
   signatureToWeb3Extension,
 } from 'bitbadgesjs-transactions'
 
+
+
+```
+
+**Option 1: Metamask / Ethers**
+
+<pre class="language-typescript"><code class="lang-typescript">//Add necessary imports
+import { _TypedDataEncoder } from 'ethers/lib/utils.js';
+
 // Init Metamask
 await window.ethereum.enable()
 
-// Request the signature
-let signature = await window.ethereum.request({
-  method: 'eth_signTypedData_v4',
-  params: [cosmosToEth(sender.accountAddress), JSON.stringify(msg.eipToSign)],
+//Option 1: window.ethereum
+const eip = _TypedDataEncoder.getPayload(txn.eipToSign.domain, types_, txn.eipToSign.message);
+const sig = await window.ethereum.request({
+    method: 'eth_signTypedData_v4',
+    params: [cosmosToEth(sender.accountAddress), JSON.stringify(eip)],
 })
 
-// The chain and sender objects are the same as the previous example
+//Option 2: Use the signer._signTypedData from ethers directly (https://docs.ethers.org/v5/api/signer/#Signer-signTypedData)
+//It will give an error with an unused EIP712Domain type, so you have to remove that before calling it as seen below.
+//It adds this type automatically.
+<strong>
+</strong>//From https://github.com/wagmi-dev/wagmi/blob/main/packages/core/src/actions/accounts/signTypedData.ts#L41
+const types_ = Object.entries(txn.eipToSign.types)
+    .filter(([key]) => key !== 'EIP712Domain')
+    .reduce((types, [key, attributes]: [string, TypedDataField[]]) => {
+      types[key] = attributes.filter((attr) => attr.type !== 'EIP712Domain')
+      return types
+    }, {} as Record&#x3C;string, TypedDataField[]>)
+
+// Method name may be changed in the future, see https://docs.ethers.io/v5/api/signer/#Signer-signTypedData
+return await signer._signTypedData(txn.eipToSign.domain, types_, txn.eipToSign.message)
+</code></pre>
+
+**Option 2: WalletConnect / WAGMI**
+
+Pre-Req: Your dApp must be using WalletConnect. See [their docs](https://docs.walletconnect.com/2.0) for setup.
+
+```typescript
+import { signTypedData } from "@wagmi/core";
+
+const sig = await signTypedData({
+    value: txn.eipToSign.message,
+    types: txn.eipToSign.types,
+    domain: txn.eipToSign.domain
+});
+```
+
+**Generating and Broadcasting**
+
+<pre class="language-typescript"><code class="lang-typescript">// The chain and sender objects are the same as the previous example
 let extension = signatureToWeb3Extension(chain, sender, signature)
 
 // Create the txRaw
@@ -157,11 +201,12 @@ const postOptions = {
 }
 
 let broadcastPost = await fetch(
-  `http://localhost:1317${generateEndpointBroadcast()}`,
-  postOptions,
+<strong>  //replace with your node URL or https://api.bitbadges.io/v0/broadcast
+</strong><strong>  `http://localhost:1317${generateEndpointBroadcast()}`, 
+</strong>  postOptions,
 )
 let response = await broadcastPost.json()
-```
+</code></pre>
 
 #### Signing with Keplr
 
@@ -199,6 +244,7 @@ if (sign !== undefined) {
   }
 
   let broadcastPost = await fetch(
+    //replace with your node URL or https://api.bitbadges.io/v0/broadcast
     `http://localhost:1317${generateEndpointBroadcast()}`,
     postOptions,
   )
