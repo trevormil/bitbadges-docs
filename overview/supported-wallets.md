@@ -8,9 +8,11 @@ If you are on MetaMask Mobile, please use the in-app browser.
 
 
 
-Note that we are working on ironing out the bugs for the support of many wallets.
+Note that we are working on ironing out the bugs for the support of many wallets. The following have been tested:
 
-MetaMask, MetaMask Mobile and Coinbase Wallet have been tested.
+Desktop: MetaMask, Coinbase Wallet, Trust Wallet
+
+Mobile: MetaMask Mobile
 
 **Cosmos**
 
