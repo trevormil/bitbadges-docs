@@ -144,3 +144,12 @@ where `validator.json` contains:
 ```
 
 and pubkey can be obtained by using `simd tendermint show-validator` command.
+
+**Step 8: Handling Upgrades**
+
+Naturally, over time, BitBadges will deploy software updates for the blockchain. To handle these software upgrades, you can do it manually, but it is recommended nodes use Cosmovisor.
+
+Cosmovisor is a tool for automating the upgrade process of Cosmos SDK-based blockchains. It manages the binary upgrades of the software and enables the seamless transition from one version to the next without downtime.
+
+We refer you to [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and [https://docs.cosmos.network/main/tooling/cosmovisor.html](https://docs.cosmos.network/main/tooling/cosmovisor.html) for documentation.
+
