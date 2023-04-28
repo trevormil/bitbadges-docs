@@ -5,7 +5,7 @@ Because you can create a badge for anything, there are infinitely many possible 
 ### Potential Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 
 * **Attendance Badges -** Mint an attendance badge as a souvenir!
-* **Decentralized Verification** - Multiple verification services can give out verification badges, and you can choose which person/entity to get your verification ticks from.
+* **Decentralized Verification** - Multiple verification services can give out verification badges, and you can choose which person/entity to get your verification ticks from. Or, verification can be more fine-grained and each entity / company can assign badges to their own registered employees / community.
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
 * **Premium Content** - Premium content can be offered only to badge holders.
 * **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, etc.
