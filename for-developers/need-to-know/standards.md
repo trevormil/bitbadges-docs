@@ -34,7 +34,7 @@ Each standard must follow the following format:
 
 ## List of Standards
 
-### BitBadges Website Standard (ID: 0)
+### BitBadges Token Base Standard (ID: 0)
 
 **Author**: The BitBadges Team
 
@@ -67,4 +67,47 @@ The BitBadges Website standard defines the expected format of badges that are to
 * Permissions: All permissions are supported.
 * Transferability: All combinations of transferability are supported.
 * Manager Approved Transfers: All combinations of the manager's approved transfers are supported.
+* Max Supplys: All combinations of supplys are supported.
+
+
+
+### BitBadges Token (Off-Chain Balances) Standard (ID: 1)
+
+**Author**: The BitBadges Team
+
+**Standard ID**: 1
+
+**Version**: 0.0.1 (Last Updated: 4/30/2023)
+
+**Standard Details:**&#x20;
+
+This standard defines the expected format of badges that are to be supported on the BitBadges website. This standard allows balances to be defined off-chain by a JSON file hosted at the URI pointed to by the **bytes** field. Because balances are stored off-chain, no on-chain transfer functionality will be supported.
+
+There are two main use cases for this standard.&#x20;
+
+1\) If badge balances are to be permanent (soulbound / non-transferable), this standard enables a lightweight way to create a badge by outsourcing most of the storage off-chain (although still verifiable due to the on-chain URI). It is recommended that IPFS or permanent file storage solutions are used.
+
+2\) If the manager is to have complete control over the balances of a badge at any time, this standard is also useful to save resources.
+
+* Metadata: Metadata for both collections and badges will implement the same interface. This interface is as follows:
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>{
+</strong>    name: string;
+    description: string;
+    image: string;
+    validFrom?: {
+        start: number; //the number of milliseconds elapsed since the UNIX epoch
+        end: number; //the number of milliseconds elapsed since the UNIX epoch
+    },
+    color?: string; //valid HTML color
+    category?: string;
+    externalUrl?: string;
+    tags?: string[];
+}
+</code></pre>
+
+* Bytes: The bytes field will be a URL to the JSON file of balances. See [ipfs://QmRpXjc5tHhh6pHgqzmfnwMRLc3bZ1FdqSLxth5iqxxXhX](ipfs://QmRpXjc5tHhh6pHgqzmfnwMRLc3bZ1FdqSLxth5iqxxXhX) for expected format of JSON file.&#x20;
+* Permissions: The CanUpdateBytes permission will correspond to whether the manager can update the balances URL. The CanUpdateDisallowed permission should be set to false because on-chain transfers are not supported for off-chain balances.
+* Transferability: Transferability does not matter because on-chain transfers are not supported.
+* Manager Approved Transfers: Manager's Approved Transfers do not matter because on-chain transfers are not supported.
 * Max Supplys: All combinations of supplys are supported.
