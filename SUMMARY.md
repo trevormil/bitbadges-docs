@@ -40,6 +40,7 @@
   * [🖊 Standards](for-developers/need-to-know/standards.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
+  * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
   * [Merkle Trees for Claims](for-developers/tutorials/merkle-trees-for-claims.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-smart-contract.md)
