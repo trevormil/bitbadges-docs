@@ -2,6 +2,12 @@
 
 Distribution tools are helper tools that streamline the process of distributing badges for creators. An example tool might be to fetch and distribute the addresses of all users who attended a Twitter Spaces.&#x20;
 
+Other ideas for tools include distributing by:
+
+* Location
+* E-Mail
+* QR Codes
+
 
 
 **Pre-Readings**

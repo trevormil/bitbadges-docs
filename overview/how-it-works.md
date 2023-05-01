@@ -35,7 +35,9 @@ Once a permission is turned off (disabled), it can **never** be turned back on.&
 
 ### Distributing Badges (Minting)
 
-Badges can be either distributed manually or via a claiming process.
+Badges can be distributed in many ways.
+
+
 
 **Manual transfers** means that badges are transferred directly to a users' account by the manager. The manager will pay all transaction fees, so this is typically only used with a small number of recipients.
 
@@ -44,9 +46,16 @@ Badges can be either distributed manually or via a claiming process.
 * **First Come, First Serve** - No criteria. Anyone who wants a badge can claim. Limit one claim per address.
 * **Whitelist** - Only specific addresses are able to claim.
 * **Codes / Password** - Generate a password or unique codes that can be entered to redeem the badge.
-  * The codes and passwords can be distributed to the claimees by URL, QR codes, or manually.
-  * Note that on the BitBadges website, codes and passwords are stored in a centralized manner for a better user experience.
+* **Community-Built Distribution Tools** - In addition to the core distribution methods implemented by the BitBadges team, we aim to support and integrate loads of community-built distribution tools. Some examples include distributing by attending Twitter Spaces, location, etc.
 * We are looking to add more distribution methods in the future!
+
+
+
+
+
+
+
+
 
 #### Distributing vs Transferring
 
