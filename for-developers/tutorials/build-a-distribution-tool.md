@@ -36,8 +36,16 @@ Then when creating the badge, the creator can simply copy and paste the addresse
 If you identify your users in some other way, you will probably have to implement your tool by using codes. The execution flow is the following :&#x20;
 
 1. Generate a code/password based claim with N codes
-2. Have them provide you with the codes or password if using the BitBadges servers (see below). This can be done by clicking the copy icon after finalizing the claim.
-3. Use your tool to manually distribute the codes / password to the correct users
+2. Have them provide you with the codes or password if using the BitBadges servers (see below). This can be done by clicking the copy icon after finalizing the claim. If codes are being copied, they will be in the following JSON format:
+
+```
+{
+    "codes": ["...", ...],
+    "codeRoot" : "",
+}
+```
+
+1. Use your tool to manually distribute the codes / password to the correct users
 
 
 
