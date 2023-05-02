@@ -35,19 +35,28 @@ Once a permission is turned off (disabled), it can **never** be turned back on.&
 
 ### Distributing Badges (Minting)
 
-Badges can be distributed in many ways.
+At its core, there are three categories of distribution methods for badges as seen below. &#x20;
+
+* **First Come, First Serve** - No criteria. Anyone who wants a badge can receive it. Limit one claim per address.
+* **Whitelist** - Only specific addresses can receive badges. Can be sent directly or claimed by the recipient. Some helper tools we support include:
+  * TODO
+* **Codes / Password** - Generate a password or unique codes that can be entered to redeem the badge. These can be distributed in many ways. Currently, we support distributing via
+  * Email
+  * QR Code
+  * URL
 
 
 
-**Manual transfers** means that badges are transferred directly to a users' account by the manager. The manager will pay all transaction fees, so this is typically only used with a small number of recipients.
+One of the core ideas behind BitBadges is we want to decentralize the distribution process across hundreds or thousands of community-built distribution tools. See [this tutorial](../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool to the BitBadges website.
 
-**Claims** allow users to claim badges if certain criteria is met. Currently, on the BitBadges website, the following distribution methods for claims are supported:
 
-* **First Come, First Serve** - No criteria. Anyone who wants a badge can claim. Limit one claim per address.
-* **Whitelist** - Only specific addresses are able to claim.
-* **Codes / Password** - Generate a password or unique codes that can be entered to redeem the badge.
-* **Community-Built Distribution Tools** - In addition to the core distribution methods implemented by the BitBadges team, we aim to support and integrate loads of community-built distribution tools. Some examples include distributing by attending Twitter Spaces, location, etc.
-* We are looking to add more distribution methods in the future!
+
+We are looking to add more distribution methods in the future! Examples include:
+
+* Distribute via Location
+* Distribute via Twitter Spaces
+
+
 
 
 

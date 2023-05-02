@@ -57,7 +57,7 @@ If your tool uses codes / password, you have two options:
 
 * Store them on BitBadges servers and have the creator provide you with this information. This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes are known both by BitBadges centralized servers plus your tool).
 * Generate everything yourself. If you generate everything yourself, you can completely bypass the BitBadges servers for storage. This can be done by the "JSON" distribution option when minting on the BitBadges website. You will have the user copy/paste a JSON object, specifying the **transfers** and **claims** fields for the MessageMsgNewCollection.
-  * Note if this option is chosen but you still want your users to be able to claim on the BitBadges website, you will need to make everything compatible with the site.
+  * Note if this option is chosen but you still want your users to be able to claim on the BitBadges website, you will need to make everything compatible with the site. TODO
 
 ```typescript
 {
