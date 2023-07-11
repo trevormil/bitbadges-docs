@@ -1,8 +1,7 @@
 ---
 description: >-
-  BitBadges offers a suite of tools focused on cross-chain issuance of digital
-  tokens (badges). Here, you will find the documentation about how BitBadges
-  works, how to interact, and how to contribute!
+  Here, you will find documentation about BitBadges, how it works, how to
+  interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
@@ -11,13 +10,15 @@ description: >-
 
 ## Overview&#x20;
 
-BitBadges offers an open-source, community-driven suite of tools focused on cross-chain issuance of digital tokens (badges). Check out the BitBadges app at [https://bitbadges.io](https://bitbadges.io). To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
+Digital tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for infinitely many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), and some may be purely digital (e.g. verification checkmark).&#x20;
 
-Our goal is simple.&#x20;
+When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain ([read more here](https://101blockchains.com/advantages-of-nfts/)).&#x20;
 
-**Enable tokenization for any use case such that creating and sending badges is as easy as sending an emoji on iMessage, sending a Tweet, or attaching a file to an email.**
+BitBadges can be described as tokenization-as-a-service. We offer an open-source, community-driven suite of tools that enable you to create, customize, verify, and integrate with these digital blockchain tokens for any use case that you desire.
 
-BitBadges helps users establish social identity and reputation through blockchain technology and badges, allowing the viewing of positive achievements and negative reputation (e.g. scammer badge). BitBadges aims to support a developer ecosystem of unique projects that use its blockchain, API, and other provided tools. Lastly, BitBadges also aims to enable a peer-to-peer creator economy for individuals to offer services via badges (e.g. gated content, ticketing).
+Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can also easily identify bad actors via negative badges, such as a scammer badge. We aim for this app to have a social media feel but also be the all-in-one site to see any information about a user.
+
+To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
 ## Use Cases
 
@@ -25,21 +26,56 @@ BitBadges helps users establish social identity and reputation through blockchai
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
-Badges are customizable, so you can issue a badge for anything from a gym membership to a college diploma to a store receipt.
+* Attendance Badges - Create an attendance badge for an event or trip as a souvenir!
+* Memberships/Subscriptions/Access Tokens - Gym memberships, website subscriptions, etc
+* Premium Content - Offer premium features to badge owners
+* Recognition of Achievement or Completion - Job certifications, awards, athletic accomplishments, etc.
+* E-Learning - Gamify the learning experience through learning badges
+* University Diplomas - Universities can offer verifiable diplomas to students as a badge.
+* Publications - Verify you are the author of a publication
+* See more [here](broken-reference)!
 
-## Core Principles
+## Core Ideas
 
-How do we aim to achieve our goal?
+What are the core ideas and principles behind BitBadges?
 
-* **Cross-Chain**: Develop a cross-chain token standard.&#x20;
-  * Applications should not have to limit themselves to a single blockchain community (e.g. only Ethereum users, only Cosmos users, etc), as they currently have to.
+* **Rapidly-Evolving**:  Create a single, dynamic token standard that rapidly evolves over time.
+  * Token standards should be flexible and continuously adding new functionality, as opposed to existing ones which are rigid and not easily adaptable.&#x20;
+* **Cross-Chain**: Develop a token standard which supports users from ANY blockchain
+  * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Bitcoin users). This is a problem because most companies do not belong to a specific blockchain ecosystem, so it restricts their potential userbase.
+  * Ex: Imagine if a sporting event was limited to only Android users!
+* **Option for Decentralization:** Users should always have an option to interact with BitBadges in a trustless, decentralized manner, but we recognize that 90% of users don't care about decentralization.
+  * We strive to give different options or levels for most functionality. We offer semi-centralized solutions to enhance the user experience, but the option for full decentralization is always an option.
 * **User-Friendly**: Prioritize user experience over everything else.&#x20;
-  * Users should not even need to know what a blockchain is or that they are using a blockchain. No mention of crypto or blockchain native terms.&#x20;
-* **Developer-Friendly:** Make developing on top of BitBadges as easy as possible/
-  * Long term, the goal is to have an ecosystem of thousands of developers building projects on top of BitBadges.
-* **Dynamic**:  Create a single, dynamic token standard that is ever-evolving.
-  * Token standards should be flexible and continuously adding new functionality, not set in stone.
-  * Existing token standards (e.g. ERC721, ERC20, etc) are limited in functionality, and it is difficult to adopt new ones.
+  * Users should not even need to know what a blockchain is or that they are using a blockchain. It should be as simple as browsing a typical website.
+* **Developer-Friendly:** Make developing on top of BitBadges as easy as possible.
+  * Long term, the goal is to have an ecosystem of thousands of community-built projects and tools for interacting with BitBadges.
+  * Contributions are also greatly encouraged and appreciated
+* **Generic:** Design everything in a generic way that supports universality
+* **Open-Source:** All code that makes BitBadges work will be open-sourced for public review
+
+## Improvements Over Existing Standards
+
+What makes our token standard better than existing blockchain standards and competitors?
+
+Just to name a few:
+
+* **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one
+* **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), we reuse code to make our standard much more scalable and battle-tested.
+* **Balance Types:** We have created two new scalable ways to store and track balances, in addition to the standard on-chain storage of balances.&#x20;
+  * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain.&#x20;
+  * 2\) Inherited balances allow the owners of one badge to automatically own another.
+* **ID Ranges:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
+* **Time-Based Accounting:** All balances are time-based. This enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* **Time-Based Metadata:** All metadata is time-based, allowing you to automatically update it at a certain time without transacting with a blockchain.
+* **Transferability Customization:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that the transferability of badge collections is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? forceful transfers? or requires approval? We handle all of this.
+  * Additionally, we have a feature to only allow transfers if you own (or don't own) badges of another collection! Ex: Only those who own the verified badge can transfer. Or, only those who do not own a scammer badge can transfer and interact with your collection.&#x20;
+* **Collection and User-Level Approvals:** We define three levels of approvals (collection-wide, incoming, and outgoing).&#x20;
+  * For a transfer to be successful, it must be approved by the collection-wide approvals, by the sender's outgoing approvals, and by the recipient's incoming approvals.&#x20;
+  * This allows us to clearly define the transferability and enable many neat features like revokable badges, freezing badges, opt-in only collections, and more!
+* **Customizable Permissions:** You can optionally specify to have customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc
+
+And much more coming soon!
 
 ## Products
 
@@ -78,6 +114,8 @@ Blockin is a universal, multi-chain sign-in interface for Web 3.0. While Blockin
 {% endcontent-ref %}
 
 We are decentralizing the process of proposing / creating token and metadata standards ([Standards](for-developers/need-to-know/standards.md)). Have an idea for a new token standard? Propose it! Standards can define anything from the expected permissions, transferability, or even how metadata is interpreted.
+
+##
 
 ## Links
 
