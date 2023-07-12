@@ -10,19 +10,19 @@ After the badge is created, management and distribution of the badge is also qui
 
 **Option 2 (Technical): BitBadges SDK / API**
 
-Badges can also be created programmatically via the [BitBadges SDK](broken-reference) and/or [BitBadges API](../indexer-api/api/). This requires some technical experience (JavaScript and HTTP APIs), but it is not difficult if you have a basic understanding.
+Badges can also be created programmatically via the [BitBadges SDK](broken-reference) and/or [BitBadges API](../indexer-api/api/). This requires some technical experience (JavaScript and HTTP APIs), but it also allows you to customize your badges even more.
 
-Option 1 should be used for the majority of cases. Option 2 is typically only needed when you are building your own tools, writing scripts, creating your own frontend, etc.&#x20;
+Option 1 should be used for the majority of cases. Option 2 is typically only needed when you are building your own tools, need more customization,writing scripts, creating your own frontend, etc.&#x20;
 
 
 
-### **Need additional functionality?**
+### **Need additional functionality not in the token standard?**
 
 While BitBadges offers a wide range of customizable functionality for badges, we understand that not all cases are currently supported. We are committed to continuously improving and expanding our offered functionality over time. If you find that your use case requires unsupported functionality, you have two options:
 
 **Option 1 (Technical): CosmWASM**&#x20;
 
-The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/)  smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](../for-developers/tutorials/create-a-smart-contract.md). We would appreciate it if you could inform us of any missing functionality you require when choosing this option, so we can try to add it natively. Please contact us [here](team-contact-us.md).
+The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](../for-developers/tutorials/create-a-smart-contract.md). We would appreciate it if you could inform us of any missing functionality you require when choosing this option, so we can try to add it natively. Please contact us [here](team-contact-us.md).
 
 **Option 2: Request It**&#x20;
 
