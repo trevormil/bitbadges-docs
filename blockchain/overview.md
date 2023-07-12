@@ -12,7 +12,3 @@ The end goal is that no smart contract is ever needed to be created. Although fo
 
 Ethereum, Cosmos
 
-**Does the blockchain support digital collectibles?**&#x20;
-
-Currently, the blockchain only allows the issuance of badges only and not digital collectibles. The difference between the two is that badges are digital tokens that are given to a user through earning the badge (e.g. attendance, certifications, etc) whereas digital collectibles are bought / traded. No token can be bought or traded on the BitBadges blockchain. They must be earned!
-

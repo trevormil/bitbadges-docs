@@ -117,7 +117,7 @@ Note that if the CanUpdateUris permission is turned off / disabled, the existing
 
 ### **MsgClaimBadge**
 
-Claim a badge that is currently claimable. If needed, provide a whitelistProof or codeProof with a valid SHA256 Merkle path to the respective root. See [Creating Claims](../tutorials/merkle-trees-for-claims.md) for a tutorial.
+Claim a badge that is currently claimable. If needed, provide a whitelistProof or codeProof with a valid SHA256 Merkle path to the respective root. See [Creating Claims](../tutorials/merkle-challenges.md) for a tutorial.
 
 ```protobuf
 message MsgClaimBadge {

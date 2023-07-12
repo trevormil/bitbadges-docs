@@ -1,12 +1,12 @@
-# Merkle Trees for Claims
+# Merkle Challenges
 
 ### **Pre-Readings**
 
-See [Claims](../need-to-know/claims.md).
+See [Claims](../must-know-concepts/claims.md).
 
 ### **Creating a Merkle Tree for Claims**
 
-With the following snippet, this creates a MerkleTree that is compatible with the Merkle challenges for approvals. This can be similarly applied to whitelists, just replace the leaves with the Cosmos addresses (and make sure to turn the useCreatorAddressAsLeaf option on in the approval).
+With the following snippet, this creates a MerkleTree in JavaScript that is compatible with the Merkle challenges for approvals. This can be similarly applied to whitelists, just replace the leaves with the Cosmos addresses (and make sure to turn the useCreatorAddressAsLeaf option on in the approval).
 
 To prevent the same Merkle path from being used multiple times (if desired), you can set the maxOneUsePerLeaf option.
 

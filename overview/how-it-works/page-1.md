@@ -8,7 +8,7 @@ This metadata can be stored directly on the blockchain but is typically stored v
 
 ### **Default Metadata Standard**
 
-The metadata details depend on the type of badge collection or [Standard](../../for-developers/need-to-know/standards.md) that the collection implements. The default metadata standard we use is the following:
+The metadata details depend on the type of badge collection or [Standard](../../for-developers/must-know-concepts/standards.md) that the collection implements. The default metadata standard we use is the following:
 
 **Name** (required): Name of the collection or badge
 

@@ -1,6 +1,6 @@
-# 🏅 Interact w/ Collections
+# 🏅 Interacting / Browsing
 
-### **How to create a collection or interact with one?**
+### **How to interact with BitBadges (create collections, browse, transfer, etc)?**
 
 **Option 1 (Recommended): BitBadges Website**
 

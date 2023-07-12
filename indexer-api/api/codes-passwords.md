@@ -1,6 +1,6 @@
 # Codes / Passwords
 
-One distribution method for badges is to be able to claim by entering a code or password (see [Claims](../../for-developers/need-to-know/claims.md)). To provide a better user experience on the BitBadges website, the official BitBadges indexer stores these codes / passwords in a centralized manner to eliminate storage requirements for the user.
+One distribution method for badges is to be able to claim by entering a code or password (see [Claims](../../for-developers/must-know-concepts/claims.md)). To provide a better user experience on the BitBadges website, the official BitBadges indexer stores these codes / passwords in a centralized manner to eliminate storage requirements for the user.
 
 **Note these routes will only work if the claim was created through the BitBadges website.**
 

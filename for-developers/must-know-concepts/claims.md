@@ -51,4 +51,4 @@ If 2, each address is limited to only claim once.&#x20;
 
 **Examples**
 
-See [Creating Claims](../tutorials/merkle-trees-for-claims.md) for a tutorial.
+See [Creating Claims](../tutorials/merkle-challenges.md) for a tutorial.

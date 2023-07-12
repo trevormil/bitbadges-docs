@@ -16,7 +16,7 @@ When combined with blockchain technology, they become even more secure and more 
 
 **BitBadges can be described as tokenization-as-a-service. We offer an open-source, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
 
-We offer all services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing to users via your preferred method to verification tools (in-person verification, website gated sign-ins) and more!
+We offer all services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing to users via your preferred method to offline-first verification tools (in-person verification, website gated sign-ins) and more!
 
 Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to see any information about a user.
 
