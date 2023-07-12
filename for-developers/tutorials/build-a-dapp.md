@@ -18,7 +18,7 @@ If not, the BitBadges API / Indexer should be all you need, but you may find som
 
 Build your own smart contract with CosmWASM. See [Create a Smart Contract](create-a-smart-contract.md).&#x20;
 
-**Do you need a frontend?**
+**Do you need a custom frontend?**
 
 Use the [BitBadges website](broken-reference) code as a starting point and/or reference.
 

@@ -1,14 +1,8 @@
 # Build a Distribution Tool
 
-Distribution tools are helper tools that streamline the process of distributing badges for creators. An example tool might be to fetch and distribute the addresses of all users who attended a Twitter Spaces.&#x20;
+Distribution tools are helper tools that streamline the process of distributing badges upon creation. An example tool might be to fetch and distribute badges to the the addresses of all users who attended a Twitter Spaces.&#x20;
 
-Other ideas for tools include distributing by:
-
-* Location
-* E-Mail
-* QR Codes
-
-
+Other example ideas include distributing via e-mail, QR codes, location, etc.
 
 **Pre-Readings**
 
@@ -18,9 +12,11 @@ Other ideas for tools include distributing by:
 
 When building a distribution tool, you have to answer a couple questions:
 
-**Do I actually have the recipients' blockchain addresses? Or, do I identify them in some other way (e.g. Twitter usernames, emails, etc)?**
+**Do I actually have the recipients' blockchain addresses?**&#x20;
 
-If you will have access to the recipients' actual blockchain addresses, your tool can simply generate a copyable list of addresses separated by a new line such as:
+If you will have access to the recipients' actual blockchain addresses, your tool can simply generate a list of addresses and distribute via a whitelist.
+
+If you can generate a list of addresses separated by a new line such as:
 
 ```
 cosmos1...
@@ -29,53 +25,27 @@ cosmos...
 0x123...
 ```
 
-Then when creating the badge, the creator can simply copy and paste the addresses into the "Add Recipients" field on the BitBadges website. The user must select the "Whitelist" distribution method on the BitBadges website when minting.
+Then, this list can simply be copied into the "Add Recipients" field on the BitBadges website under the "Whitelist" distribution method.
 
+You can also use alternative tools or build your own tools for submitting the transaction.
 
+**Or, do I identify them in some other way (e.g. Twitter usernames, emails, etc)?**
 
-If you identify your users in some other way, you will probably have to implement your tool by using codes. The execution flow is the following :&#x20;
+If you identify your users in some other way, you will probably have to implement your tool by using codes or a password. You will need to do the following:&#x20;
 
-1. Generate a code/password based claim with N codes
-2. Have them provide you with the codes or password if using the BitBadges servers (see below). This can be done by clicking the copy icon after finalizing the claim. If codes are being copied, they will be in the following JSON format:
+1. Generate a code/password based claim with N codes (see below)
+2. Use your tool to manually distribute the codes / password to the correct users
 
-```
-{
-    "codes": ["...", ...],
-    "codeRoot" : "",
-}
-```
+**How should everything be stored?**
 
-1. Use your tool to manually distribute the codes / password to the correct users
+If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on the BitBadges servers. However, you can also generate everything yourself to eliminate any trust required.
 
+You have two options:
 
-
-**How should the codes be stored?**
-
-By default, the codes, passwords, and whitelists for claims are stored on the BitBadges servers. This is the functionality when the user clicks the "Whitelist" or "Codes" distribution option when minting on the BitBadges website.
-
-If your tool uses codes / password, you have two options:
-
-* Store them on BitBadges servers and have the creator provide you with this information. This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes are known both by BitBadges centralized servers plus your tool).
-* Generate everything yourself. If you generate everything yourself, you can completely bypass the BitBadges servers for storage. This can be done by the "JSON" distribution option when minting on the BitBadges website. You will have the user copy/paste a JSON object, specifying the **transfers** and **claims** fields for the MessageMsgNewCollection.
-  * Note if this option is chosen but you still want your users to be able to claim on the BitBadges website, you will need to make everything compatible with the site. TODO
-
-```typescript
-{
-  "transfers": [{
-    "balances": [...],
-    "toAddresses": [...]
-  }],
-  "claims" : [{
-    ...
-  }]
-}
-```
-
-See [here for more info](https://bitbadges.github.io/bitbadgesjs/packages/transactions/docs/interfaces/MessageMsgNewCollection.html).
-
-
-
-
+* Store everything on the BitBadges centralized servers. This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes are known both by BitBadges centralized servers plus your tool).
+* Generate and store everything yourself. If you generate everything yourself, you can completely bypass the BitBadges servers for storage.&#x20;
+  * Note in order to claim on the BitBadges website, you will need to make everything you store compatible with the site's expected format for claims.
+  * You also need to choose to either design for compatibility with the minting process of the BitBadges website to submit the final transaction, or you can submit the transaction in a custom way yourself.
 
 ### **Building Your Tool**
 
@@ -85,13 +55,9 @@ Implement the functionality of your tool.
 
 **Step 2: Develop an Instructions Page**
 
-Develop a detailed instructions page for what your tool offers and how to use it.&#x20;
-
-* What distribution method to choose on the BitBadges website (whitelist, codes, etc)?
-* What to enter? What to copy? What to provide to your tool?
-* And so on.
+Develop a detailed instructions page for what your tool offers and how to use it. How does it work? What to enter? What to copy? What to provide? Pre-requisites? And so on.
 
 **Step 3: Get It Added to the BitBadges Website**
 
-Contact us to add it to on the BitBadges website! Please provide us a brief description of the tool, a URL for your logo, the URL to find instructions, and where you would like it to be placed on the BitBadges website.
+If compatible, contact us to add it to on the BitBadges website! Please provide us a brief description of the tool, a URL for your logo, the URL to find instructions, and where you would like it to be placed on the BitBadges website.
 

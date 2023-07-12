@@ -17,7 +17,7 @@ message Claim {
 }
 ```
 
-**balances** is a [**Balance\[\]**](balances.md) that represents the remaining balances for the claim. Will be decremented every time a user claims.
+**balances** is a [**Balance\[\]**](broken-reference) that represents the remaining balances for the claim. Will be decremented every time a user claims.
 
 **badgeIds** stores which badge IDs are to be claimed for the current claim.
 

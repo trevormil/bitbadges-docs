@@ -8,7 +8,11 @@ The easiest and simplest way to create a badge is by using the Mint tab on the [
 
 After the badge is created, management, distribution, and transfers of badges are also quick and easy via the [BitBadges website](https://bitbadges.io).
 
-**Option 2 (Technical): BitBadges SDK / API**
+**Option 2: Ecosystem Tools**
+
+Check out the [Ecosystem](ecosystem.md) to browse other tools and projects built by the community!
+
+**Option 3 (Technical): BitBadges SDK / API**
 
 Badges can also be created programmatically via the [BitBadges SDK](broken-reference) and/or [BitBadges API](../indexer-api/api/). This requires some technical experience (JavaScript and HTTP APIs), but it also allows you to customize your badges even more.
 

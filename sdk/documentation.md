@@ -16,4 +16,4 @@ Documentation was auto-generated with [TypeDoc](https://typedoc.org/). Links can
 
 
 
-Note that bitbadgesjs was forked from evmosjs, and there may be some leftover exports that are not applicable to the BitBadges blockchain.
+Note that bitbadgesjs was forked from evmosjs. There may be some leftover exports that are not applicable to the BitBadges blockchain.

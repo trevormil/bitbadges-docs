@@ -18,14 +18,14 @@ When combined with blockchain technology, they become even more secure and more 
 
 We offer all services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing to users via your preferred method to verification tools (in-person verification, website gated sign-ins) and more!
 
-Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). We aim for this app to have a social media feel but also be the all-in-one site to see any information about a user.
+Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to see any information about a user.
 
 To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
 ## Use Cases
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="overview/use-cases.md" %}
+[use-cases.md](overview/use-cases.md)
 {% endcontent-ref %}
 
 * Attendance Badges - Create an attendance badge for an event or trip as a souvenir!
@@ -42,12 +42,13 @@ To learn more about BitBadges (the company), visit [https://bitbadges.org](https
 What are the core ideas and principles behind BitBadges?
 
 * **Rapidly-Evolving**:  Create a single, dynamic token standard that rapidly evolves over time.
-  * Token standards should be flexible and continuously adding new functionality, as opposed to existing ones which are rigid and not easily adaptable.&#x20;
-  * We will iterate fast and continuously add new features
+  * Token standards should be flexible and continuously adding new functionality, as opposed to existing ones which are rigid, not adaptable, and hard to adopt new ones.
+  * We will iterate fast and continuously add new features.
 * **Cross-Chain**: Develop a token standard which supports users from ANY blockchain
-  * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Bitcoin users). This is a problem because most companies do not belong to a specific blockchain ecosystem, so it restricts their potential userbase.
-  * Ex: Imagine if a sporting event was limited to only Android users!
-* **Option for Decentralization:** Users should always have an option to interact with BitBadges in a trustless, decentralized manner, but we recognize that 90% of users don't care about decentralization. We offer semi-centralized solutions to enhance the user experience, but the option for full decentralization is always an option.
+  * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Bitcoin users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it restricts their potential userbase!
+  * Ex: Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android!
+* **Option for Decentralization:** Users should always have an option to interact with BitBadges in a trustless, decentralized manner, but we recognize that >90% of users don't care about decentralization.&#x20;
+  * We offer functionality that sacrifices decentralization for user experience and scalability, but the option for full decentralization is always there.
 * **User-Friendly**: Prioritize user experience over everything else.&#x20;
   * Users should not even need to know what a blockchain is or that they are using a blockchain. It should be as simple as browsing a typical website.
 * **Ecosystem:** Make developing on top of BitBadges as easy as possible.
@@ -58,25 +59,24 @@ What are the core ideas and principles behind BitBadges?
 
 ## How Are We Better?
 
-What makes our token standard better than existing blockchain standards and competitors?
+What makes our product better than existing products?
 
 Just to name a few:
 
-* [**Cross-Chain**](overview/how-it-works/cross-chain.md)**:** Supports users from multiple blockchain ecosystems instead of just one
+* **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one
 * **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), our code is reused by all collections which makes it much more scalable and battle-tested.
-* [**Balance Types**](overview/how-it-works/balances-types.md)**:** We have created two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability for the blockchain.
-  * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain.&#x20;
-  * 2\) Inherited balances allow the owners of one badge to automatically own another.
-* [**ID Ranges**](overview/how-it-works/balances-transfers.md)**:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
+  * TODO: Add stat here
+* [**Balance Types**](overview/how-it-works/balances-types.md)**:** We have created two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
+  * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain by >99%.&#x20;
+  * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another.
+* [**ID Ranges**](overview/how-it-works/balances-transfers.md)**:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 * [**Time-Based Accounting**](overview/how-it-works/balances-transfers.md)**:** All balances are time-based. This enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
-* **Time-Based Details:** Collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without transacting.
-* [**Transferability Customization**](overview/how-it-works/transferability.md)**:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval?  We handle all of this.
-  * Additionally, we have a feature to only allow transfers if you own (or don't own) badges of another collection! Ex: Only those who own the verified badge can transfer. Or, only those who do not own a scammer badge can transfer and interact with your collection.&#x20;
-* [**Collection and User-Level Approvals**](overview/how-it-works/approvals.md)**:** We define three levels of approvals (collection-wide, incoming, and outgoing).&#x20;
-  * For a transfer to be successful, it must be approved by the collection-wide approvals, by the sender's outgoing approvals, and by the recipient's incoming approvals.&#x20;
-  * This allows us to clearly define the transferability and enable many neat features like revokable badges, freezing badges, opt-in only collections, and more!
-* [**Customizable Permissions**](overview/how-it-works/permissions.md)**:** You can optionally specify to have customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc
-* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on very centralized architectures.
+* [**Transferability Customization**](overview/how-it-works/transferability.md)**:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval? And more. Our interface handles all of this.
+  * Additionally, we have a feature to only allow transfers if you pass challenges, such as if you provide a valid password or own (or don't own) badges of another collection! Ex: Only those who own the verified badge can transfer. Or, only those who do not own a scammer badge can transfer and interact with your collection.&#x20;
+* [**Collection and User-Level Approvals**](overview/how-it-works/transferability.md)**:** We define three levels of transferability and approvals (collection-wide, incoming, and outgoing), allowing us to clearly define the transferability and enable many neat features like revokable badges, freezing badges, opt-in only collections, and more!
+* [**Customizable Permissions**](overview/how-it-works/permissions.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* **Time-Based Details:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
+* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures.
 
 And much more coming soon!
 

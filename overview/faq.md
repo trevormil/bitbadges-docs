@@ -24,7 +24,4 @@ Our metadata standard (what is used on the BitBadges website) does extend the ER
 
 **What happens if there is convergence to a single blockchain?**
 
-Personally, we believe it will always be a multi-chain world, and there will never be 100% EVM convergence. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and L1s popping up. Thus, we believe there will always be a need for cross-chain infrastructure like BitBadges.&#x20;
-
-
-
+Personally, we believe it will always be a multi-chain world, and there will never be 100% EVM convergence. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for cross-chain infrastructure like BitBadges.&#x20;

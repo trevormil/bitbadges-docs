@@ -1,10 +1,12 @@
 # ✉ Msgs
 
-In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens or creating a new account. Each Cosmos SDK module can define their own Msg types based on their specific functionality. For example, the staking module defines Msgs for actions related to staking, such as creating a validator or delegating tokens. The governance module defines Msgs for submitting and voting on proposals to change the parameters of the blockchain. This modular approach allows developers to add and remove functionality as needed, and enables interoperability between different blockchains that use the Cosmos SDK.&#x20;
+In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens. Each transaction must consist of one or Msgs to be executed.
+
+Each Cosmos SDK module can define their own Msg types based on their specific functionality. For example, the staking module defines Msgs for actions related to staking, such as creating a validator or delegating tokens. The governance module defines Msgs for submitting and voting on proposals to change the parameters of the blockchain. This modular approach allows developers to add and remove functionality as needed, and enables interoperability between different blockchains that use the Cosmos SDK.&#x20;
 
 The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).&#x20;
 
-However, the x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also wrote an x/wasmx module which helps to create compatible smart contracts.
+However, the x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts.
 
 Some common Msgs from pre-written modules you may need include:
 
@@ -141,7 +143,7 @@ message ClaimProof {
 
 ### **MsgTransferBadge**
 
-Transfers the badges defined in [**transfers**](transfers.md) from the provided **from** account ID to those defined in the **transfers** field. **from** can be another user besides the calling user, but they will need adequate approvals set.
+Transfers the badges defined in [**transfers**](broken-reference) from the provided **from** account ID to those defined in the **transfers** field. **from** can be another user besides the calling user, but they will need adequate approvals set.
 
 ```protobuf
 message MsgTransferBadge {

@@ -1,6 +1,10 @@
 # 🙂 Team / Contact Us
 
-## Links
+## Team
+
+Learn more about the team at [https://bitbadges.org](https://bitbadges.org).
+
+### Links
 
 BitBadges Main Site - [https://bitbadges.org](https://bitbadges.org)
 
@@ -27,9 +31,3 @@ Crunchbase - [https://www.crunchbase.com/organization/bitbadges](https://www.cru
 Reddit -[ ](https://www.reddit.com/r/BitBadges/)[https://www.reddit.com/r/BitBadges/](https://www.reddit.com/r/BitBadges/)
 
 Telegram - [https://t.me/BitBadges](https://t.me/BitBadges)
-
-
-
-## Team
-
-Learn more about the team at [https://bitbadges.org](https://bitbadges.org).

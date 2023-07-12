@@ -1,8 +1,10 @@
 # 🖊 Standards
 
-Standards are a generic concept that allows anyone to define how to interpret the details of a badge. All badges will implement the same collection interface on the blockchain (see [Collections](collections.md)), but the standard defines how these fields are interpreted and should be defined.
+Standards are a generic concept that allows anyone to define how to interpret the details of a badge collection. All collections will implement the same interface on the blockchain (see [Collections](collections.md)), but the standard defines how these fields are interpreted and are expected to be defined.
 
-For example, a non-fungible standard may enforce that the max supply of any badge never exceeds one. Or, a non-deletable standard may enforce that the delete collection permission is never enabled. Or, an attendance-badge standard might define a specific metadata format that is niche to attendance-based events only.
+For example, a non-fungible standard may enforce that the max supply of any badge never exceeds one. Or, a non-deletable standard may enforce that the delete collection permission is never enabled. Or, an attendance-badge standard might define a specific metadata format that is niche to attendance-based events only.&#x20;
+
+You can define and implement multiple standards.
 
 IMPORTANT (for developers): There is no check in the blockchain logic that a specific standard is actually followed. The standard number stored on the blockchain is purely informational and for guidelines. It is your responsibility to double check standards are being followed correctly and take action accordingly.
 

@@ -8,11 +8,11 @@ Mainnet start date is TBD.
 
 ## Betanet vs Mainnet
 
-For both betanet and mainnet, we will focus on badges only (i.e. tokens with no value) and leave valuable tokens (digital collectibles) to users' respective L1s. Our L1 token, $BADGE, will only be allowed to be used for gas fees.
+For both betanet and mainnet, we will focus on badges only (i.e. tokens with no value) and leave valuable tokens (digital collectibles) to users' respective ecosystems. Our L1 token, $BADGE, will only be allowed to be used for gas fees.
 
 ### Betanet
 
-This test period will be indefinite and provided to users at no cost. As an incentive, betanet users and validators will receive a greater allocation of airdrop tokens ($BADGE) when we launch the mainnet. Moreover, we will provide users with the option to migrate anything they have on the betanet over to the mainnet, free of charge.
+This test period will be indefinite and subsidized to users at no cost. As an incentive, betanet users, testers, and validators will receive a greater allocation of airdrop tokens ($BADGE) when we launch the mainnet. Moreover, we will provide users with the option to migrate anything they have on the betanet over to the mainnet, free of charge.
 
 The betanet chain will become a testnet, upon mainnet launch.
 

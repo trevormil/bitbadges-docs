@@ -51,16 +51,7 @@ const ethAddress = cosmosToEth(cosmosAddress);
 
 **transactions** exports the functions to create blockchain transactions in the [BitBadges Msg formats](../for-developers/need-to-know/msgs.md). See [Broadcasting Txs](broadcasting-and-signing-txs.md) for more info and tutorials.
 
-```typescript
-const updateUrisMsg: MessageMsgUpdateUris = {
-    creator: chain.cosmosAddress,
-    collectionId: collectionId,
-    collectionUri: collectionUri,
-    badgeUris: badgeUris
-}
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const txMsg = createTxMsgUpdateUris(
+<pre class="language-typescript"><code class="lang-typescript"><strong>const txMsg = createTxMsgUpdateCollection(
 </strong>    txDetails.chain,
     txDetails.sender,
     txDetails.fee,

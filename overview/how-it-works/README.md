@@ -1,6 +1,14 @@
 # 🏆 How It Works
 
-See the subpages for further explanations on specific topics.
+**Pre-Readings**
+
+It is assumed that you have a basic understanding of how Web3 and blockchains work from a high-level user perspective (what an address is, what a transaction is, what a wallet is, etc).
+
+If not, we recommend first familiarizing yourself with these terms. There are plenty of resources available online.
+
+**Further Readings**
+
+See the subpages for further in-depth explanations.
 
 See the [For Developers](broken-reference) section for technical explanations.
 
@@ -16,7 +24,7 @@ When creating a badge collection, the creator can customize the following proper
 
 [**Supply**](total-supplys.md)**:** How much should the total supply of each badge be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
 
-[**Balances Types**](balances-types.md) **-** How do you want to store your balances? On the blockchain? Off-chain? Or inherit  all owners from other badge(s)?
+[**Balances Types**](balances-types.md) **-** How do you want to store your balances? On the blockchain? Off-chain? Or inherit the owners from other badge(s)?
 
 [**Transferability**](transferability.md)**:** Transferability defines the rules for transferring badges within the collection.&#x20;
 
@@ -24,7 +32,7 @@ At its simplest, a collection can be transferable (badges can be transferred fre
 
 We also offer many customization options such as making badges revokable from owners, freezing an owner's ability to transfer, restricting who can send to who, restricting when users can transfer, and more!
 
-[**Manager**](manager.md)**:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
+[**Manager**](permissions.md)**:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
 
 [**Permissions**](permissions.md)**:** The manager is able to execute the following permissions:
 
@@ -39,7 +47,7 @@ We also offer many customization options such as making badges revokable from ow
 
 ## Distribution&#x20;
 
-Once the collection is created, the badges then have to be distributed to owners. This can be done via your preferred method. Some examples currently are via **password, QR codes, e-mails, whitelists, first-come first-serve, manually transfering to each recipient, etc.**
+Once the collection is created, the badges then have to be distributed to owners. This can be done via your preferred method. Some examples currently are via **password, QR codes, e-mails, whitelists, first-come first-serve, manually transfering to each recipient, etc.** This is all possible because BitBadges is cross-chain meaning that any blockchain user can receive and send badges to and from each other.
 
 See [Ecosystem ](../ecosystem.md)to find a list of all distribution tools built by the BitBadges team and community.
 

@@ -1,6 +1,6 @@
 # Overview
 
-The BitBadges website will be an open-source and user-friendly way for users to interact with the BitBadges blockchain, as well as offering many new features not natively supported by the blockchain.&#x20;
+The BitBadges website is an open-source and user-friendly way for users to interact with the BitBadges blockchain, as well as offering many new features not natively supported by the blockchain.&#x20;
 
 GitHub: [https://github.com/bitbadges/bitbadges-frontend](https://github.com/bitbadges/bitbadges-frontend)
 

@@ -43,11 +43,11 @@ message BadgeUri {
 
 **permissions** is a 64-bit unsigned integer that represents the permissions set for the badge collection. The permissions are packed into an integer, with the bits corresponding to true/false for certain permissions. Leading zeroes must be applied. See [Permissions](permissions.md).
 
-**disallowedTransfers** is an array of [TransferMapping](transfer-mappings.md) objects that defines the address combinations that cannot be transferred. This is used to freeze addresses and prevent transfers from specific (to, from) address pairs.&#x20;
+**disallowedTransfers** is an array of [TransferMapping](broken-reference) objects that defines the address combinations that cannot be transferred. This is used to freeze addresses and prevent transfers from specific (to, from) address pairs.&#x20;
 
-If all addresses are disallowed, then the badge is non-transferable (see [Full Transfer Mappings](transfer-mappings.md)). If none are disallowed (i.e. the array is empty), the badge is transferable.
+If all addresses are disallowed, then the badge is non-transferable (see [Full Transfer Mappings](broken-reference)). If none are disallowed (i.e. the array is empty), the badge is transferable.
 
-**managerApprovedTransfers** is an array of [**TransferMapping**](transfer-mappings.md) objects that defines which address combinations that the manager is approved to transfer to / from without approval.
+**managerApprovedTransfers** is an array of [**TransferMapping**](broken-reference) objects that defines which address combinations that the manager is approved to transfer to / from without approval.
 
 This takes priority over the disallowedTransfers.&#x20;
 
@@ -55,9 +55,9 @@ This is often used to allow the manager to be able to forcefully revoke or burn 
 
 **nextBadgeId** is a 64-bit unsigned integer that represents the next badge ID to be created. Starts at 1. Each badge created will increment this by 1. It cannot overflow.
 
-**unmintedSupplys** is a [Balance ](balances.md)map that stores the current unminted / undistributed badges by ID. Claimable badges are considered minted.
+**unmintedSupplys** is a [Balance ](broken-reference)map that stores the current unminted / undistributed badges by ID. Claimable badges are considered minted.
 
-**maxSupplys** is a [Balance](balances.md) map that stores the badge supplys by ID. Once created, badge supplys are final and cannot be edited.&#x20;
+**maxSupplys** is a [Balance](broken-reference) map that stores the badge supplys by ID. Once created, badge supplys are final and cannot be edited.&#x20;
 
 **claims** is an array of [Claim](claims.md) objects that defines how badges for this collection can be claimed.
 

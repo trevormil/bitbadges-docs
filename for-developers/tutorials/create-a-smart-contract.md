@@ -2,7 +2,7 @@
 
 CosmWasm Version: For compatibility with the most recent Cosmos SDK versions, we use a fork of the main CosmWasm code created by Notional Labs ([https://github.com/notional-labs/wasmd](https://github.com/notional-labs/wasmd)).&#x20;
 
-IMPORTANT: Note that when CosmWasm interacts with the badges module (i.e. creates and broadcasts a [Tx Msg](../need-to-know/msgs.md)), the creator field (calling address) of the Msg will always be the contract's address / account ID number, NOT THE ORIGINAL USER's address / account ID number (this will automatically be applied by the blockchain) In other words, Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent.
+IMPORTANT: Note that when CosmWasm interacts with the badges module (i.e. creates and broadcasts a [Tx Msg](../need-to-know/msgs.md)), the creator field (calling address) of the Msg will always be the contract's address , NOT THE ORIGINAL USER's address. In other words, Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent.
 
 For example, if you want to create a function which updates the permissions of a badge collection according to some logic, this would only be possible if the contract is the manager. It would not work if the original user calling the contract is the manager because technically, the contract submitted the Msg, not the original user. Thus, the badge collection's permissions will not allow it.&#x20;
 
@@ -12,7 +12,7 @@ Some common workarounds around include:
 
 \-Give the contract the manager role
 
-\-Have users approve the contract to transfer w/ MsgSetApproval
+\-Have users approve the contract
 
 ### Tutorial
 
@@ -30,7 +30,7 @@ It is always recommended that you test everything on a testnet before deploying 
 
 Create your contract. Examples can be found [here ](https://github.com/BitBadges/bitbadges-cosmwasm-bindings/tree/master/contracts/register\_addresses)for interacting with the badge module.&#x20;
 
-**NOTE:** The BitBadges bindings from the above repository do not cover messages from pre-written modules that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`. See corresponding documentation if you want to interact with other pre-written modules as well. For this tutorial, we will focus on interacting with the badges module only.
+**NOTE:** The BitBadges bindings from the above repository do not cover messages from pre-written modules that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`. See corresponding documentation if you want to interact with other pre-written modules as well. For this tutorial, we will focus on interacting with the x/badges module only.
 
 
 

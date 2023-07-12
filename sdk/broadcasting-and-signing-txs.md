@@ -6,7 +6,7 @@ For the transaction Msg types offered by BitBadges, see [Tx Msg Interfaces](../f
 
 The recommended way to broadcast a transaction is by using the [BitBadges SDK](broken-reference)**.** The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
 
-Note the examples below show how to broadcast directly to any running blockchain node. For broadcasting to the BitBadges blockchain node, in the examples below, simply replace
+Note the examples below show how to broadcast directly to any running blockchain node. For broadcasting to the BitBadges blockchain node, in the examples below, simply replace&#x20;
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>`http://URL:1317${generateEndpointBroadcast()}`
 </strong></code></pre>
@@ -27,7 +27,7 @@ This will return the user's cosmos address, account ID, sequence (nonce), and pu
 
 For a user who has not submitted a transaction yet, the fetched public key will be null. You can get the public key as shown below.&#x20;
 
-Note that the user will need $BADGE to pay for gas as well (and as a result, they will be registered and have an account ID number).
+Note that the user will need to be registered to submit a transaction (must first receive $BADGE to pay for gas). This will assign them an account number.
 
 
 
@@ -74,9 +74,7 @@ const getPublicKey = async (_cosmosAddress: string) => {
 
 The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
 
-For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, createTxMsgUpdateUris, ...)** and update the parameters accordingly.
-
-Note that if you need an account ID number for a parameter to a create function (e.g. MsgTransferBadge requires account numbers), you have to register them first (see [Accounts](../for-developers/need-to-know/accounts.md)).&#x20;
+For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, ...)** and update the parameters accordingly.
 
 ```ts
 import { createMessageSend } from 'bitbadgesjs-transactions'
@@ -118,7 +116,7 @@ const msg = createMessageSend(chain, sender, fee, memo, params)
 
 After creating the transaction we need to send the payload to metamask so it can be signed. With that signature we are going to add a Web3Extension to the Cosmos Transactions and broadcast it to the Cosmos node.
 
-Option 1:&#x20;
+
 
 ```ts
 // Follow the previous step to generate the msg object
@@ -131,8 +129,6 @@ import {
   createTxRawEIP712,
   signatureToWeb3Extension,
 } from 'bitbadgesjs-transactions'
-
-
 
 ```
 
