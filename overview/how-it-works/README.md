@@ -1,16 +1,18 @@
 # 🏆 How It Works
 
-See the [For Developers](broken-reference) section for further technical explanations.
+See the subpages for further explanations on specific topics.
 
-## Badge Creation
+See the [For Developers](broken-reference) section for technical explanations.
+
+## Creation
 
 Collections are the core of BitBadges. A collection consists of one or more badges, where each badge in the collection is referenced by a unique numeric ID, starting at 1 and incrementing.
 
 When creating a badge collection, the creator can customize the following properties however they would like:
 
-**Collection Metadata:** What is the collection's name, description, image, category etc?
+[**Collection Metadata**](metadata.md)**:** What is the collection's name, description, image, category etc?
 
-**Badge Metadata:** For each badge, what is its name description, image, category, etc?
+[**Badge Metadata**](metadata.md)**:** For each badge, what is its name description, image, category, etc?
 
 **Supply:** How much should the total supply of each badge be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
 
@@ -35,7 +37,7 @@ We also offer many customization options such as making badges revokable from ow
 
 **Standard:** Each collection must define what standard it uses to explain how to interpret the details of the badge. For developers, see [standards](../../for-developers/need-to-know/standards.md).
 
-## Badge Distribution&#x20;
+## Distribution&#x20;
 
 Once the collection is created, the badges then have to be distributed to owners. This can be done via your preferred method. Some examples currently are via password, QR codes, e-mails, whitelists, first-come first-serve, manually transfering to each recipient, etc.
 

@@ -4,7 +4,8 @@
 
 * [👋 BitBadges Overview](README.md)
 * [🏆 How It Works](overview/how-it-works/README.md)
-  * [Page 1](overview/how-it-works/page-1.md)
+  * [Metadata](overview/how-it-works/metadata.md)
+  * [Total Supplys](overview/how-it-works/total-supplys.md)
 * [🏅 Creating a Badge](overview/creating-a-badge.md)
 * [💳 Supported Wallets](overview/supported-wallets.md)
 * [🌴 Ecosystem](overview/ecosystem.md)
