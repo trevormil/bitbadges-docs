@@ -41,7 +41,7 @@ message BadgeUri {
 
 **manager** is the account ID of the manager of the collection.
 
-**permissions** is a 64-bit unsigned integer that represents the permissions set for the badge collection. The permissions are packed into an integer, with the bits corresponding to true/false for certain permissions. Leading zeroes must be applied. See [Permissions](permissions.md).
+**permissions** is a 64-bit unsigned integer that represents the permissions set for the badge collection. The permissions are packed into an integer, with the bits corresponding to true/false for certain permissions. Leading zeroes must be applied. See [Permissions](broken-reference).
 
 **disallowedTransfers** is an array of [TransferMapping](broken-reference) objects that defines the address combinations that cannot be transferred. This is used to freeze addresses and prevent transfers from specific (to, from) address pairs.&#x20;
 

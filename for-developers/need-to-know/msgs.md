@@ -244,7 +244,7 @@ message MsgUpdateUris {
 
 ### **MsgUpdatePermissions**
 
-Updates the permissions for the collection. See [permissions](permissions.md).
+Updates the permissions for the collection. See [permissions](broken-reference).
 
 ```protobuf
 message MsgUpdatePermissions {

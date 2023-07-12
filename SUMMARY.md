@@ -35,7 +35,6 @@
   * [👥 Accounts (Technical)](for-developers/need-to-know/accounts-technical.md)
   * [✉ Msgs](for-developers/need-to-know/msgs.md)
   * [🎖 Collections](for-developers/need-to-know/collections.md)
-  * [☑ Permissions](for-developers/need-to-know/permissions.md)
   * [🎁 Claims](for-developers/need-to-know/claims.md)
   * [✏ Chain Details](for-developers/need-to-know/chain-details.md)
   * [🖊 Standards](for-developers/need-to-know/standards.md)

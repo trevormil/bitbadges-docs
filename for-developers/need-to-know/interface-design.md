@@ -12,7 +12,9 @@ If used for badge IDs or times, we only allow the start and end to be within the
 
 To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709551615 }].
 
-If we invert a range, we&#x20;
+If we invert a range, we get all the values from 1 to 18446744073709551615  that are not in the current range.
+
+
 
 ### Balances
 
@@ -89,7 +91,7 @@ There are different time fields within the interface with different purposes:
 * forbiddenTimes: The times that a permission is forbidden from being executed
 * timelineTimes: The times that some field is a specific value for a timeline
   * Ex: X from timelineTimes 1 - 100 but changes to value Y from timelineTimes 100-200
-* transferTimes: The times that a transfer can occur
+* transferTimes: The times that a transfer transaction can occur
 * ownedTimes: The times that a user owns a badge from
 
 **Examples**
@@ -120,9 +122,11 @@ If not explicitly permitted or forbidden, permissions are ALLOWED by default but
 
 All permissions are stored as a linear array of (criteria -> permitted/forbiddenTimes) maps. If the criteria matches, then we see if the permitted/forbiddenTimes allow or disallow the action.&#x20;
 
-IMPORTANT: Permissions are first-match only. If you have a \[criteriaA -> times1, criteriaA -> times2] array, times2 will always be ignored because we always take first-match only in a linear scan.&#x20;
+**IMPORTANT**: **First-Match Only**
 
-Note that we use ranges but the criteria can be broken down and expanded into singular tuples. For example, (criteria = (\[1-10], \[1-10]) -> times1) can be broken down into (1, 1 -> times1), (1, 2 -> times1), ... (10,10,times1).&#x20;
+Permissions are first-match only. If you have a \[criteriaA -> times1, criteriaA -> times2] array, times2 will always be ignored because we always take first-match only in a linear scan.&#x20;
+
+Note that we do use ranges, but the criteria ranges can be broken down into singular value tuples. For example, (criteria = (\[1-10], \[1-10]) -> times1) can be broken down into (1, 1 -> times1), (1, 2 -> times1), ... (10,10, times1).&#x20;
 
 So for overlapping criteria, we take the first match in a linear scan after breaking it down.
 
@@ -132,7 +136,7 @@ Ex: For timeline times 1-10, the permission is forbidden. For timeline times 1-1
 
 There are five categories of permissions, each with different criteria.
 
-* ActionPermission: Simplest (no criteria). Just denotes what times are allowed or not.
+* ActionPermission: Simplest (no criteria). Just denotes what times are permitted or not.
 * TimedUpdatePermission: For what timelineTimes can I update the value?
   * Ex: For timeline times 1-10, the permission is always forbidden. For timeline times 10-100, the permission is always  allowed.
 * TimedUpdateWithBadgeIdsPermission: For what timelineTimes AND what badge IDs can I update the value?
@@ -144,7 +148,7 @@ There are five categories of permissions, each with different criteria.
   * Same logic as TimedUpdateWithBadgeIdsPermission but replace timelineTimes with ownedTimes.
   * Ex: Cannot create more of badge IDs 1-10 that can be owned from times 10-100. But can increase the supply of badge IDs 1-10 for after time 100.
 * UpdateApprovedTransferPermission: For what timeline times AND what transfer combinations, can I update the approved transfer values?
-  * Even though we use range logic, all transfers can be broken down into a (to, from, initiated by, transferTime, badgeId, ownedTime) tuple of singular addresses and values.&#x20;
+  * Even though we use range logic, all transfers can be broken down into a (to, from, initiated by, transferTime, badgeId, ownedTime) tuple of singular addresses and values (see Representing Transfers below).&#x20;
   * Ex: For timeline times 1-10, I cannot update the approved transfers for the transfer tuples ("All", "All", "All", 1-100, 1-10, 1-10) tuple, thus making the transferability locked for the times 1-10 for those transfer combinations.
   * Again, note that ALL criteria must match to be handled. So, the tuple ("All", "All", "All", 1-100, <mark style="color:blue;">11-20</mark>, 1-10) is not handled because the badge IDs are different and thus non-overlapping.
 
@@ -152,17 +156,32 @@ There are five categories of permissions, each with different criteria.
 
 First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview.
 
+**Representing Transfers**
+
+Even though we use range logic, all transfers can be broken down into (to, from, initiated by, transferTime, badgeId, ownedTime) tuples of **singular** values.&#x20;
+
+For example, the tuples with range logic (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[10-11]</mark>) can be broken down into smaller tuples of (bob, alice, bob, 10, <mark style="color:blue;">1, 10</mark>), (bob, alice, bob, 10, <mark style="color:blue;">2, 10</mark>), (bob, alice, bob, 10, <mark style="color:blue;">1, 11</mark>), and (bob, alice, bob, 10, <mark style="color:blue;">2, 11</mark>).&#x20;
+
+The same can logic can be applied for breaking down address mappings with multiple addresses.
+
+**Criteria**
+
+Similar to the permissions above, all approved transfers are stored in a linear array of (criteria -> approval amounts and options) maps, where the criteria is a transfer tuple.
+
+When checking if a transfer is approved, we break down both the transfers and criteria into the singular value tuples. If the tuples match, we use the corresponding approval amounts and options.
+
+Ex: If we are checking the transfer (bob, alice, bob, 10, <mark style="color:blue;">1, 10</mark>) with the criteria (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[10-11]</mark>), we would find a match because when broken down, they have a matching tuple. We would then use the approval amounts and options corresponding to the criteria.
+
 **First-Match Only**
 
-Similar to the UpdateApprovedTransferPermission above, approved transfers are **FIRST-MATCH-ONLY**.
+Similar to the UpdateApprovedTransferPermission above, approved transfers are **FIRST-MATCH-ONLY**. Any subsequent matches are ignored.
 
-All approvals are a linear array of (criteria -> approval amounts and options) maps. If the criteria matches, then we use the corresponding approval amounts and options and ignore any subsequent criteria matches.
+By first match only, we mean that if we have ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) -> approval1 and ("All", "All", "All", 1-100, <mark style="color:blue;">1-5</mark>, 1-10) -> approval2, approval2 will never be used because we there would be duplicate tuples ("All", "All", "All", 1-100, <mark style="color:blue;">1-5</mark>, 1-10) when broken down, and we would only use the first linear match which is approval1.
 
-Even though we use range logic, all transfers can be broken down into a (to, from, initiated by, transferTime, badgeId, ownedTime) tuple. These tuples are used as the criteria.
+Also note that to match, ALL criteria must match. So, ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) and ("All", "All", "All", 1-100, <mark style="color:blue;">11-20</mark>, 1-10) would not match at all.&#x20;
 
-By first match only, we mean that if we have ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) -> approval1 and ("All", "All", "All", 1-100, <mark style="color:blue;">1-5</mark>, 1-10) -> approval2, approval2 will never match because we only take the first match for every (to, from, initiated by, transferTime, badgeId, ownedTime) tuple.
+**Difference From UpdateApprovedTransferPermission**
 
-To match, all criteria must match. So, ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) and ("All", "All", "All", 1-100, <mark style="color:blue;">11-20</mark>, 1-10) would not have any overlap.
+While this may seem similar to the UpdateApprovedTransferPermission from above, the permission corresponds to whether approved transfers can be updated or not by the manager.
 
-
-
+The approved transfers themselves correspond to if a transfer is currently approved or not.
