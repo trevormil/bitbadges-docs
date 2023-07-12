@@ -1,4 +1,4 @@
-# 🧾 Use Cases
+# 🎨 Use Cases
 
 Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorite ideas for potential use cases. You can also browse featured badges at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 

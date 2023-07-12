@@ -18,7 +18,6 @@ Have a feature request? Request features via our Discord channel, GitHub, or con
   * Verifiable credentials&#x20;
   * Associations
   * Tags
-  * Collections (off-chain and off-chain)
   * Hidden badges
 * Different levels of decentralization (backend-only, blockchain-only, etc)
   * Ex: Give users the option to create badges completely free via a centralized web2 server solution instead of the blockchain.

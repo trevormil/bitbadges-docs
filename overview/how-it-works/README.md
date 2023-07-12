@@ -16,17 +16,17 @@ When creating a badge collection, the creator can customize the following proper
 
 [**Supply**](total-supplys.md)**:** How much should the total supply of each badge be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
 
-**Balances Type -** How do you want to store your balances? On the blockchain? Off-chain? Or inherit  all owners from other badge(s)?
+[**Balances Types**](balances-types.md) **-** How do you want to store your balances? On the blockchain? Off-chain? Or inherit  all owners from other badge(s)?
 
-**Transferability:** Transferability defines the rules for transferring badges within the collection.&#x20;
+[**Transferability**](transferability.md)**:** Transferability defines the rules for transferring badges within the collection.&#x20;
 
 At its simplest, a collection can be transferable (badges can be transferred freely from one owner to another) or non-transferable (once a badge is owned, it is tied to that owner).
 
 We also offer many customization options such as making badges revokable from owners, freezing an owner's ability to transfer, restricting who can send to who, restricting when users can transfer, and more!
 
-**Manager:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
+[**Manager**](manager.md)**:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
 
-**Permissions:** The manager is able to execute the following permissions:
+[**Permissions**](permissions.md)**:** The manager is able to execute the following permissions:
 
 * Add / create badges to the collection?
 * Update the transferability?
@@ -35,11 +35,11 @@ We also offer many customization options such as making badges revokable from ow
 * Transfer the manager role?
 * Update the collection details (such as metadata)?
 
-**Standard:** Each collection must define what standard it uses to explain how to interpret the details of the badge. For developers, see [standards](../../for-developers/need-to-know/standards.md).
+[**Standard**](standards.md)**:** Each collection must define what standard it uses to explain how to interpret the details of the badge. For developers, see [standards](../../for-developers/need-to-know/standards.md).
 
 ## Distribution&#x20;
 
-Once the collection is created, the badges then have to be distributed to owners. This can be done via your preferred method. Some examples currently are via password, QR codes, e-mails, whitelists, first-come first-serve, manually transfering to each recipient, etc.
+Once the collection is created, the badges then have to be distributed to owners. This can be done via your preferred method. Some examples currently are via **password, QR codes, e-mails, whitelists, first-come first-serve, manually transfering to each recipient, etc.**
 
 See [Ecosystem ](../ecosystem.md)to find a list of all distribution tools built by the BitBadges team and community.
 

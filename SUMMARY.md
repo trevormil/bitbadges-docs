@@ -3,7 +3,9 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
+* [🎨 Use Cases](overview/use-cases.md)
 * [🏆 How It Works](overview/how-it-works/README.md)
+  * [Manager](overview/how-it-works/manager.md)
   * [Cross-Chain](overview/how-it-works/cross-chain.md)
   * [Metadata](overview/how-it-works/page-1.md)
   * [Total Supplys](overview/how-it-works/total-supplys.md)
@@ -14,8 +16,8 @@
   * [Approvals](overview/how-it-works/approvals.md)
   * [Standards](overview/how-it-works/standards.md)
 * [🏅 Interact w/ Collections](overview/interact-w-collections.md)
-* [💳 Supported Wallets](overview/supported-wallets.md)
 * [🌴 Ecosystem](overview/ecosystem.md)
+* [💳 Supported Wallets](overview/supported-wallets.md)
 * [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
@@ -27,10 +29,6 @@
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [💰 Fundraising](overview/fundraising.md)
 * [❓ FAQ](overview/faq.md)
-
-## 🎨 Use Cases
-
-* [🧾 Use Cases](use-cases/use-cases.md)
 
 ## ⌨ For Developers
 

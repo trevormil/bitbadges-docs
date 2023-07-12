@@ -14,11 +14,11 @@ Digital tokens (badges) are simply something that you can own digitally and prov
 
 When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain ([read more here](https://101blockchains.com/advantages-of-nfts/)).&#x20;
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, offline-first, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
+**BitBadges can be described as tokenization-as-a-service. We offer an open-source, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
 
-We offer all services you may need from the required storage (blockchain, data indexing, off-chain data storage) to distributing to users via your preferred method to verification tools (in-person verification, website gated sign-ins) and more!
+We offer all services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing to users via your preferred method to verification tools (in-person verification, website gated sign-ins) and more!
 
-Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. a scammer or trustworthy?). We aim for this app to have a social media feel but also be the all-in-one site to see any information about a user.
+Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). We aim for this app to have a social media feel but also be the all-in-one site to see any information about a user.
 
 To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
@@ -62,21 +62,23 @@ What makes our token standard better than existing blockchain standards and comp
 
 Just to name a few:
 
-* **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one
+* [**Cross-Chain**](overview/how-it-works/cross-chain.md)**:** Supports users from multiple blockchain ecosystems instead of just one
 * **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), we reuse code to make our standard much more scalable and battle-tested.
-* **Balance Types:** We have created two new scalable and powerful ways to store and track balances, in addition to the standard on-chain storage of balances.&#x20;
+* [**Balance Types**](overview/how-it-works/balances-types.md)**:** We have created two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability for the blockchain.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain.&#x20;
   * 2\) Inherited balances allow the owners of one badge to automatically own another.
-* **ID Ranges:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
-* **Time-Based Accounting:** All balances are time-based. This enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* [**ID Ranges**](overview/how-it-works/balances-transfers.md)**:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
+* [**Time-Based Accounting**](overview/how-it-works/balances-transfers.md)**:** All balances are time-based. This enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
 * **Time-Based Metadata:** All metadata is time-based, allowing you to automatically update it at a certain time without transacting with a blockchain.
-* **Transferability Customization:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval?  We handle all of this.
+* [**Transferability Customization**](overview/how-it-works/transferability.md)**:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval?  We handle all of this.
   * Additionally, we have a feature to only allow transfers if you own (or don't own) badges of another collection! Ex: Only those who own the verified badge can transfer. Or, only those who do not own a scammer badge can transfer and interact with your collection.&#x20;
-* **Collection and User-Level Approvals:** We define three levels of approvals (collection-wide, incoming, and outgoing).&#x20;
+* [**Collection and User-Level Approvals**](overview/how-it-works/approvals.md)**:** We define three levels of approvals (collection-wide, incoming, and outgoing).&#x20;
   * For a transfer to be successful, it must be approved by the collection-wide approvals, by the sender's outgoing approvals, and by the recipient's incoming approvals.&#x20;
   * This allows us to clearly define the transferability and enable many neat features like revokable badges, freezing badges, opt-in only collections, and more!
-* **Customizable Permissions:** You can optionally specify to have customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc
+* [**Customizable Permissions**](overview/how-it-works/permissions.md)**:** You can optionally specify to have customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc
 * **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors.
+
+
 
 And much more coming soon!
 
@@ -115,12 +117,6 @@ The BitBadges SDK is a TypeScript library that provides all the tools you need t
 Blockin is a universal, multi-chain sign-in interface for Web 3.0. While Blockin is not an official BitBadges product, Blockin was co-created and is maintained by one of the BitBadges founders, trevormil.eth.&#x20;
 
 Blockin plans to integrate many features using BitBadges, such as badge-gating sign-ins for websites.
-
-{% content-ref url="for-developers/need-to-know/standards.md" %}
-[standards.md](for-developers/need-to-know/standards.md)
-{% endcontent-ref %}
-
-We are decentralizing the process of proposing / creating token and metadata standards ([Standards](for-developers/need-to-know/standards.md)). Have an idea for a new token standard? Propose it! Standards can define anything from the expected permissions, transferability, or even how metadata is interpreted.
 
 ## Links
 

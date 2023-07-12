@@ -36,7 +36,7 @@ There are three ways to register addresses in BitBadges. First, users can regist
 
 To get this information, you have to query it, which can be done in a few different ways.
 
-1. If you are using the BitBadges API, you can use [these routes](../../use-cases/use-cases.md). (recommended option)
+1. If you are using the BitBadges API, you can use [these routes](../../overview/use-cases.md). (recommended option)
 2. To query a node directly, you can use the following [REST API route](https://docs.cosmos.network/v0.46/run-node/interact-node.html):
 
 ```
