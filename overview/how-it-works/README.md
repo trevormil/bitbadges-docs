@@ -10,11 +10,11 @@ Collections are the core of BitBadges. A collection consists of one or more badg
 
 When creating a badge collection, the creator can customize the following properties however they would like:
 
-[**Collection Metadata**](metadata.md)**:** What is the collection's name, description, image, category etc?
+[**Collection Metadata**](page-1.md)**:** What is the collection's name, description, image, category etc?
 
-[**Badge Metadata**](metadata.md)**:** For each badge, what is its name description, image, category, etc?
+[**Badge Metadata**](page-1.md)**:** For each badge, what is its name description, image, category, etc?
 
-**Supply:** How much should the total supply of each badge be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
+[**Supply**](total-supplys.md)**:** How much should the total supply of each badge be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
 
 **Balances Type -** How do you want to store your balances? On the blockchain? Off-chain? Or inherit  all owners from other badge(s)?
 
@@ -47,10 +47,10 @@ One of the core ideas behind BitBadges is we want to decentralize the distributi
 
 ## Indexing / Verification&#x20;
 
-At some point, you will need fetch the current details of the badge collection and / or the current owners (for verification, showing badges off, etc). The most simple way to do by visiting it on the BitBadges website ([https://bitbadges.io](https://bitbadges.io)).
+For browsing the current state and owners of a badge collection, the most simple way to do by visiting it on the BitBadges website ([https://bitbadges.io](https://bitbadges.io)).
 
-In some scenarios, visiting the BitBadges website is not the most ideal. An example is if you are in a place with no Internet or no access to computers (e.g. the gate of a venue). Check [Ecosystem ](../ecosystem.md)to find a list of verification tools. An example includes restricting website access to only badge owners.
+There are also many community-built tools for verifying badge ownership for different use cases (websites, in-person events, etc) and indexing of collections, which can be found at [Ecosystem](../ecosystem.md).
 
 ## Rest of Lifetime
 
-After the initial creation and distribution of badges, the collection will live out according to its rules. If users can transfer badges, transfers will be allowed. If the manager can archive the collection, they can archive it. And so on.
+After the initial creation and distribution of badges, the collection will live out according to its rules and permissions set.

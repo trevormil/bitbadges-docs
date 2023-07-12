@@ -1,12 +1,12 @@
-# 🏅 Creating a Badge
+# 🏅 Interact w/ Collections
 
-### **How to create a badge?**
+### **How to create a collection or interact with one?**
 
 **Option 1 (Recommended): BitBadges Website**
 
 The easiest and simplest way to create a badge is by using the Mint tab on the [BitBadges website](https://bitbadges.io). This page will walk you through step-by-step and let you customize your badge however you would like! This process is quick and easy!
 
-After the badge is created, management and distribution of the badge is also quick and easy via the [BitBadges website](https://bitbadges.io).
+After the badge is created, management, distribution, and transfers of badges are also quick and easy via the [BitBadges website](https://bitbadges.io).
 
 **Option 2 (Technical): BitBadges SDK / API**
 
@@ -16,7 +16,7 @@ Option 1 should be used for the majority of cases. Option 2 is typically only ne
 
 
 
-### **Need additional functionality not in the token standard?**
+### **Need additional functionality not supported?**
 
 While BitBadges offers a wide range of customizable functionality for badges, we understand that not all cases are currently supported. We are committed to continuously improving and expanding our offered functionality over time. If you find that your use case requires unsupported functionality, you have two options:
 

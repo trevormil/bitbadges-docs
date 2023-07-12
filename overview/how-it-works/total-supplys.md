@@ -12,7 +12,8 @@ BitBadges doesn't categorize them by these names because we use a semi-fungible 
 
 Badges can be created out of thin air by the manager of the collection. During the collection creation transaction, they can create as many badges as they want. After that, they can only create according to the permissions set.
 
-If&#x20;
+The permissions can be customized to permit or forbid the creation of a certain amount of badges at certain times. If the creation of all badges is locked forever, the total supply is final.
 
 **Burning Badges**
 
+Badges cannot be "burned" once created. However, they can be transferred to the "Burn" address which is a special address that can only be transferred to and not from.

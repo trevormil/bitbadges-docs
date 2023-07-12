@@ -64,7 +64,7 @@ Just to name a few:
 
 * **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one
 * **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), we reuse code to make our standard much more scalable and battle-tested.
-* **Balance Types:** We have created two new scalable ways to store and track balances, in addition to the standard on-chain storage of balances.&#x20;
+* **Balance Types:** We have created two new scalable and powerful ways to store and track balances, in addition to the standard on-chain storage of balances.&#x20;
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain.&#x20;
   * 2\) Inherited balances allow the owners of one badge to automatically own another.
 * **ID Ranges:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
