@@ -43,7 +43,7 @@ We also offer many customization options such as making badges revokable from ow
 * Transfer the manager role?
 * Update the collection details (such as metadata)?
 
-[**Standard**](standards.md)**:** Each collection must define what standard it uses to explain how to interpret the details of the badge. For developers, see [standards](../../for-developers/must-know-concepts/standards.md).
+[**Standard**](standards.md)**:** Each collection must define what standard it uses to explain how to interpret the details of the badge. For developers, see [standards](../../for-developers/need-to-know/standards.md).
 
 ## Distribution&#x20;
 

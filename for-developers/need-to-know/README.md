@@ -1,4 +1,4 @@
-# 🧠 Need to Know
+# 🧠 Must Know Concepts
 
 Before developing with BitBadges, we strongly recommend you read through the pages in this section to understand the behind the scenes of BitBadges.
 

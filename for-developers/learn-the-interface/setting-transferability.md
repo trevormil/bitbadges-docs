@@ -1,6 +1,6 @@
 # Setting Transferability
 
-In the [previous tutorial](distributing-badges.md), we only discussed transferring badges from the "Mint" addresses. However, you may want badge owners to be able to transfer to other badge owners.&#x20;
+In a [previous tutorial](distributing-badges.md), we only discussed transferring badges from the "Mint" addresses. However, you may want badge owners to be able to transfer to other badge owners.&#x20;
 
 Note that setting UserApprovedTransfers is equivalent to this without the overrides options.
 

@@ -1,8 +1,10 @@
 # 🤝 Approved Transfers
 
-First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview.
+First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers.
 
 Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/how-it-works/permissions.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
+
+
 
 
 
