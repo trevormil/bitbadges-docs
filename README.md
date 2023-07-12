@@ -63,22 +63,20 @@ What makes our token standard better than existing blockchain standards and comp
 Just to name a few:
 
 * [**Cross-Chain**](overview/how-it-works/cross-chain.md)**:** Supports users from multiple blockchain ecosystems instead of just one
-* **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), we reuse code to make our standard much more scalable and battle-tested.
+* **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), our code is reused by all collections which makes it much more scalable and battle-tested.
 * [**Balance Types**](overview/how-it-works/balances-types.md)**:** We have created two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability for the blockchain.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain.&#x20;
   * 2\) Inherited balances allow the owners of one badge to automatically own another.
 * [**ID Ranges**](overview/how-it-works/balances-transfers.md)**:** All balances accounting is done with ID ranges. Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, ...), you can batch all into one transaction efficiently (x1 of Badge IDs 1-1000).
 * [**Time-Based Accounting**](overview/how-it-works/balances-transfers.md)**:** All balances are time-based. This enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
-* **Time-Based Metadata:** All metadata is time-based, allowing you to automatically update it at a certain time without transacting with a blockchain.
+* **Time-Based Details:** Collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without transacting.
 * [**Transferability Customization**](overview/how-it-works/transferability.md)**:** Existing standards simply abstract transferability to a simple "transferable" or "non-transferable". However, we recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval?  We handle all of this.
   * Additionally, we have a feature to only allow transfers if you own (or don't own) badges of another collection! Ex: Only those who own the verified badge can transfer. Or, only those who do not own a scammer badge can transfer and interact with your collection.&#x20;
 * [**Collection and User-Level Approvals**](overview/how-it-works/approvals.md)**:** We define three levels of approvals (collection-wide, incoming, and outgoing).&#x20;
   * For a transfer to be successful, it must be approved by the collection-wide approvals, by the sender's outgoing approvals, and by the recipient's incoming approvals.&#x20;
   * This allows us to clearly define the transferability and enable many neat features like revokable badges, freezing badges, opt-in only collections, and more!
 * [**Customizable Permissions**](overview/how-it-works/permissions.md)**:** You can optionally specify to have customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc
-* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors.
-
-
+* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on very centralized architectures.
 
 And much more coming soon!
 
