@@ -77,7 +77,7 @@ The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
 For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, ...)** and update the parameters accordingly.
 
 ```ts
-import { createMessageSend } from 'bitbadgesjs-transactions'
+import { createMessageSend } from 'bitbadgesjs-proto'
 
 const chain = {
   chainId: 2,
@@ -128,7 +128,7 @@ import {
 import {
   createTxRawEIP712,
   signatureToWeb3Extension,
-} from 'bitbadgesjs-transactions'
+} from 'bitbadgesjs-proto'
 
 ```
 
