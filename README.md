@@ -41,31 +41,28 @@ To learn more about BitBadges (the company), visit [https://bitbadges.org](https
 
 What are the core ideas and principles behind BitBadges?
 
-* **Rapidly-Evolving**:  Create a single, dynamic token standard that rapidly evolves over time.
+* **Rapidly-Evolving**:  Create a single, dynamic token standard that rapidly evolves and improves over time.
   * Token standards should be flexible and continuously adding new functionality, as opposed to existing ones which are rigid, not adaptable, and hard to adopt new ones.
-  * We will iterate fast and continuously add new features.
-* **Cross-Chain**: Develop a token standard which supports users from ANY blockchain
+* **Cross-Chain**: Tokens should support users from ANY blockchain
   * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Bitcoin users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it restricts their potential userbase!
   * Ex: Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android!
-* **Option for Decentralization:** Users should always have an option to interact with BitBadges in a trustless, decentralized manner, but we recognize that >90% of users don't care about decentralization.&#x20;
-  * We offer functionality that sacrifices decentralization for user experience and scalability, but the option for full decentralization is always there.
+* **Option for Decentralization:** Users should always have an option to interact with BitBadges in a trustless, decentralized manner. However, but we recognize that >90% of users don't care about decentralization.&#x20;
+  * We offer functionality that sacrifices decentralization for user experience and scalability, but the option for full decentralization and trustless interaction will always be there.
 * **User-Friendly**: Prioritize user experience over everything else.&#x20;
   * Users should not even need to know what a blockchain is or that they are using a blockchain. It should be as simple as browsing a typical website.
-* **Ecosystem:** Make developing on top of BitBadges as easy as possible.
+* **Ecosystem:** Make developing within the BitBadges ecosystem as easy as possible.
   * Long term, the goal is to have an ecosystem of thousands of community-built projects and tools for interacting with BitBadges.
-  * Contributions are also greatly encouraged and appreciated
 * **Generic:** Design everything in a generic way that supports universality
 * **Open-Source:** All code that makes BitBadges work will be open-sourced for public review
 
-## How Are We Better?
+## Improvements Over Existing Products
 
 What makes our product better than existing products?
 
 Just to name a few:
 
 * **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one
-* **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), our code is reused by all collections which makes it much more scalable and battle-tested.
-  * TODO: Add stat here
+* **Reused and Battle-Tested Code:** Instead of having to write new custom code for every collection of tokens (as existing standards do), our code is reused by all collections which makes it much more scalable and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)).
 * [**Balance Types**](overview/how-it-works/balances-types.md)**:** We have created two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain by >99%.&#x20;
   * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another.
@@ -108,8 +105,8 @@ The BitBadges team runs their own indexer and provides a user-friendly developer
 
 The BitBadges SDK is a TypeScript library that provides all the tools you need to develop on top of BitBadges.
 
-{% content-ref url="http://localhost:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
-[Blockin](http://localhost:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
+{% content-ref url="http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
+[Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
 Blockin is a universal, multi-chain sign-in interface for Web 3.0. While Blockin is not an official BitBadges product, Blockin was co-created and is maintained by one of the BitBadges founders, trevormil.eth.&#x20;
