@@ -4,14 +4,10 @@ The BitBadges SDK is a TypeScript library that provides all the tools and functi
 
 GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs).
 
-There are currently five libraries that make up the SDK (address-converter, proto, provider, transactions, utils) that can be installed via:
+There are currently five libraries that make up the SDK (address-converter, proto, provider, utils) that can be installed via:
 
 ```
 npm install bitbadgesjs-address-converter
-```
-
-```
-npm install bitbadgesjs-transactions
 ```
 
 ```
@@ -47,22 +43,17 @@ const cosmosAddress = ethToCosmos(address);
 const ethAddress = cosmosToEth(cosmosAddress);
 ```
 
+**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create blockchain transactions in the [BitBadges Msg formats](../for-developers/need-to-know/msgs.md). See [Broadcasting Txs](broadcasting-and-signing-txs.md) for more info and tutorials.
 
-
-**transactions** exports the functions to create blockchain transactions in the [BitBadges Msg formats](../for-developers/need-to-know/msgs.md). See [Broadcasting Txs](broadcasting-and-signing-txs.md) for more info and tutorials.
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const txMsg = createTxMsgUpdateCollection(
-</strong>    txDetails.chain,
+```typescript
+const txMsg = createTxMsgUpdateCollection(
+    txDetails.chain,
     txDetails.sender,
     txDetails.fee,
     txDetails.memo,
     msg
 )
-</code></pre>
-
-
-
-**proto** exports the Protocol Buffer types. You will typically not need this, unless you plan to interact with the blockchain at a more technical level. The transaction types from the **proto** library are used in the **transactions** library.&#x20;
+```
 
 
 
