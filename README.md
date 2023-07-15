@@ -83,27 +83,17 @@ What are the core ideas and principles behind BitBadges?
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
-BitBadges offers an L1 delegated proof-of-stake blockchain built with Cosmos SDK that enables the natively cross-chain issuance of digital tokens (e.g. an Ethereum user can seamlessly issue a badge to a Cosmos user). The blockchain is able to attain instant transaction finality using Tendermint and natively supports users from multiple Layer 1 blockchains (Ethereum, Cosmos) via IBC and account mappings.
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 {% content-ref url="broken-reference" %}
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
-BitBadges provides their own website to view and interact with the BitBadges blockchain at [https://bitbadges.io](https://bitbadges.io). This site aims to be the all-in-one site for any crypto user from any blockchain (see a user's badges, digital collectibles, transaction history, reviews, etc all on one site).
-
 {% content-ref url="broken-reference" %}
 [Broken link](broken-reference)
 {% endcontent-ref %}
-
-The BitBadges Indexer is a tool used to fetch the latest blockchain information and store any additional data that is needed (e.g. user activity, metadata, etc).
-
-The BitBadges team runs their own indexer and provides a user-friendly developer API to allow developers to build on top of it with, but you may also run and customize your own indexer.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-The BitBadges SDK is a TypeScript library that provides all the tools you need to develop on top of BitBadges.
 
 {% content-ref url="http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
