@@ -16,4 +16,4 @@ The permissions can be customized to permit or forbid the creation of a certain 
 
 ### **Burning Badges**
 
-Badges cannot be "burned" once created. However, they can be transferred to the "Burn" address which is a special address that can only be transferred to and not from.
+Badges cannot be "burned" once created. However, they can be transferred to the addresses where no private key is known such as the Ethereum zero address.
