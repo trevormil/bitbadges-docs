@@ -6,9 +6,9 @@ Whenever we say $BADGE, we are referring to the BitBadges blockchain token used 
 
 **Why is there a need for BitBadges?**
 
-The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology today. BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!
+The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology in place today ([see here](../)). BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!
 
-#### What makes BitBadges better than competitors?
+**What makes BitBadges better than competitors?**
 
 See [here](../#improvements-over-existing-standards).
 
@@ -16,7 +16,7 @@ See [here](../#improvements-over-existing-standards).
 
 No, they are not required!&#x20;
 
-You will only need to create a smart contract when you want to add custom functionality not supported by the token standard. For almost all badge collections, you should not need one.
+Although, you are given the option to, if you want to add custom functionality not supported by the token standard.
 
 **Is BitBadges an L1 blockchain or an L2?**
 
@@ -43,3 +43,4 @@ We do this for multiple reasons:
 3. Consistency: This provides a much cleaner and more consistent interface for querying, indexing, and maintenance.
 
 Yes, this may sacrifice a little customizability, but we allow you to implement any custom logic required with smart contracts, if necessary.
+

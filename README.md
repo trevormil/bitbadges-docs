@@ -16,7 +16,7 @@ When combined with blockchain technology, they become even more secure and more 
 
 **BitBadges can be described as tokenization-as-a-service. We offer an open-source, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
 
-We offer the full-stack of services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing to users via your preferred method to offline-first verification tools (in-person verification, website gated sign-ins) and more!&#x20;
+We offer the full-stack of services you may need from the required storage (blockchain, data indexing, off-chain data storage) to tools for distributing badges to users via your preferred method to offline-first verification tools (in-person verification, website gated sign-ins) and more!
 
 Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to see any information about a user.
 
@@ -99,9 +99,7 @@ What are the core ideas and principles behind BitBadges?
 [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
-Blockin is a universal, multi-chain sign-in interface for Web 3.0. While Blockin is not an official BitBadges product, Blockin was co-created and is maintained by one of the BitBadges founders, trevormil.eth.&#x20;
-
-Blockin plans to integrate many features using BitBadges, such as badge-gating sign-ins for websites.
+Blockin is a universal, multi-chain sign-in interface for Web 3.0 that includes support for badge-gating websites. While Blockin is not an official BitBadges product, Blockin was co-created and is maintained by one of the BitBadges founders, trevormil.eth.&#x20;
 
 ## Links
 
