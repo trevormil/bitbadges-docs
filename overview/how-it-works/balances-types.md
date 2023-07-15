@@ -14,41 +14,27 @@ If the "parent" badge transfers owners, all child badges will transfer owners.
 
 ### Off-Chain
 
-Off-chain balances are a new scalable way to store balances for your collection with enhanced user experience. We envision this to be the most popular option.
+Off-chain balances are a new scalable way to store balances for your collection with enhanced user experience. With off-chain balances, the collection is still created on the blockchain (e.g. metadata is defined, total supplys are defined), but all balances of badges for the collection are stored off the blockchain and fetched by a URL (via a typical server or file storage like IPFS). Note that verifiability is not sacrificed, as long as the balances at the URL can be fetched.
 
-The collection is still created on the blockchain, but all balances are stored off the blockchain and referenced by a simple URL (via a typical server or file storage like IPFS).&#x20;
+You have complete control over the balances that are returned by the URL. For example, a ticketing company can update the returned balances for the ticket owner badge whenever one is bought, all **without transacting with the blockchain**! Or, you can permanently freeze the balances, making the badges non-transferable (see below).
 
-This option is much more limited in terms of functionality because **users cannot transfer or approve any badges on the blockchain**. **Depending on the permissions set, the balances can only be 1) completely frozen forever or 2) completely controllable by the manager of the collection (thus adding a trust factor).**&#x20;
+**This architecture reduces the resources used by the blockchain by >99%** because there are no transfer transactions being executed on-chain. This means your **users never have to transact directly with the blockchain and pay gas fees!**&#x20;
 
-Overall, it is a tradeoff between scalability and user experience vs functionality and decentralization.
-
-However, almost all digital tokens used today follow this format. For example, distribution of verification checkmarks are completely controlled by the social media company and non-transferable. Distribution of concert tickets are completely controlled by the ticketing company. Attendance details are frozen forever.
+However, it is a trade-off between scalability and user experience vs functionality and decentralization. The blockchain has no control over what is returned by the URL (which introduces a centralized trust factor if balances are not frozen). And since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and more) cannot be used.
 
 **Can updating balances be made automatic?**
 
-Yes! You can program your balances to update automatically however you would like. For example, whenever a user signs up on your website, you can send a sign-up badge to that user, **all without transacting with the blockchain** (see below)!
+Yes! As mentioned above, you can program your balances to update automatically however you would like. Find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem.md)page!
 
-Find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem.md)page!
+**Why not just use a standard client-server solution?**
 
-**Do users or the manager need to transact with the blockchain to update balances?**
+There are many benefits to creating and using the off-chain balances type. Just to name a few:
 
-No, users will never have to transact with the blockchain to send / receive badges, which is why the user experience is so enhanced.
-
-The manager will have to transact with the blockchain if they need to change the balances URL. However, this is most often not the case because the balances stored at the URL can be updated without having to update the URL.
-
-**Does this sacrifice verifiability?**
-
-The collection is still created on the blockchain (with the off-chain balances URL). As long as the balances at the URL can be fetched, the collection will not sacrifice any verifiability.
-
-**Why not just use a standard client-server solution if balances are stored off-chain?**
-
-There are many benefits to creating and using BitBadges to implement off-chain tokens. Just to name a few:
-
-* Creation, maintenance, and verification is outsourced leaving you with less work
+* Creation, maintenance, and verification of the badges is outsourced leaving you with less work
 * Access and seamless integration with the whole suite of BitBadges tools
 * Enhanced security, verification, and availability of badges due to blockchain technology
 * Allow users to build their digital identity all in one place, rather than scattered across many different websites
 
 **How are the balances permanently frozen?**
 
-The balances URL can be set to non-updatable. If the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) and always verifiable.
+The balances URL can be set to non-updatable via the permissions. and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.
