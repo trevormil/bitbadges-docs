@@ -1,6 +1,6 @@
 # Balances Types
 
-BitBadges offers three different ways to store the badge balances and owners for your collection.
+BitBadges offers three different ways to store the badge balances and owners for your collection, each with their own pros and cons.
 
 ### Standard
 
@@ -8,9 +8,9 @@ Standard balances are what you may be familiar with. All balances are stored on 
 
 ### Inherited / Badge-Bound
 
-Inherited (or badge-bound) balances are a way for a collection to inherit the owners of badges from another collection. For example, I want to create a free coupon badge which automatically distributes to all users who own a membership badge.&#x20;
+Inherited (or badge-bound) balances are a way for a collection to inherit the owners of badges from another collection. For example, I want to send a free coupon badge which automatically distributes to all owners of my membership badge.&#x20;
 
-If your collection uses inherited balances, users cannot transfer or approve badges in your collection. To receive or send badges, they must send or receive the badges in the parent collection (which would then automatically populate down and send / receive the badges in your collection).&#x20;
+If the "parent" badge transfers owners, all child badges will transfer owners.
 
 ### Off-Chain
 

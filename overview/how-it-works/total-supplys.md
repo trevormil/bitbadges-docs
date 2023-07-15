@@ -10,7 +10,7 @@ BitBadges doesn't categorize them by these names because we use a semi-fungible 
 
 ### **Creating Badges**
 
-Badges can be created out of thin air by the manager of the collection. During the collection creation transaction, they can create as many badges as they want. After that, they can only create according to the permissions set.
+Badges can be created by the manager of the collection. During the initial collection creation transaction, an infinite amount of badges can be created. In following transactions, they can only create badges according to the permissions set by the collection.
 
 The permissions can be customized to permit or forbid the creation of a certain amount of badges at certain times. If the creation of all badges is locked forever, the total supply is final.
 

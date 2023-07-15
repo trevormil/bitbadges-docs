@@ -1,6 +1,8 @@
 # Balances / Transfers
 
-Typically, you may think of a balance in two parts: what you own and the amount you own. However, we introduce a third part: ownership times. For example, Bob owns x10 of Badge IDs 1-100 from January to March.
+Typically, you may think of a balance in two parts: what you own and the amount you own. However, we introduce a third part: ownership times.&#x20;
+
+For example, Bob owns x10 of Badge IDs 1-100 from January to March.
 
 ### **Benefits**
 
@@ -32,4 +34,4 @@ Result: They both now own x5 of Badge IDs 1-100 from January to March.
 
 **Example 3**: Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
 
-Result: Bob owns x10 of Badge IDs 1-50 from February to March **and** x10 of Badge IDs 50-100 from January to March. Alice owns  x10 of Badge IDs 1-50 from January to February.
+Result: Bob owns x10 of Badge IDs 1-50 from February to March **AND** x10 of Badge IDs 50-100 from January to March. Alice owns  x10 of Badge IDs 1-50 from January to February.
