@@ -1,18 +1,18 @@
 # Transferability
 
-The transferability defines the rules for transferring badges within the collection. Note this does not apply to the off-chain balances type because balances are completely controlled by the manager off-chain ([see here](balances-types.md)).
+The transferability defines the rules for transferring badges within the collection. Note this does not apply to the off-chain balances type ([see here](balances-types.md)).
 
 ### **Transferable vs Non-Transferable**
 
-At its simplest, a collection can be transferable (badges can be transferred freely from one owner to another) or non-transferable (once a badge is owned, it is tied to that owner and never transferable).
+At its simplest, a collection can be thought of as transferable (badges can be transferred freely from one owner to another) or non-transferable (once a badge is owned, it is tied to that owner and never transferable).
 
 ### Problem
 
 However, only specifying simply "transferable" vs "non-transferable" is very naïve and not suitable for many use cases.&#x20;
 
-For example, what if you need to be able to revoke forcefully? Freeze one's badges? Restrict who can transfer to who? Restrict when users can transfer? Restrict how many transfers? Restrict the total amount of badges transferred? Or a combination of all of these?
+For example, what if you need to be able to revoke? Freeze one's ability to transfer? Restrict who can transfer to who? Restrict when users can transfer? Restrict how many times a transfer can occur? Restrict the total amount of badges transferred? Or a combination of all of these?
 
-We aim to abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
+We abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
 
 ### Approval Levels
 
@@ -30,11 +30,11 @@ The collection-wide approved transfers are unique because there is a forceful op
 
 The outgoing approvals are the approved transfers of the sender. By default, all transfers where the sender equals the transaction initiator are allowed, and all others are disallowed. The sender can optionally approve other addresses to transfer on their behalf. If you are familiar with other blockchain NFTs and tokens, this is the same as those approvals.
 
-The collection can define a default outgoing approved transfers for each user. They can then be updated by the user as they desire.
+The collection can define a default outgoing approved transfers for each user. This can then be updated by the user as they desire.
 
 **Incoming**
 
-The incoming approvals are the approved transfers of the recipient. By default, all transfers where the recipient equals the transaction initiator are allowed, and all others are disallowed. The recipient can choose whether to block or allow incoming transfers via their incoming approved transfers. This is a new concept introduced by BitBadges
+The incoming approvals are the approved transfers of the recipient. By default, all transfers where the recipient equals the transaction initiator are allowed, and all others are disallowed. The recipient can choose whether to block or allow incoming transfers via their incoming approved transfers. This is a new concept introduced by BitBadges.
 
 The collection can define a default incoming approved transfers for each user. They can then be updated by the user as they desire. They can then be updated by the user as they desire.
 
@@ -59,8 +59,8 @@ At each level, we offer the following functionality for defining approved transf
 
 ### **Updatability**
 
-We also allow any combination of the above functionality to be set to updatable or locked at specific times.
+We also support fine-grained updatability for all combinations of the above functionality.
 
 For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable.
 
-Once can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
+One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
