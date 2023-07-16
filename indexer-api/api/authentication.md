@@ -1,6 +1,6 @@
 # Authentication
 
-BitBadges uses [Blockin](http://localhost:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users.
+BitBadges uses [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users.
 
 The Blockin execution flow is simple:
 

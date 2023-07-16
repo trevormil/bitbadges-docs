@@ -26,7 +26,7 @@ Over time, you may want to add more badges to the collection. However, the Badge
 
 **Locking Total Supply**
 
-Pre-Reading: [Permissions](../must-know-concepts/permissions.md)
+Pre-Reading: [Permissions](../concepts/permissions.md)
 
 The CanCreateMoreBadges permission defines what badges and at what ownership times, the manager can create more badges (no restriction on amounts). By default (when CanCreateMoreBadges is empty), the manager can mint as many badges as they want at any time they want because permissions are by default allowed. This can simply be done via another MsgUpdateCollection call and specifying BadgesToCreate.
 
@@ -81,7 +81,7 @@ And, the following forbids the manager from creating new supply of Badge ID 1 th
 }
 ```
 
-As a reminder, remember that permissions are by default ALLOWED if not explicitly forbidden and also FIRST-MATCH-ONLY (see [Permissions](../must-know-concepts/permissions.md)).
+As a reminder, remember that permissions are by default ALLOWED if not explicitly forbidden and also FIRST-MATCH-ONLY (see [Permissions](../concepts/permissions.md)).
 
 **Need to Restrict Amounts As Well?**
 

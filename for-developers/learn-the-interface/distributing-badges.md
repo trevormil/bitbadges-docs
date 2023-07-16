@@ -1,6 +1,6 @@
 # Distributing Badges
 
-Pre-Reading: [Approved Transfers](../must-know-concepts/approved-transfers.md)
+Pre-Reading: [Approved Transfers](../concepts/approved-transfers.md)
 
 
 

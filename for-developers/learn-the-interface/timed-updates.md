@@ -1,6 +1,6 @@
 # Timed Updates
 
-Besides approved transfers, a collection also has many other details that can be customized, such as metadata, standards, etc. Some of these are timeline-based values ([see here](../must-know-concepts/timelines.md)).
+Besides approved transfers, a collection also has many other details that can be customized, such as metadata, standards, etc. Some of these are timeline-based values ([see here](../concepts/timelines.md)).
 
 
 

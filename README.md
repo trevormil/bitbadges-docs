@@ -57,7 +57,7 @@ What makes our product better than existing products? Just to name a few:
 * [**Incoming Approvals:** ](overview/how-it-works/transferability.md) In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
   * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in.
 * [**Customizable Permissions**](overview/how-it-works/permissions.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
-* [**Time-Based Details**](for-developers/must-know-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
+* [**Time-Based Details**](for-developers/concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
 
 And much more!
 

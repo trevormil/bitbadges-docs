@@ -2,7 +2,7 @@
 
 ### **Pre-Readings**
 
-See [Claims](../need-to-know/claims.md).
+See [Claims](../concepts/claims.md).
 
 ### **Creating a Merkle Tree for Claims**
 

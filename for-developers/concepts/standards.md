@@ -57,6 +57,6 @@ The BitBadges Website standard defines the expected format of badge metadata tha
 }
 </code></pre>
 
-* Off-Chain Balances Metadata: If your collection uses the off-chain balances type, the URI of the offChainBalancesMetadata should point to a JSON file which is a map of valid cosmosAddresses -> [Balance](../must-know-concepts/balances.md) objects.
+* Off-Chain Balances Metadata: If your collection uses the off-chain balances type, the URI of the offChainBalancesMetadata should point to a JSON file which is a map of valid cosmosAddresses -> [Balance](balances.md) objects.
 * Claim Metadata: TODO
 
