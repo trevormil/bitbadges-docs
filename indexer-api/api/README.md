@@ -5,7 +5,7 @@ See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api
 ### Getting Started
 
 1. TODO API Key?
-2. Start sending requests with the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/).
+2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/).
 
 ### Authentication
 

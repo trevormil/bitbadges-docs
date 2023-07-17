@@ -6,11 +6,11 @@ We use WalletConnect to support over 100 Ethereum wallets such as Metamask, Coin
 
 If you are using a mobile wallet with an in-wallet browser, please use that browser.
 
-
-
 Note that we are working on ironing out the bugs for the support of many wallets. Let us know in Discord if your wallet is not connecting properly.&#x20;
 
 **Cosmos**
 
 Keplr - [https://www.keplr.app/](https://www.keplr.app/) (Ledger currently not supported)
+
+**More Coming Soon!**
 
