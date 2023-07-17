@@ -6,7 +6,7 @@ Other example ideas include distributing via e-mail, QR codes, location, etc.
 
 **Pre-Readings**
 
-[Claims](../concepts/claims.md) - Know the difference between whitelist claims and code/password based claims.
+[Claims](broken-reference) - Know the difference between whitelist claims and code/password based claims.
 
 ### **Have an idea for a tool?**
 

@@ -1,6 +1,8 @@
 # 📧 Address Mappings
 
-Address mappings are a powerful feature, similar to UintRanges. They allow us to specify a list of addresses, identified by an ID. These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses. Or, we can create a mapping that includes ONLY some specified addresses.
+[AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature similar to UintRanges. They allow us to specify a list of addresses, identified by an ID.&#x20;
+
+These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses. Or, we can create a mapping that includes ONLY some specified addresses.
 
 <pre class="language-protobuf"><code class="lang-protobuf">message AddressMapping {
   string mappingId = 1;
@@ -14,6 +16,8 @@ Address mappings are a powerful feature, similar to UintRanges. They allow us to
 </code></pre>
 
 AddressMappings are permanent and not updatable once created. The same address mapping can be referenced across collections by their unique IDs.
+
+**Reserved Address Mappings**
 
 There are a couple IDs for AddressMappings that are reserved for efficient shorthand methods:
 

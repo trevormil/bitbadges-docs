@@ -14,11 +14,17 @@ See the [For Developers](broken-reference) section for technical explanations.
 
 ## Creation
 
-Collections are the core of BitBadges. A collection consists of one or more badges, where each badge in the collection is referenced by a unique numeric ID, starting at 1 and incrementing.
+Collections are the core of BitBadges. All collections are identified by an incrementing unique, numeric ID assigned by the blockchain. This will be automatically assigned.
+
+A collection consists of one or more badges, where each badge in the collection is also referenced by a unique numeric ID, starting at 1 and incrementing.
+
+So for example, collection ID 1 can have 100 badges which are given badge IDs 1 through 100.
+
+**Customization Options**
 
 When creating a badge collection, the creator can customize the following properties however they would like:
 
-[**Collection Metadata**](page-1.md)**:** What is the collection's name, description, image, category etc?
+[**Collection Metadata**](page-1.md)**:** What is the collection's name, description, image, category, etc?
 
 [**Badge Metadata**](page-1.md)**:** For each badge, what is its name description, image, category, etc?
 

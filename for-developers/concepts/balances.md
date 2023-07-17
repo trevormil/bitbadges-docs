@@ -14,17 +14,7 @@ message Balance {
 
 **Interpreting Balances**
 
-IMPORTANT: If we have multiple ranges (IDs and ownership times) defined a single Balance struct, it is considered that we own ALL combinations and can be thought of as a nested for loop. There is no OR logic.&#x20;
-
-```go
-//pseudocode
-ownedBalances := []*Balance{}
-for _, badgeIdRange := range badgeIds {
-    for _, ownedTimeRange := range ownedTimes {
-        ownedBalances = append(ownedBalances, { amount,  badgeIdRange, ownedTimeRange })
-    }
-}
-```
+When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations. You can think of it as a nested loop, without any "OR" logic involved (e.g. for all badge IDs and for all owned times, we own X amount).
 
 For example, lets say we have a balance of&#x20;
 
@@ -42,7 +32,7 @@ This can be expanded and thought of as owning:
 * x1 of IDs 20-30 from times 20-50
 * x1 of IDs 20-30 from times 100-200
 
-If we wanted to remove the first set of balances (x1 of IDs 1-10 from times 20-50), we would then have to represent it as two separate balances:&#x20;
+If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20-50), we would then need to represent it as two separate balances:&#x20;
 
 ```
 { 
@@ -51,8 +41,6 @@ If we wanted to remove the first set of balances (x1 of IDs 1-10 from times 20-5
     ownedTimes: [{start: 100, end: 200}] 
 }
 ```
-
-and
 
 ```
 { 
@@ -64,7 +52,7 @@ and
 
 **Duplicate IDs**
 
-If you specify duplicate badge IDs such as:
+If you specify duplicate badge IDs in balances such as:
 
 ```
 { 

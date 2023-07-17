@@ -2,7 +2,7 @@
 
 ### **Pre-Readings**
 
-See [Claims](../concepts/claims.md).
+See [Claims](broken-reference).
 
 ### **Creating a Merkle Tree for Claims**
 
