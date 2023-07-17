@@ -40,10 +40,10 @@
   * [🪙 Balance Types](for-developers/concepts/balance-types.md)
   * [🖊 Standards](for-developers/concepts/standards.md)
   * [🥇 First-Match Only](for-developers/concepts/first-match-only.md)
-  * [🕒 Different Time Types](for-developers/concepts/different-time-types.md)
   * [🤝 Approved Transfers](for-developers/concepts/approved-transfers.md)
-  * [🔐 Permissions](for-developers/concepts/permissions.md)
   * [✅ Approval Options](for-developers/concepts/approval-options.md)
+  * [🔐 Permissions](for-developers/concepts/permissions.md)
+  * [🕒 Different Time Types](for-developers/concepts/different-time-types.md)
   * [✉ Msgs](for-developers/concepts/msgs.md)
   * [✏ Chain Details](for-developers/concepts/chain-details.md)
 * [👨🏫 Learn the Interface](for-developers/learn-the-interface/README.md)
@@ -74,8 +74,9 @@
 ## 📚 Indexer / API
 
 * [Overview](indexer-api/overview.md)
+* [Limits / Restrictions](indexer-api/limits-restrictions.md)
 * [Concepts](indexer-api/concepts/README.md)
-  * [Metadata IDs](indexer-api/concepts/metadata-ids.md)
+  * [Badge Metadata](indexer-api/concepts/badge-metadata.md)
 * [API](indexer-api/api/README.md)
   * [Authentication](indexer-api/api/authentication.md)
   * [Collections](indexer-api/api/collections.md)
@@ -85,10 +86,12 @@
   * [Browse](indexer-api/api/browse.md)
   * [Codes / Passwords](indexer-api/api/codes-passwords.md)
   * [Types](indexer-api/api/types.md)
+  * [Adding to IPFS](indexer-api/api/adding-to-ipfs.md)
 * [Indexer](indexer-api/indexer.md)
 
 ## 🛠 SDK
 
 * [Overview](sdk/overview.md)
+* [NumberType Conversions](sdk/numbertype-conversions.md)
 * [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)
 * [Documentation](sdk/documentation.md)

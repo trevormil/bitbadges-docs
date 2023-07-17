@@ -20,9 +20,13 @@ All permissions are stored as a linear array of (criteria -> permitted/forbidden
 
 Ex: For timeline times 1-10, the permission is forbidden. For timeline times 1-100, the permission is allowed. In this case, the timeline times 1-10 will be forbidden because we take the first match.
 
+Similar to approved transfers, even though we allow range logic to be specified, we expand everything maintaining order to their singular values (one value, no ranges) before checking for matches.
+
 **Combinations / Default Values**
 
-TODO
+Similar to the approved transfers, we allow you to define default values and an array of combinations that manipulate (invert, override with all, or keep as is) the default values to create different combinations of permitted/forbiddenTimes. It is mainly used for shorthand and avoiding repeating values.
+
+To match to a specific (criteria -> permitted/forbiddenTimes), we expand each combination / manipulation into a flat array maintaining order (i.e. combination 100 of element 1 comes before the first combination of element 2). We then proceed to do the first-match policy on this expanded array.
 
 **Permission Categories**
 

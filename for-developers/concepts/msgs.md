@@ -19,13 +19,13 @@ Some common Msgs from pre-written modules you may also need include:
 
 **How to broadcast transactions with Msgs?**
 
-You can create / submit / broadcast your transactions (Msgs) to the BitBadges team's official node via [the BitBadges SDK](../../sdk/broadcasting-and-signing-txs.md). This is the recommended option. You do not have to run a node and only need to ever use TypeScript.
+You can create / submit / broadcast your transactions (Msgs) to the BitBadges team's official node via [the BitBadges SDK](../../sdk/broadcasting-and-signing-txs.md). This is the recommended option. You do not have to run a node and only need to ever use TypeScript. Check out the tutorials in the tutorials section.
 
 Using the above tutorial is the recommended method, but you can also interact with other nodes (i.e. one you run yourself or other BitBadges nodes). See [https://docs.cosmos.network/main/run-node/interact-node](https://docs.cosmos.network/main/run-node/interact-node) and [https://docs.cosmos.network/main/run-node/txs](https://docs.cosmos.network/main/run-node/txs) for your options. There are plenty of resources out there for interacting with a Cosmos SDK node.
 
 ### Notes
 
-* The **creator** field for each message should be the transaction sender's cosmos address.&#x20;
+* The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when creating each Msg.
 
 ## Msg Types
 

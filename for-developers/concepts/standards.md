@@ -40,7 +40,7 @@ Each standard must follow the following format:
 
 The BitBadges Website standard defines the expected format of badge metadata that is to be supported on the BitBadges website.&#x20;
 
-* Metadata: Metadata for both collections and badges will implement the same interface. This interface is as follows:
+* Metadata: Both collection and badge metadata will specify a URI which hosts a JSON file that implements the following interface below. If the badge metadata URI includes "{id}" anywhere in the URI, it is to be replaced dynamically by the corresponding badge ID number.
 
 ```typescript
 export interface Metadata<T extends NumberType> {
