@@ -46,6 +46,8 @@ There are five categories of permissions, each with different criteria that must
 
 Note that the update permissions (**UpdateApprovedTransferPermission, TimedUpdatePermission, and TimedUpdateWithBadgeIdsPermission)** correspond to the UPDATABILITY of the values and are separate from the actual values themselves. The permission does not correlate to what the currently set values are.
 
+Similarly with the **BalancesActionPermission**, it has no bearing on what the currently minted supplys are. It refers to the EXECUTABILITy of creating new badges.
+
 **Examples**
 
 See [Example Msgs](broken-reference) for further examples.
