@@ -44,7 +44,7 @@ Our metadata standard (what is used on the BitBadges website) does extend the ER
 
 Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently. This is for a couple reasons. Firstly, our token standard is ever-evolving, so we can't freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
 
-Feel free to use concepts from BitBadges in improvement proposals though, as long as BitBadges is cited and co-authors (contact us).
+Feel free to use novel concepts from BitBadges in your authored improvement proposals though, as long as BitBadges is cited and co-authors (contact us).
 
 **What happens if there is convergence to a single blockchain?**
 
