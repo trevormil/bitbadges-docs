@@ -22,16 +22,6 @@ Although, you are given the option to, if you want to add custom functionality n
 
 BitBadges is its own Layer-1 blockchain built with Cosmos SDK.&#x20;
 
-**Are badges ERC-721 compatible?**
-
-While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture.
-
-Our metadata standard (what is used on the BitBadges website) does extend the ERC-721 metadata standard, so metadata will be compatible.
-
-**What happens if there is convergence to a single blockchain?**
-
-Personally, we believe it will always be a multi-chain world, and there will never be 100% EVM convergence. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for cross-chain infrastructure like BitBadges.&#x20;
-
 **Why the registry architecture over unique smart contracts for every collection?**
 
 Typical NFTs and digital tokens (ERC721, ERC20) all require their own unique smart contracts to be implemented which follow their respective interface. However, BitBadges is not built like this. BitBadges uses a single registry and the same code is reused for all collections.
@@ -43,4 +33,18 @@ We do this for multiple reasons:
 3. Consistency: This provides a much cleaner and more consistent interface for querying, indexing, and maintenance.
 
 Yes, this may sacrifice a little customizability, but we allow you to implement any custom logic required with smart contracts, if necessary.
+
+**Are badges ERC-721 compatible?**
+
+While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture.
+
+Our metadata standard (what is used on the BitBadges website) does extend the ERC-721 metadata standard, so metadata will be compatible.
+
+**Are there plans to make an ERC for our standard?**
+
+Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently. This is for a couple reasons. Firstly, our token standard is ever-evolving, so we can't freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
+
+**What happens if there is convergence to a single blockchain?**
+
+Personally, we believe it will always be a multi-chain world, and there will never be 100% EVM convergence. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for cross-chain infrastructure like BitBadges.&#x20;
 
