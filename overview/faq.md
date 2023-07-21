@@ -42,11 +42,11 @@ Our metadata standard (what is used on the BitBadges website) does extend the ER
 
 **Are there plans to make an ERC for our standard?**
 
-Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently. This is for a couple reasons. Firstly, our token standard is ever-evolving, so we can't freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
+Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently. This is for a couple reasons. Firstly, our token standard is ever-evolving, so it doesn't make sense to freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
 
 Feel free to use novel concepts from BitBadges in your authored improvement proposals though, as long as BitBadges is cited and co-authors (contact us).
 
 **What happens if there is convergence to a single blockchain?**
 
-Personally, we believe it will always be a multi-chain world, and there will never be 100% EVM convergence. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for cross-chain infrastructure like BitBadges.&#x20;
+Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem like EVM. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
 
