@@ -2,11 +2,15 @@
 
 **Badge vs $BADGE?**
 
-Whenever we say $BADGE, we are referring to the BitBadges blockchain token used for paying transaction fees and staking. This is not to be confused with badges / badge collections.
+Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas token used for paying transaction fees and staking. This is not to be confused with badges / badge collections.
 
 **Why is there a need for BitBadges?**
 
 The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology in place today ([see here](../)). BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!
+
+**Who can benefit from using BitBadges?**
+
+Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and many more benefits.
 
 **What makes BitBadges better than competitors?**
 
@@ -14,9 +18,9 @@ See [here](../#improvements-over-existing-standards).
 
 **Are smart contracts needed?**
 
-No, they are not required!&#x20;
+No, badges not require smart contracts. Everything is already implemented for you!
 
-Although, you are given the option to, if you want to add custom functionality not supported by the token standard.
+Although, you can create a smart contract, if you want to add custom functionality not already implemented.
 
 **Is BitBadges an L1 blockchain or an L2?**
 
