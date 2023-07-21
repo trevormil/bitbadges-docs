@@ -52,5 +52,5 @@ Feel free to use novel concepts from BitBadges in your authored improvement prop
 
 **What happens if there is convergence to a single blockchain?**
 
-Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem like EVM. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up. Thus, we believe there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
+Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
 
