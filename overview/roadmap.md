@@ -9,6 +9,7 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
 #### Summary (no particular order)
 
 * Mobile Wallet and Transaction Support
+* BitBadges multi-chain usernames
 * More Distribution Tools
   * Claim via geolocation checking
   * Distribute via e-mail, twitter DMs, etc
