@@ -14,7 +14,7 @@ Digital tokens (badges) are simply something that you can own digitally and prov
 
 When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain ([read more here](https://101blockchains.com/advantages-of-nfts/)). However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens ([see here](./#improvements-over-existing-products)).
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, state-of-the-art, community-driven suite of tools that enable you to create, customize, authenticate, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
+**BitBadges can be described as tokenization-as-a-service. We offer an open-source, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case that you desire.**&#x20;
 
 We offer the full-stack of services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to tools for distributing badges to users via your preferred method to offline-first verification tools (in-person verification, website gated sign-ins) and more!
 
