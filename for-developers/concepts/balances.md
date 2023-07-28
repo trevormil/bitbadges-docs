@@ -1,6 +1,6 @@
 # 📊 Balances
 
-For an overview, first read [Balances / Transfers](../../overview/how-it-works/balances-transfers.md).
+For an overview, first read [Balances / Transfers](../../overview/how-it-works/time-based-balances.md).
 
 ```protobuf
 message Balance {

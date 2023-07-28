@@ -49,13 +49,13 @@ What makes our product better than competitors?
 * **Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
   * This is because instead of having to write new custom code for every collection of tokens (as existing standards do which often results in security vulnerabilities), we use a registry architecture where code is reused by all collections.&#x20;
 
-#### Newly Innovated Features
+#### Unique Features
 
-* [**Time-Based Balances**](overview/how-it-works/balances-transfers.md)**:** Enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* [**Time-Based Balances**](overview/how-it-works/time-based-balances.md)**:** Enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
 * [**Off-Chain and Inherited Balances:**](overview/how-it-works/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain by >99%.&#x20;
   * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another.
-* [**Batch Transfers**](overview/how-it-works/balances-transfers.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](overview/how-it-works/time-based-balances.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 * [**Fine-Grained Transferability Customization**](overview/how-it-works/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases, such as those that require revoking badges, freezing transfers, etc.
   * We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? forceful transfers? or requires approval? what kind of approval? must own certain badges to be approved? And more!
@@ -73,6 +73,7 @@ And much more!
 
 Distribution tools enable you to easily distribute badges to the correct owners based on your preferred method. We currently support the following but plan to support many more very soon!
 
+* Whitelists - Specify a list of users that can claim the badge.
 * Password - Enter the correct password can claim a badge.
 * Codes - Enter unique custom codes to claim a badge. Codes can be distributed however oyu would like (email, Twitter DMs, anything!).
 * QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.

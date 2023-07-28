@@ -16,13 +16,13 @@ We abstract everything to a clearly defined interface that accounts for all thes
 
 ### Approval Levels
 
-We define three levels of approved transfers: collection, incoming, and outgoing.&#x20;
+We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
 
 **Collection-Wide**
 
 The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is defined and updated by the manager (according to the permissions set).
 
-For example, you could define badges to be transferable, non-transferable, revokable by the manager. You can specify challenges that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
+For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify challenges that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
 
 The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking badges or forcefully freezing badges. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.**
 
@@ -44,7 +44,7 @@ At each level, we offer the following functionality for defining approved transf
 
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?
-* Which badges can be sent? For how long ([see ownership times](balances-transfers.md))? What amount?
+* Which badges can be sent? For how long ([see ownership times](time-based-balances.md))? What amount?
 * Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
 * Max amount transferred? Max per sender? Max per recipient? Max per initiator?
 * Predetermined transfers?

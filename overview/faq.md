@@ -10,7 +10,7 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 **Who can benefit from using BitBadges?**
 
-Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and many more benefits.
+Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
 
 **What makes BitBadges better than competitors?**
 
@@ -18,9 +18,7 @@ See [here](../#improvements-over-existing-standards).
 
 **Are smart contracts needed?**
 
-No, badges not require smart contracts. Everything is already implemented for you!
-
-Although, you can create a smart contract, if you want to add custom functionality not already implemented.
+No, badges do not require smart contracts. Although, you can create a smart contract to add custom functionality not already implemented.
 
 **Is BitBadges an L1 blockchain or an L2?**
 
@@ -36,17 +34,19 @@ We do this for multiple reasons:
 2. Scalability: Since duplicate code doesn't need to be deployed, this solution is much more scalable.&#x20;
 3. Consistency: This provides a much cleaner and more consistent interface for querying, indexing, and maintenance.
 
-Yes, this may sacrifice a little customizability, but we allow you to implement any custom logic required with smart contracts, if necessary.
+Yes, this may sacrifice a little customizability, but we allow you to extend the interface and implement any custom logic required with smart contracts, if necessary.
 
 **Are badges ERC-721 compatible?**
 
 While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture.
 
-Our metadata standard (what is used on the BitBadges website) does extend the ERC-721 metadata standard, so metadata will be compatible.
+Our default metadata standard (what is used on the BitBadges website) does extend the ERC-721 metadata standard, so metadata will be compatible.
 
 **Are there plans to make an ERC for our standard?**
 
-Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently. This is for a couple reasons. Firstly, our token standard is ever-evolving, so it doesn't make sense to freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
+Although, we are not opposed to publishing our interface as a standard for other blockchain ecosystems (e.g. EIP/ERC for Ethereum), we do not have any plans currently to do so currently.&#x20;
+
+This is for a couple reasons. Firstly, our token standard is ever-evolving, so it doesn't make sense to freeze it to a permanent interface. Secondly, this would limit the standard to one ecosystem, where a main pillar of BitBadges is to be multi-chain and span across multiple blockchain ecosystems.
 
 Feel free to use novel concepts from BitBadges in your authored improvement proposals though, as long as BitBadges is cited and co-authors (contact us).
 
