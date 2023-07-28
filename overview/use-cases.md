@@ -1,6 +1,8 @@
 # 🎨 Use Cases
 
-Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorite ideas for potential use cases. You can also browse featured badges at [https://bitbadges.io/browse](https://bitbadges.io/browse).
+Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorite ideas for potential use cases.&#x20;
+
+You can also browse featured badges at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
 ### Potential Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 

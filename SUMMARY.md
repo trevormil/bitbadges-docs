@@ -12,6 +12,7 @@
   * [Transferability](overview/how-it-works/transferability.md)
   * [Permissions](overview/how-it-works/permissions.md)
   * [Standards](overview/how-it-works/standards.md)
+* [💡 Core Principles](overview/core-principles.md)
 * [🏅 Interacting / Browsing](overview/interact-w-collections.md)
 * [🌴 Ecosystem](overview/ecosystem.md)
 * [💳 Supported Wallets](overview/supported-wallets.md)

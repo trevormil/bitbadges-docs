@@ -6,25 +6,14 @@ Check out what we are working on via our project board at [https://github.com/or
 
 Request features via our Discord channel, GitHub, BitBadges Improvement Proposals, or contact us directly!
 
-#### Summary (no particular order)
+#### Roadmap
 
-* Mobile Wallet and Transaction Support
-* BitBadges multi-chain usernames
-* More Distribution Tools
-  * Claim via geolocation checking
-  * Distribute via e-mail, twitter DMs, etc
-* Support for more L1 chains (currently: Ethereum, Cosmos)
-* New Token Standards and Metadata Standards
-  * Zero-Knowledge Badges - Earn through providing a valid zero-knowledge proof
-  * Privacy Badges
-  * Attestations - Both image and text-based
-  * Verifiable credentials&#x20;
-  * Associations
-  * Tags
-  * Hidden badges
-* More Integrations!
-* Frontend UI Library&#x20;
-* Developer Fund Pool
-* API Tutorial Series
+* Support more blockchain ecosystems and wallets (especially mobile)
+* Distribution Tools - distribute by location, Twitter, e-mail, etc
+* Verification Tools - in-person, offline, snapshot-based, QR codes, barcode scanners, etc
+* Communication Tools - new ways to interact with your community of badge holders
+* New Token Standards
+  * Text-Only Attestation Tokens
+  * Zero-Knowledge / Privacy-Preserving
 * Mobile App
-* Hackathons
+* And many more integrations / features!
