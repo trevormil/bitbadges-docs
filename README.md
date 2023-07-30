@@ -44,13 +44,15 @@ What makes our product better than competitors?
 * **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
   * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential userbase!
   * Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android!
-* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures.
+* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures and censoring.
 * **Rapidly-Evolving:** Instead of relying on a rigid token standard that is not adaptable to new features, we iterate fast and constantly add new features to our token standard.
-* **Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges
+* **Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
 * **Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
   * This is because instead of having to write new custom code for every collection of tokens (as existing standards do which often results in security vulnerabilities), we use a registry architecture where code is reused by all collections.&#x20;
 
-#### Unique Features
+#### Features
+
+In addition to the standard features of existing token standards (mint, transfer, approve, etc), we offer the following newly innovated features:
 
 * [**Time-Based Balances**](overview/how-it-works/time-based-balances.md)**:** Enables you to transfer a badge for only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
 * [**Off-Chain and Inherited Balances:**](overview/how-it-works/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
@@ -72,11 +74,13 @@ And much more!
 
 ## Distribution Tools
 
-Distribution tools enable you to easily distribute badges to the correct owners based on your preferred method. We currently support the following but plan to support many more very soon!
+Distribution tools enable you to easily distribute badges to the correct owners based on your preferred method.&#x20;
+
+We currently support the following but plan to support many more very soon!
 
 * Whitelists - Specify a list of users that can claim the badge.
 * Password - Enter the correct password can claim a badge.
-* Codes - Enter unique custom codes to claim a badge. Codes can be distributed however oyu would like (email, Twitter DMs, anything!).
+* Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, Twitter DMs, anything!).
 * QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.
 
 See [Ecosystem](overview/ecosystem.md) for all the distribution tools we offer.
@@ -106,7 +110,7 @@ See [Ecosystem](overview/ecosystem.md) for all the authentication tools we offer
 * Snapshots
 * And more!
 
-## Other Tools
+## Other Features
 
 * **Announcements** - To communicate with your badge holders, send an announcement which will be sent to all your badge owners via the BitBadges website's notifications.
 * **Reviews** - Leave reviews on badge collections or specific users via the BitBadges website to let others know the reputation of the collection / user (e.g. scam? trustworthy? good experience?).
