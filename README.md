@@ -34,6 +34,7 @@ To learn more about BitBadges (the company), visit [https://bitbadges.org](https
 * Recognition of Achievement or Completion - Show off your job certifications, awards, athletic accomplishments, etc.
 * E-Learning - Gamify the learning experience through earning learning badges
 * University Diplomas - Universities can offer verifiable diplomas to students as a badge.
+* Praise / Vouch Badges - Praise, recommend, or vouch for something or someone/
 * See more [here](broken-reference)!
 
 ## Why are we better?
