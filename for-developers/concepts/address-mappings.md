@@ -25,5 +25,6 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * Any valid Cosmos (bech32) address is reserved as the mapping that ONLY includes that specific address.
 * "Mint" specifies the "Mint" address only.
 * "Burn" specifies the "Burn" address only.
-* "All" denotes all valid addresses (thus excluding the "Mint", "Burn", and "Total" addresses)
+* "AllWithoutMint" denotes all valid user addresses (excluding the "Mint" address)
+* "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 * "Manager" will be reserved for a mapping that ONLY includes the current manager of the collection
