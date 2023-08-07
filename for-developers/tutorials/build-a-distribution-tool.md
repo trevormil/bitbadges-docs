@@ -44,7 +44,9 @@ Your two options:
 
 * Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool).
   * Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.
-* Generate and store everything yourself. If you generate everything (codes and transactions) yourself, you can completely bypass the BitBadges servers for storage. Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility).
+* Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
+  * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility).
+  * Note that you will need to generate the transaction contents yourself, but you can have the user copy and paste it onto the website using the advanced broadcast page (see Broadcasting and Submitting Txs).
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**
