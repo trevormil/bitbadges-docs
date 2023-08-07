@@ -42,11 +42,10 @@ If you use the BitBadges website, the codes, passwords, and whitelist details fo
 
 Your two options:
 
-* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool). Your tool also must be compatible with the BitBadges website app.
-* Generate and store everything yourself. If you generate everything yourself, you can completely bypass the BitBadges servers for storage.&#x20;
-  *
-  * Note in order to claim on the BitBadges website, you will need to make everything you store compatible with the site's expected format for claims.
-  * Currently, this&#x20;
+* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool).
+  * Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.
+* Generate and store everything yourself. If you generate everything (codes and transactions) yourself, you can completely bypass the BitBadges servers for storage. Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility).
+  * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**
 
