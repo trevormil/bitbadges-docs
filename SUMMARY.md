@@ -61,6 +61,7 @@
   * [Merkle Challenges](for-developers/tutorials/merkle-trees-for-claims.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-smart-contract.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
+* [📙 Changelog](for-developers/changelog.md)
 
 ## ⛓ Blockchain
 
