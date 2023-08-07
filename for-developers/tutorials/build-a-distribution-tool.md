@@ -38,14 +38,15 @@ If you identify your users in some other way, you will probably have to implemen
 
 **How should everything be stored?**
 
-If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on the BitBadges servers. However, you can also generate everything yourself to eliminate any trust required.
+If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on the BitBadges servers. However, you can also generate all codes yourself and store them / distribute them.
 
-You have two options:
+Your two options:
 
-* Store everything on the BitBadges centralized servers. This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes are known both by BitBadges centralized servers plus your tool).
+* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool). Your tool also must be compatible with the BitBadges website app.
 * Generate and store everything yourself. If you generate everything yourself, you can completely bypass the BitBadges servers for storage.&#x20;
+  *
   * Note in order to claim on the BitBadges website, you will need to make everything you store compatible with the site's expected format for claims.
-  * You also need to choose to either design for compatibility with the minting process of the BitBadges website to submit the final transaction, or you can submit the transaction in a custom way yourself.
+  * Currently, this&#x20;
 
 ### **Building Your Tool**
 
