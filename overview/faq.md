@@ -12,6 +12,14 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
 
+**Are there plans to support digital collectibles (tokens with value)?**
+
+Eventually, yes. However, we want to focus primarily on badges (tokens with no value) for now. This is for a couple reasons.&#x20;
+
+Firstly, before trusting the blockchain to be used for valuable tokens, we want the code and everything else to be battle tested first.&#x20;
+
+Secondly, with proof-of-stake blockchains, the security is correlated to how much is staked. We want to first ensure the amount staked is sufficient and spread across enough validators before moving to collectibles.
+
 **What makes BitBadges better than competitors?**
 
 See [here](../#improvements-over-existing-standards).
