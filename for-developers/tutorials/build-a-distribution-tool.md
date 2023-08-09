@@ -1,8 +1,6 @@
 # Build a Distribution Tool
 
-Distribution tools are helper tools that streamline the process of distributing badges upon creation. An example tool might be to fetch and distribute badges to the the addresses of all users who attended a Twitter Spaces.&#x20;
-
-Other example ideas include distributing via e-mail, QR codes, location, etc.
+Distribution tools are helper tools that streamline the process of distributing badges upon creation. An example tool might be to fetch and distribute badges to the the addresses of all users who attended an event. Other example ideas include distributing via e-mail, QR codes, location, etc.
 
 **Pre-Readings**
 
@@ -31,23 +29,22 @@ You can also use alternative tools or build your own tools for submitting the tr
 
 **Or, do I identify them in some other way (e.g. Twitter usernames, emails, etc)?**
 
-If you identify your users in some other way, you will probably have to implement your tool by using codes or a password. You will need to do the following:&#x20;
+If you identify your users in some other way, you will probably have to implement your tool by using codes or a password. The codes and passwords should then be distributed to the users, sot hey can claim with their preferred address. You will need to do the following:&#x20;
 
 1. Generate a code/password based claim with N codes (see below)
 2. Use your tool to manually distribute the codes / password to the correct users
 
 **How should everything be stored?**
 
-If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on the BitBadges servers. However, you can also generate all codes yourself and store them / distribute them.
+If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on IPFS and the BitBadges servers. However, you can also generate everything yourself and store them / distribute them.
 
 Your two options:
 
-* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool).
-  * Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
-    * For example, tell users to copy and paste addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool.
+* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach. Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
+  * For example, your tool simply tell users to copy and paste specific addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool for distribution.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
   * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility).
-  * Note that you will need to generate the transaction contents (the Msg) yourself, but you can have the user copy and paste it onto the website using the advanced broadcast page (see Broadcasting and Submitting Txs). This outsources all the broadcasting, signing, to an interface, and you simply need to provide the Msg contents.
+  * You will need to generate the transaction contents (the Msg) yourself, but we recommend to have the user copy and paste it onto the website using the advanced broadcast page (/dev/broadcast) (see Broadcasting and Submitting Txs). This outsources all the broadcasting, signing, etc. to an interface, and you simply need to generate the Msg contents.
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**
@@ -62,5 +59,5 @@ Develop a detailed instructions page for what your tool offers and how to use it
 
 **Step 3: Get It Added to the BitBadges Website**
 
-If compatible, contact us to add it to on the BitBadges website! Please provide us a brief description of the tool, a URL for your logo, the URL to find instructions, and where you would like it to be placed on the BitBadges website.
+If compatible, contact us to add it to on the BitBadges website! Please provide us a brief description of the tool, an image for your logo, and the URL of the tool.
 
