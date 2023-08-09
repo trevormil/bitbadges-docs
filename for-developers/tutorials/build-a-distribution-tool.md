@@ -43,10 +43,11 @@ If you use the BitBadges website, the codes, passwords, and whitelist details fo
 Your two options:
 
 * Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach but also adds another centralized point of failure and trust for the creator (codes will be known both by BitBadges centralized servers plus your tool).
-  * Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.
+  * Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
+    * For example, tell users to copy and paste addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
   * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility).
-  * Note that you will need to generate the transaction contents yourself, but you can have the user copy and paste it onto the website using the advanced broadcast page (see Broadcasting and Submitting Txs).
+  * Note that you will need to generate the transaction contents (the Msg) yourself, but you can have the user copy and paste it onto the website using the advanced broadcast page (see Broadcasting and Submitting Txs). This outsources all the broadcasting, signing, to an interface, and you simply need to provide the Msg contents.
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**

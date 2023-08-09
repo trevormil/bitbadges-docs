@@ -4,7 +4,9 @@ To learn more about broadcasting transactions with Cosmos SDK, you can visit [ht
 
 For the transaction Msg types offered by BitBadges, see [Tx Msg Interfaces](../for-developers/concepts/msgs.md).
 
-The recommended way to broadcast a transaction is by using the [BitBadges SDK](broken-reference)**.** The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
+The recommended way to broadcast a transaction is by simply visiting [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast). This is a simple interface to just copy and paste your pregenerated Msgs into. The gas, transaction signers, signing the transaction is all handled via the interface. All you need to provide is copy and paste your Msg.&#x20;
+
+You can also use the [BitBadges SDK](broken-reference) for more programmatic broadcasting**.** The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
 
 Note the examples below show how to broadcast directly to any running blockchain node. For broadcasting to the BitBadges blockchain node, in the examples below, simply replace&#x20;
 
