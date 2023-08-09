@@ -83,7 +83,7 @@ We currently support the following but plan to support many more very soon!
 * Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, Twitter DMs, anything!).
 * QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.
 
-See [Ecosystem](overview/ecosystem.md) for all the distribution tools we offer.
+See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
 
 ## Authentication Tools
 
@@ -101,7 +101,9 @@ Blockin is a universal, multi-chain sign-in interface that includes support for 
 
 **Other Authentication Tools**
 
-See [Ecosystem](overview/ecosystem.md) for all the authentication tools we offer. In the near future, we plan to build and release tools to allow you to authenticate via the following methods:
+See [Ecosystem](overview/ecosystem.md) for all the authentication tools we offer.&#x20;
+
+In the near future, we plan to build and release tools to allow you to authenticate via the following methods:
 
 * QR Codes
 * Discord Bots
