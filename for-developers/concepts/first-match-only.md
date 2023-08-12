@@ -8,7 +8,7 @@ For example, for badge metadata, we store all metadata for badges in an array. T
 [{ uri: uri1, badgeIds: [{ start: 1, end: 10 }], { uri: uri2: { start: 11, end: 100 }] }
 ```
 
-**First-match only** refers to the resolution process if there are duplicates. In the case there are, we do a linear scan of the array stating with the first element and only take the first time the criteria matches. Subsequent matches are all ignored.
+**First-match only** refers to the resolution process if there are duplicates. In the case there are, we do a linear scan of the array starting with the first element and only take the first time the criteria matches. Subsequent matches are all ignored.
 
 For example, if we have&#x20;
 

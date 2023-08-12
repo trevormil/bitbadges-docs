@@ -29,3 +29,7 @@ To specify the off-chain balances metadata, use the **offChainBalancesMetadata**
 The balances URL can be set to non-updatable via the permissions, and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
 
 This is because the IPFS URIs are hash-based. So if the hash is permanently stored and frozen on-chain and the balances file is known, you can always verify the hash.
+
+**How are balances refreshed for unfrozen off-chain collections?**
+
+First, the URI must return the updated balances. Then, balances can be refreshed on the BitBadges indexer by triggering the refresh API endpoint.
