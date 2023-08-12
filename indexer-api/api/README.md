@@ -5,70 +5,80 @@ See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api
 ### Getting Started
 
 1. TODO API Key?
-2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/).
+2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) or another indexer.
 
 ### Authentication
 
 For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](authentication.md) for how to authenticate users.
 
+### Errors
+
+We attempt to use typical HTTP error codes. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type which defines a human-readable message via **message**.
+
 ### **Routes**
 
-#### Search
+See full documentation for descriptions of each route, request types, and response types.
 
-* `POST /api/v0/search/:searchValue`
+```typescript
+//Status
+app.post("/api/v0/status", getStatusHandler);
 
-#### Collections
+//Search
+app.post("/api/v0/search/:searchValue", searchHandler);
 
-* `POST /api/v0/collection/batch`
-* `POST /api/v0/collection/query`
-* `POST /api/v0/collection/:id`
-* `POST /api/v0/collection/:id/:badgeId/owners`
-* `POST /api/v0/collection/:id/metadata`
-* `POST /api/v0/collection/:id/balance/:accountNum`
-* `POST /api/v0/collection/:id/:badgeId/activity`
-* `POST /api/v0/collection/:id/refreshMetadata`
-* `POST /api/v0/collection/:id/:badgeId/refreshMetadata`
-* `POST /api/v0/collection/:id/codes`
-* `POST /api/v0/collection/:id/password/:claimId/:password`
-* `POST /api/v0/collection/:id/addAnnouncement`
+//Collections
+app.post("/api/v0/collection/batch", getCollections)
+app.post("/api/v0/collection/:collectionId", getCollectionById)
+app.post('/api/v0/collection/:collectionId/:badgeId/owners', getOwnersForBadge);
+app.post("/api/v0/collection/:collectionId/metadata", getMetadataForCollection)
+app.post('/api/v0/collection/:collectionId/balance/:cosmosAddress', getBadgeBalanceByAddress);
+app.post('/api/v0/collection/:collectionId/:badgeId/activity', getBadgeActivity);
 
-#### User
+app.post('/api/v0/collection/:collectionId/refreshMetadata', refreshMetadata); //Write route
 
-* `POST /api/v0/user/batch`
-* `POST /api/v0/user/:accountNum/id`
-* `POST /api/v0/user/:address/address`
-* `POST /api/v0/user/:accountNum/portfolio`
-* `POST /api/v0/user/:accountNum/activity`
-* `POST /api/v0/user/updateAccount`
+app.post('/api/v0/collection/:collectionId/codes', authorizeBlockinRequest, getAllCodesAndPasswords);
+app.post('/api/v0/collection/:collectionId/password/:cid/:password', authorizeBlockinRequest, getMerkleChallengeCodeViaPassword); //Write route
 
-#### IPFS
+app.post('/api/v0/collection/:collectionId/addAnnouncement', authorizeBlockinRequest, addAnnouncement); //Write route
+app.post('/api/v0/collection/:collectionId/addReview', authorizeBlockinRequest, addReviewForCollection); //Write route
 
-* `POST /api/v0/addToIpfs`
-* `POST /api/v0/addMerkleTreeToIpfs`
 
-#### Blockin Auth
+//User
+app.post('/api/v0/user/batch', getAccounts);
+app.post('/api/v0/user/updateAccount', authorizeBlockinRequest, updateAccountInfo); //Write route
+app.post('/api/v0/user/:addressOrUsername', getAccount);
+app.post('/api/v0/user/:addressOrUsername/addReview', authorizeBlockinRequest, addReviewForUser); //Write route
 
-* `POST /api/v0/auth/getChallenge`
-* `POST /api/v0/auth/verify`
-* `POST /api/v0/auth/logout`
+//IPFS
+app.post('/api/v0/addMetadataToIpfs', authorizeBlockinRequest, addMetadataToIpfsHandler); //
+app.post('/api/v0/addMerkleChallengeToIpfs', authorizeBlockinRequest, addMerkleChallengeToIpfsHandler); //
+app.post('/api/v0/addBalancesToIpfs', authorizeBlockinRequest, addBalancesToIpfsHandler); //
 
-#### Browse
+//Blockin Auth
+app.post('/api/v0/auth/getChallenge', getChallenge);
+app.post('/api/v0/auth/verify', verifyBlockinAndGrantSessionCookie);
+app.post('/api/v0/auth/logout', removeBlockinSessionCookie);
 
-* `POST /api/v0/browse`
+//Browse
+app.post('/api/v0/browse', getBrowseCollections);
 
-#### Broadcast
+//Broadcasting
+app.post('/api/v0/broadcast', broadcastTx);
+app.post('/api/v0/simulate', simulateTx);
 
-* `POST /api/v0/broadcast`
+//Fetch arbitrary metadata
+app.post('/api/v0/metadata', fetchMetadataDirectly);
 
-#### Fetch Arbitrary Metadata
+//Faucet
+app.post('/api/v0/faucet', authorizeBlockinRequest, getTokensFromFaucet);
 
-* `POST /api/v0/metadata`
+//Address Mappings
+app.post('/api/v0/addressMappings', getAddressMappings);
 
-#### Faucet
+//Approvals
+app.post('/api/v0/approvals', getApprovals);
 
-* `POST /api/v0/faucet`
-
-#### Status
-
-* `POST /api/v0/status`
+//Merkle Challenge Tracker
+app.post('/api/v0/merkleChallenges', getMerkleChallengeTrackers);
+```
 

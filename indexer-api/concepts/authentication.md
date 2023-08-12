@@ -48,3 +48,4 @@ const signChallenge = async (message: string) => {
 ```
 
 3. Send the signed message via **POST /api/v0/auth/verify**. This will grant a HTTP only Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify). The originalBytes and signatureBytes to provide in the request body are what is returned from the signChallenge() examples.
+4. You can check the health of the signin by **POST /api/v0/auth/status**.

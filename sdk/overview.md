@@ -4,7 +4,7 @@ The BitBadges SDK is a TypeScript library that provides all the tools and functi
 
 GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs).
 
-There are currently five libraries that make up the SDK (address-converter, proto, provider, utils) that can be installed via:
+There are currently four libraries that make up the SDK (address-converter, proto, provider, utils) that can be installed via the commands below. See [full documentation](full-documentation.md) for complete documentation on each library.
 
 ```
 npm install bitbadgesjs-address-converter
@@ -36,7 +36,7 @@ const metadata = updateMetadataMap(metadata, currentMetadata, { start: badgeId, 
 
 
 
-**address-converter** allows you to switch between equivalent addresses
+**address-converter** allows you to switch between equivalent addresses of different ecosystems.
 
 ```typescript
 const cosmosAddress = ethToCosmos(address);
@@ -54,8 +54,6 @@ const txMsg = createTxMsgUpdateCollection(
     msg
 )
 ```
-
-
 
 **provider** exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](broadcasting-and-signing-txs.md) for how to use.
 

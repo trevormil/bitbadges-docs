@@ -1,6 +1,6 @@
 # Profile Information
 
-In addition to collected badges and what is stored on chain, we additionally allow you to customize your profile even further with details such as providing your socials, usernames, and more. This is handled off-chain via the indexer detabase.
+We additionally allow you to customize your profile even further with details such as providing your socials, usernames, and more. This is handled off-chain via the indexer detabase.
 
 These details will be returned along with the other account information (such as current balances, sequence, addresses, account numbers, etc).
 

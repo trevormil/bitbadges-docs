@@ -11,7 +11,7 @@ Note that CouchDB uses an [optimistic conflict resolution system](https://docs.c
 1. Install CouchDB
 2. Start a BitBadges blockchain node
 3. Setup a valid .env file. See environment.d.ts for the expected format of the .env file.
-4. Use **npm run setup** to setup the CouchDB databases. Note that this wipes everything to initial state, so do not use this command if you already have progress saved. Only use this command on initial setup or when you want to reset entirely.
+4. Use **npm run setup** to setup the CouchDB databases. Note that you can run **npm run setup with-delete** to restart all indexer databases from scratch.
 5. Use **npm run indexer-dev** to start in development mode.
 6. Use **npm run build** and **npm run indexer** to start in production mode.
 
