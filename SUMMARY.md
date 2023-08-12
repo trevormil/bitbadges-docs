@@ -104,6 +104,7 @@
 ## 🛠 SDK
 
 * [Overview](sdk/overview.md)
-* [NumberType Conversions](sdk/numbertype-conversions.md)
-* [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)
 * [Full Documentation](sdk/full-documentation.md)
+* [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)
+* [Common Snippets](sdk/common-snippets/README.md)
+  * [NumberType Conversions](sdk/common-snippets/numbertype-conversions.md)
