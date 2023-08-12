@@ -4,9 +4,9 @@ This will walk you through the process of creating badges and maintaining / defi
 
 **Initial Creation**
 
-During the initial creation transaction (MsgUpdateCollection), you can specify the badge amounts and supplys you wish to create via the BadgesToCreate field. This will transfer these badges to the special "Mint" address.&#x20;
+During the initial creation transaction (MsgUpdateCollection with Collection ID 0), you can specify the badge amounts and supplys you wish to create via the BadgesToCreate field. This will transfer these badges to the special "Mint" address.&#x20;
 
-The initial creation transaction's BadgesToCreate are considered "free". The creator can mint as much as they want in this initial transaction.
+The initial creation transaction's BadgesToCreate are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction. For example,
 
 ```go
 BadgesToCreate: []*types.Balance{
@@ -28,7 +28,9 @@ Over time, you may want to add more badges to the collection. However, the Badge
 
 Pre-Reading: [Permissions](../concepts/permissions.md)
 
-The CanCreateMoreBadges permission defines what badges and at what ownership times, the manager can create more badges (no restriction on amounts). By default (when CanCreateMoreBadges is empty), the manager can mint as many badges as they want at any time they want because permissions are by default allowed. This can simply be done via another MsgUpdateCollection call and specifying BadgesToCreate.
+The CanCreateMoreBadges permission defines what badges and at what ownership times, the manager can create more badges (no restriction on amounts).&#x20;
+
+By default (when CanCreateMoreBadges is empty), the manager can mint as many badges as they want at any time they want because permissions are by default allowed. This can simply be done via another MsgUpdateCollection call and specifying BadgesToCreate.
 
 By setting CanCreateMoreBadges, you can update the ability to create new badges to be permitted or forbidden. This can be done via the MsgUpdateCollection (either in the initial creation transaction) or a subsequent call.
 
