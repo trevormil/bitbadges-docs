@@ -76,8 +76,11 @@
 ## 📚 Indexer / API
 
 * [Overview](indexer-api/overview.md)
+* [Tutorials](indexer-api/tutorials/README.md)
+  * [Authentication](indexer-api/tutorials/authentication.md)
+  * [User Tutorials](indexer-api/tutorials/user-tutorials.md)
+  * [Collections Tutorials](indexer-api/tutorials/collections-tutorials.md)
 * [Concepts](indexer-api/concepts/README.md)
-  * [Authentication](indexer-api/concepts/authentication.md)
   * [Number Types](indexer-api/concepts/number-types.md)
   * [Different Indexers](indexer-api/concepts/different-indexers.md)
   * [Badge Metadata](indexer-api/concepts/metadata-ids.md)

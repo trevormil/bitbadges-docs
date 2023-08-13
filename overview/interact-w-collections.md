@@ -30,5 +30,5 @@ The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contra
 
 **Option 2: Request It**&#x20;
 
-You can request the functionality from the BitBadges team, and we will do our best to add it as soon as possible. Please contact us [here](team-contact-us.md).
+You can request the functionality from the BitBadges team, and we will do our best to add it as soon as possible. Please contact us [here](team-contact-us.md). Or, draft an improvement proposal [here](https://github.com/BitBadges/BBIPs).
 
