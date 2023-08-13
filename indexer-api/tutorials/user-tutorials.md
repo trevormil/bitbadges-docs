@@ -1,38 +1,46 @@
 # User Tutorials
 
-We refer you to the [Collections Tutorial](collections-tutorials.md). It is essentially the same as fetching details for users.
+**Notes**
 
-Simply replace the route and query options with the following:
+* This is very similar to the [Collections Tutorial](collections-tutorials.md).
+* Usernames are still under development.
+* Addresses can be in any supported chain's format
 
-**POST /api/v0/user/batch**
 
-```typescript
-export interface GetAccountsRouteRequestBody {
-  accountsToFetch: AccountFetchDetails[],
-}
-```
 
-```typescript
-export type AccountFetchDetails = {
-  address?: string,
-  username?: string,
-  fetchSequence?: boolean,
-  fetchBalance?: boolean,
-  viewsToFetch?: {
-    viewKey: 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'badgesCollected',
-    bookmark: string,
-    // mangoQuerySelector?: nano.MangoSelector
-    // TODO: Allow users to specify their own mango query selector here. For now, we map the viewKey to a mango query selector.
-  }[],
-}
+**Tutorial: Making a POST Request to /api/v0/user/batch**
 
-```
+**Step 1: Understand the Route** The POST route `/api/v0/user/batch` is employed to retrieve information about multiple users in a collective manner. This route allows you to define the specific details you want to fetch for each user.
+
+**Step 2: Prepare Your Request** Create a JSON request body similar to the provided sample request. Include the following details:
+
+* `accountsToFetch`: An array of objects, each representing user account details you wish to retrieve. For each account:
+  * `address`: The user's address, if available.
+  * `username`: The user's username, if available.
+  * `fetchSequence`: Set to `true` if you want to fetch the user's sequence information.
+  * `fetchBalance`: Set to `true` if you want to fetch the user's $BADGE balance information.
+  *   `viewsToFetch`: An array of objects specifying additional views to be fetched for the user.
+
+      ```typescript
+      {
+          viewKey: 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'badgesCollected',
+          bookmark: string,
+      }[]
+      ```
+
+      You can specify the desired view using `viewKey`, and provide the corresponding `bookmark` from the previous response.
+
+**Step 3: Send the Request** Using your chosen approach (such as using programming languages like JavaScript with libraries like axios or fetch, or utilizing API testing tools like Postman), send a POST request to the `/api/v0/user/batch` endpoint with the prepared JSON request body.
+
+**Step 4: Handle the Response** The response will contain an array of user account details with the requested information. Each account object will include various attributes and the timelines relevant to their data.
+
+**Step 5: Pagination / Fetching More** If applicable, in the previous response, you might have received bookmarks for each view under the `viewsToFetch` field. To retrieve the next page of results, utilize the bookmark received from the last page in Step 2 for the corresponding `viewsToFetch`.
+
+**IMPORTANT**: Remember that the retrieval is limited to what you specify in the query options. You are responsible for caching and appending data to your previous responses.&#x20;
 
 
 
 **Example Response**
-
-
 
 ```json
 {
@@ -110,70 +118,7 @@ export type AccountFetchDetails = {
                         "approvalLevel": "collection"
                     }
                 },
-                {
-                    "_id": "collection-6:7693-0-0",
-                    "from": "Mint",
-                    "to": [
-                        "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x"
-                    ],
-                    "balances": [
-                        {
-                            "amount": "1",
-                            "ownershipTimes": [
-                                {
-                                    "start": "1691802000000",
-                                    "end": "1723338000000"
-                                }
-                            ],
-                            "badgeIds": [
-                                {
-                                    "start": "1",
-                                    "end": "100"
-                                }
-                            ]
-                        }
-                    ],
-                    "method": "Transfer",
-                    "block": "7693",
-                    "collectionId": "6",
-                    "timestamp": "1691800261682",
-                    "precalculationDetails": {
-                        "approvalId": "32fa808f409afe9339855800d1f63d122a5dd60f44f571527ccb833b962e62e4",
-                        "approvalLevel": "collection"
-                    }
-                },
-                {
-                    "_id": "collection-7:9352-0-0",
-                    "from": "Mint",
-                    "to": [
-                        "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x"
-                    ],
-                    "balances": [
-                        {
-                            "amount": "1",
-                            "ownershipTimes": [
-                                {
-                                    "start": "1691802000000",
-                                    "end": "1723338000000"
-                                }
-                            ],
-                            "badgeIds": [
-                                {
-                                    "start": "1",
-                                    "end": "10"
-                                }
-                            ]
-                        }
-                    ],
-                    "method": "Transfer",
-                    "block": "9352",
-                    "collectionId": "7",
-                    "timestamp": "1691802012586",
-                    "precalculationDetails": {
-                        "approvalId": "9584780102bad52f1840502af441c0a2af8f00fda21183dd01bff38a36c2f8ef",
-                        "approvalLevel": "collection"
-                    }
-                }
+                ...
             ],
             "announcements": [
                 {

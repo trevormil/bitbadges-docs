@@ -2,53 +2,36 @@
 
 ### Tutorial: Making a POST Request to `/api/v0/collection/batch`
 
-#### Step 1: Understand the Route
+**Step 1: Understand the Route** The POST route `/api/v0/collection/batch` is utilized to retrieve information about multiple collections collectively. It empowers you to define which aspects of the collections you intend to retrieve.
 
-The route `POST /api/v0/collection/batch` is used to fetch information about multiple collections in batch. It allows you to specify which details of the collections you want to fetch.
+**Step 2: Prepare Your Request** Construct a JSON request body resembling the provided sample request. Include the following details:
 
-#### Step 2: Prepare Your Request
+* `collectionsToFetch`: An array of objects, each representing a collection you wish to retrieve. For each collection:
+  * `collectionId`: The ID of the collection you intend to retrieve.
+  * `metadataToFetch`: An object specifying the desired metadata.
+    * You can set `doNotFetchCollectionMetadata` to `true` to skip fetching collection metadata.
+    * You can also retrieve specific metadata using the following fields:
+      * `metadataIds?: NumberType[] | UintRange<NumberType>[];`
+      * `uris?: string[];`
+      * `badgeIds?: NumberType[] | UintRange<NumberType>[];`
+*   `viewsToFetch`: An array of objects specifying additional views of the collection to be fetched.
 
-Create a JSON request body similar to the sample request provided. Here's what you need to include:
+    ```typescript
+    {
+        viewKey: 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'owners' | 'merkleChallenges' | 'approvalsTrackers';
+        bookmark: string; //bookmark returned by the previous request
+    }[];
+    ```
+* `fetchTotalAndMintBalances`: Set to `true` if you desire to retrieve total and mint balances.
+* `handleAllAndAppendDefaults`: Set to `true` if you want to process all details and include defaults. This will append empty, default values for all timeline times. Additionally, unhandled values for approved transfers will be appended (this is disallowed if unhandled on the collection level, but allowed for user outgoing approvals if unhandled but from === initiatedBy, etc).
 
-* `collectionsToFetch`: An array of objects, each representing a collection you want to fetch. For each collection:
-  * `collectionId`: The ID of the collection you want to fetch.
-  * `metadataToFetch`: An object specifying which metadata to fetch.&#x20;
-    * You can set `doNotFetchCollectionMetadata` to `true` if you don't want to fetch collection metadata.
-    *   You can also fetch specific metadata using the following fields
+**Step 3: Send the Request** Utilize your chosen method (e.g., programming languages such as JavaScript with libraries like axios or fetch, or API testing tools like Postman) to dispatch a POST request to the endpoint `/api/v0/collection/batch` along with the prepared JSON request body.
 
-        ```typescript
-        metadataIds?: NumberType[] | UintRange<NumberType>[];
-        uris?: string[];
-        badgeIds?: NumberType[] | UintRange<NumberType>[];
-        ```
-  *   `viewsToFetch`: An array of objects specifying which additional views of the collection to fetch.
+**Step 4: Handle the Response** The response will encompass an array of collections featuring the requested details. Each collection object will encompass various attributes and timelines along with their respective data.
 
+**Step 5: Pagination / Fetching More** In the previous response, you will have received a bookmark for each view within the `views` field. To obtain the subsequent page, employ the bookmark received from the last page in Step 2 for `viewsToFetch`.
 
-
-      ```typescript
-      {
-          viewKey: 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'owners' | 'merkleChallenges' | 'approvalsTrackers';
-          bookmark: string; //bookmark returned by previous request
-      }[];
-      ```
-  * `fetchTotalAndMintBalances`: Set to `true` if you want to fetch total and mint balances.
-  * `handleAllAndAppendDefaults`: Set to `true` if you want to handle all details and append defaults. This will append empty, default values for all timeline times, and also, it will append the unhandled values for approved transfers (disallowed if unhandled on collection level, allowed for user outgoing approvals if unhandled but from === initiatedBy, etc).
-
-#### Step 3: Send the Request
-
-Using your preferred method (e.g., using a programming language like JavaScript with libraries like `axios`, `fetch`, or API testing tools like Postman), send a POST request to the endpoint `/api/v0/collection/batch` with the JSON request body you prepared.
-
-#### Step 4: Handle the Response
-
-The response will contain an array of collections with the requested details. Each collection object will include various attributes and timelines with their corresponding data.
-
-**Step 5: Paginations / Fetching More**
-
-Within the previous response, you will have received a **bookmark** for each view under the **views** field. To fetch the next page, you will need to specify the previously received bookmark for the last page in Step 2 for viewsToFetch.
-
-
-
-**IMPORTANT: Note that it only fetches what is requested in the query options. It is your responsibility to cache and append to your previous responses.**&#x20;
+**IMPORTANT**: Remember that the retrieval is confined to what is stipulated in the query options. It is your responsibility to cache and append the data to your previous responses. For a reference, consult the `updateCollection` function provided here.
 
 See the updateCollection function [here](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/CollectionsContext.tsx) for reference.
 

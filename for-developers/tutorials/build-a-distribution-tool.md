@@ -60,3 +60,8 @@ Develop a detailed instructions page for what your tool offers and how to use it
 
 If compatible, contact us to add it to on the BitBadges website! Please provide us a brief description of the tool, an image for your logo, and the URL of the tool.
 
+
+
+### Examples
+
+[https://bitbadges-email-distribution-tool-trevormil.vercel.app/](https://bitbadges-email-distribution-tool-trevormil.vercel.app/) ([Code](https://github.com/BitBadges/bitbadges-email-distribution-tool))
