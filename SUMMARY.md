@@ -77,7 +77,7 @@
 
 * [Overview](indexer-api/overview.md)
 * [Tutorials](indexer-api/tutorials/README.md)
-  * [Authentication](indexer-api/tutorials/authentication.md)
+  * [Authentication](indexer-api/concepts/authentication.md)
   * [User Tutorials](indexer-api/tutorials/user-tutorials.md)
   * [Collections Tutorials](indexer-api/tutorials/collections-tutorials.md)
 * [Concepts](indexer-api/concepts/README.md)

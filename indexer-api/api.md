@@ -9,7 +9,7 @@ We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/sr
 
 ### Authentication
 
-For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
+For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
 
 ### Status Codes
 
@@ -41,7 +41,7 @@ export interface ErrorResponse {
 
 We recommend reading all [concepts](concepts/) for background information on the API but especially the following:
 
-* [Authentication](tutorials/authentication.md)
+* [Authentication](concepts/authentication.md)
 * [Number Types / Stringified Responses](concepts/number-types.md)
 * [Paginations](concepts/paginations.md)
 
@@ -89,7 +89,7 @@ Check the health of your sign in.
 
 
 
-See [Authentication](tutorials/authentication.md) for tutorial.
+See [Authentication](concepts/authentication.md) for tutorial.
 
 
 
