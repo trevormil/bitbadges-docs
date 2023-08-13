@@ -207,7 +207,7 @@ Add a review for the specified user.
 
 ### **IPFS**
 
-Upload files to IPFS. 100 MB per user cumulative limit.
+Upload files to IPFS. 100 MB per user cumulative limit. Note for official BitBadges API / Indexer, CORS is enabled and only allows requests from the official frontend.
 
 **POST /api/v0/addMetadataToIpfs - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMetadataToIpfsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMetadataToIpfsRouteSuccessResponse.html)**)\***
 
