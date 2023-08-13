@@ -16,4 +16,4 @@ For example, if a new MsgTransferBadge transaction is observed, the indexer can 
 
 The indexer code is open-source, so feel free to run your own indexer and customize it as needed for your project. See [Indexer](indexer.md).
 
-However, we run an official BitBadges Indexer and API which should provide access to the necessary data required for most projects. See [API](api/) for the data provided by the BitBadges API.
+However, we run an official BitBadges Indexer and API which should provide access to the necessary data required for most projects. See [API](api.md) for the data provided by the BitBadges API.

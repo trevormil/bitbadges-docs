@@ -89,17 +89,7 @@
   * [Broadcast / Simulate Txs](indexer-api/concepts/broadcast-simulate-txs.md)
   * [Paginations](indexer-api/concepts/paginations.md)
 * [Limits / Restrictions](indexer-api/limits-restrictions.md)
-* [API](indexer-api/api/README.md)
-  * [Status](indexer-api/api/status.md)
-  * [Authentication](indexer-api/api/authentication.md)
-  * [Collections](indexer-api/api/collections.md)
-  * [Badge Balances](indexer-api/api/badge-balances.md)
-  * [Announcements](indexer-api/api/announcements.md)
-  * [Users](indexer-api/api/users.md)
-  * [Browse](indexer-api/api/browse.md)
-  * [Codes / Passwords](indexer-api/api/codes-passwords.md)
-  * [Types](indexer-api/api/types.md)
-  * [Adding to IPFS](indexer-api/api/adding-to-ipfs.md)
+* [API](indexer-api/api.md)
 * [Indexer](indexer-api/indexer.md)
 
 ## 🛠 SDK

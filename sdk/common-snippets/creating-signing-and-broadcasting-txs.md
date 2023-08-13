@@ -15,7 +15,7 @@ https://api.bitbadges.io/api/v0/broadcast
 
 **Fetching Account Details**
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../../indexer-api/api/users.md). You can also query a node directly.
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](broken-reference). You can also query a node directly.
 
 This will return the user's cosmos address, account ID, sequence (nonce), and public key.&#x20;
 

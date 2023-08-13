@@ -1,6 +1,6 @@
 # API
 
-See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for an example implementation of all API routes.
+We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for an example implementation of all API routes.
 
 ### Getting Started
 
@@ -9,7 +9,7 @@ See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api
 
 ### Authentication
 
-For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](../concepts/authentication.md) for how to authenticate users.
+For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
 
 ### Status Codes
 
@@ -36,6 +36,24 @@ export interface ErrorResponse {
 ```
 
 ***
+
+## Using the SDK
+
+We recommend using the SDK for all requests, routes, and responses. All are exported for your convenience such as:
+
+```typescript
+import { GetStatusRouteRequestBody, GetStatusRouteSuccessResponse, GetStatusRoute } from 'bitbadgesjs-utils';
+
+export async function getStatus(requestBody?: GetStatusRouteRequestBody): Promise<GetStatusRouteSuccessResponse<DesiredNumberType>> {
+  try {
+    const response = await axios.post<GetStatusRouteSuccessResponse<string>>(`${BACKEND_URL}${GetStatusRoute()}`, requestBody);
+    return convertGetStatusRouteSuccessResponse(response.data, ConvertFunction);
+  } catch (error) {
+    await handleApiError(error);
+    return Promise.reject(error);
+  }
+}
+```
 
 ## Routes
 
