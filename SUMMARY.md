@@ -90,6 +90,7 @@
   * [Paginations](indexer-api/concepts/paginations.md)
 * [Limits / Restrictions](indexer-api/limits-restrictions.md)
 * [API](indexer-api/api/README.md)
+  * [Status](indexer-api/api/status.md)
   * [Authentication](indexer-api/api/authentication.md)
   * [Collections](indexer-api/api/collections.md)
   * [Badge Balances](indexer-api/api/badge-balances.md)
