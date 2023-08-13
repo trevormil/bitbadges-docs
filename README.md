@@ -135,13 +135,9 @@ In the near future, we plan to build and release tools to allow you to authentic
 
 ## Links
 
-BitBadges Main Site - [https://bitbadges.org](https://bitbadges.org)
-
 BitBadges App - [https://bitbadges.io](https://bitbadges.io)
 
-GitHub - [https://github.com/bitbadges](https://github.com/bitbadges)
-
-Project Board -  [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
+**Socials**
 
 Discord - [https://discord.com/invite/TJMaEd9bar](https://discord.com/invite/TJMaEd9bar)
 
@@ -160,4 +156,14 @@ Crunchbase - [https://www.crunchbase.com/organization/bitbadges](https://www.cru
 Reddit -[ ](https://www.reddit.com/r/BitBadges/)[https://www.reddit.com/r/BitBadges/](https://www.reddit.com/r/BitBadges/)
 
 Telegram - [https://t.me/BitBadges](https://t.me/BitBadges)
+
+GitHub - [https://github.com/bitbadges](https://github.com/bitbadges)
+
+**Other**
+
+BitBadges Site - [https://bitbadges.org](https://bitbadges.org)
+
+Project Board -  [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
+
+Improvement Proposals - [https://github.com/BitBadges/BBIPs](https://github.com/BitBadges/BBIPs)&#x20;
 
