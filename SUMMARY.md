@@ -30,7 +30,6 @@
 
 ## ⌨ For Developers
 
-* [📖 Interface Documentation](for-developers/interface-documentation.md)
 * [🧠 Concepts](for-developers/concepts/README.md)
   * [👤 Accounts](for-developers/concepts/accounts.md)
   * [👥 Accounts (Technical)](for-developers/concepts/accounts-technical.md)
