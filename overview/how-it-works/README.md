@@ -36,9 +36,9 @@ At its simplest, a collection can be transferable (badges can be transferred fre
 
 We also offer many customization options such as making badges revokable from owners, freezing an owner's ability to transfer, restricting who can send to who, restricting when users can transfer, and more!
 
-[**Manager**](permissions.md)**:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
+[**Manager**](manager.md)**:** Every collection will have a manager. Upon creation, it will be the creator of the collection. The manager can optionally be granted certain permissions seen directly below.
 
-[**Permissions**](permissions.md)**:** The manager can optionally have the privilege to execute the following:
+[**Permissions**](manager.md)**:** The manager can optionally have the privilege to execute the following:
 
 * Add / create badges to the collection?
 * Update the transferability?

@@ -65,7 +65,7 @@ In addition to the standard features of existing token standards (mint, transfer
   * Ex: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager.
 * [**Incoming Approvals:** ](overview/how-it-works/transferability.md) In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
   * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
-* [**Customizable Permissions**](overview/how-it-works/permissions.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](overview/how-it-works/manager.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
   * Includes fine-grained controls such as when each permission can be executed? for what values? for what times?
 * [**Time-Based Details**](for-developers/concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
   * Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!

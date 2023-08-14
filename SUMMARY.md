@@ -10,7 +10,7 @@
   * [Time-Based Balances](overview/how-it-works/time-based-balances.md)
   * [Transferability](overview/how-it-works/transferability.md)
   * [Balances Types](overview/how-it-works/balances-types.md)
-  * [Permissions](overview/how-it-works/permissions.md)
+  * [Manager](overview/how-it-works/manager.md)
   * [Standards](overview/how-it-works/standards.md)
 * [💡 Core Principles](overview/core-principles.md)
 * [🏅 Interacting / Browsing](overview/interact-w-collections.md)
