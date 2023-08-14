@@ -49,7 +49,7 @@ However, we observe there are two main types of collections often benefit most f
 
 **Can updating balances be programmed?**
 
-Yes! As mentioned above, you can program your URL to return whatever balances you want, so you can implement your own custom logic!
+Yes! As mentioned above, if not using permanent storage, you can program your URL to return whatever balances you want, so you can implement your own custom logic! See [here](../../for-developers/tutorials/create-a-collection-with-off-chain-balances.md).
 
 Find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem.md)page!
 
@@ -63,3 +63,4 @@ There are many benefits over a standard solution. Just to name a few:
 * Access and seamless integration with the whole suite of BitBadges tools
 * Enhanced security, verification, and availability of badges due to the collection still being created on the blockchain.
 * Allow users to build their digital identity all in one place, rather than scattered across many different websites
+

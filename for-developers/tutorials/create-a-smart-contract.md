@@ -1,5 +1,9 @@
 # Create a Smart Contract
 
+We support CosmWASM smart contracts to allow you to extend the token interface as desired.
+
+
+
 CosmWasm Version: For compatibility with the most recent Cosmos SDK versions, we use a fork of the main CosmWasm code created by Notional Labs ([https://github.com/notional-labs/wasmd](https://github.com/notional-labs/wasmd)).&#x20;
 
 IMPORTANT: Note that when CosmWasm interacts with the badges module (i.e. creates and broadcasts a [Tx Msg](../concepts/msgs.md)), the creator field (calling address) of the Msg will always be the contract's address , NOT THE ORIGINAL USER's address. In other words, Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent.

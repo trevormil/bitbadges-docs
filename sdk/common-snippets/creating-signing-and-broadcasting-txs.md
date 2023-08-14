@@ -11,7 +11,13 @@ with&#x20;
 https://api.bitbadges.io/api/v0/broadcast
 ```
 
+
+
 ### Examples
+
+Visit [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/bootstrap.ts) for how we bootstrap and simulate Msgs for a development network in plain JavaScript. See the frontend code for how we do so within a dApp. Both follow this tutorial pretty closely.
+
+
 
 **Fetching Account Details**
 
@@ -35,6 +41,9 @@ const getPublicKey = async (cosmosAddress: string) => {
         method: 'personal_sign',
         params: [message, cosmosToEth(cosmosAddress)],
     })
+    
+    //const ethWallet = ethers.Wallet.createRandom();
+    //const sig = await ethWallet.signMessage(message);
 
     const msgHash = ethers.utils.hashMessage(message);
     const msgHashBytes = ethers.utils.arrayify(msgHash);
@@ -69,6 +78,8 @@ const getPublicKey = async (_cosmosAddress: string) => {
 The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
 
 For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, ...)** and update the parameters accordingly.
+
+See here for [sample Msgs](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup).
 
 ```ts
 import { createTxMsgSend } from 'bitbadgesjs-proto'

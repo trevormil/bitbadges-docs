@@ -57,9 +57,10 @@
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
-  * [Merkle Challenges](for-developers/tutorials/merkle-trees-for-claims.md)
+  * [Create Merkle Claim](for-developers/tutorials/create-merkle-claim.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-smart-contract.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
+  * [Create a Collection with Off-Chain Balances](for-developers/tutorials/create-a-collection-with-off-chain-balances.md)
 * [📙 Changelog](for-developers/changelog.md)
 
 ## ⛓ Blockchain
@@ -112,4 +113,5 @@
   * [Check Permissions](sdk/common-snippets/check-permissions.md)
   * [Validate Updates](sdk/common-snippets/validate-updates.md)
   * [Uint Ranges](sdk/common-snippets/uint-ranges.md)
+  * [Off-Chain Balances](sdk/common-snippets/off-chain-balances.md)
 * [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)
