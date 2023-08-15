@@ -55,6 +55,7 @@
   * [Default User Approvals](for-developers/learn-the-interface/default-user-approvals.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
+  * [Verifying Badge Ownership](for-developers/tutorials/verifying-badge-ownership.md)
   * [Build a Frontend](for-developers/tutorials/build-a-frontend.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
