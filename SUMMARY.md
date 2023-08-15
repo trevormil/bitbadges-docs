@@ -55,6 +55,7 @@
   * [Default User Approvals](for-developers/learn-the-interface/default-user-approvals.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
+  * [Build a Frontend](for-developers/tutorials/build-a-frontend.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
   * [Create Merkle Claim](for-developers/tutorials/create-merkle-claim.md)
