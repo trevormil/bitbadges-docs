@@ -107,7 +107,7 @@ Blockin is a universal, multi-chain sign-in interface that includes support for 
 
 See [Ecosystem](overview/ecosystem.md) for all the authentication tools we offer.&#x20;
 
-In the near future, we plan to build and release tools to allow you to authenticate via the following methods:
+In the near future, we plan to allow you to authenticate via the following methods:
 
 * QR Codes
 * Discord Bots
