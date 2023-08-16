@@ -9,4 +9,5 @@ Note that the following limits and restrictions are in place for the API. Reach 
 * If a fetch from source fails, we implement an exponential retry policy:&#x20;
   * 1 hour \* 2^(Number of Attempted Fetches)
 * Total IPFS uploads per address cannot exceed 100MB cumulatively.
-* Rate limit in place to prevent infinite loops. See limiter value [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/indexer.ts).
+* Global rate limit in place to prevent infinite loops. See limiter value [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/indexer.ts).
+* 10000 requests per day per API key.
