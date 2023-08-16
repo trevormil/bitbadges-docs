@@ -143,6 +143,10 @@ Gets badge activity for a speciifc badge.
 
 Trigger a metadata refresh of the collection. Includes both metadata and balances. Limit once per 60 seconds.
 
+**POST /api/v0/collection/:collectionId/refreshStatus - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshStatusRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshStatusRouteSuccessResponse.html)**)**
+
+Get the status of a collection's refresh. Returns if the collection has anything in the refresh queue plus any error docs.
+
 **POST /api/v0/collection/:collectionId/codes - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAllCodesAndPasswordsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAllCodesAndPasswordsRouteSuccessResponse.html)**)\***
 
 Get the secret codes for a collection's claim. Manager only.
