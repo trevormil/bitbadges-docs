@@ -78,6 +78,8 @@
 ## 📚 Indexer / API
 
 * [Overview](indexer-api/overview.md)
+* [API](indexer-api/api.md)
+* [Indexer](indexer-api/indexer.md)
 * [Tutorials](indexer-api/tutorials/README.md)
   * [Authentication](indexer-api/concepts/authentication.md)
   * [Collections Tutorials](indexer-api/tutorials/collections-tutorials.md)
@@ -94,8 +96,6 @@
   * [Broadcast / Simulate Txs](indexer-api/concepts/broadcast-simulate-txs.md)
   * [Paginations](indexer-api/concepts/paginations.md)
 * [Limits / Restrictions](indexer-api/limits-restrictions.md)
-* [API](indexer-api/api.md)
-* [Indexer](indexer-api/indexer.md)
 
 ## 🛠 SDK
 

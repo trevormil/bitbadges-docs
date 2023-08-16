@@ -44,6 +44,7 @@ We recommend reading all [concepts](concepts/) for background information on the
 * [Authentication](concepts/authentication.md)
 * [Number Types / Stringified Responses](concepts/number-types.md)
 * [Paginations](concepts/paginations.md)
+* [Limits / Restrictions](limits-restrictions.md)
 
 ### Using the SDK
 
