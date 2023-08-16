@@ -139,7 +139,7 @@ Gets badge balances for a specific address.
 
 Gets badge activity for a speciifc badge.
 
-**POST /api/v0/collection/:collectionId/refreshMetadata - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshMetadataRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshMetadataRouteSuccessResponse.html)**)**
+**POST /api/v0/collection/:collectionId/refresh - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshMetadataRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/RefreshMetadataRouteSuccessResponse.html)**)**
 
 Trigger a metadata refresh of the collection. Includes both metadata and balances. Limit once per 60 seconds.
 
