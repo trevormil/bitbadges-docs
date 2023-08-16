@@ -17,4 +17,5 @@ You can also browse featured badges at [https://bitbadges.io/browse](https://bit
 * **University Diplomas** - Universities can offer verifiable diplomas to students as a badge.
 * **Publications** - Verify you are the author of a publication
 * **Real Estate** - Custom encrypted title ownership, HOAs, and even MLS documents registered through the blockchain
+* **Praise / Vouch Badges** - Praise, recommend, or vouch for something or someone/
 * And more!

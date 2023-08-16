@@ -28,13 +28,15 @@ To learn more about BitBadges (the company), visit [https://bitbadges.org](https
 [use-cases.md](overview/use-cases.md)
 {% endcontent-ref %}
 
-* Attendance Badges - Create an attendance badge for an event, trip, etc.
-* Memberships/Subscriptions/Access Tokens - Gym memberships, website subscriptions, etc
-* Premium Content - Offer premium features and restrict access to only badge owners
-* Recognition of Achievement or Completion - Show off your job certifications, awards, athletic accomplishments, etc.
-* E-Learning - Gamify the learning experience through earning learning badges
-* University Diplomas - Universities can offer verifiable diplomas to students as a badge.
-* Praise / Vouch Badges - Praise, recommend, or vouch for something or someone/
+Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! As you collect more badges, your portfolio grows, and you can show it off to others.
+
+Below are some of our favorite use cases:
+
+* **Attendance Badges -** Mint an attendance badge for an event, trip, etc as a souvenir!
+* **Memberships/Subscriptions/Premium Content -** Badges are all time-based, so you can offer time-dependent memberships / subscriptions and offer the utility only to those who own the badge at a certain time!
+* **Access Tokens** - Use badges as access tokens. This can be digital (websites, Discord servers, etc) or in-person (tickets, event entry, etc).
+* **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.&#x20;
+* **Authentication / Tiered Services -** Most companies' infrastructure simply consists of authentication + tiered services. Companies can outsource their authentication to Web3 / [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Much cheaper, more secure, and less work!
 * See more [here](broken-reference)!
 
 ## Why are we better?
