@@ -9,11 +9,13 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
 #### Roadmap
 
 * Support more blockchain ecosystems and wallets (especially mobile)
-* Distribution Tools - distribute by location, Twitter, e-mail, etc
-* Verification Tools - in-person, offline, snapshot-based, QR codes, barcode scanners, etc
-* Communication Tools - new ways to interact with your community of badge holders
+* Integrations
+  * Distribution Tools - distribute by location, Twitter, e-mail, etc
+  * Verification Tools - in-person, offline, snapshot-based, QR codes, barcode scanners, etc
+  * Communication Tools - new ways to interact with your community of badge holders
 * New Token Standards
   * Text-Only Attestation Tokens
   * Zero-Knowledge / Privacy-Preserving
 * Mobile App
+* Cross-Chain Protocols: Social Media, Messaging
 * And many more integrations / features!
