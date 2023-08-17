@@ -172,6 +172,10 @@ Returns features, latest, etc. collections to be displayed on a browse page.
 
 Gets address mappings by mapping ID. Note for reserved mapping IDs, you can use **getReservedAddressMappings** from the SDK.
 
+**POST /api/v0/addressMappings/create - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/CreateAddressMappingsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/CreateAddressMappingsRouteSuccessResponse.html)**)**
+
+Creates off-chain address mappings stored on our centralized servers. For on-chain, they must be created through MsgCreateAddressMappings.
+
 **POST /api/v0/approvals - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetApprovalsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetApprovalsRouteSuccessResponse.html)**)**
 
 Gets current approvals (includes collection level approvals). This returns how many transfers, amounts, etc of the approval have been used (if applicable).
