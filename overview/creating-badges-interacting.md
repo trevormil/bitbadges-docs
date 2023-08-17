@@ -1,10 +1,12 @@
-# 🏅 Interacting / Browsing
+# 🏅 Creating Badges / Interacting
 
 ### **How to interact with BitBadges (create collections, browse, transfer, etc)?**
 
 **Option 1 (Recommended): BitBadges Website**
 
-The easiest and simplest way to create a badge is by using the Mint tab on the [BitBadges website](https://bitbadges.io). This page will walk you through step-by-step and let you customize your badge however you would like! This process is quick and easy!
+The easiest and simplest way to create a badge is by using the Mint tab on the [BitBadges website](https://bitbadges.io). This page will walk you through step-by-step and let you customize your badge! This process is streamlined for user experience, so it is quick and easy!&#x20;
+
+The BitBadges website should be adequate for almost all users. However, note it is optimized for user experience, so we do sacrifice a little customizability. For more advanced and technical customization, this should be done via Options 2 or 3.&#x20;
 
 After the badge is created, management, distribution, and transfers of badges are also quick and easy via the [BitBadges website](https://bitbadges.io).
 
