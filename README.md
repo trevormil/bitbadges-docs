@@ -56,22 +56,22 @@ What makes our product better than competitors?
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we offer the following newly innovated features:
 
-* [**Time-Based Balances**](overview/how-it-works/time-based-balances.md)**:** Badge balances are all time-based which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
-* [**Off-Chain and Inherited Balances:**](overview/how-it-works/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
+* [**Time-Based Balances**](overview/concepts/time-based-balances.md)**:** Badge balances are all time-based which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* [**Off-Chain and Inherited Balances:**](overview/concepts/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain for maintaining balances down to just the size of a URL! This is as opposed to kilobytes and megabytes for standard balances.
     * Users never need to transact. Badges are auto assigned to their wallets.
     * No on-chain transfers or approvals are allowed so only usable by select use cases.
   * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another (parent-child relationship).
-* [**Batch Transfers**](overview/how-it-works/time-based-balances.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](overview/concepts/time-based-balances.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
-* [**Fine-Grained Transferability Customization**](overview/how-it-works/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
+* [**Fine-Grained Transferability Customization**](overview/concepts/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
-  * [**Must Own Badges:** ](overview/how-it-works/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
-  * [**Fine-Grained Approvals:** ](overview/how-it-works/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-  * [**Incoming Approvals:** ](overview/how-it-works/transferability.md) In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+  * [**Must Own Badges:** ](overview/concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
+  * [**Fine-Grained Approvals:** ](overview/concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
+  * [**Incoming Approvals:** ](overview/concepts/transferability.md) In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
-* [**Customizable Permissions**](overview/how-it-works/manager.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](overview/concepts/manager.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
   * Includes fine-grained controls such as when each permission can be executed? for what values? for what times?
 * [**Time-Based Details**](for-developers/concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
   * Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!

@@ -1,8 +1,8 @@
 # 🔐 Permissions
 
-First, read [Permissions](../../overview/how-it-works/manager.md) for an overview.
+First, read [Permissions](../../overview/concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
+Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
 
 
 

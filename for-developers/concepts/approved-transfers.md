@@ -1,8 +1,8 @@
 # 🤝 Approved Transfers
 
-First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers. It is also important you understand how our [First-Match Only](first-match-only.md) design pattern works.
+First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers. It is also important you understand how our [First-Match Only](first-match-only.md) design pattern works.
 
-Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing.&#x20;
+Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing.&#x20;
 
 For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
 
