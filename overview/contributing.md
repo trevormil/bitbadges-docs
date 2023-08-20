@@ -18,10 +18,12 @@ TBD
 
 **Bounties**
 
-Below are some ideas for community tools that need to be built, and we are willing to provide compensation for.
+Below are some ideas for community distribution and verification tools that need to be built, and we are willing to provide compensation for.
 
-**Discord Badge-Gating** - Gate servers, channels, etc to only specific badge holders
+Discord Badge-Gating - Gate servers, channels, etc to only specific badge holders
 
-**Twitter Bot** - Bot that posts for every badge mint, transfer, etc
+Twitter Bot - Bot that posts for every badge mint, transfer, etc
 
-And more! Let us know if you have an idea.
+
+
+Let us know if you have another idea and how we can help.
