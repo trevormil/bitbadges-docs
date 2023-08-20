@@ -10,7 +10,9 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 **Who can benefit from using BitBadges?**
 
-Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
+Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure.&#x20;
+
+With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
 
 **Are there plans to support digital collectibles (tokens with value)?**
 

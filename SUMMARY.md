@@ -28,7 +28,6 @@
 * [📊 Block Explorers](overview/block-explorers.md)
 * [🏫 Governance](overview/governance.md)
 * [🛣 Roadmap](overview/roadmap.md)
-* [👨💻 Contributing](overview/contributing.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [💰 Fundraising](overview/fundraising.md)
 * [❓ FAQ](overview/faq.md)
@@ -69,6 +68,7 @@
   * [Running a Node](for-developers/tutorials/running-a-node.md)
   * [Create a Collection with Off-Chain Balances](for-developers/tutorials/create-a-collection-with-off-chain-balances.md)
 * [📙 Changelog](for-developers/changelog.md)
+* [👨💻 Contributing](for-developers/contributing.md)
 
 ## ⛓ Blockchain
 
