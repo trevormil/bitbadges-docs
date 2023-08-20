@@ -14,6 +14,8 @@ Almost all existing products today require some sort authentication, digital tok
 
 With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
 
+Or, just create badges for fun and collect them :)
+
 **Are there plans to support digital collectibles (tokens with value)?**
 
 Eventually, yes. However, we want to focus primarily on badges (tokens with no value) for now. This is for a couple reasons.&#x20;

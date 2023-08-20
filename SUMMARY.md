@@ -68,7 +68,7 @@
   * [Running a Node](for-developers/tutorials/running-a-node.md)
   * [Create a Collection with Off-Chain Balances](for-developers/tutorials/create-a-collection-with-off-chain-balances.md)
 * [📙 Changelog](for-developers/changelog.md)
-* [👨💻 Contributing](for-developers/contributing.md)
+* [👨💻 Contributing](overview/contributing.md)
 
 ## ⛓ Blockchain
 
