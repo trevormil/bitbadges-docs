@@ -16,6 +16,12 @@ With BitBadges, all authentication and token-gating can be outsourced to reduce 
 
 Or, just create badges for fun and collect them :)
 
+**What is the difference between BitBadges (company) and BitBadges (protocol)?**
+
+The BitBadges protocol consists of the decentralized blockchain that is maintained by the BitBadges team, but it will be ultimately governed in a decentralized manner via the $BADGE token.
+
+BitBadges (the company) offers tools and services to interact with the protocol, such as the frontend at https://bitbadges.io, the API, the SDK, etc.&#x20;
+
 **Are there plans to support digital collectibles (tokens with value)?**
 
 Eventually, yes. However, we want to focus primarily on badges (tokens with no value) for now. This is for a couple reasons.&#x20;
