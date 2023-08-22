@@ -24,6 +24,8 @@ Discord Badge-Gating - Gate servers, channels, etc to only specific badge holder
 
 Twitter Bot - Bot that posts for every badge mint, transfer, etc
 
+Privacy-Preserving / ZK Verification - Given an address list or list of balances, enable a user to prove that they own the badge without revealing their usernames.
+
 
 
 Let us know if you have another idea and how we can help.
