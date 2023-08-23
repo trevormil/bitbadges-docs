@@ -22,7 +22,7 @@ Below are some ideas for community distribution and verification tools that need
 
 Discord Badge-Gating - Gate servers, channels, etc to only specific badge holders
 
-Twitter Bot - Bot that posts for every badge mint, transfer, etc
+Discord / Twitter Bot - Bot that posts for every badge mint, transfer, etc
 
 Privacy-Preserving / ZK Verification - Given an address list or list of balances, enable a user to prove that they own the badge without revealing their usernames.
 
