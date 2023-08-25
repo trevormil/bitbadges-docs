@@ -2,10 +2,12 @@
 
 Note that the following limits and restrictions are in place for the API. Reach out to us if you need additional support, or run your own indexer!
 
+Note these can change and the values below may be outdated.
+
 * 250 unique metadata URIs, accounts, collections fetched in one request
 * Functionality may be limited for collections with more than JavaScript's Number.MAX\_SAFE\_INTEGER unique badges.
-* Refreshes can only be executed once every 60 seconds.
-* Fetches directly from source URI that take >= 30 seconds will timeout.
+* Refreshes can only be executed once every hour.
+* Fetches directly from source URI that take >= 10 seconds will timeout.
 * If a fetch from source fails, we implement an exponential retry policy:&#x20;
   * 1 hour \* 2^(Number of Attempted Fetches)
 * Total IPFS uploads per address cannot exceed 100MB cumulatively.
