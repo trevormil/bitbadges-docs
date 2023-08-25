@@ -31,7 +31,7 @@ Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.
 
 **BitBadges Website**
 
-If you have access to the website, just simply navigate to the badge page or user's portfolio page.
+If you have access to the website, just simply navigate to the badge page or user's portfolio page. Note that you can check how up to date the information is via the block number and timestamp.
 
 **BitBadges API**
 
@@ -47,6 +47,10 @@ POST /api/v0/collection/:collectionId
 <pre class="language-typescript"><code class="lang-typescript"><strong>POST /api/v0/collection/batch
 </strong></code></pre>
 
+
+
+Note that you can check how up to date the information is by using the **POST /api/v0/status**.
+
 **BitBadges REST Node**
 
 Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Note cosmos addresses must be used.
@@ -61,7 +65,7 @@ You can also always run and fetch balances from your own node / indexer, so you 
 
 ## Step 2: Verify&#x20;
 
-Verification is two-fold. First, you need to verify the user owns the address (knows the private key).  Second, you need to verify they own the badge.
+Verification is two-fold. First, you need to verify the user owns the address (knows the private key).  Second, you need to verify ownership of the badge according to your criteria.
 
 See some tools to help you do so below:
 
