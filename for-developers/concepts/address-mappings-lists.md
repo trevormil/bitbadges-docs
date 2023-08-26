@@ -1,6 +1,6 @@
-# 📧 Address Mappings
+# 📧 Address Mappings (Lists)
 
-[AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature similar to UintRanges. They allow us to specify a list of addresses, identified by an ID.&#x20;
+[AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature similar to UintRanges. They allow us to specify a list of addresses, identified by an ID. Lists are really simple because you do not need to deal with all the added complexity of tokens (badges) such as supplys, permissions, transferability, etc.&#x20;
 
 These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses. Or, we can create a mapping that includes ONLY some specified addresses.
 
@@ -15,9 +15,17 @@ These are invertible meaning we can create a mapping that includes all addresses
 }
 </code></pre>
 
-AddressMappings are permanent and not updatable once created. The same address mapping can be referenced across collections by their unique IDs.
+### **Storage**
 
-**Reserved Address Mappings**
+**On-Chain:** AddressMappings are permanent and not updatable once created, if stored on-chain. They can be used to efficiently define transferability on-chain since the same address mapping can be referenced across collections by their unique IDs.
+
+For example, mapping "xyz" can only transfer to mapping "abc".
+
+**Off-Chain:** Address mappings can also be created off-chain through our indexer / API. These are updatable and deletable. However, this is a centralized solution and doesn't use the blockchain.
+
+
+
+### **Reserved Address Mappings**
 
 There are a couple IDs for AddressMappings that are reserved for efficient shorthand methods:
 

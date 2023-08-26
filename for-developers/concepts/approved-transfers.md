@@ -37,7 +37,7 @@ For example, Alice can approve Bob to transfer x100 of badge IDs 1 - 100, but if
 
 To represent specific transfers in the approvals interface, we use six fields for representing each transfer (toMapping, fromMapping, initiatedByMapping, transferTimes, badgeIds, ownedTimes).
 
-* toMapping, fromMapping, initiatedByMapping: These are all [AddressMappings](address-mappings.md) specifying which addresses can transfer to which addresses, and the transfer can be initiatedBy which addresses.
+* toMapping, fromMapping, initiatedByMapping: These are all [AddressMappings](address-mappings-lists.md) specifying which addresses can transfer to which addresses, and the transfer can be initiatedBy which addresses.
 * transferTimes: When does the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
 * badgeIds: What badge IDs are being transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
 * ownedTimes: What ownership times for the badges are being transferred?
