@@ -19,6 +19,24 @@ message CollectionMetadataTimeline {
 
 TypeScript Example: [CollectionApprovedTransfersTimeline](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/CollectionApprovedTransferTimeline.html)
 
+Below would denote collection metadata which has URI abc123 from time 1 to time 10 and URI xyz456 from 11-1000000.
+
+```typescriptreact
+[{
+  timelineTimes: [{ start: 1n, end: 10n }],
+  collectionMetadata: {
+    uri: 'ipfs://abc123',
+    customData: '',
+  },
+}, {
+  timelineTimes: [{ start: 11n, end: 10000000n }],
+  collectionMetadata: {
+    uri: 'ipfs://xyz456',
+    customData: '',
+  },
+}];
+```
+
 \
 
 

@@ -7,7 +7,7 @@ There are different time fields within the interface with different purposes whi
 * **timelineTimes**: The times that some field is a specific value for a timeline
   * Ex: X from timelineTimes 1 - 100 but changes to value Y from timelineTimes 100-200
 * **transferTimes**: The times that a transfer transaction can occur
-* **ownedTimes**: The times that a user owns a badge from
+* **ownershipTimes**: The times that a user owns a badge from
 
 Times are defined via [UNIX time](https://developer.mozilla.org/en-US/docs/Glossary/Unix\_time) or the number of milliseconds elapsed since the [epoch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Date#the\_epoch\_timestamps\_and\_invalid\_date), which is defined as the midnight at the beginning of January 1, 1970, UTC.
 
