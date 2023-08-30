@@ -16,12 +16,6 @@ With BitBadges, all authentication and token-gating can be outsourced to reduce 
 
 Or, just create badges for fun and collect them :)
 
-**What is the difference between BitBadges (company) and BitBadges (protocol)?**
-
-The BitBadges protocol consists of the decentralized blockchain that is maintained by the BitBadges team, but it will be ultimately governed in a decentralized manner via the $BADGE token.
-
-BitBadges (the company) offers tools and services to interact with the protocol, such as the frontend at https://bitbadges.io, the API, the SDK, etc.&#x20;
-
 **Are there plans to support digital collectibles (tokens with value)?**
 
 Eventually, yes. However, we want to focus primarily on badges (tokens with no value) for now. This is for a couple reasons.&#x20;
@@ -41,6 +35,20 @@ No, badges do not require smart contracts. Although, you can create a smart cont
 **Is BitBadges an L1 blockchain or an L2?**
 
 BitBadges is its own Layer-1 blockchain built with Cosmos SDK.&#x20;
+
+**What is the difference between BitBadges (company) and BitBadges (protocol)?**
+
+The BitBadges protocol consists of the decentralized blockchain that is maintained by the BitBadges team, but it will be ultimately governed in a decentralized manner via the $BADGE token.
+
+BitBadges (the company) offers tools and services to interact with the protocol, such as the frontend at https://bitbadges.io, the API, the SDK, etc.&#x20;
+
+**Why not just be completely on-chain for all features?**
+
+For our most important features where verifiability, availability, and security are very important (badges, transfers, etc), these are all on-chain.&#x20;
+
+As for our less important features where the above requirements are not as strict (reviews, announcements, etc), these are useful features but are implemented off-chain via a centralized server because the blockchain has limited resources (storage and computing power), and it is not worth the tradeoff.
+
+Eventually, we do plan to either migrate all features on-chain or decentralize the indexer.
 
 **Why the registry architecture over unique smart contracts for every collection?**
 
