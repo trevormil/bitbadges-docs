@@ -1,6 +1,8 @@
 # 🪙 Balance Types
 
-BitBadges offers three different ways to store the badge balances and owners for your collection as explained [here](../../overview/concepts/balances-types.md). These are "Standard", "Off-Chain", and "Inherited" (aka badge bound). The balances type for a collection is determined by the **balancesType** field of the collection which will either be "Standard", "Off-Chain", and "Inherited".
+BitBadges offers three different ways to store the badge balances and owners for your collection as explained [here](../../overview/concepts/balances-types.md). Please read this first.
+
+The balance types are "Standard", "Off-Chain", and "Inherited" (aka badge bound). The balances type for a collection is determined by the **balancesType** field of the collection which will either be "Standard", "Off-Chain", and "Inherited".
 
 ### Standard
 
@@ -8,19 +10,19 @@ With standard balances, all features are supported.&#x20;
 
 ### Inherited / Badge-Bound
 
-For collections with inherited balances, you will create a new collection and can define details unique to this created collection such as badge metadata, standards, etc.&#x20;
+For collections with inherited balances, you can create a new collection and can define details unique to this created collection such as badge metadata, standards, etc.&#x20;
 
-However, all transfers, approval transactions, and any badge creation transactions will throw an error if attempted. This is because all of these are inherited from the "parent" collection, so they should not be defined in the current collection.
+**However, all transfers, approval transactions, and any badge creation transactions will throw an error if attempted.** This is because all of these properties are inherited from the "parent" collection, so they should not be defined in the current collection.
 
 To specify where to inherit from, use the **inheritedBalancesTimeline** field of the collection.
 
 ### Off-Chain
 
-Similarly with off-chain balances, you will create a new collection and can define details unique to this created collection such as badge metadata, standards, etc. All transfers and approval transactions will throw an error if attempted because these are facilitated off-chain.
+Similarly with off-chain balances, you will create a new collection and can define details unique to this created collection such as badge metadata, standards, etc. **All transfers and approval transactions will throw an error if attempted because these are facilitated off-chain.**
 
-However, you MUST create the badges on-chain to define a verifiable maximum total supply (even though they will permanently live in the "Mint" account).&#x20;
+**However, you MUST create the badges on-chain to define a verifiable maximum total supply (even though they will permanently live in the "Mint" account).**&#x20;
 
-When querying the balances from the URI, the querier should verify that the maximum supply is not exceeded. We throw errors in the BitBadges indexer if this happens.
+When querying the balances from the URI, the querier should verify that the maximum supply is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
 
 To specify the off-chain balances metadata, use the **offChainBalancesMetadata** field of the collection.
 
@@ -32,4 +34,13 @@ This is because the IPFS URIs are hash-based. So if the hash is permanently stor
 
 **How are balances refreshed for unfrozen off-chain collections?**
 
-First, the URI must return the updated balances. Then, balances can be refreshed on the BitBadges indexer by triggering the refresh API endpoint.
+First, the URI must be set to return the updated balances. Then, balances can be refreshed on the BitBadges indexer by triggering the refresh API endpoint.
+
+#### Custom Logic Implementation
+
+Balances' updatable nature allows for the implementation of custom logic for what is returned by the URL. This empowers you to define and program your balance-fetching process to align with your collection's unique requirements.&#x20;
+
+For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
+
+See [here](../tutorials/create-a-collection-with-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+

@@ -1,25 +1,38 @@
 # 🤝 Approved Transfers
 
+
+
+
+
 First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers. It is also important you understand how our [First-Match Only](first-match-only.md) design pattern works.
 
 Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing.&#x20;
 
 For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
 
-**Approved Transfers**
+## Understanding Approved Transfers and First-Match Only Design
 
-When referring to approved transfers, there are three levels of approved transfers: collection, incoming, and outgoing as previously explained. All the interfaces for these three are the exact same minus the following functionality:
+To comprehend the intricacies of the interface's approved transfers and the underlying first-match only design, it's vital to explore the following concepts and mechanisms.
 
-* The "to" fields are removed for incoming approvals and "from" fields are removed for outgoing approvals because they will automatically be populated with the respective user's address
-* The collection level has an option to override the user-level approvals but not vice-versa.
+### Approved Transfers Overview
 
-**Genesis Values**
+#### Approval Levels
 
-For the incoming and outgoing approvals, the collection can optionally specify default values for the incoming / outgoing approvals via **defaultApprovedIncomingTransfersTimeline** and **defaultApprovedOutgoingTransfersTimeline**. This default is used when first initiating a balance for the first time for an account (see [Default User Approvals](../learn-the-interface/default-user-approvals.md)).
+Approved transfers encompass three hierarchical levels: collection, incoming, and outgoing, as previously elaborated. These levels facilitate controlled and secure transfers. The interfaces for these three levels share common elements, with slight variations in functionality:
 
-**Default Approvals**
+* Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
+* Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
+* The collection level holds the capacity to override user-level approvals, but not vice versa.
 
-For ease of use, we will always approve outgoing transfers where from equals initiatedBy (i.e. initiated by the user) and approve incoming transfers where to equals initiatedBy, unless explicitly disallowed in the approvals.
+#### Genesis Values and Default Approvals
+
+For incoming and outgoing approvals, the collection can define default values via `defaultApprovedIncomingTransfersTimeline` and `defaultApprovedOutgoingTransfersTimeline`. These defaults are applied when initializing a balance for the first time in an account  (see [Default User Approvals](../learn-the-interface/default-user-approvals.md)).
+
+Also, approvals are automatically set to be approved for outgoing transfers where the sender is the same as the initiator. Similarly, incoming transfers where the recipient matches the initiator's address are approved by default, unless explicitly disallowed in the approvals.
+
+#### Matching and Escrows
+
+When it comes to approved transfers, it's important to note that they are essentially approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes. This responsibility extends to the collection-level transferability ensuring adequate balances for transfers from the "Mint" address.
 
 **Approved vs Unapproved**
 
@@ -27,34 +40,30 @@ For all individual levels, we assume that the transfer is UNAPPROVED unless expl
 
 For a transfer to be approved overall, it has to satisfy the collection-level approvals, and if not overriden by the collection-level, the user incoming / outgoing also have to be satisfied.
 
-**Escrows**
+### First-Match Only Design
 
-Note that the approved transfers are just approvals and may not line up with the underlying balances. It is the approver's responsibility to make sure that enough balances are owned to not mess up the approval (including accounting for any potential revokes or freezing). This includes the manager ensuring adequate balances for all transfers from the "Mint" address.
+The first-match only design pattern serves as a cornerstone in the interface's structure. It prioritizes the initial match in the presence of duplicates, enhancing efficiency and minimizing redundancy.
 
-For example, Alice can approve Bob to transfer x100 of badge IDs 1 - 100, but if Alice doesn't have adequate balances, Bob cannot complete the transfer. Or if Alice did have enough but some are revoked by the manager, she may not have enough at transfer time.
+#### Representation and Expansion
 
-**Representing Transfers**
-
-To represent specific transfers in the approvals interface, we use six fields for representing each transfer (toMapping, fromMapping, initiatedByMapping, transferTimes, badgeIds, ownedTimes).
+To represent transfers, six fields are used: `toMapping`, `fromMapping`, `initiatedByMapping`, `transferTimes`, `badgeIds`, and `ownershipTimes`. These fields collectively define the transfer's attributes, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
 * toMapping, fromMapping, initiatedByMapping: These are all [AddressMappings](address-mappings-lists.md) specifying which addresses can transfer to which addresses, and the transfer can be initiatedBy which addresses.
 * transferTimes: When does the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
 * badgeIds: What badge IDs are being transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
-* ownedTimes: What ownership times for the badges are being transferred?
+* ownershipTimes: What ownership times for the badges are being transferred?
 
-Even though we use range logic (AddressMappings and UintRanges) for representing approved transfers as shown above, in reality, it can be thought of as broken down into the necessary amount of (to, from, initiatedBy, transferTime, badgeId, ownedTime) tuples of **singular** values.&#x20;
+#### Allowed Combinations
 
-For example, the tuple with range logic (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[10-11]</mark>) can be broken down into smaller tuples of (bob, alice, bob, 10, <mark style="color:blue;">1, 10</mark>), (bob, alice, bob, 10, <mark style="color:blue;">2, 10</mark>), (bob, alice, bob, 10, <mark style="color:blue;">1, 11</mark>), and (bob, alice, bob, 10, <mark style="color:blue;">2, 11</mark>).&#x20;
+All approved transfers incorporate an `allowedCombinations` field. This field allows manipulations of default values, enabling actions like inversion, overriding with all values, or overriding with none. This manipulation offers shorthand solutions and avoids repetition.&#x20;
 
-The same can logic can be applied for breaking down address mappings into single addresses.
+Note that even if you do not use any of the manipulation options, an empty combination must still be defined. In other words, even if there are no manipulations of the default values, you still need to have at least one combination defined. An empty array is not allowed.
 
-**Allowed Combinations**
-
-All approved transfers have an **allowedCombinations** field as seen in the interface below. This field lets you manipulate (invert, override with all, or override with none) the specified default values (i.e. the toMapping, fromMapping, initiatedByMapping, transferTimes, badgeIds, ownedTimes) to create different combinations which can be either set to approved (**isAllowed** = true) or unapproved (**isAllowed** = false). It is mainly used for shorthand and avoiding repeating values.
-
-For example, this allows you to potentially approve all transfers with Badge IDs 1-10 but disapprove all transfers with the inverse (10 - Max ID).&#x20;
-
-Note that even if there are no manipulations of the default values, you still need to have at least one combination which sets **isAllowed** to be true or false.&#x20;
+```
+[
+    {}
+]
+```
 
 ```typescript
 export interface CollectionApprovedTransfer<T extends NumberType> {
@@ -85,44 +94,48 @@ export interface IsCollectionTransferAllowed {
 }
 ```
 
-**Approval Details**
+#### Approval Details
 
-The **approvalDetails** can be thought of as the actual restrictions for the approval. How much can be approved? how many transfers? Etc.
+The `approvalDetails` section corresponds to additional restrictions or challenges necessary for approval. It defines aspects like the quantity approved, maximum transfers, and more.
+
+Note that this field is not considered in the first-match mechanism. We only match based on the six fields previously mentioned.
 
 We have dedicated a page to just explaining the [approval details here](approval-options.md).&#x20;
 
 For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved (in addition to having isAllowed = true).
 
-**Matching Transfers to Approvals**
+#### Matching Transfers to Approvals
 
-Approved transfers are stored in a linear array with a [First-Match Only](first-match-only.md) policy. The match algorithm is as follows:
+The process of matching transfers to approvals involves several steps:
 
-1. Expand the approved transfers array with the manipulations specified in **allowedCombinations,** maintaining order. This should leave us with a list of transfer tuples using range logic (toMapping, fromMapping, initiatedByMapping, transferTimes, badgeIds, ownedTimes) -> (isAllowed, approvalDetails).
-2. Expand all approved transfer tuples to their singular tuple values, as explained in Representing Transfers above. We should now have a list of singular transfer tuples -> (isAllowed, approvalDetails).
-3. Expand the current transfer tuple that is to be checked to its singular tuple value. This leaves us with a list of transfer tuples to check.
-4. Find the corresponding tuples in the expanded list from step 2 for all the tuples of the transfer to check from step 3. This is done using a first-match only policy (i.e. we do a linear scan of the array and only take the first matches). It is considered a match if ALL criteria are the same (i.e. the transfer tuple of singular values is equal).
-5. Check if approved using the respective isAllowed and details.
+1. Expand the approved transfers array using the `allowedCombinations` manipulations while maintaining order.&#x20;
+2. Expand all approved transfer tuples to singular tuple values.
+3. Expand the current transfer tuple to be checked.
+4. Find corresponding tuples in the expanded list for all transfer tuples to be checked using our [First-Match policy](first-match-only.md).
+5. Check the entire transfer for approval using `isAllowed` and `approvalDetails`.
 
-Ex: Let's say we are checking the transfer (bob, alice, bob, 10, <mark style="color:blue;">1-2, 10-100</mark>) with the approved transfers \[(bob, alice, bob, 10, <mark style="color:blue;">\[1-2],</mark> <mark style="color:red;">\[1000-2000]</mark>) -> (true, approvalDetails), (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[10-50]</mark>) -> (true, approvalDetails), (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[51-100]</mark>) -> (false, approvalDetails)].
+### Illustrative Example
 
-We would be approved for (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[10-50]</mark>), assuming it obeys the approvalDetails.
+Let's consider a scenario:
 
-However, we would not be approved for (bob, alice, bob, 10, <mark style="color:blue;">\[1-2], \[51-100]</mark>).
+* Transfer: `(bob, alice, bob, 10, 1-2, 10-100)`
+* Approved Transfers:
+  * `(bob, alice, bob, 10, [1-2], [1000-2000]) -> (true, approvalDetails)`
+  * `(bob, alice, bob, 10, [1-2], [10-50]) -> (true, approvalDetails)`
+  * `(bob, alice, bob, 10, [1-2], [51-100]) -> (false, approvalDetails)`
+  * `(bob, alice, bob, 10, [1-2], [10-100]) -> (true, approvalDetails)`
+    * This last tuple is practically ignored because of the first-match policy.
 
-The transfer never matches with the (bob, alice, bob, 10, <mark style="color:blue;">\[1-2],</mark> <mark style="color:red;">\[1000-2000]</mark>) approval because the ownedTimes never overlap.
+In this case, the transfer would be approved for `(bob, alice, bob, 10, [1-2], [10-50])`, provided it adheres to `approvalDetails`. However, it wouldn't be approved for `(bob, alice, bob, 10, [1-2], [51-100])` due to incompatible owned times.
 
-**First-Match Only Example**
+See [tutorials ](../learn-the-interface/)for further examples.
 
-By first match only, we mean that if we have ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) -> approval1 and ("All", "All", "All", 1-100, <mark style="color:blue;">1-5</mark>, 1-10) -> approval2, approval2 will never be used because we there would be duplicate tuples ("All", "All", "All", 1-100, <mark style="color:blue;">1-5</mark>, 1-10) when broken down, and we would only use the first linear match which is approval1.
+### **Difference From UpdateApprovedTransferPermission**
 
-Also note that to match, ALL criteria must match. So, ("All", "All", "All", 1-100, <mark style="color:blue;">1-10</mark>, 1-10) and ("All", "All", "All", 1-100, <mark style="color:blue;">11-20</mark>, 1-10) would not match at all.&#x20;
-
-**Difference From UpdateApprovedTransferPermission**
-
-While this may seem similar to the UpdateApprovedTransferPermission, the permission corresponds to the updatability of the approved transfers.
+While this may seem similar to the UpdateApprovedTransferPermission, the permission corresponds to the **updatability** of the approved transfers.
 
 The approved transfers themselves correspond to if a transfer is currently approved or not.
 
-**Examples**
+### Conclusion
 
-See [tutorials ](../learn-the-interface/)for further examples.
+Navigating the realm of approved transfers and the first-match only design demands a comprehensive understanding of these intricate mechanics. To grasp the concepts further, additional examples and resources can be referenced in the "Learn the Interface" section.

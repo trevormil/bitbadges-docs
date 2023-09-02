@@ -29,3 +29,9 @@ If you are the manager of the collection, you can do the following:
 
 * **Send an announcement to all badge holders**
 * **View the secret codes and passwords for all code / password based claims**
+
+
+
+### Other
+
+Anyone can create and offer custom utility exclusive to the manager!

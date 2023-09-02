@@ -1,4 +1,4 @@
-# Merkle Challenges
+# Create Merkle Claim
 
 ### **Pre-Readings**
 
@@ -48,7 +48,6 @@ const codeProof = {
 
 You can choose to use the leaf index for distribution order as an option via predeterminedBalances.OrderCalculationMethod. This can be used to reserve specific badges / amounts for specific leaves.&#x20;
 
-The leaf index 0 corresponds to the leftmost leaf of the layer which matches the expectedProofLength. And increments by 1 every leaf as we move to the right.
+The leaf index 0 corresponds to the leftmost leaf of the layer **which matches the expectedProofLength**. And increments by 1 every leaf as we move to the right.
 
 For example, if we have a simple tree with (root) -> (leaf1, leaf2) and expectedProofLength = 1. leaf1 would have index 0. leaf2 would have index 1.
-

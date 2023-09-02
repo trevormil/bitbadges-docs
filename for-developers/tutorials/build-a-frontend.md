@@ -37,6 +37,8 @@ cd bitbadges-frontend
 npm install
 ```
 
+4. Setup environment values and configure a valid API key.
+
 ### Step 3: Customize Your DApp
 
 The BitBadges frontend codebase is organized as follows:
@@ -77,5 +79,3 @@ Once you're satisfied with your customizations, you can deploy your DApp to a ho
 ### Conclusion
 
 You've successfully forked the BitBadges frontend repository, customized it to create your own DApp using Next.js, and learned how to preview and deploy your changes. This process allows you to leverage existing routes, components, and styles while tailoring them to your DApp's unique requirements. Continue exploring Next.js and decentralized application development to expand your skills and build more sophisticated projects.
-
-\

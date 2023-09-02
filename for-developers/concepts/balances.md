@@ -2,19 +2,18 @@
 
 For an overview, first read [Balances / Transfers](../../overview/concepts/time-based-balances.md).
 
-```protobuf
-message Balance {
+<pre class="language-protobuf"><code class="lang-protobuf">message Balance {
   string amount = 1  [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-  repeated UintRange ownedTimes = 2;
-  repeated UintRange badgeIds = 3;
+<strong>  repeated UintRange ownedTimes = 2;
+</strong>  repeated UintRange badgeIds = 3;
 }
-```
+</code></pre>
 
 
 
 **Interpreting Balances**
 
-When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations. You can think of it as a nested loop, without any "OR" logic involved (e.g. for all badge IDs and for all owned times, we own X amount).
+When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations. You can think of it as a nested loop, without any "OR" logic involved (e.g. for ALL badge IDs and for ALL owned times, we own X amount).
 
 For example, lets say we have a balance of&#x20;
 
@@ -50,7 +49,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 }
 ```
 
-**Duplicate IDs**
+**Duplicates**
 
 If you specify duplicate badge IDs in balances such as:
 

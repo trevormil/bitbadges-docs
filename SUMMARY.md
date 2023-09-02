@@ -8,7 +8,6 @@
   * [Creation](overview/how-it-works/creation.md)
   * [Distribution](overview/how-it-works/distribution.md)
   * [Verification](overview/how-it-works/verification.md)
-  * [Rest of Lifetime](overview/how-it-works/rest-of-lifetime.md)
 * [🧠 Concepts](overview/concepts/README.md)
   * [Metadata](overview/concepts/metadata.md)
   * [Total Supplys](overview/concepts/total-supplys.md)
@@ -29,7 +28,6 @@
 * [🏫 Governance](overview/governance.md)
 * [🛣 Roadmap](overview/roadmap.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
-* [💰 Fundraising](overview/fundraising.md)
 * [❓ FAQ](overview/faq.md)
 
 ## ⌨ For Developers
@@ -57,6 +55,11 @@
   * [Locking Transferability](for-developers/learn-the-interface/locking-transferability.md)
   * [Timed Updates](for-developers/learn-the-interface/timed-updates.md)
   * [Default User Approvals](for-developers/learn-the-interface/default-user-approvals.md)
+  * [Example Creation Msgs](for-developers/learn-the-interface/example-creation-msgs/README.md)
+    * [100 Person Whitelist](for-developers/learn-the-interface/example-creation-msgs/100-person-whitelist.md)
+    * [10000 Off-Chain Balances](for-developers/learn-the-interface/example-creation-msgs/10000-off-chain-balances.md)
+    * [Claimable and Transferable](for-developers/learn-the-interface/example-creation-msgs/claimable-and-transferable.md)
+    * [Forbidden Permissions](for-developers/learn-the-interface/example-creation-msgs/forbidden-permissions.md)
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [Verifying Badge Ownership](for-developers/tutorials/verifying-badge-ownership.md)

@@ -13,6 +13,6 @@ These are typically used for representing badge IDs and time ranges. For example
 
 **Restricted Values**
 
-If used for badge IDs or times, we only allow the start and end to be within the range of 1 to Go's math.MaxUint64 or 18446744073709551615 (**so no zero value**), which should be adequate for all use cases.
+If used for badge IDs or times, we only allow the start and end to be within the range of 1 to Go's math.MaxUint64 or 18446744073709551615 (**so no zero value and no value greater than that**), which should be adequate for all use cases.
 
 To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709551615 }]. If we invert a range, we get all the values from 1 to 18446744073709551615 that are not in the current range.

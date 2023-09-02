@@ -28,7 +28,7 @@ Each standard must follow the following format:
 
 ## List of Standards
 
-### BitBadges Base Metadata Standard (ID: 0)
+### BitBadges Base Standard (ID: 0)
 
 **Author**: The BitBadges Team
 

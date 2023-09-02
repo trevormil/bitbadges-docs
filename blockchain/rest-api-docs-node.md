@@ -6,4 +6,4 @@ Swagger API Documentation for REST API of a BitBadges Node:
 
 
 
-Note this is not to be confused with the BitBadges API / Indexer API.
+Note this is not to be confused with the BitBadges API / Indexer API. This is the blockchain node's API.

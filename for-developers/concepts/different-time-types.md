@@ -13,11 +13,71 @@ Times are defined via [UNIX time](https://developer.mozilla.org/en-US/docs/Gloss
 
 **Examples**
 
-Example 1: Let's say we have a presidential election in the US where users can vote to transfer the president badge. Lets call the time voting concludes T1 and the time the president is in charge T2 to T3. We might say that the president badge can be transferred during the time period T1 to T2 (transferTimes) for the president to own it from T2 to T3 (ownedTimes).
+To provide a concrete understanding of the times, let's delve into a couple of illustrative scenarios.
 
+#### Example 1: Presidential Election Badges
 
+Imagine a scenario where users participate in a US presidential election by casting their votes through badge transfers. The timeline spans from the conclusion of voting, marked as T1, to the tenure of the elected president from T2 to T3. Here's how it might be structured:
 
-Example 2: Let's say we have a collection that can be optionally archived by the manager from T1 to T2 (permittedTimes) but is non-archivable at all other times (forbiddenTimes).
+* The president badge can be transferred after the voting conclusion period (T1 to T2) indicated by `transferTimes`.
+* The individual who holds the president badge (the president) during the term (T2 to T3) is designated by `ownershipTimes`.
 
-If the manager does archive it from T1 to T2, the isArchivedTimeline would be true from T1 to T2 and false from T2 to T3 (timelineTimes). If they do not, it would be true from T1 to T3 (timelineTimes).
+#### Example 2: Managing Collection Archival
 
+Let's say we have a collection that can be optionally archived by the manager from T1 to T2 (permittedTimes) but is non-archivable at all other times (forbiddenTimes). From T1 to T2, they are permitted to update the archival status for any time.
+
+Let's look at the before and after of the manager executing this permission for all times.
+
+IMPORTANT: The permission corresponds to the **updatability** of the timeline. The timeline corresponds to the actual values. So, timelineTimes in the permission is which timeline times can be updated whereas timelineTimes in the actual timeline are the actual times for the values.
+
+**Before:**
+
+Permission:&#x20;
+
+```
+permittedTimes -> [{ start: T1, end: T2 }]
+forbiddenTimes -> [ everything but T1 to T2}]
+timelineTimes -> [{ start: 1, end: MAX_TIME }]
+```
+
+Archived Timeline
+
+```
+isArchived -> false for [{ start: 1, end: MAX_TIME }] (timelineTimes)
+```
+
+**After**
+
+Now after they archive the collection for all times, the permission won't change but the archived timeline will.
+
+Permission:&#x20;
+
+```
+permittedTimes -> [{ start: T1, end: T2 }]
+forbiddenTimes -> [ everything but T1 to T2}]
+timelineTimes -> [{ start: 1, end: MAX_TIME }]
+```
+
+Archived Timeline
+
+```
+isArchived -> true for [{ start: 1, end: MAX_TIME }] (timelineTimes)
+```
+
+**Example 3:**&#x20;
+
+Now, let's continue the example from example 2. let's say they want to permanently lock the permission. This means the timeline is now forbidden to be updated for all timeline times and will remain forever as currently set.
+
+Permission:&#x20;
+
+```
+permittedTimes -> []
+forbiddenTimes -> [{ start: 1, end: MAX_TIME }]
+timelineTimes -> [{ start: 1, end: MAX_TIME }]
+```
+
+Archived Timeline
+
+```
+isArchived -> true for [{ start: 1, end: MAX_TIME }] (timelineTimes)
+```

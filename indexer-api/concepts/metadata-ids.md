@@ -6,7 +6,7 @@ We expect that badge metadata follows the base BitBadges metadata standard, as d
 
 **What are metadata IDs?**
 
-While we do support fetching badge metadata from the API via Badge IDs for ease of use, we recommend fetching via metadata IDs because this directly corresponds to the number of fetches required.&#x20;
+While we do support fetching badge metadata from the API via Badge IDs for ease of use, we recommend fetching via metadata IDs because this directly corresponds to the number of fetches required (aka unique URIs).
 
 For example, a collection of 10000 badges may have 10000 unique metadata URIs to fetch or just one if all badges share the same metadata (excluding the collection metadata).
 

@@ -17,9 +17,7 @@ For performing offline-first verification (no access to Internet), you can obtai
 Then in an offline setting, you can simply:
 
 1. Authenticate user knows the private key for an address via Blockin (or any signature). This is a simple cryptographic signature and doesn't require Internet.
-2. Check your snapshot to see if the address owns the badge.
-
-
+2. Check your snapshot to see if the address owns the badge. This can be done manually or with a tool like Blockin.
 
 **Ecosystem Tools**
 

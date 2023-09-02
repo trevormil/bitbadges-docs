@@ -1,22 +1,34 @@
 # 🥇 First-Match Only
 
-Throughout the interface, we typically use a first-match only design pattern. Many fields in the interface like permissions, timelines, badge metadata etc are stored in an array, and each element can correspond to different values based on certain criteria.
+## First-Match Design Pattern and Data Management
 
-For example, for badge metadata, we store all metadata for badges in an array. The badge IDs are the criteria that determine what a match is. So when searching for the corresponding URI for a badge ID, we find the element where the badge ID is specified and use the corresponding URI. So for example, badge IDs 1-10 would correspond to uri1 below.
+Across the interface, we consistently adopt a first-match only design pattern to enhance efficiency and effectiveness. This pattern prioritizes the initial match when encountering multiple duplicate options.&#x20;
 
-```typescript
-[{ uri: uri1, badgeIds: [{ start: 1, end: 10 }], { uri: uri2: { start: 11, end: 100 }] }
+For instance, consider the scenario of badge metadata management. Within an array, we store comprehensive metadata associated for each badge. The distinguishing factor here is the badge IDs, which serve as the criteria for establishing matches. In the process of searching for the appropriate Uniform Resource Identifier (URI) linked to a particular badge ID, we locate the array element where the corresponding badge ID is specified. Subsequently, we retrieve the URI associated with that badge ID. To illustrate this further:
+
+```json
+[
+  { uri: uri1, badgeIds: [{ start: 1, end: 10 }] },
+  { uri: uri2, badgeIds: [{ start: 11, end: 100 }] }
+]
 ```
 
-**First-match only** refers to the resolution process if there are duplicates. In the case there are, we do a linear scan of the array starting with the first element and only take the first time the criteria matches. Subsequent matches are all ignored.
+In this example, badge IDs 1 to 10 correspond to `uri1`, while badge IDs 11 to 100 correspond to `uri2`.
 
-For example, if we have&#x20;
+The essence of the "first-match only" principle lies in the resolution process when dealing with duplicates. If duplicates exist, we employ a linear scan of the array, starting from the first element. The focus is on capturing the first instance where the criteria match occurs. Subsequent matches are disregarded. As an illustration:
 
-```typescript
-[{ uri: uri1, badgeIds: [{ start: 1, end: 100 }], { uri: uri2: { start: 11, end: 100 }] }
+Suppose we have the following data:
+
+```json
+[
+  { uri: uri1, badgeIds: [{ start: 1, end: 100 }] },
+  { uri: uri2, badgeIds: [{ start: 11, end: 100 }] }
+]
 ```
 
-The first-match for badge IDs 1-100 is uri1, and uri2 would always be ignored.
+In this case, for badge IDs ranging from 1 to 100, `uri1` is the first-match, and `uri2` is consistently ignored.
+
+In essence, our choice of the first-match only design pattern streamlines data processing and minimizes redundancy. This approach ensures efficient retrieval of pertinent information while eliminating unnecessary duplication.
 
 
 

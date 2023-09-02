@@ -3,7 +3,6 @@
 **Notes**
 
 * This is very similar to the [Collections Tutorial](collections-tutorials.md).
-* Usernames are still under development.
 * Addresses can be in any supported chain's format
 
 

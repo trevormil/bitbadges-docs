@@ -4,34 +4,55 @@ Typically, you may think of a balance in two parts: what you own and the amount 
 
 For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from March-December.
 
-### **Benefits**
+### Balance Components
 
-This enables many neat features such as:
+1. **Badge IDs**: This refers to which badges in your possession.
+2. **Badge Quantity**: This refers to how much of each badge you own.
+3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
-* Subscription Tokens: Transfer auto-expiring tokens for subscriptions without having to revoke or trigger a blockhain transaction.
-* Token Unlocks: Many projects have stock / token unlock schedules that are not currently enforced with code (just trust). This allows one to define and enforce it natively.
-* Lending: Transfer your badges for a certain time without needing an escrow.
+### Example of Ownership Structure
 
-### **Examples**
+Consider Bob's ownership structure as an illustrative example:
 
-This may be a little confusing to wrap ones head around (especially with transfers), so lets walk through some examples.
+Bob initially owns x10 of Badge IDs 1-100 from January to March. Subsequently, his ownership transitions to x5 of Badge IDs 1-100 from March to December.
 
-Lets reuse the starting balance from above: Bob owns x10 of Badge IDs 1-100 from January to March.
+### Advantages of the Ownership System
 
+This ownership system brings forth several compelling benefits:
 
+#### Subscription Tokens
 
-**Example 1:** Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
+By leveraging this system, the transfer of tokens designated for subscriptions becomes seamless. Auto-expiring tokens can be transferred without necessitating the revocation of permissions or initiating blockchain transactions.
 
-Result: Bob owns  x10 of Badge IDs 1-100 from February to March and Alice owns x10 of Badge IDs 1-100 from January to February.
+#### Token Unlocks
 
+Numerous projects feature stock or token unlock schedules that primarily rely on trust, rather than code-enforced mechanisms. This ownership framework empowers users to define and implement token unlock schedules natively, enhancing security and accountability.
 
+#### Lending Mechanism
 
-**Example 2**: Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
+The ownership times concept facilitates badge lending for specified durations without the need for escrow services. Users can temporarily transfer their badges while retaining the ability to reclaim them after the designated timeframe.
 
-Result: They both now own x5 of Badge IDs 1-100 from January to March.
+### Usage Examples
 
+To elucidate the functioning of this ownership system, let's delve into practical scenarios.
 
+**Starting Balance**: Bob owns x10 of Badge IDs 1-100 from January to March.
 
-**Example 3**: Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
+**Example 1**: Bob's Transfer to Alice
 
-Result: Bob owns x10 of Badge IDs 1-50 from February to March **AND** x10 of Badge IDs 50-100 from January to March. Alice owns  x10 of Badge IDs 1-50 from January to February.
+* Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
+* Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
+
+**Example 2**: Bob's Partial Transfer to Alice
+
+* Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
+* Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
+
+**Example 3**: Complex Transfer Scenario
+
+* Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
+* Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
+
+Incorporating time-based ownership into the conventional badge ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
+
+\

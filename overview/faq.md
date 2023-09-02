@@ -10,9 +10,9 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 **Who can benefit from using BitBadges?**
 
-Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure.&#x20;
+Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance.
 
-With BitBadges, all authentication and token-gating can be outsourced to reduce maintenance and overhead, as well as improving security, verifiability, availability, and much more.
+With BitBadges, all authentication and token-gating can be easily outsourced to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.
 
 Or, just create badges for fun and collect them :)
 
@@ -76,7 +76,8 @@ This is for a couple reasons. Firstly, our token standard is ever-evolving, so i
 
 Feel free to use novel concepts from BitBadges in your authored improvement proposals though, as long as BitBadges is cited and co-authors (contact us).
 
+Once development is BitBadges is complete and final, we would like to make the standard official and immutable, but we are a long ways from development being complete :)
+
 **What happens if there is convergence to a single blockchain?**
 
 Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
-

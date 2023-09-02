@@ -30,7 +30,7 @@ For example, mapping "xyz" can only transfer to mapping "abc" initiated by the r
 
 ### **Reserved Address Mappings**
 
-There are a couple IDs for AddressMappings that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed in the ID.
+There are a couple IDs for AddressMappings that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
 * If prefixed with "!", it denotes to invert the address mapping (e.g. "!id123" inverts the "id123" address mapping)
 * Any valid Cosmos (bech32) address is reserved as the mapping that ONLY includes that specific address.
@@ -46,7 +46,7 @@ This is the mapping which includes all addresses except "cosmos123...."
 
 ```typescript
 {
-  "mappingId": "off-chain_abcdef",
+  "mappingId": "abcdef",
   "addresses": ["cosmos123..."],
   "includeAddresses": false,
   "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub",

@@ -14,17 +14,15 @@ const transfers: TransferWithIncrements<bigint>[] = [...];
 const balanceMap = await createBalanceMapForOffChainBalances(transfers);
 ```
 
-
-
 Note that you should not allocate more badges in this map than what was created on-chain.
+
+
 
 **Step 2: Host your map as a JSON file via some URL**
 
 This can be via IPFS or any method of your choice.&#x20;
 
-
-
-Note permanent storage (i.e. IPFS) coupled with not being able to update the URL will make your balances permanent. This can be a good option if you want your collection to enforcably be frozen.
+Note permanent storage (i.e. IPFS) coupled with not being able to update the URL will make your balances permanent. This can be a good option if you want your collection to enforcably be frozen and immutable.
 
 **Step 3: Create Your Collection**
 
@@ -33,8 +31,6 @@ Create your collection and specify your URL via the **offChainBalancesMetadata**
 
 
 Note you can specify your URL via the form when creating / updating collections on the BitBadges website. Or, you can custom create your collection.
-
-
 
 **Step 4: Refreshes / Updates**
 
