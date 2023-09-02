@@ -1,4 +1,4 @@
-# 🧠 Must Know Concepts
+# 🧠 Concepts
 
 Before developing with BitBadges, we strongly recommend you read through the pages in this section to understand the behind the scenes of BitBadges.
 
@@ -12,4 +12,4 @@ This section also assumes you have a basic understanding of blockchains and [Cos
 
 Although we try to provide in-depth tutorials and examples in this documentation, we may have not covered everything, or some things may be confusing. Feel free to check out the source code directly at [https://github.com/bitbadges](https://github.com/bitbadges). The BitBadges website and indexer / API code has implemented and used everything outlined in this section.&#x20;
 
-If you do come across something not in the docs, it would be greatly appreciated if you could contact us to get it added or create a [tutorial](../tutorials.md)!
+If you do come across something not in the docs or something could be improved, it would be greatly appreciated if you could contact us to get it added or create a [tutorial](../tutorials.md)!
