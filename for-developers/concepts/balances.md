@@ -4,7 +4,7 @@ For an overview, first read [Balances / Transfers](../../overview/concepts/time-
 
 <pre class="language-protobuf"><code class="lang-protobuf">message Balance {
   string amount = 1  [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-<strong>  repeated UintRange ownedTimes = 2;
+<strong>  repeated UintRange ownershipTimes = 2;
 </strong>  repeated UintRange badgeIds = 3;
 }
 </code></pre>
@@ -20,7 +20,7 @@ For example, lets say we have a balance of&#x20;
 <pre class="language-json"><code class="lang-json"><strong>{ 
 </strong>    amount: 1, 
     badgeIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
-    ownedTimes: [{start: 20, end: 50}, {start: 100, end: 200}] 
+    ownershipTimes: [{start: 20, end: 50}, {start: 100, end: 200}] 
 }
 </code></pre>
 
@@ -37,7 +37,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 { 
     amount: 1, 
     badgeIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
-    ownedTimes: [{start: 100, end: 200}] 
+    ownershipTimes: [{start: 100, end: 200}] 
 }
 ```
 
@@ -45,7 +45,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 { 
     amount: 1, 
     badgeIds: [{start: 20, end: 30}], 
-    ownedTimes: [{start: 20, end: 50}}] 
+    ownershipTimes: [{start: 20, end: 50}}] 
 }
 ```
 
@@ -57,7 +57,7 @@ If you specify duplicate badge IDs in balances such as:
 { 
     amount: 1, 
     badgeIds: [{ start: 1, end: 10}, {start: 1, end: 10}], 
-    ownedTimes: [{start: 100, end: 200}] 
+    ownershipTimes: [{start: 100, end: 200}] 
 }
 ```
 
@@ -67,6 +67,6 @@ This is equivalent and will be treated as:
 { 
     amount: 2, 
     badgeIds: [{ start: 1, end: 10}], 
-    ownedTimes: [{start: 100, end: 200}] 
+    ownershipTimes: [{start: 100, end: 200}] 
 }
 ```

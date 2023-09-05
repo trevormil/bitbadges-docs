@@ -8,7 +8,7 @@ To enable interoperability between different blockchains, each individual L1 blo
 
 As an example, the Ethereum zero address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a and will be assigned an account ID number upon interaction with the BitBadges blockchain.
 
-We typically refer to the native address as **address** and the corresponding Cosmos address as **cosmosAddress**. For Cosmos-native addresses, **address** will be the same as **cosmosAddress.**
+We typically refer to the native address as simply **address** and the corresponding Cosmos address as **cosmosAddress**. For Cosmos-native addresses, **address** will be the same as **cosmosAddress.**
 
 **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
@@ -25,5 +25,5 @@ For user experience, you should always display the user's native address on the 
 To get this information, you have to query it, which can be done in a few different ways.
 
 1. If you are using the BitBadges API, you can use [these routes](../../overview/use-cases.md). (recommended option)
-2. To query a node directly, you can use the Cosmos [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html)routes.
+2. To query a node directly, you can use the standard Cosmos [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html)routes.
 3. You can also check out how [https://github.com/BitBadges/bitbadges-indexer](https://github.com/BitBadges/bitbadges-indexer) queries such information using CosmJS in the /src/chain-client directory.&#x20;

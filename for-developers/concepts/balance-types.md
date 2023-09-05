@@ -2,7 +2,7 @@
 
 BitBadges offers three different ways to store the badge balances and owners for your collection as explained [here](../../overview/concepts/balances-types.md). Please read this first.
 
-The balance types are "Standard", "Off-Chain", and "Inherited" (aka badge bound). The balances type for a collection is determined by the **balancesType** field of the collection which will either be "Standard", "Off-Chain", and "Inherited".
+The balance types are "Standard", "Off-Chain", and "Inherited". The balances type for a collection is determined by the **balancesType** field of the collection which will either be "Standard", "Off-Chain", and "Inherited".
 
 ### Standard
 
