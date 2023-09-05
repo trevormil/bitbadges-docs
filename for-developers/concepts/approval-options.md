@@ -31,7 +31,8 @@ export interface ApprovalDetails<T extends NumberType> {
 Couple Notes:
 
 * Even though approvalDetails is an array, we currently only support defining a single value (length = 1).&#x20;
-* Approval details are not included in the first-match algorithm described in [approved transfers](approval-options.md). This may take careful design for defining approvals.
+* Approval details are not included in the first-match algorithm described in [approved transfers](approval-options.md). This may take careful design when defining approvals.
+* These are just the native options provided for conveience and consistency. You can always extend this via custom logic with a smart contract. You just simply then approve the smart contract.
 
 
 
