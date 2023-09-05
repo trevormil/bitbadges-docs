@@ -2,9 +2,11 @@
 
 In a [previous tutorial](distributing-badges.md), we only discussed transferring badges from the "Mint" addresses. However, you may want badge owners to be able to transfer to other badge owners.&#x20;
 
-Note that setting UserApprovedTransfers is equivalent to this without the overrides options.
+Note that setting UserApprovedTransfers is the same process as this. Also, note that the same interface is used, so any feature you have previously seen (such as MustOwnBadges) can also be set and used here.
 
-Also, note that the same interface is used, so any feature you have previously seen (such as MustOwnBadges) can also be set and used here.
+
+
+Again, make sure these are placed in the correct oreder to satisfy the first-match policy.
 
 
 
@@ -12,35 +14,46 @@ Also, note that the same interface is used, so any feature you have previously s
 
 All users can transfer to all other users (if their user approvals are satisfied).
 
-```go
-ToMappingId:                            "All",
-FromMappingId:                          "All",
-InitiatedByMappingId:                   "All",
-TransferTimes:                          GetFullUintRanges(), //1-MAX
-BadgeIds:                               GetFullUintRanges(), //1-MAX
-OwnedTimes: 				GetFullUintRanges(), //1-MAX
-AllowedCombinations: []*types.IsCollectionTransferAllowed{
-	{
-		IsAllowed: true,
-	},
-},
-ApprovalDetails: []*types.ApprovalDetails{
-	{
-		ApprovalId:                 "mint-test",
-		OverridesFromApprovedOutgoingTransfers: false,
-		OverridesToApprovedIncomingTransfers:   false,
-	},
-}
-```
+<pre class="language-go"><code class="lang-go"><strong>{
+</strong>    "fromMappingId": "AllWithoutMint",
+    "toMappingId": "AllWithoutMint",
+    "initiatedByMappingId": "AllWithoutMint",
+    "badgeIds": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "ownershipTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "approvalDetails": [], //No additional restrictions
+    "transferTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "allowedCombinations": [
+      {
+        "isApproved": true,
+        ...
+      }
+    ]
+  }
+</code></pre>
 
 **Example 2: Freezing a User's Ability to Transfer**
 
 This freezes the address cosmos123abcxyz... from transferring any badge. Note that we take first-match only, so this approved transfer would have to come before the one in Example 1 to actually be matched to.
 
 ```go
-ToMappingId:                            "All",
+ToMappingId:                            "AllWithoutMint",
 FromMappingId:                          "cosmos123abcxyz...",
-InitiatedByMappingId:                   "All",
+InitiatedByMappingId:                   "AllWithoutMint",
 TransferTimes:                          GetFullUintRanges(), //1-MAX
 BadgeIds:                               GetFullUintRanges(), //1-MAX
 OwnedTimes: 				GetFullUintRanges(), //1-MAX

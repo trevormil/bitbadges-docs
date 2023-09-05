@@ -1,6 +1,6 @@
 # 10000 Off-Chain Balances
 
-```
+```json
 {
   "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
   "collectionId": "0",

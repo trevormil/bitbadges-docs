@@ -1,6 +1,6 @@
 # 100 Person Whitelist
 
-```
+```json
 {
   "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
   "collectionId": "0",
@@ -95,34 +95,8 @@
       "collectionApprovedTransfers": [
         {
           "fromMappingId": "Mint",
-          "fromMapping": {
-            "mappingId": "Mint",
-            "addresses": [
-              "Mint"
-            ],
-            "includeAddresses": true,
-            "uri": "",
-            "customData": "",
-            "createdBy": ""
-          },
           "toMappingId": "AllWithMint",
-          "toMapping": {
-            "mappingId": "AllWithMint",
-            "addresses": [],
-            "includeAddresses": false,
-            "uri": "",
-            "customData": "",
-            "createdBy": ""
-          },
           "initiatedByMappingId": "AllWithMint",
-          "initiatedByMapping": {
-            "mappingId": "AllWithMint",
-            "addresses": [],
-            "includeAddresses": false,
-            "uri": "",
-            "customData": "",
-            "createdBy": ""
-          },
           "transferTimes": [
             {
               "start": "1691953200000",
@@ -245,23 +219,6 @@
               "overridesFromApprovedOutgoingTransfers": true
             }
           ],
-          "balances": [
-            {
-              "amount": "1",
-              "badgeIds": [
-                {
-                  "start": "1",
-                  "end": "100"
-                }
-              ],
-              "ownershipTimes": [
-                {
-                  "start": "1692039600000",
-                  "end": "1723575600000"
-                }
-              ]
-            }
-          ]
         },
         {
           "fromMappingId": "AllWithoutMint",
