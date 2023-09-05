@@ -28,13 +28,20 @@ export interface ApprovalDetails<T extends NumberType> {
 
 
 
-Couple Notes:
+Important Notes:
 
-* Even though approvalDetails is an array, we currently only support defining a single value (length = 1).&#x20;
-* Approval details are not included in the first-match algorithm described in [approved transfers](approval-options.md). This may take careful design when defining approvals.
-* These are just the native options provided for conveience and consistency. You can always extend this via custom logic with a smart contract. You just simply then approve the smart contract.
-
-
+* **approvalDetails** is an array of approvals. Most will typically only use one approval (len == 1). However, in some cases, multiple approvals for the same transfer tuples (from, to, initiatedBy, badge IDs, ownership times, transfer times) may be desired (for example, create a tiered merkle whitelist tree where these addresses get x10 of ID 1 and those addresses get x100).
+  * If there is more than one approval in the array, they are considered separate approvals and are cumulative, meaning that if you have the approvals \[{ x5 of IDs 1-10, x10 of IDs 1-10 }], you can be approved for x15 total if you match the respective criteria.
+  * If there are multiple, you also have to consider the order that you want them applied. Our protocol attempts to apply them linearly. So, we check the first approval and attempt to transfer as much as we can from the transfer's balances. If there is balances  remaining, we then proceed to the next approval and repeat.
+    * So, if you have the approvals \[{ x5 of IDs 1-10, x10 of IDs 1-10 }] (pseudocode) as your approvalDetails and you are attempting to transfer \[x8 of IDs 1-10], we will first use up all of the x5 and the x3 out of x10 of the second approval.
+  * It is your responsibility to make the criteria mutually exclusive if desired and fail/pass correctly.
+* Approval details are NOT included in the first-match algorithm described in [approved transfers](approval-options.md). This may take careful design when defining approvals. For example, approvalDetails4 below will never be matched to.
+  * `(bob, alice, bob, 10, [1-2], [1000-2000]) -> (true, approvalDetails1[])`
+  * `(bob, alice, bob, 10, [1-2], [10-50]) -> (true, approvalDetails2[])`
+  * `(bob, alice, bob, 10, [1-2], [51-100]) -> (false, approvalDetails3[])`
+  * `(bob, alice, bob, 10, [1-2], [10-100]) -> (true, approvalDetails4[])`
+* These are just the native options provided for convenience and consistency. You can always extend this via custom logic with a smart contract.
+  * For example, set an approval that can only be initiated by the contract. Then, handle all custom approval logic in the CosmWASM contract and have the contract initiate the MsgTransferBadges call.
 
 ### **Approval ID**
 
