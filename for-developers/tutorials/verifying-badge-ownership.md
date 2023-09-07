@@ -27,6 +27,8 @@ Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.
 
 ## Step 1: Fetch Balances
 
+Keep in mind the potential delay / lag and availability with the options below. For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date most of the time; however, it may fall behind in some cases.
+
 **BitBadges Website**
 
 If you have access to the website, just simply navigate to the badge page or user's portfolio page. Note that you can check how up to date the information is via the block number and timestamp.
@@ -60,6 +62,10 @@ For off-chain balances, you can also directly fetch the balances map from the so
 **Run Own Node / Indexer**
 
 You can also always run and fetch balances from your own node / indexer, so you aren't relying on anyone else's infrastructure!
+
+
+
+
 
 ## Step 2: Verify&#x20;
 
