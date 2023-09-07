@@ -92,6 +92,7 @@
   * [Authentication](indexer-api/concepts/authentication.md)
   * [Collections Tutorials](indexer-api/tutorials/collections-tutorials.md)
   * [User Tutorials](indexer-api/tutorials/user-tutorials.md)
+  * [Timeline-Based Fields](indexer-api/tutorials/timeline-based-fields.md)
 * [Concepts](indexer-api/concepts/README.md)
   * [Number Types](indexer-api/concepts/number-types.md)
   * [Different Indexers](indexer-api/concepts/different-indexers.md)
@@ -125,4 +126,5 @@
   * [Validate Updates](sdk/common-snippets/validate-updates.md)
   * [Uint Ranges](sdk/common-snippets/uint-ranges.md)
   * [Off-Chain Balances](sdk/common-snippets/off-chain-balances.md)
+  * [Timelines](sdk/common-snippets/timelines.md)
 * [Broadcasting and Signing Txs](sdk/broadcasting-and-signing-txs.md)

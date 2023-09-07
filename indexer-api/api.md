@@ -51,20 +51,25 @@ We recommend reading all [concepts](concepts/) for background information on the
 We recommend using the SDK for all requests, routes, and responses. All are exported for your convenience such as:
 
 ```typescript
-import { GetStatusRouteRequestBody, GetStatusRouteSuccessResponse, GetStatusRoute } from 'bitbadgesjs-utils';
+import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-utils';
+import { BACKEND_URL } from '../constants';
 
-export async function getStatus(requestBody?: GetStatusRouteRequestBody): Promise<GetStatusRouteSuccessResponse<DesiredNumberType>> {
-  try {
-    const response = await axios.post<GetStatusRouteSuccessResponse<string>>(`${BACKEND_URL}${GetStatusRoute()}`, requestBody);
-    return convertGetStatusRouteSuccessResponse(response.data, ConvertFunction);
-  } catch (error) {
-    await handleApiError(error);
-    return Promise.reject(error);
-  }
-}
+export type DesiredNumberType = bigint;
+export const ConvertFunction = BigIntify;
+
+//BACKEND_URL for main API is https://api.bitbadges.io
+
+const BitBadgesApi = new BitBadgesAPI(BACKEND_URL, BigIntify); //Can also do Numberify, Stringify, etc
+
+await BitBadgesApi.getStatus()
+await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
 ```
 
 ## Routes
+
+See all documentation for routes [here](file:///home/trevormil/CompSci/bitbadges/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
+
+
 
 Auth Required = \*
 
