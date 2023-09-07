@@ -58,6 +58,7 @@ export type DesiredNumberType = bigint;
 export const ConvertFunction = BigIntify;
 
 //BACKEND_URL for main API is https://api.bitbadges.io
+//Make sure process.env.BITBADGES_API_KEY is set with a valid API key.
 
 const BitBadgesApi = new BitBadgesAPI(BACKEND_URL, BigIntify); //Can also do Numberify, Stringify, etc
 
@@ -67,7 +68,7 @@ await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
 
 ## Routes
 
-See all documentation for routes [here](file:///home/trevormil/CompSci/bitbadges/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
+See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
 
 
 
