@@ -23,6 +23,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 #### Benefits
 
 * **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances.
+* **No-Cost Updates:** If the balances URL (stored on-chain) is not being changed, balances can be updated by editing what is returned from the server. This means balances can be updated without interacting with the blockchain.
 * **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
 
 #### Drawbacks
