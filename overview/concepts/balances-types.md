@@ -18,19 +18,19 @@ Unlike conventional on-chain balances, off-chain balances leverage an alternativ
 
 #### Configurable URL and Permanent Storage
 
-The URL fetching mechanism is customizable. URLs are stored on-chain and can be set to be updatable or non-updatable by the manager. The balances returned by the URL can also be configured be updatable or rely on permanent storage like IPFS, ensuring consistent and unchanging balance data. When URLs are non-updatable and use permanent storage, balances become immutable, providing long-term stability.
+The URL fetching mechanism is customizable. URLs are stored on-chain and can be set to be updatable or non-updatable by the manager. The balances returned by the URL can also be configured be updatable or rely on permanent storage like IPFS, ensuring consistent and unchanging balance data. When URLs are non-updatable and use permanent storage, balances become immutable (aka soulbound or non-transferable), providing long-term stability.
 
 #### Benefits
 
-* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances.
-* **No-Cost Updates:** If the balances URL (stored on-chain) is not being changed, balances can be updated by editing what is returned from the server. This means balances can be updated without interacting with the blockchain.
+* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances.
+* **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
 * **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
 
 #### Drawbacks
 
 * **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly, \
   since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and claims) is not supported, unless custom implemented off-chain.
-* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL.
+* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances.
 
 ### Suitability of Off-Chain Balances
 
