@@ -6,7 +6,7 @@ You can also browse featured badges at [https://bitbadges.io/browse](https://bit
 
 ### Badge Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 
-* **Authentication / Tiered Services -** Most companies' infrastructure simply consists of authentication + tiered services. Companies can outsource their authentication to Web3 / [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Much cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication to Web3 / [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir!
 * **Decentralized Verification** - Multiple verification services can give out verification badges, and you can choose which person/entity to get your verification ticks from. Or, verification can be more fine-grained and each entity / company can assign badges to their own registered employees / community.
 * **Cross-Chain Protocols -** Implement a cross-chain follow, messaging, social media, etc protocols where every post, message, item is a badge being transferred / minted.
