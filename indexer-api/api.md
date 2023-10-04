@@ -256,5 +256,4 @@ Fetches metadata directly from the source URI, rather than from our indexer cach
 
 Faucet to get tokens from our betanet faucet. 1 airdrop of $1000 BADGE per address.
 
-
-
+{% embed url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" %}

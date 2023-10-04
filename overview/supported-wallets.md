@@ -10,7 +10,7 @@ Note that we are working on ironing out the bugs for the support of many wallets
 
 **Cosmos**
 
-Keplr - [https://www.keplr.app/](https://www.keplr.app/) (Ledger currently not supported)
+Keplr - [https://www.keplr.app/](https://www.keplr.app/)
 
 **More Coming Soon!**
 

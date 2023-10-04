@@ -32,6 +32,8 @@ If you are the manager of the collection, you can do the following:
 
 
 
-### Other
+### Other[^1]
 
-Anyone can create and offer custom utility exclusive to the manager!
+Any tool can potentially offer custom utility exclusive to the manager!
+
+[^1]: 

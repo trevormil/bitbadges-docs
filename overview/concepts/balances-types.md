@@ -6,15 +6,9 @@ BitBadges offers three different ways to store the badge balances and owners for
 
 Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the most customizable option but also the least scalable because it uses the most blockchain resources.
 
-## Inherited / Badge-Bound
-
-Inherited (or badge-bound) balances are a way for a collection to inherit the owners of badges from another collection. For example, I want to send a free coupon badge which automatically distributes to all owners of my membership badge.&#x20;
-
-If the "parent" badge transfers owners, all child badges will automatically transfer owners as well.
-
 ## Off-Chain
 
-Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Instead, balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain). Transfers and approvals on the blockchain are not supported.
+Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Instead, balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain). Transfers and approvals on the blockchain are **not supported.**
 
 #### Configurable URL and Permanent Storage
 
@@ -62,7 +56,11 @@ Compared to traditional client-server solutions, off-chain balances offer numero
 
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
 
+## Inherited / Badge-Bound (Coming Soon)
 
+Inherited (or badge-bound) balances are a way for a collection to inherit the owners of badges from another collection. For example, I want to send a free coupon badge which automatically distributes to all owners of my membership badge.&#x20;
+
+If the "parent" badge transfers owners, all child badges will automatically transfer owners as well.
 
 
 

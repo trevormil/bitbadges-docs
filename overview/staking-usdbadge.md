@@ -6,15 +6,13 @@ The delegated part is because token holders can delegate their stake ($BADGE) to
 
 
 
-
-
 ### Option 1: Delegate
 
 For most users, delegating is the preferred option. You can delegate your $BADGE to an existing validator to be staked. This validator will split the $BADGE earned from securing the network with you (they may charge a commission).&#x20;
 
 **How to Delegate?**
 
-Visit TODO. We will launch an interface upon mainnet. There is no incentive to delegate during betanet.
+Visit TODO (we will launch an interface upon mainnet).
 
 Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
 
