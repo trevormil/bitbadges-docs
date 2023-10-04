@@ -64,6 +64,7 @@ const BitBadgesApi = new BitBadgesAPI(BACKEND_URL, BigIntify); //Can also do Num
 
 await BitBadgesApi.getStatus()
 await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
+//And so on...
 ```
 
 ## Routes
@@ -77,6 +78,8 @@ Auth Required = \*
 
 
 ### **Blockin Auth**
+
+
 
 **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
@@ -256,4 +259,6 @@ Fetches metadata directly from the source URI, rather than from our indexer cach
 
 Faucet to get tokens from our betanet faucet. 1 airdrop of $1000 BADGE per address.
 
-{% embed url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" %}
+
+
+{% embed url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" fullWidth="true" %}
