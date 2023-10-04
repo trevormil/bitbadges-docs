@@ -76,6 +76,8 @@ At each level, we offer the following functionality for defining approved transf
 
 The Mint address is also included in the transferability as well, so you can clearly define what criteria has to be satisfied for badges to be distributed.
 
+The Mint address can never receive badges, so incoming approvals will never matter. Badges can be transferred out of the Mint address' balances, so outoging approvals apply in these cases. **However, the Mint address can never set approvals (since it isn't a real address), so in order to transfer out of the Mint address, you must approve the transfer on the collection level and override outgoing approvals.**
+
 ### **Updatability**
 
 We also support fine-grained updatability for all combinations of the above functionality.

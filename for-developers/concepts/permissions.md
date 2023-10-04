@@ -2,7 +2,7 @@
 
 First, read [Permissions](../../overview/concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
+Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section. Please ask for help if needed.
 
 
 
@@ -14,11 +14,11 @@ If a permission is explicitly allowed via the permittedTimes, it will ALWAYS be 
 
 If a permission is explicitly forbidden via the forbidden times, it will ALWAYS be disallowed during those forbiddenTimes.
 
-If not explicitly permitted or forbidden (not defined), permissions are ALLOWED by default but can be set to be explicitly allowed or disallowed.
+If not explicitly permitted or forbidden - NEUTRAL (not defined), permissions are ALLOWED by default but can be set to be explicitly allowed or disallowed.
 
 ### **Criteria**
 
-All permissions are stored as a linear array of (criteria -> permitted/forbiddenTimes). To check a permission, we must 1) find the corresponding match(es) using the criteria and 2) then use the corresponding permitted/forbidden times to see if it is allowed or disallowed at the CURRENT time. Note criteria matches are handled in a [First-Match-Only](first-match-only.md) manner.&#x20;
+All permissions are stored as a linear array of (criteria -> permitted/forbiddenTimes). To check a permission, we must 1) find the corresponding match(es) using the criteria and 2) then use the corresponding permitted/forbidden times to see if it is allowed or disallowed at the CURRENT time. Note criteria matches are handled in a First-Match-Only manner.&#x20;
 
 Ex: For timeline times 1-10, the permission is forbidden. For timeline times 1-100, the permission is allowed. In this case, the timeline times 1-10 will be forbidden because we only take the first match.
 
@@ -40,7 +40,7 @@ Note since we expand, empty combination arrays are meaningless. If you do not us
 
 ### **Permission Categories**
 
-There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](different-time-types.md) for examples and explanations.
+There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](different-time-fields.md) for examples and explanations.
 
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.
 * **TimedUpdatePermission**: For what timelineTimes, can the manager update a timeline-based value?

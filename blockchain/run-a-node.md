@@ -15,7 +15,7 @@ Wherever a chain ID is required, the following should be used:
 
 "bitbadges\_1-1" - mainnet chain ID (NOT ACTIVE YET)
 
-"bitbadges\_2-1" - betanet chain ID
+"bitbadges\_1-2" - betanet chain ID
 
 
 

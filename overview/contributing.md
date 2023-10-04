@@ -18,7 +18,7 @@ TBD
 
 **Bounties**
 
-Below are some ideas for community distribution and verification tools that need to be built, and we are willing to provide compensation for.
+Below are some ideas for community distribution and verification tools that need to be built, and we are willing to provide compensation for. Reach out if interested
 
 Discord Badge-Gating - Gate servers, channels, etc to only specific badge holders
 

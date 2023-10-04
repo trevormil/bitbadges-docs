@@ -6,9 +6,9 @@ The source code can be found at [https://github.com/bitbadges/bitbadgeschain](ht
 
 **Goal**
 
-Build a dynamic, multi-chain token interface on the blockchain that can support all functionalities of tokens and do it in the most efficient way possible. We will continuously adapt this interface to support any use case.
+Build a dynamic, multi-chain token interface on the blockchain that can support all functionalities of tokens and do it in the most efficient way possible. We will continuously adapt this interface until it can support any and all use cases.
 
-The end goal is that no smart contract is ever needed to be created. Although for now, tokens can be wrapped with smart contracts (CosmWASM) for unsupported functionality.
+The end goal is that no smart contract is ever needed to be created. Although for now, tokens can be extended with smart contracts (CosmWASM) for unsupported functionality.
 
 **Current Supported Chains**
 

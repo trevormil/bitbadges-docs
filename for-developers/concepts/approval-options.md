@@ -6,12 +6,11 @@ These are the additional options or restrictions you can set which decide whethe
 
 ```typescript
 export interface ApprovalDetails<T extends NumberType> {
-  approvalId: string;
   uri: string;
   customData: string;
 
   mustOwnBadges: MustOwnBadges<T>[];
-  merkleChallenges: MerkleChallenge<T>[];
+  merkleChallenge: MerkleChallenge<T>;
   predeterminedBalances: PredeterminedBalances<T>;
   approvalAmounts: ApprovalAmounts<T>;
   maxNumTransfers: MaxNumTransfers<T>;
@@ -26,16 +25,12 @@ export interface ApprovalDetails<T extends NumberType> {
 }
 ```
 
-
-
 Important Notes:
 
 * **approvalDetails** is an array of approvals. Most should typically only use one approval (len == 1). Having multiple approvals is advanced functionality: see the advanced sections below.
-* Approval details are NOT included in the first-match algorithm described in [approved transfers](approval-options.md). This may take careful design when defining approvals. For example, approvalDetails4 below will never be matched to.
-  * `(bob, alice, bob, 10, [1-2], [1000-2000]) -> (true, approvalDetails1[])`
-  * `(bob, alice, bob, 10, [1-2], [10-50]) -> (true, approvalDetails2[])`
-  * `(bob, alice, bob, 10, [1-2], [51-100]) -> (true, approvalDetails3[])`
-  * `(bob, alice, bob, 10, [1-2], [10-100]) -> (true, approvalDetails4[])`
+
+
+
 * The amounts approved in approvalDetails are limited to the badgeIds and ownershipTimes of the transfer tuple it is mapped from. For example, approvalDetails3\[] above can only approve badge IDs 1-2 and ownership times 51-100. Anything approved outside that (such as badge ID 3) will be ignored or throw an error. Again, this means you need to design carefully.
 * These are just the native options provided for convenience and consistency. You can always extend this via custom logic with a smart contract. For example, set an approval that can only be initiated by the contract. Then, handle all custom approval logic in the CosmWASM contract and have the contract initiate the MsgTransferBadges call.
 
@@ -85,7 +80,11 @@ Predetermined balances are a new way of having fine-grained control over the amo
 
 In a tally-based system where you approve X amount to be transferred, you have no control over the combination of amounts that will add up to X. For example, if you approve x100, you can't control whether the transfers are \[x1, x1, x98] or \[x100] or another combination.
 
-Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.
+Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.&#x20;
+
+Pretty much, the transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.
+
+**Defining Balances**
 
 There are two ways to define the balances. Either one or the other method must be used but not together.
 
