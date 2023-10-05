@@ -81,6 +81,20 @@ Auth Required = \*
 
 
 
+{% swagger method="post" path="" baseUrl="" summary="" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="query" %}
+
+{% endswagger-parameter %}
+
+{% swagger-response status="403: Forbidden" description="" %}
+
+{% endswagger-response %}
+{% endswagger %}
+
 **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
 Gets Blockin challenge to be signed by the user.
