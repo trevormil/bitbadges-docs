@@ -6,7 +6,7 @@ description: >-
 
 # 👋 BitBadges Overview
 
-<figure><img src=".gitbook/assets/bitbadges_letters.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
 
 ## Overview&#x20;
 
