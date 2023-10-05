@@ -10,11 +10,13 @@ For compatibility with the most recent Cosmos SDK versions, we have used a fork 
 
 **No tx.origin**
 
-Note that Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent, so some workarounds or creative solutions may be needed in certain situations. Some common workarounds around include:
+Note that Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent. **All Cosmos Msgs called from the contract have Msg.Creator equal to the CONTRACT ADDRESS, not the calling user's address.**
+
+This may not be ideal, but it is what it is for security reasons. You may need to come up with creative workarounds or creative solutions in certain situations. For example,
 
 \-Give the contract the manager role
 
-\-Have users approve the contract
+\-Have users approve the contract to transfer on their behalf and so on
 
 ## Tutorial
 
