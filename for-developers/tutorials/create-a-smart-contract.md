@@ -93,7 +93,7 @@ Once deployed, you need to interact with the contract somehow or let your users 
 Finally, you can interact with your contract via the execute command. The example below is for registering addresses using the MsgRegisterAddresses command.
 
 ```
-bitbadgeschaind tx wasm execute contract_address '......' --from=<address> --gas=auto -y
+bitbadgeschaind tx wasm execute contract_address '{"deleteCollectionMsg": {"collectionId": "1"}}' --from=<address> --gas=auto -y
 ```
 
 Note that even though snake\_case may be used in the contracts / Rust, the badge modules use camelCase as seen in the command above.
@@ -108,6 +108,30 @@ The BitBadges SDK offers a [**createTxMsgExecuteContractCompat**](https://bitbad
 
 For users to execute your contract (potentially via a dApp), we recommend using the MsgExecuteContractCompat instead of the base MsgExecuteContract. This is the same as braodcasting a transaction with any other Msg type, so we refer you [here](../../sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for further details.
 
+
+
+**Couple Notes**
+
+The msg details should be in the format where only one Msg is defined. All numbers should be strings as well ("1" not 1). The creator field is auto-populated with the contract address.
+
+```json
+{
+    "deleteCollectionMsg": {...}
+    "createAddressMappingsMsg": {...},
+    "updateCollectionMsg": {...},
+    "updateUserApprovedTransfersMsg": {...},
+    "transferBadgesMsg": {...}
+}
+```
+
+For example,
+
+```json5
+{
+    "deleteCollectionMsg": {"collectionId": "1"}
+}
+```
+
 **Example**
 
 Note replace with values for your contract. **msg** should be a JSON encoded string with the details of your function call.
@@ -118,12 +142,16 @@ import { MessageMsgExecuteContractCompat, createTxMsgExecuteContractCompat } fro
 const msgExecuteContract: MessageMsgExecuteContractCompat = {
     sender: "cosmos1uqxan5ch2ulhkjrgmre90rr923932w38tn33gu", //enter sender adress here
     contract: "cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr", // 
-    msg: '{...msg details}',
+    msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
     funds: '1badge'
 }
 const executeTx = await createTxMsgExecuteContractCompat(...txDetails, msgExecuteContract);
 
 ```
+
+
+
+
 
 **Step 4: Build a dApp**
 
