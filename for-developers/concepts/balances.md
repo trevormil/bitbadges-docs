@@ -13,7 +13,17 @@ For an overview, first read [Balances / Transfers](../../overview/concepts/time-
 
 **Interpreting Balances**
 
-When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations. You can think of it as a nested loop, without any "OR" logic involved (e.g. for ALL badge IDs and for ALL owned times, we own X amount).
+When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations.&#x20;
+
+```
+for (balnace of balances) {
+    for (badgeIdRange of balance.badgeIds) {
+        for (ownershipTimeRange of balanace.ownershipTimes) {
+            //User owns x(balance.amount) of (badgeIdRange) for the times (ownershipTimeRange)
+        }
+    }
+}
+```
 
 For example, lets say we have a balance of&#x20;
 

@@ -45,7 +45,7 @@ permittedTimes: []
 
 ### First Match Policy
 
-Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. This makes it so that at any time, there is only ONE deterministic match for a given set of criteria.&#x20;
+Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic match for a given set of criteria.**&#x20;
 
 Ex: If we have the following permission definitions:&#x20;
 
@@ -187,3 +187,206 @@ Similarly with the **BalancesActionPermission**, it has no bearing on what the c
 **Examples**
 
 See [Example Msgs](broken-reference) for further examples.
+
+```json
+"collectionPermissions": {
+    "canDeleteCollection": [
+      {
+        "defaultValues": {
+          "permittedTimes": [],
+          "forbiddenTimes": []
+        },
+        "combinations": [
+          {
+            "forbiddenTimesOptions": {
+              "invertDefault": false,
+              "allValues": true,
+              "noValues": false
+            }
+          }
+        ]
+      }
+    ],
+    "canArchiveCollection": [
+      {
+        "defaultValues": {
+          "timelineTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      }
+    ],
+    "canUpdateContractAddress": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [
+      {
+        "defaultValues": {
+          "timelineTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      }
+    ],
+    "canUpdateCollectionMetadata": [],
+    "canCreateMoreBadges": [
+      {
+        "defaultValues": {
+          "badgeIds": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      }
+    ],
+    "canUpdateBadgeMetadata": [
+      {
+        "defaultValues": {
+          "badgeIds": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "timelineTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      }
+    ],
+    "canUpdateCollectionApprovedTransfers": [
+      {
+        "defaultValues": {
+          "fromMappingId": "AllWithMint",
+          "toMappingId": "AllWithMint",
+          "initiatedByMappingId": "AllWithMint",
+          "transferTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "badgeIds": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "approvalTrackerId": "All",
+          "challengeTrackerId": "All",
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      },
+      {
+        "defaultValues": {
+          "fromMappingId": "Mint",
+          "toMappingId": "Mint",
+          "initiatedByMappingId": "Mint",
+          "transferTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "badgeIds": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ],
+          "approvalTrackerId": "",
+          "challengeTrackerId": "",
+          "permittedTimes": [],
+          "forbiddenTimes": [
+            {
+              "start": 1,
+              "end": "18446744073709551615"
+            }
+          ]
+        },
+        "combinations": [
+          {}
+        ]
+      }
+    ]
+  }
+```
