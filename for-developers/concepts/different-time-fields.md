@@ -1,10 +1,10 @@
-# 🕒 Different Time Types
+# 🕒 Different Time Fields
 
 There are different time fields within the interface with different purposes which could get confusing:
 
-* **permittedTimes**: The times that a permission can be executed successfully
-* **forbiddenTimes**: The times that a permission is forbidden from being executed
-* **timelineTimes**: The times that some field is a specific value for a timeline
+* **permittedTimes**: The times that a permission will **always** be able to be executed successfully
+* **forbiddenTimes**: The times that a permission will **always** be forbidden from being executed
+* **timelineTimes**: The times that some field is scheduled to be a specific value for a timeline-based field
   * Ex: X from timelineTimes 1 - 100 but changes to value Y from timelineTimes 100-200
 * **transferTimes**: The times that a transfer transaction can occur
 * **ownershipTimes**: The times that a user owns a badge from
