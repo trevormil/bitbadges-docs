@@ -1,6 +1,6 @@
 # Distributing Badges
 
-Pre-Reading: [Approved Transfers](../concepts/approved-transfers.md)
+Pre-Reading: [Approved Transfers](../concepts/approvals.md)
 
 Once badges are created, they are sent to the "Mint" address initially. From there, they can be distributed **according to the collection's approved transfers and user approvals.**&#x20;
 

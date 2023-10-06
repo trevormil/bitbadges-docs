@@ -41,7 +41,7 @@
   * [📊 Balances](for-developers/concepts/balances.md)
   * [🪙 Balance Types](for-developers/concepts/balance-types.md)
   * [🖊 Standards](for-developers/concepts/standards.md)
-  * [🤝 Approved Transfers](for-developers/concepts/approved-transfers.md)
+  * [🤝 Approvals](for-developers/concepts/approvals.md)
   * [✅ Approval Options](for-developers/concepts/approval-options.md)
   * [🔐 Permissions](for-developers/concepts/permissions.md)
   * [🕒 Different Time Fields](for-developers/concepts/different-time-fields.md)

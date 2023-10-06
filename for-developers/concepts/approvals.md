@@ -1,8 +1,8 @@
-# 🤝 Approved Transfers
+# 🤝 Approvals
 
 First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
+Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
 
 ### Approved Transfers Overview
 

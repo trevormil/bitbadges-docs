@@ -2,7 +2,7 @@
 
 First, read [Permissions](../../overview/concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section. Please ask for help if needed.
+Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section. Please ask for help if needed.
 
 
 
@@ -10,27 +10,106 @@ Note: The [Approved Transfers](approved-transfers.md) and [Permissions ](../../o
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-If a permission is explicitly allowed via the permittedTimes, it will ALWAYS be allowed during those permittedTimes (can't change it).
+All permissions are a linear array of (criteria -> permitted/forbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined permitted/forbiddenTimes.
 
-If a permission is explicitly forbidden via the forbidden times, it will ALWAYS be disallowed during those forbiddenTimes.
+1\) If a permission is explicitly allowed via the permittedTimes, it will ALWAYS be allowed during those permittedTimes (can't change it).
 
-If not explicitly permitted or forbidden - NEUTRAL (not defined), permissions are ALLOWED by default but can be set to be explicitly allowed or disallowed.
+2\) If a permission is explicitly forbidden via the forbidden times, it will ALWAYS be disallowed during those forbiddenTimes.
 
-### **Criteria**
+3\) If not explicitly permitted or forbidden - NEUTRAL (not defined), permissions are ALLOWED by default but can later be set to be explicitly allowed or disallowed.
 
-All permissions are stored as a linear array of (criteria -> permitted/forbiddenTimes). To check a permission, we must 1) find the corresponding match(es) using the criteria and 2) then use the corresponding permitted/forbidden times to see if it is allowed or disallowed at the CURRENT time. Note criteria matches are handled in a First-Match-Only manner.&#x20;
+4\) We do not allow times to be in both the permittedTimes and forbiddenTimes array simultaneously.
 
-Ex: For timeline times 1-10, the permission is forbidden. For timeline times 1-100, the permission is allowed. In this case, the timeline times 1-10 will be forbidden because we only take the first match.
 
-Similar to approved transfers, even though we allow range logic to be specified, we expand everything maintaining order to their singular values (one value, no ranges) before checking for matches.
+
+So for example, this means the permission is permanently forbidden and frozen.
+
+```typescriptreact
+permittedTimes: []
+forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+```
+
+This means it is permanently allowed and frozen.
+
+```typescriptreact
+forbiddenTimes: []
+permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+```
+
+This means it is allowed currently but can be changed in the future.&#x20;
+
+```
+forbiddenTimes: []
+permittedTimes: []
+```
+
+### First Match Policy
+
+Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. This makes it so that at any time, there is only ONE deterministic match for a given set of criteria.&#x20;
+
+Ex: If we have the following permission definitions:&#x20;
+
+1. ```
+   timelineTimes: [{ start: 1, end: 10 }]
+
+   permittedTimes: []
+   forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+   ```
+2. ```
+   timelineTimes: [{ start: 1, end: 100 }]
+
+   forbiddenTimes: []
+   permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+   ```
+
+In this case, the timeline times 1-10 will be forbidden because we only take the first match for that specific criteria. 11-100 would be approved.
+
+Similar to approved transfers, even though we allow range logic to be specified, we first expand everything maintaining order to their singular values (one value, no ranges) before checking for matches.
+
+### Satisfying Criteria
+
+All criteria must be satisfied  for it to be a match. For example, for the can create more badges permission, the criteria involves which badge IDs can the manager create more of and at what ownership times.
+
+```
+badgeIds: [{ start: 1, end: 10 }]
+ownershipTimes: [{ start 1, end: 10 }]
+
+forbiddenTimes: []
+permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+```
+
+This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.&#x20;
+
+However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered unhandled or not defined by the permission definition above.
 
 ### **Combinations / Default Values**
 
-Similar to the approved transfers, we allow you to define default values and an array of combinations that manipulate (invert, override with all, or keep as is) the default values to create different combinations of permitted/forbiddenTimes. It is mainly used for shorthand and avoiding repeating values.
+Similar to the approved transfers, we allow you to define default values and an array of combinations that manipulate (invert, all, none, or keep) the default values to create different combinations of permitted/forbiddenTimes. It is used for shorthand and avoiding repeating values.
 
-To match to a specific (criteria -> permitted/forbiddenTimes), we expand each combination / manipulation into a flat array maintaining order (i.e. combination 100 of element 1 comes before the first combination of element 2). We then proceed to do the first-match policy on this expanded array.
+```typescript
+{
+  defaultValues: BalancesActionPermissionDefaultValues<T>;
+  combinations: BalancesActionPermissionCombination[];
+}
+```
 
-Note since we expand, empty combination arrays are meaningless. If you do not use any options, you still need to define a combination such as:
+We apply the following pseudocode
+
+```
+allPermissionsArr = []
+for permission of permissions
+    for combination of permission.combinations {
+        currPermission = manipulate default values according to combination options
+        allPermissionsArr.push(currPermission)
+    }
+}
+```
+
+Couple notes:
+
+\-With a first match policy, order matters. So, note that combination 100 of element 1 comes before the first combination of element 2.
+
+\-Since we expand the combinations array, there must be 1 or more elements to be meaningful. Empty arrays are no ops. If you do not use any options, you still need to define an empty combination such as:
 
 ```
 [
@@ -43,18 +122,61 @@ Note since we expand, empty combination arrays are meaningless. If you do not us
 There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](different-time-fields.md) for examples and explanations.
 
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.
+  * ```typescript
+    {
+      permittedTimes: UintRange<T>[];
+      forbiddenTimes: UintRange<T>[];
+    }
+    ```
 * **TimedUpdatePermission**: For what timelineTimes, can the manager update a timeline-based value?
-  * Ex: I cannot update the badge metadata values corresponding to the times 1-10, but I can for the times 10-100.
-  * Note timelineTimes corresponds to the times of a timeline-based value. permittedTimes and forbiddenTimes correspond to when the manager can update such values.
+  * Note timelineTimes corresponds to the times of a timeline-based value such as badge metadata or collection metadata. The permittedTimes and forbiddenTimes correspond to when the manager can update such values.
+  * ```typescript
+    {
+      timelineTimes: UintRange<T>[];
+      
+      permittedTimes: UintRange<T>[];
+      forbiddenTimes: UintRange<T>[];
+    }
+    ```
 * **TimedUpdateWithBadgeIdsPermission**: For what timelineTimes AND what badge IDs can I update the value?
-  * Ex: I cannot update the badge metadata values for badges 1-10 corresponding to the times 1-10, but I can for the badges 11-20 for times 11-100.&#x20;
-  * Note that for the criteria to match, it must satisfy BOTH the timeline times and badge IDs. So, the timeline times 11-100 and badge IDs 1-10 is not handled, and similarly, the timeline times 1-10 and badge IDs 11-20 is not defined.
+  * ```typescript
+    {
+      timelineTimes: UintRange<T>[];
+      badgeIds: UintRange<T>[];
+      
+      permittedTimes: UintRange<T>[];
+      forbiddenTimes: UintRange<T>[];
+    }
+    ```
 * **BalancesActionPermission**: For what badge IDs and ownedTimes can the manager execute the permission?
-  * Same logic as TimedUpdateWithBadgeIdsPermission but replace timelineTimes with ownedTimes.
-  * Ex: Cannot create more of badge IDs 1-10 that can be owned from times 10-100. But can increase the supply of badge IDs 1-10 for after time 100.
-* **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](approved-transfers.md)), can I update the approved transfer values?
-  * Ex: For timeline times 1-10, I cannot update the approved transfers for the transfer tuples ("All", "All", "All", 1-100, 1-10, 1-10) tuple, thus making the transferability locked for the times 1-10 for those transfer combinations.
-  * Again, note that ALL criteria must match to be handled. So, the tuple ("All", "All", "All", 1-100, <mark style="color:blue;">11-20</mark>, 1-10) is not handled because the badge IDs are different and thus non-overlapping.
+  * ```typescript
+    {
+      badgeIds: UintRange<T>[];
+      ownershipTimes: UintRange<T>[];
+      permittedTimes: UintRange<T>[];
+      forbiddenTimes: UintRange<T>[];
+    }
+    ```
+* **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](approvals.md)), can I update the approval criteria?
+  * In the case of multiple approvals matching, we ensure that all matching approvals' criteria stays the same.
+  * Ex: I cannot update the approved transfers for the transfer tuples ("All", "All", "All", 1-100, 1-10, 1-10, "All", "All") tuple, thus making the transferability locked for those transfer combinations.
+    * ```typescript
+      {
+        fromMappingId: string;
+        toMappingId: string;
+        initiatedByMappingId: string;
+        transferTimes: UintRange<T>[];
+        badgeIds: UintRange<T>[];
+        ownershipTimes: UintRange<T>[];
+        approvalTrackerId: string
+        challengeTrackerId: string
+        
+        permittedTimes: UintRange<T>[];
+        forbiddenTimes: UintRange<T>[];
+      }
+      ```
+
+
 
 ### **Permissions vs Actual Values**
 
