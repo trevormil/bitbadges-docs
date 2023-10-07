@@ -42,7 +42,7 @@
   * [🪙 Balance Types](for-developers/concepts/balance-types.md)
   * [🖊 Standards](for-developers/concepts/standards.md)
   * [🤝 Approvals](for-developers/concepts/approvals.md)
-  * [✅ Approval Options](for-developers/concepts/approval-options.md)
+  * [✅ Approval Criteria](for-developers/concepts/approval-criteria.md)
   * [🔐 Permissions](for-developers/concepts/permissions.md)
   * [🕒 Different Time Fields](for-developers/concepts/different-time-fields.md)
   * [✉ Cosmos Msgs](for-developers/concepts/cosmos-msgs.md)

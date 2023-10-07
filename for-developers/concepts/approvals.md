@@ -14,19 +14,23 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 * Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
 * The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
 
-For a transfer to be approved overall, it has to satisfy the collection-level approvals, and if not overriden by the collection-level, the user incoming / outgoing also have to be satisfied.
+For a transfer to be approved overall, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.
 
 ### Genesis Values and Default Approvals
 
 For incoming and outgoing approvals, the collection can define default values via `defaultIncomingApprovals` and `defaultOutgoingApprovals`. These defaults are applied when initializing a balance for the first time in an account  (see [Default User Approvals](../learn-the-interface/default-user-approvals.md)).
 
-Also, we automatically add an unlimited approval (no amount restrictions) in the a) user's outgoing approvals where the sender is the same as the initiator and also in the b) user's incoming approvals where the recipient is the same as the initiator.
+Additionally, we automatically add an unlimited approval (with no amount restrictions) in the following cases:
 
-### Matching and Escrows
+a) User's outgoing approvals when the sender is the same as the initiator.&#x20;
+
+b) User's incoming approvals when the recipient is the same as the initiator.
+
+### Approvals != Escrows
 
 When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes. This responsibility extends to the collection-level transferability. such as ensuring adequate balances for transfers from the "Mint" address.
 
-On a similar note, if approvals become no longer valid (such as approving a badge but it was revoked via a different approval), the former approval doesn't automatically get cancelled.
+On a similar note, if approvals become no longer valid (such as approving a badge but it was revoked via a different approval), the former approval doesn't automatically get cancelled. It is the approver's responsibility to handle them accordingly.
 
 ### Representation
 
@@ -58,19 +62,19 @@ export interface CollectionApproval<T extends NumberType> {
 }
 ```
 
+Note that user incoming / outgoing approvals follow the same interface except toMapping is auto-populated with the user's address for incoming approvals and similarly the fromMapping for outgoingApprovals.
+
 #### Approvals vs Disapprovals
 
-We allow you to create approvals and disapprovals based on whether **isApproved** = true or false. If you are creating a disapproval (**isApproved** = false), the approval fields like **approvalCriteria**, etc will be ignored.
+We allow you to create approvals and disapprovals based on whether **isApproved** = true or false. If you are creating a disapproval (**isApproved** = false), the approval fields like **approvalCriteria**, etc will be ignored, and you can leave empty or default.
 
 **Approved vs Unapproved**
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals (or disapprovals).
-
-We handle approvals **per level** in the following ways:
+Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals (or disapprovals). We handle approvals **per level** in the following ways:
 
 1. If the transfer matches to ANY disapproval, it is considered disallowed, regardless if it matches with any other approval(s).
 2. If the transfer is unhandled (doesn't match to any approval or disapproval), it is DISAPPROVED by default.
-3. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** when transferring (see MsgTransferBadges), so they can only use up their desired approvals.&#x20;
+3. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals.&#x20;
 
 We recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection.
 
@@ -82,27 +86,53 @@ All approvals where **isApproved** = true must have a unique **approvalId** for 
 
 We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. We do not use it by default but it is provided if needed.
 
-**Main Fields**
+**Who? When? What? - Main Fields**
 
 To represent transfers, six main fields are used: `toMapping`, `fromMapping`, `initiatedByMapping`, `transferTimes`, `badgeIds`, and `ownershipTimes`. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: These are all [AddressMappings](address-mappings-lists.md) specifying which addresses can transfer to which addresses and the transaction can be initiated by which addresses. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through MsgCreateAddressMappings.
+* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](address-mappings-lists.md) specifying which addresses can transfer to which addresses and the transaction can be initiated by which addresses. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through MsgCreateAddressMappings.
 * **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
 
 For example, we might have something like  the following:
 
-* `(Mint, alice, bob, [1-10], [1-2], [1000-2000]) -> APPROVED`
-* `(AllWithoutMint, alice, All [1-10], [1-2], [1-1000]) -> DISAPPROVED`
+* ```json
+  "fromMappingId": "Mint", //represents the mapping with the "Mint" addres
+  "toMappingId": "AllWithoutMint", //represents all addresses (excluding "Mint")
+  "initiatedByMappingId": "AllWithoutMint",
+  "transferTimes": [
+    {
+      "start": "1691931600000",
+      "end": "1723554000000"
+    }
+  ],
+  "ownershipTimes": [
+    {
+      "start": "1",
+      "end": "18446744073709551615" //Max possible value
+    }
+  ],
+  "badgeIds": [
+    {
+      "start": "1",
+      "end": "100"
+    }
+  ],
+  ```
 
-Let's break down the first bullet above.
+Let's break down the definition above.
 
-* The "Mint" mapping ID corresponds to the Mint address. This approval only allows transfers from the "Mint" address.
-* Likewise, the "alice" mapping ID and "bob" mapping IDs correspond to alice and bob's addresses. The approval allows transfers to alice and initiated by Bob.
-* The ownership rights for the times 1-1000 of badge IDs 1-2 can be transferred from time 1 to time 10.&#x20;
+* The "Mint" mapping ID corresponds to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressMapping "AllWithoutMint" includes all addresses).
+* The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 to time 1723554000000.&#x20;
 
-Note the approval only applies to the details defined and must match ALL details. Badge ID #3 is not defined by this approval even if all other criteria matches.
+Note the approval only applies to the details defined and must match ALL details. Badge ID #101 is not defined by this approval even if all other criteria matches.
+
+**Transferring From Mint Address**
+
+As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/ outgoing approvals.
+
+The Mint address has its own approvals, but since it is not a real address, they are always empty. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
 
 #### Options - Manipulating the Main Fields
 
@@ -130,7 +160,7 @@ This would represent the mapping for all addresses EXCEPT the mint address. Note
 
 #### Approval Criteria
 
-The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-options.md).&#x20;
+The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria.md).&#x20;
 
 For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved (in addition to having **isApproved** = true).&#x20;
 
@@ -138,11 +168,11 @@ The **approvalTrackerId** and **challengeTrackerId** correspond to **approvalCri
 
 **Breaking Down Range Logic**
 
-At execution time, even though the interface uses range logic (UintRanges, AddressMappings), we break everything down into single value tuples, such as (bob, alice, bob, 1, 1, 1000) and check each singular value tuple separately. See example further down below.
+Even though our interface uses range logic (UintRanges, AddressMappings), we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
 
 #### Matching Transfers to Approvals
 
-The process of matching transfers to approvals involves several steps:
+The process of matching transfers to approvals involves several steps. This is done on a per-level basis.
 
 1. Apply all manipulations (options) to each approval while maintaining order.&#x20;
 2. Expand all approval tuples  to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
@@ -153,18 +183,14 @@ The process of matching transfers to approvals involves several steps:
    3. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.&#x20;
 5. Lastly, we check the **`approvalCriteria`** for each one-to-one match and ensure it satisfies all criteria.
 
-See example below.
-
-### Example
-
-Let's consider a scenario:
+See the scenario below.
 
 * Transfer: `(bob, alice, bob, 10, 1-2, 10-100)`
 * Approved Transfers:
-  * `(bob, alice, bob, 10, [1-2], [1000-2000]) -> (true, approvalCriteria)`
-  * `(bob, alice, bob, 10, [1-2], [10-50]) -> (true, approvalCriteria)`
-  * `(bob, alice, bob, 10, [1-2], [51-100]) -> (false, approvalCriteria)`
-  * `(bob, alice, bob, 10, [1-2], [10-100]) -> (true, approvalCriteria)`
+  * `(bob, alice, bob, 10, [1-2], [1000-2000]) -> APPROVED`
+  * `(bob, alice, bob, 10, [1-2], [10-50]) -> APPROVED`
+  * `(bob, alice, bob, 10, [1-2], [51-100]) -> DISAPPROVED`
+  * `(bob, alice, bob, 10, [1-2], [10-100]) -> APPROVED`
 
 In this case, using first matches, the transfer would be approved for `(bob, alice, bob, 10, [1-2], [10-50])`, provided it adheres to `approvalCriteria`. However, it wouldn't be approved for `(bob, alice, bob, 10, [1-2], [51-100])` due to incompatible owned times. Thus, overall, the transfer would be DISAPPROVED.
 
@@ -176,6 +202,64 @@ While this may seem similar to the UpdateApprovedTransferPermission, the permiss
 
 The approved transfers themselves correspond to if a transfer is currently approved or not.
 
-### Conclusion
+### Example - Putting It Together
 
-To grasp the concepts further, additional examples and resources can be referenced in the "Learn the Interface" section.
+This would define a collection where badges 1-100 can be transferred from the Mint address (according to the first approval). Once transferred out of the Mint address, they can be transferred freely, thus making the collection transferable.
+
+Note how the **fromMapping** of each approval are non-overlapping, so any transfer will only match to one of the two approvals (if either). The first approval is restricted to transfers from the Mint address whereas the second is all EXCEPT the Mint address.
+
+```json
+ "collectionApprovals": [
+    {
+      "fromMappingId": "Mint",
+      "toMappingId": "AllWithMint",
+      "initiatedByMappingId": "AllWithMint",
+      "transferTimes": [
+        {
+          "start": "1691931600000",
+          "end": "1723554000000"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1",
+          "end": "18446744073709551615"
+        }
+      ],
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "100"
+        }
+      ],
+      "isApproved": true,
+      "approvalId": "claim-from-mint-address",
+      ... //other criteria (including the IMPORTANT overrideFromOutgoingApprovals = true since we are dealing with transfers from the Mint address)
+    },
+    {
+      "fromMappingId": "AllWithoutMint",
+      "toMappingId": "AllWithoutMint",
+      "initiatedByMappingId": "AllWithoutMint",
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "100"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1",
+          "end": "18446744073709551615"
+        }
+      ],
+      "transferTimes": [
+        {
+          "start": "1",
+          "end": "18446744073709551615"
+        }
+      ],
+      "approvalId": "transferable",
+      "isApproved": true
+    }
+  ],
+```

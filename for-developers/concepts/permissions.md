@@ -12,11 +12,11 @@ Permissions allow you to define permitted or forbidden times to be able to execu
 
 All permissions are a linear array of (criteria -> permitted/forbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined permitted/forbiddenTimes.
 
-1\) If a permission is explicitly allowed via the permittedTimes, it will ALWAYS be allowed during those permittedTimes (can't change it).
+1\) If a permission is explicitly allowed via the **permittedTimes, it will ALWAYS be allowed** during those permittedTimes (can't change it).
 
-2\) If a permission is explicitly forbidden via the forbidden times, it will ALWAYS be disallowed during those forbiddenTimes.
+2\) If a permission is explicitly forbidden via the **forbiddenTimes, it will ALWAYS be disallowed** during those forbiddenTimes.
 
-3\) If not explicitly permitted or forbidden - NEUTRAL (not defined), permissions are ALLOWED by default but can later be set to be explicitly allowed or disallowed.
+3\) If not explicitly permitted or forbidden - NEUTRAL (not defined), **permissions are ALLOWED by default (unhandled)** but can later be set to be explicitly allowed or disallowed. There is no "forbidden currently but updatable" state.&#x20;
 
 4\) We do not allow times to be in both the permittedTimes and forbiddenTimes array simultaneously.
 
@@ -36,7 +36,7 @@ forbiddenTimes: []
 permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
-This means it is allowed currently but can be changed in the future.&#x20;
+This means it is allowed currently but can be changed to be always permitted or always forbidden in the future.&#x20;
 
 ```
 forbiddenTimes: []
@@ -45,7 +45,7 @@ permittedTimes: []
 
 ### First Match Policy
 
-Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic match for a given set of criteria.**&#x20;
+Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/forbiddenTimes for a given set of criteria.**&#x20;
 
 Ex: If we have the following permission definitions:&#x20;
 
@@ -68,7 +68,7 @@ Similar to approved transfers, even though we allow range logic to be specified,
 
 ### Satisfying Criteria
 
-All criteria must be satisfied  for it to be a match. For example, for the can create more badges permission, the criteria involves which badge IDs can the manager create more of and at what ownership times.
+All criteria must be satisfied for it to be a match. For example, for the can create more badges permission, the criteria involves which badge IDs can the manager create more of and at what ownership times.
 
 ```
 badgeIds: [{ start: 1, end: 10 }]
@@ -80,41 +80,17 @@ permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 
 This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.&#x20;
 
-However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered unhandled or not defined by the permission definition above.
+However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered **unhandled** or not defined by the permission definition above.&#x20;
 
-### **Combinations / Default Values**
+### Manipulating Default Values
 
-Similar to the approved transfers, we allow you to define default values and an array of combinations that manipulate (invert, all, none, or keep) the default values to create different combinations of permitted/forbiddenTimes. It is used for shorthand and avoiding repeating values.
+Similar to the approved transfers, we allow you to define default values and options that manipulate (invert, all, none, or keep) the default values. This is used for shorthand and convenience.
 
-```typescript
+```json
 {
-  defaultValues: BalancesActionPermissionDefaultValues<T>;
-  combinations: BalancesActionPermissionCombination[];
+    toMappingId: "Mint",
+    toMappingOptions: { invertDefault: true }
 }
-```
-
-We apply the following pseudocode
-
-```
-allPermissionsArr = []
-for permission of permissions
-    for combination of permission.combinations {
-        currPermission = manipulate default values according to combination options
-        allPermissionsArr.push(currPermission)
-    }
-}
-```
-
-Couple notes:
-
-\-With a first match policy, order matters. So, note that combination 100 of element 1 comes before the first combination of element 2.
-
-\-Since we expand the combinations array, there must be 1 or more elements to be meaningful. Empty arrays are no ops. If you do not use any options, you still need to define an empty combination such as:
-
-```
-[
-    {}
-]
 ```
 
 ### **Permission Categories**
