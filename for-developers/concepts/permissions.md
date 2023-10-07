@@ -2,7 +2,7 @@
 
 First, read [Permissions](../../overview/concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section. Please ask for help if needed.
+Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../interface-examples.md) section. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {

@@ -107,7 +107,7 @@ Off-chain balances' updatable nature allows for the implementation of custom log
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change). You simply need to just update the JSON map returned.
 
-See [here](../tutorials/create-a-collection-with-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+See [here](../tutorials/create-an-off-chain-balances-json.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
 
 ### Inherited / Badge-Bound (Coming Soon)
 

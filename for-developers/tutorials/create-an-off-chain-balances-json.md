@@ -1,4 +1,4 @@
-# Create a Collection with Off-Chain Balances
+# Create an Off-Chain Balances JSON
 
 **Step 1: Create Your Map**
 
@@ -26,11 +26,11 @@ Note permanent storage (i.e. IPFS) coupled with not being able to update the URL
 
 **Step 3: Create Your Collection**
 
-Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not, and also set the **canUpdateOffChainBalancesMetadata** permission accordingly.&#x20;
+Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not, and also set the **canUpdateOffChainBalancesMetadata** permission accordingly. Do not overallocate via **badgesToCreate**.
 
 
 
-Note you can specify your URL via the form when creating / updating collections on the BitBadges website. Or, you can custom create your collection.
+Note you can specify your URL manually via the form when creating / updating collections on the BitBadges website. Or, you can custom create your collection completely on your own.
 
 **Step 4: Refreshes / Updates**
 
@@ -38,4 +38,4 @@ If you are allowed to update the URL according to the permissions set, you can d
 
 
 
-You can also just update the balances returned by the URL as well. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint or do it on the website.
+You can also just update the balances JSON returned by the URL as well. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint or do it directly on the website.

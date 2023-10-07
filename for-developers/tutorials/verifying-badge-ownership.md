@@ -27,7 +27,7 @@ Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.
 
 ## Step 1: Fetch Balances
 
-Keep in mind the potential delay / lag and availability with the options below. For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date most of the time; however, it may fall behind in some cases.
+Keep in mind the potential delay / lag and availability with the options below.For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date most of the time; however, it may fall behind in some cases.
 
 **BitBadges Website**
 

@@ -23,17 +23,13 @@ You can create / submit / broadcast your transactions (Msgs) to the BitBadges te
 
 Using the above tutorial is the recommended method, but you can also interact with other nodes (i.e. one you run yourself or other BitBadges nodes). See [https://docs.cosmos.network/main/run-node/interact-node](https://docs.cosmos.network/main/run-node/interact-node) and [https://docs.cosmos.network/main/run-node/txs](https://docs.cosmos.network/main/run-node/txs) for your options. There are plenty of resources out there for interacting with a Cosmos SDK node.
 
-### Notes
-
-*
-
 ## Msg Types
 
 Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.&#x20;
 
 **x/badges**
 
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Creates a new collection or updates the details of a collection. Must be manager to execute.
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Creates a new collection or updates the details of a collection. Must be manager to execute. If collectionId == 0, we consider it a creation transaction. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
 * [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
 * [MsgUpdateUserApprovedTransfers](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovedTransfers.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 * [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
@@ -45,15 +41,15 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **Other Cosmos SDK Modules**
 
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them.
-
-
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them
 
 ## Msg Definitions
 
 The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when creating each Msg.
 
-For MsgUpdateCollection and MsgUpdateUserApprovals we use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value.
+For MsgUpdateCollection and MsgUpdateUserApprovals we use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value.&#x20;
+
+Permissions are set last, so if we do update something, we use the prior permissions to check if the update is valid (everything is allowed for a creation transaction). In other words, if you update the permissions in the current transaction, they will not be applicable until the following transaction.
 
 See previous pages for further explanations on specific fields.
 

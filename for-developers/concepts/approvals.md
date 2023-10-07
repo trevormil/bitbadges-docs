@@ -2,7 +2,7 @@
 
 First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../learn-the-interface/) section.
+Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
 
 ## Approved Transfers Overview
 
@@ -126,6 +126,10 @@ The Mint address has its own approvals, but since it is not a real address, they
 
 It is recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is just the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
+**Manager Address**
+
+A common use case is to approve stuff based on who the current manager is. For example, allow the current manager to forcefully revoke badges. For this, you can leverage the reserved "Manager" mapping. For example, set **initiatedByMappingId** to "Manager" to only allow the manager to initiate the approval.&#x20;
+
 #### Options - Manipulating the Main Fields
 
 Each of the main fields has a corresponding options field (badgeIds -> badgeIdsOptions). This is just for shorthand representation to manipulate and override the default field value. For example, you could do something like this:
@@ -181,7 +185,7 @@ The process of matching transfers to approvals involves several steps. This is d
 
 ### Genesis Values and Default Approvals
 
-For incoming and outgoing approvals, the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account  (see [Default User Approvals](../learn-the-interface/default-user-approvals.md)).
+For incoming and outgoing approvals, the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
 
 Additionally, we automatically add an unlimited approval (with no amount restrictions) in the following cases:
 
@@ -268,7 +272,7 @@ Likewise, we also need to check Alice's incoming approvals using the same proces
 
 **Satisfied?**
 
-If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../learn-the-interface/)for further examples.
+If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../interface-examples.md)for further examples.
 
 **Extending the Example: Prioritized Approvals**
 
