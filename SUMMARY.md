@@ -62,6 +62,7 @@
   * [Running a Node](for-developers/tutorials/running-a-node.md)
 * [📙 Changelog](for-developers/changelog.md)
 * [👨💻 Contributing](overview/contributing.md)
+* [❓ FAQ - Dev](for-developers/faq-dev.md)
 
 ## ⛓ Blockchain
 
