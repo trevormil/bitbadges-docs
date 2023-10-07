@@ -8,8 +8,6 @@ Standards are a generic concept that allows anyone to define how to interpret th
 
 You can define and implement multiple standards, as long as they are compatible. There is no check in the blockchain logic that a specific standard is actually followed. The value stored on the blockchain is purely informational and for guidelines. It is the querier's responsibility to double check standards are being followed correctly and take action accordingly.
 
-If no standards are applied, we assume the default standards.
-
 ### Adding New Standards
 
 We want to decentralize the process of creating new standards and open it up to everyone. The comprehensive list of standards can be found on this page below. If you would like to author a new standard and have it added, contact us.
@@ -20,7 +18,7 @@ Each standard must follow the following format:
 
 **Author:** John Doe
 
-**Standard ID:** 0
+**ID: "..."**
 
 **Version:** 0.0.1
 
@@ -30,36 +28,4 @@ Each standard must follow the following format:
 
 ## List of Standards
 
-### BitBadges Base Standard (ID: 0)
-
-**Author**: The BitBadges Team
-
-**Standard ID**: 0
-
-**Version**: 0.0.1 (Last Updated: 4/12/2023)
-
-**Standard Details:**&#x20;
-
-The BitBadges Website standard defines the expected format of badge metadata that is to be supported on the BitBadges website.&#x20;
-
-* Metadata: Both collection and badge metadata will specify a URI which hosts a JSON file that implements the following interface below. If the badge metadata URI includes "{id}" anywhere in the URI, it is to be replaced dynamically by the corresponding badge ID number.
-
-```typescript
-export interface Metadata<T extends NumberType> {
-  name: string;
-  description: string;
-  image: string;
-  time?: UintRange<T>;
-  validFrom?: UintRange<T>;
-  color?: string;
-  category?: string;
-  externalUrl?: string;
-  tags?: string[];
-  hidden?: boolean;
-  references?: string[];
-}
-```
-
-* Off-Chain Balances Metadata: If your collection uses the off-chain balances type, the URI of the offChainBalancesMetadata should point to a JSON file which is a map of valid cosmosAddresses -> [Balance](balances.md) objects.
-* Claim Metadata: TODO
-
+...

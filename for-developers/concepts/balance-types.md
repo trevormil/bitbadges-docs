@@ -6,17 +6,23 @@ The balance types are "Standard", "Off-Chain", and "Inherited". The balances typ
 
 ### Standard
 
-With standard balances, all features of the interface are supported.&#x20;
+With standard balances, all features of the interface are supported, and everything is facilitated on-chain.
 
 ### Off-Chain
 
-With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. You will also create the badges on-chain to define a verifiable maximum total supply (even though they will permanently live in the "Mint" account). **However, all transfers and approval transactions will throw an error if attempted because these are facilitated off-chain.**
+With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. You will also create the badges on-chain to define a verifiable maximum total supply (even though they will permanently live in the "Mint" account). **However, all transfers and approval transactions will throw an error if attempted because these are to be facilitated off-chain.**
 
-Balances, at any given time, will be queried from a URI (stored via the **offChainBalancesMetadata** field of the collection). When querying the balances from the URI, the querier should verify that the maximum supply is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
+Balances, at any given time, will be queried from the specified URI (stored via the **offChainBalancesMetadata** field of the collection). When querying the balances from the URI, the querier should verify that the maximum supply is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
+
+**What format should the balances be in?**&#x20;
+
+It should be a JSON object where keys are Cosmos addresses and the values are Balance\<string>\[].
+
+See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
 **How are the balances permanently frozen for off-chain collections?**
 
-The balances URL can be set to non-updatable via the manager permissions, and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
+The balances URL can be set to non-updatable via the manager permissions (**canUpdateOffChainBalancesMetadata**), and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
 
 This is because the IPFS URIs are hash-based. So if the hash is permanently stored and frozen on-chain and the balances file is known, you can always verify the hash.
 
@@ -28,7 +34,7 @@ First, the URI must be set to return the updated balances. Then, balances can be
 
 Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL. This empowers you to define and program your balance-fetching process to align with your collection's unique requirements.&#x20;
 
-For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
+For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change). You simply need to just update the JSON map returned.
 
 See [here](../tutorials/create-a-collection-with-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
 

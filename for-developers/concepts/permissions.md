@@ -166,203 +166,97 @@ See [Example Msgs](broken-reference) for further examples.
 
 ```json
 "collectionPermissions": {
-    "canDeleteCollection": [
+    "canArchiveCollection": [],
+    "canCreateMoreBadges": [
       {
-        "defaultValues": {
-          "permittedTimes": [],
-          "forbiddenTimes": []
-        },
-        "combinations": [
+        "badgeIds": [
           {
-            "forbiddenTimesOptions": {
-              "invertDefault": false,
-              "allValues": true,
-              "noValues": false
-            }
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "ownershipTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "permittedTimes": [],
+        "forbiddenTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "badgeIdsOptions": {
+          "invertDefault": false,
+          "allValues": false,
+          "noValues": false
+        },
+        "ownershipTimesOptions": {
+          "invertDefault": false,
+          "allValues": false,
+          "noValues": false
+        },
+        "permittedTimesOptions": {
+          "invertDefault": false,
+          "allValues": false,
+          "noValues": false
+        },
+        "forbiddenTimesOptions": {
+          "invertDefault": false,
+          "allValues": false,
+          "noValues": false
+        }
+      }
+    ],
+    "canDeleteCollection": [],
+    "canUpdateBadgeMetadata": [],
+    "canUpdateCollectionApprovals": [
+      {
+        "fromMappingId": "AllWithMint",
+        "toMappingId": "AllWithMint",
+        "initiatedByMappingId": "AllWithMint",
+        "timelineTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "transferTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "badgeIds": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "ownershipTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
+          }
+        ],
+        "approvalTrackerId": "All",
+        "challengeTrackerId": "All",
+        "permittedTimes": [],
+        "forbiddenTimes": [
+          {
+            "start": "1",
+            "end": "18446744073709551615"
           }
         ]
       }
     ],
-    "canArchiveCollection": [
-      {
-        "defaultValues": {
-          "timelineTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      }
-    ],
-    "canUpdateContractAddress": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": [],
-    "canUpdateCustomData": [],
-    "canUpdateManager": [
-      {
-        "defaultValues": {
-          "timelineTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      }
-    ],
     "canUpdateCollectionMetadata": [],
-    "canCreateMoreBadges": [
-      {
-        "defaultValues": {
-          "badgeIds": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "ownershipTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      }
-    ],
-    "canUpdateBadgeMetadata": [
-      {
-        "defaultValues": {
-          "badgeIds": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "timelineTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      }
-    ],
-    "canUpdateCollectionApprovedTransfers": [
-      {
-        "defaultValues": {
-          "fromMappingId": "AllWithMint",
-          "toMappingId": "AllWithMint",
-          "initiatedByMappingId": "AllWithMint",
-          "transferTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "badgeIds": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "ownershipTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "approvalTrackerId": "All",
-          "challengeTrackerId": "All",
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      },
-      {
-        "defaultValues": {
-          "fromMappingId": "Mint",
-          "toMappingId": "Mint",
-          "initiatedByMappingId": "Mint",
-          "transferTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "badgeIds": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "ownershipTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ],
-          "approvalTrackerId": "",
-          "challengeTrackerId": "",
-          "permittedTimes": [],
-          "forbiddenTimes": [
-            {
-              "start": 1,
-              "end": "18446744073709551615"
-            }
-          ]
-        },
-        "combinations": [
-          {}
-        ]
-      }
-    ]
-  }
+    "canUpdateContractAddress": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": []
+  },
 ```

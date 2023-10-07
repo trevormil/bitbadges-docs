@@ -6,7 +6,7 @@ There are many ways to verify if a user owns a badge or not. Select your preferr
 
 **Blockin**
 
-Check out Blockin which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on any chain including BitBadges)!
+Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on multiple L1 chains including BitBadges)!
 
 Blockin can be used for badge-gating websites and more!
 
@@ -35,7 +35,7 @@ If you have access to the website, just simply navigate to the badge page or use
 
 **BitBadges API**
 
-Use one of the following routes to fetch balances from the API (supports off-chain balances but note they use a cache and trigger refresh system). Note these requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
+Use one of the following routes to fetch balances from the API (supports off-chain balances but note they use a cache and trigger refresh system). These requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>POST /api/v0/collection/:collectionId/:badgeId/owners
 </strong></code></pre>
@@ -57,7 +57,7 @@ Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bit
 
 **Direct Fetch - Off-Chain Balances**
 
-For off-chain balances, you can also directly fetch the balances map from the source URI.
+For collections with off-chain balances, you can also directly fetch the balances map from the source URI.
 
 **Run Own Node / Indexer**
 
@@ -65,11 +65,9 @@ You can also always run and fetch balances from your own node / indexer, so you 
 
 
 
-
-
 ## Step 2: Verify&#x20;
 
-Verification is two-fold. First, you need to verify the user owns the address (knows the private key).  Second, you need to verify ownership of the badge according to your criteria.
+Verification is two-fold. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
 
 See some tools to help you do so below:
 

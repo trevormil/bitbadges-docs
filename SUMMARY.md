@@ -36,9 +36,9 @@
   * [👤 Accounts](for-developers/concepts/accounts.md)
   * [👥 Accounts (Technical)](for-developers/concepts/accounts-technical.md)
   * [🔢 Uint Ranges](for-developers/concepts/uint-ranges.md)
+  * [📊 Balances](for-developers/concepts/balances.md)
   * [📧 Address Mappings (Lists)](for-developers/concepts/address-mappings-lists.md)
   * [⏳ Timelines](for-developers/concepts/timelines.md)
-  * [📊 Balances](for-developers/concepts/balances.md)
   * [🪙 Balance Types](for-developers/concepts/balance-types.md)
   * [🖊 Standards](for-developers/concepts/standards.md)
   * [🤝 Approvals](for-developers/concepts/approvals.md)
@@ -81,6 +81,7 @@
 ## 💻 Website
 
 * [Overview](website/overview.md)
+* [Compatibility](website/compatibility.md)
 
 ## 📚 Indexer / API
 

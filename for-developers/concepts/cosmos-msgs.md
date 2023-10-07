@@ -1,4 +1,4 @@
-# ✉ Msgs
+# ✉ Cosmos Msgs
 
 **What are Cosmos SDK Msgs?**
 
@@ -50,3 +50,74 @@ For MsgUpdateCollection and MsgUpdateUserApprovedTransfers, we use an update fla
 **Other Cosmos SDK Modules**
 
 For other standard Cosmos SDK messages, you can check out the bitbadgesjs-proto documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here).
+
+
+
+## Msg Definitions
+
+```typescript
+export interface MsgCreateAddressMappings {
+  creator: string;
+  addressMappings: AddressMapping[];
+}
+```
+
+```typescript
+export interface MsgDeleteCollection<T extends NumberType> {
+  creator: string
+  collectionId: T
+}
+```
+
+```typescript
+export interface MsgTransferBadges<T extends NumberType> {
+  creator: string;
+  collectionId: T;
+  transfers: Transfer<T>[];
+}
+```
+
+```typescript
+export interface MsgUpdateCollection<T extends NumberType> {
+  creator: string
+  collectionId: T
+  balancesType?: string
+  defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
+  defaultIncomingApprovals?: UserIncomingApproval<T>[]
+  defaultUserPermissions?: UserPermissions<T>
+  badgesToCreate?: Balance<T>[]
+  updateCollectionPermissions?: boolean
+  collectionPermissions?: CollectionPermissions<T>
+  updateManagerTimeline?: boolean
+  managerTimeline?: ManagerTimeline<T>[]
+  updateCollectionMetadataTimeline?: boolean
+  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
+  updateBadgeMetadataTimeline?: boolean
+  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
+  updateOffChainBalancesMetadataTimeline?: boolean
+  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
+  updateCustomDataTimeline?: boolean
+  customDataTimeline?: CustomDataTimeline<T>[]
+  updateCollectionApprovals?: boolean
+  collectionApprovals?: CollectionApproval<T>[]
+  updateStandardsTimeline?: boolean
+  standardsTimeline?: StandardsTimeline<T>[]
+  updateContractAddressTimeline?: boolean
+  contractAddressTimeline?: ContractAddressTimeline<T>[]
+  updateIsArchivedTimeline?: boolean
+  isArchivedTimeline?: IsArchivedTimeline<T>[]
+}
+```
+
+```typescript
+export interface MsgUpdateUserApprovals<T extends NumberType> {
+  creator: string
+  collectionId: T
+  updateOutgoingApprovals?: boolean
+  outgoingApprovals?: UserOutgoingApproval<T>[]
+  updateIncomingApprovals?: boolean
+  incomingApprovals?: UserIncomingApproval<T>[]
+  updateUserPermissions?: boolean
+  userPermissions?: UserPermissions<T>
+}
+```

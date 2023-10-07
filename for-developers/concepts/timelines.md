@@ -21,7 +21,7 @@ TypeScript Example: [CollectionApprovedTransfersTimeline](https://bitbadges.gith
 
 Below would denote collection metadata which has URI abc123 from time 1 to time 10 and URI xyz456 from 11-1000000.
 
-```typescriptreact
+```typescript
 [{
   timelineTimes: [{ start: 1n, end: 10n }],
   collectionMetadata: {

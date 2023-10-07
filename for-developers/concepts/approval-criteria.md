@@ -2,7 +2,9 @@
 
 In the last page, we mainly talked about how we match and check an approved transfer. Here, we will talk about the **approvalCriteria.**&#x20;
 
-These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set.
+These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set.&#x20;
+
+Note these are just the native options provided for convenience and consistency. You can implement your own approvals via custom logic with a smart contract.
 
 ```typescript
 export interface ApprovalCriteria<T extends NumberType> {
@@ -29,8 +31,6 @@ export interface ApprovalCriteria<T extends NumberType> {
 }
 ```
 
-Note these are just the native options provided for convenience and consistency. You can extend this via custom logic with a smart contract.
-
 ### **Overrides**
 
 As mentioned previously, the collection-wide approvals can override the user-level approvals. This is done via the **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.&#x20;
@@ -47,6 +47,30 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
+### **Must Own Badges**
+
+Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of another collection that must be owned at custom times in order to be approved. &#x20;
+
+For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own a scammer badge in order to interact.
+
+Note that collections with "Off-Chain" balances are not supported for this feature.
+
+```typescript
+export interface MustOwnBadges<T extends NumberType> {
+  collectionId: T;
+
+  amountRange: UintRange<T>; //min/max amount to be owned
+  ownershipTimes: UintRange<T>[];
+  badgeIds: UintRange<T>[];
+
+  overrideWithCurrentTime: boolean; //override ownershipTimes with time of block at execution
+  
+  //if true, must own all badges at all times specified
+  //if false, must meet the criteria for at least one badge and at least one ownership time (one millisecond)
+  mustOwnAll: boolean; 
+}
+```
+
 ### **Tracker IDs**
 
 ```typescript
@@ -59,6 +83,16 @@ export interface CollectionApproval<T extends NumberType> {
 
 On the previous page, we explained the approval interface. This interface had two fields: **challengeTrackerId** and **approvalTrackerId**. These are string identifiers which we use to track and tally approvals and what has been processed vs not yet (if applicable).
 
+**What are trackers?**
+
+We use trackers and tallies interchangably throughout this documentation. Approvals trackers and challenge trackers are two separate concepts.
+
+**Approvals trackers** track how many badges have been transferred and how many transfers occur. The identifier of each approval tracker consists of **approvalTrackerId** along with other identifying details.
+
+**Challenge trackers** track which leaves were used in a Merkle challenge (the approvee needs to provide a valid Merkle path). The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details.
+
+**How do trackers work?**
+
 BitBadges tracks approvals and used challenges using an incrementing tally system with a threshold. For example,
 
 1. You are approved for x10 of badge IDs 1-10
@@ -66,17 +100,21 @@ BitBadges tracks approvals and used challenges using an incrementing tally syste
 3. You transfer another x5 -> tally goes to x10/10
 4. You transfer another x1 -> exceed threshold and transfer fails
 
-Multiple tallies can be created and are each identified by a unique ID which uses **challengeTrackerId** and **approvalTrackerId.**&#x20;
+**Handling Multiple Trackers**
 
-Tallies are increment only in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID.
+Multiple tallies can be created and are each identified by a unique ID. Tallies are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done by editing **approvalTrackerId** or **challengeTrackerId.**
 
-Thus, tallies are unique to each **approvalTrackerId** or **challengeTrackerId**. So, a tally for **approvalTrackerId** 123 will be different than the tally for **approvalTrackerId** ABC. Each tally is increment-only and non-deletable. If you would like to reset the state of the tally, a new unused approval ID can be specified which will create brand new tallies from scratch.
+It is recommended that each approval on a level uses unique unused tracker IDs for approval trackers and/or challenge trackers, but for advanced functionality (see end of page), they can be linked using the same IDs.
 
-It is recommended that each approval uses unique unused IDs from all other approvals, but for advanced functionality (see end of page), they can be linked using the same IDs.
+**As-Needed Basis**
+
+We calculate tallys on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we do not increment. Take this into consideration, especially if you are changing IDs.&#x20;
+
+For example, changing from an unlimited restriction to some restriction is not retroactive and is only tallied for transfers while it has a restriction. Likewise, be mindful of previously used IDs because they are non-deletable and increment-only.
 
 ### Approval Trackers
 
-Approval trackers are tallies that track how much of badges have been transferred and how many transfers take place. Each transfer increments **numTransfers** and each badge transferred increments the **amounts**. Approval trackers are increment only.
+Approval trackers are tallies that track how much of badges have been transferred and how many transfers take place. Each transfer increments **numTransfers** and each badge transferred increments the **amounts** in the interface below.
 
 ```typescript
 export interface ApprovalsTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
@@ -86,6 +124,10 @@ export interface ApprovalsTrackerInfoBase<T extends NumberType> extends Approval
 ```
 
 Each individual tracker has a unique ID made up of six fields.
+
+```
+ID: collectionId-approvalLevel-approverAddress-approvalTrackerId-trackerType-approvedAddress
+```
 
 ```typescript
 export interface ApprovalTrackerIdDetails<T extends NumberType> {
@@ -106,7 +148,7 @@ The trackerType corresponds to what type of tracker it is. If "overall", this is
 
 
 
-Moving forward, let's say we are dealing with the collection approvals approving transfers from Bob  for collection 1, so&#x20;
+Moving forward, let's say we are dealing with the collection approvals approving transfers from Bob  for collection 1, so `1-collection-bob-uniqueID-?-?`
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>{
 </strong>  collectionId: 1
@@ -120,9 +162,9 @@ Moving forward, let's say we are dealing with the collection approvals approving
 
 #### **Approval Amount Tallies**
 
-Approval amounts (**approvalAmounts**) specifies the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721).&#x20;
+Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721).&#x20;
 
-As mentioned above, we use an incrementing running tally system and assert it does not exceed the specified threshold. The **approvalAmounts** field defines the threshold. If nil value or "0", we assume there is no limit (no amount restrictions).
+If nil value or "0", we assume there is no limit (no amount restrictions).
 
 We define four levels that you can specify for approval amounts as seen below. You can define multiple if desired. To be approved, the transfer must satisfy all.
 
@@ -147,39 +189,13 @@ The amounts approved are limited to the **badgeIds** and **ownershipTimes** defi
 
 So let's say we have the **approvalAmounts** defined above and Alice initiates a transfer of x10 from Bob. There are two separate trackers that get incremented here.
 
-\#1) Tracker with the following ID
+\#1) Tracker with the following ID `1-collection-bob-uniqueID-overall-` gets incremented to x10 out of 1000. Any subsequent transfers (from any address) will increment this overall approval amount as well.
 
-```
-{
-  collectionId: 1
-  approvalLevel: "collection"
-  approverAddress: bob
-  approvalTrackerId: "some unique id"
-  trackerType: "overall"
-  approvedAddress: ""
-}
-```
-
-gets incremented to x10/1000. Any subsequent transfers (from any address) will increment this overall approval amount as well.
-
-\#2) Tracker with ID
-
-```
-{
-  collectionId: 1
-  approvalLevel: "collection"
-  approverAddress: bob
-  approvalTrackerId: "some unique id"
-  trackerType: "initiatedBy"
-  approvedAddress: alice
-}
-```
-
-gets incremented to x10/10. Alice has now fully used up her threshold for this tracker.
+\#2) Tracker with ID `1-collection-bob-uniqueID-initiatedBy-alice`gets incremented to x10 out of 10 used. Alice has now fully used up her threshold for this tracker.
 
 
 
-Since there was an unlimited amount approved for "to" and "from" trackers, we do not increment anything.
+Since there was an unlimited amount approved for "to" and "from" trackers, we do not increment anything (as-needed basis).
 
 ### **Max Number of Transfers**
 
@@ -193,36 +209,11 @@ Similar to approval amounts, you can also specify the maximum number of transfer
 },
 </code></pre>
 
-So if we reuse the previous example where Alice initiates a transfer, the tracker
-
-```
-{
-  collectionId: 1
-  approvalLevel: "collection"
-  approverAddress: bob
-  approvalTrackerId: "some unique id"
-  trackerType: "initiatedBy"
-  approvedAddress: alice
-}
-```
-
-would increment to 1/1 transfers used. Alice can no longer initiate another transfer.
-
-
+So if we reuse the previous example where Alice initiates a transfer, the tracker `1-collection-bob-uniqueID-initiatedBy-alice`would increment to 1/1 transfers used. Alice can no longer initiate another transfer.
 
 Again, nothing is incremented unnecessarily, so "overall", "to", and "from" trackers are not incremented.
 
-Note that sometimes, we may need the number of transfers to calculate the predetermined balances (see below). If this is needed, we increment the number of transfers for the corresponding tracker (even if the corresponding maximum number of transfers for that level is not set / set to no limit).
-
-### **Resetting / Changing IDs**
-
-To reset a tally, you simply need to just alter the ID to a previously unused one. This can be done by changing the **approvalTrackerId** or **challengeTrackerId.**
-
-We calculate tallys on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and not restrictions), we do not increment. Take this into consideration, especially if you are changing IDs.&#x20;
-
-For example, changing from an unlimited restriction to some restriction is not retroactive and is only tallied for transfers while it has a restriction.&#x20;
-
-Likewise, be mindful of previously used IDs because they are non-deletable and increment-only.
+Note that sometimes, in [Predetermined Balances](approval-criteria.md#predetermined-balances), if you specify useOverallNumTransfers, usePerToAddressNumTransfers, usePerFromAddressNumTransfers, or usePerInitiatedByAddressNumTransfers, we do need the number of transfers for the corresponding tracker and do increment (even if the corresponding maximum number of transfers for that level is not set / set to no limit).
 
 ### **Predetermined Balances**
 
@@ -244,7 +235,7 @@ export interface PredeterminedBalances<T extends NumberType> {
 
 There are two ways to define the balances. Both can not be used together.
 
-* **Manual Balances:** Simply define an array of balances manually.&#x20;
+* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for each unique transfer.
 * ```json
   "manualBalances": [
     {
@@ -295,11 +286,11 @@ There are two ways to define the balances. Both can not be used together.
 
 The order is calculated by a specified order calculation method.&#x20;
 
-For manual balances, we want to determined which element index of the array is transferred (e.g. order number = 0 means manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
+For manual balances, we want to determined which element index of the array is transferred (e.g. order number = 0 means the balances of manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
 
 There are five calculation methods to determine the order method. We either use a running tally of the number of transfers to calculate the order number (no previous transfers = order number 0, one previous = order number 1, and so on). This can be done on an overall or per to/from/initiatedBy address basis and is incremented as explained in [Max Number of Transfers](approval-criteria.md#max-number-of-transfers). Note this increments the same tracker. So even if you have unlimited number of transfers defined in **maxNumTransfers,** this will increment it.
 
-We also support using the leaf index for a Merkle challenge proof (see [Merkle Challenges](approval-criteria.md#merkle-challenges) below) to calculate the order number (e.g. leftmost leaf will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer.
+We also support using the leaf index for the defined Merkle challenge proof (see [Merkle Challenges](approval-criteria.md#merkle-challenges) below) to calculate the order number (e.g. leftmost leaf will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer.
 
 This is used to reserve specific badges for specific users / claim codes. For example, reserve the badges corresponding to order number 10 (leaf number 10) for address xyz.eth.
 
@@ -314,32 +305,6 @@ export interface PredeterminedOrderCalculationMethod {
 ```
 
 Although this can be used in tandem with approval amounts, either one or the other is usually used because they both specify amount restrictions.
-
-### **Must Own Badges**
-
-Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of another collection that must be owned at custom times in order to be approved. &#x20;
-
-For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own a scammer badge in order to interact.
-
-Note that collections with "Off-Chain" balances are not supported for this feature.
-
-
-
-```typescript
-export interface MustOwnBadges<T extends NumberType> {
-  collectionId: T;
-
-  amountRange: UintRange<T>; //min/max amount to be owned
-  ownershipTimes: UintRange<T>[];
-  badgeIds: UintRange<T>[];
-
-  overrideWithCurrentTime: boolean; //override ownershipTimes with time of block at execution
-  
-  //if true, must own all badges at all times specified
-  //if false, must meet the criteria for at least one badge and at least one ownership time (one millisecond)
-  mustOwnAll: boolean; 
-}
-```
 
 ### **Merkle Challenges**
 
@@ -367,7 +332,7 @@ This is stored in a challenge tracker, similar to the approvals trackers explain
 
 **challengeTrackerId** is defined by the approval (see previous page). **leafIndex** is the index of the leaf that we are tracking (0 = leftmost and so on).
 
-We simply track how many times the leaf has been used and only allow it once if **maxOneUsePerLeaf** is specified. Like approval trackers, this is increment only and non-deletable.
+We simply track if the leaf has been used and only allow it to be used once if **maxOneUsePerLeaf** is specified. Like approval trackers, this is increment only and non-deletable.
 
 ```typescript
 export interface MerkleChallenge<T extends NumberType> {
@@ -380,17 +345,15 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 ```
 
-```json
- "merkleChallenge": {
-   "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
+<pre class="language-json"><code class="lang-json"><strong> "merkleChallenge": {
+</strong>   "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
    "expectedProofLength": "1",
    "useCreatorAddressAsLeaf": true,
-   "useLeafIndexForTransferOrder": false,
    "maxOneUsePerLeaf": true,
    "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
    "customData": ""
 }
-```
+</code></pre>
 
 ### **Requires**
 
@@ -401,8 +364,6 @@ You also have the following options to further restrict who can transfer to who.
 **requireFromEqualsInitiatedBy, requireFromDoesNotEqualsInitiatedBy**
 
 These are pretty self-explanatory. You can enforce that we additionally check if the to or from address equals or does not equal the initiator of the transfer.
-
-###
 
 ### Advanced: Linking Tracker Ids
 

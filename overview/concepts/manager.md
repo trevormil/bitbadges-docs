@@ -2,7 +2,7 @@
 
 Each collection can optionally have a manager who can be granted special admin privileges if desired.&#x20;
 
-IMPORTANT: Note that when you give up the manager role, you give up all privileges associated with it.
+Note that when you give up the manager role, you give up all privileges associated with it.
 
 ### Permissions (Blockchain)
 

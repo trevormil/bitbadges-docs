@@ -13,8 +13,6 @@ export interface AddressMapping {
 
   uri: string; 
   customData: string;
-
-  createdBy?: string;
 }
 ```
 

@@ -60,7 +60,10 @@ export const ConvertFunction = BigIntify;
 //BACKEND_URL for main API is https://api.bitbadges.io
 //Make sure process.env.BITBADGES_API_KEY is set with a valid API key.
 
-const BitBadgesApi = new BitBadgesAPI(BACKEND_URL, BigIntify); //Can also do Numberify, Stringify, etc
+const BitBadgesApi = new BitBadgesAPI({
+    apiKey: '...',
+    convertFunction: ConvertFunction //Can also do Numberify, Stringify, etc
+}); 
 
 await BitBadgesApi.getStatus()
 await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
@@ -78,22 +81,6 @@ Auth Required = \*
 
 
 ### **Blockin Auth**
-
-
-
-{% swagger method="post" path="" baseUrl="" summary="" %}
-{% swagger-description %}
-
-{% endswagger-description %}
-
-{% swagger-parameter in="query" %}
-
-{% endswagger-parameter %}
-
-{% swagger-response status="403: Forbidden" description="" %}
-
-{% endswagger-response %}
-{% endswagger %}
 
 **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
