@@ -4,7 +4,7 @@ There are many ways to verify if a user owns a badge or not. Select your preferr
 
 ## Common Use Cases
 
-**Blockin**
+**Multi-Chain Web3 Authentication w/ BitBadges Support - Blockin**
 
 Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on multiple L1 chains including BitBadges)!
 

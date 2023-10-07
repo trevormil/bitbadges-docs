@@ -273,7 +273,7 @@ Again, you can customize the parameters to your needs. Be sure to check out the 
 }
 ```
 
-See [Creating Claims](../tutorials/create-merkle-claim.md) for how to create these Merkle trees.
+See [Creating Claims](../tutorials/create-merkle-challenge-claim.md) for how to create these Merkle trees.
 
 
 

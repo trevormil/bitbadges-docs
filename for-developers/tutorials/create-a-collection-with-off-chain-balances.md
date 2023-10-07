@@ -14,7 +14,7 @@ const transfers: TransferWithIncrements<bigint>[] = [...];
 const balanceMap = await createBalanceMapForOffChainBalances(transfers);
 ```
 
-Note that you should not allocate more badges in this map than what was created on-chain.
+Note that you should not allocate more badges in this map than what was created on-chain (via the "Mint" address).
 
 
 
@@ -22,7 +22,7 @@ Note that you should not allocate more badges in this map than what was created 
 
 This can be via IPFS or any method of your choice.&#x20;
 
-Note permanent storage (i.e. IPFS) coupled with not being able to update the URL will make your balances permanent. This can be a good option if you want your collection to enforcably be frozen and immutable.
+Note permanent storage (i.e. IPFS) coupled with not being able to update the URL will make your balances permanent and immutable. This can be a good option if you want your collection to enforcably be frozen and immutable.
 
 **Step 3: Create Your Collection**
 
@@ -38,4 +38,4 @@ If you are allowed to update the URL according to the permissions set, you can d
 
 
 
-You can also just update the balances returned by the URL as well. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint.
+You can also just update the balances returned by the URL as well. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint or do it on the website.

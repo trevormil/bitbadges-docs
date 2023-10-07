@@ -37,8 +37,6 @@ message CollectionMetadataTimeline {
 }
 ```
 
-TypeScript Example: [CollectionApprovedTransfersTimeline](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/CollectionApprovedTransferTimeline.html)
-
 Below would denote collection metadata which has URI abc123 from time 1 to time 10 and URI xyz456 from 11-1000000.
 
 ```typescript
@@ -57,6 +55,4 @@ Below would denote collection metadata which has URI abc123 from time 1 to time 
 }];
 ```
 
-\
-
-
+If it is time 5, we use the first. If it is time 20, we use the second.

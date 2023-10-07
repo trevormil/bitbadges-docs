@@ -62,13 +62,13 @@
 * [🚴♂ Getting Started](for-developers/getting-started.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [Verifying Badge Ownership](for-developers/tutorials/verifying-badge-ownership.md)
+  * [Create a Collection with Off-Chain Balances](for-developers/tutorials/create-a-collection-with-off-chain-balances.md)
   * [Build a Frontend](for-developers/tutorials/build-a-frontend.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Build a dApp](for-developers/tutorials/build-a-dapp.md)
-  * [Create Merkle Claim](for-developers/tutorials/create-merkle-claim.md)
+  * [Create Merkle Challenge Claim](for-developers/tutorials/create-merkle-challenge-claim.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-smart-contract.md)
   * [Running a Node](for-developers/tutorials/running-a-node.md)
-  * [Create a Collection with Off-Chain Balances](for-developers/tutorials/create-a-collection-with-off-chain-balances.md)
 * [📙 Changelog](for-developers/changelog.md)
 * [👨💻 Contributing](overview/contributing.md)
 
@@ -81,13 +81,13 @@
 ## 💻 Website
 
 * [Overview](website/overview.md)
-* [Compatibility](website/compatibility.md)
 
 ## 📚 Indexer / API
 
 * [Overview](indexer-api/overview.md)
 * [API](indexer-api/api.md)
 * [Indexer](indexer-api/indexer.md)
+* [Compatibility](indexer-api/compatibility.md)
 * [Tutorials](indexer-api/tutorials/README.md)
   * [Authentication](indexer-api/concepts/authentication.md)
   * [Collections Tutorials](indexer-api/tutorials/collections-tutorials.md)

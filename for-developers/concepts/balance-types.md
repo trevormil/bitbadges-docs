@@ -33,11 +33,43 @@ Balances, at any given time, will be queried from the specified URI (stored via 
 
 When querying the balances from the URI, the querier should verify that the maximum supply defined on-chain (the badge balance of the "Mint" address) is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
 
+#### Benefits
+
+* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances.
+* **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing the JSON returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
+* **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
+
+#### Drawbacks
+
+* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly, \
+  since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and claims) is not supported, unless custom implemented off-chain.
+* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances.
+
+### Suitability of Off-Chain Balances
+
+#### Criteria for Adoption
+
+Consider adopting off-chain balances if your collection aligns with the following criteria:
+
+1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer, off-chain balances could be advantageous, especially if you make the balances frozen and immutable.
+2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
+
+#### Advantages Over Standard Solutions
+
+Compared to traditional client-server solutions, off-chain balances offer numerous advantages, including:
+
+* **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
+* **Seamless Integration**: Integration with the complete suite of BitBadges tools.
+* **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
+* **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
+
+In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
+
 **What format should the balances be in?**&#x20;
 
 It should be a JSON object where keys are Cosmos addresses and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
-See here for further info on using the SDK.
+See [here](../../sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 
 **How are the balances permanently frozen for off-chain collections?**
 

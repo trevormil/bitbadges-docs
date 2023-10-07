@@ -2,10 +2,6 @@
 
 Distribution tools are helper tools that streamline the process of distributing badges upon creation. An example tool might be to fetch and distribute badges to the the addresses of all users who attended an event. Other example ideas include distributing via e-mail, QR codes, location, etc.
 
-**Pre-Readings**
-
-[Claims](broken-reference) - Know the difference between whitelist claims and code/password based claims.
-
 ### **Have an idea for a tool?**
 
 When building a distribution tool, you have to answer a couple questions:
@@ -43,10 +39,9 @@ Your two options:
 * Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach. Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
   * For example, your tool simply tell users to copy and paste specific addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool for distribution.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
-  * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See the expected format of the JSON file for merkleChallenge.uri [here](ipfs://QmSCGwqBofFt69iGzKERw6z27Eszchd39AoPNLLGB18exE) or use the [MerkleChallengeDetails](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/MerkleChallengeDetails.html) type from the SDK.
+  * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../../indexer-api/compatibility.md).
     * Note this JSON file will be public, so DO NOT include sensitive information like passwords or unhashed preimages (the actual codes) here. Whitelisted addresses are okay.&#x20;
-    * See here for a sample [MsgUpdateCollection](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/7\_100\_person\_whitelist.json#L176).
-  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see Broadcasting and Submitting Txs). This outsources all the broadcasting, signing, etc. to an interface, and you simply need to generate the Msg contents.
+  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../../sdk/broadcasting-and-signing-txs.md)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**

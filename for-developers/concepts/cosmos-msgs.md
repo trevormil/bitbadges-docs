@@ -25,7 +25,7 @@ Using the above tutorial is the recommended method, but you can also interact wi
 
 ### Notes
 
-* The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when creating each Msg.
+*
 
 ## Msg Types
 
@@ -34,14 +34,10 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 **x/badges**
 
 * [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Creates a new collection or updates the details of a collection. Must be manager to execute.
-* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if the rules allow.
+* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
 * [MsgUpdateUserApprovedTransfers](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovedTransfers.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 * [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
 * [MsgCreateAddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateAddressMappings.html) - Creates address mapping(s).
-
-
-
-For MsgUpdateCollection and MsgUpdateUserApprovedTransfers, we use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value.
 
 **x/wasmx**
 
@@ -49,11 +45,17 @@ For MsgUpdateCollection and MsgUpdateUserApprovedTransfers, we use an update fla
 
 **Other Cosmos SDK Modules**
 
-For other standard Cosmos SDK messages, you can check out the bitbadgesjs-proto documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here).
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them.
 
 
 
 ## Msg Definitions
+
+The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when creating each Msg.
+
+For MsgUpdateCollection and MsgUpdateUserApprovals we use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value.
+
+See previous pages for further explanations on specific fields.
 
 ```typescript
 export interface MsgCreateAddressMappings {
@@ -75,13 +77,24 @@ export interface MsgTransferBadges<T extends NumberType> {
   collectionId: T;
   transfers: Transfer<T>[];
 }
+
+export interface Transfer<T extends NumberType> {
+    from: string;
+    toAddresses: string[];
+    balances: Balance<T>[];
+    precalculateBalancesFromApproval?: ApprovalIdentifierDetails;
+    merkleProofs?: MerkleProof[];
+    memo?: string;
+    prioritizedApprovals?: ApprovalIdentifierDetails[];
+    onlyCheckPrioritizedApprovals?: boolean;
+}
 ```
 
 ```typescript
 export interface MsgUpdateCollection<T extends NumberType> {
   creator: string
   collectionId: T
-  balancesType?: string
+  balancesType?: string //"Standard" | "Off-Chain"
   defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
   defaultIncomingApprovals?: UserIncomingApproval<T>[]
   defaultUserPermissions?: UserPermissions<T>
