@@ -340,7 +340,7 @@ See Predetermined Balances below for reserving specific leaf indices for specifi
 
 #### **Creating a Merkle Tree and Expected Format**
 
-The expected format of the trees are that each leaf layer is full (i.e. has 2^N leaves). Any empty leaves should be filled in with the default hash "0000000000000000000000000000000000000000000000000000000000000000".
+The expected format of the trees are that each leaf layer is full (i.e. has 2^N leaves). Any empty leaves should be filled in with the default hash "0000000000000000000000000000000000000000000000000000000000000000" for compatibility with the BitBadges website / indexer.
 
 ```typescript
 import { SHA256 } from 'crypto-js';
