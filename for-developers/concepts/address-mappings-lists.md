@@ -39,15 +39,70 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 
 ### Examples
 
-This is the mapping which includes all addresses except "cosmos123...."
+This is the mapping which includes all addresses except "cosmos123...." and "cosmos456...."
 
 ```typescript
 {
   "mappingId": "abcdef",
-  "addresses": ["cosmos123..."],
+  "addresses": ["cosmos123...", "cosmos456...."],
   "includeAddresses": false,
-  "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub",
-  "customData": "",
-  "createdBy": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+  ...
 }
 ```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>//Snippet from getReservedAddressMapping() of the SDK
+</strong><strong>
+</strong><strong>if (addressMappingId === 'Mint') {
+</strong>  addressMapping = {
+    mappingId: 'Mint',
+    addresses: ['Mint'],
+    includeAddresses: true,
+    ...
+  };
+}
+
+if (addressMappingId === 'Manager') {
+  addressMapping = {
+    mappingId: 'Manager',
+    addresses: [managerAddress],
+    includeAddresses: true,
+    ...
+  };
+}
+
+if (addressMappingId === 'AllWithoutMint') {
+  addressMapping = {
+    mappingId: 'AllWithoutMint',
+    addresses: ['Mint'],
+    includeAddresses: false,
+    ...
+  };
+}
+
+if (addressMappingId === 'AllWithMint') {
+  addressMapping = {
+    mappingId: 'AllWithMint',
+    addresses: [],
+    includeAddresses: false,
+    ...
+  };
+}
+
+if (addressMappingId === 'None') {
+  addressMapping = {
+    mappingId: 'None',
+    addresses: [],
+    includeAddresses: true,
+    ...
+  };
+}
+
+if (convertToCosmosAddress(addressMappingId)) {
+  addressMapping = {
+    mappingId: addressMappingId,
+    addresses: [addressMappingId],
+    includeAddresses: true,
+    ...
+  };
+}
+</code></pre>

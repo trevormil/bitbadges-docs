@@ -2,14 +2,13 @@
 
 For an overview, first read [Balances / Transfers](../../overview/concepts/time-based-balances.md).
 
-<pre class="language-protobuf"><code class="lang-protobuf">message Balance {
-  string amount = 1  [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-<strong>  repeated UintRange ownershipTimes = 2;
-</strong>  repeated UintRange badgeIds = 3;
+```typescript
+export interface Balance<T extends NumberType> {
+  amount: T;
+  badgeIds: UintRange<T>[]
+  ownershipTimes: UintRange<T>[]
 }
-</code></pre>
-
-
+```
 
 **Interpreting Balances**
 

@@ -8,6 +8,26 @@ Times are defined via [UNIX time](https://developer.mozilla.org/en-US/docs/Gloss
 
 For example, one can set the collection metadata URL to be https://example1.com from January to March and have it automatically switch to https://example2.com for March to December. The switch happens automatically and doesn't need any blockchain transaction to trigger it at that time.
 
+```typescript
+managerTimeline: ManagerTimeline<T>[],
+collectionMetadataTimeline: CollectionMetadataTimeline<T>[],
+badgeMetadataTimeline: BadgeMetadataTimeline<T>[],
+offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[],
+customDataTimeline: CustomDataTimeline<T>[],
+collectionApprovals: CollectionApproval<T>[],
+standardsTimeline: StandardsTimeline<T>[],
+contractAddressTimeline: ContractAddressTimeline<T>[],
+isArchivedTimeline: IsArchivedTimeline<T>[],
+```
+
+These all extend the following interface&#x20;
+
+```typescript
+export interface TimelineItem<T extends NumberType> {
+  timelineTimes: UintRange<T>[];
+}
+```
+
 **Examples**
 
 ```protobuf
