@@ -93,7 +93,7 @@ export interface Transfer<T extends NumberType> {
 ```typescript
 export interface MsgUpdateCollection<T extends NumberType> {
   creator: string
-  collectionId: T
+  collectionId: T //0 for new collections (will be assigned)
   balancesType?: string //"Standard" | "Off-Chain"
   defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
   defaultIncomingApprovals?: UserIncomingApproval<T>[]
