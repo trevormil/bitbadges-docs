@@ -15,9 +15,6 @@ Note that when you give up the manager role, you give up all privileges associat
 * **Transfer the role of manager?**
 * **Can create more badges?** For which badge IDs? For which ownership times ([see here](time-based-balances.md))? At what times? And what amount?
 * **Can update the transferability** / collection's approved transfers ([see here](transferability.md))?
-* **Can revoke badges?**
-* **Can freeze users from transferring?**&#x20;
-* **Can freeze badges from being transferred?**
 
 And more!
 
