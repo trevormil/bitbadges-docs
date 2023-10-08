@@ -126,10 +126,6 @@ The Mint address has its own approvals, but since it is not a real address, they
 
 It is recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is just the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
-**Manager Address**
-
-A common use case is to approve stuff based on who the current manager is. For example, allow the current manager to forcefully revoke badges. For this, you can leverage the reserved "Manager" mapping. For example, set **initiatedByMappingId** to "Manager" to only allow the manager to initiate the approval.&#x20;
-
 #### Options - Manipulating the Main Fields
 
 Each of the main fields has a corresponding options field (badgeIds -> badgeIdsOptions). This is just for shorthand representation to manipulate and override the default field value. For example, you could do something like this:
