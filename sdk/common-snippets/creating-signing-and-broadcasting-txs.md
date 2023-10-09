@@ -63,7 +63,7 @@ const getPublicKey = async (cosmosAddress: string) => {
 import { CHAIN_DETAILS } from 'bitbadgesjs-utils';
 
 const getPublicKey = async (_cosmosAddress: string) => {
-    const chain = CHAIN_DETAILS;
+    const chain = CHAIN_DETAILS; //can also use BETANET_CHAIN_DETAILS or MAINNET_CHAIN_DETAILS
     
     const account = await window?.keplr?.getKey(chain.cosmosChainId)
     if (!account) return '';
@@ -82,11 +82,12 @@ For any other transaction types on BitBadges, just replaces **createMessageSend*
 See here for [sample Msgs](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup).
 
 ```ts
-import { createTxMsgSend } from 'bitbadgesjs-proto'
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-proto'
 
 const chain = {
   chainId: 2,
   cosmosChainId: 'bitbadges_1-2',
+  chain: SupportedChain.ETH
 }
 
 const sender = {
