@@ -42,7 +42,7 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * Any valid Cosmos (bech32) address is reserved as the mapping that ONLY includes that specific address.
 * "Mint" specifies the "Mint" address only.
 * "AllWithoutMint" denotes all valid user addresses (excluding the "Mint" address)
-* "AllWithMint" denotes all valid user addresses as well as the "Mint" address
+* "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 * "Manager" will be reserved for a mapping that ONLY includes the current manager of the collection. If the manager changes, this mapping will dynamically update to the new manager.
 
 ### Examples

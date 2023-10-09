@@ -113,7 +113,7 @@
   * [Address Mappings](sdk/common-snippets/address-mappings.md)
   * [Badge Metadata](sdk/common-snippets/badge-metadata.md)
   * [Metadata IDs](sdk/common-snippets/metadata-ids.md)
-  * [Handle All Combinations](sdk/common-snippets/handle-all-combinations.md)
+  * [Get Unhandled Approvals](sdk/common-snippets/get-unhandled-approvals.md)
   * [Default User Approvals](sdk/common-snippets/default-user-approvals.md)
   * [Check Permissions](sdk/common-snippets/check-permissions.md)
   * [Validate Updates](sdk/common-snippets/validate-updates.md)
