@@ -47,7 +47,7 @@ Note that user incoming / outgoing approvals follow the same interface except **
 
 **Approved vs Unapproved**
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals (or disapprovals) on the same level.&#x20;
+Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals on the same level.&#x20;
 
 We handle approvals per level in the following manner:
 
@@ -147,7 +147,7 @@ The process of matching transfers to approvals involves several steps. This is d
 3. Expand all approval tuples with range logic (AllWithMint, ...., \[1-100])  to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
 4. Expand the current transfer tuple to singular tuple values.
 5. Find all matches.&#x20;
-   1. If anything is disapproved or unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
+   1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
    2. Find corresponding approvals for all (first match by default but can be customized with  **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
    3. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.&#x20;
 6. Lastly, we check the **`approvalCriteria`** for each one-to-one match and ensure everything is satisfied.
@@ -225,9 +225,9 @@ In this scenario, let's say the default "first match" approach is used:
 2. The second approved transfer `(Bob, Alice, All, T, [1-2], [1-2000]),` again partially matches, and we deduct. This partial match only handles 1-999 because we handled 1000-2000 already. Note that this approval says it can be initiated by "All" instead of Bob, but Bob's address is within the "All" mapping.
 3. The third approved transfer `(Bob, Alice, All, T, [1-2], [1001-Max])` covers the rest. This transfer is approved on the collection level because the entire transfer was handled.
 
-If we hypothetically had a fourth approved transfer `(Bob, Alice, Bob, T, [1-2], [1-1]) -> DISAPPROVED,` the transfer would fail because it matches to a disapproval.
 
-Or, if Bob was requesting badge ID 3 to be transferred as well, it would fail because badge ID 3 is unhandled by all defined approvals (and disallowed by default if unhandled).
+
+If Bob was requesting badge ID 3 to be transferred as well, it would fail because badge ID 3 is unhandled by all defined approvals (and disallowed by default if unhandled).
 
 **Outgoing Approvals**
 

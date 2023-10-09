@@ -426,26 +426,6 @@ See [Example Msgs](broken-reference) for further examples.
             "end": "18446744073709551615"
           }
         ],
-        "badgeIdsOptions": {
-          "invertDefault": false,
-          "allValues": false,
-          "noValues": false
-        },
-        "ownershipTimesOptions": {
-          "invertDefault": false,
-          "allValues": false,
-          "noValues": false
-        },
-        "permittedTimesOptions": {
-          "invertDefault": false,
-          "allValues": false,
-          "noValues": false
-        },
-        "forbiddenTimesOptions": {
-          "invertDefault": false,
-          "allValues": false,
-          "noValues": false
-        }
       }
     ],
     "canDeleteCollection": [],
