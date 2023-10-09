@@ -33,44 +33,44 @@ export interface CollectionApproval<T extends NumberType> {
   badgeIds: UintRange<T>[];
   ownershipTimes: UintRange<T>[];
   approvalId: string;
-  approvalTrackerId: string;
+  amountTrackerId: string;
   challengeTrackerId: string;
 
   uri?: string;
   customData?: string;
-  toMappingOptions?: ValueOptions;
-  fromMappingOptions?: ValueOptions;
-  initiatedByMappingOptions?: ValueOptions;
-  transferTimesOptions?: ValueOptions;
-  badgeIdsOptions?: ValueOptions;
-  ownershipTimesOptions?: ValueOptions;
-  approvalTrackerIdOptions?: ValueOptions;
-  challengeTrackerIdOptions?: ValueOptions;
-
-  isApproved: boolean;
+  
   approvalCriteria?: ApprovalCriteria<T>;
 }
 ```
 
 Note that user incoming / outgoing approvals follow the same interface except **toMapping** is auto-populated with the user's address for incoming approvals and similarly the **fromMapping** for outgoingApprovals.
 
-#### Approvals vs Disapprovals
-
-We allow you to create approvals and disapprovals based on whether **isApproved** = true or false. If you are creating a disapproval (**isApproved** = false), the approval fields like **approvalCriteria**, etc will be ignored, and you can leave empty or default.
-
 **Approved vs Unapproved**
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals (or disapprovals) on the same level. We handle approvals per level in the following manner:
+Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals (or disapprovals) on the same level.&#x20;
 
-1. If the transfer matches to ANY disapproval, the whole transfer is considered disallowed, regardless if it matches with any valid approval(s).
-2. If the transfer is unhandled (doesn't match to any approval or disapproval), it is DISAPPROVED by default.
-3. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals in rare cases.
+We handle approvals per level in the following manner:
+
+1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.&#x20;
+2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals in rare cases.
 
 We recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and you will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
-#### Approval ID
+#### Approval IDs
 
-All approvals where **isApproved** = true must have a unique **approvalId** for identification per level. The **approvalTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**.
+All approvals must have a unique **approvalId** for identification per level. The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**.
+
+All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria.md) - Advanced), we recommend always keeping all three the same.
+
+```json
+{
+    ...
+    "approvalId": "abc123",
+    "amountTrackerId": "abc123",
+    "challengeTrackerId": "abc123"
+    ...
+}
+```
 
 **Metadata**
 
@@ -126,39 +126,13 @@ The Mint address has its own approvals, but since it is not a real address, they
 
 It is recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is just the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
-#### Options - Manipulating the Main Fields
-
-Each of the main fields has a corresponding options field (badgeIds -> badgeIdsOptions). This is just for shorthand representation to manipulate and override the default field value. For example, you could do something like this:
-
-```json
-{
-    badgeIds: [{ start: 1, end: 10}],
-    badgeIdsOptions: { invertDefault: true, allValues: false, noValues: false }
-}
-```
-
-The result of this would be badges 11+.
-
-This is also available and convenient for address mappings.
-
-```json
-{
-    toMappingId: "Mint",
-    toMappingOptions: { invertDefault: true }
-}
-```
-
-This would represent the mapping for all addresses EXCEPT the mint address.&#x20;
-
-Note that we also reserve the "!" prefix for inverting a given mapping ID and reserve the "AllWithoutMint" and "AllWIthMint" mapping IDs (see [Address Mappings](address-mappings-lists.md)).
-
 #### Approval Criteria
 
 The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria.md).&#x20;
 
-For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved (in addition to having **isApproved** = true).&#x20;
+For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved.&#x20;
 
-The **approvalTrackerId** and **challengeTrackerId** correspond to **approvalCriteria** and are explained on the following page as well.
+The **amountTrackerId** and **challengeTrackerId** correspond to **approvalCriteria** and are explained on the following page as well.
 
 **Breaking Down Range Logic**
 
@@ -217,9 +191,8 @@ In order to allow forceful transfers to an address without prior approval, the d
         }
       ],
       "approvalId": "forceful-transfers-allowed",
-      "approvalTrackerId": "",
-      "challengeTrackerId": "",
-      "isApproved": true
+      "amountTrackerId": "forceful-transfers-allowed",
+      "challengeTrackerId": "forceful-transfers-allowed"
     }
   ]
 ```
@@ -308,7 +281,6 @@ Note how the **fromMapping** of each approval are non-overlapping, so any transf
           "end": "100"
         }
       ],
-      "isApproved": true,
       "approvalId": "claim-from-mint-address",
       ... //other criteria (including the IMPORTANT overrideFromOutgoingApprovals = true since we are dealing with transfers from the Mint address)
     },
@@ -334,8 +306,7 @@ Note how the **fromMapping** of each approval are non-overlapping, so any transf
           "end": "18446744073709551615"
         }
       ],
-      "approvalId": "transferable",
-      "isApproved": true
+      "approvalId": "transferable"
     }
   ],
 ```
@@ -368,9 +339,8 @@ This would set approve Charlie to send badges to Bob on this user's behalf.
       }
     ],
     "approvalId": "test",
-    "approvalTrackerId": "asdfasdf",
-    "challengeTrackerId": "",
-    "isApproved": true
+    "amountTrackerId": "asdfasdf",
+    "challengeTrackerId": "asdfasdf",
     //see next page
     "approvalCriteria": //define approval criteria (how much? challenges? etc here)
   }
@@ -405,9 +375,8 @@ This would set approve this user to receive any transfer from Bob.&#x20;
       }
     ],
     "approvalId": "test",
-    "approvalTrackerId": "asdfasdf",
-    "challengeTrackerId": "",
-    "isApproved": true
+    "amountTrackerId": "asdfasdf",
+    "challengeTrackerId": "asdfasdf",
   }
 ]
 ```

@@ -76,7 +76,7 @@ Ex: If we have the following permission definitions in an array:&#x20;
    timelineTimes: [{ start: 1, end: 10 }]
 
    permittedTimes: []
-   forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+   forbiddenTimes: [{ start: 1, end: 10 }]
    ```
 2. ```
    timelineTimes: [{ start: 1, end: 100 }]
@@ -85,7 +85,9 @@ Ex: If we have the following permission definitions in an array:&#x20;
    permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
    ```
 
-In this case, the timeline times 1-10 will be forbidden forever because we only take the first match for that specific criteria. 11-100 would be approved.
+In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permittedTimes: \[], forbiddenTimes: \[1 to 10]).&#x20;
+
+Times 11-100 would be permanently permitted since the first match for those times is the second element.
 
 Similar to approved transfers, even though we allow range logic to be specified, we first expand everything maintaining order to their singular values (one value, no ranges) before checking for our first match.
 
@@ -177,16 +179,11 @@ Also, if we add another permission definition after this one with **fromMappingI
 ]
 ```
 
-### Manipulating Default Values
+### Shorthand Options
 
-Similar to the approved transfers, we allow you to define default values and options that manipulate (invert, all, none, or keep) the default values. This is used for shorthand and convenience.&#x20;
+Note that we also reserve the "!" prefix for inverting a given mapping ID and also reserve specific mapping IDs (see [Address Mappings](address-mappings-lists.md)).
 
-```json
-{
-    toMappingId: "Mint",
-    toMappingOptions: { invertDefault: true }
-}
-```
+The same shorthand options can be applied to the trackerId ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
 
 ### **Importance of Handling All Values**
 

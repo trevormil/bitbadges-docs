@@ -75,13 +75,13 @@ export interface MustOwnBadges<T extends NumberType> {
 
 ```typescript
 export interface CollectionApproval<T extends NumberType> {
-  approvalTrackerId: string;
+  amountTrackerId: string;
   challengeTrackerId: string;
   ...
 }
 ```
 
-On the previous page, we explained the approval interface. This interface had two fields: **challengeTrackerId** and **approvalTrackerId**. These are string identifiers which we use to track and tally approvals and what has been processed / used up vs not yet (if applicable).
+On the previous page, we explained the approval interface. This interface had two fields: **challengeTrackerId** and **amountTrackerId**. These are string identifiers which we use to track and tally approvals and what has been processed / used up vs not yet (if applicable).
 
 **What are trackers?**
 
@@ -95,10 +95,10 @@ We use the terms trackers and tallies interchangeably throughout this documentat
 
 **How are they identified?**&#x20;
 
-The identifier of each approval tracker consists of **approvalTrackerId** along with other identifying details.
+The identifier of each approval tracker consists of **amountTrackerId** along with other identifying details.
 
 ```
-ID: collectionId-approvalLevel-approverAddress-approvalTrackerId-trackerType-approvedAddress
+ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
 ```
 
 ```typescript
@@ -106,7 +106,7 @@ export interface ApprovalTrackerIdDetails<T extends NumberType> {
   collectionId: T
   approvalLevel: "collection" | "incoming" | "outgoing" | ""
   approverAddress: string
-  approvalTrackerId: string
+  amountTrackerId: string
   trackerType: "overall" | "to" | "from" | "initiatedBy" | ""
   approvedAddress: string
 }
@@ -148,7 +148,7 @@ We increment tallies on an as-needed basis. Meaning, if there is no need to incr
 
 Trackers are ID-based, and multiple trackers can be created. Take note of what makes up the ID. The collection ID, approval level, approver address, and more are all considered. If one changes or is different, the whole ID is different and will correspond to a new tracker.&#x20;
 
-Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **approvalTrackerId** or **challengeTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
+Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **amountTrackerId** or **challengeTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
 
 Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
 
@@ -156,7 +156,7 @@ Because of the immutable nature, be careful to not revert to a previously used I
 
 In some instances, you may want to link tracker IDs. It is typically recommended for simplicity that each approval / challenge corresponds to a unique tracker ID, but for advanced functionality, multiple can be linked using the same IDs. This can allow you to implement OR or XOR logic between approvals / challenges.
 
-For example, you do not want any double dipping into two different approvals. Multiple approvals on the same level can map to the same tracker ID if **approvalTrackerId** and all other identifying details are the same. This allows you to increment the same tracker for both approvals.The tracker will be incremented whenever ANY of the approvals / challenges are satisfied.
+For example, you do not want any double dipping into two different approvals. Multiple approvals on the same level can map to the same tracker ID if **amountTrackerId** and all other identifying details are the same. This allows you to increment the same tracker for both approvals.The tracker will be incremented whenever ANY of the approvals / challenges are satisfied.
 
 **Example 1:**
 
@@ -245,9 +245,8 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
           "end": "100"
         }
       ],
-      "approvalId": "test",
-      "approvalTrackerId": "uniqueID",
-      "isApproved": true,
+      "approvalId": "uniqueID",
+      "amountTrackerId": "uniqueID",
       
       "approvalCriteria": {
         "approvalAmounts": {
@@ -273,7 +272,7 @@ Since there was an unlimited amount approved for the "to" and "from" trackers, w
 
 **Resets + ID Changes**
 
-Let's say we update the **approvalTrackerId** to "uniqueID2" from "uniqueID". This makes all tracker IDs different, and thus, all tallies will start from scratch.
+Let's say we update the **amountTrackerId** to "uniqueID2" from "uniqueID". This makes all tracker IDs different, and thus, all tallies will start from scratch.
 
 `1-collection- -uniqueID-initiatedBy-alice` ->
 
