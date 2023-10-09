@@ -107,7 +107,32 @@ Off-chain balances' updatable nature allows for the implementation of custom log
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change). You simply need to just update the JSON map returned.
 
-See [here](../tutorials/create-an-off-chain-balances-json.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+Example:
+
+```typescript
+app.get('/api/v0/airdrop/balances', async (req, res) => {
+  const allAirdropped = await AIRDROP_DB.list();
+  const airdropped = allAirdropped.rows.map(row => row.id);
+  const balancesMap: OffChainBalancesMap<bigint> = {};
+  for (const address of airdropped) {
+    balancesMap[address] = [{
+      amount: 1n,
+      badgeIds: [{
+        start: 1n, end: 1n,
+      }],
+      ownershipTimes: [{
+        start: 1n, end: 18446744073709551615n,
+      }],
+    }
+    ];
+  }
+  return res.send(balancesMap);
+});
+```
+
+This dynamically updates what balances are returned from the URL based on who has received an airdrop or not. This is all done off-chain, meaning balances are updated without a blockchain transaction (the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
+
+For another tutorial, see [here](../tutorials/create-an-off-chain-balances-json.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
 
 ### Inherited / Badge-Bound (Coming Soon)
 
