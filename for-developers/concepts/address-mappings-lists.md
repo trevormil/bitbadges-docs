@@ -2,7 +2,7 @@
 
 [AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature similar to UintRanges. They allow us to specify a list of addresses, identified by a mappingId.
 
-These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses (includeAddresses = false). Or, we can create a mapping that includes ONLY some specified addresses (includeAddresses = true).
+
 
 ```typescript
 export interface AddressMapping {
@@ -15,6 +15,14 @@ export interface AddressMapping {
   customData: string;
 }
 ```
+
+### Inverting
+
+These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses (includeAddresses = false). Or, we can create a mapping that includes ONLY some specified addresses (includeAddresses = true).
+
+**IMPORTANT:** When you invert, the inversion by default includes the "Mint" address. This is important when handling the **fromMapping** of approvals. You do not want to accidentally approve users to transfer from the "Mint" address.
+
+
 
 ### **Storage**
 
