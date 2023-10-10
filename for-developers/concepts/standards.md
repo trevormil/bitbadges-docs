@@ -31,6 +31,10 @@ Each standard must follow the following format:
 
 ## **Compatibility with BitBadges API / Indexer**
 
+See [BitBadges API Compatibility](../../indexer-api/compatibility.md).
+
+
+
 TODO
 
 ## Standards Ideas
