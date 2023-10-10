@@ -35,7 +35,7 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## Standards Ideas
 
-Below are some ideas for standards that we have had.
+Below are some ideas for standards that we have had. Feel free to formalize them into official ones.
 
 * Custom Metadata Interfaces
   * Text-Based Metadata Standard (as opposed to images)
