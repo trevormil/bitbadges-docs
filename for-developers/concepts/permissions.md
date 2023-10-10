@@ -23,7 +23,9 @@ Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/c
 ```json
 "userPermissions": {
     "canUpdateIncomingApprovals": [],
-    "canUpdateOutgoingApprovals": []
+    "canUpdateOutgoingApprovals": [],
+    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
 }
 ```
 
@@ -252,6 +254,13 @@ There are five categories of permissions, each with different criteria that must
 "canUpdateCollectionApprovals": [] //ApprovedTransferPermission
 ```
 
+```json
+"canUpdateIncomingApprovals": [], //ApprovedTransferPermission (w/o to fields)
+"canUpdateOutgoingApprovals": [], //ApprovedTransferPermission (w/o from fields)
+"canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [], //ActionPermission
+"canUpdateAutoApproveSelfInitiatedIncomingTransfers": [], //ActionPermission
+```
+
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.&#x20;
   * ```typescript
     {
@@ -362,18 +371,20 @@ Besides the collection permissions, there are also userPermissions that can be s
 ```json
 "userPermissions": {
     "canUpdateIncomingApprovals": [],
-    "canUpdateOutgoingApprovals": []
+    "canUpdateOutgoingApprovals": [],
+    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
 }
 ```
 
-Typically, these will remain empty, so that the user can always update their approvals. However, they can be leveraged in some cases for specific purposes.
+Typically, these will remain empty, so that the user can always have full control over their approvals. However, they can be leveraged in some cases for specific purposes.
 
 * Locking that a specific badge can never be transferred out of the account
 * Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
 
 **Defaults**
 
-We give the option for the collection to define **defaultUserPermissions.** These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with **defaultOutgoingApprovals** and **defaultIncomingApprovals.**
+We give the option for the collection to define **defaultUserPermissions.** These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with **defaultOutgoingApprovals** and **defaultIncomingApprovals** as well as **defaultAutoApproveSelfInitiatedOutgoingTransfers** and **defaultAutoApproveSelfInitiatedIncomingTransfers**.
 
 The **defaultUserPermissions** are also not typically used, but can be used in certain situations. For example,
 

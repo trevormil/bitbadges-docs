@@ -153,19 +153,23 @@ The process of matching transfers to approvals involves several steps. This is d
 6. Lastly, we check the **`approvalCriteria`** for each one-to-one match and ensure everything is satisfied.
 7. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals.
 
-### Genesis Values and Default Approvals
+### Defaults and Auto Approvals
 
 For incoming and outgoing approvals, the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
 
-Additionally, we automatically add an unlimited approval (with no amount restrictions) in the following cases:
+Similarly, you can define the default values for **defaultAutoApproveSelfInitiatedOutgoingTransfers** and **defaultAutoApproveSelfInititatedIncomingTransfers.** These will set the user's default values for **autoApproveSelfInitiatedOutgoingTransfers** and  **autoApproveSelfInitiatedIncomingTransfers.**
 
-a) User's outgoing approvals when the sender is the same as the initiator.&#x20;
+If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's outgoing approvals when the sender is the same as the initiator.
 
-b) User's incoming approvals when the recipient is the same as the initiator.
+If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
+
+In almost all cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be leveraged for use cases such as using an account for an escrow, account abstractions, and so on.
 
 
 
-In order to allow forceful transfers to an address without prior approval, the defaultIncomingApprovals must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
+**Forceful Transfers vs Opt-In Only**
+
+In order to allow forceful transfers to an address without prior approval, the **defaultIncomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
 
 ```json
 "defaultIncomingApprovals": [
