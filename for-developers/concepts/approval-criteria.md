@@ -305,7 +305,7 @@ export interface MerkleChallenge<T extends NumberType> {
   root: string
   expectedProofLength: T;
   useCreatorAddressAsLeaf: boolean
-  maxOneUsePerLeaf: boolean
+  maxUsesPerLeaf: T
   uri: string
   customData: string
 }
@@ -321,9 +321,9 @@ We also support a couple customization options.&#x20;
 
 First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement whitelist trees. Note that the initiator must also be within the **initiatedByMapping** of the approval for it to make sense.
 
-The **maxOneUsePerLeaf** is important to be set if you want to prevent against replay attacks. For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
-We track this in a challenge tracker, similar to the approvals trackers explained above. We simply track if a leaf index (leftmost leaf = index 0, ...) has been used and only allow it to be used once if **maxOneUsePerLeaf** is specified. Like approval trackers, this is increment only and non-deletable.
+We track this in a challenge tracker, similar to the approvals trackers explained above. We simply track if a leaf index (leftmost leaf = index 0, ...) has been used and only allow it to be used X many times, if constrained. Like approval trackers, this is increment only and non-deletable.
 
 <pre class="language-json"><code class="lang-json"><strong>"merkleChallenge": {
 </strong>   "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
