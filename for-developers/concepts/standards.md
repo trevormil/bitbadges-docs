@@ -29,7 +29,24 @@ Each standard must follow the following format:
 
 **Standard Details:** The standard details outline the expected functionality of badges who implement this standard.
 
+## **Compatibility with BitBadges API / Indexer**
 
+TODO
+
+## Standards Ideas
+
+Below are some ideas for standards that we have had.
+
+* Custom Metadata Interfaces
+  * Text-Based Metadata Standard (as opposed to images)
+  * Attendance Event Metadata (e.g. has startTime, endTime, etc)
+* URI standard for pointing to contracts on other chains&#x20;
+  * Ex: Contract address points to ETH:0x123....xyz contract on Ethereum Chain
+  * Can also add an extension where it points to a specific function to query
+* Different JSON standards for off-chain balance maps
+  * Query dyamically instead of all in one file - i.e. {id}/{cosmosAddress}
+  * Balance -> Addresses\[] JSON instead of Address -> Balance JSON
+  * Use Address Mapping IDs instead of individual addresses
 
 ## List of Standards
 
