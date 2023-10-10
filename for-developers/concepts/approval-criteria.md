@@ -337,9 +337,9 @@ We track this in a challenge tracker, similar to the approvals trackers explaine
 
 See Predetermined Balances below for reserving specific leaf indices for specific badges.
 
-#### **Creating a Merkle Tree and Expected Format**
+#### **Creating a Merkle Tree**
 
-The expected format of the trees are that each leaf layer is full (i.e. has 2^N leaves). Any empty leaves should be filled in with the default hash "0000000000000000000000000000000000000000000000000000000000000000" for compatibility with the BitBadges website / indexer.
+We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../indexer-api/compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
 
 ```typescript
 import { SHA256 } from 'crypto-js';
@@ -347,7 +347,8 @@ import MerkleTree from 'merkletreejs';
 
 const codes = [...]
 const hashedCodes = codes.map(x => SHA256(x).toString());
-const codesTree = new MerkleTree(hashedCodes, SHA256, { fillDefaultHash: '0000000000000000000000000000000000000000000000000000000000000000' });
+const treeOptions = { fillDefaultHash: '0000000000000000000000000000000000000000000000000000000000000000' }
+const codesTree = new MerkleTree(hashedCodes, SHA256, treeOptions);
 const codesRoot = codesTree.getRoot().toString('hex');
 const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 ```
@@ -357,11 +358,9 @@ For whitelists, replace with this code.
 ```typescript
 addresses.push(...toAddresses.map(x => convertToCosmosAddress(x)));
 
-const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, { fillDefaultHash: '0000000000000000000000000000000000000000000000000000000000000000' });
+const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, treeOptions)
 const addressesRoot = addressesTree.getRoot().toString('hex');
 ```
-
-
 
 A valid proof can then be created via where codeToSubmit is the code submitted by the user.
 

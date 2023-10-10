@@ -43,21 +43,36 @@ Use the `isHashed` field accordingly. To construct the Merkle path, a Merkle tre
 
 #### Merkle Challenge Details
 
-```typescript
-export interface MerkleChallengeDetails<T extends NumberType> {
+<pre class="language-typescript"><code class="lang-typescript">import { Options as MerkleTreeJsOptions } from "merkletreejs/dist/MerkleTree";
+
+export interface MerkleChallengeDetails&#x3C;T extends NumberType> {
   name: string;                   // Name of the Merkle challenge
   description: string;            // Description of the Merkle challenge
-  challengeDetails: ChallengeDetails<T>;
+  challengeDetails: ChallengeDetails&#x3C;T>;
 }
 
-export interface ChallengeDetails<T extends NumberType> {
+export interface ChallengeDetails&#x3C;T extends NumberType> {
   leavesDetails: LeavesDetails;
-}
+<strong>  treeOptions?: MerkleTreeJsOptions 
+</strong>}
 
 export interface LeavesDetails {
   leaves: string[];               // Array of leaf data
   isHashed: boolean;              // Indicates whether the leaf data is hashed
 }
+</code></pre>
+
+Note that the indexer uses 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.&#x20;
+
+```typescript
+import SHA256 from 'crypto-js/sha256';
+import MerkleTree from 'merkletreejs';
+
+new MerkleTree(leavesDetails?.leaves.map(x => {
+      return leavesDetails?.isHashed ? x : SHA256(x);
+  }) ?? [],
+  SHA256,
+  treeOptions
+)
 ```
 
-IMPORTANT: Also make sure your Merkle tree follows the expected format (see [**Approval Criteria - Merkle Challenges**](../for-developers/concepts/approval-criteria.md)**).**\
