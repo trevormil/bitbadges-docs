@@ -6,7 +6,7 @@ Documentation was auto-generated with [TypeDoc](https://typedoc.org/). Links can
 
 
 
-Or, you can see the individually generated ones, but note the hyperlinks between them may be broken.
+Or, you can see the individually generated ones. Its a little neater and more organized, but note the hyperlinks between the packages may be broken.
 
 [bitbadgesjs-utils](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/modules.html)
 
