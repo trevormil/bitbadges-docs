@@ -41,7 +41,8 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * If prefixed with "!", it denotes to invert the address mapping (e.g. "!id123" inverts the "id123" address mapping)
 * Any valid Cosmos (bech32) address is reserved as the mapping that ONLY includes that specific address.
 * "Mint" specifies the "Mint" address only.
-* "AllWithoutMint" denotes all valid user addresses (excluding the "Mint" address)
+* "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
+* "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:cosmos123...:cosmos456...")
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 * "Manager" will be reserved for a mapping that ONLY includes the current manager of the collection. If the manager changes, this mapping will dynamically update to the new manager.
 
