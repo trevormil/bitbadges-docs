@@ -46,6 +46,12 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 * "Manager" will be reserved for a mapping that ONLY includes the current manager of the collection. If the manager changes, this mapping will dynamically update to the new manager.
 
+### IDs vs Reserved
+
+Reserved address mappings are provided for convenience, so you don't actually have to create an AddressMapping on-chain first. However, note that long mapping IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:cosmos123...:cosmos456...").&#x20;
+
+For efficiency, consider creating a mapping with a unique short ID and reference the mapping that way. You can create a mapping which is all addresses except Mint, cosmos123..., cosmos456... which is identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
+
 ### Examples
 
 This is the mapping which includes all addresses except "cosmos123...." and "cosmos456...."
