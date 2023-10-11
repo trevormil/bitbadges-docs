@@ -505,3 +505,11 @@ export interface PredeterminedOrderCalculationMethod {
 ```
 
 Although this can be used in tandem with approval amounts, either one or the other is usually used because they both specify amount restrictions.
+
+**Overlap / Out of Bounds**
+
+Sometimes, the order number may correspond to **badgeIds** and **ownershipTimes** that are out of bounds of the approval, with either no overlap or some overlap.
+
+If it is completely out of bounds (e.g. order number = 101 but approved badgeIds 1-100 with increments of 1), this is practically ignored. This is because if you try and transfer badge ID 101, it will never match to the current approval.
+
+In rare cases, there may be overlap (some in bounds and some out of bounds). The overall transfer balances still must be exactly as defined (in bounds + out of bounds); however, we only approve the in bounds ones for the current approval. The out of bounds ones must be approved by a separate approval.
