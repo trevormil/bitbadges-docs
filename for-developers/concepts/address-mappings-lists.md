@@ -44,7 +44,6 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
 * "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:cosmos123...:cosmos456...")
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
-* "Manager" will be reserved for a mapping that ONLY includes the current manager of the collection. If the manager changes, this mapping will dynamically update to the new manager.
 
 ### IDs vs Reserved
 
