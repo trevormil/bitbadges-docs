@@ -165,6 +165,8 @@ Telegram - [https://t.me/BitBadges](https://t.me/BitBadges)
 
 GitHub - [https://github.com/bitbadges](https://github.com/bitbadges)
 
+BriefLink - [https://brieflink.com/v/ro6w4](https://brieflink.com/v/ro6w4)
+
 **Other**
 
 BitBadges Site - [https://bitbadges.org](https://bitbadges.org)
