@@ -2,4 +2,4 @@
 
 ## Team
 
-Learn more about the team at [https://bitbadges.io](https://bitbadges.io)
+Learn more about the team at [https://bitbadges.io/about](https://bitbadges.io/about).
