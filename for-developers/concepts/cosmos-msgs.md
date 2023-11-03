@@ -111,8 +111,6 @@ export interface MsgUpdateCollection<T extends NumberType> {
   collectionApprovals?: CollectionApproval<T>[]
   updateStandardsTimeline?: boolean
   standardsTimeline?: StandardsTimeline<T>[]
-  updateContractAddressTimeline?: boolean
-  contractAddressTimeline?: ContractAddressTimeline<T>[]
   updateIsArchivedTimeline?: boolean
   isArchivedTimeline?: IsArchivedTimeline<T>[]
 }

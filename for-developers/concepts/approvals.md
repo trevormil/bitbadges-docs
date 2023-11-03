@@ -52,9 +52,9 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.&#x20;
-2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals in rare cases.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals.
 
-We recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and you will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
+We recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
 #### Approval IDs
 
@@ -74,7 +74,7 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. We do not use it on the site but it is provided if needed.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval.
 
 **Who? When? What? - Main Fields**
 
@@ -122,9 +122,9 @@ Note the approval only applies to the details defined and must match ALL details
 
 As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/ outgoing approvals.
 
-The Mint address has its own approvals, but since it is not a real address, they are always empty. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
+The Mint address technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
 
-It is recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is just the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
+It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
 #### Approval Criteria
 
@@ -143,19 +143,18 @@ Even though our interface uses range logic (UintRanges, AddressMappings), we bre
 The process of matching transfers to approvals involves several steps. This is done on a per-level basis.
 
 1. We start with the collection-level approvals.
-2. Apply all manipulations (options) to each approval while maintaining order.&#x20;
-3. Expand all approval tuples with range logic (AllWithMint, ...., \[1-100])  to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
-4. Expand the current transfer tuple to singular tuple values.
-5. Find all matches.&#x20;
+2. Expand all approval tuples with range logic (AllWithMint, ...., \[1-100])  to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
+3. Expand the current transfer tuple to singular tuple values.
+4. Find all matches.&#x20;
    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
    2. Find corresponding approvals for all (first match by default but can be customized with  **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
    3. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.&#x20;
-6. Lastly, we check the **`approvalCriteria`** for each one-to-one match and ensure everything is satisfied.
-7. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals.
+5. We check the **`approvalCriteria`** for each one-to-one match and ensure everything is satisfied.
+6. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
 
 ### Defaults and Auto Approvals
 
-For incoming and outgoing approvals, the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
+For incoming and outgoing approvals, we allow the the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
 
 Similarly, you can define the default values for **defaultAutoApproveSelfInitiatedOutgoingTransfers** and **defaultAutoApproveSelfInititatedIncomingTransfers.** These will set the user's default values for **autoApproveSelfInitiatedOutgoingTransfers** and  **autoApproveSelfInitiatedIncomingTransfers.**
 
@@ -163,13 +162,13 @@ If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automaticall
 
 If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
 
-In almost all cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be leveraged for use cases such as using an account for an escrow, account abstractions, and so on.
+In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be leveraged for specific use cases such as using an account for an escrow, account abstractions, and so on.
 
 
 
 **Forceful Transfers vs Opt-In Only**
 
-In order to allow forceful transfers to an address without prior approval, the **defaultIncomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
+IMPORTANT: In order to allow forceful transfers to an address without prior approval, the **defaultIncomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
 
 ```json
 "defaultIncomingApprovals": [

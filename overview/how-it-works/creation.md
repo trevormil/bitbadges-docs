@@ -10,7 +10,7 @@ Address lists can be stored on-chain or off-chain (centralized servers). Off-cha
 
 **Metadata:** Lists can be customized with metadata like a name, image, description, etc. They will show up on users' profiles under the lists' category.
 
-**All Except:** Lists are invertible meaning your list can denote whether to only specify certain addresses or include all adddresses but certain addresses.
+**All Except:** Lists are invertible meaning your list can denote whether to only specify certain addresses or include all addresses but certain addresses (whitelist or blacklist).
 
 ## **Badges**
 

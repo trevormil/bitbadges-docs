@@ -43,7 +43,7 @@ Below are some of our favorite use cases:
 
 What makes our product better than competitors?
 
-* **Cross-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
+* **Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
   * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential userbase!
   * Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android! This is the current state of infrastructure.
 * **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures and censoring.
@@ -149,7 +149,7 @@ Discord - [https://discord.com/invite/TJMaEd9bar](https://discord.com/invite/TJM
 
 LinkedIn - [https://linkedin.com/company/bitbadges](https://linkedin.com/company/bitbadges)
 
-Twitter - [https://twitter.com/BitBadges\_](https://twitter.com/BitBadges\_)
+Twitter - [https://twitter.com/bitbadges\_io](https://twitter.com/bitbadges\_io)
 
 Facebook - [https://facebook.com/profile.php?id=100092259215026](https://facebook.com/profile.php?id=100092259215026)
 
@@ -169,9 +169,6 @@ BriefLink - [https://brieflink.com/v/ro6w4](https://brieflink.com/v/ro6w4)
 
 **Other**
 
-BitBadges Site - [https://bitbadges.org](https://bitbadges.org)
-
 Project Board -  [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
 
 Improvement Proposals - [https://github.com/BitBadges/BBIPs](https://github.com/BitBadges/BBIPs)&#x20;
-

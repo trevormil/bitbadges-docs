@@ -3,7 +3,7 @@
 Standards are a generic concept that allows anyone to define how to interpret the details of a badge collection. All collections will implement the same interface on the blockchain (see [Collections](broken-reference)), but the standard defines how these fields are interpreted and are expected to be defined. Standards can define anything from the expected genesis conditions to the expected metadata format to any expected features of the collection.
 
 ```json
-"standardsTimeiline": [
+"standardsTimeline": [
   {
     "timelineTimes": [...],
     "standards": ["transferable", "text-only-metadata", "non-fungible", "attendance-format"]1
@@ -40,11 +40,11 @@ Below are some ideas for standards that we have had. Feel free to formalize them
 * Custom Metadata Interfaces
   * Text-Based Metadata Standard (as opposed to images)
   * Attendance Event Metadata (e.g. has startTime, endTime, etc)
-* URI standard for pointing to contracts on other chains&#x20;
+* URI standard for pointing to smart contracts (even on other chains)&#x20;
   * Ex: Contract address points to ETH:0x123....xyz contract on Ethereum Chain
   * Can also add an extension where it points to a specific function to query
 * Different JSON standards for off-chain balance maps
-  * Query dyamically instead of all in one file - i.e. {id}/{cosmosAddress}
+  * Query dynamically instead of all in one file - i.e. {id}/{cosmosAddress}
   * Balance -> Addresses\[] JSON instead of Address -> Balance JSON
   * Use Address Mapping IDs instead of individual addresses
 

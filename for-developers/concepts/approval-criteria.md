@@ -62,11 +62,13 @@ export interface MustOwnBadges<T extends NumberType> {
   amountRange: UintRange<T>; //min/max amount to be owned
   ownershipTimes: UintRange<T>[];
   badgeIds: UintRange<T>[];
-
-  overrideWithCurrentTime: boolean; //override ownershipTimes with time of block at execution
   
-  //if true, must own all badges at all times specified
-  //if false, must meet the criteria for at least one badge and at least one ownership time (one millisecond)
+  //override ownershipTimes with the exact block millisecond at execution
+  //Ex: [{start: 12345, end: 12345}]
+  overrideWithCurrentTime: boolean;
+  
+  //if true, must own ALL badges at ALL times specified
+  //if false, must own at least one specified badge for at least one specified millisecond
   mustOwnAll: boolean; 
 }
 ```
@@ -89,9 +91,7 @@ Approvals trackers track how many badges have been transferred and how many tran
 
 Challenge trackers track which leaves were used in a Merkle challenge (the approvee needs to provide a valid Merkle path for approval).
 
-Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much.&#x20;
-
-We use the terms trackers and tallies interchangeably throughout this documentation.&#x20;
+Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much. We use the terms trackers and tallies interchangeably throughout this documentation.&#x20;
 
 **How are they identified?**&#x20;
 

@@ -18,11 +18,7 @@ Or, just create badges for fun and collect them :)
 
 **Are there plans to support digital collectibles (tokens with value)?**
 
-Eventually, yes. However, we want to focus primarily on badges (tokens with no value) for now. This is for a couple reasons.&#x20;
-
-Firstly, before trusting the blockchain to be used for valuable tokens, we want the code and everything else to be battle tested first.&#x20;
-
-Secondly, with proof-of-stake blockchains, the security is correlated to how much is staked. We want to first ensure the amount staked is sufficient and spread across enough validators before moving to collectibles.
+Not sure. Probably eventually. However, for now, we want to focus on badges and leave "valuable" tokens to each respective ecosystem.&#x20;
 
 **What makes BitBadges better than competitors?**
 

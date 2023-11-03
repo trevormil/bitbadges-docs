@@ -1,6 +1,6 @@
 # 🕑 Betanet vs Mainnet
 
-In order to allow us to ship a great product and receive feedback, we will first launch a betanet version of BitBadges to test features and ship fast. Once we feel ready, we will launch an official mainnet.
+In order to allow us to ship a great product and receive feedback, we have launched a betanet version of BitBadges to test features and ship fast. In betanet, profiles and badges are real and will be migrated to mainnet. However, $BADGE is completely subsidized and free. Every user will receive 1000 $BADGE upon launch from a faucet which should be plenty.
 
 Betanet has currently started.
 
@@ -8,7 +8,7 @@ Mainnet start date is TBD.
 
 ## Betanet vs Mainnet
 
-For both betanet and mainnet, we will focus on badges only (i.e. tokens with no value) and leave valuable tokens (digital collectibles) to users' respective ecosystems. Our token, $BADGE, will only be allowed to be used for gas fees and governance.
+For both betanet and mainnet, we focus on badges only (i.e. tokens with no value). We plan to leave valuable tokens (digital collectibles) to users' respective ecosystems. Our token, $BADGE, will only be allowed to be used for gas fees and governance.
 
 ### Betanet
 

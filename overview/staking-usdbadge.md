@@ -19,6 +19,3 @@ Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.networ
 ### **Option 2: Become a Validator**
 
 If you want to become a validator and stake directly by running a validating node, see [here](../blockchain/run-a-node.md).&#x20;
-
-Betanet validators will receive extra mainnet $BADGE upon launch via the airdrop. To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.
-

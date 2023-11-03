@@ -8,7 +8,6 @@ Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/c
 "collectionPermissions": {
     "canDeleteCollection": [],
     "canArchiveCollection": [],
-    "canUpdateContractAddress": [],
     "canUpdateOffChainBalancesMetadata": [],
     "canUpdateStandards": [],
     "canUpdateCustomData": [],

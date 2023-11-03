@@ -34,7 +34,7 @@ The same address mapping is not unique to a collection on-chain and can be used 
 
 **Off-Chain:** Address mappings can also be created off-chain through our indexer / API. These are updatable and deletable. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
 
-### **Reserved Address Mappings**
+### **Reserved Address Mapping IDs**
 
 There are a couple IDs for AddressMappings that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
@@ -45,11 +45,11 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:cosmos123...:cosmos456...")
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 
-### IDs vs Reserved
+### Custom IDs
 
-Reserved address mappings are provided for convenience, so you don't actually have to create an AddressMapping on-chain first. However, note that long mapping IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:cosmos123...:cosmos456...").&#x20;
+Reserved address mappings are provided for convenience, so you don't actually have to create an AddressMapping on-chain first. However, long mapping IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:cosmos123...:cosmos456...").&#x20;
 
-For efficiency, consider creating a mapping with a unique short ID and reference the mapping that way. You can create a mapping which is all addresses except Mint, cosmos123..., cosmos456... which is identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
+For efficiency, consider creating a mapping with a unique short ID and reference the mapping that way. You can create a mapping which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 
 ### Examples
 
