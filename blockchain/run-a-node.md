@@ -1,123 +1,96 @@
 # Run a Node
 
-Below, we will walk you through a tutorial for setting up and running a BitBadges blockchain node. The BitBadges blockchain is built with Cosmos SDK, so if you have previous experience running a Cosmos SDK blockchain node, it will be very similar.&#x20;
+In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. However, we will cover each step thoroughly and include examples to ensure a smooth setup.
 
-This also means documentation is similar, so if you are having problems with this tutorial, you can also visit Cosmos SDK node documentation, such as [Cosmos SDK - Running a Node](https://docs.cosmos.network/main/run-node/keyring) or [Cosmos Tutorials - Run in Production](https://tutorials.cosmos.network/tutorials/9-path-to-prod/) documentation.
+**Documentation Reference:** If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the BitBadges details.
 
-**Running a Validator Node on Betanet?**
+**Becoming a Betanet Validator:** If you aspire to become a betanet validator, reach out to us to receive a sufficient amount of $BADGE tokens for staking.
 
-For betanet, validators are incentivized by receiving extra mainnet $BADGE upon launch. To become a betanet validator, reach out to us to receive a sufficient amount of $BADGE to stake.\
+**Chain IDs:** When a chain ID is required, use the following:
+
+* "bitbadges\_1-1" for the mainnet chain ID (currently inactive)
+* "bitbadges\_1-2" for the betanet chain ID
+
+**Genesis JSON:** TODO
+
+**BitBadges Public RPC:** TODO
+
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations. It is strongly recommended that you use Cosmovisor [https://docs.cosmos.network/v0.45/run-node/cosmovisor.html](https://docs.cosmos.network/v0.45/run-node/cosmovisor.html) to handle and facilitate these upgrades in real time.
 
 
-**Chain IDs**
-
-Wherever a chain ID is required, the following should be used:
-
-"bitbadges\_1-1" - mainnet chain ID (NOT ACTIVE YET)
-
-"bitbadges\_1-2" - betanet chain ID
 
 
 
-**Pre-Req: Fetch Source Code**
+**Step 0: Fetch Source Code:** Begin by cloning the source code from the BitBadges GitHub repository:
 
-Clone the source code from [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).
-
-**Step 1: Building Binary**
-
-Option 1 (Recommended): Install [Ignite CLI](https://docs.ignite.com/) and run **ignite chain build** then **ignite chain init** in the root directory.
-
-Option 2: Install via the Makefile. Note you must have **make** installed on your machine. On Ubuntu, use this command
-
-```
-sudo apt-get install --yes make
+```shell
+git clone --branch {VERSION} https://github.com/bitbadges/bitbadgeschain
 ```
 
-Then, build the binary with
+For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Replace VERSION with the desired release.
 
+**Step 1: Building Binary** To build the BitBadges blockchain binary, you have two options:
+
+_Option 1: Using Ignite CLI (Recommended)_ Install Ignite CLI and execute the following commands in the root directory of the cloned repository:
+
+```shell
+curl https://get.ignite.com/cli@v0.26.1 | bash
+mv ignite /usr/local/bin
+ignite version # test installed correctly
+ignite chain build
+ignite chain init --skip-proto
 ```
+
+_Option 2: Using Makefile_ Ensure you have **make** and **go** installed on your machine. Then, build the binary with:
+
+```shell
 make build-with-checksum
 ```
 
-Then, initialize your chain with
+After building the binary, initialize your chain with:
 
-```bash
-# The argument <moniker> is the custom username of your node, it should be human-readable.
-bitbadgeschaind init <moniker> --chain-id CHAIN_ID
+```shell
+bitbadgeschaind init <moniker> --chain-id CHAIN_ID --skip-proto
 ```
 
-Next, you will need to overwrite the genesis file with the agreed upon version. We have conveniently provided in the root directory: **./testnet.genesis.json** and **./mainnet.genesis.json**. The testnet one should be used for betanet.
+You'll need to replace `<moniker>` with a custom username for your node.
 
-```bash
-cp ./testnet.genesis.json ~/.bitbadgeschaind/config/genesis.json
-```
+Next, replace `config/genesis.json` the agreed-upon version from above.
 
-```
-cp ./mainnet.genesis.json ~/.bitbadgeschaind/config/genesis.json
-```
+**Step 2: Setting Up Validator (If Applicable)** This step is necessary if you plan to run a validating node. Follow the instructions in the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring) and/or the [Cosmos Tutorials](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to set up your validator and its keys. Replace `simd` with `bitbadgeschaind` or `myproject` with `bitbadgeschain`.
 
-**Step 2: Setup Validator Keys**&#x20;
+It's crucial to execute this step correctly to ensure the security of your validator. Consider the following factors:
 
-This step is only required if you are planning to run a validating node.
+* DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos).
+* Key Management: Implement best practices for key management, including hardware key management systems.
+* Redundancy: Plan for downtime and failures to ensure the continuous operation of your validator.
 
-Follow the steps in [https://docs.cosmos.network/main/run-node/keyring](https://docs.cosmos.network/main/run-node/keyring) and/or [https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to setup your validators' keys. Replace **simd** with **bitbadgeschaind** or **myproject** with **bitbadgeschain**.
+**Step 3: Configuring Your Node and Connecting to Others** Inside the config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `bitbadgeschaind start --help` for explanations.
 
-Note performing this step correctly is critical to maintain the security of your validator.
-
-**Step 3: Configuring Your Node and Connecting to Others**
-
-Within **\~/.bitbadgeschaind/config**, there are two files: **config.toml** and **app.toml**. Both files are heavily commented, please refer to them directly to tweak the settings of your node. You can also run **bitbadgeschaind start --help** to get explanations.
-
-Make sure the listen address settings are correct and use your IP address (e.g. 172.217.22.14) or domain name (if configured).
-
-To establish persistent nodes that you trust, edit **config.toml.** For example,&#x20;
+Ensure that the listen address settings are correct, using your IP address or domain name if configured. To establish connections with trusted nodes, edit `config.toml`. For instance:
 
 ```toml
 persistent_peers = "432d816d0a1648c5bc3f060bd28dea6ff13cb413@216.58.206.174:26656,
 5735836cbaa747e013e47b11839db2c2990b918a@121.37.49.12:26656"
 ```
 
-These are in the format nodeId@listenaddress:port.
+These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field.
 
-To establish seed node(s), set&#x20;
+**Step 5: Starting the Blockchain** Before starting the blockchain, ensure that any signing service (if set up in Step 2) is running. You can find helpful information in the [Cosmos documentation](https://docs.cosmos.network/main/run-node/run-production).
 
-```toml
-seeds = "432d816d0a1648c5bc3f060bd28dea6ff13cb413@216.58.206.174:26656"
+To start your blockchain, simply run:
+
+```shell
+bitbadgeschaind start
 ```
 
-BitBadges Team Node: **TODO**@api.bitbadges.io:26656
+This will run the blockchain with the configured settings. Make sure your computer or local network allows other nodes to initiate connections on port 26656. Ensure that firewall settings permit access to other required ports: 1317, 26660, 26657, and 9090.
 
-**Step 4: Preventing DDoS**
+**Step 6: Running as a Service** For convenience, consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
 
-Being part of a network with a known IP address can be a security or service risk. Distributed denial-of-service (DDoS) is a classic kind of network attack, but there are ways to mitigate the risks. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos) for how.
+**Step 7: Joining the Validator Set** If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set):
 
-**Step 5: Start Blockchain**
-
-Make sure the signing service (if you set one up in Step 2) is started and running (this link may be helpful [https://docs.cosmos.network/main/run-node/run-production](https://docs.cosmos.network/main/run-node/run-production)).
-
-Next, you can simply start your blockchain with
-
-<pre><code><strong>bitbadgeschaind start
-</strong></code></pre>
-
-Make sure your computer or local network allows other nodes to initiate a connection to your node on port `26656`. It may be blocked via firewall(s). Other ports that should be open include 1317, 26660, 26657, and 9090.
-
-**Step 6: Run as a service?**
-
-Instead of relaunching your software every time, it is a good idea to set it up as a service.
-
-See [**https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service**](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service)&#x20;
-
-**Step 7: Join Validator Set?**
-
-If you want to run a validator (standard nodes can ignore this step) and are not part of the initial genesis set of validators, you can execute the command below to join the set of validators ([https://docs.cosmos.network/main/modules/staking#create-validator](https://docs.cosmos.network/main/modules/staking#create-validator)). Note you must have enough $BADGE to cover gas and your stake.&#x20;
-
-<pre><code><strong>bitbadgeschaind tx staking create-validator [path/to/validator.json] [flags]
-</strong></code></pre>
-
-Example:
-
-```
+```shell
 bitbadgeschaind tx staking create-validator /path/to/validator.json \
   --chain-id="name_of_chain_id" \
   --gas="auto" \
@@ -126,30 +99,12 @@ bitbadgeschaind tx staking create-validator /path/to/validator.json \
   --from=mykey
 ```
 
-where `validator.json` contains:
+Ensure you have enough $BADGE tokens to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
-```
-{
-  "pubkey": {"@type":"/cosmos.crypto.ed25519.PubKey","key":"BnbwFpeONLqvWqJb3qaUbL5aoIcW3fSuAp9nT3z5f20="},
-  "amount": "1000000badge",
-  "moniker": "my-moniker",
-  "website": "https://myweb.site",
-  "security": "security-contact@gmail.com",
-  "details": "description of your validator",
-  "commission-rate": "0.10",
-  "commission-max-rate": "0.20",
-  "commission-max-change-rate": "0.01",
-  "min-self-delegation": "1"
-}
-```
+You can obtain the public key using the `bitbadgeschaind tendermint show-validator` command.
 
-and pubkey can be obtained by using `simd tendermint show-validator` command.
+**Step 8: Handling Upgrades** Over time, BitBadges will release software updates for the blockchain. To handle these upgrades efficiently, it is strongly recommended to use Cosmovisor, a tool for automating software upgrades in Cosmos SDK-based blockchains. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html).
 
-**Step 8: Handling Upgrades**
+**References** For a complete example, refer to the provided Dockerfile. However, note that it's not recommended to run the entire setup within a Docker container, as Cosmovisor requires periodic binary updates, which may not be ideal for containers. Use the Dockerfile as a reference only.
 
-Naturally, over time, BitBadges will deploy software updates for the blockchain. To handle these software upgrades, you can do it manually, but it is recommended nodes use Cosmovisor.
-
-Cosmovisor is a tool for automating the upgrade process of Cosmos SDK-based blockchains. It manages the binary upgrades of the software and enables the seamless transition from one version to the next without downtime.
-
-We refer you to [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and [https://docs.cosmos.network/main/tooling/cosmovisor.html](https://docs.cosmos.network/main/tooling/cosmovisor.html) for documentation.
-
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-docker/blob/master/blockchain/Dockerfile" %}
