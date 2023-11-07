@@ -8,13 +8,12 @@ Note that CouchDB uses an [optimistic conflict resolution system](https://docs.c
 
 ### Running from Scratch
 
-1. Install CouchDB
-2. Start a BitBadges blockchain node
-3. Setup a valid .env file. See environment.d.ts for the expected format of the .env file.
-4. Use **npm run setup** to setup the CouchDB databases. Note that you can run **npm run setup with-delete** to restart all indexer databases from scratch.
-5. Use **npm run indexer-dev** to start in development mode.
-6. Use **npm run build** and **npm run indexer** to start in production mode.
+1. Install and setup CouchDB
+2. Setup a valid .env file. See environment.d.ts for the expected format of the .env file. Note that running your own node and querying its RPC URL is recommended and much faster and more reliable than querying a public one.
+3. Use **npm run setup** to setup the CouchDB databases. Note that you can run **npm run setup with-delete** to restart all indexer databases from scratch.
+4. Use **npm run indexer-dev** to start in development mode.
+5. Use **npm run build** and **npm run indexer** to start in production mode.
 
 ### Running with Docker
 
-[https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker)
+See [https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker).
