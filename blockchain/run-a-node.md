@@ -15,7 +15,9 @@ In this guide, we will provide detailed instructions for setting up and running 
 
 **BitBadges Public RPC:** TODO
 
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations. It is strongly recommended that you use Cosmovisor [https://docs.cosmos.network/v0.45/run-node/cosmovisor.html](https://docs.cosmos.network/v0.45/run-node/cosmovisor.html) to handle and facilitate these upgrades in real time.
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations. It is strongly recommended that you set up your node with Cosmovisor [https://docs.cosmos.network/v0.45/run-node/cosmovisor.html](https://docs.cosmos.network/v0.45/run-node/cosmovisor.html) to handle and facilitate these upgrades in real time.
+
+**Discord:** Communications and announcements for node operators is facilitated via our Discord.
 
 
 
