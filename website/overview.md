@@ -18,4 +18,4 @@ The goal for this website is to be the all-in-one site for any crypto user. We w
 * Hosted content from users
 * And much more!
 
-While some features will be created by us, we want to integrate and support the most popular projects from all chains (not just BitBadges chain). Win-win attitude.&#x20;
+While some features will be created by us, we want to integrate and support the most popular projects from all chains (not just BitBadges chain). Win-win mindset.&#x20;

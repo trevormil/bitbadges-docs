@@ -1,6 +1,6 @@
 # Compatibility
 
-To make your collection compatible with the BitBadges Indexer / API (and thus the website), please use the following interfaces for hosting details off-chain.
+To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please use the following interfaces for hosting details off-chain.
 
 #### Badge and Collection Metadata Format
 
@@ -23,7 +23,7 @@ export interface Metadata<T extends NumberType> {
 
 
 
-If the badge metadata URI includes "{id}" anywhere in the URI, it should be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"`
+If the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"`
 
 #### Off-Chain Balances Metadata
 
@@ -33,7 +33,7 @@ If your collection uses the off-chain balances type, the URI of the `offChainBal
 
 #### Claim Metadata
 
-For providing additional details about a Merkle challenge claim, you can host a JSON via the `merkleChallenge.uri` field. This allows the BitBadges site to obtain certain metadata about the challenge and how to create the Merkle path to the root.
+For providing additional details about a Merkle challenge claim, you can host a JSON via the `approval.uri` field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable).
 
 See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
 

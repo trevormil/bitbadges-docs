@@ -16,7 +16,7 @@ const balanceMap = await createBalanceMapForOffChainBalances(transfers);
 
 Note that you should not allocate more badges in this map than what was created on-chain (via the "Mint" address).
 
-
+See [https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/](https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/) for an example.
 
 **Step 2: Host your map as a JSON file via some URL**
 
@@ -38,4 +38,7 @@ If you are allowed to update the URL according to the permissions set, you can d
 
 
 
-You can also just update the balances JSON returned by the URL as well. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint or do it directly on the website.
+You can also just update the balances JSON returned by the URL as well without interacting with the blockchain. Note that the BitBadges indexer / website caches balances. To trigger a refetch, you can use the **POST /api/v0/refresh** enpoint or do it directly on the website.
+
+
+

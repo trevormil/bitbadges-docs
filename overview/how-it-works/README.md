@@ -10,4 +10,4 @@ If not, we recommend first familiarizing yourself with these terms. There are pl
 
 See the subpages for further in-depth explanations.
 
-See the [For Developers](broken-reference) section for technical explanations.
+See the [For Developers](broken-reference) section for further technical explanations.

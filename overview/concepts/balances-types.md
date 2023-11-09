@@ -1,10 +1,10 @@
 # Balances Types
 
-BitBadges offers three different ways to store the badge balances and owners for your collection, each with their own pros and cons.
+BitBadges offers two different ways to store the badge balances and owners for your collection, each with their own pros and cons.
 
 ## Standard
 
-Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the most customizable option but also the least scalable because it uses the most blockchain resources.
+Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the most customizable option but also the least scalable because it uses the most blockchain resources. Everything is facilitated on the blockchain.
 
 ## Off-Chain
 

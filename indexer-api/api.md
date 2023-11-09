@@ -5,15 +5,13 @@ We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/sr
 ### Getting Started
 
 1. Request an API Key by contacting us via Discord.
-2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the header x-api-key : your api key.
+2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header
 
-### Authentication
-
-For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ### Status Codes
 
-We attempt to use typical HTTP error codes. 200 is the typical success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type which defines a human-readable message via **message**.
+We use typical HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type which defines a human-readable message via **message**.
 
 ```typescript
 /**
@@ -48,11 +46,10 @@ We recommend reading all [concepts](concepts/) for background information on the
 
 ### Using the SDK
 
-We recommend using the SDK for all requests, routes, and responses. All are exported for your convenience such as:
+If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience.
 
 ```typescript
 import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-utils';
-import { BACKEND_URL } from '../constants';
 
 export type DesiredNumberType = bigint;
 export const ConvertFunction = BigIntify;
@@ -63,6 +60,7 @@ export const ConvertFunction = BigIntify;
 const BitBadgesApi = new BitBadgesAPI({
     apiKey: '...',
     convertFunction: ConvertFunction //Can also do Numberify, Stringify, etc
+    apiUrl: '...' //defaults to official one if empty
 }); 
 
 await BitBadgesApi.getStatus()
@@ -70,17 +68,25 @@ await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
 //And so on...
 ```
 
+See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
+
+### Authentication
+
+Blockin Authentication Required = \*
+
+For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
+
+If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
+
 ## Routes
 
 See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
 
+### **Authentication**
+
+See [Authentication](concepts/authentication.md) for tutorial.
 
 
-Auth Required = \*
-
-
-
-### **Blockin Auth**
 
 **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
@@ -98,25 +104,19 @@ Logout and remove all session cookies.
 
 Check the health of your sign in.
 
-
-
-See [Authentication](concepts/authentication.md) for tutorial.
-
-
-
 ### **Status**
 
 **POST /api/v0/status - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetStatusRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetStatusRouteSuccessResponse.html)**)**
 
-Gets info about the status of the indexer / blockchain (gas prices, block height, etc).
+Gets info about the status of the indexer / blockchain (gas, block height, etc).
 
-###
+
 
 ### **Search**
 
 **POST /api/v0/search/:searchValue - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSearchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSearchRouteSuccessResponse.html)**)**
 
-Search collections and accounts based on a search value.
+Search collections, accounts, address lists based on a search value.
 
 
 
@@ -198,9 +198,7 @@ Gets merkle challenge trackers (including for collections). This returns how man
 
 ### **Users**
 
-Note that usernames are under development so **addressOrUsername** only corresponds to addresses currently. Addresses must be well formatted but can be in the format of any chain (we handle conversions to / from Cosmos addresses).
-
-
+Addresses must be well formatted but can be in the format of any chain.
 
 See [Users Tutorial](tutorials/user-tutorials.md) for how to deal with the paginated response, etc.
 
@@ -224,21 +222,11 @@ Add a review for the specified user.
 
 
 
-### **IPFS**
-
-Upload files to IPFS. 100 MB per user cumulative limit. Note for official BitBadges API / Indexer, CORS is enabled and only allows requests from the official frontend.
-
-**POST /api/v0/addMetadataToIpfs - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMetadataToIpfsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMetadataToIpfsRouteSuccessResponse.html)**)\***
-
-**POST /api/v0/addMerkleChallengeToIpfs - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMerkleChallengeToIpfsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddMerkleChallengeToIpfsRouteSuccessResponse.html)**)\***
-
-**POST /api/v0/addBalancesToIpfs - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddBalancesToIpfsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/AddBalancesToIpfsRouteSuccessResponse.html)**)\***
-
-
-
 ### **Broadcasting**
 
-Broadcast and simulate blockchain transactions to the official BitBadges node. Also see https://bitbadges.io/dev/broadcast if you simply want to copy and paste your transaction to a UI. All signing, API communication, etc is outsourced to the UI.
+Broadcast and simulate blockchain transactions to the official BitBadges node.
+
+We recommend using these routes via [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), so you can simply copy and paste your transaction to a UI. All signing, API communication, etc is outsourced.
 
 **POST /api/v0/broadcast - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/BroadcastTxRouteSuccessResponse.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/BroadcastTxRouteSuccessResponse.html)**)**
 
@@ -246,20 +234,6 @@ Broadcast and simulate blockchain transactions to the official BitBadges node. A
 
 
 
-### **Fetch Metadata From Source**
+### Full API SDK Reference
 
-**POST /api/v0/metadata - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/FetchMetadataDirectlyRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/FetchMetadataDirectlyRouteSuccessResponse.html)**)**
-
-Fetches metadata directly from the source URI, rather than from our indexer cache.
-
-
-
-### **Faucet**
-
-**POST /api/v0/faucet - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/GetTokensFromFaucetRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/GetTokensFromFaucetRouteSuccessResponse.html)**)\***
-
-Faucet to get tokens from our betanet faucet. 1 airdrop of $1000 BADGE per address.
-
-
-
-{% embed url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" fullWidth="true" %}
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" fullWidth="true" %}

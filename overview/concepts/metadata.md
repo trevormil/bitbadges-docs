@@ -14,13 +14,18 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Description** (required): Description of the collection or badge
 
-**Image** (required): A URL that points to the image to be displayed
+**Image** (required): A URL that points to the image to be displayed. Images will be displayed in circular format. The recommended image size is 512 x 512.
 
-**Valid From**: Defines the start and end times for how long the badge is to be considered valid for. If left blank, we assume it is always valid. This is just for descriptive purposes and has no functional significance.
+**Validity**: Defines the start and end times for how long the badge is to be considered valid for. If left blank, we assume it is always valid. This is just for descriptive purposes and has no functional significance.
 
 **Category**: Specify a category to make the metadata more queryable.
 
 **External URL**: A custom URL / website that will be hyperlinked.
 
-**Tags**: Keywords / hashtags to make the metadata more queryable.
+**Tags**: Keywords to make the metadata more queryable.
 
+
+
+### For Developers
+
+Visit [here](../../indexer-api/compatibility.md) for more details.

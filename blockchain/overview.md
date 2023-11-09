@@ -1,8 +1,8 @@
 # Overview
 
-BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main) and [Ignite CLI](https://docs.ignite.com/) that enables the natively cross-chain issuance of digital tokens (e.g. an Ethereum user can seamlessly issue a badge to a Cosmos user). The blockchain is able to attain instant transaction finality using Tendermint and natively supports users from multiple Layer 1 blockchains (Ethereum, Cosmos) via IBC and account mappings.
+BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main) and [Ignite CLI](https://docs.ignite.com/) that enables the natively multi-chain issuance of digital tokens (e.g. an Ethereum user can seamlessly issue a badge to a Cosmos user). The blockchain is able to attain instant transaction finality using Tendermint and natively supports users from multiple Layer 1 blockchains (Ethereum, Cosmos) via IBC and account mappings.
 
-The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). The blockchain supports the Inter-Blockchain Communication Protocol (IBC) and CosmWASM ([a forked version from Notional Labs](https://github.com/notional-labs/wasmd)).
+The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). The blockchain supports the Inter-Blockchain Communication Protocol (IBC) and CosmWASM.
 
 **Goal**
 

@@ -10,7 +10,7 @@ You can also manually trigger refreshes (limit once per minute) to refresh the c
 
 **What happens if the fetch fails?**
 
-See [Restrictions / Limits](../limits-restrictions.md).
+See [Restrictions / Limits](../limits-restrictions.md). We implement an exponential retry system.
 
 **Off-Chain Balances**
 

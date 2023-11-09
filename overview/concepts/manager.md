@@ -1,8 +1,6 @@
 # Manager
 
-Each collection can optionally have a manager who can be granted special admin privileges if desired.&#x20;
-
-Note that when you give up the manager role, you give up all privileges associated with it.
+Each collection can optionally have a manager who can be granted special admin privileges if desired. Note that when you give up the manager role, you give up all privileges associated with it.
 
 ### Permissions (Blockchain)
 
@@ -13,7 +11,7 @@ Note that when you give up the manager role, you give up all privileges associat
   * For details which can be specific to badge IDs (e.g. badge metadata), one can also specify which badges can be updated for what times.
 * **For off-chain balances, can update the balances URL?**
 * **Transfer the role of manager?**
-* **Can create more badges?** For which badge IDs? For which ownership times ([see here](time-based-balances.md))? At what times? And what amount?
+* **Can create more badges?** For which badge IDs? For which ownership times ([see here](time-dependent-ownership.md))? At what times? And what amount?
 * **Can update the transferability** / collection's approved transfers ([see here](transferability.md))?
 
 And more!
@@ -26,8 +24,8 @@ If you are the manager of the collection, you can do the following:
 
 * **Send an announcement to all badge holders**
 
-### Other[^1]
+
+
+### Other
 
 Any tool can potentially offer custom utility exclusive to the manager!
-
-[^1]: 

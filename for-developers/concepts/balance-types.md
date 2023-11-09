@@ -71,7 +71,7 @@ It should be a JSON object where keys are Cosmos addresses and the values are Ba
 
 See [here](../../sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 
-**How are the balances permanently frozen for off-chain collections?**
+**How are the balances permanently frozen?**
 
 The balances URL can be set to non-updatable via the manager permissions (**canUpdateOffChainBalancesMetadata**), and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
 

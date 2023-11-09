@@ -1,6 +1,8 @@
 # Total Supplys
 
-Each badge in a collection will have its own circulating supply. When initially created, the badges will be sent to a special "Mint" address. From there, they can be distributed to users.
+Each badge in a collection will have its own circulating supply. When initially created, all badges will be sent to a special "Mint" address. From there, they can be distributed to users.
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption><p>Example distribution</p></figcaption></figure>
 
 ### **Fungible vs Non-Fungible vs Semi-Fungible**
 
@@ -10,9 +12,7 @@ BitBadges doesn't necessarily categorize them by these names because we use a se
 
 ### **Creating Badges**
 
-Badges can be created by the manager of the collection. During the initial collection creation transaction, an infinite amount of badges can be created. In following transactions, they can only create badges according to the "can create more?" permission set by the collection.
-
-The permissions can be customized to permit or forbid the creation of a certain amount of badges at certain times. If the creation of all badges is locked forever, the total supply is final.
+Badges can be created by the manager of the collection, according to the "can create more?" permission set. This permission can be customized to permit or forbid the creation of a certain amount of badges at certain times. If the creation of all badges is locked forever, the total supply is final.
 
 Created badges are sent to the "Mint" address initially and distributed from there.
 

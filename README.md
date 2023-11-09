@@ -28,6 +28,8 @@ To learn more about BitBadges (the company), visit [https://bitbadges.org](https
 [use-cases.md](overview/use-cases.md)
 {% endcontent-ref %}
 
+<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
 Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! As you collect more badges, your portfolio grows, and you can show it off to others.
 
 Below are some of our favorite use cases:
@@ -43,26 +45,38 @@ Below are some of our favorite use cases:
 
 What makes our product better than competitors?
 
-* **Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
-  * Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential userbase!
-  * Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android! This is the current state of infrastructure.
-* **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures and censoring.
-* **Rapidly-Evolving:** Instead of relying on a rigid token standard that is not adaptable to new features, we iterate fast and constantly add new features to our token standard.
-* **Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
-* **Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
-  * This is because instead of having to write new custom code for every collection of tokens (as existing standards do which often results in security vulnerabilities), we use a registry architecture where code is reused by all collections.&#x20;
+**Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
+
+<figure><img src=".gitbook/assets/image (3).png" alt="" width="179"><figcaption></figcaption></figure>
+
+* Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android! This is the current state of infrastructure.
+* Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential userbase!
+
+
+
+**Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures and censoring.
+
+**Rapidly-Evolving:** Instead of relying on a rigid token standard that is not adaptable to new features, we iterate fast and constantly add new features to our token standard.
+
+**Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
+
+**Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
+
+* This is because instead of having to write new custom code for every collection of tokens (as existing standards do which often results in security vulnerabilities), we use a registry architecture where code is reused by all collections.&#x20;
 
 #### Newly Innovated Features
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we offer the following newly innovated features:
 
-* [**Time-Based Balances**](overview/concepts/time-based-balances.md)**:** Badge balances are all time-based which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+* [**Time-Based Balances**](overview/concepts/time-dependent-ownership.md)**:** Badge balances are all time-based which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
 * [**Off-Chain and Inherited Balances:**](overview/concepts/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain for maintaining balances down to just the size of a URL! This is as opposed to kilobytes and megabytes for standard balances.
     * Users never need to transact. Badges are auto assigned to their wallets.
     * No on-chain transfers or approvals are allowed so only usable by select use cases.
   * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another (parent-child relationship).
-* [**Batch Transfers**](overview/concepts/time-based-balances.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](overview/concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 * [**Fine-Grained Transferability Customization**](overview/concepts/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.

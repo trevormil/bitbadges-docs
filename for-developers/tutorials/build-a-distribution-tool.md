@@ -32,11 +32,11 @@ If you identify your users in some other way, you will probably have to implemen
 
 **How should everything be stored?**
 
-If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on IPFS and the BitBadges servers. However, you can also generate everything yourself and store them / distribute them.
+If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on IPFS and the BitBadges servers. However, you can also generate everything yourself and self-host them.
 
 Your two options:
 
-* Store everything on the BitBadges centralized servers (recommended). This is the most straightforward approach. Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
+* Store everything on the BitBadges centralized servers. This is the most straightforward approach but is centralized. Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
   * For example, your tool simply tell users to copy and paste specific addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool for distribution.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
   * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../../indexer-api/compatibility.md).

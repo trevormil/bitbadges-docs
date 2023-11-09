@@ -1,28 +1,30 @@
 # Distribution
 
-Once the collection is created, the badges then have to be distributed to owners. **BitBadges is cross-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).**
+Once the collection is created, the badges then have to be distributed to owners. BitBadges is multi-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 ### How to Distribute?
 
-For address lists, there are no transfer transactions. Upon creation, the list will be fully defined specifying all users who are on the list. They will automatically populate to a users' portfolio.
+Distributing depends on your unique requirements and the type of collection / list you have created.
 
-For badges, distribution can be done via your preferred method.&#x20;
+**Address Lists + Off-Chain Balances**
+
+For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
+
+As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](../concepts/balances-types.md).
 
 **On-Chain Balances**
 
-For on-chain balances (see [here](../concepts/balances-types.md)), there has to be some sort of transfer transaction from the Mint address to the recipient address. This can be done in two ways.
+For on-chain balances (see [here](../concepts/balances-types.md)), all badges initially start in the Mint address, and there has to be some sort of transfer transaction from the Mint address to the recipient address. These transfers can be done in many ways dependent on your use case:
 
-1\) The manager or creator of the collection can set up a **claim** so that recipients must enter a valid code/password or be on a whitelist or meet some other criteria to receive the badge. These are initiated by the recipient. Some examples are via **password, QR codes, e-mails, whitelists, first-come first-serve, etc.**&#x20;
+* **Manual Transfers:** The manager or other approved parties can directly transfer on the recipients' behalf. Who can transfer is clearly defined in the collection's transferability.
+* **Claims:** Claims can be setup so that a user can claim the badge from the Mint address, if they meet certain criteria. Some examples include
+  * **Passwords:** Set up a reusable password that must be entered to claim a badge.
+  * **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**
+  * **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
-2\) Or, the manager can set themselves to have admin privileges to be approved to transfer from the Mint address as desired. Thus, they can distribute the badges to whoever they want manually by directly transferring. The manager initiates these transactions.
-
-Note that the users pretty much pay their own transaction fees for option 1) but for option 2), the manager pays all transaction fees.
-
-**Off-Chain Balances**
-
-For off-chain balances (see [here](../concepts/balances-types.md)), users never need to interact in any way with the blockchain to receive badges! Badges will be automatically be entered into a users' portfolio upon creation.
-
-As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](../concepts/balances-types.md).
+Note the initiator of the transfer pays the transaction fees.
 
 ### Questions to Answer
 

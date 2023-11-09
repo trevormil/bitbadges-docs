@@ -1,9 +1,35 @@
 # Authentication
 
-BitBadges uses [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users. The Blockin execution flow is simple:
+BitBadges uses [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users.&#x20;
 
-1. Request a challenge from the **POST /api/v0/auth/getChallenge** route. The return value of blockinMessage is the message to be signed.
-2. User signs the challenge message locally with their wallet.
+The Blockin execution flow is simple:
+
+**1) Fetch Challenge**
+
+Request a challenge from the **POST /api/v0/auth/getChallenge** route.&#x20;
+
+```typescript
+await BitBadgesApi.getSignInChallenge(requestBody)
+```
+
+```typescript
+export interface GetSignInChallengeRouteRequestBody {
+    chain: SupportedChain;
+    address: string;
+    hours?: NumberType;
+}
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>export interface GetSignInChallengeRouteSuccessResponse&#x3C;T extends NumberType> {
+</strong>    nonce: string;
+    params: ChallengeParams&#x3C;T>;
+    blockinMessage: string;
+}
+</code></pre>
+
+**2) Sign Challenge**
+
+The user should then sign the blockinMessage string with a personal message signature from their wallet.
 
 Ethereum:
 
@@ -45,5 +71,29 @@ const signChallenge = async (message: string) => {
 }
 ```
 
-3. Send the signed message via **POST /api/v0/auth/verify**. This will grant a HTTP only Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify in the request). The originalBytes and signatureBytes to provide in the request body are what is returned from the signChallenge() examples.
-4. At any time, you can check the health of the signin by **POST /api/v0/auth/status**.
+**3) Send Signed Challenge**
+
+Send the signed message via **POST /api/v0/auth/verify**. This will grant a Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify in the request). The originalBytes and signatureBytes to provide in the request body should match what is returned from Step 2.
+
+```typescript
+await BitBadgesApi.verifySignIn(requestBody)
+```
+
+```typescript
+export interface VerifySignInRouteRequestBody {
+    chain: SupportedChain;
+    originalBytes: any;
+    signatureBytes: any;
+}
+
+export interface VerifySignInRouteSuccessResponse<T extends NumberType> {
+    success: boolean;
+    successMessage: string;
+}
+```
+
+3. At any time, you can check the health of the signin by **POST /api/v0/auth/status**.
+
+```typescript
+await BitBadgesApi.checkIfSignedIn(requestBody)
+```

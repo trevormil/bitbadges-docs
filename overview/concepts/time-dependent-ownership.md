@@ -1,6 +1,6 @@
-# Time-Based Balances
+# Time-Dependent Ownership
 
-Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Badge IDs 1-199). We introduce a third part: ownership times.&#x20;
+Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Badge IDs 1-199). BitBadges introduces a third part: ownership times.&#x20;
 
 For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from March-December.
 

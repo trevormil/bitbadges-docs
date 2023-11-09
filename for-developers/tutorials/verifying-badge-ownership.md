@@ -10,6 +10,10 @@ Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal,
 
 Blockin can be used for badge-gating websites and more!
 
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+
+
 **Offline Verification**
 
 For performing offline-first verification (no access to Internet), you can obtain a snapshot of the balances via your preferred method (when you do have Internet).
@@ -27,7 +31,7 @@ Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.
 
 ## Step 1: Fetch Balances
 
-Keep in mind the potential delay / lag and availability with the options below.For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date most of the time; however, it may fall behind in some cases.
+Keep in mind the potential delay / lag and availability with the options below. For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date with the blockchain most of the time; however, it may fall behind in some cases.
 
 **BitBadges Website**
 
@@ -53,7 +57,7 @@ Note that you can check how up to date the information is by using the **POST /a
 
 **BitBadges REST Node**
 
-Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Note cosmos addresses must be used.
+Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Note mapped Cosmos addresses must be used.
 
 **Direct Fetch - Off-Chain Balances**
 
@@ -67,7 +71,7 @@ You can also always run and fetch balances from your own node / indexer, so you 
 
 ## Step 2: Verify&#x20;
 
-Verification is two-fold. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
+Remember, verification is two-fold. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
 
 See some tools to help you do so below:
 

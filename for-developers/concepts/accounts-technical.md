@@ -7,7 +7,7 @@
 
 ### BitBadges Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (provided by [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
 
 Native Cosmos accounts are also supported.&#x20;
 
@@ -35,7 +35,7 @@ Ethereum Example:
 
 * Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
 * Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-* Compressed Public Key: `{"@type":"/ethermint.crypto.v1.ethsecp256k1.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
+* Compressed Public Key: `{"@type":"/ethermint.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
 
 For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"` and will always be represented in Bech32.
 
@@ -77,7 +77,7 @@ const buf2 = Buffer.from([publicKeyByte.length])
 const buf3 = Buffer.from(publicKeyByte)
 
 const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethermint.crypto.v1.ethsecp256k1.PubKey'
+const type = '/ethermint.PubKey'
 ```
 
 #### Acknowledgements

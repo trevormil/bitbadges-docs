@@ -14,6 +14,8 @@ For example, what if you need to be able to revoke? Freeze one's ability to tran
 
 We abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
 
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
 ## Approval Levels
 
 We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
@@ -59,7 +61,7 @@ At each level, we offer the following functionality for defining approved transf
 
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?
-* Which badges can be sent? For how long ([see ownership times](time-based-balances.md))? What amount?
+* Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
 * Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
 * Max amount transferred? Max per sender? Max per recipient? Max per initiator?
 * Predetermined transfers?
