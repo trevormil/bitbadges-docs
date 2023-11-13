@@ -1,6 +1,8 @@
 # Creating, Signing, and  Broadcasting Txs
 
-Note the examples below show how to broadcast directly to any running blockchain node. For broadcasting to the BitBadges blockchain node, in the examples below, simply replace&#x20;
+The examples below show how to broadcast directly to any running blockchain node.&#x20;
+
+For broadcasting to the official BitBadges node, in the examples below, simply replace&#x20;
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>`http://URL:1317${generateEndpointBroadcast()}`
 </strong></code></pre>
@@ -13,19 +15,19 @@ https://api.bitbadges.io/api/v0/broadcast
 
 
 
-### Examples
+## Tutorial
 
 Visit [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/bootstrap.ts) for how we bootstrap and simulate Msgs for a development network in plain JavaScript. See the frontend code for how we do so within a dApp. Both follow this tutorial pretty closely.
 
 
 
-**Fetching Account Details**
+### **Fetching Account Details**
 
 To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](broken-reference). You can also query a node directly.
 
-This will return the user's cosmos address, account ID, sequence (nonce), and public key.&#x20;
+This will return the user's cosmos address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockhain, this will be all you need,
 
-For a user who has not submitted a transaction yet, the fetched public key will be null. You can get the public key as shown below.&#x20;
+IMPORTANT: For a user who has not submitted a transaction yet, the fetched public key will be null. You must then get the public key as shown below.&#x20;
 
 Note that the user will need to be registered to submit a transaction (must first receive $BADGE to pay for gas). This will assign them an account number.
 
@@ -73,13 +75,22 @@ const getPublicKey = async (_cosmosAddress: string) => {
 }
 ```
 
-#### Create a Transaction
+### Creating the Transaction
 
-The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
+Next, the transaction has to be created. You should know what Msg type you are trying to submit. See here for [sample Msgs](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup).
 
-For any other transaction types on BitBadges, just replaces **createMessageSend** with your desired create Tx function (**createTxMsgDeleteCollection, ...)** and update the parameters accordingly.
+**Transaction Context**
 
-See here for [sample Msgs](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup).
+First, you have to define the context for the transaction which is represented by the interface below. This defines who is signing the transaction, how much gas, etc. If you are unsure of how much gas to put, you can simulate the transaction first.
+
+```typescript
+export interface TxContext {
+  chain: Chain
+  sender: Sender
+  fee: Fee
+  memo: string
+}
+```
 
 ```ts
 import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-proto'
@@ -87,13 +98,13 @@ import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-proto'
 const chain = {
   chainId: 2,
   cosmosChainId: 'bitbadges_1-2',
-  chain: SupportedChain.ETH
+  chain: SupportedChain.ETH //signing chain
 }
 
 const sender = {
-  accountAddress: 'cosmos....',
+  accountAddress: 'cosmos....', //Must be the cosmos address
   sequence: 1,
-  accountNumber: 9,
+  accountNumber: 9,  
   pubkey: '....', 
 }
 
@@ -105,17 +116,65 @@ const fee = {
 
 const memo = ''
 
-const params = {
-  destinationAddress: 'cosmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
-  amount: '1',
-  denom: 'badge',
-}
+```
 
-const msg = createTxMsgSend(chain, sender, fee, memo, params)
+**Building the Transaction Contents**
 
-// msg.signDirect is the transaction in Keplr format
-// msg.legacyAmino is the transaction with legacy amino
-// msg.eipToSign is the EIP712 data to sign with metamask
+**Option 1**
+
+If you are just submitting a single Msg and that Msg is either MsgSend or a BitBadges Msg (other Cosmos Msgs are not supported), then you can use these helper functions from the SDK below.
+
+```typescript
+import { createTxMsgSend, createTxMsgDeleteCollection, ... } from 'bitbadgesjs-proto'
+
+...
+
+const txn = createTxMsgSend(chain, sender, fee, memo, params)
+```
+
+**Option 2**
+
+Or else, you can build out the transaction from the Proto definitions.&#x20;
+
+This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
+
+```typescript
+import { createProtoMsg } from 'bitbadgesjs-proto'
+import { MsgCreateAddressMappings as ProtoMsgCreateAddressMappings, MsgUpdateCollection as ProtoMsgUpdateCollection } from 'bitbadgesjs-proto/dist/proto/badges/tx_pb';
+```
+
+```typescript
+const msg1 = new ProtoMsgCreateAddressMappings({
+    creator: convertToCosmosAddress(ethWallet.address),
+    addressMappings: [{
+      ...
+    }, {
+      ...
+    }]
+  });
+  
+const msg2 = new ProtoMsgUpdateCollection({
+  ...
+});
+
+const msgs = [msg1, msg2].map(x => createProtoMsg(x)));
+const txn = createTransactionPayload({ chain, sender, memo: '', fee: { denom: 'badge', amount: '1', gas: '4000000' } }, msgs);
+```
+
+
+
+See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/proto/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/proto/src/proto) for all proto definitions. They are not exported from the root, so you will have to find their absolute path (e.g. 'bitbadgesjs-proto/dist/proto/badges/tx\_pb');
+
+
+
+### Signing the Transaction
+
+The transaction can be signed using EIP712 on Metamask and SignDirect on Keplr.
+
+```
+// txn.signDirect is the transaction in Keplr format
+// txn.legacyAmino is the transaction with legacy amino
+// txn.eipToSign is the EIP712 data to sign with metamask
 ```
 
 #### Signing with Metamask
@@ -135,7 +194,6 @@ import {
   createTxRawEIP712,
   signatureToWeb3Extension,
 } from 'bitbadgesjs-proto'
-
 ```
 
 **Option 1: Metamask / Ethers**
@@ -171,7 +229,7 @@ return await signer._signTypedData(txn.eipToSign.domain, types_, txn.eipToSign.m
 
 **Option 2: WalletConnect / WAGMI**
 
-Pre-Req: Your dApp must be using WalletConnect. See [their docs](https://docs.walletconnect.com/2.0) for setup.
+Pre-Req: For this tutorial, your dApp must be using WalletConnect. See [their docs](https://docs.walletconnect.com/2.0) for setup. It should be compatible with any eth\_signTypedDatav4 request however.
 
 ```typescript
 import { signTypedData } from "@wagmi/core";
