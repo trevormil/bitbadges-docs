@@ -229,7 +229,7 @@ return await signer._signTypedData(txn.eipToSign.domain, types_, txn.eipToSign.m
 
 **Option 2: WalletConnect / WAGMI**
 
-Pre-Req: For this tutorial, your dApp must be using WalletConnect. See [their docs](https://docs.walletconnect.com/2.0) for setup. It should be compatible with any eth\_signTypedDatav4 request however.
+Pre-Req: For this tutorial, your dApp must be using WalletConnect. See [their docs](https://docs.walletconnect.com/2.0) for setup.&#x20;
 
 ```typescript
 import { signTypedData } from "@wagmi/core";
@@ -248,8 +248,8 @@ let extension = signatureToWeb3Extension(chain, sender, signature)
 
 // Create the txRaw
 let rawTx = createTxRawEIP712(
-  msg.legacyAmino.body,
-  msg.legacyAmino.authInfo,
+  txn.legacyAmino.body,
+  txn.legacyAmino.authInfo,
   extension,
 )
 

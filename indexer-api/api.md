@@ -181,13 +181,13 @@ export interface GetSearchRouteSuccessResponse<T extends NumberType> {
 
 ### **Collections**
 
-See [Collections Tutorial](tutorials/collections-tutorials.md) for how to deal with the paginated response, metadata fetches, etc.
+See [Collections Tutorial](tutorials/fetching-collections.md) for how to deal with the paginated response, metadata fetches, etc.
 
 
 
 #### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 
-Batch fetch details about multiple collections.  See [Collections tutorial](tutorials/collections-tutorials.md).
+Batch fetch details about multiple collections.  See [Collections tutorial](tutorials/fetching-collections.md).
 
 ```typescript
 export interface GetCollectionBatchRouteRequestBody {
@@ -453,7 +453,7 @@ export interface GetMerkleChallengeTrackersRouteSuccessResponse<T extends Number
 
 Addresses must be well formatted but can be in the format of any chain.
 
-See [Users Tutorial](tutorials/user-tutorials.md) for how to deal with the paginated response, etc.
+See [Users Tutorial](tutorials/fetching-users.md) for how to deal with the paginated response, etc.
 
 
 

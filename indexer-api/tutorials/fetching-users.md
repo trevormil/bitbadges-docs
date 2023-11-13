@@ -1,8 +1,8 @@
-# User Tutorials
+# Fetching Users
 
 **Notes**
 
-* This is very similar to the [Collections Tutorial](collections-tutorials.md).
+* This is very similar to the [Collections Tutorial](fetching-collections.md).
 * Addresses can be in any supported chain's format
 
 
