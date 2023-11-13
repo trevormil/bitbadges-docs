@@ -94,14 +94,33 @@ And much more!
 
 ## Distribution Tools
 
-Distribute your badges according to your preferred method! We currently support the following but plan to support many more very soon!
+There are infinitely many ways to distribute badges to holders. A few are supported natively by the BitBadges website (whitelists, passwords, codes, QR codes). However, there is no way that we can natively support all of them. Even if we could, this would centralize the badge distribution process.
+
+BitBadges wants to decentralize the distribution process. We want to support a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
+
+See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
+
+**Currently Supported**
+
+We currently support the following:
 
 * Whitelists - Specify a list of users that can claim the badge.
 * Password - Enter the correct password can claim a badge.
-* Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, Twitter DMs, anything!).
+* Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, social media DMs, anything!).
 * QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.
 
-See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
+
+
+**Future Ideas**
+
+Here are some future ideas that could be implemented
+
+* Claim by geolocation
+* Raffles&#x20;
+* In-Person QR code kiosk
+* Restrict to those who are following you on a social media
+
+See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
 
 ## Authentication Tools
 
