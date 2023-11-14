@@ -12,13 +12,13 @@ description: >-
 
 Digital tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for infinitely many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), and some may be purely digital (e.g. verification checkmark).&#x20;
 
-When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain ([read more here](https://101blockchains.com/advantages-of-nfts/)). However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens ([see here](./#improvements-over-existing-products)).&#x20;
+When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain. However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users or only Cosmos users).
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case.**&#x20;
+**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case.**&#x20;
 
-We offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distributing badges to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
+The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distributing badges to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
-Additionally, the BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to learn about the identity of a user.
+The BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to learn about the identity of a user.
 
 To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
@@ -94,9 +94,11 @@ And much more!
 
 ## Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. A few are supported natively by the BitBadges website (whitelists, passwords, codes, QR codes). However, there is no way that we can natively support all of them. Even if we could, this would centralize the badge distribution process.
+There are infinitely many ways to distribute badges to holders. A few are supported natively by the BitBadges website (whitelists, passwords, claim codes, QR codes).&#x20;
 
-BitBadges wants to decentralize the distribution process. We want to support a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
+However, there is no way that we can natively support all distribution methods. Even if we could, this would centralize the badge distribution process.
+
+BitBadges wants to decentralize the distribution process by supporting a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
 See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
 
@@ -109,16 +111,15 @@ We currently support the following:
 * Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, social media DMs, anything!).
 * QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.
 
-
-
 **Future Ideas**
 
 Here are some future ideas that could be implemented
 
-* Claim by geolocation
+* Claim by Geolocation
 * Raffles&#x20;
-* In-Person QR code kiosk
-* Restrict to those who are following you on a social media
+* In-Person QR Code kiosks
+* Restrict to your social media followers
+* And much more
 
 See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
 
@@ -126,7 +127,7 @@ See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution
 
 Authentication tools enable you to verify users are who they say they are and/or verify they own specific badges!
 
-**Blockin**
+**Blockin - Badge-Gate Websites**
 
 {% content-ref url="http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
@@ -148,11 +149,6 @@ In the near future, we plan to allow you to authenticate via the following metho
 * Zero-Knowledge Proof of Ownerships
 * Snapshots
 * And more!
-
-## Other Features
-
-* **Announcements** - To communicate with your badge holders, send an announcement which will be sent to all your badge owners via the BitBadges website's notifications.
-* **Reviews** - Leave reviews on badge collections or specific users via the BitBadges website to let others know the reputation of the collection / user (e.g. scam? trustworthy? good experience?).
 
 ## Developer Stack
 
