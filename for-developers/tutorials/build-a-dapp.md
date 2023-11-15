@@ -20,9 +20,7 @@ Build your own smart contract with CosmWASM. See [Create a Smart Contract](creat
 
 **Do you need a custom frontend?**
 
-Use the [BitBadges website](broken-reference) code as a starting point and/or reference.
-
-
+Use the [BitBadges website](broken-reference) code or [Blockin Quickstart](https://github.com/Blockin-Labs/blockin-quickstart) code as a starting point and/or reference.
 
 **Have questions or feedback?**
 
