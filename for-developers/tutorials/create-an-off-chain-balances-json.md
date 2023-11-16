@@ -2,9 +2,9 @@
 
 **Step 1: Create Your Map**
 
-The map is simply a cosmosAddress -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
+The map is simply a cosmosAddress/mappingId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
-
+Note that if you use address mapping IDs for the keys ([see here to learn more](../concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). The BitBadges indexer / API will throw an error in the above cases.
 
 You may also find the [**createBalanceMapForOffChainBalances**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/functions/createBalanceMapForOffChainBalances.html) function helpful.
 
@@ -14,7 +14,7 @@ const transfers: TransferWithIncrements<bigint>[] = [...];
 const balanceMap = await createBalanceMapForOffChainBalances(transfers);
 ```
 
-Note that you should not allocate more badges in this map than what was created on-chain (via the "Mint" address).
+Note that you should not allocate more badges in this map than what was created on-chain (via the "Mint" address).&#x20;
 
 See [https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/](https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/) for an example.
 
