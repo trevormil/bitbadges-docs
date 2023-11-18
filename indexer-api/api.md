@@ -437,13 +437,13 @@ Gets merkle challenge trackers (including for collections). This returns how man
 
 ```typescript
 export interface GetMerkleChallengeTrackersRouteRequestBody {
-  merkleChallengeTrackerIds: MerkleChallengeIdDetails<NumberType>[],
+  challengeTrackerIds: MerkleChallengeIdDetails<NumberType>[],
 }
 ```
 
 ```typescript
 export interface GetMerkleChallengeTrackersRouteSuccessResponse<T extends NumberType> {
-  merkleChallengeTrackers: MerkleChallengeInfo<T>[],
+  challengeTrackers: MerkleChallengeInfo<T>[],
 }
 ```
 
@@ -486,11 +486,6 @@ export interface UpdateAccountInfoRouteRequestBody<T extends NumberType> {
   seenActivity?: NumberType,
   readme?: string,
 
-  onlyShowApproved?: boolean
-  shownBadges?: {
-    collectionId: T,
-    badgeIds: UintRange<T>[],
-  }[],
   hiddenBadges?: {
     collectionId: T,
     badgeIds: UintRange<T>[],
