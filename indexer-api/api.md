@@ -292,12 +292,12 @@ export interface GetAllCodesAndPasswordsRouteSuccessResponse<T extends NumberTyp
 }
 ```
 
-#### **POST /api/v0/collection/:collectionId/password/:cid/:password - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeCodeViaPasswordRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeCodeViaPasswordRouteSuccessResponse.html)**)\***
+#### **POST /api/v0/collection/:collectionId/password/:cid/:password - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCodeForPasswordRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCodeForPasswordRouteSuccessResponse.html)**)\***
 
 Returns the user with a new unused code, if they provide the correct password.
 
 ```typescript
-export interface GetMerkleChallengeCodeViaPasswordRouteSuccessResponse<T extends NumberType> {
+export interface GetCodeForPasswordRouteSuccessResponse<T extends NumberType> {
   code: string,
 }
 ```
@@ -431,7 +431,7 @@ export interface GetApprovalsRouteSuccessResponse<T extends NumberType> {
 }
 ```
 
-#### **POST /api/v0/merkleChallenges - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeTrackersRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeTrackersRouteSuccessResponse.html)**)**
+#### **POST /api/v0/challenges - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeTrackersRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetMerkleChallengeTrackersRouteSuccessResponse.html)**)**
 
 Gets merkle challenge trackers (including for collections). This returns how many claims have been processed, used leaf indices, etc of the challenge have been used (if applicable).
 
