@@ -16,7 +16,7 @@ If you have access to the website, just simply navigate to the badge page or use
 
 **BitBadges API**
 
-Use one of the following routes to fetch balances from the [API](../../indexer-api/api.md) (supports off-chain balances but note they use a cache and trigger refresh system). These requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
+Use one of the following routes to fetch balances from the [API](../indexer-api/api.md) (supports off-chain balances but note they use a cache and trigger refresh system). These requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>POST /api/v0/collection/:collectionId/:badgeId/owners
 </strong></code></pre>

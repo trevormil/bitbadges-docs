@@ -79,9 +79,9 @@ In conclusion, off-chain balances present an intriguing avenue to enhance scalab
 
 It should be a JSON object where the keys are Cosmos addresses / address mapping IDs and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
-Note that if you use address mapping IDs for the keys ([see here to learn more](address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
+Note that if you use address mapping IDs for the keys ([see here to learn more](../concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
-See [here](../../sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
+See [here](../bitbadges-sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 
 **How are balances permanently frozen?**
 

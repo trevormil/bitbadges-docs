@@ -18,4 +18,4 @@ Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.networ
 
 ### **Option 2: Become a Validator**
 
-If you want to become a validator and stake directly by running a validating node, see [here](../blockchain/run-a-node.md).&#x20;
+If you want to become a validator and stake directly by running a validating node, see [here](../for-developers/bitbadges-blockchain/run-a-node.md).&#x20;

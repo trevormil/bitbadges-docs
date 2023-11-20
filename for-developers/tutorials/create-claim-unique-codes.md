@@ -1,3 +1,3 @@
 # Create Claim - Unique Codes
 
-See [Approval Criteria](../concepts/approval-criteria.md) - Merkle Challenges.
+See [Approval Criteria](../collection-interface/approval-criteria.md) - Merkle Challenges.

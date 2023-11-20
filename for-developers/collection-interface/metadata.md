@@ -2,7 +2,7 @@
 
 Collections can define metadata for both the collection and individual badges via **collectionMetadataTimeline** and **badgeMetadataTimeline,** respectively**.**&#x20;
 
-By default, we expect the collection and badge metadata as shown below for the BitBadges indexer / API. Also, if the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"` (see [Compatibility](../../indexer-api/compatibility.md) for more info).
+By default, we expect the collection and badge metadata as shown below for the BitBadges indexer / API. Also, if the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"` (see [Compatibility](../indexer-api/compatibility.md) for more info).
 
 However, this is only a default expected format, and we envision that many different metadata standards can form over time (identified using **standardsTimeline**).
 

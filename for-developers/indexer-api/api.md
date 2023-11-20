@@ -7,7 +7,7 @@ We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/sr
 1. Request an API Key by contacting us via Discord.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ### Status Codes
 
@@ -39,7 +39,7 @@ export interface ErrorResponse {
 
 We recommend reading all [concepts](concepts/) for background information on the API but especially the following:
 
-* [Authentication](concepts/authentication.md)
+* [Authentication](tutorials/authentication.md)
 * [Number Types / Stringified Responses](concepts/number-types.md)
 * [Paginations](concepts/paginations.md)
 * [Limits / Restrictions](limits-restrictions.md)
@@ -76,7 +76,7 @@ Blockin Authentication Required = \*
 
 For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
-If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
+If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
 
 ## Routes
 
@@ -84,7 +84,7 @@ See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/
 
 ### **Authentication**
 
-See [Authentication](concepts/authentication.md) for tutorial.
+See [Authentication](tutorials/authentication.md) for tutorial.
 
 #### **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
@@ -105,7 +105,7 @@ export interface GetSignInChallengeRouteSuccessResponse<T extends NumberType> {
 
 #### **POST /api/v0/auth/verify - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteSuccessResponse.html)**)**
 
-Submit the signed Blockin challenge to this route to be authenticated. See [Authentication Tutorial](concepts/authentication.md).
+Submit the signed Blockin challenge to this route to be authenticated. See [Authentication Tutorial](tutorials/authentication.md).
 
 ```typescript
 export interface VerifySignInRouteRequestBody {
@@ -548,7 +548,7 @@ export interface DeleteReviewRouteSuccessResponse<T extends NumberType> {
 
 ### **Broadcasting**
 
-Broadcast and simulate blockchain transactions to the official BitBadges node. See this [tutorial](../sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for more information.
+Broadcast and simulate blockchain transactions to the official BitBadges node. See this [tutorial](../bitbadges-sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for more information.
 
 Also, check out [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), so you can simply copy and paste your transaction to a UI. All signing, API communication, etc is outsourced to the UI,
 

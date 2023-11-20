@@ -104,9 +104,9 @@ The MsgExecuteContractCompat is in the x/wasmx module so would be executable by 
 
 **Option 2: BitBadges SDK**
 
-The BitBadges SDK offers a [**createTxMsgExecuteContractCompat**](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/functions/createMsgExecuteContractCompat.html) function which allows you to create, sign, and broadcast an execute contract Msg within JavaScript (see [Broadcasting Txs](../../sdk/broadcasting-and-signing-txs.md)) compatible with Ethereum EIP712. This allows you to create dApps and a frontend for your contract for any user.
+The BitBadges SDK offers a [**createTxMsgExecuteContractCompat**](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/functions/createMsgExecuteContractCompat.html) function which allows you to create, sign, and broadcast an execute contract Msg within JavaScript (see [Broadcasting Txs](../create-and-submit-txs.md)) compatible with Ethereum EIP712. This allows you to create dApps and a frontend for your contract for any user.
 
-For users to execute your contract (potentially via a dApp), we recommend using the MsgExecuteContractCompat instead of the base MsgExecuteContract. This is the same as braodcasting a transaction with any other Msg type, so we refer you [here](../../sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for further details.
+For users to execute your contract (potentially via a dApp), we recommend using the MsgExecuteContractCompat instead of the base MsgExecuteContract. This is the same as braodcasting a transaction with any other Msg type, so we refer you [here](../bitbadges-sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for further details.
 
 
 
@@ -155,4 +155,4 @@ const executeTx = await createTxMsgExecuteContractCompat(...txDetails, msgExecut
 
 **Step 4: Build a dApp**
 
-Once you have done the previous three steps, you can build a dApp frontend, so users can interact with your contract! See [Build a dApp](build-a-dapp.md).
+Once you have done the previous three steps, you can build a dApp frontend, so users can interact with your contract! See [Build a dApp](broken-reference).

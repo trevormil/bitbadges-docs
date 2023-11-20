@@ -74,15 +74,15 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../../indexer-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../indexer-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
 
 **Who? When? What? - Main Fields**
 
 To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTim`**`es`. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
-* **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
+* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
+* **transferTimes**: When can the transfer takes place? A [UintRange](../concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../concepts/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
 
 For example, we might have something like  the following:

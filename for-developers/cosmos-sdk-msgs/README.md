@@ -14,7 +14,7 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
-* [BitBadges SDK](../../sdk/broadcasting-and-signing-txs.md): Generate and broadcast transactions to a running node with TypeScript. See tutorials. This is the recommended option.
+* [BitBadges SDK](../create-and-submit-txs.md): Generate and broadcast transactions to a running node with TypeScript. See tutorials. This is the recommended option.
 * CLI: Run your own node and interact with the command line
 * Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 

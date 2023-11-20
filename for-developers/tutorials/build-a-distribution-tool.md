@@ -39,9 +39,9 @@ Your two options:
 * Store everything on the BitBadges centralized servers. This is the most straightforward approach but is centralized. Your tool should be designed in a way that users can simply use the "Mint" or "Update Collection" form on the BitBadges website.&#x20;
   * For example, your tool simply tell users to copy and paste specific addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool for distribution.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
-  * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../../indexer-api/compatibility.md).
+  * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../indexer-api/compatibility.md).
     * Note this JSON file will be public, so DO NOT include sensitive information like passwords or unhashed preimages (the actual codes) here. Whitelisted addresses are okay.&#x20;
-  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../../sdk/broadcasting-and-signing-txs.md)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
+  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../create-and-submit-txs.md)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**

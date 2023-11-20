@@ -16,7 +16,7 @@ Check out the [Ecosystem](ecosystem.md) to browse other tools and projects built
 
 **Option 3 (Technical): BitBadges SDK / API**
 
-Badges can also be created programmatically via the [BitBadges SDK](broken-reference) and/or [BitBadges API](../indexer-api/api.md). This requires some technical experience (JavaScript and HTTP APIs), but it also allows you to customize your badges even more.
+Badges can also be created programmatically via the [BitBadges SDK](broken-reference) and/or [BitBadges API](../for-developers/indexer-api/api.md). This requires some technical experience (JavaScript and HTTP APIs), but it also allows you to customize your badges even more.
 
 
 
