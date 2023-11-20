@@ -8,7 +8,9 @@ To combat this, we have made all TypeScript types in the SDK generic via a Numbe
 export type NumberType = bigint | number | string | boolean;
 ```
 
-Types that you will find in the SDK that are number-based will all be generically typed, so that you can use any of the above NumberTypes, according to your preferences. It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision,
+Types that you will find in the SDK that are number-based will all be generically typed, so that you can use any of the above NumberTypes, according to your preferences.&#x20;
+
+It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision. Also, note that for almost all SDK functions, we only take bigints.&#x20;
 
 For example, the following will represent a BadgeMetadata type where all numbers are stringified (i.e. "100" or "123").
 
