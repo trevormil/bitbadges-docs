@@ -2,15 +2,15 @@
 
 Once the collection is created, the badges then have to be distributed to owners. BitBadges is multi-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
-
 ### How to Distribute?
 
 Distributing depends on your unique requirements and the type of collection / list you have created.
 
 **Address Lists + Off-Chain Balances**
 
-For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
+For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge.&#x20;
+
+Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
 
 As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](../concepts/balances-types.md).
 
@@ -30,7 +30,7 @@ Note the initiator of the transfer pays the transaction fees.
 
 Before distributing, you should answer the following questions:
 
-1. **How am I identifying my recipients?**&#x20;
+1. **How am I identifying my recipients?** **Do I know their addresses?**
    1. If you know their addresses, a whitelist is probably the best option.&#x20;
    2. If via some other method (email address, social media username, etc), it is probably best to generate unique codes / passwords and distribute codes for claiming that way.
 2. **How am I going to collect all my recipients' details?** If you do not already have your recipients' details, you can collect details using any method you prefer. Some examples include:

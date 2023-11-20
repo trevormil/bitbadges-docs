@@ -1,12 +1,8 @@
 # ➕ Creating Badges
 
-**Getting Started**
-
-To create a brand new collection, you will be creating a [MsgUpdateCollection](cosmos-msgs.md) with **collectionId** set to 0. The collectionId will be assigned at execution time. Subsequent updates to the collection will also be through MsgUpdateCollection but specifying the actual collectionId.
-
 **Creating Badges**
 
-During the initial creation transaction (MsgUpdateCollection with Collection ID 0), you can specify the badge amounts and supplys you wish to create via the **badgesToCreate** field. This will create and transfer these badges to the "Mint" address. No one controls the "Mint" address. It can only be transferred out of, not transferred to.
+During the initial creation transaction, you can specify the badge amounts and supplys you wish to create via the **badgesToCreate** field. This will create and transfer these badges to the "Mint" address. No one controls the "Mint" address. It can only be transferred out of, not transferred to.
 
 The initial creation transaction's **badgesToCreate** are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction.&#x20;
 

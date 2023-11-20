@@ -14,9 +14,9 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
     * All one-click directly in the app website
   * Verification Tools - in-person, offline, snapshot-based, QR codes, barcode scanners, etc
   * Communication Tools - new ways to interact with your community of badge holders
-* New Token Standards
-  * Text-Only Attestation Tokens
+* New Standards
+  * Text-Only Tokens
   * Zero-Knowledge / Privacy-Preserving
 * Mobile App
-* Cross-Chain Protocols: Social Media, Messaging
+* Multi-Chain Protocols Built on BitBadges: Social Media, Messaging
 * And many more integrations / features!

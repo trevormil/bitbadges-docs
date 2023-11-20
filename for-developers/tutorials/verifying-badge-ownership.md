@@ -1,31 +1,10 @@
 # Verifying Badge Ownership
 
-There are many ways to verify if a user owns a badge or not. Select your preferred method according to your use case.
-
-## Common Use Cases
-
-**Multi-Chain Web3 Authentication w/ BitBadges Support - Blockin**
-
-Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on multiple L1 chains including BitBadges)!
-
-Blockin can be used for badge-gating websites and more!
+There are many ways to verify if a user owns a badge or not. Select your preferred method according to your use case and requirements.
 
 <figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
-
-
-**Offline Verification**
-
-For performing offline-first verification (no access to Internet), you can obtain a snapshot of the balances via your preferred method (when you do have Internet).
-
-Then in an offline setting, you can simply:
-
-1. Authenticate user knows the private key for an address via Blockin (or any signature). This is a simple cryptographic signature and doesn't require Internet.
-2. Check your snapshot to see if the address owns the badge. This can be done manually or with a tool like Blockin.
-
-**Ecosystem Tools**
-
-Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.
+##
 
 
 
@@ -82,3 +61,28 @@ Check a user actually owns their address by requesting and verifying a Blockin s
 #### **BitBadges SDK**
 
 If you need to programmatically verify balances, check out the BitBadges SDK. Head [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/modules.html) and check out the Functions - Balances section.
+
+
+
+
+
+## Common Use Cases
+
+**Multi-Chain Web3 Authentication w/ BitBadges Support - Blockin**
+
+Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on multiple L1 chains including BitBadges)!
+
+Blockin can be used for badge-gating websites and more!
+
+**Offline Verification**
+
+For performing offline-first verification (no access to Internet), you can obtain a snapshot of the balances via your preferred method (when you do have Internet).
+
+Then in an offline setting, you can simply:
+
+1. Authenticate user knows the private key for an address via Blockin (or any signature). This is a simple cryptographic signature and doesn't require Internet.
+2. Check your snapshot to see if the address owns the badge. This can be done manually or with a tool like Blockin.
+
+**Ecosystem Tools**
+
+Also, be sure to check out the [Ecosystem](../../overview/ecosystem.md) tools.

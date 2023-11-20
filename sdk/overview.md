@@ -43,7 +43,7 @@ const cosmosAddress = ethToCosmos(address);
 const ethAddress = cosmosToEth(cosmosAddress);
 ```
 
-**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create blockchain transactions in the [BitBadges Msg formats](../for-developers/concepts/cosmos-msgs.md). See [Broadcasting Txs](broadcasting-and-signing-txs.md) for more info and tutorials.&#x20;
+**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create blockchain transactions in the [BitBadges Msg formats](../for-developers/cosmos-sdk-msgs/). See [Broadcasting Txs](broadcasting-and-signing-txs.md) for more info and tutorials.&#x20;
 
 ```typescript
 const txMsg = createTxMsgUpdateCollection(

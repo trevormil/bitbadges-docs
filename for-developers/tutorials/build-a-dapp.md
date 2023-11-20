@@ -14,7 +14,7 @@ If so, use the [BitBadges SDK](broken-reference) to generate and broadcast trans
 
 If not, the BitBadges API / Indexer should be all you need, but you may find some useful functions within the SDK.
 
-**Do you need additional functionality not offered natively by the** [**BitBadges Msgs**](../concepts/cosmos-msgs.md)?&#x20;
+**Do you need additional functionality not offered natively by the** [**BitBadges Msgs**](../cosmos-sdk-msgs/)?&#x20;
 
 Build your own smart contract with CosmWASM. See [Create a Smart Contract](create-a-smart-contract.md).&#x20;
 

@@ -2,7 +2,7 @@
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [the next page](accounts-technical.md) will give you more in-depth explanations.&#x20;
 
-**How is BitBadges able to support addresses from different blockchains?**
+#### **How is BitBadges able to support addresses from different blockchains?**
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent $BADGE for the first time.&#x20;
 
@@ -10,7 +10,7 @@ As an example, the Ethereum zero address 0x0000000000000000000000000000000000000
 
 We typically refer to the native address as simply **address** and the corresponding Cosmos address as **cosmosAddress**. For Cosmos-native addresses, **address** will be the same as **cosmosAddress.**
 
-**Which address should I use (native or mapped Cosmos one)? How to convert?**
+#### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
 For user experience, you should always display the user's native address. However, the BitBadges blockchain only uses the mapped Cosmos addresses behind the scenes, never a native address. This should be converted behind the scenes using the converter functions from [BitBadges SDK](broken-reference) (address-converter). This can be done with any validly formatted address.
 
@@ -20,7 +20,7 @@ For user experience, you should always display the user's native address. Howeve
 </strong>const ethAddress = cosmosToEth(cosmosAddress);
 </code></pre>
 
-**How do I query information for an address, such as balance or sequence (nonce)?**
+#### **How do I query information for an address, such as balance or sequence (nonce)?**
 
 To get this information, you have to query it, which can be done in a few different ways.
 
