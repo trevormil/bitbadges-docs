@@ -30,6 +30,26 @@ Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/c
 
 Note that the **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** follow the same interface as **canUpdateCollectionApprovals** minus automatically populating the user's address for to / from for incoming / outgoing, respectively.
 
+### Manager
+
+The collectionPermissions only apply to the current manager of the collection. In other words, the manager is the only one who is able to execute permissions.
+
+The current manager is determined by the **managerTimeline.** Transferring the manager is facilitated via the **canUpdateManager** permission.
+
+```json
+"managerTimeline": [
+  {
+    "manager": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+    "timelineTimes": [
+      {
+        "start": 1,
+        "end": "18446744073709551615"
+      }
+    ]
+  }
+]
+```
+
 ### **Permitted and Forbidden Times**
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.

@@ -10,7 +10,7 @@ The balance types are "Standard", "Off-Chain", and "Inherited". The balances typ
 "balancesType": "Standard"
 ```
 
-With standard balances, all features of the interface are supported, and everything is facilitated on-chain.
+With standard balances, all features of the interface are supported, and everything is facilitated on-chain. Badges are initially sent to the "Mint" address and can be transferred from there.
 
 ### Off-Chain
 
