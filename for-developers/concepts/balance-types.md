@@ -4,13 +4,23 @@ BitBadges offers three different ways to store the badge balances and owners for
 
 The balance types are "Standard", "Off-Chain", and "Inherited". The balances type for a collection is determined by the **balancesType** field of the collection which will either equal "Standard", "Off-Chain", and "Inherited".
 
-### Standard
+### Standard'
+
+```json
+"balancesType": "Standard"
+```
 
 With standard balances, all features of the interface are supported, and everything is facilitated on-chain.
 
 ### Off-Chain
 
-With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. You will also create the badges on-chain to define a verifiable maximum total supply (even though they will permanently live in the "Mint" account). **However, all transfers and approval transactions will throw an error if attempted because these are to be facilitated off-chain.**
+```json
+"balancesType": "Off-Chain"
+```
+
+With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. You will also create the badges on-chain to define a verifiable maximum total supply (they will permanently live in the "Mint" account).&#x20;
+
+**However, all transfers and approval transactions will throw an error if attempted because these are to be facilitated off-chain.**
 
 Balances, at any given time, will be queried from the specified URI (stored via the **offChainBalancesMetadata** field of the collection).&#x20;
 
@@ -49,10 +59,10 @@ When querying the balances from the URI, the querier should verify that the maxi
 
 #### Criteria for Adoption
 
-Consider adopting off-chain balances if your collection aligns with the following criteria:
+We envision collections adopting off-chain balances if they align with one of the following criteria:
 
-1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer, off-chain balances could be advantageous, especially if you make the balances frozen and immutable.
-2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
+1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer ever, off-chain balances could make your collection scalability without sacrificing verifiability or centralization.
+2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.&#x20;
 
 #### Advantages Over Standard Solutions
 
@@ -69,17 +79,17 @@ In conclusion, off-chain balances present an intriguing avenue to enhance scalab
 
 It should be a JSON object where the keys are Cosmos addresses / address mapping IDs and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
-Note that if you use address mapping IDs for the keys ([see here to learn more](../core-concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
+Note that if you use address mapping IDs for the keys ([see here to learn more](address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
 See [here](../../sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 
-**How are the balances permanently frozen?**
+**How are balances permanently frozen?**
 
 The balances URL can be set to non-updatable via the manager permissions (**canUpdateOffChainBalancesMetadata**), and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
 
 This is because the IPFS URIs are hash-based. So if the hash is permanently stored and frozen on-chain and the balances file is known, you can always verify the hash.
 
-```
+```json
 "canUpdateOffChainBalancesMetadata": [
   {
     "timelineTimes": [
@@ -105,7 +115,7 @@ First, the URI must be set to return the updated balances. Then, balances can be
 
 #### Custom Logic Implementation
 
-Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL. This empowers you to define and program your balance-fetching process to align with your collection's unique requirements.&#x20;
+Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL (if not using a permanent URL). This empowers you to define and program your balance assignment process to align with your collection's unique requirements.&#x20;
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change). You simply need to just update the JSON map returned.
 

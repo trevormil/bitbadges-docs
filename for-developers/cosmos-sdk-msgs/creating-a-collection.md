@@ -43,8 +43,8 @@ The creation or genesis transaction for a collection is unique in a couple ways.
 
 For the rest of the fields, we refer you to the following section.
 
-{% content-ref url="../badge-collections/" %}
-[badge-collections](../badge-collections/)
+{% content-ref url="../collection-interface.md" %}
+[collection-interface.md](../collection-interface.md)
 {% endcontent-ref %}
 
 **Example**

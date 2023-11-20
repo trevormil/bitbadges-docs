@@ -47,6 +47,6 @@ We use an update flag + new value format. If the update flag is true, we will up
 
 For the rest of the fields, we refer you to the following section.
 
-{% content-ref url="../badge-collections/" %}
-[badge-collections](../badge-collections/)
+{% content-ref url="../collection-interface.md" %}
+[collection-interface.md](../collection-interface.md)
 {% endcontent-ref %}

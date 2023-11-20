@@ -87,7 +87,7 @@ In addition to the standard features of existing token standards (mint, transfer
   * And more!
 * [**Customizable Permissions**](overview/concepts/manager.md)**:**  Enable customizable permissions for your collection, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
   * Includes fine-grained controls such as when each permission can be executed? for what values? for what times?
-* [**Time-Based Details**](for-developers/badge-collections/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
+* [**Time-Based Details**](for-developers/concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
   * Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 
 And much more!

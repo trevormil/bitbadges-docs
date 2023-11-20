@@ -4,7 +4,7 @@
 
 The map is simply a cosmosAddress/mappingId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
-Note that if you use address mapping IDs for the keys ([see here to learn more](../core-concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
+Note that if you use address mapping IDs for the keys ([see here to learn more](../concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
 
 You may also find the [**createBalanceMapForOffChainBalances**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/functions/createBalanceMapForOffChainBalances.html) function helpful.
 
