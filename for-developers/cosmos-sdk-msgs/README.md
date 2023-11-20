@@ -18,6 +18,10 @@ You can generate and submit your transactions (Msgs) via:
 * CLI: Run your own node and interact with the command line
 * Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
+**What is the creator field?**
+
+The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when generating each Msg.
+
 ## Msg Types
 
 Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.&#x20;
@@ -39,141 +43,5 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **Other Cosmos SDK Modules**
 
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them
-
-## Msg Definitions
-
-The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when creating each Msg.
-
-For MsgUpdateCollection and MsgUpdateUserApprovals we use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value.&#x20;
-
-See previous pages for further explanations on specific fields.
-
-```typescript
-export interface MsgUpdateUserApprovals<T extends NumberType> {
-  creator: string
-  collectionId: T
-  updateOutgoingApprovals?: boolean
-  outgoingApprovals?: UserOutgoingApproval<T>[]
-  updateIncomingApprovals?: boolean
-  incomingApprovals?: UserIncomingApproval<T>[]
-  updateUserPermissions?: boolean
-  userPermissions?: UserPermissions<T>
-}
-```
-
-```typescript
-export interface MsgCreateAddressMappings {
-  creator: string;
-  addressMappings: AddressMapping[];
-}
-```
-
-```typescript
-export interface MsgDeleteCollection<T extends NumberType> {
-  creator: string
-  collectionId: T
-}
-```
-
-```typescript
-export interface MsgTransferBadges<T extends NumberType> {
-  creator: string;
-  collectionId: T;
-  transfers: Transfer<T>[];
-}
-
-export interface Transfer<T extends NumberType> {
-    from: string;
-    toAddresses: string[];
-    balances: Balance<T>[];
-    precalculateBalancesFromApproval?: ApprovalIdentifierDetails;
-    merkleProofs?: MerkleProof[];
-    memo?: string;
-    prioritizedApprovals?: ApprovalIdentifierDetails[];
-    onlyCheckPrioritizedApprovals?: boolean;
-}
-```
-
-```typescript
-export interface MsgUniversalUpdateCollection<T extends NumberType> {
-  creator: string
-  collectionId: T //0 for new collections (will be assigned)
-  balancesType?: string //"Standard" | "Off-Chain"
-  defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
-  defaultIncomingApprovals?: UserIncomingApproval<T>[]
-  defaultUserPermissions?: UserPermissions<T>
-  badgesToCreate?: Balance<T>[]
-  updateCollectionPermissions?: boolean
-  collectionPermissions?: CollectionPermissions<T>
-  updateManagerTimeline?: boolean
-  managerTimeline?: ManagerTimeline<T>[]
-  updateCollectionMetadataTimeline?: boolean
-  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
-  updateBadgeMetadataTimeline?: boolean
-  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
-  updateOffChainBalancesMetadataTimeline?: boolean
-  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
-  updateCustomDataTimeline?: boolean
-  customDataTimeline?: CustomDataTimeline<T>[]
-  updateCollectionApprovals?: boolean
-  collectionApprovals?: CollectionApproval<T>[]
-  updateStandardsTimeline?: boolean
-  standardsTimeline?: StandardsTimeline<T>[]
-  updateIsArchivedTimeline?: boolean
-  isArchivedTimeline?: IsArchivedTimeline<T>[]
-}
-
-export interface MsgUpdateCollection<T extends NumberType> {
-  creator: string
-  collectionId: T //0 for new collections (will be assigned)
-
-  //Note no defaults or balances types here
-
-  badgesToCreate?: Balance<T>[]
-  updateCollectionPermissions?: boolean
-  collectionPermissions?: CollectionPermissions<T>
-  updateManagerTimeline?: boolean
-  managerTimeline?: ManagerTimeline<T>[]
-  updateCollectionMetadataTimeline?: boolean
-  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
-  updateBadgeMetadataTimeline?: boolean
-  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
-  updateOffChainBalancesMetadataTimeline?: boolean
-  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
-  updateCustomDataTimeline?: boolean
-  customDataTimeline?: CustomDataTimeline<T>[]
-  updateCollectionApprovals?: boolean
-  collectionApprovals?: CollectionApproval<T>[]
-  updateStandardsTimeline?: boolean
-  standardsTimeline?: StandardsTimeline<T>[]
-  updateIsArchivedTimeline?: boolean
-  isArchivedTimeline?: IsArchivedTimeline<T>[]
-}
-
-export interface MsgCreateCollection<T extends NumberType> {
-  creator: string
-  
-  //collectionId is removed
-  //You will receive the actual collectionId for the created collection 
-  //from the TX response
-  
-  balancesType?: string //"Standard" | "Off-Chain"
-  defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
-  defaultIncomingApprovals?: UserIncomingApproval<T>[]
-  defaultUserPermissions?: UserPermissions<T>
-  badgesToCreate?: Balance<T>[]
-
-  //also note the update flags are removed
-  collectionPermissions?: CollectionPermissions<T>
-  managerTimeline?: ManagerTimeline<T>[]
-  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
-  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
-  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
-  customDataTimeline?: CustomDataTimeline<T>[]
-  collectionApprovals?: CollectionApproval<T>[]
-  standardsTimeline?: StandardsTimeline<T>[]
-  isArchivedTimeline?: IsArchivedTimeline<T>[]
-}
-```
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by theml
 

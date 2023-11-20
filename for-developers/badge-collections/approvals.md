@@ -80,9 +80,9 @@ We provide an optional **uri** and **customData** to allow you to add a link to 
 
 To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTim`**`es`. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
-* **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
+* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../core-concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../core-concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
+* **transferTimes**: When can the transfer takes place? A [UintRange](../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../core-concepts/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
 
 For example, we might have something like  the following:

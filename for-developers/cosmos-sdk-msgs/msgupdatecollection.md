@@ -1,8 +1,8 @@
-# Updating a Collection
+# MsgUpdateCollection
 
-For updating a collection's details on-chain, you can use MsgUpdateCollection. &#x20;
+For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html). &#x20;
 
-Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain.
+Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain (doesn't require this Msg).
 
 ```typescript
 export interface MsgUpdateCollection<T extends NumberType> {
@@ -37,7 +37,7 @@ export interface MsgUpdateCollection<T extends NumberType> {
 
 **Update Flags**
 
-We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg.
+We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep the currently set value.
 
 **Permissions**
 
@@ -45,8 +45,8 @@ We use an update flag + new value format. If the update flag is true, we will up
 
 **Rest of Fields**
 
-For the rest of the fields, we refer you to the Concepts section.
+For the rest of the fields, we refer you to the following section.
 
-{% content-ref url="../concepts/" %}
-[concepts](../concepts/)
+{% content-ref url="../badge-collections/" %}
+[badge-collections](../badge-collections/)
 {% endcontent-ref %}

@@ -1,6 +1,6 @@
 # Badge Metadata
 
-We expect that badge metadata follows the base BitBadges metadata standard, as defined in [Standards](../../for-developers/concepts/standards.md).&#x20;
+We expect that badge metadata follows the base BitBadges metadata standard, as defined in [Standards](../../for-developers/badge-collections/standards.md).&#x20;
 
 ### Metadata IDs
 

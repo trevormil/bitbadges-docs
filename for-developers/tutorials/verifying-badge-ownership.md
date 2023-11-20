@@ -2,8 +2,6 @@
 
 There are many ways to verify if a user owns a badge or not. Select your preferred method according to your use case and requirements.
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
-
 ##
 
 
@@ -14,11 +12,11 @@ Keep in mind the potential delay / lag and availability with the options below. 
 
 **BitBadges Website**
 
-If you have access to the website, just simply navigate to the badge page or user's portfolio page. Note that you can check how up to date the information is via the block number and timestamp.
+If you have access to the website, just simply navigate to the badge page or user's portfolio page.&#x20;
 
 **BitBadges API**
 
-Use one of the following routes to fetch balances from the API (supports off-chain balances but note they use a cache and trigger refresh system). These requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
+Use one of the following routes to fetch balances from the [API](../../indexer-api/api.md) (supports off-chain balances but note they use a cache and trigger refresh system). These requests are paginated, so you may have to fetch multiple times specifying the previously returned bookmark.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>POST /api/v0/collection/:collectionId/:badgeId/owners
 </strong></code></pre>
@@ -36,7 +34,7 @@ Note that you can check how up to date the information is by using the **POST /a
 
 **BitBadges REST Node**
 
-Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Note mapped Cosmos addresses must be used.
+Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Cosmos addresses must be used.
 
 **Direct Fetch - Off-Chain Balances**
 
@@ -73,6 +71,8 @@ If you need to programmatically verify balances, check out the BitBadges SDK. He
 Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal, multi-chain sign-in standard for Web 3.0 which extends Sign-In with Ethereum for native BitBadges ownership verification. It is a TypeScript library which allows you to a) authenticate users (via a wallet cryptographic signature from any supported chain's wallet) and b) verify a user's ownership of assets (on multiple L1 chains including BitBadges)!
 
 Blockin can be used for badge-gating websites and more!
+
+<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 **Offline Verification**
 

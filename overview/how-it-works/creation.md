@@ -47,7 +47,7 @@ Each permission has fine-grained controls, such as when it can be executed vs fo
 
 [**Standard**](../concepts/standards.md)**:** Each collection can define what standard it uses to explain how to interpret the details of the badge. For example, should we expect it to follow a specific format?
 
-For developers, see [standards](../../for-developers/concepts/standards.md).
+For developers, see [standards](../../for-developers/badge-collections/standards.md).
 
 ## Address Lists
 
