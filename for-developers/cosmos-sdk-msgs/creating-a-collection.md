@@ -46,7 +46,3 @@ For the rest of the fields, we refer you to the following section.
 {% content-ref url="../collection-interface.md" %}
 [collection-interface.md](../collection-interface.md)
 {% endcontent-ref %}
-
-**Example**
-
-TODO
