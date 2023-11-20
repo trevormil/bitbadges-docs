@@ -74,7 +74,7 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../../indexer-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
 
 **Who? When? What? - Main Fields**
 
@@ -122,7 +122,7 @@ Note the approval only applies to the details defined and must match ALL details
 
 As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/ outgoing approvals.
 
-The Mint address technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
+The Mint address technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
 
 It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
@@ -136,7 +136,7 @@ The **amountTrackerId** and **challengeTrackerId** correspond to **approvalCrite
 
 **Breaking Down Range Logic**
 
-Even though our interface uses range logic (UintRanges, AddressMappings), we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
+Even though our interface uses range logic (UintRanges, AddressMappings), you can think of it as we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
 
 #### Matching Transfers to Approvals
 
