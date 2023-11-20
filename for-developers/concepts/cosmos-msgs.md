@@ -29,7 +29,10 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/badges**
 
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Creates a new collection or updates the details of a collection. Must be manager to execute. If collectionId == 0, we consider it a creation transaction. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.&#x20;
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager to execute and follow the permissions set.
+* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
 * [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
 * [MsgUpdateUserApprovedTransfers](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovedTransfers.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 * [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
@@ -52,6 +55,19 @@ For MsgUpdateCollection and MsgUpdateUserApprovals we use an update flag + new v
 Permissions are set last, so if we do update something, we use the prior permissions to check if the update is valid (everything is allowed for a creation transaction). In other words, if you update the permissions in the current transaction, they will not be applicable until the following transaction.
 
 See previous pages for further explanations on specific fields.
+
+```typescript
+export interface MsgUpdateUserApprovals<T extends NumberType> {
+  creator: string
+  collectionId: T
+  updateOutgoingApprovals?: boolean
+  outgoingApprovals?: UserOutgoingApproval<T>[]
+  updateIncomingApprovals?: boolean
+  incomingApprovals?: UserIncomingApproval<T>[]
+  updateUserPermissions?: boolean
+  userPermissions?: UserPermissions<T>
+}
+```
 
 ```typescript
 export interface MsgCreateAddressMappings {
@@ -87,7 +103,7 @@ export interface Transfer<T extends NumberType> {
 ```
 
 ```typescript
-export interface MsgUpdateCollection<T extends NumberType> {
+export interface MsgUniversalUpdateCollection<T extends NumberType> {
   creator: string
   collectionId: T //0 for new collections (will be assigned)
   balancesType?: string //"Standard" | "Off-Chain"
@@ -114,17 +130,64 @@ export interface MsgUpdateCollection<T extends NumberType> {
   updateIsArchivedTimeline?: boolean
   isArchivedTimeline?: IsArchivedTimeline<T>[]
 }
-```
 
-```typescript
-export interface MsgUpdateUserApprovals<T extends NumberType> {
+export interface MsgUpdateCollection<T extends NumberType> {
   creator: string
-  collectionId: T
-  updateOutgoingApprovals?: boolean
-  outgoingApprovals?: UserOutgoingApproval<T>[]
-  updateIncomingApprovals?: boolean
-  incomingApprovals?: UserIncomingApproval<T>[]
-  updateUserPermissions?: boolean
-  userPermissions?: UserPermissions<T>
+  collectionId: T //0 for new collections (will be assigned)
+
+  //Note no defaults or balances types here
+
+  badgesToCreate?: Balance<T>[]
+  updateCollectionPermissions?: boolean
+  collectionPermissions?: CollectionPermissions<T>
+  updateManagerTimeline?: boolean
+  managerTimeline?: ManagerTimeline<T>[]
+  updateCollectionMetadataTimeline?: boolean
+  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
+  updateBadgeMetadataTimeline?: boolean
+  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
+  updateOffChainBalancesMetadataTimeline?: boolean
+  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
+  updateCustomDataTimeline?: boolean
+  customDataTimeline?: CustomDataTimeline<T>[]
+  updateCollectionApprovals?: boolean
+  collectionApprovals?: CollectionApproval<T>[]
+  updateStandardsTimeline?: boolean
+  standardsTimeline?: StandardsTimeline<T>[]
+  updateIsArchivedTimeline?: boolean
+  isArchivedTimeline?: IsArchivedTimeline<T>[]
+}
+
+export interface MsgCreateCollection<T extends NumberType> {
+  creator: string
+  
+  //collectionId is removed
+  //You will receive the actual collectionId for the created collection 
+  //from the TX response
+  
+  balancesType?: string //"Standard" | "Off-Chain"
+  defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
+  defaultIncomingApprovals?: UserIncomingApproval<T>[]
+  defaultUserPermissions?: UserPermissions<T>
+  badgesToCreate?: Balance<T>[]
+  updateCollectionPermissions?: boolean
+  collectionPermissions?: CollectionPermissions<T>
+  updateManagerTimeline?: boolean
+  managerTimeline?: ManagerTimeline<T>[]
+  updateCollectionMetadataTimeline?: boolean
+  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
+  updateBadgeMetadataTimeline?: boolean
+  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
+  updateOffChainBalancesMetadataTimeline?: boolean
+  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
+  updateCustomDataTimeline?: boolean
+  customDataTimeline?: CustomDataTimeline<T>[]
+  updateCollectionApprovals?: boolean
+  collectionApprovals?: CollectionApproval<T>[]
+  updateStandardsTimeline?: boolean
+  standardsTimeline?: StandardsTimeline<T>[]
+  updateIsArchivedTimeline?: boolean
+  isArchivedTimeline?: IsArchivedTimeline<T>[]
 }
 ```
+
