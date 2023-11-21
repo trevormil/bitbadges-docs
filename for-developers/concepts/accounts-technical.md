@@ -41,7 +41,7 @@ For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.cr
 
 **Address Conversion**&#x20;
 
-See [**bitbadgesjs-address-converter**](broken-reference) from the SDK for conversions between different formats.
+See [**bitbadgesjs-address-converte**](../bitbadges-sdk/)**r** from the SDK for conversions between different formats.
 
 ### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
 

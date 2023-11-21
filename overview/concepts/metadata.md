@@ -28,4 +28,4 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 ### For Developers
 
-Visit [here](../../for-developers/indexer-api/compatibility.md) for more details.
+Visit [here](../../for-developers/bitbadges-api/compatibility.md) for more details.

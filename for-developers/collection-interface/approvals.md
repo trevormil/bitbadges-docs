@@ -74,7 +74,7 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../indexer-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
 
 **Who? When? What? - Main Fields**
 

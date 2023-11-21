@@ -12,7 +12,7 @@ We typically refer to the native address as simply **address** and the correspon
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
-For user experience, you should always display the user's native address. However, the BitBadges blockchain only uses the mapped Cosmos addresses behind the scenes, never a native address. This should be converted behind the scenes using the converter functions from [BitBadges SDK](broken-reference) (address-converter). This can be done with any validly formatted address.
+For user experience, you should always display the user's native address. However, the BitBadges blockchain only uses the mapped Cosmos addresses behind the scenes, never a native address. This should be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-address-converter';
 </strong><strong>

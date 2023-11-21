@@ -1,6 +1,6 @@
 # Metadata IDs
 
-Metadata IDs are a way of representing the metadata corresponding to badges by an ID rather than using the badge ID. Each ID represents one URI fetch. See [Metadata IDs](../../indexer-api/concepts/badge-metadata.md) for more info.
+Metadata IDs are a way of representing the metadata corresponding to badges by an ID rather than using the badge ID. Each ID represents one URI fetch. See [Metadata IDs](../../bitbadges-api/concepts/badge-metadata.md) for more info.
 
 
 
