@@ -10,17 +10,15 @@ description: >-
 
 ## Overview&#x20;
 
-Digital tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for infinitely many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), and some may be purely digital (e.g. verification checkmark).&#x20;
+Digital tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), and some may be purely digital (e.g. verification checkmark).&#x20;
 
 When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain. However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users or only Cosmos users).
 
-**BitBadges can be described as multi-chain tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case.**&#x20;
+**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case you desire.**
 
-The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distributing badges to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
+The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
 The BitBadges app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to learn about the identity of a user.
-
-To learn more about BitBadges (the company), visit [https://bitbadges.org](https://bitbadges.org).
 
 ## Use Cases
 
@@ -47,22 +45,22 @@ What makes our product better than competitors?
 
 **Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one! We currently support Cosmos, Solana, and Ethereum users.
 
-<figure><img src=".gitbook/assets/image (3).png" alt="" width="179"><figcaption></figcaption></figure>
+<div data-full-width="true">
+
+<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+</div>
 
 * Imagine if a sporting event was limited to only Android users because the ticketing technology only worked on Android! This is the current state of infrastructure.
-* Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential userbase!
-
-
+* Currently, token standards are limited to one blockchain ecosystem (e.g. only Ethereum users or only Solana users). This is a HUGE problem because most companies do not belong to a specific blockchain ecosystem, so it greatly restricts their potential audience!
 
 **Decentralization:** We keep decentralization as a core principle, as opposed to some of our competitors who rely on more centralized architectures and censoring.
 
-**Rapidly-Evolving:** Instead of relying on a rigid token standard that is not adaptable to new features, we iterate fast and constantly add new features to our token standard.
+**Rapidly-Evolving:** Instead of relying on a rigid token standard that is not adaptable to new features, we iterate fast and constantly add new features.
 
 **Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
 
 **Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
-
-* This is because instead of having to write new custom code for every collection of tokens (as existing standards do which often results in security vulnerabilities), we use a registry architecture where code is reused by all collections.&#x20;
 
 #### Newly Innovated Features
 
@@ -75,7 +73,7 @@ In addition to the standard features of existing token standards (mint, transfer
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain for maintaining balances down to just the size of a URL! This is as opposed to kilobytes and megabytes for standard balances.
     * Users never need to transact. Badges are auto assigned to their wallets.
     * No on-chain transfers or approvals are allowed so only usable by select use cases.
-  * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another (parent-child relationship).
+  * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another (parent-child relationship). Coming soon.
 * [**Batch Transfers**](overview/concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 * [**Fine-Grained Transferability Customization**](overview/concepts/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
@@ -149,24 +147,6 @@ In the near future, we plan to allow you to authenticate via the following metho
 * Zero-Knowledge Proof of Ownerships
 * Snapshots
 * And more!
-
-## Developer Stack
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ## Links
 
