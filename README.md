@@ -60,19 +60,17 @@ What makes our product better than competitors?
 
 **Community-Driven:** By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
 
-**Scalability, Security, and Ease of Use:**  Our product is more scalable, easy to use, and battle-tested (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) than competitors.
+**Scalability, Security, and Ease of Use:**  Our product is more scalable, easier to use, and more secure than competitors (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) .
 
 #### Newly Innovated Features
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we offer the following newly innovated features:
 
-<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
-
-* [**Time-Based Balances**](overview/concepts/time-dependent-ownership.md)**:** Badge balances are all time-based which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* [**Time-Based Balances**](overview/concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
 * [**Off-Chain and Inherited Balances:**](overview/concepts/balances-types.md) Two new ways to store and track balances, in addition to the standard on-chain storage of balances. These can offer over 1000x better scalability and much better user experience.
   * 1\) Off-chain balances allow you to host your balances via a typical server, reducing the resources used by the blockchain for maintaining balances down to just the size of a URL! This is as opposed to kilobytes and megabytes for standard balances.
-    * Users never need to transact. Badges are auto assigned to their wallets.
-    * No on-chain transfers or approvals are allowed so only usable by select use cases.
+    * Pros: Users never need to transact with the blockchain. Badges are auto assigned to their wallets.
+    * Cons: Possibly more centralized and doesn't support on-chain transfers or approvals.
   * 2\) Inherited balances allow the owners of one badge to automatically be bounded to another (parent-child relationship). Coming soon.
 * [**Batch Transfers**](overview/concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
