@@ -8,7 +8,7 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
 
 #### Roadmap
 
-* Support more blockchain ecosystems and wallets! (Bitcoin, Solana, and more)
+* Support more blockchain ecosystems and wallets! (Bitcoin and more)
 * Integrations
   * Distribution Tools - distribute by location, Twitter, e-mail, etc
     * All one-click directly in the app website
