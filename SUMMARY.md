@@ -19,7 +19,7 @@
 * [💡 Core Principles](overview/core-principles.md)
 * [🏅 Getting Started](overview/getting-started.md)
 * [🌴 Ecosystem](overview/ecosystem.md)
-* [💳 Supported Wallets](overview/supported-wallets.md)
+* [💳 Chains / Wallets](overview/chains-wallets.md)
 * [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
