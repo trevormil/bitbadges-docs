@@ -8,8 +8,6 @@ To enable interoperability between different blockchains, each individual L1 blo
 
 As an example, the Ethereum zero address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a and will be assigned an account ID number upon interaction with the BitBadges blockchain.
 
-We typically refer to the native address as simply **address** and the corresponding Cosmos address as **cosmosAddress**. For Cosmos-native addresses, **address** will be the same as **cosmosAddress.**
-
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
 For user experience, you should always display the user's native address. However, the BitBadges blockchain only uses the mapped Cosmos addresses behind the scenes, never a native address. This should be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
@@ -18,7 +16,12 @@ For user experience, you should always display the user's native address. Howeve
 </strong><strong>
 </strong><strong>const cosmosAddress = ethToCosmos(address);
 </strong>const ethAddress = cosmosToEth(cosmosAddress);
+const cosmosAddressFromSolana = solanaToCosmos(address);
 </code></pre>
+
+#### Why can I convert Solana address to a  Cosmos / Eth address but not the other way around?
+
+You may notice that you cannot from a Cosmos / Eth address directly to a Solana address. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an Eth / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
 
 #### **How do I query information for an address, such as balance or sequence (nonce)?**
 

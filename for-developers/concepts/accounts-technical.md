@@ -9,25 +9,25 @@
 
 BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
 
-Native Cosmos accounts are also supported.&#x20;
+BitBadges also supports Solana addresses using ed25519 key pairs via a custom type (forked from Cosmos SDK). Normal Cosmos accounts are also supported.&#x20;
 
 ### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
 There are 3 main types of `Addresses`/`PubKeys` available by default on Injective:
 
-* Addresses and Keys for **accounts**, which identify users (e.g. the sender of a `message`). They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK).&#x20;
-* Addresses and Keys for **validator operators**, which identify the operators of validators. They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK).&#x20;
+* Addresses and Keys for **accounts**, which identify users (e.g. the sender of a `message`). They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK) or **`ed25519`**(Solana).
+* Addresses and Keys for **validator operators**, which identify the operators of validators. They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK)  or **`ed25519`**(Solana).
 * Addresses and Keys for **consensus nodes**, which identify the validator nodes participating in consensus. They are derived using the **`ed25519`** curve.
 
-|                    | Address bech32 Prefix | Pubkey bech32 Prefix | Curve                       | Address byte length | Pubkey byte length |
-| ------------------ | --------------------- | -------------------- | --------------------------- | ------------------- | ------------------ |
-| Accounts           | `cosmos`              | `cosmospub`          | `eth_secp256k1 / secp256k1` | `20`                | `33` (compressed)  |
-| Validator Operator | `cosmosvaloper`       | `cosmosvaloperpub`   | `eth_secp256k1 / secp256k1` | `20`                | `33` (compressed)  |
-| Consensus Nodes    | `cosmosvalcons`       | `cosmosvalconspub`   | `ed25519`                   | `20`                | `32`               |
+|                    | Address bech32 Prefix | Pubkey bech32 Prefix | Curve                                                                    | Address byte length |
+| ------------------ | --------------------- | -------------------- | ------------------------------------------------------------------------ | ------------------- |
+| Accounts           | `cosmos`              | `cosmospub`          | <p><code>eth_secp256k1 / secp256k1</code></p><p><code>ed25519</code></p> | `20`                |
+| Validator Operator | `cosmosvaloper`       | `cosmosvaloperpub`   | <p><code>eth_secp256k1 / secp256k1</code></p><p><code>ed25519</code></p> | `20`                |
+| Consensus Nodes    | `cosmosvalcons`       | `cosmosvalconspub`   | `ed25519`                                                                | `20`                |
 
 ### Address formats for clients[​](https://docs.injective.network/learn/basic-concepts/accounts#address-formats-for-clients) <a href="#address-formats-for-clients" id="address-formats-for-clients"></a>
 
-For Ethereum accounts and other L1 accounts, they can be represented in both [Bech32](https://en.bitcoin.it/wiki/Bech32) and standard format for compatibility (for Ethereum, this is hex).
+For Ethereum accounts and other L1 accounts, they can be represented in both [Bech32](https://en.bitcoin.it/wiki/Bech32) and standard format (Ethereum - hex, Solana - Base 58).
 
 The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.&#x20;
 
@@ -39,9 +39,23 @@ Ethereum Example:
 
 For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"` and will always be represented in Bech32.
 
+For Solana accounts, the public key will have the `"@type": "/solana.PubKey"` and will be represented in Bech32.
+
 **Address Conversion**&#x20;
 
 See [**bitbadgesjs-address-converte**](../bitbadges-sdk/)**r** from the SDK for conversions between different formats.
+
+### Signing Transactions and Msgs <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
+
+For signing transactions and messages, the expected format is different for each public key type.
+
+For standard Cosmos accounts, we support the typical signing modes from the Cosmos SDK (Sign Direct and Amino).
+
+For Ethereum accounts, everything must be signed with EIP-712.&#x20;
+
+For Solana accounts, everything must be signed in JSON format with the keys all alphatebically sorted recursively.
+
+The EIP-712 and JSON messages to sign can be generated via the SDK. See the SDK for further tutorials and examples.
 
 ### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
 
