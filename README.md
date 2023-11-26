@@ -14,7 +14,7 @@ Digital tokens (badges) are simply something that you can own digitally and prov
 
 When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain. However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users or only Cosmos users).
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case.**&#x20;
+**BitBadges can be described as multi-chain tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case.**&#x20;
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distributing badges to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -45,7 +45,7 @@ Below are some of our favorite use cases:
 
 What makes our product better than competitors?
 
-**Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one!
+**Multi-Chain:** Supports users from multiple blockchain ecosystems instead of just one! We currently support Cosmos, Solana, and Ethereum users.
 
 <figure><img src=".gitbook/assets/image (3).png" alt="" width="179"><figcaption></figcaption></figure>
 
