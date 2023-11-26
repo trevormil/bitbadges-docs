@@ -185,11 +185,11 @@ After creating the transaction we need to send the payload to metamask so it can
 
 ```ts
 // Follow the previous step to generate the msg object
-import { cosmosToEth } from 'bitbadgesjs-address-converter'
+import { cosmosToEth } from 'bitbadgesjs-utils'
 import {
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
-} from 'bitbadgesjs-provider'
+} from 'bitbadgesjs-utils'
 import {
   createTxRawEIP712,
   signatureToWeb3Extension,
@@ -276,7 +276,7 @@ import { createTxRaw } from 'bitbadgesjs-proto'
 import {
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
-} from 'bitbadgesjs-provider'
+} from 'bitbadgesjs-utils'
 
 let sign = await window?.keplr?.signDirect(
   chain.cosmosChainId,

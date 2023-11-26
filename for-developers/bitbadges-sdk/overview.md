@@ -4,15 +4,7 @@ The BitBadges SDK is a bundle of TypeScript libraries that provide all the tools
 
 GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs).
 
-There are currently four libraries that make up the SDK (address-converter, proto, provider, utils) that can be installed via the commands below. See [full documentation](full-documentation.md) for complete documentation on each library. Also, the BitBadges official indexer source code and BitBadges official frontend code both use the SDK, so please feel free to reference them.
-
-```
-npm install bitbadgesjs-address-converter
-```
-
-```
-npm install bitbadgesjs-provider
-```
+There are currently two libraries that make up the SDK (proto and utils) that can be installed via the commands below. See [full documentation](full-documentation.md) for complete documentation on each library. Also, the BitBadges official indexer source code and BitBadges official frontend code both use the SDK, so please feel free to reference them.
 
 ```
 npm install bitbadgesjs-utils
@@ -34,28 +26,12 @@ const idRangesOverlap = checkIfIdRangesOverlap(balances[0].badgeIds);
 const metadata = updateMetadataMap(metadata, currentMetadata, { start: badgeId, end: badgeId }, uri);
 ```
 
-
-
-**address-converter** allows you to switch between equivalent addresses of different ecosystems.
-
 ```typescript
 const cosmosAddress = ethToCosmos(address);
 const ethAddress = cosmosToEth(cosmosAddress);
 ```
 
-**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create blockchain transactions in the [BitBadges Msg formats](../cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-submit-txs.md) for more info and tutorials.&#x20;
-
-```typescript
-const txMsg = createTxMsgUpdateCollection(
-    txDetails.chain,
-    txDetails.sender,
-    txDetails.fee,
-    txDetails.memo,
-    msg
-)
-```
-
-**provider** exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../create-and-submit-txs.md) for how to use.
+It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../create-and-submit-txs.md) for how to use.
 
 ```typescript
 // Find a node URL from a network endpoint:
@@ -75,4 +51,16 @@ const broadcastPost = await fetch(
 )
 
 const response = await broadcastPost.json()
+```
+
+**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create blockchain transactions in the [BitBadges Msg formats](../cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-submit-txs.md) for more info and tutorials.&#x20;
+
+```typescript
+const txMsg = createTxMsgUpdateCollection(
+    txDetails.chain,
+    txDetails.sender,
+    txDetails.fee,
+    txDetails.memo,
+    msg
+)
 ```

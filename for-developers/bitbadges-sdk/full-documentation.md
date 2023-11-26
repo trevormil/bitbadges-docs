@@ -10,10 +10,6 @@ Or, you can see the individually generated ones. Its a little neater and more or
 
 [bitbadgesjs-utils](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/modules.html)
 
-[bitbadgesjs-address-converter](https://bitbadges.github.io/bitbadgesjs/packages/address-converter/docs/modules.html)
-
-[bitbadgesjs-provider](https://bitbadges.github.io/bitbadgesjs/packages/provider/docs/modules.html)
-
 [bitbadgesjs-proto](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/modules.html)
 
 
