@@ -1,8 +1,6 @@
 # Authentication
 
-BitBadges uses [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users.&#x20;
-
-The Blockin execution flow is simple:
+BitBadges uses [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users. The Blockin execution flow is simple:
 
 **1) Fetch Challenge**
 
@@ -14,9 +12,9 @@ await BitBadgesApi.getSignInChallenge(requestBody)
 
 ```typescript
 export interface GetSignInChallengeRouteRequestBody {
-    chain: SupportedChain;
+    chain: SupportedChain; //"Ethereum", "Solana", "Cosmso"
     address: string;
-    hours?: NumberType;
+    hours?: NumberType; //hours to be signed in for
 }
 ```
 
@@ -29,7 +27,7 @@ export interface GetSignInChallengeRouteRequestBody {
 
 **2) Sign Challenge**
 
-The user should then sign the blockinMessage string with a personal message signature from their wallet.
+The user should then sign the **blockinMessage** string with a personal message signature from their wallet.
 
 Ethereum:
 
@@ -71,9 +69,33 @@ const signChallenge = async (message: string) => {
 }
 ```
 
+Solana (Phantom Wallet):
+
+```typescript
+const signChallenge = async (message: string) => {
+  const encodedMessage = new TextEncoder().encode(message);
+  const provider = solanaProvider;
+  const signedMessage = await provider.request({
+    method: "signMessage",
+    params: {
+      message: encodedMessage,
+      display: "utf8",
+    },
+  });
+  const originalBytes = new Uint8Array(Buffer.from(message, 'utf8'));
+  const signatureBytes = new Uint8Array(Buffer.from(signedMessage.signature, 'hex'));
+
+  return { originalBytes: originalBytes, signatureBytes: signatureBytes, message: 'Success!' };
+}
+```
+
 **3) Send Signed Challenge**
 
-Send the signed message via **POST /api/v0/auth/verify**. This will grant a Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify in the request). The originalBytes and signatureBytes to provide in the request body should match what is returned from Step 2.
+Send the signed message via **POST /api/v0/auth/verify**.&#x20;
+
+This will grant a Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify in the request).&#x20;
+
+The originalBytes and signatureBytes to provide in the request body should match what is returned from Step 2.
 
 ```typescript
 await BitBadgesApi.verifySignIn(requestBody)

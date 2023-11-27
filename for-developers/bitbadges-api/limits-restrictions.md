@@ -1,6 +1,6 @@
 # Limits / Restrictions
 
-Note that the following limits and restrictions are in place for the API. Reach out to us if you need additional support, or run your own indexer!
+Note that the following limits and restrictions are in place for the API. Reach out to us if these limits are too restrictive.
 
 Note these can change and the values below may be outdated.
 

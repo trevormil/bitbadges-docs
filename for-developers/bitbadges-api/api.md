@@ -39,9 +39,9 @@ export interface ErrorResponse {
 
 We recommend reading all [concepts](concepts/) for background information on the API but especially the following:
 
-* [Authentication](tutorials/authentication.md)
+* [Authentication](concepts/authentication.md)
 * [Number Types / Stringified Responses](concepts/number-types.md)
-* [Paginations](concepts/paginations.md)
+* [Paginations](concepts/paginations-views.md)
 * [Limits / Restrictions](limits-restrictions.md)
 
 ### Using the SDK
@@ -76,7 +76,11 @@ Blockin Authentication Required = \*
 
 For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
-If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
+If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
+
+### Confined Responses
+
+**IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need.
 
 ## Routes
 
@@ -84,7 +88,7 @@ See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/
 
 ### **Authentication**
 
-See [Authentication](tutorials/authentication.md) for tutorial.
+See [Authentication](concepts/authentication.md) for tutorial.
 
 #### **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
@@ -105,7 +109,7 @@ export interface GetSignInChallengeRouteSuccessResponse<T extends NumberType> {
 
 #### **POST /api/v0/auth/verify - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteSuccessResponse.html)**)**
 
-Submit the signed Blockin challenge to this route to be authenticated. See [Authentication Tutorial](tutorials/authentication.md).
+Submit the signed Blockin challenge to this route to be authenticated. See [Authentication Tutorial](concepts/authentication.md).
 
 ```typescript
 export interface VerifySignInRouteRequestBody {
@@ -181,13 +185,13 @@ export interface GetSearchRouteSuccessResponse<T extends NumberType> {
 
 ### **Collections**
 
-See [Collections Tutorial](tutorials/fetching-collections.md) for how to deal with the paginated response, metadata fetches, etc.
+See [Collections Tutorial](broken-reference) for how to deal with the paginated response, metadata fetches, etc.
 
 
 
 #### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 
-Batch fetch details about multiple collections.  See [Collections tutorial](tutorials/fetching-collections.md).
+Batch fetch details about multiple collections.  See [Collections tutorial](broken-reference).
 
 ```typescript
 export interface GetCollectionBatchRouteRequestBody {
@@ -451,7 +455,7 @@ export interface GetMerkleChallengeTrackersRouteSuccessResponse<T extends Number
 
 Addresses must be well formatted but can be in the format of any chain.
 
-See [Users Tutorial](tutorials/fetching-users.md) for how to deal with the paginated response, etc.
+See [Users Tutorial](broken-reference) for how to deal with the paginated response, etc.
 
 
 
