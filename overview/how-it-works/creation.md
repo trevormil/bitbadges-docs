@@ -1,6 +1,6 @@
 # Creation
 
-There are two ways you can create using BItBadges. Visit [https://bitbadges.io/collections/mint](https://bitbadges.io/collections/mint) to get started.
+There are two ways you can create using BItBadges. The easiest way to create a badge is by visiting [https://bitbadges.io/collections/mint](https://bitbadges.io/collections/mint).
 
 ## **Badges**
 

@@ -1,6 +1,6 @@
 # 🖊 Standards
 
-Standards are a generic concept that allows anyone to define how to interpret the details of a badge collection. All collections will implement the same interface on the blockchain (see [Collections](broken-reference)), but the standard defines how these fields are interpreted and are expected to be defined. Standards can define anything from the expected genesis conditions to the expected metadata format to any expected features of the collection.
+Standards are a generic concept that allows anyone to define how to interpret the details of a badge collection. All collections will implement the same interface on the blockchain, but the standard defines how these fields are interpreted and are expected to be defined. Standards can define anything from the expected genesis conditions to the expected metadata format to any expected features of the collection.
 
 ```json
 "standardsTimeline": [

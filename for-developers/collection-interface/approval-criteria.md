@@ -10,10 +10,10 @@ Note these are just the native options provided for convenience and consistency.
 export interface ApprovalCriteria<T extends NumberType> {
   //any badges the initiator must own? KYC badge? verified badge?
   mustOwnBadges?: MustOwnBadges<T>[];
-  //does the initiator have to provide a valid Merkle path to this challenge?
+  //does the initiator have to provide a valid Merkle path to this challenge to be approved?
   merkleChallenge?: MerkleChallenge<T>;
   
-  //How many badges can be transferred? In how many transfers?
+  //How many badges can be transferred? which badges? In how many transfers?
   predeterminedBalances?: PredeterminedBalances<T>;
   approvalAmounts?: ApprovalAmounts<T>;
   maxNumTransfers?: MaxNumTransfers<T>;
@@ -33,9 +33,11 @@ export interface ApprovalCriteria<T extends NumberType> {
 
 ### **Overrides**
 
-As mentioned previously, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.&#x20;
+As mentioned in the previous page, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.&#x20;
 
 If set to true, we will not check the user's incoming / outgoing approvals for the approved balances respectively. Essentially, it is forcefully transferred without needing user approvals.
+
+This can be leveraged to implement forcefully revoking a badge.
 
 IMPORTANT: The Mint address has its own approvals store, but since it is not a real address, they are always empty. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address.
 
@@ -51,7 +53,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
 
 Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned at custom times in order to be approved. &#x20;
 
-For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own a scammer badge in order to interact.
+For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
 
 Note that collections with "Off-Chain" balances are not supported for this feature.
 
@@ -59,7 +61,7 @@ Note that collections with "Off-Chain" balances are not supported for this featu
 export interface MustOwnBadges<T extends NumberType> {
   collectionId: T;
 
-  amountRange: UintRange<T>; //min/max amount to be owned
+  amountRange: UintRange<T>; //min/max amount expected to be owned
   ownershipTimes: UintRange<T>[];
   badgeIds: UintRange<T>[];
   

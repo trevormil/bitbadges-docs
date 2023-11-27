@@ -2,9 +2,9 @@
 
 **Creating Badges**
 
-During the initial creation transaction, you can specify the badge amounts and supplys you wish to create via the **badgesToCreate** field. This will create and transfer these badges to the "Mint" address. No one controls the "Mint" address. It can only be transferred out of, not transferred to.
+During creation and update transaction (MsgCreateCollection and MsgUpdateCollection), you can specify the badge amounts and supplys you wish to create via the **badgesToCreate** field. This will create these badges out of thin air and transfer these badges to the "Mint" address. No one controls the "Mint" address. It can only be transferred out of, not transferred to.
 
-The initial creation transaction's **badgesToCreate** are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction.&#x20;
+The initial creation transaction's **badgesToCreate** are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction.  Following transactions must obey the **canCreateMoreBadges** permission.
 
 The **ownershipTimes** will be the times that the badges can be owned aka in circulation. The **badgeIds** are the IDs of each unique badge. Badge IDs must start at 1 and have no gaps.
 
@@ -13,7 +13,7 @@ For example,
 ```json
 {
   "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
-  "collectionId": "0",
+  ...
   "badgesToCreate": [
     {
       "amount": "1",
@@ -35,7 +35,7 @@ For example,
 }
 ```
 
-From the "Mint" address, you can transfer according to the collection's approvals as explained in [Approvals](approvals.md) and [Approval Criteria](approval-criteria.md).
+From the "Mint" address, you can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria.md).
 
 **CanCreateMoreBadges Permission**
 
@@ -47,7 +47,7 @@ An example permission is as follows. This locks any badges from ever being creat
 
 ```json
  "collectionPermissions": {
-    "canArchiveCollection": [],
+     ...
     "canCreateMoreBadges": [
       {
         "badgeIds": [
@@ -71,16 +71,7 @@ An example permission is as follows. This locks any badges from ever being creat
         ]
       }
     ],
-    "canDeleteCollection": [],
-    "canUpdateBadgeMetadata": [],
-    "canUpdateCollectionApprovedTransfers": [],
-    "canUpdateCollectionMetadata": [],
-    "canUpdateContractAddress": [],
-    "canUpdateCustomData": [],
-    "canUpdateInheritedBalances": [],
-    "canUpdateManager": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": []
+    ...
   }
 ```
 
@@ -88,7 +79,7 @@ An example permission is as follows. This locks any badges from ever being creat
 
 There are two ways to handle creating and defining a total supply.
 
-**Permission:** The first, as explained above, is via the **canCreateMoreBadges** permission. However, this permission has no amount restriction. If the manager is approved, they can create an unlimited amount. if they are disapproved, they cannot create any.
+**Permission:** The first, as explained above, is via the **canCreateMoreBadges** permission. However, this permission has no amount restriction. If the manager is approved, they can create an unlimited amount. if they are disapproved, they cannot create any. Its all-or-nothing.
 
 **Escrow:** Some collections may need restrictions on how many badges can be created (e.g. token unlocks). For this, you should use the "Mint" address as an escrow and precreate all badges that you may potentially need in the future then lock the permission.
 

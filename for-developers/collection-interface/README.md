@@ -1,5 +1,7 @@
 # 📄 Collection Interface
 
+Collections are the core type in BitBadges. They are identified by a collectionId assigned by the blockchain and define everything about the badges in it, including permissions, metadata, and more!
+
 ```typescript
 
 /**

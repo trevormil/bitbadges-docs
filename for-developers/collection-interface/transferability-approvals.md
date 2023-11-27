@@ -1,10 +1,12 @@
-# 🤝 Approvals
+# 🤝 Transferability / Approvals
 
 First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
 
-## Approved Transfers Overview
+Note that collections with "Off-Chain" balances do not utilize on-chain transferability.
+
+## Approvals Overview
 
 ### Approval Levels - Collection, Incoming, Outgoing
 
@@ -14,7 +16,7 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 * Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
 * The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
 
-**For a transfer to be approved overall, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
+**For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
 ### Approvals != Escrows
 
@@ -43,7 +45,7 @@ export interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-Note that user incoming / outgoing approvals follow the same interface except **toMapping** is auto-populated with the user's address for incoming approvals and similarly the **fromMapping** for outgoingApprovals.
+User incoming / outgoing approvals follow the same interface except **toMapping** is auto-populated with the user's address for incoming approvals and similarly the **fromMapping** for outgoingApprovals.
 
 **Approved vs Unapproved**
 
@@ -52,9 +54,9 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.&#x20;
-2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in MsgTransferBadges) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
-We recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
+We strongly recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
 #### Approval IDs
 
@@ -76,9 +78,11 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
 
+This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
+
 **Who? When? What? - Main Fields**
 
-To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTim`**`es`. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
+To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
 * **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
 * **transferTimes**: When can the transfer takes place? A [UintRange](../concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
@@ -148,15 +152,19 @@ The process of matching transfers to approvals involves several steps. This is d
 4. Find all matches.&#x20;
    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
    2. Find corresponding approvals for all (first match by default but can be customized with  **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
-   3. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.&#x20;
-5. We check the **`approvalCriteria`** for each one-to-one match and ensure everything is satisfied.
+   3. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
+5. We check the **`approvalCriteria`** for each match and ensure everything is satisfied.
 6. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
 
 ### Defaults and Auto Approvals
 
-For incoming and outgoing approvals, we allow the the collection can define default values for each user's approvals via **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
+**Defaults**
+
+For incoming and outgoing approvals, we allow the the collection to define default values for each user's approvals such as **`defaultIncomingApprovals`** and **`defaultOutgoingApprovals`**. These defaults are applied when initializing a balance for the first time in an account.
 
 Similarly, you can define the default values for **defaultAutoApproveSelfInitiatedOutgoingTransfers** and **defaultAutoApproveSelfInititatedIncomingTransfers.** These will set the user's default values for **autoApproveSelfInitiatedOutgoingTransfers** and  **autoApproveSelfInitiatedIncomingTransfers.**
+
+**Auto Approvals**
 
 If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's outgoing approvals when the sender is the same as the initiator.
 
@@ -164,11 +172,11 @@ If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automaticall
 
 In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be leveraged for specific use cases such as using an account for an escrow, account abstractions, and so on.
 
+**Forceful Transfers vs Opt-In Only - Incoming Approvals**
 
+For outgoing approvals, the expected functionality is that everything is disapproved by default unless self initiated. However, with incoming approvals, there are a couple options. Do you want users to be able to transfer "forcefully" to an address without prior approval by default? Or, do you want users to have to self-initiate / opt-in to receive badges?
 
-**Forceful Transfers vs Opt-In Only**
-
-IMPORTANT: In order to allow forceful transfers to an address without prior approval, the **defaultIncomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
+In order to allow forceful transfers to an address without prior approval, the **defaultIncomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
 
 ```json
 "defaultIncomingApprovals": [
@@ -200,7 +208,7 @@ IMPORTANT: In order to allow forceful transfers to an address without prior appr
   ]
 ```
 
-### **Difference From Permission**
+### **Approval Value vs Permission**
 
 While this may seem similar to the UpdateApprovedTransferPermission, the permission corresponds to the **updatability** of the approved transfers.
 

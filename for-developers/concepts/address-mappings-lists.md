@@ -1,8 +1,6 @@
 # 📧 Address Mappings (Lists)
 
-[AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature similar to UintRanges. They allow us to specify a list of addresses, identified by a mappingId.
-
-
+[AddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressMapping.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a mappingId.
 
 ```typescript
 export interface AddressMapping {
@@ -18,7 +16,7 @@ export interface AddressMapping {
 
 ### Inverting
 
-These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses (includeAddresses = false). Or, we can create a mapping that includes ONLY some specified addresses (includeAddresses = true).
+These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses (includeAddresses = false). Or, we can create a mapping that includes ONLY some specified addresses (includeAddresses = true). More commonly, this is thought of as a blacklist or whitelist.
 
 **IMPORTANT:** When you invert, the inversion by default includes the "Mint" address. This is important when handling the **fromMapping** of approvals. You do not want to accidentally approve users to transfer from the "Mint" address.
 
@@ -65,60 +63,3 @@ This is the mapping which includes all addresses except "cosmos123...." and "cos
   ...
 }
 ```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>//Snippet from getReservedAddressMapping() of the SDK
-</strong><strong>
-</strong><strong>if (addressMappingId === 'Mint') {
-</strong>  addressMapping = {
-    mappingId: 'Mint',
-    addresses: ['Mint'],
-    includeAddresses: true,
-    ...
-  };
-}
-
-if (addressMappingId === 'Manager') {
-  addressMapping = {
-    mappingId: 'Manager',
-    addresses: [managerAddress],
-    includeAddresses: true,
-    ...
-  };
-}
-
-if (addressMappingId === 'AllWithoutMint') {
-  addressMapping = {
-    mappingId: 'AllWithoutMint',
-    addresses: ['Mint'],
-    includeAddresses: false,
-    ...
-  };
-}
-
-if (addressMappingId === 'AllWithMint') {
-  addressMapping = {
-    mappingId: 'AllWithMint',
-    addresses: [],
-    includeAddresses: false,
-    ...
-  };
-}
-
-if (addressMappingId === 'None') {
-  addressMapping = {
-    mappingId: 'None',
-    addresses: [],
-    includeAddresses: true,
-    ...
-  };
-}
-
-if (convertToCosmosAddress(addressMappingId)) {
-  addressMapping = {
-    mappingId: addressMappingId,
-    addresses: [addressMappingId],
-    includeAddresses: true,
-    ...
-  };
-}
-</code></pre>

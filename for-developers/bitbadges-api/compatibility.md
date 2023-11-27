@@ -1,6 +1,6 @@
 # Compatibility
 
-To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please use the following interfaces for hosting details off-chain.
+To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please use the following interfaces when hosting details off-chain.
 
 #### Badge and Collection Metadata Format
 
@@ -21,17 +21,17 @@ export interface Metadata<T extends NumberType> {
 
 [https://bafybeigbmbqto74uhk2udel7azylwrlkp6x2abufgpfrvisyja4kr35niq.ipfs.dweb.link/](https://bafybeigbmbqto74uhk2udel7azylwrlkp6x2abufgpfrvisyja4kr35niq.ipfs.dweb.link/\))
 
-
+For images, we display them in circular format with a maximum size of 200 x 200 on the BitBadges website.
 
 If the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"`
 
 #### Off-Chain Balances Metadata
 
-If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses to Balance objects.
+If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or mapping IDs to Balance objects.
 
 [https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/)
 
-#### Claim Metadata
+#### Approval / Claim Metadata
 
 For providing additional details about a Merkle challenge claim, you can host a JSON via the `approval.uri` field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable).
 

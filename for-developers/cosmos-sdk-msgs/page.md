@@ -2,6 +2,8 @@
 
 To create an on-chain AddressMapping, you can use the MsgCreateAddressMappings. See [here](../concepts/address-mappings-lists.md) to learn more about AddressMappings.
 
+Reminder: on-chain address mappings are immutable, permanent. and non-deletable.
+
 ```typescript
 export interface MsgCreateAddressMappings {
   creator: string;
@@ -25,7 +27,7 @@ export interface AddressMapping {
 
 **Combining with MsgCreateCollection or MsgUpdateCollection**
 
-Oftentimes, you want to create a new AddressMapping, so it can be used in a MsgCreateCollection or MsgUpdateCollection (for example, defining transferability using a new, custom mapping).
+Oftentimes, you want to create a new AddressMapping, so it can be used in a MsgCreateCollection or MsgUpdateCollection (for example, defining transferability using a new, custom mapping ID).
 
 Before an AddressMapping can be used, it needs to be defined on-chain. The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../bitbadges-sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for an example of how to do it with the SDK. Just make sure MsgCreateAddressMappings is executed first and precedes when it is actually used.
 

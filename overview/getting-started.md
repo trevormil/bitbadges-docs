@@ -30,7 +30,7 @@ While BitBadges offers a wide range of customizable functionality for badges, we
 
 **Option 1 (Technical): CosmWASM**&#x20;
 
-The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](../for-developers/tutorials/create-a-smart-contract.md). We would appreciate it if you could inform us of any missing functionality from the interface you require when choosing this option, so we can try to add it natively. Please contact us [here](team-contact-us.md).
+The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](../for-developers/tutorials/create-a-wasm-contract.md). We would appreciate it if you could inform us of any missing functionality from the interface you require when choosing this option, so we can try to add it natively. Please contact us [here](team-contact-us.md).
 
 **Option 2: Request It**&#x20;
 

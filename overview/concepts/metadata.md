@@ -14,7 +14,7 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Description** (required): Description of the collection or badge
 
-**Image** (required): A URL that points to the image to be displayed. Images will be displayed in circular format. The recommended image size is 512 x 512.
+**Image** (required): A URL that points to the image to be displayed. Images will be displayed in circular format.  We display them with a maximum size of 200 x 200 on the BitBadges website.
 
 **Validity**: Defines the start and end times for how long the badge is to be considered valid for. If left blank, we assume it is always valid. This is just for descriptive purposes and has no functional significance.
 

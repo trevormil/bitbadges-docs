@@ -1,6 +1,6 @@
 # MsgUpdateCollection
 
-For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html). &#x20;
+For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html). This is only executable by the manager, and all updates must obey the previously set permissions.
 
 Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain (doesn't require this Msg).
 
@@ -12,6 +12,7 @@ export interface MsgUpdateCollection<T extends NumberType> {
   //Note no defaults or balances types here because that is only for new collections
 
   badgesToCreate?: Balance<T>[]
+  
   updateCollectionPermissions?: boolean
   collectionPermissions?: CollectionPermissions<T>
   updateManagerTimeline?: boolean

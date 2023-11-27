@@ -6,7 +6,8 @@
 2. Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 3. Building a frontend? Use the [BitBadges website](bitbadges-frontend.md) code or [Blockin Quickstart](https://github.com/Blockin-Labs/blockin-quickstart) code as a starting point and/or reference. Feel free to reuse any UI components.
 4. To implement any additional functionality, use the SDK!&#x20;
-5. Don't forget to check the [tutorials ](tutorials.md)to see if someone else has already done what you are trying to do!
+5. Don't forget to check the [tutorials ](tutorials.md)or ecosystem tools to see if someone else has already done what you are looking for!
+6. Finished? Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem.md).
 
 **Have questions or feedback?**
 

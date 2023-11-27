@@ -6,13 +6,12 @@
 
 Before utilizing the SDK's functionality, you must define a balance. Here's how you create a balance using the provided `Balance` interface:
 
-```typescript
-const userBalance: Balance<bigint> = {
-  amount: 5n, // example badge amount using the BigInt type
+<pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance: Balance&#x3C;bigint> = {
+</strong>  amount: 5n, // example badge amount using the BigInt type
   badgeIds: [{ start: 1n, end: 5n }],
   ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
 };
-```
+</code></pre>
 
 Note: The `UintRange` type is assumed to be an object with `start` and `end` properties of type `bigint`. Adjust as necessary based on the actual definition.
 

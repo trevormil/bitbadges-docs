@@ -5,57 +5,61 @@
 * [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
 * [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
 
-### BitBadges Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
+### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) and Validator Operators <a href="#injective-accounts" id="injective-accounts"></a>
+
+For accounts (standard senders of transactions) and validator operators, we support users from three L1 blockchain ecosystems currently (Ethereum, Solana, and Cosmos).
+
+**Ethereum**
 
 BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
 
-BitBadges also supports Solana addresses using ed25519 key pairs via a custom type (forked from Cosmos SDK). Normal Cosmos accounts are also supported.&#x20;
+All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
+
+**Solana**
+
+BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Transactions will be signed in JSON format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
+
+**Cosmos**
+
+Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to there for further information.
 
 ### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
-There are 3 main types of `Addresses`/`PubKeys` available by default on Injective:
+#### **Address Conversion**&#x20;
 
-* Addresses and Keys for **accounts**, which identify users (e.g. the sender of a `message`). They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK) or **`ed25519`**(Solana).
-* Addresses and Keys for **validator operators**, which identify the operators of validators. They are derived using the **`eth_secp256k1`** curve (Ethermint) or **`secp256k1`** curve (native Cosmos SDK)  or **`ed25519`**(Solana).
-* Addresses and Keys for **consensus nodes**, which identify the validator nodes participating in consensus. They are derived using the **`ed25519`** curve.
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-utils';
+</strong><strong>
+</strong><strong>const cosmosAddress = ethToCosmos(address);
+</strong>const ethAddress = cosmosToEth(cosmosAddress);
+const cosmosAddressFromSolana = solanaToCosmos(address);
+//Note there is no cosmosToSolana or ethToSolana due to how the addresses work
+</code></pre>
 
-|                    | Address bech32 Prefix | Pubkey bech32 Prefix | Curve                                                                    | Address byte length |
-| ------------------ | --------------------- | -------------------- | ------------------------------------------------------------------------ | ------------------- |
-| Accounts           | `cosmos`              | `cosmospub`          | <p><code>eth_secp256k1 / secp256k1</code></p><p><code>ed25519</code></p> | `20`                |
-| Validator Operator | `cosmosvaloper`       | `cosmosvaloperpub`   | <p><code>eth_secp256k1 / secp256k1</code></p><p><code>ed25519</code></p> | `20`                |
-| Consensus Nodes    | `cosmosvalcons`       | `cosmosvalconspub`   | `ed25519`                                                                | `20`                |
-
-### Address formats for clients[​](https://docs.injective.network/learn/basic-concepts/accounts#address-formats-for-clients) <a href="#address-formats-for-clients" id="address-formats-for-clients"></a>
-
-For Ethereum accounts and other L1 accounts, they can be represented in both [Bech32](https://en.bitcoin.it/wiki/Bech32) and standard format (Ethereum - hex, Solana - Base 58).
+Behind the scenes, the blockchain always uses the mapped Cosmos address, never a Solana or Ethereum address. The Solana / Ethereum addresses are only for visually displaying to the user.
 
 The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.&#x20;
+
+#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
 Ethereum Example:
 
 * Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
 * Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-* Compressed Public Key: `{"@type":"/ethermint.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
 
-For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"` and will always be represented in Bech32.
+Solana Example:
 
-For Solana accounts, the public key will have the `"@type": "/solana.PubKey"` and will be represented in Bech32.
+* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
 
-**Address Conversion**&#x20;
+#### **Public Key Types**
 
-See [**bitbadgesjs-address-converte**](../bitbadges-sdk/)**r** from the SDK for conversions between different formats.
+For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
 
-### Signing Transactions and Msgs <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
+For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
 
-For signing transactions and messages, the expected format is different for each public key type.
+For standard Ethereum accounts, the public key will have the `"@type": "/ethereum.PubKey"`.
 
-For standard Cosmos accounts, we support the typical signing modes from the Cosmos SDK (Sign Direct and Amino).
-
-For Ethereum accounts, everything must be signed with EIP-712.&#x20;
-
-For Solana accounts, everything must be signed in JSON format with the keys all alphatebically sorted recursively.
-
-The EIP-712 and JSON messages to sign can be generated via the SDK. See the SDK for further tutorials and examples.
+`{"@type":"/ethereum.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
 
 ### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
 
@@ -91,7 +95,7 @@ const buf2 = Buffer.from([publicKeyByte.length])
 const buf3 = Buffer.from(publicKeyByte)
 
 const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethermint.PubKey'
+const type = '/ethereum.PubKey'
 ```
 
 #### Acknowledgements

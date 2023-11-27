@@ -41,7 +41,7 @@ Your two options:
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
   * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../bitbadges-api/compatibility.md).
     * Note this JSON file will be public, so DO NOT include sensitive information like passwords or unhashed preimages (the actual codes) here. Whitelisted addresses are okay.&#x20;
-  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../create-and-submit-txs.md)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
+  * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../create-and-broadcast-txs/)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
   * Feel free to reach out for advice and help if needed.
 
 ### **Building Your Tool**

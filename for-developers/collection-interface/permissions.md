@@ -2,11 +2,10 @@
 
 First, read [Permissions](../../overview/concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../interface-examples.md) section. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../interface-examples.md) section. Please ask for help if needed.
 
-```json
-"collectionPermissions": {
-    "canDeleteCollection": [],
+<pre class="language-json"><code class="lang-json"><strong>"collectionPermissions": {
+</strong>    "canDeleteCollection": [],
     "canArchiveCollection": [],
     "canUpdateOffChainBalancesMetadata": [],
     "canUpdateStandards": [],
@@ -17,7 +16,7 @@ Note: The [Approved Transfers](approvals.md) and [Permissions ](../../overview/c
     "canUpdateBadgeMetadata": [],
     "canUpdateCollectionApprovals": []
 }
-```
+</code></pre>
 
 ```json
 "userPermissions": {
@@ -35,6 +34,8 @@ Note that the **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** 
 The collectionPermissions only apply to the current manager of the collection. In other words, the manager is the only one who is able to execute permissions.
 
 The current manager is determined by the **managerTimeline.** Transferring the manager is facilitated via the **canUpdateManager** permission.
+
+If there is no manager for a collection, no permissions can be executed.
 
 ```json
 "managerTimeline": [
@@ -89,9 +90,9 @@ permittedTimes: []
 
 ### First Match Policy
 
-Unlike approvals, we only allow take the first match, in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/forbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
+Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/forbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
 
-Ex: If we have the following permission definitions in an array:&#x20;
+Ex: If we have the following permission definitions in an array \[elem1, elem2]:&#x20;
 
 1. ```
    timelineTimes: [{ start: 1, end: 10 }]
@@ -281,12 +282,11 @@ There are five categories of permissions, each with different criteria that must
 ```
 
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.&#x20;
-  * ```typescript
-    {
-      permittedTimes: UintRange<T>[];
-      forbiddenTimes: UintRange<T>[];
+  * <pre class="language-typescript"><code class="lang-typescript"><strong>{
+    </strong>  permittedTimes: UintRange&#x3C;T>[];
+      forbiddenTimes: UintRange&#x3C;T>[];
     }
-    ```
+    </code></pre>
 * **TimedUpdatePermission**: For what timelineTimes, can the manager update the scheduled value?
   * Note timelineTimes corresponds to the scheduled times of a timeline-based value such as badge metadata or collection metadata. The permittedTimes and forbiddenTimes correspond to when the manager can update such values.
   * ```typescript
@@ -317,7 +317,7 @@ There are five categories of permissions, each with different criteria that must
       forbiddenTimes: UintRange<T>[];
     }
     ```
-* **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](approvals.md)), can I update the approval criteria? See section below for further details.
+* **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
   * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All", "All") tuple, thus making the transferability locked for those transfer combinations.
     * <pre class="language-typescript"><code class="lang-typescript"><strong>{
       </strong>  fromMappingId: string;

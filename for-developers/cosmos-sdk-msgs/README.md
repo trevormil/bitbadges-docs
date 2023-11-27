@@ -1,8 +1,10 @@
 # ✉ Cosmos SDK Msgs
 
-**What are Cosmos SDK Msgs?**
+**What are Cosmos SDK Msgs? Msgs vs Transactions?**
 
-In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens. Each transaction must consist of one or Msgs to be executed.
+In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.&#x20;
+
+Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
 
 **What Msgs does the BitBadges blockchain implement?**
 
@@ -14,15 +16,15 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
-* [BitBadges SDK](../create-and-submit-txs.md): Generate and broadcast transactions to a running node with TypeScript. See tutorials. This is the recommended option.
+* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
 * CLI: Run your own node and interact with the command line
 * Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
 **What is the creator field?**
 
-The **creator** field for each message should be the transaction sender's cosmos address. This is automatically applied by the blockchain but should match when generating each Msg.
+The **creator** field for each message should be the transaction signer's cosmos address.
 
-## Msg Types
+## Msg Definitions
 
 Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.&#x20;
 
@@ -39,9 +41,9 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../tutorials/create-a-smart-contract.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../tutorials/create-a-wasm-contract.md) for tutorial.
 
 **Other Cosmos SDK Modules**
 
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by theml
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
 

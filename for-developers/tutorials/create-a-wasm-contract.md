@@ -1,12 +1,18 @@
-# Create a Smart Contract
+# Create a WASM Contract
 
-BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. However, they are not required.&#x20;
+BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired.&#x20;
 
-If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know
+However, they are not required at all,  and we envision they will only be used in a very, very small percentage of cases. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know.
+
+Our end goal is that no smart contracts are ever needed, and everything is supported natively.
 
 #### CosmWASM Version
 
-For compatibility with the most recent Cosmos SDK versions, we have used a fork of the main CosmWasm code created by Notional Labs ([https://github.com/notional-labs/wasmd](https://github.com/notional-labs/wasmd)).&#x20;
+We currently support&#x20;
+
+```go.mod
+github.com/CosmWasm/wasmd v0.44.0
+```
 
 **No tx.origin**
 
@@ -26,17 +32,20 @@ Please use and reference this library [here ](https://github.com/BitBadges/bitba
 
 **NOTE:** The BitBadges bindings from the above repository do not cover messages from pre-written modules that have already been implemented by the CosmWasm team, such as staking-related messages and fundamental ones like `MsgSend`. See their documentation if you want to interact with other pre-written modules as well. For this tutorial, we will focus on interacting with the x/badges module only.
 
-
-
 It is always recommended that you test everything on a testnet before deploying for real.
 
 ### **Step 1: Create Contract**
 
 Create your contract.
 
-The recommended way is to clone the bitbadges repository and create your contracts within the contract folder (recommended).&#x20;
+The recommended way is to clone the bitbadges cosmwasm repository and create your contracts within the contract folder (recommended). Use the preexisting contracts as a reference.
 
 Or, you can custom implement from scratch. If you want to develop in your own directory (i.e. not cloning the repo above), note that the bitbadges-cosmwasm import in Cargo.toml is currently a local path import. You will need to import the published package version (see [bitbadges-cosmwasm](https://crates.io/crates/bitbadges-cosmwasm)).
+
+```toml
+[dependencies]
+bitbadges-cosmwasm = { version = "X.X.X" }
+```
 
 **Creating the Contract**
 
@@ -48,13 +57,13 @@ Once you have your contract, you can run **cargo build** and **source ./build.sh
 
 You can also use an optimizer instead of **build.sh** to further optimize your bytecode size. One example optimizer is [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
 
-
-
 At the end of Step 1, you should have a compiled .wasm file.
 
 ### **Step 2: Storing and Instantiating the Contract**
 
-This step assumes that you are running a node and have familiarity with the CLI. You can also check out other tools such as [https://github.com/cryptechdev/wasm-deploy](https://github.com/cryptechdev/wasm-deploy) to deploy without running a node (note this is untested). We plan to add it to BitBadges SDK and create a simple user interface for deployment in the future (or this could be an idea for a community-built tool).
+This step assumes that you are running a node and have familiarity with the CLI. You can also check out other tools such as [https://github.com/cryptechdev/wasm-deploy](https://github.com/cryptechdev/wasm-deploy) to deploy without running a node (note this is untested).&#x20;
+
+We do export the x/wasm Msg types from the SDK, but we haven't created a tutorial yet.
 
 ```
 bitbadgeschaind tx wasm store /path/to/contract.wasm --from=<address> --chain-id=<chain-id> --gas=auto -y
@@ -84,33 +93,20 @@ Your contract is now deployed on the blockchain and ready to be interacted with.
 
 **Step 3: Interacting with the Contract**
 
-Once deployed, you need to interact with the contract somehow or let your users interact with it. As explained, there is a MsgExecuteContract (standard out of the box one compatible for Cosmos susers) and a MsgExecuteContractCompat (wrapper that allows Ethereum users w/ EIP712 to interact with it). MsgExecuteContractCompat simply is  a helper Msg that parses everything in a compatible manner and then calls the actual **MsgExecuteContract** We recommend using MsgExecuteContractCompat.
-
-
-
-**Option 1: CLI**
-
-Finally, you can interact with your contract via the execute command. The example below is for registering addresses using the MsgRegisterAddresses command.
-
-```
-bitbadgeschaind tx wasm execute contract_address '{"deleteCollectionMsg": {"collectionId": "1"}}' --from=<address> --gas=auto -y
-```
-
-Note that even though snake\_case may be used in the contracts / Rust, the badge modules use camelCase as seen in the command above.
-
-The MsgExecuteContractCompat is in the x/wasmx module so would be executable by "bitbadgeschaind tx wasmx ..." but if you are using the CLI, you most likely are using a Cosmos address so can probably interact with the former command.
-
-
-
-**Option 2: BitBadges SDK**
-
-The BitBadges SDK offers a [**createTxMsgExecuteContractCompat**](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/functions/createMsgExecuteContractCompat.html) function which allows you to create, sign, and broadcast an execute contract Msg within JavaScript (see [Broadcasting Txs](../create-and-submit-txs.md)) compatible with Ethereum EIP712. This allows you to create dApps and a frontend for your contract for any user.
-
-For users to execute your contract (potentially via a dApp), we recommend using the MsgExecuteContractCompat instead of the base MsgExecuteContract. This is the same as braodcasting a transaction with any other Msg type, so we refer you [here](../bitbadges-sdk/common-snippets/creating-signing-and-broadcasting-txs.md) for further details.
+Once deployed, you need to interact with the contract somehow or let your users interact with it. As explained, there is a MsgExecuteContract (standard out of the box one compatible for Cosmos users) and a MsgExecuteContractCompat (wrapper that allows Ethereum users w/ EIP712 or Solana to interact with it). MsgExecuteContractCompat simply is  a helper Msg that parses everything in a compatible manner and then calls the actual **MsgExecuteContract** We recommend using MsgExecuteContractCompat. This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](../create-and-broadcast-txs/) for a tutorial.
 
 
 
 **Couple Notes**
+
+The expected **msg and funds** field should be in the following format
+
+```
+msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
+funds: '1badge'
+```
+
+Note that even though snake\_case may be used in the contracts / Rust, the badge modules use camelCase as seen in the command above.
 
 The msg details should be in the format where only one Msg is defined. All numbers should be strings as well ("1" not 1). The creator field is auto-populated with the contract address.
 
@@ -120,7 +116,9 @@ The msg details should be in the format where only one Msg is defined. All numbe
     "createAddressMappingsMsg": {...},
     "updateCollectionMsg": {...},
     "updateUserApprovedTransfersMsg": {...},
-    "transferBadgesMsg": {...}
+    "transferBadgesMsg": {...},
+    "createCollectionMsg": {...},
+    "universalUpdateCollectionMsg": {...}
 }
 ```
 
@@ -151,8 +149,6 @@ const executeTx = await createTxMsgExecuteContractCompat(...txDetails, msgExecut
 
 
 
+**Step 4: Build a dApp Frontend**
 
-
-**Step 4: Build a dApp**
-
-Once you have done the previous three steps, you can build a dApp frontend, so users can interact with your contract! See [Build a dApp](broken-reference).
+Once you have done the previous three steps, you can build a dApp frontend, so users can interact with your contract!

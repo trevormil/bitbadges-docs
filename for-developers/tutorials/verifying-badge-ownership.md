@@ -2,11 +2,11 @@
 
 There are many ways to verify if a user owns a badge or not. Select your preferred method according to your use case and requirements.
 
-##
+Remember, verification is two-fold. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
 
 
 
-## Step 1: Fetch Balances
+## Step 1: Verify Balances
 
 Keep in mind the potential delay / lag and availability with the options below. For example, the BitBadges API / website tries to process blocks as fast as possible and is up to date with the blockchain most of the time; however, it may fall behind in some cases.
 
@@ -28,43 +28,27 @@ POST /api/v0/collection/:collectionId
 <pre class="language-typescript"><code class="lang-typescript"><strong>POST /api/v0/collection/batch
 </strong></code></pre>
 
-
-
 Note that you can check how up to date the information is by using the **POST /api/v0/status**.
 
-**BitBadges REST Node**
+You can also run your own indexer / API!
+
+**BitBadges Blockchain Node - REST API**
 
 Use this [endpoint](https://bitbadges.github.io/bitbadges-openapi-rest-docs/#bitbadgesBitbadgeschainBadgesGetBalance) to query badge balances directly from a blockchain node (doesn't apply to off-chain balances). Cosmos addresses must be used.
+
+You can also always run and fetch balances from your own node / indexer, so you aren't relying on anyone else's infrastructure!
 
 **Direct Fetch - Off-Chain Balances**
 
 For collections with off-chain balances, you can also directly fetch the balances map from the source URI.
 
-**Run Own Node / Indexer**
+## Step 2: Verify Address Ownership
 
-You can also always run and fetch balances from your own node / indexer, so you aren't relying on anyone else's infrastructure!
+Remember, verification is two-fold. You need to verify the user owns the address and verify ownership of the badge according to your criteria.&#x20;
 
+Address ownership can be verified with a cryptographic signature.
 
-
-## Step 2: Verify&#x20;
-
-Remember, verification is two-fold. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
-
-See some tools to help you do so below:
-
-**Blockin**
-
-Check a user actually owns their address by requesting and verifying a Blockin signature.
-
-#### **BitBadges SDK**
-
-If you need to programmatically verify balances, check out the BitBadges SDK. Head [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/modules.html) and check out the Functions - Balances section.
-
-
-
-
-
-## Common Use Cases
+## Tools and Common Use Cases
 
 **Multi-Chain Web3 Authentication w/ BitBadges Support - Blockin**
 
