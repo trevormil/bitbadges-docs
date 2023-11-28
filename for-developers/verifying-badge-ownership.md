@@ -22,9 +22,9 @@ Below, we highlight some things you will need to consider:
 
 Do you expect users to verify their address (i.e. sign a message) at authentication time? Do you expect them to have access to their crypto wallets at authentication time?
 
-In a digital setting like gaining access to a website, you can probably assume that users can sign stuff with their crypto wallets.&#x20;
+In a digital setting like gaining access to a website, you can probably assume that users can sign stuff with their crypto wallets at authentication time.
 
-However, for in person authentication, you may want to consider pre-generating signatures, such as via a QR code, which can be presented at authentication time instead of having users carry around their crypto wallets.
+However, for in person authentication, you may want to consider pre-generating signatures, such as via a QR code or with NFC Readers, which can be signed beforehand and presented at authentication time instead of having users carry around their crypto wallets.
 
 **Offline vs Online**
 
