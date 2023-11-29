@@ -59,6 +59,7 @@
   * [MsgCreateAddressMappings](for-developers/cosmos-sdk-msgs/page.md)
   * [MsgTransferBadges](for-developers/cosmos-sdk-msgs/msgtransferbadges.md)
   * [MsgUpdateUserApprovals](for-developers/cosmos-sdk-msgs/msgupdateuserapprovals.md)
+  * [MsgUniversalUpdateCollection](for-developers/cosmos-sdk-msgs/msguniversalupdatecollection.md)
 * [🔃 Create and Broadcast Txs](for-developers/create-and-broadcast-txs/README.md)
   * [Transaction Context](for-developers/create-and-broadcast-txs/transaction-context.md)
   * [Generate Msg Contents](for-developers/create-and-broadcast-txs/generate-msg-contents.md)
