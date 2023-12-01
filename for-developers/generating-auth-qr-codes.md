@@ -16,12 +16,12 @@ The following params should be passed into the URL query.
 
 ```typescript
 const {
-    challengeParams,
-    name,
-    description,
-    image,
-    generateNonce,
-    allowAddressSelect
+    challengeParams, //Blockin ChallengeParams<string>
+    name, //string
+    description, //string
+    image, //string 
+    generateNonce, //boolean
+    allowAddressSelect //boolean
 } = router.query;
 ```
 
@@ -103,11 +103,29 @@ For messages that can be customized, you will need to use the callback to get th
 
 Finally, it is authentication time, and you are ready to verify users. Users will present their generated QR codes to you. Scanning them will provide you with their signatures (we leave this step up to you).&#x20;
 
-However, you also need to get the corresponding message to verify the signature. If you completed Step 3, you should already have the messages. If not, you can fetch them in real-time via the BitBadges API **POST /api/v0/authCode.**
+However, to verify, you need the signature AND the message that was signed. Obtaining the messages can be done in two ways.
 
-You should now have a (message, signature) pair that can be verified by Blockin. Blockin will verify that 1) signature is well-formed and 2) any assets / badges that need to be owned are actually owned. We refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
+**Option 1**
 
-Once Blockin has verified the (message, signature) pair, you will need to implement any other custom logic that you may need. Typically, you will have custom rules for who gets access such as one use only per nonce to prevent replay attacks or one use per address. This custom logic may also be physical such as stamping users' hands. We leave this step up to you.
+If you completed Step 3, you should already have the messages cached.
+
+**Option 2**
+
+If not, you can fetch them in real-time via the BitBadges API **POST /api/v0/authCode.**
+
+**Verifying the (message, signature) pair**
+
+You should now have a (message, signature) pair that can be verified by Blockin. Blockin will verify that 1) signature is well-formed and 2) any assets / badges that need to be owned are actually owned.&#x20;
+
+If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), this route also returns if the pair is valid, well-formed, and any assets are owned via **blockinSuccess**. No additional steps are required.
+
+If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
+
+**Additional Custom Logic**
+
+Blockin verification has now been completed, but you still need to implement any other custom logic that you may need. Typically, you will have custom rules for who gets access such as one use only per nonce to prevent replay attacks or one use per address or verifying extra details in your private databases. This custom logic may also be physical such as stamping users' hands. We leave this step up to you.
+
+Consider using the exported functions from Blockin to help you.
 
 ```typescript
 import { ChallengeParams, constructChallengeObjectFromString, constructChallengeStringFromChallengeObject } from 'blockin';
