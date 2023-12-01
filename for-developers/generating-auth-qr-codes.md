@@ -6,7 +6,7 @@ Pre-Readings: [Verifying Badge Ownership](verifying-badge-ownership.md)
 
 Sometimes, you may want to verify users own a badge with a QR code, rather than having them sign a message with a crypto wallet. For example, for in person events, it may be unrealistic to expect all users to have their crypto wallets handy to sign an authentication message. Instead, you can have users sign their authentication messages prior to authentication time, generate a QR code (or NFC or other method), and present that at authentication time instead.
 
-The BitBadges site provides a helper tool to generate and store QR codes for users. Below, we will walk you through the process.
+The BitBadges site provides a helper tool to generate and store QR codes for users. Below, we will walk you through the process of using this tool.
 
 ### **Step 1:** Generate the Generation URL
 
@@ -50,6 +50,14 @@ You may want to cache the messages and signature pairs for a better experience a
 To help with this, we allow you to open the generated URL via a popup window (window.opener) and receive a callback message once signed. The callback message includes { message, signature }, and you can cache as needed.
 
 **Open Popup + Receive Callback**
+
+The received **message** will be the challenge string that was signed.
+
+The received **signature** will be the hex signature of the signatureBytes (the ones that are to be submitted to Blockin).
+
+```typescript
+const hexSignature = Buffer.from(signChallengeResponse.signatureBytes).toString('hex');
+```
 
 ```tsx
 const handleChildWindowMessage = (event: MessageEvent) => {
@@ -117,7 +125,7 @@ If not, you can fetch them in real-time via the BitBadges API **POST /api/v0/aut
 
 You should now have a (message, signature) pair that can be verified by Blockin. Blockin will verify that 1) signature is well-formed and 2) any assets / badges that need to be owned are actually owned.&#x20;
 
-If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), this route also returns if the pair is valid, well-formed, and any assets are owned via **blockinSuccess**. No additional steps are required.
+If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), this route also returns if the pair is valid, well-formed, and any assets are owned via **blockinSuccess**. No additional steps for Blockin verification are required.
 
 If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
 
