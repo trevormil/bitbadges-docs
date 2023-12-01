@@ -28,7 +28,7 @@ const {
 For example.&#x20;
 
 ```
-https://bitbadges.io/auth/codegen?name="asfasdf"&description="lorem%20ipsum"&challengeParams......
+https://bitbadges.io/auth/codegen?name=Event%20Verification&description=This%20will%20give%20you%20access%20to%20the%20requested%20event.&image=https://bitbadges-ipfs.infura-ipfs.io/ipfs/QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj&challengeParams={"domain":"https://bitbadges.io","statement":"BitBadges%20uses%20Blockin%20to%20authenticate%20users.%20By%20signing%20in,%20you%20agree%20to%20our%20privacy%20policy%20and%20terms%20of%20service.","address":"0x0f741F4E00453c403151b5e7ca379B4Dc981D685","uri":"https://bitbadges.io","nonce":"9YClKQzMLtsXD52eT","expirationDate":"2023-12-01T16:06:32.205Z","resources":[],"assets":[]}
 ```
 
 challengeParams are the Blockin parameters for the sign-in challenge. See here for the full type definition [https://blockin-labs.github.io/blockin/docs/interfaces/ChallengeParams.html](https://blockin-labs.github.io/blockin/docs/interfaces/ChallengeParams.html). These will make up the base message that is expected. Here, you include all details about the sign-in like expiration date, badges to be owned, etc.
