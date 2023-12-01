@@ -39,9 +39,11 @@ name, description, and image follow the base metadata format. These will be used
 
 ### Step 2: User Generates QR Code
 
-The site will walk the user through signing and generating the QR code. The QR code is simply their signature. Once created, it will be stored in their BitBadges account's QR codes.
+Get your users to click on the generated URL which will take them to the site. The site will walk the user through signing and generating the QR code. The QR code is simply their signature. Once created, it will be stored in their BitBadges account's QR codes.
 
 However, it is strongly recommended that they also store it elsewhere for easier presentation at authentication time. Options include screenshotting it, saving it to their device, adding to a manager like Apple Wallet, physically printing it, and more.
+
+This is because you should not expect them to have their crypto wallets handy (which is required for signing in to BitBadges if signed out).
 
 ### Step 3 (Optional): Caching Signatures
 
@@ -53,11 +55,7 @@ To help with this, we allow you to open the generated URL via a popup window (wi
 
 The received **message** will be the challenge string that was signed.
 
-The received **signature** will be the hex signature of the signatureBytes (the ones that are to be submitted to Blockin).
-
-```typescript
-const hexSignature = Buffer.from(signChallengeResponse.signatureBytes).toString('hex');
-```
+The received **signature** will be the user's signature of the message.
 
 ```tsx
 const handleChildWindowMessage = (event: MessageEvent) => {
@@ -128,6 +126,16 @@ You should now have a (message, signature) pair that can be verified by Blockin.
 If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), this route also returns if the pair is valid, well-formed, and any assets are owned via **blockinSuccess**. No additional steps for Blockin verification are required.
 
 If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
+
+
+
+TODO EXAMPLE
+
+
+
+
+
+
 
 **Additional Custom Logic**
 
