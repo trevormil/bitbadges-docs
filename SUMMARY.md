@@ -110,6 +110,7 @@
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node.md)
 * [👨🏫 Interface Examples](for-developers/interface-examples.md)
 * [🔏 Verifying Badge Ownership](for-developers/verifying-badge-ownership.md)
+* [🎫 Generating Auth QR Codes](for-developers/generating-auth-qr-codes.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)

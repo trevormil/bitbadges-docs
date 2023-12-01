@@ -8,7 +8,7 @@ We recommend using [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/Awjd
 
 **Step 1: Verify Balances**
 
-Balances can be verified via the BitBadges website, BitBadges API, directly from source for off-chain balances, or directly from a blockchain node. You can run your own API / node or self-host balances for further decentralization and other benefits like low latency, availabability, etc. Keep in mind the potential delay / lag, availability, and pros and cons for all the options .
+Balances can be verified by querying them somehow, which can be via the BitBadges website, BitBadges API, directly from source for off-chain balances, or directly from a blockchain node. You can run your own API / node or self-host balances for further decentralization and other benefits like low latency, availability, etc. Keep in mind the potential delay / lag, availability, and pros and cons for all the options .
 
 **Step 2: Verify Address Ownership**
 
@@ -17,6 +17,10 @@ Verifying address ownership can be done with a cryptographic signature. As menti
 ### Design Choices
 
 Because the blockchain is public and decentralized, there are many different tools and options that you can use to customize your verification process, each offering various pros and cons. Check out [Ecosystem](../overview/ecosystem.md) for all of them.
+
+
+
+
 
 Below, we highlight some things you will need to consider:
 
@@ -27,6 +31,8 @@ Do you expect users to verify their address (i.e. sign a message) at authenticat
 In a digital setting like gaining access to a website, you can probably assume that users can sign stuff with their crypto wallets at authentication time.
 
 However, for in person authentication, you may want to consider pre-generating signatures, such as via a QR code or with NFC Readers, which can be signed beforehand and presented at authentication time instead of having users carry around their crypto wallets.
+
+See Generating Auth QR Codes for a tutorial and more information.
 
 **Offline vs Online**
 
