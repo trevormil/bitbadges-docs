@@ -8,6 +8,8 @@ Sometimes, you may want to verify users own a badge with a QR code, rather than 
 
 The BitBadges site provides a helper tool to generate and store QR codes for users. Below, we will walk you through the process of using this tool.
 
+See the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
+
 ### **Step 1:** Generate the Generation URL
 
 The base URL for code generation is [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen). This is a helper tool that will walk users through the signing process and generating the QR code.&#x20;
@@ -21,7 +23,8 @@ const {
     description, //string
     image, //string 
     generateNonce, //boolean
-    allowAddressSelect //boolean
+    allowAddressSelect, //boolean
+    requireCallback //boolean
 } = router.query;
 ```
 
@@ -37,6 +40,8 @@ If generateNonce and allowAddressSelect are true, we will handle the nonce gener
 
 name, description, and image follow the base metadata format. These will be used for UI purposes and displaying everything nicely to the user.
 
+requireCallback set to true means we will return the (message, signature) pair to the window that directed to the site (see Step 3).
+
 ### Step 2: User Generates QR Code
 
 Get your users to click on the generated URL which will take them to the site. The site will walk the user through signing and generating the QR code. The QR code is simply their signature. Once created, it will be stored in their BitBadges account's QR codes.
@@ -49,7 +54,7 @@ This is because you should not expect them to have their crypto wallets handy (w
 
 You may want to cache the messages and signature pairs for a better experience at authentication time. Or, it may even be a requirement such as in an offline setting.&#x20;
 
-To help with this, we allow you to open the generated URL via a popup window (window.opener) and receive a callback message once signed. The callback message includes { message, signature }, and you can cache as needed.
+To help with this, we allow you to open the generated URL via a popup window (window.opener) and receive a callback message once signed. The callback message includes { message, signature }, and you can cache as needed. To get the callback message, you need to have requireCallback = true.
 
 **Open Popup + Receive Callback**
 
