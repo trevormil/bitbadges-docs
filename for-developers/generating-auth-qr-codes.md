@@ -6,15 +6,22 @@ Pre-Readings: [Verifying Badge Ownership](verifying-badge-ownership.md)
 
 Sometimes, you may want to verify users own a badge with a QR code, rather than having them sign a message with a crypto wallet. For example, for in person events, it may be unrealistic to expect all users to have their crypto wallets handy to sign an authentication message. Instead, you can have users sign their authentication messages prior to authentication time, generate a QR code (or NFC or other method), and present that at authentication time instead.
 
-The BitBadges site provides a helper tool to generate and store QR codes for users. Below, we will walk you through the process of using this tool.
+The BitBadges site provides tools to generate and store QR codes for users. Below, we will walk you through the process of using these tools.
 
-See the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
+Overview of the execution flow:
+
+1. Generate a custom URL with [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).&#x20;
+2. Send your custom URL to your users wishing to authenticate. This URL will have them sign your authentication message, generate a QR code of their signature, and store it in their BitBadges account + elsewhere.
+3. To verify QR codes (signatures), you need a (message, signature) pair. When you scan the QR code, you will get the signature. To get the message, you can either fetch from the BitBadges API or cache it via a callback when the user signs the message.
+4. Lastly, you verify with Blockin and implement any additional customization logic. For simple use cases, you can perform steps 3 and 4 using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) directly in your browser.
+
+As always, everything is open source. These are just helper tools. Feel free to customize and add logic as needed. See the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
 
 ### **Step 1:** Generate the Generation URL
 
-The base URL for code generation is [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen). This is a helper tool that will walk users through the signing process and generating the QR code.&#x20;
+To generate your custom URL, visit [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or follow the instructions below.
 
-The following params should be passed into the URL query.
+The base of the generated helper tool URL is  [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen). The following params should be passed into the URL query.
 
 ```typescript
 const {
@@ -44,7 +51,7 @@ requireCallback set to true means we will return the (message, signature) pair t
 
 ### Step 2: User Generates QR Code
 
-Get your users to click on the generated URL which will take them to the site. The site will walk the user through signing and generating the QR code. The QR code is simply their signature. Once created, it will be stored in their BitBadges account's QR codes.
+Send the URL to your users and have them navigate to it. The site will walk the user through signing and generating the QR code. The QR code is simply their signature. Once created, it will be stored in their BitBadges account's QR codes.
 
 However, it is strongly recommended that they also store it elsewhere for easier presentation at authentication time. Options include screenshotting it, saving it to their device, adding to a manager like Apple Wallet, physically printing it, and more.
 
@@ -112,7 +119,7 @@ For messages that can be customized, you will need to use the callback to get th
 
 ### Step 4: Authentication
 
-Finally, it is authentication time, and you are ready to verify users. Users will present their generated QR codes to you. Scanning them will provide you with their signatures (we leave this step up to you).&#x20;
+Finally, it is authentication time, and you are ready to verify users. Users will present their generated QR codes to you. Scanning them will provide you with their signatures.&#x20;
 
 However, to verify, you need the signature AND the message that was signed. Obtaining the messages can be done in two ways.
 
@@ -132,15 +139,12 @@ If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), t
 
 If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
 
+**Verification Tools / Resources**
 
+1. Use the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) to see an implemented verification process.
+2. Consider using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) which is a verification helper tool for simple use cases. This tool allows you to scan, fetch, and verify the QR codes directly in your browser. It also uses local storage to keep track of sessions. Sessions are used to keep track of which codes have been used, which haven't, etc. Any additional custom logic will need to be implemented separately.
 
-TODO EXAMPLE
-
-
-
-
-
-
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 **Additional Custom Logic**
 
