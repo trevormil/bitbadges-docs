@@ -32,7 +32,7 @@ In a digital setting like gaining access to a website, you can probably assume t
 
 However, for in person authentication, you may want to consider pre-generating signatures, such as via a QR code or with NFC Readers, which can be signed beforehand and presented at authentication time instead of having users carry around their crypto wallets.
 
-See Generating Auth QR Codes for a tutorial and more information.
+See [Generating Auth QR Codes](generating-auth-qr-codes.md) for a tutorial and more information.
 
 **Offline vs Online**
 
