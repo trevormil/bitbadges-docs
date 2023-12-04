@@ -47,13 +47,11 @@ We have created a little helper tool on the BitBadges website to streamline the 
 
 To create a survey, follow the instructions below:
 
-1. Come up with a unique survey ID. To check if it is unique and unused, visit https://bitbadges.io/addresses/survey\_ADDSURVEYIDHERE and verify it is empty. Replace ADDSURVEYIDHERE with your ID.
-2. Use the tools on the Actions tab to help you collect addresses.
+1. Go to the Mint tab and create an address list. When prompted, selected Survey Mode.
+2. Use the tools on the Actions tab to help you generate a survey URL to give out to users.
 
 IMPORTANT Notes:
 
 We are looking to expand the functionality in the future, but currently, surveys have the following properties:
 
-1. Anyone with the survey ID can 1) see all addresses added and 2) add an address. If you need privacy, we recommend implementing your own survey and to not use this tool.&#x20;
-2. Since anyone with the survey ID can add an address, you need to take action accordingly to protect it from getting leaked to untrusted parties.
-3. Surveys are append-only, non-editable, and non-deletable.
+1. Anyone with the survey URL can add an address. Thus, you need to take action accordingly to protect the URL from getting leaked to untrusted parties.
