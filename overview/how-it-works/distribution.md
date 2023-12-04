@@ -8,9 +8,7 @@ Distributing depends on your unique requirements and the type of collection / li
 
 **Address Lists + Off-Chain Balances**
 
-For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge.&#x20;
-
-Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
+For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
 
 As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](../concepts/balances-types.md).
 
@@ -26,21 +24,36 @@ For on-chain balances (see [here](../concepts/balances-types.md)), all badges in
 
 Note the initiator of the transfer pays the transaction fees.
 
-### Questions to Answer
+**Address-Based vs Code / Password-Based**
 
-Before distributing, you should answer the following questions:
+A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not.&#x20;
 
-1. **How am I identifying my recipients?** **Do I know their addresses?**
-   1. If you know their addresses, a whitelist is probably the best option.&#x20;
-   2. If via some other method (email address, social media username, etc), it is probably best to generate unique codes / passwords and distribute codes for claiming that way.
-2. **How am I going to collect all my recipients' details?** If you do not already have your recipients' details, you can collect details using any method you prefer. Some examples include:
-   1. Paperform - Collect users information via an online survey form.
-   2. Rafflecopter - Have users sign up for a raffle.
-   3. FriendTech - Use friend.tech to associate Twitter usernames with Ethereum addresses.
-   4. Or any other way!
-3. **How will I notify recipients / provide them the details?**&#x20;
-   1. If you create a whitelist through the BitBadges app, it will automatically create a claim alert notification next time they log in. No additional details (like codes or a password) are needed for whitelists.
-   2. For distributing codes / passwords and notifying users, this can be done via many services such as Mailchimp for sending codes via email or SMS, using social media to direct message your codes, etc.
+If you do, you can use a whitelist, manually assign balances, or some other address-based method.
+
+If you do not, you have two options:
+
+1. Collect their addresses somehow (e.g. surveys) and then use an address-based method.
+2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
 
 See [Ecosystem ](../ecosystem.md)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
 
+**Notifying Users**
+
+If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for whitelists and activity if a badge is transferred / assigned to them).
+
+### Setting Up a BitBadges Address Survey
+
+We have created a little helper tool on the BitBadges website to streamline the process of collecting your users' addresses usernames.&#x20;
+
+To create a survey, follow the instructions below:
+
+1. Come up with a unique survey ID. To check if it is unique and unused, visit https://bitbadges.io/addresses/survey\_ADDSURVEYIDHERE and verify it is empty. Replace ADDSURVEYIDHERE with your ID.
+2. Use the tools on the Actions tab to help you collect addresses.
+
+IMPORTANT Notes:
+
+We are looking to expand the functionality in the future, but currently, surveys have the following properties:
+
+1. Anyone with the survey ID can 1) see all addresses added and 2) add an address. If you need privacy, we recommend implementing your own survey and to not use this tool.&#x20;
+2. Since anyone with the survey ID can add an address, you need to take action accordingly to protect it from getting leaked to untrusted parties.
+3. Surveys are append-only, non-editable, and non-deletable.

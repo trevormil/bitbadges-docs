@@ -29,6 +29,7 @@
 * [🛣 Roadmap](overview/roadmap.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [❓ FAQ](overview/faq.md)
+* [ℹ Address Collection Surveys](overview/address-collection-surveys.md)
 
 ## ⌨ For Developers
 
