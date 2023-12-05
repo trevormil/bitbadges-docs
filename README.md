@@ -118,7 +118,7 @@ See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution
 
 In addition to distribution tools, we aim to have thousands of community-built ecosystem tools for anything from authenticating users, communicating with badge holders, distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem.md) for all the tools currently built.&#x20;
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem.md) for some tools currently built.&#x20;
 
 **Blockin - Badge-Gate Websites**
 
