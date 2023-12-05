@@ -2,7 +2,7 @@
 
 Each collection can optionally have a manager who can be granted special admin privileges if desired. Note that when you give up the manager role, you give up all privileges associated with it.
 
-### Permissions (Blockchain)
+### Permissions (On-Chain)
 
 * **Can delete the collection?**
 * **Can archive the collection?** At what times? And for what times should the collection be archived?
@@ -16,16 +16,6 @@ Each collection can optionally have a manager who can be granted special admin p
 
 And more!
 
+### Permissions (Off-Chain)
 
-
-### **BitBadges Website Privileges**
-
-If you are the manager of the collection, you can do the following:
-
-* **Send an announcement to all badge holders**
-
-
-
-### Other
-
-Any tool can potentially offer custom utility exclusive to the manager!
+Any tool can potentially offer custom utility exclusive to the manager!&#x20;
