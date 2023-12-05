@@ -111,7 +111,7 @@
 * [👨🏫 Interface Examples](for-developers/interface-examples.md)
 * [🔏 Verifying Badge Ownership](for-developers/verifying-badge-ownership.md)
 * [🎫 Generating Auth QR Codes](for-developers/generating-auth-qr-codes.md)
-* [ℹ Custom Address Collection Surveys](for-developers/custom-address-collection-surveys.md)
+* [ℹ Custom Address Surveys](for-developers/custom-address-surveys.md)
 * [🧑🏫 Tutorials](for-developers/tutorials.md)
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
