@@ -31,23 +31,9 @@ Each standard must follow the following format:
 
 ## **Compatibility with BitBadges API / Indexer**
 
-Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/compatibility.md). If you want compatibility, please use standards that are compatible.
-
-## Standards Ideas
-
-Below are some ideas for standards that we have had. Feel free to formalize them into official ones.
-
-* Custom Metadata Interfaces
-  * Text-Based Metadata Standard (as opposed to images)
-  * Attendance Event Metadata (e.g. has startTime, endTime, etc)
-* URI standard for pointing to smart contracts (even on other chains)&#x20;
-  * Ex: Contract address points to ETH:0x123....xyz contract on Ethereum Chain
-  * Can also add an extension where it points to a specific function to query
-* Different JSON standards for off-chain balance maps
-  * Query dynamically instead of all in one file - i.e. {id}/{cosmosAddress}
-  * Balance -> Addresses\[] JSON instead of Address -> Balance JSON
-  * Use Address Mapping IDs instead of individual addresses
+Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/compatibility.md). If you want compatibility, please make sure all standards are compatible.
 
 ## List of Standards
 
-...
+1.  "No Balances" standard - If the standards array contains the standard "No Balances", then, the balances for all badges in the collection are deemed unimportant and are to not be displayed. This means nothing about transferability, approvals, activity, and so on is displayed. This standard is used by collections where only the badge metadata / permissions matter, such as an attestation to something. All badges are expected to not have any recipient.
+
