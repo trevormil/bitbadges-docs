@@ -15,7 +15,7 @@ Overview of the execution flow:
 3. To verify QR codes (signatures), you need a (message, signature) pair. When you scan the QR code, you will get the signature. To get the message, you can either fetch from the BitBadges API or cache it via a callback when the user signs the message.
 4. Lastly, you verify with Blockin and implement any additional customization logic. For simple use cases, you can perform steps 3 and 4 using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) directly in your browser.
 
-As always, everything is open source. These are just helper tools. Feel free to customize and add logic as needed. See the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
+As always, everything is open source. These are just helper tools. Feel free to customize and add logic as needed. See the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
 
 ### **Step 1:** Generate the Generation URL
 
@@ -137,11 +137,11 @@ You should now have a (message, signature) pair that can be verified by Blockin.
 
 If you selected Option 2 from above (BitBadges API **POST /api/v0/authCode**), this route also returns if the pair is valid, well-formed, and any assets are owned via **blockinSuccess**. No additional steps for Blockin verification are required.
 
-If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
+If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
 
 **Verification Tools / Resources**
 
-1. Use the [Blockin Quickstart repository](http://127.0.0.1:5000/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) to see an implemented verification process.
+1. Use the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) to see an implemented verification process.
 2. Consider using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) which is a verification helper tool for simple use cases. This tool allows you to scan, fetch, and verify the QR codes directly in your browser. It also uses local storage to keep track of sessions. Sessions are used to keep track of which codes have been used, which haven't, etc. Any additional custom logic will need to be implemented separately.
 
 <figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>

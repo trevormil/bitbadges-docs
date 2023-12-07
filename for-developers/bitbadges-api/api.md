@@ -74,7 +74,7 @@ See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/
 
 Blockin Authentication Required = \*
 
-For certain requests, we require the user to be authenticated via [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
+For certain requests, we require the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
 If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
 

@@ -4,7 +4,7 @@ There are many ways to verify if a user owns a badge or not. You can select your
 
 Remember, **verification is two-fold**. First, you need to verify the user owns the address.  Second, you need to verify ownership of the badge according to your criteria.
 
-We recommend using [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification because it supports native badge verification, is multi-chain compatible, and provides out-of-the-box support for important authentication details like nonces to avoid replay attacks.
+We recommend using [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification because it supports native badge verification, is multi-chain compatible, and provides out-of-the-box support for important authentication details like nonces to avoid replay attacks.
 
 **Step 1: Verify Balances**
 
@@ -16,7 +16,7 @@ Verifying address ownership can be done with a cryptographic signature. As menti
 
 ### Design Choices
 
-Because the blockchain is public and decentralized, there are many different tools and options that you can use to customize your verification process, each offering various pros and cons. Check out [Ecosystem](../overview/ecosystem.md) for all of them.
+Because the blockchain is public and decentralized, there are many different tools and options that you can use to customize your verification process, each offering various pros and cons. Check out [Ecosystem](../overview/ecosystem/) for all of them.
 
 
 

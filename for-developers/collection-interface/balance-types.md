@@ -144,7 +144,7 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 
 This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
-For another tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+For another tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
 
 ### Inherited / Badge-Bound (Coming Soon)
 

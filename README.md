@@ -36,7 +36,7 @@ Below are some of our favorite use cases:
 * **Memberships/Subscriptions/Premium Content -** Badges are all time-based, so you can offer time-dependent memberships / subscriptions and offer the utility only to those who own the badge at a certain time!
 * **Access Tokens** - Use badges as access tokens. This can be digital (websites, Discord servers, etc) or in-person (tickets, event entry, etc).
 * **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.&#x20;
-* **Authentication / Tiered Services -** Companies can outsource their authentication to Web3 / [Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Companies can outsource their authentication to Web3 / [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Cheaper, more secure, and less work!
 * See more use cases [here](broken-reference)!
 
 ## Why are we better?
@@ -66,7 +66,7 @@ We keep decentralization as a core principle, as opposed to some of our competit
 
 #### **Community-Driven**
 
-By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
+By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem/).
 
 #### **Scalability, Security, and Ease of Use:**
 
@@ -101,7 +101,7 @@ However, there is no way that we can natively support all distribution methods. 
 
 BitBadges wants to decentralize the distribution process by supporting a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
-See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
+See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer.
 
 **Currently Supported**
 
@@ -118,12 +118,12 @@ See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution
 
 In addition to distribution tools, we aim to have thousands of community-built ecosystem tools for anything from authenticating users, communicating with badge holders, distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem.md) for some tools currently built.&#x20;
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.&#x20;
 
 **Blockin - Badge-Gate Websites**
 
-{% content-ref url="http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
-[Blockin](http://127.0.0.1:5000/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
+{% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
+[Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
 With Blockin, you can restrict access to any website to only your badge holders!
