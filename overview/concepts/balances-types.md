@@ -49,7 +49,7 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](../../for-developers/tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
+See [here](../../for-developers/tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem.md)page!
 
 #### Advantages Over Standard Solutions
 

@@ -35,7 +35,7 @@ If you do not, you have two options:
 1. Collect their addresses somehow (e.g. surveys) and then use an address-based method.
 2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
 
-See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
+See [Ecosystem ](../ecosystem.md)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
 
 **Notifying Users**
 

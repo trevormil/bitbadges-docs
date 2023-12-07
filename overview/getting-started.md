@@ -12,7 +12,7 @@ After the badge is created, management, distribution, and transfers of badges ar
 
 **Option 2: Ecosystem Tools**
 
-Check out the [Ecosystem](ecosystem/) to browse other tools and projects built by the community!
+Check out the [Ecosystem](ecosystem.md) to browse other tools and projects built by the community!
 
 **Option 3 (Technical): BitBadges SDK / API**
 

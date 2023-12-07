@@ -6,8 +6,8 @@
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
-{% content-ref url="bitbadges-follow-protocol.md" %}
-[bitbadges-follow-protocol.md](bitbadges-follow-protocol.md)
+{% content-ref url="ecosystem/bitbadges-follow-protocol.md" %}
+[bitbadges-follow-protocol.md](ecosystem/bitbadges-follow-protocol.md)
 {% endcontent-ref %}
 
 Let us know if you have created a tool, and we can add it to this list!

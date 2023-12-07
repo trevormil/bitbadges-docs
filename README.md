@@ -66,7 +66,7 @@ We keep decentralization as a core principle, as opposed to some of our competit
 
 #### **Community-Driven**
 
-By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem/).
+By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
 
 #### **Scalability, Security, and Ease of Use:**
 
@@ -101,7 +101,7 @@ However, there is no way that we can natively support all distribution methods. 
 
 BitBadges wants to decentralize the distribution process by supporting a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
-See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer.
+See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer.
 
 **Currently Supported**
 
@@ -118,7 +118,7 @@ See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution
 
 In addition to distribution tools, we aim to have thousands of community-built ecosystem tools for anything from authenticating users, communicating with badge holders, distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.&#x20;
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem.md) for some tools currently built.&#x20;
 
 **Blockin - Badge-Gate Websites**
 
