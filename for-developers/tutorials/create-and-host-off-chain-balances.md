@@ -29,6 +29,8 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
+See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg.
+
 ### Indexed Balances
 
 **Step 1: Create Your Map**
