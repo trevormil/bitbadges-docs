@@ -1,5 +1,36 @@
 # Create and Host Off-Chain Balances
 
+There are two types of off-chain balances: indexed and non-indexed. See the balances type documentation for more information.
+
+### Non-Indexed Balances
+
+For non-indexed balances, you simply need to set up a server which can return the current balances for a specified Cosmos address.
+
+Couple notes:
+
+* The URL stored on-chain must have {address} as the placeholder.&#x20;
+* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../concepts/accounts.md).
+* Must be a GET endpoint
+* Make it accessible to whoever needs it. It is your responsibility to handle CORS errors and such yourself.
+
+Example:
+
+On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
+
+```typescript
+app.get('/nonIndexed/:address', async (req, res) => {
+  const address = req.params.address; 
+  const cosmosAddress = convertToCosmosAddress();
+  
+  //custom logic
+
+  const balances: Balance<bigint>[] = [...];
+  return res.status(200).send({ balances });
+});
+```
+
+### Indexed Balances
+
 **Step 1: Create Your Map**
 
 The map is simply a cosmosAddress/mappingId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.

@@ -2,9 +2,9 @@
 
 BitBadges offers three different ways to store the badge balances and owners for your collection as explained [here](../../overview/concepts/balances-types.md). Please read this first.
 
-The balance types are "Standard", "Off-Chain", and "Inherited". The balances type for a collection is determined by the **balancesType** field of the collection which will either equal "Standard", "Off-Chain", and "Inherited".
+The balance types are "Standard", "Off-Chain", "non-Indexed", and "Inherited". The balances type for a collection is determined by the **balancesType** field of the collection which will either equal "Standard", "Off-Chain", "Non-Indexed", and "Inherited".
 
-### Standard'
+### Standard
 
 ```json
 "balancesType": "Standard"
@@ -145,6 +145,69 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
 For another tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+
+### Non-Indexed
+
+```json
+"balancesType": "Non-Indexed"
+```
+
+Non-indexed balances are the same as "Off-Chain" balances, but there is no verifiable total supply defined on-chain. Balances are not indexed, meaning they are expected to be dynamically fetched on-demand, and there is no activity ledger recorded because of this.
+
+At any given time, we do not know the entire list of owners and balances, unlike with "Off-Chain" balances. As a result, we do not show these balances in search results like a user's portfolio. The only way to query balances for a user is to directly query it.
+
+The benefit of this is that this approach is much more scalable to indexers. Indexers do not need to worry about caching and maintaining logs of balances. As a result, there is no limit on the number of unique owners, whereas there is a limit (currently 15000 for the BitBadges API / Indexer) for standard "Off-Chain" balances.
+
+All URIs for "Non-Indexed" must contain the "{address}" placeholder in the on-chain specified URI. This is to be replaced at fetch time with the user's Cosmos address. it is up to you whether you want to support native chain addresses as well, but the converted Cosmos address is a minimum requirement.
+
+The return value from the URI should be dynamic in the following format:&#x20;
+
+```
+{ balances: [....] }
+```
+
+Standard "Off-Chain" balances return the whole map of user -> balances whereas "Non-Indexed" only returns the requested user's balances.&#x20;
+
+```json
+"offChainBalancesMetadataTimeline": [
+  {
+    "timelineTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "offChainBalancesMetadata": {
+      "uri": "https://api.bitbadges.io/balances/{address}",
+      "customData": ""
+    }
+  }
+]
+```
+
+The created badges on-chain (the ones sent to the Mint address via **badgesToCreate**) are only used for the expected badge IDs of the collection.
+
+#### Custom Logic Implementation
+
+Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL (if not using a permanent URL). This empowers you to define and program your balance assignment process to align with your collection's unique requirements.&#x20;
+
+Example:
+
+On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
+
+```typescript
+app.get('/nonIndexed/:address', async (req, res) => {
+  const address = req.params.address; 
+  const cosmosAddress = convertToCosmosAddress();
+  
+  //custom logic
+
+  const balances: Balance<bigint>[] = [...];
+  return res.status(200).send({ balances });
+});
+```
+
+For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
 
 ### Inherited / Badge-Bound (Coming Soon)
 
