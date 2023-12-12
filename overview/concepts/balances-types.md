@@ -32,14 +32,13 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 
 ### Indexed vs Non-Indexed
 
-Off-chain balances can either be indexed or non-indexed.&#x20;
-
-The differences are as follows:
+Off-chain balances can either be indexed or non-indexed. The differences are as follows:
 
 * Indexed balances have a total verifiable supply defined on-chain. Non-indexed does not.
 * At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
-* For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger. You can only view the current balances at any given time.
+* For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
 * Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.&#x20;
+* Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
 ### Suitability of Off-Chain Balances
 
