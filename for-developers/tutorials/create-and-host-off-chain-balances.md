@@ -29,7 +29,7 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg.
+See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg. Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
 
 ### Indexed Balances
 

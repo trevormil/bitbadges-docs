@@ -233,7 +233,9 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
+For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md).  Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
+
+Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem.md)page!
 
 ### Inherited / Badge-Bound (Coming Soon)
 
