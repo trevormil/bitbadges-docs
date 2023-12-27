@@ -20,21 +20,6 @@ We abstract everything to a clearly defined interface that accounts for all thes
 
 We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
 
-### Transfer Validation Scenario
-
-Let's delve into a transfer scenario to understand the process of approval validation:
-
-#### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for January to March&#x20;
-
-1. **Collection-Level Approval Check**:
-   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable within the collection, the transfer attempt would be deemed unsuccessful.
-2. **Incoming Approval Check**:
-   * If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific badge collection in question.
-3. **Outgoing Approval Check**:
-   * Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
-
-This layered approach to approval ensures a thorough examination of the transfer's legitimacy and compliance with various levels of permissions. The hierarchical structure prevents unauthorized transfers and enhances transparency in the transfer process.
-
 ### **Collection-Wide**
 
 The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set).
@@ -54,6 +39,23 @@ The collection can define a default outgoing approved transfers for each user. T
 The incoming approvals are the approved transfers of the recipient. By default, all transfers where the recipient equals the transaction initiator are allowed, and all others are disallowed. The recipient can choose whether to block or allow incoming transfers via their incoming approved transfers. This is a new concept introduced by BitBadges.
 
 The collection can define a default incoming approved transfers for each user. They can then be updated by the user as they desire. They can then be updated by the user as they desire.
+
+### Transfer Validation Scenario
+
+Let's delve into a transfer scenario to understand the process of approval validation:
+
+<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+#### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for January to March&#x20;
+
+1. **Collection-Level Approval Check**:
+   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable within the collection, the transfer attempt would be deemed unsuccessful.
+2. **Incoming Approval Check**:
+   * If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific badge collection in question.
+3. **Outgoing Approval Check**:
+   * Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
+
+This layered approach to approval ensures a thorough examination of the transfer's legitimacy and compliance with various levels of permissions. The hierarchical structure prevents unauthorized transfers and enhances transparency in the transfer process.
 
 ### Customization Options
 
