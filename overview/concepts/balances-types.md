@@ -1,6 +1,8 @@
 # Balances Types
 
-BitBadges offers two different ways to store the badge balances and owners for your collection, each with their own pros and cons.
+BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Standard
 

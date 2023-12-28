@@ -20,7 +20,7 @@ Solana Example:
 * Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
 * Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
