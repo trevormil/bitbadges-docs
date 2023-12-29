@@ -22,7 +22,10 @@ Solana Example:
 * Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
 * Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
 
+Bitcoin Example&#x20;
 
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
