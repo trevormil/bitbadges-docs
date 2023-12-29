@@ -14,7 +14,7 @@ Digital tokens (badges) are simply something that you can own digitally and prov
 
 When combined with blockchain technology, they become even more secure and more powerful, due to the unique properties of the blockchain. However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users or only Cosmos users).
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case you desire.**
+**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven token standard and suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case you desire.**
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -41,7 +41,7 @@ Below are some of our favorite use cases:
 
 ## Why are we better?
 
-What makes our product better than competitors?
+What makes our token standard and product better than competitors?&#x20;
 
 #### **Multi-Chain**
 
@@ -72,7 +72,7 @@ By being open-source and developer friendly, we aim to facilitate an ecosystem o
 
 Our product is more scalable, easier to use, and more secure than competitors (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) .
 
-### Newly Innovated Features
+### Innovative Features
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
