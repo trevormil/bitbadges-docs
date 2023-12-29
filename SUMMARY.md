@@ -15,7 +15,6 @@
   * [Balances Types](overview/how-it-works/balances-types.md)
   * [Transferability](overview/how-it-works/transferability.md)
   * [Standards](overview/how-it-works/standards.md)
-* [📖 Address Surveys](overview/address-surveys.md)
 * [💡 Core Principles](overview/core-principles.md)
 * [🏅 Getting Started](overview/getting-started.md)
 * [🌴 Ecosystem](overview/ecosystem.md)
