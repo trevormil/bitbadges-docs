@@ -1,6 +1,6 @@
 # Transferability
 
-The transferability defines the rules for transferring badges within the collection. Note this does not apply to the off-chain balances type ([see here](balances-types.md)).
+The transferability defines the rules for transferring badges within the collection. Note this does not apply to address lists or any off-chain balances type ([see here](balances-types.md)).
 
 ### **Transferable vs Non-Transferable**
 
@@ -8,7 +8,7 @@ At its simplest, a collection can be thought of as transferable (badges can be t
 
 ### Problem
 
-However, only specifying simply "transferable" vs "non-transferable" is very naïve and not suitable for many use cases.&#x20;
+However, only specifying simply "transferable" vs "non-transferable" is very naive and not suitable for many use cases.&#x20;
 
 For example, what if you need to be able to revoke? Freeze one's ability to transfer? Restrict who can transfer to who? Restrict when users can transfer? Restrict how many times a transfer can occur? Restrict the total amount of badges transferred? Or a combination of all of these?
 
@@ -20,11 +20,13 @@ We abstract everything to a clearly defined interface that accounts for all thes
 
 We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
 
+<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
 ### **Collection-Wide**
 
 The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set).
 
-For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify challenges that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
+For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify challenges that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). This also encompasses transfers from the Mint address. See all possibilities below.
 
 The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking badges or forcefully freezing badges. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.**
 
@@ -43,8 +45,6 @@ The collection can define a default incoming approved transfers for each user. T
 ### Transfer Validation Scenario
 
 Let's delve into a transfer scenario to understand the process of approval validation:
-
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 #### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for January to March&#x20;
 
@@ -75,10 +75,6 @@ At each level, we offer the following functionality for defining approved transf
   * Ex: Must own a membership to transfer or must now own a scammer badge to transfer
 * Require sender to be the initiator? Require sender to not be the initiator?
 * Require recipient to be the initiator? Require recipient to not be the initiator?
-
-### **Mint Address**
-
-The Mint address is also included in the transferability as well, so you can clearly define what criteria has to be satisfied for badges to be distributed. The Mint address can never receive badges.
 
 ### **Updatability**
 

@@ -10,7 +10,7 @@ Standard balances are what you may be familiar with. All balances are stored on 
 
 ## Off-Chain
 
-Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Instead, balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain). Transfers and approvals on the blockchain are **not supported.**
+Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain). Transfers and approvals on the blockchain are **not applicable.**
 
 #### Configurable URL and Permanent Storage
 
@@ -27,7 +27,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 
 * **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly, \
   since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and claims) is not supported, unless custom implemented off-chain.&#x20;
-* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances.
+* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 * **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
   * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.&#x20;
   * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
@@ -55,7 +55,7 @@ Consider adopting off-chain balances if your collection aligns with the followin
 
 #### Custom Logic Implementation
 
-Balances' updatable nature allows for the implementation of custom logic for what is returned by the URL. This empowers you to define and program your balance-fetching process to align with your collection's unique requirements.&#x20;
+Balances' updatable nature allows for the implementation of custom logic for what is returned by the URL. This empowers you to define and program your balance-fetching process to align with your collection's unique requirements. It also allows you to access and integrated with non-blockchain data and tools to customize your balances further.
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
@@ -71,14 +71,3 @@ Compared to traditional client-server solutions, off-chain balances offer numero
 * **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
 
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
-
-## Inherited / Badge-Bound (Coming Soon)
-
-Inherited (or badge-bound) balances are a way for a collection to inherit the owners of badges from another collection. For example, I want to send a free coupon badge which automatically distributes to all owners of my membership badge.&#x20;
-
-If the "parent" badge transfers owners, all child badges will automatically transfer owners as well.
-
-
-
-
-
