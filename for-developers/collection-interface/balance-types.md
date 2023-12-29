@@ -1,6 +1,6 @@
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../overview/concepts/balances-types.md). Please read this first.The balances type for a collection is determined by the **balancesType** field of the collection which.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../overview/how-it-works/balances-types.md). Please read this first.The balances type for a collection is determined by the **balancesType** field of the collection which.
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 

@@ -1,8 +1,8 @@
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../overview/concepts/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
 
 Note that collections with "Off-Chain" balances do not utilize on-chain transferability.
 

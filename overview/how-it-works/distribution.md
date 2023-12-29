@@ -8,13 +8,13 @@ Distributing depends on your unique requirements and the type of collection / li
 
 **Address Lists + Off-Chain Balances**
 
-For address lists and badges with off-chain balances (see [here](../concepts/balances-types.md)), you manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
+For address lists and badges with off-chain balances (see [here](balances-types.md)), you manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will be automatically populated to a users' portfolio.
 
-As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](../concepts/balances-types.md).
+As a result, this option offers much enhanced user experience; however, there are some tradeoffs such as further centralization, less customization, and no on-chain transfer transactions. Read more [here](balances-types.md).
 
 **On-Chain Balances**
 
-For on-chain balances (see [here](../concepts/balances-types.md)), all badges initially start in the Mint address, and there has to be some sort of transfer transaction from the Mint address to the recipient address. These transfers can be done in many ways dependent on your use case:
+For on-chain balances (see [here](balances-types.md)), all badges initially start in the Mint address, and there has to be some sort of transfer transaction from the Mint address to the recipient address. These transfers can be done in many ways dependent on your use case:
 
 * **Manual Transfers:** The manager or other approved parties can directly transfer on the recipients' behalf. Who can transfer is clearly defined in the collection's transferability.
 * **Claims:** Claims can be setup so that a user can claim the badge from the Mint address, if they meet certain criteria. Some examples include
