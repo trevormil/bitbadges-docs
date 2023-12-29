@@ -8,19 +8,21 @@ To enable interoperability between different blockchains, each individual L1 blo
 
 As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a and will be assigned an account ID number upon interaction with the BitBadges blockchain.
 
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 #### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
 Ethereum Example:
 
 * Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
+* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
 
 Solana Example:
 
-* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
 * Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
