@@ -10,15 +10,17 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 **Who can benefit from using BitBadges?**
 
-Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance.
+Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance.&#x20;
 
 With BitBadges, all authentication and token-gating can be easily outsourced to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.
 
-Or, just create badges for fun and collect them :)
+This is the main use case we envision. However, badges can be created for anything, so there are lots of use cases!
 
-**Are there plans to support digital collectibles (tokens with value)?**
+**Are there plans to support digital collectibles (tokens with value) rather than just badges?**
 
-Not sure. Probably eventually. However, for now, we want to focus on badges and leave "valuable" tokens to each respective ecosystem.&#x20;
+Technically, it is already possible on teh blockchain (just sending a badge along with some form of $BADGE currency). However, for now, we want to focus on badges and leave "valuable" tokens to each respective ecosystem.&#x20;
+
+We want BitBadges to be a hub for achievements, reputation, etc, not a place for trading NFTs.
 
 **What makes BitBadges better than competitors?**
 
@@ -76,4 +78,4 @@ Once development is BitBadges is complete and final, we would like to make the s
 
 **What happens if there is convergence to a single blockchain?**
 
-Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) is dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
+Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) becomes dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
