@@ -42,19 +42,21 @@ Below are some of our favorite use cases:
 * **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
 * See more use cases [here](broken-reference)!
 
+<figure><img src=".gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+
 ## Why are we better?
 
 What makes our token standard and product better than competitors?&#x20;
+
+#### **Multi-Chain**
+
+Supports users from multiple blockchain ecosystems instead of just one! We currently support Cosmos, Solana, Bitcoin, and Ethereum users.
 
 <div data-full-width="false">
 
 <figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 </div>
-
-#### **Multi-Chain**
-
-Supports users from multiple blockchain ecosystems instead of just one! We currently support Cosmos, Solana, Bitcoin, and Ethereum users.
 
 **Decentralization**
 
