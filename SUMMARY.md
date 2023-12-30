@@ -53,6 +53,7 @@
   * [🕒 Different Time Fields](for-developers/core-concepts/different-time-fields.md)
   * [🔓 Archived Collections](for-developers/core-concepts/archived-collections.md)
   * [✍ Custom Data](for-developers/core-concepts/custom-data.md)
+  * [🃏 Aliases](for-developers/core-concepts/aliases.md)
 * [🔃 Create and Broadcast Txs](for-developers/create-and-broadcast-txs/README.md)
   * [✉ Cosmos SDK Msgs](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/README.md)
     * [MsgCreateCollection](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msgcreatecollection.md)
