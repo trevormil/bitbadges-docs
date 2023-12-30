@@ -4,16 +4,16 @@ There are two types of off-chain balances: indexed and non-indexed. See the [bal
 
 For both options, you can enter the URLs directly in the Create form on the BitBadges app, or you can generate your own transaction.
 
+The URLs should be a GET endpoints accessible to whoever needs it (e.g. BitBadges indexer). It is your responsibility to handle CORS errors and such yourself.
+
 ### Non-Indexed Balances
 
 For non-indexed balances, you simply need to set up a server which can return the current balances for a specified Cosmos address.
 
 Couple notes:
 
-* The URL stored on-chain must have {address} as the placeholder.&#x20;
+* The URL stored on-chain must have {address} as a placeholder for the address to query.
 * The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../concepts/accounts.md).
-* Must be a GET endpoint
-* Make it accessible to whoever needs it. It is your responsibility to handle CORS errors and such yourself.
 
 Example:
 

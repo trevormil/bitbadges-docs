@@ -6,7 +6,7 @@ See [here](balances-types.md) to learn about the pros and cons of the different 
 
 ## How to Distribute?
 
-Distributing depends on your unique requirements and the type of collection / list you have created.
+Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. To see how a specific collection / list is distributed,  you must visit the page for that collection.
 
 ### **Address Lists + Badges with Off-Chain Balances - Manual Assignment**
 
