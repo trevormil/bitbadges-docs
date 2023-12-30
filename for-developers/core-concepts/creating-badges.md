@@ -1,10 +1,16 @@
 # ➕ Creating Badges
 
-**Creating Badges**
+**Default Starting Balances**
+
+For standard on-chain balanaces, you can define a default startng balance for all addresses. Upon first interaction, each address is given the default balances. Since an infinite number of addresses can be created theoretically, there is theoretically an infinite supply of badges, so this is only used in specific use cases.
+
+The more common way of creating badges is explained below.
+
+**Creating Badges Out of "Thin Air"**
 
 During creation and update transaction (MsgCreateCollection and MsgUpdateCollection), you can specify the badge amounts and supplys you wish to create via the **badgesToCreate** field. This will create these badges out of thin air and transfer these badges to the "Mint" address. No one controls the "Mint" address. It can only be transferred out of, not transferred to.
 
-The initial creation transaction's **badgesToCreate** are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction.  Following transactions must obey the **canCreateMoreBadges** permission.
+The initial creation transaction's **badgesToCreate** are considered "free" and not locked by any permissions. The creator can mint as much as they want in this initial transaction.  Following transactions must obey the **canCreateMoreBadges** manager permission.
 
 The **ownershipTimes** will be the times that the badges can be owned aka in circulation. The **badgeIds** are the IDs of each unique badge. Badge IDs must start at 1 and have no gaps.
 
@@ -77,7 +83,7 @@ An example permission is as follows. This locks any badges from ever being creat
 
 **Permission vs Escrow**
 
-There are two ways to handle creating and defining a total supply.
+There are two ways to handle restricting the total supply.
 
 **Permission:** The first, as explained above, is via the **canCreateMoreBadges** permission. However, this permission has no amount restriction. If the manager is approved, they can create an unlimited amount. if they are disapproved, they cannot create any. Its all-or-nothing.
 

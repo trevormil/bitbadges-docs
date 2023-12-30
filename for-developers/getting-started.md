@@ -8,7 +8,15 @@ Finished? Is it a tool that others can use? Let us know, so we can add it to [Ec
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord.
 
-## **Do you need to query blockchain data?**
+## **Creating a collection?**
+
+Create a collection using the Create tab on the BitBadges web app.
+
+**Do you want to self-host off-chain balances?** You can manually enter your self-hosted URL into the Create form. Learn about the different [balance types](core-concepts/balance-types.md) and see the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting.
+
+**Do you need to collect user addresses?** Create an [address survey](tutorials/custom-address-surveys.md).
+
+## **Do you need to query indexed blockchain data?**
 
 Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).
 
@@ -24,12 +32,6 @@ The Create tab and other features on the BitBadges web app are pretty thorough a
 
 However, if you do, you can either 1) use the [custom helper broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md) on the BitBadges site or 2) [generate them programmatically through the SDK](create-and-broadcast-txs/).
 
-## **Creating a collection?**
-
-**Do you want to self-host off-chain balances?** Learn about the different [balance types](core-concepts/balance-types.md) and see the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting.
-
-**Do you need to collect user addresses?** Create an [address survey](tutorials/custom-address-surveys.md).
-
 ## **Building a frontend?**
 
 Use the [BitBadges website](bitbadges-frontend.md) code or [Blockin Quickstart](https://github.com/Blockin-Labs/blockin-quickstart) code as a starting point and/or reference. Feel free to reuse any UI components.
@@ -42,7 +44,4 @@ Or, reach out to us to see what we can do.
 
 ## **Do you want to run a blockchain node?**
 
-{% content-ref url="bitbadges-blockchain/" %}
-[bitbadges-blockchain](bitbadges-blockchain/)
-{% endcontent-ref %}
-
+See [Run a Node](bitbadges-blockchain/run-a-node.md).
