@@ -8,9 +8,9 @@ GitHub: [https://github.com/bitbadges/bitbadges-indexer](https://github.com/bitb
 
 **How It Works**
 
-Every second, the indexer will query the latest transactions added to the blockchain and index the data in a customizable manner with CouchDB.&#x20;
+Every second, the indexer will query the latest transactions added to the blockchain and index the data in a customizable manner.&#x20;
 
-For example, if a new MsgTransferBadge transaction is observed, the indexer can add this to an activity array stored for that user in CouchDB. All activity for a specific user can then be easily fetched via the Express.js API. This makes certain data easily accessible and queryable, even though it isn't stored like that on the blockchain.
+For example, if a new MsgTransferBadge transaction is observed, the indexer can add this to an activity array stored for that user. All activity for a specific user can then be easily fetched via the Express.js API. This makes certain data easily accessible and queryable, even though it isn't stored like that on the blockchain.
 
 **Running Your Own Indexer vs Using the BitBadges API**
 

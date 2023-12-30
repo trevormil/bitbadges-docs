@@ -2,7 +2,7 @@
 
 If you want to run your own indexer and API, check out the source code at [https://github.com/bitbadges/bitbadges-indexer](https://github.com/bitbadges/bitbadges-indexer).
 
-The indexer is split into two main parts: the poller and the API. The poller fetches the latest block from a connected node every second and updates the CouchDB database accordingly. The API is an Express.js API that makes the indexed data queryable to users.
+The indexer is split into two main parts: the poller and the API. The poller fetches the latest block from a connected node every second and updates the MongoDB database accordingly. The API is an Express.js API that makes the indexed data queryable to users.
 
 Although you can query other blockchain nodes, it is strongly recommended that you run your own node and query that. HTTP requests can reach >100 per second.
 
@@ -17,8 +17,6 @@ Although you can query other blockchain nodes, it is strongly recommended that y
 ### Running with Docker
 
 See [https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker).
-
-
 
 ### Customization Options (.env file)
 

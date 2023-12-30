@@ -2,7 +2,7 @@
 
 First, read [Permissions](../../overview/how-it-works/manager.md) for an overview.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/interface-examples.md) section. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/msg-examples.md) section. Please ask for help if needed.
 
 <pre class="language-json"><code class="lang-json"><strong>"collectionPermissions": {
 </strong>    "canDeleteCollection": [],

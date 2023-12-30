@@ -1,8 +1,16 @@
 # ➕ Creating Badges
 
+**Balance Types**
+
+All collections will "create" some supply of badges on-chain; however, the interpretation of that supply is slightly different dependent on the balance storage method.
+
+* Off-Chain Indexed: The badges created on-chain will permanently live in the "Mint" address and this value will be used as the "maximum supply". If the server off-chain tries to assign more than what is created on-chain, an error should be thrown.
+* Off-Chain Non-Indexed: Similarly, the badges created on-chain will permanently live in the "Mint" address, but there is no verifiable maximum supply for non-indexed collections. The values here are simply used to denote the expected badge IDs for the collection.
+* Standard On-Chain: Badges created on-chain can be owned by users. This can be in the "Mint" address or user addresses  The "Mint" address can only send badges, not receive them. Badges will initially be sent to the "Mint" address when created out of thin air. The circulating supply will live out according to the permissions, approvals, and transfers of the collection.
+
 **Default Starting Balances**
 
-For standard on-chain balanaces, you can define a default startng balance for all addresses. Upon first interaction, each address is given the default balances. Since an infinite number of addresses can be created theoretically, there is theoretically an infinite supply of badges, so this is only used in specific use cases.
+For standard on-chain balances (not applicable to off-chain), you can also define a default starting balance for all addresses. Upon first interaction, each address is given the default balances. Since an infinite number of addresses can be created theoretically, there is theoretically an infinite supply of badges, so this is only used in specific use cases.
 
 The more common way of creating badges is explained below.
 
@@ -83,7 +91,7 @@ An example permission is as follows. This locks any badges from ever being creat
 
 **Permission vs Escrow**
 
-There are two ways to handle restricting the total supply.
+For standard on-chain balances, there are two ways to handle restricting the total supply.
 
 **Permission:** The first, as explained above, is via the **canCreateMoreBadges** permission. However, this permission has no amount restriction. If the manager is approved, they can create an unlimited amount. if they are disapproved, they cannot create any. Its all-or-nothing.
 

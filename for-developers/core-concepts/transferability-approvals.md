@@ -2,7 +2,7 @@
 
 First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/interface-examples.md) section.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/msg-examples.md) section.
 
 Note that collections with "Off-Chain" balances do not utilize on-chain transferability.
 
@@ -254,7 +254,7 @@ Likewise, we also need to check Alice's incoming approvals using the same proces
 
 **Satisfied?**
 
-If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../create-and-broadcast-txs/interface-examples.md)for further examples.
+If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../create-and-broadcast-txs/msg-examples.md)for further examples.
 
 **Extending the Example: Prioritized Approvals**
 

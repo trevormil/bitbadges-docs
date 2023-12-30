@@ -1,8 +1,6 @@
 # Limits / Restrictions
 
-Note that the following limits and restrictions are in place for the API. Reach out to us if these limits are too restrictive.
-
-Note these can change and the values below may be outdated.
+Note that the following limits and restrictions are in place for the API. Reach out to us if these limits are too restrictive. These can change and the values below may be outdated.
 
 * 250 unique metadata URIs, accounts, collections fetched in one request
 * Functionality may be limited for collections with more than JavaScript's Number.MAX\_SAFE\_INTEGER unique badges.
