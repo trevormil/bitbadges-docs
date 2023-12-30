@@ -2,7 +2,7 @@
 
 BitBadges is multi-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).
 
-See  [here](balances-types.md) to learn about the pros and cons of the different balance types (on-chain vs off-chain).
+See [here](balances-types.md) to learn about the pros and cons of the different balance types (on-chain vs off-chain).
 
 ## How to Distribute?
 
@@ -30,11 +30,7 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 * **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**
 * **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
-A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not.&#x20;
-
-If you do, you can use a whitelist, manually assign balances, or some other address-based method.
-
-If you do not, you have two options:
+A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a whitelist, manually assign balances, or some other address-based method. If you do not, you have two options:
 
 1. Collect their addresses somehow (e.g. surveys) and then use an address-based method.
 2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.

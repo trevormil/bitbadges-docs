@@ -1,6 +1,8 @@
 # Create and Host Off-Chain Balances
 
-There are two types of off-chain balances: indexed and non-indexed. See the balances type documentation for more information.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../collection-interface/balance-types.md) for more information.
+
+For both options, you can enter the URLs directly in the Create form on the BitBadges app, or you can generate your own transaction.
 
 ### Non-Indexed Balances
 
@@ -29,7 +31,7 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg. Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
+See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg. See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
 
 ### Indexed Balances
 

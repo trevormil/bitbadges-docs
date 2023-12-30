@@ -1,6 +1,6 @@
 # 🕑 Betanet vs Mainnet
 
-In order to allow us to ship a great product and receive feedback, we have launched a betanet version of BitBadges to test features and ship fast. In betanet, profiles and badges are real and will be migrated to mainnet. However, $BADGE is completely subsidized and free. Every user will receive 1000 $BADGE upon launch from a faucet which should be plenty to test.
+In order to allow us to ship a great product and receive feedback, we have launched a betanet version of BitBadges to test features and ship fast. In betanet, profiles and badges are real and can be migrated to mainnet. However, $BADGE is completely subsidized and free. Every user will receive 1000 $BADGE upon launch from a faucet which should be plenty to test.
 
 Betanet has currently started.
 

@@ -1,6 +1,8 @@
-# 💳 Supported Wallets
+# 💳 Chains / Wallets
 
 We are working on ironing out the bugs for the support of many wallets. Let us know in Discord if your wallet is not connecting properly.&#x20;
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
 **Ethereum**
 
@@ -10,7 +12,7 @@ We use WalletConnect to support over 100 Ethereum wallets such as Metamask, Coin
 
 Keplr - [https://www.keplr.app/](https://www.keplr.app/)
 
-**Solana**
+**Solana / Bitcoin**
 
 Phantom - [https://phantom.app/](https://phantom.app/)
 

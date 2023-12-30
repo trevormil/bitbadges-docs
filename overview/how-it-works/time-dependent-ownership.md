@@ -7,7 +7,7 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 ### Balance Components
 
 1. **Badge IDs**: This refers to which badges in your possession.
-2. **Badge Quantity**: This refers to how much of each badge you own.
+2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
 3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
 ### Example of Ownership Structure

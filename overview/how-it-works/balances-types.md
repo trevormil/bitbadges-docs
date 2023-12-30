@@ -2,11 +2,11 @@
 
 BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
-## Standard
+## Standard (On-Chain)
 
-Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the most customizable option but also the least scalable because it uses the most blockchain resources. Everything is facilitated on the blockchain.
+Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain.
 
 ## Off-Chain
 
