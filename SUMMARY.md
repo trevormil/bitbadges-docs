@@ -85,7 +85,6 @@
     * [Number Types](for-developers/bitbadges-api/concepts/number-types.md)
     * [Different Indexers](for-developers/bitbadges-api/concepts/different-indexers.md)
     * [Refresh Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
-    * [Announcements / Reviews](for-developers/bitbadges-api/concepts/announcements-reviews.md)
     * [Codes / Passwords](for-developers/bitbadges-api/concepts/codes-passwords.md)
     * [Paginations / Views](for-developers/bitbadges-api/concepts/paginations-views.md)
     * [Timeline-Based Fields](for-developers/bitbadges-api/concepts/timeline-based-fields.md)

@@ -16,6 +16,15 @@ export interface Metadata<T extends NumberType> {
   category?: string;            // Category (optional)
   externalUrl?: string;         // External URL (optional)
   tags?: string[];              // Tags (optional)
+
+  socials?: {
+    [key: string]: string;
+  }
+
+  offChainTransferabilityInfo?: {
+    host: string
+    assignMethod: string
+  }
 }
 ```
 
@@ -27,9 +36,11 @@ If the badge metadata URI includes "{id}" anywhere in the URI, it will be dynami
 
 #### Off-Chain Balances Metadata
 
-If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or mapping IDs to Balance objects.
+If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or mapping IDs to Balance objects for indexed collections.
 
 [https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/)
+
+For non-indexed collections, it will be queried dynamically with replacing {address} in the URL with the native Cosmos address. The returned JSON should be in the format { balances: \[....] }.
 
 #### Approval / Claim Metadata
 

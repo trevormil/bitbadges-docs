@@ -1,6 +1,6 @@
 # MsgUniversalUpdateCollection
 
-MsgUniversalUpdateCollection is a universal message that supports both creating and updateing collections. If collection ID == 0. This is mainly used for legacy purposes. We recommend using MsgCreateCollection and MsgUpdateCollection instead, respectively. We refer you to their documentation for further details.
+MsgUniversalUpdateCollection is a universal message that supports both creating and updating collections. If collection ID == 0, it is a create txn. This is mainly used for legacy purposes. We recommend using MsgCreateCollection and MsgUpdateCollection instead, respectively. We refer you to their documentation for further details.
 
 ```typescript
 interface MsgUniversalUpdateCollection {
@@ -13,11 +13,7 @@ interface MsgUniversalUpdateCollection {
     collectionPermissions?: CollectionPermissions<T>;
     creator: string;
     customDataTimeline?: CustomDataTimeline<T>[];
-    defaultAutoApproveSelfInitiatedIncomingTransfers?: boolean;
-    defaultAutoApproveSelfInitiatedOutgoingTransfers?: boolean;
-    defaultIncomingApprovals?: UserIncomingApproval<T>[];
-    defaultOutgoingApprovals?: UserOutgoingApproval<T>[];
-    defaultUserPermissions?: UserPermissions<T>;
+    defaultBalances?: UserBalanceStore;
     isArchivedTimeline?: IsArchivedTimeline<T>[];
     managerTimeline?: ManagerTimeline<T>[];
     offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];

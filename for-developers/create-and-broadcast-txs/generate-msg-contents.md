@@ -12,7 +12,7 @@ You have two options when generating the contents of a transaction:
 
 ### **Option 1 - Single Msg**
 
-If you are just submitting a single Msg and that Msg is either MsgSend or a BitBadges Msg (other Cosmos Msgs are not supported), then you can use the provided helper functions from the SDK below.
+If you are just submitting a single Msg and that Msg is either MsgSend or a BitBadges module Msg (other Cosmos Msgs are not supported), then you can use the provided helper functions from the SDK below.
 
 ```typescript
 import { createTxMsgSend, createTxMsgDeleteCollection, ... } from 'bitbadgesjs-proto'
@@ -56,7 +56,7 @@ See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/proto/src/proto
 
 ### Output
 
-The outputted **txn** will be in the following format. Each of these has a different purpose depending on which signature mode you plan to use (Solana vs Ethereum EIP712 vs Standard Cosmos SDK).
+The outputted **txn** will be in the following format. Each of these has a different purpose depending on which signature mode you plan to use (Solana/Bitcoin vs Ethereum EIP712 vs Standard Cosmos SDK).
 
 ```typescript
 export interface TxPayload {
@@ -80,5 +80,5 @@ export interface TxPayload {
 Once you have the generated **txn,** you now need to determine how you want to sign and broadcast your transaction. You have two options:
 
 1. Use  [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your txn into. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md)).
+2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
 

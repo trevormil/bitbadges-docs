@@ -47,7 +47,3 @@ We use an update flag + new value format. If the update flag is true, we will up
 **Rest of Fields**
 
 For the rest of the fields, we refer you to the following section.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}

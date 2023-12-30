@@ -10,11 +10,7 @@ export interface MsgCreateCollection<T extends NumberType> {
   
   balancesType?: string //"Standard" | "Off-Chain"
   
-  defaultOutgoingApprovals?: UserOutgoingApproval<T>[]
-  defaultIncomingApprovals?: UserIncomingApproval<T>[]
-  defaultUserPermissions?: UserPermissions<T>
-  defaultAutoApproveSelfInitiatedOutgoingTransfers?: boolean
-  defaultAutoApproveSelfInitiatedIncominggTransfers?: boolean
+  defaultBalances: UserBalanceStore;
   
   badgesToCreate?: Balance<T>[]
   
@@ -37,12 +33,8 @@ The collectionId will be assigned at execution time and is obtainable in the tra
 The creation or genesis transaction for a collection is unique in a couple ways.
 
 1. There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
-2. This is the only time that you can specify **balancesType** and the default user approval information (**defaultOutgoingApprovals, defaultIncomingApprovals, defaultAutoApproveSelfInitiatedOutgoingTransfers**, **defaultAutoApproveSelfInitiatedIncomingTransfers**, and **defaultUserPermissions**)**.**&#x20;
+2. This is the only time that you can specify **balancesType** and the **defaultBalances** information (defaultOutgoingApprovals, defaultIncomingApprovals, defaultAutoApproveSelfInitiatedOutgoingTransfers, defaultAutoApproveSelfInitiatedIncomingTransfers, and defaultUserPermissions)**.**&#x20;
 
 **Rest of Fields**
 
 For the rest of the fields, we refer you to the following section.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
