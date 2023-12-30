@@ -43,6 +43,14 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 * [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../../tutorials/create-a-wasm-contract.md) for tutorial.
 
+**x/protocols**
+
+* MsgCreateProtocol -Creates a protocol, uniquely identifed by itsname
+* MsgUpdateProtocol - Updates an existing protocol.
+* MsgDeleteProtocol - Deletes a protocol
+* MsgSetCollectionForProtocol - Allows a user to specify what collection they want to use for the protocol.
+* MsgUnsetCollectionForProtocol - Unsets the currently set collection for the protocol.
+
 **Other Cosmos SDK Modules**
 
 For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!

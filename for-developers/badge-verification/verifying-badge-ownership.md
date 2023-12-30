@@ -1,4 +1,4 @@
-# 🔏 Verifying Badge Ownership
+# Verifying Badge Ownership
 
 There are many ways to verify if a user owns a badge or not. You can select your preferred method according to your use case and requirements.
 

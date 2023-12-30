@@ -1,6 +1,6 @@
-# 🎫 Generating Auth QR Codes
+# Generating Auth QR Codes
 
-Pre-Readings: [Verifying Badge Ownership](./)
+Pre-Readings: [Verifying Badge Ownership](verifying-badge-ownership.md)
 
 
 
