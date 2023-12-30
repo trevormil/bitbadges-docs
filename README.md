@@ -48,7 +48,7 @@ What makes our token standard and product better than competitors?&#x20;
 
 <div data-full-width="false">
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -88,7 +88,7 @@ In addition to the standard features of existing token standards (mint, transfer
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
 * [**Customizable Permissions**](overview/how-it-works/manager.md)**:**  Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
-* [**Time-Based Details**](for-developers/collection-interface/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
+* [**Time-Based Details**](for-developers/core-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
   * Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 * [**Batch Transfers**](overview/how-it-works/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
@@ -131,6 +131,22 @@ With Blockin, you can restrict access to anything to only your badge holders! It
 <figure><img src=".gitbook/assets/image (22).png" alt="" width="467"><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (21).png" alt="" width="375"><figcaption></figcaption></figure>
+
+## **Need additional functionality not supported?**
+
+While BitBadges offers a wide range of customizable functionality for badges, we understand that not all cases are currently supported. Some may simply not be supported on the website, wheeas some may not be supported altogether.
+
+We are committed to continuously improving and expanding our offered functionality over time. If you find that your use case requires unsupported functionality, you have two options:
+
+**Option 1: Implement It**
+
+The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](for-developers/tutorials/create-a-wasm-contract.md). We also offer a developer API and SDK which can be used to expand the functionality of badges.
+
+We would appreciate it if you could inform us of any missing functionality from the interface you require when choosing this option, so we can try to add it natively. Please contact us [here](overview/team-contact-us.md).
+
+**Option 2: Request It**&#x20;
+
+You can request the functionality from the BitBadges team, and we will do our best to add it as soon as possible. Please contact us [here](overview/team-contact-us.md). Or, draft an improvement proposal [here](https://github.com/BitBadges/BBIPs).
 
 ## Links
 

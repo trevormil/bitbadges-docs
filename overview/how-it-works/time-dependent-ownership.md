@@ -10,6 +10,8 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
 3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
 ### Example of Ownership Structure
 
 Consider Bob's ownership structure as an illustrative example:

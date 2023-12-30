@@ -2,7 +2,7 @@
 
 First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../interface-examples.md) section.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/interface-examples.md) section.
 
 Note that collections with "Off-Chain" balances do not utilize on-chain transferability.
 
@@ -56,7 +56,7 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.&#x20;
-2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../create-and-broadcast-txs/cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
 We strongly recommend designing approvals in a way where all are mutually exclusive, meaning no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
@@ -86,7 +86,7 @@ This can typically be used for providing names, descriptions about your approval
 
 To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
+* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../create-and-broadcast-txs/cosmos-sdk-msgs/).
 * **transferTimes**: When can the transfer takes place? A [UintRange](../concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](../concepts/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
@@ -254,7 +254,7 @@ Likewise, we also need to check Alice's incoming approvals using the same proces
 
 **Satisfied?**
 
-If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../interface-examples.md)for further examples.
+If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](../create-and-broadcast-txs/interface-examples.md)for further examples.
 
 **Extending the Example: Prioritized Approvals**
 

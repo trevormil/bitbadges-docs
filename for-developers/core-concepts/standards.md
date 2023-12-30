@@ -35,5 +35,5 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## List of Standards
 
-1.  "No Balances" standard - If the standards array contains the standard "No Balances", then, the balances for all badges in the collection are deemed unimportant and are to not be displayed. This means nothing about transferability, approvals, activity, and so on is displayed. This standard is used by collections where only the badge metadata / permissions matter, such as an attestation to something. All badges are expected to not have any recipient.
+See [here](../../overview/how-it-works/standards.md).
 

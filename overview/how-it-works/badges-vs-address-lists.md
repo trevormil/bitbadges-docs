@@ -4,11 +4,11 @@ There are two ways you can create using BItBadges. The easiest way to create is 
 
 ## **Badges**
 
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+
 Badges are blockchain tokens that can be owned with customization options like supply, transferability, and more! These are more complex than address lists but also are much more customizable.
 
 The first step in creating badges is to create a collection. Collections are the core of BitBadges. All collections are identified by a numeric ID, and each badge within the collection is also referenced by a unique numeric ID, starting at 1. So for example, collection #1 can have 100 badges which are identified #1 through #100.
-
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 **Customization Options**
 
@@ -47,22 +47,18 @@ Each permission has fine-grained controls, such as when it can be executed vs fo
 
 [**Standard**](standards.md)**:** Each collection can define what standard it uses to explain how to interpret the details of the badge. For example, should we expect it to follow a specific format?
 
-For developers, see [standards](../../for-developers/collection-interface/standards.md).
+For developers, see [standards](../../for-developers/core-concepts/standards.md).
 
 ## Address Lists
 
-Address lists are simply a list of users identified by a unique ID.&#x20;
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.&#x20;
+Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.&#x20;
 
 Lists are provided as for convenience and simplicity, but note that all lists can be created as a badge collection where users own x1 of a badge to be "on the list".
 
-**Storage**
-
-Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (by the creator) whereas on-chain lists must be permanently frozen (not updatable or deletable).&#x20;
+**Storage:** Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (with other options) whereas on-chain lists must be permanently frozen (not updatable or deletable).&#x20;
 
 **Metadata:** Lists can be customized with metadata like a name, image, description, etc. They will show up on users' profiles under the lists' category.
 
 **All Except:** Lists are invertible meaning your list can denote whether to only specify certain addresses or include all addresses but certain addresses (whitelist or blacklist).
-
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>

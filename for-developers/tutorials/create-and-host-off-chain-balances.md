@@ -1,6 +1,6 @@
 # Create and Host Off-Chain Balances
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../collection-interface/balance-types.md) for more information.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information.
 
 For both options, you can enter the URLs directly in the Create form on the BitBadges app, or you can generate your own transaction.
 

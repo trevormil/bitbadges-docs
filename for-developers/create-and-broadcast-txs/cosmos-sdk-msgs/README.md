@@ -16,7 +16,7 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
-* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+* [BitBadges SDK](../): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../). This is the recommended option.
 * CLI: Run your own node and interact with the command line
 * Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
@@ -41,7 +41,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../tutorials/create-a-wasm-contract.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../../tutorials/create-a-wasm-contract.md) for tutorial.
 
 **Other Cosmos SDK Modules**
 

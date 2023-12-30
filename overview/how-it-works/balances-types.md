@@ -19,6 +19,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 #### Benefits
 
 * **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
+* **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
 * **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
 * **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
 * **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.&#x20;
@@ -44,12 +45,12 @@ Off-chain balances can either be indexed or non-indexed. The differences are as 
 
 ### Suitability of Off-Chain Balances
 
-#### Criteria for Adoption
-
 Consider adopting off-chain balances if your collection aligns with the following criteria:
 
 1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer, off-chain balances could be advantageous, especially if you make the balances frozen and immutable.
 2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
+
+This is because there is little added benefit to using a blockchain if such criteria is met. Sure, the blockchain might have better availability and verifiability than an off-chain solution (although, we have been using off-chain solutions for 20+ years successfully). However, other than that, the blockchain really provides little benefit, and fees can be expensive.
 
 ### Customizability and Advantages Over Standard Solutions
 

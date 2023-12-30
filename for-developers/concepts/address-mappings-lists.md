@@ -14,23 +14,21 @@ export interface AddressMapping {
 }
 ```
 
-### Inverting
+### Inverting (Whitelist vs Blacklist)
 
 These are invertible meaning we can create a mapping that includes all addresses EXCEPT some specified addresses (includeAddresses = false). Or, we can create a mapping that includes ONLY some specified addresses (includeAddresses = true). More commonly, this is thought of as a blacklist or whitelist.
 
 **IMPORTANT:** When you invert, the inversion by default includes the "Mint" address. This is important when handling the **fromMapping** of approvals. You do not want to accidentally approve users to transfer from the "Mint" address.
 
-
-
 ### **Storage**
 
-**On-Chain:** AddressMappings are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressMappings](../cosmos-sdk-msgs/).
+**On-Chain:** AddressMappings are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressMappings](../create-and-broadcast-txs/cosmos-sdk-msgs/).
 
 They can be used to define transferability on-chain. For example, mapping "xyz" can only transfer to mapping "abc" initiated by the reserved "Manager" mapping.
 
 The same address mapping is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
-**Off-Chain:** Address mappings can also be created off-chain through our indexer / API. These are updatable and deletable. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
+**Off-Chain:** Address mappings can also be created off-chain through our indexer / API. These are updatable and deletable, along with additional options. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
 
 
 
@@ -44,6 +42,8 @@ There are a couple IDs for AddressMappings that are reserved for efficient short
 * "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
 * "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:cosmos123...:cosmos456...")
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
+
+See below for the function for generating them.
 
 ### Custom IDs
 
@@ -63,3 +63,96 @@ This is the mapping which includes all addresses except "cosmos123...." and "cos
   ...
 }
 ```
+
+<pre class="language-typescript"><code class="lang-typescript"><a data-footnote-ref href="#user-content-fn-1">function</a> getReservedMapping(
+  addressMappingId: string,
+  allowAliases?: boolean,
+): AddressMapping {
+  let inverted = false
+  let addressMapping: AddressMapping | undefined = undefined
+
+  if (addressMappingId[0] === '!') {
+    inverted = true
+    addressMappingId = addressMappingId.slice(1)
+  }
+
+  if (addressMappingId === 'Mint') {
+    addressMapping = {
+      mappingId: 'Mint',
+      addresses: ['Mint'],
+      includeAddresses: true,
+      uri: '',
+      customData: '',
+      createdBy: '',
+    }
+  } else if (addressMappingId.startsWith('AllWithout')) {
+    addressMapping = {
+      mappingId: addressMappingId,
+      addresses: [],
+      includeAddresses: false,
+      uri: '',
+      customData: '',
+      createdBy: '',
+    }
+
+    const addresses = addressMappingId.slice(10).split(':')
+
+    for (let address of addresses) {
+      addressMapping.addresses.push(address)
+    }
+  } else if (addressMappingId === 'AllWithMint' || addressMappingId === 'All') {
+    addressMapping = {
+      mappingId: addressMappingId,
+      addresses: [],
+      includeAddresses: false,
+      uri: '',
+      customData: '',
+      createdBy: '',
+    }
+  } else if (addressMappingId === 'None') {
+    addressMapping = {
+      mappingId: 'None',
+      addresses: [],
+      includeAddresses: true,
+      uri: '',
+      customData: '',
+      createdBy: '',
+    }
+  } else {
+    //split by :
+    const addressesToCheck = addressMappingId.split(':')
+    let allAreValid = true
+    //For tracker IDs, we allow aliasses(aka non valid addresses)
+    if (!allowAliases) {
+      for (let address of addressesToCheck) {
+        if (address != 'Mint' &#x26;&#x26; !convertToCosmosAddress(address)) {
+          allAreValid = false
+        }
+      }
+    }
+
+    if (allAreValid) {
+      addressMapping = {
+        mappingId: addressMappingId,
+        addresses: addressesToCheck,
+        includeAddresses: true,
+        uri: '',
+        customData: '',
+        createdBy: '',
+      }
+    }
+  }
+
+  if (inverted &#x26;&#x26; addressMapping) {
+    addressMapping.includeAddresses = !addressMapping.includeAddresses
+  }
+
+  if (!addressMapping) {
+    throw new Error(`Invalid address mapping ID: ${addressMappingId}`)
+  }
+
+  return addressMapping
+}
+</code></pre>
+
+[^1]: 

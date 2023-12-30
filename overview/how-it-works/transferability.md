@@ -22,7 +22,7 @@ We define three levels of approved transfers: collection-wide, incoming, and out
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
-### **Collection-Wide**
+### **Collection Approvals**
 
 The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set).
 
@@ -61,6 +61,8 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations
 
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?
 * Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
@@ -78,8 +80,6 @@ At each level, we offer the following functionality for defining approved transf
 
 ### **Updatability**
 
-We also support fine-grained updatability for all combinations of the above functionality.
+We also support fine-grained updatability for all combinations of the above functionality through the manager permissions.
 
-For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable.
-
-One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
+For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable. One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.

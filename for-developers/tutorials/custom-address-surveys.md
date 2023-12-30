@@ -1,12 +1,12 @@
-# ℹ Custom Address Surveys
+# Custom Address Surveys
 
-Pre-Readings: [Distribution](../overview/how-it-works/distribution.md)
+Pre-Readings: [Distribution](../../overview/how-it-works/distribution.md)
 
 The BitBadges site natively allows you to create a address collection survey where users can add their address to a list for you to view. This is useful for collecting addresses at an in-person event. See the pre-reading for more information.
 
 However, the native integration only supports storing the addresses as a list on the BitBadges servers. Sometimes, you may want something more customizable than that. For example, you may want to send a claim alert with a unique claim code every time a user enters an address or update your private database.
 
-You can eitehr implement your own survey, or if you want to use the BitBadges search feature, we allow you to pass in the following URL query params to https://bitbadges.io/addresscollector.&#x20;
+You can either implement your own survey, or if you want to use the BitBadges search feature, we allow you to pass in the following URL query params to https://bitbadges.io/addresscollector.&#x20;
 
 ```typoscript
 const { description, callbackRequired } = router.query;

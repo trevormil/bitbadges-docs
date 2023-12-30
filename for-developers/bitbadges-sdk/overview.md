@@ -53,7 +53,7 @@ const broadcastPost = await fetch(
 const response = await broadcastPost.json()
 ```
 
-**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create and generate blockchain transactions in the [BitBadges Msg formats](../cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-broadcast-txs/) for more info and tutorials.&#x20;
+**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create and generate blockchain transactions in the [BitBadges Msg formats](../create-and-broadcast-txs/cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-broadcast-txs/) for more info and tutorials.&#x20;
 
 ```typescript
 const txMsg = createTxMsgUpdateCollection(

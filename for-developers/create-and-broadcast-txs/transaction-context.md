@@ -102,7 +102,7 @@ To fetch a user's account details, the easiest way is to use the routes from the
 
 This will return the user's cosmos address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption><p>Note how publicKey is empty. This is because the user has not interacted with the chain yet.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>Note how publicKey is empty. This is because the user has not interacted with the chain yet.</p></figcaption></figure>
 
 IMPORTANT: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1.&#x20;
 

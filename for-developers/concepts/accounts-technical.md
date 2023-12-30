@@ -7,21 +7,29 @@
 
 ### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) and Validator Operators <a href="#injective-accounts" id="injective-accounts"></a>
 
-For accounts (standard senders of transactions) and validator operators, we support users from three L1 blockchain ecosystems currently (Ethereum, Solana, and Cosmos).
+For accounts (standard senders of transactions) and validator operators, we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
 
-**Ethereum**
+### **Ethereum**
 
 BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
 
-All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
+**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
 
-**Solana**
+### **Solana**
 
-BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Transactions will be signed in JSON format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
+BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
 
-**Cosmos**
+**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
 
-Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to there for further information.
+### **Cosmos**
+
+Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
+
+### Bitcoin
+
+BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
+
+**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
 
 ### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
@@ -50,6 +58,11 @@ Solana Example:
 
 * Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
 * Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
+
+Bitcoin Example&#x20;
+
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
 #### **Public Key Types**
 

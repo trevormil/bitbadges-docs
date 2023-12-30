@@ -43,6 +43,6 @@ The creation or genesis transaction for a collection is unique in a couple ways.
 
 For the rest of the fields, we refer you to the following section.
 
-{% content-ref url="../collection-interface/" %}
-[collection-interface](../collection-interface/)
+{% content-ref url="../../core-concepts/collection-interface.md" %}
+[collection-interface.md](../../core-concepts/collection-interface.md)
 {% endcontent-ref %}

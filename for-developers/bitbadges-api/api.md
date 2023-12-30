@@ -7,7 +7,7 @@ We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/sr
 1. Request an API Key by contacting us via Discord.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key.
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Status Codes
 
