@@ -6,9 +6,7 @@ GitHub: [https://github.com/bitbadges/bitbadges-frontend](https://github.com/bit
 
 Feel free to fork this as a starting point for a custom frontend!
 
-The goal for this website is to be the all-in-one site for any crypto user. We want anyone to be able to view everything about an address and their on-chain reputation.&#x20;
-
-Imagine a site that where you go to it and can see:
+The goal for this website is to be the all-in-one site for any crypto user. We want anyone to be able to view everything about an address and their on-chain reputation. Imagine a site that where you go to it and can see:
 
 * A user's badges from BitBadges
 * A user's digital collectibles from their native chain
@@ -20,4 +18,4 @@ Imagine a site that where you go to it and can see:
 * Hosted content from users
 * And much more!
 
-While some features will be created by us, we want to integrate and support the most popular projects from all chains (not just BitBadges chain). Win-win mindset.&#x20;
+This is the end goal. While some features will be created by us, we want to integrate and support the most popular projects from all chains (not just BitBadges chain). Win-win mindset.&#x20;

@@ -30,3 +30,9 @@ let rawTx = createTxRawEIP712(
   txnExtension,
 );
 ```
+
+
+
+### Full Snippet
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/BitcoinContext.tsx" %}

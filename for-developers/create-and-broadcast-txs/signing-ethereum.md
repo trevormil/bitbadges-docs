@@ -81,3 +81,7 @@ let txRaw = createTxRawEIP712(
 ### Output
 
 This will leave you with a **txRaw** variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+### Full Snippet
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/EthereumContext.tsx" %}

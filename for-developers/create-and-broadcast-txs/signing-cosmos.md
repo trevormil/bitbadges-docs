@@ -54,14 +54,9 @@ This will leave you with a **txRaw** variable which is to be submitted to a runn
 
 
 
+### Full Snippet
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx" %}
 
 
-###
 
-
-
-###
-
-####
-
-####
