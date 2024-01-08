@@ -6,7 +6,7 @@ See [here](balances-types.md) to learn about the pros and cons of the different 
 
 ## How to Distribute?
 
-Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. To see how a specific collection / list is distributed,  you must visit the page for that collection.
+Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. To see how a specific collection / list is distributed, you must visit the page for that collection.
 
 ### **Address Lists + Badges with Off-Chain Balances - Manual Assignment**
 
@@ -14,13 +14,15 @@ For address lists and badges with off-chain balances (see [here](balances-types.
 
 ### **On-Chain Balances**
 
-There are a few ways that badges can be distributed with on-chain balances.&#x20;
+There are a few ways that badges can be distributed with on-chain balances.
 
 Typically, all badges initially start in the Mint address, and there has to be some sort of transfer transaction from the Mint address to the recipient address. These transfers can be done in many ways dependent on your use case, as explained below.
 
-**Manual Mints**
+**Manual**
 
-The manager or other approved parties can directly initiate a transfer forcefully on the recipients' behalf. Who is permitted to transfer is clearly defined in the collection's transferability.&#x20;
+The manager or other approved parties can directly initiate a transfer forcefully on the recipients' behalf. Who is permitted to transfer is clearly defined in the collection's transferability.
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 **Claims**
 
@@ -29,6 +31,10 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 * **Passwords:** Set up a reusable password that must be entered to claim a badge.
 * **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**
 * **Whitelists / Blacklists**: Only allow specific addresses to claim.
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a whitelist, manually assign balances, or some other address-based method. If you do not, you have two options:
 
@@ -43,8 +49,7 @@ See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by
 
 Another option is to define default starting balances. For example, everyone starts with x1 of a specific badge. This is typically not used with the normal minting processes explained above.
 
-For this option, ALL addresses will start out with the defined balances.&#x20;
-
+For this option, ALL addresses will start out with the defined balances.
 
 **Tools Compatibility**
 

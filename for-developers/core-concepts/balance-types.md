@@ -4,7 +4,7 @@ BitBadges offers different ways to store the badge balances and owners for your 
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 ## Standard
 

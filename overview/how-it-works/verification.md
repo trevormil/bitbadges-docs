@@ -12,10 +12,10 @@ Once you create and distribute your badges, a big part of offering utility is ve
 
 **Important: Badge verification is a two-step process:**
 
-* Verification of badge ownership - Check that the user's address actually owns the badge on the BitBadges blockchain
+* Querying badge ownership - Check that the user's address actually owns the badge on the BitBadges blockchain
 * Verification of address ownership - Check that the user actually owns the address they are claiming
 
-Please note that merely checking the BitBadges website ([https://bitbadges.io](https://bitbadges.io/)) without verifying the user's address ownership may not be sufficient, as users could potentially provide false information.
+Please note that merely checking the BitBadges website ([https://bitbadges.io](https://bitbadges.io/)) without verifying the user's address ownership may not be sufficient, as users could potentially not own the address they say they own.
 
 #### Verification of Badge Ownership
 
@@ -25,8 +25,12 @@ The verification of badge ownership involves confirming that a user's address ge
 
 In addition to badge ownership verification, it's crucial to verify the ownership of the claimed address itself. This step ensures that the user actually possesses the address they are asserting. This can again be achieved through ecosystem verification tools.
 
-&#x20;We recommend using Blockin to perform this step. The QR codes feature on the web app uses Blockin to help you verify addressees and badge ownership in-person.&#x20;
+We recommend using Blockin to perform this step. The QR codes feature on the web app uses Blockin to help you verify addressees and badge ownership in-person.&#x20;
 
 {% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
