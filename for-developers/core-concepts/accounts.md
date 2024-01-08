@@ -6,9 +6,9 @@ This page will give you an overview of BitBadges accounts. It should be enough i
 
 To enable interoperability between different blockchains, BitBadges is signature comaptible with all of the supported chains (Bitcoin, Ethereum, Solana, and Cosmos).&#x20;
 
-Signature compatibility means that users from any of the aforemenetioned blockchain ecosystems are able to sign BitBadges transactions. BitBadges is also compatible with many of the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from any other blockchain. Everything is confined to the BitBadges blockchain.
+Signature compatibility means that users from any of the aforementioned blockchain ecosystems are able to sign BitBadges transactions. BitBadges is also compatible with many of the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from any other blockchain. Everything is confined to the BitBadges blockchain.
 
-#### **How is BitBadges able to support addresses from different blockchains?**
+#### **How are accounts handled behind the scenes?**
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos bech32 address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent $BADGE for the first time.&#x20;
 

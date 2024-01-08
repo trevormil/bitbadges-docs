@@ -99,24 +99,15 @@ And much more!
 
 ## Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. A few are supported natively by the BitBadges website (whitelists, passwords, claim codes, QR codes).  However, there is no way that we can natively support all distribution methods. Even if we could, this would centralize the badge distribution process.
+There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (whitelists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distirbution experience.
 
-BitBadges wants to decentralize the distribution process by supporting a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
+For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via Mailchimp, Discord, or SMS.
 
-See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
-
-**Currently Supported**
-
-We natively have support the following:
-
-* Whitelists - Specify a list of users that can claim the badge (on-chain or off-chain).
-* Password - Enter the correct password can claim a badge.
-* Codes - Enter unique custom codes to claim a badge. Codes can be distributed however you would like (email, social media DMs, anything!).
-* QR Codes - Restrict badges to be claimed by only those who scan a specific QR code.
+BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche. See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
 
 ## Ecosystem Tools
 
-In addition to distribution tools, we aim to have thousands of community-built ecosystem tools for anything from authenticating users, communicating with badge holders, distributing badges, and more!
+Ecosystem tools are anything from tools for authenticating users, communicating with badge holders,  to distributing badges, and more!
 
 Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.&#x20;
 

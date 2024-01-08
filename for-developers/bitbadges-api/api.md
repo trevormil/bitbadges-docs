@@ -44,6 +44,8 @@ We recommend reading all [concepts](concepts/) for background information on the
 * [Paginations](concepts/paginations-views.md)
 * [Limits / Restrictions](limits-restrictions.md)
 
+Also visit the [Tutorials](../tutorials/) for common execution flows.
+
 ### Using the SDK (Recommended)
 
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience.
@@ -82,9 +84,7 @@ If the user is not signed in, the API will respond with a 401 error code. See [A
 
 ### Confined Responses
 
-**IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need.
-
-The [Tutorials ](tutorials/)and [Concepts ](concepts/)will be extremely beneficial to help you deal with this.
+**IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need. The [Tutorials ](tutorials/)and [Concepts ](concepts/)will be extremely beneficial to help you deal with this.
 
 ## Routes
 
@@ -100,7 +100,7 @@ Gets Blockin challenge to be signed by the user. The returned **blockinMessage**
 
 #### **POST /api/v0/auth/verify - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteSuccessResponse.html)**)**
 
-Submit the signed Blockin challenge to this route to be authenticated.&#x20;
+Submit the signed Blockin challenge to this route to be authenticated.
 
 #### **POST /api/v0/auth/logout - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/SignOutRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/SignOutSuccessResponse.html)**)**
 
@@ -128,9 +128,9 @@ See [Collections Tutorial](tutorials/fetching-collections.md) for how to deal wi
 
 #### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 
-Batch fetch details about multiple collections.  See [Collections tutorial](tutorials/fetching-collections.md).
+Batch fetch details about multiple collections. See [Collections tutorial](tutorials/fetching-collections.md).
 
-#### **POST /api/v0/collection/:collectionId - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionByIdRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionRouteSuccessResponse.html)**)**&#x20;
+#### **POST /api/v0/collection/:collectionId - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionByIdRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionRouteSuccessResponse.html)**)**
 
 Gets a single collection.
 
@@ -156,7 +156,7 @@ Get the status of a collection's refresh. Returns if the collection has anything
 
 #### **POST /api/v0/collection/:collectionId/codes - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAllCodesAndPasswordsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAllCodesAndPasswordsRouteSuccessResponse.html)**)\***
 
-Get the secret codes for a collection's claim. Manager only. 
+Get the secret codes for a collection's claim. Manager only.
 
 #### **POST /api/v0/collection/:collectionId/password/:cid/:password - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCodeForPasswordRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCodeForPasswordRouteSuccessResponse.html)**)\***
 
@@ -166,7 +166,7 @@ Returns the user with a new unused code, if they provide the correct password.
 
 Adds a review for the collection.
 
-**POST /api/v0/deleteReview/:reviewId**&#x20;
+**POST /api/v0/deleteReview/:reviewId**
 
 #### **POST /api/v0/browse - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetBrowseCollectionsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetBrowseCollectionsRouteSuccessResponse.html)**)**
 
@@ -212,8 +212,7 @@ Updates a user's profile document in the indexer (GitHub, Discord, lastSeenActiv
 
 Add a review for the specified user.
 
-**POST /api/v0/deleteReview/:reviewId**&#x20;
-
+**POST /api/v0/deleteReview/:reviewId**
 
 ### **Broadcasting**
 
@@ -223,9 +222,8 @@ Also, check out [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/br
 
 #### **POST /api/v0/broadcast - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/BroadcastTxRouteSuccessResponse.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/BroadcastTxRouteSuccessResponse.html)**)**
 
-
 #### **POST /api/v0/simulate - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/SimulateTxRouteSuccessResponse.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/types/SimulateTxRouteSuccessResponse.html)**)**
 
-### Full API SDK Reference&#x20;
+### Full API SDK Reference
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts" fullWidth="true" %}

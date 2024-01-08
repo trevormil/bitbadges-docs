@@ -2,7 +2,7 @@
 
 The BitBadges SDK is a bundle of TypeScript libraries that provide all the tools and functions needed for you to interact with the BitBadges API, blockchain, indexer, or build your own frontend.&#x20;
 
-GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs).
+GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs)
 
 Repositories that use the SDK:
 

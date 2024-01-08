@@ -1,6 +1,6 @@
 # Badges vs Address Lists
 
-There are two ways you can create using BItBadges. The easiest way to create is by visiting [https://bitbadges.io/collections/mint](https://bitbadges.io/collections/mint).
+There are two ways you can create using BItBadges. Visit [https://bitbadges.io/collections/mint](https://bitbadges.io/collections/mint) to get started.
 
 ## **Badges**
 
