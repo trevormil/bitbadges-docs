@@ -64,13 +64,19 @@ export function pruneMetadataToFetch: (
 </strong><strong>const updatedCollection = updateCollectionWithResponse(collection, newCollection);
 </strong></code></pre>
 
+### NSFW / Reported
+
+NSFW or reported collections will be flagged with the **nsfw** or **reported** properties.
+Everything is still fetched as normal with typical requests, and it is up to you to do what you 
+want with these accounts. 
+
+On the app, we provide a warning message and replace all metadata with placeholders.
+
 ### Metadata
 
 The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.**
 
 Note this is different from **collectionMetadataTimeline** and **badgeMetadataTimeline** which simply store the URIs, not the actual metadata itself.
-
-
 
 ### **Views / Paginations**
 
@@ -243,5 +249,61 @@ export interface MetadataFetchOptions {
 ```typescript
 export interface GetCollectionBatchRouteSuccessResponse<T extends NumberType> {
   collections: BitBadgesCollection<T>[]
+}
+```
+
+
+### **Interfaces**
+
+```ts
+export interface BitBadgesCollection<T extends NumberType> extends CollectionInfoBase<T> {
+  collectionApprovals: CollectionApprovalWithDetails<T>[];
+  collectionPermissions: CollectionPermissionsWithDetails<T>;
+  defaultBalances: UserBalanceStoreWithDetails<T>;
+
+  //The following are to be fetched dynamically and as needed from the DB
+  cachedCollectionMetadata?: Metadata<T>;
+  cachedBadgeMetadata: BadgeMetadataDetails<T>[];
+  activity: TransferActivityDoc<T>[],
+  announcements: AnnouncementDoc<T>[],
+  reviews: ReviewDoc<T>[],
+  owners: BalanceDocWithDetails<T>[],
+  merkleChallenges: MerkleChallengeDoc<T>[],
+  approvalsTrackers: ApprovalsTrackerDoc<T>[],
+
+  nsfw?: { badgeIds: UintRange<T>[], reason: string };
+  reported?: { badgeIds: UintRange<T>[], reason: string };
+
+  views: {
+    [viewId: string]: {
+      ids: string[],
+      type: string,
+      pagination: PaginationInfo,
+    } | undefined
+  }
+}
+
+export interface CollectionInfoBase<T extends NumberType> {
+  collectionId: T;
+  collectionMetadataTimeline: CollectionMetadataTimeline<T>[];
+  badgeMetadataTimeline: BadgeMetadataTimeline<T>[];
+  balancesType: "Standard" | "Off-Chain - Indexed" | "Inherited" | "Off-Chain - Non-Indexed";
+  offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[];
+  customDataTimeline: CustomDataTimeline<T>[];
+  managerTimeline: ManagerTimeline<T>[];
+  collectionPermissions: CollectionPermissions<T>;
+  collectionApprovals: CollectionApproval<T>[];
+  standardsTimeline: StandardsTimeline<T>[];
+  isArchivedTimeline: IsArchivedTimeline<T>[];
+  defaultBalances: UserBalanceStore<T>;
+  createdBy: string;
+  createdBlock: T;
+  createdTimestamp: T;
+  updateHistory: {
+    txHash: string;
+    block: T;
+    blockTimestamp: T;
+  }[];
+  aliasAddress: string;
 }
 ```

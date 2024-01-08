@@ -6,4 +6,4 @@ In this system, all follow actions are represented as unique badges stored on th
 
 What is really cool about the BitBadges follow protocol is that decentralization is optional. If you want to go ahead and do everything on-chain, you can make your collection with standard on-chain balances. However, we envision  that most users will use the off-chain balances feature, eliminating the need for constant on-chain interactions when following or unfollowing others. In fact, they can be facilitated off-chain in one click at no cost!
 
-Browse a profile on [https://bitbadges.io](https://bitbadges.io) to see the follow protocol in action!
+<!-- Browse a profile on [https://bitbadges.io](https://bitbadges.io) to see the follow protocol in action! -->

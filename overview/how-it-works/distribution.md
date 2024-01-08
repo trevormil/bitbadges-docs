@@ -44,3 +44,8 @@ See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by
 Another option is to define default starting balances. For example, everyone starts with x1 of a specific badge. This is typically not used with the normal minting processes explained above.
 
 For this option, ALL addresses will start out with the defined balances.&#x20;
+
+
+**Tools Compatibility**
+
+Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. Although, always use third-party tools at your own risk.
