@@ -13,7 +13,7 @@ For non-indexed balances, you simply need to set up a server which can return th
 Couple notes:
 
 * The URL stored on-chain must have {address} as a placeholder for the address to query.
-* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../concepts/accounts.md).
+* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../core-concepts/accounts.md).
 
 Example:
 
@@ -39,7 +39,7 @@ See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/
 
 The map is simply a cosmosAddress/mappingId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
-Note that if you use address mapping IDs for the keys ([see here to learn more](../concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
+Note that if you use address mapping IDs for the keys ([see here to learn more](../core-concepts/address-mappings-lists.md)), the corresponding address mapping must be a whitelist (includeAddresses = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
 
 You may also find the [**createBalanceMapForOffChainBalances**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/functions/createBalanceMapForOffChainBalances.html) function helpful.
 

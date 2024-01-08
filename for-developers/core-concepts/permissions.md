@@ -203,7 +203,7 @@ Also, if we add another permission definition after this one with **fromMappingI
 
 ### Shorthand Options
 
-Note that we also reserve the "!" prefix for inverting a given mapping ID and also reserve specific mapping IDs (see [Address Mappings](../concepts/address-mappings-lists.md)).
+Note that we also reserve the "!" prefix for inverting a given mapping ID and also reserve specific mapping IDs (see [Address Mappings](address-mappings-lists.md)).
 
 The same shorthand options can be applied to the trackerId ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
 

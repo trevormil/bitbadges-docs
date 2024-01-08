@@ -4,7 +4,7 @@
 
 Querying badge ownership involves checking who owns badges at specific times. This process allows you to gather information about badge holders without necessarily verifying their claims.
 
-In the context of BitBadges, querying badge ownership can be performed through the web app or various alternative methods such as running your own blockchain, using the BitBadges API, or utilizing community-built tools tailored to different use cases (websites, in-person events, etc). You can explore these tools in the [Ecosystem](../ecosystem.md) section and choose the one that best suits your requirements.
+In the context of BitBadges, querying badge ownership can be performed through the web app or various alternative methods such as running your own blockchain, using the BitBadges API, or utilizing community-built tools tailored to different use cases (websites, in-person events, etc). You can explore these tools in the [Ecosystem](../ecosystem/) section and choose the one that best suits your requirements.
 
 ### Verifying Badge Ownership
 

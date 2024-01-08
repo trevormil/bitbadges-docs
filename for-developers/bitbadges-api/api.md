@@ -1,17 +1,17 @@
 # API
 
-We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for an example implementation of all API routes.
+We recommend using [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) as a reference for an example implementation of all API routes.
 
 ### Getting Started
 
 1. Request an API Key by contacting us via Discord.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key.
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 ### Status Codes
 
-We use typical HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type which defines a human-readable message via **message**.
+We use standard HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type which defines a human-readable message via **message**.
 
 ```typescript
 /**
@@ -39,7 +39,7 @@ export interface ErrorResponse {
 
 We recommend reading all [concepts](concepts/) for background information on the API but especially the following:
 
-* [Authentication](concepts/authentication.md)
+* [Authentication](tutorials/authentication.md)
 * [Number Types / Stringified Responses](concepts/number-types.md)
 * [Paginations](concepts/paginations-views.md)
 * [Limits / Restrictions](limits-restrictions.md)
@@ -65,7 +65,7 @@ const BitBadgesApi = new BitBadgesAPI({
 
 await BitBadgesApi.getStatus()
 await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
-//And so on...
+//And so on for all routes....
 ```
 
 See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
@@ -76,72 +76,37 @@ Blockin Authentication Required = \*
 
 For certain requests, we require the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
-If the user is not signed in, the API will respond with a 401 error code. See [Authentication](concepts/authentication.md) for how to authenticate users.
+If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
 
 ### Confined Responses
 
 **IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need.
 
+The [Tutorials ](tutorials/)and [Concepts ](concepts/)will be extremely beneficial to help you deal with this.
+
 ## Routes
 
 See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html).
 
-### **Authentication**
+### Authentication
 
-See [Authentication](concepts/authentication.md) for tutorial.
+See [Authentication Tutorial](tutorials/authentication.md) for how to use these routes.
 
 #### **POST /api/v0/auth/getChallenge - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSignInChallengeRouteSuccessResponse.html)**)**
 
 Gets Blockin challenge to be signed by the user. The returned **blockinMessage** is the message to be signed by the user.
 
-```typescript
-export interface GetSignInChallengeRouteRequestBody {
-  chain: SupportedChain,
-  address: string,
-  hours?: NumberType,
-}
-export interface GetSignInChallengeRouteSuccessResponse<T extends NumberType> {
-  nonce: string,
-  params: ChallengeParams<T>,
-  blockinMessage: string,
-}
-```
-
 #### **POST /api/v0/auth/verify - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/VerifySignInRouteSuccessResponse.html)**)**
 
-Submit the signed Blockin challenge to this route to be authenticated. See [Authentication Tutorial](concepts/authentication.md).
-
-```typescript
-export interface VerifySignInRouteRequestBody {
-  chain: SupportedChain,
-  originalBytes: any
-  signatureBytes: any
-}
-export interface VerifySignInRouteSuccessResponse<T extends NumberType> {
-  success: boolean,
-  successMessage: string,
-}
-```
+Submit the signed Blockin challenge to this route to be authenticated.&#x20;
 
 #### **POST /api/v0/auth/logout - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/SignOutRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/SignOutSuccessResponse.html)**)**
 
 Logout and remove all session cookies.
 
-```typescript
-export interface SignOutSuccessResponse<T extends NumberType> {
-  success: boolean,
-}
-```
-
 #### **POST /api/v0/auth/status - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/CheckSignInStatusRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/CheckSignInStatusRequestSuccessResponse.html)**)**
 
 Check the health of your sign in.
-
-```typescript
-export interface CheckSignInStatusRequestSuccessResponse<T extends NumberType> {
-  signedIn: boolean
-}
-```
 
 ### **Status**
 
@@ -149,45 +114,15 @@ export interface CheckSignInStatusRequestSuccessResponse<T extends NumberType> {
 
 Gets info about the status of the indexer / blockchain (gas, block height, etc).
 
-```typescript
-export interface GetStatusRouteSuccessResponse<T extends NumberType> {
-  status: StatusInfo<T>;
-}
-```
-
-```typescript
-export interface StatusInfoBase<T extends NumberType> {
-  block: LatestBlockStatus<T>
-  nextCollectionId: T;
-  gasPrice: number;
-  lastXGasLimits: T[];
-  lastXGasAmounts: T[];
-}
-```
-
 ### **Search**
 
 #### **POST /api/v0/search/:searchValue - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSearchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetSearchRouteSuccessResponse.html)**)**
 
 Search collections, accounts, address lists based on a search value.
 
-```typescript
-export interface GetSearchRouteSuccessResponse<T extends NumberType> {
-  collections: BitBadgesCollection<T>[],
-  accounts: BitBadgesUserInfo<T>[],
-  addressMappings: AddressMappingWithMetadata<T>[],
-  badges: {
-    badgeIds: UintRange<T>[],
-    collection: BitBadgesCollection<T>,
-  }[],
-}
-```
-
 ### **Collections**
 
 See [Collections Tutorial](broken-reference) for how to deal with the paginated response, metadata fetches, etc.
-
-
 
 #### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 

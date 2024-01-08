@@ -2,9 +2,9 @@
 
 Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.&#x20;
 
-Don't forget to check the [tutorials ](tutorials.md)or ecosystem tools to see if someone else has already done what you are looking for!
+Don't forget to check the [tutorials ](tutorials/)or ecosystem tools to see if someone else has already done what you are looking for!
 
-Finished? Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem.md).
+Finished? Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem/).
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord.
 

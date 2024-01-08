@@ -16,7 +16,7 @@ Verifying address ownership can be done with a cryptographic signature. As menti
 
 ### Design Choices
 
-Because the blockchain is public and decentralized, there are many different tools and options that you can use to customize your verification process, each offering various pros and cons. Check out [Ecosystem](../../overview/ecosystem.md) for all of them.
+Because the blockchain is public and decentralized, there are many different tools and options that you can use to customize your verification process, each offering various pros and cons. Check out [Ecosystem](../../overview/ecosystem/) for all of them.
 
 
 
@@ -58,4 +58,4 @@ Check out [Blockin](https://blockin-quickstart.vercel.app) which is a universal,
 
 Blockin can be used for badge-gating websites and more!
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>

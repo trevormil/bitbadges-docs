@@ -14,13 +14,13 @@ For example, what if you need to be able to revoke? Freeze one's ability to tran
 
 We abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
 ## Approval Levels
 
 We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
 ### **Collection Approvals**
 
@@ -61,7 +61,7 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?

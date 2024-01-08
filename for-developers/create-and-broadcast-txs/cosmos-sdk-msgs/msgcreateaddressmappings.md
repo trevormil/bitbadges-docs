@@ -1,6 +1,6 @@
 # MsgCreateAddressMappings
 
-To create an on-chain AddressMapping, you can use the MsgCreateAddressMappings. See [here](../../concepts/address-mappings-lists.md) to learn more about AddressMappings.
+To create an on-chain AddressMapping, you can use the MsgCreateAddressMappings. See [here](../../core-concepts/address-mappings-lists.md) to learn more about AddressMappings.
 
 Reminder: on-chain address mappings are immutable, permanent. and non-deletable.
 

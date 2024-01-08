@@ -2,7 +2,7 @@
 
 We are working on ironing out the bugs for the support of many wallets. Let us know in Discord if your wallet is not connecting properly.&#x20;
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
 **Ethereum**
 

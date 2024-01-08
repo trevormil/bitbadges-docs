@@ -22,7 +22,7 @@ The BitBadges ecosystem aims to offer the full-stack of tools and services you m
 
 The web app ([https://bitbadges.io](https://bitbadges.io)) allows you to show off your badges and build your digital identity as you collect more over time! On the flip side, you can browse others' badges to get a sense of their digital identity (e.g. are they a scammer or trustworthy?). This app has a social media feel but is also the all-in-one site to establish the identity of a user.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
 ## Use Cases
 
@@ -42,7 +42,7 @@ Below are some of our favorite use cases:
 * **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
 * See more use cases [here](broken-reference)!
 
-<figure><img src=".gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 ## Why are we better?
 
@@ -54,7 +54,7 @@ Supports users from multiple blockchain ecosystems instead of just one! We curre
 
 <div data-full-width="false">
 
-<figure><img src=".gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -68,7 +68,7 @@ We keep decentralization as a core principle, as opposed to some of our competit
 
 #### **Community-Driven Ecosystem**
 
-By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem.md).
+By being open-source and developer friendly, we aim to facilitate an ecosystem of community-driven projects, tools, and more built on top of BitBadges. See [Ecosystem](overview/ecosystem/).
 
 #### **Scalability, Security, and Ease of Use**
 
@@ -76,7 +76,7 @@ Our product is more scalable, easier to use, and more secure than competitors (s
 
 ### Innovative Features
 
-<figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
@@ -103,7 +103,7 @@ There are infinitely many ways to distribute badges to holders. A few are suppor
 
 BitBadges wants to decentralize the distribution process by supporting a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
-See [Ecosystem](overview/ecosystem.md) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
+See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
 
 **Currently Supported**
 
@@ -118,7 +118,7 @@ We natively have support the following:
 
 In addition to distribution tools, we aim to have thousands of community-built ecosystem tools for anything from authenticating users, communicating with badge holders, distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem.md) for some tools currently built.&#x20;
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.&#x20;
 
 **Blockin - Badge-Gate Anything**
 
@@ -130,9 +130,9 @@ Blockin is a universal, multi-chain sign-in interface that includes support for 
 
 With Blockin, you can restrict access to anything to only your badge holders! It can be used digitally through its developer libraries. Or, verify badge ownership in person with QR codes (supported on the web app).
 
-<figure><img src=".gitbook/assets/image (22).png" alt="" width="467"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (38).png" alt="" width="467"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/image (21).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (37).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## **Need additional functionality not supported?**
 

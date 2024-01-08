@@ -4,9 +4,9 @@ Collections can define metadata for both the collection and individual badges vi
 
 #### **Expected Format (BitBadges API / Indexer)**
 
-By default, we expect the collection and badge metadata to follow the format shown below for the BitBadges indexer / API. Also, if the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"` becomes `"...x.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/compatibility.md) for more info).
+By default, we expect the collection and badge metadata to follow the format shown below for the BitBadges indexer / API. Also, if the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"` becomes `"...x.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/designing-for-compatibility.md) for more info).
 
-For images, we display them in circular format with a maximum size of 200 x 200 on the BitBadges website.
+For images, we display them with rounded corners with a maximum size of 300 x 300 on the BitBadges website.
 
 However, this is only a default expected format, and we envision that many different metadata standards can develop and be supported over time.
 
@@ -18,6 +18,7 @@ export interface Metadata<T extends NumberType> {
   validFrom?: UintRange<T>[];
   category?: string;
   externalUrl?: string;
+  video?: string
   tags?: string[];
 
   socials?: {

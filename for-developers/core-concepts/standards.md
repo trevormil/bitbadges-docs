@@ -31,7 +31,7 @@ Each standard must follow the following format:
 
 ## **Compatibility with BitBadges API / Indexer**
 
-Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/compatibility.md). If you want compatibility, please make sure all standards are compatible.
+Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/designing-for-compatibility.md). If you want compatibility, please make sure all standards are compatible.
 
 ## List of Standards
 

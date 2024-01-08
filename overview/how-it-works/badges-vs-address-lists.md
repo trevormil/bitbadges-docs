@@ -4,7 +4,7 @@ There are two ways you can create using BItBadges. The easiest way to create is 
 
 ## **Badges**
 
-<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 Badges are blockchain tokens that can be owned with customization options like supply, transferability, and more! These are more complex than address lists but also are much more customizable.
 
@@ -51,7 +51,7 @@ For developers, see [standards](../../for-developers/core-concepts/standards.md)
 
 ## Address Lists
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
 Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.&#x20;
 

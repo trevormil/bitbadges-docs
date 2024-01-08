@@ -14,7 +14,9 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Description** (required): Description of the collection or badge
 
-**Image** (required): A URL that points to the image to be displayed. Images will be displayed in circular format.  We display them with a maximum size of 200 x 200 on the BitBadges website.
+**Image** (required): A URL that points to the image to be displayed. Images will be displayed with rounded corners.  We display them with a maximum size of 300 x 300 on the BitBadges website. Images are also used for all avatar icons.
+
+**Video:** A URL that points to a video to be displayed. Videos can either be a valid video file (e.g. .mp4) or a YouTube embed link. Videos are only viewable upon viewing the "main" page. We will use the required image as an avatar icon in other places. For video files, we use the image as a thumbnail as well (YouTube videos have their own thumbnails).
 
 **Validity**: Defines the start and end times for how long the badge is to be considered valid for. If left blank, we assume it is always valid. This is just for descriptive purposes and has no functional significance.
 
@@ -26,8 +28,8 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Socials:** Provide socials links (Discord, Telegram, etc)
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ### For Developers
 
-Visit [here](../../for-developers/bitbadges-api/compatibility.md) for more details.
+Visit [here](../../for-developers/bitbadges-api/designing-for-compatibility.md) for more details.

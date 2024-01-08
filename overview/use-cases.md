@@ -4,7 +4,7 @@ Because you can create a badge for anything, there are infinitely many possible 
 
 You can also browse featured badges at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
-<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 ### Badge Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 

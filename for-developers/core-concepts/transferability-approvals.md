@@ -18,7 +18,7 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 ### Approvals != Escrows
 
@@ -78,7 +78,7 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/compatibility.md) for the expected format for the BitBadges API / Indexer.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
 
 This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
 
@@ -86,9 +86,9 @@ This can typically be used for providing names, descriptions about your approval
 
 To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](../concepts/address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](../concepts/address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../create-and-broadcast-txs/cosmos-sdk-msgs/).
-* **transferTimes**: When can the transfer takes place? A [UintRange](../concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](../concepts/uint-ranges.md)\[] of badge IDs.
+* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../create-and-broadcast-txs/cosmos-sdk-msgs/).
+* **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
 
 For example, we might have something like  the following:

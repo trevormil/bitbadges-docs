@@ -144,7 +144,7 @@ If you are performing offline verification or want a custom implementation, we r
 1. Use the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) to see an implemented verification process.
 2. Consider using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) which is a verification helper tool for simple use cases. This tool allows you to scan, fetch, and verify the QR codes directly in your browser. It also uses local storage to keep track of sessions. Sessions are used to keep track of which codes have been used, which haven't, etc. Any additional custom logic will need to be implemented separately.
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
 **Additional Custom Logic**
 

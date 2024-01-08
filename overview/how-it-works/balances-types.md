@@ -2,7 +2,7 @@
 
 BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
 
-<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 ## Standard (On-Chain)
 
@@ -60,7 +60,7 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](../../for-developers/tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem.md)page!
+See [here](../../for-developers/tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
 
 #### Advantages Over Standard Solutions
 
