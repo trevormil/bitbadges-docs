@@ -67,8 +67,8 @@ const BitBadgesApi = new BitBadgesAPI({
 
 await BitBadgesApi.getStatus()
 await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
-await BitBadgesApi.getCollections(....)
-await BitBadgesApi.getAccounts(....)
+await BitBadgesApi.getCollections(...)
+await BitBadgesApi.getAccounts(...)
 //And so on for all routes....
 ```
 
@@ -78,7 +78,7 @@ See typed documentation for all routes [here](https://bitbadges.github.io/bitbad
 
 Blockin Authentication Required = \*
 
-For certain requests, we require the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
+For accessing certain private information, we require the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
 If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
 

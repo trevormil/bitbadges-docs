@@ -22,7 +22,7 @@ Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbad
 
 Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 
-## **Need to verify ownership?**
+## **Need to verify ownership of badges?**
 
 Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, verifying also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out [here](../overview/how-it-works/verification.md).
 

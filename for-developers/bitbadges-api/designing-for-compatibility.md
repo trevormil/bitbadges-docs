@@ -11,6 +11,7 @@ export interface Metadata<T extends NumberType> {
   name: string;                 // Name of the badge or collection
   description: string;          // Description of the badge or collection
   image: string;                // URL to the badge or collection image
+  video?: string                // URL to the video or Youtube embed link (will use provided image for icons / thumbnails where applicable)
   validFrom?: UintRange<T>;     // Valid from range (optional)
   category?: string;            // Category (optional)
   externalUrl?: string;         // External URL (optional)
