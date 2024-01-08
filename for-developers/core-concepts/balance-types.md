@@ -12,7 +12,7 @@ The core collection details are always stored on-chain, but balances can be stor
 "balancesType": "Standard"
 ```
 
-With standard balances, everything is facilitated on-chain in a decentralized manner. All balances are stored on the blockchain, and everything is facilitated through on-chain transfers and approvals.
+With standard balances, everything is facilitated on-chain in a decentralized manner. All balances are stored on the blockchain, and everything is facilitated through on-chain transfers and approvals. All transfers require sufficient balances and valid approvals for the collection, sender, and recipient.
 
 ## Off-Chain
 
