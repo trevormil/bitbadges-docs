@@ -13,4 +13,4 @@ export interface TxInfo {
 
 This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all tproperties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>

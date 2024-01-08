@@ -54,7 +54,7 @@ Supports users from multiple blockchain ecosystems instead of just one! We curre
 
 <div data-full-width="false">
 
-<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -102,6 +102,10 @@ And much more!
 There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (whitelists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distirbution experience.
 
 For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via Mailchimp, Discord, or SMS.
+
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche. See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
 

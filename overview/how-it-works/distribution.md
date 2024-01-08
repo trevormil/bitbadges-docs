@@ -22,7 +22,7 @@ Typically, all badges initially start in the Mint address, and there has to be s
 
 The manager or other approved parties can directly initiate a transfer forcefully on the recipients' behalf. Who is permitted to transfer is clearly defined in the collection's transferability.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 **Claims**
 
@@ -32,9 +32,9 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 * **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**
 * **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a whitelist, manually assign balances, or some other address-based method. If you do not, you have two options:
 
