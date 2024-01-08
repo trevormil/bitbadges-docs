@@ -134,36 +134,36 @@ Next Request:
 
 And so on. Remember, each response is confined to its request, so it will fetch the next 25 docs, but you have to append it to the previous 25 docs as explained above.
 
-The **ids** returned in each view will correspond to the **\_legacyId** field in its corresponding array (e.g. collection.activity for the 'latestActivity' view).
+The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. collection.activity for the 'latestActivity' view).
 
 ```typescript
 export function getCollectionActivityView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.activity.find(y => y._legacyId === x);
+    return collection.activity.find(y => y._docId === x);
   }) ?? []) as TransferActivityDoc<bigint>[]
 }
 
 export function getCollectionReviewsView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.reviews.find(y => y._legacyId === x);
+    return collection.reviews.find(y => y._docId === x);
   }) ?? []) as ReviewDoc<bigint>[];
 }
 
 export function getCollectionBalancesView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.owners.find(y => y._legacyId === x);
+    return collection.owners.find(y => y._docId === x);
   }) ?? []) as BalanceDoc<bigint>[]
 }
 
 export function getCollectionMerkleChallengeTrackersView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.merkleChallenges.find(y => y._legacyId === x);
+    return collection.merkleChallenges.find(y => y._docId === x);
   }) ?? []) as MerkleChallengeDoc<bigint>[]
 }
 
 export function getCollectionApprovalTrackersView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.approvalsTrackers.find(y => y._legacyId === x);
+    return collection.approvalsTrackers.find(y => y._docId === x);
   }) ?? []) as ApprovalsTrackerDoc<bigint>[]
 }
 ```

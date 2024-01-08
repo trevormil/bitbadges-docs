@@ -154,14 +154,14 @@ Next Request:
 
 And so on. Remember, each response is confined to its request, so it will fetch the next 25 docs, but you have to append it to the previous 25 docs as explained above.
 
-The **ids** returned in each view will correspond to the **\_legacyId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view).
+The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view).
 
 ```typescript
 export function getAuthCodesView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.authCodes.find(y => y._legacyId === x);
+    return account.authCodes.find(y => y._docId === x);
   }) ?? []) as BlockinAuthSignatureDoc<bigint>[];
 }
 
@@ -170,7 +170,7 @@ export function getAccountActivityView(account: BitBadgesUserInfo<bigint> | unde
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.activity.find(y => y._legacyId === x);
+    return account.activity.find(y => y._docId === x);
   }) ?? []) as TransferActivityDoc<bigint>[];
 }
 
@@ -178,7 +178,7 @@ export function getAccountListsActivityView(account: BitBadgesUserInfo<bigint> |
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.listsActivity.find(y => y._legacyId === x);
+    return account.listsActivity.find(y => y._docId === x);
   }) ?? []) as ListActivityDoc<bigint>[];
 }
 
@@ -187,7 +187,7 @@ export function getAccountReviewsView(account: BitBadgesUserInfo<bigint> | undef
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.reviews.find(y => y._legacyId === x);
+    return account.reviews.find(y => y._docId === x);
   }) ?? []) as ReviewDoc<bigint>[];
 }
 
@@ -195,7 +195,7 @@ export function getAccountAnnouncementsView(account: BitBadgesUserInfo<bigint> |
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.announcements.find(y => y._legacyId === x);
+    return account.announcements.find(y => y._docId === x);
   }) ?? []) as AnnouncementDoc<bigint>[];
 }
 
@@ -203,7 +203,7 @@ export function getAccountBalancesView(account: BitBadgesUserInfo<bigint> | unde
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.collected.find(y => y._legacyId === x)
+    return account.collected.find(y => y._docId === x)
   }) ?? []) as BalanceDoc<bigint>[];
 }
 
@@ -219,7 +219,7 @@ export function getAccountClaimAlertsView(account: BitBadgesUserInfo<bigint> | u
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.claimAlerts.find(y => y._legacyId === x);
+    return account.claimAlerts.find(y => y._docId === x);
   }) ?? []) as ClaimAlertDoc<bigint>[];
 }
 ```
