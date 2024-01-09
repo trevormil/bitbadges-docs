@@ -22,7 +22,7 @@ When creating a badge collection, the creator can customize the following proper
 
 [**Balances Types**](balances-types.md) **-** How do you want to store your balances? On the blockchain? Off-chain?
 
-[**Transferability**](transferability.md)**:** Transferability defines the rules for transferring badges within the collection.&#x20;
+[**Transferability**](transferability.md)**:** Transferability defines the rules for transferring badges within the collection.
 
 At its simplest, a collection can be transferable (badges can be transferred freely from one owner to another) or non-transferable (once a badge is owned, it is tied to that owner).
 
@@ -38,9 +38,9 @@ Transferability also encompasses how the badges are distributed from the Mint ad
 
 <figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
-Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.&#x20;
+Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.
 
-**Storage:** Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (with other options) whereas on-chain lists must be permanently frozen (not updatable or deletable).&#x20;
+**Storage:** Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (with other customization options) whereas on-chain lists must be permanently frozen (not updatable or deletable).
 
 **Metadata:** Lists can be customized with metadata like a name, image, description, etc. They will show up on users' profiles under the lists' category.
 

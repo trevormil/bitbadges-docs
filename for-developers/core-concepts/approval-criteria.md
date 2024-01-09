@@ -1,8 +1,8 @@
 # ✅ Approval Criteria
 
-In the last page, we mainly talked about how we match and check an approved transfer. Here, we will talk about the **approvalCriteria.**&#x20;
+In the last page, we mainly talked about how we match and check an approved transfer. Here, we will talk about the **approvalCriteria.**
 
-These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set.&#x20;
+These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set.
 
 Note these are just the native options provided for convenience and consistency. You can implement your own approvals via custom logic with a smart contract.
 
@@ -33,7 +33,7 @@ export interface ApprovalCriteria<T extends NumberType> {
 
 ### **Overrides**
 
-As mentioned in the previous page, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.&#x20;
+As mentioned in the previous page, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.
 
 If set to true, we will not check the user's incoming / outgoing approvals for the approved balances respectively. Essentially, it is forcefully transferred without needing user approvals.
 
@@ -49,9 +49,11 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 ### **Must Own Badges**
 
-Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned at custom times in order to be approved. &#x20;
+Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned at custom times in order to be approved.
 
 For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
 
@@ -89,13 +91,13 @@ On the previous page, we explained the approval interface. This interface had tw
 
 **What are trackers?**
 
-Approvals trackers track how many badges have been transferred and how many transfers occur.&#x20;
+Approvals trackers track how many badges have been transferred and how many transfers occur.
 
 Challenge trackers track which leaves were used in a Merkle challenge (the approvee needs to provide a valid Merkle path for approval).
 
-Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much. We use the terms trackers and tallies interchangeably throughout this documentation.&#x20;
+Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much. We use the terms trackers and tallies interchangeably throughout this documentation.
 
-**How are they identified?**&#x20;
+**How are they identified?**
 
 The identifier of each approval tracker consists of **amountTrackerId** along with other identifying details.
 
@@ -128,8 +130,6 @@ The identifier for each challenge tracker consists of **challengeTrackerId** alo
 
 **approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or useroutgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
 
-
-
 **How do trackers work?**
 
 BitBadges tracks approvals and used challenges using an incrementing tally system with a threshold. Take the following approval tracker
@@ -148,7 +148,7 @@ We increment tallies on an as-needed basis. Meaning, if there is no need to incr
 
 **Handling Multiple Trackers**
 
-Trackers are ID-based, and multiple trackers can be created. Take note of what makes up the ID. The collection ID, approval level, approver address, and more are all considered. If one changes or is different, the whole ID is different and will correspond to a new tracker.&#x20;
+Trackers are ID-based, and multiple trackers can be created. Take note of what makes up the ID. The collection ID, approval level, approver address, and more are all considered. If one changes or is different, the whole ID is different and will correspond to a new tracker.
 
 Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **amountTrackerId** or **challengeTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
 
@@ -197,28 +197,26 @@ export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalT
 }
 ```
 
-The **trackerType** corresponds to what type of tracker it is.&#x20;
+The **trackerType** corresponds to what type of tracker it is.
 
 If "overall", this is applicable to any transfer and will increment everytime the approval is used. This creates a single universal tally. **approvedAddress** will be empty.
 
 If "to", "from", or "initiatedBy", we set **approvedAddress** to be the sender, recipient, or initiator of the transfer, respectively. Note since **approvedAddress** and **trackerType** are part of the approval tracker's ID, this creates unique individual tallies per address per tracker type.
 
-
-
-Moving forward, let's say we are dealing with the collection approvals approving transfers from Bob  for collection 1, so `1-collection- -uniqueID-?-?.` ?-? is trackerType-approvedAddress.
+Moving forward, let's say we are dealing with the collection approvals approving transfers from Bob for collection 1, so `1-collection- -uniqueID-?-?.` ?-? is trackerType-approvedAddress.
 
 #### **Approval Amounts**
 
-Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721), except we use an increment + threshold system as opposed to a decrement + greater than 0 system.&#x20;
+Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721), except we use an increment + threshold system as opposed to a decrement + greater than 0 system.
 
 The amounts approved are limited to the **badgeIds** and **ownershipTimes** defined by the approval (see previous page). Also, note that the to addresses are bounded to the addresses in the **toList,** from addresses from the **fromList**, and initiated by addresses from the **initiatedByList**.
 
 We define four levels (**trackerType** = "overall", "to", "from", "initiatedBy") that you can specify for approval amounts as seen below. You can define multiple if desired, and to be approved, the transfer must satisfy all.
 
 * **Overall**: Overall will increment a universal, cumulative tally for all transfers that match this approval, regardless of who sends, receives, or initiates them.
-* **Per To Address**: If you specify an approval amount per to address, we will create unique cumulative tallies for every unique "to" address.&#x20;
-* **Per From Address**: Creates unique cumulative tallies for every unique "from" address.&#x20;
-* **Per Initiated By Address**: Creates unique cumulative tallies for every unique "initiatedBy" address.&#x20;
+* **Per To Address**: If you specify an approval amount per to address, we will create unique cumulative tallies for every unique "to" address.
+* **Per From Address**: Creates unique cumulative tallies for every unique "from" address.
+* **Per Initiated By Address**: Creates unique cumulative tallies for every unique "initiatedBy" address.
   * Ex: Each unique address can initiate a transfer for x1 of badge ID 1
 
 If the amount set is nil value or "0", this means there is no limit (no amount restrictions).
@@ -284,7 +282,7 @@ If in the future, you change back to "uniqueID", the starting point will be the 
 
 ### **Max Number of Transfers**
 
-Similar to approval amounts, you can also specify the maximum number of transfers that can occur.  These will be incremented by 1 each transfer.&#x20;
+Similar to approval amounts, you can also specify the maximum number of transfers that can occur. These will be incremented by 1 each transfer.
 
 <pre class="language-json"><code class="lang-json">"maxNumTransfers": {
 <strong>    "overallMaxNumTransfers": "0",
@@ -313,13 +311,13 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 ```
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree via **merkleProofs** in MsgTransferBadges.&#x20;
+Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree via **merkleProofs** in MsgTransferBadges.
 
 For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid Merkle path from the claim code to the **root**. You distribute the secret leaves in any method you prefer.
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly.**&#x20;
+The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly.**
 
-We also support a couple customization options.&#x20;
+We also support a couple customization options.
 
 First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement allowlist trees. Note that the initiator must also be within the **initiatedByList** of the approval for it to make sense.
 
@@ -396,7 +394,7 @@ const txCosmosMsg: MsgTransferBadges<bigint> = {
 
 ### **Requires**
 
-You also have the following options to further restrict who can transfer to who.&#x20;
+You also have the following options to further restrict who can transfer to who.
 
 **requireToEqualsInitiatedBy, requireToDoesNotEqualsInitiatedBy**
 
@@ -408,7 +406,7 @@ These are pretty self-explanatory. You can enforce that we additionally check if
 
 Predetermined balances are a new way of having fine-grained control over the amounts that are approved with each transfer. In a tally-based system where you approve X amount to be transferred, you have no control over the combination of amounts that will add up to X. For example, if you approve x100, you can't control whether the transfers are \[x1, x1, x98] or \[x100] or another combination.
 
-Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.&#x20;
+Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.
 
 **Pretty much, the transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.**
 
@@ -486,7 +484,7 @@ There are two ways to define the balances. Both can not be used together.
 
 **Defining Order of Transfers**
 
-The order is calculated by a specified order calculation method.&#x20;
+The order is calculated by a specified order calculation method.
 
 For manual balances, we want to determine which element index of the array is transferred (e.g. order number = 0 means the balances of manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
 

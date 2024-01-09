@@ -14,7 +14,7 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Description** (required): Description of the collection or badge
 
-**Image** (required): A URL that points to the image to be displayed. Images will be displayed with rounded corners.  We display them with a maximum size of 300 x 300 on the BitBadges website. Images are also used for all avatar icons.
+**Image** (required): A URL that points to the image to be displayed. Images will be displayed with rounded corners.  We display them with a maximum size of 300 x 300 on the BitBadges website. Images are also used for all avatar icons. We recommend 512 x 512 at a minimum, however.
 
 **Video:** A URL that points to a video to be displayed. Videos can either be a valid video file (e.g. .mp4) or a YouTube embed link. Videos are only viewable upon viewing the "main" page. We will use the required image as an avatar icon in other places. For video files, we use the image as a thumbnail as well (YouTube videos have their own thumbnails).
 

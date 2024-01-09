@@ -2,7 +2,7 @@
 
 Each badge in a collection will have its own circulating supply.&#x20;
 
-Typically, when initially created, all badges will be sent to a special "Mint" address. From there, they can be distributed to users. We also offer a default starting balances, meaning that users will start out with xN balance upon first interaction with the collection. These can be used in combination with one another, but they are typically used separately.
+Typically, when initially created, all badges will be sent to a special "Mint" address. From there, they can be distributed to users. We also offer a default starting balances option, meaning that users will start out with xN balance upon first interaction with the collection. These can be used in combination with one another, but they are typically used separately.
 
 <figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption><p>Example distribution</p></figcaption></figure>
 

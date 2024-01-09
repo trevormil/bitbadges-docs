@@ -31,11 +31,9 @@ Note that the **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** 
 
 ### Manager
 
-The collectionPermissions only apply to the current manager of the collection. In other words, the manager is the only one who is able to execute permissions.
+The collectionPermissions only apply to the current manager of the collection. In other words, the manager is the only one who is able to execute permissions. If there is no manager for a collection, no permissions can be executed.
 
 The current manager is determined by the **managerTimeline.** Transferring the manager is facilitated via the **canUpdateManager** permission.
-
-If there is no manager for a collection, no permissions can be executed.
 
 ```json
 "managerTimeline": [
@@ -55,13 +53,29 @@ If there is no manager for a collection, no permissions can be executed.
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-All permissions are a linear array of (criteria -> permitted/permanentlyForbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined permitted/permanentlyForbiddenTimes.
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+
+**States**
+
+There are three states that a permission can be in at any one time:
+
+1. **Forbidden + Permanently Frozen (permanentlyForbiddenTimes):** This permission is forbidden and will always remain forbidden.
+2. **Permitted + Not Frozen (Unhandled):** This permission is currently permitted but can be changed to one of the other two states.
+3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
+
+There is no forbidden + not frozen because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
+
+
+
+
+
+All permissions are a linear array of (criteria -> permitted or forbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined  times.
 
 1\) If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
 
 2\) If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
-3\) If not explicitly permitted or forbidden - NEUTRAL (not defined), **permissions are ALLOWED by default (unhandled)** but can later be set to be explicitly allowed or disallowed. There is no "forbidden currently but updatable" state.&#x20;
+3\) If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
 
 4\) We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
 
@@ -81,7 +95,7 @@ permanentlyForbiddenTimes: []
 permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
-This means it is allowed currently but neutral and can be changed to be always permitted or always forbidden in the future.&#x20;
+This means it is allowed currently but neutral and can be changed to be always permitted or always forbidden in the future.
 
 ```
 permanentlyForbiddenTimes: []
@@ -92,7 +106,7 @@ permanentlyPermittedTimes: []
 
 Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/permanentlyForbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
 
-Ex: If we have the following permission definitions in an array \[elem1, elem2]:&#x20;
+Ex: If we have the following permission definitions in an array \[elem1, elem2]:
 
 1. ```
    timelineTimes: [{ start: 1, end: 10 }]
@@ -107,7 +121,7 @@ Ex: If we have the following permission definitions in an array \[elem1, elem2]:
    permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
    ```
 
-In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).&#x20;
+In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).
 
 Times 11-100 would be permanently permitted since the first match for those times is the second element.
 
@@ -125,9 +139,9 @@ permanentlyForbiddenTimes: []
 permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
-This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.&#x20;
+This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.
 
-However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered **unhandled** or not defined by the permission definition above.&#x20;
+However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered **unhandled** or not defined by the permission definition above.
 
 **Common Misunderstanding**
 
@@ -141,7 +155,7 @@ permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 permanentlyPermittedTimes: []
 ```
 
-To permanently forbid all badgeIds, you must brute force ALL other combinations such as&#x20;
+To permanently forbid all badgeIds, you must brute force ALL other combinations such as
 
 ```
 badgeIds: [{ start: 11, end: Max }]
@@ -154,7 +168,7 @@ permanentlyPermittedTimes: []
 
 **Approved Transfers Criteria**
 
-For approved transfer permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N -1 criteria is satisfied.&#x20;
+For approved transfer permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N -1 criteria is satisfied.
 
 Also, if we add another permission definition after this one with **fromListId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
 
@@ -281,7 +295,7 @@ There are five categories of permissions, each with different criteria that must
 "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [], //ActionPermission
 ```
 
-* **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.&#x20;
+* **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.
   * <pre class="language-typescript"><code class="lang-typescript"><strong>{
     </strong>  permanentlyPermittedTimes: UintRange&#x3C;T>[];
       permanentlyForbiddenTimes: UintRange&#x3C;T>[];
@@ -356,7 +370,7 @@ After: 1 -> APPROVED, Criteria XYZ, 2-10 -> Criteria ABC
 
 An important part in setting an approval permission is ensuring that **approvalTrackerId** and **challengeTrackerId** are handled correctly.
 
-Let's explain via a scenario. Let's say you create an approval that tracks used Merkle challenge leaves with a one use per leaf limit. By default, due to the way **challengeTrackerId** works, multiple approvals can have the same **challengeTrackerId.**&#x20;
+Let's explain via a scenario. Let's say you create an approval that tracks used Merkle challenge leaves with a one use per leaf limit. By default, due to the way **challengeTrackerId** works, multiple approvals can have the same **challengeTrackerId.**
 
 Let's say you create an approval for badges 1-100 with **challengeTrackerId** = "abc", and you lock updating any approval for badges 1-100 but don't specify anything about the **challengeTrackerId**.
 
@@ -385,7 +399,7 @@ You can also use the "All" reserved ID to represent all tracker IDs cannot be up
 
 ### **User Permissions**
 
-Besides the collection permissions, there are also userPermissions that can be set.&#x20;
+Besides the collection permissions, there are also userPermissions that can be set.
 
 ```json
 "userPermissions": {
@@ -415,8 +429,6 @@ Note that the update permissions (**UpdateApprovedTransferPermission, TimedUpdat
 
 Similarly with the **BalancesActionPermission**, it has no bearing on what the currently minted supplys are. It refers to the EXECUTABILITY of creating new badges.
 
-
-
 For example, if **canCreateMoreBadges** is set to this
 
 <pre><code><strong>badgeIds: [{ start: 1, end: 10 }]
@@ -426,11 +438,11 @@ permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 permanentlyPermittedTimes: []
 </code></pre>
 
-it has no bearing on what the current circulating supplys are, but it says that whatever they are currently,  no more of IDs 1-10 for times 1-10 can be created.
+it has no bearing on what the current circulating supplys are, but it says that whatever they are currently, no more of IDs 1-10 for times 1-10 can be created.
 
 ### **Examples**
 
-See [Example Msgs](broken-reference) for further examples.
+See [Example Msgs](broken-reference/) for further examples.
 
 ```json
 "collectionPermissions": {

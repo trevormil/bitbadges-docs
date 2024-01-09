@@ -1,12 +1,10 @@
 # 🚴♂ Getting Started
 
-Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.&#x20;
+Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.  Don't forget to check the [tutorials ](tutorials/)or ecosystem tools to see if someone else has already done what you are looking for!
 
-Don't forget to check the [tutorials ](tutorials/)or ecosystem tools to see if someone else has already done what you are looking for!
+**Finished?** Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem/).
 
-Finished? Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem/).
-
-**Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord.
+**Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
 ## **Creating a collection?**
 
@@ -28,7 +26,7 @@ Querying badge ownership is simply querying for the current balances which can b
 
 ## **Do you need to submit blockchain transactions?**
 
-The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom generate your own transaction.**&#x20;
+The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom program your own transaction generation and broadcast.**
 
 However, if you do, you can either 1) use the [custom helper broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md) on the BitBadges site or 2) [generate them programmatically through the SDK](create-and-broadcast-txs/).
 

@@ -29,7 +29,7 @@ The manager or other approved parties can directly initiate a transfer forcefull
 Claims can be setup so that a user can claim the badge from the Mint address, if they meet certain criteria. Note the initiator of the transfer pays the transaction fees. Some examples include
 
 * **Passwords:** Set up a reusable password that must be entered to claim a badge.
-* **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**
+* **Codes:** Generate unique one-time use only codes that allow users to claim. Codes can be distributed using any preferred method such as **email, QR codes, social media, etc.**&#x20;
 * **Allowlists / Blocklists**: Only allow specific addresses to claim.
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
@@ -51,6 +51,6 @@ Another option is to define default starting balances. For example, everyone sta
 
 For this option, ALL addresses will start out with the defined balances.
 
-**Tools Compatibility**
+### **Tools Compatibility**
 
 Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. Although, always use third-party tools at your own risk.

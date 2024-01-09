@@ -8,7 +8,6 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
 
 #### Roadmap
 
-* Support more blockchain ecosystems and wallets!&#x20;
 * Integrations
   * Distribution Tools - distribute by location, Twitter, e-mail, etc
     * All one-click directly in the app website
@@ -16,4 +15,5 @@ Request features via our Discord channel, GitHub, BitBadges Improvement Proposal
   * Communication Tools - new ways to interact with your community of badge holders
 * Mobile App
 * Multi-Chain Protocols Built on BitBadges
+* Hackathons
 * And many more integrations / features!
