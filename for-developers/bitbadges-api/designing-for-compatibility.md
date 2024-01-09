@@ -36,7 +36,7 @@ If the badge metadata URI includes "{id}" anywhere in the URI, it will be dynami
 
 #### Off-Chain Balances Metadata
 
-If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or mapping IDs to Balance objects for indexed collections.
+If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or list IDs to Balance objects for indexed collections.
 
 [https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/)
 

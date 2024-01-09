@@ -635,7 +635,7 @@ paths:
                               type: string
                               format: uint64
                       description: >-
-                        TransferMapping defines a mapping of transfers from one
+                        TransferList defines a list of transfers from one
                         set of addresses to another.
                     title: >-
                       This defines the address combinations that cannot be
@@ -648,8 +648,8 @@ paths:
 
                       If none are disallowed, the badge is transferable.
 
-                      Ex: If an account ID is in the "to" mapping and another
-                      account ID is in the "from" mapping,
+                      Ex: If an account ID is in the "to" list and another
+                      account ID is in the "from" list,
                          the "to" account cannot transfer to the "from" account
                   managerApprovedTransfers:
                     type: array
@@ -705,7 +705,7 @@ paths:
                               type: string
                               format: uint64
                       description: >-
-                        TransferMapping defines a mapping of transfers from one
+                        TransferList defines a list of transfers from one
                         set of addresses to another.
                     title: >-
                       This defines the address combinations that the manager is
@@ -717,8 +717,8 @@ paths:
                       This can be updated, but addresses can only be removed,
                       never added.
 
-                      Ex: If an account ID is in the "to" mapping and another
-                      account ID is in the "from" mapping,
+                      Ex: If an account ID is in the "to" list and another
+                      account ID is in the "from" list,
                          the manager can transfer any badge from the "to" account to the "from" account
                   nextBadgeId:
                     type: string
@@ -825,7 +825,7 @@ paths:
                         expectedMerkleProofLength:
                           type: string
                           format: uint64
-                        whitelistRoot:
+                        allowlistRoot:
                           type: string
                         incrementIdsBy:
                           type: string
@@ -855,7 +855,7 @@ paths:
                           format: uint64
                           title: >-
                             0 = no restrictions (can mint multiple times), 1 =
-                            whitelist leafs can only be used once, 2 = one claim
+                            allowlist leafs can only be used once, 2 = one claim
                             per account
                         uri:
                           type: string
@@ -47716,7 +47716,7 @@ definitions:
                   type: string
                   format: uint64
           description: >-
-            TransferMapping defines a mapping of transfers from one set of
+            TransferList defines a list of transfers from one set of
             addresses to another.
         title: >-
           This defines the address combinations that cannot be transferred. 
@@ -47727,8 +47727,8 @@ definitions:
 
           If none are disallowed, the badge is transferable.
 
-          Ex: If an account ID is in the "to" mapping and another account ID is
-          in the "from" mapping,
+          Ex: If an account ID is in the "to" list and another account ID is
+          in the "from" list,
              the "to" account cannot transfer to the "from" account
       managerApprovedTransfers:
         type: array
@@ -47780,7 +47780,7 @@ definitions:
                   type: string
                   format: uint64
           description: >-
-            TransferMapping defines a mapping of transfers from one set of
+            TransferList defines a list of transfers from one set of
             addresses to another.
         title: >-
           This defines the address combinations that the manager is approved to
@@ -47791,8 +47791,8 @@ definitions:
 
           This can be updated, but addresses can only be removed, never added.
 
-          Ex: If an account ID is in the "to" mapping and another account ID is
-          in the "from" mapping,
+          Ex: If an account ID is in the "to" list and another account ID is
+          in the "from" list,
              the manager can transfer any badge from the "to" account to the "from" account
       nextBadgeId:
         type: string
@@ -47895,7 +47895,7 @@ definitions:
             expectedMerkleProofLength:
               type: string
               format: uint64
-            whitelistRoot:
+            allowlistRoot:
               type: string
             incrementIdsBy:
               type: string
@@ -47923,7 +47923,7 @@ definitions:
               type: string
               format: uint64
               title: >-
-                0 = no restrictions (can mint multiple times), 1 = whitelist
+                0 = no restrictions (can mint multiple times), 1 = allowlist
                 leafs can only be used once, 2 = one claim per account
             uri:
               type: string
@@ -48054,7 +48054,7 @@ definitions:
       expectedMerkleProofLength:
         type: string
         format: uint64
-      whitelistRoot:
+      allowlistRoot:
         type: string
       incrementIdsBy:
         type: string
@@ -48082,7 +48082,7 @@ definitions:
         type: string
         format: uint64
         title: >-
-          0 = no restrictions (can mint multiple times), 1 = whitelist leafs can
+          0 = no restrictions (can mint multiple times), 1 = allowlist leafs can
           only be used once, 2 = one claim per account
       uri:
         type: string
@@ -48410,7 +48410,7 @@ definitions:
                       type: string
                       format: uint64
               description: >-
-                TransferMapping defines a mapping of transfers from one set of
+                TransferList defines a list of transfers from one set of
                 addresses to another.
             title: >-
               This defines the address combinations that cannot be transferred. 
@@ -48422,8 +48422,8 @@ definitions:
 
               If none are disallowed, the badge is transferable.
 
-              Ex: If an account ID is in the "to" mapping and another account ID
-              is in the "from" mapping,
+              Ex: If an account ID is in the "to" list and another account ID
+              is in the "from" list,
                  the "to" account cannot transfer to the "from" account
           managerApprovedTransfers:
             type: array
@@ -48477,7 +48477,7 @@ definitions:
                       type: string
                       format: uint64
               description: >-
-                TransferMapping defines a mapping of transfers from one set of
+                TransferList defines a list of transfers from one set of
                 addresses to another.
             title: >-
               This defines the address combinations that the manager is approved
@@ -48489,8 +48489,8 @@ definitions:
               This can be updated, but addresses can only be removed, never
               added.
 
-              Ex: If an account ID is in the "to" mapping and another account ID
-              is in the "from" mapping,
+              Ex: If an account ID is in the "to" list and another account ID
+              is in the "from" list,
                  the manager can transfer any badge from the "to" account to the "from" account
           nextBadgeId:
             type: string
@@ -48593,7 +48593,7 @@ definitions:
                 expectedMerkleProofLength:
                   type: string
                   format: uint64
-                whitelistRoot:
+                allowlistRoot:
                   type: string
                 incrementIdsBy:
                   type: string
@@ -48621,7 +48621,7 @@ definitions:
                   type: string
                   format: uint64
                   title: >-
-                    0 = no restrictions (can mint multiple times), 1 = whitelist
+                    0 = no restrictions (can mint multiple times), 1 = allowlist
                     leafs can only be used once, 2 = one claim per account
                 uri:
                   type: string
@@ -48669,7 +48669,7 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  bitbadges.bitbadgeschain.badges.TransferMapping:
+  bitbadges.bitbadgeschain.badges.TransferList:
     type: object
     properties:
       from:
@@ -48717,7 +48717,7 @@ definitions:
             type: string
             format: uint64
     description: >-
-      TransferMapping defines a mapping of transfers from one set of addresses
+      TransferList defines a list of transfers from one set of addresses
       to another.
   bitbadges.bitbadgeschain.badges.Transfers:
     type: object

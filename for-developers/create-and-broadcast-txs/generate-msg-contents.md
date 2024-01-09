@@ -29,13 +29,13 @@ Option 2 is you can build out the transaction from the Proto definitions. This a
 
 ```typescript
 import { createProtoMsg } from 'bitbadgesjs-proto'
-import { MsgCreateAddressMappings as ProtoMsgCreateAddressMappings, MsgUpdateCollection as ProtoMsgUpdateCollection } from 'bitbadgesjs-proto/dist/proto/badges/tx_pb';
+import { MsgCreateAddressLists as ProtoMsgCreateAddressLists, MsgUpdateCollection as ProtoMsgUpdateCollection } from 'bitbadgesjs-proto/dist/proto/badges/tx_pb';
 ```
 
 ```typescript
-const msg1 = new ProtoMsgCreateAddressMappings({
+const msg1 = new ProtoMsgCreateAddressLists({
     creator: convertToCosmosAddress(ethWallet.address),
-    addressMappings: [{
+    addressLists: [{
       ...
     }, {
       ...

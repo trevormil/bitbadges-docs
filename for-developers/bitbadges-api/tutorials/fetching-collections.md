@@ -98,10 +98,10 @@ The collection interface supports the following base **viewType** values.
 * 'latestReviews': Fetches latest reviews for collection
 * 'owners': Fetches owners of the collection
 * 'merkleChallenges': Fetches merkle challenge trackers for the collection
-* 'approvalsTrackers': Fetches approval trackers for the collection
+* 'approvalTrackers': Fetches approval trackers for the collection
 
 ```typescript
-export type CollectionViewKey = 'latestActivity' | 'latestReviews' | 'owners' | 'merkleChallenges' | 'approvalsTrackers';
+export type CollectionViewKey = 'latestActivity' | 'latestReviews' | 'owners' | 'merkleChallenges' | 'approvalTrackers';
 ```
 
 Request:
@@ -171,8 +171,8 @@ export function getCollectionMerkleChallengeTrackersView(collection: BitBadgesCo
 
 export function getCollectionApprovalTrackersView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
   return (collection.views[viewType]?.ids.map(x => {
-    return collection.approvalsTrackers.find(y => y._docId === x);
-  }) ?? []) as ApprovalsTrackerDoc<bigint>[]
+    return collection.approvalTrackers.find(y => y._docId === x);
+  }) ?? []) as ApprovalTrackerDoc<bigint>[]
 }
 ```
 
@@ -216,11 +216,11 @@ export interface GetAdditionalCollectionDetailsRequestBody {
   /**
    * If present, the merkle challenges corresponding to the specified merkle challenge IDs will be fetched.
    */
-  merkleChallengeIdsToFetch?: ChallengeTrackerIdDetails<NumberType>[];
+  challengeTrackersToFetch?: ChallengeTrackerIdDetails<NumberType>[];
   /**
    * If present, the approvals trackers corresponding to the specified approvals tracker IDs will be fetched.
    */
-  approvalsTrackerIdsToFetch?: AmountTrackerIdDetails<NumberType>[];
+  approvalTrackersToFetch?: AmountTrackerIdDetails<NumberType>[];
   /**
    * If true, we will append defaults (such as timelines) with empty values where applicable.
    */
@@ -276,7 +276,7 @@ export interface BitBadgesCollection<T extends NumberType> extends CollectionInf
   reviews: ReviewDoc<T>[],
   owners: BalanceDocWithDetails<T>[],
   merkleChallenges: MerkleChallengeDoc<T>[],
-  approvalsTrackers: ApprovalsTrackerDoc<T>[],
+  approvalTrackers: ApprovalTrackerDoc<T>[],
 
   nsfw?: { badgeIds: UintRange<T>[], reason: string };
   reported?: { badgeIds: UintRange<T>[], reason: string };

@@ -21,6 +21,6 @@ const msgs: MessageGenerated[] = [];
 msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateCollections
 msgs.push(...bootstrapSetProtocols().map(x => createProtoMsg(x))); //MsgSetCollectionForProtocol
 
-//Note how MsgCreateAddressMappings is first in the array
+//Note how MsgCreateAddressLists is first in the array
 const txn = createTransactionPayload(txContext, msgs);
 ```

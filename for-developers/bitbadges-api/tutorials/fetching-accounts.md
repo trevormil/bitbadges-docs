@@ -76,7 +76,7 @@ Hidden badges (**hiddenLists** and **hiddenBadges**) follow the same interface, 
 
 ### Alias
 
-The **alias** field denotes whether this is an alias address for a list (address mapping) or a collection. If it isn't, this will be blank.
+The **alias** field denotes whether this is an alias address for a list (address list) or a collection. If it isn't, this will be blank.
 
 ### **Views / Paginations**
 
@@ -94,9 +94,9 @@ The user interface supports the following base **viewType** values.
 * 'badgesCollected': Fetches badges owned by the user
 * 'createdBy': Collections that the user has created
 * 'managing': Collections that the user is managing
-* 'addressMappings': Fetches lists that the user are explicitly defined on
-* 'explicitlyIncludedAddressMappings': Fetches lists that the user are explicitly included
-* 'explicitlyExcludedAddressMappings':Fetches lists that the user are explicitly excluded
+* 'addressLists': Fetches lists that the user are explicitly defined on
+* 'explicitlyIncludedAddressLists': Fetches lists that the user are explicitly included
+* 'explicitlyExcludedAddressLists':Fetches lists that the user are explicitly excluded
 * 'createdLists': Lists that the user has created (excludes private lists)
 
 The following require authentication:
@@ -106,7 +106,7 @@ The following require authentication:
 * 'privateLists': Private lists created by the user
 
 ```typescript
-export type AccountViewKey = 'createdLists' | 'privateLists' | 'authCodes' | 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'badgesCollected' | 'addressMappings' | 'latestClaimAlerts' | 'latestAddressMappings' | 'explicitlyIncludedAddressMappings' | 'explicitlyExcludedAddressMappings' | 'badgesCollectedWithHidden' | 'createdBy' | 'managing' | 'listsActivity'
+export type AccountViewKey = 'createdLists' | 'privateLists' | 'authCodes' | 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'badgesCollected' | 'addressLists' | 'latestClaimAlerts' | 'latestAddressLists' | 'explicitlyIncludedAddressLists' | 'explicitlyExcludedAddressLists' | 'badgesCollectedWithHidden' | 'createdBy' | 'managing' | 'listsActivity'
 ```
 
 Request:
@@ -200,12 +200,12 @@ export function getAccountBalancesView(account: BitBadgesUserInfo<bigint> | unde
   }) ?? []) as BalanceDoc<bigint>[];
 }
 
-export function getAccountAddressMappingsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
+export function getAccountAddressListsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
   if (!account) return [];
 
   return (account.views[viewId]?.ids.map(x => {
-    return account.addressMappings.find(y => y.mappingId === x);
-  }) ?? []) as AddressMappingDoc<bigint>[];
+    return account.addressLists.find(y => y.listId === x);
+  }) ?? []) as AddressListDoc<bigint>[];
 }
 
 export function getAccountClaimAlertsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
@@ -270,8 +270,8 @@ export interface BitBadgesUserInfo<T extends NumberType> extends ProfileInfoBase
   announcements: AnnouncementDoc<T>[],
   reviews: ReviewDoc<T>[],
   merkleChallenges: MerkleChallengeDoc<T>[],
-  approvalsTrackers: ApprovalsTrackerDoc<T>[],
-  addressMappings: AddressMappingWithMetadata<T>[],
+  approvalTrackers: ApprovalTrackerDoc<T>[],
+  addressLists: AddressListWithMetadata<T>[],
   claimAlerts: ClaimAlertDoc<T>[],
   authCodes: BlockinAuthSignatureDoc<T>[],
 
@@ -288,7 +288,7 @@ export interface BitBadgesUserInfo<T extends NumberType> extends ProfileInfoBase
 
   alias?: {
     collectionId?: T,
-    mappingId?: string
+    listId?: string
   }
 }
 
@@ -358,7 +358,7 @@ export interface CustomPage<T extends NumberType> {
 export interface CustomListPage {
   title: string,
   description: string,
-  mappingIds: string[],
+  listIds: string[],
 }
 
 export enum SupportedChain {

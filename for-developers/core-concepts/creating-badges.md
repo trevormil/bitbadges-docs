@@ -76,8 +76,8 @@ An example permission is as follows. This locks any badges from ever being creat
             "end": "18446744073709551615"
           }
         ],
-        "permittedTimes": [],
-        "forbiddenTimes": [
+        "permanentlyPermittedTimes": [],
+        "permanentlyForbiddenTimes": [
           {
             "start": "1",
             "end": "18446744073709551615"

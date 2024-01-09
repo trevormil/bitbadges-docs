@@ -2,8 +2,8 @@
 
 There are different time fields within the interface with different purposes which could get confusing:
 
-* **permittedTimes**: The times that a permission will **always** be able to be executed successfully
-* **forbiddenTimes**: The times that a permission will **always** be forbidden from being executed
+* **permanentlyPermittedTimes**: The times that a permission will **always** be able to be executed successfully
+* **permanentlyForbiddenTimes**: The times that a permission will **always** be forbidden from being executed
 * **timelineTimes**: The times that some field is scheduled to be a specific value for a timeline-based field
   * Ex: X from timelineTimes 1 - 100 but changes to value Y from timelineTimes 100-200
 * **transferTimes**: The times that a transfer transaction can occur
@@ -24,7 +24,7 @@ Imagine a scenario where users participate in a US presidential election by cast
 
 #### Example 2: Managing Collection Archival
 
-Let's say we have a collection that can be optionally archived by the manager from T1 to T2 (permittedTimes) but is non-archivable at all other times (forbiddenTimes). From T1 to T2, they are permitted to update the archival status for any time.
+Let's say we have a collection that can be optionally archived by the manager from T1 to T2 (permanentlyPermittedTimes) but is non-archivable at all other times (permanentlyForbiddenTimes). From T1 to T2, they are permitted to update the archival status for any time.
 
 Let's look at the before and after of the manager executing this permission for all times.
 
@@ -35,8 +35,8 @@ IMPORTANT: The permission corresponds to the **updatability** of the timeline. T
 Permission:&#x20;
 
 ```
-permittedTimes -> [{ start: T1, end: T2 }]
-forbiddenTimes -> [ everything but T1 to T2}]
+permanentlyPermittedTimes -> [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes -> [ everything but T1 to T2}]
 timelineTimes -> [{ start: 1, end: MAX_TIME }]
 ```
 
@@ -53,8 +53,8 @@ Now after they archive the collection for all times, the permission won't change
 Permission:&#x20;
 
 ```
-permittedTimes -> [{ start: T1, end: T2 }]
-forbiddenTimes -> [ everything but T1 to T2}]
+permanentlyPermittedTimes -> [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes -> [ everything but T1 to T2}]
 timelineTimes -> [{ start: 1, end: MAX_TIME }]
 ```
 
@@ -71,8 +71,8 @@ Now, let's continue the example from example 2. let's say they want to permanent
 Permission:&#x20;
 
 ```
-permittedTimes -> []
-forbiddenTimes -> [{ start: 1, end: MAX_TIME }]
+permanentlyPermittedTimes -> []
+permanentlyForbiddenTimes -> [{ start: 1, end: MAX_TIME }]
 timelineTimes -> [{ start: 1, end: MAX_TIME }]
 ```
 

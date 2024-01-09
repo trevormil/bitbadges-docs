@@ -30,9 +30,9 @@ On a similar note, if approvals become no longer valid (such as approving a badg
 
 ```typescript
 export interface CollectionApproval<T extends NumberType> {
-  toMappingId: string;
-  fromMappingId: string;
-  initiatedByMappingId: string;
+  toListId: string;
+  fromListId: string;
+  initiatedByListId: string;
   transferTimes: UintRange<T>[];
   badgeIds: UintRange<T>[];
   ownershipTimes: UintRange<T>[];
@@ -47,7 +47,7 @@ export interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-User incoming / outgoing approvals follow the same interface except **toMapping** is auto-populated with the user's address for incoming approvals and similarly the **fromMapping** for outgoingApprovals.
+User incoming / outgoing approvals follow the same interface except **toList** is auto-populated with the user's address for incoming approvals and similarly the **fromList** for outgoingApprovals.
 
 **Approved vs Unapproved**
 
@@ -80,13 +80,13 @@ All three IDs have to be defined and non-empty. Unless you are implementing adva
 
 We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
 
-This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
+This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for allowlist trees where no leaves are secret, we can host the full tree.
 
 **Who? When? What? - Main Fields**
 
-To represent transfers, six main fields are used: **`toMapping`**, **`fromMapping`**, **`initiatedByMapping`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
+To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toMapping, fromMapping, initiatedByMapping**: [AddressMappings](address-mappings-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toMappingId, fromMappingId, initiatedByMappingId**, these refer to the IDs of the mappings. IDs can either be reserved IDs (see [AddressMappings](address-mappings-lists.md)) or IDs of mappings created through [MsgCreateAddressMappings](../create-and-broadcast-txs/cosmos-sdk-msgs/).
+* **toList, fromList, initiatedByList**: [AddressLists](address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the IDs of the lists. IDs can either be reserved IDs (see [AddressLists](address-lists-lists.md)) or IDs of lists created through [MsgCreateAddressLists](../create-and-broadcast-txs/cosmos-sdk-msgs/).
 * **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred?
@@ -94,9 +94,9 @@ To represent transfers, six main fields are used: **`toMapping`**, **`fromMappin
 For example, we might have something like  the following:
 
 * ```json
-  "fromMappingId": "Mint", //reserved mapping ID for the "Mint" addres
-  "toMappingId": "AllWithoutMint", //reserved mapping ID for all addresses (excluding "Mint")
-  "initiatedByMappingId": "AllWithoutMint",
+  "fromListId": "Mint", //reserved list ID for the "Mint" addres
+  "toListId": "AllWithoutMint", //reserved list ID for all addresses (excluding "Mint")
+  "initiatedByListId": "AllWithoutMint",
   "transferTimes": [
     {
       "start": "1691931600000",
@@ -119,7 +119,7 @@ For example, we might have something like  the following:
 
 Let's break down the definition above.
 
-* The "Mint" mapping ID corresponds to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressMapping "AllWithoutMint" includes all addresses).
+* The "Mint" list ID corresponds to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "AllWithoutMint" includes all addresses).
 * The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).&#x20;
 
 Note the approval only applies to the details defined and must match ALL details. For example, badge ID #101 is not defined by this approval even if all other criteria matches.
@@ -130,7 +130,7 @@ As mentioned before, we check the collection level approvals first, and if not o
 
 The Mint address technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
 
-It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromMapping** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
+It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint. See Example 2 below.
 
 #### Approval Criteria
 
@@ -142,7 +142,7 @@ The **amountTrackerId** and **challengeTrackerId** correspond to **approvalCrite
 
 **Breaking Down Range Logic**
 
-Even though our interface uses range logic (UintRanges, AddressMappings), you can think of it as we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
+Even though our interface uses range logic (UintRanges, AddressLists), you can think of it as we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
 
 #### Matching Transfers to Approvals
 
@@ -183,8 +183,8 @@ In order to allow forceful transfers to an address without prior approval, the *
 ```json
 "defaultIncomingApprovals": [
     {
-      "fromMappingId": "AllWithMint",
-      "initiatedByMappingId": "AllWithMint",
+      "fromListId": "AllWithMint",
+      "initiatedByListId": "AllWithMint",
       "transferTimes": [
         {
           "start": "1",
@@ -235,7 +235,7 @@ Let's say each approval has no amount restriction but does not override the user
 In this scenario, let's say the default "first match" approach is used:
 
 1. The first approved transfer `(Bob, Alice, Bob, T, [1-2], [1000-2000])` matches the transfer request partially, but it only covers **ownershipTimes** from 1000 to 2000. We deduct this overlap but still have a lot remaining to be approved for (\[1-999], \[2001-Max]).
-2. The second approved transfer `(Bob, Alice, All, T, [1-2], [1-2000]),` again partially matches, and we deduct. This partial match only handles 1-999 because we handled 1000-2000 already. Note that this approval says it can be initiated by "All" instead of Bob, but Bob's address is within the "All" mapping.
+2. The second approved transfer `(Bob, Alice, All, T, [1-2], [1-2000]),` again partially matches, and we deduct. This partial match only handles 1-999 because we handled 1000-2000 already. Note that this approval says it can be initiated by "All" instead of Bob, but Bob's address is within the "All" list.
 3. The third approved transfer `(Bob, Alice, All, T, [1-2], [1001-Max])` covers the rest. This transfer is approved on the collection level because the entire transfer was handled.
 
 
@@ -268,14 +268,14 @@ If Bob additionally sets **onlyCheckPrioritizedApprovals** = true, we only check
 
 This would define a collection where badges 1-100 can be transferred from the Mint address (according to the first approval). Once transferred out of the Mint address, they can be transferred freely, thus making the collection transferable.
 
-Note how the **fromMapping** of each approval are non-overlapping, so any transfer will only match to one of the two approvals (if either). The first approval is restricted to transfers from the Mint address whereas the second is all EXCEPT the Mint address.
+Note how the **fromList** of each approval are non-overlapping, so any transfer will only match to one of the two approvals (if either). The first approval is restricted to transfers from the Mint address whereas the second is all EXCEPT the Mint address.
 
 ```json
  "collectionApprovals": [
     {
-      "fromMappingId": "Mint",
-      "toMappingId": "AllWithMint",
-      "initiatedByMappingId": "AllWithMint",
+      "fromListId": "Mint",
+      "toListId": "AllWithMint",
+      "initiatedByListId": "AllWithMint",
       "transferTimes": [
         {
           "start": "1691931600000",
@@ -298,9 +298,9 @@ Note how the **fromMapping** of each approval are non-overlapping, so any transf
       ... //other criteria (including the IMPORTANT overrideFromOutgoingApprovals = true since we are dealing with transfers from the Mint address)
     },
     {
-      "fromMappingId": "AllWithoutMint",
-      "toMappingId": "AllWithoutMint",
-      "initiatedByMappingId": "AllWithoutMint",
+      "fromListId": "AllWithoutMint",
+      "toListId": "AllWithoutMint",
+      "initiatedByListId": "AllWithoutMint",
       "badgeIds": [
         {
           "start": "1",
@@ -331,8 +331,8 @@ This would set approve Charlie to send badges to Bob on this user's behalf.
 ```json
 "outgoingApprovals": [
   {
-    "toMappingId": "Bob",
-    "initiatedByMappingId": "Charlie",
+    "toListId": "Bob",
+    "initiatedByListId": "Charlie",
     "transferTimes": [
       {
         "start": "1",
@@ -367,8 +367,8 @@ This would set approve this user to receive any transfer from Bob.&#x20;
 ```json
 "incomingApprovals": [
   {
-    "fromMappingId": "Bob",
-    "initiatedByMappingId": "AllWithMint",
+    "fromListId": "Bob",
+    "initiatedByListId": "AllWithMint",
     "transferTimes": [
       {
         "start": "1",

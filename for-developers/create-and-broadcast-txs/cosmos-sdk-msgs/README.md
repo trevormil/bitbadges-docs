@@ -37,7 +37,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 * [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
 * [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 * [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
-* [MsgCreateAddressMappings](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateAddressMappings.html) - Creates address mapping(s).
+* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateAddressLists.html) - Creates address list(s).
 
 **x/wasmx**
 

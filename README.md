@@ -99,7 +99,7 @@ And much more!
 
 ## Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (whitelists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distirbution experience.
+There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (allowlists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distirbution experience.
 
 For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via Mailchimp, Discord, or SMS.
 

@@ -41,7 +41,7 @@ This can be leveraged to implement forcefully revoking a badge.
 
 IMPORTANT: The Mint address has its own approvals store, but since it is not a real address, they are always empty. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address.
 
-* <pre class="language-json"><code class="lang-json"><strong>"fromMappingId": "Mint", //represents the mapping with the "Mint" addres
+* <pre class="language-json"><code class="lang-json"><strong>"fromListId": "Mint", //represents the list with the "Mint" addres
   </strong>...
   "approvalCriteria": {
     "overridesFromOutgoingApprovals": true
@@ -162,15 +162,15 @@ For example, you do not want any double dipping into two different approvals. Mu
 
 **Example 1:**
 
-For example, the following pseudocode would allow address C (in both whitelist ABC and CDE) to claim a max of x10 because the tallys are linked (same tracker ID).
+For example, the following pseudocode would allow address C (in both allowlist ABC and CDE) to claim a max of x10 because the tallys are linked (same tracker ID).
 
 ```json
 [{
     Tracker ID: 123
-    Approve x5 of IDs 1-10 if you are on whitelist ABC,
+    Approve x5 of IDs 1-10 if you are on allowlist ABC,
 }, {
     Tracker ID: 123,
-    Approve x10 of IDs 1-10 if you are on whitelist CDE
+    Approve x10 of IDs 1-10 if you are on allowlist CDE
 }]
 ```
 
@@ -179,10 +179,10 @@ But, the following would allow address C to claim a max of x15 because the tally
 ```json
 [{
     Tracker ID: 123
-    Approve x5 of IDs 1-10 if you are on whitelist ABC,
+    Approve x5 of IDs 1-10 if you are on allowlist ABC,
 }, {
     Tracker ID: 456,
-    Approve x10 of IDs 1-10 if you are on whitelist CDE
+    Approve x10 of IDs 1-10 if you are on allowlist CDE
 }]
 ```
 
@@ -191,7 +191,7 @@ But, the following would allow address C to claim a max of x15 because the tally
 Approval trackers are tallies that track how much of badges have been transferred and how many transfers take place. Each transfer increments **numTransfers** and each badge transferred increments the **amounts** in the interface below, if set and applicable.
 
 ```typescript
-export interface ApprovalsTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
+export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
   numTransfers: T;
   amounts: Balance<T>[];
 }
@@ -211,7 +211,7 @@ Moving forward, let's say we are dealing with the collection approvals approving
 
 Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721), except we use an increment + threshold system as opposed to a decrement + greater than 0 system.&#x20;
 
-The amounts approved are limited to the **badgeIds** and **ownershipTimes** defined by the approval (see previous page). Also, note that the to addresses are bounded to the addresses in the **toMapping,** from addresses from the **fromMapping**, and initiated by addresses from the **initiatedByMapping**.
+The amounts approved are limited to the **badgeIds** and **ownershipTimes** defined by the approval (see previous page). Also, note that the to addresses are bounded to the addresses in the **toList,** from addresses from the **fromList**, and initiated by addresses from the **initiatedByList**.
 
 We define four levels (**trackerType** = "overall", "to", "from", "initiatedBy") that you can specify for approval amounts as seen below. You can define multiple if desired, and to be approved, the transfer must satisfy all.
 
@@ -226,9 +226,9 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
 ```json
 "collectionApprovals": [
     {
-      "fromMappingId": "Bob",
-      "toMappingId": "AllWithMint",
-      "initiatedByMappingId": "AllWithMint",
+      "fromListId": "Bob",
+      "toListId": "AllWithMint",
+      "initiatedByListId": "AllWithMint",
       "transferTimes": [
         {
           "start": "1691931600000",
@@ -321,9 +321,9 @@ The **expectedProofLength** defines the expected length for the Merkle proofs to
 
 We also support a couple customization options.&#x20;
 
-First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement whitelist trees. Note that the initiator must also be within the **initiatedByMapping** of the approval for it to make sense.
+First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement allowlist trees. Note that the initiator must also be within the **initiatedByList** of the approval for it to make sense.
 
-For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+For allowlist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
 We track this in a challenge tracker, similar to the approvals trackers explained above. We simply track if a leaf index (leftmost leaf = index 0, ...) has been used and only allow it to be used X many times, if constrained. Like approval trackers, this is increment only and non-deletable.
 
@@ -355,7 +355,7 @@ const codesRoot = codesTree.getRoot().toString('hex');
 const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 ```
 
-For whitelists, replace with this code.
+For allowlists, replace with this code.
 
 ```typescript
 addresses.push(...toAddresses.map(x => convertToCosmosAddress(x)));
@@ -368,8 +368,8 @@ A valid proof can then be created via where codeToSubmit is the code submitted b
 
 ```typescript
 const passwordCodeToSubmit = '....'
-const leaf = isWhitelist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
-const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
+const leaf = isAllowlist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
+const proofObj = tree?.getProof(leaf, allowlistIndex !== undefined && allowlistIndex >= 0 ? allowlistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
 
@@ -380,7 +380,7 @@ const codeProof = {
       onRight: proof.position === 'right'
     }
   }) : [],
-  leaf: isWhitelist ? '' : passwordCodeToSubmit,
+  leaf: isAllowlist ? '' : passwordCodeToSubmit,
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {
@@ -402,7 +402,7 @@ You also have the following options to further restrict who can transfer to who.
 
 **requireFromEqualsInitiatedBy, requireFromDoesNotEqualsInitiatedBy**
 
-These are pretty self-explanatory. You can enforce that we additionally check if the to or from address equals or does not equal the initiator of the transfer. Note that this is bounded to the addresses in the respective mappings for to, from, and initiatedBy.
+These are pretty self-explanatory. You can enforce that we additionally check if the to or from address equals or does not equal the initiator of the transfer. Note that this is bounded to the addresses in the respective lists for to, from, and initiatedBy.
 
 ### **Predetermined Balances**
 

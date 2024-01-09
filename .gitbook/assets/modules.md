@@ -58,8 +58,8 @@
 - [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
 - [SubassetSupply](interfaces/SubassetSupply.md)
 - [TransferActivityItem](interfaces/TransferActivityItem.md)
-- [TransferMapping](interfaces/TransferMapping.md)
-- [TransferMappingWithUnregisteredUsers](interfaces/TransferMappingWithUnregisteredUsers.md)
+- [TransferList](interfaces/TransferList.md)
+- [TransferListWithUnregisteredUsers](interfaces/TransferListWithUnregisteredUsers.md)
 - [Transfers](interfaces/Transfers.md)
 - [TransfersExtended](interfaces/TransfersExtended.md)
 - [UserBalance](interfaces/UserBalance.md)
@@ -70,7 +70,7 @@
 
 ### Variables
 
-- [AllAddressesTransferMapping](modules.md#alladdressestransfermapping)
+- [AllAddressesTransferList](modules.md#alladdressestransferlist)
 - [CHAIN\_DETAILS](modules.md#chain_details)
 - [CanCreateMoreBadgesDigit](modules.md#cancreatemorebadgesdigit)
 - [CanDeleteDigit](modules.md#candeletedigit)
@@ -127,7 +127,7 @@
 - [ValidatePermissions](modules.md#validatepermissions)
 - [ValidatePermissionsUpdate](modules.md#validatepermissionsupdate)
 - [checkIfApproved](modules.md#checkifapproved)
-- [checkIfApprovedInTransferMapping](modules.md#checkifapprovedintransfermapping)
+- [checkIfApprovedInTransferList](modules.md#checkifapprovedintransferlist)
 - [checkIfIdRangesOverlap](modules.md#checkifidrangesoverlap)
 - [convertToBitBadgesUserInfo](modules.md#converttobitbadgesuserinfo)
 - [convertToCosmosAddress](modules.md#converttocosmosaddress)
@@ -142,20 +142,20 @@
 - [getChainForAddress](modules.md#getchainforaddress)
 - [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
 - [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
-- [getMatchingAddressesFromTransferMapping](modules.md#getmatchingaddressesfromtransfermapping)
+- [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
 - [getMaxBatchId](modules.md#getmaxbatchid)
 - [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
 - [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
 - [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
 - [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
-- [getTransferMappingForSelectOptions](modules.md#gettransfermappingforselectoptions)
+- [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
 - [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
 - [isAddressValid](modules.md#isaddressvalid)
-- [isTransferMappingFull](modules.md#istransfermappingfull)
+- [isTransferListFull](modules.md#istransferlistfull)
 - [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
 - [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
 - [updateMetadataMap](modules.md#updatemetadatamap)
-- [updateTransferMappingAccountNums](modules.md#updatetransfermappingaccountnums)
+- [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
 
 ## Type Aliases
 
@@ -180,9 +180,9 @@
 
 ## Variables
 
-### AllAddressesTransferMapping
+### AllAddressesTransferList
 
-• `Const` **AllAddressesTransferMapping**: [`TransferMapping`](interfaces/TransferMapping.md)
+• `Const` **AllAddressesTransferList**: [`TransferList`](interfaces/TransferList.md)
 
 #### Defined in
 
@@ -1136,9 +1136,9 @@ ___
 
 ___
 
-### checkIfApprovedInTransferMapping
+### checkIfApprovedInTransferList
 
-▸ **checkIfApprovedInTransferMapping**(`addresses`, `connectedUser`, `managerAccountNumber`): `boolean`
+▸ **checkIfApprovedInTransferList**(`addresses`, `connectedUser`, `managerAccountNumber`): `boolean`
 
 #### Parameters
 
@@ -1452,15 +1452,15 @@ ___
 
 ___
 
-### getMatchingAddressesFromTransferMapping
+### getMatchingAddressesFromTransferList
 
-▸ **getMatchingAddressesFromTransferMapping**(`mapping`, `toAddresses`, `chain`, `managerAccountNumber`): `any`[]
+▸ **getMatchingAddressesFromTransferList**(`list`, `toAddresses`, `chain`, `managerAccountNumber`): `any`[]
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `mapping` | [`TransferMapping`](interfaces/TransferMapping.md)[] |
+| `list` | [`TransferList`](interfaces/TransferList.md)[] |
 | `toAddresses` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
 | `chain` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
 | `managerAccountNumber` | `number` |
@@ -1572,15 +1572,15 @@ ___
 
 ___
 
-### getTransferMappingForSelectOptions
+### getTransferListForSelectOptions
 
-▸ **getTransferMappingForSelectOptions**(`isFromMapping`, `unregistered`, `users`, `all`, `none`, `everyoneExcept`): `undefined` \| [`TransferMappingWithUnregisteredUsers`](interfaces/TransferMappingWithUnregisteredUsers.md)
+▸ **getTransferListForSelectOptions**(`isFromList`, `unregistered`, `users`, `all`, `none`, `everyoneExcept`): `undefined` \| [`TransferListWithUnregisteredUsers`](interfaces/TransferListWithUnregisteredUsers.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `isFromMapping` | `boolean` |
+| `isFromList` | `boolean` |
 | `unregistered` | `string`[] |
 | `users` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
 | `all` | `boolean` |
@@ -1589,11 +1589,11 @@ ___
 
 #### Returns
 
-`undefined` \| [`TransferMappingWithUnregisteredUsers`](interfaces/TransferMappingWithUnregisteredUsers.md)
+`undefined` \| [`TransferListWithUnregisteredUsers`](interfaces/TransferListWithUnregisteredUsers.md)
 
 #### Defined in
 
-[transferMappings.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferMappings.ts#L36)
+[transferLists.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L36)
 
 ___
 
@@ -1639,15 +1639,15 @@ ___
 
 ___
 
-### isTransferMappingFull
+### isTransferListFull
 
-▸ **isTransferMappingFull**(`transfersMapping`): `boolean`
+▸ **isTransferListFull**(`transfersList`): `boolean`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `transfersMapping` | [`TransferMapping`](interfaces/TransferMapping.md)[] |
+| `transfersList` | [`TransferList`](interfaces/TransferList.md)[] |
 
 #### Returns
 
@@ -1655,7 +1655,7 @@ ___
 
 #### Defined in
 
-[transferMappings.ts:27](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferMappings.ts#L27)
+[transferLists.ts:27](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L27)
 
 ___
 
@@ -1727,9 +1727,9 @@ ___
 
 ___
 
-### updateTransferMappingAccountNums
+### updateTransferListAccountNums
 
-▸ **updateTransferMappingAccountNums**(`accountNumber`, `remove`, `transferMappingAddresses`): [`Addresses`](interfaces/Addresses.md)
+▸ **updateTransferListAccountNums**(`accountNumber`, `remove`, `transferListAddresses`): [`Addresses`](interfaces/Addresses.md)
 
 #### Parameters
 
@@ -1737,7 +1737,7 @@ ___
 | :------ | :------ |
 | `accountNumber` | `number` |
 | `remove` | `boolean` |
-| `transferMappingAddresses` | [`Addresses`](interfaces/Addresses.md) |
+| `transferListAddresses` | [`Addresses`](interfaces/Addresses.md) |
 
 #### Returns
 
@@ -1745,4 +1745,4 @@ ___
 
 #### Defined in
 
-[transferMappings.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferMappings.ts#L5)
+[transferLists.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L5)

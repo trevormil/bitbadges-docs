@@ -55,59 +55,59 @@ If there is no manager for a collection, no permissions can be executed.
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-All permissions are a linear array of (criteria -> permitted/forbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined permitted/forbiddenTimes.
+All permissions are a linear array of (criteria -> permitted/permanentlyForbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined permitted/permanentlyForbiddenTimes.
 
-1\) If a permission is explicitly allowed via the **permittedTimes, it will ALWAYS be allowed** during those permittedTimes (can't change it).
+1\) If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
 
-2\) If a permission is explicitly forbidden via the **forbiddenTimes, it will ALWAYS be disallowed** during those forbiddenTimes.
+2\) If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
 3\) If not explicitly permitted or forbidden - NEUTRAL (not defined), **permissions are ALLOWED by default (unhandled)** but can later be set to be explicitly allowed or disallowed. There is no "forbidden currently but updatable" state.&#x20;
 
-4\) We do not allow times to be in both the permittedTimes and forbiddenTimes array simultaneously.
+4\) We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
 
 
 
 So for example, this means the permission is permanently forbidden and frozen.
 
 ```typescriptreact
-permittedTimes: []
-forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyPermittedTimes: []
+permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
 This means it is permanently allowed and frozen.
 
 ```typescriptreact
-forbiddenTimes: []
-permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyForbiddenTimes: []
+permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
 This means it is allowed currently but neutral and can be changed to be always permitted or always forbidden in the future.&#x20;
 
 ```
-forbiddenTimes: []
-permittedTimes: []
+permanentlyForbiddenTimes: []
+permanentlyPermittedTimes: []
 ```
 
 ### First Match Policy
 
-Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/forbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
+Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/permanentlyForbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
 
 Ex: If we have the following permission definitions in an array \[elem1, elem2]:&#x20;
 
 1. ```
    timelineTimes: [{ start: 1, end: 10 }]
 
-   permittedTimes: []
-   forbiddenTimes: [{ start: 1, end: 10 }]
+   permanentlyPermittedTimes: []
+   permanentlyForbiddenTimes: [{ start: 1, end: 10 }]
    ```
 2. ```
    timelineTimes: [{ start: 1, end: 100 }]
 
-   forbiddenTimes: []
-   permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+   permanentlyForbiddenTimes: []
+   permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
    ```
 
-In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permittedTimes: \[], forbiddenTimes: \[1 to 10]).&#x20;
+In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).&#x20;
 
 Times 11-100 would be permanently permitted since the first match for those times is the second element.
 
@@ -121,8 +121,8 @@ All criteria must be satisfied for it to be a match. For example, for the **canC
 badgeIds: [{ start: 1, end: 10 }]
 ownershipTimes: [{ start 1, end: 10 }]
 
-forbiddenTimes: []
-permittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyForbiddenTimes: []
+permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 ```
 
 This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.&#x20;
@@ -137,8 +137,8 @@ A common misunderstanding is that if the permission below is appended after the 
 badgeIds: [{ start: 11, end: Max }]
 ownershipTimes: [{ start 1, end: 10 }]
 
-forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-permittedTimes: []
+permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyPermittedTimes: []
 ```
 
 To permanently forbid all badgeIds, you must brute force ALL other combinations such as&#x20;
@@ -148,22 +148,22 @@ badgeIds: [{ start: 11, end: Max }]
 ownershipTimes: [{ start: 1, end: Max }] // 1-10 never gets matched to bc of first match
 //can also do start: 11
 
-forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-permittedTimes: []
+permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyPermittedTimes: []
 ```
 
 **Approved Transfers Criteria**
 
 For approved transfer permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N -1 criteria is satisfied.&#x20;
 
-Also, if we add another permission definition after this one with **fromMappingId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
+Also, if we add another permission definition after this one with **fromListId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
 
 ```json
 "canUpdateCollectionApprovals": [
   {
-    "fromMappingId": "Mint",
-    "toMappingId": "AllWithMint",
-    "initiatedByMappingId": "AllWithMint",
+    "fromListId": "Mint",
+    "toListId": "AllWithMint",
+    "initiatedByListId": "AllWithMint",
     "timelineTimes": [
       {
         "start": "1",
@@ -190,8 +190,8 @@ Also, if we add another permission definition after this one with **fromMappingI
     ],
     "approvalTrackerId": "All",
     "challengeTrackerId": "All",
-    "permittedTimes": [],
-    "forbiddenTimes": [
+    "permanentlyPermittedTimes": [],
+    "permanentlyForbiddenTimes": [
       {
         "start": "1",
         "end": "18446744073709551615"
@@ -203,7 +203,7 @@ Also, if we add another permission definition after this one with **fromMappingI
 
 ### Shorthand Options
 
-Note that we also reserve the "!" prefix for inverting a given mapping ID and also reserve specific mapping IDs (see [Address Mappings](address-mappings-lists.md)).
+Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)).
 
 The same shorthand options can be applied to the trackerId ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
 
@@ -214,9 +214,9 @@ Let's say we have the following where we do not handle badge ID 1.
 ```
 "canUpdateCollectionApprovals": [
   {
-    "fromMappingId": "AllWithMint",
-    "toMappingId": "AllWithMint",
-    "initiatedByMappingId": "AllWithMint",
+    "fromListId": "AllWithMint",
+    "toListId": "AllWithMint",
+    "initiatedByListId": "AllWithMint",
     "timelineTimes": [
       {
         "start": "1",
@@ -243,8 +243,8 @@ Let's say we have the following where we do not handle badge ID 1.
     ],
     "approvalTrackerId": "All",
     "challengeTrackerId": "All",
-    "permittedTimes": [],
-    "forbiddenTimes": [
+    "permanentlyPermittedTimes": [],
+    "permanentlyForbiddenTimes": [
       {
         "start": "1",
         "end": "18446744073709551615"
@@ -283,18 +283,18 @@ There are five categories of permissions, each with different criteria that must
 
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.&#x20;
   * <pre class="language-typescript"><code class="lang-typescript"><strong>{
-    </strong>  permittedTimes: UintRange&#x3C;T>[];
-      forbiddenTimes: UintRange&#x3C;T>[];
+    </strong>  permanentlyPermittedTimes: UintRange&#x3C;T>[];
+      permanentlyForbiddenTimes: UintRange&#x3C;T>[];
     }
     </code></pre>
 * **TimedUpdatePermission**: For what timelineTimes, can the manager update the scheduled value?
-  * Note timelineTimes corresponds to the scheduled times of a timeline-based value such as badge metadata or collection metadata. The permittedTimes and forbiddenTimes correspond to when the manager can update such values.
+  * Note timelineTimes corresponds to the scheduled times of a timeline-based value such as badge metadata or collection metadata. The permanentlyPermittedTimes and permanentlyForbiddenTimes correspond to when the manager can update such values.
   * ```typescript
     {
       timelineTimes: UintRange<T>[];
       
-      permittedTimes: UintRange<T>[];
-      forbiddenTimes: UintRange<T>[];
+      permanentlyPermittedTimes: UintRange<T>[];
+      permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
 * **TimedUpdateWithBadgeIdsPermission**: For what timelineTimes AND what badge IDs can I update the scheduled value?
@@ -303,8 +303,8 @@ There are five categories of permissions, each with different criteria that must
       timelineTimes: UintRange<T>[];
       badgeIds: UintRange<T>[];
       
-      permittedTimes: UintRange<T>[];
-      forbiddenTimes: UintRange<T>[];
+      permanentlyPermittedTimes: UintRange<T>[];
+      permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
 * **BalancesActionPermission**: For what badge IDs and ownershipTimes can the manager execute the permission?
@@ -313,24 +313,24 @@ There are five categories of permissions, each with different criteria that must
       badgeIds: UintRange<T>[];
       ownershipTimes: UintRange<T>[];
       
-      permittedTimes: UintRange<T>[];
-      forbiddenTimes: UintRange<T>[];
+      permanentlyPermittedTimes: UintRange<T>[];
+      permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
 * **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
   * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All", "All") tuple, thus making the transferability locked for those transfer combinations.
     * <pre class="language-typescript"><code class="lang-typescript"><strong>{
-      </strong>  fromMappingId: string;
-        toMappingId: string;
-        initiatedByMappingId: string;
+      </strong>  fromListId: string;
+        toListId: string;
+        initiatedByListId: string;
         transferTimes: UintRange&#x3C;T>[];
         badgeIds: UintRange&#x3C;T>[];
         ownershipTimes: UintRange&#x3C;T>[];
         approvalTrackerId: string
         challengeTrackerId: string
         
-        permittedTimes: UintRange&#x3C;T>[];
-        forbiddenTimes: UintRange&#x3C;T>[];
+        permanentlyPermittedTimes: UintRange&#x3C;T>[];
+        permanentlyForbiddenTimes: UintRange&#x3C;T>[];
       }
       </code></pre>
 
@@ -366,13 +366,13 @@ So, note that to ensure a **challengeTrackerId** and/or **approvalTrackerId** is
 
 ```json
 {
-  "fromMappingId": "AllWithMint",
-  "toMappingId": "AllWithMint",
+  "fromListId": "AllWithMint",
+  "toListId": "AllWithMint",
   "badgeIds" [{ 1-Max }],
   ...
   "challengeTrackerId": "xyz",
-  "permittedTimes": [],
-  "forbiddenTimes": [
+  "permanentlyPermittedTimes": [],
+  "permanentlyForbiddenTimes": [
     {
       "start": "1",
       "end": "18446744073709551615"
@@ -422,8 +422,8 @@ For example, if **canCreateMoreBadges** is set to this
 <pre><code><strong>badgeIds: [{ start: 1, end: 10 }]
 </strong>ownershipTimes: [{ start 1, end: 10 }]
 
-forbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-permittedTimes: []
+permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
+permanentlyPermittedTimes: []
 </code></pre>
 
 it has no bearing on what the current circulating supplys are, but it says that whatever they are currently,  no more of IDs 1-10 for times 1-10 can be created.
@@ -449,8 +449,8 @@ See [Example Msgs](broken-reference) for further examples.
             "end": "18446744073709551615"
           }
         ],
-        "permittedTimes": [],
-        "forbiddenTimes": [
+        "permanentlyPermittedTimes": [],
+        "permanentlyForbiddenTimes": [
           {
             "start": "1",
             "end": "18446744073709551615"
@@ -462,9 +462,9 @@ See [Example Msgs](broken-reference) for further examples.
     "canUpdateBadgeMetadata": [],
     "canUpdateCollectionApprovals": [
       {
-        "fromMappingId": "AllWithMint",
-        "toMappingId": "AllWithMint",
-        "initiatedByMappingId": "AllWithMint",
+        "fromListId": "AllWithMint",
+        "toListId": "AllWithMint",
+        "initiatedByListId": "AllWithMint",
         "timelineTimes": [
           {
             "start": "1",
@@ -491,8 +491,8 @@ See [Example Msgs](broken-reference) for further examples.
         ],
         "approvalTrackerId": "All",
         "challengeTrackerId": "All",
-        "permittedTimes": [],
-        "forbiddenTimes": [
+        "permanentlyPermittedTimes": [],
+        "permanentlyForbiddenTimes": [
           {
             "start": "1",
             "end": "18446744073709551615"

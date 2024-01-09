@@ -8,7 +8,7 @@ When building a distribution tool, you have to answer a couple questions:
 
 **Do I actually have the recipients' blockchain addresses?**&#x20;
 
-If you will have access to the recipients' actual blockchain addresses, your tool can simply generate a list of addresses and distribute via a whitelist.
+If you will have access to the recipients' actual blockchain addresses, your tool can simply generate a list of addresses and distribute via a allowlist.
 
 If you can generate a list of addresses separated by a new line such as:
 
@@ -19,7 +19,7 @@ cosmos...
 0x123...
 ```
 
-Then, this list can simply be copied into the "Add Recipients" field on the BitBadges website under the "Whitelist" distribution method.
+Then, this list can simply be copied into the "Add Recipients" field on the BitBadges website under the "Allowlist" distribution method.
 
 You can also use alternative tools or build your own tools for submitting the transaction.
 
@@ -32,7 +32,7 @@ If you identify your users in some other way, you will probably have to implemen
 
 **How should everything be stored?**
 
-If you use the BitBadges website, the codes, passwords, and whitelist details for claims are stored on IPFS and the BitBadges servers. However, you can also generate everything yourself and self-host them.
+If you use the BitBadges website, the codes, passwords, and allowlist details for claims are stored on IPFS and the BitBadges servers. However, you can also generate everything yourself and self-host them.
 
 Your two options:
 
@@ -40,7 +40,7 @@ Your two options:
   * For example, your tool simply tell users to copy and paste specific addresses into the form. Or, tell them to generate codes using the form, download them, and give them to the tool for distribution.
 * Generate and store everything yourself. If you generate everything (transactions and codes) yourself, you can completely bypass the BitBadges servers for storage.&#x20;
   * Note you will need to design for compatibility of certain features offered on the BitBadges website (if you want compatibility). See [Compatibility](../bitbadges-api/designing-for-compatibility.md).
-    * Note this JSON file will be public, so DO NOT include sensitive information like passwords or unhashed preimages (the actual codes) here. Whitelisted addresses are okay.&#x20;
+    * Note this JSON file will be public, so DO NOT include sensitive information like passwords or unhashed preimages (the actual codes) here. Allowlisted addresses are okay.&#x20;
   * You could have the user copy and paste the generated transaction onto the website using the advanced broadcast page (/dev/broadcast) (see [Broadcasting and Submitting Txs](../create-and-broadcast-txs/)). This outsources all the broadcasting, signing, gas, etc. to an interface, and you simply need to generate the Msg contents.
   * Feel free to reach out for advice and help if needed.
 

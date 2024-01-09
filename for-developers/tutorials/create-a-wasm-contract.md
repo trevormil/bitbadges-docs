@@ -113,7 +113,7 @@ The msg details should be in the format where only one Msg is defined. All numbe
 ```json
 {
     "deleteCollectionMsg": {...}
-    "createAddressMappingsMsg": {...},
+    "createAddressListsMsg": {...},
     "updateCollectionMsg": {...},
     "updateUserApprovedTransfersMsg": {...},
     "transferBadgesMsg": {...},
