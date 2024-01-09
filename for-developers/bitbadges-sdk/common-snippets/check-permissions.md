@@ -1,6 +1,8 @@
-# Check Permissions
+# Check Executability
 
-Use the following functions to check if a permission is executable at the current time. Note this is different from updating permissions.
+Use the following functions to check if an action is executable at the current time. Note this is different from checking if a permission update is correct.
+
+Ex: See if we can create the inputted balances, if the inputted permissions are currently set.
 
 ```typescript
 export function checkBalancesActionPermission(
@@ -8,6 +10,8 @@ export function checkBalancesActionPermission(
   permissions: BalancesActionPermission<bigint>[]
 ): Error | null
 ```
+
+Ex: See if we can update the timeline values for these badge IDs, if the inputted permissions are currently set.
 
 ```typescript
 export function checkTimedUpdateWithBadgeIdsPermission(

@@ -28,6 +28,16 @@ On a similar note, if approvals become no longer valid (such as approving a badg
 
 ### Representation
 
+In the collection interface, they are represented as the following:
+
+```json
+{
+    ...
+    "collectionApprovals": [{ ... }, ...]
+    ...
+}
+```
+
 ```typescript
 export interface CollectionApproval<T extends NumberType> {
   toListId: string;

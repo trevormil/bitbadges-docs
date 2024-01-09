@@ -33,12 +33,16 @@ const batchTransfer: TransferWithIncrements<bigint> = {
 
 **3. Calculate the New Balances After Transfers**
 
-Now, you can use the `getBalancesAfterTransfers` function to calculate the new balances after the batch transfers:
+```typescript
+export declare const getAllBadgeIdsToBeTransferred: (transfers: TransferWithIncrements<bigint>[]) => UintRange<bigint>[];
+```
 
 ```typescript
-const newBalances = getBalancesAfterTransfers(startingBalances, [batchTransfer], true);
+export declare const getAllBalancesToBeTransferred: (transfers: TransferWithIncrements<bigint>[]) => Balance<bigint>[];
+```
 
-console.log(newBalances); // This will show the updated balances after performing the batch transfers.
+```typescript
+export declare const getBalancesAfterTransfers: (startBalance: Balance<bigint>[], transfers: TransferWithIncrements<bigint>[], allowUnderflow?: boolean) => Balance<bigint>[];
 ```
 
 **Conclusion**

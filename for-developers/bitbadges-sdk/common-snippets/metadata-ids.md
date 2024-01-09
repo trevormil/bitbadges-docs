@@ -1,6 +1,6 @@
 # Metadata IDs
 
-Metadata IDs are a way of representing the metadata corresponding to badges by an ID rather than using the badge ID. Each ID represents one URI fetch.&#x20;
+Metadata IDs are a way of representing the metadata corresponding to badges by an ID rather than using the badge ID. Each ID represents a **unique** URI to be fetched.&#x20;
 
 **What are metadata IDs?**
 

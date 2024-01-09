@@ -134,11 +134,35 @@ export interface BadgeMetadataDetails<T extends NumberType> {
 }
 ```
 
-Consider using the SDK for managing the **cachedBadgeMetadata**.
-
-{% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
-[badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
-{% endcontent-ref %}
+```json
+cachedBadgeMetdata: [{
+    "metadata": {
+        "name": "Verification",
+        "description": "The Verification Badge is a symbol of trust and authenticity in the digital world. It's the ultimate proof that the holder's identity or credentials have been verified, making it invaluable for influencers, celebrities, and professionals. With this badge, users can gain credibility, attract more followers, and ensure that their online presence is recognized as genuine and reliable.",
+        "image": "ipfs://QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj",
+        "fetchedAt": "1704837218398",
+        "fetchedAtBlock": "24",
+        "_isUpdating": false
+    },
+    "badgeIds": [
+        {
+            "start": "1",
+            "end": "1"
+        }
+    ],
+    "uri": "ipfs://QmTpELFKNwxTEHPSb8Jkkbyt76syfGMdnM8XvQtizZaz8Q",
+    "metadataId": "1"
+}, ...
+],
+collectionMetadata: {
+    "name": "Verification",
+    "description": "The Verification Badge is a symbol of trust and authenticity in the digital world. It's the ultimate proof that the holder's identity or credentials have been verified, making it invaluable for influencers, celebrities, and professionals. With this badge, users can gain credibility, attract more followers, and ensure that their online presence is recognized as genuine and reliable.",
+    "image": "ipfs://QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj",
+    "fetchedAt": "1704837218398",
+    "fetchedAtBlock": "24",
+    "_isUpdating": false
+}
+```
 
 ### **Views / Paginations**
 

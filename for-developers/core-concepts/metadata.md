@@ -44,9 +44,10 @@ export interface Metadata<T extends NumberType> {
 }
 ```
 
-```json
-"collectionMetadataTimeline": [
-  {
+Within the collection interface, this would look like:
+
+<pre class="language-json"><code class="lang-json"><strong>"collectionMetadataTimeline": [
+</strong>  {
     "timelineTimes": [
       {
         "start": "1",
@@ -81,4 +82,4 @@ export interface Metadata<T extends NumberType> {
     ]
   }
 ]
-```
+</code></pre>

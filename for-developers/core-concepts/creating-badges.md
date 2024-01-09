@@ -46,6 +46,10 @@ For example,
     }
   ],
   ...
+  "collectionPermissions": {
+    "canCreateMoreBadges": [....],
+    ...
+  }
 }
 ```
 

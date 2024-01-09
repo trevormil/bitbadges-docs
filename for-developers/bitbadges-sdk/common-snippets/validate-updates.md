@@ -1,12 +1,12 @@
-# Validate Updates
+# Validate Permission / Value Updates
 
 To validate if an update (old -> new) is valid according to the permissions set, use the following functions.&#x20;
 
 ```typescript
-export function validateCollectionApprovedTransfersUpdate(
-  oldApprovedTransfers: CollectionApprovedTransferTimelineWithDetails<bigint>[],
-  newApprovedTransfers: CollectionApprovedTransferTimelineWithDetails<bigint>[],
-  canUpdateCollectionApprovedTransfers: CollectionApprovedTransferPermissionWithDetails<bigint>[]
+export function validateCollectionApprovalsUpdate(
+  oldApprovedTransfers: CollectionApprovalsTimelineWithDetails<bigint>[],
+  newApprovedTransfers: CollectionApprovalsTimelineWithDetails<bigint>[],
+  canUpdateCollectionApprovedTransfers: CollectionApprovalsPermissionWithDetails<bigint>[]
 ): Error | null
 ```
 

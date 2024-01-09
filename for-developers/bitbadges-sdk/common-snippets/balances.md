@@ -7,9 +7,9 @@
 Before utilizing the SDK's functionality, you must define a balance. Here's how you create a balance using the provided `Balance` interface:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance: Balance&#x3C;bigint> = {
-</strong>  amount: 5n, // example badge amount using the BigInt type
-  badgeIds: [{ start: 1n, end: 5n }],
-  ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
+</strong>  "amount": 5n, // example badge amount using the BigInt type
+  "badgeIds": [{ start: 1n, end: 5n }],
+  "ownershipTimes": [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
 };
 </code></pre>
 

@@ -19,7 +19,7 @@ const ranges: UintRange<bigint>[] = [
   { start: 21n, end: 25n }
 ];
 
-const sortedAndMergedRanges = sortUintRangesAndMergeIfNecessary(ranges);
+const sortedAndMergedRanges = sortUintRangesAndMergeIfNecessary(ranges, true);
 console.log(sortedAndMergedRanges); // Expected: [{ start: 5n, end: 25n }]
 ```
 
@@ -28,8 +28,8 @@ console.log(sortedAndMergedRanges); // Expected: [{ start: 5n, end: 25n }]
 To search for a specific ID within a list of ranges and return its index and a boolean indicating if it was found:
 
 ```typescript
-const searchId = 15n;
-const [index, isFound] = searchUintRangesForId(searchId, sortedAndMergedRanges);
+const idToSearch = 15n;
+const [index, isFound] = searchUintRangesForId(idToSearch, sortedAndMergedRanges);
 
 console.log(`Index: ${index}, Found: ${isFound}`);
 ```
@@ -43,19 +43,7 @@ const invertedRanges = invertUintRanges(sortedAndMergedRanges, 1n, 30n);
 console.log(invertedRanges); // This would show the gaps between the given ranges within the specified bounds.
 ```
 
-**5. Removing Specific Uints from a Range**
-
-To remove a specific sub-range from a given range:
-
-```typescript
-const subRangeToRemove: UintRange<bigint> = { start: 8n, end: 18n };
-const originalRange: UintRange<bigint> = { start: 5n, end: 25n };
-
-const resultRange = removeUintsFromUintRange(subRangeToRemove, originalRange);
-console.log(resultRange);
-```
-
-**6. Removing One Range From Another**
+**5. Removing One Range From Another**
 
 To remove one range from another and also get the removed part:
 
@@ -68,7 +56,7 @@ console.log("Remaining:", remainingRanges);
 console.log("Removed:", removedRanges);
 ```
 
-**7. Checking for Overlaps**
+**6. Checking for Overlaps**
 
 To determine if there are overlaps within a list of ranges:
 
