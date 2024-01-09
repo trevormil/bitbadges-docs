@@ -2,9 +2,7 @@
 
 ### How is a user's "main" chain determined?
 
-You may have noticed that on the BitBadges site and other places, a user's "preferred" or "main" blockchain is remembered and auto-populated. This is how we populate the **chain** and **address** field in account route responses.
-
-We determine the main chain in the following order.
+You may have noticed that on the BitBadges site and other places, a user's "preferred" or "main" blockchain is remembered and auto-populated. This is how we populate the **chain** and **address** field in account route responses. We determine the main chain in the following order.
 
 1. Chain of last signed BitBadges transaction
 2. Chain of last sign in on BitBadges app

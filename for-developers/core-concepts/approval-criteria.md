@@ -2,9 +2,9 @@
 
 In the last page, we mainly talked about how we match and check an approved transfer. Here, we will talk about the **approvalCriteria.**
 
-These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set.
+These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set (everything talked about in the last page AND the **approvalCriteria**).
 
-Note these are just the native options provided for convenience and consistency. You can implement your own approvals via custom logic with a smart contract.
+Note these are just the native options provided for convenience and consistency. You can implement your own approvals via custom logic with a CosmWASM smart contract.
 
 ```typescript
 export interface ApprovalCriteria<T extends NumberType> {
@@ -35,9 +35,7 @@ export interface ApprovalCriteria<T extends NumberType> {
 
 As mentioned in the previous page, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.
 
-If set to true, we will not check the user's incoming / outgoing approvals for the approved balances respectively. Essentially, it is forcefully transferred without needing user approvals.
-
-This can be leveraged to implement forcefully revoking a badge.
+If set to true, we will not check the user's incoming / outgoing approvals for the approved balances respectively. Essentially, it is forcefully transferred without needing user approvals. This can be leveraged to implement forcefully revoking a badge, freezing a badge, etc.
 
 IMPORTANT: The Mint address has its own approvals store, but since it is not a real address, they are always empty. Thus, it is important that when you attempt transfers from the Mint address, you override the outgoing approvals of the Mint address.
 
@@ -57,7 +55,7 @@ Must own badges are another unique feature that is very powerful. This allows yo
 
 For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
 
-Note that collections with "Off-Chain" balances are not supported for this feature.
+Note that collections with "Off-Chain" balances are not supported for this feature because the blockchain does not have access to off-chain balances.
 
 ```typescript
 export interface MustOwnBadges<T extends NumberType> {
@@ -91,15 +89,13 @@ On the previous page, we explained the approval interface. This interface had tw
 
 **What are trackers?**
 
-Approvals trackers track how many badges have been transferred and how many transfers occur.
-
-Challenge trackers track which leaves were used in a Merkle challenge (the approvee needs to provide a valid Merkle path for approval).
+Approvals trackers track how many badges have been transferred and how many transfers occur. Challenge trackers track which leaves have already been used for a [Merkle challenge](approval-criteria.md#merkle-challenges) (i.e. when the approvee needs to provide a valid Merkle path for approval).
 
 Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much. We use the terms trackers and tallies interchangeably throughout this documentation.
 
-**How are they identified?**
+**How are trackers identified?**
 
-The identifier of each approval tracker consists of **amountTrackerId** along with other identifying details.
+The identifier of each approval tracker consists of the **amountTrackerId** along with other identifying details.
 
 ```
 ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
@@ -128,7 +124,7 @@ The identifier for each challenge tracker consists of **challengeTrackerId** alo
 }
 ```
 
-**approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or useroutgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
+**approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or user outgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
 
 **How do trackers work?**
 

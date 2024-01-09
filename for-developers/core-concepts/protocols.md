@@ -27,7 +27,7 @@ export interface Protocol {
 }
 ```
 
-The uri and customData do currently have a specific format. It is just for extra details.
+The uri and customData do not currently have a specific format. It is just a place to provide extra details.
 
 
 

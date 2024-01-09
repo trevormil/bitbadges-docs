@@ -1,4 +1,4 @@
-# 📧 Address Lists (Lists)
+# 📧 Address Lists
 
 [AddressLists](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
@@ -13,6 +13,8 @@ export interface AddressList {
   customData: string;
 }
 ```
+
+###
 
 ### Inverting (Allowlist vs Blocklist)
 
@@ -30,7 +32,11 @@ The same address list is not unique to a collection on-chain and can be used for
 
 **Off-Chain:** Address lists can also be created off-chain through our indexer / API. These are updatable and deletable, along with additional options. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
 
+### Using Lists Instead of Badges
 
+Theoretically, address lists are just a simplified version of the badge interface. All address lists can be implemented as a badge where the list is determined by who has a positive balance of the badge.
+
+However, sometimes, this simplicity may be desired, such as not dealing with balances, ownership times, permissions, etc. On the BitBadges site, we allow you to create both lists and badges, depending on your desired level of customization.
 
 ### **Reserved Address List IDs**
 
@@ -43,21 +49,18 @@ There are a couple IDs for AddressLists that are reserved for efficient shorthan
 * Combination shorthands
   * Using the ":" character, you can combine multiple addresses such as "Mint:cosmos1abc...". This would represent the list with Mint and cosmos1abc...
 * Inversion shorthands
-  *   If prefixed with "!", it denotes to invert the address list.&#x20;
+  * If prefixed with "!", it denotes to invert the address list.
+    * "!id123" inverts the "id123" address list
+    * "!Mint" inverts the Mint list
+    *   "!Mint:cosmos1abc..." inverts the "Mint:cosmos1abc..." list which means all but the two specified addresses
 
-      * "!id123" inverts the "id123" address list
-      * "!Mint" inverts the Mint list
-      *   "!Mint:cosmos1abc..." inverts the "Mint:cosmos1abc..." list which means all but the two specified addresses
-
-          The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:cosmos1abc...)"
-
-
+        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:cosmos1abc...)"
 
 See below for the function for generating them.
 
 ### Custom IDs
 
-Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:cosmos123...:cosmos456...").&#x20;
+Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g. "AllWithoutMint:cosmos123...:cosmos456...").
 
 For efficiency, consider creating a list with a unique short ID and reference the list that way. You can create a list which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 

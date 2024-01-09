@@ -13,22 +13,6 @@ Standards are a generic concept that allows anyone to define how to interpret th
 
 You can define and implement multiple standards, as long as they are compatible. There is no check in the blockchain logic that a specific standard is actually followed. The value stored on the blockchain is purely informational and for guidelines. It is the querier's responsibility to double check standards are being followed correctly and take action accordingly.
 
-### Adding New Standards
-
-We want to decentralize the process of creating new standards and open it up to everyone. The comprehensive list of standards can be found on this page below. If you would like to author a new standard and have it added, contact us.
-
-### Format
-
-Each standard must follow the following format:
-
-**Author:** John Doe
-
-**ID: "..."**
-
-**Version:** 0.0.1
-
-**Standard Details:** The standard details outline the expected functionality of badges who implement this standard.
-
 ## **Compatibility with BitBadges API / Indexer**
 
 Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/designing-for-compatibility.md). If you want compatibility, please make sure all standards are compatible.

@@ -1,52 +1,26 @@
 # Designing for Compatibility
 
-To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please use the following interfaces when hosting details off-chain.
+To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please make sure everything is compatible when hosting details off-chain.
 
 #### Badge and Collection Metadata Format
 
-You should host badge and collection metadata in the following JSON format at the specified URIs:
-
-```typescript
-export interface Metadata<T extends NumberType> {
-  name: string;                 // Name of the badge or collection
-  description: string;          // Description of the badge or collection
-  image: string;                // URL to the badge or collection image
-  video?: string                // URL to the video or Youtube embed link (will use provided image for icons / thumbnails where applicable)
-  validFrom?: UintRange<T>;     // Valid from range (optional)
-  category?: string;            // Category (optional)
-  externalUrl?: string;         // External URL (optional)
-  tags?: string[];              // Tags (optional)
-
-  socials?: {
-    [key: string]: string;
-  }
-
-  offChainTransferabilityInfo?: {
-    host: string
-    assignMethod: string
-  }
-}
-```
-
-[https://bafybeigbmbqto74uhk2udel7azylwrlkp6x2abufgpfrvisyja4kr35niq.ipfs.dweb.link/](https://bafybeigbmbqto74uhk2udel7azylwrlkp6x2abufgpfrvisyja4kr35niq.ipfs.dweb.link/\))
-
-For images, we display them in circular format with a maximum size of 200 x 200 on the BitBadges website.
-
-If the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"`
+{% content-ref url="../core-concepts/metadata.md" %}
+[metadata.md](../core-concepts/metadata.md)
+{% endcontent-ref %}
 
 #### Off-Chain Balances Metadata
 
-If your collection uses the off-chain balances type, the URI of the `offChainBalancesMetadata` should point to a JSON file that is a map of valid cosmosAddresses or list IDs to Balance objects for indexed collections.
+{% content-ref url="../core-concepts/balance-types.md" %}
+[balance-types.md](../core-concepts/balance-types.md)
+{% endcontent-ref %}
 
-[https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/)
-
-For non-indexed collections, it will be queried dynamically with replacing {address} in the URL with the native Cosmos address. The returned JSON should be in the format { balances: \[....] }.
+{% content-ref url="../tutorials/create-and-host-off-chain-balances.md" %}
+[create-and-host-off-chain-balances.md](../tutorials/create-and-host-off-chain-balances.md)
+{% endcontent-ref %}
 
 #### Approval / Claim Metadata
 
-For providing additional details about a Merkle challenge claim, you can host a JSON via the `approval.uri` field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable).
-
-See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
+For providing additional details about an approval, you can host a JSON via the `approval.uri` field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable). See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
 
 Note that password-based claims must be created via the BitBadges site or indexer because otherwise, the password is not known. Therefore, `hasPassword` and `password` should be falsy.
 
@@ -73,7 +47,7 @@ export interface LeavesDetails {
 }
 </code></pre>
 
-Note that the indexer uses 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.&#x20;
+Note that the indexer uses 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.
 
 ```typescript
 import SHA256 from 'crypto-js/sha256';
@@ -86,4 +60,3 @@ new MerkleTree(leavesDetails?.leaves.map(x => {
   treeOptions
 )
 ```
-

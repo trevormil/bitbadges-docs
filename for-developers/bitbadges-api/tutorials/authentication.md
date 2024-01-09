@@ -10,6 +10,7 @@ Request a challenge from the **POST /api/v0/auth/getChallenge** route.&#x20;
 const res = await BitBadgesApi.getSignInChallenge({
     chain: "Ethereum",
     address: "0x.....",
+    // hours: 168
 })
 
 /*

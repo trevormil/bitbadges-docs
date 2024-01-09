@@ -19,15 +19,15 @@ Merely checking the BitBadges website ([https://bitbadges.io](https://bitbadges.
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
-Blockin can be used to implement both digital and in-person verificatin.
+Blockin can be used to implement both digital and in-person verification.
 
 #### Digital Verification
 
-For digital verifiation (such as badge-gating websites), you may see a modal such as the one below, which walks you through all details about the sign in request and badge ownership requirements.
+For digital verification (such as badge-gating websites), you may see a modal such as the one below, which walks you through all details about the sign in request and badge ownership requirements. This is what is used on the BitBadges website.
 
 #### In-Person Verification
 
-&#x20;In-person verification can be facilitated through pre-signing a message and presenting the signature at authentication time (typically through a QR code as shown below). This is typically handled via the Authentication QR Codes tab on the website.
+In-person verification can be facilitated through pre-signing a message and presenting the signature at authentication time (typically through a QR code as shown below). This can be handled via the Authentication QR Codes tab on the website or a custom implementation.
 
 
 

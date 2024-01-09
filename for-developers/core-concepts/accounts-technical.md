@@ -1,4 +1,4 @@
-# 👥 Accounts (Technical)
+# 👥 Accounts (Low-Level)
 
 ## Pre-Readings
 
@@ -19,7 +19,7 @@ BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for 
 
 BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
 
-**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
+**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can be generated via the SDK.
 
 ### **Cosmos**
 

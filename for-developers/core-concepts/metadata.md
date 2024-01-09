@@ -1,20 +1,24 @@
 # 🖼 Metadata
 
-Collections can define metadata for both the collection and individual badges via **collectionMetadataTimeline** and **badgeMetadataTimeline,** respectively**.**&#x20;
+Collections can define metadata for both the collection and individual badges via their **collectionMetadataTimeline** and **badgeMetadataTimeline,** respectively**.**&#x20;
 
-See here for what is expected out of each property.
+Both will follow the same metadata interface, as explained here.&#x20;
 
 {% content-ref url="../../overview/how-it-works/metadata.md" %}
 [metadata.md](../../overview/how-it-works/metadata.md)
 {% endcontent-ref %}
 
-#### **Expected Format (BitBadges API / Indexer)**
+**Using {id} Placeholder**
 
-By default, we expect the collection and badge metadata to follow the format shown below for the BitBadges indexer / API. Also, if the badge metadata URI includes "{id}" anywhere in the URI, it will be dynamically replaced by the corresponding badge ID number. For example: `"...x.com/metadata/{id}"` becomes `"...x.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/designing-for-compatibility.md) for more info).
+If the badge metadata URI includes "{id}" anywhere in the URI, it is expected to be dynamically replaced by the corresponding badge ID number. For example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/designing-for-compatibility.md) for more info).
 
-For images, we display them with rounded corners with a maximum size of 300 x 300 on the BitBadges website.
+**Markdown**
 
-However, this is only a default expected format, and we envision that many different metadata standards can develop and be supported over time.
+Markdown is supported for descriptions.
+
+#### **Expected Interface (BitBadges API / Indexer)**
+
+By default, we expect the collection and badge metadata to follow the format shown below for the BitBadges indexer / API. However, this is only a default expected format, and we envision that many different metadata standards can develop and be supported over time.
 
 ```typescript
 export interface Metadata<T extends NumberType> {

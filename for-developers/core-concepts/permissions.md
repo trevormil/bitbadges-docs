@@ -5,29 +5,81 @@ First, read [Permissions](../../overview/how-it-works/manager.md) for an overvie
 Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/msg-examples.md) section. Please ask for help if needed.
 
 <pre class="language-json"><code class="lang-json"><strong>"collectionPermissions": {
-</strong>    "canDeleteCollection": [],
-    "canArchiveCollection": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": [],
-    "canUpdateCustomData": [],
-    "canUpdateManager": [],
-    "canUpdateCollectionMetadata": [],
-    "canCreateMoreBadges": [],
-    "canUpdateBadgeMetadata": [],
-    "canUpdateCollectionApprovals": []
+</strong>    "canDeleteCollection": [...],
+    "canArchiveCollection": [...],
+    "canUpdateOffChainBalancesMetadata": [...],
+    "canUpdateStandards": [...],
+    "canUpdateCustomData": [...],
+    "canUpdateManager": [...],
+    "canUpdateCollectionMetadata": [...],
+    "canCreateMoreBadges": [...],
+    "canUpdateBadgeMetadata": [...],
+    "canUpdateCollectionApprovals": [...]
 }
 </code></pre>
 
 ```json
 "userPermissions": {
-    "canUpdateIncomingApprovals": [],
-    "canUpdateOutgoingApprovals": [],
-    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
-    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+    "canUpdateIncomingApprovals": [...],
+    "canUpdateOutgoingApprovals": [...],
+    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [...],
+    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [...],
 }
 ```
 
 Note that the **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** follow the same interface as **canUpdateCollectionApprovals** minus automatically populating the user's address for to / from for incoming / outgoing, respectively.
+
+```typescript
+export interface ActionPermission<T extends NumberType> {
+  permanentlyPermittedTimes: UintRange<T>[];
+  permanentlyForbiddenTimes: UintRange<T>[];
+}
+```
+
+```typescript
+export interface TimedUpdatePermission<T extends NumberType> {
+  timelineTimes: UintRange<T>[];
+  
+  permanentlyPermittedTimes: UintRange<T>[];
+  permanentlyForbiddenTimes: UintRange<T>[];
+}
+```
+
+```typescript
+export interface TimedUpdateWithBadgeIdsPermission<T extends NumberType> {
+  timelineTimes: UintRange<T>[];
+  badgeIds: UintRange<T>[];
+  
+  permanentlyPermittedTimes: UintRange<T>[];
+  permanentlyForbiddenTimes: UintRange<T>[];
+}
+```
+
+```typescript
+export interface BalancesActionPermission<T extends NumberType> {
+  badgeIds: UintRange<T>[];
+  ownershipTimes: UintRange<T>[];
+  
+  permanentlyPermittedTimes: UintRange<T>[];
+  permanentlyForbiddenTimes: UintRange<T>[];
+}
+```
+
+```typescript
+export interface CollectionApprovalPermission<T extends NumberType> {
+  fromListId: string;
+  toListId: string;
+  initiatedByListId: string;
+  transferTimes: UintRange<T>[];
+  badgeIds: UintRange<T>[];
+  ownershipTimes: UintRange<T>[];
+  amountTrackerId: string
+  challengeTrackerId: string
+  
+  permanentlyPermittedTimes: UintRange<T>[];
+  permanentlyForbiddenTimes: UintRange<T>[];
+}
+```
 
 ### Manager
 
@@ -60,28 +112,17 @@ Permissions allow you to define permitted or forbidden times to be able to execu
 There are three states that a permission can be in at any one time:
 
 1. **Forbidden + Permanently Frozen (permanentlyForbiddenTimes):** This permission is forbidden and will always remain forbidden.
+   1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
 2. **Permitted + Not Frozen (Unhandled):** This permission is currently permitted but can be changed to one of the other two states.
+   1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
 3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
+   1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
 There is no forbidden + not frozen because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
 
+**Examples**
 
-
-
-
-All permissions are a linear array of (criteria -> permitted or forbiddenTimes) maps. If the criteria matches, the permission is permitted or forbidden at a specific time dependent on the defined  times.
-
-1\) If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
-
-2\) If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
-
-3\) If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
-
-4\) We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
-
-
-
-So for example, this means the permission is permanently forbidden and frozen.
+This means the permission is permanently forbidden and frozen.
 
 ```typescriptreact
 permanentlyPermittedTimes: []
@@ -104,7 +145,13 @@ permanentlyPermittedTimes: []
 
 ### First Match Policy
 
-Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. **This makes it so that at any time, there is only ONE deterministic permitted/permanentlyForbiddenTimes for a given set of criteria.** This means you have to carefully design your permissions because order and overlaps matter.
+All permissions are a linear array where each element may have some criteria as well as **permanentlyForbiddenTimes** or **permanentlyPermittedTimes.** It can be interpreted as if the criteria matches, the permission is permitted or forbidden during the defined times, respectively.
+
+We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
+
+Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. This makes it so that for any time and for each criteria combination, there is a deterministic permission state (permitted, forbidden, or neutral).
+
+This means you have to carefully design your permissions because order and overlaps matter.
 
 Ex: If we have the following permission definitions in an array \[elem1, elem2]:
 
@@ -121,7 +168,7 @@ Ex: If we have the following permission definitions in an array \[elem1, elem2]:
    permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
    ```
 
-In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we only take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).
+In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).
 
 Times 11-100 would be permanently permitted since the first match for those times is the second element.
 
@@ -141,7 +188,7 @@ permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
 
 This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.
 
-However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered **unhandled** or not defined by the permission definition above.
+However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered unhandled or not defined by the permission definition above.
 
 **Common Misunderstanding**
 
@@ -170,7 +217,7 @@ permanentlyPermittedTimes: []
 
 For approved transfer permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N -1 criteria is satisfied.
 
-Also, if we add another permission definition after this one with **fromListId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
+Also, if we add another permission definition after this one in the array with **fromListId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
 
 ```json
 "canUpdateCollectionApprovals": [
@@ -215,15 +262,9 @@ Also, if we add another permission definition after this one with **fromListId**
 ]
 ```
 
-### Shorthand Options
+#### **Importance of Handling All Values**
 
-Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)).
-
-The same shorthand options can be applied to the trackerId ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
-
-### **Importance of Handling All Values**
-
-Let's say we have the following where we do not handle badge ID 1.
+Let's say we have the following **where** we do not handle badge ID 1.
 
 ```
 "canUpdateCollectionApprovals": [
@@ -331,7 +372,9 @@ There are five categories of permissions, each with different criteria that must
       permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
-* **UpdateApprovedTransferPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
+* **ApprovalPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
+  * **Tracker IDs:** The tracker IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, IDs, ownershipTimes) combination due to multiple approvals matching such criteria.
+  * **Shorthand Options:** Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)). The same shorthand options can be applied to the trackerId fields ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
   * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All", "All") tuple, thus making the transferability locked for those transfer combinations.
     * <pre class="language-typescript"><code class="lang-typescript"><strong>{
       </strong>  fromListId: string;
@@ -348,19 +391,11 @@ There are five categories of permissions, each with different criteria that must
       }
       </code></pre>
 
-### **ApprovedTransferPermissions**
-
-**What do we check if updating an approval is locked?**
-
-After expanding to a singular value tuple (bob, alice, bob, 1, 1, ...), we fetch ALL matches and check the following to ensure that nothing has changed:
-
-1\) If previously mapped to a disapproval, it must also map to a disapproval now.
-
-2\) For all matches, ensure that all **approvalCriteria** remains unchanged. So if we had 3 prior matches, we check that all 3 are exactly the same. If there are now 2 matches, this isn't allowed, or if one of the three's criteria changes, this is not allowed.
+### **ApprovalPermissions**
 
 **How are break downs handled?**
 
-Like mentioned above, we handle everything broken down into a singular value tuple. So for example, even though you have locked badge IDs 2-10 from being updated, the following would be allowed because of the break down logic.
+Like mentioned above, we handle everything broken down into a singular value tuple. So for example, even though you may have locked badge IDs 2-10 from being updated, the following would be allowed because of the break down logic.
 
 Before: 1-10 -> APPROVED, Criteria ABC
 
@@ -417,9 +452,7 @@ Typically, these will remain empty, so that the user can always have full contro
 
 **Defaults**
 
-We give the option for the collection to define **defaultUserPermissions.** These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with **defaultOutgoingApprovals** and **defaultIncomingApprovals** as well as **defaultAutoApproveSelfInitiatedOutgoingTransfers** and **defaultAutoApproveSelfInitiatedIncomingTransfers**.
-
-The **defaultUserPermissions** are also not typically used, but can be used in certain situations. For example,
+We give the option for the collection to define default permissions. These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with the other defaults. The default permissions are also not typically used, but can be used in certain situations. For example,
 
 * By default, approve all incoming transfers and lock the permission so all transfers always have incoming approvals and can never be disapproved.
 

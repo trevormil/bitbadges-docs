@@ -4,7 +4,7 @@ This page will give you an overview of BitBadges accounts. It should be enough i
 
 **What is signature compatibility?**
 
-To enable interoperability between different blockchains, BitBadges is signature comaptible with all of the supported chains (Bitcoin, Ethereum, Solana, and Cosmos).&#x20;
+To enable interoperability between different blockchains, BitBadges is signature compatible with all of the supported chains (Bitcoin, Ethereum, Solana, and Cosmos).&#x20;
 
 Signature compatibility means that users from any of the aforementioned blockchain ecosystems are able to sign BitBadges transactions. BitBadges is also compatible with many of the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from any other blockchain. Everything is confined to the BitBadges blockchain.
 
@@ -33,23 +33,21 @@ Bitcoin Example&#x20;
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
 * Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
-#### Why can I convert Solana address to a  Cosmos / Eth / BTC address but not the other way around?
+#### Why can I convert Solana address to a  Cosmos / ETH / BTC address but not the other way around?
 
-You may notice that you cannot go from a Cosmos / Eth address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an Eth / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
+You may notice that you cannot go from a Cosmos / Eth address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 
 For user experience, you should always display the user's native address on a frontend. However, the BitBadges blockchain **only** uses the mapped Cosmos addresses behind the scenes, never a native address. This can be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth, convertToCosmosAddress, mustConvertToBtcAddress } from 'bitbadgesjs-utils';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToCosmosAddress, mustConvertToBtcAddress } from 'bitbadgesjs-utils';
 </strong><strong>
-</strong><strong>
-</strong><strong>const cosmosAddress = convertToCosmosAddress(address);
+</strong><strong>const cosmosAddress = convertToCosmosAddress(btcAddress);
 </strong>const ethAddress = convertToEthAddress(cosmosAddress);
 const cosmosAddressFromSolana = convertToCosmosAddress(solAddress);
 const btcAddress = mustConvertToBtcAddress(address);
-//Note there is no cosmosToSolana or ethToSolana due to how the addresses work
-//See above
+//Note there is no convertToSolanaAddress due to how the addresses work. See above
 </code></pre>
 
 #### **How do I query details for an address?**

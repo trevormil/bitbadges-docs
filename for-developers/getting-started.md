@@ -36,9 +36,7 @@ Use the [BitBadges website](bitbadges-frontend.md) code or [Blockin Quickstart](
 
 ## **Need additional functionality?**
 
-Consider expanding with the BitBadges SDK, or if you need to extend the interface on-chain, you can do so with a [CosmWasm smart contract](tutorials/create-a-wasm-contract.md).&#x20;
-
-Or, reach out to us to see what we can do.
+Consider expanding with the BitBadges SDK, or if you need to extend the interface on-chain, you can do so with a [CosmWasm smart contract](tutorials/create-a-wasm-contract.md). Or, reach out to us to see what we can do.
 
 ## **Do you want to run a blockchain node?**
 

@@ -1,6 +1,6 @@
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../overview/how-it-works/balances-types.md). Please read this simplified version first. The balances type for a collection is determined by the **balancesType** field of the collection.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../overview/how-it-works/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
@@ -18,7 +18,7 @@ With standard balances, everything is facilitated on-chain in a decentralized ma
 
 With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. **However, all transfers and approval transactions will throw an error if attempted because these are to be facilitated off-chain.**
 
-Balances, at any given time, will be queried from the specified URI (stored via the **offChainBalancesMetadata** field of the collection).&#x20;
+Balances, at any given time, will be queried from the specified URI (stored via the **offChainBalancesMetadata** field of the collection).
 
 ```json
 "offChainBalancesMetadataTimeline": [
@@ -39,19 +39,19 @@ Balances, at any given time, will be queried from the specified URI (stored via 
 
 #### Benefits
 
-* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
-* **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
+* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the core collection details need to be created / updated on-chain, and future balance updates do not require blockchain transactions (assuming the URI does not change).
+* **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc). Or, you can access your private databases to assign badges dynamically.
 * **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
 * **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
-* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.&#x20;
+* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
 
-* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly, \
-  since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and claims) is not supported, unless custom implemented off-chain.&#x20;
+* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
+  since there are no on-chain transfers, certain functionality (such as approvals, customizable transferability, and claims) is not supported, unless custom implemented off-chain.
 * **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 * **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
-  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.&#x20;
+  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
   * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
 
 #### Suitability of Off-Chain Balances
@@ -59,7 +59,7 @@ Balances, at any given time, will be queried from the specified URI (stored via 
 We envision collections adopting off-chain balances if they align with one of the following criteria:
 
 1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer ever, off-chain balances could make your collection scalability without sacrificing verifiability or centralization.
-2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.&#x20;
+2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
 
 #### Advantages Over Standard Solutions
 
@@ -74,7 +74,7 @@ In conclusion, off-chain balances present an intriguing avenue to enhance scalab
 
 **How are balances permanently frozen?**
 
-The balances URL can be set to non-updatable via the manager permissions (**canUpdateOffChainBalancesMetadata**), and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.&#x20;
+The balances URL can be set to non-updatable via the manager permissions (**canUpdateOffChainBalancesMetadata**), and if the URL is hosted via a permanent file storage solution like IPFS, then the balances will be permanently frozen (never change) but always verifiable.
 
 This is because the IPFS URIs are hash-based. So if the hash is permanently stored and frozen on-chain and the balances file is known, you can always verify the hash.
 
@@ -100,7 +100,7 @@ This is because the IPFS URIs are hash-based. So if the hash is permanently stor
 
 #### Custom Logic Implementation
 
-Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL (if not using a permanent URL). This empowers you to define and program your balance assignment process to align with your collection's unique requirements.&#x20;
+Off-chain balances' updatable nature allows for the implementation of custom logic for what is returned by the URL (if not using a permanent URL). This empowers you to define and program your balance assignment process to align with your collection's unique requirements.
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change). You simply need to just update the returned balances.
 
@@ -111,10 +111,10 @@ Off-chain balances can either be indexed or non-indexed. The differences are as 
 * Indexed balances have a total verifiable supply defined on-chain. Non-indexed does not.
 * At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
 * For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
-* Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.&#x20;
+* Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.
 * Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
-Technically speaking, the difference is that non-indexed balances are queried on a per-address basis and only return one balance at a time. Indexed balances return the entire list of owners via a JSON map when queried.
+Technically speaking, the difference is that non-indexed balances are queried on a per-address basis and only return one balance at a time. Indexed balances return the **entire** list of owners via a JSON map when queried.
 
 ### Off-Chain - Indexed Balances
 
@@ -138,7 +138,7 @@ We do this by the following:
 * The badges that live in the "Mint" address is considered the total verifiable maximum supply. Since no transfers are allowed on-chain, they will permanently live in the "Mint" address once created. When querying the balances from the URI, the querier should verify that the maximum supply defined on-chain (the badge balance of the "Mint" address) is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
 * Each balances query will return a map of ALL balances for the collection. This is done via a JSON of user -> balance definitions. See below.
 
-**What format should the balances be in?**&#x20;
+**What format should the balances be in?**
 
 To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are Cosmos addresses / address list IDs and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
@@ -150,7 +150,7 @@ See [here](../bitbadges-sdk/common-snippets/off-chain-balances.md) for further i
 
 To refresh an indexer, a refresh needs to be triggered because off-chain indexed balances are cached.
 
-To refresh, first, the URI must be set to return the updated balances. Then, balances can be refreshed on the BitBadges indexer by triggering the refresh API endpoint.&#x20;
+To refresh, first, the URI must be set to return the updated balances. Then, balances can be refreshed on the BitBadges indexer by triggering the refresh API endpoint.
 
 The BitBadges indexer auto triggers an update if the on-chain URL is updated.
 
@@ -197,13 +197,13 @@ The benefit of this is that this approach is much more scalable to indexers. Ind
 
 All URIs must contain the "{address}" placeholder in the on-chain specified URI. This is to be replaced at fetch time with the user's Cosmos address. it is up to you whether you want to support native chain addresses as well, but the converted Cosmos address is a minimum requirement.
 
-The return value from the URI should be dynamic in the following format:&#x20;
+The return value from the URI should be dynamic in the following format:
 
 ```
 { balances: [....] }
 ```
 
-Standard indexed balances return the whole map of user -> balances whereas non-indexed only returns the requested user's balances.&#x20;
+Standard indexed balances return the whole map of user -> balances whereas non-indexed only returns the requested user's balances.
 
 ```json
 "offChainBalancesMetadataTimeline": [
@@ -242,7 +242,6 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md).  Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
+For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
 
 Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
-
