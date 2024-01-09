@@ -7,7 +7,7 @@
 * [🏆 How It Works](overview/how-it-works/README.md)
   * [Accounts](overview/how-it-works/accounts.md)
   * [Badges vs Address Lists](overview/how-it-works/badges-vs-address-lists.md)
-  * [Distribution](overview/how-it-works/distribution.md)
+  * [Distribution / Collection](overview/how-it-works/distribution.md)
   * [Verification](overview/how-it-works/verification.md)
   * [Manager](overview/how-it-works/manager.md)
   * [Total Supplys](overview/how-it-works/total-supplys.md)

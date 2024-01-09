@@ -1,4 +1,4 @@
-# Distribution
+# Distribution / Collection
 
 BitBadges is multi-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).
 
@@ -6,7 +6,7 @@ See [here](balances-types.md) to learn about the pros and cons of the different 
 
 ## How to Distribute?
 
-Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. To see how a specific collection / list is distributed, you must visit the page for that collection.
+Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. **To see how a specific collection / list is distributed, you must visit the page for that collection.**
 
 ### **Address Lists + Badges with Off-Chain Balances - Manual Assignment**
 
@@ -36,21 +36,31 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 
 <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a allowlist, manually assign balances, or some other address-based method. If you do not, you have two options:
-
-1. Collect their addresses somehow (e.g. surveys) and then use an address-based method.
-2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
-
-If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for allowlists and activity if a badge is transferred / assigned to them).
-
-See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
-
 **Starting Balances**
 
 Another option is to define default starting balances. For example, everyone starts with x1 of a specific badge. This is typically not used with the normal minting processes explained above.
 
 For this option, ALL addresses will start out with the defined balances.
 
-### **Tools Compatibility**
+### **Notifications / Alerts**
 
-Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. Although, always use third-party tools at your own risk.
+A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a allowlist, manually assign balances, or some other address-based method. If you do not, you have two options:
+
+1. Collect their addresses somehow (e.g. surveys) first and then use an address-based method.
+2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
+
+**Claim Alerts and Ecosystem Tools**
+
+If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for allowlists and activity if a badge is transferred / assigned to them).
+
+See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
+
+### **Third-Party Tools Compatibility**
+
+Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. **Although, always use third-party tools at your own risk.**
+
+#### Ex: Mailchimp Merge Tags - Distributing Codes / Passwords
+
+Use Mailchimp's merge tag features to send unique codes to unique email addresses.
+
+{% embed url="https://mailchimp.com/help/all-the-merge-tags-cheat-sheet/" %}
