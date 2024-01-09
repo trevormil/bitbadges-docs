@@ -24,7 +24,7 @@ app.get('/nonIndexed/:address', async (req, res) => {
   const address = req.params.address; 
   const cosmosAddress = convertToCosmosAddress();
   
-  //custom logic
+  //custom logic - (e.g. check subscription status or check some local DB value)
 
   const balances: Balance<bigint>[] = [...];
   return res.status(200).send({ balances });
@@ -53,22 +53,18 @@ See [https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dw
 
 **Step 2: Host your map as a JSON file via some URL**
 
-This can be via IPFS or any method of your choice.&#x20;
+This can be via IPFS or any method of your choice.
 
-Note permanent storage (i.e. IPFS) coupled with not being able to update the URL on-chain will make your balances permanent and immutable. This can be a good option if you want your collection to be frozen, non-transferable, and immutable.&#x20;
+Note permanent storage (i.e. IPFS) coupled with not being able to update the URL on-chain will make your balances permanent and immutable. This can be a good option if you want your collection to be frozen, non-transferable, and immutable.
 
 **Step 3: Create Your Collection**
 
 Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not. Set the **managerTimeline** and **canUpdateOffChainBalancesMetadata** permission accordingly. Do not overallocate via **badgesToCreate**.
 
-See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/5\_off\_chain\_balances.json) for an example.&#x20;
-
-
+See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/5\_off\_chain\_balances.json) for an example.
 
 **Future Refreshes / Updates**
 
 In the future, if you are allowed to update the URL on-chain you can do so via another MsgUpdateCollection transaction. This will auto-trigger a refresh on the BitBadges API / indexer as well.
-
-
 
 You can also just update the balances JSON returned by the URL as well without interacting with the blockchain (i.e. URL stays the same). Note that the BitBadges indexer / website caches balances. To trigger a refetch manually, you can use the **POST /api/v0/refresh** endpoint or do it directly on the website.
