@@ -48,10 +48,10 @@ console.log(invertedRanges); // This would show the gaps between the given range
 To remove one range from another and also get the removed part:
 
 ```typescript
-const rangeToRemove = [{ start: 10n, end: 20n }];
-const fromRange = { start: 5n, end: 30n };
+const rangesToRemove = [{ start: 10n, end: 20n }];
+const currRanges = [{ start: 5n, end: 30n }];
 
-const [remainingRanges, removedRanges] = removeUintRangeFromUintRange(rangeToRemove, fromRange);
+const [remainingRanges, removedRanges] = removeUintRangesFromUintRanges(rangesToRemove, currRanges);
 console.log("Remaining:", remainingRanges);
 console.log("Removed:", removedRanges);
 ```

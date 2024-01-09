@@ -5,7 +5,7 @@ Use the following functions to check if an action is executable at the current t
 Ex: See if we can create the inputted balances, if the inputted permissions are currently set.
 
 ```typescript
-export function checkBalancesActionPermission(
+export function checkIfBalancesActionPermissionPermits(
   balances: Balance<bigint>[],
   permissions: BalancesActionPermission<bigint>[]
 ): Error | null
@@ -14,7 +14,7 @@ export function checkBalancesActionPermission(
 Ex: See if we can update the timeline values for these badge IDs, if the inputted permissions are currently set.
 
 ```typescript
-export function checkTimedUpdateWithBadgeIdsPermission(
+export function checkIfTimedUpdateWithBadgeIdsPermissionPermits(
   details: {
     timelineTimes: UintRange<bigint>[],
     badgeIds: UintRange<bigint>[],

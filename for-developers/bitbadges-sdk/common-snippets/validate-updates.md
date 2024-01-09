@@ -4,8 +4,8 @@ To validate if an update (old -> new) is valid according to the permissions set,
 
 ```typescript
 export function validateCollectionApprovalsUpdate(
-  oldApprovedTransfers: CollectionApprovalsTimelineWithDetails<bigint>[],
-  newApprovedTransfers: CollectionApprovalsTimelineWithDetails<bigint>[],
+  oldApprovals: CollectionApprovalsTimelineWithDetails<bigint>[],
+  newApprovals: CollectionApprovalsTimelineWithDetails<bigint>[],
   canUpdateCollectionApprovedTransfers: CollectionApprovalsPermissionWithDetails<bigint>[]
 ): Error | null
 ```
