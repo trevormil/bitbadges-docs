@@ -28,7 +28,7 @@ export function updateAccountWithResponse(
 ): BitBadgesUserInfo<bigint>
 ```
 
-Or, we have also exported it all in one function as&#x20;
+Or, we have also exported it all in one function as
 
 ```typescript
 public async getAccountsAndUpdate(requestBody: GetAccountsRouteRequestBody, currAccounts: BitBadgesUserInfo<bigint>[]): Promise<BitBadgesUserInfo<bigint>[]> 
@@ -68,11 +68,11 @@ The **balance** field is for $BADGE balance, whereas the **collected** array is 
 
 ### Custom Pages, Watchlists, Hidden
 
-Each profile will return their custom pages to be displayed on their portfolio: **customPages**, **customListPages**. These are pages where the user has grouped together lists or badges and designated them to be displayed together on a page on their profile with a title and description.
+Each profile will return their custom pages to be displayed on their portfolio: **customPages.** These are pages where the user has grouped together lists or badges and designated them to be displayed together on a page on their profile with a title and description.
 
-Watchlists (**watchedListPages** and **watchedBadgePages**) follow the same interface but are for user watchlists. They are not to be displayed publicly on the profile but are rather a way for a user to keep track of badges.
+Watchlists (**watchlists**) follow the same interface but are for user watchlists. They are not to be displayed publicly on the profile but are rather a way for a user to keep track of badges.
 
-Hidden badges (**hiddenLists** and **hiddenBadges**) follow the same interface, minus the title and description. These are badges that should be hidden from a user's portfolio. If they are hidden, we will hide them from standard search results.
+Hidden badges (**hiddenLists** and **hiddenBadges**) are similar, minus the title and description. These are badges that should be hidden from a user's portfolio. If they are hidden, we will hide them from standard search results.
 
 ### Alias
 

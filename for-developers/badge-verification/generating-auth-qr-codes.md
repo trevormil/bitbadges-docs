@@ -1,6 +1,6 @@
-# Generating Auth QR Codes
+# In-Person Verification
 
-Pre-Readings: [Verifying Badge Ownership](verifying-badge-ownership.md)
+Pre-Readings: Overview (prior page)
 
 
 

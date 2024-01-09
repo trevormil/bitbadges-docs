@@ -2,7 +2,9 @@
 
 There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information.
 
-For both options, you can enter the URLs directly in the Create form on the BitBadges app, or you can generate your own transaction.
+For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
+
+**URL Requirements**
 
 The URLs should be a GET endpoints accessible to whoever needs it (e.g. BitBadges indexer). It is your responsibility to handle CORS errors and such yourself.
 

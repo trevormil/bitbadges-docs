@@ -1,8 +1,6 @@
 # Address Lists
 
-Below shows you how to use the **getReservedAddressList** function. Note this only allows you to fetch reserved address lists (i.e.e "Mint", "Manager", "AllWithMint", etc). To fetch custom created ones, you will have to fetch them from the indexer, blockchain, or API.&#x20;
-
-
+Below shows you how to use the **getReservedAddressList** function. Note this only allows you to fetch reserved address lists (i.e.e "Mint", "Manager", "!Mint", etc). To fetch custom created ones, you will have to fetch them from the indexer, blockchain, or API.
 
 #### Tutorial: Fetching and Managing Reserved Address Lists
 
@@ -16,9 +14,8 @@ To retrieve a specific reserved address list using its ID and a manager's addres
 
 ```typescript
 const listId = "SomeReservedId"; // Replace with the actual ID
-const managerAddr = "0xManagerAddress"; // Replace with the manager's address
 
-const fetchedList = getReservedAddressList(listId, managerAddr);
+const fetchedList = getReservedAddressList(listId);
 
 if (fetchedList) {
   console.log(fetchedList);

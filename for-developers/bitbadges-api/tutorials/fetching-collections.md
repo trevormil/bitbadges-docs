@@ -30,7 +30,7 @@ export function updateCollectionWithResponse(
 ): BitBadgesCollection<bigint>
 ```
 
-### **Pruning Metadata**
+### **Pruning Metadata Fetch Requests**
 
 Another thing you might want to do is to not fetch metadata you have previously fetched. For example, if you have already fetched Badge ID 1's metadata, you do not want to fetch it again.
 
@@ -64,7 +64,7 @@ export function pruneMetadataToFetch: (
 </strong><strong>const updatedCollection = updateCollectionWithResponse(collection, newCollection);
 </strong></code></pre>
 
-Or, we have also exported it all in one function as&#x20;
+Or, we have also exported it all in one function as
 
 ```typescript
 public async getCollectionsAndUpdate(requestBody: GetCollectionBatchRouteRequestBody, currCollections: BitBadgesCollection<bigint>[]): Promise<BitBadgesCollection<bigint>[]>
@@ -80,11 +80,65 @@ NSFW or reported collections will be flagged with the **nsfw** or **reported** p
 
 On the app, we provide a warning message and replace all metadata with placeholders.
 
+```typescript
+nsfw?: { badgeIds: UintRange<T>[], reason: string };
+reported?: { badgeIds: UintRange<T>[], reason: string };
+```
+
 ### Metadata
 
-The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.**
+The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.** Subsequent fetches will append the new metadata to the existing **cachedBadgeMetadata**.
 
 Note this is different from **collectionMetadataTimeline** and **badgeMetadataTimeline** which simply store the URIs, not the actual metadata itself.
+
+```typescript
+cachedCollectionMetadata?: Metadata<T>;
+cachedBadgeMetadata: BadgeMetadataDetails<T>[];
+collectionMetadataTimeline: CollectionMetadataTimeline<T>[];
+badgeMetadataTimeline: BadgeMetadataTimeline<T>[];
+```
+
+<pre class="language-typescript"><code class="lang-typescript">export interface TimelineItem&#x3C;T extends NumberType> {
+  timelineTimes: UintRange&#x3C;T>[];
+}
+
+export interface CollectionMetadata {
+  uri: string
+  customData: string
+}
+
+export interface BadgeMetadata&#x3C;T extends NumberType> {
+  uri: string
+  customData: string
+  badgeIds: UintRange&#x3C;T>[]
+}
+
+export interface BadgeMetadataTimeline&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
+  badgeMetadata: BadgeMetadata&#x3C;T>[]
+}
+
+<strong>export interface CollectionMetadataTimeline&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
+</strong>  collectionMetadata: CollectionMetadata
+}
+</code></pre>
+
+```typescript
+export interface BadgeMetadataDetails<T extends NumberType> {
+  metadataId?: T,
+  badgeIds: UintRange<T>[],
+  metadata: Metadata<T>,
+  uri?: string
+  customData?: string
+
+  toUpdate?: boolean
+}
+```
+
+Consider using the SDK for managing the **cachedBadgeMetadata**.
+
+{% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
+[badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
+{% endcontent-ref %}
 
 ### **Views / Paginations**
 
