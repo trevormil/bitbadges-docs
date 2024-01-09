@@ -14,7 +14,17 @@ export interface AddressList {
 }
 ```
 
-###
+### Using Lists
+
+**Using Lists Instead of Badges**
+
+Theoretically, address lists are just a simplified version of the badge interface. All address lists can be implemented as a badge where the list is determined by who has a positive balance of the badge.
+
+However, sometimes, this simplicity may be desired, such as not dealing with balances, ownership times, permissions, etc. On the BitBadges site, we allow you to create both lists and badges, depending on your desired level of customization.
+
+**Using Lists to Define Transferability**
+
+When defining transferability and approvals, you need to define the list of addresses who can send, receive, and inititate the transfer. The AddressList interface is used for this on-chain.
 
 ### Inverting (Allowlist vs Blocklist)
 
@@ -31,12 +41,6 @@ They can be used to define transferability on-chain. For example, list "xyz" can
 The same address list is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
 **Off-Chain:** Address lists can also be created off-chain through our indexer / API. These are updatable and deletable, along with additional options. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
-
-### Using Lists Instead of Badges
-
-Theoretically, address lists are just a simplified version of the badge interface. All address lists can be implemented as a badge where the list is determined by who has a positive balance of the badge.
-
-However, sometimes, this simplicity may be desired, such as not dealing with balances, ownership times, permissions, etc. On the BitBadges site, we allow you to create both lists and badges, depending on your desired level of customization.
 
 ### **Reserved Address List IDs**
 
@@ -56,7 +60,17 @@ There are a couple IDs for AddressLists that are reserved for efficient shorthan
 
         The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:cosmos1abc...)"
 
-See below for the function for generating them.
+Use the SDK functions below for generating IDs / lists.
+
+```typescript
+function getReservedList(
+  addressListId: string, allowAliases?: boolean,
+): AddressList
+
+export const generateReservedListId = (
+  addressList: AddressList,
+): string
+```
 
 ### Custom IDs
 
@@ -74,136 +88,5 @@ This is the list which includes all addresses except "cosmos123...." and "cosmos
   "addresses": ["cosmos123...", "cosmos456...."],
   "allowlist": false,
   ...
-}
-```
-
-```typescript
-function getReservedList(
-  addressListId: string,
-  allowAliases?: boolean,
-): AddressList {
-  let inverted = false
-  let addressList: AddressList | undefined = undefined
-
-  if (addressListId[0] === '!' && !addressListId.startsWith('!(')) {
-    inverted = true
-    addressListId = addressListId.slice(1)
-  } else if (addressListId.startsWith('!(') && addressListId.endsWith(')')) {
-    inverted = true
-    addressListId = addressListId.slice(2, -1)
-  }
-
-  if (addressListId === 'Mint') {
-    addressList = {
-      listId: 'Mint',
-      addresses: ['Mint'],
-      allowlist: true,
-      uri: '',
-      customData: '',
-      createdBy: '',
-    }
-  } else if (addressListId.startsWith('AllWithout')) {
-    addressList = {
-      listId: addressListId,
-      addresses: [],
-      allowlist: false,
-      uri: '',
-      customData: '',
-      createdBy: '',
-    }
-
-    const addresses = addressListId.slice(10).split(':')
-
-    for (let address of addresses) {
-      addressList.addresses.push(address)
-    }
-  } else if (addressListId === 'AllWithMint' || addressListId === 'All') {
-    addressList = {
-      listId: addressListId,
-      addresses: [],
-      allowlist: false,
-      uri: '',
-      customData: '',
-      createdBy: '',
-    }
-  } else if (addressListId === 'None') {
-    addressList = {
-      listId: 'None',
-      addresses: [],
-      allowlist: true,
-      uri: '',
-      customData: '',
-      createdBy: '',
-    }
-  } else {
-    //split by :
-    const addressesToCheck = addressListId.split(':')
-    let allAreValid = true
-    //For tracker IDs, we allow aliasses(aka non valid addresses)
-    if (!allowAliases) {
-      for (let address of addressesToCheck) {
-        if (address != 'Mint' && !convertToCosmosAddress(address)) {
-          allAreValid = false
-        }
-      }
-    }
-
-    if (allAreValid) {
-      addressList = {
-        listId: addressListId,
-        addresses: addressesToCheck,
-        allowlist: true,
-        uri: '',
-        customData: '',
-        createdBy: '',
-      }
-    }
-  }
-
-  if (inverted && addressList) {
-    addressList.allowlist = !addressList.allowlist
-  }
-
-  if (!addressList) {
-    throw new Error(`Invalid address list ID: ${addressListId}`)
-  }
-
-  return addressList
-}
-
-/**
- * Generates a list ID for a given address list.
- *
- * @param {AddressList} addressList - The address list to generate the ID for
- *
- * @category Address Lists
- */
-export const generateReservedListId = (
-  addressList: AddressList,
-): string => {
-  let listId = ''
-
-  // Logic to determine the listId based on the properties of addressList
-  if (addressList.allowlist) {
-    if (addressList.addresses.length > 0) {
-      const addresses = addressList.addresses
-        .map((x) => (isAddressValid(x) ? convertToCosmosAddress(x) : x))
-        .join(':')
-      listId = `${addresses}`
-    } else {
-      listId = 'None'
-    }
-  } else {
-    if (addressList.addresses.length > 0) {
-      const addresses = addressList.addresses
-        .map((x) => (isAddressValid(x) ? convertToCosmosAddress(x) : x))
-        .join(':')
-      listId = `!(${addresses})`
-    } else {
-      listId = 'All'
-    }
-  }
-
-  return listId
 }
 ```
