@@ -64,11 +64,19 @@ export function pruneMetadataToFetch: (
 </strong><strong>const updatedCollection = updateCollectionWithResponse(collection, newCollection);
 </strong></code></pre>
 
+Or, we have also exported it all in one function as&#x20;
+
+```typescript
+public async getCollectionsAndUpdate(requestBody: GetCollectionBatchRouteRequestBody, currCollections: BitBadgesCollection<bigint>[]): Promise<BitBadgesCollection<bigint>[]>
+```
+
+```typescript
+await BitBadgesApi.getCollectionsAndUpdate({ collectionsToFetch: [...] }, [...existingCollections])
+```
+
 ### NSFW / Reported
 
-NSFW or reported collections will be flagged with the **nsfw** or **reported** properties.
-Everything is still fetched as normal with typical requests, and it is up to you to do what you 
-want with these accounts. 
+NSFW or reported collections will be flagged with the **nsfw** or **reported** properties. Everything is still fetched as normal with typical requests, and it is up to you to do what you want with these accounts.
 
 On the app, we provide a warning message and replace all metadata with placeholders.
 
@@ -82,11 +90,11 @@ Note this is different from **collectionMetadataTimeline** and **badgeMetadataTi
 
 The collection interface uses a view system with paginations + bookmarks.
 
-Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.&#x20;
+Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.
 
-The collection interface supports the following base **viewType** values.&#x20;
+The collection interface supports the following base **viewType** values.
 
-* 'latestActivity' : Fetches latest transfer activity documents.&#x20;
+* 'latestActivity' : Fetches latest transfer activity documents.
 * 'latestReviews': Fetches latest reviews for collection
 * 'owners': Fetches owners of the collection
 * 'merkleChallenges': Fetches merkle challenge trackers for the collection
@@ -105,7 +113,7 @@ Request:
 }]
 </code></pre>
 
-Response:&#x20;
+Response:
 
 ```json
 {
@@ -177,11 +185,11 @@ collection.owners.find(x => x.cosmosAddress === "Mint")
 collection.owners.find(x => x.cosmosAddress === "Total")
 ```
 
-### **Fetch Route**&#x20;
+### **Fetch Route**
 
 #### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 
-Batch fetch details about multiple collections.&#x20;
+Batch fetch details about multiple collections.
 
 ```typescript
 export interface GetCollectionBatchRouteRequestBody {
@@ -251,7 +259,6 @@ export interface GetCollectionBatchRouteSuccessResponse<T extends NumberType> {
   collections: BitBadgesCollection<T>[]
 }
 ```
-
 
 ### **Interfaces**
 

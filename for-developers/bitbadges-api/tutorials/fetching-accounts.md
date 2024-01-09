@@ -28,74 +28,67 @@ export function updateAccountWithResponse(
 ): BitBadgesUserInfo<bigint>
 ```
 
+Or, we have also exported it all in one function as&#x20;
+
+```typescript
+public async getAccountsAndUpdate(requestBody: GetAccountsRouteRequestBody, currAccounts: BitBadgesUserInfo<bigint>[]): Promise<BitBadgesUserInfo<bigint>[]> 
+```
+
+```typescript
+await BitBadgesApi.getAccountsAndUpdate(....)
+```
+
 ### Chains
 
-We will return the address corresponding to a user's preferred chain via **address**. 
-This will match the chain returned in **chain**. 
+We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**.
 
-We also return each equivalent address in the respective corresponding field:
-**btcAddress**, **solAddress**, **ethAddress**, and **cosmosAddress**.
+We also return each equivalent address in the respective corresponding field: **btcAddress**, **solAddress**, **ethAddress**, and **cosmosAddress**.
 
-Note that **solAddress** may be blank if we do not have adequate information. This is because
-Solana addresses are one-way conversions.
+Note that **solAddress** may be blank if we do not have adequate information. This is because Solana addresses are one-way conversions.
 
 ### NSFW / Reported
 
-NSFW or reported accounts will be flagged with the **nsfw** or **reported** properties.
-Everything is still fetched as normal with typical requests, and it is up to you to do what you 
-want with these accounts. 
+NSFW or reported accounts will be flagged with the **nsfw** or **reported** properties. Everything is still fetched as normal with typical requests, and it is up to you to do what you want with these accounts.
 
 On the app, we hide all profile details (links, bios, etc) and provide a warning message.
 
 ### Usernames and Avatars
 
-**username** will be the user's BitBadges username that they have set. **resolvedName** will be 
-from a naming service (currently only supports ENS for eth addresses).
+**username** will be the user's BitBadges username that they have set. **resolvedName** will be from a naming service (currently only supports ENS for eth addresses).
 
-In a similar manner, **profilePicUrl** will be the user's pofile pic set on BitBadges. **avatar** 
-will be their resolved avatar from a naming service like ENS (if applicable). 
-
+In a similar manner, **profilePicUrl** will be the user's pofile pic set on BitBadges. **avatar** will be their resolved avatar from a naming service like ENS (if applicable).
 
 ### Sequences / Account Numbers
 
-**sequence** and **accountNumber** will be their sequence (nonce) and accountNumber 
-for the BitBadges blockchain. These are used for generating and signing transactions. 
-**publicKey** is also used.
+**sequence** and **accountNumber** will be their sequence (nonce) and accountNumber for the BitBadges blockchain. These are used for generating and signing transactions. **publicKey** is also used.
 
 ### $BADGE vs Badge Balances
 
-The **balance** field is for $BADGE balance, whereas the **collected** array is an array of balance
-documents for collected badges.
+The **balance** field is for $BADGE balance, whereas the **collected** array is an array of balance documents for collected badges.
 
 ### Custom Pages, Watchlists, Hidden
 
-Each profile will return their custom pages to be displayed on their portfolio: **customPages**, **customListPages**. These are pages where the user has grouped together lists or badges and designated
-them to be displayed together on a page on their profile with a title and description.
+Each profile will return their custom pages to be displayed on their portfolio: **customPages**, **customListPages**. These are pages where the user has grouped together lists or badges and designated them to be displayed together on a page on their profile with a title and description.
 
-Watchlists (**watchedListPages** and **watchedBadgePages**) follow the same interface but are for
-user watchlists. They are not to be displayed publicly on the profile but are rather a way for a user
-to keep track of badges.
+Watchlists (**watchedListPages** and **watchedBadgePages**) follow the same interface but are for user watchlists. They are not to be displayed publicly on the profile but are rather a way for a user to keep track of badges.
 
-Hidden badges (**hiddenLists** and **hiddenBadges**) follow the same interface, 
-minus the title and description. These are badges that should be hidden from a user's portfolio. 
-If they are hidden, we will hide them from standard search results.
+Hidden badges (**hiddenLists** and **hiddenBadges**) follow the same interface, minus the title and description. These are badges that should be hidden from a user's portfolio. If they are hidden, we will hide them from standard search results.
 
 ### Alias
 
-The **alias** field denotes whether this is an alias address for a list (address mapping) or a collection.
-If it isn't, this will be blank.
+The **alias** field denotes whether this is an alias address for a list (address mapping) or a collection. If it isn't, this will be blank.
 
 ### **Views / Paginations**
 
 The colleuserction interface uses a view system with paginations + bookmarks.
 
-Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.&#x20;
+Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.
 
 The account interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
 
-The user interface supports the following base **viewType** values.&#x20;
+The user interface supports the following base **viewType** values.
 
-* 'latestActivity' : Fetches latest transfer activity documents for the user.&#x20;
+* 'latestActivity' : Fetches latest transfer activity documents for the user.
 * 'listsActivity': Fetches latest list activity documents for the user
 * 'latestReviews': Fetches latest reviews for the user
 * 'badgesCollected': Fetches badges owned by the user
@@ -125,7 +118,7 @@ Request:
 }]
 </code></pre>
 
-Response:&#x20;
+Response:
 
 ```json
 {
@@ -224,11 +217,11 @@ export function getAccountClaimAlertsView(account: BitBadgesUserInfo<bigint> | u
 }
 ```
 
-### **Fetch Route**&#x20;
+### **Fetch Route**
 
 #### **POST /api/v0/user/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAccountsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAccountsRouteSuccessResponse.html)**)**
 
-Batch fetch details about multiple collections.&#x20;
+Batch fetch details about multiple collections.
 
 ```typescript
 export type AccountFetchDetails = {

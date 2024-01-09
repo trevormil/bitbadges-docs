@@ -1,77 +1,102 @@
 # Authentication
 
-BitBadges uses [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users. The Blockin execution flow is simple:
+BitBadges uses [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users for private and authenticated functionality. The Blockin execution flow is simple:
 
 **1) Fetch Challenge**
 
 Request a challenge from the **POST /api/v0/auth/getChallenge** route.&#x20;
 
 ```typescript
-await BitBadgesApi.getSignInChallenge(requestBody)
-```
+const res = await BitBadgesApi.getSignInChallenge({
+    chain: "Ethereum",
+    address: "0x.....",
+})
 
-```typescript
-export interface GetSignInChallengeRouteRequestBody {
-    chain: SupportedChain; //"Ethereum", "Solana", "Cosmso"
-    address: string;
-    hours?: NumberType; //hours to be signed in for
-}
+/*
+    res = {
+        nonce: "...",
+        params: {
+            address: "0x....",
+            expirationDate: "...",
+            ...
+        }, 
+        "blockinMessage": "https://bitbadges.io wants you to sign in with your Ethereum account...."
+    }
+*/
 ```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>export interface GetSignInChallengeRouteSuccessResponse&#x3C;T extends NumberType> {
-</strong>    nonce: string;
-    params: ChallengeParams&#x3C;T>;
-    blockinMessage: string;
-}
-</code></pre>
 
 **2) Sign Challenge**
 
-The user should then sign the **blockinMessage** string with a personal message signature from their wallet.
+The user should then sign the **blockinMessage** string with a personal message signature from their wallet. See [https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains](https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains) for complete code snippets.
 
 Ethereum:
 
 ```typescript
 const signChallenge = async (message: string) => {
-    let accounts = await window.ethereum.request({ method: 'eth_accounts' })
+    const sign = await signMessage({
+      message: message,
+    })
 
-    const from = accounts[0];
-    const msg = `0x${Buffer.from(message, 'utf8').toString('hex')}`;
-    const sign = await window.ethereum.request({
-        method: 'personal_sign',
-        params: [msg, from],
-    });
+    const msgHash = ethers.utils.hashMessage(message)
+    const msgHashBytes = ethers.utils.arrayify(msgHash)
+    const pubKey = ethers.utils.recoverPublicKey(msgHashBytes, sign)
 
-    return { originalBytes: new Uint8Array(Buffer.from(msg, 'utf8')), signatureBytes: new Uint8Array(Buffer.from(sign, 'utf8')), message: 'Success' }
-}
+    const pubKeyHex = pubKey.substring(2)
+    const compressedPublicKey = Secp256k1.compressPubkey(
+      new Uint8Array(Buffer.from(pubKeyHex, "hex"))
+    )
+    const base64PubKey = Buffer.from(compressedPublicKey).toString("base64")
+    setPublicKey(cosmosAddress, base64PubKey)
+    setCookies("pub_key", `${cosmosAddress}-${base64PubKey}`, { path: "/" })
+
+    return {
+      message,
+      signature: sign,
+    }
+  }
 ```
 
 Cosmos (Keplr):
 
 ```typescript
 const signChallenge = async (message: string) => {
-    let sig = await window.keplr?.signArbitrary("bitbadges_1-1", cosmosAddress, message);
-    
+    let sig = await window.keplr?.signArbitrary("bitbadges_1-2", cosmosAddress, message);
+
     if (!sig) sig = { signature: '', pub_key: { type: '', value: '' } };
-    
+
     const signatureBuffer = Buffer.from(sig.signature, 'base64');
     const uint8Signature = new Uint8Array(signatureBuffer); // Convert the buffer to an Uint8Array
     const pubKeyValueBuffer = Buffer.from(sig.pub_key.value, 'base64'); // Decode the base64 encoded value
     const pubKeyUint8Array = new Uint8Array(pubKeyValueBuffer); // Convert the buffer to an Uint8Array
-    
-    const isRecovered = verifyADR36Amino('cosmos', cosmosAddress, message, pubKeyUint8Array, uint8Signature, 'ethsecp256k1');
+
+    const isRecovered = verifyADR36Amino('cosmos', cosmosAddress, message, pubKeyUint8Array, uint8Signature, 'secp256k1');
     if (!isRecovered) {
-        throw new Error('Signature verification failed');
+      throw new Error('Signature verification failed');
     }
-    const concat = Buffer.concat([pubKeyUint8Array, uint8Signature]);
-    
-    return { originalBytes: new Uint8Array(Buffer.from(`0x${Buffer.from(message, 'utf8').toString('hex')}`, 'utf8')), signatureBytes: new Uint8Array(concat), message: 'Success' }
-}
+
+    return {
+      message: message,
+      signature: sig.pub_key.value + ':' + sig.signature,
+    }
+  }
 ```
 
 Solana (Phantom Wallet):
 
 ```typescript
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.solana;
+    setSolanaProvider(provider);
+    if (provider?.isPhantom) {
+      return provider;
+    }
+
+    window.open('https://phantom.app/', '_blank');
+  }
+};
+
 const signChallenge = async (message: string) => {
   const encodedMessage = new TextEncoder().encode(message);
   const provider = solanaProvider;
@@ -82,40 +107,60 @@ const signChallenge = async (message: string) => {
       display: "utf8",
     },
   });
-  const originalBytes = new Uint8Array(Buffer.from(message, 'utf8'));
-  const signatureBytes = new Uint8Array(Buffer.from(signedMessage.signature, 'hex'));
-
-  return { originalBytes: originalBytes, signatureBytes: signatureBytes, message: 'Success!' };
+  
+  return { message: message, signature: signedMessage.signature };
 }
 ```
 
-**3) Send Signed Challenge**
-
-Send the signed message via **POST /api/v0/auth/verify**.&#x20;
-
-This will grant a Express.js session cookie which is valid for 24 hours (or whatever amount of hours you specify in the request).&#x20;
-
-The originalBytes and signatureBytes to provide in the request body should match what is returned from Step 2.
+Bitcoin (Phantom Wallet):
 
 ```typescript
-await BitBadgesApi.verifySignIn(requestBody)
-```
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.bitcoin;
+    if (provider?.isPhantom) {
+      return provider;
+    }
 
-```typescript
-export interface VerifySignInRouteRequestBody {
-    chain: SupportedChain;
-    originalBytes: any;
-    signatureBytes: any;
+    window.open('https://phantom.app/', '_blank');
+  }
+};
+
+function bytesToBase64(bytes: Uint8Array) {
+  const binString = String.fromCodePoint(...bytes);
+  return btoa(binString);
 }
 
-export interface VerifySignInRouteSuccessResponse<T extends NumberType> {
-    success: boolean;
-    successMessage: string;
-}
+const signChallenge = async (message: string) => {
+  const encodedMessage = new TextEncoder().encode(message);
+  const provider = getProvider();
+  const { signature } = await provider.signMessage(address, encodedMessage);
+
+  return { message: message, signature: bytesToBase64(signature) };
+};
 ```
 
-3. At any time, you can check the health of the signin by **POST /api/v0/auth/status**.
+
+
+**3) Send and Verify Signed Challenge**
+
+Send the signed message via **POST /api/v0/auth/verify**. This will grant a Express.js session cookie which is valid for whatever amount of hours you specify in the request. The params should match match what is returned from Step 2.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>const res = await BitBadgesApi.verifySignIn({
+</strong>    chain: "Ethereum",
+    message: "https://bitbadges.io wants you to sign in with your....",
+    signature: "...."
+})
+
+//console.log(res.success) 
+</code></pre>
+
+**4) Check health of sign in**
+
+At any time, you can check the health of the signin by **POST /api/v0/auth/status**.
 
 ```typescript
-await BitBadgesApi.checkIfSignedIn(requestBody)
+const res = await BitBadgesApi.checkIfSignedIn(requestBody)
+//console.log(res.signedIn)
 ```
