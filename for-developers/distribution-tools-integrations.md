@@ -8,8 +8,6 @@ Want to create your own tool?
 [build-a-distribution-tool.md](tutorials/build-a-distribution-tool.md)
 {% endcontent-ref %}
 
-### Address Collections
-
 ### Email
 
 * Email Helper Tool - [https://bitbadges-email-distribution-tool-trevormil.vercel.app/](https://bitbadges-email-distribution-tool-trevormil.vercel.app/) ([Code](https://github.com/BitBadges/bitbadges-email-distribution-tool))
@@ -18,12 +16,11 @@ Want to create your own tool?
 {% embed url="https://mailchimp.com/help/all-the-merge-tags-cheat-sheet/" %}
 
 ### SMS
-
-
+* Twilio - Twilio is a popular platform for sending SMS messages programmatically. You can use Twilio's API to send unique codes or passwords via SMS to your users.
 
 ### Social Media
-
-
+Distribute codes / passwords or alert users of whitelist opportunities via social media communication (DMs, announcements, tweets, etc).
 
 ### Web2 Payments
 
+* Stripe - If you want to sell badges or require payment for access, Stripe is a reliable payment gateway that you can integrate into your distribution platform.
