@@ -20,7 +20,7 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 
 #### Approval / Claim Metadata
 
-For providing additional details about an approval, you can host a JSON via the `approval.uri` field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable). See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
+For providing additional details about an approval, you can host a JSON via the **`approval.uri`** field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable). See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
 
 Note that password-based claims must be created via the BitBadges site or indexer because otherwise, the password is not known. Therefore, `hasPassword` and `password` should be falsy.
 
@@ -49,14 +49,13 @@ export interface LeavesDetails {
 
 Note that the indexer uses 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.
 
-```typescript
-import SHA256 from 'crypto-js/sha256';
+<pre class="language-typescript"><code class="lang-typescript">import SHA256 from 'crypto-js/sha256';
 import MerkleTree from 'merkletreejs';
 
-new MerkleTree(leavesDetails?.leaves.map(x => {
-      return leavesDetails?.isHashed ? x : SHA256(x);
+<strong>new MerkleTree(leavesDetails?.leaves.map(x => {
+</strong>      return leavesDetails?.isHashed ? x : SHA256(x);
   }) ?? [],
   SHA256,
   treeOptions
 )
-```
+</code></pre>
