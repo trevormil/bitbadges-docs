@@ -8,13 +8,13 @@ description: >-
 
 <figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
 
-## Overview&#x20;
+## Overview
 
 Tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), while some may be purely digital (e.g. verification checkmark). Some may signify something about your reputation (certifications), while some may just be collected for fun.
 
-When combined with blockchain technology, badges become even more secure and more powerful, due to the unique properties of the blockchain (verifiable, decentralized, tamper-proof, and so on).&#x20;
+When combined with blockchain technology, badges become even more secure and more powerful, due to the unique properties of the blockchain (verifiable, decentralized, tamper-proof, and so on).
 
-However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users). This is a HUGE problem because most companies and providers are neutral and do not belong to a specific blockchain ecosystem, so currently, it greatly restricts their potential audience! Imagine hosting a concert that can only be attended by those with Android phones.&#x20;
+However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens. Notably, existing state-of-the-art is not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time (e.g. only Ethereum users). This is a HUGE problem because most companies and providers are neutral and do not belong to a specific blockchain ecosystem, so currently, it greatly restricts their potential audience! Imagine hosting a concert that can only be attended by those with Android phones.
 
 **BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven token standard and suite of tools that enable you to create, customize, verify, and integrate with digital blockchain tokens for any use case you desire.**
 
@@ -37,16 +37,16 @@ Below are some of our favorite use cases:
 * **Attendance Badges -** Mint an attendance badge for an event, trip, etc as a souvenir!
 * **Memberships/Subscriptions/Premium Content -** Badges are all time-based, so you can offer time-dependent memberships / subscriptions and offer the utility only to those who own the badge at a certain time!
 * **Access Tokens** - Use badges as access tokens. This can be digital (websites, Discord servers, etc) or in-person (tickets, event entry, etc).
-* **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.&#x20;
+* **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.
 * **Authentication / Tiered Services -** Companies can outsource their authentication to Web3 / [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Cheaper, more secure, and less work!
 * **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
-* See more use cases [here](broken-reference)!
+* See more use cases [here](broken-reference/)!
 
 <figure><img src=".gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 ## Why are we better?
 
-What makes our token standard and product better than competitors?&#x20;
+What makes our token standard and product better than competitors?
 
 #### **Multi-Chain**
 
@@ -80,16 +80,16 @@ Our product is more scalable, easier to use, and more secure than competitors (s
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
-* [**Time-Based Balances**](overview/how-it-works/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.&#x20;
+* [**Time-Based Balances**](overview/how-it-works/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
 * [**Off-Chain Balances:**](overview/how-it-works/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets.
-* [**Fine-Grained Transferability and Approvals Customization**](overview/how-it-works/transferability.md)**:**  Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.&#x20;
+* [**Fine-Grained Transferability and Approvals Customization**](overview/how-it-works/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
   * [**Must Own Badges:** ](overview/how-it-works/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
   * [**Fine-Grained Approvals:** ](overview/how-it-works/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-  * [**Incoming Approvals:** ](overview/how-it-works/transferability.md) In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+  * [**Incoming Approvals:** ](overview/how-it-works/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
-* [**Customizable Permissions**](overview/how-it-works/manager.md)**:**  Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](overview/how-it-works/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
 * [**Time-Based Details**](for-developers/core-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time.
   * Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 * [**Batch Transfers**](overview/how-it-works/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
@@ -111,9 +111,9 @@ BitBadges aims to have a vast ecosystem of community-built distribution tools. O
 
 ## Ecosystem Tools
 
-Ecosystem tools are anything from tools for authenticating users, communicating with badge holders,  to distributing badges, and more!
+Ecosystem tools are anything from tools for authenticating users, communicating with badge holders, to distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.&#x20;
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.
 
 **Blockin - Badge-Gate Anything**
 
@@ -129,7 +129,7 @@ With Blockin, you can restrict access to anything to only your badge holders! It
 
 <figure><img src=".gitbook/assets/image (37).png" alt="" width="375"><figcaption></figcaption></figure>
 
-## **Need additional functionality not supported?**
+## **Need additional functionality?**
 
 While BitBadges offers a wide range of customizable functionality for badges, we understand that not all cases are currently supported. Some may simply not be supported on the website, wheeas some may not be supported altogether.
 
@@ -137,11 +137,13 @@ We are committed to continuously improving and expanding our offered functionali
 
 **Option 1: Implement It**
 
-The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge. A tutorial is available [here](for-developers/tutorials/create-a-wasm-contract.md). We also offer a developer API and SDK which can be used to expand the functionality of badges.
+The BitBadges blockchain supports [CosmWASM](https://cosmwasm.com/) smart contracts, which can be used to implement custom functionality for your badge on-chain. A tutorial is available [here](for-developers/tutorials/create-a-wasm-contract.md).&#x20;
+
+We also offer a developer API and SDK which can be used to expand the functionality of badges for dApps and off-chain applications.
 
 We would appreciate it if you could inform us of any missing functionality from the interface you require when choosing this option, so we can try to add it natively. Please contact us [here](overview/team-contact-us.md).
 
-**Option 2: Request It**&#x20;
+**Option 2: Request It**
 
 You can request the functionality from the BitBadges team, and we will do our best to add it as soon as possible. Please contact us [here](overview/team-contact-us.md). Or, draft an improvement proposal [here](https://github.com/BitBadges/BBIPs).
 
@@ -171,6 +173,6 @@ GitHub - [https://github.com/bitbadges](https://github.com/bitbadges)
 
 **Other**
 
-Project Board -  [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
+Project Board - [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
 
-Improvement Proposals - [https://github.com/BitBadges/BBIPs](https://github.com/BitBadges/BBIPs)&#x20;
+Improvement Proposals - [https://github.com/BitBadges/BBIPs](https://github.com/BitBadges/BBIPs)
