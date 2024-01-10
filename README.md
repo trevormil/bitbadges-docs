@@ -103,7 +103,7 @@ There are infinitely many ways to distribute badges to holders. On the BItBadges
 
 For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via Mailchimp, Discord, or SMS.
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
