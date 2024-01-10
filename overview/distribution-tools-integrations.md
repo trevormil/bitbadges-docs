@@ -25,4 +25,4 @@ For developers, want to create your own tool?
 
 ### Web2 Payments
 
-* Stripe - If you want to sell badges or require payment for access, Stripe is a reliable payment gateway that you can integrate into your distribution platform.
+* Stripe - Stripe is a reliable payment gateway that you can integrate into your distribution platform.
