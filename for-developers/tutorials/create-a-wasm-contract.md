@@ -1,18 +1,14 @@
 # Create a CosmWASM Contract
 
-BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. However, they are not required at all, and we envision they will only be used in a very, very small percentage of cases. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively.
+BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. However, they are not required at all, and we envision they will only be used in a very, very small percentage of cases.&#x20;
+
+If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively!
 
 #### CosmWASM Version
-
-We currently support
 
 ```go.mod
 github.com/CosmWasm/wasmd v0.44.0
 ```
-
-**No tx.origin**
-
-Note that Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent. This may not be ideal, but it is what it is for security reasons. You may need to come up with creative workarounds or creative solutions in certain situations.&#x20;
 
 ## CosmWasm - High-Level Overview
 
@@ -78,6 +74,10 @@ pub enum ExecuteMsg {
     }
 }
 ```
+
+**No tx.origin**
+
+Note that Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent. This may not be ideal, but it is what it is for security reasons. You may need to come up with creative workarounds or creative solutions in certain situations.&#x20;
 
 ## **BitBadges Bindings Repository**
 
@@ -192,11 +192,11 @@ Your contract is now deployed on the blockchain and ready to be interacted with.
 
 **Step 3: Interacting with the Contract**
 
-Once deployed, you need to interact with the contract somehow or let your users interact with it.&#x20;
+Once deployed, you need to to let your users interact with it.&#x20;
 
 This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](../create-and-broadcast-txs/) for a tutorial.
 
-Consider building a dApp frontend, so users can easily interact with your contract!
+Consider building a dApp frontend, so users can easily interact with your contract! Use [https://bitbadges.io/dev/dappexample](https://bitbadges.io/dev/dappexample) ([Code](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/pages/dev/dappexample.tsx)) as a reference.
 
 **Example**
 
