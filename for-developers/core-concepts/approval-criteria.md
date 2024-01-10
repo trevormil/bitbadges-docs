@@ -75,7 +75,7 @@ export interface MustOwnBadges<T extends NumberType> {
 }
 ```
 
-### **Trackers**
+### **Trackers**&#x20;
 
 ```typescript
 export interface CollectionApproval<T extends NumberType> {
@@ -93,42 +93,9 @@ Approvals trackers track how many badges have been transferred and how many tran
 
 Approvals trackers and challenge trackers are two separate concepts but follow the same logic pretty much. We use the terms trackers and tallies interchangeably throughout this documentation.
 
-**How are trackers identified?**
-
-The identifier of each approval tracker consists of the **amountTrackerId** along with other identifying details.
-
-```
-ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
-```
-
-```typescript
-export interface ApprovalTrackerIdDetails<T extends NumberType> {
-  collectionId: T
-  approvalLevel: "collection" | "incoming" | "outgoing" | ""
-  approverAddress: string
-  amountTrackerId: string
-  trackerType: "overall" | "to" | "from" | "initiatedBy" | ""
-  approvedAddress: string
-}
-```
-
-The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details.
-
-```typescript
-{
-  collectionId: T;
-  approvalLevel: "collection" | "incoming" | "outgoing";
-  approverAddress?: string;
-  challengeTrackerId: string;
-  leafIndex: T;
-}
-```
-
-**approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or user outgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
-
 **How do trackers work?**
 
-BitBadges tracks approvals and used challenges using an incrementing tally system with a threshold. Take the following approval tracker
+BitBadges tracks approvals and used leaves for challenges using an incrementing tally system with a threshold. Take the following approval tracker
 
 1. You are approved for x10 of badge IDs 1-10. The tracker ID maps to "xyz".
 2. You transfer x5 of badge IDs 1-10 -> "xyz" tally goes from x0/10 -> x5/10
@@ -185,6 +152,25 @@ But, the following would allow address C to claim a max of x15 because the tally
 ### Approval Trackers
 
 Approval trackers are tallies that track how much of badges have been transferred and how many transfers take place. Each transfer increments **numTransfers** and each badge transferred increments the **amounts** in the interface below, if set and applicable.
+
+**How are approval trackers identified?**
+
+The identifier of each approval tracker consists of the **amountTrackerId** along with other identifying details.
+
+```
+ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
+```
+
+```typescript
+export interface ApprovalTrackerIdDetails<T extends NumberType> {
+  collectionId: T
+  approvalLevel: "collection" | "incoming" | "outgoing" | ""
+  approverAddress: string
+  amountTrackerId: string
+  trackerType: "overall" | "to" | "from" | "initiatedBy" | ""
+  approvedAddress: string
+}
+```
 
 ```typescript
 export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
@@ -320,6 +306,20 @@ First, you can set **useCreatorAddressAsLeaf**. If set, we will override the pro
 For allowlist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
 We track this in a challenge tracker, similar to the approvals trackers explained above. We simply track if a leaf index (leftmost leaf = index 0, ...) has been used and only allow it to be used X many times, if constrained. Like approval trackers, this is increment only and non-deletable.
+
+The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details.
+
+```typescript
+{
+  collectionId: T;
+  approvalLevel: "collection" | "incoming" | "outgoing";
+  approverAddress?: string;
+  challengeTrackerId: string;
+  leafIndex: T;
+}
+```
+
+**approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or user outgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
 
 <pre class="language-json"><code class="lang-json"><strong>"merkleChallenge": {
 </strong>   "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",

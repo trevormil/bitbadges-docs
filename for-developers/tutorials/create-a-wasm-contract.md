@@ -1,4 +1,4 @@
-# Create a WASM Contract
+# Create a CosmWASM Contract
 
 BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. However, they are not required at all, and we envision they will only be used in a very, very small percentage of cases. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively.
 
@@ -14,11 +14,7 @@ github.com/CosmWasm/wasmd v0.44.0
 
 Note that Cosmos SDK / CosmWasm does not have a Solidity **tx.origin** equivalent. **All Cosmos Msgs called from the contract have Msg.Creator equal to the CONTRACT ADDRESS, not the calling user's address.**
 
-This may not be ideal, but it is what it is for security reasons. You may need to come up with creative workarounds or creative solutions in certain situations. For example,
-
-\-Give the contract the manager role
-
-\-Have users approve the contract to transfer on their behalf and so on
+This may not be ideal, but it is what it is for security reasons. You may need to come up with creative workarounds or creative solutions in certain situations.&#x20;
 
 ## Tutorial
 

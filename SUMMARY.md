@@ -126,7 +126,7 @@
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Create a Secret Code Based Approval](for-developers/tutorials/create-a-secret-code-based-approval.md)
-  * [Create a WASM Contract](for-developers/tutorials/create-a-wasm-contract.md)
+  * [Create a CosmWASM Contract](for-developers/tutorials/create-a-wasm-contract.md)
   * [Custom Address Surveys](for-developers/tutorials/custom-address-surveys.md)
 * [🤝 BitBadges Follow Protocol](for-developers/bitbadges-follow-protocol.md)
 * [👨💻 Contributing](for-developers/contributing.md)
