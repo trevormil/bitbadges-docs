@@ -122,6 +122,7 @@
     * [MsgStoreCodeCompat](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msgstorecodecompat.md)
     * [MsgInstantiateContractCompat](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msginstantiatecontractcompat.md)
     * [MsgExecuteContractCompat](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msgexecutecontractcompat.md)
+  * [MsgSend](for-developers/create-and-broadcast-txs/msgsend.md)
   * [👨🏫 Msg Examples](for-developers/create-and-broadcast-txs/msg-examples.md)
   * [Transaction Context](for-developers/create-and-broadcast-txs/transaction-context.md)
   * [Generate Msg Contents](for-developers/create-and-broadcast-txs/generate-msg-contents.md)
