@@ -18,36 +18,45 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 [create-and-host-off-chain-balances.md](../tutorials/create-and-host-off-chain-balances.md)
 {% endcontent-ref %}
 
-#### Approval / Claim Metadata
+#### Approval Metadata
 
-For providing additional details about an approval, you can host a JSON via the **`approval.uri`** field. This allows the BitBadges site to obtain certain metadata about the approval and how to create the Merkle path to the root (if applicable). See the example [here](https://bafybeid7cu3dw6trqapreli2myjj4g7uz7d7nwwiyx66yr2hanrxxtu5te.ipfs.dweb.link/).
+For providing additional details about an approval, you can host a JSON via the **`approval.uri`** field. This allows the BitBadges site to obtain certain metadata about the approval. Markdown is supported for description.
 
-Note that password-based claims must be created via the BitBadges site or indexer because otherwise, the password is not known. Therefore, `hasPassword` and `password` should be falsy.
-
-Use the `isHashed` field accordingly. To construct the Merkle path, a Merkle tree is created with leaves. If `isHashed = true`, the user's inputted secret code (distributed to them) is hashed, matched to a leaf, and used to construct the Merkle path. Do not reveal any secret codes via leaves (Merkle leaves) here, as whatever is stored here is publicly visible.
-
-#### Merkle Challenge Details
-
-<pre class="language-typescript"><code class="lang-typescript">import { Options as MerkleTreeJsOptions } from "merkletreejs/dist/MerkleTree";
-
-export interface MerkleChallengeDetails&#x3C;T extends NumberType> {
-  name: string;                   // Name of the Merkle challenge
-  description: string;            // Description of the Merkle challenge
-  challengeDetails: ChallengeDetails&#x3C;T>;
-}
-
-export interface ChallengeDetails&#x3C;T extends NumberType> {
-  leavesDetails: LeavesDetails;
-<strong>  treeOptions?: MerkleTreeJsOptions 
-</strong>}
-
-export interface LeavesDetails {
-  leaves: string[];               // Array of leaf data
-  isHashed: boolean;              // Indicates whether the leaf data is hashed
+<pre><code><strong>{
+</strong>    "name": "....",
+    "description": "...."
 }
 </code></pre>
 
-Note that the indexer uses 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.
+#### Merkle Challenge Details
+
+In the same JSON hosted for **`approval.uri,`** you can also provide Merkle challenge details if you have self-created a Merkle challenge, such as self-generating codes / passwords. This is only needed if you want compatibility with the BitBadges site and to be able to claim / transfer w/ this Merkle challenge directly on the site. We need to know how to generate the Merkle path for users.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>{
+</strong>    "name": "....",
+    "description": "....",
+    "challengeDetails": {
+        "treeOptions": MerkleTreeJsOptions, // see below
+        "leavesDetails": {
+            isHashed: boolean;
+            leaves: string[];
+        }
+    }
+}
+</code></pre>
+
+IMPORTANT: Do not reveal any secret codes via **leaves** (Merkle leaves) here, as whatever is stored here is publicly visible.
+
+Allowlist trees: **leaves** are the Cosmos addresses and **isHashed** is false.
+
+Codes trees: **leaves** are the secret codes SHA256 hashed once and **isHashed** is true. KEEP THE PREIMAGES (SECRET CODES) PRIVATE. The only thing that should be publicly visible are the hashed codes.
+
+**Tree Options**
+
+We use the 'merkletreejs' NPM package to construct and build the Merkle trees accordng to the code below. You can use **treeOptions** to make sure the tree is built correctly.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { Options as MerkleTreeJsOptions } from "merkletreejs/dist/MerkleTree";
+</strong></code></pre>
 
 <pre class="language-typescript"><code class="lang-typescript">import SHA256 from 'crypto-js/sha256';
 import MerkleTree from 'merkletreejs';

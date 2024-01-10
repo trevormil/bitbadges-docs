@@ -1,0 +1,111 @@
+# Predetermined Balances
+
+Predetermined balances are a new way of having fine-grained control over the amounts that are approved with each transfer. In a typical tally-based system where you approve X amount to be transferred, you have no control over the combination of amounts that will add up to X. For example, if you approve x100, you can't control whether the transfers are \[x1, x1, x98] or \[x100] or another combination.
+
+Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.&#x20;
+
+**The transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.**
+
+```typescript
+export interface PredeterminedBalances<T extends NumberType> {
+  manualBalances: ManualBalances<T>[];
+  incrementedBalances: IncrementedBalances<T>;
+  orderCalculationMethod: PredeterminedOrderCalculationMethod;
+}
+```
+
+**Defining Balances**
+
+There are two ways to define the balances. Both can not be used together.
+
+* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for each unique transfer.
+* ```json
+  "manualBalances": [
+    {
+      "amount": "1",
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "1"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1691978400000",
+          "end": "1723514400000"
+        }
+      ]
+    },
+    {...},
+    {...},
+  ]
+  ```
+* **Incremented Balances:** Define starting balances and then define how much to increment the IDs and times by after each transfer. This is how to implement the above example: you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges.
+* ```json
+  "incrementedBalances": {
+    "startBalances": [
+      {
+        "amount": "1",
+        "badgeIds": [
+          {
+            "start": "1",
+            "end": "1"
+          }
+        ],
+        "ownershipTimes": [
+          {
+            "start": "1691978400000",
+            "end": "1723514400000"
+          }
+        ]
+      }
+    ],
+    "incrementBadgeIdsBy": "1",
+    "incrementOwnershipTimesBy": "0"
+  }
+  ```
+
+**Defining Order of Transfers**
+
+The order is calculated by a specified order calculation method.
+
+For manual balances, we want to determine which element index of the array is transferred (e.g. order number = 0 means the balances of manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
+
+There are five calculation methods to determine the order method. We either use a running tally of the number of transfers to calculate the order number (no previous transfers = order number 0, one previous = order number 1, and so on). This can be done on an overall or per to/from/initiatedBy address basis and is incremented using an approval tracker as explained in [Max Number of Transfers](predetermined-balances.md#max-number-of-transfers). Note this is the same tracker, so even if you have specified an unlimited number of transfers defined in **maxNumTransfers,** this will increment the tracker regardless behind the scenes.
+
+We also support using the leaf index for the defined Merkle challenge proof (see [Merkle Challenges](predetermined-balances.md#merkle-challenges)) to calculate the order number (e.g. leftmost leaf on expected leaf layer will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer.
+
+This is used to reserve specific badges for specific users / claim codes. For example, reserve the badges corresponding to order number 10 (leaf number 10) for address xyz.eth.
+
+```typescript
+export interface PredeterminedOrderCalculationMethod {
+  useOverallNumTransfers: boolean;
+  usePerToAddressNumTransfers: boolean;
+  usePerFromAddressNumTransfers: boolean;
+  usePerInitiatedByAddressNumTransfers: boolean;
+  useMerkleChallengeLeafIndex: boolean;
+}
+```
+
+Although this can be used in tandem with approval amounts, either one or the other is usually used because they both specify amount restrictions.
+
+**Overlap / Out of Bounds**
+
+Sometimes, the order number may correspond to **badgeIds** and **ownershipTimes** that are out of bounds of the approval, with either no overlap or some overlap.
+
+If it is completely out of bounds (e.g. order number = 101 but approved badgeIds 1-100 with increments of 1), this is practically ignored. This is because if you try and transfer badge ID 101, it will never match to the current approval.
+
+In rare cases, there may be overlap (some in bounds and some out of bounds). The overall transfer balances still must be exactly as defined (in bounds + out of bounds); however, we only approve the in bounds ones for the current approval. The out of bounds ones must be approved by a separate approval.
+
+**Precalculating Balances**
+
+Predetermined balances can quickly change, even in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
+
+To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../create-and-broadcast-txs/cosmos-sdk-msgs/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the successful predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
+</strong>    approvalId: string;
+    approvalLevel: string; //"collection" | "incoming" | "outgoing"
+    approverAddress: string; //"" if collection-level
+}
+</code></pre>

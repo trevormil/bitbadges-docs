@@ -34,7 +34,7 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 * **Codes:** Generate unique one-time use only codes that allow users to claim.&#x20;
 * **Allowlists / Blocklists**: Only allow specific addresses to claim.
 
-Codes / passwords can be distributed using any preferred method such as **email, QR codes, social media, etc.** Note these methods do not have to be crypto-native. Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. **Although, always use third-party tools at your own risk.** For developers, see [Badge Distribution](../../for-developers/distribution-tools-integrations.md) for some common integration examples.
+Codes / passwords can be distributed using any preferred method such as **email, QR codes, social media, etc.** Note these methods do not have to be crypto-native. Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. **Although, always use third-party tools at your own risk.** For developers, see [Badge Distribution](../distribution-tools-integrations.md) for some common integration examples.
 
 
 

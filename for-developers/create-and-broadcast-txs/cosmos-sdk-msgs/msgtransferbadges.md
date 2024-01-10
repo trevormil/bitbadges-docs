@@ -45,7 +45,7 @@ The to and from addresses must be valid Cosmos addresses. The from address can a
 
 **Precalculations**
 
-If you are targeting to use an approval which uses the **predeterminedBalances** field (see [Approvals](../../core-concepts/approval-criteria.md)), then you want to calculate the balances at execution time because they are possibly dynamic and can change between submit time and execution time. For example, if badge IDs increment by 1 every transfer, at signing time, the user does not know what badges they will receive because there could be transfers in between sign time and execution time.
+If you are targeting to use an approval which uses the **predeterminedBalances** field (see [Approvals](../../core-concepts/approval-criteria/)), then you want to calculate the balances at execution time because they are possibly dynamic and can change between submit time and execution time. For example, if badge IDs increment by 1 every transfer, at signing time, the user does not know what badges they will receive because there could be transfers in between sign time and execution time.
 
 If this is the case, you can use **precalculateBalancesFromApproval** to specify which approval to precalculate from, and the balances will be calculated at execution time to what the current predetermined values are, rather than what is defined in **balances.**
 

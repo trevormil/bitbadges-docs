@@ -53,7 +53,7 @@ For example,
 }
 ```
 
-From the "Mint" address, you can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria.md).
+From the "Mint" address, you can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria/).
 
 **CanCreateMoreBadges Permission**
 

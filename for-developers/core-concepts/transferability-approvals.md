@@ -74,7 +74,7 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
 
-The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria.md) - Advanced), we recommend always keeping all three the same.
+The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.
 
 ```json
 {
@@ -138,13 +138,13 @@ Note the approval only applies to the details defined and must match ALL details
 
 As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/outgoing approvals.
 
-The Mint address is a special case. It technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria.md#overrides) on the next page for how).
+The Mint address is a special case. It technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria/#overrides) on the next page for how).
 
 It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint, which could be very bad. See Example 2 below.
 
 #### Approval Criteria
 
-The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria.md).
+The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria/).
 
 For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved. The **amountTrackerId** and **challengeTrackerId** correspond to **approvalCriteria** and are explained on the following page as well.
 

@@ -2,10 +2,10 @@
 
 Here, we provide documentation for common distribution integrations / tools as a reference. Let us know if you want to add a tool or tutorial here. **Always use third party tools at your own risk!** You know your users best. The best method of distribution is the way you typical communicate with users.
 
-Want to create your own tool?
+For developers, want to create your own tool?
 
-{% content-ref url="tutorials/build-a-distribution-tool.md" %}
-[build-a-distribution-tool.md](tutorials/build-a-distribution-tool.md)
+{% content-ref url="../for-developers/tutorials/build-a-distribution-tool.md" %}
+[build-a-distribution-tool.md](../for-developers/tutorials/build-a-distribution-tool.md)
 {% endcontent-ref %}
 
 ### Email
@@ -16,10 +16,12 @@ Want to create your own tool?
 {% embed url="https://mailchimp.com/help/all-the-merge-tags-cheat-sheet/" %}
 
 ### SMS
+
 * Twilio - Twilio is a popular platform for sending SMS messages programmatically. You can use Twilio's API to send unique codes or passwords via SMS to your users.
 
 ### Social Media
-Distribute codes / passwords or alert users of whitelist opportunities via social media communication (DMs, announcements, tweets, etc).
+
+* Distribute codes / passwords or alert users of whitelist opportunities via social media communication (DMs, announcements, tweets, etc).
 
 ### Web2 Payments
 
