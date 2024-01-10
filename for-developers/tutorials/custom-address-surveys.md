@@ -1,12 +1,12 @@
-# Custom Address Surveys
+# Address Surveys w/ Custom Logic
 
 Pre-Readings: [Distribution](../../overview/how-it-works/distribution.md)
 
-The BitBadges site natively allows you to create a address collection survey where users can add their address to a list for you to view. This is useful for collecting addresses at an in-person event. See the pre-reading for more information.
+The BitBadges site natively allows you to create a address collection survey where users can add their address to a list, given a unique link. This is useful for collecting addresses at an in-person event. See the pre-reading for more information.
 
-However, the native integration only supports storing the addresses as a list on the BitBadges servers. Sometimes, you may want something more customizable than that. For example, you may want to send a claim alert with a unique claim code every time a user enters an address or update your private database.
+However, the native integration only supports storing the addresses as a list on the BitBadges servers. Sometimes, you may want something more customizable than that. For example, you may want to send a claim alert with a unique claim code every time a user enters an address to the survey or update your private database.
 
-You can either implement your own survey, or if you want to use the BitBadges search feature, we allow you to pass in the following URL query params to https://bitbadges.io/addresscollector.&#x20;
+You can either implement your own survey, or if you want to still use the BitBadges interface, we allow you to pass in the following URL query params to https://bitbadges.io/addresscollector.&#x20;
 
 ```typoscript
 const { description, callbackRequired } = router.query;
@@ -20,7 +20,7 @@ if (window.opener && callbackRequired) {
 
 description is simply a helper message that will be displayed to the user.&#x20;
 
-callbackRequired being a truthy vlaue means that we will send a window message back to the site that directed the user here with the inputted address specified.&#x20;
+callbackRequired being a truthy value means that we will send a window message back to the site that directed the user here with the inputted address specified.&#x20;
 
 For example, on your site, you may direct them to the /addresscollector site via the first coede block and listen for messages as shown in the second code block.
 

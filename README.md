@@ -99,31 +99,33 @@ And much more!
 
 ## Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (allowlists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distirbution experience.
+{% content-ref url="overview/distribution-tools-integrations.md" %}
+[distribution-tools-integrations.md](overview/distribution-tools-integrations.md)
+{% endcontent-ref %}
 
-For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via Mailchimp, Discord, or SMS.
+There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (allowlists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distribution experience.
 
-<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via email, Discord, or SMS.
 
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche. See [Ecosystem](overview/ecosystem/) for all the distribution tools we and the community offer. See [Creating a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md) for how to create one.
+<figure><img src=".gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+
+BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
 ## Ecosystem Tools
 
 Ecosystem tools are anything from tools for authenticating users, communicating with badge holders, to distributing badges, and more!
 
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche. See [Ecosystem](overview/ecosystem/) for some tools currently built.
+Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche.
 
-**Blockin - Badge-Gate Anything**
-
-{% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
-[Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
+{% content-ref url="overview/ecosystem/" %}
+[ecosystem](overview/ecosystem/)
 {% endcontent-ref %}
 
-Blockin is a universal, multi-chain sign-in interface that includes support for badge-gating websites. It extends Sign-In with Ethereum to support any and all blockchains.
-
-With Blockin, you can restrict access to anything to only your badge holders! It can be used digitally through its developer libraries. Or, verify badge ownership in person with QR codes (supported on the web app).
+{% content-ref url="overview/verification-tools.md" %}
+[verification-tools.md](overview/verification-tools.md)
+{% endcontent-ref %}
 
 <figure><img src=".gitbook/assets/image (38).png" alt="" width="467"><figcaption></figcaption></figure>
 

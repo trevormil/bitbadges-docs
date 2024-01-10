@@ -1,4 +1,4 @@
-# Create a CosmWASM Contract
+# Create a Smart Contract
 
 BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. However, they are not required at all, and we envision they will only be used in a very, very small percentage of cases.&#x20;
 
@@ -188,7 +188,7 @@ If you want to instantiate it with funds. the **funds** property will be in the 
 
 Your contract is now deployed on the blockchain and ready to be interacted with.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 **Step 3: Interacting with the Contract**
 
