@@ -172,14 +172,12 @@ Views have a base **viewType** describing the query type and a unique **viewId**
 
 The collection interface supports the following base **viewType** values.
 
-* 'latestActivity' : Fetches latest transfer activity documents.
-* 'latestReviews': Fetches latest reviews for collection
+* 'transferActivity' : Fetches latest transfer activity documents.
+* 'reviews': Fetches latest reviews for collection
 * 'owners': Fetches owners of the collection
-* 'merkleChallenges': Fetches merkle challenge trackers for the collection
-* 'approvalTrackers': Fetches approval trackers for the collection
 
 ```typescript
-export type CollectionViewKey = 'latestActivity' | 'latestReviews' | 'owners' | 'merkleChallenges' | 'approvalTrackers';
+export type CollectionViewKey = 'transferActivity' | 'reviews' | 'owners';
 ```
 
 Request:

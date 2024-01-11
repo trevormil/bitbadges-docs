@@ -88,15 +88,15 @@ The account interface also supports different filtering options. Make sure that 
 
 The user interface supports the following base **viewType** values.
 
-* 'latestActivity' : Fetches latest transfer activity documents for the user.
+* 'transferActivity' : Fetches latest transfer activity documents for the user.
 * 'listsActivity': Fetches latest list activity documents for the user
-* 'latestReviews': Fetches latest reviews for the user
+* 'reviews': Fetches latest reviews for the user
 * 'badgesCollected': Fetches badges owned by the user
-* 'createdBy': Collections that the user has created
-* 'managing': Collections that the user is managing
-* 'addressLists': Fetches lists that the user are explicitly defined on
-* 'explicitlyIncludedAddressLists': Fetches lists that the user are explicitly included
-* 'explicitlyExcludedAddressLists':Fetches lists that the user are explicitly excluded
+* 'createdBadges': Collections / badges that the user has created
+* 'managingBadges': Collections / badges that the user is managing currently
+* 'allLists': Fetches lists that the user are explicitly defined on (allowlist or blocklists)
+* 'allowlists': Fetches lists that the user are explicitly included (i.e. allowlists)
+* 'blocklists': Fetches lists that the user are explicitly excluded (i.e. blocklists)
 * 'createdLists': Lists that the user has created (excludes private lists)
 
 The following require authentication:
@@ -106,7 +106,9 @@ The following require authentication:
 * 'privateLists': Private lists created by the user
 
 ```typescript
-export type AccountViewKey = 'createdLists' | 'privateLists' | 'authCodes' | 'latestActivity' | 'latestAnnouncements' | 'latestReviews' | 'badgesCollected' | 'addressLists' | 'latestClaimAlerts' | 'latestAddressLists' | 'explicitlyIncludedAddressLists' | 'explicitlyExcludedAddressLists' | 'badgesCollectedWithHidden' | 'createdBy' | 'managing' | 'listsActivity'
+export type AccountViewKey = 'createdLists' | 'privateLists'
+  | 'authCodes' | 'transferActivity' | 'reviews' | 'badgesCollected' | 'latestClaimAlerts'
+  | 'allLists' | 'allowlists' | 'blocklists' | 'createdBadges' | 'managingBadges' | 'listsActivity'
 ```
 
 Request:

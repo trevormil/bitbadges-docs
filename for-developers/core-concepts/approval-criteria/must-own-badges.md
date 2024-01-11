@@ -18,8 +18,8 @@ export interface MustOwnBadges<T extends NumberType> {
   //Ex: [{start: 12345, end: 12345}]
   overrideWithCurrentTime: boolean;
   
-  //if true, must own ALL badges at ALL times specified
-  //if false, must own at least one specified badge for at least one specified millisecond
-  mustOwnAll: boolean; 
+  //if true, must meet ownership requirements for ALL badges
+  //if false, must meet ownership requirements for ONE badge
+  mustSatisfyForAllAssets: boolean; 
 }
 ```
