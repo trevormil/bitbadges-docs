@@ -26,10 +26,8 @@ export interface Metadata<T extends NumberType> {
   description: string;
   image: string;
   video?: string;
-  validFrom?: UintRange<T>[];
   category?: string;
   externalUrl?: string;
-  video?: string
   tags?: string[];
 
   socials?: {

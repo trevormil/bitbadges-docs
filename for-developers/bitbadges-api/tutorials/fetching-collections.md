@@ -180,6 +180,21 @@ The collection interface supports the following base **viewType** values.
 export type CollectionViewKey = 'transferActivity' | 'reviews' | 'owners';
 ```
 
+The collection interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
+
+```ts
+viewsToFetch?: {
+  //The base view type to fetch.
+  viewType: CollectionViewKey;
+  //A unique view ID. This is used for pagination. All fetches w/ same ID should be made with same criteria.
+  viewId: string;
+  //A bookmark to pass in for pagination. "" for first request.
+  bookmark: string;
+  //If defined, we will return the oldest items first..
+  oldestFirst?: boolean;
+}[];
+```
+
 Request:
 
 <pre class="language-json"><code class="lang-json"><strong>viewsToFetch: [{

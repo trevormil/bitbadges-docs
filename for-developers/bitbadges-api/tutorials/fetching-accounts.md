@@ -86,6 +86,24 @@ Views have a base **viewType** describing the query type and a unique **viewId**
 
 The account interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
 
+```ts
+//An array of views to fetch
+  viewsToFetch?: {
+    //Unique view ID. Used for pagination. All fetches w/ same ID should be made with same criteria.
+    viewId: string,
+    //The base view type to fetch.
+    viewType: AccountViewKey,
+    //If defined, we will filter the view to only include the specified collections.
+    specificCollections?: BatchBadgeDetails<NumberType>[];
+    //If defined, we will filter the view to only include the specified lists.
+    specificLists?: string[];
+    //Oldest first. By default, we fetch newest
+    oldestFirst?: boolean;
+    //A bookmark to pass in for pagination. "" for first request.
+    bookmark: string
+  }[];
+```
+
 The user interface supports the following base **viewType** values.
 
 * 'transferActivity' : Fetches latest transfer activity documents for the user.
