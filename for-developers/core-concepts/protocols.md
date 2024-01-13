@@ -1,8 +1,8 @@
 # 🤖 Protocols
 
-Protocols are a concept that allows you to treat certain collections from different users as a grouping intended for a sepcific purpose (the protocol's purpose). For example, the BitBadges Follow Protocol is a protocol that enables users to create "follow badge collections" and whoever owns the folllow badge from that collection is considered followed.
+Protocols are a concept that allows you to treat certain collections from different users as a grouping intended for a specific purpose (the protocol's purpose). For example, the BitBadges Follow Protocol is a protocol that enables users to create "follow badge collections" and whoever owns the follow badge from that collection is considered followed.
 
-This enables different collections to have different properties for the same protocol. For example, some users may want to host their follow badges off-chain, while some prefer decentralization on-chain. IT also allows each respective user to access their own manager privileges for their collection, which wouldn't be possible all with one collection.
+This enables different collections to have different properties for the same protocol. For example, some users may want to host their follow badges off-chain, while some prefer decentralization on-chain. It also allows each respective user to access their own manager privileges for their collection, which wouldn't be possible all with one collection.
 
 The protocol interface is simple.
 
@@ -29,9 +29,7 @@ export interface Protocol {
 
 The uri and customData do not currently have a specific format. It is just a place to provide extra details.
 
-
-
-Then, over time users can set their respective collections for protocols such as&#x20;
+Over time, users can set their respective collections for protocols such as&#x20;
 
 ```json
 {
@@ -40,3 +38,20 @@ Then, over time users can set their respective collections for protocols such as
 }
 ```
 
+**Genesis Conditions**
+
+Protocols may have expected genesis conditions to be correctly implemented. There are no checks on-chain for genesis conditions when a user sets a protocol. This is to be handled on the app level by the implementation and handled accordingly.
+
+Some examples:
+
+* Creator must be manager at all times
+* Total supply is locked at X for all IDs and times
+* Balances must be stored on-chain
+
+### Want to create a protocol?
+
+See [MsgCreateProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateprotocol.md) for creating a protocol on-chain. Other things that you may consider:
+
+* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create&#x20;
+* If your protocol has genesis conditions, make it easy for apps to verify them, potentially with a library.
+* Create an indexer for your protocol. For example, for a follow protocol, an important aspect of building an app is to query the followers / following.
