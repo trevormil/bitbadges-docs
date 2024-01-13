@@ -4,7 +4,7 @@
 
 * [👋 BitBadges Overview](README.md)
 * [🎨 Use Cases](overview/use-cases.md)
-* [🏆 How It Works](overview/how-it-works/README.md)
+* [🧠 Core Concepts](overview/how-it-works/README.md)
   * [Accounts](overview/how-it-works/accounts.md)
   * [Badges vs Address Lists](overview/how-it-works/badges-vs-address-lists.md)
   * [Distribution / Collection](overview/how-it-works/distribution.md)

@@ -14,5 +14,5 @@ standards: ["non-fungible", "attendance-event"]
 
 ## List of Standards
 
-1. "No Balances" standard - If the standards array contains the standard "No Balances", then, the balances for all badges in the collection are deemed unimportant and are to not be displayed. This means nothing about transferability, approvals, activity, and so on is displayed. This standard is used by collections where only the badge metadata / permissions matter, such as an attestation to something. All badges are expected to not have any recipient.
+1. "No User Ownership" standard - If the standards contains the standard "No User Ownership", then, user ownership is deemed unimportant and all user balances are to not be displayed. This means nothing about transferability, approvals, activity, and so on is displayed. This standard is used by collections where only the badge metadata / permissions matter, such as an attestation to something. All badges are expected to not have any recipient.
 
