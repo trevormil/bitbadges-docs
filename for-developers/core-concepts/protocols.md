@@ -29,7 +29,7 @@ export interface Protocol {
 
 The uri and customData do not currently have a specific format. It is just a place to provide extra details.
 
-Over time, users can set their respective collections for protocols such as&#x20;
+Over time, users can set their respective collections for protocols such as below. This is stored on-chain because reproducability and availability is important. All other custom protocol logic should be implemented separately.
 
 ```json
 {
@@ -52,6 +52,6 @@ Some examples:
 
 See [MsgCreateProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateprotocol.md) for creating a protocol on-chain. Other things that you may consider:
 
-* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create&#x20;
+* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create a well-formatted collection and set it.
 * If your protocol has genesis conditions, make it easy for apps to verify them, potentially with a library.
 * Create an indexer for your protocol. For example, for a follow protocol, an important aspect of building an app is to query the followers / following.
