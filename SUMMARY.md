@@ -105,6 +105,7 @@
     * [Validate Permission / Value Updates](for-developers/bitbadges-sdk/common-snippets/validate-updates.md)
     * [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+    * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
 * [🔃 Create, Generate, and Sign Txs](for-developers/create-and-broadcast-txs/README.md)
   * [✉ Cosmos SDK Msgs](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/README.md)
     * [MsgCreateCollection](for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msgcreatecollection.md)
