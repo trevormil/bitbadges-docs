@@ -52,7 +52,7 @@ Some examples:
 
 * Experiences Protocol - Create a protocol which has a few badges for different experiences (trustworthy, scammer, etc).  Each badge is handed out to others based on a user's experience with them.
 * Messaging Protocol - Implement a protocol where each badge sent is a message from the sender to the recipient. The content can be attached to metadata or the **memo** field of the transaction.&#x20;
-* Social Media Protocols - Implement protocols for posts, likes, follows, usernames, etc. Make use of the [alias addresses](aliases.md) to allow a post to own a like badge, for example. Use the "No Balances Standard" for items where balances do not matter.
+* Social Media Protocols - Implement protocols for posts, likes, follows, usernames, etc. Make use of the [alias addresses](../../overview/how-it-works/aliases.md) to allow a post to own a like badge, for example. Use the "No Balances Standard" for items where balances do not matter.
 
 ### Want to create a protocol?
 
