@@ -16,7 +16,7 @@ export interface AddressList {
   listId: string;
 
   addresses: string[];
-  allowlist: boolean;
+  whitelist: boolean;
 
   uri: string; 
   customData: string;

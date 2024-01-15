@@ -32,7 +32,7 @@ Once you've fetched an `AddressList`, you might want to process or display the d
 if (fetchedList) {
   console.log(`List ID: ${fetchedList.listId}`);
   console.log(`Addresses Count: ${fetchedList.addresses.length}`);
-  console.log(`Include Only These Addresses: ${fetchedList.allowlist}`);
+  console.log(`Include Only These Addresses: ${fetchedList.whitelist}`);
   console.log(`Metadata URI: ${fetchedList.uri}`);
   console.log(`Custom Data: ${fetchedList.customData}`);
   console.log(`Created By: ${fetchedList.createdBy}`);
@@ -41,11 +41,11 @@ if (fetchedList) {
 
 **4. Making Use of the AddressList**
 
-Based on the `allowlist` flag, you can determine whether the list represents addresses to include or exclude. This allows for flexibility in operations:
+Based on the `whitelist` flag, you can determine whether the list represents addresses to include or exclude. This allows for flexibility in operations:
 
 ```typescript
 if (fetchedList) {
-  if (fetchedList.allowlist) {
+  if (fetchedList.whitelist) {
     console.log("These addresses are included:");
   } else {
     console.log("All addresses except the following are included:");

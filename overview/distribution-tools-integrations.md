@@ -1,6 +1,6 @@
 # 🔀 Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (allowlists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distribution experience.
+There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (whitelists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distribution experience.
 
 For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via email, Discord, or SMS.
 
@@ -14,9 +14,9 @@ Here, we provide documentation for common distribution integrations / tools as a
 
 Distribution may involve:
 
-* Collecting addresses or usernames of your users to implement allowlists
+* Collecting addresses or usernames of your users to implement whitelists
 * Distributing codes / passwords that are used to claim badges
-* Notifying users they are on an allowlist
+* Notifying users they are on an whitelist
 * Notifying users for how to earn / collect this badge
 
 ### Address Surveys

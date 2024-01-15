@@ -44,4 +44,4 @@ Address lists are simply a list of users identified by a unique ID. Lists are le
 
 **Metadata:** Lists can be customized with metadata like a name, image, description, etc. They will show up on users' profiles under the lists' category.
 
-**Allowlists and Blocklists:** Lists are invertible meaning your list can denote whether to only specify certain addresses or include all addresses but certain addresses (allowlist or blocklist).
+**Whitelists and Blacklists:** Lists are invertible meaning your list can denote whether to only specify certain addresses or include all addresses but certain addresses (whitelist or blacklist).

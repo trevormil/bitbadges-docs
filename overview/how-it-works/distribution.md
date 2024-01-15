@@ -32,7 +32,7 @@ Claims can be setup so that a user can claim the badge from the Mint address, if
 
 * **Passwords:** Set up a reusable password that must be entered to claim a badge.
 * **Codes:** Generate unique one-time use only codes that allow users to claim.&#x20;
-* **Allowlists / Blocklists**: Only allow specific addresses to claim.
+* **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
 Codes / passwords can be distributed using any preferred method such as **email, QR codes, social media, etc.** Note these methods do not have to be crypto-native. Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. **Although, always use third-party tools at your own risk.** For developers, see [Badge Distribution](../distribution-tools-integrations.md) for some common integration examples.
 
@@ -50,7 +50,7 @@ For this option, ALL addresses will start out with the defined balances.
 
 ### **Notifications / Alerts**
 
-A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a allowlist, manually assign balances, or some other address-based method. If you do not, you have two options:
+A key factor in determining distribution method is if you know your users' addresses / BitBadges usernames or not. If you do, you can use a whitelist, manually assign balances, or some other address-based method. If you do not, you have two options:
 
 1. Collect their addresses somehow (e.g. surveys) first and then use an address-based method.
 2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
@@ -59,7 +59,7 @@ You ultimately know your users best. We leave the communication and alerting ste
 
 **Claim Alerts and Ecosystem Tools**
 
-If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for allowlists and activity if a badge is transferred / assigned to them).
+If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for whitelists and activity if a badge is transferred / assigned to them).
 
 See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
 

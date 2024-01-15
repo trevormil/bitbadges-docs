@@ -7,7 +7,7 @@ export interface AddressList {
   listId: string;
 
   addresses: string[];
-  allowlist: boolean;
+  whitelist: boolean;
 
   uri: string; 
   customData: string;
@@ -26,9 +26,9 @@ However, sometimes, this simplicity may be desired, such as not dealing with bal
 
 When defining transferability and approvals, you need to define the list of addresses who can send, receive, and inititate the transfer. The AddressList interface is used for this on-chain.
 
-### Inverting (Allowlist vs Blocklist)
+### Inverting (Whitelist vs Blacklist)
 
-These are invertible meaning we can create a list that includes all addresses EXCEPT some specified addresses (allowlist = false). Or, we can create a list that includes ONLY some specified addresses (allowlist = true). More commonly, this is thought of as a blocklist or allowlist.
+These are invertible meaning we can create a list that includes all addresses EXCEPT some specified addresses (whitelist = false). Or, we can create a list that includes ONLY some specified addresses (whitelist = true). More commonly, this is thought of as a blacklist or whitelist.
 
 **IMPORTANT:** When you invert, the inversion by default includes the "Mint" address. This is important when handling the **fromList** of approvals. You do not want to accidentally approve users to transfer from the "Mint" address.
 
@@ -86,7 +86,7 @@ This is the list which includes all addresses except "cosmos123...." and "cosmos
 {
   "listId": "abcdef",
   "addresses": ["cosmos123...", "cosmos456...."],
-  "allowlist": false,
+  "whitelist": false,
   ...
 }
 ```

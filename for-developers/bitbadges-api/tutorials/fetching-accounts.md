@@ -112,9 +112,9 @@ The user interface supports the following base **viewType** values.
 * 'badgesCollected': Fetches badges owned by the user
 * 'createdBadges': Collections / badges that the user has created
 * 'managingBadges': Collections / badges that the user is managing currently
-* 'allLists': Fetches lists that the user are explicitly defined on (allowlist or blocklists)
-* 'allowlists': Fetches lists that the user are explicitly included (i.e. allowlists)
-* 'blocklists': Fetches lists that the user are explicitly excluded (i.e. blocklists)
+* 'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
+* 'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
+* 'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
 * 'createdLists': Lists that the user has created (excludes private lists)
 
 The following require authentication:
@@ -126,7 +126,7 @@ The following require authentication:
 ```typescript
 export type AccountViewKey = 'createdLists' | 'privateLists'
   | 'authCodes' | 'transferActivity' | 'reviews' | 'badgesCollected' | 'latestClaimAlerts'
-  | 'allLists' | 'allowlists' | 'blocklists' | 'createdBadges' | 'managingBadges' | 'listsActivity'
+  | 'allLists' | 'whitelists' | 'blacklists' | 'createdBadges' | 'managingBadges' | 'listsActivity'
 ```
 
 Request:

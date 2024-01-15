@@ -90,7 +90,7 @@ The **amountTrackerId** and **challengeTrackerId** are different, and we will ex
 
 We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
 
-This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for allowlist trees where no leaves are secret, we can host the full tree.
+This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
 
 **Who? When? What? - Main Fields**
 

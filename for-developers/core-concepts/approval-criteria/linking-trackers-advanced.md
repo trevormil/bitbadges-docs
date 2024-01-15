@@ -37,15 +37,15 @@ export interface ApprovalTrackerIdDetails<T extends NumberType> {
 
 **Example 1:**
 
-For example, the following pseudocode would allow address C (in both allowlist ABC and CDE) to claim a max of x10 because the tallys are linked (same tracker ID).
+For example, the following pseudocode would allow address C (in both whitelist ABC and CDE) to claim a max of x10 because the tallys are linked (same tracker ID).
 
 ```json
 [{
     Tracker ID: 123
-    Approve x5 of IDs 1-10 if you are on allowlist ABC,
+    Approve x5 of IDs 1-10 if you are on whitelist ABC,
 }, {
     Tracker ID: 123,
-    Approve x10 of IDs 1-10 if you are on allowlist CDE
+    Approve x10 of IDs 1-10 if you are on whitelist CDE
 }]
 ```
 
@@ -54,9 +54,9 @@ But, the following would allow address C to claim a max of x15 because the tally
 ```json
 [{
     Tracker ID: 123
-    Approve x5 of IDs 1-10 if you are on allowlist ABC,
+    Approve x5 of IDs 1-10 if you are on whitelist ABC,
 }, {
     Tracker ID: 456,
-    Approve x10 of IDs 1-10 if you are on allowlist CDE
+    Approve x10 of IDs 1-10 if you are on whitelist CDE
 }]
 ```

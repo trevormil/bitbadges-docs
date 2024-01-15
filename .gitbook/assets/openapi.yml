@@ -825,7 +825,7 @@ paths:
                         expectedMerkleProofLength:
                           type: string
                           format: uint64
-                        allowlistRoot:
+                        whitelistRoot:
                           type: string
                         incrementIdsBy:
                           type: string
@@ -855,7 +855,7 @@ paths:
                           format: uint64
                           title: >-
                             0 = no restrictions (can mint multiple times), 1 =
-                            allowlist leafs can only be used once, 2 = one claim
+                            whitelist leafs can only be used once, 2 = one claim
                             per account
                         uri:
                           type: string
@@ -47895,7 +47895,7 @@ definitions:
             expectedMerkleProofLength:
               type: string
               format: uint64
-            allowlistRoot:
+            whitelistRoot:
               type: string
             incrementIdsBy:
               type: string
@@ -47923,7 +47923,7 @@ definitions:
               type: string
               format: uint64
               title: >-
-                0 = no restrictions (can mint multiple times), 1 = allowlist
+                0 = no restrictions (can mint multiple times), 1 = whitelist
                 leafs can only be used once, 2 = one claim per account
             uri:
               type: string
@@ -48054,7 +48054,7 @@ definitions:
       expectedMerkleProofLength:
         type: string
         format: uint64
-      allowlistRoot:
+      whitelistRoot:
         type: string
       incrementIdsBy:
         type: string
@@ -48082,7 +48082,7 @@ definitions:
         type: string
         format: uint64
         title: >-
-          0 = no restrictions (can mint multiple times), 1 = allowlist leafs can
+          0 = no restrictions (can mint multiple times), 1 = whitelist leafs can
           only be used once, 2 = one claim per account
       uri:
         type: string
@@ -48593,7 +48593,7 @@ definitions:
                 expectedMerkleProofLength:
                   type: string
                   format: uint64
-                allowlistRoot:
+                whitelistRoot:
                   type: string
                 incrementIdsBy:
                   type: string
@@ -48621,7 +48621,7 @@ definitions:
                   type: string
                   format: uint64
                   title: >-
-                    0 = no restrictions (can mint multiple times), 1 = allowlist
+                    0 = no restrictions (can mint multiple times), 1 = whitelist
                     leafs can only be used once, 2 = one claim per account
                 uri:
                   type: string

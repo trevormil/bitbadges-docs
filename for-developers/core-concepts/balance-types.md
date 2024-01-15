@@ -142,7 +142,7 @@ We do this by the following:
 
 To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are Cosmos addresses / address list IDs and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
-Note that if you use address list IDs for the keys ([see here to learn more](address-lists-lists.md)), the corresponding address list must be a allowlist (allowlist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
+Note that if you use address list IDs for the keys ([see here to learn more](address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
 See [here](../bitbadges-sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 

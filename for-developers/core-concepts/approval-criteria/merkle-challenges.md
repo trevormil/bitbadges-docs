@@ -23,17 +23,17 @@ export interface MerkleChallenge<T extends NumberType> {
 
 Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../create-and-broadcast-txs/cosmos-sdk-msgs/msgtransferbadges.md)).
 
-For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid Merkle path from the claim code to the **root**. You distribute the secret leaves in any method you prefer. Or, you can create an allowlist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim.
+For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid Merkle path from the claim code to the **root**. You distribute the secret leaves in any method you prefer. Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim.
 
 #### Expected Proof Length
 
 The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly. THIS IS CRITICAL.**
 
-**Allowlist Trees**
+**Whitelist Trees**
 
-First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement allowlist trees. Note that the initiator must also be within the **initiatedByList** of the approval for it to make sense.
+First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement whitelist trees. Note that the initiator must also be within the **initiatedByList** of the approval for it to make sense.
 
-For allowlist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
 We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained. Like approval trackers, this is increment only and non-deletable.
 
@@ -81,7 +81,7 @@ const codesRoot = codesTree.getRoot().toString('hex');
 const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 ```
 
-For allowlists, replace with this code.
+For whitelists, replace with this code.
 
 ```typescript
 addresses.push(...toAddresses.map(x => convertToCosmosAddress(x)));
@@ -94,8 +94,8 @@ A valid proof can then be created via where codeToSubmit is the code submitted b
 
 ```typescript
 const passwordCodeToSubmit = '....'
-const leaf = isAllowlist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
-const proofObj = tree?.getProof(leaf, allowlistIndex !== undefined && allowlistIndex >= 0 ? allowlistIndex : undefined);
+const leaf = isWhitelist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
+const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
 
@@ -106,7 +106,7 @@ const codeProof = {
       onRight: proof.position === 'right'
     }
   }) : [],
-  leaf: isAllowlist ? '' : passwordCodeToSubmit,
+  leaf: isWhitelist ? '' : passwordCodeToSubmit,
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {
