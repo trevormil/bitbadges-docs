@@ -149,6 +149,7 @@ Common pre-checks include:
 * Verify all message details are as expected (nonces, domains, statements, badge ownership requirements, etc).&#x20;
 * Verify the signature has not been used yet.
 * Any custom requirements like max one use per address? max one use per badge? This can all be checked now since you know the message details.
+* Only want to allow specific whitelisted addresses? Check that here,
 
 Consider using the exported functions from Blockin to help you.
 
