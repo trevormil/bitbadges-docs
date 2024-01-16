@@ -189,5 +189,26 @@ Use the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cC
 
 Consider using [https://bitbadges.io/auth/verify](https://bitbadges.io/auth/verify) which is a verification helper tool for simple use cases. This tool allows you to scan, fetch, and verify the QR codes directly in your browser. It also uses local storage to keep track of sessions. Sessions are used to keep track of which codes have been used, which haven't, etc. Any additional custom logic will need to be implemented separately.
 
+If you want to dynamically fetch the message based on the signature, pass in **storeInAccount**=true. This will allow you to only enter the signature, and the message will be fetched dynamically. Note this is only possible if the code is stored by BitBadges. Or else, you will have to pass in false and manually enter the message yourself.
+
+For a custom application link, you can pass in the same URL params as your generated URL in step 1. This will verify the message is exactly as desired (what you specified in Step 1). So for example, your link might be something like this:
+
+```
+https://bitbadges.io/auth/verify?name=testing&description=bitabfdajhksdfgh&image=ipfs://QmbG3PyyQyZTzdTBANxb3sA8zC37VgXndJhndXSBf7Sr4o&storeInAccount=true&allowAddressSelect=true&challengeParams=%7B%22domain%22%3A%22https%3A%2F%2Fbitbadges.io%2Faccount%22%2C%22statement%22%3A%22testing%20-%20bitabfdajhksdfgh%22%2C%22address%22%3A%22%22%2C%22uri%22%3A%22https%3A%2F%2Fbitbadges.io%2Faccount%22%2C%22nonce%22%3A%22fsdasfasdfasdfasdf%22%2C%22version%22%3A%221%22%2C%22chainId%22%3A%221%22%2C%22issuedAt%22%3A%22%22%2C%22expirationDate%22%3A%22%22%2C%22notBefore%22%3A%22%22%2C%22resources%22%3A%5B%5D%2C%22assets%22%3A%5B%7B%22assetIds%22%3A%5B%7B%22start%22%3A%221%22%2C%22end%22%3A%221%22%7D%5D%2C%22collectionId%22%3A%221%22%2C%22mustOwnAmounts%22%3A%7B%22start%22%3A%220%22%2C%22end%22%3A%220%22%7D%2C%22chain%22%3A%22BitBadges%22%2C%22mustSatisfyForAllAssets%22%3Atrue%7D%5D%7D&
+```
+
+```typescript
+const {
+    challengeParams, //Blockin ChallengeParams<string>
+    name, //string
+    description, //string
+    image, //string 
+    generateNonce, //boolean
+    allowAddressSelect, //boolean
+    callbackRequired //boolean
+    storeInAccount //boolean
+} = router.query;
+```
+
 <figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
