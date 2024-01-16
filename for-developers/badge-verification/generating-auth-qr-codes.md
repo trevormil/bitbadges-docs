@@ -16,7 +16,7 @@ Example Use Cases:
 Overview of the execution flow:
 
 1. Generate a custom authentication message with [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen). This will create a custom BitBadges URL that you give to users who wish to authenticate.
-2. Send your custom URL to your users wishing to authenticate. This URL will have them sign your authentication message, generate an authentication code (i.e. their signature) which is to to be kept secret, and store it in their BitBadges account. It can also be optionally exported elsewhere such as a QR code, via copy text, or stored in the browser.&#x20;
+2. Send your custom URL to your users wishing to authenticate. This URL will have them sign your authentication message, generate an authentication code (i.e. their signature) which is to to be kept secret. This code will be stored in their BitBadges account and/or passed back to the parent window. If stored in account, it can also be optionally exported elsewhere such as a QR code, via copy text, or stored in the browser.&#x20;
 3. To verify codes (signatures), you need to obtain the (message, signature) pair. We leave this step up to you and what works best for your users. Note that BitBadges account sign ins (needed to access the auth codes) require access to a wallet which may not be applicable for users in many use cases. The corresponding messages for each signature may already be pre-known, can be cached when the user signs the message if directed via callbacks if directed via a popup window, can be fetched from the BitBadges API, or provided manually.
    1. QR Codes: Scan a QR code in-person to get the signature
    2. Child Window Popups: Implement everything as a child window popup, similar to "Sign In With XYZ Company".
@@ -42,7 +42,8 @@ const {
     image, //string 
     generateNonce, //boolean
     allowAddressSelect, //boolean
-    requireCallback //boolean
+    callbackRequired //boolean
+    storeInAccount //boolean
 } = router.query;
 ```
 
@@ -56,9 +57,11 @@ https://bitbadges.io/auth/codegen?name=Event%20Verification&description=This%20w
 
 If **generateNonce** and **allowAddressSelect** are true, we will handle the nonce generation and address selection on our end, respectively. Meaning, we override challengeParams.nonce, challengeParams.address, and challengeParams.chain with a random nonce and the user's signed in address / chain, respectively. If false, we use exactly what is specified in **challengeParams**.
 
-name, description, and image follow the base metadata format. These will be used for UI purposes and displaying everything nicely to the user. They are not included anywhere in the message.
+**name**, **description**, and **image** follow the base metadata format. These will be used for UI purposes and displaying everything nicely to the user. They are not included anywhere in the message.
 
-requireCallback set to true means we will return the (message, signature) pair to the window that directed to the site (see Step 3).
+**callbackRequired** set to true means we will return the (message, signature) pair to the window that directed to the site (see below)..
+
+**storeInAccount** set to true means we will store the code in the user's BitBadges account. For manual (see below), this should be true. For callbacks (see below), this is typically false to avoid extra confusion for the user.
 
 ### Step 2: User Signs and Generates Code
 
@@ -82,7 +85,7 @@ await BitBadgesApi.getAuthCode(...);
 
 **Callbacks**
 
-If you passed **requireCallback** = true to the URL params, we will send a callback message with the { mesage, signature } back to **window.opener** upon the message being signed by the user. This allows you (the parent window) to receive the pair without any user clicks.&#x20;
+If you passed **callbackRequired** = true to the URL params, we will send a callback message with the { mesage, signature } back to **window.opener** upon the message being signed by the user. This allows you (the parent window) to receive the pair without any user clicks. **The child window will also be closed upon the message being signed.**&#x20;
 
 Once you receive the pair, you can proceed to directly authenticate the user, or you can cache it for later use. This depends on your use case.
 
