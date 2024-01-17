@@ -69,7 +69,7 @@
 * [🔏 Badge Verification](for-developers/badge-verification/README.md)
   * [Overview](for-developers/badge-verification/verifying-badge-ownership.md)
   * [Programmatic Verification](for-developers/badge-verification/digital-verification.md)
-  * [Outsourced Verification](for-developers/badge-verification/generating-auth-qr-codes.md)
+  * [Sign In With BitBadges](for-developers/badge-verification/generating-auth-qr-codes.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
   * [Designing for Compatibility](for-developers/bitbadges-api/designing-for-compatibility.md)

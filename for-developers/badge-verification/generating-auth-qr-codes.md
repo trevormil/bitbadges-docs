@@ -1,4 +1,4 @@
-# Outsourced Verification
+# Sign In With BitBadges
 
 Pre-Readings: Overview Page
 
@@ -26,7 +26,7 @@ Overview of the execution flow:
 
 <figure><img src="../../.gitbook/assets/image (44).png" alt="" width="359"><figcaption></figcaption></figure>
 
-As always, everything is open source. These are just helper tools. Feel free to customize and add logic as needed. See the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) for a starting point / reference.
+As always, everything is open source. These are just helper tools. Feel free to customize and add logic as needed. See the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/getting-started) for a starting point / reference.
 
 ### **Step 1:** Generate the Generation URL
 
@@ -183,7 +183,7 @@ await BitBadgesApi.genericVerify(...);
 
 If you are performing offline verification or want a custom implementation, we refer you to the [Blockin documentation](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification of the (message, signature) pair. There are multiple options and design choices here (centralized, decentralized, roll your own, BitBadges API, offline, online, etc).&#x20;
 
-Use the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/quick-start) to see an implemented verification process.
+Use the [Blockin Quickstart repository](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/getting-started) to see an implemented verification process.
 
 **Verification Option 3: Helper Tools**
 
