@@ -8,7 +8,7 @@ You can also browse featured badges at [https://bitbadges.io/browse](https://bit
 
 ### Badge Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 
-* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication to Web3 / [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir!
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
 * **Premium Content** - Premium content can be offered only to badge holders.

@@ -14,17 +14,21 @@ Create a collection using the Create tab on the BitBadges web app.
 
 **Do you need to collect user addresses?** Create an [address survey](tutorials/custom-address-surveys.md).
 
-## **Do you need to query indexed blockchain data?**
+## **Query data?**
 
 Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).
 
 Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 
-## **Need to verify ownership of badges?**
+## **Authenticate with badges?**
 
-Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, verifying also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out [here](../overview/how-it-works/verification.md).
+Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, verifying also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out Blockin.
 
-## **Do you need to submit blockchain transactions?**
+{% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
+[Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
+{% endcontent-ref %}
+
+## **Submit blockchain transactions?**
 
 The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom program your own transaction generation and broadcast.**
 
@@ -38,6 +42,6 @@ Use the [BitBadges website](bitbadges-frontend.md) code or [Blockin Quickstart](
 
 Consider expanding with the BitBadges SDK, or if you need to extend the interface on-chain, you can do so with a [CosmWasm smart contract](tutorials/create-a-wasm-contract.md). Or, reach out to us to see what we can do.
 
-## **Do you want to run a blockchain node?**
+## **Run a blockchain node?**
 
 See [Run a Node](bitbadges-blockchain/run-a-node.md).
