@@ -1,6 +1,13 @@
 # 🔀 Distribution Tools
 
-There are infinitely many ways to distribute badges to holders. On the BItBadges site, we natively support the building blocks (whitelists, passwords, claim codes, QR codes). However, these are to be combined with distribution tools to further enhance the distribution experience. For example, you might create a code-based claim on the BitBadges website but distribute the codes in a variety of ways such as via email, Discord, or SMS.
+There are infinitely many ways to distribute badges to holders. On the BitBadges site, we natively support the building blocks (whitelists, passwords, claim codes) and have interfaces for you to share the following:
+
+* **Plaintext Codes / Passwords:** For codes / passwords, you can share/copy/download the codes yourself and distribute how you would like.
+* **Direct Claim Links:** Provide a unique secret link to the claim page. These links can be distributed however (QR codes, email, etc). Note that claiming requires a transaction, so wallets must be handy at claim time.&#x20;
+* **Save for Later Links:** For codes / passwords, we also offer Save for Later links which allow you to save the code / password for later (typically via a mobile device). These are often used when wallets are not handy in the moment.
+* **Claim Alerts:** BitBadges allows you to send in-app claim alerts to users notifying them to claim the badges with the link / instructions for how to do so.
+
+However, these are to be combined with distribution tools to further enhance the distribution experience. For example, you might create a code-based claim on the BitBadges website but distribute the claim links in a variety of ways such as via QR codes, email, Discord, or SMS.
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

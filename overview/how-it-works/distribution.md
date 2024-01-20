@@ -31,12 +31,16 @@ The manager or other approved parties can directly initiate a transfer forcefull
 Claims can be setup so that a user can claim the badge from the Mint address, if they meet certain criteria. Note the initiator of the transfer pays the transaction fees. Some examples include
 
 * **Passwords:** Set up a reusable password that must be entered to claim a badge.
-* **Codes:** Generate unique one-time use only codes that allow users to claim.&#x20;
+* **Codes:** Generate unique one-time use only codes that allow users to claim.
 * **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
 Codes / passwords can be distributed using any preferred method such as **email, QR codes, social media, etc.** Note these methods do not have to be crypto-native. Consider using widely used tools, such as Mailchimp, Discord, or Twilio to help you distribute codes / passwords, collect user addresses, and communicate with users. **Although, always use third-party tools at your own risk.** For developers, see [Badge Distribution](../distribution-tools-integrations.md) for some common integration examples.
 
+Below are some ways that we natively support distributing on the BitBadges website.
 
+* **Direct Claim Links:** Provide a unique link to the claim page. Anyone with the unique link can go and claim the badge. The password / code will be auto-populated for them. These links can be distributed however (QR codes, email, etc). Note that claiming requires a transaction, so wallets must be handy at claim time.&#x20;
+* **Save for Later Links:** For codes / passwords, we also offer Save for Later links which allow you to save the code / password for later (typically via a mobile device). These are often used when wallets are not handy in the moment.
+* **Claim Alerts:** BitBadges allows you to send in-app claim alerts to users notifying them to claim the badges with the link / instructions for how to do so.
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
@@ -55,11 +59,10 @@ A key factor in determining distribution method is if you know your users' addre
 1. Collect their addresses somehow (e.g. surveys) first and then use an address-based method.
 2. Use a password / code-based distribution method and distribute the codes that way. This can be done via typical communication methods like email, social media messaging, etc.
 
-You ultimately know your users best. We leave the communication and alerting step up to you.&#x20;
+You ultimately know your users best. We leave the communication and alerting step up to you.
 
 **Claim Alerts and Ecosystem Tools**
 
 If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for whitelists and activity if a badge is transferred / assigned to them).
 
 See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
-
