@@ -18,7 +18,7 @@ This is the main use case we envision. However, badges can be created for anythi
 
 ### **Are there plans to support digital collectibles (tokens with value) rather than just badges?**
 
-Technically, it is already possible on the blockchain (just sending a badge along with some form of $BADGE currency). However, we want to focus on badges and leave "valuable" tokens to each respective ecosystem. For now, we want BitBadges to be a hub for achievements, reputation, etc, not a place for trading NFTs. In the future, we will reconsider.
+Technically, it is already possible on the blockchain (just sending a badge along with some form of $BADGE currency). However, we want to focus on badges and leave "valuable" tokens to each respective ecosystem. For now, we want BitBadges to be a hub for achievements, reputation, etc, not a place for buying, selling, and trading. In the future, we will reconsider. If you want to build this, reach out to us.
 
 ### **What makes BitBadges better than competitors?**
 
