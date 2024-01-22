@@ -73,7 +73,8 @@ export interface CollectionApprovalPermission<T extends NumberType> {
   transferTimes: UintRange<T>[];
   badgeIds: UintRange<T>[];
   ownershipTimes: UintRange<T>[];
-  amountTrackerId: string
+  approvalId: string
+  approvalTrackerId: string
   challengeTrackerId: string
   
   permanentlyPermittedTimes: UintRange<T>[];
@@ -249,6 +250,7 @@ Also, if we add another permission definition after this one in the array with *
         "end": "18446744073709551615"
       }
     ],
+    "approvalId": "All",
     "approvalTrackerId": "All",
     "challengeTrackerId": "All",
     "permanentlyPermittedTimes": [],
@@ -296,6 +298,7 @@ Let's say we have the following **where** we do not handle badge ID 1.
         "end": "18446744073709551615"
       }
     ],
+    "approvalId": "All",
     "approvalTrackerId": "All",
     "challengeTrackerId": "All",
     "permanentlyPermittedTimes": [],
@@ -373,9 +376,9 @@ There are five categories of permissions, each with different criteria that must
     }
     ```
 * **ApprovalPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
-  * **Tracker IDs:** The tracker IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, IDs, ownershipTimes) combination due to multiple approvals matching such criteria.
-  * **Shorthand Options:** Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)). The same shorthand options can be applied to the trackerId fields ("!id123" means all IDs except "id123"). Use "All" to represent all tracker IDs.
-  * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All", "All") tuple, thus making the transferability locked for those transfer combinations.
+  * **Approval IDs:** The approval IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination due to multiple approvals matching the same criteria.
+  * **Shorthand Options:** Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)). The same shorthand options can be applied to the ID fields ("!id123" means all IDs except "id123"). Use "All" to represent all IDs.
+  * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All",  "All",  "All") tuple, thus making the transferability locked for those transfer combinations.
     * <pre class="language-typescript"><code class="lang-typescript"><strong>{
       </strong>  fromListId: string;
         toListId: string;
@@ -383,8 +386,10 @@ There are five categories of permissions, each with different criteria that must
         transferTimes: UintRange&#x3C;T>[];
         badgeIds: UintRange&#x3C;T>[];
         ownershipTimes: UintRange&#x3C;T>[];
-        approvalTrackerId: string
+        approvalId: string
+        amountTrackerId: string
         challengeTrackerId: string
+        
         
         permanentlyPermittedTimes: UintRange&#x3C;T>[];
         permanentlyForbiddenTimes: UintRange&#x3C;T>[];
@@ -401,9 +406,9 @@ Before: 1-10 -> APPROVED, Criteria ABC
 
 After: 1 -> APPROVED, Criteria XYZ, 2-10 -> Criteria ABC
 
-**Tracker IDs**
+**Approval / Tracker IDs**
 
-An important part in setting an approval permission is ensuring that **approvalTrackerId** and **challengeTrackerId** are handled correctly.
+An important part in setting an approval permission is ensuring that the IDs are handled correctly.
 
 Let's explain via a scenario. Let's say you create an approval that tracks used Merkle challenge leaves with a one use per leaf limit. By default, due to the way **challengeTrackerId** works, multiple approvals can have the same **challengeTrackerId.**
 
@@ -431,6 +436,8 @@ So, note that to ensure a **challengeTrackerId** and/or **approvalTrackerId** is
 ```
 
 You can also use the "All" reserved ID to represent all tracker IDs cannot be updated, for example, or use the manipulation options to represent all, invert, etc.
+
+You can also lock an **approvalId** to freeze a specific approval from being edited, but this has no bearing on whether other approvals with the same badge IDs, tracker IDs, etc are created.&#x20;
 
 ### **User Permissions**
 
