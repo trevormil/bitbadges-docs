@@ -14,17 +14,35 @@ Balances can be verified by querying them somehow, which can be via the BitBadge
 
 Verifying address ownership can be done with a cryptographic signature. As mentioned above, we recommend Blockin; however, any cryptographic signature will do.&#x20;
 
+### Sign In With BitBadges
+
+Digitally, you can authenticate users and verify badge ownership, such as badge-gating a website.&#x20;
+
+Sign In with BitBadges is a way for any website to authenticate while outsourcing all logic to a BitBadges popup. This is similar to Sign In with Google or another big tech company, but everything uses a decentralized, open-source protocol. We refer you to here for [Sign In With BitBadges Blockin](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/getting-started/sign-in-with-bitbadges) documentation.&#x20;
+
+<figure><img src="../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+
+### QR Codes
+
+QR codes can be created for verification purposes. QR codes are used when you need to pre-generate signatures for a later time. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate a QR code instead to present. QR codes may either be one-view only or stored in your BitBadges account (under the Authentication Codes) tab, depending on what the provider wants.
+
+For implementation, we refer you to the [Sign In With BitBadges Blockin](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/getting-started/sign-in-with-bitbadges) documentation for more details.
+
+<figure><img src="../.gitbook/assets/image (51).png" alt="" width="539"><figcaption></figcaption></figure>
+
 ### Authentication Tools
 
 Here, we provide documentation for some common verification tools / integrations as a reference. Let us know if you want to add a tool or tutorial here. **Always use third party tools at your own risk!**&#x20;
 
-We recommend using [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification. [Blockin](https://blockin-quickstart.vercel.app) is a universal, multi-chain sign-in standard built by BitBadges with native BitBadges ownership verification. Badge-gate both digitally (e.g. websites) and in-person (e.g. QR codes) with Blockin. See the Blockin documentation for implementation.
+**Blockin**
+
+We recommend using [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for verification. [Blockin](https://blockin-quickstart.vercel.app) is a universal, multi-chain sign-in standard built by BitBadges with native BitBadges ownership verification. Badge-gate both digitally (e.g. websites) and in-person (e.g. QR codes) with Blockin.&#x20;
+
+Our native tools (Sign In with BitBadges and QR codes) are built with Blockin, but Blockin is a universal standard that can be customized how you would like.
 
 {% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
-
-<figure><img src="../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
 
