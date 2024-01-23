@@ -22,7 +22,7 @@ Take the following approval tracker
 
 ### **How are approval trackers identified?**
 
-Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of the **amountTrackerId** along with other identifying details. For simplicity, we recommend keeping the **amountTrackerId** the same as the **approvalId,** unless implementing advanced functionality.
+Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of the **amountTrackerId** along with other identifying details. For simplicity, we recommend keeping the **amountTrackerId** the same as the **approvalId,** unless implementing advanced functionality. The **amountTrackerId** cannot be the same as a different approval's **approvalId.**
 
 ```
 ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress

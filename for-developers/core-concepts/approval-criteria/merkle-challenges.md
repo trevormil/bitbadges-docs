@@ -27,7 +27,7 @@ For example, you can create a Merkle tree of claim codes. Then to be able to cla
 
 #### Expected Proof Length
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly. THIS IS CRITICAL.**
+The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly. THIS IS CRITICAL.**&#x20;
 
 **Whitelist Trees**
 
@@ -37,7 +37,7 @@ For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** ca
 
 We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained. Like approval trackers, this is increment only and non-deletable.
 
-The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details.
+The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details. For simplicity, we reccomend keeping this the same as the approval's **approvalId,** unless implementing advanced functionality. The **challengeTrackerId** cannot be the same as a different approval's **approvalId.**
 
 ```typescript
 {
@@ -56,8 +56,6 @@ Example:
 `1-collection- -uniqueID-0` -> USED 1 TIME
 
 `1-collection- -uniqueID-1` -> UNUSED
-
-
 
 **Reserving Specific Leafs**
 
