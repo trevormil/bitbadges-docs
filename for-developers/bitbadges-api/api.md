@@ -65,11 +65,50 @@ const BitBadgesApi = new BitBadgesAPI({
     apiUrl: '...' //defaults to official one if empty
 }); 
 
-await BitBadgesApi.getStatus()
-await BitBadgesApi.getOwnersForBadge(collectionId, badgeId, requestBody)
-await BitBadgesApi.getCollections(...)
-await BitBadgesApi.getAccounts(...)
-//And so on for all routes....
+//See https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html for documentation
+//Some might require authentication. Some might be CORS only from the official site.
+await BitBadgesApi.addAddressToSurvey(...);
+await BitBadgesApi.addApprovalDetailsToOffChainStorage(...);
+await BitBadgesApi.addBalancesToOffChainStorage(...);
+await BitBadgesApi.addMetadataToIpfs(...);
+await BitBadgesApi.addReviewForCollection(...);
+await BitBadgesApi.addReviewForUser(...);
+await BitBadgesApi.broadcastTx(...);
+await BitBadgesApi.checkIfSignedIn(...);
+await BitBadgesApi.createAuthCode(...);
+await BitBadgesApi.deleteAddressLists(...);
+await BitBadgesApi.deleteAuthCode(...);
+await BitBadgesApi.deleteReview(...);
+await BitBadgesApi.fetchMetadataDirectly(...);
+await BitBadgesApi.filterBadgesInCollection(...);
+await BitBadgesApi.getAccounts(...);
+await BitBadgesApi.getAddressLists(...);
+await BitBadgesApi.getAllPasswordsAndCodes(...);
+await BitBadgesApi.getAuthCode(...);
+await BitBadgesApi.getBadgeActivity(...);
+await BitBadgesApi.getBadgeBalanceByAddress(...);
+await BitBadgesApi.getBrowseCollections(...);
+await BitBadgesApi.getClaimAlerts(...);
+await BitBadgesApi.getCodeForPassword(...);
+await BitBadgesApi.getCollectionForProtocol(...);
+await BitBadgesApi.getCollections(...);
+await BitBadgesApi.getFollowDetails(...);
+await BitBadgesApi.getOwnersForBadge(...);
+await BitBadgesApi.getProtocol(...);
+await BitBadgesApi.getRefreshStatus(...);
+await BitBadgesApi.getSearchResults(...);
+await BitBadgesApi.getSignInChallenge(...);
+await BitBadgesApi.getStatus(...);
+await BitBadgesApi.getTokensFromFaucet(...);
+await BitBadgesApi.refreshMetadata(...);
+await BitBadgesApi.sendClaimAlert(...);
+await BitBadgesApi.signOut(...);
+await BitBadgesApi.simulateTx(...);
+await BitBadgesApi.updateAccountInfo(...);
+await BitBadgesApi.updateAddressLists(...);
+await BitBadgesApi.updateUserSeenActivity(...);
+await BitBadgesApi.verifySignIn(...);
+await BitBadgesApi.verifySignInGeneric(...);
 ```
 
 Check out [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for a working reference of the API routes using the SDK.
