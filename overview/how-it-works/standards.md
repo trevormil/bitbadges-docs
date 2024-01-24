@@ -9,7 +9,7 @@ Choose the most appropriate standard(s) for your desired use case. You may choos
 **Example**
 
 ```
-standards: ["non-fungible", "attendance-event"]
+standards: ["non-fungible", "attendance-event", "No User Ownership"]
 ```
 
 ## List of Standards

@@ -5,15 +5,66 @@
 * [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
 * [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
 
-### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) and Validator Operators <a href="#injective-accounts" id="injective-accounts"></a>
+### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
 
-For accounts (standard senders of transactions) and validator operators, we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
+For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
 
 ### **Ethereum**
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` for Ethereum type accounts, unlike  other Cosmos accounts that use Coin type `118.`
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` for Ethereum type accounts, unlike other Cosmos accounts that use Coin type `118.`
 
-**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
+**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK. An example is provided below.
+
+```
+{
+    "types": {
+        "EIP712Domain": [
+            {
+                "name": "name",
+                "type": "string"
+            },
+            ....
+        ],
+        ...
+    },
+    "primaryType": "Tx",
+    "domain": {
+        "name": "BitBadges",
+        "version": "1.0.0",
+        "chainId": 1,
+        "verifyingContract": "0xa607FcD07cfe8d84cA839e4D6EdEE4B1A6789603",
+        "salt": "0x5d1e2c0e9b8a5c395979525d5f6d5f0c595d5a5c5e5e5b5d5ecd5a5e5d2e5412"
+    },
+    "message": {
+        "chain_id": "bitbadges_1-2",
+        "account_number": "12",
+        "sequence": "1",
+        "fee": {
+            "amount": [
+                {
+                    "amount": "0",
+                    "denom": "badge"
+                }
+            ],
+            "gas": "100096"
+        },
+        "memo": "",
+        "msg0": {
+            "type": "cosmos-sdk/MsgSend",
+            "value": {
+                "from_address": "cosmos1kj9kt5y64n5a8677fhjqnmcc24ht2vy97kn7rp",
+                "to_address": "cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz",
+                "amount": [
+                    {
+                        "denom": "badge",
+                        "amount": "1"
+                    }
+                ]
+            }
+        }
+    }
+}
+```
 
 ### **Solana**
 
@@ -21,15 +72,23 @@ BitBadges also extends the SDK's functionality to support Solana signatures sign
 
 **Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can be generated via the SDK.
 
+```
+{"account_number":"13","chain_id":"bitbadges_1-2","fee":{"amount":[{"amount":"0","denom":"badge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"badge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
+```
+
 ### **Cosmos**
 
 Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
 
 ### Bitcoin
 
-BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
+BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
 
 **Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
+
+```
+{"account_number":"13","chain_id":"bitbadges_1-2","fee":{"amount":[{"amount":"0","denom":"badge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"badge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
+```
 
 ### **Public Key Types**
 

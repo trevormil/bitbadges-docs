@@ -25,7 +25,7 @@ export interface ErrorResponse {
   //Serialized error object for debugging purposes. Advanced users can use this to debug issues.
   error?: any;
   //UX-friendly error message that can be displayed to the user. Always present if error.
-  message: string;
+  errorMessage: string;
   //Authentication error. Present if the user is not authenticated.
   unauthorized?: boolean;
 }
@@ -84,9 +84,9 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 ### Authentication
 
-For accessing certain private information or performing certain actions, we require for some requests that the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard for all of Web 3.0 that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
+For accessing certain private information or performing certain actions, we require for some requests that the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
-If the user is not signed in, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
+If the user is not signed in and requests private information, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
 
 ### Confined Responses
 

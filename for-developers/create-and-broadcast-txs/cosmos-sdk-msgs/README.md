@@ -1,14 +1,14 @@
-# ✉ Cosmos SDK Msgs
+# Cosmos SDK Msgs
 
 **What are Cosmos SDK Msgs? Msgs vs Transactions?**
 
-In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.&#x20;
+In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.
 
 Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
 
 **What Msgs does the BitBadges blockchain implement?**
 
-The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).&#x20;
+The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
 
 The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective).
 
@@ -26,7 +26,7 @@ The **creator** field for each message should be the transaction signer's cosmos
 
 ## Msg Definitions
 
-Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.&#x20;
+Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.
 
 **x/badges**
 
@@ -54,4 +54,3 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 **Other Cosmos SDK Modules**
 
 For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
-

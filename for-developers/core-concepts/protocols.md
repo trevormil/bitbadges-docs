@@ -34,7 +34,7 @@ Over time, users can set their respective collections for protocols such as belo
 ```json
 {
     "BitBadges Follow Protocol": 12, //collection ID 12 is used for my follows
-    "Experience Protocol": 13
+    "Experiences Protocol": 13
 }
 ```
 
@@ -50,14 +50,15 @@ Some examples:
 
 **Example Ideas**
 
-* Experiences Protocol - Create a protocol which has a few badges for different experiences (trustworthy, scammer, met IRL, etc).  Each badge is handed out to others based on a user's experience with them.
 * Messaging Protocol - Implement a protocol where each badge sent is a message from the sender to the recipient. The content can be attached to metadata or the **memo** field of the transaction.&#x20;
 * Social Media Protocols - Implement protocols for posts, likes, follows, usernames, etc. Make use of the [alias addresses](../../overview/how-it-works/aliases.md) to allow a post to own a like badge, for example. Use the "No Balances Standard" for items where balances do not matter.
 
 ### Want to create a protocol?
 
-See [MsgCreateProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateprotocol.md) for creating a protocol on-chain. Other things that you may consider:
+See [MsgCreateProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateprotocol.md) for creating a protocol on-chain. For individual users to set their desired collection, you can use [MsgSetCollectionForProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgsetcollectionforprotocol.md).
 
-* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create a well-formatted collection and set it. Also, support the protocol in other applicable areas of the site.
+Other things that you may consider:
+
+* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create a well-formatted collection and set it all in one step. Also, support the protocol in other applicable areas of the site.&#x20;
 * If your protocol has genesis conditions in order to be implemented correctly, make it easy for apps to verify them, potentially with a library.
 * Create an indexer for your protocol. For example, for a follow protocol, an important aspect of building an app is to query the followers / following. You can visit the BitBadges indexer to see how we index followers / following for the BitBadges Follow Protocol.

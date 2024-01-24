@@ -14,7 +14,7 @@ export interface ApprovalCriteria<T extends NumberType> {
 
 Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721), except we use an increment + threshold system as opposed to a decrement + greater than 0 system. This is facilitated via the concept of [Approval Trackers](approval-trackers.md).
 
-The amounts approved are limited to the **badgeIds** and **ownershipTimes** defined by the approval (see transferability page). Also, note that the to addresses are bounded to the addresses in the **toList,** from addresses from the **fromList**, and initiated by addresses from the **initiatedByList**.
+The amounts approved are scoped to the **badgeIds** and **ownershipTimes** defined by the base approval (see transferability page). Also, note that the to addresses are bounded to the addresses in the **toList,** from addresses from the **fromList**, and initiated by addresses from the **initiatedByList**.
 
 We define four levels (**trackerType** = "overall", "to", "from", "initiatedBy") that you can specify for approval amounts as seen below. You can define multiple if desired, and to be approved, the transfer must satisfy all.
 
@@ -56,10 +56,10 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
       
       "approvalCriteria": {
         "approvalAmounts": {
-           "overallApprovalAmount": "1000",
+           "overallApprovalAmount": "1000", //overall limit of x1000
            "perFromAddressApprovalAmount": "0", //no limit
            "perToAddressApprovalAmount": "0",
-           "perInitiatedByAddressApprovalAmount": "10" //limit of x10
+           "perInitiatedByAddressApprovalAmount": "10" //limit of x10 per initiator
         },
         ...
       }

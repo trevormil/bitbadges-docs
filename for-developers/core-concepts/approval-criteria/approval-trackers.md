@@ -22,7 +22,9 @@ Take the following approval tracker
 
 ### **How are approval trackers identified?**
 
-Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of the **amountTrackerId** along with other identifying details. For simplicity, we recommend keeping the **amountTrackerId** the same as the **approvalId,** unless implementing advanced functionality. The **amountTrackerId** cannot be the same as a different approval's **approvalId.**
+Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of the approval's **amountTrackerId** along with other identifying details.
+
+Note that if multiple approvals specify the same **amountTrackerId,** the SAME tracker will be incremented when DIFFERENT approvals are used. This is because the tracker identifier will be the same and thus increment the same tracker. This can be leveraged to implement cross-approval functionality, but for most cases, approval logic is expected to be scoped and not cross-approval. To enforce scoped functionality, keep the **amountTrackerId** the same as the **approvalId**. This is because we restrict that an **amountTrackerId** cannot equal the **approvalId** of a different approval.
 
 ```
 ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
@@ -39,13 +41,13 @@ export interface ApprovalTrackerIdDetails<T extends NumberType> {
 }
 ```
 
-The **trackerType** corresponds to what type of tracker it is.
+The **trackerType** corresponds to what type of tracker it is. For example, should we increment every time this approval is used? per unique recipient? sender? initiator?
 
 If "overall", this is applicable to any transfer and will increment everytime the approval is used. This creates a single universal tally. **approvedAddress** will be empty.&#x20;
 
-If "to", "from", or "initiatedBy", the **approvedAddress** is the sender, recipient, or initiator of the transfer, respectively. Note since **approvedAddress** and **trackerType** are part of the approval tracker's ID, this creates unique individual tallies per address per tracker type.
+If "to", "from", or "initiatedBy", the **approvedAddress** is the sender, recipient, or initiator of the transfer, respectively. Note since **approvedAddress** and **trackerType** are part of the approval tracker's identifier, this creates unique individual tallies (trackers) per address.
 
-For example, these correspond to different trackers because the **approvedAddress** is different.
+For example, these correspond to different trackers because the **approvedAddress** is different. Thus, Alice's transfers will be tracked separately from Bob's.
 
 `1-collection- -uniqueID-initiatedBy-alice`
 
@@ -54,6 +56,12 @@ For example, these correspond to different trackers because the **approvedAddres
 **Handling Multiple Trackers**
 
 Trackers are ID-based, and thus, multiple trackers can be created. Take note of what makes up the ID. The collection ID, approval level, approver address, and more are all considered. If one changes or is different, the whole ID is different and will correspond to a new tracker.
+
+**Increment Only**
+
+Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **amountTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
+
+IMPORTANT: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
 
 ### **What is tracked?**
 
@@ -64,7 +72,7 @@ export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalT
 }
 ```
 
-Each transfer that maps to the tracker increments **numTransfers** by 1, and each badge transferred increments the **amounts** in the interface.
+Each transfer that maps to the tracker increments **numTransfers** by 1, and each badge transferred increments the **amounts** in the interface (if tracked).
 
 Example:
 
@@ -83,12 +91,7 @@ Example:
 
 **As-Needed Basis**
 
-We increment on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we do not increment for efficiency purposes. For example, if we only are tracking **numTransfers** but do not need the **amounts**, we do not increment the amounts.
+We increment on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we **do not increment** for efficiency purposes. For example, if we only have requirements for **numTransfers** but do not need the **amounts**, we do not increment the amounts.
 
-Edge case: Note that sometimes, in [Predetermined Balances](approval-trackers.md#predetermined-balances), if you specify useOverallNumTransfers, usePerToAddressNumTransfers, usePerFromAddressNumTransfers, or usePerInitiatedByAddressNumTransfers, we do need to track the number of transfers and do increment the corresponding tracker, even if the corresponding maximum number of transfers for that level is not set / set to unlimited.
 
-**Increment Only**
 
-Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **amountTrackerId** or **challengeTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
-
-IMPORTANT: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).

@@ -10,8 +10,8 @@ Note that this is provided for ease of use but also introduces another centraliz
 
 **How are password claims implemented?**
 
-Distribution of codes can be done via many methods, including via a centralized password solution. Passwords make it so that only one reusable password needs to be distributed to all users for simplicity.
+Distribution of codes can be done via many methods, including via a centralized password solution. Passwords make it so that only one reusable password needs to be distributed to all users for simplicity, instead of unique codes.
 
-However, for password-based claims, to avoid replay attacks (since the blockchain is public), we still must create N unique codes via a MerkleChallenge but distribute them (one per address) to whoever enters the correct password. This is because if we use the password directly on-chain, after its first use, it is public to anyone.
+However, passwords cannot be implemented straightforward on the blockchain because it is public and is prone to replay attacks. Behind the scenes, for password claims, we still must create N unique codes via a MerkleChallenge but distribute them (one per address) to whoever enters the correct password. This is because if we use the password directly on-chain, after its first use, it is public to anyone.
 
 This password distribution process thus involves a centralized third party, which is the BitBadges indexer / API in this case. We will store the codes and distribute them to whichever users enter the correct password.

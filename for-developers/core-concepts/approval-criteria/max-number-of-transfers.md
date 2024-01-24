@@ -29,3 +29,9 @@ Let's say we have the ID `1-collection- -uniqueID-initiatedBy-alice` and the def
 The first transfer initiated by Alice would increment the approval tracker ID`1-collection- -uniqueID-initiatedBy-alice` to 1/1 transfers used. Alice can no longer initiate another transfer.
 
 However, Bob can still transfer because his ID is `1-collection- -uniqueID-initiatedBy-bob` which is a different tracker.
+
+**As-Needed Basis**
+
+We track on an as-needed basis, meaning if we do not have requirements that use the number of transfers, we will not increment / track.
+
+Edge Case: In [Predetermined Balances](max-number-of-transfers.md#predetermined-balances), you may need the number of transfers for determining the balances to assign to each transfer (e.g. transfer #10 -> badge ID 10). In this case, we do need to track the number of transfers. This is all facilitated via the same tracker, so even if you have "0" or unlimited set for the corresponding value in **maxNumTransfers**, the tracker may be incremented behind the scenes. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.

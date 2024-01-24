@@ -1,6 +1,6 @@
 # 🔓 Archived Collections
 
-Collections can be archived using the **isArchivedTimeline**. Before any transaction, we check if the collection is archived at the current time. If it is, all transactions will fail. The next transaction that can be processed is one that unarchives the collection. The updatability of the **isArchivedTimeline** is controlled by the **canArchiveCollection** permission.
+Collections can be archived using the **isArchivedTimeline**. Before any transaction, we check if the collection is archived at the current time. If it is, all transactions will fail. The next successful transaction that can be processed must be one that unarchives the collection. The updatability of the **isArchivedTimeline** is controlled by the **canArchiveCollection** permission.
 
 Use Cases: This can potentially be used for a few reasons
 

@@ -16,15 +16,13 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Image** (required): A URL that points to the image to be displayed. Images will be displayed with rounded corners.  We display them with a maximum size of 300 x 300 on the BitBadges website. Images are also used for all avatar icons. We recommend 512 x 512 at a minimum, however.
 
-**Video:** A URL that points to a video to be displayed. Videos can either be a valid video file (e.g. .mp4) or a YouTube embed link. Videos are only viewable upon viewing the "main" page. We will use the required image as an avatar icon in other places. For video files, we use the image as a thumbnail as well (YouTube videos have their own thumbnails).
+**Video:** A URL that points to a video to be displayed. Videos can either be a valid video file (e.g. .mp4) or a YouTube embed link (i.e. should have /embed/... in it). Videos are only viewable upon viewing the "main" page. We will use the required image as an avatar icon in other places. For non-YouTube video files, we use the image as a thumbnail as well (YouTube videos have their own thumbnails).&#x20;
 
-**Validity**: Defines the start and end times for how long the badge is to be considered valid for. If left blank, we assume it is always valid. This is just for descriptive purposes and has no functional significance.
+**Website**: A custom URL / website that will be hyperlinked.
 
-**Category**: Specify a category to make the metadata more queryable.
+**Category**: Specify a category to make the collection / badges more searchable
 
-**External URL**: A custom URL / website that will be hyperlinked.
-
-**Tags**: Keywords to make the metadata more queryable.
+**Tags**: Keywords to make the metadata more searchable.
 
 **Socials:** Provide socials links (Discord, Telegram, etc)
 

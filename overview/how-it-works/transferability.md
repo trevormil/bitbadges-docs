@@ -1,6 +1,6 @@
 # Transferability
 
-The transferability defines the rules for transferring badges within the collection. Note this does not apply to address lists or any off-chain balances type ([see here](balances-types.md)).
+The transferability defines the rules for transferring badges within the collection. Note this does not apply to address lists or any off-chain balances type ([see here](balances-types.md)), only standard on-chain balances.
 
 ### **Transferable vs Non-Transferable**
 

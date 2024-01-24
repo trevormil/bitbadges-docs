@@ -12,7 +12,7 @@ Signature compatibility means that users from any of the aforementioned blockcha
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos bech32 address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent $BADGE for the first time.&#x20;
 
-As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a and will be assigned an account ID number upon interaction with the BitBadges blockchain. It would also map to an equivalent Bitcoin address as well.
+As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a and will be assigned an account ID number upon interaction with the BitBadges blockchain. It would also map to an equivalent Bitcoin  address as well, for example.
 
 <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -20,22 +20,22 @@ As an example, the Ethereum null address 0x0000000000000000000000000000000000000
 
 Ethereum Example:
 
-* Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
+* Mapped Cosmos Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
 * Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
 
 Solana Example:
 
 * Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
+* Mapped Cosmos Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
 
 Bitcoin Example&#x20;
 
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
+* Mapped Cosmos Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
 #### Why can I convert Solana address to a  Cosmos / ETH / BTC address but not the other way around?
 
-You may notice that you cannot go from a Cosmos / Eth address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
+You may notice that you cannot go from a Cosmos / ETH / BTC address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
 
 #### **Which address should I use (native or mapped Cosmos one)? How to convert?**
 

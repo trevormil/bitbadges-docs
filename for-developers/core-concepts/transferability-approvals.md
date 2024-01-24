@@ -4,7 +4,7 @@ First, read [Transferability ](../../overview/how-it-works/transferability.md)fo
 
 Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed. For further examples, please reference the [Learn the Interface](../create-and-broadcast-txs/msg-examples.md) section.
 
-Collections with "Off-Chain" balances do not utilize on-chain transferability and this page is not applicable.
+Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
 ## Approvals Overview
 
@@ -70,32 +70,6 @@ We handle approvals per level in the following manner:
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
-#### Approval IDs
-
-All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
-
-The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.&#x20;
-
-If you keep them the same, all logic is always scoped to the approval (nothing cross-approvals). Typically, keeping it scoped is the expected and desired functionality, but in advanced cases, you may want to implement cross-approval logic (do not allow double dipping between two approvals).
-
-They are scoped because we restrict that the **amountTrackerId** and **challengeTrackerId** cannot be the **approvalId** of another approval. Thus, if **amountTrackerId = challengeTrackerId = approvalI,** you know that other approvals cannot use the same tracker IDs and mess up the current approval.&#x20;
-
-```json
-{
-    ...
-    "approvalId": "abc123",
-    "amountTrackerId": "abc123",
-    "challengeTrackerId": "abc123"
-    ...
-}
-```
-
-**Metadata**
-
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
-
-This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
-
 **Who? When? What? - Main Fields**
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
@@ -146,6 +120,32 @@ The Mint address is a special case. It technically has its own approvals, but si
 
 It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint, which could be very bad. See Example 2 below.
 
+#### Approval IDs
+
+All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
+
+The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced cross-approval functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.&#x20;
+
+If you keep them the same, all logic is always scoped to the current approval, and nothing any other approval can do can affect the current approval's behavior. Keeping it scoped is typically the expected and desired functionality, but in advanced cases, you may want to implement cross-approval logic (do not allow double dipping between two approvals).
+
+Behind the scenes, being scoped is enforced because we restrict that the **amountTrackerId** and **challengeTrackerId** cannot be the **approvalId** of another approval. Thus, if **amountTrackerId = challengeTrackerId = approvalId,** you know that other approvals cannot use the same tracker IDs and mess up the current approval.&#x20;
+
+```json
+{
+    ...
+    "approvalId": "abc123",
+    "amountTrackerId": "abc123",
+    "challengeTrackerId": "abc123"
+    ...
+}
+```
+
+**Metadata**
+
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
+
+This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
+
 #### Approval Criteria
 
 The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria/).
@@ -163,7 +163,7 @@ The process of matching transfers to approvals involves several steps. This is d
 1. We start with the collection-level approvals.
 2. Expand all approval tuples with range logic (AllWithMint, ...., \[IDs 1-100]) to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
 3. Expand the current transfer tuple to singular tuple values.
-4. Find all matches (for approvals, first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
+4. Find all matches (for approvals, linear first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
    2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
    3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
@@ -171,36 +171,37 @@ The process of matching transfers to approvals involves several steps. This is d
 
 ### Defaults and Auto Approvals
 
-**Defaults**
-
-We allow the collection to define default values for each user, and when the user first interacts with the colleciton, they will start with these values. The defaults include **balances**, **outgoingApprovals**, **incomingApprovals**, **autoApproveSelfInitiatedOutgoingTransfers,** and **autoApproveSelfInitiatedIncomingTransfers.**
-
-For balances, we refer you to the balance types and creating badges sections (i.e. Starting Balances).
-
 **Auto Approvals**
 
 If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's outgoing approvals when the sender is the same as the initiator.
 
 If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
 
-In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be leveraged for specific use cases such as using an account for an escrow, account abstractions, and so on.
+In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be turned off and leveraged for specific use cases such as using an account for an escrow.
+
+**Defaults**
+
+We allow the collection to define default values for each user, and when the user first interacts with the collection, they will start with these values. The defaults include **balances**, **outgoingApprovals**, **incomingApprovals**, **autoApproveSelfInitiatedOutgoingTransfers,** and **autoApproveSelfInitiatedIncomingTransfers.**
+
+For default balances, we refer you to the balance types and creating badges sections (i.e. these are the starting balances).
 
 **Default Outgoing Approvals**
 
 For outgoing approvals, the expected functionality is that everything is disapproved by default unless self initiated. Thus, the following is the typical default values.
 
 ```
-"defaultIncomingApprovals": [],
-"autoApproveSelfInitiatedOutgoingTransfers"
+"defaultOutgoingApprovals": [],
+"autoApproveSelfInitiatedOutgoingTransfers": true
 ```
 
 **Default Incoming Approvals - Forceful Transfers vs Opt-In Only**
 
-However, with incoming approvals, the expected functionality is slightly different. There are a couple options. Do you want users to be able to transfer "forcefully" to an address without prior approval by default? Or, do you want users to have to self-initiate / opt-in to receive badges?
+However, with incoming approvals, the expected functionality is slightly different. There are a couple options. Do you want users to be able to transfer "forcefully" to an address without prior approval by default? Or, do you want users to have to self-initiate / opt-in first to receive badges?
 
 In order to allow forceful transfers to an address without prior approval, the **incomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
 
 ```json
+//"forceful" is allowed
 "defaultIncomingApprovals": [
     {
       "fromListId": "AllWithMint",
@@ -232,7 +233,13 @@ In order to allow forceful transfers to an address without prior approval, the *
 
 ### **Approval Value vs Permission**
 
-While this may seem similar to the approval update permissions, the permission corresponds to the **updatability** of the approvals (i.e. **canUpdateCollectionApprovals**). The approvals themselves correspond to if a transfer is currently approved or not.
+While the value may seem similar to the approval update permissions, the permission corresponds to the **updatability** of the approvals (i.e. **canUpdateCollectionApprovals**). The approvals themselves correspond to if a transfer is currently approved or not.
+
+**Example**
+
+Current Value - IDs 1-10 are approved
+
+Permission - IDs 1-5 cannot be updated, 6-10 can
 
 ### **Example 1 - Putting It Together**
 

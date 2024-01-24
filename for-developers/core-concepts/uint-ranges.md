@@ -10,6 +10,10 @@ A core type behind the scenes in BitBadges is the [UintRange](https://bitbadges.
 
 These are typically used for representing badge IDs and time ranges. For example, transferring badges will require an UintRange\<number>\[] of badgeIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the badge IDs 1-10 and 20-50.
 
+**Time UintRanges**
+
+We use UintRanges for denoting times as well such as **transferTimes**. The uint values are UNIX milliseconds since the epoch.
+
 **Restricted Values**
 
 If used for badge IDs or times, we only allow the start and end to be within the range of 1 to Go's math.MaxUint64 or 18446744073709551615 (**so no zero value and no value greater than that**).

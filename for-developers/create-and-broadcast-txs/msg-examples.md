@@ -1,4 +1,4 @@
-# 👨🏫 Interface Examples
+# Msg Examples
 
 For more examples about how the interface works, check the resources below. Feel free to reach out if any questions.
 

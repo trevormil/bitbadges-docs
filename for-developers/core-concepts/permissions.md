@@ -27,7 +27,7 @@ Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](
 }
 ```
 
-Note that the **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** follow the same interface as **canUpdateCollectionApprovals** minus automatically populating the user's address for to / from for incoming / outgoing, respectively.
+The **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** follow the same interface as **canUpdateCollectionApprovals** minus automatically populating the user's address for to / from for incoming / outgoing, respectively. We only explain the collection approval permission to avoid repetition.
 
 ```typescript
 export interface ActionPermission<T extends NumberType> {
@@ -106,7 +106,7 @@ The current manager is determined by the **managerTimeline.** Transferring the m
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
@@ -119,7 +119,7 @@ There are three states that a permission can be in at any one time:
 3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
    1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
-There is no forbidden + not frozen because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
+There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
 
 **Examples**
 
@@ -146,13 +146,11 @@ permanentlyPermittedTimes: []
 
 ### First Match Policy
 
-All permissions are a linear array where each element may have some criteria as well as **permanentlyForbiddenTimes** or **permanentlyPermittedTimes.** It can be interpreted as if the criteria matches, the permission is permitted or forbidden during the defined times, respectively.
+All permissions are a linear array where each element may have some criteria as well as **permanentlyForbiddenTimes** or **permanentlyPermittedTimes.** It can be interpreted as if the criteria matches, the permission is permitted or forbidden according to the defined times, respectively.
 
 We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
 
-Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array. All subsequent matches are ignored. This makes it so that for any time and for each criteria combination, there is a deterministic permission state (permitted, forbidden, or neutral).
-
-This means you have to carefully design your permissions because order and overlaps matter.
+**Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array.** All subsequent matches are ignored. This makes it so that for any time and for each criteria combination, there is a deterministic permission state (permitted, forbidden, or neutral). This means you have to carefully design your permissions because order and overlaps matter.
 
 Ex: If we have the following permission definitions in an array \[elem1, elem2]:
 
@@ -216,7 +214,7 @@ permanentlyPermittedTimes: []
 
 **Approved Transfers Criteria**
 
-For approved transfer permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N -1 criteria is satisfied.
+For approval permissions like below, this would mean that updating any approval from the "Mint" address is permanently forbidden. However, it does not apply to approvals from any other address, even if all other N-1 criteria is satisfied.
 
 Also, if we add another permission definition after this one in the array with **fromListId** = "Mint", this would never be matched to because the first one brute forces all possible combinations, so first match always matches to this one.
 
@@ -319,24 +317,24 @@ Even though all other combinations are unhandled, we can create / update any app
 There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](different-time-fields.md) for examples and explanations.
 
 ```json
-"canDeleteCollection": [], //ActionPermission
-"canArchiveCollection": [], //TimedUpdatePermission
-"canUpdateContractAddress": [], //TimedUpdatePermission
-"canUpdateOffChainBalancesMetadata": [], //TimedUpdatePermission
-"canUpdateStandards": [], //TimedUpdatePermission
-"canUpdateCustomData": [], //TimedUpdatePermission
-"canUpdateManager": [], //TimedUpdatePermission
-"canUpdateCollectionMetadata": [], //TimedUpdatePermission
-"canCreateMoreBadges": [], //BalancesActionPermission
-"canUpdateBadgeMetadata": [], //TimedUpdateWithBadgeIdsPermission
-"canUpdateCollectionApprovals": [] //ApprovedTransferPermission
+"canDeleteCollection": [], //ActionPermission[]
+"canArchiveCollection": [], //TimedUpdatePermission[]
+"canUpdateContractAddress": [], //TimedUpdatePermission[]
+"canUpdateOffChainBalancesMetadata": [], //TimedUpdatePermission[]
+"canUpdateStandards": [], //TimedUpdatePermission[]
+"canUpdateCustomData": [], //TimedUpdatePermission[]
+"canUpdateManager": [], //TimedUpdatePermission[]
+"canUpdateCollectionMetadata": [], //TimedUpdatePermission[]
+"canCreateMoreBadges": [], //BalancesActionPermission[]
+"canUpdateBadgeMetadata": [], //TimedUpdateWithBadgeIdsPermission[]
+"canUpdateCollectionApprovals": [] //ApprovedTransferPermission[]
 ```
 
 ```json
-"canUpdateIncomingApprovals": [], //ApprovedTransferPermission (w/o to fields)
-"canUpdateOutgoingApprovals": [], //ApprovedTransferPermission (w/o from fields)
-"canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [], //ActionPermission
-"canUpdateAutoApproveSelfInitiatedIncomingTransfers": [], //ActionPermission
+"canUpdateIncomingApprovals": [], //ApprovedTransferPermission[] (w/o to fields)
+"canUpdateOutgoingApprovals": [], //ApprovedTransferPermission[] (w/o from fields)
+"canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [], //ActionPermission[]
+"canUpdateAutoApproveSelfInitiatedIncomingTransfers": [], //ActionPermission[]
 ```
 
 * **ActionPermission**: Simplest (no criteria). Just denotes what times the action is executable or not.
@@ -346,7 +344,7 @@ There are five categories of permissions, each with different criteria that must
     }
     </code></pre>
 * **TimedUpdatePermission**: For what timelineTimes, can the manager update the scheduled value?
-  * Note timelineTimes corresponds to the scheduled times of a timeline-based value such as badge metadata or collection metadata. The permanentlyPermittedTimes and permanentlyForbiddenTimes correspond to when the manager can update such values.
+  * timelineTimes corresponds to the scheduled times of a timeline-based value such as badge metadata or collection metadata. The permanentlyPermittedTimes and permanentlyForbiddenTimes correspond to when the manager can update such values.
   * ```typescript
     {
       timelineTimes: UintRange<T>[];
@@ -355,7 +353,7 @@ There are five categories of permissions, each with different criteria that must
       permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
-* **TimedUpdateWithBadgeIdsPermission**: For what timelineTimes AND what badge IDs can I update the scheduled value?
+* **TimedUpdateWithBadgeIdsPermission**: For what timelineTimes / badge ID combinations can I update the scheduled value?
   * ```typescript
     {
       timelineTimes: UintRange<T>[];
@@ -365,7 +363,7 @@ There are five categories of permissions, each with different criteria that must
       permanentlyForbiddenTimes: UintRange<T>[];
     }
     ```
-* **BalancesActionPermission**: For what badge IDs and ownershipTimes can the manager execute the permission?
+* **BalancesActionPermission**: For what badge ID / ownershipTimes combinations can the manager execute the permission?
   * ```typescript
     {
       badgeIds: UintRange<T>[];
@@ -376,8 +374,8 @@ There are five categories of permissions, each with different criteria that must
     }
     ```
 * **ApprovalPermission**: For what timeline times AND what transfer combinations (see [Representing Transfers](transferability-approvals.md)), can I update the approval criteria? See section below for further details.
-  * **Approval IDs:** The approval IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination due to multiple approvals matching the same criteria.
-  * **Shorthand Options:** Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)). The same shorthand options can be applied to the ID fields ("!id123" means all IDs except "id123"). Use "All" to represent all IDs.
+  * **IDs:** The IDs are used for locking specific approvals or trackers. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination due to multiple approvals matching the same criteria.
+  * **ID Shorthand Options:** Note that we also reserve the "!" prefix for inverting a given list ID and also reserve specific list IDs (see [Address Lists](address-lists-lists.md)). The same shorthand options can be applied to the ID fields ("!id123" means all IDs except "id123"). Use "All" to represent all IDs.
   * Ex: I cannot update the approvals for the combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All",  "All",  "All") tuple, thus making the transferability locked for those transfer combinations.
     * <pre class="language-typescript"><code class="lang-typescript"><strong>{
       </strong>  fromListId: string;
@@ -396,48 +394,65 @@ There are five categories of permissions, each with different criteria that must
       }
       </code></pre>
 
-### **ApprovalPermissions**
+### **Approval Permissions**
 
-**How are break downs handled?**
+**ID Shorthands**
 
-Like mentioned above, we handle everything broken down into a singular value tuple. So for example, even though you may have locked badge IDs 2-10 from being updated, the following would be allowed because of the break down logic.
+To specify IDs, you can use the "All" reserved ID to represent all IDs, or you can use other shorthand methods such as "!xyz" to denote all IDs but xyz. These shorthands are the same as reserved lists, so we refer you[ there for more info](address-lists-lists.md). Just replace the addresses with the IDs.
 
-Before: 1-10 -> APPROVED, Criteria ABC
+**Freezing Specific Values - Main Fields**
 
-After: 1 -> APPROVED, Criteria XYZ, 2-10 -> Criteria ABC
+For the main fields (to, from, initiator, badge IDs, transfer times, ownership times), you can freeze specific values, such as freeze all badge IDs 2-10. If you do this, all approvals for the specific badge IDs will remain as currently set, but the following would still be allowed due to the break down logic we use.
 
-**Approval / Tracker IDs**
+Permission: Badge IDs 2-10 are locked
 
-An important part in setting an approval permission is ensuring that the IDs are handled correctly.
+Before: 1-10 -> Criteria ABC
 
-Let's explain via a scenario. Let's say you create an approval that tracks used Merkle challenge leaves with a one use per leaf limit. By default, due to the way **challengeTrackerId** works, multiple approvals can have the same **challengeTrackerId.**
-
-Let's say you create an approval for badges 1-100 with **challengeTrackerId** = "abc", and you lock updating any approval for badges 1-100 but don't specify anything about the **challengeTrackerId**.
-
-While you cannot create a new approval for badges 1-100, you can create a new approval for badge IDs 101+ with the same **challengeTrackerId** = "abc". In storage, the challenges are inherently linked, so when leaf #5 is used up in the new 101+ approval, leaf #5 will also be marked as used in the 1-100 approval. This totally messes up how the first approval operates.
-
-So, note that to ensure a **challengeTrackerId** and/or **approvalTrackerId** is never updated / used again, you must brute force ALL combinations with that specific ID.
+After: 1 -> Criteria XYZ, 2-10 -> Criteria ABC
 
 ```json
 {
   "fromListId": "AllWithMint",
   "toListId": "AllWithMint",
-  "badgeIds" [{ 1-Max }],
-  ...
-  "challengeTrackerId": "xyz",
+  "initiatedByListId": "AllWithMint",
+  "badgeIds":  [{ "start": "2", "end": "10" }],
+  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
+  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
+  "approvalId": "All", //forbids approval "xyz" from being updated
+  "amountTrackerId": "All",
+  "challengeTrackerId": "All",
   "permanentlyPermittedTimes": [],
-  "permanentlyForbiddenTimes": [
-    {
-      "start": "1",
-      "end": "18446744073709551615"
-    }
-  ]
+  "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
 }
 ```
 
-You can also use the "All" reserved ID to represent all tracker IDs cannot be updated, for example, or use the manipulation options to represent all, invert, etc.
+**Freezing a Specific Approval - IDs / Trackers**
 
-You can also lock an **approvalId** to freeze a specific approval from being edited, but this has no bearing on whether other approvals with the same badge IDs, tracker IDs, etc are created.&#x20;
+Enforcing a specific approval is frozen is dependent on whether all logic is scoped to the current approval (**amountTrackerId** = **approvalId** = **challengeTrackerId**) or the approval potentially implements cross-approval logic (**amountTrackerId** != **approvalId** or **approvalId** != **challengeTrackerId**). These refer to the actual approval values, not permission values.
+
+IMPORTANT: If your approval potentially implements cross-approval logic, we refer you [here](approval-criteria/linking-trackers-advanced.md). T
+
+If your logic is scoped  (**amountTrackerId** = **approvalId** = **challengeTrackerId**), you can enforce that a specific approval is frozen and cannot be updated by simply brute forcing all combinations with that specific approval ID (see below for freezing approval "xyz"). You could also fine-grain it as well (e.g. lock IDs 1-10 within this specific approval but allow 11+ to still be updated). However, typically freezing approvals are all-or-nothing.
+
+Note that if you just brute force a single approval ID as seen below, this will have no bearing on whether other approvals with the same badge IDs, senders, recipients, etc are created. It just freezes that specific approval.
+
+```json
+{
+  "fromListId": "AllWithMint",
+  "toListId": "AllWithMint",
+  "initiatedByListId": "AllWithMint",
+  "badgeIds":  [{ "start": "1", "end": "18446744073709551615" }],
+  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
+  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
+  "approvalId": "xyz", //forbids approval "xyz" from being updated
+  "amountTrackerId": "All",
+  "challengeTrackerId": "All",
+  "permanentlyPermittedTimes": [],
+  "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
+}
+```
+
+Note that this freezes a specific approval only in the case of scoped logic  (**amountTrackerId** = **approvalId** = **challengeTrackerId**) because of the restriction that tracker IDs cannot equal the approval ID of a different approval. Thus, since the **approvalId** is locked and (**amountTrackerId** = **approvalId** = **challengeTrackerId**) and no other approvals can use this approval's tracker IDs, the approval is locked and behavior will always stay as expected. If it wasn't scoped, the above permission would still allow other approvals to be created with the same tracker IDs which could mess up the behavior of the current approval, as explained [here](approval-criteria/linking-trackers-advanced.md).
 
 ### **User Permissions**
 
@@ -452,20 +467,22 @@ Besides the collection permissions, there are also userPermissions that can be s
 }
 ```
 
-Typically, these will remain empty, so that the user can always have full control over their approvals. However, they can be leveraged in some cases for specific purposes.
+Typically, these will remain empty, so that the user can always have full control over their approvals. If empty, they are permitted by default (but not frozen).&#x20;
+
+However, setting user permissions can be leveraged in some cases for specific purposes.
 
 * Locking that a specific badge can never be transferred out of the account
 * Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
 
 **Defaults**
 
-We give the option for the collection to define default permissions. These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with the other defaults. The default permissions are also not typically used, but can be used in certain situations. For example,
+We give the option for the collection to define default permissions. These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with the other defaults. The default permissions are also not typically used, but again can be used in certain situations. For example,
 
 * By default, approve all incoming transfers and lock the permission so all transfers always have incoming approvals and can never be disapproved.
 
 ### **Permissions vs Actual Values**
 
-Note that the update permissions (**UpdateApprovedTransferPermission, TimedUpdatePermission,** and **TimedUpdateWithBadgeIdsPermission)** correspond to the UPDATABILITY of the values and are separate from the actual values themselves. The permission does not correlate to what the currently set values are.
+Note that the update permissions (**ApprovalPermissions, TimedUpdatePermission,** and **TimedUpdateWithBadgeIdsPermission)** correspond to the UPDATABILITY of the values and are separate from the actual values themselves. The permission does not correlate to what the currently set values are.
 
 Similarly with the **BalancesActionPermission**, it has no bearing on what the currently minted supplys are. It refers to the EXECUTABILITY of creating new badges.
 

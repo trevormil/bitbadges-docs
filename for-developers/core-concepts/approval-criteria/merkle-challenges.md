@@ -23,21 +23,31 @@ export interface MerkleChallenge<T extends NumberType> {
 
 Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../create-and-broadcast-txs/cosmos-sdk-msgs/msgtransferbadges.md)).
 
-For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid Merkle path from the claim code to the **root**. You distribute the secret leaves in any method you prefer. Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim.
+For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.&#x20;
+
+Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim. This can be used to distribute gas costs among N users rather than the collection creator defining an address list with N users on-chain and paying all gas fees.
 
 #### Expected Proof Length
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This is to avoid preimage and second preimage attacks. **All proofs must be of the correct length, which means you must design your trees accordingly. THIS IS CRITICAL.**&#x20;
+The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**&#x20;
 
 **Whitelist Trees**
 
-First, you can set **useCreatorAddressAsLeaf**. If set, we will override the provided leaf of each Merkle proof with the msg.creator aka the Cosmos address of the initiator of the transaction. This can be used to implement whitelist trees. Note that the initiator must also be within the **initiatedByList** of the approval for it to make sense.
+Whitelist trees can be used to distribute gas costs among N users rather than the collection creator defining an expensive address list with N users on-chain and paying all gas fees. For small N, we recommend not using whitelist trees for user experience.
 
-For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks.For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.&#x20;
 
-We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained. Like approval trackers, this is increment only and non-deletable.
+To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the Cosmos address of the initiator of the transfer transaction.
 
-The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details. For simplicity, we reccomend keeping this the same as the approval's **approvalId,** unless implementing advanced functionality. The **challengeTrackerId** cannot be the same as a different approval's **approvalId.**
+**Max Uses per Leaf**
+
+For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks. For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+
+We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.&#x20;
+
+The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. Unless implementing advanced cross-approval functionality, you should always keep the **challengeTrackerId** equal to the current approval's **approvalId**. This enforces the challenge is scoped and the tracker cannot be used by any other approval. This is because the **challengeTrackerId** cannot be the same as a different approval's **approvalId.**&#x20;
+
+Like approval trackers, this is increment only and non-deletable. Thus, it is critical to not use a tracker with prior history if you intend for it to start tracking from scratch. This can be achieved by using an unused **challengeTrackerId**. If updating an approval with a challenge, please consider how the challenge tracker is working behind the scenes.
 
 ```typescript
 {
@@ -59,7 +69,7 @@ Example:
 
 **Reserving Specific Leafs**
 
-See Predetermined Balances below for reserving specific leaf indices for specific badges.
+See Predetermined Balances below for reserving specific leaf indices for specific badges / ownership times.
 
 #### **Creating a Merkle Tree**
 

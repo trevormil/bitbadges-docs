@@ -6,19 +6,17 @@ Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas tok
 
 ### **Why is there a need for BitBadges?**
 
-The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology in place today ([see here](../)). BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!
+The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology in place today ([see here](../)). BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!&#x20;
 
-### **Who can benefit from using BitBadges?**
+### **Main use case for BitBadges?**
 
-Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance.&#x20;
+The main use case we envision is authnetication. Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance, especially if using a centralized service. With BitBadges, all authentication and token-gating can be **outsourced** to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.&#x20;
 
-With BitBadges, all authentication and token-gating can be easily outsourced to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.&#x20;
-
-This is the main use case we envision. However, badges can be created for anything, so there are lots of use cases!
+However, badges can be created for anything, so there are lots of use cases!
 
 ### **Are there plans to support digital collectibles (tokens with value) rather than just badges?**
 
-Technically, it is already possible on the blockchain (just sending a badge along with some form of $BADGE currency). However, we want to focus on badges and leave "valuable" tokens to each respective ecosystem. For now, we want BitBadges to be a hub for achievements, reputation, etc, not a place for buying, selling, and trading. In the future, we will reconsider. If you want to build this, reach out to us.
+Technically, it is already possible on the blockchain (just sending a badge along with some form of $BADGE currency). However, we want to focus on badges and leave "valuable" tokens to each respective blockchain ecosystem. For now, we want BitBadges to be a hub for achievements, reputation, authentication, etc, not a place for buying, selling, and speculating.
 
 ### **What makes BitBadges better than competitors?**
 
@@ -26,7 +24,7 @@ See [here](../#improvements-over-existing-standards).
 
 ### **Are smart contracts needed?**
 
-No, badges do not require smart contracts. All badges follow a simple interface with lots of native functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
+No, badges do not require smart contracts. All badges follow the same state-of-the-art interface with lots of functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
@@ -77,4 +75,3 @@ Once development is BitBadges is complete and final, we would like to make the s
 ### **What happens if there is convergence to a single blockchain?**
 
 Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) becomes dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.&#x20;
-

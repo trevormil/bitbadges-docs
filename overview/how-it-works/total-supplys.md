@@ -28,7 +28,7 @@ There are two options to restrict the circulating supply. These can be used in c
 
 **Option 1: Can Create More? Permission**
 
-The "can create more?" permission set defines if badges can be created out of thin air at any given time by the manager. If they can, there is **no limit** to how many they create. For example, the manager can only create more of badge ID 11 after January finishes.
+The "can create more?" permission set defines if badges can be created out of thin air at any given time by the manager. If they can, there is **no limit** to how many they create. For example, the permission might specify that the manager can create more of badge ID 11 after January finishes.
 
 **Option 2: Restricting with Transferability**
 
