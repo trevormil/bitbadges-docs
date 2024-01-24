@@ -1,6 +1,6 @@
 # Badges vs Address Lists
 
-There are two ways you can create using BItBadges. Visit [https://bitbadges.io/collections/mint](https://bitbadges.io/collections/mint) to get started.
+There are two ways you can create using BItBadges. Visit the Create tab on the site to get started.
 
 ## **Badges**
 
@@ -38,9 +38,9 @@ Transferability also encompasses how the badges are distributed from the Mint ad
 
 <figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
-Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc.
+Address lists are simply a list of users identified by a unique ID. Lists are less complex because you do not need to deal with all the added complexity of tokens (badges) such as supplys, who owns what badge?, permissions, transferability, etc. However, they have limited customizability.
 
-**Storage:** Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (with other customization options) whereas on-chain lists must be permanently frozen (not updatable or deletable).
+**Storage:** Address lists can be stored on-chain or off-chain (centralized servers). Off-chain lists are updatable and deletable (with other options like private vs public?, viewable with a link?, allow others to add via survey mode?) whereas on-chain lists must be permanently frozen (non updatable or deletable).
 
 **Metadata:** Lists can be customized with metadata like a name, image, description, etc. They will show up on users' profiles under the lists' category.
 

@@ -74,7 +74,11 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
 
-The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.
+The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.&#x20;
+
+If you keep them the same, all logic is always scoped to the approval (nothing cross-approvals). Typically, keeping it scoped is the expected and desired functionality, but in advanced cases, you may want to implement cross-approval logic (do not allow double dipping between two approvals).
+
+They are scoped because we restrict that the **amountTrackerId** and **challengeTrackerId** cannot be the **approvalId** of another approval. Thus, if **amountTrackerId = challengeTrackerId = approvalI,** you know that other approvals cannot use the same tracker IDs and mess up the current approval.&#x20;
 
 ```json
 {

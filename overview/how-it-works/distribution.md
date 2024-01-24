@@ -12,7 +12,7 @@ Distributing depends on your unique requirements and the type of collection / li
 
 For address lists and badges with off-chain balances (see [here](balances-types.md)), some entity (typically the creator or manager) will manually assign who is on the list or who owns the badge. Users will never need to interact in any way with the blockchain! They will automatically show up in a users' portfolio without the user needing to do anything.
 
-For badges with off-chain balances, the assignment process can also be further customized with custom logic implementation, such as registering on the collection's official website to receive a badge or being a paid subscriber to earn a badge. This custom logic can also utilize non-blockchain data, such as private databases or standard non-crypto payment methods. See [here](balances-types.md) to learn about the pros and cons of the different balance types (on-chain vs off-chain). **Always interact with third parties at your own risk!**
+For badges with off-chain balances, the assignment process can also be further customized with custom logic implementation, such as registering on the collection's official website to receive a badge or being a paid subscriber (off-chain) to earn a badge. This custom logic can also utilize non-blockchain data, such as private databases or standard non-crypto payment methods. See [here](balances-types.md) to learn about the pros and cons of the different balance types (on-chain vs off-chain). **Always interact with third parties at your own risk!**
 
 ### **On-Chain Balances**
 
