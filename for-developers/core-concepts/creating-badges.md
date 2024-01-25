@@ -61,7 +61,7 @@ Over time, you may want to add more badges to the collection. However, in later 
 
 Note that all permissions are only executable by the current manager and no one else.
 
-An example permission is as follows. This locks any badges from ever being created in the future. **canCreateMoreBadges** can also be more fine-grained and set to be permitted or forbidden for specific badge IDs and ownership times. See [Permissions](permissions.md) for more details on how permissions work.
+An example permission is as follows. This locks any badges from ever being created in the future. **canCreateMoreBadges** can also be more fine-grained and set to be permitted or forbidden for specific badge IDs and ownership times. See [Permissions](permissions/) for more details on how permissions work.
 
 ```json
  "collectionPermissions": {
