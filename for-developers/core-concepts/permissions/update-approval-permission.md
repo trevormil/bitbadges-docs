@@ -108,13 +108,11 @@ For a given approval tuple, it is considered non-updatable according to the perm
 }
 </code></pre>
 
-Note that non-updatability is scoped to the tuple itself. See break down logic above.
+Note that non-updatability is scoped to the tuple itself.
 
 **Brute Forced**
 
-Commonly, you will make some values non-updatable by specifying some criteria (e.g. IDs 2-10) and setting everything else to all possible values. For example, the permission above does this for badge IDs 2-10. We refer to this as brute forcing (i.e. above badge IDs 2-10 are brute forced but badge IDs 2-11 are not).&#x20;
-
-In other words, for some criteria, all possible combinations of that criteria are COMPLETELY forbidden and non-updatable.
+Commonly, you will make some values non-updatable by specifying some criteria (e.g. IDs 2-10) and setting everything else to all possible values. For example, the permission above does this for badge IDs 2-10. We refer to this as brute forcing (i.e. above badge IDs 2-10 are brute forced but badge IDs 2-11 are not). In other words, for some criteria, all possible combinations of that criteria are COMPLETELY forbidden and non-updatable.
 
 #### **Expected Behavior**
 
@@ -182,8 +180,6 @@ Let's say you want to forbid ever updating the transferability for badges 1-10, 
     }
   ]
 ```
-
-
 
 Step 1: Brute force IDs 1-10 in the permissions
 
