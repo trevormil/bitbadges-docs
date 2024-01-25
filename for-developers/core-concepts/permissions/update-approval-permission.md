@@ -60,7 +60,7 @@ After: 1 -> Criteria XYZ, 2-10 -> Criteria ABC
 
 ## Expected Behavior vs Non-Updatability
 
-Approval permissions are slightly tricky because even though an approval may be non-updatable according to the permissions set, its expected behavior may change due to how approvals are designed (i.e. using trackers).
+Approval permission updates are slightly tricky because even though an approval may be non-updatable according to the permissions set, its expected behavior may change due to how approvals are designed (i.e. using trackers).
 
 * For example, lets say we want to freeze IDs 501-1000 and have an incrementing mint of x1 of ID 1, x1 of ID 2, up to ID 1000. If we simply freeze the IDs 501-1000, the approval could still be deleted for IDs 1-500, and the increment number (tracker) will then never reach 501 because it will be out of bounds every time. Thus, expected behavior for 501-1000 changes even though it is frozen.
 * Or, let's say you create an approval for badges 1-100 with **challengeTrackerId** = "abc" and **approvalId** = "xyz", and you lock updating any approval for badges 1-100 but don't specify anything about the **challengeTrackerId**. While you cannot create/edit a new approval for badges 1-100, you can create a new approval for badge IDs 101+ with the same **challengeTrackerId** = "abc". In storage, the trackers are inherently linked, so when leaf #5 is used up in the new 101+ approval, leaf #5 will also be marked as used in the 1-100 approval. This totally messes up how the first approval operates.
@@ -118,30 +118,36 @@ Commonly, you will make some values non-updatable by specifying some criteria (e
 
 As explained above, expected behavior not only encompasses non-updatability, but it also makes sure that nothing any other approval or update can do can affect the expected behavior of this approval. This designation is especially important.
 
-### Forbidding Specific Approval Tuple Updates
+### Forbidding Updates for Specific Approval Tuples
 
 With the way trackers work, it is important to handle approval permissions correctly to protect against cross-approval logic or break-down attacks.&#x20;
 
 Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior. If you want to do this a specific approval that is set, the approval tuple should consist of the speciifc values for that specific approval.
 
-**Algorithm**
+**Full Algorithm**
 
 Given an approval tuple, do the following:
 
-1. Set the tuple to be non-updatable in the permissions
+1. Set the tuple to be non-updatable in the permissions.
 2. Find all approvals currently set that overlap (even partially) with the tuple. For all matches, do the following:
    1. Handle Challenges&#x20;
-      1. Does the approval rely on challenge trackers (i.e. **merkleChallenge** is defined)? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
-      2. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = challengeTrackerId**? If so, you are good because you know that the challenge logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
-      3. Is **challengeTrackerId** brute forced in permissions? If so, you are good because you know that the challenge logic will always be as expected.
+      1. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = challengeTrackerId**? If so, you are good because you know that the challenge logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
+      2. Is **challengeTrackerId** brute forced in permissions? If so, you are good because you know that the approval is non-updatable and challenge logic will always be as expected.
+      3. Does the approval rely on challenge trackers (i.e. **merkleChallenge** is defined)? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
+         * Note that this goes against best practices though if it only partially overlaps. This would mean you are freezing part of an approval, and future approval updates would require breakdown logic.
    2. Handle Amount Trackers
-      1. Does the approval rely on amount trackers? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
+      1. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = amountTrackerId**? If so, you are good because you know that the logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
+      2. Is **amountTrackerId** brute forced in permissions? If so, you are good because you know that the logic will always be as expected.
+      3. Does the approval rely on amount trackers? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
          * Relying on amount trackers means that it relies or tracks values for **approvalAmounts, predeterminedBalances**, or **maxNumTransfers.**  There is an edge case where the approval relies on **predeterminedBalances** but only for challenges (**orderCalculationMethod**.**useMerkleChallengeLeafIndex**). This is fine as long as it doesn't rely on the other two.
-      2. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = amountTrackerId**? If so, you are good because you know that the logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
-      3. Is **amountTrackerId** brute forced in permissions? If so, you are good because you know that the logic will always be as expected.
-   3. If you do not satisfy 1 and/or 2, you need to update it so that you do by adding a new permissions
+         * Note that this goes against best practices though if it only partially overlaps. This would mean you are freezing part of an approval, and future approval updates would require breakdown logic.
+   3. If you do not satisfy 1 and/or 2, you need to update it so that you do by adding new permissions
       1. If **amountTrackerId = approvalId** or **approvalId = challengeTrackerId**, you can freeze it by brute forcing the **approvalId** via a new permission.
       2. Or else, you will need to brute force the **amountTrackerId** and/or **challengeTrackerId** via new permissions. This will handle the matching approval, but note that it may also affect other approvals. It is up to you whether you want to handle it recursively, or leave it here. If you handle it recursively, note that both tracker IDs need to be satisfied.
+
+
+
+
 
 **Example**
 
