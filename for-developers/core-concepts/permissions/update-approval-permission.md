@@ -130,7 +130,7 @@ The summary of the algorithm below is essentially the following:
 
 1. Forbid updates for the values you want to freeze in permissions
 2. To keep expected behavior, you need to forbid updates for all approvals that are currently set and overlap (even partially) with the values you are trying to freeze.
-   * There are some cases where you may not need to freeze, but for best practices, you should forbid updates entirely to all overlapping approvals.
+   * There are some cases where you may not need to freeze because of breakdown logic or lack of dependencies, but for best practices, you should forbid updates entirely to all overlapping approvals. Or, restructure them in a way that you can freeze them entirely.
 
 **Full Algorithm**
 
