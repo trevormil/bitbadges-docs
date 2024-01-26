@@ -71,9 +71,9 @@ To explain things easier, let's start with some definitions:
 
 #### **Approval Tuple**
 
-We define an approval tuple as a set of values (**from, to, initiated by, badgeIds, transferTimes, ownershipTimes, approvalId, challengeTrackerId, amountTrackerId**).&#x20;
+We define an approval tuple as a set of values (**from, to, initiated by, badgeIds, transferTimes, ownershipTimes, approvalId, challengeTrackerId, amountTrackerId**). The tuple for a specific approval that is currently set will consist of all values for that approval.
 
-Note that to match to an approval tuple, all N criteria must match. If one doesn't, it isn't a match. For example, in the example below, badge ID 1 will never match to the tuple.
+Note that to match, all N criteria must match. If one doesn't, it isn't a match. For example, in the example below, badge ID 1 will never match to the tuple.
 
 <pre class="language-json"><code class="lang-json"><strong>{
 </strong>  "fromListId": "AllWithMint",
@@ -122,7 +122,15 @@ As explained above, expected behavior not only encompasses non-updatability, but
 
 With the way trackers work, it is important to handle approval permissions correctly to protect against cross-approval logic or break-down attacks.&#x20;
 
-Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior. If you want to do this a specific approval that is set, the approval tuple should consist of the speciifc values for that specific approval.
+Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior. If you want to do this a specific approval that is set, the approval tuple should consist of the specific values for that specific approval.
+
+**Overview**
+
+The summary of the algorithm below is essentially the following:
+
+1. Forbid updates for the values you want to freeze in permissions
+2. To keep expected behavior, you need to forbid updates for all approvals that are currently set and overlap (even partially) with the values you are trying to freeze.
+   * There are some cases where you may not need to freeze, but for best practices, you should forbid updates entirely to all overlapping approvals.
 
 **Full Algorithm**
 
