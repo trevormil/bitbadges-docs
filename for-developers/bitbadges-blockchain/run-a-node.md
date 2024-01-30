@@ -11,11 +11,11 @@ In this guide, we will provide detailed instructions for setting up and running 
 * "bitbadges\_1-1" for the mainnet chain ID (currently inactive)
 * "bitbadges\_1-2" for the betanet chain ID
 
-**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
+**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
 
 **BitBadges Public RPC:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
 
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor. It is strongly recommended that you set up your node with Cosmovisor to handle and facilitate these upgrades in real time. We refer you to the  [https://docs.cosmos.network/v0.45/run-node/cosmovisor.html](https://docs.cosmos.network/v0.45/run-node/cosmovisor.html). See the reference Dockerfile at the end of this page for another reference.
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor. It is strongly recommended that you set up your node with Cosmovisor to handle and facilitate these upgrades in real time. We explain more below.
 
 **Discord:** Communications and announcements for node operators is facilitated via our Discord.
 
@@ -129,42 +129,23 @@ Ensure that the listen address settings are correct, using your IP address or do
 
 **Step 4: Setting Up Cosmovisor**
 
-BitBadges expects those running nodes to do so with Cosmovisor for zero-downtime upgrades, a tool for automating software upgrades in Cosmos SDK-based blockchains. You can find detailed information in _the_ [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html).&#x20;
+BitBadges expects those running nodes to do so with Cosmovisor for zero-downtime upgrades, a tool for automating software upgrades in Cosmos SDK-based blockchains. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html). We use Cosmos SDK v0.47.5, so please use a compatible Cosmovisor version.
 
-You will need to set the following environment variables and create the following directories. The DAEMON\_HOME should be the home of your config files from Step 1. &#x20;
+The first step is to download Cosmovisor as an executable using their documentation or building from source.
+
+You will then need to set the following environment variables. The DAEMON\_HOME should be the home of your config files from Step 1. &#x20;
 
 <pre class="language-docker"><code class="lang-docker"><strong>ENV DAEMON_HOME=/root/.bitbadgeschain
 </strong>ENV DAEMON_NAME=bitbadgeschaind
-ENV DAEMON_ALLOW_DOWNLOAD_BINARIES=false
-ENV DAEMON_RESTART_AFTER_UPGRADE=true
-
-RUN mkdir ${DAEMON_HOME}/cosmovisor 
-RUN mkdir ${DAEMON_HOME}/cosmovisor/genesis
-RUN mkdir ${DAEMON_HOME}/cosmovisor/genesis/bin
-RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades
 </code></pre>
 
-You will also need to move your executable to be the genesis executable. Adjust for your paths.
+Then, run the following to setup your Cosmovisor directory.
 
-```docker
-RUN mv /go/bin/bitbadgeschaind ${DAEMON_HOME}/cosmovisor/genesis/bin/bitbadgeschaind
+```
+cosmosvisor init <path_to_bitbadgeschaind_executable>
 ```
 
-Lastly, you will need to build Cosmovisor. See here [https://github.com/cosmos/cosmos-sdk/blob/main/tools/cosmovisor/README.md](https://github.com/cosmos/cosmos-sdk/blob/main/tools/cosmovisor/README.md) for more ways of downloading / executing Cosmovisor.
-
-```docker
-FROM --platform=linux golang:1.21 AS builder
-
-ENV COSMOS_VERSION=v0.47.5
-RUN apt-get update && apt-get install -y git curl make wget
-RUN git clone --depth 1 --branch ${COSMOS_VERSION} https://github.com/cosmos/cosmos-sdk.git
-
-WORKDIR /root/cosmos-sdk/tools/cosmovisor
-
-RUN make cosmovisor
-```
-
-Any future executable will go into the corresponding /upgrades/\<upgrade-name>/bin folder. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
+This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.&#x20;
 
 **Step 4: Starting the Blockchain** Before starting the blockchain, ensure that any additional services you configured (such as a key management service) is running. Make sure your computer or local network allows other nodes to initiate connections on port 26656. Ensure that firewall settings permit access to other required ports: 1317 (if hosting an API), 26660, 26657, and 9090.
 
@@ -174,9 +155,9 @@ To start your blockchain, simply run:
 cosmovisor run start
 ```
 
-This will run the blockchain with the configured settings and the genesis Cosmovisor executable.
+This will run the blockchain with the configured settings and the genesis Cosmovisor executable. You can also pass them in as flags, but if you tweaked the config files as desired, you will be good.
 
-Consider also running your node as a service, so you don't have to manually relaunch everytime. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
+Consider also running your node + Cosmovisor as a service, so you don't have to manually relaunch everytime. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
 
 **Step 5: Joining the Validator Set** If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set). Run with --help for more details.
 
@@ -192,3 +173,11 @@ bitbadgeschaind tx staking create-validator /path/to/validator.json \
 This should be signed with your normal key pair for signing transactions. Ensure you have enough $BADGE tokens to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
 You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
+
+**Step 6: Handling Upgrades**
+
+Any future executables will need to be downloaded from source again, as explained above. The executable will then need to be moved to the corresponding DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin folder. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
+
+Then once the new upgrade goes live (certain block height is reached), the executable will auto swap with zero downtime enabling the chain to continue.
+
+The upgrades will be announced beforehand. You, as the node operator, will have until the upgrade time to successfully execute this step. If not completed by upgrade time, your node will be left behind and slashed.
