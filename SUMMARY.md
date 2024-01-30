@@ -37,6 +37,7 @@
 ## ⌨ For Developers
 
 * [🚴♂ Getting Started](for-developers/getting-started.md)
+* [✏ Chain Details](for-developers/chain-details.md)
 * [🧠 Core Concepts](for-developers/core-concepts/README.md)
   * [👤 Accounts](for-developers/core-concepts/accounts.md)
   * [👥 Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
@@ -48,7 +49,6 @@
   * [📊 Balances](for-developers/core-concepts/balances.md)
   * [🪙 Balance Types](for-developers/core-concepts/balance-types.md)
   * [➕ Creating Badges](for-developers/core-concepts/creating-badges.md)
-  * [✏ Chain Details](for-developers/core-concepts/chain-details.md)
   * [🤖 Protocols](for-developers/core-concepts/protocols.md)
   * [🖊 Standards](for-developers/core-concepts/standards.md)
   * [🤝 Transferability / Approvals](for-developers/core-concepts/transferability-approvals.md)

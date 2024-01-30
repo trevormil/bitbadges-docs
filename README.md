@@ -151,6 +151,8 @@ You can request the functionality from the BitBadges team, and we will do our be
 
 BitBadges App - [https://bitbadges.io](https://bitbadges.io)
 
+Explorer - [https://explorer.bitbadges.io](https://explorer.bitbadges.io)
+
 **Socials**
 
 Discord - [https://discord.com/invite/TJMaEd9bar](https://discord.com/invite/TJMaEd9bar)
