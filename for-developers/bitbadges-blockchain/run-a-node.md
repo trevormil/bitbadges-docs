@@ -139,6 +139,33 @@ This will run the blockchain with the configured settings and the genesis Cosmov
 
 Consider also running your node + Cosmovisor as a service, so you don't have to manually relaunch everytime. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
 
+**Step 4.5: BIP-322 Setup**
+
+This is a temporary workaround to check Bitcoin signatures. Currently, there are no Go or Rust implementations of BIP-322 (the verification algorithm). As soon as there is, we will convert to a native implementation.
+
+In the meantime, you will have to do the following.
+
+Clone [https://github.com/BitBadges/bip322-js](https://github.com/BitBadges/bip322-js) in your DAEMON\_HOME directory. You should now have a bip322-js folder on the same level as cosmovisor, config, data, etc.
+
+Navigate into the folder and run
+
+```
+npm i
+npm run build
+```
+
+You should also make sure you have the node CLI command. The chain calls the following bash command to check signatures.
+
+```
+node DAEMON_HOME/dist/verify.js args...
+```
+
+Try a test run and make sure there are no errors. It should print true. Adjust for your home path.
+
+```
+node ./dist/verify.js '{\"account_number\":\"12\",\"chain_id\":\"bitbadges_1-2\",\"fee\":{\"amount\":[{\"amount\":\"0\",\"denom\":\"badge\"}],\"gas\":\"84362\"},\"memo\":\"\",\"msg0\":{\"type\":\"cosmos-sdk/MsgSend\",\"value\":{\"amount\":[{\"amount\":\"1\",\"denom\":\"badge\"}],\"from_address\":\"cosmos14t3uvy3qam7td3yufpp566wjp2q6nqtrf0qpyy\",\"to_address\":\"cosmos1uy4my3dwzwv9drgq06pt433z742l9vrlnx88ds\"}},\"sequence\":\"0\"}' 0247304402205a42d1b5973ce074818119ca7d61a1af2921f60a50aeff9eb7174aa1fb0686bd02205d2ae8896d3f67c9c74f14179bf49c697673dbdb2f851347a3cdc22cceaa13bc012102e600fba403d9a923446db973522e52e4ed5374f1bfe5448dfbab41f550b353f9 cosmos14t3uvy3qam7td3yufpp566wjp2q6nqtrf0qpyy
+```
+
 **Step 5: Joining the Validator Set** If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set). Run with --help for more details.
 
 ```shell
