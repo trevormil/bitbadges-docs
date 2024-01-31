@@ -15,7 +15,7 @@ In this guide, we will provide detailed instructions for setting up and running 
 
 **BitBadges Public RPC:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
 
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor. It is strongly recommended that you set up your node with Cosmovisor to handle and facilitate these upgrades in real time. We explain more below.
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor, a tool for zero downtime swapping Cosmos SDK binaries. We expect your node to be setup using Cosmovisor. We explain more below.
 
 **Discord:** Communications and announcements for node operators is facilitated via our Discord.
 
@@ -23,49 +23,29 @@ In this guide, we will provide detailed instructions for setting up and running 
 
 **Step 0: Fetch And Build**
 
-The source code lives at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). You can either 1) download the code and build from source, or 2) download the executable directly. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases).&#x20;
+The source code lives at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). You can either 1) download the code and build from source, or 2) download the executable directly. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). The best practice is to do this as a non-root user.
 
-We recommend downloading the executable directly. The executable can be found under the releases tab at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Choose the correct executable for your machine. If you choose this option, you can go to the next step once you have the executable ready.&#x20;
+If building from source, we refer you to the README of the repository.
+
+The easier way is just downloading the executable directly. The executable can be found under the releases tab at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Choose the correct executable for your machine and operating system.
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0)
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-If building from source, you have two options. For both, begin by cloning the source code from the BitBadges GitHub repository. Replace VERSION with the desired release.
-
-```shell
-git clone --branch {VERSION} https://github.com/bitbadges/bitbadgeschain
-```
-
-_Option 1: Using Ignite CLI:_ Install Ignite CLI and execute the following commands in the root directory of the cloned repository:
-
-```shell
-curl https://get.ignite.com/cli@v0.27.2 | bash
-mv ignite /usr/local/bin # move to your path
-ignite version # test that it is installed correctly
-ignite chain build
-```
-
-_Option 2:_ Using Makefile. Ensure you have **make** and **go** installed on your machine, or use a Docker container that has them installed. Then, build the binary with:
-
-<pre class="language-shell"><code class="lang-shell"><strong>make build-with-checksum
-</strong></code></pre>
+At the end of Step 0, you should have the bitbadgeschaind executable to run. Consider adding it to your PATH for easier execution. This may be **bitbadgeschaind** or something like **bitbadgeschain-linux-amd64.** We use bitbadgeschaind throughout this documentation. Adjust where necessary.
 
 **Step 1: Initialization**
 
-If you built with Ignite, you can run&#x20;
-
-```
-ignite chain init --skip-proto
-```
-
-Or else, initialize your chain with:
+Initialize your chain by running
 
 ```shell
 bitbadgeschaind init <moniker> --chain-id CHAIN_ID
 ```
 
-You'll need to replace `<moniker>` with a custom username for your node. Take note of where your configuration files live. Default is typically `/root/.bitbadgeschain`.
+You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges\_1-2 for betanet).
+
+Take note of where your configuration files live. We call this DAEMON\_HOME throughout the rest of this documentation. This can be controlled with the --home flag if you do not want the default location. Run with --help to see the default.
 
 **Step 2: Setup Node**&#x20;
 
@@ -112,7 +92,7 @@ Adjust the command accordingly. **Note you should run this and store it on your 
 
 **Step 3: Configuring Your Node**&#x20;
 
-IMPORTANT: You need to replace `config/genesis.json` with the agreed-upon version from [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
+IMPORTANT: You need to replace `DAEMON_HOME/genesis.json` with the agreed-upon version from [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
 
 Inside the config folder from Step 1's initialization, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `bitbadgeschaind start --help` for explanations. Tweak these as desired. Some important ones are highlighted below.
 
@@ -125,7 +105,7 @@ persistent_peers = "432d816d0a1648c5bc3f060bd28dea6ff13cb413@216.58.206.174:2665
 
 These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
 
-Ensure that the listen address settings are correct, using your IP address or domain name if configured.  Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go), such as running as a non-root user.
+Ensure that the listen address settings are correct, using your IP address or domain name if configured.  Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
 
 **Step 4: Setting Up Cosmovisor**
 
@@ -176,7 +156,7 @@ You can obtain the public validator consensus public key using the`bitbadgeschai
 
 **Step 6: Handling Upgrades**
 
-Any future executables will need to be downloaded from source again, as explained above. The executable will then need to be moved to the corresponding DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin folder. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
+Any future executables will need to be downloaded from source again, in the same manner as Step 1. The executable will then need to be moved to the corresponding DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin folder. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
 
 Then once the new upgrade goes live (certain block height is reached), the executable will auto swap with zero downtime enabling the chain to continue.
 
