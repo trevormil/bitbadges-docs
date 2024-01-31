@@ -92,7 +92,7 @@ BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
 
 ### **Public Key Types**
 
-For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
+For standard Cosmos accounts and Bitcoin accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
 
 For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
 
