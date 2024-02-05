@@ -176,11 +176,11 @@ The easiest way to do this is simply through the helper interface we have create
 gzip contract.wasm
 ```
 
-2\) Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCodeCompat. Upload your .wasm.gz file. Submit the transaction.
+2\) Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction.
 
 3\) A notification should pop up with your code ID, assuming the transaction was successful.
 
-4\) Refresh the page or clear all Msgs and start a new transactioon. Now, select MsgInstantiateContractCompat. Set a label (name for your contract) and enter the code ID from step 3. Submit the transaction.
+4\) Refresh the page or clear all Msgs and start a new transaction. Now, select MsgInstantiateContractCompat. Set a label (name for your contract) and enter the code ID from step 3. Submit the transaction.
 
 If you want to instantiate it with funds. the **funds** property will be in the format "1badge".
 
