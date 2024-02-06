@@ -10,9 +10,9 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 ## **Creating a collection?**
 
-**Is everything you need supported by the BitBadges web app?** If so, thenn create a collection using the Create tab on the BitBadges web app. We envision most badges can be created through this form. IF not, see how to generate and broadcast a MsgCreateCollection transaction.
+**Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
 
-**Do you want to self-host off-chain balances?** You can manually enter your self-hosted URL into the Create form. Learn about the different [balance types](core-concepts/balance-types.md) and see the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting.
+**Do you want to self-host off-chain balances?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. You can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
 **Do you need to collect user addresses for whitelists before creating?** Create an address survey using the Survey Mode option when creating an address list. Want to implement custom logic whenever a user adds to the survey? See [here](tutorials/custom-address-surveys.md).
 
