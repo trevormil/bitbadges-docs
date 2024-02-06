@@ -149,7 +149,7 @@ bitbadges-cosmwasm = { version = "X.X.X" }
 
 **Creating the Contract**
 
-We leave the actual logic of your contract for you to handle. Please reference the explanations above, view examples, or refer to CosmWASM documentation if needed ([https://github.com/BitBadges/bitbadges-cosmwasm-bindings/tree/master/contracts/register\_addresses/src](https://github.com/BitBadges/bitbadges-cosmwasm-bindings/tree/master/contracts/register\_addresses/src)).
+We leave the actual logic of your contract for you to handle. Please reference the explanations above, view examples, or refer to CosmWASM documentation if needed.
 
 **Building and Optimizing**
 
