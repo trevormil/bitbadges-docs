@@ -17,58 +17,11 @@ The main use case of the API are fetching collection and fetching account inform
 <strong>}])
 </strong></code></pre>
 
-### **Confined Responses**
+### Pruning Requests + Pruning Paginations
 
-Response details are confined to the request parameters passed in, so you will have to handle merging the collection response with previous responses. We have made it easy to do with the SDK. This handles everything from new bookmarks and pagination to appending newly fetched metadata.
+Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. Another thing you might want to do is to not fetch metadata you have previously fetched. For example, if you have already fetched Badge ID 1's metadata, you do not want to fetch it again.&#x20;
 
-```typescript
-import { updateCollectionWithResponse } from "bitbadgesjs-utils"
-
-export function updateCollectionWithResponse(
-    oldCollection: BitBadgesCollection<bigint> | undefined, 
-    newCollectionResponse: BitBadgesCollection<bigint>
-): BitBadgesCollection<bigint>
-```
-
-### **Pruning Metadata Fetch Requests**
-
-Another thing you might want to do is to not fetch metadata you have previously fetched. For example, if you have already fetched Badge ID 1's metadata, you do not want to fetch it again.
-
-This can be handled simply by using the SDK's pruneMetadataToFetch function. This will scan your existing cached collection, see what you have already fetched, and prune your request to only unfetched metadata. However, this is not an excuse to be lazy and fetch too much at one time. There is still a 250 URI limit put in place per fetch.
-
-```typescript
-import { pruneMetadataToFetch } from "bitbadgesjs-utils"
-
-export function pruneMetadataToFetch: (
-    cachedCollection: BitBadgesCollection<bigint>, 
-    metadataFetchReq?: MetadataFetchOptions
-) => {
-    doNotFetchCollectionMetadata: boolean;
-    uris: string[];
-} //compatible with MetadataFetchOptions interface
-```
-
-### **Putting It Together**
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const prunedMetadataToFetch = pruneMetadataToFetch(
-</strong><strong>    collection, 
-</strong><strong>    requestBody.metadataToFetch
-</strong><strong>)
-</strong><strong>const collections = await BitBadgesApi.getCollections([
-</strong><strong>    {
-</strong><strong>        ...requestBody,
-</strong><strong>        metadataToFetch: prunedMetadataToFetch
-</strong><strong>    }
-</strong><strong>])
-</strong><strong>const newCollection = collections[0];
-</strong><strong>const updatedCollection = updateCollectionWithResponse(collection, newCollection);
-</strong></code></pre>
-
-Or, we have also exported it all in one function as
-
-```typescript
-public async getCollectionsAndUpdate(requestBody: GetCollectionBatchRouteRequestBody, currCollections: BitBadgesCollection<bigint>[]): Promise<BitBadgesCollection<bigint>[]>
-```
+To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 
 ```typescript
 await BitBadgesApi.getCollectionsAndUpdate({ collectionsToFetch: [...] }, [...existingCollections])

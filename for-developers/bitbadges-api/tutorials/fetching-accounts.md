@@ -15,20 +15,9 @@ The main use case of the API are fetching collection and fetching account inform
 <strong>}])
 </strong></code></pre>
 
-### **Confined Responses**
+### Pruning Requests + Pruning Paginations
 
-Response details are confined to the request parameters passed in, so you will have to handle merging the collection response with previous responses. We have made it easy to do with the SDK. This handles everything from new bookmarks and pagination to appending newly fetched profile details.
-
-```typescript
-import { updateAccountWithResponse } from "bitbadgesjs-utils"
-
-export function updateAccountWithResponse(
-    oldAccount: BitBadgesUserInfo<bigint> | undefined, 
-    newAccountResponse: BitBadgesUserInfo<bigint>
-): BitBadgesUserInfo<bigint>
-```
-
-Or, we have also exported it all in one function as
+Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 
 ```typescript
 public async getAccountsAndUpdate(requestBody: GetAccountsRouteRequestBody, currAccounts: BitBadgesUserInfo<bigint>[]): Promise<BitBadgesUserInfo<bigint>[]> 
