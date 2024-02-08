@@ -8,6 +8,8 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
+**Quickstart Repo:** Check out the BitBadges quickstart repository. This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart).
+
 ## **Creating a collection?**
 
 **Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
