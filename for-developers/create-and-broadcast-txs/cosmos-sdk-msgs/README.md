@@ -30,18 +30,18 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/badges**
 
-* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
-* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
   * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
-* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
-* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
-* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
-* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgCreateAddressLists.html) - Creates address list(s).
+* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
+* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgCreateAddressLists.html) - Creates address list(s).
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../../tutorials/create-a-wasm-contract.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../../tutorials/create-a-wasm-contract.md) for tutorial.
 
 **x/protocols**
 
@@ -53,4 +53,4 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **Other Cosmos SDK Modules**
 
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!

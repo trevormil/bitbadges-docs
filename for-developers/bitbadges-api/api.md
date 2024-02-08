@@ -9,7 +9,7 @@
 
 ### Status Codes
 
-We use standard HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/ErrorResponse.html) type.
+We use standard HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/ErrorResponse.html) type.
 
 ```typescript
 /**
@@ -50,7 +50,7 @@ Note: this is all handled for you if you use the BitBadges API SDK.
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience. This will give you typed routes, provide quality checks, and also auto-convert all responses to your desired number type (bigint, Number, etc).
 
 ```typescript
-import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-utils';
+import { BigIntify, BitBadgesAPI } from 'bitbadgesjs-sdk';
 
 export type DesiredNumberType = bigint;
 export const ConvertFunction = BigIntify;
@@ -65,7 +65,7 @@ const BitBadgesApi = new BitBadgesAPI({
     apiUrl: '...' //defaults to official one if empty
 }); 
 
-//See https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html for documentation
+//See https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html for documentation
 //Some might require authentication. Some might be CORS only from the official site.
 await BitBadgesApi.addAddressToSurvey(...);
 await BitBadgesApi.addApprovalDetailsToOffChainStorage(...);
@@ -135,9 +135,9 @@ If the user is not signed in and requests private information, the API will resp
 
 Throughout the API, we use a bookmark technique. For the first request, you will not need to specify a bookmark (e.g. ""), and it will fetch the first page. Within the response, it will return a **bookmark** and **hasMore**. **hasMore** defines whether there are more pages to be fetched. To fetch the next page, you will specify the returned bookmark from the previous request to the next request. This process can be repeated until all are loaded.
 
-## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html)
+## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
 
-See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/classes/BitBadgesAPI.html). The TypeScript body / response type definitions can be found [here](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/utils/src/types/api.ts).
+See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html). The TypeScript body / response type definitions can be found [here](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/src/types/api.ts).
 
 ## Tutorials
 

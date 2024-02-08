@@ -1,6 +1,6 @@
 # Fetching Accounts
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/BitBadgesUserInfo.html)interface.
+The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getAccounts([{
 </strong><strong>    //example
@@ -228,7 +228,7 @@ export function getAccountClaimAlertsView(account: BitBadgesUserInfo<bigint> | u
 
 ### **Fetch Route**
 
-#### **POST /api/v0/user/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAccountsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetAccountsRouteSuccessResponse.html)**)**
+#### **POST /api/v0/user/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsRouteSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 

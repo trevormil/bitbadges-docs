@@ -12,7 +12,7 @@ Metadata IDs are simply an ID number that corresponds to a deterministic calcula
 
 **How do we compute them?**
 
-ID 0 corresponds to the collection metadata URI. Then, we linearly scan through the badge metadata values ([BadgeMetadata](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/BadgeMetadata.html)\[]) and each unique URI increments the metadata ID by 1.&#x20;
+ID 0 corresponds to the collection metadata URI. Then, we linearly scan through the badge metadata values ([BadgeMetadata](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BadgeMetadata.html)\[]) and each unique URI increments the metadata ID by 1.&#x20;
 
 If a badge metadata URI is stored with "{id}" (indicating to be replaced by the badge ID), we consider each URI unique because it will be unique after replacement.
 
@@ -35,7 +35,7 @@ for each badgeMetadataObj in badgeMetadata: //Linear iteration
 
 
 
-Use the following exported functions from bitbadgesjs-utils to convert between:
+Use the following exported functions from bitbadgesjs-sdk to convert between:
 
 ```typescript
 function getBadgeIdsForMetadataId(metadataId: bigint, badgeUris: BadgeMetadata<bigint>[])

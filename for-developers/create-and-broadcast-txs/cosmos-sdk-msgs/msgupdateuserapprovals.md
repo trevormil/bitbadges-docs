@@ -1,6 +1,6 @@
 # MsgUpdateUserApprovals
 
-To update approvals, you can use [MsgUpdateUserApprovals](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgUpdateUserApprovals.html). Upon genesis, every user's approval store and permissions will be the defaults specified by the collection.&#x20;
+To update approvals, you can use [MsgUpdateUserApprovals](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgUpdateUserApprovals.html). Upon genesis, every user's approval store and permissions will be the defaults specified by the collection.&#x20;
 
 From there, they can be updated according to the permissions set (i.e. the **userPermissions** previously set). Users can only update thier own approvals.
 

@@ -8,10 +8,10 @@ If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev
 
 You can build out the transaction from the Proto definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
 
-See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/proto/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/proto/src/proto) for all proto Msg definitions.
+See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
-import { proto } from 'bitbadgesjs-proto'
+import { proto } from 'bitbadgesjs-sdk'
 
 //proto.cosmos.module for standard Cosmos
 //proto.badges for BitBadges x/badges

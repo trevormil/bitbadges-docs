@@ -1,6 +1,6 @@
 # Timelines
 
-As you may have noticed, many of the collection fields are timeline-based, meaning they can be scheduled to have different values at different times. Check out the [Timeline helpers](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/functions/getCurrentValuesForCollection.html) from bitbadgesjs-utils in the SDK.
+As you may have noticed, many of the collection fields are timeline-based, meaning they can be scheduled to have different values at different times. Check out the [Timeline helpers](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/functions/getCurrentValuesForCollection.html) from bitbadgesjs-sd in the SDK.
 
 **Examples:**
 

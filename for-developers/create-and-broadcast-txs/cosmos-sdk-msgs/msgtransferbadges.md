@@ -1,6 +1,6 @@
 # MsgTransferBadges
 
-Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/MsgTransferBadges.html).
+Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgTransferBadges.html).
 
 ```typescript
 export interface MsgTransferBadges<T extends NumberType> {

@@ -41,7 +41,7 @@ You may notice that you cannot go from a Cosmos / ETH / BTC address directly to 
 
 For user experience, you should always display the user's native address on a frontend. However, the BitBadges blockchain **only** uses the mapped Cosmos addresses behind the scenes, never a native address. This can be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToCosmosAddress, mustConvertToBtcAddress } from 'bitbadgesjs-utils';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToCosmosAddress, mustConvertToBtcAddress } from 'bitbadgesjs-sdk';
 </strong><strong>
 </strong><strong>const cosmosAddress = convertToCosmosAddress(btcAddress);
 </strong>const ethAddress = convertToEthAddress(cosmosAddress);

@@ -14,7 +14,7 @@ If you plan to use option 2, see below.
 The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-proto'
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
 
 const chain = {
   chainId: 2,
@@ -89,7 +89,7 @@ const fee = {
 
 **Chain Details**
 
-<pre class="language-typescript"><code class="lang-typescript">import { SupportedChain, MAINNET_CHAIN_DETAILS, BETANET_CHAIN_DETAILS } from "bitbadgesjs-utils";
+<pre class="language-typescript"><code class="lang-typescript">import { SupportedChain, MAINNET_CHAIN_DETAILS, BETANET_CHAIN_DETAILS } from "bitbadgesjs-sdk";
 <strong>
 </strong><strong>const chain = { ...MAINNET_CHAIN_DETAILS, chain: SupportedChain.SOLANA };
 </strong></code></pre>
@@ -140,7 +140,7 @@ const getPublicKey = async (cosmosAddress: string) => {
 For Keplr / Cosmos, you can simply use getKey() then convert to base64,
 
 ```typescript
-import { CHAIN_DETAILS } from 'bitbadgesjs-utils';
+import { CHAIN_DETAILS } from 'bitbadgesjs-sdk';
 
 const getPublicKey = async (_cosmosAddress: string) => {
     const chain = CHAIN_DETAILS; //can also use BETANET_CHAIN_DETAILS or MAINNET_CHAIN_DETAILS

@@ -9,7 +9,7 @@ import {
   TransactionPayload,
   TxContext,
   createTxBroadcastBodyEthereum
-} from "bitbadgesjs-proto"
+} from "bitbadgesjs-sdk"
 import { signTypedData } from "@wagmi/core"
 
 const signTxn = async (context: TxContext, payload: TransactionPayload, simulate: boolean) => {

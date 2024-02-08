@@ -9,19 +9,16 @@ Reference repositories that use the SDK:
 * [BitBadges Frontend](https://github.com/BitBadges/bitbadges-frontend)
 * [BitBadges Indexer / API](https://github.com/BitBadges/bitbadges-indexer)
 
-There are currently two libraries that make up the SDK (proto and utils) that can be installed via the commands below. See [full documentation](full-documentation.md) for complete documentation on each library. Also, the BitBadges official indexer source code and BitBadges official frontend code both use the SDK, so please feel free to reference them.
+See [full documentation](full-documentation.md) for complete documentation on each library. Also, the BitBadges official indexer source code and BitBadges official frontend code both use the SDK, so please feel free to reference them.
 
 ```
-npm install bitbadgesjs-utils
-```
-
-```
-npm install bitbadgesjs-proto
+npm install bitbadgesjs-sdk
 ```
 
 
 
-**utils** is the main library which provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.&#x20;
+
+This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.&#x20;
 
 ```typescript
 const idRangesOverlap = checkIfIdRangesOverlap(balances[0].badgeIds);
@@ -58,7 +55,7 @@ const broadcastPost = await fetch(
 const response = await broadcastPost.json()
 ```
 
-**proto** exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create, generate, and sign blockchain transactions in the [BitBadges Msg formats](../create-and-broadcast-txs/cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-broadcast-txs/) for more info and tutorials.&#x20;
+The **proto** portion of the library exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create, generate, and sign blockchain transactions in the [BitBadges Msg formats](../create-and-broadcast-txs/cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-broadcast-txs/) for more info and tutorials.&#x20;
 
 For most use cases, you will not need to broadcast transactions. If you do, consider first exploring the helper broadcast tool at [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast).
 

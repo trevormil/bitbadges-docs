@@ -35,7 +35,7 @@ You may notice that you cannot go from a Cosmos / Eth address directly to a Sola
 
 For user experience, you should always display the user's native address on a frontend. However, the BitBadges blockchain **only** uses the mapped Cosmos addresses behind the scenes, never a native address. This can be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth, convertToCosmosAddress } from 'bitbadgesjs-utils';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth, convertToCosmosAddress } from 'bitbadgesjs-sdk';
 </strong><strong>
 </strong><strong>
 </strong><strong>const cosmosAddress1 = convertToCosmosAddress(address);

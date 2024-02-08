@@ -1,6 +1,6 @@
 # 📧 Address Lists (Lists)
 
-[AddressLists](https://bitbadges.github.io/bitbadgesjs/packages/proto/docs/interfaces/AddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
+[AddressLists](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/AddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
 ```typescript
 export interface AddressList {

@@ -1,6 +1,6 @@
 # Fetching Collections
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/BitBadgesCollection.html)interface.
+The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getCollections([{
 </strong><strong>    //example
@@ -231,7 +231,7 @@ collection.owners.find(x => x.cosmosAddress === "Total")
 
 ### **Fetch Route**
 
-#### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/utils/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
+#### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 

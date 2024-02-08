@@ -35,7 +35,7 @@ BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
 
 #### **Address Conversion**&#x20;
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-utils';
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-sdk';
 </strong><strong>
 </strong><strong>const cosmosAddress = ethToCosmos(address);
 </strong>const ethAddress = cosmosToEth(cosmosAddress);

@@ -23,13 +23,13 @@ const stringifiedMetadata: BadgeMetadata<string> = { uri: ... };
 To convert between different number types, all types come with a converter function. In our case, it would be **convertBadgeMetadata**. This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-proto";
+import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-sdk";
 
 const stringifiedMetadata: BadgeMetadata<string> = { uri: ... };
 const bigIntifiedMetadata = convertBadgeMetadata(stringifiedMetadata, BigIntify)
 ```
 
-We export the following types and converter functions for your convenience from bitbadgesjs-proto.
+We export the following types and converter functions for your convenience.
 
 ```typescript
 export type NumberType = bigint | number | string | boolean;

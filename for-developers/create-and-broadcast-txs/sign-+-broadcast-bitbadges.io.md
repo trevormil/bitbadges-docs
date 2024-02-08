@@ -16,7 +16,7 @@ This transaction builder ONLY deals with the Msg contents and not anything about
 If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
 
 ```typescript
-import { proto } from 'bitbadgesjs-proto';
+import { proto } from 'bitbadgesjs-sdk';
 
 const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
 const msgCreateProtocol = new MsgCreateProtocol({
