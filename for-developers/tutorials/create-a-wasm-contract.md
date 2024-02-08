@@ -196,7 +196,7 @@ Once deployed, you need to to let your users interact with it.&#x20;
 
 This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](../create-and-broadcast-txs/) for a tutorial.
 
-Consider building a dApp frontend, so users can easily interact with your contract! Use [https://bitbadges.io/dev/dappexample](https://bitbadges.io/dev/dappexample) ([Code](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/pages/dev/dappexample.tsx)) as a reference.
+Consider building your own dApp frontend, so users can easily interact with your contract! Get started with the quickstart repo.
 
 **Examples (Using the Example Contract in Repo)**
 
