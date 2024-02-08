@@ -1,12 +1,10 @@
 # Broadcast to a Node
 
-**Pre-Req:** You have the **txRaw** variable with a valid signature (see prior pages).
-
-
+**Pre-Req:** You have the body variable with a valid signature (see prior pages).
 
 ### **Simulating**
 
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the tranaction context with up to date values.&#x20;
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.&#x20;
 
 To do this, you can use&#x20;
 
@@ -60,22 +58,8 @@ Or, you can use the BitBadges API to broadcast.
 https://api.bitbadges.io/api/v0/broadcast
 ```
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { generatePostBodyBroadcast, generateEndpointBroadcast } from "bitbadgesjs-utils";
-</strong><strong>
-</strong><strong>// Broadcast it
-</strong>const postOptions = {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: generatePostBodyBroadcast(txRaw),
-}
-
-let broadcastPost = await fetch(
-<strong>  //replace with your node URL or https://api.bitbadges.io/v0/broadcast
-</strong><strong>  `http://localhost:1317${generateEndpointBroadcast()}`, 
-</strong>  postOptions,
-)
-let response = await broadcastPost.json()
-</code></pre>
+<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
+</strong></code></pre>
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {

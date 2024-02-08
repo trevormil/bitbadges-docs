@@ -1,58 +1,55 @@
 # Signing - Cosmos
 
-Pre-Requisite: You have generated the transaction and have it in the **txn** variable (see prior pages).
+Follow the prior pages to generate the context and payloads.
 
 #### Signing with Keplr
 
 ```ts
-// Follow the previous step to generate the msg object
-
-const sender = {
-  accountAddress: cosmosAddress,
-  sequence: account.sequence ? Numberify(account.sequence) : 0,
-  accountNumber: Numberify(account.accountNumber),
-  pubkey: account.publicKey,
-};
-await window.keplr?.enable(chainId);
-
-const signResponse = await window?.keplr?.signDirect(
-  chainId,
-  sender.accountAddress,
-  {
-    bodyBytes: txn.signDirect.body.serializeBinary(),
-    authInfoBytes: txn.signDirect.authInfo.serializeBinary(),
-    chainId: chainId,
-    accountNumber: new Long(sender.accountNumber),
-  },
-  {
-    preferNoSetFee: true,
+// 
+const signTxn = async (context: TxContext, payload: TransactionPayload, simulate: boolean) => {
+  if (!account) {
+    throw new Error('Account does not exist');
   }
-)
+  const { sender } = context;
+  await window.keplr?.enable(chainId);
 
-if (!signResponse) {
-  return;
+  let signatures = [
+    new Uint8Array(Buffer.from('0x', 'hex')),
+  ]
+  if (!simulate) {
+    const signResponse = await window?.keplr?.signDirect(
+      chainId,
+      sender.accountAddress,
+      {
+        bodyBytes: payload.signDirect.body.toBinary(),
+        authInfoBytes: payload.signDirect.authInfo.toBinary(),
+        chainId: chainId,
+        accountNumber: new Long(sender.accountNumber),
+      },
+      {
+        preferNoSetFee: true,
+      }
+    )
+
+    if (!signResponse) {
+      return;
+    }
+
+    signatures = [
+      new Uint8Array(Buffer.from(signResponse.signature.signature, 'base64')),
+    ]
+  }
+
+  const txBody = createTxBroadcastBodyCosmos(payload, signatures);
+  return txBody;
 }
-
-const signatures = [
-  new Uint8Array(Buffer.from(signResponse.signature.signature, 'base64')),
-]
-
-const { signed } = signResponse;
-
-const txRaw = createTxRaw(
-  signed.bodyBytes,
-  signed.authInfoBytes,
-  signatures,
-)
 ```
 
-See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx) for full snippet.
+See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx) for full snippet. Or, the quickstart has it already implemted for you.
 
 ### Output
 
-This will leave you with a **txRaw** variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
 
 ### Full Snippet
 

@@ -16,15 +16,38 @@ This transaction builder ONLY deals with the Msg contents and not anything about
 If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
 
 ```typescript
-window.open(url, '_blank', 'width=600,height=600');
+import { proto } from 'bitbadgesjs-proto';
+
+const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
+const msgCreateProtocol = new MsgCreateProtocol({
+  "name": "Test",
+  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+  "customData": "Test",
+  "isFrozen": false,
+  "creator": chain.cosmosAddress
+})
+const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
+const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+
+setLoading(true);
+// You can further customize the child window as needed
+openedWindow?.focus();
+
+//set listener for when the child window closes
+const timer = setInterval(() => {
+  if (openedWindow?.closed) {
+    clearInterval(timer);
+    setLoading(false);
+  }
+}, 1000);
 ```
 
-```typescript
-if (window.opener) {
-    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
+<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
+</strong><strong>if (window.opener) {
+</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
     window.close();
 }
-```
+</code></pre>
 
 ```typescript
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage

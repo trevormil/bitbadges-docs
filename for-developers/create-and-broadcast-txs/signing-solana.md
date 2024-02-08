@@ -2,33 +2,42 @@
 
 **Signing with Solana - Phantom Wallet**
 
-Using the **txn** variable obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.&#x20;
-
-We then add the Web3ExtensionSolana extension to tell the blockchain this is a Solana signature.&#x20;
-
-**chain** and **sender** should be the same as the transaction context. **address** should be the native Solana address (Base58 format).&#x20;
+Using the **txn** variable obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using Phantom wallet.&#x20;
 
 ```typescript
-const message = txn.jsonToSign;
-const encodedMessage = new TextEncoder().encode(message);
-const signedMessage = await solanaProvider.request({
-  method: "signMessage",
-  params: {
-    message: encodedMessage,
-    display: "utf8",
-  },
-});
-sig = signedMessage.signature.toString('hex');
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.solana;
+    if (provider?.isPhantom) {
+      return provider;
+    }
 
+    window.open('https://phantom.app/', '_blank');
+  }
+};
 
-let txnExtension = signatureToWeb3ExtensionSolana(chain, sender, sig, address);
+const signTxn = async (context: TxContext, payload: TransactionPayload, simulate: boolean) => {
+  if (!account) throw new Error('Account not found.');
 
-// Create the txRaw
-let rawTx = createTxRawEIP712(
-  txn.legacyAmino.body,
-  txn.legacyAmino.authInfo,
-  txnExtension,
-);
+  let sig = '';
+  if (!simulate) {
+    const message = payload.jsonToSign;
+    const encodedMessage = new TextEncoder().encode(message);
+    const signedMessage = await solanaProvider.request({
+      method: "signMessage",
+      params: {
+        message: encodedMessage,
+        display: "utf8",
+      },
+    });
+    sig = signedMessage.signature.toString('hex');
+  }
+  
+  const solAddress = '....' // Solana Base58 address
+  const txBody = createTxBroadcastBodySolana(context, payload, sig, solAddress);
+  return txBody;
+}
 ```
 
 

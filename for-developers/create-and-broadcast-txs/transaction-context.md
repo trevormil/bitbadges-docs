@@ -77,7 +77,7 @@ export interface Sender {
 
 Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive.&#x20;
 
-To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial.
+To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the gas prices via the BitBadgesApi.getStatus() route.&#x20;
 
 ```typescript
 const fee = {
@@ -108,11 +108,11 @@ IMPORTANT: For a user who has not yet interacted with the blockchain, the fetche
 
 To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any gas fees).
 
-To get the public key, see below. Note public keys are expected to be in base64 format.
+To get the public key for an unregistered user, see below. Public keys are expected to be in base64 format.
 
 #### **Get Public Key - Metamask / ETH**
 
-For MetaMask and Ethereeum, you will need to get the user to sign a message and recover the public key from the signature and convert to base64.
+For MetaMask and Ethereeum, you will need to get the user to sign a message and recover the public key from the signature and convert to base64. If users need to authenticate into your app, you can get the public key from that message signature as well for more optimal UX.
 
 ```typescript
 const getPublicKey = async (cosmosAddress: string) => {
@@ -164,3 +164,34 @@ const getPublicKey = async (_cosmosAddress: string) => {
 const solanaPublicKeyBuffer = bs58.decode(solanaPublicKeyBase58);
 const publicKeyToSet = Buffer.from(solanaPublicKeyBuffer).toString('base64')
 </code></pre>
+
+**Get Public Key - Bitcoin**
+
+```typescript
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.bitcoin;
+    if (provider?.isPhantom) {
+      return provider;
+    }
+
+    window.open('https://phantom.app/', '_blank'); //Make user install it
+  }
+};
+
+const provider = getProvider();
+
+const accounts = await provider.requestAccounts();
+if (accounts.length === 0) {
+  throw new Error('No account found');
+}
+
+const address = accounts[0].address;
+if (accounts[0].addressType !== 'p2wpkh') {
+  throw new Error('Invalid account type'); //Others are not supported for BitBadges
+}
+
+const publicKey = accounts[0].publicKey; //Hex public key
+const base64PublicKey = Buffer.from(publicKey, 'hex').toString('base64');
+```
