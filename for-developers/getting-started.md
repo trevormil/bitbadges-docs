@@ -34,6 +34,20 @@ Querying badge ownership is simply querying for the current balances which can b
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
+## Distributing badges?
+
+**On-Chain Balances**
+
+The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of your own tool.&#x20;
+
+**Off-Chain Balances**&#x20;
+
+For off-chain balances, you control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic.
+
+{% content-ref url="../overview/distribution-tools-integrations.md" %}
+[distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
+{% endcontent-ref %}
+
 ## **Submit blockchain transactions?**
 
 The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom program your own transaction generation and broadcast.**
