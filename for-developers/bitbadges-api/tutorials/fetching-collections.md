@@ -40,7 +40,13 @@ reported?: { badgeIds: UintRange<T>[], reason: string };
 
 ### Metadata
 
-The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.** Subsequent fetches will append the new metadata to the existing **cachedBadgeMetadata**.
+The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.** Subsequent fetches will append the new metadata to the existing **cachedBadgeMetadata**. See the SDK for handling these fields.
+
+{% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
+[badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
+{% endcontent-ref %}
+
+
 
 Note this is different from **collectionMetadataTimeline** and **badgeMetadataTimeline** which simply store the URIs, not the actual metadata itself.
 
@@ -107,7 +113,7 @@ cachedBadgeMetdata: [{
     "metadataId": "1"
 }, ...
 ],
-collectionMetadata: {
+cachedCollectionMetadata: {
     "name": "Verification",
     "description": "The Verification Badge is a symbol of trust and authenticity in the digital world. It's the ultimate proof that the holder's identity or credentials have been verified, making it invaluable for influencers, celebrities, and professionals. With this badge, users can gain credibility, attract more followers, and ensure that their online presence is recognized as genuine and reliable.",
     "image": "ipfs://QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj",
