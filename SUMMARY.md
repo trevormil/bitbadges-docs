@@ -80,6 +80,7 @@
     * [Authentication](for-developers/bitbadges-api/tutorials/authentication.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
     * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
+    * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
