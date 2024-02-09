@@ -36,6 +36,10 @@ It will generate a URL for you. Copy and paste this into your browser and select
 
 IMPORTANT: You must make sure that the bot's role is above the role you are trying to assign in the hierarchy. You can do this by manually dragging it in the Roles menu.
 
+You may also have to enable these.
+
+<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+
 ### Step 5: Callback Handler
 
 Setup the quickstart repository. Specify the fields in the .env obtained from prior steps. ROLE\_ID will be the name of the role you want to assign. We refer you to pages/api/discordVerify.ts in the quickstart for further implementation.&#x20;
