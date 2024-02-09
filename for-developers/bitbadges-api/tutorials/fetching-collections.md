@@ -1,6 +1,6 @@
 # Fetching Collections
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface.
+The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with collections.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getCollections([{
 </strong><strong>    //example
@@ -19,7 +19,7 @@ The main use case of the API are fetching collection and fetching account inform
 
 ### Pruning Requests + Pruning Paginations
 
-Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. Another thing you might want to do is to not fetch metadata you have previously fetched. For example, if you have already fetched Badge ID 1's metadata, you do not want to fetch it again.&#x20;
+Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. Another thing you might want to do is to not fetch metadata you have previously fetched. For example, if you have already fetched Badge ID 1's metadata, you do not want to fetch it again.
 
 To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 

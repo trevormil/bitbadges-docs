@@ -1,6 +1,6 @@
 # Fetching Accounts
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface.
+The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getAccounts([{
 </strong><strong>    //example
