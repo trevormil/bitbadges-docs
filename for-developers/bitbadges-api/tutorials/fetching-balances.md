@@ -4,9 +4,9 @@ There are a couple ways to fetch badge balances, depending on the [balance type]
 
 ### Fetching by User or by Collection
 
-If you want to fetch badges owned by a specific user or specific owners for a collection, we refer you to the prior tutorials. Notably, you can fetch a paginated view using the **badgesCollected** view key for accounts or the **owners** view key for a collection. These are paginated, so you will need to pass in the prior bookmark received to the next request to fecth the next page (if it has more).
+If you want to fetch badges owned by a specific user or specific owners for a collection, we refer you to the prior tutorials. Notably, you can fetch a paginated view using the **badgesCollected** view key for accounts or the **owners** view key for a collection. These are paginated, so you will need to pass in the prior bookmark received to the next request to fetch the next page (if it has more).
 
-However, note that these only apply to standard on-chain or off-chain indexed balanced. Off-chain non-indexed balances must be fetched directly (see below)
+However, note that these only apply to standard on-chain or off-chain indexed balanced. Off-chain non-indexed balances must be fetched directly one by one (see below). You can also fetch off-chain indexed balances directly from source.
 
 {% content-ref url="fetching-collections.md" %}
 [fetching-collections.md](fetching-collections.md)
