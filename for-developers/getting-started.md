@@ -38,7 +38,7 @@ Querying badge ownership is simply querying for the current balances which can b
 
 **On-Chain Balances**
 
-The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of your own tool.&#x20;
+The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of a tool / your own frontend.
 
 **Off-Chain Balances**&#x20;
 
