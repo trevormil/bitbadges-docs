@@ -2,7 +2,13 @@
 
 ## Building Blocks
 
-There are infinitely many ways to distribute badges to holders. On the BitBadges site, we natively support the building blocks (whitelists, passwords, claim codes) and have interfaces for you to share the following:
+**Off-Chain Balances**
+
+For off-chain balances, the creator has complete control over how to allocate badge balances. Since these are off-chain, they can also access non-blockchain data to further enhance the allocation logic.
+
+**On-Chain Balances**
+
+On the BitBadges site, we natively support the building blocks (whitelists, passwords, claim codes) and have interfaces for you to share the following:
 
 * **Plaintext Codes / Passwords:** For codes / passwords, you can share/copy/download the codes yourself and distribute how you would like.
 * **Direct Claim Links:** Provide a unique secret link to the claim page. These links can be distributed however (QR codes, email, etc). Note that claiming requires a transaction, so wallets must be handy at claim time.
@@ -23,7 +29,7 @@ Here, we provide documentation for common distribution integrations / tools as a
 
 Distribution may involve:
 
-* Collecting addresses or usernames of your users to implement whitelists
+* Collecting addresses or usernames of your users to implement whitelists / off-chain balances
 * Distributing codes / passwords that are used to claim badges
 * Notifying users they are on an whitelist
 * Notifying users for how to earn / collect this badge
