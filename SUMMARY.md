@@ -144,6 +144,7 @@
   * [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node.md)
 * [🧑🏫 Tutorials](for-developers/tutorials/README.md)
+  * [Badge-Gating Discord Servers](for-developers/tutorials/badge-gating-discord-servers.md)
   * [Auth QR Codes / Sign In with BitBadges](for-developers/tutorials/auth-qr-codes-sign-in-with-bitbadges.md)
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-wasm-contract.md)
