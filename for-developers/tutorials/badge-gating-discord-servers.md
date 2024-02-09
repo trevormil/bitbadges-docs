@@ -59,3 +59,9 @@ The callback handler will verify everything and assign the role (if criteria is 
 In production, you will need to change the REDIRECT\_URI from localhost to something else.&#x20;
 
 You can also customize everything further if you would like. We leave any other custom logic up to you like periodic retries, revoking, preventing replay attacks, flash ownership attacks, and so on. Much of this is application / badge specific to your requirements.&#x20;
+
+
+
+
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/pages/api/discordVerify.ts" %}
