@@ -39,11 +39,15 @@ We recommend reading all [concepts](concepts/) for background information. Also 
 
 ### Number Types / Stringified Responses
 
-All requests / responses are stringified before being sent over HTTP. This is to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER.  For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK.
+All requests / responses are stringified before being sent over HTTP. This is to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK.
 
 We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
+
+## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
+
+See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html).&#x20;
 
 ### Using the API SDK (Recommended)
 
@@ -134,10 +138,6 @@ If the user is not signed in and requests private information, the API will resp
 **Bookmarking**
 
 Throughout the API, we use a bookmark technique. For the first request, you will not need to specify a bookmark (e.g. ""), and it will fetch the first page. Within the response, it will return a **bookmark** and **hasMore**. **hasMore** defines whether there are more pages to be fetched. To fetch the next page, you will specify the returned bookmark from the previous request to the next request. This process can be repeated until all are loaded.
-
-## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
-
-See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html). The TypeScript body / response type definitions can be found [here](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/src/types/api.ts).
 
 ## Tutorials
 
