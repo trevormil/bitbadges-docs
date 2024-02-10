@@ -8,7 +8,9 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
-**Quickstart Repo:** Check out the BitBadges quickstart repository. This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
+**Quickstart Repo:** Check out the BitBadges quickstart repository. This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
+
+The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
 <figure><img src="../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
 
@@ -38,11 +40,13 @@ Querying badge ownership is simply querying for the current balances which can b
 
 **On-Chain Balances**
 
-The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of a tool / your own frontend.
+The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of a tool / platform / your own frontend.
 
 **Off-Chain Balances**&#x20;
 
 For off-chain balances, you control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic.
+
+For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
 {% content-ref url="../overview/distribution-tools-integrations.md" %}
 [distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
