@@ -23,7 +23,7 @@ Go to OAuth2 -> General to get your CLIENT\_ID and CLIENT\_SECRET.
 Under OAuth2 -> General, add a redirect URI. In this tutorial, we assume you are using the quickstart repo, so put the following. Adjust as necessary for your callback handler (see following steps).
 
 ```shellscript
-http://localhost:3000/api/discordVerify
+http://localhost:3000/api/integrations/discordVerify
 ```
 
 ### Step 4: Invite Bot to Server
@@ -46,13 +46,21 @@ Setup the quickstart repository. Specify the fields in the .env obtained from pr
 
 The callback handler needs to check and authenticate two separate things: 1) authenticate address ownership / badge ownership and 2) authenticate Discord ownership.
 
+```typescript
+const code = req.query.code;
+const state = req.query.state as string;
+const stateData = JSON.parse(state ?? '{}');
+const { message, signature, publicKey, options } = stateData; //You can also check the verificationResponse.success field to see if the message was verified on the clientside but this value should not be trusted.
+const verifyOption = options ? JSON.parse(options) : undefined;
+```
+
 ### Step 6: Generate URL
 
 Go to https://bitbadges.io/linkgen. Custom create your URL with your custom parameters. Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.
 
 This is the URL users will navigate to in order to obtain the role. They will be walked through the process of authenticating both with their Web3 address and with Discord. Upon the success of both, they will be redirected to the REDIRECT\_URI (aka your callback handler).
 
-The callback handler will verify everything and assign the role (if criteria is met).
+The callback handler will verify everything and assign the role (if criteria is met). Test it out to make sure everything works.
 
 ### Step 7: Production + Add-Ons
 
