@@ -28,13 +28,15 @@ http://localhost:3000/api/integrations/discordVerify
 
 ### Step 4: Invite Bot to Server
 
-You will invite your bot to your server via Oauth2 -> URL generator. Select the following options in the image and enter your redirect URI from Step 3.&#x20;
+You will invite your bot to your server via Oauth2 -> URL generator. Select the following options in the image and enter your redirect URI from Step 3. You can play around with the options, but it must be able to identify members and assign roles.
 
 <figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
 
 It will generate a URL for you. Copy and paste this into your browser and select your server to invite it to.
 
 IMPORTANT: You must make sure that the bot's role is above the role you are trying to assign in the hierarchy. You can do this by manually dragging it in the Roles menu.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 You may also have to enable these.
 
