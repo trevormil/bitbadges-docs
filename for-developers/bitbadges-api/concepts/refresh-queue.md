@@ -19,6 +19,6 @@ Note that for off-chain balances, we also throw an error if the fetched balances
 If you are having issues, you can check the BitBadges collection page on site -> Actions -> Refresh for statuses. Or, if you need a programmatic solution, you can use following route to see its status and see if it has any error docs.
 
 ```typescript
-POST /api/v0/collection/${collectionId.toString()}/refreshStatus
+await BitBadgesApi.getRefreshStatus()
 ```
 

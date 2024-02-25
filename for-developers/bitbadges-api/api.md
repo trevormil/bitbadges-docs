@@ -131,6 +131,8 @@ For accessing certain private information or performing certain actions, we requ
 
 If the user is not signed in and requests private information, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
 
+**However, for most applications, you should be fine without needing to access private auth information.**
+
 ### Confined Responses
 
 **IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need. The [Tutorials ](tutorials/)and [Concepts ](concepts/)will be extremely beneficial to help you deal with this.
