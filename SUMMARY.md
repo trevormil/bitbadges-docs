@@ -24,6 +24,8 @@
 * [🔀 Distribution Tools](overview/distribution-tools-integrations.md)
 * [🕵️ Authentication with Badges](overview/verification-tools.md)
 * [📱 Mobile Support](overview/mobile-support.md)
+* [🏗️ Claim Builder](overview/claim-builder/README.md)
+  * [Discord](overview/claim-builder/discord.md)
 * [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
