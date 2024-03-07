@@ -1,4 +1,4 @@
-# ✏ Chain Details
+# ✏️ Chain Details
 
 Cosmos Chain ID (Mainnet) - bitbadges\_1-1 (NOT ACTIVE YET)
 
@@ -13,6 +13,10 @@ Cosmos Chain ID (Betanet) - bitbadges\_1-2
 **RPCs**
 
 [https://node.bitbadges.io/rpc](https://node.bitbadges.io/rpc) ([http://node.bitbadges.io:26657](http://node.bitbadges.io:26657))
+
+Tendermint Node ID: 859f19f7582fa74cf50a1dcf07f8386abf618596
+
+See betanet.genesis.json in source code repository for genesis file.
 
 **Blockchain Node REST APIs**
 

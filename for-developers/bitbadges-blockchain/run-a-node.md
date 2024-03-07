@@ -13,7 +13,9 @@ In this guide, we will provide detailed instructions for setting up and running 
 
 **Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
 
-**BitBadges Public RPC:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
+**BitBadges Public RPC:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
+
+Tendermint Node ID (betanet): 859f19f7582fa74cf50a1dcf07f8386abf618596
 
 **Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor, a tool for zero downtime swapping Cosmos SDK binaries. We expect your node to be setup using Cosmovisor. We explain more below.
 
@@ -103,7 +105,9 @@ persistent_peers = "432d816d0a1648c5bc3f060bd28dea6ff13cb413@216.58.206.174:2665
 5735836cbaa747e013e47b11839db2c2990b918a@121.37.49.12:26656"
 ```
 
-These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
+You may use 859f19f7582fa74cf50a1dcf07f8386abf618596@node.bitbadges.io:26656 for our node ID.
+
+See betanet.genesis.json in source code repository for genesis file.These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
 
 Ensure that the listen address settings are correct, using your IP address or domain name if configured.  Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
 
