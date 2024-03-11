@@ -24,7 +24,7 @@ Response details are confined to the request parameters passed in, so this means
 To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 
 ```typescript
-await BitBadgesApi.getCollectionsAndUpdate({ collectionsToFetch: [...] }, [...existingCollections])
+oldCollection.updateWithNewResponse(newCollectionResponse)
 ```
 
 ### NSFW / Reported
