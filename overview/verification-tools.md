@@ -1,4 +1,4 @@
-# 🕵 Authentication with Badges
+# 🕵️ Authentication with Badges
 
 Authentication is a great use case for badges. For example, grant access to this user if they own the membership badge but deny those who do not. Authentication can be facilitated in many settings (in-person, digitally, etc).&#x20;
 
@@ -33,6 +33,14 @@ For implementation, we refer you to the [Sign In With BitBadges Blockin](https:/
 ### Authentication Tools
 
 Here, we provide documentation for some common verification tools / integrations as a reference. Let us know if you want to add a tool or tutorial here. **Always use third party tools at your own risk!**&#x20;
+
+**Spreadsheets**
+
+Handle your authentication of QR code svia the use of Google Sheets.
+
+{% content-ref url="../for-developers/tutorials/auth-qr-codes-sign-in-with-bitbadges/spreadsheet-session-management.md" %}
+[spreadsheet-session-management.md](../for-developers/tutorials/auth-qr-codes-sign-in-with-bitbadges/spreadsheet-session-management.md)
+{% endcontent-ref %}
 
 **Blockin**
 
