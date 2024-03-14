@@ -1,4 +1,4 @@
-# 🚴♂ Getting Started
+# 🚴‍♂️ Getting Started
 
 Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else. &#x20;
 
@@ -47,6 +47,8 @@ The BitBadges site provides the building blocks (unique codes, passwords, whitel
 For off-chain balances, you control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic.
 
 For example, you may want to dynamically update badges based on who has paid their subscription for the month.
+
+For indexed balances, you can also set up a claim directly on the BitBadges site.
 
 {% content-ref url="../overview/distribution-tools-integrations.md" %}
 [distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)

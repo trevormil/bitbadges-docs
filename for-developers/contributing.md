@@ -1,4 +1,4 @@
-# 👨💻 Contributing
+# 👨‍💻 Contributing
 
 Everything is open-sourced and can be found at [https://github.com/bitbadges](https://github.com/bitbadges). Contributions to the core source code are greatly appreciated.&#x20;
 
@@ -19,8 +19,6 @@ TBD
 **Bounties**
 
 Below are some ideas for community distribution and verification tools that need to be built, and we are willing to provide compensation for. Reach out if interested
-
-Discord Badge-Gating - Gate servers, channels, etc to only specific badge holders
 
 Discord / Twitter Bot - Bot that posts for every badge mint, transfer, etc
 
