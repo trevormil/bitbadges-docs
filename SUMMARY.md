@@ -95,7 +95,7 @@
     * [Different Indexers](for-developers/bitbadges-api/indexer/different-indexers.md)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
-  * [Proto vs Exported Types](for-developers/bitbadges-sdk/proto-vs-exported-types.md)
+  * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
   * [Full Documentation](for-developers/bitbadges-sdk/full-documentation.md)
   * [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
     * [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)

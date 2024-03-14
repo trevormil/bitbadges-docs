@@ -13,14 +13,14 @@ The `UintRange` interface captures a range of unsigned integers using a start an
 To sort a list of ranges and merge adjacent or overlapping ones:
 
 ```typescript
-const ranges: UintRange<bigint>[] = [
+const ranges = UintRangeArray.From([
   { start: 10n, end: 20n },
   { start: 5n, end: 12n },
   { start: 21n, end: 25n }
-];
+]);
+ranges.sortAndMerge();
 
-const sortedAndMergedRanges = sortUintRangesAndMergeIfNecessary(ranges, true);
-console.log(sortedAndMergedRanges); // Expected: [{ start: 5n, end: 25n }]
+console.log(ranges); // Expected: [{ start: 5n, end: 25n }]
 ```
 
 **3. Searching Within Ranges**
@@ -29,8 +29,7 @@ To search for a specific ID within a list of ranges and return its index and a b
 
 ```typescript
 const idToSearch = 15n;
-const [index, isFound] = searchUintRangesForId(idToSearch, sortedAndMergedRanges);
-
+const [index, isFound] = ragnes.search(idToSearch)
 console.log(`Index: ${index}, Found: ${isFound}`);
 ```
 
@@ -38,10 +37,9 @@ console.log(`Index: ${index}, Found: ${isFound}`);
 
 To invert a list of ranges between a minimum and maximum ID:
 
-```typescript
-const invertedRanges = invertUintRanges(sortedAndMergedRanges, 1n, 30n);
-console.log(invertedRanges); // This would show the gaps between the given ranges within the specified bounds.
-```
+<pre class="language-typescript"><code class="lang-typescript"><strong>ranges.invert(1n, 30n);
+</strong>console.log(invertedRanges); // This would show the gaps between the given ranges within the specified bounds.
+</code></pre>
 
 **5. Removing One Range From Another**
 
@@ -49,11 +47,11 @@ To remove one range from another and also get the removed part:
 
 ```typescript
 const rangesToRemove = [{ start: 10n, end: 20n }];
-const currRanges = [{ start: 5n, end: 30n }];
 
-const [remainingRanges, removedRanges] = removeUintRangesFromUintRanges(rangesToRemove, currRanges);
-console.log("Remaining:", remainingRanges);
-console.log("Removed:", removedRanges);
+ranges.remove(rangesToRemove);
+console.log("Remaining:", ranges);
+
+const [inCurrButNotOther, overlaps, inOtherButNotCurr] = ranges.getOverlapDetails(rangesToRemove)
 ```
 
 **6. Checking for Overlaps**
@@ -61,7 +59,7 @@ console.log("Removed:", removedRanges);
 To determine if there are overlaps within a list of ranges:
 
 ```typescript
-const overlappingCheck = checkIfUintRangesOverlap(sortedAndMergedRanges);
+const overlaps = ranges.overlaps([{ ...}]);
 console.log(`Ranges Overlap: ${overlappingCheck}`);
 ```
 

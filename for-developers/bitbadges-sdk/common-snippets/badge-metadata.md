@@ -13,7 +13,7 @@ To delete metadata associated with specific badge IDs:
 ```typescript
 const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const badgeIdsToRemove: UintRange<bigint>[] = [
+const badgeIdsToRemove = UintRangeArray.From([
   { start: 5n, end: 10n }
 ];
 
@@ -28,12 +28,12 @@ If you wish to update specific badge metadata in the badge metadata details:
 ```typescript
 const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const metadataToUpdate: BadgeMetadataDetails<bigint> = {
+const metadataToUpdate: BadgeMetadataDetails<bigint> = new BadgeMetadataDetails<bigint>({
   badgeIds: [{ start: 7n, end: 7n }],
   metadata: { /* your metadata details here */ },
   uri: "http://new-metadata-url.com", //Or 'Placeholder' or something else
   customData: "Some custom information",
-};
+});
 
 const newMetadataArray = updateBadgeMetadata(currentMetadata, metadataToUpdate);
 console.log(newMetadataArray); // This will show the array with the updated metadata.

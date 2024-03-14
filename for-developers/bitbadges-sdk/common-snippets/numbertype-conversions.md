@@ -2,15 +2,15 @@
 
 A problem with creating a JavaScript SDK for a Cosmos SDK based blockchain is that JavaScript's number primitive cannot natively handle numbers > Number.MAX\_SAFE\_INTEGER, but the blockchain allows amounts greater than that.
 
-To combat this, we have made all TypeScript types in the SDK generic via a NumberType interface.&#x20;
+To combat this, we have made all TypeScript types in the SDK generic via a NumberType interface.
 
 ```typescript
 export type NumberType = bigint | number | string | boolean;
 ```
 
-Types that you will find in the SDK that are number-based will all be generically typed, so that you can use any of the above NumberTypes, according to your preferences.&#x20;
+Types that you will find in the SDK that are number-based will all be generically typed, so that you can use any of the above NumberTypes, according to your preferences.
 
-It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision. Also, note that for almost all SDK functions, we only take bigints.&#x20;
+It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision. Also, note that for almost all SDK functions, we only take bigints.
 
 For example, the following will represent a BadgeMetadata type where all numbers are stringified (i.e. "100" or "123").
 
@@ -20,13 +20,13 @@ const stringifiedMetadata: BadgeMetadata<string> = { uri: ... };
 
 **Converting Between NumberTypes**
 
-To convert between different number types, all types come with a converter function. In our case, it would be **convertBadgeMetadata**. This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
+To convert between different number types, all types come with a converter function. This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
 import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-sdk";
 
-const stringifiedMetadata: BadgeMetadata<string> = { uri: ... };
-const bigIntifiedMetadata = convertBadgeMetadata(stringifiedMetadata, BigIntify)
+const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
+const bigIntifiedMetadata = stringifiedBadgeMetadata.convert(BigIntify);
 ```
 
 We export the following types and converter functions for your convenience.
