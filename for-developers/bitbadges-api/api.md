@@ -45,6 +45,10 @@ We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
+### Quickstart
+
+See the quickstart repo for a fully configured example repository with fetching collections, accounts, and more with the API!
+
 ## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
 
 See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html).&#x20;
