@@ -108,8 +108,6 @@
     * [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Metadata IDs](for-developers/bitbadges-sdk/common-snippets/metadata-ids.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-    * [Permissions / Updates](for-developers/bitbadges-sdk/common-snippets/check-permissions.md)
-    * [Validate Permission / Value Updates](for-developers/bitbadges-sdk/common-snippets/validate-updates.md)
     * [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
     * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
