@@ -1,4 +1,14 @@
-# Check Executability
+# Permissions / Updates
+
+Oftentimes, you want to check if a value can be updated, a permission can be executed, etc. There are a couple categories of these types of functions.
+
+
+
+
+
+
+
+
 
 Use the following functions to check if an action is executable at the current time. Note this is different from checking if a permission update is correct.
 

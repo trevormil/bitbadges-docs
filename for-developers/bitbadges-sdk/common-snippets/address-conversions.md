@@ -1,5 +1,7 @@
 # Address Conversions
 
+Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Address Utils
+
 ```ts
 import { convertToCosmosAddress, convertToBtcAddress, convertToEthAddress } from "bitbadgesjs-sdk"
 

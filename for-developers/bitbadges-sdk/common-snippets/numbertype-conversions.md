@@ -15,12 +15,12 @@ It is recommended that you use bigint and/or stringified because these can repre
 For example, the following will represent a BadgeMetadata type where all numbers are stringified (i.e. "100" or "123").
 
 ```typescript
-const stringifiedMetadata: BadgeMetadata<string> = { uri: ... };
+const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
 ```
 
 **Converting Between NumberTypes**
 
-To convert between different number types, all types come with a converter function. This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
+To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
 import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-sdk";

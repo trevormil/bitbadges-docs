@@ -1,10 +1,14 @@
 # Balances
 
+Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Balances
+
+
+
 ### Tutorial: Using the TypeScript SDK for Balance Operations
 
 **1. Define the Balance**
 
-Before utilizing the SDK's functionality, you must define a balance. Here's how you create a balance using the provided `Balance` interface:
+Here's how you create a balance using the provided `Balance` interface:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance = BalanceArray.From([{
 </strong>  "amount": 5n, // example badge amount using the BigInt type

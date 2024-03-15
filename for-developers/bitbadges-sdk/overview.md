@@ -44,6 +44,4 @@ const broadcastPost = await fetch(
 const response = await broadcastPost.json()
 ```
 
-The **proto** portion of the library exports the Protocol Buffer types for everything needed to interact with the chain, API, and indexer. Use this library to create, generate, and sign blockchain transactions in the [BitBadges Msg formats](../create-and-broadcast-txs/cosmos-sdk-msgs/). See [Broadcasting Txs](../create-and-broadcast-txs/) for more info and tutorials.
-
 For most use cases, you will not need to broadcast transactions. If you do, consider first exploring the helper broadcast tool at [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast).
