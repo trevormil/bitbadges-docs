@@ -1,6 +1,6 @@
 # Authentication
 
-Typically, you will not need authentication because these are features that are pretty specific to the BitBadges website. However, in some cases, you may.
+**Typically, you will not need authentication because these are features that are pretty specific to the BitBadges website. However, in some cases, you may.**
 
 BitBadges uses [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users for private and authenticated functionality. See the Blockin documentation for more implementation documentation. You may especially find the [Sign In with BitBadges](https://app.gitbook.com/s/AwjdYgEsUkK9cCca5DiU/developer-docs/getting-started/sign-in-with-bitbadges) page helpful. The challenge message should be what you get from step 1 below. Note that challenges are generated dynamically (nonces are different), so you will have to fetch fresh ones.
 
