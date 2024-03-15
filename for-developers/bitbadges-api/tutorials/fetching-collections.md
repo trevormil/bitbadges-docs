@@ -2,20 +2,37 @@
 
 The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with collections. See the quickstart repo for a working example with fetching them.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>const collections = await BitBadgesApi.getCollections([{
-</strong><strong>    //example
-</strong><strong>    collectionId: 1n,
-</strong><strong>    metadataToFetch: {
-</strong><strong>        badgeIds: [{ start: 1n, end: 10n }]
-</strong><strong>    },
-</strong><strong>    fetchTotalAndMintBalances: true,
-</strong><strong>    viewsToFetch: [{
-</strong>        viewType: 'owners',
-        viewId: 'owners',
-        bookmark: ''
-    }]
-<strong>}])
-</strong></code></pre>
+```typescript
+//Option 1:
+const res = await BitBadgesApi.getCollections({
+  collectionsToFetch: [
+    {
+      collectionId: 1n,
+      metadataToFetch: {
+        badgeIds: [{ start: 1n, end: 10n }],
+      },
+      fetchTotalAndMintBalances: true,
+      viewsToFetch: [
+        {
+          viewType: 'owners',
+          viewId: 'owners',
+          bookmark: '',
+        },
+      ],
+    },
+  ],
+})
+const collection = res.collections[0]
+
+//Option 2:
+// const collection = await BitBadgesCollection.FetchAndInitialize(BitBadgesApi, { collectionId: 1n, metadataToFetch: { badgeIds: [{ start: 1n, end: 10n }] }, fetchTotalAndMintBalances: true, viewsToFetch: [{ viewType: 'owners', viewId: 'owners', bookmark: '' }] })
+
+console.log(collection.getBadgeMetadata(1n))
+console.log(collection.getCollectionMetadata())
+console.log(collection.getBadgeBalances('Mint'))
+console.log(collection.getBadgeBalances('Total'))
+console.log(collection.getBadgeBalanceInfo('cosmos....') //returns whole doc w/ approvals and more not just balances
+```
 
 ### Pruning Requests + Pruning Paginations
 
@@ -24,7 +41,66 @@ Response details are confined to the request parameters passed in, so this means
 To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 
 ```typescript
-oldCollection.updateWithNewResponse(newCollectionResponse)
+const res2 = await BitBadgesApi.getCollections({ collectionsToFetch: [{ collectionId: 1n, metadataToFetch: { badgeIds: [{ start: 11n, end: 20n }] } }] })
+const collection2 = res2.collections[0]
+collection.updateWithNewResponse(collection2)
+```
+
+Or, if you use many of the class functions, these are handled behind the scenes for you!
+
+```typescript
+await collection.fetchMetadata(BitBadgesApi, { metadataToFetch: { badgeIds: [{ start: 11n, end: 20n }] } })
+await collection.fetchNextForView(BitBadgesApi, 'owners', 'owners')
+await collection.fetchAndUpdate(BitBadgesApi, { .... })
+```
+
+You may also find the following functions useful to be more efficient:
+
+```typescript
+collection.isRedundantRequest({...})
+const newBody = collection.pruneRequestBody()
+```
+
+### Balances
+
+#### Mint / Total Supply
+
+The "Mint" or unminted balances as well as the "Total" supply balances are treated just as any other user's balances.
+
+**Fetching Balances from API**
+
+To fetch the total and mint balances, you can fetch them in a request with the **fetchMintAndTotalBalances** set to true. They will then be stored in the **owners** array of the returned collection.
+
+To fetch a generic user address balance, you can fetch them with the following command. This will also append that balance to the **owners** array.
+
+```typescript
+await collection.fetchBadgeBalances(BitBadgesApi, 'cosmos....');
+```
+
+**Using Balances**
+
+You can fetch then use the balances using one of two methods below, but note that they must be fetched prior or else may return undefined (or throw is you use the mustGet function).
+
+```typescript
+collection.owners.find(x => x.cosmosAddress === "Mint")
+collection.owners.find(x => x.cosmosAddress === "Total")
+```
+
+```typescript
+console.log(collection.getBadgeBalances('Mint'))
+console.log(collection.getBadgeBalances('Total'))
+console.log(collection.getBadgeBalanceInfo('cosmos....') //returns whole doc w/ approvals and more not just balances
+```
+
+getBadgeBalances returns just the balances, whereas getBadgeBalanceInfo returns the whole balance document (approvals, permissions, and balances).
+
+**Fetching Speciifc Badge Balances**
+
+Everything above handles balances on a collection level, but sometimes, you may want to fetch activity / balances for a specific badge ID. You can do so via the badge-specific API routes; however, note you have to handle paginations yourself.
+
+```
+const { activity, pagination } = await collection.getBadgeActivity(BitBadgesApi, 1n, { bookmark: '...' })
+const { owners, pagination } = await collection.getOwnersForBadge(BitBadgesApi, 1n, { bookmark: '...' }) 
 ```
 
 ### NSFW / Reported
@@ -139,6 +215,18 @@ The collection interface supports the following base **viewType** values.
 export type CollectionViewKey = 'transferActivity' | 'reviews' | 'owners';
 ```
 
+```
+const hasMore = collection.viewHasMore('owners')
+const pagination = collection.getViewPagination('owners')
+const bookmark = collection.getViewBookmark('owners')
+
+await collection.fetchNextForView(BitBadgesApi, 'owners', 'owners');
+
+const ownersView = collection.getOwnersView('owners')
+```
+
+
+
 The collection interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
 
 ```ts
@@ -194,45 +282,10 @@ And so on. Remember, each response is confined to its request, so it will fetch 
 
 The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. collection.activity for the 'latestActivity' view).
 
-```typescript
-export function getCollectionActivityView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
-  return (collection.views[viewType]?.ids.map(x => {
-    return collection.activity.find(y => y._docId === x);
-  }) ?? []) as TransferActivityDoc<bigint>[]
-}
-
-export function getCollectionReviewsView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
-  return (collection.views[viewType]?.ids.map(x => {
-    return collection.reviews.find(y => y._docId === x);
-  }) ?? []) as ReviewDoc<bigint>[];
-}
-
-export function getCollectionBalancesView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
-  return (collection.views[viewType]?.ids.map(x => {
-    return collection.owners.find(y => y._docId === x);
-  }) ?? []) as BalanceDoc<bigint>[]
-}
-
-export function getCollectionMerkleChallengeTrackersView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
-  return (collection.views[viewType]?.ids.map(x => {
-    return collection.merkleChallenges.find(y => y._docId === x);
-  }) ?? []) as MerkleChallengeDoc<bigint>[]
-}
-
-export function getCollectionApprovalTrackersView(collection: BitBadgesCollection<bigint>, viewType: CollectionViewKey) {
-  return (collection.views[viewType]?.ids.map(x => {
-    return collection.approvalTrackers.find(y => y._docId === x);
-  }) ?? []) as ApprovalTrackerDoc<bigint>[]
-}
-```
-
-### Mint / Total Supply Balances
-
-The "Mint" or unminted balances as well as the "Total" supply balances are treated just as any other user's balances. To fetch them, you can fetch them in a request with the **fetchMintAndTotalBalances** set to true. They will then be stored in the **owners** array of the returned collection.
+This logic is handled behind the scenes with the corresponding helper function
 
 ```typescript
-collection.owners.find(x => x.cosmosAddress === "Mint")
-collection.owners.find(x => x.cosmosAddress === "Total")
+const collectedView = collection.getOwnersView('owners')
 ```
 
 ### **Fetch Route**
@@ -307,60 +360,5 @@ export interface MetadataFetchOptions {
 ```typescript
 export interface GetCollectionBatchRouteSuccessResponse<T extends NumberType> {
   collections: BitBadgesCollection<T>[]
-}
-```
-
-### **Interfaces**
-
-```ts
-export interface BitBadgesCollection<T extends NumberType> extends CollectionInfoBase<T> {
-  collectionApprovals: CollectionApprovalWithDetails<T>[];
-  collectionPermissions: CollectionPermissionsWithDetails<T>;
-  defaultBalances: UserBalanceStoreWithDetails<T>;
-
-  //The following are to be fetched dynamically and as needed from the DB
-  cachedCollectionMetadata?: Metadata<T>;
-  cachedBadgeMetadata: BadgeMetadataDetails<T>[];
-  activity: TransferActivityDoc<T>[],
-  announcements: AnnouncementDoc<T>[],
-  reviews: ReviewDoc<T>[],
-  owners: BalanceDocWithDetails<T>[],
-  merkleChallenges: MerkleChallengeDoc<T>[],
-  approvalTrackers: ApprovalTrackerDoc<T>[],
-
-  nsfw?: { badgeIds: UintRange<T>[], reason: string };
-  reported?: { badgeIds: UintRange<T>[], reason: string };
-
-  views: {
-    [viewId: string]: {
-      ids: string[],
-      type: string,
-      pagination: PaginationInfo,
-    } | undefined
-  }
-}
-
-export interface CollectionInfoBase<T extends NumberType> {
-  collectionId: T;
-  collectionMetadataTimeline: CollectionMetadataTimeline<T>[];
-  badgeMetadataTimeline: BadgeMetadataTimeline<T>[];
-  balancesType: "Standard" | "Off-Chain - Indexed" | "Inherited" | "Off-Chain - Non-Indexed";
-  offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[];
-  customDataTimeline: CustomDataTimeline<T>[];
-  managerTimeline: ManagerTimeline<T>[];
-  collectionPermissions: CollectionPermissions<T>;
-  collectionApprovals: CollectionApproval<T>[];
-  standardsTimeline: StandardsTimeline<T>[];
-  isArchivedTimeline: IsArchivedTimeline<T>[];
-  defaultBalances: UserBalanceStore<T>;
-  createdBy: string;
-  createdBlock: T;
-  createdTimestamp: T;
-  updateHistory: {
-    txHash: string;
-    block: T;
-    blockTimestamp: T;
-  }[];
-  aliasAddress: string;
 }
 ```

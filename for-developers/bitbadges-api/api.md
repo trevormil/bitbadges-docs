@@ -47,7 +47,7 @@ Note: this is all handled for you if you use the BitBadges API SDK.
 
 ### Quickstart
 
-See the quickstart repo for a fully configured example repository with fetching collections, accounts, and more with the API!
+See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
 
 ## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
 
@@ -75,48 +75,10 @@ const BitBadgesApi = new BitBadgesAPI({
 
 //See https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html for documentation
 //Some might require authentication. Some might be CORS only from the official site.
-await BitBadgesApi.addAddressToSurvey(...);
-await BitBadgesApi.addApprovalDetailsToOffChainStorage(...);
-await BitBadgesApi.addBalancesToOffChainStorage(...);
-await BitBadgesApi.addMetadataToIpfs(...);
-await BitBadgesApi.addReviewForCollection(...);
-await BitBadgesApi.addReviewForUser(...);
-await BitBadgesApi.broadcastTx(...);
-await BitBadgesApi.checkIfSignedIn(...);
-await BitBadgesApi.createAuthCode(...);
-await BitBadgesApi.deleteAddressLists(...);
-await BitBadgesApi.deleteAuthCode(...);
-await BitBadgesApi.deleteReview(...);
-await BitBadgesApi.fetchMetadataDirectly(...);
-await BitBadgesApi.filterBadgesInCollection(...);
 await BitBadgesApi.getAccounts(...);
 await BitBadgesApi.getAddressLists(...);
-await BitBadgesApi.getAllPasswordsAndCodes(...);
-await BitBadgesApi.getAuthCode(...);
-await BitBadgesApi.getBadgeActivity(...);
-await BitBadgesApi.getBadgeBalanceByAddress(...);
-await BitBadgesApi.getBrowseCollections(...);
-await BitBadgesApi.getClaimAlerts(...);
-await BitBadgesApi.getCodeForPassword(...);
-await BitBadgesApi.getCollectionForProtocol(...);
 await BitBadgesApi.getCollections(...);
-await BitBadgesApi.getFollowDetails(...);
-await BitBadgesApi.getOwnersForBadge(...);
-await BitBadgesApi.getProtocol(...);
-await BitBadgesApi.getRefreshStatus(...);
-await BitBadgesApi.getSearchResults(...);
-await BitBadgesApi.getSignInChallenge(...);
-await BitBadgesApi.getStatus(...);
-await BitBadgesApi.getTokensFromFaucet(...);
-await BitBadgesApi.refreshMetadata(...);
-await BitBadgesApi.sendClaimAlert(...);
-await BitBadgesApi.signOut(...);
 await BitBadgesApi.simulateTx(...);
-await BitBadgesApi.updateAccountInfo(...);
-await BitBadgesApi.updateAddressLists(...);
-await BitBadgesApi.updateUserSeenActivity(...);
-await BitBadgesApi.verifySignIn(...);
-await BitBadgesApi.verifySignInGeneric(...);
 ```
 
 Check out [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for a working reference of the API routes using the SDK.
@@ -131,11 +93,11 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 ### Authentication
 
+**For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.**
+
 For accessing certain private information or performing certain actions, we require for some requests that the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
 
 If the user is not signed in and requests private information, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
-
-**However, for most applications, you should be fine without needing to access private auth information.**
 
 ### Confined Responses
 
