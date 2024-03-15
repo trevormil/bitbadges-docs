@@ -57,7 +57,7 @@ await collection.fetchAndUpdate(BitBadgesApi, { .... })
 You may also find the following functions useful to be more efficient:
 
 ```typescript
-collection.isRedundantRequest({...})
+const isRedundant = collection.isRedundantRequest({...})
 const newBody = collection.pruneRequestBody()
 ```
 

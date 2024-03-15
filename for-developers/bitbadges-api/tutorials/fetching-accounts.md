@@ -2,29 +2,54 @@
 
 The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getAccounts([{
-</strong><strong>    //example
-</strong><strong>    address: 'cosmos...',
-</strong><strong>    fetchSequence: true,
-</strong><strong>    fetchBalance: true,
-</strong><strong>    viewsToFetch: [{
-</strong>        viewType: 'badgesCollected',
-        viewId: 'badgesCollected',
-        bookmark: ''
-    }]
-<strong>}])
-</strong></code></pre>
+```typescript
+const accountsRes = await BitBadgesApi.getAccounts({
+  accountsToFetch: [
+    {
+      //example
+      address: 'cosmos...',
+      fetchSequence: true,
+      fetchBalance: true,
+      viewsToFetch: [
+        {
+          viewType: 'badgesCollected',
+          viewId: 'badgesCollected',
+          bookmark: '',
+        },
+      ],
+    },
+  ],
+})
+const account = accountsRes.accounts[0]
+
+//Option 2:
+// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'cosmos...', fetchSequence: true, fetchBalance: true, viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
+
+console.log(account.sequence)
+console.log(account.balance?.amount)
+console.log(account.getBadgeBalances(1n)) //collection 1
+console.log(account.getBadgeBalances(2n)) //collection 2
+console.log(account.getBadgeBalanceInfo(1n)) //approvals + permissions + balances
+```
 
 ### Pruning Requests + Pruning Paginations
 
-Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
+Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. To make this easy, we have exported helper functions that do this behind the scenes, or you can add a new response with the .updateWithNewResponse().
 
 ```typescript
-public async getAccountsAndUpdate(requestBody: GetAccountsRouteRequestBody, currAccounts: BitBadgesUserInfo<bigint>[]): Promise<BitBadgesUserInfo<bigint>[]> 
-```
+const badgesCollectedViewHasMore = account.viewHasMore('badgesCollected')
+if (badgesCollectedViewHasMore) {
+  await account.fetchNextForView(BitBadgesApi, 'badgesCollected', 'badgesCollected')
+  //await account.fetchAndUpdate(...)
 
-```typescript
-await BitBadgesApi.getAccountsAndUpdate(....)
+  //Option 2:
+  // const badgesCollectedBookmark = account.getViewBookmark('badgesCollected')
+  // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'cosmos...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
+  // const account2 = res4.accounts[0]
+  // account.updateWithNewResponse(account2)
+}
+
+const badgesCollectedView = account.getAccountBalancesView('badgesCollected')
 ```
 
 ### Chains
@@ -156,74 +181,10 @@ Next Request:
 
 And so on. Remember, each response is confined to its request, so it will fetch the next 25 docs, but you have to append it to the previous 25 docs as explained above.
 
-The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view).
+The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view). You can fetch the entire view with the helper functions.
 
 ```typescript
-export function getAuthCodesView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.authCodes.find(y => y._docId === x);
-  }) ?? []) as BlockinAuthSignatureDoc<bigint>[];
-}
-
-
-export function getAccountActivityView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.activity.find(y => y._docId === x);
-  }) ?? []) as TransferActivityDoc<bigint>[];
-}
-
-export function getAccountListsActivityView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.listsActivity.find(y => y._docId === x);
-  }) ?? []) as ListActivityDoc<bigint>[];
-}
-
-
-export function getAccountReviewsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.reviews.find(y => y._docId === x);
-  }) ?? []) as ReviewDoc<bigint>[];
-}
-
-export function getAccountAnnouncementsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.announcements.find(y => y._docId === x);
-  }) ?? []) as AnnouncementDoc<bigint>[];
-}
-
-export function getAccountBalancesView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.collected.find(y => y._docId === x)
-  }) ?? []) as BalanceDoc<bigint>[];
-}
-
-export function getAccountAddressListsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.addressLists.find(y => y.listId === x);
-  }) ?? []) as AddressListDoc<bigint>[];
-}
-
-export function getAccountClaimAlertsView(account: BitBadgesUserInfo<bigint> | undefined, viewId: string) {
-  if (!account) return [];
-
-  return (account.views[viewId]?.ids.map(x => {
-    return account.claimAlerts.find(y => y._docId === x);
-  }) ?? []) as ClaimAlertDoc<bigint>[];
-}
+account.getAccountBalancesView('badgesCollected')
 ```
 
 ### **Fetch Route**
