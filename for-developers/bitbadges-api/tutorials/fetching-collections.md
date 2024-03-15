@@ -1,8 +1,8 @@
 # Fetching Collections
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with collections.
+The main use case of the API are fetching collection and fetching account information. This page explains fetching collections. Collections are stored and fetched as the [BitBadgesCollection ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesCollection.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with collections. See the quickstart repo for a working example with fetching them.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.getCollections([{
+<pre class="language-typescript"><code class="lang-typescript"><strong>const collections = await BitBadgesApi.getCollections([{
 </strong><strong>    //example
 </strong><strong>    collectionId: 1n,
 </strong><strong>    metadataToFetch: {
