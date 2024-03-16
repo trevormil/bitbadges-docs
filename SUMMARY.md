@@ -26,6 +26,7 @@
 * [📱 Mobile Support](overview/mobile-support.md)
 * [🏗️ Claim Builder](overview/claim-builder/README.md)
   * [Discord](overview/claim-builder/discord.md)
+  * [API Calls](overview/claim-builder/api-calls.md)
 * [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
