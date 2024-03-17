@@ -9,6 +9,7 @@ Couple notes:
 * You should not depend on any per-claim state. This can cause data race conditions, especially if another plugin fails. These are supposed to be stateless queries.
 * You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.).&#x20;
 * All parameters + body should be considered public. If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
+* Make sure it is a POST request.
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
