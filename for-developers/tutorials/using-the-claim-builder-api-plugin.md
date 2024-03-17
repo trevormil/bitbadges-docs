@@ -10,6 +10,7 @@ Couple notes:
 * You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.).&#x20;
 * All parameters + body should be considered public. If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
 * Make sure it is a POST request.
+* For non-indexed compatible queries, you must support calls with **only** the cosmosAddress and any hardcoded inputs. No claimId, Discord details, X details, or custom user inputs are supported.&#x20;
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
@@ -49,3 +50,4 @@ export const ApiCallPlugins: ApiCallPlugin[] = [
 ];
 
 ```
+
