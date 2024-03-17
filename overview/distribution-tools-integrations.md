@@ -4,20 +4,24 @@
 
 **Off-Chain Balances**
 
-For off-chain balances, the creator has complete control over how to allocate badge balances. Since these are off-chain, they can also access non-blockchain data to further enhance the allocation logic. You can set up a claim on the BitBadges site, if the indexed type is chosen.
+For off-chain balances, the creator has complete control over how to allocate badge balances. Since these are off-chain, they can also access non-blockchain data to further enhance the allocation logic. You can set up a claim on the BitBadges site, if the indexed type is chosen, with many customization options.
 
 **On-Chain Balances**
 
-On the BitBadges site, we natively support the building blocks (whitelists, passwords, claim codes and more) and have interfaces for you to share the following:
+On the BitBadges site, we natively support  many customization options (whitelists, passwords, claim codes and more) and have interfaces for you to share the following:
 
 * **Plaintext Codes / Passwords:** For codes / passwords, you can share/copy/download the codes yourself and distribute how you would like.
 * **Direct Claim Links:** Provide a unique secret link to the claim page. These links can be distributed however (QR codes, email, etc). Note that claiming requires a transaction, so wallets must be handy at claim time.
 * **Save for Later Links:** For codes / passwords, we also offer Save for Later links which allow you to save the code / password for later (typically via a mobile device). These are often used when wallets are not handy in the moment.
 * **Claim Alerts:** BitBadges allows you to send in-app claim alerts to users notifying them to claim the badges with the link / instructions for how to do so.
 
+
+
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
 
 ## Distribution Tools
 
