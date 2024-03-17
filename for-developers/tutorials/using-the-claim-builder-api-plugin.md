@@ -6,10 +6,9 @@ To pass the validation check, a successful response must be received (e.g. statu
 
 Couple notes:
 
-* You should not depend on any per-claim state. This can cause data race conditions, especially if another plugin fails. These are supposed to be stateless queries.
-* You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.).&#x20;
-* All parameters + body should be considered public. If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
-* Make sure it is a POST request.
+* You should not depend on any per-claim state. This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails. These are supposed to be stateless queries. If you need to maintain state or implement more custom claim ideas, you can either implement your own claims or reach out to us to see if it can get integrated natively into the site.
+* You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is a POST request as well.
+* **All parameters + body should be considered public.** If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
 * For non-indexed compatible queries, you must support calls with **only** the cosmosAddress and any hardcoded inputs. No claimId, Discord details, X details, or custom user inputs are supported.&#x20;
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
