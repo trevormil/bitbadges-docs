@@ -33,7 +33,7 @@ The easier way is just downloading the executable directly. The executable can b
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0)
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 At the end of Step 0, you should have the bitbadgeschaind executable to run. Consider adding it to your PATH for easier execution. This may be **bitbadgeschaind** or something like **bitbadgeschain-linux-amd64.** We use bitbadgeschaind throughout this documentation. Adjust where necessary.
 
