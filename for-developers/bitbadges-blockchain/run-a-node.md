@@ -31,6 +31,7 @@ You have a couple options for fetching / building binaries. The source code live
 
 ```
 git clone https://github.com/BitBadges/bitbadges-docker
+cd bitbadges-docker
 docker build -t bitbadgeschaind .
 ```
 
@@ -55,6 +56,12 @@ Upgrades will be announced in the Discord and are facilitated with the x/upgrade
 If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time.
 
 ### **Docker**
+
+**Setting Up**
+
+No additional setup is required.
+
+**New Upgrades**
 
 If you are running with Docker, all you need to do is simply pull the latest build and restart. All binary upgrades are handled for you within the build.
 
@@ -107,13 +114,19 @@ To initialize a new chain, run the following (depending on your build method). C
 cosmovisor run init <moniker> --chain-id CHAIN_ID
 ```
 
-```
+<pre class="language-bash"><code class="lang-bash"># Replace DAEMON_HOME, &#x3C;moniker>, and CHAIN_ID
 docker run -it \
-    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
+    -p 26656:26656 \
+    -p 26657:26657 \
+    -p 26660:26660 \
+    -p 6060:6060 \
+    -p 9090:9090 \
+    -p 1317:1317 \
+<strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
+</strong>    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
     --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
-    bitbadgeschaind init <moniker> --chain-id CHAIN_ID
-```
+    bitbadgeschaind run init &#x3C;moniker> --chain-id CHAIN_ID
+</code></pre>
 
 You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges\_1-2 for betanet).
 
@@ -204,6 +217,12 @@ cosmovisor run start
 ```bash
 #Replace DAEMON_HOME with yours
 docker run -it \
+    -p 26656:26656 \
+    -p 26657:26657 \
+    -p 26660:26660 \
+    -p 6060:6060 \
+    -p 9090:9090 \
+    -p 1317:1317 \
     --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
     --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
     --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
@@ -269,6 +288,12 @@ cosmovisor run tx staking create-validator /path/to/validator.json \
 
 ```
 docker run -it \
+    -p 26656:26656 \
+    -p 26657:26657 \
+    -p 26660:26660 \
+    -p 6060:6060 \
+    -p 9090:9090 \
+    -p 1317:1317 \
     --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
     --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
     --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
