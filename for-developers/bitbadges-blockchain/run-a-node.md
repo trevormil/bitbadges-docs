@@ -15,7 +15,7 @@ In this guide, we will provide detailed instructions for setting up and running 
 
 **BitBadges Public RPC:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
 
-Tendermint Node ID (betanet): 859f19f7582fa74cf50a1dcf07f8386abf618596
+Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
 
 **Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and migrations which is compatible with Cosmovisor, a tool for zero downtime swapping Cosmos SDK binaries. We expect your node to be setup using Cosmovisor. We explain more below.
 
@@ -105,7 +105,7 @@ persistent_peers = "432d816d0a1648c5bc3f060bd28dea6ff13cb413@216.58.206.174:2665
 5735836cbaa747e013e47b11839db2c2990b918a@121.37.49.12:26656"
 ```
 
-You may use 859f19f7582fa74cf50a1dcf07f8386abf618596@node.bitbadges.io:26656 for our node ID.
+You may use 3958a0e660599d8146e7f2a6da8d4df83561b0fc@node.bitbadges.io:26656 for our node ID.
 
 See betanet.genesis.json in source code repository for genesis file.These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
 
