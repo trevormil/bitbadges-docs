@@ -2,10 +2,10 @@
 
 
 
-{% swagger src="../../.gitbook/assets/openapi (15).yml" path="/status" method="post" %}
-[openapi (15).yml](<../../.gitbook/assets/openapi (15).yml>)
+{% swagger src="../../.gitbook/assets/openapi (16).yml" path="/status" method="post" %}
+[openapi (16).yml](<../../.gitbook/assets/openapi (16).yml>)
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/openapi (15).yml" path="/search/{searchValue}" method="post" %}
-[openapi (15).yml](<../../.gitbook/assets/openapi (15).yml>)
+{% swagger src="../../.gitbook/assets/openapi (16).yml" path="/search/{searchValue}" method="post" %}
+[openapi (16).yml](<../../.gitbook/assets/openapi (16).yml>)
 {% endswagger %}
