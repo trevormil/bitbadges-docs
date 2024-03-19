@@ -70,4 +70,4 @@ Consider customizing further using the BitBadges SDK, or if you need to extend t
 
 ## **Run a blockchain node?**
 
-See [Run a Node](bitbadges-blockchain/run-a-node.md).
+See [Run a Node](bitbadges-blockchain/run-a-node/).

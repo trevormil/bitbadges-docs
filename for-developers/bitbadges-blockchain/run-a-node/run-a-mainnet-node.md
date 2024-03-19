@@ -1,51 +1,27 @@
-# Run a Node
-
-In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step thoroughly and include examples to ensure a smooth setup.&#x20;
-
-The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar.  If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
-
-**Becoming a Betanet Validator:** If you aspire to become a betanet validator, reach out to us to receive a tokens for staking.
-
-**Chain IDs:** When a chain ID is required, use the following:
-
-* "bitbadges\_1-1" for the mainnet chain ID (currently inactive)
-* "bitbadges\_1-2" for the betanet chain ID
-
-**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
-
-**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
-
-Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
-
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-dwontime using Cosmovisor.
-
-**Discord:** Communications and announcements for node operators is facilitated via our Discord.
-
-
+# Run a Mainnet Node
 
 ## Fetch / Build Binaries
 
-You have a couple options for fetching / building binaries. The source code lives at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
+You have a couple options for fetching / building binaries. The source code lives at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). We recommend using Docker because a lot of the behind the scenes complexities are handled for you.
 
 ### **Docker**
 
-```
-git clone https://github.com/BitBadges/bitbadges-docker
-cd bitbadges-docker
+<pre><code><strong>git clone https://github.com/BitBadges/bitbadges-docker
+</strong>cd bitbadges-docker
 docker build -t bitbadgeschaind .
-```
+</code></pre>
 
 ### **Build from Source**
 
 If building from source, we refer you to the README of the repository.
 
-### **Download Directly**
+### **Download**
 
 Download the executable directly. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.&#x20;
 
-Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0)
+Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Handling Upgrades - Cosmovisor
 
@@ -53,13 +29,11 @@ BitBadges handles binary upgrades using Cosmovisor, a tool for automating softwa
 
 Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
 
-If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time.
-
 ### **Docker**
 
 **Setting Up**
 
-No additional setup is required.
+No additional setup is required.&#x20;
 
 **New Upgrades**
 
@@ -68,27 +42,49 @@ If you are running with Docker, all you need to do is simply pull the latest bui
 <pre class="language-bash"><code class="lang-bash"><strong># Stop executable
 </strong>git pull # from the bitbadges-docker repo
 docker build -t bitbadgeschaind .
-# Restart executable
+# Restart executable with same command
 </code></pre>
 
 ### **Manual**
 
-**Setting Up Cosmovisor**
+**Installing Cosmovisor**
 
-The first step is to download Cosmovisor as an executable using their documentation. You will then need to set the following environment variables. The DAEMON\_HOME should be the home of your config files. &#x20;
+The first step is to download Cosmovisor as an executable using [their documentation](https://docs.cosmos.network/v0.50/build/tooling/cosmovisor). Below is the Dockerized way we do it.
 
-```docker
-DAEMON_HOME=/root/.bitbadgeschain
-DAEMON_NAME=bitbadgeschaind
+```dockerfile
+FROM --platform=linux golang:1.21 AS builder
+
+ENV COSMOS_VERSION=v0.47.5
+RUN apt-get update && apt-get install -y git curl
+RUN apt-get install -y make wget
+
+WORKDIR /root
+RUN git clone --depth 1 --branch ${COSMOS_VERSION} https://github.com/cosmos/cosmos-sdk.git
+
+WORKDIR /root/cosmos-sdk/tools/cosmovisor
+
+RUN make cosmovisor
 ```
+
+**Installing Cosmovisor**
+
+You will then need to set the following environment variables. The DAEMON\_HOME will be the home of your config files.
+
+<pre class="language-docker"><code class="lang-docker"><strong>DAEMON_HOME=/root/.bitbadgeschain
+</strong>DAEMON_NAME=bitbadgeschaind
+</code></pre>
+
+**Initializing Executables**
 
 Then, run the following to setup your Cosmovisor directory. The executable should be named bitbadgeschaind (if not, please rename).
 
-```
+```bash
 cosmosvisor init ./bitbadgeschaind
 ```
 
 This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.&#x20;
+
+IMPORTANT: Depending on your sync method (explained later), you will need to download all relevant executables. If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time. See Adding Upgrades below. You must repeat this process for all such executables.
 
 **Adding Upgrades**
 
@@ -106,17 +102,34 @@ Or, to manually upgrade, do the following.
 2. Create the DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
 3. Copy the new upgrade executable to the folder (keeping its name as bitbadgeschaind).
 
-## Initialization
+```dockerfile
+# upgrade name = abc123
+RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/
+RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
+RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
+```
 
-To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges\_1-2" for betanet. Initialization should only be performed once.
+## RUN\_COMMAND
+
+Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN\_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN\_COMMAND
+
+**Cosmovisor**
 
 ```
-cosmovisor run init <moniker> --chain-id CHAIN_ID
+cosmovisor run ....
 ```
+
+**Plain**
+
+```
+./bitbadgeschaind ....
+```
+
+**Docker**
 
 <pre class="language-bash"><code class="lang-bash"># Replace DAEMON_HOME, &#x3C;moniker>, and CHAIN_ID
-docker run -it \
-    -p 26656:26656 \
+<strong>docker run -it \
+</strong>    -p 26656:26656 \
     -p 26657:26657 \
     -p 26660:26660 \
     -p 6060:6060 \
@@ -125,8 +138,26 @@ docker run -it \
 <strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
 </strong>    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
     --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
-    bitbadgeschaind run init &#x3C;moniker> --chain-id CHAIN_ID
+    bitbadgeschaind run ...
 </code></pre>
+
+## Initialization / Syncing
+
+In order to catch up to the current consensus, you will need to get your node synced. This can be done from genesis (time consuming but no trust needed) or from a recent snapshot of the state (faster but requires a trusted node).
+
+### **From Snapshot / State Sync**
+
+TODO&#x20;
+
+### **From Genesis**
+
+Syncing from genesis means that you start with the blank genesis state and verify all transactions from block 1 to the current block. Thus, this may take while. Also, note that the chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis).
+
+To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges\_1-2" for betanet. Initialization should only be performed once.&#x20;
+
+```
+RUN_COMMAND init <moniker> --chain-id CHAIN_ID
+```
 
 You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges\_1-2 for betanet).
 
@@ -155,13 +186,13 @@ curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/
 
 ## Configuration
 
-Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `bitbadgeschaind start --help` for explanations. Tweak these as desired. Some important ones are highlighted below.
+Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
+
+Tweak these as desired. Some important ones are highlighted below.
 
 **Setting Seed Nodes**
 
-In order to pull data from other nodes, you need to have seed nodes or peers to pull from.
-
-You may use 3958a0e660599d8146e7f2a6da8d4df83561b0fc@node.bitbadges.io:26656 for our node ID for betanet. To establish connections with trusted nodes, edit `config.toml`. For instance:
+In order to pull data from other nodes, you need to have seed nodes or peers to pull from. You may use 3958a0e660599d8146e7f2a6da8d4df83561b0fc@node.bitbadges.io:26656 for our node ID for betanet. To establish connections with trusted nodes, edit `config.toml`. For instance:
 
 ```toml
 seeds = "3958a0e660599d8146e7f2a6da8d4df83561b0fc@node.bitbadges.io:26656"
@@ -208,25 +239,10 @@ node ./dist/verify.js '{\"account_number\":\"12\",\"chain_id\":\"bitbadges_1-2\"
 
 ## Running the Node
 
-Once you have the node all configured, run
+Once you have the node all configured, run the following to start the chain. You should see blocks being synced if configured correctly.
 
 ```
-cosmovisor run start
-```
-
-```bash
-#Replace DAEMON_HOME with yours
-docker run -it \
-    -p 26656:26656 \
-    -p 26657:26657 \
-    -p 26660:26660 \
-    -p 6060:6060 \
-    -p 9090:9090 \
-    -p 1317:1317 \
-    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
-    --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
-    bitbadgeschaind run start
+RUN_COMMAND run start
 ```
 
 **Other Considerations**
@@ -237,61 +253,6 @@ Setting up your node infrastructure correctly and with best practices is crucial
 * Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
 * Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
 * Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
-
-## Running a Local Development Node
-
-Running a local development node follows pretty much the same instructions as above except:
-
-* Chain ID should be something non-conflicting (i.e. not bitbadges\_1-1 or \_1-2)
-* No need for seed nodes or peers (if you are running a single node local chain)
-* Cosmovisor is optional without the need for upgrades. You can replace `cosmosvisor run ...` commands with `bitbadgeschaind ....` Or, for Docker, you should use the local development image instead: TODO.
-
-**Funding Your Address**
-
-With a local development chain, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the genesis.json app\_state.bank.balances path as seen below.
-
-You can use any converted Cosmos address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI.  To get one or view your existing ones, run&#x20;
-
-```
-cosmovisor run keys ...
-```
-
-```json
-...
-  "bank": {
-      ...
-      "balances": [
-        {
-          "address": "cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a",
-          "coins": [
-            {
-              "denom": "badge",
-              "amount": "1"
-            }
-          ]
-        },
-...
-```
-
-**Interacting with the Chain**
-
-Cosmos SDK has an in-depth CLI for interacting with the cahin and getting details about it. To see all, simply run the base command with --help.
-
-The main ones you will be using are **tx** and **query.** For example,
-
-```
-cosmovisor run tx badges transfer-badges ... --from keystorename
-```
-
-```
-cosmovisor run query badges get-balance ...
-```
-
-**Running the Full-Stack**
-
-You may also want to run the full-stack of software: chain, indexer / API, and frontend.
-
-To do so, we refer you to the documentation for those. Make sure that the URLs are configured properly (i.e. pointing to localhost and not the main deployed one).
 
 ## Running a Validator
 
@@ -304,8 +265,6 @@ A validator handles [two](https://hub.cosmos.network/main/validators/validator-f
 1. The **Tendermint consensus key** is used to sign blocks on an ongoing basis. It is of the key type `ed25519`, which the KMS can keep. When Bech-encoded, the address is prefixed with `cosmosvalcons` and the public key is prefixed with `cosmosvalconspub`.
 2. The **validator operator application key** is used to create transactions that create or modify validator parameters. It is of type `secp256k1`, or whichever type the application supports. When Bech-encoded, the address is prefixed with `cosmosvaloper`.
 3. The [**delegator application key** ](https://hub.cosmos.network/main/validators/validator-faq.html#are-validators-required-to-self-delegate-atom)is used to handle the stake that gives the validator more weight. When Bech-encoded, the address is prefixed with `cosmos` and the public key is prefixed with `cosmospub`.
-
-
 
 **Consensus Key**
 
@@ -333,7 +292,7 @@ Adjust the command accordingly. **Note you should run this and store it on your 
 If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set). Run with --help for more details. Replace bitbadgeschaind tx with your run command (dependent on your build method). This is the same command as how you started the node (but replace start with tx).
 
 ```shell
-cosmovisor run tx staking create-validator /path/to/validator.json \
+RUN_COMMAND tx staking create-validator /path/to/validator.json \
   --chain-id="name_of_chain_id" \
   --gas="auto" \
   --gas-adjustment="1.2" \
@@ -341,26 +300,6 @@ cosmovisor run tx staking create-validator /path/to/validator.json \
   --from=mykey
 ```
 
-```
-docker run -it \
-    -p 26656:26656 \
-    -p 26657:26657 \
-    -p 26660:26660 \
-    -p 6060:6060 \
-    -p 9090:9090 \
-    -p 1317:1317 \
-    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
-    --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
-    bitbadgeschaind run tx staking create-validator /path/to/validator.json \
-    --chain-id="name_of_chain_id" \
-    --gas="auto" \
-    --gas-adjustment="1.2" \
-    --gas-prices="0.025badge" \
-    --from=mykey
-```
-
 This should be signed with your normal key pair for signing transactions. Ensure you have enough $BADGE tokens to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
 You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
-
