@@ -7,6 +7,7 @@ Running a local development node follows pretty much the same instructions as th
 * Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
   * If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.
 * You can also start with an existing genesis / snapshot if you would like.
+* You may have to setup a validator to be able to start producing blocks
 
 Please reach out in the dev Discord if you are stuck or need help!
 
