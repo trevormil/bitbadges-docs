@@ -2,6 +2,6 @@
 
 
 
-{% swagger src="../../.gitbook/assets/openapi (7).yml" path="/status" method="post" %}
-[openapi (7).yml](<../../.gitbook/assets/openapi (7).yml>)
+{% swagger src="../../.gitbook/assets/openapi (8).yml" path="/status" method="post" %}
+[openapi (8).yml](<../../.gitbook/assets/openapi (8).yml>)
 {% endswagger %}
