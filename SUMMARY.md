@@ -78,6 +78,7 @@
   * [✍️ Custom Data](for-developers/core-concepts/custom-data.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
+  * [Route Docs](for-developers/bitbadges-api/route-docs.md)
   * [Designing for Compatibility](for-developers/bitbadges-api/designing-for-compatibility.md)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
