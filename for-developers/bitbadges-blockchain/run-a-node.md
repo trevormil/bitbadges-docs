@@ -238,6 +238,61 @@ Setting up your node infrastructure correctly and with best practices is crucial
 * Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
 * Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
 
+## Running a Local Development Node
+
+Running a local development node follows pretty much the same instructions as above except:
+
+* Chain ID should be something non-conflicting (i.e. not bitbadges\_1-1 or \_1-2)
+* No need for seed nodes or peers (if you are running a single node local chain)
+* Cosmovisor is optional without the need for upgrades. You can replace `cosmosvisor run ...` commands with `bitbadgeschaind ....` Or, for Docker, you should use the local development image instead: TODO.
+
+**Funding Your Address**
+
+With a local development chain, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the genesis.json app\_state.bank.balances path as seen below.
+
+You can use any converted Cosmos address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI.  To get one or view your existing ones, run&#x20;
+
+```
+cosmovisor run keys ...
+```
+
+```json
+...
+  "bank": {
+      ...
+      "balances": [
+        {
+          "address": "cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a",
+          "coins": [
+            {
+              "denom": "badge",
+              "amount": "1"
+            }
+          ]
+        },
+...
+```
+
+**Interacting with the Chain**
+
+Cosmos SDK has an in-depth CLI for interacting with the cahin and getting details about it. To see all, simply run the base command with --help.
+
+The main ones you will be using are **tx** and **query.** For example,
+
+```
+cosmovisor run tx badges transfer-badges ... --from keystorename
+```
+
+```
+cosmovisor run query badges get-balance ...
+```
+
+**Running the Full-Stack**
+
+You may also want to run the full-stack of software: chain, indexer / API, and frontend.
+
+To do so, we refer you to the documentation for those. Make sure that the URLs are configured properly (i.e. pointing to localhost and not the main deployed one).
+
 ## Running a Validator
 
 **Setup - Validator Keys**
@@ -308,3 +363,4 @@ docker run -it \
 This should be signed with your normal key pair for signing transactions. Ensure you have enough $BADGE tokens to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
 You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
+

@@ -144,6 +144,7 @@
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node.md)
+  * [Page](for-developers/bitbadges-blockchain/page.md)
 * [🧑‍🏫 Tutorials](for-developers/tutorials/README.md)
   * [Using the Claim Builder API Plugin](for-developers/tutorials/using-the-claim-builder-api-plugin.md)
   * [Badge-Gating Discord Servers](for-developers/tutorials/badge-gating-discord-servers.md)
