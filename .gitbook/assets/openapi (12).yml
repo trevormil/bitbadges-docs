@@ -64,11 +64,65 @@ components:
             $ref: '#/components/schemas/NumberType'
     LatestBlockStatus:
       type: object
-      # Define properties for LatestBlockStatus if needed
+      properties:
+        height:
+          $ref: '#/components/schemas/NumberType'
+        txIndex:
+          $ref: '#/components/schemas/NumberType'
+        timestamp:
+          $ref: '#/components/schemas/NumberType'
     NumberType:
       type: string
       example: '123'
       description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
+    SearchRequestBody:
+      type: object
+      properties:
+        noCollections:
+          type: boolean
+          description: If true, skip all collection queries.
+        noAccounts:
+          type: boolean
+          description: If true, skip all account queries.
+        noAddressLists:
+          type: boolean
+          description: If true, skip all address list queries.
+        noBadges:
+          type: boolean
+          description: If true, skip all badge queries.
+        specificCollectionId:
+          $ref: '#/components/schemas/NumberType'
+      required:
+        - noCollections
+        - noAccounts
+        - noAddressLists
+        - noBadges
+    SearchSuccessResponse:
+      type: object
+      properties:
+        collections:
+          type: array
+          # items:
+          #   $ref: '#/components/schemas/BitBadgesCollection'
+        accounts:
+          type: array
+          # items:
+          #   $ref: '#/components/schemas/BitBadgesUserInfo'
+        addressLists:
+          type: array
+          # items:
+          #   $ref: '#/components/schemas/BitBadgesAddressList'
+        badges:
+          type: array
+          items:
+            type: object
+            properties:
+              # collection:
+              #   $ref: '#/components/schemas/BitBadgesCollection'
+              badgeIds:
+                type: array
+                # items:
+                #   $ref: '#/components/schemas/UintRange'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -103,17 +157,14 @@ paths:
       operationId: getStatus
       summary: Get Status
       description: |
-        Gets the current status details about the blockchain / indexer (gas, block height, etc).\n
-        [Request](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetStatusRouteRequestBody.html)
-        [Response](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/GetStatusRouteSuccessResponse.html)
-        [BitBadges SDK](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html#getStatus)
+        Gets the current status details about the blockchain / indexer (gas, block height, etc).
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
-          description: Returns the current status of the blockchain / indexer. [See the response schema](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/GetBrowseCollectionsRouteSuccessResponse.html)
+          description: Returns the current status of the blockchain / indexer
 
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -136,42 +187,54 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-  /auth/discord:
-    get:
-      summary: Authenticate with Discord
-      operationId: authenticateDiscord
+  /search/{searchValue}:
+    post:
+      operationId: searchByValue
+      summary: Search collections, badges, accounts, and address lists based on a search value
+      description: |
+        Searches for collections, badges, accounts, and address lists based on the provided search value.
+      parameters:
+        - name: searchValue
+          in: path
+          description: The value to search for.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                noCollections:
+                  type: boolean
+                  description: If true, skip all collection queries.
+                noAccounts:
+                  type: boolean
+                  description: If true, skip all account queries.
+                noAddressLists:
+                  type: boolean
+                  description: If true, skip all address list queries.
+                noBadges:
+                  type: boolean
+                  description: If true, skip all badge queries.
+                specificCollectionId:
+                  $ref: '#/components/schemas/NumberType'
       responses:
         '200':
-          description: OK
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuccessResponse'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
 
-  # /auth/discord/callback:
-  #   get:
-  #     summary: Discord Authentication Callback
-  #     operationId: discordCallback
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/twitter:
-  #   get:
-  #     summary: Authenticate with Twitter
-  #     operationId: authenticateTwitter
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/twitter/callback:
-  #   get:
-  #     summary: Twitter Authentication Callback
-  #     operationId: twitterCallback
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /report:
-  #   post:
-  #     summary: Add Report
-  #     operationId: addReport
-  #     responses:
-  #       '200':
-  #         description: OK
   # /search/{searchValue}:
   #   post:
   #     summary: Search

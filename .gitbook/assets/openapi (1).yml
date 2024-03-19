@@ -13,13 +13,13 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     BadRequestResponse:
-      description: Bad Request - Invalid request body
+      description: Bad Request - Invalid configuration or request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
     UnauthorizedResponse:
-      description: Unauthorized - Invalid session cookie; must sign in with Blockin
+      description: Unauthorized - Does not meet autnetication requirements. This can be due to an invalid API key, CORS origin, or session cookie.
       content:
         application/json:
           schema:
@@ -33,6 +33,8 @@ components:
   schemas:
     ErrorResponse:
       type: object
+      required:
+        - errorMessage
       properties:
         error:
           type: object
@@ -40,9 +42,33 @@ components:
         errorMessage:
           type: string
           description: UX-friendly error message that can be displayed to the user. Always present if error.
+
         unauthorized:
           type: boolean
           description: Authentication error. Present if the user is not authenticated.
+    StatusResponse:
+      type: object
+      properties:
+        block:
+          $ref: '#/components/schemas/LatestBlockStatus'
+        nextCollectionId:
+          type: integer # Adjust type accordingly
+        gasPrice:
+          type: number
+        lastXGasAmounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumberType'
+        lastXGasLimits:
+          type: array
+          items:
+            $ref: '#/components/schemas/NumberType'
+    LatestBlockStatus:
+      type: object
+      # Define properties for LatestBlockStatus if needed
+    NumberType:
+      type: string
+      description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
@@ -67,7 +93,11 @@ paths:
       description: Gets the current status details about the blockchain / indexer (gas, block height, etc).
       responses:
         '200':
-          description: O
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+          description: Returns the current status of the blockchain / indexer.
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
