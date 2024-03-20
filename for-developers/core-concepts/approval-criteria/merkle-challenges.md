@@ -73,7 +73,7 @@ See Predetermined Balances below for reserving specific leaf indices for specifi
 
 #### **Creating a Merkle Tree**
 
-We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../bitbadges-api/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
+We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
 
 The important part is making sure all leaves are on the same layer and have the same proof length, or else, they will fail on-chain.
 

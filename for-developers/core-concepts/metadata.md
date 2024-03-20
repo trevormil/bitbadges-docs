@@ -1,4 +1,4 @@
-# 🖼 Metadata
+# 🖼️ Metadata
 
 Collections can define metadata for both the collection and individual badges via their **collectionMetadataTimeline** and **badgeMetadataTimeline,** respectively. Both will follow the same metadata interface, as explained here. For the **badgeMetadataTimeline,** we take first match of a specific badge ID via linear scan, so the .**badgeMetadata\[]** order matters.
 
@@ -50,7 +50,7 @@ Within the collection interface, this would look like:
 
 By default, we expect the collection and badge metadata to follow the format shown below for the BitBadges indexer / API. However, this is only a default expected format, and we envision that many different metadata standards can develop and be supported over time.
 
-Using {id} Placeholder - If the badge metadata URI includes "{id}" anywhere in the URI, it is expected to be dynamically replaced by the corresponding badge ID number. For example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/designing-for-compatibility.md) for more info).
+Using {id} Placeholder - If the badge metadata URI includes "{id}" anywhere in the URI, it is expected to be dynamically replaced by the corresponding badge ID number. For example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1 (see [Compatibility](../bitbadges-api/concepts/designing-for-compatibility.md) for more info).
 
 Markdown - Markdown is supported for descriptions.
 

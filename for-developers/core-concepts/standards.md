@@ -1,4 +1,4 @@
-# 🖊 Standards
+# 🖊️ Standards
 
 Standards are a generic concept that allows anyone to define how to interpret the details of a badge collection. All collections will implement the same interface on the blockchain, but the standard defines how these fields are interpreted and are expected to be defined. Standards can define anything from the expected genesis conditions to the expected metadata format to any expected features of the collection.
 
@@ -15,7 +15,7 @@ You can define and implement multiple standards, as long as they are compatible.
 
 ## **Compatibility with BitBadges API / Indexer**
 
-Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/designing-for-compatibility.md). If you want compatibility, please make sure all standards are compatible.
+Note the BitBadges API / Indexer expects certain formatting and interfaces to be followed to be compatible. See [BitBadges API Compatibility](../bitbadges-api/concepts/designing-for-compatibility.md). If you want compatibility, please make sure all standards are compatible.
 
 ## List of Standards
 

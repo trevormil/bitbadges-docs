@@ -4,18 +4,18 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 
 #### Badge and Collection Metadata Format
 
-{% content-ref url="../core-concepts/metadata.md" %}
-[metadata.md](../core-concepts/metadata.md)
+{% content-ref url="../../core-concepts/metadata.md" %}
+[metadata.md](../../core-concepts/metadata.md)
 {% endcontent-ref %}
 
 #### Off-Chain Balances Metadata
 
-{% content-ref url="../core-concepts/balance-types.md" %}
-[balance-types.md](../core-concepts/balance-types.md)
+{% content-ref url="../../core-concepts/balance-types.md" %}
+[balance-types.md](../../core-concepts/balance-types.md)
 {% endcontent-ref %}
 
-{% content-ref url="../tutorials/create-and-host-off-chain-balances.md" %}
-[create-and-host-off-chain-balances.md](../tutorials/create-and-host-off-chain-balances.md)
+{% content-ref url="../../tutorials/create-and-host-off-chain-balances.md" %}
+[create-and-host-off-chain-balances.md](../../tutorials/create-and-host-off-chain-balances.md)
 {% endcontent-ref %}
 
 #### Approval Metadata

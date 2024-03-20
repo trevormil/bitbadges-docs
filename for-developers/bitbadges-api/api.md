@@ -3,7 +3,7 @@
 ### Getting Started
 
 1. Request an API Key by contacting us via Discord.
-2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key.
+2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
@@ -49,9 +49,13 @@ Note: this is all handled for you if you use the BitBadges API SDK.
 
 See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
 
-## [Routes](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
+## Routes
 
-See all documentation for routes [here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html).&#x20;
+See all documentation for routes here.&#x20;
+
+{% content-ref url="routes/" %}
+[routes](routes/)
+{% endcontent-ref %}
 
 ### Using the API SDK (Recommended)
 

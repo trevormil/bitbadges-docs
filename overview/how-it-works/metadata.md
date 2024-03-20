@@ -30,4 +30,4 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 ### For Developers
 
-Visit [here](../../for-developers/bitbadges-api/designing-for-compatibility.md) for more details.
+Visit [here](../../for-developers/bitbadges-api/concepts/designing-for-compatibility.md) for more details.

@@ -10,9 +10,9 @@ Couple notes:
 * You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is a POST request as well.
 * **All parameters + body should be considered public.** If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Publishing a Plugin
 
@@ -22,7 +22,7 @@ For non-indexed compatible queries, you must support calls with **only** the cos
 
 The creator schema is what is to be configured by the claim creator, not the end user. The user schema is to be configured by the end user (the one claiming).
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 export const ApiCallPlugins: ApiCallPlugin[] = [
