@@ -11,17 +11,32 @@ You have a couple options for fetching / building binaries. The source code live
 docker build -t bitbadgeschaind .
 </code></pre>
 
-### **Build from Source**
-
-If building from source, we refer you to the README of the repository.
+###
 
 ### **Download**
 
 Download the executable directly. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.&#x20;
 
+```
+wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
+```
+
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
+
+Example
+
+<pre><code>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
+<strong>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/libwasmvm.x86_64.so
+</strong><strong>mv libwasmvm.x86_64.so /usr/lib/
+</strong></code></pre>
+
+### **Build from Source**
+
+If building from source, we refer you to the README of the repository.
 
 ## Handling Upgrades - Cosmovisor
 
