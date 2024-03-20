@@ -11,6 +11,14 @@ Running a local development node follows pretty much the same instructions as th
 
 Please reach out in the dev Discord if you are stuck or need help!
 
+**Ignite CLI**
+
+Throughout BitBadges' development phase, we used Ignite CLI to help scaffold, build,  and serve our chain. This is also a great option for bootstrapping a local development node. Visit their documentation for more information. You will need to download the bitbadgeschain  source code to use Ignite CLI and use Ignite on the source folder.
+
+**Setting Up a Validator**
+
+See [**https://docs.cosmos.network/v0.45/run-node/run-node.html**](https://docs.cosmos.network/v0.45/run-node/run-node.html) for more information if you need to setup a local validator to start your chain. Replace simd with your run command.
+
 **Funding Your Address**
 
 With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON\_HOME/config/genesis.json -> app\_state.bank.balances path as seen below.
