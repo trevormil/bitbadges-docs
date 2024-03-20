@@ -8,10 +8,14 @@ You have a couple options for fetching / building binaries. The source code live
 
 <pre><code><strong>git clone https://github.com/BitBadges/bitbadges-docker
 </strong>cd bitbadges-docker
-docker build -t bitbadgeschaind .
-</code></pre>
+<strong>docker build -t bitbadgeschaind .
+</strong></code></pre>
 
-###
+By default, it builds all necessary binaries for all upgrades from genesis. Of you just want the latest binary, you can add the flags --build-arg BUILD\_LATEST\_ONLY=true to the build command.
+
+```
+docker build --build-arg BUILD_LATEST_ONLY=true -t bitbadgeschaind .
+```
 
 ### **Download**
 
@@ -162,7 +166,15 @@ In order to catch up to the current consensus, you will need to get your node sy
 
 ### **From Snapshot / State Sync**
 
-TODO&#x20;
+If you do not want to reconstruct the entire history of the chain from genesis, you can start from a checkpoint. This can potentially save you days of syncing but requires you to trust an existing node.
+
+**State Sync**
+
+You can configure your config.toml to use the Cosmos SDK state sync to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
+
+**Snapshot**
+
+You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain.
 
 ### **From Genesis**
 
