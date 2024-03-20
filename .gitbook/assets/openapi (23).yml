@@ -3991,7 +3991,9 @@ components:
                 type: string
               value:
                 title: iMetadata.attributes.[].value
-                $ref: '#components/schemas/NumberType'
+                anyOf:
+                  - type: string
+                  - type: number
                   - type: boolean
             required:
               - name
@@ -5009,7 +5011,9 @@ components:
                 type: string
               value:
                 title: FilterBadgesInCollectionRequestBody.attributes.[].value
-                $ref: '#components/schemas/NumberType'
+                anyOf:
+                  - type: string
+                  - type: number
                   - type: boolean
             required:
               - name
