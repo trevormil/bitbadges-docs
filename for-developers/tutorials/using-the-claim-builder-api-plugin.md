@@ -16,6 +16,16 @@ Couple notes:
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+## Natively Handled vs Self-Hosted
+
+You have a couple options for how the endpoint will be set up.&#x20;
+
+1. You can self-host it yourself. This can also be set up as a proxy to handle private information.&#x20;
+   1. Ex: BitBadges API -> Your Endpoint -> Other API
+2. Create a pull request in the bitbadges-indexer/src/integrations/integration-query-handlers, and this avoids you having to host your own endpoint. Couple catches:
+   1. We expect you to maintain this if there are any errors.
+   2. No private params are supported.
+
 ## Publishing a Plugin
 
 Plugins can also be published and preconfigured to be displayed to users in the template section. To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
