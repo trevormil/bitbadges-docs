@@ -5,7 +5,6 @@ Follow the prior pages to generate the context and payloads.
 #### Signing with Keplr
 
 ```ts
-// 
 const signTxn = async (context: TxContext, payload: TransactionPayload, simulate: boolean) => {
   if (!account) {
     throw new Error('Account does not exist');
@@ -13,9 +12,7 @@ const signTxn = async (context: TxContext, payload: TransactionPayload, simulate
   const { sender } = context;
   await window.keplr?.enable(chainId);
 
-  let signatures = [
-    new Uint8Array(Buffer.from('0x', 'hex')),
-  ]
+  let signatures = [new Uint8Array(Buffer.from('0x', 'hex'))];
   if (!simulate) {
     const signResponse = await window?.keplr?.signDirect(
       chainId,
@@ -24,25 +21,26 @@ const signTxn = async (context: TxContext, payload: TransactionPayload, simulate
         bodyBytes: payload.signDirect.body.toBinary(),
         authInfoBytes: payload.signDirect.authInfo.toBinary(),
         chainId: chainId,
-        accountNumber: new Long(sender.accountNumber),
+        accountNumber: new Long(sender.accountNumber)
       },
       {
-        preferNoSetFee: true,
+        preferNoSetFee: true
       }
-    )
+    );
 
     if (!signResponse) {
-      return;
+      throw new Error('No signature returned from Keplr');
     }
 
-    signatures = [
-      new Uint8Array(Buffer.from(signResponse.signature.signature, 'base64')),
-    ]
+    signatures = [new Uint8Array(Buffer.from(signResponse.signature.signature, 'base64'))];
   }
 
-  const txBody = createTxBroadcastBodyCosmos(payload, signatures);
+  const hexSig = Buffer.from(signatures[0]).toString('hex');
+
+  const txBody = createTxBroadcastBody(context, payload, hexSig);
   return txBody;
-}
+};
+
 ```
 
 See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/CosmosContext.tsx) for full snippet. Or, the quickstart has it already implemted for you.
