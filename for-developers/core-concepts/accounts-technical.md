@@ -13,7 +13,9 @@ For accounts (standard senders of transactions) , we support users from four L1 
 
 BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` for Ethereum type accounts, unlike other Cosmos accounts that use Coin type `118.`
 
-**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK. An example is provided below.
+**Signing Method:** Transactions can be signed with EIP712 or JSON. These can be generated via the BitBadges SDK. An example of EIP712 is provided below.
+
+EIP712 is only allowed for small messages due to its poor performance on-chain. For messages taht exceed this limit, we require JSON format.
 
 ```
 {
@@ -71,6 +73,8 @@ BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for 
 BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
 
 **Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can be generated via the SDK.
+
+Solana has a limit of \~1000 byte message signatures. If the JSON exceeds this limit, we allow signing the SHA256 hash of the JSON as well.&#x20;
 
 ```
 {"account_number":"13","chain_id":"bitbadges_1-2","fee":{"amount":[{"amount":"0","denom":"badge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"badge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
