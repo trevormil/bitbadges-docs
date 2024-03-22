@@ -6,9 +6,9 @@ To pass the validation check, a successful response must be received (e.g. statu
 
 Couple notes:
 
-* **You should not depend on any statefulness. All state should be handled by BitBadges.** You should only be responsible for handling the query and returning success / failure.&#x20;
-  * This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails. These are supposed to be stateless queries. If you need to maintain state or implement more custom claim ideas, you can either implement your own claims or reach out to us to see if it can get integrated natively into the site.
-  * Because queries are stateless, it is important that you set the necessary criteria on the BitBadges end to ensure correct behavior. For example, if you implement a query of X users who attended a space (stateless), you would also need to ensure there is only one claim allowed per X user (stateful) on the BitBadges end.
+* **You should not depend on a successful response from your endpoint meaning a successful claim.**&#x20;
+  * Just because your endpoint was a success does not mean the entire claim was successful. This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails.&#x20;
+  * It is important that you set the necessary criteria on the BitBadges end to ensure correct behavior. For example, if you want to implement a query of X users (one claim per user) who attended a space, the one claim per user must be set and tracked on the BitBadges end.
 * You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is a POST request as well.
 * **All parameters + body should be considered public.** If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
 
