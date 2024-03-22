@@ -1,6 +1,10 @@
 # Collections
 
-Visit the tutorials for further explanations.
+Check out the tutorials for more examples of fetching collections and balances.
+
+{% content-ref url="../tutorials/" %}
+[tutorials](../tutorials/)
+{% endcontent-ref %}
 
 
 
