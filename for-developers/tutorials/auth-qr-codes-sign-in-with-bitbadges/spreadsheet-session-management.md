@@ -6,12 +6,12 @@ For some use cases, a spreadsheet like Google Sheets can be used for maintaining
 2. Go to Extensions -> App Scripts and copy / paste the JavaScript code below.
 3. Go to your Verify Drawing and assign the script. Set the script to makeAPIRequest.
 4. Now, when you click the button, it will use the values, call the getAuthCode BitBadges API route, and return the response. The response includes the message, params, and the Blockin verification response.
-   1. IMPORTANT: Note that the responseData.verificationResponse (and thus the verification response in B3) is the Blockin verification. This verifies only that the signature is well-formed and badge ownership. However, you have to implement any additional checks, such as session management, expected parameters, avoiding replay attacks. etc.
-5. You can customize this further to handle sessions however you would like. Using responseData.params is typically what you are looking for.
+5. IMPORTANT: You have to implement any additional checks, such as session management, expected parameters, avoiding replay attacks. etc.
+   1. You can customize this further to handle sessions however you would like. Using responseData.params is typically what you are looking for. See the TODOs in the script.
 
 See the Blockin documentation for more information.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ```javascript
 function makeAPIRequest() {
@@ -20,6 +20,7 @@ function makeAPIRequest() {
   const apiKeyValue = sheet.getRange('B1').getValue()
   var url = 'https://api.bitbadges.io/api/v0/authCode'; // Replace this with the API endpoint you want to call
 
+  //Reset to blank
   sheet.getRange('B3').setValue("");
   sheet.getRange('B4').setValue("");
   sheet.getRange('B5').setValue("");
@@ -33,36 +34,58 @@ function makeAPIRequest() {
     'payload': JSON.stringify({ signature: cellValue })
   };
 
+  //Parse response and update the main section
   var response = UrlFetchApp.fetch(url, options);
   var responseData = JSON.parse(response.getContentText());
+  var cosmosAddress = "cosmos"
+  var params = responseData.params;
+  var message = responseData.message;
+  var verificationResponse = responseData.verificationResponse
 
-  // Process the response data as needed
-  // For example, you can write it to another cell in the spreadsheet
-  sheet.getRange('B5').setValue(responseData.message); // Change 'B1' to the cell where you want to display the response
+  sheet.getRange('B5').setValue(message);
+  sheet.getRange('B6').setValue(JSON.stringify(responseData, null, 2))
 
   // Write verificationResponse.success (boolean) to cell D1
-  sheet.getRange('B3').setValue(responseData.verificationResponse.success);
+  sheet.getRange('B3').setValue(verificationResponse.success);
 
   // Write verification.errorMessage (if error) to cell E1
-  if (!responseData.verificationResponse.success) {
-    sheet.getRange('B4').setValue(responseData.verificationResponse.errorMessage);
+  if (!verificationResponse.success) {
+    sheet.getRange('B4').setValue(verificationResponse.errorMessage);
   } else {
     sheet.getRange('B4').setValue("");
   }
+
+  //------------------------------VALIDATION----------------------------------------
+  //TODO: This section should be implemented by you
+
+  // Check if cosmosAddress already exists
+  var existingAddresses = sheet.getRange(2, 2, sheet.getLastRow() - 1, 1).getValues().flat();
+  if (existingAddresses.includes(cosmosAddress)) {
+    sheet.getRange('B3').setValue(false);
+    sheet.getRange('B4').setValue("Error: Address already used!")
+    throw new Error("Address already used!");
+  }
+  
+
+  //TODO: Implement any other checks you may want
+  //- 1 use per address is implemented for you above.
+  //- Verify domain, uri, and/or statement is correct
+  //- Verify nonces are valid
+  //- Protect against replay attacks
+  //- Verify timing (expiration, not before)
+  //- Can reuse the same badge / asset? Or is each one-time use only
+
+  //---------------------------------------------------------------------------------
+
   
   // Find the next available row
   var nextRow = sheet.getLastRow() + 1;
-
-  // Write .params values into the new row
-  var params = responseData.params;
-
-  // Get the keys of the params object
   const keys = Object.keys(params);
 
-  // Define the starting column
-  var column = 2; // Column B
-
-  // Loop through the keys and write the corresponding values horizontally
+  var column = 3; 
+  sheet.getRange(nextRow, 2).setValue(cosmosAddress);
+  
+  // Loop through the params and write the corresponding values horizontally
   for (const key of keys) {
     if (params.hasOwnProperty(key)) {
       sheet.getRange(nextRow, 1).setValue("Authentication #" + (nextRow - 7))
