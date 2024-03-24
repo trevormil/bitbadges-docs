@@ -26,6 +26,26 @@ You have a couple options for how the endpoint will be set up.&#x20;
    1. We expect you to maintain this if there are any errors.
    2. No private params are supported.
 
+## Custom Upload via JSON
+
+On the BitBadges site, there is a Upload JSON button in the custom plugin form. If you have a preconfigured plugin but do not want to officially publish it to the BitBadges site, you can create a JSON file such as below and have others upload the preconfigured JSON plugin details to the form.
+
+```typescriptreact
+{
+    name: '',
+    uri: '',
+    description: '',
+    passAddress: true,
+    passEmail: false,
+    passDiscord: false,
+    passTwitter: false,
+    passGithub: false,
+    passGoogle: false,
+    bodyParams: {}, //hardcode JSON body
+    userInputsSchema: [{ key: 'minBalance', label: 'Minimum Balance', type: 'number' }]
+  }
+```
+
 ## Publishing a Plugin
 
 Plugins can also be published and preconfigured to be displayed to users in the template section. To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
