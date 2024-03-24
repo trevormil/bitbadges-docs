@@ -6,7 +6,7 @@ For some use cases, a spreadsheet like Google Sheets can be used for maintaining
 2. Go to Extensions -> App Scripts and copy / paste the JavaScript code below.
 3. Go to your Verify Drawing and assign the script. Set the script to makeAPIRequest.
 4. Now, when you click the button, it will use the values, call the getAuthCode BitBadges API route, and return the response. The response includes the message, params, and the Blockin verification response.
-   1. IMPORTANT: Note that the responseData.verificationResponse (and thus the verification response in B3) is the Blockin verification. This verifies only that the signature is well-formed and badge ownership. However, you have to implement any additional checks, such as session management, expected parameters, etc.
+   1. IMPORTANT: Note that the responseData.verificationResponse (and thus the verification response in B3) is the Blockin verification. This verifies only that the signature is well-formed and badge ownership. However, you have to implement any additional checks, such as session management, expected parameters, avoiding replay attacks. etc.
 5. You can customize this further to handle sessions however you would like. Using responseData.params is typically what you are looking for.
 
 See the Blockin documentation for more information.
@@ -48,6 +48,28 @@ function makeAPIRequest() {
     sheet.getRange('B4').setValue(responseData.verificationResponse.errorMessage);
   } else {
     sheet.getRange('B4').setValue("");
+  }
+  
+  // Find the next available row
+  var nextRow = sheet.getLastRow() + 1;
+
+  // Write .params values into the new row
+  var params = responseData.params;
+
+  // Get the keys of the params object
+  const keys = Object.keys(params);
+
+  // Define the starting column
+  var column = 2; // Column B
+
+  // Loop through the keys and write the corresponding values horizontally
+  for (const key of keys) {
+    if (params.hasOwnProperty(key)) {
+      sheet.getRange(nextRow, 1).setValue("Authentication #" + (nextRow - 7))
+
+      sheet.getRange(nextRow, column).setValue(params[key]);
+      column++; // Move to the next column
+    }
   }
 }
 ```
