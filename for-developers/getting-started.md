@@ -14,13 +14,13 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 <figure><img src="../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
 
-## **Creating a collection?**
+## **Creating badges / lists?**
 
 **Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
 
-**Do you want to self-host off-chain balances?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
+**Do you want to self-host off-chain balances or metadata?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
-**Do you need to collect user addresses for whitelists before creating?** Create an address survey using the Survey Mode option when creating an address list. Want to implement custom logic whenever a user adds to the survey? See [here](tutorials/custom-address-surveys.md).
+**Do you need to collect user addresses before creating?** Consider creating an  off-chain address list where users can claim spots on the list if they meet certain criteria.
 
 ## **Query data?**
 
@@ -53,6 +53,12 @@ For indexed balances, you can also set up a claim directly on the BitBadges site
 {% content-ref url="../overview/distribution-tools-integrations.md" %}
 [distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
 {% endcontent-ref %}
+
+## **Custom integrations?**
+
+**Want to integrate your tool into the BitBadges site natively?** See [here](tutorials/using-the-claim-builder-api-plugin.md).&#x20;
+
+**Want to integrate BitBadges into your application / tool?** Check out the API / SDK and all other documentation to see what all is possible with BitBadges.
 
 ## **Submit blockchain transactions?**
 
