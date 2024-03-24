@@ -1,6 +1,6 @@
 # Spreadsheet Session Management
 
-For some use cases, a spreadsheet like Google Sheets can be used for maintaining sessions (e.g. which QR codes have been used, etc).
+For some use cases, a spreadsheet like Google Sheets can be used for maintaining sessions (e.g. which QR codes have been used, etc). Note this tool only works out of the box with codes stored via the BitBadges API (aka in users's accounts).
 
 1. To get started, create a spreadsheet that looks like this. The Verify button is a Drawing.&#x20;
 2. Go to Extensions -> App Scripts and copy / paste the JavaScript code below.
