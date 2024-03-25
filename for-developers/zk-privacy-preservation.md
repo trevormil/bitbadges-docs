@@ -18,13 +18,11 @@ Certain secrets may even be configured to perform on-chain actions (e.g. solve a
 
 **Blank Metadata**
 
-You could create your collection to be generic and placeholder metadata. Balances will still be public, but the collections' purpose will not be public.&#x20;
+You could create your collection to be generic with a default placeholder metadata. Balances will still be public, but the collections' purpose will not be public.&#x20;
 
 **One-Time Use Only Addresses**
 
-You can also create / issue a collection with a unique one-time use only burner address.
-
-Or, in a similar manner, you can receive a badge with a unique, one-time use burner address that isn''t linked with anything else.
+You can also create / issue a collection with a unique one-time use only burner address. Or, in a similar manner, you can receive a badge with a unique, one-time use burner address that isn''t linked with anything else.
 
 **Verifiable Credentials**
 
