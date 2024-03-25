@@ -155,6 +155,7 @@
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
     * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
     * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
+* [🕵️ ZK / Privacy Preservation](for-developers/zk-privacy-preservation.md)
 * [🧑‍🏫 Tutorials](for-developers/tutorials/README.md)
   * [Using the Claim Builder API Plugin](for-developers/tutorials/using-the-claim-builder-api-plugin.md)
   * [Badge-Gating Discord Servers](for-developers/tutorials/badge-gating-discord-servers.md)
