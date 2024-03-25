@@ -10,7 +10,11 @@ Couple notes:
   * Just because your endpoint was a success does not mean the entire claim was successful. This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails.&#x20;
   * It is important that you set the necessary criteria on the BitBadges end to ensure correct behavior. For example, if you want to implement a query of X users (one claim per user) who attended a space, the one claim per user must be set and tracked on the BitBadges end.
 * You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is a POST request as well.
-* **All parameters + body should be considered public.** If you need private variables, consider setting up a proxy server that knows the private variables and redirects to the correct URI.
+* **If you are dealing with private information or need private variables, you should take the necessary measures.**&#x20;
+  * You can set up a proxy server. For example, BitBadges does not deal with API keys. If you need an API key, you can set up a proxy that knows the API key before making the official request.
+* **Make sure that no malicious third-party can learn private information.** For example, don't allow a malicious party to call your API with arbitrary data and learn private information (even the success / failure response may leak private information).
+  * If no private information can be leaked (completely public query), you are fine.&#x20;
+  * If there is potential private information, consider enforcing that the request is from the BitBadges backend. We plan to implement alternative solutions soon.
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
