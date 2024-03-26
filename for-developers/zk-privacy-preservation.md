@@ -2,12 +2,6 @@
 
 While all badges are public on the BitBadges blockchain, we recognize privacy is an important aspect in many cases. Here are some ways BitBadges can be used in a privacy-preserving context.
 
-**Zero Knowledge Proof of Ownership**
-
-Given a snapshot of a collection's balances that is agreed upon between a prover and a verifier, the prover can prove with a zero-knowledge proof that they own the private key to an address who owns X amount of badges in the snapshot without revealing the private key.
-
-Tutorial: TODO
-
 **Verifiable Off-Chain Secrets**
 
 Certain information can be kept secret off-chain, but the commitment to that information can be on-chain somewhere (e.g. post the hash on-chain but keep the preimage secret). This can be leveraged to prove authenticity of certain things.&#x20;
@@ -22,7 +16,11 @@ You could create your collection to be generic with a default placeholder metada
 
 **One-Time Use Only Addresses**
 
-You can also create / issue a collection with a unique one-time use only burner address. Or, in a similar manner, you can receive a badge with a unique, one-time use burner address that isn''t linked with anything else.
+You can also create / issue a collection with a unique one-time use only burner address. Or, in a similar manner, you can receive a badge with a unique, one-time use burner address that isn't linked with anything else.
+
+**Gated / Hidden Balances**
+
+We are also working on a way to keep balances gated / hidden instead of alwasy being public.
 
 **Verifiable Credentials**
 
@@ -35,3 +33,9 @@ While BitBadges and VCs have similar use cases, they can be used together in a c
 * Use the BitBadges token standard to clearly define revocation / suspension rights. Maybe the entire credential should be private, but you can use an on-chain badge's status for the revocation part of a VC. For example, if the badge is burned, it is considered revoked.
 
 We are working on formalizing the standards to use BitBadges and VCs together.
+
+**Zero Knowledge Proof of Ownership**
+
+Given a snapshot of a collection's balances that is agreed upon between a prover and a verifier, the prover can prove with a zero-knowledge proof that they own the private key to an address who owns X amount of badges in the snapshot without revealing the private key.
+
+Note this requires proving the signature within the zero-knowledge proof as well (e.g. [here](https://ethresear.ch/t/efficient-ecdsa-signature-verification-using-circom/13629)). Certain signature algorithms probably aren't implemented in zero-knowledge formats yet (BIP322), so the implementation would have to take that into account.
