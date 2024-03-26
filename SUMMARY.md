@@ -65,6 +65,7 @@
     * [Predetermined Balances](for-developers/core-concepts/approval-criteria/predetermined-balances.md)
     * [Requires](for-developers/core-concepts/approval-criteria/requires.md)
     * [Merkle Challenges](for-developers/core-concepts/approval-criteria/merkle-challenges.md)
+    * [ZK Proofs](for-developers/core-concepts/approval-criteria/zk-proofs.md)
     * [Cross-Approval Logic (Advanced)](for-developers/core-concepts/approval-criteria/linking-trackers-advanced.md)
   * [🔐 Permissions](for-developers/core-concepts/permissions/README.md)
     * [Overview](for-developers/core-concepts/permissions/overview.md)
