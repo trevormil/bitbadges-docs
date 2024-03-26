@@ -44,6 +44,12 @@ We are working on formalizing the standards to use BitBadges and VCs together.
 
 ### **Zero Knowledge Proof of Ownership**
 
-Given a snapshot of a collection's balances that is agreed upon between a prover and a verifier, the prover can prove with a zero-knowledge proof that they own the private key to an address who owns X amount of badges in the snapshot without revealing the private key.
+In some cases, you may want to prove you meet criteria without revealing your identity (e.g. own the over age 21 badge but don't reveal your name, etc)
+
+Given a snapshot of a collection's balances or list of addresses that is agreed upon between a prover and a verifier, the prover can prove with a zero-knowledge proof that they own the private key to an address in the snapshot without revealing the private key.
 
 Note this requires proving the signature within the zero-knowledge proof as well (e.g. [here](https://ethresear.ch/t/efficient-ecdsa-signature-verification-using-circom/13629)). Certain signature algorithms probably aren't implemented in zero-knowledge formats yet (BIP322), so the implementation would have to take that into account.
+
+Resources: [https://github.com/personaelabs/spartan-ecdsa](https://github.com/personaelabs/spartan-ecdsa), [https://github.com/Electron-Labs/ed25519-circom](https://github.com/Electron-Labs/ed25519-circom)
+
+Extensions: Supporting >=X amount owned, ownership times, and more
