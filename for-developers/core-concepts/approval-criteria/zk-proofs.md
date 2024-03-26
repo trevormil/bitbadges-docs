@@ -54,7 +54,7 @@ export interface iZkProofSolution {
 
 **Formatting**
 
-We rely heavily on [Circom implementation](https://docs.circom.io/getting-started/installation/) for proofs and formatting. Circom is a library and full programming language to write ZK proofs.&#x20;
+We rely heavily on [Circom implementation](https://docs.circom.io/getting-started/installation/) for proofs and formatting. Circom is a library and full programming language to write ZK proofs. Pretty much, you will do all the proof writing, generation, and proving with Circom. Then, the outputted files are what we use on-chain.
 
 Proving Method: zkSnark Groth16
 
