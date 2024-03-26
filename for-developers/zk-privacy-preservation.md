@@ -48,8 +48,12 @@ In some cases, you may want to prove you meet criteria without revealing your id
 
 Given a snapshot of a collection's balances or list of addresses that is agreed upon between a prover and a verifier, the prover can prove with a zero-knowledge proof that they own the private key to an address in the snapshot without revealing the private key.
 
-Note this requires proving the signature within the zero-knowledge proof as well (e.g. [here](https://ethresear.ch/t/efficient-ecdsa-signature-verification-using-circom/13629)). Certain signature algorithms probably aren't implemented in zero-knowledge formats yet (BIP322), so the implementation would have to take that into account.
+**Examples**
 
-Resources: [https://github.com/personaelabs/spartan-ecdsa](https://github.com/personaelabs/spartan-ecdsa), [https://github.com/Electron-Labs/ed25519-circom](https://github.com/Electron-Labs/ed25519-circom)
+For an implemented ZKP example of proving your address is in a tree / set of Ethereum addresses, check out the addr\_membership.circom or pubkey\_membership.circom at [https://github.com/personaelabs/spartan-ecdsa](https://github.com/personaelabs/spartan-ecdsa).
 
-Extensions: Supporting >=X amount owned, ownership times, and more
+**Resources + Extensions**
+
+You may want to extend this in different ways such as supporting Solana / other addresses, proving min balance owned, ownership times, and more. You can custom write your own circuit using Circom to do so.&#x20;
+
+Note certain signature algorithms or functionality probably aren't implemented yet (BIP322), so your implementation would have to take that into account or custom write your own.
