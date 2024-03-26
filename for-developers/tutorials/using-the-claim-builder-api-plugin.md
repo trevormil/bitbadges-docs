@@ -28,21 +28,30 @@ Firstly, you can check CORS origin in the header is from the correct api.bitbadg
 
 Or, we pass a \_\_key variable in the body as well which is a unique key generated for each call.
 
-```typescript
-await handleIntegrationQuery({
-    ...body,
+<pre class="language-typescript"><code class="lang-typescript"><strong>await handleIntegrationQuery({
+</strong>    ...body,
     __type: apiCall.uri.split('/').pop(),
     __key: randomKey
 });
-```
+</code></pre>
 
 You can check the authenticity of the key on your end by calling&#x20;
 
 ```
-await BitBadgesApi.getExternalCallKey({ uri: 'YOUR_URI', key: '' })
+const resData = await BitBadgesApi.getExternalCallKey({ uri: 'YOUR_URI', key: '' })
 ```
 
 It will return a success response along with a timestamp of the key issuance if it is a valid key issued from us. This is to prevent man in the middle attacks. It is good practice to also check the issuance timestamp to prevent replay attacks.
+
+```javascript
+if (!resData || !resData.key || !resData.timestamp) {
+    return res.send('Key not valid');
+}
+
+if (Date.now() > resData.timestamp + 60000) {
+    return res.send('Key expired');
+}
+```
 
 ## Natively Handled vs Self-Hosted
 
@@ -73,8 +82,6 @@ On the BitBadges site, there is a Upload JSON button in the custom plugin form. 
     userInputsSchema: [{ key: 'minBalance', label: 'Minimum Balance', type: 'number' }]
   }
 ```
-
-##
 
 ## Publishing a Plugin
 
