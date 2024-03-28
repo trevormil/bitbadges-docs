@@ -28,7 +28,7 @@ You can also create / issue a collection with a unique one-time use only burner 
 
 **Gated / Hidden Balances**
 
-We are also working on a way to keep balances gated / hidden instead of alwasy being public.
+You can also select the "Private" or "None" balances standard on the site (correlates to balance type = "Non-Public"). This will allow you to secretly define who owns the badge. Everything else will be public (metadata, etc), but ownership is dependent on you.
 
 ### **Verifiable Credentials**
 
@@ -39,6 +39,7 @@ While BitBadges and VCs have similar use cases, they can be used together in a c
 * Create a badge and link it with a VC (either through the badge metadata or standards or custom data). To "have the credential", you must own the badge and prove the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain prviate (VCs). This also enables VCs to be transferred and owned.&#x20;
   * For example, you may want a generic diploma badge in your BitBadges portfolio, but the GPA, date of graduation, etc should be private. With VCs, you can still attest to the private information to whoever needs it like employers.
 * Use the BitBadges token standard to clearly define revocation / suspension rights. Maybe the entire credential should be private, but you can use an on-chain badge's status for the revocation part of a VC. For example, if the badge is burned, it is considered revoked.
+* Use Blockin to aid in Verifiable Presentations.
 
 We are working on formalizing the standards to use BitBadges and VCs together.
 
