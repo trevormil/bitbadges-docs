@@ -97,6 +97,26 @@ In addition to the standard features of existing token standards (mint, transfer
 
 And much more!
 
+## Privacy Tools
+
+While all badge collections are public and created on the BitBadges blockchain, we recognize privacy is an important aspect in many cases. Here are some ways BitBadges can be used in a privacy-preserving context.
+
+**Verifiable Secrets**
+
+The BitBadges site allows anyone to commit, issue, and hold secrets which are secret messages signed by some issuer. The most common use case of these is credentials, and  such secrets can be added to any BitBadges login flow (e.g. verify youa re 21 for access).
+
+{% content-ref url="overview/how-it-works/verifiable-secrets.md" %}
+[verifiable-secrets.md](overview/how-it-works/verifiable-secrets.md)
+{% endcontent-ref %}
+
+**Proof of Knowledge for Approval**
+
+Certain secrets may even be configured to perform on-chain actions (e.g. solve a zero-knowledge proof for approval or insert a secret code for approval).
+
+**Gated / Hidden Balances**
+
+You can also select the "Private" or "None" balances standard on the site. This will allow you to secretly define who owns the badge. Everything else will be public (metadata, etc), but ownership is decided privately by you.
+
 ## Distribution Tools
 
 {% content-ref url="overview/distribution-tools-integrations.md" %}
