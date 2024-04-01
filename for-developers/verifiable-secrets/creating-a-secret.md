@@ -2,7 +2,7 @@
 
 Pre-Readings: [Verifiable Secrets](./)
 
-On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. However, you can self-generate locally and upload via the BitBadges API as well.&#x20;
+On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. However, you can self-generate locally and upload via the BitBadges API as well. Belwo, we provide information on how it works behind the scenes.
 
 The creation interface is as follows.
 
