@@ -56,7 +56,9 @@ body = {
 
 ### **BBS+**
 
-For BBS+ signatures (**scheme** = 'bbs'), you can sign N **secretMessages** and the **dataIntegrityProof** will be the BBS signature of those N message. See [https://github.com/mattrglobal/bbs-signatures](https://github.com/mattrglobal/bbs-signatures) for the code to create the sigantures.&#x20;
+For BBS+ signatures (**scheme** = 'bbs'), you can sign N **secretMessages** and the **dataIntegrityProof** will be the BBS signature of those N message. See [https://github.com/mattrglobal/bbs-signatures](https://github.com/mattrglobal/bbs-signatures) for the code to create the signatures.&#x20;
+
+On the BitBadges site, all BBS+ key pairs are one-time use only. The key pair is generated, signs the transaction, and then is discarded because it is never needed again.
 
 <pre class="language-typescript"><code class="lang-typescript">import { BlsKeyPair, blsSign, generateBls12381G2KeyPair } from '@mattrglobal/bbs-signatures';
 

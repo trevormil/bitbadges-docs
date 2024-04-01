@@ -39,7 +39,14 @@ export interface iSecretsProof<T extends NumberType> {
 
 ### Custom Logic
 
-It is important to note that proof verification is not limited to hhat is provided in the interface. you will typically need to check the secret messages against other private values (e.g. matching secret data to a user). This is application-sepcific, but we expect you to handle everything for proper verification.
+It is important to note that proof verification is not limited to that is provided in the interface. you will typically need to check the secret messages against other private values (e.g. matching secret data to a user). This is application-specific, but we expect you to handle everything for proper verification.
+
+**Inherent Trust for the Issuer**
+
+All secrets / credentials inherently get their credibility from the issuer, so there is already a bit of trust there. However, additional measures can be taken to protect against a malicious issuer. Some examples include:
+
+* On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
+* Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
 
 ### On-Chain Anchors + Update History
 
@@ -68,7 +75,11 @@ Update history is maintained by BItBadges in a centralized manner, but it could 
 
 ### **Standard Proofs**
 
-For standard proofs, selective discolsure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the secret exactly as is.
+For standard proofs, selective disclosure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the secret exactly as is.&#x20;
+
+### **BBS+ Proofs - Verifying Proof of Issuance**
+
+An important aspect of verifying BBS+ secrets is to verify the link between the "main" issuer and the BBS+ public key. This is done with the **proofOfIssuance** provided. You should verify that the main issuer has given valid approval to use such an approval as issued by themselves.
 
 ### **BBS+ Proofs - Creation and Verification**
 
