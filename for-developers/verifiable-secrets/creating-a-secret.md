@@ -2,9 +2,9 @@
 
 Pre-Readings: [Verifiable Secrets](./)
 
-On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. However, you can self-generate locally and upload via the BitBadges API as well. Belwo, we provide information on how it works behind the scenes.
+On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. However, you can self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
-The creation interface is as follows.
+The creation interface is as follows. All secrets are a series of one or more **secretMessages** which can be either in 'json' or 'plaintext' **messageFormat**.
 
 ```typescript
 export interface CreateSecretRouteRequestBody {
@@ -16,6 +16,7 @@ export interface CreateSecretRouteRequestBody {
   };
 
   scheme: 'bbs' | 'standard';
+  messageFormat: 'json' | 'plaintext';
   secretMessages: string[];
   dataIntegrityProof: {
     signature: string;
