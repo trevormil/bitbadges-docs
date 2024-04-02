@@ -24,13 +24,64 @@ export interface CreateSecretRouteRequestBody {
     publicKey?: string;
   };
 
-  type: string;
-  
   name: string;
   image: string;
   description: string;
 }
 ```
+
+### **Schemas**
+
+Like mentioned above, we leave the schema system up to the issuer. The only thing we store about the schema is the **messageFormat** = 'json' or 'plaintext'. Feel free to use existing models such as the [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) model, or create your own.&#x20;
+
+You may also choose to reuse some data on the BitBadges or other blockchains as well (ex: must own this badge ID or issuer = manager of this collection or revocation = is this asset burned?). It is up to you how to define this in your schema.&#x20;
+
+If you are pointing to on-chain data, you should also consider privacy concerns. All data on the blockchain is public, so for example, you may not want to use on-chain revocations through badge transfers because anyone can see when/if that badge was revoked. Or, if you do use it, you may consider using privacy-preserving techniques (indistinguishable metadata, one-time use only addresses) so that nothing unintended can be learned.
+
+Example W3C Verifiable Credentials
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://www.w3.org/ns/credentials/examples/v2"
+  ],
+  "id": "http://license.example/credentials/9837",
+  "type": ["VerifiableCredential", "ExampleDrivingLicenseCredential"],
+  "issuer": "https://license.example/issuers/48",
+  "validFrom": "2020-03-14T12:10:42Z",
+  "credentialSubject": {
+    "id": "did:example:f1c276e12ec21ebfeb1f712ebc6",
+    "license": {
+      "type": "ExampleDrivingLicense",
+      "name": "License to Drive a Car"
+    }
+  },
+  "credentialStatus": [{
+    "id": "https://license.example/credentials/status/84#14278",
+    "type": "BitstringStatusListEntry",
+    "statusPurpose": "revocation",
+    "statusListIndex": "14278",
+    "statusListCredential": "https://license.example/credentials/status/84"
+  }, {
+    "id": "https://license.example/credentials/status/84#82938",
+    "type": "BitstringStatusListEntry",
+    "statusPurpose": "suspension",
+    "statusListIndex": "82938",
+    "statusListCredential": "https://license.example/credentials/status/84"
+  }]
+}
+```
+
+**Data Integrity**
+
+The integrity of the data is committed to by a cryptographic signature as we will show below. This proves to any potential verifier that the issuer did indeed issue this secret because a cryptographic signature cannot be forged. The signatures are stored by the holders along with the credential and presented to verifiers.
+
+In a a system like this, typically, the secret gains its credibility from the issuer, so there is inherently some trust there. However, you may also opt to use additional protection measures against a malicious issuer. For example:
+
+* On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
+* On-chain map of badge ID -> secret IDs to protect against duplicate secrets issued per badge
+* Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
 
 ### Standard Signatures
 
@@ -102,6 +153,3 @@ Public keys are currently only needed to be provided for Cosmos signatures in or
 
 Each secret has metadata attached to it for display purposes (i.e. name, image, description). This metadata should be considered public and viewable by all parties (issuer, verifier, and holder).
 
-### **Types**
-
-Types are just used for querying purposes. Typically, this will be 'credential'. For now, we do not do anything special with types.
