@@ -2,7 +2,9 @@
 
 Pre-Readings: [Verifiable Secrets](./)
 
-As a holder, you are expected to generate proof(s) to be disclosed to verifiers via the following the interface.
+As a holder, you are expected to generate proof(s) to be disclosed to verifiers via the following the interface. Again, there are user interfaces for handling this all on the frontend which should be adequate for almost all use cases. However, below, we go into detail for how you can do it yourself.
+
+Check out [https://bitbadges.io/secrets/proofgen](https://bitbadges.io/secrets/proofgen) for a helper tool for generating BBS+ signatures.
 
 ```typescript
 export interface iSecretsProof<T extends NumberType> {
@@ -28,9 +30,9 @@ export interface iSecretsProof<T extends NumberType> {
   image: string;
   description: string;
 
-  entropies: string[];
-  updateHistory: iUpdateHistory<T>[];
-  anchors: {
+  entropies?: string[];
+  updateHistory?: iUpdateHistory<T>[];
+  anchors?: {
     txHash?: string;
     message?: string;
   }[];

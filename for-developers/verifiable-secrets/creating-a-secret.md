@@ -2,7 +2,9 @@
 
 Pre-Readings: [Verifiable Secrets](./)
 
-On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. However, you can self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
+On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. We even let you select a self-host option.
+
+However, you can self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
 The creation interface is as follows. All secrets are a series of one or more **secretMessages** which can be either in 'json' or 'plaintext' **messageFormat**. The schema of the message is left up to the issuer.
 
