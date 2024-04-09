@@ -12,8 +12,6 @@ We refer you to Blockin for implementing the sign-in flow.
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
 {% endcontent-ref %}
 
-
-
 Note that secrets are stored by BitBadges. For a user to generate a proof for secrets stored in their account, they have two options.
 
 **Sign-In with BitBadges**
@@ -32,5 +30,6 @@ You really only have a couple options
 2. You can implement the SIWBB popup w/ onlyProofs option to outsource the generation
 3. Implement your own solutions. Secrets are just signatures, so you may be able to store / host / verify them yourselves.
 
+**Extensions**
 
-
+With self-implementations, you may also choose to extend presentations with additional logic, such as wrapping a zero-knowledge proof around the presentation of standard signatures (Bitcoin, Eth, Solana, Cosmos) to only selectively disclose what you want to like we do with BBS+.
