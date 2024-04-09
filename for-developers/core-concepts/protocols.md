@@ -4,30 +4,7 @@ Protocols are a concept that allows you to treat certain collections from differ
 
 This enables different collections to have different properties for the same protocol. For example, some users may want to host their follow badges off-chain, while some prefer decentralization on-chain. It also allows each respective user to access their own manager privileges for their collection, which wouldn't be possible all with one collection.
 
-The protocol interface is simple.
-
-```typescript
-/**
- * Protocol type
- *
- * @typedef {Object} Protocol
- *
- * @property {string} name - The name of the protocol.
- * @property {string} uri - The URI of the protocol.
- * @property {string} customData - The custom data of the protocol.
- * @property {string} createdBy - The cosmos address of the user who created the protocol.
- * @property {boolean} isFrozen - Whether the details fo the protocol are frozen or not.
- */
-export interface Protocol {
-  name: string;
-  uri: string;
-  customData: string;
-  createdBy: string;
-  isFrozen: boolean;
-}
-```
-
-The uri and customData do not currently have a specific format. It is just a place to provide extra details.
+The protocol interface is a subset of the map interface explained on the prior page. It uses all the same Msgs, but it expects all values to be Uints and keys to be address-based for query purposes.
 
 Over time, users can set their respective collections for protocols such as below. This is stored on-chain because reproducability and availability is important. All other custom protocol logic should be implemented separately.
 
@@ -55,7 +32,7 @@ Some examples:
 
 ### Want to create a protocol?
 
-See [MsgCreateProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateprotocol.md) for creating a protocol on-chain. For individual users to set their desired collection, you can use [MsgSetCollectionForProtocol](../create-and-broadcast-txs/cosmos-sdk-msgs/msgsetcollectionforprotocol.md).
+See the map Msg definitions for handling the important stuff on-chain. Maps (and thus protocols) can also be fetched with the BitBadges API.
 
 Other things that you may consider:
 

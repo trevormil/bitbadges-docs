@@ -1,14 +1,20 @@
-# MsgSetCollectionForProtocol
+# MsgSetValue
 
-MsgSetCollectionForProtocol sets the specific collection ID for the creator. For example, set my BitBadges Follow Protocol collection to collection ID 12.
+MsgSetValue sets the specific key-value pair for the mapId. For example, set my BitBadges Follow Protocol collection to collection ID 12.&#x20;
 
-If collectionId === 0, we use the last created collection. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
+All values are stringified for comaptibility, but it will check they are in proper format within the Msg logic. You can set **options.useMostRecentCollectionId** to auto-fetch the latest collection ID. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
 
 ```typescript
-export interface MsgSetCollectionForProtocol<T extends NumberType> {
-  creator: string,
-  name: string,
-  collectionId: T
+export interface iMsgSetValue {
+  creator: string;
+  mapId: string;
+  key: string;
+  value: string;
+  options: iSetOptions;
+}
+
+export interface iSetOptions {
+  useMostRecentCollectionId: boolean;
 }
 ```
 
