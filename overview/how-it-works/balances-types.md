@@ -6,11 +6,15 @@ BitBadges offers different ways to store the badge balances and owners for your 
 
 ## Standard (On-Chain)
 
-Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain.
+Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain.
+
+This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including the core $BADGE currency).
 
 ## Off-Chain
 
-Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain). Transfers and approvals on the blockchain are **not applicable.**
+Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).&#x20;
+
+Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending $BADGE along with an approval). Everything must occur off-chain.
 
 #### Configurable URL and Permanent Storage
 
