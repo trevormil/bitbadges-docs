@@ -56,7 +56,7 @@ Balances, at any given time, will be queried from the specified URI (stored via 
 #### Drawbacks
 
 * **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-  since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE, and claims) is not supported. Eveerything is implemented off-chain in a custom manner.
+  since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE, and claims) is not supported. Everything is implemented off-chain in a custom manner.
 * **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 * **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
   * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.

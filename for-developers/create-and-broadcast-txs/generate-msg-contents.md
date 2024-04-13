@@ -11,7 +11,7 @@ You can build out the transaction from the Proto definitions. This allows you to
 See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
-import { proto } from 'bitbadgesjs-sdk'
+import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
 //proto.badges for BitBadges x/badges
@@ -20,7 +20,7 @@ import { proto } from 'bitbadgesjs-sdk'
 const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
 
 const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: "1", creator: "cosmos..." })
+    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'cosmos...' }),
     //Add more here (executed in order)
 ];
 
