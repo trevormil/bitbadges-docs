@@ -1,10 +1,20 @@
 # Approval Trackers
 
 ```typescript
-export interface CollectionApproval<T extends NumberType> {
-  amountTrackerId: string;
-  approvalId: string
+export interface iApprovalAmounts<T extends NumberType> {
   ...
+  
+  /** The ID of the approval tracker. This is the key used to track tallies. */
+  amountTrackerId: string;
+}
+```
+
+```typescript
+export interface iMaxNumTransfers<T extends NumberType> {
+  ...
+  
+  /** The ID of the approval tracker. This is the key used to track tallies. */
+  amountTrackerId: string;
 }
 ```
 
@@ -22,18 +32,19 @@ Take the following approval tracker
 
 ### **How are approval trackers identified?**
 
-Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of the approval's **amountTrackerId** along with other identifying details.
+Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of **amountTrackerId** along with other identifying details.
 
-Note that if multiple approvals specify the same **amountTrackerId,** the SAME tracker will be incremented when DIFFERENT approvals are used. This is because the tracker identifier will be the same and thus increment the same tracker. This can be leveraged to implement cross-approval functionality, but for most cases, approval logic is expected to be scoped and not cross-approval. To enforce scoped functionality, keep the **amountTrackerId** the same as the **approvalId**. This is because we restrict that an **amountTrackerId** cannot equal the **approvalId** of a different approval.
+Note that if multiple approvals specify the same **amountTrackerId,** the SAME tracker will be incremented when DIFFERENT approvals are used. This is because the tracker identifier will be the same and thus increment the same tracker. However, all tracker IDs specify the **approvalId** which must be unique. Thus, all trackers are only ever scoped to a single aproval.
 
 ```
-ID: collectionId-approvalLevel-approverAddress-amountTrackerId-trackerType-approvedAddress
+ID: collectionId-approvalLevel-approverAddress-approvalId-amountTrackerId-trackerType-approvedAddress
 ```
 
 ```typescript
 export interface ApprovalTrackerIdDetails<T extends NumberType> {
   collectionId: T
   approvalLevel: "collection" | "incoming" | "outgoing" | ""
+  approvalId: string
   approverAddress: string
   amountTrackerId: string
   trackerType: "overall" | "to" | "from" | "initiatedBy" | ""
@@ -49,9 +60,9 @@ If "to", "from", or "initiatedBy", the **approvedAddress** is the sender, recipi
 
 For example, these correspond to different trackers because the **approvedAddress** is different. Thus, Alice's transfers will be tracked separately from Bob's.
 
-`1-collection- -uniqueID-initiatedBy-alice`
+`1-collection- -approvalId-uniqueID-initiatedBy-alice`
 
-`1-collection- -uniqueID-initiatedBy-bob`
+`1-collection- -approvalId-uniqueID-initiatedBy-bob`
 
 **Handling Multiple Trackers**
 
@@ -93,5 +104,6 @@ Example:
 
 We increment on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we **do not increment** for efficiency purposes. For example, if we only have requirements for **numTransfers** but do not need the **amounts**, we do not increment the amounts.
 
+**Different Tracker IDs - Amounts vs Transfers**
 
-
+It is possible to have different tracker IDs for the number of transfers and amounts (as seen at the top of the page). However, typically, these will be the same for simplicity.

@@ -8,6 +8,7 @@ export interface MerkleChallenge<T extends NumberType> {
   maxUsesPerLeaf: T
   uri: string
   customData: string
+  challengeTrackerId: string
 }
 ```
 
@@ -17,7 +18,8 @@ export interface MerkleChallenge<T extends NumberType> {
    "useCreatorAddressAsLeaf": true,
    "maxOneUsePerLeaf": true,
    "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
-   "customData": ""
+   "customData": "",
+   "challengeTrackerId": "uniqueId"
 }
 </code></pre>
 
@@ -45,13 +47,14 @@ For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** ca
 
 We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.&#x20;
 
-The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. Unless implementing advanced cross-approval functionality, you should always keep the **challengeTrackerId** equal to the current approval's **approvalId**. This enforces the challenge is scoped and the tracker cannot be used by any other approval. This is because the **challengeTrackerId** cannot be the same as a different approval's **approvalId.**&#x20;
+The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. The full ID contains the **approvalId,** so you know state will always be scoped to an approval and the tracker cannot be used by any other approval.
 
 Like approval trackers, this is increment only and non-deletable. Thus, it is critical to not use a tracker with prior history if you intend for it to start tracking from scratch. This can be achieved by using an unused **challengeTrackerId**. If updating an approval with a challenge, please consider how the challenge tracker is working behind the scenes.
 
 ```typescript
 {
   collectionId: T;
+  approvalId: string;
   approvalLevel: "collection" | "incoming" | "outgoing";
   approverAddress?: string;
   challengeTrackerId: string;
@@ -63,9 +66,9 @@ Like approval trackers, this is increment only and non-deletable. Thus, it is cr
 
 Example:
 
-`1-collection- -uniqueID-0` -> USED 1 TIME
+`1-collection- -approvalId-uniqueID-0` -> USED 1 TIME
 
-`1-collection- -uniqueID-1` -> UNUSED
+`1-collection- -approvalId-uniqueID-1` -> UNUSED
 
 **Reserving Specific Leafs**
 

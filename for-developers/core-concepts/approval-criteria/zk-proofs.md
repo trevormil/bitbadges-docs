@@ -6,9 +6,7 @@ Pre-Readings: [https://docs.circom.io/background/background/](https://docs.circo
 
 **Replays**
 
-Each valid proof solution can only be used once. This is tracked with the challenge tracker ID, in the same manner as merkle challenges (we refer you there for more info).
-
-Note that a ZK Proof can have many valid solutions. Design your proofs with this in consideration.
+Each valid proof solution can only be used once. This is tracked with the **zkpTrackerId**, in the same manner as merkle challenges (we refer you there for more info). The tracker is scoped to an approval, immutable, and increment only (full ID -> USED or UNUSED). Design your proofs with this in consideration.
 
 **Storage**
 
@@ -30,6 +28,11 @@ export interface iZkProof {
    * Arbitrary custom data that can be stored on-chain.
    */
   customData: string;
+  
+  /**
+   * ZKP tracker ID.
+   */
+  zkpTrackerId: string;  
 }
 
 ```

@@ -6,6 +6,14 @@ The core collection details are always stored on-chain, but balances can be stor
 
 <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
+## Non-Public
+
+```typescript
+"balancesType": "Standard"
+```
+
+We do give the option to make balances non-public. This can either mean you want to keep balances private through a self-implementation. Or, you may not need balances altogether. If either of these criteria match, you can select this balance type, and we will not display anything about balances on the user interface (everything is left up to you entirely).
+
 ## Standard
 
 ```json

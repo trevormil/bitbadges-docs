@@ -47,8 +47,6 @@ export interface CollectionApproval<T extends NumberType> {
   badgeIds: UintRange<T>[];
   ownershipTimes: UintRange<T>[];
   approvalId: string;
-  amountTrackerId: string;
-  challengeTrackerId: string;
 
   uri?: string;
   customData?: string;
@@ -124,19 +122,10 @@ It is also recommended that when dealing with approvals from the "Mint" address,
 
 All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
 
-The **amountTrackerId** and **challengeTrackerId** are different, and we will explain those on the following page along with **approvalCriteria**. All three IDs have to be defined and non-empty. Unless you are implementing advanced cross-approval functionality (see [Approval Criteria](approval-criteria/) - Advanced), we recommend always keeping all three the same.&#x20;
-
-If you keep them the same, all logic is always scoped to the current approval, and nothing any other approval can do can affect the current approval's behavior. Keeping it scoped is typically the expected and desired functionality, but in advanced cases, you may want to implement cross-approval logic (do not allow double dipping between two approvals).
-
-Behind the scenes, being scoped is enforced because we restrict that the **amountTrackerId** and **challengeTrackerId** cannot be the **approvalId** of another approval. Thus, if **amountTrackerId = challengeTrackerId = approvalId,** you know that other approvals cannot use the same tracker IDs and mess up the current approval.&#x20;
-
 ```json
 {
     ...
     "approvalId": "abc123",
-    "amountTrackerId": "abc123",
-    "challengeTrackerId": "abc123"
-    ...
 }
 ```
 
@@ -150,7 +139,7 @@ This can typically be used for providing names, descriptions about your approval
 
 The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria/).
 
-For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved. The **amountTrackerId** and **challengeTrackerId** correspond to **approvalCriteria** and are explained on the following page as well.
+For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved.
 
 **Breaking Down Range Logic**
 
@@ -224,9 +213,7 @@ In order to allow forceful transfers to an address without prior approval, the *
           "end": "18446744073709551615"
         }
       ],
-      "approvalId": "forceful-transfers-allowed",
-      "amountTrackerId": "forceful-transfers-allowed",
-      "challengeTrackerId": "forceful-transfers-allowed"
+      "approvalId": "forceful-transfers-allowed"
     }
   ]
 ```
@@ -375,8 +362,6 @@ This would set approve Charlie to send badges to Bob on this user's behalf.
       }
     ],
     "approvalId": "test",
-    "amountTrackerId": "asdfasdf",
-    "challengeTrackerId": "asdfasdf",
     //see next page
     "approvalCriteria": //define approval criteria (how much? challenges? etc here)
   }
@@ -411,8 +396,6 @@ This would set approve this user to receive any transfer from Bob.
       }
     ],
     "approvalId": "test",
-    "amountTrackerId": "asdfasdf",
-    "challengeTrackerId": "asdfasdf",
   }
 ]
 ```

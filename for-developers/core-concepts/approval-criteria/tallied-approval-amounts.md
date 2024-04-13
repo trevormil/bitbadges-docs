@@ -52,14 +52,14 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
         }
       ],
       "approvalId": "uniqueID",
-      "amountTrackerId": "uniqueID",
       
       "approvalCriteria": {
         "approvalAmounts": {
            "overallApprovalAmount": "1000", //overall limit of x1000
            "perFromAddressApprovalAmount": "0", //no limit
            "perToAddressApprovalAmount": "0",
-           "perInitiatedByAddressApprovalAmount": "10" //limit of x10 per initiator
+           "perInitiatedByAddressApprovalAmount": "10", //limit of x10 per initiator
+           "amountTrackerId": "uniqueID",
         },
         ...
       }
@@ -70,9 +70,9 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
 
 Let's say we have the **approvalAmounts** defined above and Alice initiates a transfer of x10 from Bob. There are two separate trackers that get incremented here.
 
-\#1) Tracker with the following ID `1-collection- -uniqueID-overall-` gets incremented to x10 out of 1000. Any subsequent transfers (say from Charlie) will also increment this overall universal tracker as well.
+\#1) Tracker with the following ID `1-collection- -approvalId-uniqueID-overall-` gets incremented to x10 out of 1000. Any subsequent transfers (say from Charlie) will also increment this overall universal tracker as well.
 
-\#2) Tracker with ID `1-collection- -uniqueID-initiatedBy-alice`gets incremented to x10 out of 10 used. Alice has now fully used up her threshold for this tracker. This tracker is only incremented when Alice initiates the transfer. If Charlie initiates a transfer, his unique initiatedBy tracker will get incremented which is separate from Alice's.
+\#2) Tracker with ID `1-collection- -approvalId-uniqueID-initiatedBy-alice`gets incremented to x10 out of 10 used. Alice has now fully used up her threshold for this tracker. This tracker is only incremented when Alice initiates the transfer. If Charlie initiates a transfer, his unique initiatedBy tracker will get incremented which is separate from Alice's.
 
 Since there was an unlimited amount approved for the "to" and "from" trackers, we do not increment anything for those trackers (as-needed basis).
 
@@ -80,8 +80,8 @@ Since there was an unlimited amount approved for the "to" and "from" trackers, w
 
 Let's say we update the **amountTrackerId** to "uniqueID2" from "uniqueID". This makes all tracker IDs different, and thus, all tallies will start from scratch.
 
-`1-collection- -uniqueID-initiatedBy-alice` ->
+`1-collection- -approvalId-uniqueID-initiatedBy-alice` ->
 
-`1-collection- -uniqueID2-initiatedBy-alice`
+`1-collection- -approvalId-uniqueID2-initiatedBy-alice`
 
 If in the future, you change back to "uniqueID", the starting point will be the previous tally. Using the examples above, x10/10 used for Alice's initiated by tracker.

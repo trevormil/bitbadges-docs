@@ -179,9 +179,7 @@ The following brute forces badge IDs 1-10.
   "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "approvalId": "All", //forbids approval "xyz" from being updated
-  "amountTrackerId": "All",
-  "challengeTrackerId": "All",
-  
+
   "permanentlyPermittedTimes": [],
   "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
 }
@@ -272,8 +270,7 @@ See [Example Msgs](../broken-reference/) for further examples. Or, see the page 
             "end": "18446744073709551615"
           }
         ],
-        "approvalTrackerId": "All",
-        "challengeTrackerId": "All",
+        "approvalId": "All",
         "permanentlyPermittedTimes": [],
         "permanentlyForbiddenTimes": [
           {

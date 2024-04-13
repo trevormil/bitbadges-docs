@@ -96,7 +96,7 @@ IMPORTANT: Note the number of transfers is tracked using the same tracker as use
 
 ### Reserved Order
 
-We also support using the leaf index for the defined Merkle challenge proof (see [Merkle Challenges](predetermined-balances.md#merkle-challenges)) to calculate the order number (e.g. leftmost leaf on expected leaf layer will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer.
+We also support using the leaf index for the defined Merkle challenge proof (see [Merkle Challenges](predetermined-balances.md#merkle-challenges)) to calculate the order number (e.g. leftmost leaf on expected leaf layer will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer. The challenge we will use is the one with the corresponding **challengeTrackerId**.
 
 This is used to reserve specific badges for specific users / claim codes. For example, reserve the badges corresponding to order number 10 (leaf number 10) for address xyz.eth.
 
@@ -107,10 +107,13 @@ export interface PredeterminedOrderCalculationMethod {
   usePerFromAddressNumTransfers: boolean;
   usePerInitiatedByAddressNumTransfers: boolean;
   useMerkleChallengeLeafIndex: boolean;
+  challengeTrackerId: string;
 }
 ```
 
-## **Overlap / Out of Bounds**
+&#x20;
+
+**Overlap / Out of Bounds**
 
 In the base approval interface, we specify the bounds for the approval ("Alice" can transfer the IDs 1-10 for Mon-Fri to "Bob" initiated by "Alice"). Typically, the precalculated balances should be completely within these bounds. However, the order number may eventually correspond to balances that have no overlap with these bounds or partially overlap. For example, if you approve x1 of ID 1, then x1 of ID 2 and so on up to x1 of ID 10000, eventually, the order number will be 10001 which corresponds to balances that are out of bounds.
 

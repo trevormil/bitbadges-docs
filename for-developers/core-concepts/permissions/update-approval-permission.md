@@ -32,8 +32,6 @@ export interface CollectionApprovalPermission<T extends NumberType> {
   badgeIds: UintRange<T>[];
   ownershipTimes: UintRange<T>[];
   approvalId: string
-  approvalTrackerId: string
-  challengeTrackerId: string
   
   permanentlyPermittedTimes: UintRange<T>[];
   permanentlyForbiddenTimes: UintRange<T>[];
@@ -44,7 +42,7 @@ Ex: I can/cannot update the approvals for the transfer combinations ("All", "All
 
 ## ID Shorthands
 
-IDs are used for locking specific approvals or trackers. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination because multiple approvals could match to it.
+IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination because multiple approvals could match to it.
 
 To specify IDs, you can use the "All" reserved ID to represent all IDs, or you can use other shorthand methods such as "!xyz" to denote all IDs but xyz. These shorthands are the same as reserved lists, so we refer you[ there for more info](../address-lists-lists.md). Just replace the addresses with the IDs.
 
@@ -63,7 +61,6 @@ After: 1 -> Criteria XYZ, 2-10 -> Criteria ABC
 Approval permission updates are slightly tricky because even though an approval may be non-updatable according to the permissions set, its expected behavior may change due to how approvals are designed (i.e. using trackers).
 
 * For example, lets say we want to freeze IDs 501-1000 and have an incrementing mint of x1 of ID 1, x1 of ID 2, up to ID 1000. If we simply freeze the IDs 501-1000, the approval could still be deleted for IDs 1-500, and the increment number (tracker) will then never reach 501 because it will be out of bounds every time. Thus, expected behavior for 501-1000 changes even though it is frozen.
-* Or, let's say you create an approval for badges 1-100 with **challengeTrackerId** = "abc" and **approvalId** = "xyz", and you lock updating any approval for badges 1-100 but don't specify anything about the **challengeTrackerId**. While you cannot create/edit a new approval for badges 1-100, you can create a new approval for badge IDs 101+ with the same **challengeTrackerId** = "abc". In storage, the trackers are inherently linked, so when leaf #5 is used up in the new 101+ approval, leaf #5 will also be marked as used in the 1-100 approval. This totally messes up how the first approval operates.
 
 ### Definitions
 
@@ -71,7 +68,7 @@ To explain things easier, let's start with some definitions:
 
 #### **Approval Tuple**
 
-We define an approval tuple as a set of values (**from, to, initiated by, badgeIds, transferTimes, ownershipTimes, approvalId, challengeTrackerId, amountTrackerId**). The tuple for a specific approval that is currently set will consist of all values for that approval.
+We define an approval tuple as a set of values (**from, to, initiated by, badgeIds, transferTimes, ownershipTimes, approvalId**). The tuple for a specific approval that is currently set will consist of all values for that approval.
 
 Note that to match, all N criteria must match. If one doesn't, it isn't a match. For example, in the example below, badge ID 1 will never match to the tuple.
 
@@ -82,9 +79,7 @@ Note that to match, all N criteria must match. If one doesn't, it isn't a match.
   "badgeIds":  [{ "start": "2", "end": "10" }],
   "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All", //forbids approval "xyz" from being updated
-  "amountTrackerId": "All",
-  "challengeTrackerId": "All"
+  "approvalId": "All"
 }
 </code></pre>
 
@@ -100,8 +95,6 @@ For a given approval tuple, it is considered non-updatable according to the perm
   "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "approvalId": "All", //forbids approval "xyz" from being updated
-  "amountTrackerId": "All",
-  "challengeTrackerId": "All",
   
   "permanentlyPermittedTimes": [],
   "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
@@ -118,48 +111,30 @@ Commonly, you will make some values non-updatable by specifying some criteria (e
 
 As explained above, expected behavior not only encompasses non-updatability, but it also makes sure that nothing any other approval or update can do can affect the expected behavior of this approval. This designation is especially important.
 
-### Forbidding Updates for Specific Approval Tuples
+### Freezing Specific Approval Tuples
 
-With the way trackers work, it is important to handle approval permissions correctly to protect against cross-approval logic or break-down attacks.&#x20;
+With the way trackers work, it is important to handle approval permissions correctly to protect against break-down attacks to ensure expected behavior.
 
-Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior. If you want to do this a specific approval that is set, the approval tuple should consist of the specific values for that specific approval.
+Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior.&#x20;
 
-**Overview**
+**Specific Approval ID**
 
-The summary of the algorithm below is essentially the following:
+If you want to do this for a specific approval that is set, the approval tuple should consist of the specific values for that specific approval. Because the **approvalId** is unique and included in the tuple, you know there are no other approvals that overlap.
 
-1. Forbid updates for the values you want to freeze in permissions
-2. To keep expected behavior, you need to forbid updates for all approvals that are currently set and overlap (even partially) with the values you are trying to freeze.
-   * There are some cases where you may not need to freeze because of breakdown logic or lack of dependencies, but for best practices, you should forbid updates entirely to all overlapping approvals. Or, restructure them in a way that you can freeze them entirely.
+Thus, you can simply brute force this tuple in the permissions and call it a day.
 
-**Full Algorithm**
+**Tuples with Overlaps**
 
-Given an approval tuple, do the following:
+For tuples which may span multiple approvals, the algorithm is essentially the following:
 
-1. Set the tuple to be non-updatable in the permissions.
-2. Find all approvals currently set that overlap (even partially) with the tuple. For all matches, do the following:
-   1. Handle Challenges&#x20;
-      1. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = challengeTrackerId**? If so, you are good because you know that the challenge logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
-      2. Is **challengeTrackerId** brute forced in permissions? If so, you are good because you know that the approval is non-updatable and challenge logic will always be as expected.
-      3. Does the approval rely on challenge trackers (i.e. **merkleChallenge** is defined)? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
-         * Note that this goes against best practices though if it only partially overlaps. This would mean you are freezing part of an approval, and future approval updates would require breakdown logic.
-   2. Handle Amount Trackers
-      1. Is the approval non-updatable (use the updated permissions with the tuple non-updatable) and **approvalId = amountTrackerId**? If so, you are good because you know that the logic is always scoped and will behave as expected due to the restriction of tracker IDs not being able to equal another approval's approval ID.
-      2. Is **amountTrackerId** brute forced in permissions? If so, you are good because you know that the logic will always be as expected.
-      3. Does the approval rely on amount trackers? If not, you are good. If it doesn't currently depend on it, it cannot be updated once the permission is set.
-         * Relying on amount trackers means that it relies or tracks values for **approvalAmounts, predeterminedBalances**, or **maxNumTransfers.**  There is an edge case where the approval relies on **predeterminedBalances** but only for challenges (**orderCalculationMethod**.**useMerkleChallengeLeafIndex**). This is fine as long as it doesn't rely on the other two.
-         * Note that this goes against best practices though if it only partially overlaps. This would mean you are freezing part of an approval, and future approval updates would require breakdown logic.
-   3. If you do not satisfy 1 and/or 2, you need to update it so that you do by adding new permissions
-      1. If **amountTrackerId = approvalId** or **approvalId = challengeTrackerId**, you can freeze it by brute forcing the **approvalId** via a new permission.
-      2. Or else, you will need to brute force the **amountTrackerId** and/or **challengeTrackerId** via new permissions. This will handle the matching approval, but note that it may also affect other approvals. It is up to you whether you want to handle it recursively, or leave it here. If you handle it recursively, note that both tracker IDs need to be satisfied.
-
-
-
-
+1. Forbid updates for the exact tuple values you want to freeze in permissions
+2. To keep expected behavior, you need to forbid updates for all specific approvals that are currently set and overlap (even partially) with the values you are trying to freeze.
+   * Ex: If you are trying to freeze badge IDs 1-10, you should also entirely freeze the approval abc123 which is for badge IDs 1-100.
+   * Technically, this only needs to be done for approvals that are set and can affect the behavior of the tuple values, but to be safe, we recommend freezing all overlapping approvals or restructuring so they do not overlap. It is difficult to manage when part of an approval is frozen.
 
 **Example**
 
-Let's say you want to forbid ever updating the transferability for badges 1-10, and you have the following approvals currently set. Lets say they use trackers.
+Let's say you want to forbid ever updating the transferability for badges 1-10, and you have the following approvals currently set (for badges 1-100).
 
 ```json
 "collectionApprovals": [
@@ -186,8 +161,6 @@ Let's say you want to forbid ever updating the transferability for badges 1-10, 
         }
       ],
       "approvalId": "abc",
-      "amountTrackerId": "abc",
-      "challengeTrackerId": "abc",
       "approvalCriteria": {
         .... //uses trackers
       }
@@ -195,7 +168,7 @@ Let's say you want to forbid ever updating the transferability for badges 1-10, 
   ]
 ```
 
-Step 1: Brute force IDs 1-10 in the permissions
+Step 1: Brute force IDs 1-10 in the permissions to be forbidden.
 
 <pre class="language-json"><code class="lang-json"><strong>{
 </strong>  "fromListId": "All",
@@ -204,11 +177,7 @@ Step 1: Brute force IDs 1-10 in the permissions
   "badgeIds":  [{ "start": "1", "end": "10" }],
   "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
   "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All", //forbids approval "xyz" from being updated
-  "amountTrackerId": "All",
-  "challengeTrackerId": "All"
-  
-  
+  "approvalId": "All",
   "permanentlyPermittedTimes": [],
   "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
 }
@@ -240,15 +209,13 @@ Step 2: Find all matching approvals. In this case, we only have one and it match
       }
     ],
     "approvalId": "abc",
-    "amountTrackerId": "abc",
-    "challengeTrackerId": "abc",
     "approvalCriteria": {
       ....
     }
   }
 ```
 
-In this particular case, the approval uses trackers, is updatable (IDs 11-100 are), and does not already have the tracker IDs brute forced. Thus, expected behavior is not guaranteed.
+In this particular case, the approval is updatable (IDs 11-100 are) and is not already frozen. Thus, expected behavior of badges 1-10 may not be guaranteed.
 
 We need to handle this, which we can do by adding another permission brute forcing approval "abc".
 
@@ -275,10 +242,7 @@ We need to handle this, which we can do by adding another permission brute forci
         "end": "18446744073709551615"
       }
     ],
-    "approvalId": "abc",
-    "amountTrackerId": "All",
-    "challengeTrackerId": "All",
-     
+    "approvalId": "abc",    
      
     "permanentlyPermittedTimes": [],
     "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]

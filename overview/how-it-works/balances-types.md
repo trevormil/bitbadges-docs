@@ -10,6 +10,10 @@ Standard balances are what you may be familiar with. All balances are stored on 
 
 This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including the core $BADGE currency).
 
+## Non-Public
+
+We do give the option to make balances non-public. This can either mean you want to keep balances private through a self-implementation. Or, you may not need balances altogether. If either of these criteria match, you can select this balance type, and we will not display anything about balances on the user interface (everything is left up to you entirely).
+
 ## Off-Chain
 
 Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).&#x20;

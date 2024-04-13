@@ -16,19 +16,20 @@ Similar to approval amounts, you can also specify the maximum number of transfer
 
 **Example**
 
-Let's say we have the ID `1-collection- -uniqueID-initiatedBy-alice` and the defined values below:
+Let's say we have the ID `1-collection- -approvalId-uniqueID-initiatedBy-alice` and the defined values below:
 
 <pre class="language-json"><code class="lang-json">"maxNumTransfers": {
 <strong>    "overallMaxNumTransfers": "0",
 </strong>    "perFromAddressMaxNumTransfers": "0",
     "perToAddressMaxNumTransfers": "0",
-    "perInitiatedByAddressMaxNumTransfers": "1"
+    "perInitiatedByAddressMaxNumTransfers": "1",
+    "amountTrackerId": "uniqueID",
 }
 </code></pre>
 
-The first transfer initiated by Alice would increment the approval tracker ID`1-collection- -uniqueID-initiatedBy-alice` to 1/1 transfers used. Alice can no longer initiate another transfer.
+The first transfer initiated by Alice would increment the approval tracker ID`1-collection- -approvalId-uniqueID-initiatedBy-alice` to 1/1 transfers used. Alice can no longer initiate another transfer.
 
-However, Bob can still transfer because his ID is `1-collection- -uniqueID-initiatedBy-bob` which is a different tracker.
+However, Bob can still transfer because his ID is `1-collection- -approvalId-uniqueID-initiatedBy-bob` which is a different tracker.
 
 **As-Needed Basis**
 
