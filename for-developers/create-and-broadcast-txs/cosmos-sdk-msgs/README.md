@@ -10,7 +10,7 @@ Each transaction must consist of one or Msgs to be executed. Transactions also c
 
 The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
 
-The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective).
+The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
 
 **How to broadcast transactions with Msgs?**
 
@@ -43,13 +43,16 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 * [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../../tutorials/create-a-wasm-contract.md) for tutorial.
 
-**x/protocols**
+**x/maps**
 
-* MsgCreateProtocol -Creates a protocol, uniquely identifed by itsname
-* MsgUpdateProtocol - Updates an existing protocol.
-* MsgDeleteProtocol - Deletes a protocol
-* MsgSetCollectionForProtocol - Allows a user to specify what collection they want to use for the protocol.
-* MsgUnsetCollectionForProtocol - Unsets the currently set collection for the protocol.
+* MsgCreateMap - Creates a map, uniquely identifed by an ID
+* MsgUpdateMap - Updates an existing map.
+* MsgDeleteMap - Deletes a map
+* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+
+**x/anchor**
+
+* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
 
 **Other Cosmos SDK Modules**
 
