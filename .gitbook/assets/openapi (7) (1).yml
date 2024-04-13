@@ -52,7 +52,7 @@ components:
         block:
           $ref: '#/components/schemas/LatestBlockStatus'
         nextCollectionId:
-          type: integer # Adjust type accordingly
+          $ref: '#/components/schemas/NumberType'
         gasPrice:
           type: number
         lastXGasAmounts:
@@ -68,6 +68,7 @@ components:
       # Define properties for LatestBlockStatus if needed
     NumberType:
       type: string
+      example: '123'
       description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
   securitySchemes:
     apiKeyAuth:
@@ -104,12 +105,12 @@ paths:
           $ref: '#/components/responses/UnauthorizedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-      x-code-samples:
-        - lang: typescript
-          label: BitBadges SDK
-          source: |
-            const res = await BitBadgesApi.getStatus();
-            console.log(res);
+      # x-code-samples:
+      #   - lang: typescript
+      #     label: BitBadges SDK
+      #     source: |
+      #       const res = await BitBadgesApi.getStatus();
+      #       console.log(res);
       parameters:
         - name: x-api-key
           in: header

@@ -52,7 +52,7 @@ components:
         block:
           $ref: '#/components/schemas/LatestBlockStatus'
         nextCollectionId:
-          type: integer # Adjust type accordingly
+          $ref: '#/components/schemas/NumberType'
         gasPrice:
           type: number
         lastXGasAmounts:
@@ -68,6 +68,7 @@ components:
       # Define properties for LatestBlockStatus if needed
     NumberType:
       type: string
+      example: '123'
       description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
   securitySchemes:
     apiKeyAuth:

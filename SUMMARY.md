@@ -94,7 +94,7 @@
     * [Accounts](for-developers/bitbadges-api/routes/accounts.md)
     * [Authentication](for-developers/bitbadges-api/routes/authentication.md)
     * [Address Lists](for-developers/bitbadges-api/routes/address-lists.md)
-    * [Protocols](for-developers/bitbadges-api/routes/protocols.md)
+    * [Secrets](for-developers/bitbadges-api/routes/secrets.md)
     * [Miscellaneous](for-developers/bitbadges-api/routes/miscellaneous.md)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
