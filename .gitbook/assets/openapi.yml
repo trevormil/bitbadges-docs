@@ -107,7 +107,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userMaybeSignedIn: []
+          userMaybeSignedIn: []
   /collection/{collectionId}/{badgeId}/owners:
     post:
       operationId: getOwnersForBadge
@@ -331,7 +331,7 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userMaybeSignedIn: []
+          userMaybeSignedIn: []
   /deleteReview/{reviewId}:
     post:
       operationId: deleteReview
@@ -371,7 +371,7 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /collection/{collectionId}/addReview:
     post:
       operationId: addReviewForCollection
@@ -411,7 +411,7 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /user/batch:
     post:
       operationId: getAccounts
@@ -445,7 +445,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userMaybeSignedIn: []
+          userMaybeSignedIn: []
   /user/{addressOrUsername}/addReview:
     post:
       operationId: addReviewForUser
@@ -485,7 +485,7 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /user/updateAccount:
     post:
       operationId: updateAccountInfo
@@ -519,7 +519,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /addBalancesToOffChainStorage:
     post:
       operationId: addBalancesToOffChainStorage
@@ -553,8 +553,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
-        - frontendOnly: []
+          userSignedIn: []
+          frontendOnly: []
   /addMetadataToIpfs:
     post:
       operationId: addMetadataToIpfs
@@ -588,8 +588,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
-        - frontendOnly: []
+          userSignedIn: []
+          frontendOnly: []
   /addApprovalDetailsToOffChainStorage:
     post:
       operationId: addApprovalDetailsToOffChainStorage
@@ -623,8 +623,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
-        - frontendOnly: []
+          userSignedIn: []
+          frontendOnly: []
   /auth/getChallenge:
     post:
       operationId: getSignInChallenge
@@ -887,7 +887,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - frontendOnly: []
+          frontendOnly: []
   /addressList/update:
     post:
       operationId: updateAddressLists
@@ -921,8 +921,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userIsOwner: []
-        - userSignedIn: []
+          userIsOwner: []
+          userSignedIn: []
   /addressList/create:
     post:
       operationId: createAddressLists
@@ -956,8 +956,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userIsOwner: []
-        - userSignedIn: []
+          userIsOwner: []
+          userSignedIn: []
   /addressList:
     post:
       operationId: getAddressLists
@@ -991,7 +991,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userMaybeSignedIn: []
+          userMaybeSignedIn: []
   /addressList/delete:
     post:
       operationId: deleteAddressLists
@@ -1025,8 +1025,8 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userIsOwner: []
-        - userSignedIn: []
+          userIsOwner: []
+          userSignedIn: []
   /authCode:
     post:
       operationId: getAuthCode
@@ -1126,7 +1126,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /auth/verifyGeneric:
     post:
       operationId: verifySignInGeneric
@@ -1193,7 +1193,7 @@ paths:
             type: string
       security:
         - apiKey: [] # This specifies that an API key is required for authentication
-        - userSignedIn: []
+          userSignedIn: []
   /getFollowDetails:
     post:
       operationId: getFollowDetails
@@ -1242,8 +1242,8 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: []
-        - userSignedIn: []
-        - userIsManager: []
+          userSignedIn: []
+          userIsManager: []
   /getRefreshStatus:
     post:
       operationId: getRefreshStatus
@@ -1485,7 +1485,7 @@ paths:
           $ref: '#/components/responses/InternalServerErrorResponse'
       security:
         - apiKey: []
-        - userMaybeSignedIn: []
+          userMaybeSignedIn: []
 components:
   responses:
     ErrorResponse:
