@@ -77,8 +77,8 @@ paths:
   /collection/batch:
     post:
       operationId: getCollectionsBatch
-      summary: Retrieve badge collections
-      description: Retrieves badge collections and associated details in batches.
+      summary: Get Collections
+      description: Retrieves badge collections and associated details.
       requestBody:
         required: true
         content:
@@ -111,18 +111,18 @@ paths:
   /collection/{collectionId}/{badgeId}/owners:
     post:
       operationId: getOwnersForBadge
-      summary: Retrieve owners for a badge
+      summary: Get Specific Badge Owners
       description: Retrieves the owners for a specific badge in a collection.
       parameters:
         - name: collectionId
           in: path
-          description: The ID of the collection containing the badge.
+          description: The numeric collection ID.
           required: true
           schema:
             type: integer
         - name: badgeId
           in: path
-          description: The ID of the badge for which owners are to be retrieved.
+          description: The numeric badge ID to retrieve owners for.
           required: true
           schema:
             type: integer
@@ -156,8 +156,8 @@ paths:
   /collection/{collectionId}/balance/{cosmosAddress}:
     post:
       operationId: getBadgeBalanceByAddress
-      summary: Retrieve badge balance by address
-      description: Retrieves the balance of a specific badge for a specific address.
+      summary: Get Balance by Address
+      description: Retrieves the balance of a specific collection for a specific address.
       parameters:
         - name: collectionId
           in: path
@@ -1561,7 +1561,7 @@ components:
         chain:
           type: string
         collectionId:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         assetIds:
           items:
             anyOf:
@@ -1618,7 +1618,7 @@ components:
         options:
           properties:
             numMatchesForVerification:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
           additionalProperties: false
           type: object
       required:
@@ -1743,13 +1743,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
       required:
         - _docId
       additionalProperties: false
-      description: |-
-        Fields for the MongoDB database document
       type: object
     ErrorResponse:
       properties:
@@ -1798,11 +1796,11 @@ components:
         txHash:
           type: string
         block:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         blockTimestamp:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         timestamp:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - txHash
         - block
@@ -1837,7 +1835,7 @@ components:
             discriminator:
               type: string
             lastUpdated:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
           required:
             - username
             - id
@@ -1851,7 +1849,7 @@ components:
             id:
               type: string
             lastUpdated:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
           required:
             - username
             - id
@@ -1865,7 +1863,7 @@ components:
             id:
               type: string
             lastUpdated:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
           required:
             - username
             - id
@@ -1879,7 +1877,7 @@ components:
             id:
               type: string
             lastUpdated:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
           required:
             - username
             - id
@@ -1909,12 +1907,20 @@ components:
     iEmailVerificationStatus:
       properties:
         verified:
+          description: Whether or not the email has been verified.
           type: boolean
         token:
+          description: >-
+            The email verification token. This is used for verification and
+            unsubscription.
           type: string
         expiry:
-          $ref: '#components/schemas/NumberType'
+          description: The expiry of the token for verification purposes.
+          $ref: '#/components/schemas/NumberType'
         antiPhishingCode:
+          description: >-
+            A unique code that we will send with all emails to verify that
+            BitBadges is the one sending the email.
           type: string
       additionalProperties: false
       type: object
@@ -1924,14 +1930,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         timestamp:
-          description: The timestamp  of the activity.
-          $ref: '#components/schemas/NumberType'
+          description: The timestamp of the activity. UNIX milliseconds.
+          $ref: '#/components/schemas/NumberType'
         block:
           description: The block number of the activity.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _notificationsHandled:
           description: >-
             Whether or not the notifications have been handled by the indexer or
@@ -1943,7 +1949,6 @@ components:
         - block
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iReviewDoc:
       properties:
@@ -1951,14 +1956,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         timestamp:
-          description: The timestamp  of the activity.
-          $ref: '#components/schemas/NumberType'
+          description: The timestamp of the activity. UNIX milliseconds.
+          $ref: '#/components/schemas/NumberType'
         block:
           description: The block number of the activity.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _notificationsHandled:
           description: >-
             Whether or not the notifications have been handled by the indexer or
@@ -1969,18 +1974,18 @@ components:
           type: string
         stars:
           description: The number of stars given (1-5).
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         from:
-          description: The cosmos address of the user who gave the review.
+          description: The Cosmos address of the user who gave the review.
           type: string
         collectionId:
           description: >-
             The collection ID of the collection that was reviewed. Only
             applicable to collection reviews.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         reviewedAddress:
           description: >-
-            The cosmos address of the user who the review is for. Only
+            The Cosmos address of the user who the review is for. Only
             applicable to user reviews.
           type: string
       required:
@@ -1992,7 +1997,6 @@ components:
         - from
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iTransferActivityDoc:
       properties:
@@ -2000,14 +2004,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         timestamp:
-          description: The timestamp  of the activity.
-          $ref: '#components/schemas/NumberType'
+          description: The timestamp of the activity. UNIX milliseconds.
+          $ref: '#/components/schemas/NumberType'
         block:
           description: The block number of the activity.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _notificationsHandled:
           description: >-
             Whether or not the notifications have been handled by the indexer or
@@ -2016,10 +2020,10 @@ components:
         to:
           items:
             type: string
-          description: The list of cosmos addresses that were involved in the activity.
+          description: The list of recipients in Cosmos address format.
           type: array
         from:
-          description: The list of cosmos addresses that were involved in the activity.
+          description: The sender's Cosmos address.
           type: string
         balances:
           items:
@@ -2027,29 +2031,31 @@ components:
           description: The list of balances and badge IDs that were transferred.
           type: array
         collectionId:
-          description: The collection ID of the collection that was transferred.
-          $ref: '#components/schemas/NumberType'
+          description: The collection ID for the badges that was transferred.
+          $ref: '#/components/schemas/NumberType'
         memo:
           description: The memo of the transfer.
           type: string
         precalculateBalancesFromApproval:
           $ref: '#/components/schemas/iApprovalIdentifierDetails'
-          description: Which approval to use to precalculate the balances.
+          description: Which approval to use to precalculate the balances?
         prioritizedApprovals:
           items:
             $ref: '#/components/schemas/iApprovalIdentifierDetails'
-          description: The prioritized approvals of the transfer.
+          description: >-
+            The prioritized approvals of the transfer. This is used to check
+            certain approvals before others to ensure intended behavior.
           type: array
         onlyCheckPrioritizedApprovals:
-          description: Whether or not to only check prioritized approvals.
+          description: >-
+            Whether or not to only check prioritized approvals? If false, we
+            will still check all approvals but prioritize the prioritized
+            approvals.
           type: boolean
-        zkProofSolutions:
-          items:
-            $ref: '#/components/schemas/iZkProofSolution'
-          description: The ZK proofs for the transfer.
-          type: array
         initiatedBy:
-          description: The cosmos address of the user who initiated the activity.
+          description: >-
+            The Cosmos address of the user who initiated the transfer
+            transaction.
           type: string
         txHash:
           description: The transaction hash of the activity.
@@ -2065,7 +2071,6 @@ components:
         - initiatedBy
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iListActivityDoc:
       properties:
@@ -2073,26 +2078,24 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         timestamp:
-          description: The timestamp  of the activity.
-          $ref: '#components/schemas/NumberType'
+          description: The timestamp of the activity. UNIX milliseconds.
+          $ref: '#/components/schemas/NumberType'
         block:
           description: The block number of the activity.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _notificationsHandled:
           description: >-
             Whether or not the notifications have been handled by the indexer or
             not.
           type: boolean
         listId:
-          description: The list ID of the list.
+          description: The list ID.
           type: string
         addedToList:
-          description: >-
-            Whether or not the address is included in the list. Note that this
-            could mean added to an whitelist or a blacklist
+          description: Whether or not the address was added to the list or removed.
           type: boolean
         addresses:
           items:
@@ -2109,7 +2112,6 @@ components:
         - listId
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iClaimAlertDoc:
       properties:
@@ -2117,14 +2119,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         timestamp:
-          description: The timestamp  of the activity.
-          $ref: '#components/schemas/NumberType'
+          description: The timestamp of the activity. UNIX milliseconds.
+          $ref: '#/components/schemas/NumberType'
         block:
           description: The block number of the activity.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _notificationsHandled:
           description: >-
             Whether or not the notifications have been handled by the indexer or
@@ -2143,7 +2145,7 @@ components:
           type: array
         collectionId:
           description: The collection ID of the claim alert.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         message:
           description: The message of the claim alert.
           type: string
@@ -2156,7 +2158,6 @@ components:
         - collectionId
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iCollectionDoc:
       properties:
@@ -2164,11 +2165,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         collectionMetadataTimeline:
           items:
             $ref: '#/components/schemas/iCollectionMetadataTimeline'
@@ -2224,12 +2225,12 @@ components:
           type: string
         createdBlock:
           description: The block number when this collection was created
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         createdTimestamp:
           description: >-
             The timestamp when this collection was created (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         updateHistory:
           items:
             $ref: '#/components/schemas/iUpdateHistory'
@@ -2257,7 +2258,6 @@ components:
         - aliasAddress
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iAccountDoc:
       properties:
@@ -2265,14 +2265,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         publicKey:
           description: The public key of the account
           type: string
         accountNumber:
           description: The account number of the account
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         pubKeyType:
           description: The public key type of the account
           type: string
@@ -2290,7 +2290,7 @@ components:
           type: string
         sequence:
           description: The sequence of the account
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         balance:
           $ref: '#/components/schemas/iCosmosCoin'
           description: The balance of the account
@@ -2305,7 +2305,6 @@ components:
         - btcAddress
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iCustomLink:
       properties:
@@ -2359,7 +2358,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         fetchedProfile:
           description: Whether we have already fetched the profile or not
@@ -2368,12 +2367,12 @@ components:
           description: >-
             The timestamp of the last activity seen for this account
             (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         createdAt:
           description: >-
             The timestamp of when this account was created (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         discord:
           description: The Discord username of the account
           type: string
@@ -2478,7 +2477,6 @@ components:
         - _docId
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iQueueDoc:
       properties:
@@ -2486,7 +2484,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         uri:
           description: >-
@@ -2495,27 +2493,27 @@ components:
           type: string
         collectionId:
           description: The collection ID of the metadata to be fetched
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         loadBalanceId:
           description: >-
             The load balance ID of the metadata to be fetched. Only the node
             with the same load balance ID will fetch this metadata
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         refreshRequestTime:
           description: >-
             The timestamp of when this metadata was requested to be refreshed
             (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         numRetries:
           description: >-
             The number of times this metadata has been tried to be fetched but
             failed
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         lastFetchedAt:
           description: >-
             The timestamp of when this metadata was last fetched (milliseconds
             since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         error:
           description: The error message if this metadata failed to be fetched
           type: string
@@ -2523,12 +2521,12 @@ components:
           description: >-
             The timestamp of when this document was deleted (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         nextFetchTime:
           description: >-
             The timestamp of when this document should be fetched next
             (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         emailMessage:
           type: string
         recipientAddress:
@@ -2546,7 +2544,6 @@ components:
         - numRetries
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iIndexerStatus:
       properties:
@@ -2560,13 +2557,13 @@ components:
       properties:
         height:
           description: The height of the latest block
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         txIndex:
           description: The transaction index of the latest block
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         timestamp:
           description: The timestamp of the latest block (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - height
         - txIndex
@@ -2579,25 +2576,25 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         block:
           $ref: '#/components/schemas/iLatestBlockStatus'
           description: The latest synced block status (i.e. height, txIndex, timestamp)
         nextCollectionId:
           description: The next collection ID to be used
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         gasPrice:
           description: The current gas price based on the average of the lastXGasAmounts
           type: number
         lastXGasAmounts:
           items:
-            $ref: '#components/schemas/NumberType'
+            $ref: '#/components/schemas/NumberType'
           description: The last X gas prices
           type: array
         lastXGasLimits:
           items:
-            $ref: '#components/schemas/NumberType'
+            $ref: '#/components/schemas/NumberType'
           description: The last X gas limits
           type: array
       required:
@@ -2609,7 +2606,6 @@ components:
         - lastXGasLimits
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iAddressListEditKey:
       properties:
@@ -2618,7 +2614,7 @@ components:
           type: string
         expirationDate:
           description: The expiration date of the key (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         mustSignIn:
           description: True if the user can only add their signed in address to the list
           type: boolean
@@ -2658,7 +2654,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         updateHistory:
           items:
@@ -2667,12 +2663,12 @@ components:
           type: array
         createdBlock:
           description: The block number when this list was created
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         lastUpdated:
           description: >-
             The timestamp of when this list was last updated (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         nsfw:
           properties:
             reason:
@@ -2709,7 +2705,6 @@ components:
         - lastUpdated
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iBalanceDoc:
       properties:
@@ -2747,11 +2742,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         cosmosAddress:
           description: The Cosmos address of the user
           type: string
@@ -2766,12 +2761,12 @@ components:
             The timestamp of when the off-chain balances were fetched
             (milliseconds since epoch). For BitBadges indexer, we only populate
             this for Mint and Total docs.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         fetchedAtBlock:
           description: >-
             The block number of when the off-chain balances were fetched. For
             BitBadges indexer, we only populate this for Mint and Total docs.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         isPermanent:
           description: True if the off-chain balances are using permanent storage
           type: boolean
@@ -2804,9 +2799,6 @@ components:
         This includes their balances, incoming approvals, outgoing approvals,
         and permissions.
 
-
-        Fields for the MongoDB database document
-
       type: object
     ClaimIntegrationPluginType:
       enum:
@@ -2830,7 +2822,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         cid:
           description: The CID of the password document
@@ -2843,7 +2835,7 @@ components:
           type: boolean
         collectionId:
           description: The collection ID of the password document
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         plugins:
           items: {}
           description: Dynamic checks to run in the form of plugins
@@ -2883,13 +2875,12 @@ components:
         - action
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iApprovalTrackerDoc:
       properties:
         collectionId:
           description: The collection ID for the approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         approvalId:
           description: The approval ID
           type: string
@@ -2916,11 +2907,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         numTransfers:
           description: The number of transfers. Is an incrementing tally.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         amounts:
           items:
             $ref: '#/components/schemas/iBalance'
@@ -2939,13 +2930,12 @@ components:
         - amounts
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iChallengeTrackerIdDetails:
       properties:
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         approvalId:
           description: The approval ID
           type: string
@@ -2977,11 +2967,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         challengeTrackerId:
           description: The challenge ID
           type: string
@@ -3001,7 +2991,7 @@ components:
           type: string
         usedLeafIndices:
           items:
-            $ref: '#components/schemas/NumberType'
+            $ref: '#/components/schemas/NumberType'
           description: >-
             The used leaf indices for each challenge. A leaf index is the leaf
             location in the bottommost layer of the Merkle tree
@@ -3016,13 +3006,12 @@ components:
         - usedLeafIndices
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iMerklechallengeTrackerIdDetails:
       properties:
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         challengeTrackerId:
           description: The challenge ID
           type: string
@@ -3039,7 +3028,7 @@ components:
           type: string
         usedLeafIndices:
           items:
-            $ref: '#components/schemas/NumberType'
+            $ref: '#/components/schemas/NumberType'
           description: >-
             The used leaf indices for each challenge. A leaf index is the leaf
             location in the bottommost layer of the Merkle tree
@@ -3058,7 +3047,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         content:
           anyOf:
@@ -3071,10 +3060,10 @@ components:
             BALANCES_DB and not here to avoid double storage.
         fetchedAt:
           description: The time the document was fetched
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         fetchedAtBlock:
           description: The block the document was fetched
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         db:
           enum:
             - ApprovalInfo
@@ -3096,7 +3085,6 @@ components:
         - isPermanent
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iRefreshDoc:
       properties:
@@ -3104,21 +3092,20 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         refreshRequestTime:
           description: The time the refresh was requested (Unix timestamp in milliseconds)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - _docId
         - collectionId
         - refreshRequestTime
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iAirdropDoc:
       properties:
@@ -3126,7 +3113,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         airdropped:
           description: True if the airdrop has been completed
@@ -3135,7 +3122,7 @@ components:
           description: >-
             The timestamp of when the airdrop was completed (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         hash:
           description: The hash of the airdrop transaction
           type: string
@@ -3145,7 +3132,6 @@ components:
         - timestamp
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iIPFSTotalsDoc:
       properties:
@@ -3153,17 +3139,16 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         bytesUploaded:
           description: The total bytes uploaded
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - _docId
         - bytesUploaded
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iComplianceDoc:
       properties:
@@ -3171,7 +3156,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         badges:
           properties:
@@ -3261,7 +3246,6 @@ components:
         - accounts
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iBlockinAuthSignatureDoc:
       properties:
@@ -3269,7 +3253,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         signature:
           type: string
@@ -3290,9 +3274,9 @@ components:
             $ref: '#/components/schemas/iSecretsProof'
           type: array
         createdAt:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         deletedAt:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - _docId
         - signature
@@ -3305,7 +3289,6 @@ components:
         - createdAt
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iSecretDoc:
       properties:
@@ -3313,7 +3296,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         createdBy:
           type: string
@@ -3406,7 +3389,6 @@ components:
         - updateHistory
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iFollowDetailsDoc:
       properties:
@@ -3414,17 +3396,17 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         cosmosAddress:
           description: The Cosmos address of the user
           type: string
         followingCount:
           description: The number of users that the user is following
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         followersCount:
           description: The number of users that are following the user
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         followers:
           items:
             type: string
@@ -3437,7 +3419,7 @@ components:
           type: array
         followingCollectionId:
           description: The collection ID of the following collection
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - _docId
         - cosmosAddress
@@ -3448,7 +3430,6 @@ components:
         - followingCollectionId
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iMapDoc:
       properties:
@@ -3456,14 +3437,14 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         creator:
           type: string
         mapId:
           type: string
         inheritManagerTimelineFrom:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         managerTimeline:
           items:
             $ref: '#/components/schemas/iManagerTimeline'
@@ -3505,7 +3486,6 @@ components:
         - updateHistory
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iBadgeMetadataDetails:
       properties:
@@ -3513,7 +3493,7 @@ components:
           description: >-
             The metadata ID for the fetched URI. Metadata IDs map an ID to each
             unique URI. See BitBadges Docs for more information.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         badgeIds:
           items:
             $ref: '#/components/schemas/iUintRange'
@@ -3615,10 +3595,10 @@ components:
           type: array
         fetchedAtBlock:
           description: The block the metadata was fetched at.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         fetchedAt:
           description: The time the metadata was fetched.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         _isUpdating:
           description: Whether the metadata is currently being updated.
           type: boolean
@@ -3659,7 +3639,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         updateHistory:
           items:
@@ -3668,12 +3648,12 @@ components:
           type: array
         createdBlock:
           description: The block number when this list was created
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         lastUpdated:
           description: >-
             The timestamp of when this list was last updated (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         nsfw:
           properties:
             reason:
@@ -3754,7 +3734,6 @@ components:
         - claims
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     GetAddressListsRouteRequestBody:
       properties:
@@ -3907,8 +3886,32 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
+        publicKey:
+          description: The public key of the account
+          type: string
+        accountNumber:
+          description: The account number of the account
+          $ref: '#/components/schemas/NumberType'
+        pubKeyType:
+          description: The public key type of the account
+          type: string
+        cosmosAddress:
+          description: The Cosmos address of the account
+          type: string
+        ethAddress:
+          description: The Eth address of the account
+          type: string
+        btcAddress:
+          description: The Bitcoin address of the account
+          type: string
+        sequence:
+          description: The sequence of the account
+          $ref: '#/components/schemas/NumberType'
+        balance:
+          $ref: '#/components/schemas/iCosmosCoin'
+          description: The balance of the account
         fetchedProfile:
           description: Whether we have already fetched the profile or not
           type: boolean
@@ -3916,12 +3919,12 @@ components:
           description: >-
             The timestamp of the last activity seen for this account
             (milliseconds since epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         createdAt:
           description: >-
             The timestamp of when this account was created (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         discord:
           description: The Discord username of the account
           type: string
@@ -3968,30 +3971,6 @@ components:
           additionalProperties: false
           description: The custom pages of the account
           type: object
-        publicKey:
-          description: The public key of the account
-          type: string
-        accountNumber:
-          description: The account number of the account
-          $ref: '#components/schemas/NumberType'
-        pubKeyType:
-          description: The public key type of the account
-          type: string
-        cosmosAddress:
-          description: The Cosmos address of the account
-          type: string
-        ethAddress:
-          description: The Eth address of the account
-          type: string
-        btcAddress:
-          description: The Bitcoin address of the account
-          type: string
-        sequence:
-          description: The sequence of the account
-          $ref: '#components/schemas/NumberType'
-        balance:
-          $ref: '#/components/schemas/iCosmosCoin'
-          description: The balance of the account
         watchlists:
           properties:
             badges:
@@ -4174,7 +4153,7 @@ components:
         alias:
           properties:
             collectionId:
-              $ref: '#components/schemas/NumberType'
+              $ref: '#/components/schemas/NumberType'
             listId:
               type: string
           additionalProperties: false
@@ -4204,7 +4183,6 @@ components:
         - views
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     AccountViewKey:
       enum:
@@ -4348,17 +4326,17 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         cosmosAddress:
           description: The Cosmos address of the user
           type: string
         followingCount:
           description: The number of users that the user is following
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         followersCount:
           description: The number of users that are following the user
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         followers:
           items:
             type: string
@@ -4371,7 +4349,7 @@ components:
           type: array
         followingCollectionId:
           description: The collection ID of the following collection
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         followersPagination:
           $ref: '#/components/schemas/PaginationInfo'
         followingPagination:
@@ -4396,13 +4374,12 @@ components:
         - activityPagination
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     FilterBadgesInCollectionRequestBody:
       properties:
         collectionId:
           description: The collection ID to filter
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         badgeIds:
           items:
             $ref: '#/components/schemas/iUintRange'
@@ -4531,11 +4508,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         cosmosAddress:
           description: The Cosmos address of the user
           type: string
@@ -4550,12 +4527,12 @@ components:
             The timestamp of when the off-chain balances were fetched
             (milliseconds since epoch). For BitBadges indexer, we only populate
             this for Mint and Total docs.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         fetchedAtBlock:
           description: >-
             The block number of when the off-chain balances were fetched. For
             BitBadges indexer, we only populate this for Mint and Total docs.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         isPermanent:
           description: True if the off-chain balances are using permanent storage
           type: boolean
@@ -4587,9 +4564,6 @@ components:
 
         This includes their balances, incoming approvals, outgoing approvals,
         and permissions.
-
-
-        Fields for the MongoDB database document
 
       type: object
     GetBadgeActivityRouteRequestBody:
@@ -4801,7 +4775,7 @@ components:
               - properties:
                   collectionId:
                     description: The ID of the collection to fetch.
-                    $ref: '#components/schemas/NumberType'
+                    $ref: '#/components/schemas/NumberType'
                 required:
                   - collectionId
                 additionalProperties: false
@@ -4922,7 +4896,6 @@ components:
         - `approvalTrackers` - Fetches the approvals trackers for the collection
         in random order.
 
-
       type: object
     iGetCollectionByIdRouteSuccessResponse:
       properties:
@@ -4990,7 +4963,7 @@ components:
           type: boolean
         specificCollectionId:
           description: If true, we will limit collection results to a single collection.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       additionalProperties: false
       type: object
     iGetSearchRouteSuccessResponse:
@@ -5131,7 +5104,7 @@ components:
           type: string
         stars:
           description: The star rating (1 to 5).
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - review
         - stars
@@ -5147,7 +5120,7 @@ components:
           type: string
         stars:
           description: The number of stars (1 to 5) for the review.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - review
         - stars
@@ -5172,7 +5145,7 @@ components:
           type: string
         seenActivity:
           description: The last seen activity timestamp.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         readme:
           description: The README details.
           type: string
@@ -5295,7 +5268,7 @@ components:
           type: string
         collectionId:
           description: The collection ID.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - method
         - collectionId
@@ -5425,7 +5398,7 @@ components:
           type: string
         hours:
           description: The number of hours to be signed in for.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - chain
         - address
@@ -5812,7 +5785,7 @@ components:
           items:
             properties:
               collectionId:
-                $ref: '#components/schemas/NumberType'
+                $ref: '#/components/schemas/NumberType'
               message:
                 type: string
               cosmosAddresses:
@@ -5883,7 +5856,6 @@ components:
       description: >-
         Generic route to verify any Blockin request. Does not sign you in with
         the API. Used for custom Blockin integrations.
-
 
       type: object
     iGenericBlockinVerifyRouteSuccessResponse:
@@ -5976,7 +5948,7 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         createdBy:
           type: string
@@ -6069,7 +6041,6 @@ components:
         - updateHistory
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     DeleteSecretRouteRequestBody:
       properties:
@@ -6301,7 +6272,7 @@ components:
     GetClaimAlertsForCollectionRouteRequestBody:
       properties:
         collectionId:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         bookmark:
           type: string
       required:
@@ -6361,7 +6332,7 @@ components:
         mapId:
           type: string
         inheritManagerTimelineFrom:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         managerTimeline:
           items:
             $ref: '#/components/schemas/iManagerTimeline'
@@ -6418,11 +6389,11 @@ components:
           description: A unique stringified document ID
           type: string
         _id:
-          description: A uniuqe document ID (Mongo DB ObjectID)
+          description: A unique document ID (Mongo DB ObjectID)
           type: string
         collectionId:
           description: The collection ID
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         collectionMetadataTimeline:
           items:
             $ref: '#/components/schemas/iCollectionMetadataTimeline'
@@ -6485,12 +6456,12 @@ components:
           type: string
         createdBlock:
           description: The block number when this collection was created
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         createdTimestamp:
           description: >-
             The timestamp when this collection was created (milliseconds since
             epoch)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         updateHistory:
           items:
             $ref: '#/components/schemas/iUpdateHistory'
@@ -6671,7 +6642,6 @@ components:
         - claims
       additionalProperties: false
       description: |-
-        Fields for the MongoDB database document
       type: object
     iOffChainBalancesMap:
       additionalProperties:
@@ -6736,13 +6706,13 @@ components:
             The number of addresses to send the badges to. This takes priority
             over toAddresses.length (used when you don't know exact addresses
             (i.e. you know number of codes)).
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         incrementBadgeIdsBy:
           description: The number to increment the badgeIDs by for each transfer.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         incrementOwnershipTimesBy:
           description: The number to increment the ownershipTimes by for each transfer.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - from
         - toAddresses
@@ -6752,7 +6722,7 @@ components:
     iBatchBadgeDetails:
       properties:
         collectionId:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         badgeIds:
           items:
             $ref: '#/components/schemas/iUintRange'
@@ -6795,12 +6765,12 @@ components:
             The number of leaves in the Merkle tree. This takes priority over
             leaves.length if defined (used for buffer time between leaf
             generation and leaf length select)
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         currCode:
           description: >-
             The current code being used for the challenge. Used behind the
             scenes
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - leaves
         - isHashed
@@ -6875,7 +6845,7 @@ components:
       properties:
         amount:
           description: The amount of the coin.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         denom:
           description: The denomination of the coin.
           type: string
@@ -6926,12 +6896,12 @@ components:
           type: object
         consensus_pubkey:
           properties:
-            '''@type''':
+            "'@type'":
               type: string
             key:
               type: string
           required:
-            - '''@type'''
+            - "'@type'"
             - key
           additionalProperties: false
           type: object
@@ -7161,7 +7131,7 @@ components:
       properties:
         account:
           properties:
-            '''@type''':
+            "'@type'":
               type: string
             base_account:
               properties:
@@ -7169,12 +7139,12 @@ components:
                   type: string
                 pub_key:
                   properties:
-                    '''@type''':
+                    "'@type'":
                       type: string
                     key:
                       type: string
                   required:
-                    - '''@type'''
+                    - "'@type'"
                     - key
                   additionalProperties: false
                   type: object
@@ -7189,7 +7159,7 @@ components:
               additionalProperties: false
               type: object
           required:
-            - '''@type'''
+            - "'@type'"
             - base_account
           additionalProperties: false
           type: object
@@ -7405,7 +7375,7 @@ components:
         managerOnly:
           type: boolean
         collectionId:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         creatorOnly:
           type: boolean
         firstComeFirstServe:
@@ -7467,7 +7437,7 @@ components:
         mapId:
           type: string
         inheritManagerTimelineFrom:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         managerTimeline:
           items:
             $ref: '#/components/schemas/iManagerTimeline'
@@ -7516,7 +7486,7 @@ components:
         mapId:
           type: string
         inheritManagerTimelineFrom:
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         managerTimeline:
           items:
             $ref: '#/components/schemas/iManagerTimeline'
@@ -7740,7 +7710,7 @@ components:
           type: string
         collectionId:
           description: The ID of the collection to delete.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - creator
         - collectionId
@@ -7753,7 +7723,7 @@ components:
           type: string
         collectionId:
           description: The ID of the collection to transfer badges from.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         transfers:
           items:
             $ref: '#/components/schemas/iTransfer'
@@ -7864,7 +7834,7 @@ components:
           type: array
         collectionId:
           description: The ID of the collection to update.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         updateCollectionPermissions:
           description: Whether or not to update the collection permissions.
           type: boolean
@@ -7907,7 +7877,7 @@ components:
           type: string
         collectionId:
           description: The ID of the collection to transfer badges from.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         updateOutgoingApprovals:
           description: Whether or not to update the outgoing approvals.
           type: boolean
@@ -7988,7 +7958,7 @@ components:
         This is the same as NumberType, but without BigInts because they are not
         a primitive.
 
-      $ref: '#components/schemas/NumberType'
+      $ref: '#/components/schemas/NumberType'
     iUserPermissions:
       properties:
         canUpdateOutgoingApprovals:
@@ -8374,10 +8344,10 @@ components:
       properties:
         start:
           description: The start of the range.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         end:
           description: The end of the range, inclusive.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - start
         - end
@@ -8609,10 +8579,14 @@ components:
         customData:
           description: Arbitrary custom data that can be stored on-chain.
           type: string
+        zkpTrackerId:
+          description: ZKP tracker ID.
+          type: string
       required:
         - verificationKey
         - uri
         - customData
+        - zkpTrackerId
       additionalProperties: false
       type: object
     iZkProofSolution:
@@ -8632,7 +8606,7 @@ components:
       properties:
         collectionId:
           description: The collection ID of the badges to own.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         amountRange:
           $ref: '#/components/schemas/iUintRange'
           description: >-
@@ -8669,7 +8643,7 @@ components:
       properties:
         amount:
           description: The amount or balance of the owned badge.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         badgeIds:
           items:
             $ref: '#/components/schemas/iUintRange'
@@ -8801,7 +8775,9 @@ components:
     iCoinTransfer:
       properties:
         to:
-          description: The recipient of the coin transfer.
+          description: >-
+            The recipient of the coin transfer. This should be a Bech32 Cosmos
+            address.
           type: string
         coins:
           items:
@@ -8817,7 +8793,7 @@ components:
       properties:
         collectionId:
           description: The collection ID for the approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         approvalId:
           description: The approval ID
           type: string
@@ -8857,7 +8833,7 @@ components:
           type: string
         expectedProofLength:
           description: The expected proof length of the merkle proof.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         useCreatorAddressAsLeaf:
           description: >-
             Whether or not to override any leaf value and use the creator
@@ -8867,7 +8843,7 @@ components:
           description: >-
             Whether or not to enforce max uses per leaf. Used to prevent replay
             attacks.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         uri:
           description: The URI where to fetch the merkle challenge metadata from.
           type: string
@@ -9169,10 +9145,10 @@ components:
           type: array
         incrementBadgeIdsBy:
           description: The amount to increment the badge IDs by after each transfer.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         incrementOwnershipTimesBy:
           description: The amount to increment the owned times by after each transfer.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
       required:
         - startBalances
         - incrementBadgeIdsBy
@@ -9242,25 +9218,25 @@ components:
             The overall maximum amount approved for the badgeIDs and
             ownershipTimes. Running tally that includes all transfers that match
             this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perToAddressApprovalAmount:
           description: >-
             The maximum amount approved for the badgeIDs and ownershipTimes for
             each to address. Running tally that includes all transfers from each
             unique to address that match this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perFromAddressApprovalAmount:
           description: >-
             The maximum amount approved for the badgeIDs and ownershipTimes for
             each from address. Running tally that includes all transfers from
             each unique from address that match this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perInitiatedByAddressApprovalAmount:
           description: >-
             The maximum amount approved for the badgeIDs and ownershipTimes for
             each initiated by address. Running tally that includes all transfers
             from each unique initiated by address that match this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         amountTrackerId:
           description: >-
             The ID of the approval tracker. This is the key used to track
@@ -9281,26 +9257,26 @@ components:
             The overall maximum number of transfers for the badgeIDs and
             ownershipTimes. Running tally that includes all transfers that match
             this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perToAddressMaxNumTransfers:
           description: >-
             The maximum number of transfers for the badgeIDs and ownershipTimes
             for each to address. Running tally that includes all transfers from
             each unique to address that match this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perFromAddressMaxNumTransfers:
           description: >-
             The maximum number of transfers for the badgeIDs and ownershipTimes
             for each from address. Running tally that includes all transfers
             from each unique from address that match this approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         perInitiatedByAddressMaxNumTransfers:
           description: >-
             The maximum number of transfers for the badgeIDs and ownershipTimes
             for each initiated by address. Running tally that includes all
             transfers from each unique initiated by address that match this
             approval.
-          $ref: '#components/schemas/NumberType'
+          $ref: '#/components/schemas/NumberType'
         amountTrackerId:
           description: >-
             The ID of the approval tracker. This is the key used to track
