@@ -4,56 +4,130 @@ info:
   version: '0.1'
 servers:
   - url: https://api.bitbadges.io/api/v0
+components:
+  responses:
+    ErrorResponse:
+      description: An error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequestResponse:
+      description: Bad Request - Invalid request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnauthorizedResponse:
+      description: Unauthorized - Invalid session cookie; must sign in with Blockin
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerErrorResponse:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          description: Serialized error object for debugging purposes. Technical users can use this to debug issues.
+        errorMessage:
+          type: string
+          description: UX-friendly error message that can be displayed to the user. Always present if error.
+        unauthorized:
+          type: boolean
+          description: Authentication error. Present if the user is not authenticated.
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Requires a BitBadges API key for requests
+      x-type: string
+    frontendOnly:
+      type: apiKey
+      in: header
+      name: Origin
+      description: Can only be called by the official BitBadges frontend. Not for developer use.
+    cookieAuth:
+      type: http
+      scheme: cookie
+      description: User must be signed in with a valid session.
 paths:
-  /api/v0/status:
+  /status:
     post:
       operationId: getStatus
-      summary: Gets the current status details about the blockchain / indexer (gas, block height, etc).
+      summary: Get Status
+      description: Gets the current status details about the blockchain / indexer (gas, block height, etc).
       responses:
         '200':
           description: O
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
       x-code-samples:
         - lang: typescript
-          label: BitBadges SDK getStatus Example
+          label: BitBadges SDK
           source: |
             const res = await BitBadgesApi.getStatus();
             console.log(res);
-  /api/v0/auth/discord:
+      parameters:
+        - name: x-api-key
+          in: header
+          description: BitBadges API Key for authentication
+          required: true
+          schema:
+            type: string
+      security:
+        - apiKeyAuth: [] # This specifies that an API key is required for authentication
+        - cookieAuth: [] # This specifies that a session cookie is required for authentication
+        - frontendOnly: [] # This specifies that a CORS API key is required for authentication
+  /auth/discord:
     get:
       summary: Authenticate with Discord
       operationId: authenticateDiscord
       responses:
         '200':
           description: OK
-  /api/v0/auth/discord/callback:
+
+  /auth/discord/callback:
     get:
       summary: Discord Authentication Callback
       operationId: discordCallback
       responses:
         '200':
           description: OK
-  /api/v0/auth/twitter:
+  /auth/twitter:
     get:
       summary: Authenticate with Twitter
       operationId: authenticateTwitter
       responses:
         '200':
           description: OK
-  /api/v0/auth/twitter/callback:
+  /auth/twitter/callback:
     get:
       summary: Twitter Authentication Callback
       operationId: twitterCallback
       responses:
         '200':
           description: OK
-  /api/v0/report:
+  /report:
     post:
       summary: Add Report
       operationId: addReport
       responses:
         '200':
           description: OK
-  /api/v0/search/{searchValue}:
+  /search/{searchValue}:
     post:
       summary: Search
       operationId: search
@@ -66,14 +140,14 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/collection/batch:
+  /collection/batch:
     post:
       summary: Get Collections
       operationId: getCollections
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/{badgeId}/owners:
+  /collection/{collectionId}/{badgeId}/owners:
     post:
       summary: Get Owners for Badge
       operationId: getOwnersForBadge
@@ -91,7 +165,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/balance/{cosmosAddress}:
+  /collection/{collectionId}/balance/{cosmosAddress}:
     post:
       summary: Get Badge Balance by Address
       operationId: getBadgeBalanceByAddress
@@ -109,7 +183,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/{badgeId}/activity:
+  /collection/{collectionId}/{badgeId}/activity:
     post:
       summary: Get Badge Activity
       operationId: getBadgeActivity
@@ -127,21 +201,21 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/refresh:
+  /collection/{collectionId}/refresh:
     post:
       summary: Refresh Collection Metadata
       operationId: refreshMetadata
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/refreshStatus:
+  /collection/{collectionId}/refreshStatus:
     post:
       summary: Get Refresh Status
       operationId: getRefreshStatus
       responses:
         '200':
           description: OK
-  /api/v0/claims/{claimId}/{cosmosAddress}:
+  /claims/{claimId}/{cosmosAddress}:
     post:
       summary: Check and Complete Claim
       operationId: checkAndCompleteClaim
@@ -159,35 +233,35 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/claims:
+  /claims:
     post:
       summary: Get Claims
       operationId: getClaimsHandler
       responses:
         '200':
           description: OK
-  /api/v0/collections/filter:
+  /collections/filter:
     post:
       summary: Filter Badges in Collection
       operationId: filterBadgesInCollectionHandler
       responses:
         '200':
           description: OK
-  /api/v0/collection/{collectionId}/addReview:
+  /collection/{collectionId}/addReview:
     post:
       summary: Add Review for Collection
       operationId: addReviewForCollection
       responses:
         '200':
           description: OK
-  /api/v0/user/batch:
+  /user/batch:
     post:
       summary: Get User Accounts in Batch
       operationId: getAccounts
       responses:
         '200':
           description: OK
-  /api/v0/user/updateAccount:
+  /user/updateAccount:
     post:
       summary: Update User Account
       operationId: updateAccountInfo
@@ -204,7 +278,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/user/{addressOrUsername}/addReview:
+  /user/{addressOrUsername}/addReview:
     post:
       summary: Add Review for User
       operationId: addReviewForUser
@@ -217,7 +291,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/addMetadataToIpfs:
+  /addMetadataToIpfs:
     post:
       summary: Add Metadata to IPFS
       operationId: addMetadataToIpfsHandler
@@ -233,7 +307,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/addApprovalDetailsToOffChainStorage:
+  /addApprovalDetailsToOffChainStorage:
     post:
       summary: Add Approval Details to Off-Chain Storage
       operationId: addApprovalDetailsToOffChainStorageHandler
@@ -249,7 +323,7 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/addBalancesToOffChainStorage:
+  /addBalancesToOffChainStorage:
     post:
       summary: Add Balances to Off-Chain Storage
       operationId: addBalancesToOffChainStorageHandler
@@ -265,140 +339,140 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/auth/getChallenge:
+  /auth/getChallenge:
     post:
       summary: Get Authentication Challenge
       operationId: getChallenge
       responses:
         '200':
           description: OK
-  /api/v0/auth/verify:
+  /auth/verify:
     post:
       summary: Verify Blockin and Grant Session Cookie
       operationId: verifyBlockinAndGrantSessionCookie
       responses:
         '200':
           description: OK
-  /api/v0/auth/logout:
+  /auth/logout:
     post:
       summary: Logout
       operationId: removeBlockinSessionCookie
       responses:
         '200':
           description: OK
-  /api/v0/auth/status:
+  /auth/status:
     post:
       summary: Check Authentication Status
       operationId: checkifSignedInHandler
       responses:
         '200':
           description: OK
-  /api/v0/auth/genericVerify:
+  /auth/genericVerify:
     post:
       summary: Generic Blockin Verification
       operationId: genericBlockinVerifyHandler
       responses:
         '200':
           description: OK
-  /api/v0/metadata:
+  /metadata:
     post:
       summary: Fetch Arbitrary Metadata
       operationId: fetchMetadataDirectly
       responses:
         '200':
           description: OK
-  /api/v0/browse:
+  /browse:
     post:
       summary: Browse Collections
       operationId: getBrowseCollections
       responses:
         '200':
           description: OK
-  /api/v0/broadcast:
+  /broadcast:
     post:
       summary: Broadcast Transaction
       operationId: broadcastTx
       responses:
         '200':
           description: OK
-  /api/v0/simulate:
+  /simulate:
     post:
       summary: Simulate Transaction
       operationId: simulateTx
       responses:
         '200':
           description: OK
-  /api/v0/faucet:
+  /faucet:
     post:
       summary: Get Tokens from Faucet
       operationId: getTokensFromFaucet
       responses:
         '200':
           description: OK
-  /api/v0/addressLists:
+  /addressLists:
     post:
       summary: Get Address Lists
       operationId: getAddressLists
       responses:
         '200':
           description: OK
-  /api/v0/addressLists/update:
+  /addressLists/update:
     post:
       summary: Update Address Lists
       operationId: updateAddressLists
       responses:
         '200':
           description: OK
-  /api/v0/addressLists/delete:
+  /addressLists/delete:
     post:
       summary: Delete Address Lists
       operationId: deleteAddressLists
       responses:
         '200':
           description: OK
-  /api/v0/authCode:
+  /authCode:
     post:
       summary: Get Authentication Code
       operationId: getAuthCode
       responses:
         '200':
           description: OK
-  /api/v0/authCode/create:
+  /authCode/create:
     post:
       summary: Create Authentication Code
       operationId: createAuthCode
       responses:
         '200':
           description: OK
-  /api/v0/authCode/delete:
+  /authCode/delete:
     post:
       summary: Delete Authentication Code
       operationId: deleteAuthCode
       responses:
         '200':
           description: OK
-  /api/v0/claimAlerts/send:
+  /claimAlerts/send:
     post:
       summary: Send Claim Alerts
       operationId: sendClaimAlert
       responses:
         '200':
           description: OK
-  /api/v0/claimAlerts:
+  /claimAlerts:
     post:
       summary: Get Claim Alerts for Collection
       operationId: getClaimAlertsForCollection
       responses:
         '200':
           description: OK
-  /api/v0/follow-protocol:
+  /follow-protocol:
     post:
       summary: Follow Protocol
       operationId: getFollowDetails
       responses:
         '200':
           description: OK
-  /api/v0/ethFirstTx/{cosmosAddress}:
+  /ethFirstTx/{cosmosAddress}:
     get:
       summary: Get Balances for ETH First Transaction
       operationId: getBalancesForEthFirstTx
@@ -411,28 +485,28 @@ paths:
       responses:
         '200':
           description: OK
-  /api/v0/protocols:
+  /protocols:
     post:
       summary: Get Protocols
       operationId: getProtocols
       responses:
         '200':
           description: OK
-  /api/v0/protocols/collection:
+  /protocols/collection:
     post:
       summary: Get Collection for Protocol
       operationId: getCollectionForProtocol
       responses:
         '200':
           description: OK
-  /api/v0/appleWalletPass:
+  /appleWalletPass:
     post:
       summary: Create Apple Wallet Pass
       operationId: createPass
       responses:
         '200':
           description: OK
-  /api/v0/verifyEmail/{token}:
+  /verifyEmail/{token}:
     get:
       summary: Verify Email
       operationId: verifyEmail
