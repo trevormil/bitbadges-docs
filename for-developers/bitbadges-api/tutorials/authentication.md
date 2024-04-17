@@ -30,6 +30,25 @@ const res = await BitBadgesApi.getSignInChallenge({
 */
 ```
 
+**1.5) Edit Challenge**
+
+The challenge returned by the API is a base challenge. You can edit certain fields if desired (like resources aka scopes or expiration time). Certain fields though like uri, domain, statement, nonce must remain consistent.
+
+For scopes, we use the **resources** field. Specify the following strings (in full) directly in the resources fields for each authorized scope you want. Full Access overrides all of them. Note that we are looking to fine-grain the scopes further in the future. See [https://github.com/BitBadges/bitbadges-indexer/blob/master/src/blockin/scopes.ts](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/blockin/scopes.ts) for the up to date values.&#x20;
+
+```typescript
+const SupportedScopes = [
+  'Full Access: Full access to all features.',
+  'Report: Report users or collections.',
+  'Reviews: Create, read, update, and delete reviews.',
+  'Profile: Maintain your user profile information and view private information.',
+  'Address Lists: Create, read, update, and delete address lists.',
+  'Auth Codes: Manage authentication codes.',
+  'Claim Alerts: Manage claim alerts.',
+  'Secrets: Manage the account secrets and credentials.'
+];
+```
+
 **2) Sign Challenge**
 
 The user should then sign the **blockinMessage** string with a personal message signature from their wallet. See [https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains](https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains) for complete code snippets.
