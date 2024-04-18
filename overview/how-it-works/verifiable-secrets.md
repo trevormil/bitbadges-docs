@@ -1,9 +1,21 @@
 # Verifiable Secrets
 
-In addition to the public (on-chain) badge interface, the BitBadges site supports storing off-chain verifiable secrets. These can be credentials, attestations, anything.
+**Off-Chain Secrets and On-Chain Anchoring**
 
-How it works is that the issuer will sign some private data as a message, and it will be stored entirely off-chain in their BitBadges account. They can anchor it on-chain (without revealing the data) for data commitment and time verification purposes, but this is not needed in all cases.
+Besides traditional on-chain badges, BitBadges supports the storage of off-chain verifiable secrets. These can be any form of data that is secured by a signature, such as credentials or attestations. The flexibility to store data off-chain while still having the option to anchor it on-chain for verification purposes is often useful for use cases that have privacy and security requirements. Secrets are just signatures of one or more message using a crypto wallet.
 
-The issuer then gives that signature + private data to a holder or recipient (e.g. a university giving a student a diploma). The holder now has proof of this credential and can disclose it to any veriifers (who also have cryptographic proof that the data is valid). The issuer can also **selectively disclose** the minimum amount of data required (e.g. can reveal GPA > 3.0 w/o revealing other identifying information).
+BitBadges offers a centralized, easy to use solution for secrets with many neat features. The centralized part just comes from the fact that BitBadges stores the signatures for you. If you would like to self-host, you can for a decentralized experience.
 
-This presentation step to a verifier can be done manually or in-person. Typically, in the BitBadges ecosystem, you may see it attached to the sign-in flow.
+Some of the neat features include:
+
+* **Integration into Authentication Flows:** Secrets can be used to prove certain criteria to authentication providers. If you can prove you meet the criteria via a secret, you will be authenticated. This can be integrated into the Sign In with BitBadges flow, so for example, you can prove public ownership of a diploma badge whilst also verifying secret data such as a users' GPA.
+* **Anchoring:** Anchoring credentials on-chain provides a transparent and verifiable record of issuance, enhancing the trustworthiness and integrity of the credential without compromising the holder's privacy. The blockchain can be used for proof of knowledge of a secret at a certain time or to maintain data integrity.
+
+**Issuance and Storage**
+
+The credential issuance process begins when an issuer (for example, a university) signs a piece of private data (such as a student’s diploma) and transfers this signed data, along with the credential, to a recipient (the student). This action gives the holder concrete proof of their credential, which they can then present to any verifier. The system also ensures that verifiers receive cryptographic assurance of the data's authenticity.
+
+A distinctive feature of BitBadges is the ability for issuers to **selectively disclose** information. This means they can prove claims (like a GPA above 3.0) without disclosing any additional personal information that's irrelevant to the verifier's needs.
+
+For data integrity and verification purposes, credentials are signed and stored off-chain in the holder's BitBadges account. Issuers have the option to anchor these credentials on-chain to commit to the data publicly and verify its issuance time, although this step is optional and not always necessary.
+
