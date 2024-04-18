@@ -88,7 +88,7 @@
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
   * [Routes](for-developers/bitbadges-api/routes/README.md)
-    * [OpenAPI Docs](https://htmlpreview.github.io/?https://github.com/BitBadges/bitbadges-indexer/blob/master/redoc-static.html)
+    * [OpenAPI Docs](https://bitbadges.github.io/bitbadges-indexer/redoc-static.html)
     * [TypeScript Types](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
