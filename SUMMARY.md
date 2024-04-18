@@ -173,3 +173,7 @@
   * [Experiences Protocol](for-developers/protocols/experiences-protocol.md)
 * [👨‍💻 Contributing](for-developers/contributing.md)
 * [❓ FAQ - Dev](for-developers/faq-dev.md)
+
+## Blockin (Sign In with BitBadges)
+
+* [Blockin Docs](https://blockin.gitbook.io/blockin)
