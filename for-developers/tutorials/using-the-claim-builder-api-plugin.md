@@ -1,15 +1,17 @@
 # Using the Claim Builder API Plugin
 
-The claim builder supports custom API calls via the API plugin. We will call the specified URI via a POST HTTP request with the configured body. The name and description are to be displayed to the user. You can customize the body of the API call and even allow users to enter parameters too.
+The claim builder supports custom API calls via the API plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
 
-To pass the validation check, a successful response must be received (e.g. status code 200). We do nothing else with the response besides check success or not.
+To pass the validation check, a successful response must be received (e.g. status code 200). **We do nothing else with the response besides check success or not.**
+
+For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params.
 
 Couple notes:
 
 * **You should not depend on a successful response from your endpoint meaning a successful claim.**&#x20;
   * Just because your endpoint was a success does not mean the entire claim was successful. This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails.&#x20;
   * It is important that you set the necessary criteria on the BitBadges end to ensure correct behavior. For example, if you want to implement a query of X users (one claim per user) who attended a space, the one claim per user must be set and tracked on the BitBadges end.
-* **You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is a POST request as well.**
+* **You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).**
   * See more below in the authentication tutorial.
 * **If you need private variables, you should take the necessary measures.**&#x20;
   * You can set up a proxy server. For example, BitBadges does not deal with API keys. If you need an API key, you can set up a proxy that knows the API key before making the official request.
@@ -37,7 +39,7 @@ Or, we pass a \_\_key variable in the body as well which is a unique key generat
 
 You can check the authenticity of the key on your end by calling&#x20;
 
-```
+```typescript
 const resData = await BitBadgesApi.getExternalCallKey({ uri: 'YOUR_URI', key: '' })
 ```
 
@@ -70,6 +72,7 @@ On the BitBadges site, there is a Upload JSON button in the custom plugin form. 
 ```typescriptreact
 {
     name: '',
+    method: '',
     uri: '',
     description: '',
     passAddress: true,
