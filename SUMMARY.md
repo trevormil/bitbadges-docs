@@ -119,7 +119,6 @@
     * [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
     * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
     * [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
-    * [Metadata IDs](for-developers/bitbadges-sdk/common-snippets/metadata-ids.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
