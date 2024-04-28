@@ -33,13 +33,11 @@ For providing additional details about an approval, you can host a JSON via the 
 In a JSON hosted at **merkleChallenge.uri,** you can also provide Merkle challenge details if you have self-created a Merkle challenge, such as self-generating codes / passwords. This is only needed if you want compatibility with the BitBadges site and to be able to claim / transfer w/ this Merkle challenge directly on the site. We need to know how to generate the Merkle path for users.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>{
-</strong>    "name": "....",
-    "description": "....",
-    "challengeDetails": {
-        "treeOptions": MerkleTreeJsOptions, // see below
-        "isHashed": boolean;
-        "leaves": string[];
-    }
+</strong>
+    "treeOptions": MerkleTreeJsOptions, // see below
+    "isHashed": boolean;
+    "leaves": string[];
+
 }
 </code></pre>
 
