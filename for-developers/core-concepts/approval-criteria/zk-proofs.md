@@ -99,3 +99,7 @@ Examples
 Create Collection Msg w/ Proof - [https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/19\_zkp.json](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/19\_zkp.json)
 
 Sample Transfer Msg - [https://github.com/BitBadges/bitbadges-indexer/tree/master/src/setup/helpers](https://github.com/BitBadges/bitbadges-indexer/tree/master/src/setup/helpers)
+
+<figure><img src="../../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
