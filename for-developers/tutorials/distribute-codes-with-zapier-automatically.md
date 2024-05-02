@@ -10,7 +10,7 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select your trigger. Triggers are the action that initiate the automation flow. In the case above, this is a new Google form response. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-Step 3: Setup the Storage by Zapier action with the following values. This will&#x20;
+Step 3: Setup the Storage by Zapier action with the following values. This will create a value in store that increments once every&#x20;
 
 <figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
