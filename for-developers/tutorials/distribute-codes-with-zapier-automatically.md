@@ -6,11 +6,21 @@ The cool thing about codes / password based claims is that they are not crypto-n
 
 ### Tutorial
 
+Before beginning, we want to note that this is NOT the only way to do so. You can experiment with different integrations and see what works best for your use case.
+
+
+
 Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/). The site will walk you through it all.
 
 Step 2: Select your trigger. Triggers are the action that initiate the automation flow. In the case above, this is a new Google form response. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-Step 3: Setup the Storage by Zapier action with the following values. This will create a value in store that increments once every&#x20;
+Step 3: Setup the Storage by Zapier action with the following values. This will create a value in store that increments once every time the Zap is triggered.
+
+It is important to note that even test runs increment the Zap, so be mindful. We recommend maybe using different keys for tests and production (e.g. "numResponses-test" vs "numResponses").
+
+Also, note that unique stores (Accounts tab) will have blank state, so you can create a new account / store to reset the counters.
+
+For more advanced manipulation, see [https://store.zapier.com/](https://store.zapier.com/).&#x20;
 
 <figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
