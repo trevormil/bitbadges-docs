@@ -11,7 +11,7 @@ For some use cases, a spreadsheet like Google Sheets can be used for maintaining
 
 See the Blockin documentation for more information.
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ```javascript
 function makeAPIRequest() {

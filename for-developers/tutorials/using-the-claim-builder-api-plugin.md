@@ -1,4 +1,4 @@
-# Using the Claim Builder API Plugin
+# Custom Claim Builder API Plugin
 
 The claim builder supports custom API calls via the API plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
 
@@ -20,7 +20,7 @@ Couple notes:
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Ensuring BitBadges as Origin
 

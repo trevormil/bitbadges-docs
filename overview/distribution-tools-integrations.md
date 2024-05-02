@@ -17,7 +17,7 @@ On the BitBadges site, we natively support  many customization options (whitelis
 
 
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -37,6 +37,14 @@ Distribution may involve:
 * Distributing codes / passwords that are used to claim badges
 * Notifying users they are on an whitelist
 * Notifying users for how to earn / collect this badge
+
+### **Zapier**
+
+{% content-ref url="../for-developers/tutorials/distribute-codes-with-zapier-automatically.md" %}
+[distribute-codes-with-zapier-automatically.md](../for-developers/tutorials/distribute-codes-with-zapier-automatically.md)
+{% endcontent-ref %}
+
+<figure><img src="../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
 ### Address Collection Surveys
 
