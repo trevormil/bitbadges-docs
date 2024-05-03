@@ -16,7 +16,7 @@ The cool thing about distribution on BitBadges (claim codes, claim passwords, se
 
 #### **1. Registration with BitBadges**
 
-* **Trigger:** A user registers for an event through your website. This can be gated by Blockin authentication or Sign in with BitBadges to check badge ownership as well. This can be done with the Webhooks by Zapier plugin.
+* **Trigger:** A user registers for an event through your website. The registration process is gated by Blockin authentication or Sign in with BitBadges to check badge ownership as well. This can be done with the Webhooks by Zapier plugin.
 * **Action:** Zapier sends the user a BitBadges claim code to generate a unique badge as proof of registration.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
