@@ -1,4 +1,4 @@
-# Automate the Distribution Process w/ Zapier
+# Automate w/ Zapier
 
 **What is Zapier?**
 
@@ -12,12 +12,14 @@ See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
 The cool thing about distribution on BitBadges (claim codes, claim passwords, secret IDs) is that they are not crypto-native, so you can customize your experience with many different apps and integrations.&#x20;
 
-Example Use Cases w/ BitBadges and Zapier:
+**Example Use Cases w/ BitBadges and Zapier**
 
-#### **1. Event Registration with BitBadges**
+#### **1. Registration with BitBadges**
 
-* **Trigger:** A user registers for an event through a form on your website.
-* **Action:** Zapier sends the user a BitBadges claim code to generate a unique badge as proof of registration.
+* **Trigger:** A user registers for an event through your website. This can be gated by Blockin authentication or Sign in with BitBadges to check badge ownership as well. This can be done with the Webhooks by Zapier plugin.
+* **Action:** Zapier sends the user a BitBadges claim code to generate a unique badge as proof of registration.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
 
 #### **2. Course Completion Certificates**
 

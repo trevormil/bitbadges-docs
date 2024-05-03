@@ -40,8 +40,8 @@ Distribution may involve:
 
 ### **Zapier**
 
-{% content-ref url="../for-developers/tutorials/automate-the-distribution-process-w-zapier.md" %}
-[automate-the-distribution-process-w-zapier.md](../for-developers/tutorials/automate-the-distribution-process-w-zapier.md)
+{% content-ref url="../for-developers/tutorials/automate-w-zapier.md" %}
+[automate-w-zapier.md](../for-developers/tutorials/automate-w-zapier.md)
 {% endcontent-ref %}
 
 <figure><img src="../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>

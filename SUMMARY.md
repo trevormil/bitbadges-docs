@@ -158,7 +158,7 @@
     * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
     * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
 * [🧑‍🏫 Tutorials](for-developers/tutorials/README.md)
-  * [Automate the Distribution Process w/ Zapier](for-developers/tutorials/automate-the-distribution-process-w-zapier.md)
+  * [Automate w/ Zapier](for-developers/tutorials/automate-w-zapier.md)
   * [Custom Claim Builder API Plugin](for-developers/tutorials/using-the-claim-builder-api-plugin.md)
   * [Badge-Gating Discord Servers](for-developers/tutorials/badge-gating-discord-servers.md)
   * [Auth QR Codes / Sign In with BitBadges](for-developers/tutorials/auth-qr-codes-sign-in-with-bitbadges/README.md)
