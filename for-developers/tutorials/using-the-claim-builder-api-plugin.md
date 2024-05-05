@@ -9,8 +9,9 @@ For POST, PUT, and DELETE requests, we pass the values over the body. For GET, w
 Couple notes:
 
 * **You should not depend on a successful response from your endpoint meaning a successful claim.**&#x20;
-  * Just because your endpoint was a success does not mean the entire claim was successful. This can cause data race conditions since there are two different backends (ours and yours), especially if another plugin fails.&#x20;
-  * It is important that you set the necessary criteria on the BitBadges end to ensure correct behavior. For example, if you want to implement a query of X users (one claim per user) who attended a space, the one claim per user must be set and tracked on the BitBadges end.
+  * **BitBadges does not maintain state for custom plugins.** If your plugin requires state, you have two options:
+    * Utilize the BitBadges core plugins to ensure correct behavior. For example, if you want to implement a query of Discord users (one claim per user) who attended an event, the one claim per user must be set and tracked on the BitBadges end.
+    * Maintain state yourself but account for potential failures and race conditions. Be mindful that there are two different backends (ours and yours). Just because your plugin returned a success response DOES NOT mean the entire claim was successful. For example, another plugin might have failed.
 * **You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).**
   * See more below in the authentication tutorial.
 * **If you need private variables, you should take the necessary measures.**&#x20;
