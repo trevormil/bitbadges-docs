@@ -1,3 +1,5 @@
 # 📊 Explorers
 
-We plan to get integrated on open source Cosmos explorers such as [https://ping.pub/](https://ping.pub/) or MintScan but currently are not.  For now, you may use [https://bitbadges.io](https://bitbadges.io) to browse badge activity and see your current $BADGE balance and other info.
+Explorer -  [https://explorer.bitbadges.io](https://explorer.bitbadges.io)
+
+Note that much of the core information is also available via [https://bitbadges.io](https://bitbadges.io).

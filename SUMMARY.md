@@ -34,7 +34,6 @@
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
 * [📊 Explorers](overview/explorers.md)
 * [🏫 Governance](overview/governance.md)
-* [🛣️ Roadmap](overview/roadmap.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [❓ FAQ](overview/faq.md)
 

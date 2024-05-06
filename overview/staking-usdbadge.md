@@ -12,9 +12,7 @@ For most users, delegating is the preferred option. You can delegate your $BADGE
 
 **How to Delegate?**
 
-Visit TODO (we will launch an interface upon mainnet).
-
-Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
+Visit [https://bitbadges.io/stake](https://bitbadges.io/stake). Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
 
 ### **Option 2: Become a Validator**
 
