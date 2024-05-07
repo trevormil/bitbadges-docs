@@ -1,4 +1,4 @@
-# 🔐 Verifiable Secrets
+# Verifiable Secrets
 
 Verifiable secrets are very similar to Verifiable Credentials. [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) are growing in popularity, especially in the blockchain space. They provide a mechanism to express [credentials](https://www.w3.org/TR/vc-data-model-2.0/#dfn-credential) on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable. While the BitBadges secrets implementation does not claim to be 100% compatible with the W3C Verifiable Credentials standard, it follows a very similar execution flow.&#x20;
 

@@ -4,8 +4,6 @@ Manual callbacks follow the same approach as the Sign In with BitBadges callback
 
 To avoid repeating ourselves, we will explain the behind the scenes below. However, for handling the callback and everything lese that is also done in the SIgn In with BitBadges callback approach, we refer you to [that page](sign-in-with-bitbadges-callback.md).
 
-
-
 **How does it work behind the scenes?**
 
 The callback uses **window.opener.postMessage** to pass back the  { message, signature, verificationResponse, secretsProofs } to the parent window upon the message being signed by the user. This allows you (the parent window) to receive everything without any additional user clicks. The child window will auto-close upon signature.

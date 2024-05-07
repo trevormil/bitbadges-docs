@@ -124,8 +124,8 @@ On the BitBadges site, all BBS+ key pairs are one-time use only. The key pair is
 setSecret((prev) => ({
   ...prev,
   dataIntegrityProof: {
-    signer: Buffer.from(keyPair?.publicKey ?? '').toString('hex'),
-    signature: Buffer.from(signature).toString('hex')
+<strong>    signer: Buffer.from(keyPair?.publicKey ?? '').toString('hex'),
+</strong>    signature: Buffer.from(signature).toString('hex')
   }
 }));
 </code></pre>

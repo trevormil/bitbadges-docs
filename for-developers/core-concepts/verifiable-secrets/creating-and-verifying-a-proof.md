@@ -79,6 +79,8 @@ Update history is maintained by BItBadges in a centralized manner, but it could 
 
 For standard proofs, selective disclosure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the secret exactly as is.&#x20;
 
+
+
 ### **BBS+ Proofs - Verifying Proof of Issuance**
 
 An important aspect of verifying BBS+ secrets is to verify the link between the "main" issuer and the BBS+ public key. This is done with the **proofOfIssuance** provided. You should verify that the main issuer has given valid approval to use such an approval as issued by themselves.

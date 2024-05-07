@@ -78,6 +78,6 @@ import { BigIntify, BlockinChallenge, NumberType, Numberify, getChainForAddress,
 
 **Trusting the Verification Response?**
 
-**Note that trusting this value may or may not be applicable, depending on your application's architecture, because it is executed on the client-side or frontend.**
+Note that trusting this value may or may not be applicable, depending on your application's architecture, because it is executed on the client-side or frontend.
 
 For example, in a typical full-stack application, this check is done via the popup (frontend or client-side), and you will eventually authenticate users on your backend (server-side). From your backend, you need to ensure that the results from the client-side check are correct and not manipulated when passed to the backend. This is possible (CORS or other methods), but it can get tricky and is not recommended.

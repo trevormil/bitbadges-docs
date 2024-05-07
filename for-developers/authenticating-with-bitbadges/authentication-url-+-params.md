@@ -29,8 +29,6 @@ const popupParams: {
 } =  { ... }
 ```
 
-See [ChallengeParams](https://blockin-labs.github.io/blockin/docs/interfaces/ChallengeParams.html) (for inherited fields, should also follow the [EIP-4361 standard](https://docs.login.xyz/general-information/siwe-overview/eip-4361)) and [VerifyChallengeOptions](https://blockin-labs.github.io/blockin/docs/types/VerifyChallengeOptions.html) for the full type definitions of the Blcokin interfaces.&#x20;
-
 See the subpages for more information on specific fields.
 
 #### Cached at Click Time <a href="#cached-at-click-time" id="cached-at-click-time"></a>
