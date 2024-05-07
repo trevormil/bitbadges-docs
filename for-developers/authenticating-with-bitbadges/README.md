@@ -15,6 +15,15 @@ Example Use Cases:
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference.
 
+```typescript
+import { CodeGenQueryParams, generateBitBadgesAuthUrl } from "bitbadgesjs-sdk";
+
+const popupParams: CodeGenQueryParams = { ... }
+
+//https://bitbadges.io/codegen?name=...
+const authUrl = generateBitBadgesAuthUrl(popupParams);
+```
+
 ## **Overview**&#x20;
 
 BitBadges authentication can be split up into three main parts: verifying address ownership, verifying asset ownership, and verifying secrets / off-chain signatures.&#x20;

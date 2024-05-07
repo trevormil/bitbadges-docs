@@ -122,7 +122,7 @@
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
     * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
 * [🖱️ Authenticating with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
-  * [Authentication URL + Params](for-developers/authenticating-with-bitbadges/authentication-url-+-params.md)
+  * [Authentication URL](for-developers/authenticating-with-bitbadges/authentication-url.md)
   * [Digital - Sign In with BitBadges](for-developers/authenticating-with-bitbadges/digital-sign-in-with-bitbadges.md)
   * [Verifying Address Ownership](for-developers/authenticating-with-bitbadges/verifying-address-ownership.md)
   * [Delayed Authentication](for-developers/authenticating-with-bitbadges/delayed-authentication.md)
