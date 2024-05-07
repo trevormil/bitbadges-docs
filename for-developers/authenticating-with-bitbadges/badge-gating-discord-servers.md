@@ -36,7 +36,7 @@ It will generate a URL for you. Copy and paste this into your browser and select
 
 IMPORTANT: You must make sure that the bot's role is above the role you are trying to assign in the hierarchy. You can do this by manually dragging it in the Roles menu.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You may also have to enable these.
 
@@ -58,9 +58,13 @@ const verifyOption = options ? JSON.parse(options) : undefined;
 
 ### Step 6: Generate URL
 
-Go to https://bitbadges.io/linkgen. Custom create your URL with your custom parameters. Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.
+{% content-ref url="authentication-url-+-parameters/" %}
+[authentication-url-+-parameters](authentication-url-+-parameters/)
+{% endcontent-ref %}
 
-This is the URL users will navigate to in order to obtain the role. They will be walked through the process of authenticating both with their Web3 address and with Discord. Upon the success of both, they will be redirected to the REDIRECT\_URI (aka your callback handler).
+Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.
+
+This is the URL users will navigate to in order to obtain the role. They will be walked through the process of authenticating both with their Web3 address and with Discord. Upon the success of both, they will be redirected to the REDIRECT\_URI (aka your callback handler).&#x20;
 
 The callback handler will verify everything and assign the role (if criteria is met). Test it out to make sure everything works.
 

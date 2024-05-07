@@ -15,14 +15,7 @@ Example Use Cases:
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference.
 
-```typescript
-import { CodeGenQueryParams, generateBitBadgesAuthUrl } from "bitbadgesjs-sdk";
-
-const popupParams: CodeGenQueryParams = { ... }
-
-//https://bitbadges.io/codegen?name=...
-const authUrl = generateBitBadgesAuthUrl(popupParams);
-```
+<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## **Overview**&#x20;
 
@@ -33,7 +26,7 @@ You may only need one or two out of the three parts, and you can customize your 
 **Execution Flow**
 
 1. Users navigate to a custom BitBadges URL (either directly or via a popup window). This URL will have them sign your authentication message and generate a secret authentication code (i.e. their signature).&#x20;
-2. Obtain the authentication details either via the popup window callback or via fetching from the BitBadges API using the user's provided authentication code ID.&#x20;
+2. Obtain the authentication details via a popup window callback, or they can be stored in the user's BitBadges account (under Authentication Codes tab) and fetched via the code ID.
 3. At verification time (can be immediate or delayed), verify address ownership, asset ownership, and other secrets via the BitBadges API and SDK.
 4. Perform your application-specific requirements, such as session handling, preventing replay attacks, other custom logic, etc.
 

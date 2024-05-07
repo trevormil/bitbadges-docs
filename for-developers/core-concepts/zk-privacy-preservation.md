@@ -8,8 +8,8 @@ Secrets are a centralized, off-chain feature that allow issuers to sign any mess
 
 The most common use case is credentials where an issuer generates a credential, hands it out to an issuer, and the holder can generate proofs of validity to give to any potential verifier with zero trust involved. See the link below to learn more.
 
-{% content-ref url="verifiable-secrets/" %}
-[verifiable-secrets](verifiable-secrets/)
+{% content-ref url="../authenticating-with-bitbadges/verifiable-secrets/" %}
+[verifiable-secrets](../authenticating-with-bitbadges/verifiable-secrets/)
 {% endcontent-ref %}
 
 ### **Proof of Knowledge for Approval**
