@@ -122,6 +122,7 @@
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
     * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
+  * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Authentication URL + Parameters](for-developers/sign-in-with-bitbadges/authentication-url-+-parameters.md)
   * [Challenge Parameters](for-developers/sign-in-with-bitbadges/challenge-parameters.md)
   * [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)
