@@ -46,7 +46,17 @@ The core details about your challenge message and authentication request are the
 ```typescript
 const popupParams = {
     ...,
-    challengeParams: { ... },
+    challengeParams: { 
+        domain: 'https://bitbadges.io',
+        statement: 'This request ...',
+        address, //0x or cosmos1 or bc1 or other supported address
+        uri: 'https://bitbadges.io',
+        nonce: '*',
+        expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
+        notBefore: undefined,
+        resources: ['Full Access: Full access to all features.'],
+        assetOwnershipRequirements: undefined
+    },
     allowAddressSelect: true
 }
 ```
@@ -73,7 +83,11 @@ const popupParams = {
 ```typescript
 const popupParams = {
     ...,
-    verifyOptions: { ... },
+    verifyOptions: { 
+        expectedChallengeParams: { ... ],
+        skipSignatureVerification: false,
+        ...
+    },
     expectVerifySuccess: true
 }
 ```
@@ -98,4 +112,4 @@ const popupParams = {
 
 **Discord**
 
-The Discord aprameters are used if implementing a gated Discord channel. See [the tutorial](../other-tutorials/badge-gating-discord-servers.md) for more information.
+The Discord aprameters are used if implementing a gated Discord channel. See [the tutorial](../authenticating-with-bitbadges/verification/badge-gating-discord-servers.md) for more information.

@@ -40,7 +40,7 @@ The code will be stored in teh users' BitBadges account under the Authentication
 
 You can then fetch the code and verify it using our API all with the getAuthCode route. The **id** is the code.&#x20;
 
-Note that the response will already include a **verificationResponse** field with the verification using the provided **options**. This is to make the process more convenient (one call instead of two). When on the Verification page, you can then skip the step where you are getting hte verificationResponse.
+Note that the response will already include a **verificationResponse** field with the verification using the provided **options**. This is to make the process more convenient (one call instead of two). When on the Verification page, you can then skip the step where you are getting the verificationResponse.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const options: VerifyChallengeOptions = { ... }
 </strong><strong>const res = await BitBadgesApi.getAuthCode({ id, options }); //id is their code

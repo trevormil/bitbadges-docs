@@ -58,8 +58,8 @@ const verifyOption = options ? JSON.parse(options) : undefined;
 
 ### Step 6: Generate URL
 
-{% content-ref url="../authentication-url-+-parameters/" %}
-[authentication-url-+-parameters](../authentication-url-+-parameters/)
+{% content-ref url="../../sign-in-with-bitbadges/authentication-url-+-parameters.md" %}
+[authentication-url-+-parameters.md](../../sign-in-with-bitbadges/authentication-url-+-parameters.md)
 {% endcontent-ref %}
 
 Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.

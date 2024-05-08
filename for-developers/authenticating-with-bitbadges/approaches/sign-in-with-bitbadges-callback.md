@@ -21,7 +21,7 @@ If you are using the Sign In with BitBadges button, the URL generation is handle
 
 ```tsx
 import { SignInWithBitBadges as SignInWithBitBadgesButton } from 'blockin/dist/ui';
-import { BigIntify, BlockinChallenge, NumberType, Numberify, getChainForAddress, iSecretsProof } from 'bitbadgesjs-sdk';
+import { BigIntify, BlockinChallenge, NumberType, Numberify, SecretsProof, getChainForAddress, iSecretsProof } from 'bitbadgesjs-sdk';
 
 // ... 
 
@@ -30,11 +30,11 @@ import { BigIntify, BlockinChallenge, NumberType, Numberify, getChainForAddress,
   //Note this will only be called if callbackRequired is true in the popupParams
   onSignAndBlockinVerify={async (message, signature, secretsProofs, publicKey) => {
     const blockinChallenge = new BlockinChallenge(message).convert(BigIntify);
-    blockinChallenge.setSecretsProofs(secretsProofs);
-    blockinChallenge.setSignature(signature, publicKey);
-
-    // TODO: Cache the values if you are implementing delayed authentication w/ cached values
+    blockinChallenge.secretsProofs = secretsProofs.map(xx => new SecretsProof(x));
+    blockinChallenge.signature = signature
+    blockinChallenge.publicKey = publicKey
     
+    // TODO: Cache the values if you have delayed authentication    
     // TODO: Handle your verification logic 
   }}
 />

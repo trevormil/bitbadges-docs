@@ -29,7 +29,7 @@ console.log(blockinChallenge.verificationResponse);
 </strong><strong>
 </strong><strong>const isVerified = await blockinChallenge.verifyAssets(api) // Verify only the asset checks. Requires an API call.
 </strong>const isVerified = await blockinChallenge.verifySignature() // Verify only the signature. Does not require an API call.
-const isVerified = await blockinChallenge.verifySecretsProofs() // Verify only the secrets proofs. Does not require an API call.
+const isVerified = await blockinChallenge.verifySecretsProofs() // Verify only the secrets proofs well-formedness. Does not require an API call.
 
 if (!isVerified) throw new Error("Oops! Could not verify.");
 
@@ -44,32 +44,43 @@ if (!isVerified) throw new Error("Oops! Could not verify.");
 
 It is important to note that calling any Blockin verification function only checks from a cryptographic standpoint and does not implement any application specific logic. Blockin handles checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets).&#x20;
 
-As an authentication provider, you should NOT assume the returned details are correct for your application. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.
+As an authentication provider, you should NOT assume the returned details are correct. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.
 
 Does check :white\_check\_mark:
 
 * Signature is valid and signed by the address specified in the provided message.
 * Asset ownership criteria is met for the address (if requested)
-* Any options specified below
+* Any options specified in the verify challenge options
 * Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
-* Additional criteria needed for signing in
+* Additional app-specific criteria needed for signing in
 * Any stateful data (e.g. handling sessions or preventing replay attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
-* The content of the message. You should assume the content may be manipulated and check it every time. Consider using the **expectedChallengeParams** options to help you.
-* The contents / **createdBy** of the secrets are correct (if applicable). We check that the secret is well-formed and signed correctly by the **createdBy** field.  However, we do NOT know the expected creator, expected messages, etc. This is app-specific.
+* The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
+* Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
+* Does not check the content of the secret messages or anything else about the secrets
 
 **Replay Attacks**
 
-You need to also implement a replay attack prevention mechanism as well. This can be application dependent.
+You need to also implement a replay attack prevention mechanism as well. This can be application dependent, but it is critical to the security of the implementation.
 
-Recommended: Most use cases will be for digital authentication that is instant (sign time -> auth time) with secure communication channels, such as gating a website. If this is applicable to you, we recommend implementing time-dependent windows (e.g. you have 1 minute to "redeem" you sign in). This can be implemented with the **earliestIssuedAt** option of verifyChallenge. This will check the **issuedAt** field of the challenge and assert it is recent enough. If it is not, authentication will fail (thus preventing replay attacks after a certain time).
+Approaches
+
+Time-Dependent Requests: Allow requests to be used in a short redeem window only, thus preventing replay attacks after a certain amount of time. This is neat because nothing needs to be cached like a nonce since it is all time fields.
+
+```
+const options = { issuedAtTimeWindowMs: 1000 * 60 * 2 } // 2 minutes
+```
+
+Unique Nonce Generation: Issue a unique **nonce** for each user and only allow it to be used once. Each time, you check used nonces against the requested one.
+
+One Use per Address / Asset: Restrict sign ins to onyl allow one use per address or one use per unique badge ID.
 
 **Flash Ownership Attacks**
 
-If authenticating with assets, you should be aware of flash ownership attacks. Basically, two sign ins at different times would be approved if the badge is transferred between the time of the first sign in and the second one.&#x20;
+If authenticating with assets, you should be aware of flash ownership attacks. Basically, two sign ins at different times would be approved if the badge is transferred between the time of the first sign in and the second one. You may have to implement a one use per badge approach. Or, you can make the badges non-transferable during the time period of sign ins.
 
 **Frontend vs Backend?**
 

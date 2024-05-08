@@ -1,4 +1,4 @@
-# 🖱️ Authenticating with BitBadges
+# 🖱️ Sign In with BitBadges
 
 Authentication is a great use case for BitBadges. With BitBadges, you can seamlessly authenticate your users from any chain all with one interface and all with the same set of badges. There is no longer a need to fragment and support many different interfaces for many different blockchain ecosystems.
 
