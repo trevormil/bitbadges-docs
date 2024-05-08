@@ -4,6 +4,10 @@ Pre-Readings: [Verifiable Secrets](./)
 
 On the official site, we provide interfaces to create secrets. This should be adequate for almost all use cases. We even let you select a self-host option.
 
+<figure><img src="../../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
+
+
+
 However, you can self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
 The creation interface is as follows. All secrets are a series of one or more **secretMessages** which can be either in 'json' or 'plaintext' **messageFormat**. The schema of the message is left up to the issuer.
@@ -110,9 +114,7 @@ body = {
 
 ### **BBS+**
 
-For BBS+ signatures (**scheme** = 'bbs'), you can sign N **secretMessages** and the **dataIntegrityProof** will be the BBS signature of those N message. See [https://github.com/mattrglobal/bbs-signatures](https://github.com/mattrglobal/bbs-signatures) for the code to create the signatures.&#x20;
-
-On the BitBadges site, all BBS+ key pairs are one-time use only. The key pair is generated, signs the transaction, and then is discarded because it is never needed again.
+For BBS+ signatures (**scheme** = 'bbs'), you can sign N **secretMessages** and the **dataIntegrityProof** will be the BBS signature of those N message. On the BitBadges site, all BBS+ key pairs are one-time use only. The key pair is generated, signs the transaction, and then is discarded because it is never needed again.
 
 <pre class="language-typescript"><code class="lang-typescript">import { BlsKeyPair, blsSign, generateBls12381G2KeyPair } from '@mattrglobal/bbs-signatures';
 
@@ -154,4 +156,3 @@ Public keys are currently only needed to be provided for Cosmos signatures in or
 ### **Metadata**
 
 Each secret has metadata attached to it for display purposes (i.e. name, image, description). This metadata should be considered public and viewable by all parties (issuer, verifier, and holder).
-

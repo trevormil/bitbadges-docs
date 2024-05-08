@@ -51,7 +51,7 @@ Does check :white\_check\_mark:
 * Signature is valid and signed by the address specified in the provided message.
 * Asset ownership criteria is met for the address (if requested)
 * Any options specified below
-* Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly)
+* Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
@@ -59,7 +59,7 @@ Does not check :x:
 * Any stateful data (e.g. handling sessions or preventing replay attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
 * The content of the message. You should assume the content may be manipulated and check it every time. Consider using the **expectedChallengeParams** options to help you.
-* The contents / creator of the secrets (if applicable). We check that they are signed correctly, but it is up to you to verify the contents / creator are correct. See [here](secrets-contents.md) for more information.
+* The contents / **createdBy** of the secrets are correct (if applicable). We check that the secret is well-formed and signed correctly by the **createdBy** field.  However, we do NOT know the expected creator, expected messages, etc. This is app-specific.
 
 **Replay Attacks**
 

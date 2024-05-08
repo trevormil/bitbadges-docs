@@ -52,14 +52,14 @@ The callback handler needs to check and authenticate two separate things: 1) aut
 const code = req.query.code;
 const state = req.query.state as string;
 const stateData = JSON.parse(state ?? '{}');
-const { message, signature, publicKey, options } = stateData; //You can also check the verificationResponse.success field to see if the message was verified on the clientside but this value should not be trusted.
+const { message, signature, publicKey, options } = stateData;
 const verifyOption = options ? JSON.parse(options) : undefined;
 ```
 
 ### Step 6: Generate URL
 
-{% content-ref url="../authentication-url-+-params.md" %}
-[authentication-url-+-params.md](../authentication-url-+-params.md)
+{% content-ref url="../authentication-url-+-parameters/" %}
+[authentication-url-+-parameters](../authentication-url-+-parameters/)
 {% endcontent-ref %}
 
 Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.

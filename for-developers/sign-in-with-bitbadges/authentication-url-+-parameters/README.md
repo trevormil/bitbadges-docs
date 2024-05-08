@@ -51,8 +51,8 @@ const popupParams = {
 }
 ```
 
-{% content-ref url="authentication-url-+-parameters/challenge-parameters.md" %}
-[challenge-parameters.md](authentication-url-+-parameters/challenge-parameters.md)
+{% content-ref url="challenge-parameters.md" %}
+[challenge-parameters.md](challenge-parameters.md)
 {% endcontent-ref %}
 
 **Metadata**
@@ -98,4 +98,4 @@ const popupParams = {
 
 **Discord**
 
-The Discord aprameters are used if implementing a gated Discord channel. See [the tutorial](verification/badge-gating-discord-servers.md) for more information.
+The Discord aprameters are used if implementing a gated Discord channel. See [the tutorial](../other-tutorials/badge-gating-discord-servers.md) for more information.

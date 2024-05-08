@@ -2,7 +2,9 @@
 
 Pre-Readings: [Verifiable Secrets](./)
 
-As a holder, you are expected to generate proof(s) to be disclosed to verifiers via the following the interface. Again, there are user interfaces for handling this all on the frontend which should be adequate for almost all use cases. However, below, we go into detail for how you can do it yourself.
+As a holder, you are expected to generate proof(s) to be disclosed to verifiers rather than disclosing the original secret with all details.&#x20;
+
+There are user interfaces for handling this all on the frontend which should be adequate for almost all use cases. However, below, we go into detail for how you can do it yourself.
 
 Check out [https://bitbadges.io/secrets/proofgen](https://bitbadges.io/secrets/proofgen) for a helper tool for generating BBS+ signatures.
 
@@ -71,8 +73,6 @@ If an anchor is created through the BitBadges site, we use the following algorit
 }
 ```
 
-
-
 Update history is maintained by BItBadges in a centralized manner, but it could be useful to provide additional information to verifiers about when the data changed, etc.
 
 ### **Standard Proofs**
@@ -83,7 +83,33 @@ For standard proofs, selective disclosure is not possible / supported. Simply co
 
 ### **BBS+ Proofs - Verifying Proof of Issuance**
 
-An important aspect of verifying BBS+ secrets is to verify the link between the "main" issuer and the BBS+ public key. This is done with the **proofOfIssuance** provided. You should verify that the main issuer has given valid approval to use such an approval as issued by themselves.
+An important aspect of verifying BBS+ secrets is to verify the link between the "main" issuer and the BBS+ public key. This is done with the **proofOfIssuance** provided. You should verify that the main issuer has given valid approval to use such an approval as issued by themselves. For BitBadges, we use the scheme of the following.
+
+```typescript
+"I approve the issuance of secrets signed with BBS+ a5159099a24a8993b5eb8e62d04f6309bbcf360ae03135d42a89b3d94cbc2bc678f68926373b9ded9b8b9a27348bc755177209bf2074caea9a007a6c121655cd4dda5a6618bfc9cb38052d32807c6d5288189913aa76f6d49844c3648d4e6167 as my own.\n\n"
+```
+
+We then verify that the signer of the proof of issuance matches the issuer (createdBy) and he key they approved is the BBS key used for the proof.
+
+```typescript
+const bbsSigner = body.proofOfIssuance.message.split(' ')[9];
+if (bbsSigner !== body.dataIntegrityProof.signer) {
+  throw new Error('Proof signer does not match proof of issuance');
+}
+const address = body.proofOfIssuance.signer;
+const chain = getChainForAddress(address);
+
+if (convertToCosmosAddress(address) !== convertToCosmosAddress(body.createdBy)) {
+  throw new Error('Signer does not match creator');
+}
+
+await getChainDriver(chain).verifySignature(
+  address,
+  body.proofOfIssuance.message,
+  body.proofOfIssuance.signature,
+  body.proofOfIssuance.publicKey
+);
+```
 
 ### **BBS+ Proofs - Creation and Verification**
 
@@ -95,10 +121,11 @@ To create the proof from the original secret, the following code can be used. **
 
 &#x20;We use a generic "nonce" as the nonce because we expect proofs to be verified using an alternative sign-in flow that handles replay attacks there.
 
-```typescript
-const derivedProof = await blsCreateProof({
-  signature: Uint8Array.from(Buffer.from(secret.dataIntegrityProof.signature, 'hex')),
-  publicKey: Uint8Array.from(Buffer.from(secret.dataIntegrityProof.signer, 'hex')),
+<pre class="language-typescript"><code class="lang-typescript">import { createSecretsProof } from "bitbadgesjs-sdk";
+
+const derivedProof = await createSecretsProof({
+<strong>  signature: Uint8Array.from(Buffer.from(secret.dataIntegrityProof.signature, 'hex')),
+</strong>  publicKey: Uint8Array.from(Buffer.from(secret.dataIntegrityProof.signer, 'hex')),
   messages: secret.secretMessages.map((message) => Uint8Array.from(Buffer.from(message, 'utf-8'))),
   nonce: Uint8Array.from(Buffer.from('nonce', 'utf8')),
   revealed: secret.secretMessages
@@ -115,34 +142,13 @@ setProof(
     }
   })
 );
-```
-
-To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof. You will use blsVerifyProof for this.
-
-<pre class="language-typescript"><code class="lang-typescript">import { blsVerify, blsVerifyProof } from '@mattrglobal/bbs-signatures';
-<strong>
-</strong><strong>if (!derivedProof) {
-</strong>  const isProofVerified = await blsVerify({
-    signature: Uint8Array.from(Buffer.from(body.dataIntegrityProof.signature, 'hex')),
-    publicKey: Uint8Array.from(Buffer.from(body.dataIntegrityProof.signer, 'hex')),
-    messages: body.secretMessages.map((message) => Uint8Array.from(Buffer.from(message, 'utf-8')))
-  });
-
-  if (!isProofVerified.verified) {
-    throw new Error('Data integrity proof not verified');
-  }
-} else {
-  const isProofVerified = await blsVerifyProof({
-    proof: Uint8Array.from(Buffer.from(body.dataIntegrityProof.signature, 'hex')),
-    publicKey: Uint8Array.from(Buffer.from(body.dataIntegrityProof.signer, 'hex')),
-    messages: body.secretMessages.map((message) => Uint8Array.from(Buffer.from(message, 'utf-8'))),
-    nonce: Uint8Array.from(Buffer.from('nonce', 'utf8'))
-  });
-
-  if (!isProofVerified.verified) {
-    throw new Error('Data integrity proof not verified');
-  }
-}
 </code></pre>
 
-&#x20;
+To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof.
+
+```tsx
+import { verifySecretsProof } from 'bitbadgesjs-sdk';
+
+const isDerivedProof = true;
+await verifySecretsProof(proof, isDerivedProof);
+```

@@ -1,4 +1,4 @@
-# Verifiable Secrets
+# 🗝️ Verifiable Secrets
 
 Verifiable secrets are very similar to Verifiable Credentials. [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) are growing in popularity, especially in the blockchain space. They provide a mechanism to express [credentials](https://www.w3.org/TR/vc-data-model-2.0/#dfn-credential) on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable. While the BitBadges secrets implementation does not claim to be 100% compatible with the W3C Verifiable Credentials standard, it follows a very similar execution flow.&#x20;
 
@@ -25,12 +25,3 @@ BitBadges supports the signature algorithms for any chain that is supported.&#x2
 We also support the BBS+ signature algorithm to allow **selective disclosure**. The BBS+ signature algorithm allows an issuer to sign N messages to produce a signature. From that signature, a holder can derive a cryptographic proof that only reveals any subset of the N messages. This allows selectvie disclosure of the credential. For example, you may only want to reveal your GPA to an employer, but the diploma credential has other identifying fields like courses taken, student records, etc.
 
 To create the link between a "main" crypto address and the BBS+ public key, we sign a message from the main address saying that secrets from BBS+ key can be treated as my own.
-
-**References / Links**
-
-API - Gets
-
-Blockin tutorials
-
-
-

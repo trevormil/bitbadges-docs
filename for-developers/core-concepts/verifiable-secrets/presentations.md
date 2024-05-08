@@ -4,7 +4,11 @@ Pre-Readings: [Verifiable Secrets](./)
 
 It is important to note that proofs / secrets are just cryptographic signatures. If a malicious party gets the signature, the signature will still be valid. Thus, it is important to protect against replay attacks.
 
-With BitBadges secrets, we aim to leverage our authentication flow (Blockin) to be used in conjunction with proof verification. The authentication flow natively has protective measures against replay attacks, time windows for verification, and more. For a credential / secret to be valid, the holder must present a) proof of the credential AND b) proof of address ownership via Blockin.
+With BitBadges secrets, we aim to leverage our authentication flow (Sign In with BitBadges) to be used in conjunction with proof verification. The authentication flow natively has protective measures against replay attacks, time windows for verification, and more. For a credential / secret to be valid, the holder must present a) proof of the credential AND b) proof of address ownership via Blockin.
+
+{% content-ref url="../../sign-in-with-bitbadges/" %}
+[sign-in-with-bitbadges](../../sign-in-with-bitbadges/)
+{% endcontent-ref %}
 
 Note that secrets are stored by BitBadges. For a user to generate a proof for secrets stored in their account, they have two options.
 

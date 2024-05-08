@@ -1,4 +1,4 @@
-# Manual Callback
+# Self-Implemented Callback
 
 Manual callbacks follow the same approach as the Sign In with BitBadges callback approach, except you implement all the behind the scenes yourself.  See [https://github.com/Blockin-Labs/blockin/tree/main/src/ui](https://github.com/Blockin-Labs/blockin/tree/main/src/ui) for how we implement the Sign In With BitBadges button.
 
@@ -12,5 +12,4 @@ The callback uses **window.opener.postMessage** to pass back the  { message, sig
 
 Read more [https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) here or see the manual callback implementation.
 
-{% @github-files/github-code-block url="https://github.com/Blockin-Labs/blockin/tree/main/src/ui" %}
-
+{% @github-files/github-code-block url="https://github.com/Blockin-Labs/blockin/blob/main/src/ui/SignInWithBitBadges/SignInWithBitBadges.tsx" %}
