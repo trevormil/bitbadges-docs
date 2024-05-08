@@ -94,6 +94,7 @@
     * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
     * [Fetching Lists](for-developers/bitbadges-api/tutorials/fetching-lists.md)
     * [Authentication](for-developers/bitbadges-api/tutorials/authentication.md)
+    * [SIWBB](for-developers/bitbadges-api/tutorials/siwbb.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
