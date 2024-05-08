@@ -64,7 +64,7 @@ Does not check :x:
 
 **Replay Attacks**
 
-You need to also implement a replay attack prevention mechanism as well. This can be application dependent, but it is critical to the security of the implementation.
+You need to also implement a replay attack prevention mechanism as well. This can be application dependent, but it is critical to the security of the implementation. See [here](https://blockin.gitbook.io/blockin/developer-docs/core-concepts) for more information.
 
 Approaches
 
@@ -80,7 +80,7 @@ One Use per Address / Asset: Restrict sign ins to onyl allow one use per address
 
 **Flash Ownership Attacks**
 
-If authenticating with assets, you should be aware of flash ownership attacks. Basically, two sign ins at different times would be approved if the badge is transferred between the time of the first sign in and the second one. You may have to implement a one use per badge approach. Or, you can make the badges non-transferable during the time period of sign ins.
+If authenticating with assets, you should be aware of flash ownership attacks. Basically, two sign ins at different times would be approved if the badge is transferred between the time of the first sign in and the second one. You may have to implement a one use per badge approach. Or, you can make the badges non-transferable during the time period of sign ins. See [here](https://blockin.gitbook.io/blockin/developer-docs/core-concepts) for more information.
 
 **Frontend vs Backend?**
 
