@@ -4,7 +4,7 @@
 
 If **allowAddressSelect** is true, we will handle the address selection on our end. Meaning, we override challengeParams.address and the native chain with the user's selected address / chain, respectively. This allows you to have one URL for all of your users rather than generating each individually. If false, we enforce that the connected address is exactly what is specified in **challengeParams**.
 
-Differences include:
+Differences of Blockin vs SIWE:
 
 * Sign in with "Insert Chain Here" rather than always Ethereum
 * Addresses can be any supported chain's address, not just Ethereum
@@ -14,8 +14,8 @@ Differences include:
 ```typescript
 const challengeParams = new BlockinChallengeParams<bigint>({
     domain: 'https://bitbadges.io',
-    statement,
-    address,
+    statement: 'This request ...',
+    address, //0x or cosmos1 or bc1 or other supported address
     uri: 'https://bitbadges.io',
     nonce: '*',
     expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
@@ -168,8 +168,6 @@ ownershipTimes: []
 ```
 
 The default when ownership times is empty or missing is to verify at the current time. If this is the case, we dynamically add the current time as \[{ start: currTime, end: currTime }].&#x20;
-
-
 
 ```typescript
 ownershipTimes: UintRangeArray.FullRanges()

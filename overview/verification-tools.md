@@ -38,8 +38,8 @@ Here, we provide documentation for some common verification tools / integrations
 
 Handle your authentication of QR code svia the use of Google Sheets.
 
-{% content-ref url="../for-developers/authenticating-with-bitbadges/additional-steps/spreadsheet-session-management.md" %}
-[spreadsheet-session-management.md](../for-developers/authenticating-with-bitbadges/additional-steps/spreadsheet-session-management.md)
+{% content-ref url="../for-developers/authenticating-with-bitbadges/verification/spreadsheet-session-management.md" %}
+[spreadsheet-session-management.md](../for-developers/authenticating-with-bitbadges/verification/spreadsheet-session-management.md)
 {% endcontent-ref %}
 
 **Blockin**
