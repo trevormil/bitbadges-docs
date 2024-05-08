@@ -90,6 +90,22 @@ The BitBadges API currently supports the following assets:
 
 Lastly, you may also have additional secret signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university.
 
+## **Immediate or Delayed Authentication?**
+
+Authentication can be facilitated in many settings (in-person, digitally, etc). This is an important question to ask before starting your implementation.
+
+**Immediate**
+
+You can authenticate users and verify badge ownership, such as badge-gating a website. This process is immediate, meaning as soon as a user is prompted, you can proceed to the verification step. Nothing needs to be cached or stored because the details are immediately used.
+
+<figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
+
+**Delayed Authentication**
+
+Or, you can pre-generate with authentication codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
+
 ## **Security Considerations**
 
 ### **Replay Attacks** <a href="#security-replay-attacks" id="security-replay-attacks"></a>
@@ -127,19 +143,3 @@ Solutions can vary dependent on the application, but here are some ideas:
 * If assets are non-fungible, consider preventing two sign ins with the same badge
 
 Note that for chains that support ownership times (such as BitBadges), this is not adequate since ownership times can be transferred. For example Bob signs in with Asset A (Monday - Wednesday) but then transfers the badge + rights from Monday - Wednesday to Alice.
-
-## **Immediate or Delayed Authentication?**
-
-Authentication can be facilitated in many settings (in-person, digitally, etc). This is an important question to ask before starting your implementation.
-
-**Immediate**
-
-You can authenticate users and verify badge ownership, such as badge-gating a website. This process is immediate, meaning as soon as a user is prompted, you can proceed to the verification step. Nothing needs to be cached or stored because the details are immediately used.
-
-<figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
-
-**Delayed Authentication**
-
-Or, you can pre-generate with authentication codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.&#x20;
-
-<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
