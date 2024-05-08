@@ -29,7 +29,7 @@ console.log(blockinChallenge.verificationResponse);
 </strong><strong>
 </strong><strong>const isVerified = await blockinChallenge.verifyAssets(api) // Verify only the asset checks. Requires an API call.
 </strong>const isVerified = await blockinChallenge.verifySignature() // Verify only the signature. Does not require an API call.
-const isVerified = await blockinChallenge.verifySecretsProofs() // Verify only the secrets proofs well-formedness. Does not require an API call.
+const isVerified = await blockinChallenge.verifySecretsProofSignatures() // Verify only the secrets proofs well-formedness. Does not require an API call.
 
 if (!isVerified) throw new Error("Oops! Could not verify.");
 

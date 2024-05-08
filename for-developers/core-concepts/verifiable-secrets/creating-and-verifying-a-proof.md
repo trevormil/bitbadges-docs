@@ -147,8 +147,9 @@ setProof(
 To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof.
 
 ```tsx
-import { verifySecretsProof } from 'bitbadgesjs-sdk';
+import { verifySecretsProofSignatures } from 'bitbadgesjs-sdk';
 
 const isDerivedProof = true;
-await verifySecretsProof(proof, isDerivedProof);
+await verifySecretsProofSignatures(proof, isDerivedProof);
 ```
+
