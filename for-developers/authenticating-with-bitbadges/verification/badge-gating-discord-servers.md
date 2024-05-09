@@ -4,8 +4,8 @@ You may want to gate your Discord server or specific channels with badges. Below
 
 ### Set Up a Sign In with BitBadges Callback Handler
 
-{% content-ref url="../../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
+{% content-ref url="../" %}
+[..](../)
 {% endcontent-ref %}
 
 Use the Sign in with BitBadges flow to get the authentication details for your users. Make sure to add the **otherSignInMethods** to include Discord sign ins.&#x20;

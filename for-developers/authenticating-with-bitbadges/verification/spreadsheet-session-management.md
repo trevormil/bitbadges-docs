@@ -17,13 +17,17 @@ Zapier's integration capabilities can significantly enhance the functionality an
 
 Integrating Zapier with Sign In with BitBadges opens up a world of possibilities for automating tasks, enhancing user engagement, and streamlining operations by leveraging the wide array of apps available in Zapier's ecosystem.
 
-**How to integrate with Zapier?**
+## **How to integrate with Zapier?**
 
 Integrating Sign In with BitBadges with Zapier involves several steps designed to create a seamless connection between BitBadges' authentication service and the multitude of applications within Zapier's vast ecosystem. Follow these steps for integration:
 
 #### Step 1: Prepare Your BitBadges Integration
 
 Ensure you have a functioning Sign In with BitBadges setup for your application. This involves having your application registered, having access to BitBadges API credentials, and having a way to fetch the authentication details for your users (typically a callback handler).
+
+{% content-ref url="../" %}
+[..](../)
+{% endcontent-ref %}
 
 #### Step 2: Create a Zapier Account
 
@@ -36,6 +40,8 @@ A "Zap" is an automated workflow in Zapier. Create a new Zap and search for the 
 #### Step 4: Configure the Trigger
 
 Set up the Webhook to listen for a specific event from your BitBadges implementation, such as a successful sign-in.&#x20;
+
+You can customize what data is passed to this webhook. It is typically recommended to not pass sensitive information (like auth codes, signatures, etc) as these will be known by Zapier. Only pass the minimum data needed.
 
 #### Step 5: Connect to Your Desired App
 
