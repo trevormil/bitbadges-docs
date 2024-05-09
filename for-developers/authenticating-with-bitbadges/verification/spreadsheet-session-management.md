@@ -31,7 +31,7 @@ function makeAPIRequest() {
     'headers': {
       'x-api-key': apiKeyValue // Add x-api-key header
     },
-    'payload': JSON.stringify({ signature: cellValue })
+    'payload': JSON.stringify({ id: cellValue })
   };
 
   //Parse response and update the main section
