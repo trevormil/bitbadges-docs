@@ -19,3 +19,45 @@ You can also customize everything further if you would like. We leave any other 
 ### Assigning Roles
 
 Once you get the details, you can verify and assign roles to successful authentication requests. This can be using any method you wish such as Discord.js, setting up a Zapier zap, or manually.
+
+
+
+```typescript
+import Discord from 'discord.js';
+
+const client = new Discord.Client({
+  intents: ['Guilds', 'GuildMembers']
+});
+
+//See signIn.ts for self-verification example (not API)
+
+//Initiate Discord client
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const BOT_TOKEN = process.env.BOT_TOKEN;
+client.login(BOT_TOKEN);
+
+...
+
+const discordUserId = userResponse.data.id;
+const discordUsername = userResponse.data.username;
+
+const userId = discordUserId;
+const guildId = process.env.GUILD_ID;
+const guild = await client.guilds.fetch(guildId ?? '');
+if (!guild) {
+  return res.status(400).json({ success: false, errorMessage: 'Guild not found' });
+}
+
+const member = await guild.members.fetch(userId);
+const role = guild.roles.cache.find((role) => role.name === process.env.ROLE_ID);
+if (role && member) {
+  await member.roles.add(role).then(() => {
+    console.log(`User has been whitelisted and assigned the ${role.name} role.`);
+  });
+} else {
+  throw new Error('Role or member not found');
+}
+
+```
