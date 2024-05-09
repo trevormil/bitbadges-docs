@@ -26,6 +26,21 @@ if (!verificationResponse.success) {
 // const blockinChallenge = await BlockinChallenge.FromAuthCodeId(api, { code, options });
 // const verificationResposne = blockinChallenge.verificationResponse
 // ...
+
+
+//TODO: Handle other checks and logic here
+// - Prevent replay attacks by checking the timestamp of the message or nonces
+// - Need to cache the signature and message for later use?
+// - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
+// - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
+
+//TODO: If using secrets proofs, are the contents valid? Above, we verified them to be well-formed from a cryptographic perspective, but you need to check the contents to ensure the proof is valid according to your application's rules.
+//For example:
+// - Verify the contents of the secret messages are correct
+// - Verify the creator is who you expect
+// - Verify the metadata is correct
+// - Verify the on-chain anchors / update history are correct
+// - Verify the update history is correct
 </code></pre>
 
 **IMPORTANT: What is verified vs not?**
