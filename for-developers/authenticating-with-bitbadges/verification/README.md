@@ -1,43 +1,31 @@
 # Verification
 
-From the prior pages, you should now have the necessary details for verification. You can verify the request using the following snippets.
+From the prior pages, you should now have the **code** for the user. You can now fetch the authentication details for the user, by providing the code and valid app configuration details. Be sure to keep **clientSecret** secret.
 
-```
-{ message, signature, secretsProofs, publicKey } 
-```
+The response will contain all authentication details, including a **verificationResponse**.
 
-<pre class="language-tsx"><code class="lang-tsx">import { BlockinChallenge, BigIntify, BitBadgesApi, SecretsProof } from "bitbadgesjs-sdk";
-
-const blockinChallenge = new BlockinChallenge(message).convert(BigIntify);
-// Or const blockinChallenge = new BlockinChallenge(params).convert(BigIntify);
-blockinRes.signature = doc.signature;
-blockinRes.publicKey = doc.publicKey;
-blockinRes.secretsProofs = doc.secretsProofs.map((proof) => new SecretsProof(proof));
-
-const { params, address, chain, publicKey, message, signature, secretsProofs } = blockinChallenge;
-
-const api = new BitBadgesApi(...);
-const options = { ... }
-
-const isVerified = await blockinChallenge.verify(api, options) // Verify with all options
-const isVerified = await blockinChallenge.verifyOffline(api, options) // Verify without assets. Does not require an API call.
-
-// verify and verifyOffline will set the verificationResponse field
-// { success, errorMessage (if failure) }
-console.log(blockinChallenge.verificationResponse); 
+<pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, SecretsProof } from "bitbadgesjs-sdk";
+</strong>
 <strong>
-</strong><strong>
-</strong><strong>const isVerified = await blockinChallenge.verifyAssets(api) // Verify only the asset checks. Requires an API call.
-</strong>const isVerified = await blockinChallenge.verifySignature() // Verify only the signature. Does not require an API call.
-const isVerified = await blockinChallenge.verifySecretsProofSignatures() // Verify only the secrets proofs well-formedness. Does not require an API call.
+</strong>const options: VerifyChallengeOptions = { ... }
+const res = await BitBadgesApi.getAuthCode({ 
+    code, 
+    options,
+    clientSecret: '...',
+    clientId: '...',
+    redirectUri: '...' //only needed if redirected
+});
+const blockinChallenge = res.blockin;
+const { params, address, chain, verificationResponse, publicKey, otherSignIns, message, signature, secretsProofs } = blockinChallenge;
+if (!verificationResponse.success) {
+    console.log(verificationResponse.errorMessage);    
+    throw new Error("Not authenticated");
+}
 
-if (!isVerified) throw new Error("Oops! Could not verify.");
-
-// Behind the scenes of the above abstracted class, we use the following snippets
-// if you are looking to self-implement certain parts:
-// - BitBadgesApi.verifySignInGeneric()
-// - BitBadgesApi.verifyAssetsGeneric() // Or, you can query badge balances / address lists directly and check yourself
-// - import { verifySignature, verifySecretsProofs } from "bitbadgesjs-sdk";
+// Alternative syntax: 
+// const blockinChallenge = await BlockinChallenge.FromAuthCodeId(api, { code, options });
+// const verificationResposne = blockinChallenge.verificationResponse
+// ...
 </code></pre>
 
 **IMPORTANT: What is verified vs not?**

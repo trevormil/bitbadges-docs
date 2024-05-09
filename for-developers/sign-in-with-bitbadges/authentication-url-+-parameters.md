@@ -1,6 +1,5 @@
 # Authentication URL + Parameters
 
-\
 Each implementation will feature a unique authentication URL tailored to your application's needs. Users must visit this URL to sign the challenge message. Parameters will vary based on your specific implementation and requirements.
 
 The base URL is [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen), with parameters appended to it. For instance:
@@ -17,10 +16,17 @@ This URL structure adheres to the following interface:
 If you need assistance generating these parameters, you can use the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
 ```typescript
+import { CodeGenQueryParams } from 'bitbadgesjs-sdk';
+
 const popupParams: {
     name: string;
     description: string;
     image: string;
+    
+    clientId: string;
+    redirectUri?: string;
+    state?: string;
+    
     challengeParams: ChallengeParams<NumberType>;
     allowAddressSelect?: boolean;
     autoGenerateNonce?: boolean;
@@ -30,13 +36,9 @@ const popupParams: {
     
     otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
     
-    redirectUri?: string;
-    clientId?: string;
-    state?: string;
-    
     expectSecretsProofs?: boolean;
     onlyProofs?: boolean;
-} =  { ... }
+} =  { ... } as CodeGenQueryParams;
 ```
 
 #### Cached at Click Time <a href="#cached-at-click-time" id="cached-at-click-time"></a>
@@ -44,6 +46,28 @@ const popupParams: {
 All parameters are cached at the time the URL is opened. Consider either implementing dynamic checks on your end or make sure to use dynamic fields like **verifyOptions.issuedAtTimeWindowMs.**
 
 ### **Parameter Options**
+
+**App Configuration**
+
+All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer).
+
+Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow.  Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).&#x20;
+
+For instant authentication, the **redirectUri** is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
+
+If you are implementing delayed authentication where the user is to present you their authentication code manually, you can leave the **redirectUri** blank.
+
+If it is blank, we will store the code in the user's account under the Authentication Codes tab. They are to manually present you the code.
+
+```typescript
+const popupParams = {
+    ...,
+    
+    clientId: '...',
+    redirectUri: 'https://...',
+    state: ''
+}
+```
 
 **Challenge Parameters**
 
@@ -132,12 +156,9 @@ The default is false. If true, we check only a few details out of the box, but p
 ```typescript
 const popupParams = {
     ...,
-    expectSecretsProofs: true,
-    onlyProofs: false
+    expectSecretsProofs: true
 }
 ```
 
 **expectSecretsProofs** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
-
-**onlyProofs** means you do not even expect a signature to be presented (only using the UI for obtaining proofs).&#x20;
 
