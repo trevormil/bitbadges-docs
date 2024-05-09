@@ -57,7 +57,8 @@ const popupParams = {
         resources: ['Full Access: Full access to all features.'],
         assetOwnershipRequirements: undefined
     },
-    allowAddressSelect: true
+    allowAddressSelect: true,
+    autoGenerateNonce: false
 }
 ```
 
