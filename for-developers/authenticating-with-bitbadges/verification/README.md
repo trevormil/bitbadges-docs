@@ -21,11 +21,16 @@ if (!verificationResponse.success) {
     console.log(verificationResponse.errorMessage);    
     throw new Error("Not authenticated");
 }
-
-// Alternative syntax: 
+<strong>
+</strong>// Alternative syntax: 
 // const blockinChallenge = await BlockinChallenge.FromAuthCodeId(api, { code, options });
 // const verificationResposne = blockinChallenge.verificationResponse
 // ...
+
+// If you want to verify with new options:
+// const api = YOUR_API_INSTANCE
+// await blockinChallenge.verify(api, { ... });
+// console.log(blockinChallenge.verficationResponse)
 
 
 //TODO: Handle other checks and logic here
