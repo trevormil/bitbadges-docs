@@ -22,16 +22,17 @@ const popupParams: {
     description: string;
     image: string;
     challengeParams: ChallengeParams<NumberType>;
-    allowAddressSelect: boolean;
-    autoGenerateNonce: boolean;
+    allowAddressSelect?: boolean;
+    autoGenerateNonce?: boolean;
     
     verifyOptions?: VerifyChallengeOptions;
     expectVerifySuccess?: boolean;
     
-    discord?: {
-        clientId: string;
-        redirectUri: string;
-    };
+    otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
+    
+    redirectUri?: string;
+    clientId?: string;
+    state?: string;
     
     expectSecretsProofs?: boolean;
     onlyProofs?: boolean;
@@ -70,6 +71,30 @@ const popupParams = {
     autoGenerateNonce: false
 }
 ```
+
+**Other Sign Ins**
+
+```typescript
+const popupParams = {
+    ...,
+    otherSignIns: ['discord']
+}
+```
+
+If **otherSignIns** is defined, we will additionally make the user sign in to the requested services and pass you their connected username / account ID with the authentication details. Note we do not pass any access tokens or private details (simply username / account ID).
+
+This can be used to implement, for example, badge gating Discord servers. Check badges, address ownership, and Discord account ownership via here, then grant roles based on successful authentication.
+
+```typescript
+{
+    discord?: { username: string; discriminator?: string | undefined; id: string } | undefined;
+    github?: { username: string; id: string } | undefined;
+    google?: { username: string; id: string } | undefined;
+    twitter?: { username: string; id: string } | undefined;
+}
+```
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **Metadata**
 
@@ -116,6 +141,3 @@ const popupParams = {
 
 **onlyProofs** means you do not even expect a signature to be presented (only using the UI for obtaining proofs).&#x20;
 
-**Discord**
-
-The Discord aprameters are used if implementing a gated Discord channel. See [the tutorial](../authenticating-with-bitbadges/verification/badge-gating-discord-servers.md) for more information.

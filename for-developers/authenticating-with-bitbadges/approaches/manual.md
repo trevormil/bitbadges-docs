@@ -6,7 +6,7 @@ BitBadges stores authentication details identified by a generated authentication
 
 Consider providing users instructions on where to store the code. If they are not expected to have their crypto wallets handy at authentication time, do not expect them to have access to their BitBadges account. Options on the site include QR codes, emailing to self, copying as text, and more. For example, scanning the QR code will provide you with their authentication code.
 
-<figure><img src="../../../.gitbook/assets/image.png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="539"><figcaption></figcaption></figure>
 
 **Generating URL**
 
