@@ -28,7 +28,7 @@ import { BigIntify, BlockinChallenge, NumberType, Numberify, SecretsProof, getCh
 <SignInWithBitBadgesButton
   popupParams={popupParams}
   //Note this will only be called if callbackRequired is true in the popupParams
-  onSignAndBlockinVerify={async (message, signature, secretsProofs, publicKey) => {
+  onSignature={async (message, signature, secretsProofs, publicKey) => {
     const blockinChallenge = new BlockinChallenge(message).convert(BigIntify);
     blockinChallenge.secretsProofs = secretsProofs.map(xx => new SecretsProof(x));
     blockinChallenge.signature = signature

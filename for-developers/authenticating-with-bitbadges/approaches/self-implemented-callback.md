@@ -1,8 +1,10 @@
 # Self-Implemented Callback
 
-Manual callbacks follow the same approach as the Sign In with BitBadges callback approach, except you implement all the behind the scenes yourself.  See [https://github.com/Blockin-Labs/blockin/tree/main/src/ui](https://github.com/Blockin-Labs/blockin/tree/main/src/ui) for how we implement the Sign In With BitBadges button.
+Manual callbacks follow the same approach as the Sign In with BitBadges callback approach, except you implement all the behind the scenes yourself.  We refer you to the source code for more details.
 
 To avoid repeating ourselves, we will explain the behind the scenes below. However, for handling the callback and everything lese that is also done in the SIgn In with BitBadges callback approach, we refer you to [that page](sign-in-with-bitbadges-callback.md).
+
+
 
 **How does it work behind the scenes?**
 

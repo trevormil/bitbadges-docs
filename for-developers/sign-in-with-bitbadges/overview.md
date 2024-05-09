@@ -1,47 +1,52 @@
 # Overview
 
-Authentication is a great use case for BitBadges. With BitBadges, you can seamlessly authenticate your users from any chain all with one interface and all with the same set of badges. There is no longer a need to fragment and support many different interfaces for many different blockchain ecosystems.
+\
+Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain with the same set of badges. This documentation will guide you through utilizing our authentication tools effectively.
 
-This documentation will walk you through the process of using our authentication tools.
+#### Example Use Cases:
 
-Example Use Cases:
+**In-Person QR Codes:**
 
-* In-Person QR Codes: Sometimes, you may want to verify users own a badge with a QR code, rather than having them sign a message with a crypto wallet. For example, for in person events, it may be unrealistic to expect all users to have their crypto wallets handy to sign an authentication message. Instead, you can have users sign their authentication messages prior to authentication time, generate a QR code (or NFC or other method) via BitBadges, and present that at authentication time instead.
-* Sign In with BitBadges Popup Window: Similar to how websites outsource auth to popup implementation, the same thing can be done for Blockin / BitBadges (Sign In with BitBadges).
+In scenarios where verifying users via a QR code is preferable to signing a message with a crypto wallet, BitBadges simplifies the process. For instance, during in-person events, expecting users to have their crypto wallets readily available for signing authentication messages may not be practical. In such cases, users can sign their authentication messages beforehand, enabling the generation of a QR code (or alternative methods like NFC) through BitBadges. This QR code can then be presented during authentication, streamlining the process.
+
+**Sign In with BitBadges Popup Window:**
+
+Similar to how websites implement authentication popups, BitBadges facilitates a streamlined approach with "Sign In with BitBadges." This feature allows users to authenticate seamlessly without leaving the current context, enhancing user experience and security.
 
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 ## Quickstart
 
-As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference.
+As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference. This has a full end-to-end implementation of Sign In with BitBadges.
 
 <figure><img src="../../.gitbook/assets/image (80).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## **Overview**&#x20;
 
-BitBadges authentication can be split up into three main parts: verifying address ownership, verifying asset ownership, and verifying secrets / off-chain signatures.&#x20;
+BitBadges authentication is structured into three key components: verifying address ownership, verifying asset ownership, and verifying secrets or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
 
-You may only need one or two out of the three parts, and you can customize your implementation accordingly. We hope to design this process to allow you as much flexibility as possible. Our main implementation (Sign In with BitBadges and Blockin) has support for all of the parts in one interface, but you can plug and remove and customize as you wish.&#x20;
+Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses support for all three components within a unified interface. However, you have the freedom to customize and integrate these components according to your needs, allowing for a tailored authentication solution.
 
-**Execution Flow**
+#### Execution Flow:
 
-1. Users navigate to a custom BitBadges URL (either directly or via a popup window). This URL will have them sign your authentication message and generate a secret authentication code (i.e. their signature).&#x20;
-2. Obtain the authentication details via a popup window callback, or they can be stored in the user's BitBadges account (under Authentication Codes tab) and fetched via the code ID.
-3. At verification time (can be immediate or delayed), verify address ownership, asset ownership, and other secrets via the BitBadges API and SDK.
-4. Perform your application-specific requirements, such as session handling, preventing replay attacks, other custom logic, etc.
+1. **User Interaction:**
+   * Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they sign the authentication message, generating a unique authentication code (their signature).
+2. **Authentication Details Retrieval:**
+   * Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID.&#x20;
+3. **Verification Process:**
+   * At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided secrets.
+4. **Application-Specific Logic:**
+   * Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
+
+
 
 <figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Address Ownership**&#x20;
 
-Verifying address ownership is done through having the user sign a unique challenge message. The challenge can be generated by the user or resource provider. Typically, it is generated by the resource provider, and the user can possibly edit certain fields before sending it back. The provider is expected to verify that the returned challenge was not edited in any undesired way by the user. We use Blockin for our challenge messages.&#x20;
+Verifying address ownership entails users signing a unique challenge message, typically generated by the resource provider using Blockin (our implementation). This message, which can be modified by the user before submission, is validated by the provider to ensure its integrity. By verifying this signature, ownership of the claimed address is confirmed. The process is cost-free, doesn't involve blockchain transactions, and supports offline operations.
 
 The challenge message can be anything as long as replay attacks can be prevented (see security section below). We use and recommend Blockin (our multi-chain sign-in standard library that extends[`EIP-4361 Sign-In With Ethereum`](https://eips.ethereum.org/EIPS/eip-4361) interface (see [https://login.xyz/](https://login.xyz/)) to support a) specifying assets (such as NFTs or badges) and b) each chain's native signature algorithm. Blockin messages outline the authentication request information in a human-readable manner.
-
-By verifying this signature, you can verify that the user actually owns the address they say they own. &#x20;
-
-* Note that this is just a signature, so it doesn't cost anything and doesn't add anything (such as a transaction) on the blockchain.
-* It is also offline, meaning signing and verifying challenges can also be done in an offline setting.
 
 {% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
@@ -80,11 +85,9 @@ Asset Ownership Requirements:
 
 The next part of authentication is to query asset ownership. Balances can be verified by querying them somehow, which can be via the BitBadges website, BitBadges API, directly from source for off-chain balances, or directly from a blockchain node. You can run your own API / node or self-host balances for further decentralization and other benefits like low latency, availability, etc. Keep in mind the technical knowledge required, potential delay / lag, availability, and pros and cons for all the options.
 
-The BitBadges API currently supports the following assets:
+The BitBadges API currently supports all BitBadges assets, as well as Ethereum / Polygon NFTs.
 
-* BitBadges Badges
-* BitBadges Address Lists
-* Ethereum / Polygon NFTs
+<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Secrets / Signatures**
 

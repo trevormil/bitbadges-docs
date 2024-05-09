@@ -1,13 +1,10 @@
 # Manual
 
-Manually redirecting is only used for use cases where you are implementing delayed authentication (user prompt time **does not equal** verification time) AND you want BitBadges to cache the details for you. Otherwise, we recommend using the callback approach. For immediate authentication, this is not for you.
+Manual redirection is suitable for scenarios where delayed authentication is implemented, and BitBadges caches details for you. This approach does not necessitate a custom frontend but does require internet/API access during verification. Users directly navigate to the link provided and complete the authentication process by signing the challenge message.
 
-This approach does not require a custom frontend but requires Internet / API access at verification time.&#x20;
+BitBadges stores authentication details identified by a generated authentication code (32 byte hex string) in users' accounts under the "Authentication Codes" tab. At verification time, users present their code to you, typically via a QR code. BitBadges offers various options for obtaining and presenting the code, such as QR codes, email, or copying as text.
 
-1. Users will navigate to the link directly (no custom frontend redirects or popup windows needed) and complete the authentication process (i.e. signing the challenge message).&#x20;
-2. BitBadges will store the authentication details identified by a generated authentication code. This code will be stored in the users' account under the Authentication Codes tab.
-3. At verification time, users will present their code to you. This is typically via a QR code but can be any method you prefer. Consider providing them instructions on where to store it. If they are not expected to have their crypto wallets handy at authentication time, do not expect them to have access to their BitBadges account. Options on the site include QR codes, emailing to self, copying as text, and more. For example, scanning the QR code will provide you with their authentication code.
-4. Using the code, you can fetch the authentication details and verify using the BitBadges API.
+Consider providing users instructions on where to store the code. If they are not expected to have their crypto wallets handy at authentication time, do not expect them to have access to their BitBadges account. Options on the site include QR codes, emailing to self, copying as text, and more. For example, scanning the QR code will provide you with their authentication code.
 
 <figure><img src="../../../.gitbook/assets/image.png" alt="" width="539"><figcaption></figcaption></figure>
 

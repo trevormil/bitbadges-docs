@@ -42,40 +42,53 @@ You may also have to enable these.
 
 <figure><img src="../../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
 
-### Step 5: Callback Handler
+### Step 5: Set Up Discord Callback Handler + Role Assignment
 
-Setup the quickstart repository. Specify the fields in the .env obtained from prior steps. ROLE\_ID will be the name of the role you want to assign. We refer you to pages/api/discordVerify.ts in the quickstart for further implementation.&#x20;
+Setup the quickstart repository. Specify the fields in the .env obtained from prior steps. ROLE\_ID will be the name of the role you want to assign. We refer you to pages/api/discordVerify.ts in the quickstart or the Discrord API for further implementation on assigning roles / authenticating users from the Discord side.
 
-The callback handler needs to check and authenticate two separate things: 1) authenticate address ownership / badge ownership and 2) authenticate Discord ownership.
+**Frontend Redirecting**
+
+From your frontend, you will have users redirect to the Discord auth URI. Upon success, they will be redirected to the callback.
 
 ```typescript
-const code = req.query.code;
-const state = req.query.state as string;
-const stateData = JSON.parse(state ?? '{}');
-const { message, signature, publicKey, options } = stateData;
-const verifyOption = options ? JSON.parse(options) : undefined;
+const discord = {
+  clientId: '...',
+  redirectUri: '...'
+}
+
+const state = { ... }
+
+const discordDetails = discord ? JSON.parse(discord as string) : undefined;
+if (discordDetails?.clientId && discordDetails.redirectUri) {
+  window.open(
+    `https://discord.com/api/oauth2/authorize?client_id=${discordDetails.clientId}&redirect_uri=${discordDetails.redirectUri}&response_type=code&scope=identify&state=${JSON.stringify({ state })}`,
+    '_blank'
+  );
+}
 ```
 
-### Step 6: Generate URL
+**Callback Handler**
 
-{% content-ref url="../../sign-in-with-bitbadges/authentication-url-+-parameters.md" %}
-[authentication-url-+-parameters.md](../../sign-in-with-bitbadges/authentication-url-+-parameters.md)
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/pages/api/integrations/discordVerify.ts" %}
+
+### Step 6: Establish Link + Sign In with BitBadges
+
+Once you have your Discord side setup, you need to handle Sign In with BitBadges. We leave this step up to you.  This is also already implemented int he quickstart and documented via the page linked below. We refer you there. Within this request, you will verify badge ownership.
+
+{% content-ref url="../" %}
+[..](../)
 {% endcontent-ref %}
 
-Make sure to check the Discord option and enter your CLIENT\_ID and REDIRECT\_URI.
+Remember, there are three things that need to happen:
 
-This is the URL users will navigate to in order to obtain the role. They will be walked through the process of authenticating both with their Web3 address and with Discord. Upon the success of both, they will be redirected to the REDIRECT\_URI (aka your callback handler).&#x20;
+1. Authenticated with Discord
+2. Authenticated with BitBadges
+3. Link established between address and Discord ID somehow
 
-The callback handler will verify everything and assign the role (if criteria is met). Test it out to make sure everything works.
+Step 3 is especially important and can be a little tricky. You have to tie incoming requests to the callback to the correct address. Consider to make use of the state variables passed to the redirect URI or implement sessions where you verify the user is authenticated on both BitBadges and Discord before assigning.
 
 ### Step 7: Production + Add-Ons
 
 In production, you will need to change the REDIRECT\_URI from localhost to something else.&#x20;
 
 You can also customize everything further if you would like. We leave any other custom logic up to you like periodic retries, revoking, preventing replay attacks, flash ownership attacks, and so on. Much of this is application / badge specific to your requirements.&#x20;
-
-
-
-
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/pages/api/discordVerify.ts" %}
