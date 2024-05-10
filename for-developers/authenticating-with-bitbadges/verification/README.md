@@ -48,6 +48,14 @@ if (!verificationResponse.success) {
 // - Verify the update history is correct
 </code></pre>
 
+**Verification - Manual**
+
+Behind the scenes, the verification uses the following endpoint. You may also verify manually by specifying all details, rather than an auth code.
+
+```typescript
+await BitBadgesApi.verifySignInGeneric({ ... });
+```
+
 **IMPORTANT: What is verified vs not?**
 
 It is important to note that calling any Blockin verification function only checks from a cryptographic standpoint and does not implement any application specific logic. Blockin handles checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets).&#x20;
