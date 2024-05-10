@@ -10,34 +10,34 @@ Check out [https://bitbadges.io/secrets/proofgen](https://bitbadges.io/secrets/p
 
 ```typescript
 export interface iSecretsProof<T extends NumberType> {
-  createdBy: string;
-  scheme: 'bbs' | 'standard';
+    createdBy: string;
+    scheme: 'bbs' | 'standard';
 
-  secretMessages: string[];
-  
-  dataIntegrityProof: {
-    signature: string;
-    signer: string;
-    publicKey?: string;
-  };
+    secretMessages: string[];
 
-  proofOfIssuance: {
-    message: string;
-    signer: string;
-    signature: string;
-    publicKey?: string;
-  };
+    dataIntegrityProof: {
+        signature: string;
+        signer: string;
+        publicKey?: string;
+    };
 
-  name: string;
-  image: string;
-  description: string;
+    proofOfIssuance: {
+        message: string;
+        signer: string;
+        signature: string;
+        publicKey?: string;
+    };
 
-  entropies?: string[];
-  updateHistory?: iUpdateHistory<T>[];
-  anchors?: {
-    txHash?: string;
-    message?: string;
-  }[];
+    name: string;
+    image: string;
+    description: string;
+
+    entropies?: string[];
+    updateHistory?: iUpdateHistory<T>[];
+    anchors?: {
+        txHash?: string;
+        message?: string;
+    }[];
 }
 ```
 
@@ -49,8 +49,8 @@ It is important to note that proof verification is not limited to that is provid
 
 All secrets / credentials inherently get their credibility from the issuer, so there is already a bit of trust there. However, additional measures can be taken to protect against a malicious issuer. Some examples include:
 
-* On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
-* Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
+-   On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
+-   Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
 
 ### On-Chain Anchors + Update History
 
@@ -79,14 +79,12 @@ Update history is maintained by BItBadges in a centralized manner, but it could 
 
 For standard proofs, selective disclosure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the secret exactly as is.&#x20;
 
-
-
 ### **BBS+ Proofs - Verifying Proof of Issuance**
 
 An important aspect of verifying BBS+ secrets is to verify the link between the "main" issuer and the BBS+ public key. This is done with the **proofOfIssuance** provided. You should verify that the main issuer has given valid approval to use such an approval as issued by themselves. For BitBadges, we use the scheme of the following.
 
 ```typescript
-"I approve the issuance of secrets signed with BBS+ a5159099a24a8993b5eb8e62d04f6309bbcf360ae03135d42a89b3d94cbc2bc678f68926373b9ded9b8b9a27348bc755177209bf2074caea9a007a6c121655cd4dda5a6618bfc9cb38052d32807c6d5288189913aa76f6d49844c3648d4e6167 as my own.\n\n"
+'I approve the issuance of secrets signed with BBS+ a5159099a24a8993b5eb8e62d04f6309bbcf360ae03135d42a89b3d94cbc2bc678f68926373b9ded9b8b9a27348bc755177209bf2074caea9a007a6c121655cd4dda5a6618bfc9cb38052d32807c6d5288189913aa76f6d49844c3648d4e6167 as my own.\n\n';
 ```
 
 We then verify that the signer of the proof of issuance matches the issuer (createdBy) and he key they approved is the BBS key used for the proof.
@@ -94,20 +92,22 @@ We then verify that the signer of the proof of issuance matches the issuer (crea
 ```typescript
 const bbsSigner = body.proofOfIssuance.message.split(' ')[9];
 if (bbsSigner !== body.dataIntegrityProof.signer) {
-  throw new Error('Proof signer does not match proof of issuance');
+    throw new Error('Proof signer does not match proof of issuance');
 }
 const address = body.proofOfIssuance.signer;
 const chain = getChainForAddress(address);
 
-if (convertToCosmosAddress(address) !== convertToCosmosAddress(body.createdBy)) {
-  throw new Error('Signer does not match creator');
+if (
+    convertToCosmosAddress(address) !== convertToCosmosAddress(body.createdBy)
+) {
+    throw new Error('Signer does not match creator');
 }
 
 await getChainDriver(chain).verifySignature(
-  address,
-  body.proofOfIssuance.message,
-  body.proofOfIssuance.signature,
-  body.proofOfIssuance.publicKey
+    address,
+    body.proofOfIssuance.message,
+    body.proofOfIssuance.signature,
+    body.proofOfIssuance.publicKey
 );
 ```
 
@@ -147,9 +147,8 @@ setProof(
 To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof.
 
 ```tsx
-import { verifySecretsProofSignatures } from 'bitbadgesjs-sdk';
+import { verifysecretsPresentationsignatures } from 'bitbadgesjs-sdk';
 
 const isDerivedProof = true;
-await verifySecretsProofSignatures(proof, isDerivedProof);
+await verifysecretsPresentationsignatures(proof, isDerivedProof);
 ```
-

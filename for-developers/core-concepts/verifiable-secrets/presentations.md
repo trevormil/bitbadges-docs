@@ -14,7 +14,7 @@ Note that secrets are stored by BitBadges. For a user to generate a proof for se
 
 **Sign-In with BitBadges**
 
-If you are implementing Sign In with BitBadges (this is a popup window that redirects the user to BitBadges and passes the important sign-in details back to the site) or Authentication QR codes, you can pass the **expectSecretsProofs** variable to the URL query request for your sign-in. This lets the user know that they should attach proofs to their request. You will receive the proofs back in **secretsProofs.**
+If you are implementing Sign In with BitBadges (this is a popup window that redirects the user to BitBadges and passes the important sign-in details back to the site) or Authentication QR codes, you can pass the **expectsecretsPresentations** variable to the URL query request for your sign-in. This lets the user know that they should attach proofs to their request. You will receive the proofs back in **secretsPresentations.**
 
 You can also attach the **onlyProofs** variable to not require any signature from the user (just proofs).
 

@@ -16,7 +16,7 @@ const res = await BitBadgesApi.getAuthCode({
     redirectUri: '...' //only needed if redirected
 });
 const blockinChallenge = res.blockin;
-const { params, address, chain, verificationResponse, publicKey, otherSignIns, message, signature, secretsProofs } = blockinChallenge;
+const { params, address, chain, verificationResponse, publicKey, otherSignIns, message, signature, secretsPresentations } = blockinChallenge;
 if (!verificationResponse.success) {
     console.log(verificationResponse.errorMessage);    
     throw new Error("Not authenticated");
@@ -62,21 +62,21 @@ It is important to note that calling any Blockin verification function only chec
 
 As an authentication provider, you should NOT assume the returned details are correct. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.
 
-Does check :white\_check\_mark:
+Does check :white_check_mark:
 
-* Signature is valid and signed by the address specified in the provided message.
-* Asset ownership criteria is met for the address (if requested)
-* Any options specified in the verify challenge options
-* Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+-   Signature is valid and signed by the address specified in the provided message.
+-   Asset ownership criteria is met for the address (if requested)
+-   Any options specified in the verify challenge options
+-   Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
-* Additional app-specific criteria needed for signing in
-* Any stateful data (e.g. handling sessions or preventing replay attacks or flash ownership attacks)
-* Does not handle sessions or check any session information
-* The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
-* Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
-* Does not check the content of the secret messages or anything else about the secrets
+-   Additional app-specific criteria needed for signing in
+-   Any stateful data (e.g. handling sessions or preventing replay attacks or flash ownership attacks)
+-   Does not handle sessions or check any session information
+-   The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
+-   Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
+-   Does not check the content of the secret messages or anything else about the secrets
 
 **Replay Attacks**
 
@@ -106,10 +106,10 @@ You can also consider a hybrid approach (e.g. check certain stuff and fail early
 
 ```tsx
 //Frontend - Fails early if offline only checks fail
-const isVerified = await blockinChallenge.verifyOffline(api, options) // Verify without assets. Does not require an API call.
+const isVerified = await blockinChallenge.verifyOffline(api, options); // Verify without assets. Does not require an API call.
 
 //Backend - Full verification checking everything
-const isVerified = await blockinChallenge.verify(api, options) // Verify with all options
+const isVerified = await blockinChallenge.verify(api, options); // Verify with all options
 ```
 
 **All Verification Options**
@@ -118,54 +118,53 @@ Wherever you are calling a verification function, here are the options that you 
 
 ```typescript
 export type VerifyChallengeOptions = {
-  /**
-   * Optionally define the expected details to check. If the challenge was edited and the details
-   * do not match, the challenge will fail verification.
-   */
-  expectedChallengeParams?: Partial<ChallengeParams<NumberType>>;
+    /**
+     * Optionally define the expected details to check. If the challenge was edited and the details
+     * do not match, the challenge will fail verification.
+     */
+    expectedChallengeParams?: Partial<ChallengeParams<NumberType>>;
 
-  /**
-   * Optional function to call before verification. This is useful to verify the challenge is
-   * valid before proceeding with verification.
-   * 
-   * Note you can use expectedChallengeParams to verify values equal as expected. 
-   * 
-   * This function is useful if you need to implement custom logic other than strict equality).
-   * For example, assert that only one of assets A, B, or C are defined and not all three.
-   */
-  beforeVerification?: (params: ChallengeParams<NumberType>) => Promise<void>;
+    /**
+     * Optional function to call before verification. This is useful to verify the challenge is
+     * valid before proceeding with verification.
+     *
+     * Note you can use expectedChallengeParams to verify values equal as expected.
+     *
+     * This function is useful if you need to implement custom logic other than strict equality).
+     * For example, assert that only one of assets A, B, or C are defined and not all three.
+     */
+    beforeVerification?: (params: ChallengeParams<NumberType>) => Promise<void>;
 
-  /**
-   * For verification of assets, instead of dynamically fetching the assets, you can specify a snapshot of the assets.
-   * 
-   * This is useful if you have a snapshot, balances will not change, or you are verifying in an offline manner.
-   */
-  balancesSnapshot?: object
+    /**
+     * For verification of assets, instead of dynamically fetching the assets, you can specify a snapshot of the assets.
+     *
+     * This is useful if you have a snapshot, balances will not change, or you are verifying in an offline manner.
+     */
+    balancesSnapshot?: object;
 
-  /**
-   * If true, we do not check timestamps (expirationDate / notBefore). This is useful if you are verifying a challenge that is expected to be verified at a future time.
-   */
-  skipTimestampVerification?: boolean,
+    /**
+     * If true, we do not check timestamps (expirationDate / notBefore). This is useful if you are verifying a challenge that is expected to be verified at a future time.
+     */
+    skipTimestampVerification?: boolean;
 
-  /**
-   * If true, we do not check asset ownership. This is useful if you are verifying a challenge that is expected to be verified at a future time.
-   */
-  skipAssetVerification?: boolean,
+    /**
+     * If true, we do not check asset ownership. This is useful if you are verifying a challenge that is expected to be verified at a future time.
+     */
+    skipAssetVerification?: boolean;
 
-  /**
-   * The earliest issued At ISO date string that is valid. For example, if you want to verify a challenge that was issued within the last minute, you can specify this to be 1 minute ago.
-   */
-  earliestIssuedAt?: string,
+    /**
+     * The earliest issued At ISO date string that is valid. For example, if you want to verify a challenge that was issued within the last minute, you can specify this to be 1 minute ago.
+     */
+    earliestIssuedAt?: string;
 
-  /**
-   * If set, we will verify the issuedAt is within this amount of ms ago (i.e. issuedAt >= Date.now() - issuedAtTimeWindowMs)
-   */
-  issuedAtTimeWindowMs?: number,
+    /**
+     * If set, we will verify the issuedAt is within this amount of ms ago (i.e. issuedAt >= Date.now() - issuedAtTimeWindowMs)
+     */
+    issuedAtTimeWindowMs?: number;
 
-  /**
-   * If true, we do not check the signature. You can pass in an undefined ChainDriver
-   */
-  skipSignatureVerification?: boolean,
-}
+    /**
+     * If true, we do not check the signature. You can pass in an undefined ChainDriver
+     */
+    skipSignatureVerification?: boolean;
+};
 ```
-

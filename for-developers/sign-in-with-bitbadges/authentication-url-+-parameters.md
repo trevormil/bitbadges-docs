@@ -10,8 +10,8 @@ https://bitbadges.io/auth/codegen?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
-* **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
-* **Parameters**: Custom parameters specific to your implementation.
+-   **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
+-   **Parameters**: Custom parameters specific to your implementation.
 
 If you need assistance generating these parameters, you can use the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
@@ -22,21 +22,21 @@ const popupParams: {
     name: string;
     description: string;
     image: string;
-    
+
     clientId: string;
     redirectUri?: string;
     state?: string;
-    
+
     challengeParams: ChallengeParams<NumberType>;
     allowAddressSelect?: boolean;
     autoGenerateNonce?: boolean;
-    
+
     verifyOptions?: VerifyChallengeOptions;
     expectVerifySuccess?: boolean;
-    
+
     otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
-    
-    expectSecretsProofs?: boolean;
+
+    expectsecretsPresentations?: boolean;
     onlyProofs?: boolean;
 } =  { ... } as CodeGenQueryParams;
 ```
@@ -51,7 +51,7 @@ All parameters are cached at the time the URL is opened. Consider either impleme
 
 All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer).
 
-Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow.  Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).&#x20;
+Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).&#x20;
 
 For instant authentication, the **redirectUri** is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
 
@@ -62,7 +62,7 @@ If it is blank, we will store the code in the user's account under the Authentic
 ```typescript
 const popupParams = {
     ...,
-    
+
     clientId: '...',
     redirectUri: 'https://...',
     state: ''
@@ -80,7 +80,7 @@ The core details about your challenge message and authentication request are the
 ```typescript
 const popupParams = {
     ...,
-    challengeParams: { 
+    challengeParams: {
         domain: 'https://bitbadges.io',
         statement: 'This request ...',
         address, //0x or cosmos1 or bc1 or other supported address
@@ -138,7 +138,7 @@ const popupParams = {
 ```typescript
 const popupParams = {
     ...,
-    verifyOptions: { 
+    verifyOptions: {
         expectedChallengeParams: { ... ],
         skipSignatureVerification: false,
         ...
@@ -156,9 +156,8 @@ The default is false. If true, we check only a few details out of the box, but p
 ```typescript
 const popupParams = {
     ...,
-    expectSecretsProofs: true
+    expectsecretsPresentations: true
 }
 ```
 
-**expectSecretsProofs** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
-
+**expectsecretsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
