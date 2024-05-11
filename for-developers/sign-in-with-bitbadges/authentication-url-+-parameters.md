@@ -36,7 +36,7 @@ const popupParams: {
 
     otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
 
-    expectsecretsPresentations?: boolean;
+    expectSecretsPresentations?: boolean;
     onlyProofs?: boolean;
 } =  { ... } as CodeGenQueryParams;
 ```
@@ -156,8 +156,8 @@ The default is false. If true, we check only a few details out of the box, but p
 ```typescript
 const popupParams = {
     ...,
-    expectsecretsPresentations: true
+    expectSecretsPresentations: true
 }
 ```
 
-**expectsecretsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
+**expectSecretsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
