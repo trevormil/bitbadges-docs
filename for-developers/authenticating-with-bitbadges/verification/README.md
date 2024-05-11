@@ -1,5 +1,7 @@
 # Verification
 
+## Verification
+
 From the prior pages, you should now have the **code** for the user. You can now fetch the authentication details for the user, by providing the code and valid app configuration details. Be sure to keep **clientSecret** secret.
 
 The response will contain all authentication details, including a **verificationResponse**.
@@ -56,7 +58,31 @@ Behind the scenes, the verification uses the following endpoint. You may also ve
 await BitBadgesApi.verifySignInGeneric({ ... });
 ```
 
-**IMPORTANT: What is verified vs not?**
+**Pre-Fetching All Codes**
+
+If you need to pre-fetch all codes before verification time (e.g. you are verifying in an offline setting), you can fetch all codes created via BitBadges for your client ID via the SDK below. Note that this
+
+This is a paginated request, so you will need to specify the bookmark received from the previous request. This does not fetch or include any auth codes with redirect URIs (only ones stored in users' accounts via the manual approach).
+
+```typescript
+const res = await BitBadgesApi.getAuthCodesForAuthApp({ clientId, bookmark: '' });
+console.log(res.blockinAuthCodes)
+const blockinChallenge = res.blockinAuthCodes[0];
+```
+
+Note that we do not provide verification responses by default. You will need to verify each individually.  If you have time-dependent checks, note that by default, verification is done for the current time.
+
+```typescript
+await blockinChallenge.verify(api, ...);
+await blockinChallenge.verifyOffline(...);
+
+// or 
+
+await BitBadgesApi.verifySignInGeneric({ ... });
+await BitBadgesApi.getAuthCode({ code: blockinChallenge._docId, options: { ... });
+```
+
+## **IMPORTANT: What is verified vs not?**
 
 It is important to note that calling any Blockin verification function only checks from a cryptographic standpoint and does not implement any application specific logic. Blockin handles checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets).
 
@@ -132,7 +158,7 @@ const isVerified = await blockinChallenge.verifyOffline(api, options); // Verify
 const isVerified = await blockinChallenge.verify(api, options); // Verify with all options
 ```
 
-**All Verification Options**
+## **All Verification Options**
 
 Wherever you are calling a verification function, here are the options that you can pass in.
 
