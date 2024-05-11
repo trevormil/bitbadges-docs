@@ -6,8 +6,8 @@ The response will contain all authentication details, including a **verification
 
 <pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, SecretsProof } from "bitbadgesjs-sdk";
 </strong>
-<strong>
-</strong>const options: VerifyChallengeOptions = { ... }
+
+const options: VerifyChallengeOptions = { ... }
 const res = await BitBadgesApi.getAuthCode({ 
     code, 
     options,
@@ -21,8 +21,8 @@ if (!verificationResponse.success) {
     console.log(verificationResponse.errorMessage);    
     throw new Error("Not authenticated");
 }
-<strong>
-</strong>// Alternative syntax: 
+
+// Alternative syntax: 
 // const blockinChallenge = await BlockinChallenge.FromAuthCodeId(api, { code, options });
 // const verificationResposne = blockinChallenge.verificationResponse
 // ...
@@ -50,7 +50,7 @@ if (!verificationResponse.success) {
 
 **Verification - Manual**
 
-Behind the scenes, the verification uses the following endpoint. You may also verify manually by specifying all details, rather than an auth code.
+Behind the scenes, the verification uses the following endpoint. You may also verify by specifying all details via this endpoint, rather than an auth code.
 
 ```typescript
 await BitBadgesApi.verifySignInGeneric({ ... });
@@ -58,29 +58,47 @@ await BitBadgesApi.verifySignInGeneric({ ... });
 
 **IMPORTANT: What is verified vs not?**
 
-It is important to note that calling any Blockin verification function only checks from a cryptographic standpoint and does not implement any application specific logic. Blockin handles checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets).&#x20;
+It is important to note that calling any Blockin verification function only checks from a cryptographic standpoint and does not implement any application specific logic. Blockin handles checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets).
 
 As an authentication provider, you should NOT assume the returned details are correct. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.
 
-Does check :white_check_mark:
+Does check :white\_check\_mark:
 
--   Signature is valid and signed by the address specified in the provided message.
--   Asset ownership criteria is met for the address (if requested)
--   Any options specified in the verify challenge options
--   Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+* Signature is valid and signed by the address specified in the provided message.
+* Asset ownership criteria is met for the address (if requested)
+* Any options specified in the verify challenge options
+* Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
--   Additional app-specific criteria needed for signing in
--   Any stateful data (e.g. handling sessions or preventing replay attacks or flash ownership attacks)
--   Does not handle sessions or check any session information
--   The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
--   Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
--   Does not check the content of the secret messages or anything else about the secrets
+* Additional app-specific criteria needed for signing in
+* Any stateful data (e.g. handling sessions or preventing replay attacks or phishing attacks or flash ownership attacks)
+* Does not handle sessions or check any session information
+* The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
+* Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
+* Does not check the content of the secret messages or anything else about the secrets
+
+**Phished Signature Attacks**
+
+For most apps, it is important to verify that the unique challenge actually was generated by you and not by someone trying to phish. This is typically done with a scheme that generates unique nonces for each challenge message and checks that the random nonce is valid upon verification.
+
+For example, a malicious party can phish a user into signing a challenge message for your app (https://example.com):
+
+```
+https://example.com wants you to sign in....
+
+Nonce: somethinginvalid
+```
+
+Without additional checks, this is a valid challenge message for your app and would pass the BitBadges API verification from a cryptographic perspective. However, by checking the nonce, you can know that this sign in was not issued by you, and thus, the phishing attempt will not be successful (even if they do phish the signature).
+
+You may be okay with taking this risk for ease of implementation, but it is strongly recommended to take this additional protective measure to ensure authentication is correct.
 
 **Replay Attacks**
 
-You need to also implement a replay attack prevention mechanism as well. This can be application dependent, but it is critical to the security of the implementation. See [here](https://blockin.gitbook.io/blockin/developer-docs/core-concepts) for more information.
+You shouldo also implement a replay attack prevention mechanism as well. Signatures will always be cryptographically valid, so it is important to prevent replay attacks in case the signatures get in the wrong hands.
+
+This can be application dependent. See [here](https://blockin.gitbook.io/blockin/developer-docs/core-concepts) for more information.
 
 Approaches
 
@@ -92,7 +110,7 @@ const options = { issuedAtTimeWindowMs: 1000 * 60 * 2 } // 2 minutes
 
 Unique Nonce Generation: Issue a unique **nonce** for each user and only allow it to be used once. Each time, you check used nonces against the requested one.
 
-One Use per Address / Asset: Restrict sign ins to onyl allow one use per address or one use per unique badge ID.
+One Use per Address / Asset: Restrict sign ins to only allow one use per address or one use per unique badge ID.
 
 **Flash Ownership Attacks**
 
@@ -100,7 +118,7 @@ If authenticating with assets, you should be aware of flash ownership attacks. B
 
 **Frontend vs Backend?**
 
-Typically, your backend is the one that authenticates users and handles sessions, so verification is often done there. However, verifying on frontend vs backend is up to you and your application's requirements.&#x20;
+Typically, your backend is the one that authenticates users and handles sessions, so verification is often done there. However, verifying on frontend vs backend is up to you and your application's requirements.
 
 You can also consider a hybrid approach (e.g. check certain stuff and fail early on frontend). For example, you may do:
 

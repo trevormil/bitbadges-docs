@@ -26,6 +26,8 @@ The important part here is to correctly specify a valid **redirectUri** letting 
 
 Set up a handler at the redirect URI to handle the code / state that is passed. The code and state will be passed in via the HTTP query parameters.
 
+For codes created with redirect URIs, BitBadges will store them temporarily (min 30 minutes), but after some time elapses, we make no guarantees on their storage. It is up to you to store and cache them if needed beyond that timeframe.
+
 To ensure the security of the data exchange process, consider the following practices:
 
 * Validate the `state` parameter according to your requirements (if applicable)
