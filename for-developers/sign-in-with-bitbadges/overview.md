@@ -126,6 +126,8 @@ Out of the box, our tools do not provide anything for **authorizing** third part
 
 For example, all challenge messages outline all the core details about the authentication request and permissions requested. You could imagine you have different challenges signed by the user (e.g. one authorizing App A with scopes X, Y, and Z from Time 1 to Time 2 and another authorizing App B with different parameters). Then, you give the signature of the first message to App A and the signature of the second to App B.&#x20;
 
+It is important to note though that signatures are permanent and always valid from a cryptographic perspective. Implementing authorization typically involves refresh tokens, revoking functionality, etc, which may need to be additionally handled beyond just the core (message, signature) verification.
+
 ## **Security Considerations**
 
 ### **Replay Attacks** <a href="#security-replay-attacks" id="security-replay-attacks"></a>
