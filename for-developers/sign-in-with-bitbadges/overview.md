@@ -1,8 +1,6 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain and verify ownership of **the same badges**.&#x20;
-
-This documentation will guide you through utilizing our authentication tools effectively.
+Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify secret signatures, and verify ownership of badges, NFTs, and more. This documentation will guide you through utilizing our authentication tools effectively.
 
 #### Example Use Cases:
 
@@ -24,7 +22,24 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 ## **Execution Flow**&#x20;
 
-Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional checks (like verifying badges).  The (message, signature) pair are the secret details that replace a password. If you can provide a valid (message, signature) pair, you are authenticated. Thus, it is critical that the signatures are never revealed to malicious parties.
+**Scope of SIWBB**
+
+Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user secrets).  Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
+
+* Prompting and verifying challenge message signatures from users
+* Querying asset ownership (badges, address lists, NFTs on other chains)
+* Verify secret signatures from other issuers (e.g. attestations or credentials)
+* Check sign-ins of other socials (Discord, GitHub, Google, X)
+
+Once the above is checked, the user is authenticated, excluding any other self-implemented requirements. From here, we leave the rest up to you. SIWBB does not handle sessions, authorizations, etc. Those are all to be implemented alongside SIWBB using industry standards such as OAuth 2.0, JWTs, or whatever method you prefer.
+
+**Why does the flow look similar to authorization like OAuth 2.0?**
+
+Our suite of tools helps you outsource the authentication step to our user interface through a similar process to popular authorization implementations (e.g. OAuth 2.0 with Sign In with Discord). We leverage many of the same techniques.&#x20;
+
+However, the difference is that instead of generating and providing access tokens that can be used, we provide the interface for users to sign challenges and provide you with the (message, signature) pairs along with other accompanying details to use and verify.
+
+**Key Parts**
 
 BitBadges authentication is structured into three key components: verifying address ownership, verifying asset ownership, and verifying secrets or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
 
@@ -112,21 +127,7 @@ Or, you can pre-generate with authentication codes. For example, you may not exp
 
 <figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
 
-## Authentication vs Authorization
 
-Sign In with BitBadges is targeted towards authentication, not necessarily authorization to third party applications to do anything on a users' behalf.
-
-**Why does the flow look similar to authorization like OAuth 2.0?**
-
-Our suite of tools helps you outsource the authentication step through a similar process to popular authorization implementations (e.g. OAuth 2.0 with Sign In with Discord). We leverage many of the same techniques. However, the difference is that instead of generating and providing access tokens that can be used, we provide the interface for users to sign messages and provide you with the (message, signature) pairs along with other accompanying details.
-
-**Implementing Authorization**
-
-Out of the box, our tools do not provide anything for **authorizing** third party applications. This means you can fully implement your own authorization without using any SIWBB components. Or, many parts of the interface can be leveraged towards helping you implement your own authorization with a hybrid SIWBB-standard approach.&#x20;
-
-For example, all challenge messages outline all the core details about the authentication request and permissions requested. You could imagine you have different challenges signed by the user (e.g. one authorizing App A with scopes X, Y, and Z from Time 1 to Time 2 and another authorizing App B with different parameters). Then, you give the signature of the first message to App A and the signature of the second to App B.&#x20;
-
-It is important to note though that signatures are permanent and always valid from a cryptographic perspective. Implementing authorization typically involves refresh tokens, revoking functionality, etc, which may need to be additionally handled beyond just the core (message, signature) verification.
 
 ## **Security Considerations**
 
