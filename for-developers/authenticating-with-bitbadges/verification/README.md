@@ -212,5 +212,10 @@ export type VerifyChallengeOptions = {
      * If true, we do not check the signature. You can pass in an undefined ChainDriver
      */
     skipSignatureVerification?: boolean;
+    
+    /**
+     * If true, we will use this timestamp instead of the current time. UNIX milliseconds.
+     */
+    verificationTimeOverride?: number;
 };
 ```
