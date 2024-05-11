@@ -72,7 +72,7 @@ Does check :white\_check\_mark:
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
-* Any stateful data (e.g. handling sessions or preventing replay attacks or phishing attacks or flash ownership attacks)
+* Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
 * The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
 * Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
