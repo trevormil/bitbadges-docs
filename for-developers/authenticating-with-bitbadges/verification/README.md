@@ -92,6 +92,8 @@ Nonce: somethinginvalid
 
 Without additional checks, this is a valid challenge message for your app and would pass the BitBadges API verification from a cryptographic perspective. However, by checking the nonce, you can know that this sign in was not issued by you, and thus, the phishing attempt will not be successful (even if they do phish the signature).
 
+You may be okay with taking this risk for ease of implementation, but it is strongly recommended to take this additional protective measure to ensure authentication is correct.
+
 **Replay Attacks**
 
 You shouldo also implement a replay attack prevention mechanism as well. Signatures will always be cryptographically valid, so it is important to prevent replay attacks in case the signatures get in the wrong hands.

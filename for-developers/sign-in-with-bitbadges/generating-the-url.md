@@ -11,9 +11,9 @@ This URL structure adheres to the following interface:
 * **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
 * **Parameters**: Custom parameters specific to your implementation.
 
-You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL. The URL is to be distributed to your users via any communication method or directly in your frontend.&#x20;
+You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL. The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may co
 
-The generated URL can be quite long, so consider using a URL shortener.
+**Snippets**
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
 </strong>
