@@ -118,7 +118,7 @@ Sign In with BitBadges is targeted towards authentication, not necessarily autho
 
 **Why does the flow look similar to authorization like OAuth 2.0?**
 
-Our suite of tools helps you outsource the authentication step through a similar process to popular authorization implementations (e.g. OAuth 2.0 with Sign In with Google). We leverage many of the same techniques. However, the difference is that instead of generating and providing access tokens that can be used by third parties, we generate and provide you with the (message, signature) pairs along with other accompanying details.
+Our suite of tools helps you outsource the authentication step through a similar process to popular authorization implementations (e.g. OAuth 2.0 with Sign In with Discord). We leverage many of the same techniques. However, the difference is that instead of generating and providing access tokens that can be used, we provide the interface for users to sign messages and provide you with the (message, signature) pairs along with other accompanying details.
 
 **Implementing Authorization**
 
