@@ -10,8 +10,8 @@ https://bitbadges.io/auth/codegen?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
--   **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
--   **Parameters**: Custom parameters specific to your implementation.
+* **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
+* **Parameters**: Custom parameters specific to your implementation.
 
 If you need assistance generating these parameters, you can use the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
@@ -51,7 +51,7 @@ All parameters are cached at the time the URL is opened. Consider either impleme
 
 All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer).
 
-Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).&#x20;
+Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).
 
 For instant authentication, the **redirectUri** is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
 
@@ -83,7 +83,7 @@ const popupParams = {
     challengeParams: {
         domain: 'https://bitbadges.io',
         statement: 'This request ...',
-        address, //0x or cosmos1 or bc1 or other supported address
+        address, // 0x or cosmos1 or bc1 or other supported address
         uri: 'https://bitbadges.io',
         nonce: '*',
         expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
@@ -147,9 +147,9 @@ const popupParams = {
 }
 ```
 
-For a better user experience and interface, we can simulate certain aspects about the request (asset ownership, etc) if you pass in **expectVerifySuccess**. This lets us check and catch certain errors and warn the user before they sign rather than after. Some use cases, however, may not be expected to pass at sign time, such as pre-generating a QR code for a later time.&#x20;
+For a better user experience and interface, we can simulate certain aspects about the request (asset ownership, etc) if you pass in **expectVerifySuccess**. This lets us check and catch certain errors and warn the user before they sign rather than after. Some use cases, however, may not be expected to pass at sign time, such as pre-generating a QR code for a later time.
 
-The default is false. If true, we check only a few details out of the box, but passing in **verifyOptions** will let us know the expected verification options and can help us further enhance our simulation feature. See Verification page for all options explained.&#x20;
+The default is false. If true, we check only a few details out of the box, but passing in **verifyOptions** will let us know the expected verification options and can help us further enhance our simulation feature. See Verification page for all options explained.
 
 **Secrets**
 
