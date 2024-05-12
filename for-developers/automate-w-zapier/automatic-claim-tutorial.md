@@ -55,4 +55,10 @@ Step 3: Configure the Complete Claim by BitBadges integration. The password and 
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
+You can get the claim ID from the small text on the BitBadges site.
+
+<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+
+
+
 And, it is as easy as that!
