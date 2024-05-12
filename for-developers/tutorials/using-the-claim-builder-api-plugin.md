@@ -21,7 +21,7 @@ Couple notes:
 
 <figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Ensuring BitBadges as Origin
 
@@ -95,7 +95,7 @@ For non-indexed compatible queries, you must support calls with **only** the cos
 
 The creator schema is what is to be configured by the claim creator, not the end user. The user schema is to be configured by the end user (the one claiming).
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 export const ApiCallPlugins: ApiCallPlugin[] = [
