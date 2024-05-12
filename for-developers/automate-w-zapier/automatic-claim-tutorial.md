@@ -2,7 +2,7 @@
 
 ### Overview
 
-The other option is to trigger claims automatically. You will configure it to automatically complete the claim for the user upon a custom trigger. For example, upon purchasing an item, auto-send them a purchased item badge.
+The other option is to trigger claims automatically. You will configure the Zap to automatically complete the claim for the user upon a custom trigger. For example, upon purchasing an item, auto-send them a purchased item badge.
 
 To do this, you **MUST** get the users' crypto addresses somehow before the action is executed. This can be beforehand or somehow obtained during the duration of the Zap. We leave this up to you. Consider using the BitBadges Address List feature on the site. If you cannot obtain users' addresses, this approach will not work.
 
@@ -27,19 +27,31 @@ The first step is to create the claim via the Bitbadges site; however, note that
 
 **Gate with Custom Password**
 
-However, it is IMPORTANT to note that not requiring SIWBB relaxes the restriction for everyone. Thus, you will have to gate the claim in other ways to ensure that it **only** allows Zapier to claim on users' behalf. The easiest way to do this is with a unique password. You will then configure Zapier to use this password whenever it tries to claim. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
+However, it is IMPORTANT to note that not requiring SIWBB relaxes the restriction for everyone. Thus, you will have to gate the claim in other ways to ensure that it **only** allows Zapier to claim on users' behalf.&#x20;
+
+To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Other Plugins**
 
-You may still configure other criteria to be checked as well (e.g. one use per recipient address, check min $BADGE, etc.) However, be aware that anything requiring custom user inputs or actions may not be able to be implemented or must be handled additionally.
+Currently, the only other claim plugins that are compatible are ones that only need at most the claimee's address and have no custom user inputs.
 
-For example, to check an address' GitHub contributions, they need to Sign In with GitHub, but the Zap cannot sign in the user with GitHub. Thus, this plugin is not usable.&#x20;
+* The "Number of Uses" plugin - You should still set this to gate how many times each address or all addresses can claims.
+* Min $BADGE -
+* Time Window -&#x20;
+* Ownership Requirements -
+* Whitelist -&#x20;
+* Custom HTTP Requests (that only need at most crypto address and have no custom user inputs)
 
-However, certain ones like checking badge ownership or checking minimum $BADGE owned do not require any user inputs and will be fine to use.
+All other plugins require addiitional stuff which is not compatible with the Zapier integration.
 
-Note that you are also integrating with Zapier, so you can also chain anyone of the 6000+ app integrations into your automated Zap. Oftentimes, you can find a plugin that does exactly what the one on BitBadges would do.
+* Github, Discord, X, etc.
+* Codes
+
+For example, to check an address' GitHub contributions, they need to Sign In with GitHub, but the Zap cannot sign in the user with GitHub. Thus, this plugin is not usable. However, certain ones like checking badge ownership or checking minimum $BADGE owned do not require any user inputs and will be fine to use.
+
+Note that you are also integrating with Zapier, so you can also chain anyone of the 6000+ app integrations into your automated Zap. Oftentimes, you can find a plugin that does exactly what the one on BitBadges would do. Or, if you need even more customization, you can complete claims via the BitBadges API.
 
 ## Tutorial
 
