@@ -1,5 +1,17 @@
 # Distribute Claim Information Tutorial
 
+### Overview
+
+The first option is to distribute the necessary information to claim on the BitBadges site to users via Zapier. For example, send a unique claim code to a user when they complete this form.
+
+The cool thing about this approach is that you do not need to communicate through crypto-native channels. This means that you do not need to know users' addresses beforehand. You can send the claim code, for example, via the Email by Zapier Plugin or Gmail plugin, and once the user receives the email, they can log on to the BitBadges site and select their address to receive the badges for when claiming.
+
+For this approach, you do not need any communication with the BitBadges API Zapier plugin. Everything can be done via existing plugins, apps, and integrations. The downside to this approach is that since you are only distributing claim information and not initiating the claim itself, the end user always has to initiate the claim to complete the action. It is not automatic.
+
+You may also consider using the Send Claim Alert action with the BitBadges API Zapier plugin to send secret claim information. This will send an in-app notification on the BitBadges site to the user.
+
+See the tutorial via the link below for more information.&#x20;
+
 ### Pre-Requisite
 
 It is assumed that you have created a claim via the BitBadges site and have got the secret information to distribute already. Otherwise, you will need to do that first. For the tutorial below, we use claim codes, so if you want to follow along exactly, you will need to generate a claim with claim codes.
@@ -38,4 +50,4 @@ Step 4: Setup the Lookup Spreadsheet Row for Google Sheets action in Zapier. Sel
 
 Step 5: Setup your final actions. In our case above, we are sending an email via Gmail with the code. Whatever your action is, you can insert the unique claim code to be distributed from the Lookup Row step. For example, in our email body we dynamically use the code value from the Codes column from our prior step.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
