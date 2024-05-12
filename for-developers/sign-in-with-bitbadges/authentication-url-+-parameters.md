@@ -120,7 +120,7 @@ This can be used to implement, for example, badge gating Discord servers. Check 
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Metadata**
 
