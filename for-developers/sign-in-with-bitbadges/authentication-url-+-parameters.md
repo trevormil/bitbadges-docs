@@ -86,6 +86,8 @@ const popupParams = {
         address, // 0x or cosmos1 or bc1 or other supported address
         uri: 'https://bitbadges.io',
         nonce: '*',
+        
+        //Optional
         expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
         notBefore: undefined,
         resources: ['Full Access: Full access to all features.'],

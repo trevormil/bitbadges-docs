@@ -59,7 +59,9 @@ const popupParams = {
 }
 ```
 
+### Time Fields
 
+Note that Blockin provides a place for you to include details about the authentication request times such as notBefore or expirationDate. These are optional and may not make sense for some use cases, such as rolling session cookies, refresh tokens, etc where the authenticated times are dynamic.
 
 ### **Asset Ownership Requirements**
 
