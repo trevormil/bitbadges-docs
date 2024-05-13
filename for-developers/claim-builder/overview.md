@@ -78,7 +78,7 @@ However, plugins may be too restrictive since we just check status codes success
 
 ## **Reusing Plugins for Assigning Non-Indexed Balances**
 
-Badges with "Off-Chain - Non-Indexed" balances type are slightly different because there is no claiming process because non-indexed balances are stateless.
+Badges with "Off-Chain - Non-Indexed" balances type are slightly different because there is no claiming process because non-indexed balances are stateless. Thus, claims (which have state) are not possible.
 
 For these, we reuse some of the plugins in order to query specific criteria and assign balances based on whether it is met or not. Because of the stateless requirement though, many options are disabled. The queries are executed on-demand whenever a user requests the balances for a specific address. If the criteria is met, we assign a balance of x1. If the criteria is not met, we assign a balance of x0 for all badges.&#x20;
 
