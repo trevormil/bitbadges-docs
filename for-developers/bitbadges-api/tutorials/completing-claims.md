@@ -21,7 +21,7 @@ Couple notes with auto-completing claims:
 
 **Custom Body**
 
-Only two core plugins currently require a custom body input (the "codes" and "password" plugin). Custom plugins may also require custom body inputs from the user.
+Only two core plugins currently require a custom body input (the "codes" and "password" plugin). Custom plugins may also require custom body inputs from the user. If you are using a custom plugin not created by you, refer to that plugin's documentation or cocntact the creator for more input on the custom body schema.
 
 The custom body (if needed) should be in the following format
 
