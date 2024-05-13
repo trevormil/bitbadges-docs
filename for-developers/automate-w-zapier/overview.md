@@ -6,7 +6,7 @@ Zapier is an online automation tool that connects your favorite apps, such as Gm
 
 See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
-<figure><img src="../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
 **How does Zapier fit in with BitBadges?**
 

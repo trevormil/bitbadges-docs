@@ -38,14 +38,14 @@ The BitBadges claim builder adopts a plugin-based approach to allow for maximum 
 
 **Directory**
 
-See all plugins here.
+See all plugins and helper tools via the directory.
 
-{% embed url="https://bitbadges.io/claims/plugins" %}
+{% embed url="https://bitbadges.io/claims/directory" %}
 
 **Creating a Plugin**
 
-{% content-ref url="using-the-claim-builder-api-plugin.md" %}
-[using-the-claim-builder-api-plugin.md](using-the-claim-builder-api-plugin.md)
+{% content-ref url="../tutorials/using-the-claim-builder-api-plugin.md" %}
+[using-the-claim-builder-api-plugin.md](../tutorials/using-the-claim-builder-api-plugin.md)
 {% endcontent-ref %}
 
 **Core Plugins**
@@ -68,8 +68,8 @@ Note the different claim actions explained above. Completing an on-chain claim w
 
 The easiest way to configure your claim to claim on others' behalf is to simply set up a a claim password that only you know. Then, you use that password when calling the API.&#x20;
 
-{% content-ref url="automate-w-zapier/" %}
-[automate-w-zapier](automate-w-zapier/)
+{% content-ref url="../automate-w-zapier/" %}
+[automate-w-zapier](../automate-w-zapier/)
 {% endcontent-ref %}
 
 {% content-ref url="../bitbadges-api/tutorials/completing-claims.md" %}
