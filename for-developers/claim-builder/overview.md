@@ -1,20 +1,22 @@
 # Overview
 
-BitBadges Claims are designed to be a comprehensive tool within the site. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. Our goal is to make it adaptable to your specific needs through custom implementations or integrations, such as Zapier. Out of the box, it offers plenty of built-in features without requiring any additional coding. The end goal is for all use cases to be supported by the BitBadges claim builder with no code required. Behind the scenes, BitBadges manages the current state of the claim and performs the verification checks through its API.&#x20;
+BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the experience for you and your users. It allows you to easily establish the requirements for claiming your badges or being added to your address lists.&#x20;
+
+The end goal is for all use cases to be supported by the BitBadges Claims. Out of the box, it offers plenty of built-in features with no code required. Or, you can extend it with custom functionality or integrations, such as Zapier.
 
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
-## **Directory**
+## **Plugins**
 
-See all plugins and helper tools via the directory.
+The BitBadges claim builder adopts a plugin-based approach to allow for maximum customization and integrations. See all plugins and helper tools via the directory.
 
 {% embed url="https://bitbadges.io/claims/directory" %}
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-The BitBadges claim builder adopts a plugin-based approach to allow for maximum customization and integrations.
+
 
 **Core Plugins**
 

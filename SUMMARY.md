@@ -124,7 +124,7 @@
   * [Overview](for-developers/claim-builder/overview.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Tools / Plugins Directory](https://bitbadges.io/claims/directory)
-    * [Creating Custom HTTP Request Plugin](for-developers/claim-builder/plugins/using-the-claim-builder-api-plugin.md)
+    * [Creating a Custom Plugin](for-developers/claim-builder/plugins/using-the-claim-builder-api-plugin.md)
     * [Publishing a Plugin](for-developers/claim-builder/plugins/publishing-a-plugin.md)
   * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-complete-claims-w-bitbadges-api.md)
   * [Integrate with Zapier](for-developers/automate-w-zapier/README.md)
