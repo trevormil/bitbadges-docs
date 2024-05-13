@@ -65,4 +65,4 @@ You ultimately know your users best. We leave the communication and alerting ste
 
 If you use an address-based approach through the BitBadges site, we will automatically trigger a notification to the intended recipients (claim alerts for whitelists and activity if a badge is transferred / assigned to them).
 
-See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/claim-builder/other/build-a-distribution-tool.md) if you would like to create and add a new tool.
+See [Ecosystem ](../ecosystem/)to find a list of all distribution tools built by the BitBadges team and community. See [this tutorial](../../for-developers/claim-builder/other-tutorials/build-a-distribution-tool.md) if you would like to create and add a new tool.
