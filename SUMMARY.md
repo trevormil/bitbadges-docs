@@ -127,7 +127,7 @@
     * [Creating Custom HTTP Request Plugin](for-developers/claim-builder/plugins/using-the-claim-builder-api-plugin.md)
     * [Publishing a Plugin](for-developers/claim-builder/plugins/publishing-a-plugin.md)
   * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-complete-claims-w-bitbadges-api.md)
-  * [Integrate Claims with Zapier](for-developers/automate-w-zapier/README.md)
+  * [Integrate with Zapier](for-developers/automate-w-zapier/README.md)
     * [Overview](for-developers/automate-w-zapier/overview.md)
     * [Distribute Claim Information Tutorial](for-developers/automate-w-zapier/distribute-claim-information-tutorial.md)
     * [Automatic Claim Tutorial](for-developers/automate-w-zapier/automatic-claim-tutorial.md)
