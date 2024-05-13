@@ -124,7 +124,6 @@
   * [Overview](for-developers/claim-builder/overview.md)
   * [Tools / Plugins Directory](https://bitbadges.io/claims/directory)
   * [Create Custom Plugins](for-developers/tutorials/using-the-claim-builder-api-plugin.md)
-  * [Create an Approval w/ Claim Codes](for-developers/tutorials/create-a-secret-code-based-approval.md)
   * [Build a Distribution Tool](for-developers/tutorials/build-a-distribution-tool.md)
   * [Automate BitBadges Claims with Zapier](for-developers/automate-w-zapier/README.md)
     * [Overview](for-developers/automate-w-zapier/overview.md)
