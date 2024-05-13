@@ -40,10 +40,10 @@ To solve this, you must create a custom password which will only be known by Zap
 Currently, the only other claim plugins that are compatible are ones that only need at most the claimee's address and have no custom user inputs.
 
 * The "Number of Uses" plugin - You should still set this to gate how many times each address or all addresses can claims.
-* Min $BADGE -
-* Time Window -&#x20;
-* Ownership Requirements -
-* Whitelist -&#x20;
+* Min $BADGE
+* Time Window
+* Ownership Requirements
+* Whitelist&#x20;
 * Custom HTTP Requests (that only need at most crypto address and have no custom user inputs)
 
 All other plugins require addiitional stuff which is not compatible with the Zapier integration.

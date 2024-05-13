@@ -100,6 +100,7 @@ Alternatively, you can create a claim gated with other criteria (e.g. 1 use per 
 
 ## Extending the Functionality
 
-We aim to make this process easy to extend and customize using self-implementations. This can be through creating your own plugins. Or, you can self-host your own claim and connect it with a BitBadges claim behind the scenes. You can get creative with this connection process.&#x20;
+We aim to make this process easy to extend and customize using self-implementations. This can be through creating your own plugins.&#x20;
 
-For example, on BitBadges side, you may generate a claim with unique claim codes. On your end, you implement your claim functionality and assign a claim code to users who successfully satisfy your claim criteria (or auto-complete the claim for them).
+Or, you can self-host your own claim and connect it with a BitBadges claim behind the scenes. You can get creative with this connection process. For example, on BitBadges side, you may generate a claim with unique claim codes. On your end, you implement your claim functionality and assign a claim code to users who successfully satisfy your claim criteria (or auto-complete the claim for them).
+
