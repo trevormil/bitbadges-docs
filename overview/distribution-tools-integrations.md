@@ -40,8 +40,8 @@ Distribution may involve:
 
 ### **Zapier**
 
-{% content-ref url="../for-developers/claim-builder/auto-completing-claims/automate-w-zapier/" %}
-[automate-w-zapier](../for-developers/claim-builder/auto-completing-claims/automate-w-zapier/)
+{% content-ref url="../for-developers/claim-builder/automate-w-zapier/" %}
+[automate-w-zapier](../for-developers/claim-builder/automate-w-zapier/)
 {% endcontent-ref %}
 
 <figure><img src="../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>

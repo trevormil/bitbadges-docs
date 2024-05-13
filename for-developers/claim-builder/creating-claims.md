@@ -4,20 +4,28 @@ Currently, claims can only be created and maintained through the BitBadges site 
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-### Plugins
+## Design Considerations
 
-You can mix and match multiple plugins to create your claim. ALL plugins for a claim need to pass for a successful claim.
+**Collecting Addresses vs Allowing User Selection**
 
-### **Designing the Claim**
+* **Pre-Collection of Addresses**: Automatic claiming on behalf of users may require knowing users' crypto addresses beforehand, necessitating a pre-collection step.&#x20;
+* **User Select at Claim Time**: Or, if users claim on the BitBadges site, they can specify their own address when claiming.
 
-* Claims are approvals (aka the right to claim or perform an action). The underlying action must also be successful to ensure correct behavior (i.e. sufficient balances, on-chain approvals if applicable, etc). &#x20;
-* Designing claims for on-chain balances takes extra consideration. We use a "reserve" system where a successful claim reserves the right to claim on-chain via a one-time use only code behind the scenes. **You need to protect against cases where the claim can be reserved but not actually executed on-chain or vice versa.** This includes:
-  * Ensuring addresses must be approved both for the claim and on-chain approval
-  * Ensuring claim times align
-  * And so on.
-* If you are planning to execute claims on users behalf automatically behind the scenes, **you need to setup the claim in a way that you can do so.** For more information, see the Auto-Completing Claims pages.
-  * The easiest way is to setup a secret password with the password plugin only known by you and use that to claim. This is the approach for the Zapier integration.
-  * This also means that you cannot enable the "Signed In with BitBadges" plugin, unless you are getting all your users to authorize you (really advanced and extra).  However, it is IMPORTANT to note that disabling Signed In with BitBadges means that ANY user can claim on another user's behalf. You must prevent this case with other criteria, such as the password example above.
+**Ensuring Correct Actions Behavior**
+
+* Claims are approvals to perform an action, which means the underlying action must be configured properly and executable as well (e.g., sufficient balances, on-chain approvals). A successful claim is nothing without a successful action.
+
+**Automatic Claims**&#x20;
+
+* If you are planning to auto complete claims behind the scenes via the API or via Zapier, note that you will not be making requests signed in as the user (unless you have a really advanced custom implementation). This means that the "Signed In with BitBadges" plugin needs to be disabled.
+* **Important Note**: Disabling "Signed In with BitBadges" allows any user to claim on another's behalf. You need to prevent this case with other criteria. The recommended approach (mandatory for Zapier) is to use a secret password with the password plugin (e.g., Zapier integration) that is to be specified by the service performing the auto-claim.
+
+**Designing Claims for On-Chain Balances**&#x20;
+
+* As explained with the claim actions, claims for on-chain badges use a "reserve" system where a successful claim reserves the right to claim on-chain via a one-time use code. The claim code is then used via the underlying on-chain approval. Thus, it is important to align the criteira of the approval and the claim.
+* Protect against cases where the BitBadges off-chain claim can be reserved but not executed on-chain or vice versa. This may happen if the claim criteria does not match the on-chain approval.
+  * For example, if you create a BitBadges claim that can be reserved by Bob, but Bob is not approved on-chain, Bob cannot actually receive the badges.
+  * This is commonly a problem for approved addresses and transfer/claim times not aligning up.
 
 
 

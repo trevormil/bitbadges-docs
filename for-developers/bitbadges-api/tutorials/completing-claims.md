@@ -1,5 +1,5 @@
 # Completing Claims
 
-{% content-ref url="../../claim-builder/auto-completing-claims/" %}
-[auto-completing-claims](../../claim-builder/auto-completing-claims/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}

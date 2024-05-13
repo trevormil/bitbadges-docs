@@ -1,2 +1,0 @@
-# Auto-Completing Claims
-
