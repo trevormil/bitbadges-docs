@@ -6,7 +6,7 @@ Zapier is an online automation tool that connects your favorite apps, such as Gm
 
 See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
 **How does Zapier fit in with BitBadges?**
 
@@ -25,6 +25,8 @@ The process of claiming a badge can be customized with Zapier to integrate any a
 * **Action:** Zapier communicates with your course platform and issues the user a unique claim code or secret ID for the certification badge or ceritification secret.
 
 Remember, these are just examples to spark ideas. The possibilities are endless with Zapier and BitBadges integration. Familiarize yourself with both platforms to make the most out of your automations.
+
+<figure><img src="../../../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 
 ## Triggers
 
