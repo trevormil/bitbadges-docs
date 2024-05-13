@@ -1,10 +1,18 @@
 # Overview
 
-The BitBadges Claim builder is designed to be a comprehensive tool within the site. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. Our goal is to make it adaptable to your specific needs through custom implementations or integrations, such as Zapier. Out of th ebox, it offers plenty of built-in features without requiring any additional coding. Te end goal is for all use cases to be supported by the BitBadges claim builder with no code required.
+The BitBadges Claim builder is designed to be a comprehensive tool within the site. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. Our goal is to make it adaptable to your specific needs through custom implementations or integrations, such as Zapier. Out of the box, it offers plenty of built-in features without requiring any additional coding. The end goal is for all use cases to be supported by the BitBadges claim builder with no code required.
+
+<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+
+## **Directory**
+
+See all plugins and helper tools via the directory.
+
+{% embed url="https://bitbadges.io/claims/directory" %}
 
 ## Creating Claims
 
-Claims can currently only be created and maintained through the BitBadegs site. You will get the chance to create and update claims when creating / updating a badge collection or address list.
+Currently, creation of claims can currently only be created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list. Completing claims can be automated / custom (see below).
 
 ## Claim Types
 
@@ -35,12 +43,6 @@ Lastly, we have address list claims. If you can meet the criteria, you can get y
 ## Plugins / Customizations
 
 The BitBadges claim builder adopts a plugin-based approach to allow for maximum customization and integrations.
-
-**Directory**
-
-See all plugins and helper tools via the directory.
-
-{% embed url="https://bitbadges.io/claims/directory" %}
 
 **Creating a Plugin**
 
