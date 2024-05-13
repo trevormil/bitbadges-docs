@@ -123,7 +123,7 @@
 * [🏗️ BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
-  * [Creating Claims](for-developers/claim-builder/creating-claims.md)
+  * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Core vs Custom Plugins](for-developers/claim-builder/plugins/core-vs-custom-plugins.md)
     * [Tools / Plugins Directory](https://bitbadges.io/claims/directory)
