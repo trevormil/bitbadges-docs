@@ -80,9 +80,9 @@ For these, we reuse some of the plugins in order to query specific criteria and 
 
 Plugins that require anything other than just the user's crypto address are incompatible.&#x20;
 
-##
+## Approaches
 
-## Automatic Claim Completion
+### Automatic Claim Completion
 
 If your claim is configured in a way that you can claim on your users' behalf, you can complete the claim for them via the BitBadges API if you know their address. This is also possible via Zapier which allows you to connect to over 6000+ apps and custom triggers (e.g. purchase on Shopify completed -> get a badge).
 
@@ -98,15 +98,13 @@ The easiest way to configure your claim to claim on others' behalf is to simply 
 [completing-claims.md](../bitbadges-api/tutorials/completing-claims.md)
 {% endcontent-ref %}
 
-## Distribution of Claim Information
+### Distribution of Claim Information
 
 If your users require secret information to be able to claim (e.g. unique claim codes), you can do this via any method you prefer (BitBadges in-site claim alerts, email, SMS, etc). You know your users best!
 
-## Collecting Addresses vs Allowing User Select&#x20;
+### Collecting Addresses vs Allowing User Select&#x20;
 
 Implementations, such as making automatic claims, may be easier or even require you to know your users'  crypto addresses beforehand. This may require a pre-collection step. Check out the directory for all the distribution tools.
 
 Alternatively, you can create a claim gated with other criteria (e.g. 1 use per GitHub user) and allow the user to specify their address at claim time. This will always require the user to initiate the claim though.
-
-##
 
