@@ -9,8 +9,8 @@ console.log(res);
 
 An alternative to using the SDK is to automate the process with Zapier. We recommend reading this for more insights into the behind the scenes even if using the SDK.
 
-{% content-ref url="../../automate-w-zapier/automatic-claim-tutorial.md" %}
-[automatic-claim-tutorial.md](../../automate-w-zapier/automatic-claim-tutorial.md)
+{% content-ref url="../../claim-builder/automate-w-zapier/automatic-claim-tutorial.md" %}
+[automatic-claim-tutorial.md](../../claim-builder/automate-w-zapier/automatic-claim-tutorial.md)
 {% endcontent-ref %}
 
 Couple notes with auto-completing claims:

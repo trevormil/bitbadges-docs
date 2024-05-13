@@ -13,7 +13,7 @@ We want to note that functionality is slightly different for badges with on-chai
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ### Create the Claim
 
@@ -23,7 +23,7 @@ The first step is to create the claim via the Bitbadges site; however, note that
 
 &#x20;This should be disabled to allow Zapier to claim on behalf of others without needing to authenticate. In other words, whoever is claiming can specify the intended recipient without actually needing to authenticate as this recipient.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 **Gate with Custom Password**
 
@@ -31,7 +31,7 @@ However, it is IMPORTANT to note that not requiring SIWBB relaxes the restrictio
 
 To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Other Plugins**
 
@@ -61,15 +61,15 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and claim ID will typically be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 You can get the claim ID from the small text on the BitBadges site.
 
-<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
 
 
 
