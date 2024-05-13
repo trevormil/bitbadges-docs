@@ -17,7 +17,9 @@ You will use the BitBadges API Zapier plugin with the Complete Claim action to p
 
 ### Create the Claim
 
-The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate.
+The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. To help, select this box at the top of the claim creation component.
+
+<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
 
 **No Signed In with BitBadges Plugin**
 
