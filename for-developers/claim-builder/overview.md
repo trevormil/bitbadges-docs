@@ -4,6 +4,8 @@ The BitBadges Claim builder is designed to be a comprehensive tool within the si
 
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+
 ## **Directory**
 
 See all plugins and helper tools via the directory.
