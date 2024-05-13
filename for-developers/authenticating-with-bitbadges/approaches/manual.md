@@ -22,5 +22,5 @@ Like we mentioned, obtaining the code is up to you. The code will be a 32 byte h
 
 
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
 

@@ -1,6 +1,6 @@
 # Overview
 
-The BitBadges Claim builder is designed to be a comprehensive tool within the site. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. Our goal is to make it adaptable to your specific needs through custom implementations or integrations, such as Zapier. Out of the box, it offers plenty of built-in features without requiring any additional coding. The end goal is for all use cases to be supported by the BitBadges claim builder with no code required.
+The BitBadges Claim builder is designed to be a comprehensive tool within the site. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. Our goal is to make it adaptable to your specific needs through custom implementations or integrations, such as Zapier. Out of the box, it offers plenty of built-in features without requiring any additional coding. The end goal is for all use cases to be supported by the BitBadges claim builder with no code required. Behind the scenes, BitBadges manages the current state of the claim and performs the verification checks through its API.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
@@ -12,23 +12,27 @@ See all plugins and helper tools via the directory.
 
 ## Creating Claims
 
-Currently, creation of claims can currently only be created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list. Completing claims can be automated / custom (see below).
+Currently, creation of claims can only be created and maintained through the BitBadges site (not through the API). You will get the chance to create and update claims when creating / updating a badge collection or address list.&#x20;
 
-## Claim Types
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-Behind the scenes, BitBadges manages the current state of the claim and performs the verification checks through its API. If a claim is successful, the claim action is completed. Claim actions are different dependent on what the claim is for.
+## Claim Actions
 
-**On-Chain Badges**
+Claim actions are the final action executed upon a successful claim. BitBadges supports a couple different types of claims depending on the use case.&#x20;
 
-Badges with the on-chain balance type are slightly different from the rest because it involves blockchain transactions to actually transfer the badges. For these claims, a successful claim will result in getting the unique claim code which can be used on-chain to claim. By getting the unique claim code, you effectively **reserve** the right to claim, but an additional transaction signature from the claimee is required to complete the process and obtain the badges. Thse claim codes are handled behind the scenes and automatically populated when clamining in-site.
+**On-Chain Balances**
+
+Badges with the on-chain balance type are slightly different from the rest because it involves blockchain transactions to actually transfer the badges. For these claims, a successful claim will result in getting the unique claim code which can be used on-chain to claim.&#x20;
+
+By getting the unique claim code, you effectively **reserve** the right to claim, but an additional transaction signature from the claimee is required to complete the process and obtain the badges. Thse claim codes are handled behind the scenes and automatically populated when clamining in-site.
 
 The on-chain claim codes are the leaves of [Merkle challenge](../core-concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. Note these are not the same codes as the Codes plugin, if enabled.
 
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
 **Off-Chain Badges - Indexed**
 
-For badges with the "Off-Chain - Indexed" balance type, everything works the same, except that upon successful claim, we actually assign the badges (aka assigning them off-chain). There is no reserve step or signature step for the user. &#x20;
-
-For such claims, BitBadges needs to store and host the balances (you can migrate to self-host after the claim is done).
+For badges with the "Off-Chain - Indexed" balance type, everything works the same, except that upon successful claim, we actually assign the badges (aka assigning them off-chain). There is no reserve step or signature step for the user.  To work, BitBadges needs to store and host the balances (you can migrate to self-host after the claim is done).
 
 **Off-Chain Badges - Non-Indexed**
 
@@ -90,6 +94,6 @@ Alternatively, you can create a claim gated with other criteria (e.g. 1 use per 
 
 ## Extending the Functionality
 
-We aim to make this process easy to extend and customize using self-implementations. This can be through creating your own plugins. Or, you can self-host your own claim and connect it with a BitBadges claim behind the scenes. You can get creative with this connection process.
+We aim to make this process easy to extend and customize using self-implementations. This can be through creating your own plugins. Or, you can self-host your own claim and connect it with a BitBadges claim behind the scenes. You can get creative with this connection process.&#x20;
 
 For example, on BitBadges side, you may generate a claim with unique claim codes. On your end, you implement your claim functionality and assign a claim code to users who successfully satisfy your claim criteria (or auto-complete the claim for them).
