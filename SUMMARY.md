@@ -181,7 +181,6 @@
 * [🧑‍🏫 Tutorials](for-developers/tutorials/README.md)
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-wasm-contract.md)
-  * [Address Surveys w/ Custom Logic](for-developers/tutorials/custom-address-surveys.md)
 * [💻 BitBadges Frontend](for-developers/bitbadges-frontend.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
