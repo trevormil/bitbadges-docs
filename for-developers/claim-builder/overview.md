@@ -74,13 +74,15 @@ We aim to make this process easy to extend and customize using self-implementati
 
 However, plugins may be too restrictive since we just check status codes success or not on the BitBadges end. You can also self-host and verify your own claim and connect it with a BitBadges claim behind the scenes. You can get creative with this connection process. For example, on BitBadges side, you may generate a claim with unique password. On your end, you implement your claim functionality and auto complete the claim with the passsword oonly known by you.
 
-## **Non-Indexed Queries and Compatibility**
+## **Reusing Plugins for Assigning Non-Indexed Balances**
 
 Badges with "Off-Chain - Non-Indexed" balances type are slightly different because there is no claiming process because non-indexed balances are stateless.
 
 For these, we reuse some of the plugins in order to query specific criteria and assign balances based on whether it is met or not. Because of the stateless requirement though, many options are disabled. The queries are executed on-demand whenever a user requests the balances for a specific address. If the criteria is met, we assign a balance of x1. If the criteria is not met, we assign a balance of x0 for all badges.&#x20;
 
 Plugins that require anything other than just the user's crypto address are incompatible.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
 ## Approaches
 
