@@ -1,4 +1,4 @@
-# Custom Claim Builder API Plugin
+# Create Custom Plugins
 
 The claim builder supports custom API calls via the API plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
 
@@ -89,7 +89,9 @@ On the BitBadges site, there is a Upload JSON button in the custom plugin form. 
 
 ## Publishing a Plugin
 
-Plugins can also be published and preconfigured to be displayed to users in the template section. To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
+Plugins can also be published and preconfigured to be displayed to users in the directory / directly on-site.
+
+To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
 
 For non-indexed compatible queries, you must support calls with **only** the cosmosAddress and any hardcoded inputs. No claimId, Discord details, X details, or custom user inputs are supported.&#x20;
 
