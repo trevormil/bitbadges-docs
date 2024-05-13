@@ -56,7 +56,7 @@ For indexed balances, you can also set up a claim directly on the BitBadges site
 
 ## **Custom integrations?**
 
-**Want to integrate your tool into the BitBadges site natively?** See [here](tutorials/using-the-claim-builder-api-plugin.md).&#x20;
+**Want to integrate your tool into the BitBadges site natively?** See [here](claim-builder/plugins/using-the-claim-builder-api-plugin.md).&#x20;
 
 **Want to integrate BitBadges into your application / tool?** Check out the API / SDK and all other documentation to see what all is possible with BitBadges.
 

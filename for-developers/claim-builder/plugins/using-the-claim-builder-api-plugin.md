@@ -1,4 +1,4 @@
-# Creating HTTP Request Plugin
+# Creating Custom HTTP Request Plugin
 
 The claim builder supports custom API calls via the Custom HTTP Request plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
 
@@ -19,9 +19,9 @@ Couple notes:
 * **Make sure that no malicious third-party can learn private information.** For example, don't allow a malicious party to call your API with arbitrary data and learn private information (even the success / failure response may leak private information).
   * If there is potential private information, it is critical that you ensure the request is from the BitBadges backend.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Ensuring BitBadges as Origin
 

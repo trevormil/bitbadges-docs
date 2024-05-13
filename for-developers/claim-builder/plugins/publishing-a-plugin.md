@@ -1,10 +1,10 @@
 # Publishing a Plugin
 
-**Pre-Reading**
+**Pre-Requisite**
 
+See the prior page for the details about custom plugins and how to configure yours.
 
-
-
+**Publishing a Plugin**
 
 Plugins can also be published and preconfigured to be displayed to users in the directory / directly on-site. To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
 

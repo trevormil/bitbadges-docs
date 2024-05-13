@@ -32,12 +32,12 @@ Additionally, you can configure plugins to have custom user inputs.
 
 <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-{% content-ref url="../tutorials/using-the-claim-builder-api-plugin.md" %}
-[using-the-claim-builder-api-plugin.md](../tutorials/using-the-claim-builder-api-plugin.md)
+{% content-ref url="plugins/using-the-claim-builder-api-plugin.md" %}
+[using-the-claim-builder-api-plugin.md](plugins/using-the-claim-builder-api-plugin.md)
 {% endcontent-ref %}
 
-{% content-ref url="publishing-a-plugin.md" %}
-[publishing-a-plugin.md](publishing-a-plugin.md)
+{% content-ref url="plugins/publishing-a-plugin.md" %}
+[publishing-a-plugin.md](plugins/publishing-a-plugin.md)
 {% endcontent-ref %}
 
 ## Creating Claims
