@@ -1,6 +1,6 @@
-# Create Custom Plugins
+# Creating HTTP Request Plugin
 
-The claim builder supports custom API calls via the API plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
+The claim builder supports custom API calls via the Custom HTTP Request plugin. We will call the specified URI via a HTTP request with the configured variables. The name and description are to be displayed to the user. You can customize the API call and even allow users to enter parameters too.
 
 To pass the validation check, a successful response must be received (e.g. status code 200). **We do nothing else with the response besides check success or not.**
 
@@ -21,11 +21,11 @@ Couple notes:
 
 <figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Ensuring BitBadges as Origin
 
-Ensuring BitBadges as the origin is critical to maintaining privacy. BitBadges does not handle any API keys or priivate variables, so to check, you have a couple options:
+Ensuring BitBadges as the origin may be critical to maintaining privacy for your use case. BitBadges does not handle any API keys or private variables, so to check, you have a couple options:
 
 Firstly, you can check CORS origin in the header is from the correct api.bitbadges.io
 
@@ -56,16 +56,6 @@ if (Date.now() > resData.timestamp + 60000) {
 }
 ```
 
-## Natively Handled vs Self-Hosted
-
-You have a couple options for how the endpoint will be set up.&#x20;
-
-1. You can self-host it yourself. This can also be set up as a proxy to handle private information.&#x20;
-   1. Ex: BitBadges API -> Your Endpoint -> Other API
-2. Create a pull request in the bitbadges-indexer/src/integrations/integration-query-handlers, and this avoids you having to host your own endpoint. Couple catches:
-   1. We expect you to maintain this if there are any errors.
-   2. No private params are supported.
-
 ## Custom Upload via JSON
 
 On the BitBadges site, there is a Upload JSON button in the custom plugin form. If you have a preconfigured plugin but do not want to officially publish it to the BitBadges site, you can create a JSON file such as below and have others upload the preconfigured JSON plugin details to the form.
@@ -87,62 +77,12 @@ On the BitBadges site, there is a Upload JSON button in the custom plugin form. 
   }
 ```
 
-## Publishing a Plugin
+## Natively Handled vs Self-Hosted
 
-Plugins can also be published and preconfigured to be displayed to users in the directory / directly on-site.
+You have a couple options for how the endpoint will be set up.&#x20;
 
-To publish, create a pull request with your ApiCallPlugin in src/integrations/api.tsx of the bitbadges-frontend repository. The pull request should specify everything below. Also, give a brief summary of everything about the plugin (who created it?, risks?, what data it uses?).&#x20;
-
-For non-indexed compatible queries, you must support calls with **only** the cosmosAddress and any hardcoded inputs. No claimId, Discord details, X details, or custom user inputs are supported.&#x20;
-
-The creator schema is what is to be configured by the claim creator, not the end user. The user schema is to be configured by the end user (the one claiming).
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-```typescript
-export const ApiCallPlugins: ApiCallPlugin[] = [
-  {
-    id: 'test',
-    metadata: {
-      name: 'Test API',
-      description: 'Test API',
-      image: 'https://avatars.githubusercontent.com/u/86890740',
-      createdBy: 'BitBadges',
-      nonIndexedCompatible: true
-    },
-    apiCallInfo: {
-      uri: 'https://api.bitbadges.io/test',
-      passDiscord: true,
-      passTwitter: true,
-      userInputsSchema: [{ key: 'username', label: 'Username', type: 'string' }],
-      creatorInputsSchema: [
-        { key: 'username', label: 'Username', type: 'string' },
-        { key: 'ss', label: 'Test', type: 'number' },
-        { key: 'date', label: 'Date', type: 'date' },
-        { key: 'd', label: 'Test', type: 'number' }
-      ],
-      hardcodedInputs: [{ key: 'fdsgsdfg', label: 'Test', value: 'test' }]
-    }
-  }
-];
-
-export interface ApiCallPlugin {
-  id: string;
-  metadata: {
-    name: string;
-    description: string;
-    image: string;
-    createdBy: string;
-    nonIndexedCompatible?: boolean;
-  };
-  apiCallInfo: {
-    uri: string;
-    passDiscord: boolean;
-    passTwitter: boolean;
-    userInputsSchema: Array<JsonBodyInputSchema>;
-    creatorInputsSchema: Array<JsonBodyInputSchema>;
-    hardcodedInputs: Array<JsonBodyInputWithValue>;
-  };
-}
-
-```
+1. You can self-host it yourself. This can also be set up as a proxy to handle private information.&#x20;
+   1. Ex: BitBadges API -> Your Endpoint -> Other API
+2. Create a pull request in the bitbadges-indexer/src/integrations/integration-query-handlers, and this avoids you having to host your own endpoint,  and everythign is done internally. Couple catches:
+   1. We expect you to maintain this if there are any errors.
+   2. No private params are supported.
