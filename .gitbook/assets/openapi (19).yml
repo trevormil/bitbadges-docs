@@ -293,7 +293,7 @@ paths:
         - apiKey: [] # This specifies that an API key is required for authentication
   /collection/{collectionId}/password/{claimId}/{password}:
     post:
-      operationId: checkAndCompleteClaim
+      operationId: completeClaim
       summary: Check and complete claim with password
       description: |
         For password-based approvals, this API call will return a valid code if a valid password is provided.
@@ -328,14 +328,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CheckAndCompleteClaimRouteRequestBody'
+              $ref: '#/components/schemas/CompleteClaimRouteRequestBody'
       responses:
         '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/iCheckAndCompleteClaimRouteSuccessResponse'
+                $ref: '#/components/schemas/iCompleteClaimRouteSuccessResponse'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '401':
@@ -6162,28 +6162,28 @@ components:
       title: iGetClaimsRouteSuccessResponse
       description: '@category API Requests / Responses'
       type: object
-    CheckAndCompleteClaimRouteRequestBody:
+    CompleteClaimRouteRequestBody:
       properties:
         prevCodesOnly:
-          title: CheckAndCompleteClaimRouteRequestBody.prevCodesOnly
+          title: CompleteClaimRouteRequestBody.prevCodesOnly
           type: boolean
       additionalProperties: {}
-      title: CheckAndCompleteClaimRouteRequestBody
+      title: CompleteClaimRouteRequestBody
       description: '@category API Requests / Responses'
       type: object
-    iCheckAndCompleteClaimRouteSuccessResponse:
+    iCompleteClaimRouteSuccessResponse:
       properties:
         code:
-          title: iCheckAndCompleteClaimRouteSuccessResponse.code
+          title: iCompleteClaimRouteSuccessResponse.code
           type: string
         prevCodes:
           items:
-            title: iCheckAndCompleteClaimRouteSuccessResponse.prevCodes.[]
+            title: iCompleteClaimRouteSuccessResponse.prevCodes.[]
             type: string
-          title: iCheckAndCompleteClaimRouteSuccessResponse.prevCodes
+          title: iCompleteClaimRouteSuccessResponse.prevCodes
           type: array
       additionalProperties: false
-      title: iCheckAndCompleteClaimRouteSuccessResponse
+      title: iCompleteClaimRouteSuccessResponse
       description: '@category API Requests / Responses'
       type: object
     DeleteReviewRouteRequestBody:

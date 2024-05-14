@@ -1,803 +1,802 @@
 openapi: '3.0.2'
 info:
-  title: BitBadges API
-  version: '0.1'
+    title: BitBadges API
+    version: '0.1'
 servers:
-  - url: https://api.bitbadges.io/api/v0
+    - url: https://api.bitbadges.io/api/v0
 components:
-  responses:
-    ErrorResponse:
-      description: An error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequestResponse:
-      description: Bad Request - Invalid configuration or request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UnauthorizedResponse:
-      description: Unauthorized - Does not meet authnetication requirements. This can be due to an invalid API key, CORS origin, or session cookie.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerErrorResponse:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: object
-      required:
-        - errorMessage
-      properties:
-        error:
-          type: object
-          description: Serialized error object for debugging purposes. Technical users can use this to debug issues.
-        errorMessage:
-          type: string
-          description: UX-friendly error message that can be displayed to the user. Always present if error.
-        unauthorized:
-          type: boolean
-          description: Authentication error. Present if the user is not authenticated.
-    StatusResponse:
-      type: object
-      properties:
-        block:
-          $ref: '#/components/schemas/LatestBlockStatus'
-        nextCollectionId:
-          $ref: '#/components/schemas/NumberType'
-        gasPrice:
-          type: number
-        lastXGasAmounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/NumberType'
-        lastXGasLimits:
-          type: array
-          items:
-            $ref: '#/components/schemas/NumberType'
-    LatestBlockStatus:
-      type: object
-      properties:
-        height:
-          $ref: '#/components/schemas/NumberType'
-        txIndex:
-          $ref: '#/components/schemas/NumberType'
-        timestamp:
-          $ref: '#/components/schemas/NumberType'
-    NumberType:
-      type: string
-      example: '123'
-      description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
-    SearchRequestBody:
-      type: object
-      properties:
-        noCollections:
-          type: boolean
-          description: If true, skip all collection queries.
-        noAccounts:
-          type: boolean
-          description: If true, skip all account queries.
-        noAddressLists:
-          type: boolean
-          description: If true, skip all address list queries.
-        noBadges:
-          type: boolean
-          description: If true, skip all badge queries.
-        specificCollectionId:
-          $ref: '#/components/schemas/NumberType'
-      required:
-        - noCollections
-        - noAccounts
-        - noAddressLists
-        - noBadges
-    SearchSuccessResponse:
-      type: object
-      properties:
-        collections:
-          type: array
-          # items:
-          #   $ref: '#/components/schemas/BitBadgesCollection'
-        accounts:
-          type: array
-          # items:
-          #   $ref: '#/components/schemas/BitBadgesUserInfo'
-        addressLists:
-          type: array
-          # items:
-          #   $ref: '#/components/schemas/BitBadgesAddressList'
-        badges:
-          type: array
-          items:
+    responses:
+        ErrorResponse:
+            description: An error response
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorResponse'
+        BadRequestResponse:
+            description: Bad Request - Invalid configuration or request
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorResponse'
+        UnauthorizedResponse:
+            description: Unauthorized - Does not meet authnetication requirements. This can be due to an invalid API key, CORS origin, or session cookie.
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorResponse'
+        InternalServerErrorResponse:
+            description: Internal Server Error
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/ErrorResponse'
+    schemas:
+        ErrorResponse:
+            type: object
+            required:
+                - errorMessage
+            properties:
+                error:
+                    type: object
+                    description: Serialized error object for debugging purposes. Technical users can use this to debug issues.
+                errorMessage:
+                    type: string
+                    description: UX-friendly error message that can be displayed to the user. Always present if error.
+                unauthorized:
+                    type: boolean
+                    description: Authentication error. Present if the user is not authenticated.
+        StatusResponse:
             type: object
             properties:
-              # collection:
-              #   $ref: '#/components/schemas/BitBadgesCollection'
-              badgeIds:
-                type: array
-                # items:
-                #   $ref: '#/components/schemas/UintRange'
-    GetCollectionBatchRouteRequestBody:
-      type: object
-      properties:
-        collectionsToFetch:
-          type: array
-          items:
+                block:
+                    $ref: '#/components/schemas/LatestBlockStatus'
+                nextCollectionId:
+                    $ref: '#/components/schemas/NumberType'
+                gasPrice:
+                    type: number
+                lastXGasAmounts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/NumberType'
+                lastXGasLimits:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/NumberType'
+        LatestBlockStatus:
             type: object
             properties:
-              collectionId:
-                $ref: '#/components/schemas/NumberType'
-              metadataToFetch:
-                $ref: '#/components/schemas/MetadataFetchOptions'
-              viewsToFetch:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CollectionViewRequest'
-              fetchTotalAndMintBalances:
-                type: boolean
-              challengeTrackersToFetch:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ChallengeTrackerIdDetails'
-              approvalTrackersToFetch:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AmountTrackerIdDetails'
-              handleAllAndAppendDefaults:
-                type: boolean
-              fetchPrivateParams:
-                type: boolean
-
-    GetCollectionBatchRouteSuccessResponse:
-      type: object
-      properties:
-        collections:
-          type: array
-          # items:
-          #   $ref: '#/components/schemas/BitBadgesCollection'
-
-    MetadataFetchOptions:
-      type: object
-      properties:
-        badgeIds:
-          type: array
-          # items:
-          #   $ref: '#/components/schemas/UintRange'
-
-    CollectionViewRequest:
-      type: object
-      properties:
-        viewType:
-          type: string
-          enum:
-            - transferActivity
-            - reviews
-            - owners
-            - amountTrackers
-            - challengeTrackers
-        viewId:
-          type: string
-        bookmark:
-          type: string
-        oldestFirst:
-          type: boolean
-
-    ChallengeTrackerIdDetails:
-      type: object
-      properties:
-        collectionId:
-          $ref: '#/components/schemas/NumberType'
-        challengeId:
-          type: string
-        challengeLevel:
-          type: string
-          enum: [collection, incoming, outgoing, ""]
-        approverAddress:
-          type: string
-
-    AmountTrackerIdDetails:
-      type: object
-      properties:
-        collectionId:
-          $ref: '#/components/schemas/NumberType'
-        amountTrackerId:
-          type: string
-        approvalLevel:
-          type: string
-        approverAddress:
-          type: string
-        trackerType:
-          type: string
-        approvedAddress:
-          type: string
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      in: header
-      name: x-api-key
-      description: Requires a BitBadges API key for requests
-      x-type: string
-    frontendOnly:
-      type: apiKey
-      in: header
-      name: Origin
-      description: Can only be called by the official BitBadges frontend. Not for developer use.
-    userSignedIn:
-      type: http
-      scheme: cookie
-      description: User must be signed in with a valid session.
-    userMaybeSignedIn:
-      type: http
-      scheme: cookie
-      description: User must be signed in for certain requests, but not all.
-    userIsManager:
-      type: http
-      scheme: cookie
-      description: User must be signed in and have manager permissions.
-    userIsOwner:
-      type: http
-      scheme: cookie
-      description: User must be signed in and have owner permissions.
-paths:
-  /status:
-    post:
-      operationId: getStatus
-      summary: Get Status
-      description: |
-        Gets the current status details about the blockchain / indexer (gas, block height, etc).
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StatusResponse'
-          description: Returns the current status of the blockchain / indexer
-
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-      x-code-samples:
-        - lang: typescript
-          label: BitBadges SDK
-          source: |
-            const res = await BitBadgesApi.getStatus();
-            console.log(res);
-      parameters:
-        - name: x-api-key
-          in: header
-          description: BitBadges API Key for authentication
-          required: true
-          schema:
+                height:
+                    $ref: '#/components/schemas/NumberType'
+                txIndex:
+                    $ref: '#/components/schemas/NumberType'
+                timestamp:
+                    $ref: '#/components/schemas/NumberType'
+        NumberType:
             type: string
-      security:
-        - apiKey: [] # This specifies that an API key is required for authentication
-  /search/{searchValue}:
-    post:
-      operationId: searchByValue
-      summary: Search
-      description: |
-        Searches for collections, badges, accounts, and address lists based on the provided search value.
-      parameters:
-        - name: searchValue
-          in: path
-          description: The value to search for.
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
+            example: '123'
+            description: Number types will always be stringified for responses to avoid precision issues. When passing in requests, the API supports string, number, and bigint types.
+        SearchRequestBody:
+            type: object
+            properties:
                 noCollections:
-                  type: boolean
-                  description: If true, skip all collection queries.
+                    type: boolean
+                    description: If true, skip all collection queries.
                 noAccounts:
-                  type: boolean
-                  description: If true, skip all account queries.
+                    type: boolean
+                    description: If true, skip all account queries.
                 noAddressLists:
-                  type: boolean
-                  description: If true, skip all address list queries.
+                    type: boolean
+                    description: If true, skip all address list queries.
                 noBadges:
-                  type: boolean
-                  description: If true, skip all badge queries.
+                    type: boolean
+                    description: If true, skip all badge queries.
                 specificCollectionId:
-                  $ref: '#/components/schemas/NumberType'
-                  description: If provided, only search for badges in this collection.
-      responses:
-        '200':
-          description: Success response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SearchSuccessResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-      x-code-samples:
-        - lang: typescript
-          label: BitBadges SDK
-          source: |
-            const res = await BitBadgesApi.searchByValue('searchValue', {
-              noCollections: false,
-              noAccounts: false,
-              noAddressLists: false,
-              noBadges: false,
-              specificCollectionId: '123'
-            });
-            console.log(res);
-      security:
-        - apiKey: [] # This specifies that an API key is required for authentication
-  /collection/batch:
-    post:
-      operationId: getCollectionsBatch
-      summary: Retrieve badge collections and accompanying details
-      description: |
-        Retrieves badge collections and accompanying details based on the provided collection IDs.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetCollectionBatchRouteRequestBody'
-      responses:
-        '200':
-          description: Success response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetCollectionBatchRouteSuccessResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-      x-code-samples:
-        - lang: typescript
-          label: BitBadges SDK
-          source: |
-            const res = await BitBadgesApi.getCollectionsBatch({
-              collectionsToFetch: [
-                {
-                  collectionId: '123',
-                  metadataToFetch: {
-                    badgeIds: ['1-10']
-                  },
-                  viewsToFetch: [
-                    {
-                      viewType: 'transferActivity',
-                      viewId: '123',
-                      bookmark: '123',
-                      oldestFirst: true
-                    }
-                  ],
-                  fetchTotalAndMintBalances: true,
-                  challengeTrackersToFetch: [
-                    {
-                      collectionId: '123',
-                      challengeId: '123',
-                      challengeLevel: 'collection',
-                      approverAddress: 'cosmos1...'
-                    }
-                  ],
-                  approvalTrackersToFetch: [
-                    {
-                      collectionId: '123',
-                      amountTrackerId: '123',
-                      approvalLevel: 'collection',
-                      approverAddress: 'cosmos1...',
-                      trackerType: 'mint',
-                      approvedAddress: 'cosmos1...'
-                    }
-                  ],
-                  handleAllAndAppendDefaults: true,
-                  fetchPrivateParams: true
-                }
-              ]
-            });
-            console.log(res);
-      security:
-        - apiKey: [] # This specifies that an API key is required for authentication
+                    $ref: '#/components/schemas/NumberType'
+            required:
+                - noCollections
+                - noAccounts
+                - noAddressLists
+                - noBadges
+        SearchSuccessResponse:
+            type: object
+            properties:
+                collections:
+                    type: array
+                    # items:
+                    #   $ref: '#/components/schemas/BitBadgesCollection'
+                accounts:
+                    type: array
+                    # items:
+                    #   $ref: '#/components/schemas/BitBadgesUserInfo'
+                addressLists:
+                    type: array
+                    # items:
+                    #   $ref: '#/components/schemas/BitBadgesAddressList'
+                badges:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            # collection:
+                            #   $ref: '#/components/schemas/BitBadgesCollection'
+                            badgeIds:
+                                type: array
+                                # items:
+                                #   $ref: '#/components/schemas/UintRange'
+        GetCollectionBatchRouteRequestBody:
+            type: object
+            properties:
+                collectionsToFetch:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            collectionId:
+                                $ref: '#/components/schemas/NumberType'
+                            metadataToFetch:
+                                $ref: '#/components/schemas/MetadataFetchOptions'
+                            viewsToFetch:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/CollectionViewRequest'
+                            fetchTotalAndMintBalances:
+                                type: boolean
+                            challengeTrackersToFetch:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ChallengeTrackerIdDetails'
+                            approvalTrackersToFetch:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/AmountTrackerIdDetails'
+                            handleAllAndAppendDefaults:
+                                type: boolean
+                            fetchPrivateParams:
+                                type: boolean
+
+        GetCollectionBatchRouteSuccessResponse:
+            type: object
+            properties:
+                collections:
+                    type: array
+                    # items:
+                    #   $ref: '#/components/schemas/BitBadgesCollection'
+
+        MetadataFetchOptions:
+            type: object
+            properties:
+                badgeIds:
+                    type: array
+                    # items:
+                    #   $ref: '#/components/schemas/UintRange'
+
+        CollectionViewRequest:
+            type: object
+            properties:
+                viewType:
+                    type: string
+                    enum:
+                        - transferActivity
+                        - reviews
+                        - owners
+                        - amountTrackers
+                        - challengeTrackers
+                viewId:
+                    type: string
+                bookmark:
+                    type: string
+                oldestFirst:
+                    type: boolean
+
+        ChallengeTrackerIdDetails:
+            type: object
+            properties:
+                collectionId:
+                    $ref: '#/components/schemas/NumberType'
+                challengeId:
+                    type: string
+                challengeLevel:
+                    type: string
+                    enum: [collection, incoming, outgoing, '']
+                approverAddress:
+                    type: string
+
+        AmountTrackerIdDetails:
+            type: object
+            properties:
+                collectionId:
+                    $ref: '#/components/schemas/NumberType'
+                amountTrackerId:
+                    type: string
+                approvalLevel:
+                    type: string
+                approverAddress:
+                    type: string
+                trackerType:
+                    type: string
+                approvedAddress:
+                    type: string
+    securitySchemes:
+        apiKey:
+            type: apiKey
+            in: header
+            name: x-api-key
+            description: Requires a BitBadges API key for requests
+            x-type: string
+        frontendOnly:
+            type: apiKey
+            in: header
+            name: Origin
+            description: Can only be called by the official BitBadges frontend. Not for developer use.
+        userSignedIn:
+            type: http
+            scheme: cookie
+            description: User must be signed in with a valid session.
+        userMaybeSignedIn:
+            type: http
+            scheme: cookie
+            description: User must be signed in for certain requests, but not all.
+        userIsManager:
+            type: http
+            scheme: cookie
+            description: User must be signed in and have manager permissions.
+        userIsOwner:
+            type: http
+            scheme: cookie
+            description: User must be signed in and have owner permissions.
+paths:
+    /status:
+        post:
+            operationId: getStatus
+            summary: Get Status
+            description: |
+                Gets the current status details about the blockchain / indexer (gas, block height, etc).
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/StatusResponse'
+                    description: Returns the current status of the blockchain / indexer
+
+                '400':
+                    $ref: '#/components/responses/BadRequestResponse'
+                '401':
+                    $ref: '#/components/responses/UnauthorizedResponse'
+                '500':
+                    $ref: '#/components/responses/InternalServerErrorResponse'
+            x-code-samples:
+                - lang: typescript
+                  label: BitBadges SDK
+                  source: |
+                      const res = await BitBadgesApi.getStatus();
+                      console.log(res);
+            parameters:
+                - name: x-api-key
+                  in: header
+                  description: BitBadges API Key for authentication
+                  required: true
+                  schema:
+                      type: string
+            security:
+                - apiKey: [] # This specifies that an API key is required for authentication
+    /search/{searchValue}:
+        post:
+            operationId: searchByValue
+            summary: Search
+            description: |
+                Searches for collections, badges, accounts, and address lists based on the provided search value.
+            parameters:
+                - name: searchValue
+                  in: path
+                  description: The value to search for.
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                noCollections:
+                                    type: boolean
+                                    description: If true, skip all collection queries.
+                                noAccounts:
+                                    type: boolean
+                                    description: If true, skip all account queries.
+                                noAddressLists:
+                                    type: boolean
+                                    description: If true, skip all address list queries.
+                                noBadges:
+                                    type: boolean
+                                    description: If true, skip all badge queries.
+                                specificCollectionId:
+                                    $ref: '#/components/schemas/NumberType'
+                                    description: If provided, only search for badges in this collection.
+            responses:
+                '200':
+                    description: Success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/SearchSuccessResponse'
+                '400':
+                    $ref: '#/components/responses/BadRequestResponse'
+                '401':
+                    $ref: '#/components/responses/UnauthorizedResponse'
+                '500':
+                    $ref: '#/components/responses/InternalServerErrorResponse'
+            x-code-samples:
+                - lang: typescript
+                  label: BitBadges SDK
+                  source: |
+                      const res = await BitBadgesApi.searchByValue('searchValue', {
+                        noCollections: false,
+                        noAccounts: false,
+                        noAddressLists: false,
+                        noBadges: false,
+                        specificCollectionId: '123'
+                      });
+                      console.log(res);
+            security:
+                - apiKey: [] # This specifies that an API key is required for authentication
+    /collection/batch:
+        post:
+            operationId: getCollectionsBatch
+            summary: Retrieve badge collections and accompanying details
+            description: |
+                Retrieves badge collections and accompanying details based on the provided collection IDs.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/GetCollectionBatchRouteRequestBody'
+            responses:
+                '200':
+                    description: Success response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/GetCollectionBatchRouteSuccessResponse'
+                '400':
+                    $ref: '#/components/responses/BadRequestResponse'
+                '401':
+                    $ref: '#/components/responses/UnauthorizedResponse'
+                '500':
+                    $ref: '#/components/responses/InternalServerErrorResponse'
+            x-code-samples:
+                - lang: typescript
+                  label: BitBadges SDK
+                  source: |
+                      const res = await BitBadgesApi.getCollectionsBatch({
+                        collectionsToFetch: [
+                          {
+                            collectionId: '123',
+                            metadataToFetch: {
+                              badgeIds: ['1-10']
+                            },
+                            viewsToFetch: [
+                              {
+                                viewType: 'transferActivity',
+                                viewId: '123',
+                                bookmark: '123',
+                                oldestFirst: true
+                              }
+                            ],
+                            fetchTotalAndMintBalances: true,
+                            challengeTrackersToFetch: [
+                              {
+                                collectionId: '123',
+                                challengeId: '123',
+                                challengeLevel: 'collection',
+                                approverAddress: 'cosmos1...'
+                              }
+                            ],
+                            approvalTrackersToFetch: [
+                              {
+                                collectionId: '123',
+                                amountTrackerId: '123',
+                                approvalLevel: 'collection',
+                                approverAddress: 'cosmos1...',
+                                trackerType: 'mint',
+                                approvedAddress: 'cosmos1...'
+                              }
+                            ],
+                            handleAllAndAppendDefaults: true,
+                            fetchPrivateParams: true
+                          }
+                        ]
+                      });
+                      console.log(res);
+            security:
+                - apiKey: [] # This specifies that an API key is required for authentication
 
 
-
-  #     This function retrieves badge collections and accompanying details. Consider using the `getCollectionsAndUpdate` function instead for native support in handling paginations, appending metadata, and more.
-  #  *
-  #  * @remarks
-  #  * - **API Route**: `POST /api/v0/collection/batch`
-  #  * - **Tutorial**: Refer to the [Fetching Collections tutorial](https://docs.bitbadges.io/for-developers/bitbadges-api/tutorials/fetching-collections) on the official documentation.
-  # /collection/ba
-  # /collection/batch:
-  #   post:
-  #     summary: Get Collections
-  #     operationId: getCollections
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/{badgeId}/owners:
-  #   post:
-  #     summary: Get Owners for Badge
-  #     operationId: getOwnersForBadge
-  #     parameters:
-  #       - name: collectionId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - name: badgeId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/balance/{cosmosAddress}:
-  #   post:
-  #     summary: Get Badge Balance by Address
-  #     operationId: getBadgeBalanceByAddress
-  #     parameters:
-  #       - name: collectionId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - name: cosmosAddress
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/{badgeId}/activity:
-  #   post:
-  #     summary: Get Badge Activity
-  #     operationId: getBadgeActivity
-  #     parameters:
-  #       - name: collectionId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - name: badgeId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/refresh:
-  #   post:
-  #     summary: Refresh Collection Metadata
-  #     operationId: refreshMetadata
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/refreshStatus:
-  #   post:
-  #     summary: Get Refresh Status
-  #     operationId: getRefreshStatus
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /claims/{claimId}/{cosmosAddress}:
-  #   post:
-  #     summary: Check and Complete Claim
-  #     operationId: checkAndCompleteClaim
-  #     parameters:
-  #       - name: claimId
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #       - name: cosmosAddress
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /claims:
-  #   post:
-  #     summary: Get Claims
-  #     operationId: getClaimsHandler
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collections/filter:
-  #   post:
-  #     summary: Filter Badges in Collection
-  #     operationId: filterBadgesInCollectionHandler
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /collection/{collectionId}/addReview:
-  #   post:
-  #     summary: Add Review for Collection
-  #     operationId: addReviewForCollection
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /user/batch:
-  #   post:
-  #     summary: Get User Accounts in Batch
-  #     operationId: getAccounts
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /user/updateAccount:
-  #   post:
-  #     summary: Update User Account
-  #     operationId: updateAccountInfo
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         multipart/form-data:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               profilePicImageFile:
-  #                 type: string
-  #                 format: binary
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /user/{addressOrUsername}/addReview:
-  #   post:
-  #     summary: Add Review for User
-  #     operationId: addReviewForUser
-  #     parameters:
-  #       - name: addressOrUsername
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addMetadataToIpfs:
-  #   post:
-  #     summary: Add Metadata to IPFS
-  #     operationId: addMetadataToIpfsHandler
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               metadata:
-  #                 type: object
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addApprovalDetailsToOffChainStorage:
-  #   post:
-  #     summary: Add Approval Details to Off-Chain Storage
-  #     operationId: addApprovalDetailsToOffChainStorageHandler
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               approvalDetails:
-  #                 type: object
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addBalancesToOffChainStorage:
-  #   post:
-  #     summary: Add Balances to Off-Chain Storage
-  #     operationId: addBalancesToOffChainStorageHandler
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             properties:
-  #               balances:
-  #                 type: object
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/getChallenge:
-  #   post:
-  #     summary: Get Authentication Challenge
-  #     operationId: getChallenge
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/verify:
-  #   post:
-  #     summary: Verify Blockin and Grant Session Cookie
-  #     operationId: verifyBlockinAndGrantSessionCookie
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/logout:
-  #   post:
-  #     summary: Logout
-  #     operationId: removeBlockinSessionCookie
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/status:
-  #   post:
-  #     summary: Check Authentication Status
-  #     operationId: checkifSignedInHandler
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /auth/genericVerify:
-  #   post:
-  #     summary: Generic Blockin Verification
-  #     operationId: genericBlockinVerifyHandler
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /metadata:
-  #   post:
-  #     summary: Fetch Arbitrary Metadata
-  #     operationId: fetchMetadataDirectly
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /browse:
-  #   post:
-  #     summary: Browse Collections
-  #     operationId: getBrowseCollections
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /broadcast:
-  #   post:
-  #     summary: Broadcast Transaction
-  #     operationId: broadcastTx
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /simulate:
-  #   post:
-  #     summary: Simulate Transaction
-  #     operationId: simulateTx
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /faucet:
-  #   post:
-  #     summary: Get Tokens from Faucet
-  #     operationId: getTokensFromFaucet
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addressLists:
-  #   post:
-  #     summary: Get Address Lists
-  #     operationId: getAddressLists
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addressLists/update:
-  #   post:
-  #     summary: Update Address Lists
-  #     operationId: updateAddressLists
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /addressLists/delete:
-  #   post:
-  #     summary: Delete Address Lists
-  #     operationId: deleteAddressLists
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /authCode:
-  #   post:
-  #     summary: Get Authentication Code
-  #     operationId: getAuthCode
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /authCode/create:
-  #   post:
-  #     summary: Create Authentication Code
-  #     operationId: createAuthCode
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /authCode/delete:
-  #   post:
-  #     summary: Delete Authentication Code
-  #     operationId: deleteAuthCode
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /claimAlerts/send:
-  #   post:
-  #     summary: Send Claim Alerts
-  #     operationId: sendClaimAlert
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /claimAlerts:
-  #   post:
-  #     summary: Get Claim Alerts for Collection
-  #     operationId: getClaimAlertsForCollection
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /follow-protocol:
-  #   post:
-  #     summary: Follow Protocol
-  #     operationId: getFollowDetails
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /ethFirstTx/{cosmosAddress}:
-  #   get:
-  #     summary: Get Balances for ETH First Transaction
-  #     operationId: getBalancesForEthFirstTx
-  #     parameters:
-  #       - name: cosmosAddress
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /protocols:
-  #   post:
-  #     summary: Get Protocols
-  #     operationId: getProtocols
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /protocols/collection:
-  #   post:
-  #     summary: Get Collection for Protocol
-  #     operationId: getCollectionForProtocol
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /appleWalletPass:
-  #   post:
-  #     summary: Create Apple Wallet Pass
-  #     operationId: createPass
-  #     responses:
-  #       '200':
-  #         description: OK
-  # /verifyEmail/{token}:
-  #   get:
-  #     summary: Verify Email
-  #     operationId: verifyEmail
-  #     parameters:
-  #       - name: token
-  #         in: path
-  #         required: true
-  #         schema:
-  #           type: string
-  #     responses:
-  #       '200':
-  #         description: OK
+    #     This function retrieves badge collections and accompanying details. Consider using the `getCollectionsAndUpdate` function instead for native support in handling paginations, appending metadata, and more.
+    #  *
+    #  * @remarks
+    #  * - **API Route**: `POST /api/v0/collection/batch`
+    #  * - **Tutorial**: Refer to the [Fetching Collections tutorial](https://docs.bitbadges.io/for-developers/bitbadges-api/tutorials/fetching-collections) on the official documentation.
+    # /collection/ba
+    # /collection/batch:
+    #   post:
+    #     summary: Get Collections
+    #     operationId: getCollections
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/{badgeId}/owners:
+    #   post:
+    #     summary: Get Owners for Badge
+    #     operationId: getOwnersForBadge
+    #     parameters:
+    #       - name: collectionId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #       - name: badgeId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/balance/{cosmosAddress}:
+    #   post:
+    #     summary: Get Badge Balance by Address
+    #     operationId: getBadgeBalanceByAddress
+    #     parameters:
+    #       - name: collectionId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #       - name: cosmosAddress
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/{badgeId}/activity:
+    #   post:
+    #     summary: Get Badge Activity
+    #     operationId: getBadgeActivity
+    #     parameters:
+    #       - name: collectionId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #       - name: badgeId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/refresh:
+    #   post:
+    #     summary: Refresh Collection Metadata
+    #     operationId: refreshMetadata
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/refreshStatus:
+    #   post:
+    #     summary: Get Refresh Status
+    #     operationId: getRefreshStatus
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /claims/{claimId}/{cosmosAddress}:
+    #   post:
+    #     summary: Check and Complete Claim
+    #     operationId: completeClaim
+    #     parameters:
+    #       - name: claimId
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #       - name: cosmosAddress
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /claims:
+    #   post:
+    #     summary: Get Claims
+    #     operationId: getClaimsHandler
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collections/filter:
+    #   post:
+    #     summary: Filter Badges in Collection
+    #     operationId: filterBadgesInCollectionHandler
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /collection/{collectionId}/addReview:
+    #   post:
+    #     summary: Add Review for Collection
+    #     operationId: addReviewForCollection
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /user/batch:
+    #   post:
+    #     summary: Get User Accounts in Batch
+    #     operationId: getAccounts
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /user/updateAccount:
+    #   post:
+    #     summary: Update User Account
+    #     operationId: updateAccountInfo
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         multipart/form-data:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               profilePicImageFile:
+    #                 type: string
+    #                 format: binary
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /user/{addressOrUsername}/addReview:
+    #   post:
+    #     summary: Add Review for User
+    #     operationId: addReviewForUser
+    #     parameters:
+    #       - name: addressOrUsername
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addMetadataToIpfs:
+    #   post:
+    #     summary: Add Metadata to IPFS
+    #     operationId: addMetadataToIpfsHandler
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               metadata:
+    #                 type: object
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addApprovalDetailsToOffChainStorage:
+    #   post:
+    #     summary: Add Approval Details to Off-Chain Storage
+    #     operationId: addApprovalDetailsToOffChainStorageHandler
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               approvalDetails:
+    #                 type: object
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addBalancesToOffChainStorage:
+    #   post:
+    #     summary: Add Balances to Off-Chain Storage
+    #     operationId: addBalancesToOffChainStorageHandler
+    #     requestBody:
+    #       required: true
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               balances:
+    #                 type: object
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /auth/getChallenge:
+    #   post:
+    #     summary: Get Authentication Challenge
+    #     operationId: getChallenge
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /auth/verify:
+    #   post:
+    #     summary: Verify Blockin and Grant Session Cookie
+    #     operationId: verifyBlockinAndGrantSessionCookie
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /auth/logout:
+    #   post:
+    #     summary: Logout
+    #     operationId: removeBlockinSessionCookie
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /auth/status:
+    #   post:
+    #     summary: Check Authentication Status
+    #     operationId: checkifSignedInHandler
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /auth/genericVerify:
+    #   post:
+    #     summary: Generic Blockin Verification
+    #     operationId: genericBlockinVerifyHandler
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /metadata:
+    #   post:
+    #     summary: Fetch Arbitrary Metadata
+    #     operationId: fetchMetadataDirectly
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /browse:
+    #   post:
+    #     summary: Browse Collections
+    #     operationId: getBrowseCollections
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /broadcast:
+    #   post:
+    #     summary: Broadcast Transaction
+    #     operationId: broadcastTx
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /simulate:
+    #   post:
+    #     summary: Simulate Transaction
+    #     operationId: simulateTx
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /faucet:
+    #   post:
+    #     summary: Get Tokens from Faucet
+    #     operationId: getTokensFromFaucet
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addressLists:
+    #   post:
+    #     summary: Get Address Lists
+    #     operationId: getAddressLists
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addressLists/update:
+    #   post:
+    #     summary: Update Address Lists
+    #     operationId: updateAddressLists
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /addressLists/delete:
+    #   post:
+    #     summary: Delete Address Lists
+    #     operationId: deleteAddressLists
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /authCode:
+    #   post:
+    #     summary: Get Authentication Code
+    #     operationId: getAuthCode
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /authCode/create:
+    #   post:
+    #     summary: Create Authentication Code
+    #     operationId: createAuthCode
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /authCode/delete:
+    #   post:
+    #     summary: Delete Authentication Code
+    #     operationId: deleteAuthCode
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /claimAlerts/send:
+    #   post:
+    #     summary: Send Claim Alerts
+    #     operationId: sendClaimAlert
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /claimAlerts:
+    #   post:
+    #     summary: Get Claim Alerts for Collection
+    #     operationId: getClaimAlertsForCollection
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /follow-protocol:
+    #   post:
+    #     summary: Follow Protocol
+    #     operationId: getFollowDetails
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /ethFirstTx/{cosmosAddress}:
+    #   get:
+    #     summary: Get Balances for ETH First Transaction
+    #     operationId: getBalancesForEthFirstTx
+    #     parameters:
+    #       - name: cosmosAddress
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /protocols:
+    #   post:
+    #     summary: Get Protocols
+    #     operationId: getProtocols
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /protocols/collection:
+    #   post:
+    #     summary: Get Collection for Protocol
+    #     operationId: getCollectionForProtocol
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /appleWalletPass:
+    #   post:
+    #     summary: Create Apple Wallet Pass
+    #     operationId: createPass
+    #     responses:
+    #       '200':
+    #         description: OK
+    # /verifyEmail/{token}:
+    #   get:
+    #     summary: Verify Email
+    #     operationId: verifyEmail
+    #     parameters:
+    #       - name: token
+    #         in: path
+    #         required: true
+    #         schema:
+    #           type: string
+    #     responses:
+    #       '200':
+    #         description: OK

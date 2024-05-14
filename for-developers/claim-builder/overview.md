@@ -15,7 +15,7 @@ For example, make a purchase on Shopify -> get airdropped a badge or complete a 
 Or, you can implement a hybrid approach with your own stuff using the BitBadges API and connect it behind the scenes.
 
 ```typescript
-const res = await BitBadgesApi.checkAndCompleteClaim(claimId, address, { ...body });
+const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
 ```
 
 ## Distribution of Claim Information
@@ -29,4 +29,3 @@ The BitBadges claim builder adopts a plugin-based approach to allow for maximum 
 {% embed url="https://bitbadges.io/claims/directory" %}
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
-

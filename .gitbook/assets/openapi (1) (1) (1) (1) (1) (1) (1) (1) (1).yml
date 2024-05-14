@@ -1,447 +1,447 @@
 openapi: '3.0.2'
 info:
-  title: BitBadges API
-  version: '0.1'
+    title: BitBadges API
+    version: '0.1'
 servers:
-  - url: https://api.bitbadges.io/api/v0
+    - url: https://api.bitbadges.io/api/v0
 paths:
-  /api/v0/status:
-    post:
-      operationId: getStatus
-      summary: Gets the current status details about the blockchain / indexer (gas, block height, etc).
-      responses:
-        '200':
-          description: O
-      x-code-samples:
-        - lang: typescript
-          label: BitBadges SDK getStatus Example
-          source: |
-            const res = await BitBadgesApi.getStatus();
-            console.log(res);
-  /api/v0/auth/discord:
-    get:
-      summary: Authenticate with Discord
-      operationId: authenticateDiscord
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/discord/callback:
-    get:
-      summary: Discord Authentication Callback
-      operationId: discordCallback
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/twitter:
-    get:
-      summary: Authenticate with Twitter
-      operationId: authenticateTwitter
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/twitter/callback:
-    get:
-      summary: Twitter Authentication Callback
-      operationId: twitterCallback
-      responses:
-        '200':
-          description: OK
-  /api/v0/report:
-    post:
-      summary: Add Report
-      operationId: addReport
-      responses:
-        '200':
-          description: OK
-  /api/v0/search/{searchValue}:
-    post:
-      summary: Search
-      operationId: search
-      parameters:
-        - name: searchValue
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/batch:
-    post:
-      summary: Get Collections
-      operationId: getCollections
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/{badgeId}/owners:
-    post:
-      summary: Get Owners for Badge
-      operationId: getOwnersForBadge
-      parameters:
-        - name: collectionId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: badgeId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/balance/{cosmosAddress}:
-    post:
-      summary: Get Badge Balance by Address
-      operationId: getBadgeBalanceByAddress
-      parameters:
-        - name: collectionId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: cosmosAddress
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/{badgeId}/activity:
-    post:
-      summary: Get Badge Activity
-      operationId: getBadgeActivity
-      parameters:
-        - name: collectionId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: badgeId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/refresh:
-    post:
-      summary: Refresh Collection Metadata
-      operationId: refreshMetadata
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/refreshStatus:
-    post:
-      summary: Get Refresh Status
-      operationId: getRefreshStatus
-      responses:
-        '200':
-          description: OK
-  /api/v0/claims/{claimId}/{cosmosAddress}:
-    post:
-      summary: Check and Complete Claim
-      operationId: checkAndCompleteClaim
-      parameters:
-        - name: claimId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: cosmosAddress
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/claims:
-    post:
-      summary: Get Claims
-      operationId: getClaimsHandler
-      responses:
-        '200':
-          description: OK
-  /api/v0/collections/filter:
-    post:
-      summary: Filter Badges in Collection
-      operationId: filterBadgesInCollectionHandler
-      responses:
-        '200':
-          description: OK
-  /api/v0/collection/{collectionId}/addReview:
-    post:
-      summary: Add Review for Collection
-      operationId: addReviewForCollection
-      responses:
-        '200':
-          description: OK
-  /api/v0/user/batch:
-    post:
-      summary: Get User Accounts in Batch
-      operationId: getAccounts
-      responses:
-        '200':
-          description: OK
-  /api/v0/user/updateAccount:
-    post:
-      summary: Update User Account
-      operationId: updateAccountInfo
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                profilePicImageFile:
-                  type: string
-                  format: binary
-      responses:
-        '200':
-          description: OK
-  /api/v0/user/{addressOrUsername}/addReview:
-    post:
-      summary: Add Review for User
-      operationId: addReviewForUser
-      parameters:
-        - name: addressOrUsername
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/addMetadataToIpfs:
-    post:
-      summary: Add Metadata to IPFS
-      operationId: addMetadataToIpfsHandler
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                metadata:
-                  type: object
-      responses:
-        '200':
-          description: OK
-  /api/v0/addApprovalDetailsToOffChainStorage:
-    post:
-      summary: Add Approval Details to Off-Chain Storage
-      operationId: addApprovalDetailsToOffChainStorageHandler
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                approvalDetails:
-                  type: object
-      responses:
-        '200':
-          description: OK
-  /api/v0/addBalancesToOffChainStorage:
-    post:
-      summary: Add Balances to Off-Chain Storage
-      operationId: addBalancesToOffChainStorageHandler
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                balances:
-                  type: object
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/getChallenge:
-    post:
-      summary: Get Authentication Challenge
-      operationId: getChallenge
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/verify:
-    post:
-      summary: Verify Blockin and Grant Session Cookie
-      operationId: verifyBlockinAndGrantSessionCookie
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/logout:
-    post:
-      summary: Logout
-      operationId: removeBlockinSessionCookie
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/status:
-    post:
-      summary: Check Authentication Status
-      operationId: checkifSignedInHandler
-      responses:
-        '200':
-          description: OK
-  /api/v0/auth/genericVerify:
-    post:
-      summary: Generic Blockin Verification
-      operationId: genericBlockinVerifyHandler
-      responses:
-        '200':
-          description: OK
-  /api/v0/metadata:
-    post:
-      summary: Fetch Arbitrary Metadata
-      operationId: fetchMetadataDirectly
-      responses:
-        '200':
-          description: OK
-  /api/v0/browse:
-    post:
-      summary: Browse Collections
-      operationId: getBrowseCollections
-      responses:
-        '200':
-          description: OK
-  /api/v0/broadcast:
-    post:
-      summary: Broadcast Transaction
-      operationId: broadcastTx
-      responses:
-        '200':
-          description: OK
-  /api/v0/simulate:
-    post:
-      summary: Simulate Transaction
-      operationId: simulateTx
-      responses:
-        '200':
-          description: OK
-  /api/v0/faucet:
-    post:
-      summary: Get Tokens from Faucet
-      operationId: getTokensFromFaucet
-      responses:
-        '200':
-          description: OK
-  /api/v0/addressLists:
-    post:
-      summary: Get Address Lists
-      operationId: getAddressLists
-      responses:
-        '200':
-          description: OK
-  /api/v0/addressLists/update:
-    post:
-      summary: Update Address Lists
-      operationId: updateAddressLists
-      responses:
-        '200':
-          description: OK
-  /api/v0/addressLists/delete:
-    post:
-      summary: Delete Address Lists
-      operationId: deleteAddressLists
-      responses:
-        '200':
-          description: OK
-  /api/v0/authCode:
-    post:
-      summary: Get Authentication Code
-      operationId: getAuthCode
-      responses:
-        '200':
-          description: OK
-  /api/v0/authCode/create:
-    post:
-      summary: Create Authentication Code
-      operationId: createAuthCode
-      responses:
-        '200':
-          description: OK
-  /api/v0/authCode/delete:
-    post:
-      summary: Delete Authentication Code
-      operationId: deleteAuthCode
-      responses:
-        '200':
-          description: OK
-  /api/v0/claimAlerts/send:
-    post:
-      summary: Send Claim Alerts
-      operationId: sendClaimAlert
-      responses:
-        '200':
-          description: OK
-  /api/v0/claimAlerts:
-    post:
-      summary: Get Claim Alerts for Collection
-      operationId: getClaimAlertsForCollection
-      responses:
-        '200':
-          description: OK
-  /api/v0/follow-protocol:
-    post:
-      summary: Follow Protocol
-      operationId: getFollowDetails
-      responses:
-        '200':
-          description: OK
-  /api/v0/ethFirstTx/{cosmosAddress}:
-    get:
-      summary: Get Balances for ETH First Transaction
-      operationId: getBalancesForEthFirstTx
-      parameters:
-        - name: cosmosAddress
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-  /api/v0/protocols:
-    post:
-      summary: Get Protocols
-      operationId: getProtocols
-      responses:
-        '200':
-          description: OK
-  /api/v0/protocols/collection:
-    post:
-      summary: Get Collection for Protocol
-      operationId: getCollectionForProtocol
-      responses:
-        '200':
-          description: OK
-  /api/v0/appleWalletPass:
-    post:
-      summary: Create Apple Wallet Pass
-      operationId: createPass
-      responses:
-        '200':
-          description: OK
-  /api/v0/verifyEmail/{token}:
-    get:
-      summary: Verify Email
-      operationId: verifyEmail
-      parameters:
-        - name: token
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
+    /api/v0/status:
+        post:
+            operationId: getStatus
+            summary: Gets the current status details about the blockchain / indexer (gas, block height, etc).
+            responses:
+                '200':
+                    description: O
+            x-code-samples:
+                - lang: typescript
+                  label: BitBadges SDK getStatus Example
+                  source: |
+                      const res = await BitBadgesApi.getStatus();
+                      console.log(res);
+    /api/v0/auth/discord:
+        get:
+            summary: Authenticate with Discord
+            operationId: authenticateDiscord
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/discord/callback:
+        get:
+            summary: Discord Authentication Callback
+            operationId: discordCallback
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/twitter:
+        get:
+            summary: Authenticate with Twitter
+            operationId: authenticateTwitter
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/twitter/callback:
+        get:
+            summary: Twitter Authentication Callback
+            operationId: twitterCallback
+            responses:
+                '200':
+                    description: OK
+    /api/v0/report:
+        post:
+            summary: Add Report
+            operationId: addReport
+            responses:
+                '200':
+                    description: OK
+    /api/v0/search/{searchValue}:
+        post:
+            summary: Search
+            operationId: search
+            parameters:
+                - name: searchValue
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/batch:
+        post:
+            summary: Get Collections
+            operationId: getCollections
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/{badgeId}/owners:
+        post:
+            summary: Get Owners for Badge
+            operationId: getOwnersForBadge
+            parameters:
+                - name: collectionId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+                - name: badgeId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/balance/{cosmosAddress}:
+        post:
+            summary: Get Badge Balance by Address
+            operationId: getBadgeBalanceByAddress
+            parameters:
+                - name: collectionId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+                - name: cosmosAddress
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/{badgeId}/activity:
+        post:
+            summary: Get Badge Activity
+            operationId: getBadgeActivity
+            parameters:
+                - name: collectionId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+                - name: badgeId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/refresh:
+        post:
+            summary: Refresh Collection Metadata
+            operationId: refreshMetadata
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/refreshStatus:
+        post:
+            summary: Get Refresh Status
+            operationId: getRefreshStatus
+            responses:
+                '200':
+                    description: OK
+    /api/v0/claims/{claimId}/{cosmosAddress}:
+        post:
+            summary: Check and Complete Claim
+            operationId: completeClaim
+            parameters:
+                - name: claimId
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+                - name: cosmosAddress
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/claims:
+        post:
+            summary: Get Claims
+            operationId: getClaimsHandler
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collections/filter:
+        post:
+            summary: Filter Badges in Collection
+            operationId: filterBadgesInCollectionHandler
+            responses:
+                '200':
+                    description: OK
+    /api/v0/collection/{collectionId}/addReview:
+        post:
+            summary: Add Review for Collection
+            operationId: addReviewForCollection
+            responses:
+                '200':
+                    description: OK
+    /api/v0/user/batch:
+        post:
+            summary: Get User Accounts in Batch
+            operationId: getAccounts
+            responses:
+                '200':
+                    description: OK
+    /api/v0/user/updateAccount:
+        post:
+            summary: Update User Account
+            operationId: updateAccountInfo
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                profilePicImageFile:
+                                    type: string
+                                    format: binary
+            responses:
+                '200':
+                    description: OK
+    /api/v0/user/{addressOrUsername}/addReview:
+        post:
+            summary: Add Review for User
+            operationId: addReviewForUser
+            parameters:
+                - name: addressOrUsername
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addMetadataToIpfs:
+        post:
+            summary: Add Metadata to IPFS
+            operationId: addMetadataToIpfsHandler
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                metadata:
+                                    type: object
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addApprovalDetailsToOffChainStorage:
+        post:
+            summary: Add Approval Details to Off-Chain Storage
+            operationId: addApprovalDetailsToOffChainStorageHandler
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                approvalDetails:
+                                    type: object
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addBalancesToOffChainStorage:
+        post:
+            summary: Add Balances to Off-Chain Storage
+            operationId: addBalancesToOffChainStorageHandler
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                balances:
+                                    type: object
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/getChallenge:
+        post:
+            summary: Get Authentication Challenge
+            operationId: getChallenge
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/verify:
+        post:
+            summary: Verify Blockin and Grant Session Cookie
+            operationId: verifyBlockinAndGrantSessionCookie
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/logout:
+        post:
+            summary: Logout
+            operationId: removeBlockinSessionCookie
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/status:
+        post:
+            summary: Check Authentication Status
+            operationId: checkifSignedInHandler
+            responses:
+                '200':
+                    description: OK
+    /api/v0/auth/genericVerify:
+        post:
+            summary: Generic Blockin Verification
+            operationId: genericBlockinVerifyHandler
+            responses:
+                '200':
+                    description: OK
+    /api/v0/metadata:
+        post:
+            summary: Fetch Arbitrary Metadata
+            operationId: fetchMetadataDirectly
+            responses:
+                '200':
+                    description: OK
+    /api/v0/browse:
+        post:
+            summary: Browse Collections
+            operationId: getBrowseCollections
+            responses:
+                '200':
+                    description: OK
+    /api/v0/broadcast:
+        post:
+            summary: Broadcast Transaction
+            operationId: broadcastTx
+            responses:
+                '200':
+                    description: OK
+    /api/v0/simulate:
+        post:
+            summary: Simulate Transaction
+            operationId: simulateTx
+            responses:
+                '200':
+                    description: OK
+    /api/v0/faucet:
+        post:
+            summary: Get Tokens from Faucet
+            operationId: getTokensFromFaucet
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addressLists:
+        post:
+            summary: Get Address Lists
+            operationId: getAddressLists
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addressLists/update:
+        post:
+            summary: Update Address Lists
+            operationId: updateAddressLists
+            responses:
+                '200':
+                    description: OK
+    /api/v0/addressLists/delete:
+        post:
+            summary: Delete Address Lists
+            operationId: deleteAddressLists
+            responses:
+                '200':
+                    description: OK
+    /api/v0/authCode:
+        post:
+            summary: Get Authentication Code
+            operationId: getAuthCode
+            responses:
+                '200':
+                    description: OK
+    /api/v0/authCode/create:
+        post:
+            summary: Create Authentication Code
+            operationId: createAuthCode
+            responses:
+                '200':
+                    description: OK
+    /api/v0/authCode/delete:
+        post:
+            summary: Delete Authentication Code
+            operationId: deleteAuthCode
+            responses:
+                '200':
+                    description: OK
+    /api/v0/claimAlerts/send:
+        post:
+            summary: Send Claim Alerts
+            operationId: sendClaimAlert
+            responses:
+                '200':
+                    description: OK
+    /api/v0/claimAlerts:
+        post:
+            summary: Get Claim Alerts for Collection
+            operationId: getClaimAlertsForCollection
+            responses:
+                '200':
+                    description: OK
+    /api/v0/follow-protocol:
+        post:
+            summary: Follow Protocol
+            operationId: getFollowDetails
+            responses:
+                '200':
+                    description: OK
+    /api/v0/ethFirstTx/{cosmosAddress}:
+        get:
+            summary: Get Balances for ETH First Transaction
+            operationId: getBalancesForEthFirstTx
+            parameters:
+                - name: cosmosAddress
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK
+    /api/v0/protocols:
+        post:
+            summary: Get Protocols
+            operationId: getProtocols
+            responses:
+                '200':
+                    description: OK
+    /api/v0/protocols/collection:
+        post:
+            summary: Get Collection for Protocol
+            operationId: getCollectionForProtocol
+            responses:
+                '200':
+                    description: OK
+    /api/v0/appleWalletPass:
+        post:
+            summary: Create Apple Wallet Pass
+            operationId: createPass
+            responses:
+                '200':
+                    description: OK
+    /api/v0/verifyEmail/{token}:
+        get:
+            summary: Verify Email
+            operationId: verifyEmail
+            parameters:
+                - name: token
+                  in: path
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                '200':
+                    description: OK

@@ -287,7 +287,7 @@ paths:
                 - apiKey: [] # This specifies that an API key is required for authentication
     /claims/{claimId}/{cosmosAddress}:
         post:
-            operationId: checkAndCompleteClaim
+            operationId: completeClaim
             summary: Check and complete claim
             description: |
                 Completes a claim for a user. This will check if the claim is valid and that all criteria is satisfied. If so, we perform the claim action.
@@ -315,14 +315,14 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CheckAndCompleteClaimRouteRequestBody'
+                            $ref: '#/components/schemas/CompleteClaimRouteRequestBody'
             responses:
                 '200':
                     description: Success response
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/iCheckAndCompleteClaimRouteSuccessResponse'
+                                $ref: '#/components/schemas/iCompleteClaimRouteSuccessResponse'
                 '400':
                     $ref: '#/components/responses/BadRequestResponse'
                 '401':
@@ -5180,13 +5180,13 @@ components:
                 - claims
             additionalProperties: false
             type: object
-        CheckAndCompleteClaimRouteRequestBody:
+        CompleteClaimRouteRequestBody:
             properties:
                 prevCodesOnly:
                     type: boolean
             additionalProperties: {}
             type: object
-        iCheckAndCompleteClaimRouteSuccessResponse:
+        iCompleteClaimRouteSuccessResponse:
             properties:
                 code:
                     type: string
