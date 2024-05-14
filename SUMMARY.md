@@ -25,7 +25,6 @@
 * [🕵️ Authentication with Badges](overview/verification-tools.md)
 * [🔀 Distribution Tools](overview/distribution-tools-integrations.md)
 * [📱 Mobile Support](overview/mobile-support.md)
-* [🕑 Betanet vs Mainnet](overview/betanet-vs-mainnet.md)
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
