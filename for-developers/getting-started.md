@@ -20,7 +20,17 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Do you want to self-host off-chain balances or metadata?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
-**Do you need to collect user addresses before creating?** Consider creating an  off-chain address list where users can claim spots on the list if they meet certain criteria.
+## **Customizing claims?**
+
+Customizing the process of claiming a badge can be done directly via the BitBadges site when creating your badge collection or address list. The criteria can also be maintained through the "update" forms.
+
+By default, users can claim on the BitBadges site under the claim component. If you want to customize your claim further, see the link below. This may include auto-completion of claims for your users, extending the functionality, distributing the claim information, creating a reusable plugin, or integrating with Zapier which allows you to auto-complete claims upon triggers from ovr 6000+ apps.
+
+{% content-ref url="../overview/claim-builder/" %}
+[claim-builder](../overview/claim-builder/)
+{% endcontent-ref %}
+
+
 
 ## **Query data?**
 
