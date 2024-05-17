@@ -1,6 +1,6 @@
 # Authentication-Based Plugins
 
-**Plugin IDs: `twitter`**&#x20;
+**Plugin IDs: `twitter, github, discord, google, email`**
 
 These plugins restrict the number of times specific users from different social platforms can use the claim.&#x20;
 
@@ -12,7 +12,10 @@ We differentiate by account IDs (should be constant) and usernames for display p
 
 ### Private Parameters
 
-* **users**: An optional list of whitelisted usernames who are allowed to claim.
+If both are left blank, we do not check any whitelist restrictions.&#x20;
+
+* **usernames**: An optional list of whitelisted usernames who are allowed to claim.
+* **ids:** An optional list of whitelisted user IDs who are allowed to claim.
 
 ### State
 
