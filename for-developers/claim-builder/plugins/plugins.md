@@ -1,6 +1,8 @@
-# Custom Plugins
+# Creating a Plugin
 
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin will handle if the claim attempt should be denied or not.&#x20;
+
+To create and publish your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer).
 
 ## **Request**
 
@@ -13,6 +15,8 @@ The outgoing request (from BitBadges to your plugin) will be made up of multiple
 * **Context:** Some additional context about the claim attempt (user adddress, claim ID, etc).
 * **Additional User Context:** We also allow certain values to be passed, such as the user's signed in socials (Discord, GitHub, etc) usernames, if requested.
 
+For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
+
 ## **Handling**
 
 The custom logic of the plugin is left up to you. From the provided request, you can check everything you need, perform the custom logic, and more.&#x20;
@@ -21,7 +25,7 @@ The custom logic of the plugin is left up to you. From the provided request, you
 
 An important aspect to consider is how you will handle state (if applicable). The golden rule here is that a successful response from your plugin DOES NOT mean the overall claim attempt was successful. Other plugins might fail.&#x20;
 
-If your plugin depends on whether a claim is eventually successful or not (e.g. restrict to 5 calims per user), handling state on your end may not be applicable because it cannot know for certain whether a claim is successful or not. To help such plugins, you may use the preset state functions configured by the responses (see Responses).
+If your plugin depends on whether a claim is eventually successful or not (e.g. restrict to 5 claims per user), handling state on your end may not be applicable because it cannot know for certain whether a claim is successful or not. To help such plugins, you may use the preset state functions configured by the responses (see Responses), or you can consider utilizing other already implemented plugins to do such work for you. For example, if you want to implement a query of Discord users (one claim per user) who attended an event, the one claim per user must be set and tracked on the BitBadges end.
 
 Otherwise, you can handle state on your end. An example of this might be if you are checking a user's GitHub contributions, a contribution cannot be undone, so even if the claim fails, the plugin will still work as intended.
 
@@ -77,20 +81,3 @@ This preset expects a { claimToken} in the response. The claim token is a one-ti
 ## **Further Customization**
 
 In the future, we are looking to expand on the customization options to allow you to build your plugin exactly how you want. If you would like further customization (custom UI components, custom state functions, etc), reach out to us to help you get started.
-
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
-
-
-
-
-
-{% content-ref url="using-the-claim-builder-api-plugin.md" %}
-[using-the-claim-builder-api-plugin.md](using-the-claim-builder-api-plugin.md)
-{% endcontent-ref %}
-
-{% content-ref url="publishing-a-plugin.md" %}
-[publishing-a-plugin.md](publishing-a-plugin.md)
-{% endcontent-ref %}
-
