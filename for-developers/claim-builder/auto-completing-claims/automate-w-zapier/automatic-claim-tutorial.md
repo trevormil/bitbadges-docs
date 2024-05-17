@@ -67,6 +67,8 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and claim ID will typically be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
+You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.
+
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You can get the claim ID from the small text on the BitBadges site.
