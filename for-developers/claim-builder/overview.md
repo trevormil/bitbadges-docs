@@ -1,6 +1,6 @@
 # Overview
 
-BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the experience for you and your users. It allows you to easily establish the requirements for claiming your badges or being added to your address lists.&#x20;
+BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the experience for you and your users. It allows you to easily establish the requirements for claiming your badges or being added to your address lists.
 
 The end goal is for all use cases to be supported by the BitBadges Claims. Out of the box, it offers plenty of built-in plugins and features with no code required and directly claimable by users in the site.
 
@@ -28,4 +28,4 @@ The BitBadges claim builder adopts a plugin-based approach to allow for maximum 
 
 {% embed url="https://bitbadges.io/claims/directory" %}
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>

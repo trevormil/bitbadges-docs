@@ -13,9 +13,26 @@ The outgoing request (from BitBadges to your plugin) will be made up of multiple
 * **Private Parameters:** Inputs configured by the claim creator per claim that are not to be shown to the user.
 * **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call.
 * **Context:** Some additional context about the claim attempt (user adddress, claim ID, etc).
-* **Additional User Context:** We also allow certain values to be passed, such as the user's signed in socials (Discord, GitHub, etc) usernames, if requested.
+* **Additional User Context:** We also allow certain values to be passed, such as the user's signed in socials (Discord, GitHub, etc) usernames, if requested. These will be the { username, id } for the user only (no access tokens or session details).
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
+
+```typescript
+ const body = {
+    ...customBody,
+    ...publicParams,
+    ...privateParams,
+    ...apiCall?.hardcodedInputs.map((input) => ({ [input.key]: input.value })),
+    claimId: context.claimId,
+    cosmosAddress: apiCall?.passAddress ? context.cosmosAddress : null,
+    discord: apiCall?.passDiscord ? adminInfo.discord : null,
+    twitter: apiCall?.passTwitter ? adminInfo.twitter : null,
+    github: apiCall?.passGithub ? adminInfo.github : null,
+    google: apiCall?.passGoogle ? adminInfo.google : null,
+    email: apiCall?.passEmail ? adminInfo.email : null,
+    pluginSecret: pluginDoc.pluginSecret
+};
+```
 
 ## **Handling**
 
@@ -58,7 +75,9 @@ A typical use case for a plugin is to perform authenticated logic for your users
 
 The workaround for this is to give your authenticated user a unique value only known to them that they can supply in the claim body inputs. Upon receiving it, you can associate the current claim to the user who created the unique value.&#x20;
 
-This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more).
+This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more). Note that claims may take a couple minutes for the user to complete the process, so a 30 second expiration time, for example, may be too low.
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## **Response**
 

@@ -33,7 +33,7 @@ However, it is IMPORTANT to note that not requiring SIWBB relaxes the restrictio
 
 To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Other Plugins**
 
@@ -67,7 +67,7 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and claim ID will typically be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 You can get the claim ID from the small text on the BitBadges site.
 
