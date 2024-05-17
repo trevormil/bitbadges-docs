@@ -1,6 +1,6 @@
 # Creating a Plugin
 
-Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin will handle if the claim attempt should be denied or not.&#x20;
+Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin will handle if the claim attempt should be denied or not. All plugins must pass for a claim attempt to be successful.
 
 To create and publish your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer).
 
@@ -87,16 +87,22 @@ All responses expect a 200 success OK status code for a successful.
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response.
 
+<figure><img src="../../../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
+
 **Username / ID Preset**
 
 This preset expects a { username, id } to be returned with the response. The ID is the account ID (that is constant) and the username is the display name.&#x20;
 
 Using the configured parameters, we will then keep track of state on our end regarding how many times the user has claimed and deny them if they exceed the limit. This is equivalent to the other socials plugins implemented.
 
+<figure><img src="../../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+
 **Claim Token Preset**
 
 This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Managing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time.
 
+<figure><img src="../../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
+
 ## **Further Customization**
 
-In the future, we are looking to expand on the customization options to allow you to build your plugin exactly how you want. If you would like further customization (custom UI components, custom state functions, etc), reach out to us to help you get started.
+In the future, we are looking to expand on the customization options to allow you to build your plugin exactly how you want. If you would like further customization (custom UI components, other presets to add, custom state functions, etc), reach out to us.
