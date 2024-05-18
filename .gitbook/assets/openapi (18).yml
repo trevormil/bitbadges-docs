@@ -58,7 +58,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetSearchRouteRequestBody'
+                            $ref: '#/components/schemas/GetSearchBody'
             responses:
                 '200':
                     description: Success response
@@ -3077,30 +3077,30 @@ components:
                 Fields for the MongoDB database document
                 @category Indexer
             type: object
-        GetAddressListsRouteRequestBody:
+        GetAddressListsBody:
             properties:
                 listsToFetch:
                     items:
                         properties:
                             listId:
-                                title: GetAddressListsRouteRequestBody.listsToFetch.[].listId
+                                title: GetAddressListsBody.listsToFetch.[].listId
                                 type: string
                             viewsToFetch:
                                 items:
                                     properties:
                                         viewId:
                                             title: >-
-                                                GetAddressListsRouteRequestBody.listsToFetch.[].viewsToFetch.[].viewId
+                                                GetAddressListsBody.listsToFetch.[].viewsToFetch.[].viewId
                                             type: string
                                         viewType:
                                             title: >-
-                                                GetAddressListsRouteRequestBody.listsToFetch.[].viewsToFetch.[].viewType
+                                                GetAddressListsBody.listsToFetch.[].viewsToFetch.[].viewType
                                             enum:
                                                 - listActivity
                                             type: string
                                         bookmark:
                                             title: >-
-                                                GetAddressListsRouteRequestBody.listsToFetch.[].viewsToFetch.[].bookmark
+                                                GetAddressListsBody.listsToFetch.[].viewsToFetch.[].bookmark
                                             type: string
                                     required:
                                         - viewId
@@ -3108,20 +3108,20 @@ components:
                                         - bookmark
                                     additionalProperties: false
                                     title: >-
-                                        GetAddressListsRouteRequestBody.listsToFetch.[].viewsToFetch.[]
+                                        GetAddressListsBody.listsToFetch.[].viewsToFetch.[]
                                     type: object
-                                title: GetAddressListsRouteRequestBody.listsToFetch.[].viewsToFetch
+                                title: GetAddressListsBody.listsToFetch.[].viewsToFetch
                                 type: array
                             fetchPrivateParams:
                                 title: >-
-                                    GetAddressListsRouteRequestBody.listsToFetch.[].fetchPrivateParams
+                                    GetAddressListsBody.listsToFetch.[].fetchPrivateParams
                                 type: boolean
                         required:
                             - listId
                         additionalProperties: false
-                        title: GetAddressListsRouteRequestBody.listsToFetch.[]
+                        title: GetAddressListsBody.listsToFetch.[]
                         type: object
-                    title: GetAddressListsRouteRequestBody.listsToFetch
+                    title: GetAddressListsBody.listsToFetch
                     description: >-
                         The lists and accompanyin details to fetch. Supports on-chain,
                         off-chain, and reserved lists.
@@ -3129,7 +3129,7 @@ components:
             required:
                 - listsToFetch
             additionalProperties: false
-            title: GetAddressListsRouteRequestBody
+            title: GetAddressListsBody
             description: '@category API Requests / Responses'
             type: object
         iGetAddressListsRouteSuccessResponse:
@@ -3146,7 +3146,7 @@ components:
             title: iGetAddressListsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        UpdateAddressListsRouteRequestBody:
+        UpdateAddressListsBody:
             properties:
                 addressLists:
                     items:
@@ -3181,7 +3181,7 @@ components:
                                   - editClaims
                               additionalProperties: false
                               type: object
-                    title: UpdateAddressListsRouteRequestBody.addressLists
+                    title: UpdateAddressListsBody.addressLists
                     description: |-
                         New address lists to update.
                         Requester must be creator of the lists.
@@ -3190,7 +3190,7 @@ components:
             required:
                 - addressLists
             additionalProperties: false
-            title: UpdateAddressListsRouteRequestBody
+            title: UpdateAddressListsBody
             description: '@category API Requests / Responses'
             type: object
         iUpdateAddressListsRouteSuccessResponse:
@@ -3198,19 +3198,19 @@ components:
             title: iUpdateAddressListsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        DeleteAddressListsRouteRequestBody:
+        DeleteAddressListsBody:
             properties:
                 listIds:
                     items:
-                        title: DeleteAddressListsRouteRequestBody.listIds.[]
+                        title: DeleteAddressListsBody.listIds.[]
                         type: string
-                    title: DeleteAddressListsRouteRequestBody.listIds
+                    title: DeleteAddressListsBody.listIds
                     description: The list IDs to delete.
                     type: array
             required:
                 - listIds
             additionalProperties: false
-            title: DeleteAddressListsRouteRequestBody
+            title: DeleteAddressListsBody
             description: '@category API Requests / Responses'
             type: object
         iDeleteAddressListsRouteSuccessResponse:
@@ -3717,18 +3717,18 @@ components:
 
                 @category API Requests / Responses
             type: object
-        GetAccountsRouteRequestBody:
+        GetAccountsBody:
             properties:
                 accountsToFetch:
                     items:
                         $ref: '#/components/schemas/AccountFetchDetails'
-                        title: GetAccountsRouteRequestBody.accountsToFetch.[]
-                    title: GetAccountsRouteRequestBody.accountsToFetch
+                        title: GetAccountsBody.accountsToFetch.[]
+                    title: GetAccountsBody.accountsToFetch
                     type: array
             required:
                 - accountsToFetch
             additionalProperties: false
-            title: GetAccountsRouteRequestBody
+            title: GetAccountsBody
             description: '@category API Requests / Responses'
             type: object
         iGetAccountsRouteSuccessResponse:
@@ -3745,27 +3745,27 @@ components:
             title: iGetAccountsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetFollowDetailsRouteRequestBody:
+        GetFollowDetailsBody:
             properties:
                 cosmosAddress:
-                    title: GetFollowDetailsRouteRequestBody.cosmosAddress
+                    title: GetFollowDetailsBody.cosmosAddress
                     type: string
                 followingBookmark:
-                    title: GetFollowDetailsRouteRequestBody.followingBookmark
+                    title: GetFollowDetailsBody.followingBookmark
                     type: string
                 followersBookmark:
-                    title: GetFollowDetailsRouteRequestBody.followersBookmark
+                    title: GetFollowDetailsBody.followersBookmark
                     type: string
                 protocol:
-                    title: GetFollowDetailsRouteRequestBody.protocol
+                    title: GetFollowDetailsBody.protocol
                     type: string
                 activityBookmark:
-                    title: GetFollowDetailsRouteRequestBody.activityBookmark
+                    title: GetFollowDetailsBody.activityBookmark
                     type: string
             required:
                 - cosmosAddress
             additionalProperties: false
-            title: GetFollowDetailsRouteRequestBody
+            title: GetFollowDetailsBody
             description: '@category API Requests / Responses'
             type: object
         iGetFollowDetailsRouteSuccessResponse:
@@ -3957,16 +3957,16 @@ components:
                 Type for pagination information.
                 @category Indexer
             type: object
-        GetOwnersForBadgeRouteRequestBody:
+        GetOwnersForBadgeBody:
             properties:
                 bookmark:
-                    title: GetOwnersForBadgeRouteRequestBody.bookmark
+                    title: GetOwnersForBadgeBody.bookmark
                     description: >-
                         The pagination bookmark for where to start the request. Bookmarks
                         are obtained via the previous response. "" for first request.
                     type: string
             additionalProperties: false
-            title: GetOwnersForBadgeRouteRequestBody
+            title: GetOwnersForBadgeBody
             description: '@category API Requests / Responses'
             type: object
         iGetOwnersForBadgeRouteSuccessResponse:
@@ -3989,9 +3989,9 @@ components:
             title: iGetOwnersForBadgeRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetBadgeBalanceByAddressRouteRequestBody:
+        GetBadgeBalanceByAddressBody:
             additionalProperties: false
-            title: GetBadgeBalanceByAddressRouteRequestBody
+            title: GetBadgeBalanceByAddressBody
             description: '@category API Requests / Responses'
             type: object
         iGetBadgeBalanceByAddressRouteSuccessResponse:
@@ -4141,16 +4141,16 @@ components:
 
                 @category Indexer
             type: object
-        GetBadgeActivityRouteRequestBody:
+        GetBadgeActivityBody:
             properties:
                 bookmark:
-                    title: GetBadgeActivityRouteRequestBody.bookmark
+                    title: GetBadgeActivityBody.bookmark
                     description: >-
                         An optional bookmark for pagination. Bookmarks are obtained via the
                         previous response. "" for first request.
                     type: string
             additionalProperties: false
-            title: GetBadgeActivityRouteRequestBody
+            title: GetBadgeActivityBody
             description: '@category API Requests / Responses'
             type: object
         iGetBadgeActivityRouteSuccessResponse:
@@ -4393,7 +4393,7 @@ components:
             title: GetMetadataForCollectionRequestBody
             description: '@category API Requests / Responses'
             type: object
-        GetCollectionBatchRouteRequestBody:
+        GetCollectionBatchBody:
             properties:
                 collectionsToFetch:
                     items:
@@ -4411,12 +4411,12 @@ components:
                               type: object
                             - $ref: '#/components/schemas/GetMetadataForCollectionRequestBody'
                             - $ref: '#/components/schemas/GetAdditionalCollectionDetailsRequestBody'
-                    title: GetCollectionBatchRouteRequestBody.collectionsToFetch
+                    title: GetCollectionBatchBody.collectionsToFetch
                     type: array
             required:
                 - collectionsToFetch
             additionalProperties: false
-            title: GetCollectionBatchRouteRequestBody
+            title: GetCollectionBatchBody
             description: '@category API Requests / Responses'
             type: object
         iGetCollectionBatchRouteSuccessResponse:
@@ -4433,7 +4433,7 @@ components:
             title: iGetCollectionBatchRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetCollectionByIdRouteRequestBody:
+        GetCollectionByIdBody:
             properties:
                 viewsToFetch:
                     items:
@@ -4521,7 +4521,7 @@ components:
                         fetched metadata.
             additionalProperties: false
             title: >-
-                GetCollectionByIdRouteRequestBody,
+                GetCollectionByIdBody,
                 GetAdditionalCollectionDetailsRequestBody,
                 GetMetadataForCollectionRequestBody
             description: >-
@@ -4572,9 +4572,9 @@ components:
             title: iGetCollectionByIdRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        RefreshMetadataRouteRequestBody:
+        RefreshMetadataBody:
             additionalProperties: false
-            title: RefreshMetadataRouteRequestBody
+            title: RefreshMetadataBody
             description: '@category API Requests / Responses'
             type: object
         iRefreshMetadataRouteSuccessResponse:
@@ -4582,9 +4582,9 @@ components:
             title: iRefreshMetadataRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        RefreshStatusRouteRequestBody:
+        RefreshStatusBody:
             additionalProperties: false
-            title: RefreshStatusRouteRequestBody
+            title: RefreshStatusBody
             description: '@category API Requests / Responses'
             type: object
         iRefreshStatusRouteSuccessResponse:
@@ -4612,18 +4612,18 @@ components:
             title: iRefreshStatusRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetProtocolsRouteRequestBody:
+        GetProtocolsBody:
             properties:
                 names:
                     items:
-                        title: GetProtocolsRouteRequestBody.names.[]
+                        title: GetProtocolsBody.names.[]
                         type: string
-                    title: GetProtocolsRouteRequestBody.names
+                    title: GetProtocolsBody.names
                     type: array
             required:
                 - names
             additionalProperties: false
-            title: GetProtocolsRouteRequestBody
+            title: GetProtocolsBody
             description: '@category API Requests / Responses'
             type: object
         iGetProtocolsRouteSuccessResponse:
@@ -4672,19 +4672,19 @@ components:
             title: iProtocol
             description: '@category Interfaces'
             type: object
-        GetCollectionForProtocolRouteRequestBody:
+        GetCollectionForProtocolBody:
             properties:
                 name:
-                    title: GetCollectionForProtocolRouteRequestBody.name
+                    title: GetCollectionForProtocolBody.name
                     type: string
                 address:
-                    title: GetCollectionForProtocolRouteRequestBody.address
+                    title: GetCollectionForProtocolBody.address
                     type: string
             required:
                 - name
                 - address
             additionalProperties: false
-            title: GetCollectionForProtocolRouteRequestBody
+            title: GetCollectionForProtocolBody
             description: '@category API Requests / Responses'
             type: object
         iGetCollectionForProtocolRouteSuccessResponse:
@@ -4700,9 +4700,9 @@ components:
             title: iGetCollectionForProtocolRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetStatusRouteRequestBody:
+        GetStatusBody:
             additionalProperties: false
-            title: GetStatusRouteRequestBody
+            title: GetStatusBody
             description: '@category API Requests / Responses'
             type: object
         iGetStatusRouteSuccessResponse:
@@ -4717,32 +4717,32 @@ components:
             title: iGetStatusRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetSearchRouteRequestBody:
+        GetSearchBody:
             properties:
                 noCollections:
-                    title: GetSearchRouteRequestBody.noCollections
+                    title: GetSearchBody.noCollections
                     description: If true, we will skip all collection queries.
                     type: boolean
                 noAccounts:
-                    title: GetSearchRouteRequestBody.noAccounts
+                    title: GetSearchBody.noAccounts
                     description: If true, we will skip all account queries.
                     type: boolean
                 noAddressLists:
-                    title: GetSearchRouteRequestBody.noAddressLists
+                    title: GetSearchBody.noAddressLists
                     description: If true, we will skip all address list queries.
                     type: boolean
                 noBadges:
-                    title: GetSearchRouteRequestBody.noBadges
+                    title: GetSearchBody.noBadges
                     description: If true, we will skip all badge queries.
                     type: boolean
                 specificCollectionId:
-                    title: GetSearchRouteRequestBody.specificCollectionId
+                    title: GetSearchBody.specificCollectionId
                     description: If true, we will limit collection results to a single collection.
                     anyOf:
                         - type: string
                         - type: number
             additionalProperties: false
-            title: GetSearchRouteRequestBody
+            title: GetSearchBody
             description: '@category API Requests / Responses'
             type: object
         iGetSearchRouteSuccessResponse:
@@ -4831,21 +4831,21 @@ components:
 
                 @category API Requests / Responses
             type: object
-        GetClaimsRouteRequestBody:
+        GetClaimsBody:
             properties:
                 claimIds:
                     items:
-                        title: GetClaimsRouteRequestBody.claimIds.[]
+                        title: GetClaimsBody.claimIds.[]
                         type: string
-                    title: GetClaimsRouteRequestBody.claimIds
+                    title: GetClaimsBody.claimIds
                     type: array
                 listId:
-                    title: GetClaimsRouteRequestBody.listId
+                    title: GetClaimsBody.listId
                     type: string
             required:
                 - claimIds
             additionalProperties: false
-            title: GetClaimsRouteRequestBody
+            title: GetClaimsBody
             description: '@category API Requests / Responses'
             type: object
         iGetClaimsRouteSuccessResponse:
@@ -4880,13 +4880,13 @@ components:
             title: iGetClaimsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        CompleteClaimRouteRequestBody:
+        CompleteClaimBody:
             properties:
                 prevCodesOnly:
-                    title: CompleteClaimRouteRequestBody.prevCodesOnly
+                    title: CompleteClaimBody.prevCodesOnly
                     type: boolean
             additionalProperties: {}
-            title: CompleteClaimRouteRequestBody
+            title: CompleteClaimBody
             description: '@category API Requests / Responses'
             type: object
         iCompleteClaimRouteSuccessResponse:
@@ -4904,16 +4904,16 @@ components:
             title: iCompleteClaimRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        DeleteReviewRouteRequestBody:
+        DeleteReviewBody:
             properties:
                 reviewId:
-                    title: DeleteReviewRouteRequestBody.reviewId
+                    title: DeleteReviewBody.reviewId
                     description: The review ID to delete.
                     type: string
             required:
                 - reviewId
             additionalProperties: false
-            title: DeleteReviewRouteRequestBody
+            title: DeleteReviewBody
             description: '@category API Requests / Responses'
             type: object
         iDeleteReviewRouteSuccessResponse:
@@ -4921,14 +4921,14 @@ components:
             title: iDeleteReviewRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        AddReviewForCollectionRouteRequestBody:
+        AddReviewForCollectionBody:
             properties:
                 review:
-                    title: AddReviewForCollectionRouteRequestBody.review
+                    title: AddReviewForCollectionBody.review
                     description: The review text (1 to 2048 characters).
                     type: string
                 stars:
-                    title: AddReviewForCollectionRouteRequestBody.stars
+                    title: AddReviewForCollectionBody.stars
                     description: The star rating (1 to 5).
                     anyOf:
                         - type: string
@@ -4937,7 +4937,7 @@ components:
                 - review
                 - stars
             additionalProperties: false
-            title: AddReviewForCollectionRouteRequestBody
+            title: AddReviewForCollectionBody
             description: '@category API Requests / Responses'
             type: object
         iAddReviewForCollectionRouteSuccessResponse:
@@ -4945,14 +4945,14 @@ components:
             title: iAddReviewForCollectionRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        AddReviewForUserRouteRequestBody:
+        AddReviewForUserBody:
             properties:
                 review:
-                    title: AddReviewForUserRouteRequestBody.review
+                    title: AddReviewForUserBody.review
                     description: The review text (1 to 2048 characters).
                     type: string
                 stars:
-                    title: AddReviewForUserRouteRequestBody.stars
+                    title: AddReviewForUserBody.stars
                     description: The number of stars (1 to 5) for the review.
                     anyOf:
                         - type: string
@@ -4961,7 +4961,7 @@ components:
                 - review
                 - stars
             additionalProperties: false
-            title: AddReviewForUserRouteRequestBody
+            title: AddReviewForUserBody
             description: '@category API Requests / Responses'
             type: object
         iAddReviewForUserRouteSuccessResponse:
@@ -4969,46 +4969,46 @@ components:
             title: iAddReviewForUserRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        UpdateAccountInfoRouteRequestBody:
+        UpdateAccountInfoBody:
             properties:
                 discord:
-                    title: UpdateAccountInfoRouteRequestBody.discord
+                    title: UpdateAccountInfoBody.discord
                     description: The Discord username.
                     type: string
                 twitter:
-                    title: UpdateAccountInfoRouteRequestBody.twitter
+                    title: UpdateAccountInfoBody.twitter
                     description: The Twitter username.
                     type: string
                 github:
-                    title: UpdateAccountInfoRouteRequestBody.github
+                    title: UpdateAccountInfoBody.github
                     description: The GitHub username.
                     type: string
                 telegram:
-                    title: UpdateAccountInfoRouteRequestBody.telegram
+                    title: UpdateAccountInfoBody.telegram
                     description: The Telegram username.
                     type: string
                 seenActivity:
-                    title: UpdateAccountInfoRouteRequestBody.seenActivity
+                    title: UpdateAccountInfoBody.seenActivity
                     description: The last seen activity timestamp.
                     anyOf:
                         - type: string
                         - type: number
                 readme:
-                    title: UpdateAccountInfoRouteRequestBody.readme
+                    title: UpdateAccountInfoBody.readme
                     description: The README details.
                     type: string
                 hiddenBadges:
                     items:
                         $ref: '#/components/schemas/iBatchBadgeDetails'
-                        title: UpdateAccountInfoRouteRequestBody.hiddenBadges.[]
-                    title: UpdateAccountInfoRouteRequestBody.hiddenBadges
+                        title: UpdateAccountInfoBody.hiddenBadges.[]
+                    title: UpdateAccountInfoBody.hiddenBadges
                     description: The badges to hide and not view for this profile's portfolio
                     type: array
                 hiddenLists:
                     items:
-                        title: UpdateAccountInfoRouteRequestBody.hiddenLists.[]
+                        title: UpdateAccountInfoBody.hiddenLists.[]
                         type: string
-                    title: UpdateAccountInfoRouteRequestBody.hiddenLists
+                    title: UpdateAccountInfoBody.hiddenLists
                     description: The lists to hide and not view for this profile's portfolio
                     type: array
                 customPages:
@@ -5016,20 +5016,20 @@ components:
                         badges:
                             items:
                                 $ref: '#/components/schemas/iCustomPage'
-                                title: UpdateAccountInfoRouteRequestBody.customPages.badges.[]
-                            title: UpdateAccountInfoRouteRequestBody.customPages.badges
+                                title: UpdateAccountInfoBody.customPages.badges.[]
+                            title: UpdateAccountInfoBody.customPages.badges
                             type: array
                         lists:
                             items:
                                 $ref: '#/components/schemas/iCustomListPage'
-                                title: UpdateAccountInfoRouteRequestBody.customPages.lists.[]
-                            title: UpdateAccountInfoRouteRequestBody.customPages.lists
+                                title: UpdateAccountInfoBody.customPages.lists.[]
+                            title: UpdateAccountInfoBody.customPages.lists
                             type: array
                     required:
                         - badges
                         - lists
                     additionalProperties: false
-                    title: UpdateAccountInfoRouteRequestBody.customPages
+                    title: UpdateAccountInfoBody.customPages
                     description: >-
                         An array of custom pages on the user's portolio. Used to customize,
                         sort, and group badges / lists into pages.
@@ -5039,47 +5039,47 @@ components:
                         badges:
                             items:
                                 $ref: '#/components/schemas/iCustomPage'
-                                title: UpdateAccountInfoRouteRequestBody.watchlists.badges.[]
-                            title: UpdateAccountInfoRouteRequestBody.watchlists.badges
+                                title: UpdateAccountInfoBody.watchlists.badges.[]
+                            title: UpdateAccountInfoBody.watchlists.badges
                             type: array
                         lists:
                             items:
                                 $ref: '#/components/schemas/iCustomListPage'
-                                title: UpdateAccountInfoRouteRequestBody.watchlists.lists.[]
-                            title: UpdateAccountInfoRouteRequestBody.watchlists.lists
+                                title: UpdateAccountInfoBody.watchlists.lists.[]
+                            title: UpdateAccountInfoBody.watchlists.lists
                             type: array
                     required:
                         - badges
                         - lists
                     additionalProperties: false
-                    title: UpdateAccountInfoRouteRequestBody.watchlists
+                    title: UpdateAccountInfoBody.watchlists
                     description: The watchlist of badges / lists
                     type: object
                 profilePicUrl:
-                    title: UpdateAccountInfoRouteRequestBody.profilePicUrl
+                    title: UpdateAccountInfoBody.profilePicUrl
                     description: The profile picture URL.
                     type: string
                 username:
-                    title: UpdateAccountInfoRouteRequestBody.username
+                    title: UpdateAccountInfoBody.username
                     description: The username.
                     type: string
                 profilePicImageFile:
-                    title: UpdateAccountInfoRouteRequestBody.profilePicImageFile
+                    title: UpdateAccountInfoBody.profilePicImageFile
                     description: The profile picture image file. We will then upload to our CDN.
                 notifications:
                     properties:
                         email:
-                            title: UpdateAccountInfoRouteRequestBody.notifications.email
+                            title: UpdateAccountInfoBody.notifications.email
                             type: string
                         antiPhishingCode:
-                            title: UpdateAccountInfoRouteRequestBody.notifications.antiPhishingCode
+                            title: UpdateAccountInfoBody.notifications.antiPhishingCode
                             type: string
                         preferences:
                             additionalProperties: false
-                            title: UpdateAccountInfoRouteRequestBody.notifications.preferences
+                            title: UpdateAccountInfoBody.notifications.preferences
                             type: object
                     additionalProperties: false
-                    title: UpdateAccountInfoRouteRequestBody.notifications
+                    title: UpdateAccountInfoBody.notifications
                     description: The notification preferences for the user.
                     type: object
                 approvedSignInMethods:
@@ -5088,28 +5088,28 @@ components:
                             properties:
                                 username:
                                     title: >-
-                                        UpdateAccountInfoRouteRequestBody.approvedSignInMethods.discord.username
+                                        UpdateAccountInfoBody.approvedSignInMethods.discord.username
                                     type: string
                                 discriminator:
                                     title: >-
-                                        UpdateAccountInfoRouteRequestBody.approvedSignInMethods.discord.discriminator
+                                        UpdateAccountInfoBody.approvedSignInMethods.discord.discriminator
                                     type: string
                                 id:
                                     title: >-
-                                        UpdateAccountInfoRouteRequestBody.approvedSignInMethods.discord.id
+                                        UpdateAccountInfoBody.approvedSignInMethods.discord.id
                                     type: string
                             required:
                                 - username
                                 - id
                             additionalProperties: false
-                            title: UpdateAccountInfoRouteRequestBody.approvedSignInMethods.discord
+                            title: UpdateAccountInfoBody.approvedSignInMethods.discord
                             type: object
                     additionalProperties: false
-                    title: UpdateAccountInfoRouteRequestBody.approvedSignInMethods
+                    title: UpdateAccountInfoBody.approvedSignInMethods
                     description: Approved sign in methods
                     type: object
             additionalProperties: false
-            title: UpdateAccountInfoRouteRequestBody
+            title: UpdateAccountInfoBody
             description: '@category API Requests / Responses'
             type: object
         iUpdateAccountInfoRouteSuccessResponse:
@@ -5117,46 +5117,46 @@ components:
             title: iUpdateAccountInfoRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        AddBalancesToOffChainStorageRouteRequestBody:
+        AddBalancesToOffChainStorageBody:
             properties:
                 balances:
                     $ref: '#/components/schemas/iOffChainBalancesMap'
-                    title: AddBalancesToOffChainStorageRouteRequestBody.balances
+                    title: AddBalancesToOffChainStorageBody.balances
                     description: A map of Cosmos addresses or list IDs -> Balance[].
                 offChainClaims:
                     items:
                         properties:
                             claimId:
                                 title: >-
-                                    AddBalancesToOffChainStorageRouteRequestBody.offChainClaims.[].claimId
+                                    AddBalancesToOffChainStorageBody.offChainClaims.[].claimId
                                 type: string
                             plugins:
                                 items: {}
                                 title: >-
-                                    AddBalancesToOffChainStorageRouteRequestBody.offChainClaims.[].plugins
+                                    AddBalancesToOffChainStorageBody.offChainClaims.[].plugins
                                 type: array
                             balancesToSet:
                                 $ref: '#/components/schemas/iIncrementedBalances'
                                 title: >-
-                                    AddBalancesToOffChainStorageRouteRequestBody.offChainClaims.[].balancesToSet
+                                    AddBalancesToOffChainStorageBody.offChainClaims.[].balancesToSet
                         required:
                             - claimId
                             - plugins
                         additionalProperties: false
-                        title: AddBalancesToOffChainStorageRouteRequestBody.offChainClaims.[]
+                        title: AddBalancesToOffChainStorageBody.offChainClaims.[]
                         type: object
-                    title: AddBalancesToOffChainStorageRouteRequestBody.offChainClaims
+                    title: AddBalancesToOffChainStorageBody.offChainClaims
                     description: The claim details
                     type: array
                 method:
                     enum:
                         - ipfs
                         - centralized
-                    title: AddBalancesToOffChainStorageRouteRequestBody.method
+                    title: AddBalancesToOffChainStorageBody.method
                     description: The method for storing balances (ipfs or centralized).
                     type: string
                 collectionId:
-                    title: AddBalancesToOffChainStorageRouteRequestBody.collectionId
+                    title: AddBalancesToOffChainStorageBody.collectionId
                     description: The collection ID.
                     anyOf:
                         - type: string
@@ -5165,7 +5165,7 @@ components:
                 - method
                 - collectionId
             additionalProperties: false
-            title: AddBalancesToOffChainStorageRouteRequestBody
+            title: AddBalancesToOffChainStorageBody
             description: '@category API Requests / Responses'
             type: object
         iAddBalancesToOffChainStorageRouteSuccessResponse:
@@ -5189,28 +5189,28 @@ components:
             title: iAddBalancesToOffChainStorageRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        AddMetadataToIpfsRouteRequestBody:
+        AddMetadataToIpfsBody:
             properties:
                 collectionMetadata:
                     $ref: '#/components/schemas/iMetadata'
-                    title: AddMetadataToIpfsRouteRequestBody.collectionMetadata
+                    title: AddMetadataToIpfsBody.collectionMetadata
                     description: The collection metadata to add to IPFS
                 badgeMetadata:
                     anyOf:
                         - items:
                               $ref: '#/components/schemas/iBadgeMetadataDetails'
-                              title: AddMetadataToIpfsRouteRequestBody.badgeMetadata.[]
-                          title: AddMetadataToIpfsRouteRequestBody.badgeMetadata.[]
+                              title: AddMetadataToIpfsBody.badgeMetadata.[]
+                          title: AddMetadataToIpfsBody.badgeMetadata.[]
                           type: array
                         - items:
                               $ref: '#/components/schemas/iMetadata'
-                              title: AddMetadataToIpfsRouteRequestBody.badgeMetadata.[]
-                          title: AddMetadataToIpfsRouteRequestBody.badgeMetadata.[]
+                              title: AddMetadataToIpfsBody.badgeMetadata.[]
+                          title: AddMetadataToIpfsBody.badgeMetadata.[]
                           type: array
-                    title: AddMetadataToIpfsRouteRequestBody.badgeMetadata
+                    title: AddMetadataToIpfsBody.badgeMetadata
                     description: The badge metadata to add to IPFS
             additionalProperties: false
-            title: AddMetadataToIpfsRouteRequestBody
+            title: AddMetadataToIpfsBody
             description: '@category API Requests / Responses'
             type: object
         iAddMetadataToIpfsRouteSuccessResponse:
@@ -5248,19 +5248,19 @@ components:
             title: iAddMetadataToIpfsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        AddApprovalDetailsToOffChainStorageRouteRequestBody:
+        AddApprovalDetailsToOffChainStorageBody:
             properties:
                 name:
-                    title: AddApprovalDetailsToOffChainStorageRouteRequestBody.name
+                    title: AddApprovalDetailsToOffChainStorageBody.name
                     description: The name of the approval.
                     type: string
                 description:
-                    title: AddApprovalDetailsToOffChainStorageRouteRequestBody.description
+                    title: AddApprovalDetailsToOffChainStorageBody.description
                     description: The description of the approval.
                     type: string
                 challengeDetails:
                     $ref: '#/components/schemas/iChallengeDetails'
-                    title: AddApprovalDetailsToOffChainStorageRouteRequestBody.challengeDetails
+                    title: AddApprovalDetailsToOffChainStorageBody.challengeDetails
                     description: The challenge details.
                 offChainClaims:
                     items:
@@ -5268,31 +5268,31 @@ components:
                             plugins:
                                 items: {}
                                 title: >-
-                                    AddApprovalDetailsToOffChainStorageRouteRequestBody.offChainClaims.[].plugins
+                                    AddApprovalDetailsToOffChainStorageBody.offChainClaims.[].plugins
                                 description: The plugins for the approval.
                                 type: array
                             claimId:
                                 title: >-
-                                    AddApprovalDetailsToOffChainStorageRouteRequestBody.offChainClaims.[].claimId
+                                    AddApprovalDetailsToOffChainStorageBody.offChainClaims.[].claimId
                                 type: string
                             manualDistribution:
                                 title: >-
-                                    AddApprovalDetailsToOffChainStorageRouteRequestBody.offChainClaims.[].manualDistribution
+                                    AddApprovalDetailsToOffChainStorageBody.offChainClaims.[].manualDistribution
                                 type: boolean
                         required:
                             - plugins
                             - claimId
                         additionalProperties: false
                         title: >-
-                            AddApprovalDetailsToOffChainStorageRouteRequestBody.offChainClaims.[]
+                            AddApprovalDetailsToOffChainStorageBody.offChainClaims.[]
                         type: object
-                    title: AddApprovalDetailsToOffChainStorageRouteRequestBody.offChainClaims
+                    title: AddApprovalDetailsToOffChainStorageBody.offChainClaims
                     type: array
             required:
                 - name
                 - description
             additionalProperties: false
-            title: AddApprovalDetailsToOffChainStorageRouteRequestBody
+            title: AddApprovalDetailsToOffChainStorageBody
             description: '@category API Requests / Responses'
             type: object
         iAddApprovalDetailsToOffChainStorageRouteSuccessResponse:
@@ -5315,17 +5315,17 @@ components:
             title: iAddApprovalDetailsToOffChainStorageRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetSignInChallengeRouteRequestBody:
+        GetSignInChallengeBody:
             properties:
                 chain:
-                    title: GetSignInChallengeRouteRequestBody.chain
+                    title: GetSignInChallengeBody.chain
                     description: The blockchain to be signed in with.
                 address:
-                    title: GetSignInChallengeRouteRequestBody.address
+                    title: GetSignInChallengeBody.address
                     description: The user's blockchain address (their native L1 address).
                     type: string
                 hours:
-                    title: GetSignInChallengeRouteRequestBody.hours
+                    title: GetSignInChallengeBody.hours
                     description: The number of hours to be signed in for.
                     anyOf:
                         - type: string
@@ -5334,7 +5334,7 @@ components:
                 - chain
                 - address
             additionalProperties: false
-            title: GetSignInChallengeRouteRequestBody
+            title: GetSignInChallengeBody
             description: '@category API Requests / Responses'
             type: object
         iGetSignInChallengeRouteSuccessResponse:
@@ -5358,25 +5358,25 @@ components:
             title: iGetSignInChallengeRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        VerifySignInRouteRequestBody:
+        VerifySignInBody:
             properties:
                 message:
-                    title: VerifySignInRouteRequestBody.message
+                    title: VerifySignInBody.message
                     description: The original Blockin message
                     type: string
                 signature:
-                    title: VerifySignInRouteRequestBody.signature
+                    title: VerifySignInBody.signature
                     description: The signature of the Blockin message
                     type: string
                 publicKey:
-                    title: VerifySignInRouteRequestBody.publicKey
+                    title: VerifySignInBody.publicKey
                     description: Required for some chains. The public key of the signer.
                     type: string
             required:
                 - message
                 - signature
             additionalProperties: false
-            title: VerifySignInRouteRequestBody
+            title: VerifySignInBody
             description: '@category API Requests / Responses'
             type: object
         iVerifySignInRouteSuccessResponse:
@@ -5389,55 +5389,55 @@ components:
             title: CheckSignInStatusRequestBody
             description: '@category API Requests / Responses'
             type: object
-        iCheckSignInStatusRequestSuccessResponse:
+        iCheckSignInStatusSuccessResponse:
             properties:
                 signedIn:
-                    title: iCheckSignInStatusRequestSuccessResponse.signedIn
+                    title: iCheckSignInStatusSuccessResponse.signedIn
                     description: Indicates whether the user is signed in.
                     type: boolean
                 message:
-                    title: iCheckSignInStatusRequestSuccessResponse.message
+                    title: iCheckSignInStatusSuccessResponse.message
                     description: The Blockin message that was signed.
                     type: string
                 discord:
                     properties:
                         username:
-                            title: iCheckSignInStatusRequestSuccessResponse.discord.username
+                            title: iCheckSignInStatusSuccessResponse.discord.username
                             type: string
                         discriminator:
-                            title: iCheckSignInStatusRequestSuccessResponse.discord.discriminator
+                            title: iCheckSignInStatusSuccessResponse.discord.discriminator
                             type: string
                         id:
-                            title: iCheckSignInStatusRequestSuccessResponse.discord.id
+                            title: iCheckSignInStatusSuccessResponse.discord.id
                             type: string
                     required:
                         - username
                         - discriminator
                         - id
                     additionalProperties: false
-                    title: iCheckSignInStatusRequestSuccessResponse.discord
+                    title: iCheckSignInStatusSuccessResponse.discord
                     description: Signed in with Discord username and discriminator?
                     type: object
                 twitter:
                     properties:
                         id:
-                            title: iCheckSignInStatusRequestSuccessResponse.twitter.id
+                            title: iCheckSignInStatusSuccessResponse.twitter.id
                             type: string
                         username:
-                            title: iCheckSignInStatusRequestSuccessResponse.twitter.username
+                            title: iCheckSignInStatusSuccessResponse.twitter.username
                             type: string
                     required:
                         - id
                         - username
                     additionalProperties: false
-                    title: iCheckSignInStatusRequestSuccessResponse.twitter
+                    title: iCheckSignInStatusSuccessResponse.twitter
                     description: Signed in with Twitter username?
                     type: object
             required:
                 - signedIn
                 - message
             additionalProperties: false
-            title: iCheckSignInStatusRequestSuccessResponse
+            title: iCheckSignInStatusSuccessResponse
             description: '@category API Requests / Responses'
             type: object
         SignOutRequestBody:
@@ -5464,9 +5464,9 @@ components:
             title: iSignOutSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetBrowseCollectionsRouteRequestBody:
+        GetBrowseCollectionsBody:
             additionalProperties: false
-            title: GetBrowseCollectionsRouteRequestBody
+            title: GetBrowseCollectionsBody
             description: '@category API Requests / Responses'
             type: object
         iGetBrowseCollectionsRouteSuccessResponse:
@@ -5537,8 +5537,8 @@ components:
             title: iGetBrowseCollectionsRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        BroadcastTxRouteRequestBody:
-            title: BroadcastTxRouteRequestBody
+        BroadcastTxBody:
+            title: BroadcastTxBody
             description: '@category API Requests / Responses'
         iBroadcastTxRouteSuccessResponse:
             properties:
@@ -5698,8 +5698,8 @@ components:
             title: iBroadcastTxRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        SimulateTxRouteRequestBody:
-            title: SimulateTxRouteRequestBody
+        SimulateTxBody:
+            title: SimulateTxBody
             description: '@category API Requests / Responses'
         iSimulateTxRouteSuccessResponse:
             properties:
@@ -5781,18 +5781,18 @@ components:
             title: iSimulateTxRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        FetchMetadataDirectlyRouteRequestBody:
+        FetchMetadataDirectlyBody:
             properties:
                 uris:
                     items:
-                        title: FetchMetadataDirectlyRouteRequestBody.uris.[]
+                        title: FetchMetadataDirectlyBody.uris.[]
                         type: string
-                    title: FetchMetadataDirectlyRouteRequestBody.uris
+                    title: FetchMetadataDirectlyBody.uris
                     type: array
             required:
                 - uris
             additionalProperties: false
-            title: FetchMetadataDirectlyRouteRequestBody
+            title: FetchMetadataDirectlyBody
             description: '@category API Requests / Responses'
             type: object
         iFetchMetadataDirectlyRouteSuccessResponse:
@@ -5809,43 +5809,43 @@ components:
             title: iFetchMetadataDirectlyRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetTokensFromFaucetRouteRequestBody:
+        GetTokensFromFaucetBody:
             additionalProperties: false
-            title: GetTokensFromFaucetRouteRequestBody
+            title: GetTokensFromFaucetBody
             description: '@category API Requests / Responses'
             type: object
         iGetTokensFromFaucetRouteSuccessResponse:
             title: iGetTokensFromFaucetRouteSuccessResponse
             description: '@category API Requests / Responses'
-        SendClaimAlertsRouteRequestBody:
+        SendClaimAlertsBody:
             properties:
                 claimAlerts:
                     items:
                         properties:
                             collectionId:
-                                title: SendClaimAlertsRouteRequestBody.claimAlerts.[].collectionId
+                                title: SendClaimAlertsBody.claimAlerts.[].collectionId
                                 anyOf:
                                     - type: string
                                     - type: number
                             message:
-                                title: SendClaimAlertsRouteRequestBody.claimAlerts.[].message
+                                title: SendClaimAlertsBody.claimAlerts.[].message
                                 type: string
                             recipientAddress:
                                 title: >-
-                                    SendClaimAlertsRouteRequestBody.claimAlerts.[].recipientAddress
+                                    SendClaimAlertsBody.claimAlerts.[].recipientAddress
                                 type: string
                         required:
                             - collectionId
                             - recipientAddress
                         additionalProperties: false
-                        title: SendClaimAlertsRouteRequestBody.claimAlerts.[]
+                        title: SendClaimAlertsBody.claimAlerts.[]
                         type: object
-                    title: SendClaimAlertsRouteRequestBody.claimAlerts
+                    title: SendClaimAlertsBody.claimAlerts
                     type: array
             required:
                 - claimAlerts
             additionalProperties: false
-            title: SendClaimAlertsRouteRequestBody
+            title: SendClaimAlertsBody
             description: '@category API Requests / Responses'
             type: object
         iSendClaimAlertsRouteSuccessResponse:
@@ -5883,28 +5883,28 @@ components:
             title: CosmosAccountResponse
             description: '@category API Requests / Responses'
             type: object
-        GenericBlockinVerifyRouteRequestBody:
+        GenericBlockinVerifyBody:
             properties:
                 message:
-                    title: VerifySignInRouteRequestBody.message
+                    title: VerifySignInBody.message
                     description: The original Blockin message
                     type: string
                 signature:
-                    title: VerifySignInRouteRequestBody.signature
+                    title: VerifySignInBody.signature
                     description: The signature of the Blockin message
                     type: string
                 publicKey:
-                    title: VerifySignInRouteRequestBody.publicKey
+                    title: VerifySignInBody.publicKey
                     description: Required for some chains. The public key of the signer.
                     type: string
                 options:
-                    title: GenericBlockinVerifyRouteRequestBody.options
+                    title: GenericBlockinVerifyBody.options
                     description: Additional options for verifying the challenge.
             required:
                 - message
                 - signature
             additionalProperties: false
-            title: GenericBlockinVerifyRouteRequestBody, VerifySignInRouteRequestBody
+            title: GenericBlockinVerifyBody, VerifySignInBody
             description: >-
                 Generic route to verify any Blockin request. Does not sign you in with
                 the API. Used for custom Blockin integrations.
@@ -5920,25 +5920,25 @@ components:
                 iVerifySignInRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        CreateBlockinAuthCodeRouteRequestBody:
+        CreateBlockinAuthCodeBody:
             properties:
                 name:
-                    title: CreateBlockinAuthCodeRouteRequestBody.name
+                    title: CreateBlockinAuthCodeBody.name
                     type: string
                 description:
-                    title: CreateBlockinAuthCodeRouteRequestBody.description
+                    title: CreateBlockinAuthCodeBody.description
                     type: string
                 image:
-                    title: CreateBlockinAuthCodeRouteRequestBody.image
+                    title: CreateBlockinAuthCodeBody.image
                     type: string
                 message:
-                    title: CreateBlockinAuthCodeRouteRequestBody.message
+                    title: CreateBlockinAuthCodeBody.message
                     type: string
                 signature:
-                    title: CreateBlockinAuthCodeRouteRequestBody.signature
+                    title: CreateBlockinAuthCodeBody.signature
                     type: string
                 publicKey:
-                    title: CreateBlockinAuthCodeRouteRequestBody.publicKey
+                    title: CreateBlockinAuthCodeBody.publicKey
                     type: string
             required:
                 - name
@@ -5947,7 +5947,7 @@ components:
                 - message
                 - signature
             additionalProperties: false
-            title: CreateBlockinAuthCodeRouteRequestBody
+            title: CreateBlockinAuthCodeBody
             description: '@category API Requests / Responses'
             type: object
         iCreateBlockinAuthCodeRouteSuccessResponse:
@@ -5955,17 +5955,17 @@ components:
             title: iCreateBlockinAuthCodeRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetBlockinAuthCodeRouteRequestBody:
+        GetBlockinAuthCodeBody:
             properties:
                 signature:
-                    title: GetBlockinAuthCodeRouteRequestBody.signature
+                    title: GetBlockinAuthCodeBody.signature
                     type: string
                 options:
-                    title: GetBlockinAuthCodeRouteRequestBody.options
+                    title: GetBlockinAuthCodeBody.options
             required:
                 - signature
             additionalProperties: false
-            title: GetBlockinAuthCodeRouteRequestBody
+            title: GetBlockinAuthCodeBody
             description: '@category API Requests / Responses'
             type: object
         iGetBlockinAuthCodeRouteSuccessResponse:
@@ -6005,15 +6005,15 @@ components:
             title: iGetBlockinAuthCodeRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        DeleteBlockinAuthCodeRouteRequestBody:
+        DeleteBlockinAuthCodeBody:
             properties:
                 signature:
-                    title: DeleteBlockinAuthCodeRouteRequestBody.signature
+                    title: DeleteBlockinAuthCodeBody.signature
                     type: string
             required:
                 - signature
             additionalProperties: false
-            title: DeleteBlockinAuthCodeRouteRequestBody
+            title: DeleteBlockinAuthCodeBody
             description: '@category API Requests / Responses'
             type: object
         iDeleteBlockinAuthCodeRouteSuccessResponse:
@@ -6021,19 +6021,19 @@ components:
             title: iDeleteBlockinAuthCodeRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GenerateAppleWalletPassRouteRequestBody:
+        GenerateAppleWalletPassBody:
             properties:
                 name:
-                    title: GenerateAppleWalletPassRouteRequestBody.name
+                    title: GenerateAppleWalletPassBody.name
                     type: string
                 description:
-                    title: GenerateAppleWalletPassRouteRequestBody.description
+                    title: GenerateAppleWalletPassBody.description
                     type: string
                 message:
-                    title: GenerateAppleWalletPassRouteRequestBody.message
+                    title: GenerateAppleWalletPassBody.message
                     type: string
                 signature:
-                    title: GenerateAppleWalletPassRouteRequestBody.signature
+                    title: GenerateAppleWalletPassBody.signature
                     type: string
             required:
                 - name
@@ -6041,7 +6041,7 @@ components:
                 - message
                 - signature
             additionalProperties: false
-            title: GenerateAppleWalletPassRouteRequestBody
+            title: GenerateAppleWalletPassBody
             description: '@category API Requests / Responses'
             type: object
         iGenerateAppleWalletPassRouteSuccessResponse:
@@ -6059,21 +6059,21 @@ components:
             title: iGenerateAppleWalletPassRouteSuccessResponse
             description: '@category API Requests / Responses'
             type: object
-        GetClaimAlertsForCollectionRouteRequestBody:
+        GetClaimAlertsForCollectionBody:
             properties:
                 collectionId:
-                    title: GetClaimAlertsForCollectionRouteRequestBody.collectionId
+                    title: GetClaimAlertsForCollectionBody.collectionId
                     anyOf:
                         - type: string
                         - type: number
                 bookmark:
-                    title: GetClaimAlertsForCollectionRouteRequestBody.bookmark
+                    title: GetClaimAlertsForCollectionBody.bookmark
                     type: string
             required:
                 - collectionId
                 - bookmark
             additionalProperties: false
-            title: GetClaimAlertsForCollectionRouteRequestBody
+            title: GetClaimAlertsForCollectionBody
             description: '@category API Requests / Responses'
             type: object
         iGetClaimAlertsForCollectionRouteSuccessResponse:

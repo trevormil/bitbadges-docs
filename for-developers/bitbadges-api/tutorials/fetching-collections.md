@@ -58,7 +58,7 @@ You may also find the following functions useful to be more efficient:
 
 ```typescript
 const isRedundant = collection.isRedundantRequest({...})
-const newBody = collection.pruneRequestBody()
+const newBody = collection.pruneBody()
 ```
 
 ### Balances
@@ -290,19 +290,19 @@ const collectedView = collection.getOwnersView('owners')
 
 ### **Fetch Route**
 
-#### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchRouteRequestBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchRouteSuccessResponse.html)**)**
+#### **POST /api/v0/collection/batch - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 
 ```typescript
-export interface GetCollectionBatchRouteRequestBody {
+export interface GetCollectionBatchBody {
   collectionsToFetch: ({ collectionId: NumberType } 
-    & GetMetadataForCollectionRequestBody 
-    & GetAdditionalCollectionDetailsRequestBody
+    & GetMetadataForCollectionBody 
+    & GetAdditionalCollectionDetailsBody
   )[],
 }
 
-export interface GetAdditionalCollectionDetailsRequestBody {
+export interface GetAdditionalCollectionDetailsBody {
   /**
    * If present, the specified views will be fetched.
    */
@@ -330,7 +330,7 @@ export interface GetAdditionalCollectionDetailsRequestBody {
   handleAllAndAppendDefaults?: boolean;
 }
 
-export interface GetMetadataForCollectionRequestBody {
+export interface GetMetadataForCollectionBody {
   /**
    * If present, we will fetch the metadata corresponding to the specified options.
    */
@@ -358,7 +358,7 @@ export interface MetadataFetchOptions {
 ```
 
 ```typescript
-export interface GetCollectionBatchRouteSuccessResponse<T extends NumberType> {
+export interface GetCollectionBatchSuccessResponse<T extends NumberType> {
   collections: BitBadgesCollection<T>[]
 }
 ```

@@ -104,7 +104,7 @@ paths:
             summary: Get Status
             description: |
                 Gets the current status details about the blockchain / indexer (gas, block height, etc).\n
-                [Request](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetStatusRouteRequestBody.html)
+                [Request](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetStatusBody.html)
                 [Response](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/GetStatusRouteSuccessResponse.html)
                 [BitBadges SDK](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html#getStatus)
             responses:

@@ -58,7 +58,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetSearchRouteRequestBody'
+                            $ref: '#/components/schemas/GetSearchBody'
             responses:
                 '200':
                     description: Success response
@@ -84,7 +84,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetCollectionBatchRouteRequestBody'
+                            $ref: '#/components/schemas/GetCollectionBatchBody'
             responses:
                 '200':
                     description: Success response
@@ -137,7 +137,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetOwnersForBadgeRouteRequestBody'
+                            $ref: '#/components/schemas/GetOwnersForBadgeBody'
             responses:
                 '200':
                     description: Success response
@@ -182,7 +182,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetBadgeBalanceByAddressRouteRequestBody'
+                            $ref: '#/components/schemas/GetBadgeBalanceByAddressBody'
             responses:
                 '200':
                     description: Success response
@@ -227,7 +227,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetBadgeActivityRouteRequestBody'
+                            $ref: '#/components/schemas/GetBadgeActivityBody'
             responses:
                 '200':
                     description: Success response
@@ -269,7 +269,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/RefreshMetadataRouteRequestBody'
+                            $ref: '#/components/schemas/RefreshMetadataBody'
             responses:
                 '200':
                     description: Success response
@@ -315,7 +315,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CompleteClaimRouteRequestBody'
+                            $ref: '#/components/schemas/CompleteClaimBody'
             responses:
                 '200':
                     description: Success response
@@ -355,7 +355,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteReviewRouteRequestBody'
+                            $ref: '#/components/schemas/DeleteReviewBody'
             responses:
                 '200':
                     description: Success response
@@ -395,7 +395,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AddReviewForCollectionRouteRequestBody'
+                            $ref: '#/components/schemas/AddReviewForCollectionBody'
             responses:
                 '200':
                     description: Success response
@@ -422,7 +422,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetAccountsRouteRequestBody'
+                            $ref: '#/components/schemas/GetAccountsBody'
             responses:
                 '200':
                     description: Success response
@@ -469,7 +469,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AddReviewForUserRouteRequestBody'
+                            $ref: '#/components/schemas/AddReviewForUserBody'
             responses:
                 '200':
                     description: Success response
@@ -496,7 +496,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateAccountInfoRouteRequestBody'
+                            $ref: '#/components/schemas/UpdateAccountInfoBody'
             responses:
                 '200':
                     description: Success response
@@ -530,7 +530,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AddBalancesToOffChainStorageRouteRequestBody'
+                            $ref: '#/components/schemas/AddBalancesToOffChainStorageBody'
             responses:
                 '200':
                     description: Success response
@@ -565,7 +565,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AddMetadataToIpfsRouteRequestBody'
+                            $ref: '#/components/schemas/AddMetadataToIpfsBody'
             responses:
                 '200':
                     description: Success response
@@ -600,7 +600,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/AddApprovalDetailsToOffChainStorageRouteRequestBody'
+                            $ref: '#/components/schemas/AddApprovalDetailsToOffChainStorageBody'
             responses:
                 '200':
                     description: Success response
@@ -635,7 +635,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetSignInChallengeRouteRequestBody'
+                            $ref: '#/components/schemas/GetSignInChallengeBody'
             responses:
                 '200':
                     description: Success response
@@ -668,7 +668,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/VerifySignInRouteRequestBody'
+                            $ref: '#/components/schemas/VerifySignInBody'
             responses:
                 '200':
                     description: Success response
@@ -708,7 +708,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/iCheckSignInStatusRequestSuccessResponse'
+                                $ref: '#/components/schemas/iCheckSignInStatusSuccessResponse'
                 '400':
                     $ref: '#/components/responses/BadRequestResponse'
                 '401':
@@ -761,7 +761,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetBrowseCollectionsRouteRequestBody'
+                            $ref: '#/components/schemas/GetBrowseCollectionsBody'
             responses:
                 '200':
                     description: Success response
@@ -795,7 +795,7 @@ paths:
                     application/json:
                         schema:
                             oneOf:
-                                - $ref: '#/components/schemas/BroadcastTxRouteRequestBody'
+                                - $ref: '#/components/schemas/BroadcastTxBody'
                                 - type: string
             responses:
                 '200':
@@ -830,7 +830,7 @@ paths:
                     application/json:
                         schema:
                             oneOf:
-                                - $ref: '#/components/schemas/SimulateTxRouteRequestBody'
+                                - $ref: '#/components/schemas/SimulateTxBody'
                                 - type: string
             responses:
                 '200':
@@ -864,7 +864,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/FetchMetadataDirectlyRouteRequestBody'
+                            $ref: '#/components/schemas/FetchMetadataDirectlyBody'
             responses:
                 '200':
                     description: Success response
@@ -898,7 +898,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateAddressListsRouteRequestBody'
+                            $ref: '#/components/schemas/UpdateAddressListsBody'
             responses:
                 '200':
                     description: Success response
@@ -933,7 +933,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateAddressListsRouteRequestBody'
+                            $ref: '#/components/schemas/UpdateAddressListsBody'
             responses:
                 '200':
                     description: Success response
@@ -968,7 +968,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetAddressListsRouteRequestBody'
+                            $ref: '#/components/schemas/GetAddressListsBody'
             responses:
                 '200':
                     description: Success response
@@ -1002,7 +1002,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteAddressListsRouteRequestBody'
+                            $ref: '#/components/schemas/DeleteAddressListsBody'
             responses:
                 '200':
                     description: Success response
@@ -1037,7 +1037,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetBlockinAuthCodeRouteRequestBody'
+                            $ref: '#/components/schemas/GetBlockinAuthCodeBody'
             responses:
                 '200':
                     description: Success response
@@ -1070,7 +1070,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateBlockinAuthCodeRouteRequestBody'
+                            $ref: '#/components/schemas/CreateBlockinAuthCodeBody'
             responses:
                 '200':
                     description: Success response
@@ -1103,7 +1103,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteBlockinAuthCodeRouteRequestBody'
+                            $ref: '#/components/schemas/DeleteBlockinAuthCodeBody'
             responses:
                 '200':
                     description: Success response
@@ -1137,7 +1137,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GenericBlockinVerifyRouteRequestBody'
+                            $ref: '#/components/schemas/GenericBlockinVerifyBody'
             responses:
                 '200':
                     description: Success response
@@ -1170,7 +1170,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SendClaimAlertsRouteRequestBody'
+                            $ref: '#/components/schemas/SendClaimAlertsBody'
             responses:
                 '200':
                     description: Success response
@@ -1204,7 +1204,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetFollowDetailsRouteRequestBody'
+                            $ref: '#/components/schemas/GetFollowDetailsBody'
             responses:
                 '200':
                     description: Success response
@@ -1228,7 +1228,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetClaimAlertsForCollectionRouteRequestBody'
+                            $ref: '#/components/schemas/GetClaimAlertsForCollectionBody'
             responses:
                 '200':
                     description: Success response
@@ -1278,7 +1278,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetMapsRouteRequestBody'
+                            $ref: '#/components/schemas/GetMapsBody'
             responses:
                 '200':
                     description: Success response
@@ -1302,7 +1302,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetSecretRouteRequestBody'
+                            $ref: '#/components/schemas/GetSecretBody'
             responses:
                 '200':
                     description: Success response
@@ -1326,7 +1326,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateSecretRouteRequestBody'
+                            $ref: '#/components/schemas/CreateSecretBody'
             responses:
                 '200':
                     description: Success response
@@ -1350,7 +1350,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateSecretRouteRequestBody'
+                            $ref: '#/components/schemas/UpdateSecretBody'
             responses:
                 '200':
                     description: Success response
@@ -1374,7 +1374,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteSecretRouteRequestBody'
+                            $ref: '#/components/schemas/DeleteSecretBody'
             responses:
                 '200':
                     description: Success response
@@ -1447,7 +1447,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GenerateAppleWalletPassRouteRequestBody'
+                            $ref: '#/components/schemas/GenerateAppleWalletPassBody'
             responses:
                 '200':
                     description: Success response
@@ -1471,7 +1471,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/GetClaimsRouteRequestBody'
+                            $ref: '#/components/schemas/GetClaimsBody'
             responses:
                 '200':
                     description: Success response
@@ -3855,7 +3855,7 @@ components:
             additionalProperties: false
             description: ''
             type: object
-        GetAddressListsRouteRequestBody:
+        GetAddressListsBody:
             properties:
                 listsToFetch:
                     items:
@@ -3904,7 +3904,7 @@ components:
                 - addressLists
             additionalProperties: false
             type: object
-        UpdateAddressListsRouteRequestBody:
+        UpdateAddressListsBody:
             properties:
                 addressLists:
                     items:
@@ -3945,7 +3945,7 @@ components:
         iUpdateAddressListsRouteSuccessResponse:
             additionalProperties: false
             type: object
-        CreateAddressListsRouteRequestBody:
+        CreateAddressListsBody:
             properties:
                 addressLists:
                     items:
@@ -3986,7 +3986,7 @@ components:
         iCreateAddressListsRouteSuccessResponse:
             additionalProperties: false
             type: object
-        DeleteAddressListsRouteRequestBody:
+        DeleteAddressListsBody:
             properties:
                 listIds:
                     items:
@@ -4402,7 +4402,7 @@ components:
                 - `badgesCollected` - Fetches the badges collected by the account
                 sequentially in random order.
             type: object
-        GetAccountsRouteRequestBody:
+        GetAccountsBody:
             properties:
                 accountsToFetch:
                     items:
@@ -4422,7 +4422,7 @@ components:
                 - accounts
             additionalProperties: false
             type: object
-        GetFollowDetailsRouteRequestBody:
+        GetFollowDetailsBody:
             properties:
                 cosmosAddress:
                     type: string
@@ -4563,7 +4563,7 @@ components:
                 - pagination
             additionalProperties: false
             type: object
-        GetOwnersForBadgeRouteRequestBody:
+        GetOwnersForBadgeBody:
             properties:
                 bookmark:
                     description: >-
@@ -4587,7 +4587,7 @@ components:
                 - pagination
             additionalProperties: false
             type: object
-        GetBadgeBalanceByAddressRouteRequestBody:
+        GetBadgeBalanceByAddressBody:
             additionalProperties: false
             type: object
         iGetBadgeBalanceByAddressRouteSuccessResponse:
@@ -4683,7 +4683,7 @@ components:
                 This includes their balances, incoming approvals, outgoing approvals,
                 and permissions.
             type: object
-        GetBadgeActivityRouteRequestBody:
+        GetBadgeActivityBody:
             properties:
                 bookmark:
                     description: >-
@@ -4881,7 +4881,7 @@ components:
                         fetched metadata.
             additionalProperties: false
             type: object
-        GetCollectionBatchRouteRequestBody:
+        GetCollectionBatchBody:
             properties:
                 collectionsToFetch:
                     items:
@@ -4911,7 +4911,7 @@ components:
                 - collections
             additionalProperties: false
             type: object
-        GetCollectionByIdRouteRequestBody:
+        GetCollectionByIdBody:
             properties:
                 viewsToFetch:
                     items:
@@ -5018,13 +5018,13 @@ components:
                 - collection
             additionalProperties: false
             type: object
-        RefreshMetadataRouteRequestBody:
+        RefreshMetadataBody:
             additionalProperties: false
             type: object
         iRefreshMetadataRouteSuccessResponse:
             additionalProperties: false
             type: object
-        RefreshStatusRouteRequestBody:
+        RefreshStatusBody:
             additionalProperties: false
             type: object
         iRefreshStatusRouteSuccessResponse:
@@ -5048,7 +5048,7 @@ components:
             type: object
         BlockinAssetConditionGroup:
             $ref: '#/components/schemas/OwnershipRequirements'
-        GetStatusRouteRequestBody:
+        GetStatusBody:
             additionalProperties: false
             type: object
         iGetStatusRouteSuccessResponse:
@@ -5060,7 +5060,7 @@ components:
                 - status
             additionalProperties: false
             type: object
-        GetSearchRouteRequestBody:
+        GetSearchBody:
             properties:
                 noCollections:
                     description: If true, we will skip all collection queries.
@@ -5145,7 +5145,7 @@ components:
                 Note that we only support storing a set of codes and passwords once per
                 unique CID.
             type: object
-        GetClaimsRouteRequestBody:
+        GetClaimsBody:
             properties:
                 claimIds:
                     items:
@@ -5181,7 +5181,7 @@ components:
                 - claims
             additionalProperties: false
             type: object
-        CompleteClaimRouteRequestBody:
+        CompleteClaimBody:
             properties:
                 prevCodesOnly:
                     type: boolean
@@ -5197,7 +5197,7 @@ components:
                     type: array
             additionalProperties: false
             type: object
-        DeleteReviewRouteRequestBody:
+        DeleteReviewBody:
             properties:
                 reviewId:
                     description: The review ID to delete.
@@ -5209,7 +5209,7 @@ components:
         iDeleteReviewRouteSuccessResponse:
             additionalProperties: false
             type: object
-        AddReviewForCollectionRouteRequestBody:
+        AddReviewForCollectionBody:
             properties:
                 review:
                     description: The review text (1 to 2048 characters).
@@ -5225,7 +5225,7 @@ components:
         iAddReviewForCollectionRouteSuccessResponse:
             additionalProperties: false
             type: object
-        AddReviewForUserRouteRequestBody:
+        AddReviewForUserBody:
             properties:
                 review:
                     description: The review text (1 to 2048 characters).
@@ -5241,7 +5241,7 @@ components:
         iAddReviewForUserRouteSuccessResponse:
             additionalProperties: false
             type: object
-        UpdateAccountInfoRouteRequestBody:
+        UpdateAccountInfoBody:
             properties:
                 discord:
                     description: The Discord username.
@@ -5350,7 +5350,7 @@ components:
         iUpdateAccountInfoRouteSuccessResponse:
             additionalProperties: false
             type: object
-        AddBalancesToOffChainStorageRouteRequestBody:
+        AddBalancesToOffChainStorageBody:
             properties:
                 balances:
                     $ref: '#/components/schemas/iOffChainBalancesMap'
@@ -5402,7 +5402,7 @@ components:
                 - result
             additionalProperties: false
             type: object
-        AddMetadataToIpfsRouteRequestBody:
+        AddMetadataToIpfsBody:
             properties:
                 collectionMetadata:
                     $ref: '#/components/schemas/iMetadata'
@@ -5444,7 +5444,7 @@ components:
                 - badgeMetadataResults
             additionalProperties: false
             type: object
-        AddApprovalDetailsToOffChainStorageRouteRequestBody:
+        AddApprovalDetailsToOffChainStorageBody:
             properties:
                 name:
                     description: The name of the approval.
@@ -5500,7 +5500,7 @@ components:
                 - result
             additionalProperties: false
             type: object
-        GetSignInChallengeRouteRequestBody:
+        GetSignInChallengeBody:
             properties:
                 chain:
                     $ref: '#/components/schemas/SupportedChain'
@@ -5533,7 +5533,7 @@ components:
                 - message
             additionalProperties: false
             type: object
-        VerifySignInRouteRequestBody:
+        VerifySignInBody:
             properties:
                 message:
                     description: The original Blockin message
@@ -5555,7 +5555,7 @@ components:
         CheckSignInStatusRequestBody:
             additionalProperties: false
             type: object
-        iCheckSignInStatusRequestSuccessResponse:
+        iCheckSignInStatusSuccessResponse:
             properties:
                 signedIn:
                     description: Indicates whether the user is signed in.
@@ -5640,7 +5640,7 @@ components:
         iSignOutSuccessResponse:
             additionalProperties: false
             type: object
-        GetBrowseCollectionsRouteRequestBody:
+        GetBrowseCollectionsBody:
             additionalProperties: false
             type: object
         iGetBrowseCollectionsRouteSuccessResponse:
@@ -5692,7 +5692,7 @@ components:
                 - badges
             additionalProperties: false
             type: object
-        BroadcastTxRouteRequestBody:
+        BroadcastTxBody:
             $ref: '#/components/schemas/BroadcastPostBody'
         iBroadcastTxRouteSuccessResponse:
             properties:
@@ -5806,7 +5806,7 @@ components:
                 - tx_response
             additionalProperties: false
             type: object
-        SimulateTxRouteRequestBody:
+        SimulateTxBody:
             $ref: '#/components/schemas/BroadcastPostBody'
         iSimulateTxRouteSuccessResponse:
             properties:
@@ -5867,7 +5867,7 @@ components:
                 - result
             additionalProperties: false
             type: object
-        FetchMetadataDirectlyRouteRequestBody:
+        FetchMetadataDirectlyBody:
             properties:
                 uris:
                     items:
@@ -5887,11 +5887,11 @@ components:
                 - metadata
             additionalProperties: false
             type: object
-        GetTokensFromFaucetRouteRequestBody:
+        GetTokensFromFaucetBody:
             additionalProperties: false
             type: object
         iGetTokensFromFaucetRouteSuccessResponse: null
-        SendClaimAlertsRouteRequestBody:
+        SendClaimAlertsBody:
             properties:
                 claimAlerts:
                     items:
@@ -5946,7 +5946,7 @@ components:
                 Note this should be converted into AccountDoc or BitBadgesUserInfo
                 before being returned by the BitBadges API for consistency.
             type: object
-        GenericBlockinVerifyRouteRequestBody:
+        GenericBlockinVerifyBody:
             properties:
                 message:
                     description: The original Blockin message
@@ -5971,7 +5971,7 @@ components:
         iGenericBlockinVerifyRouteSuccessResponse:
             additionalProperties: false
             type: object
-        CreateSecretRouteRequestBody:
+        CreateSecretBody:
             properties:
                 proofOfIssuance:
                     properties:
@@ -6044,7 +6044,7 @@ components:
                 - secretId
             additionalProperties: false
             type: object
-        GetSecretRouteRequestBody:
+        GetSecretBody:
             properties:
                 secretId:
                     type: string
@@ -6152,7 +6152,7 @@ components:
             additionalProperties: false
             description: ''
             type: object
-        DeleteSecretRouteRequestBody:
+        DeleteSecretBody:
             properties:
                 secretId:
                     type: string
@@ -6163,7 +6163,7 @@ components:
         iDeleteSecretRouteSuccessResponse:
             additionalProperties: false
             type: object
-        UpdateSecretRouteRequestBody:
+        UpdateSecretBody:
             properties:
                 secretId:
                     type: string
@@ -6247,7 +6247,7 @@ components:
         iUpdateSecretRouteSuccessResponse:
             additionalProperties: false
             type: object
-        CreateBlockinAuthCodeRouteRequestBody:
+        CreateBlockinAuthCodeBody:
             properties:
                 name:
                     type: string
@@ -6282,7 +6282,7 @@ components:
                 - id
             additionalProperties: false
             type: object
-        GetBlockinAuthCodeRouteRequestBody:
+        GetBlockinAuthCodeBody:
             properties:
                 id:
                     type: string
@@ -6340,7 +6340,7 @@ components:
                 - secretsPresentations
             additionalProperties: false
             type: object
-        DeleteBlockinAuthCodeRouteRequestBody:
+        DeleteBlockinAuthCodeBody:
             properties:
                 id:
                     type: string
@@ -6351,7 +6351,7 @@ components:
         iDeleteBlockinAuthCodeRouteSuccessResponse:
             additionalProperties: false
             type: object
-        GenerateAppleWalletPassRouteRequestBody:
+        GenerateAppleWalletPassBody:
             properties:
                 name:
                     type: string
@@ -6379,7 +6379,7 @@ components:
                 - data
             additionalProperties: false
             type: object
-        GetClaimAlertsForCollectionRouteRequestBody:
+        GetClaimAlertsForCollectionBody:
             properties:
                 collectionId:
                     $ref: '#/components/schemas/NumberType'
@@ -6403,7 +6403,7 @@ components:
                 - pagination
             additionalProperties: false
             type: object
-        GetExternalCallRouteRequestBody:
+        GetExternalCallBody:
             properties:
                 uri:
                     type: string
@@ -6425,7 +6425,7 @@ components:
                 - timestamp
             additionalProperties: false
             type: object
-        GetMapsRouteRequestBody:
+        GetMapsBody:
             properties:
                 mapIds:
                     items:

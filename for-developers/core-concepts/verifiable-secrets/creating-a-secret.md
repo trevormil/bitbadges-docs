@@ -6,33 +6,31 @@ On the official site, we provide interfaces to create secrets. This should be ad
 
 <figure><img src="../../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
 
-
-
 However, you can self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
 The creation interface is as follows. All secrets are a series of one or more **secretMessages** which can be either in 'json' or 'plaintext' **messageFormat**. The schema of the message is left up to the issuer.
 
 ```typescript
-export interface CreateSecretRouteRequestBody {
-  proofOfIssuance: {
-    message: string;
-    signature: string;
-    signer: string;
-    publicKey?: string;
-  };
+export interface CreateSecretBody {
+    proofOfIssuance: {
+        message: string;
+        signature: string;
+        signer: string;
+        publicKey?: string;
+    };
 
-  scheme: 'bbs' | 'standard';
-  messageFormat: 'json' | 'plaintext';
-  secretMessages: string[];
-  dataIntegrityProof: {
-    signature: string;
-    signer: string;
-    publicKey?: string;
-  };
+    scheme: 'bbs' | 'standard';
+    messageFormat: 'json' | 'plaintext';
+    secretMessages: string[];
+    dataIntegrityProof: {
+        signature: string;
+        signer: string;
+        publicKey?: string;
+    };
 
-  name: string;
-  image: string;
-  description: string;
+    name: string;
+    image: string;
+    description: string;
 }
 ```
 
@@ -48,34 +46,37 @@ Example W3C Verifiable Credentials
 
 ```json
 {
-  "@context": [
-    "https://www.w3.org/ns/credentials/v2",
-    "https://www.w3.org/ns/credentials/examples/v2"
-  ],
-  "id": "http://license.example/credentials/9837",
-  "type": ["VerifiableCredential", "ExampleDrivingLicenseCredential"],
-  "issuer": "https://license.example/issuers/48",
-  "validFrom": "2020-03-14T12:10:42Z",
-  "credentialSubject": {
-    "id": "did:example:f1c276e12ec21ebfeb1f712ebc6",
-    "license": {
-      "type": "ExampleDrivingLicense",
-      "name": "License to Drive a Car"
-    }
-  },
-  "credentialStatus": [{
-    "id": "https://license.example/credentials/status/84#14278",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "revocation",
-    "statusListIndex": "14278",
-    "statusListCredential": "https://license.example/credentials/status/84"
-  }, {
-    "id": "https://license.example/credentials/status/84#82938",
-    "type": "BitstringStatusListEntry",
-    "statusPurpose": "suspension",
-    "statusListIndex": "82938",
-    "statusListCredential": "https://license.example/credentials/status/84"
-  }]
+    "@context": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://www.w3.org/ns/credentials/examples/v2"
+    ],
+    "id": "http://license.example/credentials/9837",
+    "type": ["VerifiableCredential", "ExampleDrivingLicenseCredential"],
+    "issuer": "https://license.example/issuers/48",
+    "validFrom": "2020-03-14T12:10:42Z",
+    "credentialSubject": {
+        "id": "did:example:f1c276e12ec21ebfeb1f712ebc6",
+        "license": {
+            "type": "ExampleDrivingLicense",
+            "name": "License to Drive a Car"
+        }
+    },
+    "credentialStatus": [
+        {
+            "id": "https://license.example/credentials/status/84#14278",
+            "type": "BitstringStatusListEntry",
+            "statusPurpose": "revocation",
+            "statusListIndex": "14278",
+            "statusListCredential": "https://license.example/credentials/status/84"
+        },
+        {
+            "id": "https://license.example/credentials/status/84#82938",
+            "type": "BitstringStatusListEntry",
+            "statusPurpose": "suspension",
+            "statusListIndex": "82938",
+            "statusListCredential": "https://license.example/credentials/status/84"
+        }
+    ]
 }
 ```
 
@@ -85,9 +86,9 @@ The integrity of the data is committed to by a cryptographic signature as we wil
 
 In a a system like this, typically, the secret gains its credibility from the issuer, so there is inherently some trust there. However, you may also opt to use additional protection measures against a malicious issuer. For example:
 
-* On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
-* On-chain map of badge ID -> secret IDs to protect against duplicate secrets issued per badge
-* Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
+-   On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
+-   On-chain map of badge ID -> secret IDs to protect against duplicate secrets issued per badge
+-   Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
 
 ### Standard Signatures
 
@@ -98,17 +99,17 @@ const sig = await chain.signChallenge(secret.secretMessages[0]);
 const pubKey = await chain.getPublicKey(chain.address);
 
 body = {
-  ...secret,
-  dataIntegrityProof: {
-    signer: chain.address,
-    signature: sig.signature,
-    publicKey: pubKey
-  },
-  proofOfIssuance: {
-    signature: '',
-    signer: '',
-    message: ''
-  }
+    ...secret,
+    dataIntegrityProof: {
+        signer: chain.address,
+        signature: sig.signature,
+        publicKey: pubKey,
+    },
+    proofOfIssuance: {
+        signature: '',
+        signer: '',
+        message: '',
+    },
 };
 ```
 
@@ -139,13 +140,13 @@ const message = `I approve the issuance of credentials signed with BBS+ ${secret
 const sig = await chain.signChallenge(message);
 const publicKey = await chain.getPublicKey(chain.cosmosAddress);
 body = {
-  ...secret,
-  proofOfIssuance: {
-    message,
-    signer: chain.address,
-    signature: sig.signature,
-    publicKey
-  }
+    ...secret,
+    proofOfIssuance: {
+        message,
+        signer: chain.address,
+        signature: sig.signature,
+        publicKey,
+    },
 };
 ```
 
