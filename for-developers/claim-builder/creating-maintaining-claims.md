@@ -1,6 +1,8 @@
-# Creating Claims
+# Creating / Maintaining Claims
 
-Currently, claims can only be created and maintained through the BitBadges site (not through the API). You will get the chance to create and update claims when creating / updating a badge collection or address list.&#x20;
+Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.&#x20;
+
+You can also use the BitBadges API for more programmatic CRUD; however, this is typically not necessary as everything can also be done directly in-site.
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
