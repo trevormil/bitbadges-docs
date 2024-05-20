@@ -4,7 +4,13 @@
 
 These plugins restrict the number of times specific users from different social platforms can use the claim.&#x20;
 
-We differentiate by account IDs (should be constant) and usernames for display purposes / ease of use. The users are only allowed to be private because of privacy concerns. You may consider hosting the list on your end, so users know if they can claim or not.
+**Usernames vs IDs**
+
+We differentiate by account IDs (should be constant) and usernames for display purposes / ease of use.&#x20;
+
+**Private Lists**
+
+The user list is only allowed to be private. You may consider hosting the list on your end, so users know if they can claim or not.
 
 ### Public Parameters
 
