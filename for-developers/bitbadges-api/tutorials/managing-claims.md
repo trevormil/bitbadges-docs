@@ -1,36 +1,111 @@
 # Managing Claims
 
-Claims can also be managed via the BitBadges API.
+The BitBadges API allows you to manage claims through various functions. Typically, you will not need this as claims can be managed and updated via the BitBadges site. However, for more advanced cases, you may want to use the API. All require the proper permissions and authorizations.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.createClaim({ ... });
-</strong><strong>await BitBadgesApi.updateClaim({ ... });
-</strong><strong>await BitBadgesApi.deleteClaim({ ... });
-</strong></code></pre>
+### Creating Claims
 
-Typically, you will not need this as claims can be managed and updated via the BitBadges site. However, for more advanced cases, you may want to use the API. All require the proper permissions and authorizations.
+To create a claim using the BitBadges API, use the following function. Not all fields will be applicable depending on the type of claim you are creating. Please read below because certain claim types have specific requirements for creation.
 
-### **Creating Claims**
+```javascript
+await BitBadgesApi.createClaim({
+  claims: [{
+    claimId: 'unique-claim-id',
+    balancesToSet: { /* your balances here */ }, //for off-chain indexed
+    plugins: [/* your plugins here */],
+    manualDistribution: false,
+    automatic: true,
+    seedCode: 'your-seed-code', //if applicable
+    metadata: { /* your metadata here */ }, 
+    listId: 'your-list-id', // for address list claims
+    collectionId: 1, // for badge claims
+    cid: 'your-cid'
+  }]
+});
+```
 
-Claims can be created through the BitBadges API; however, this may get a little tricky because we may have to coordinate with the blockchain.
+#### Address List Claims
 
-**Address List Claims**
+For address list claims, simply specify the list ID. The list creator must equal the claim creator.
 
-For address list claims, this is straight forward. You just specify the list ID to create the claim for and you are good (as long as you are the creator).
+```javascript
+await BitBadgesApi.createClaim({
+  claims: [{
+    claimId: 'unique-claim-id',
+    listId: 'your-list-id',
+    plugins: [/* your plugins here */],
+    metadata: { /* your metadata here */ }
+    ...
+  }]
+});
+```
 
-**Collections w/ On-Chain Balances**
+#### Collections with On-Chain Balances
 
 For claims that map to an on-chain approval, you will need to make sure the claim ID == the challenge tracker ID of your on-chain approval. This will tie the two together inherently. The ID must be unique from any other claim, and you must use the same address to create the claim and blockchain transaction (that creates the approval). This address also needs to be the manager address.&#x20;
 
 You must create the claim first (reserves the ID behind the scenes) and then the approval after. This does not require the collection ID, so this can be done before the collection is even created.
 
-**Collections w/ Off-Chain Balances**
+```javascript
+await BitBadgesApi.createClaim({
+  claims: [{
+    claimId: 'challenge-tracker-id',
+    plugins: [/* your plugins here */],
+    metadata: { /* your metadata here */ }
+  }]
+});
+// Then handle the blockchain transaction with the same address.
+```
 
-For claims for collections with off-chain balances, the collection must be created first. Then, you can simply specify the collection ID, and we will check that you are the manager.
+#### Collections with Off-Chain Balances
 
-### **Updating Claims**
+For off-chain balances, the collection must be created first. We check that the claim creator is the current manager of the collection.
 
-With updating claims, you can change the plugins, metadata, or even micro-manage the state of each plugin. Each plugin will have a **resetState** or **newState** field that can be used to set the state to what you want to. Resetting it will go back to the default, blank state. Specify newState will set it to exactly what is provided (thus, it is important it is configured properly). See the documentation for each plugin for how state is managed.
+```javascript
+await BitBadgesApi.createClaim({
+  claims: [{
+    claimId: 'unique-claim-id',
+    collectionId: 'existing-collection-id',
+    plugins: [/* your plugins here */],
+    metadata: { /* your metadata here */ }
+  }]
+});
+```
 
-### **Deleting Claims**
+### Updating Claims
 
-Claims can also be deleted. However, note that they are soft deleted, meaning they can be reinstated with the same ID and same state at a later time.
+To update a claim, you can do the following:
+
+```javascript
+await BitBadgesApi.updateClaim({
+  claims: [{
+    claimId: 'unique-claim-id',
+    plugins: [/* updated plugins here */],
+    metadata: { /* updated metadata here */ }
+    ...
+  }]
+});
+```
+
+Each plugin can have a `resetState` or `newState` field to manage its state. It is important that if you are using the new state field, you must configure this properly (see docs for the respective plugin).
+
+```javascript
+await BitBadgesApi.updateClaim({
+  claims: [{
+    claimId: 'unique-claim-id',
+    plugins: [{
+      ...
+      resetState: true // or newState: {/* new state configuration */}
+    }]
+  }]
+});
+```
+
+### Deleting Claims
+
+Claims can be deleted as well. However, note this is a soft delete (will not be displayed but state and everything can be reinstated later).
+
+```javascript
+await BitBadgesApi.deleteClaim({
+  claimIds: ['unique-claim-id']
+});
+```
