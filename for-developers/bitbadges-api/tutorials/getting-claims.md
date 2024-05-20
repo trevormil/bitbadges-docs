@@ -1,5 +1,7 @@
 # Getting Claims
 
+If you know the claim ID:
+
 ```typescript
 import { BitBadgesApi } from 'bitbadges-api';
 
@@ -19,3 +21,5 @@ const getClaims = async () => {
 
 getClaims();
 ```
+
+Or, you can get it via the **claims** field on the returned values for collections and address lists.
