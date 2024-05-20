@@ -28,6 +28,7 @@
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
+* [🦊 MetaMask Snap](overview/metamask-snap.md)
 * [📊 Explorers](overview/explorers.md)
 * [🏫 Governance](overview/governance.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
