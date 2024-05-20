@@ -90,6 +90,7 @@
     * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
     * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
     * [Fetching Lists](for-developers/bitbadges-api/tutorials/fetching-lists.md)
+    * [Getting Claims](for-developers/bitbadges-api/tutorials/getting-claims.md)
     * [Completing Claims](for-developers/bitbadges-api/tutorials/completing-claims.md)
     * [Managing Claims](for-developers/bitbadges-api/tutorials/managing-claims.md)
     * [Authentication](for-developers/bitbadges-api/tutorials/authentication.md)
