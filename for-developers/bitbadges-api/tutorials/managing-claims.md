@@ -86,7 +86,7 @@ await BitBadgesApi.updateClaim({
 });
 ```
 
-Each plugin can have a `resetState` or `newState` field to manage its state. It is important that if you are using the new state field, you must configure this properly (see docs for the respective plugin).
+Each plugin can have a `resetState` or `newState` field to manage its state. It is important that if you are using the new state field, you must configure this properly (see docs for the respective plugin).&#x20;
 
 ```javascript
 await BitBadgesApi.updateClaim({
@@ -99,6 +99,8 @@ await BitBadgesApi.updateClaim({
   }]
 });
 ```
+
+It is best practice to perform any claim updates when they are not active, if possible.
 
 ### Deleting Claims
 
