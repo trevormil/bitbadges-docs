@@ -1,5 +1,15 @@
 # Creating a Plugin
 
+**Adding custom plugins is currently not supported but is under development. Please reach out to us if you want to add a custom plugin.**
+
+
+
+
+
+
+
+
+
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin will handle if the claim attempt should be denied or not. All plugins must pass for a claim attempt to be successful.
 
 To create and publish your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer).
