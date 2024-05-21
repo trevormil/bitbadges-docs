@@ -4,7 +4,12 @@ You can use the BitBadges SDK to auto-complete claims for users.
 
 ```typescript
 const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
-console.log(res);
+console.log(res.txId);
+
+//Sleep 2 seconds
+
+const res = await BitBadgesApi.getClaimAttemptStatus(res.txId);
+console.log(res) // { success: true }
 ```
 
 Couple notes with auto-completing claims:
@@ -22,8 +27,6 @@ The custom body (if needed) should be in the following format
 
 ```typescript
 {
-    prevCodesOnly: false, //If you want to check for reserved codes
-
     [pluginId: string]: { ...pluginBody }
 }
 ```
