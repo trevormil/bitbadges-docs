@@ -4,15 +4,23 @@ BitBadges Claims are designed to be a comprehensive tool directly within the sit
 
 The end goal is for all use cases to be supported by the BitBadges Claims. Out of the box, it offers plenty of built-in plugins and features with no code required and directly claimable by users in the site.
 
+With BitBadges claims, you have a few options.
+
+**Option 1: Directly In-Site**
+
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
-Or, you can can extend it with our custom Zapier integration that allows you to connect claims with over 6000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
+**Option 2: Auto-Claim by Zapier**
+
+You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 6000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
 For example, make a purchase on Shopify -> get airdropped a badge or complete a course on Udemy -> get a completion badge.
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
-Or, you can implement a hybrid approach with your own stuff using the BitBadges API and connect it behind the scenes.
+**Option 3: Custom Claims**
+
+You can implement a hybrid approach in your own using the BitBadges API and connect it behind the scenes. This allows you full flexibility over the claiming process.
 
 ```typescript
 const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
