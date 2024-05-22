@@ -95,13 +95,17 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 [bitbadges-sdk](../bitbadges-sdk/)
 {% endcontent-ref %}
 
-### Authentication
+### BitBadges API Authorization
 
 **For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.**
 
-For accessing certain private information or performing certain actions, we require for some requests that the user to be authenticated via [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/). Blockin is a free-to-use, decentralized, universal sign-in standard that can support signing in with all blockchains! It was created and is maintained by the BitBadges core development team.
+Otherwise, check out the docs below. This follows a standard OAuth 2.0 flow.&#x20;
 
-If the user is not signed in and requests private information, the API will respond with a 401 error code. See [Authentication](tutorials/authentication.md) for how to authenticate users.
+Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application.
+
+{% content-ref url="tutorials/authentication.md" %}
+[authentication.md](tutorials/authentication.md)
+{% endcontent-ref %}
 
 ### Confined Responses
 

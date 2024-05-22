@@ -1,210 +1,90 @@
-# Authentication
+# Authorization
 
 **Typically, you will not need authentication because these are features that are pretty specific to the BitBadges website. However, in some cases, you may.**
 
-BitBadges uses [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) for authenticating users for private and authenticated functionality. See the Blockin documentation for more implementation documentation. The challenge message should be what you get from step 1 below. Note that challenges are generated dynamically (nonces are different), so you will have to fetch fresh ones.
+This follows a typical OAuth 2 authorization flow. Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application. If you are looking for that, see the SIWBB tutorial.
 
+**Step 1: Create App**
 
+Create your app at [https://bitbadges.io/developer](https://bitbadges.io/developer). You will get a client ID and client secret which will be used later. Your redirect URI will be the callback where we send the authorization codes after successful authorization.
 
-The Blockin execution flow is simple:
+IMPORTANT: The client secret should always be kept secret.
 
-**1) Fetch Challenge**
+**Step 2: Create Your Authorize URL**
 
-Request a challenge from the **POST /api/v0/auth/getChallenge** route.&#x20;
+The authorization URL for your application will be&#x20;
+
+```
+https://bitbadges.io/oauth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI
+```
+
+You can also specify a **state** parameter for passing arbitrary data (like a nonce). You can also specify **scope** to be predefined scopes that you would like access to. By default, we allow the user to select, but if you specify what you want, we will hardcode the scopes to those and disallow selecting others.
+
+```
+....&state=something&scope=Create Address Lists,Complete Claims
+```
+
+Visit https://bitbadges.io/oauth to see the full list of approved scopes. You only should specify the labels (scope names).
+
+**Step 3: Setup Your Callback Handler**
+
+At the redirect URI, you will setup a callback handler on your backend. This will be passed the **code** (authorization code) and **state** (if originally passed in).&#x20;
 
 ```typescript
-const res = await BitBadgesApi.getSignInChallenge({
-    chain: "Ethereum",
-    address: "0x.....",
-    // hours: 168
+const callback = async (req: NextApiRequest, res: NextApiResponse) => {
+  //Parse the code and state from the query parameters
+  const code = req.query.code as string;
+  const state = req.query.state as string;
+  ...
+```
+
+You then need to exchange the code for an access token.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>// POST https://api.bitbadges.io/api/v0/oauth/token
+</strong><strong>const res = await BitBadgesApi.exchangeForAccessToken({
+</strong>    client_id,
+    client_secret,
+    grant_type: 'authorization_code',
+    redirect_uri,
+    code, //the received authorization code
 })
-
-/*
-    res = {
-        nonce: "...",
-        params: {
-            address: "0x....",
-            expirationDate: "...",
-            ...
-        }, 
-        "blockinMessage": "https://bitbadges.io wants you to sign in with your Ethereum account...."
-    }
-*/
-```
-
-**1.5) Edit Challenge**
-
-The challenge returned by the API is a base challenge. You can edit certain fields if desired (like resources aka scopes or expiration time). Certain fields though like uri, domain, statement, nonce must remain consistent.
-
-For scopes, we use the **resources** field. Specify the following strings (in full) directly in the resources fields for each authorized scope you want. Full Access overrides all of them. Note that we are looking to fine-grain the scopes further in the future. See [https://github.com/BitBadges/bitbadges-indexer/blob/master/src/blockin/scopes.ts](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/blockin/scopes.ts) for the up to date values.&#x20;
-
-```typescript
-// We use a "Label : Explanation" format for the scopes
-const SupportedScopes = [
-  'Full Access: Full access to all features.',
-  'Report: Report users or collections.',
-  'Reviews: Create, read, update, and delete reviews.',
-
-  'Read Profile: Read your private profile information. This includes your email, approved sign-in methods, connections, and other private information.',
-  'Update Profile: Update your user profile information. This includes your email, approved sign-in methods, connections, and other private information, as well as your public facing profile.',
-
-  'Read Address Lists: Read private address lists on behalf of the user.',
-  'Create Address Lists: Create new address lists on behalf of the user (private or public).',
-  'Update Address Lists: Update address lists on behalf of the user.',
-  'Delete Address Lists: Delete address lists on behalf of the user.',
-
-  'Create Auth Codes: Create new authentication codes on behalf of the user.', //Still need signature for this
-  'Read Auth Codes: Read authentication codes on behalf of the user.',
-  'Delete Auth Codes: Delete authentication codes on behalf of the user.',
-
-  'Send Claim Alerts: Send claim alerts on behalf of the user.',
-  'Read Claim Alerts: Read claim alerts on behalf of the user. Note that claim alerts may contain sensitive information like claim codes, secret IDs, etc.',
-
-  'Create Secrets: Create new secrets on behalf of the user.',
-  'Read Secrets: Read secrets on behalf of the user.',
-  'Delete Secrets: Delete secrets on behalf of the user.',
-  'Update Secrets: Update secrets on behalf of the user.',
-
-  'Read Private Claim Data: Read private claim data on behalf of the user (e.g. codes, passwords, private user lists, etc.).'
-];
-```
-
-**2) Sign Challenge**
-
-The user should then sign the **blockinMessage** string with a personal message signature from their wallet. See [https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains](https://github.com/BitBadges/bitbadges-frontend/tree/main/src/bitbadges-api/contexts/chains) for complete code snippets.
-
-Ethereum:
-
-```typescript
-const signChallenge = async (message: string) => {
-    const sign = await signMessage({
-      message: message,
-    })
-
-    const msgHash = ethers.utils.hashMessage(message)
-    const msgHashBytes = ethers.utils.arrayify(msgHash)
-    const pubKey = ethers.utils.recoverPublicKey(msgHashBytes, sign)
-
-    const pubKeyHex = pubKey.substring(2)
-    const compressedPublicKey = Secp256k1.compressPubkey(
-      new Uint8Array(Buffer.from(pubKeyHex, "hex"))
-    )
-    const base64PubKey = Buffer.from(compressedPublicKey).toString("base64")
-    setPublicKey(cosmosAddress, base64PubKey)
-    setCookies("pub_key", `${cosmosAddress}-${base64PubKey}`, { path: "/" })
-
-    return {
-      message,
-      signature: sign,
-    }
-  }
-```
-
-Cosmos (Keplr):
-
-```typescript
-const signChallenge = async (message: string) => {
-    let sig = await window.keplr?.signArbitrary("bitbadges_1-2", cosmosAddress, message);
-
-    if (!sig) sig = { signature: '', pub_key: { type: '', value: '' } };
-
-    const signatureBuffer = Buffer.from(sig.signature, 'base64');
-    const uint8Signature = new Uint8Array(signatureBuffer); // Convert the buffer to an Uint8Array
-    const pubKeyValueBuffer = Buffer.from(sig.pub_key.value, 'base64'); // Decode the base64 encoded value
-    const pubKeyUint8Array = new Uint8Array(pubKeyValueBuffer); // Convert the buffer to an Uint8Array
-
-    const isRecovered = verifyADR36Amino('cosmos', cosmosAddress, message, pubKeyUint8Array, uint8Signature, 'secp256k1');
-    if (!isRecovered) {
-      throw new Error('Signature verification failed');
-    }
-
-    return {
-      message: message,
-      signature: sig.pub_key.value + ':' + sig.signature,
-    }
-  }
-```
-
-Solana (Phantom Wallet):
-
-```typescript
-const getProvider = () => {
-  if ('phantom' in window) {
-    const phantomWindow = window as any;
-    const provider = phantomWindow.phantom?.solana;
-    setSolanaProvider(provider);
-    if (provider?.isPhantom) {
-      return provider;
-    }
-
-    window.open('https://phantom.app/', '_blank');
-  }
-};
-
-const signChallenge = async (message: string) => {
-  const encodedMessage = new TextEncoder().encode(message);
-  const provider = solanaProvider;
-  const signedMessage = await provider.request({
-    method: "signMessage",
-    params: {
-      message: encodedMessage,
-      display: "utf8",
-    },
-  });
-  
-  return { message: message, signature: signedMessage.signature };
-}
-```
-
-Bitcoin (Phantom Wallet):
-
-```typescript
-const getProvider = () => {
-  if ('phantom' in window) {
-    const phantomWindow = window as any;
-    const provider = phantomWindow.phantom?.bitcoin;
-    if (provider?.isPhantom) {
-      return provider;
-    }
-
-    window.open('https://phantom.app/', '_blank');
-  }
-};
-
-function bytesToBase64(bytes: Uint8Array) {
-  const binString = String.fromCodePoint(...bytes);
-  return btoa(binString);
-}
-
-const signChallenge = async (message: string) => {
-  const encodedMessage = new TextEncoder().encode(message);
-  const provider = getProvider();
-  const { signature } = await provider.signMessage(address, encodedMessage);
-
-  return { message: message, signature: bytesToBase64(signature) };
-};
-```
-
-
-
-**3) Send and Verify Signed Challenge**
-
-Send the signed message via **POST /api/v0/auth/verify**. This will grant a Express.js session cookie which is valid for whatever amount of hours you specify in the request. The params should match match what is returned from Step 2.
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const res = await BitBadgesApi.verifySignIn({
-</strong>    chain: "Ethereum",
-    message: "https://bitbadges.io wants you to sign in with your....",
-    signature: "...."
-})
-
-//console.log(res.success) 
 </code></pre>
 
-**4) Check health of sign in**
+Your response will look something like this. The access token will expire in 1 day. The refresh token expires in 24 hours.
 
-At any time, you can check the health of the signin by **POST /api/v0/auth/status**.
+<figure><img src="../../../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
+
+Finally, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".&#x20;
+
+<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+
+If you are using the SDK, you can instead do this which handles the header setting:
 
 ```typescript
-const res = await BitBadgesApi.checkIfSignedIn(requestBody)
-//console.log(res.signedIn)
+BitBadgesApi.setAccessToken(token);
+BitBadgesApi.unsetAccessToken();
+```
+
+**Step 4: Refresh**
+
+Using the refresh token obtained from step 3, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely. You will receive the same response type as Step 3.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>const res = await BitBadgesApi.exchangeForAccessToken({
+</strong>    client_id,
+    client_secret,
+    grant_type: 'refresh_token',
+    redirect_uri,
+    refresh_token
+})
+</code></pre>
+
+
+
+**Step 5: Revoke**
+
+Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections tab in-site.
+
+```typescript
+// POST https://api.bitbadges.io/api/v0/oauth/token/revoke
+await BitBadgesApi.revokeAuthorization({ token });
 ```

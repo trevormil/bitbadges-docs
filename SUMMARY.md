@@ -93,7 +93,7 @@
     * [Getting Claims](for-developers/bitbadges-api/tutorials/getting-claims.md)
     * [Completing Claims](for-developers/bitbadges-api/tutorials/completing-claims.md)
     * [Managing Claims](for-developers/bitbadges-api/tutorials/managing-claims.md)
-    * [Authentication](for-developers/bitbadges-api/tutorials/authentication.md)
+    * [Authorization](for-developers/bitbadges-api/tutorials/authentication.md)
     * [SIWBB](for-developers/bitbadges-api/tutorials/siwbb.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
