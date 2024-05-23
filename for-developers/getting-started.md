@@ -20,7 +20,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Do you want to self-host off-chain balances or metadata?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
-## **Customizing claims?**
+## Distributing badges?
 
 Customizing the process of claiming a badge can be done directly via the BitBadges site when creating your badge collection or address list. The criteria can also be maintained through the "update" forms.
 
@@ -30,7 +30,13 @@ By default, users can claim on the BitBadges site under the claim component. If 
 [claim-builder](../overview/claim-builder/)
 {% endcontent-ref %}
 
+{% content-ref url="../overview/distribution-tools-integrations.md" %}
+[distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
+{% endcontent-ref %}
 
+**Off-Chain Balances - Self-Hosting**&#x20;
+
+For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
 ## **Query data?**
 
@@ -44,24 +50,6 @@ Querying badge ownership is simply querying for the current balances which can b
 
 {% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
-{% endcontent-ref %}
-
-## Distributing badges?
-
-**On-Chain Balances**
-
-The BitBadges site provides the building blocks (unique codes, passwords, whitelists, etc) for badge distribution. Users will typically claim directly on the official site. You can combine these building blocks with custom tools to further enhance the experience. For example, maybe you set up a unique code claim but distribute the codes with the help of a tool / platform / your own frontend.
-
-**Off-Chain Balances**&#x20;
-
-For off-chain balances, you control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic.
-
-For example, you may want to dynamically update badges based on who has paid their subscription for the month.
-
-For indexed balances, you can also set up a claim directly on the BitBadges site.
-
-{% content-ref url="../overview/distribution-tools-integrations.md" %}
-[distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
 {% endcontent-ref %}
 
 ## **Custom integrations?**
