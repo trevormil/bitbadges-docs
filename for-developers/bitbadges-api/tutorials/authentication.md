@@ -88,3 +88,11 @@ Once you are done with the access token, you should revoke your access to it via
 // POST https://api.bitbadges.io/api/v0/oauth/token/revoke
 await BitBadgesApi.revokeAuthorization({ token });
 ```
+
+
+
+
+
+
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/pages/api/apiauth.ts" %}
