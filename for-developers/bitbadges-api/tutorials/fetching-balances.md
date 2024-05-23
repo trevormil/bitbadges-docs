@@ -28,3 +28,40 @@ You can also fetch balances directly using the getBadgeBalanceByAddress API rout
 const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, cosmosAddress);
 console.log(res);
 ```
+
+### Verifying Requirements
+
+If you do not need the balances themselves and you just want to verify if a user meets certain ownership requirements, consider using the following. This also supports BitBadges Lists and Ethereum / polygon NFTs.
+
+```typescript
+const res = await BitBadgesApi.verifyAssetsGeneric({
+    cosmosAddress,
+    assetOwnershipRequirements: {
+      $and: [
+        {
+          assets: [
+            {
+              chain: 'BitBadges',
+              collectionId: 1n,
+              assetIds: [{ start: 1n, end: 1n }],
+              ownershipTimes: UintRangeArray.FullRanges(),
+              mustOwnAmounts: { start: 0n, end: 0n }
+            }
+          ]
+        },
+        {
+          assets: [
+            {
+              chain: 'BitBadges',
+              collectionId: 2n,
+              assetIds: [{ start: 1n, end: 1n }],
+              ownershipTimes: UintRangeArray.FullRanges(),
+              mustOwnAmounts: { start: 0n, end: 0n }
+            }
+          ]
+        }
+      ]
+    }
+});
+console.log(res);
+```
