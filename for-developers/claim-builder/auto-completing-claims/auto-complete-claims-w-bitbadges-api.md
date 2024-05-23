@@ -38,7 +38,7 @@ For example,
     [`abc123`]: { //password plugin ID = "abc123"
         password: "abc123"
     },
-    [`codes1234`]:: { //codes plugin ID = "codes1234"
+    [`codes1234`]: { //codes plugin ID = "codes1234"
         code: "supersecretcode"
     },
     customPluginId: {
@@ -46,3 +46,4 @@ For example,
     }
 }
 ```
+

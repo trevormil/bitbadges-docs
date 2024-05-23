@@ -1,8 +1,6 @@
 # Creating / Maintaining Claims
 
-Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.&#x20;
-
-You can also use the BitBadges API for more programmatic CRUD; however, this is typically not necessary as everything can also be done directly in-site.
+Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD; however, this is typically not necessary as everything can also be done directly in-site.
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
@@ -28,6 +26,3 @@ You can also use the BitBadges API for more programmatic CRUD; however, this is 
 * Protect against cases where the BitBadges off-chain claim can be reserved but not executed on-chain or vice versa. This may happen if the claim criteria does not match the on-chain approval.
   * For example, if you create a BitBadges claim that can be reserved by Bob, but Bob is not approved on-chain, Bob cannot actually receive the badges.
   * This is commonly a problem for approved addresses and transfer/claim times not aligning up.
-
-
-

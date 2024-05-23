@@ -17,13 +17,13 @@ You will use the BitBadges API Zapier plugin with the Complete Claim action to p
 
 ### Create the Claim
 
-The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. To help, select this box at the top of the claim creation component.
+The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. To help, select the Zapier approach when creating.
 
-<figure><img src="../../../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
 
 **No Signed In with BitBadges Plugin**
 
-&#x20;This should be disabled to allow Zapier to claim on behalf of others without needing to authenticate. In other words, whoever is claiming can specify the intended recipient without actually needing to authenticate as this recipient.
+Make sure this plugin is disabled. This should be disabled to allow Zapier to claim on behalf of others without needing to authenticate. In other words, whoever is claiming can specify the intended recipient without actually needing to authenticate as this recipient.
 
 <figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -33,7 +33,7 @@ However, it is IMPORTANT to note that not requiring SIWBB relaxes the restrictio
 
 To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
 
 **Other Plugins**
 
@@ -44,7 +44,6 @@ Currently, the only other claim plugins that are compatible are ones that only n
 * Time Window
 * Ownership Requirements
 * Whitelist&#x20;
-* Custom HTTP Requests (that only need at most crypto address and have no custom user inputs)
 
 All other plugins require addiitional stuff which is not compatible with the Zapier integration.
 
@@ -65,15 +64,23 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 <figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Step 3: Configure the Complete Claim by BitBadges integration. The password and claim ID will typically be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
-
-You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.
+Step 3: Configure the Complete Claim by BitBadges integration. The password, plugin ID, and claim ID will be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-You can get the claim ID from the small text on the BitBadges site.
+You can get the details from the form when you are creating the claim.
 
-<figure><img src="../../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+
+Step 4: Simulate
+
+You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.&#x20;
+
+This is important because without the simulation feature enabled, any test Zap will actually attempt to complete the claim.
+
+Step 5: Track Progress
+
+For most use cases, just submitting the claim is typically adequate. However, you can also track it with the other BitBadges action in Zapier (Get Claim Attempt Status). You will pass the ID received from the submission to this. Note that we use a queue system so it may take some time to officially process.
 
 
 
