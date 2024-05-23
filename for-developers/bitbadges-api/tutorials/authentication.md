@@ -2,7 +2,7 @@
 
 **Typically, you will not need authentication because these are features that are pretty specific to the BitBadges website. However, in some cases, you may.**
 
-This follows a typical OAuth 2 authorization flow. Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application. If you are looking for that, see the SIWBB tutorial.
+This follows a typical OAuth authorization flow. Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application. If you are looking for that, see the SIWBB tutorial.
 
 **Step 1: Create App**
 
