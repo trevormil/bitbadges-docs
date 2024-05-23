@@ -2,6 +2,8 @@
 
 Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify secret signatures, and verify ownership of badges, NFTs, and more. This documentation will guide you through utilizing our authentication tools effectively.
 
+Note that this is different from the BitBadges API authorization. Sign In with BitBadges aims to be a way to authenticate users for YOUR application.&#x20;
+
 #### Example Use Cases:
 
 **In-Person QR Codes:**
