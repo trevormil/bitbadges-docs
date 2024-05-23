@@ -53,8 +53,8 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 See all documentation for routes here.&#x20;
 
-{% content-ref url="routes/" %}
-[routes](routes/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Using the API SDK (Recommended)
