@@ -127,7 +127,6 @@
   * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Plugins Directory](https://bitbadges.io/claims/directory)
-    * [Creating a Plugin](for-developers/claim-builder/plugins/plugins.md)
     * [BitBadges Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
       * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
       * [Signed in to BitBadges](for-developers/claim-builder/plugins/bitbadges-created-plugins/signed-in-to-bitbadges.md)
