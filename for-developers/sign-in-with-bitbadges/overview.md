@@ -26,12 +26,12 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 **Scope of SIWBB**
 
-Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user secrets).  Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
+Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user secrets). Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
 
-* Prompting and verifying challenge message signatures from users
-* Querying asset ownership (badges, address lists, NFTs on other chains)
-* Verify secret signatures from other issuers (e.g. attestations or credentials)
-* Check sign-ins of other socials (Discord, GitHub, Google, X)
+-   Prompting and verifying challenge message signatures from users
+-   Querying asset ownership (badges, address lists, NFTs on other chains)
+-   Verify secret signatures from other issuers (e.g. attestations or credentials)
+-   Check sign-ins of other socials (Discord, GitHub, Google, X)
 
 Once the above is checked, the user is authenticated, excluding any other self-implemented requirements. From here, we leave the rest up to you. SIWBB does not handle sessions, authorizations, etc. Those are all to be implemented alongside SIWBB using industry standards such as OAuth 2.0, JWTs, or whatever method you prefer.
 
@@ -50,15 +50,13 @@ Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses 
 #### Execution Flow:
 
 1. **User Interaction:**
-   * Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they sign the authentication message, generating a unique authentication code (their signature).
+    - Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they sign the authentication message, generating a unique authorization code.
 2. **Authentication Details Retrieval:**
-   * Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID.&#x20;
+    - Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID.&#x20;
 3. **Verification Process:**
-   * At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided secrets.
+    - At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided secrets.
 4. **Application-Specific Logic:**
-   * Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
-
-
+    - Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
 
 <figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
@@ -125,11 +123,9 @@ You can authenticate users and verify badge ownership, such as badge-gating a we
 
 **Delayed Authentication**
 
-Or, you can pre-generate with authentication codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.&#x20;
+Or, you can pre-generate with authentication QR codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
-
-
 
 ## **Security Considerations**
 
@@ -151,12 +147,12 @@ Please make sure you protect accordingly. **As mentioned above, you should assum
 
 Below are some ways to protect:
 
-* Restrict and check one use per session per address
-* If using assets, restrict and check one use per session per asset
-* Unique nonce generation: Including a unique and random nonce (number used once) in each challenge to ensure that each request is unique, one time use only, and cannot be replayed. Nonces should be marked as used / not used by you. The generation scheme is left up to you.
-* Time-dependent windows: Consider implementing a small time window where the sign in can be "redeemed". This is different from the authenticated times. For example, you have 1 minute to "redeem" your sign in after it is signed. After that, it is invalid, thus preventing future replay attacks. **However, replay attacks during the time window are still possible. This may not be applicable for some applications.**
-  * These can be implemented with **issuedAt** timestamps, system times, using recent block hashes, or any time-dependent property.
-  * This is typically fine for digital applications with secure, encrypted network communication
+-   Restrict and check one use per session per address
+-   If using assets, restrict and check one use per session per asset
+-   Unique nonce generation: Including a unique and random nonce (number used once) in each challenge to ensure that each request is unique, one time use only, and cannot be replayed. Nonces should be marked as used / not used by you. The generation scheme is left up to you.
+-   Time-dependent windows: Consider implementing a small time window where the sign in can be "redeemed". This is different from the authenticated times. For example, you have 1 minute to "redeem" your sign in after it is signed. After that, it is invalid, thus preventing future replay attacks. **However, replay attacks during the time window are still possible. This may not be applicable for some applications.**
+    -   These can be implemented with **issuedAt** timestamps, system times, using recent block hashes, or any time-dependent property.
+    -   This is typically fine for digital applications with secure, encrypted network communication
 
 ### **Flash Ownership Attacks** <a href="#security-flash-ownership-attacks" id="security-flash-ownership-attacks"></a>
 
@@ -164,7 +160,7 @@ If you are authenticating with assets (e.g. verify Bob owns this asset at sign-i
 
 Solutions can vary dependent on the application, but here are some ideas:
 
-* Assert that the asset cannot be transferred on-chain. This can be by making it completely non-transferable or only transferable in desired ways (such as by a trusted entity).
-* If assets are non-fungible, consider preventing two sign ins with the same badge
+-   Assert that the asset cannot be transferred on-chain. This can be by making it completely non-transferable or only transferable in desired ways (such as by a trusted entity).
+-   If assets are non-fungible, consider preventing two sign ins with the same badge
 
 Note that for chains that support ownership times (such as BitBadges), this is not adequate since ownership times can be transferred. For example Bob signs in with Asset A (Monday - Wednesday) but then transfers the badge + rights from Monday - Wednesday to Alice.

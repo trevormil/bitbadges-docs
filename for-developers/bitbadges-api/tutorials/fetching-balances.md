@@ -17,7 +17,9 @@ However, note that these only apply to standard on-chain or off-chain indexed ba
 {% endcontent-ref %}
 
 ```typescript
-const mintBalances: Balance<bigint>[] = collection.owners.find(x => x.cosmosAddress == 'Mint');
+const mintBalances: Balance<bigint>[] = collection.owners.find(
+    (x) => x.cosmosAddress == 'Mint'
+);
 ```
 
 ### Fetching Directly
@@ -25,7 +27,10 @@ const mintBalances: Balance<bigint>[] = collection.owners.find(x => x.cosmosAddr
 You can also fetch balances directly using the getBadgeBalanceByAddress API route. This will work for all balance types (standard, off-chain indexed, and off-chain non-indexed).
 
 ```typescript
-const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, cosmosAddress);
+const res = await BitBadgesApi.getBadgeBalanceByAddress(
+    collectionId,
+    cosmosAddress
+);
 console.log(res);
 ```
 
@@ -34,34 +39,34 @@ console.log(res);
 If you do not need the balances themselves and you just want to verify if a user meets certain ownership requirements, consider using the following. This also supports BitBadges Lists and Ethereum / polygon NFTs.
 
 ```typescript
-const res = await BitBadgesApi.verifyAssetsGeneric({
+const res = await BitBadgesApi.verifyOwnershipRequirements({
     cosmosAddress,
     assetOwnershipRequirements: {
-      $and: [
-        {
-          assets: [
+        $and: [
             {
-              chain: 'BitBadges',
-              collectionId: 1n,
-              assetIds: [{ start: 1n, end: 1n }],
-              ownershipTimes: UintRangeArray.FullRanges(),
-              mustOwnAmounts: { start: 0n, end: 0n }
-            }
-          ]
-        },
-        {
-          assets: [
+                assets: [
+                    {
+                        chain: 'BitBadges',
+                        collectionId: 1n,
+                        assetIds: [{ start: 1n, end: 1n }],
+                        ownershipTimes: UintRangeArray.FullRanges(),
+                        mustOwnAmounts: { start: 0n, end: 0n },
+                    },
+                ],
+            },
             {
-              chain: 'BitBadges',
-              collectionId: 2n,
-              assetIds: [{ start: 1n, end: 1n }],
-              ownershipTimes: UintRangeArray.FullRanges(),
-              mustOwnAmounts: { start: 0n, end: 0n }
-            }
-          ]
-        }
-      ]
-    }
+                assets: [
+                    {
+                        chain: 'BitBadges',
+                        collectionId: 2n,
+                        assetIds: [{ start: 1n, end: 1n }],
+                        ownershipTimes: UintRangeArray.FullRanges(),
+                        mustOwnAmounts: { start: 0n, end: 0n },
+                    },
+                ],
+            },
+        ],
+    },
 });
 console.log(res);
 ```

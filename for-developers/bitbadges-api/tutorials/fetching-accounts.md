@@ -4,32 +4,32 @@ The main use case of the API are fetching collection and fetching account inform
 
 ```typescript
 const accountsRes = await BitBadgesApi.getAccounts({
-  accountsToFetch: [
-    {
-      //example
-      address: 'cosmos...',
-      fetchSequence: true,
-      fetchBalance: true,
-      viewsToFetch: [
+    accountsToFetch: [
         {
-          viewType: 'badgesCollected',
-          viewId: 'badgesCollected',
-          bookmark: '',
+            //example
+            address: 'cosmos...',
+            fetchSequence: true,
+            fetchBalance: true,
+            viewsToFetch: [
+                {
+                    viewType: 'badgesCollected',
+                    viewId: 'badgesCollected',
+                    bookmark: '',
+                },
+            ],
         },
-      ],
-    },
-  ],
-})
-const account = accountsRes.accounts[0]
+    ],
+});
+const account = accountsRes.accounts[0];
 
 //Option 2:
 // const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'cosmos...', fetchSequence: true, fetchBalance: true, viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
 
-console.log(account.sequence)
-console.log(account.balance?.amount)
-console.log(account.getBadgeBalances(1n)) //collection 1
-console.log(account.getBadgeBalances(2n)) //collection 2
-console.log(account.getBadgeBalanceInfo(1n)) //approvals + permissions + balances
+console.log(account.sequence);
+console.log(account.balance?.amount);
+console.log(account.getBadgeBalances(1n)); //collection 1
+console.log(account.getBadgeBalances(2n)); //collection 2
+console.log(account.getBadgeBalanceInfo(1n)); //approvals + permissions + balances
 ```
 
 ### Pruning Requests + Pruning Paginations
@@ -37,19 +37,23 @@ console.log(account.getBadgeBalanceInfo(1n)) //approvals + permissions + balance
 Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. To make this easy, we have exported helper functions that do this behind the scenes, or you can add a new response with the .updateWithNewResponse().
 
 ```typescript
-const badgesCollectedViewHasMore = account.viewHasMore('badgesCollected')
+const badgesCollectedViewHasMore = account.viewHasMore('badgesCollected');
 if (badgesCollectedViewHasMore) {
-  await account.fetchNextForView(BitBadgesApi, 'badgesCollected', 'badgesCollected')
-  //await account.fetchAndUpdate(...)
+    await account.fetchNextForView(
+        BitBadgesApi,
+        'badgesCollected',
+        'badgesCollected'
+    );
+    //await account.fetchAndUpdate(...)
 
-  //Option 2:
-  // const badgesCollectedBookmark = account.getViewBookmark('badgesCollected')
-  // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'cosmos...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
-  // const account2 = res4.accounts[0]
-  // account.updateWithNewResponse(account2)
+    //Option 2:
+    // const badgesCollectedBookmark = account.getViewBookmark('badgesCollected')
+    // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'cosmos...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
+    // const account2 = res4.accounts[0]
+    // account.updateWithNewResponse(account2)
 }
 
-const badgesCollectedView = account.getAccountBalancesView('badgesCollected')
+const badgesCollectedView = account.getAccountBalancesView('badgesCollected');
 ```
 
 ### Chains
@@ -120,27 +124,38 @@ The account interface also supports different filtering options. Make sure that 
 
 The user interface supports the following base **viewType** values.
 
-* 'transferActivity' : Fetches latest transfer activity documents for the user.
-* 'listsActivity': Fetches latest list activity documents for the user
-* 'reviews': Fetches latest reviews for the user
-* 'badgesCollected': Fetches badges owned by the user
-* 'createdBadges': Collections / badges that the user has created
-* 'managingBadges': Collections / badges that the user is managing currently
-* 'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
-* 'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
-* 'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
-* 'createdLists': Lists that the user has created (excludes private lists)
+-   'transferActivity' : Fetches latest transfer activity documents for the user.
+-   'listsActivity': Fetches latest list activity documents for the user
+-   'reviews': Fetches latest reviews for the user
+-   'badgesCollected': Fetches badges owned by the user
+-   'createdBadges': Collections / badges that the user has created
+-   'managingBadges': Collections / badges that the user is managing currently
+-   'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
+-   'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
+-   'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
+-   'createdLists': Lists that the user has created (excludes private lists)
 
 The following require authentication:
 
-* 'latestClaimAlerts': Latest claim alerts
-* 'authCodes': Authentication QR codes for the user
-* 'privateLists': Private lists created by the user
+-   'latestClaimAlerts': Latest claim alerts
+-   'siwbbRequests': Authentication QR codes for the user
+-   'privateLists': Private lists created by the user
 
 ```typescript
-export type AccountViewKey = 'createdLists' | 'privateLists'
-  | 'authCodes' | 'transferActivity' | 'reviews' | 'badgesCollected' | 'latestClaimAlerts'
-  | 'allLists' | 'whitelists' | 'blacklists' | 'createdBadges' | 'managingBadges' | 'listsActivity'
+export type AccountViewKey =
+    | 'createdLists'
+    | 'privateLists'
+    | 'siwbbRequests'
+    | 'transferActivity'
+    | 'reviews'
+    | 'badgesCollected'
+    | 'latestClaimAlerts'
+    | 'allLists'
+    | 'whitelists'
+    | 'blacklists'
+    | 'createdBadges'
+    | 'managingBadges'
+    | 'listsActivity';
 ```
 
 Request:
@@ -184,7 +199,7 @@ And so on. Remember, each response is confined to its request, so it will fetch 
 The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view). You can fetch the entire view with the helper functions.
 
 ```typescript
-account.getAccountBalancesView('badgesCollected')
+account.getAccountBalancesView('badgesCollected');
 ```
 
 ### **Fetch Route**
@@ -195,152 +210,153 @@ Batch fetch details about multiple collections.
 
 ```typescript
 export type AccountFetchDetails = {
-  address?: string;
-  username?: string;
-  fetchSequence?: boolean;
-  fetchBalance?: boolean;
-  noExternalCalls?: boolean;
-  viewsToFetch?: {
-    viewId: string,
-    viewType: AccountViewKey,
-    filteredCollections?: {
-      badgeIds: UintRange<NumberType>[];
-      collectionId: NumberType;
+    address?: string;
+    username?: string;
+    fetchSequence?: boolean;
+    fetchBalance?: boolean;
+    noExternalCalls?: boolean;
+    viewsToFetch?: {
+        viewId: string;
+        viewType: AccountViewKey;
+        filteredCollections?: {
+            badgeIds: UintRange<NumberType>[];
+            collectionId: NumberType;
+        }[];
+        filteredLists?: string[];
+        bookmark: string;
     }[];
-    filteredLists?: string[];
-    bookmark: string
-  }[];
 };
 
 export interface GetAccountsBody {
-  accountsToFetch: AccountFetchDetails[];
+    accountsToFetch: AccountFetchDetails[];
 }
 ```
 
 ```typescript
 export interface GetAccountsSuccessResponse<T extends NumberType> {
-  accounts: BitBadgesUserInfo<T>[],
+    accounts: BitBadgesUserInfo<T>[];
 }
 ```
 
 ### **Interfaces**
 
 ```ts
-export interface BitBadgesUserInfo<T extends NumberType> extends ProfileInfoBase<T>, AccountInfoBase<T> {
-  resolvedName?: string
-  avatar?: string
-  solAddress: string
-  airdropped?: boolean
-  address: string
+export interface BitBadgesUserInfo<T extends NumberType>
+    extends ProfileInfoBase<T>,
+        AccountInfoBase<T> {
+    resolvedName?: string;
+    avatar?: string;
+    solAddress: string;
+    airdropped?: boolean;
+    address: string;
 
-  //Dynamically loaded as needed
-  collected: BalanceDocWithDetails<T>[],
-  activity: TransferActivityDoc<T>[],
-  listsActivity: ListActivityDoc<T>[],
-  announcements: AnnouncementDoc<T>[],
-  reviews: ReviewDoc<T>[],
-  merkleChallenges: MerkleChallengeDoc<T>[],
-  approvalTrackers: ApprovalTrackerDoc<T>[],
-  addressLists: AddressListWithMetadata<T>[],
-  claimAlerts: ClaimAlertDoc<T>[],
-  authCodes: BlockinAuthSignatureDoc<T>[],
+    //Dynamically loaded as needed
+    collected: BalanceDocWithDetails<T>[];
+    activity: TransferActivityDoc<T>[];
+    listsActivity: ListActivityDoc<T>[];
+    announcements: AnnouncementDoc<T>[];
+    reviews: ReviewDoc<T>[];
+    merkleChallenges: MerkleChallengeDoc<T>[];
+    approvalTrackers: ApprovalTrackerDoc<T>[];
+    addressLists: AddressListWithMetadata<T>[];
+    claimAlerts: ClaimAlertDoc<T>[];
+    siwbbRequests: SIWBBRequestDoc<T>[];
 
-  nsfw?: { reason: string };
-  reported?: { reason: string };
+    nsfw?: { reason: string };
+    reported?: { reason: string };
 
-  views: {
-    [viewId: string]: {
-      ids: string[],
-      type: string,
-      pagination: PaginationInfo,
-    } | undefined
-  }
+    views: {
+        [viewId: string]:
+            | {
+                  ids: string[];
+                  type: string;
+                  pagination: PaginationInfo;
+              }
+            | undefined;
+    };
 
-  alias?: {
-    collectionId?: T,
-    listId?: string
-  }
+    alias?: {
+        collectionId?: T;
+        listId?: string;
+    };
 }
 
 export interface AccountInfoBase<T extends NumberType> {
-  //stored in DB and cached for fast access and permanence
+    //stored in DB and cached for fast access and permanence
 
-  publicKey: string
-  chain: SupportedChain
-  cosmosAddress: string
-  ethAddress: string
-  solAddress: string
-  btcAddress: string
-  accountNumber: T
+    publicKey: string;
+    chain: SupportedChain;
+    cosmosAddress: string;
+    ethAddress: string;
+    solAddress: string;
+    btcAddress: string;
+    accountNumber: T;
 
-  //dynamically fetched
+    //dynamically fetched
 
-  sequence?: T
-  balance?: CosmosCoin<T>
+    sequence?: T;
+    balance?: CosmosCoin<T>;
 }
-
 
 export interface ProfileInfoBase<T extends NumberType> {
-  fetchedProfile?: boolean
+    fetchedProfile?: boolean;
 
-  seenActivity?: T;
-  createdAt?: T;
+    seenActivity?: T;
+    createdAt?: T;
 
-  //ProfileDoc customization
-  discord?: string
-  twitter?: string
-  github?: string
-  telegram?: string
-  readme?: string
+    //ProfileDoc customization
+    discord?: string;
+    twitter?: string;
+    github?: string;
+    telegram?: string;
+    readme?: string;
 
-  customLinks?: CustomLink[]
+    customLinks?: CustomLink[];
 
-  hiddenBadges?: {
-    collectionId: T,
-    badgeIds: UintRange<T>[],
-  }[],
-  hiddenLists?: string[];
+    hiddenBadges?: {
+        collectionId: T;
+        badgeIds: UintRange<T>[];
+    }[];
+    hiddenLists?: string[];
 
-  customListPages?: CustomListPage[],
-  customPages?: CustomPage<T>[],
+    customListPages?: CustomListPage[];
+    customPages?: CustomPage<T>[];
 
-  watchedBadgePages?: CustomPage<T>[],
-  watchedListPages?: CustomListPage[],
+    watchedBadgePages?: CustomPage<T>[];
+    watchedListPages?: CustomListPage[];
 
-  profilePicUrl?: string
-  username?: string
+    profilePicUrl?: string;
+    username?: string;
 
-  latestSignedInChain?: SupportedChain
-  solAddress?: string
+    latestSignedInChain?: SupportedChain;
+    solAddress?: string;
 }
 
-
-
 export interface CustomPage<T extends NumberType> {
-  title: string,
-  description: string,
-  badges: {
-    collectionId: T,
-    badgeIds: UintRange<T>[],
-  }[]
+    title: string;
+    description: string;
+    badges: {
+        collectionId: T;
+        badgeIds: UintRange<T>[];
+    }[];
 }
 
 export interface CustomListPage {
-  title: string,
-  description: string,
-  listIds: string[],
+    title: string;
+    description: string;
+    listIds: string[];
 }
 
 export enum SupportedChain {
-  BTC = 'Bitcoin',
-  ETH = 'Ethereum',
-  COSMOS = 'Cosmos',
-  SOLANA = 'Solana',
-  UNKNOWN = 'Unknown' //If unknown address, we don't officially know the chain yet. For now, we assume it's Ethereum
+    BTC = 'Bitcoin',
+    ETH = 'Ethereum',
+    COSMOS = 'Cosmos',
+    SOLANA = 'Solana',
+    UNKNOWN = 'Unknown', //If unknown address, we don't officially know the chain yet. For now, we assume it's Ethereum
 }
 
 export interface CosmosCoin<T extends NumberType> {
-  amount: T,
-  denom: string,
+    amount: T;
+    denom: string;
 }
 ```

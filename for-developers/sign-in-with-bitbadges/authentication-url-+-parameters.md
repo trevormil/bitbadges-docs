@@ -55,7 +55,7 @@ Each app is identified by the **clientId,** which is mandatory. The **redirectUr
 
 For instant authentication, the **redirectUri** is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
 
-If you are implementing delayed authentication where the user is to present you their authentication code manually, you can leave the **redirectUri** blank.
+If you are implementing delayed authentication where the user is to present you their code manually, you can leave the **redirectUri** blank.
 
 If it is blank, we will store the code in the user's account under the Authentication Codes tab. They are to manually present you the code.
 

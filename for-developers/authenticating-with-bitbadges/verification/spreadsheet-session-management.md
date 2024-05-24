@@ -41,7 +41,7 @@ A "Zap" is an automated workflow in Zapier. Create a new Zap and search for the 
 
 Set up the Webhook to listen for a specific event from your BitBadges implementation, such as a successful sign-in.&#x20;
 
-You can customize what data is passed to this webhook. It is typically recommended to not pass sensitive information (like auth codes, signatures, etc) as these will be known by Zapier. Only pass the minimum data needed.
+You can customize what data is passed to this webhook. It is typically recommended to not pass sensitive information (signatures, etc) as these will be known by Zapier. Only pass the minimum data needed.
 
 #### Step 5: Connect to Your Desired App
 

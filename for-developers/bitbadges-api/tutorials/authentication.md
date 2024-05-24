@@ -41,7 +41,7 @@ const callback = async (req: NextApiRequest, res: NextApiResponse) => {
 You then need to exchange the code for an access token.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>// POST https://api.bitbadges.io/api/v0/oauth/token
-</strong><strong>const res = await BitBadgesApi.exchangeForAccessToken({
+</strong><strong>const res = await BitBadgesApi.getOauthAccessToken({
 </strong>    client_id,
     client_secret,
     grant_type: 'authorization_code',
@@ -69,7 +69,7 @@ BitBadgesApi.unsetAccessToken();
 
 Using the refresh token obtained from step 3, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely. You will receive the same response type as Step 3.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>const res = await BitBadgesApi.exchangeForAccessToken({
+<pre class="language-typescript"><code class="lang-typescript"><strong>const res = await BitBadgesApi.getOauthAccessToken({
 </strong>    client_id,
     client_secret,
     grant_type: 'refresh_token',
@@ -86,7 +86,7 @@ Once you are done with the access token, you should revoke your access to it via
 
 ```typescript
 // POST https://api.bitbadges.io/api/v0/oauth/token/revoke
-await BitBadgesApi.revokeAuthorization({ token });
+await BitBadgesApi.revokeOauthAuthorization({ token });
 ```
 
 

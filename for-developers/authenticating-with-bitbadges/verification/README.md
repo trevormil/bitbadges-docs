@@ -10,7 +10,7 @@ The response will contain all authentication details, including a **verification
 </strong>
 
 const options: VerifyChallengeOptions = { ... }
-const res = await BitBadgesApi.getAuthCode({ 
+const res = await BitBadgesApi.getAndVerifySIWBBRequest({ 
     code, 
     options,
     clientSecret: '...',
@@ -25,7 +25,7 @@ if (!verificationResponse.success) {
 }
 
 // Alternative syntax: 
-// const blockinChallenge = await BlockinChallenge.FromAuthCodeId(api, { code, options });
+// const blockinChallenge = await BlockinChallenge.FromSIWBBRequestId(api, { code, options });
 // const verificationResposne = blockinChallenge.verificationResponse
 // ...
 
@@ -52,34 +52,37 @@ if (!verificationResponse.success) {
 
 **Verification - Manual**
 
-Behind the scenes, the verification uses the following endpoint. You may also verify by specifying all details via this endpoint, rather than an auth code.
+Behind the scenes, the verification uses the equivalent of the following endpoint.
 
 ```typescript
-await BitBadgesApi.verifySignInGeneric({ ... });
+await BitBadgesApi.verifySIWBBRequest({ ... });
 ```
 
 **Pre-Fetching All Codes**
 
 If you need to pre-fetch all codes before verification time (e.g. you are verifying in an offline setting), you can fetch all codes created via BitBadges for your client ID via the SDK below. Note that this
 
-This is a paginated request, so you will need to specify the bookmark received from the previous request. This does not fetch or include any auth codes with redirect URIs (only ones stored in users' accounts via the manual approach).
+This is a paginated request, so you will need to specify the bookmark received from the previous request. This does not fetch or include any requests with redirect URIs (only ones stored in users' accounts via the manual approach).
 
 ```typescript
-const res = await BitBadgesApi.getAuthCodesForAuthApp({ clientId, bookmark: '' });
-console.log(res.blockinAuthCodes)
-const blockinChallenge = res.blockinAuthCodes[0];
+const res = await BitBadgesApi.getSIWBBRequestsForDeveloperApp({
+    clientId,
+    bookmark: '',
+});
+console.log(res.SIWBBRequests);
+const blockinChallenge = res.SIWBBRequests[0];
 ```
 
-Note that we do not provide verification responses by default. You will need to verify each individually.  If you have time-dependent checks, note that by default, verification is done for the current time.
+Note that we do not provide verification responses by default. You will need to verify each individually. If you have time-dependent checks, note that by default, verification is done for the current time.
 
 ```typescript
 await blockinChallenge.verify(api, ...);
 await blockinChallenge.verifyOffline(...);
 
-// or 
+// or
 
-await BitBadgesApi.verifySignInGeneric({ ... });
-await BitBadgesApi.getAuthCode({ code: blockinChallenge._docId, options: { ... });
+await BitBadgesApi.verifySIWBBRequest({ ... });
+await BitBadgesApi.getAndVerifySIWBBRequest({ code: blockinChallenge._docId, options: { ... }});
 ```
 
 ## **IMPORTANT: What is verified vs not?**
@@ -88,21 +91,21 @@ It is important to note that calling any Blockin verification function only chec
 
 As an authentication provider, you should NOT assume the returned details are correct. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.
 
-Does check :white\_check\_mark:
+Does check :white_check_mark:
 
-* Signature is valid and signed by the address specified in the provided message.
-* Asset ownership criteria is met for the address (if requested)
-* Any options specified in the verify challenge options
-* Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+-   Signature is valid and signed by the address specified in the provided message.
+-   Asset ownership criteria is met for the address (if requested)
+-   Any options specified in the verify challenge options
+-   Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
-* Additional app-specific criteria needed for signing in
-* Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
-* Does not handle sessions or check any session information
-* The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
-* Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
-* Does not check the content of the secret messages or anything else about the secrets
+-   Additional app-specific criteria needed for signing in
+-   Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
+-   Does not handle sessions or check any session information
+-   The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
+-   Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
+-   Does not check the content of the secret messages or anything else about the secrets
 
 **Phished Signature Attacks**
 
@@ -212,7 +215,7 @@ export type VerifyChallengeOptions = {
      * If true, we do not check the signature. You can pass in an undefined ChainDriver
      */
     skipSignatureVerification?: boolean;
-    
+
     /**
      * If true, we will use this timestamp instead of the current time. UNIX milliseconds.
      */

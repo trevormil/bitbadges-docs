@@ -2,17 +2,17 @@
 
 Manual redirection is suitable for scenarios where delayed authentication is implemented, and BitBadges caches details for you. This approach does require internet/API access during verification. Users directly navigate to the link provided and complete the authentication process by signing the challenge message.&#x20;
 
-BitBadges will cache the authentication details identified by a generated authentication code (32 byte hex string) in users' accounts under the "Authentication Codes" tab. At verification time, users present their code to you, typically via a QR code, and you can fetch the authentication details from the BitBadges API.&#x20;
+BitBadges will cache the authentication details identified by a generated authorization code (32 byte hex string) in users' accounts under the "Authentication Codes" tab. At verification time, users present their code to you, typically via a QR code, and you can fetch the authentication details from the BitBadges API.&#x20;
 
-BitBadges offers various options for obtaining and presenting the code, such as QR codes, email, or copying as text. Consider providing users instructions on where to store the code. If they are not expected to have their crypto wallets handy at authentication time, do not expect them to have access to their BitBadges account. Options on the site include QR codes, emailing to self, copying as text, and more. For example, scanning the QR code will provide you with their authentication code.
+BitBadges offers various options for obtaining and presenting the code, such as QR codes, email, or copying as text. Consider providing users instructions on where to store the code. If they are not expected to have their crypto wallets handy at authentication time, do not expect them to have access to their BitBadges account. Options on the site include QR codes, emailing to self, copying as text, and more. For example, scanning the QR code will provide you with their authorization code.
 
 **Generating URL**
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account, rather than being transmitted to the redirect URI. We will store the code in the user's BitBadges account via the Authentication Codes page.&#x20;
 
-{% content-ref url="../../sign-in-with-bitbadges/generating-the-url.md" %}
-[generating-the-url.md](../../sign-in-with-bitbadges/generating-the-url.md)
+{% content-ref url="../../sign-in-with-bitbadges/generating-the-url.md" %})
 {% endcontent-ref %}
+[generating-the-url.md](../../sign-in-with-bitbadges/generating-the-url.md
 
 **Obtaining Codes**
 
