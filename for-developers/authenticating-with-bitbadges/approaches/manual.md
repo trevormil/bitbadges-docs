@@ -16,11 +16,8 @@ The most important part of this step is to not include a **redirectUri** in the 
 
 **Obtaining Codes**
 
-The code will be stored in the users' BitBadges account under the Authentication Codes tab. That page will have different options for sharing and presenting like QR, exporting to email,  Apple Wallet, etc.
+The code will be stored in the users' BitBadges account under the Authentication Codes tab. That page will have different options for sharing and presenting like QR, exporting to email, Apple Wallet, etc.
 
 Like we mentioned, obtaining the code is up to you. The code will be a 32 byte hex string that you need to get. Typically, this can be via you scanning the users' QR code (whose contents are the code itself).&#x20;
 
-
-
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
-
