@@ -1,4 +1,4 @@
-# Authorization
+# API Authorization
 
 **Typically, you will not need authentication because these are features that are pretty specific to the BitBadges website. However, in some cases, you may.**
 
@@ -24,7 +24,7 @@ You can also specify a **state** parameter for passing arbitrary data (like a no
 ....&state=something&scope=Create Address Lists,Complete Claims
 ```
 
-Visit https://bitbadges.io/oauth to see the full list of approved scopes. You only should specify the labels (scope names).
+Visit https://bitbadges.io/oauth to see the full list of approved scopes. You only should specify the labels (scope names). Let us know if you would like us to add other scopes.
 
 **Step 3: Setup Your Callback Handler**
 
