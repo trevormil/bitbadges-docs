@@ -4,7 +4,7 @@
 
 From the prior pages, you should now have the **code** for the user. You can now fetch the authentication details for the user, by providing the code and valid app configuration details. Be sure to keep **clientSecret** secret.
 
-The response will contain all authentication details, including a **verificationResponse**.
+The response will contain all authentication details, including a **verificationResponse**. Note that the signature may be blank if you selected **allowReuseOfBitBadgesSignIn.**
 
 <pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, SecretsProof } from "bitbadgesjs-sdk";
 </strong>
