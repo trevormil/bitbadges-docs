@@ -98,6 +98,17 @@ const popupParams = {
 }
 ```
 
+**Allow Reuse of BitBadges Sign-In**
+
+```typescript
+const popupParams = {
+    ...,
+    allowReuseOfBitBadgesSignIn: true
+}
+```
+
+This flag will allow a user's authentication on BitBadges to double as their signature (or proof of identity) for their SIWBB request. This is better for user experience because it is one less signature potentially, but for verification purposes, you will not receive a signature, and no signature will be stored with the request.
+
 **Other Sign Ins**
 
 ```typescript
