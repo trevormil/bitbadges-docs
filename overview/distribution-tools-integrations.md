@@ -46,6 +46,8 @@ Distribution may involve:
 
 <figure><img src="../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
+
 ### Address Collection Surveys
 
 * BitBadges - Create an address list with the Create tab with a claim. This will create a list, and users can claim a spot on the list. This can be used to collect addresses before the real distribution takes place.
