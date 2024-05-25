@@ -72,11 +72,11 @@ You can get the details from the form when you are creating the claim.
 
 <figure><img src="../../../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
 
-Step 4: Simulate
+Step 4: Simulate / Test
 
 You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.&#x20;
 
-This is important because without the simulation feature enabled, any test Zap will actually attempt to complete the claim.
+Note that behind the scenes, this is just a simulation (does not actually complete the claim) if sent manually from the test step. The claim will be completed for successful Zaps once live.
 
 Step 5: Track Progress
 
