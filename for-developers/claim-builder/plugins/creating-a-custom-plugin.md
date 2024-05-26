@@ -6,13 +6,21 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also create your own custom private plugin and add it when creating the claim. Private plugins will not be shown in the directory.
 
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 ### User Inputs (Frontend)
 
 If your plugin requires no user prompting, then you can skip this section. To be compatible with Zapier, user inputs are not allowed.
 
 **Setup + Configuration**
 
-If your plugin requires user inputs from the frontend side, we will direct the user to your plugin's frontend URI provided when they are submitting the claim. Via the query params, we will pass some contextual information as well.
+If your plugin requires user inputs from the frontend side, we will direct the user to your plugin's frontend URI provided when they are submitting the claim.&#x20;
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+Via the query params, we will pass some contextual information as well.
 
 ```typescript
 window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
@@ -98,7 +106,9 @@ See the plugin-frontend.tsx in the BitBadges quickstart repository for a startin
 
 If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this is also left up to you. You can provide a URL for how to do so when creating the plugin. The claim creator will be directed to this URL.
 
-Any of these parameters are left completely up to you. We do not store any of them. There is no window.postMessage or anything. You should store these per claim (if needed).
+These parameters are left completely up to you. We do not store any of them. There is no window.postMessage or anything. You should store these on your end per claim (if needed).
+
+If no creator URI is provided, we assume there is nothing additional the claim creator has to do.
 
 <figure><img src="../../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
 
@@ -169,7 +179,7 @@ All responses expect a 200 success OK status code for a successful.
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
