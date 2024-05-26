@@ -67,9 +67,15 @@ const [customBody, setCustomBody] = useState<object>({}); //The user's inputs
 
 Note that BitBadges should just be treated as the messenger or middleman here. Although, if implemented correctly, everything will be passed via secure communication channels,  it is not recommended to pass sensitive information via the body. A workaround might be to issue claim codes instead. Consider adding extra challenges and security to your execution flows which assume that communication is intercepted or BitBadges is compromised (e.g. claim codes with quick expirations, additional challenges , etc).
 
+**Quickstart**
+
+See the plugin-frontend.tsx in the BitBadges quickstart repository for a starting implementation.
+
 ### Creation Parameters
 
 If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this is also left up to you. You can provide a URL for how to do so when creating the plugin. The claim creator will be directed to this URL.
+
+Any of these parameters are left completely up to you. We do not store any of them. There is no window.postMessage or anything. You should store these per claim (if needed).
 
 ### **Backend Request**
 
@@ -83,7 +89,7 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
 ```typescript
-const body = {
+const payload = {
     ...customBody,//if applicable
         
     // Context info
@@ -140,7 +146,7 @@ The stateless preset is simple. If we receive the 200, the plugin is successful.
 
 **Claim Token Preset**
 
-This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Managing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time.
+This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time.
 
 <figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
