@@ -4,9 +4,9 @@ BitBadges Claims are designed to be a comprehensive tool directly within the sit
 
 With BitBadges claims, you have a few approaches.
 
-**Option 1: Directly In-Site**
+**Option 1: Directly In-Site via Plugins**
 
-If everything you need is directly implementable with all core plugins, there is no extra dev work needed.
+If everything you need is directly implementable with plugins, there is no extra dev work needed. BitBadges offers some core plugins, and custom plugins can also be created by developers.
 
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
