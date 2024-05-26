@@ -61,7 +61,7 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?

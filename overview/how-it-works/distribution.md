@@ -24,7 +24,7 @@ Typically, all badges initially start in the Mint address, and there has to be s
 
 The manager or other approved parties can directly initiate a transfer forcefully on the recipients' behalf. Who is permitted to transfer is clearly defined in the collection's transferability.
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claims**
 
