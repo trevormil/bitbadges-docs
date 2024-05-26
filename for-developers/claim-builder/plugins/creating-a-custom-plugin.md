@@ -1,18 +1,14 @@
 # Creating a Custom Plugin
 
-## Creating a Plugin
-
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the claim attempt should be denied or successful, plus potentially tells us how to manage the plugin state. All plugins must pass for a claim attempt to be successful.
 
 To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer).&#x20;
 
-Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim.
-
-You can also add your own custom plugin and specify custom details when creating an individual claim. It will not be shown in the directory, but note you will not have a plugin secret (and thus cannot verify BitBadges as origin using the secret) which is needed for many authentication or privacy-preserving flows.
+Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also create your own custom private plugin and add it when creating the claim. Private plugins will not be shown in the directory.
 
 ### User Inputs (Frontend)
 
-If your plugin requires no user prompting, then you can skip this section.&#x20;
+If your plugin requires no user prompting, then you can skip this section. To be compatible with Zapier, user inputs are not allowed.
 
 **Setup + Configuration**
 
@@ -166,7 +162,7 @@ When creating the claim, select the custom plugin option to add your own custom 
 
 After publishing and completing the review process, we leave updates and version control management up to you. It is your responsibility to keep claims compatible and functioning. Updating can be done at https://bitbadges.io/developer for the stuff stored on our end. On your end, you have control over what you&#x20;
 
-If you need to implement a breaking change, consider usign the createdAt or lastUpdated fields passed to implement version control.
+If you need to implement a breaking change, consider using the createdAt or lastUpdated fields passed to implement version control.
 
 ### Deleting Your Plugin
 
