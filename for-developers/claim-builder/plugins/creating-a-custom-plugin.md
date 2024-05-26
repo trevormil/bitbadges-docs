@@ -2,7 +2,7 @@
 
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the claim attempt should be denied or successful, plus potentially tells us how to manage the plugin state. All plugins must pass for a claim attempt to be successful.
 
-To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer).&#x20;
+To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab.
 
 Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also create your own custom private plugin and add it when creating the claim. Private plugins will not be shown in the directory.
 
@@ -28,16 +28,7 @@ export interface ContextInfo {
 }
 ```
 
-```typescript
-const { context } = router.query;
-
-let claimContext = undefined;
-try {
-  claimContext = JSON.parse(context?.toString() || '');
-} catch (e) {
-  console.error('Error parsing context', e);
-}
-```
+<figure><img src="../../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
 
 **Logic Handling**
 
@@ -46,19 +37,55 @@ At the configured URL, you can then perform whatever logic you need to do (i.e. 
 IMPORTANT: Please take extra care in this step. You want to ensure that only BitBadges can read the custom body. See [https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) and other references. Use window.opener.postMessage and specify the origin as https://bitbadges.io.&#x20;
 
 ```typescript
-const [customBody, setCustomBody] = useState<object>({}); //The user's inputs
+import { Layout } from 'antd';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { DisplayCard } from '../components/display/DisplayCard';
 
-// ...
+const FRONTEND_URL = 'https://bitbadges.io';
+const { Content } = Layout;
 
-<button
-  onClick={async () => {
-    if (window.opener) {
-      window.opener.postMessage(customBody, "https://bitbadges.io");
-      window.close();
-    }
-  }}>
-  Submit
-</button>
+function PluginTestScreen() {
+  const router = useRouter();
+  const { context } = router.query;
+
+  let claimContext = undefined;
+  try {
+    claimContext = JSON.parse(context?.toString() || '');
+  } catch (e) {
+    console.error('Error parsing context', e);
+  }
+
+  const [customBody, setCustomBody] = useState<object>({
+    testData: 'testData',
+  });
+
+  return (
+    <Content className="full-area" style={{ minHeight: '100vh', padding: 8 }}>
+      <div className="flex-center">
+        <DisplayCard title="User Inputs - Plugin Logic" md={12} xs={24} sm={24} style={{ marginTop: '10px' }}>
+          {/* 
+            //TODO: Add your custom logic here to prompt the user for any additional information required for the claim. 
+          */}
+
+
+          <div className="flex-center">
+            <button
+              onClick={async () => {
+                if (window.opener) {
+                  console.log('Sending message to opener', customBody, FRONTEND_URL);
+                  window.opener.postMessage(customBody, FRONTEND_URL);
+                  window.close();
+                }
+              }}>
+              Submit
+            </button>
+          </div>
+        </DisplayCard>
+      </div>
+    </Content>
+  );
+}
 ```
 
 Note that BitBadges should just be treated as the messenger or middleman here. Although, if implemented correctly, everything will be passed via secure communication channels,  it is not recommended to pass sensitive information via the body. A workaround might be to issue claim codes instead. Consider adding extra challenges and security to your execution flows which assume that communication is intercepted or BitBadges is compromised (e.g. claim codes with quick expirations, additional challenges , etc).
@@ -73,6 +100,8 @@ If you need to allow the claim creator to configure parameters (e.g. max 10 uses
 
 Any of these parameters are left completely up to you. We do not store any of them. There is no window.postMessage or anything. You should store these per claim (if needed).
 
+<figure><img src="../../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
+
 ### **Backend Request**
 
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), plus some contextual information about the claim and the claiming user.
@@ -83,6 +112,8 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 * **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
+
+<figure><img src="../../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 const payload = {
