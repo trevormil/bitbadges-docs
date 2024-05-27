@@ -122,6 +122,7 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 * **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
 * **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
 * **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
+* **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
@@ -132,6 +133,7 @@ const payload = {
     ...customBody,//if applicable
         
     // Context info
+    priorState: { }, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     cosmosAddress: apiCall?.passAddress ? context.cosmosAddress : null,
@@ -188,6 +190,12 @@ The stateless preset is simple. If we receive the 200, the plugin is successful.
 This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time.
 
 <figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+**State Transitions Preset**
+
+This preset expects a { newState } in the response. If the claim is successful, we will set the current state stored in our plugin to the new state. If this option is selected, you also have acces to the prior state in the request payload.
+
+IMPORTANT: Do not assume that a successful response means a successful claim and a successful set of the new state. Think of this as a hypothetical state transition. From the prior state in the payload, this is what the new state will be **IF** the claim is successful.
 
 ### Reusing for Non-Indexed Balances
 
