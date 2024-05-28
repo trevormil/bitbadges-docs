@@ -22,7 +22,7 @@ For address list claims. If you can meet the criteria, you can get your address 
 
 **Custom Actions**
 
-While we do not support custom generic claims out of the box, you can get creative and use one of the above to implement your own claims with custom actions. For example, create an address list claim and track successful claims / addresses butperform your own custom actions when you need to.
+While we do not support custom generic claims out of the box, you can get creative and use one of the above to implement your own claims with custom actions. For example, create an address list claim and track successful claims / addresses but perform your own custom actions when you need to.
 
 ## **Reusing Plugins for Assigning Non-Indexed Balances**
 
