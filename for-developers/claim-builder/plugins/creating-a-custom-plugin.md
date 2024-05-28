@@ -2,11 +2,13 @@
 
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the claim attempt should be denied or successful, plus potentially tells us how to manage the plugin state. All plugins must pass for a claim attempt to be successful.
 
-To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab.
+We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible.
 
-Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim.&#x20;
+To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim.&#x20;
 
 You can also create your own custom plugin that is not in the directory and add it when creating a claim. Only you (the plugin creator) will be able to add this plugin to a claim. These non-published plugins will not be shown in the directory, but note that they are not private. The metadata and details will still be displayed to the end user.&#x20;
+
+
 
 <figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
