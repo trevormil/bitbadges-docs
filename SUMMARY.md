@@ -183,6 +183,7 @@
   * [Signing - Bitcoin](for-developers/create-and-broadcast-txs/signing-bitcoin.md)
   * [Broadcast to a Node](for-developers/create-and-broadcast-txs/broadcast-to-a-node.md)
   * [Sign + Broadcast - bitbadges.io](for-developers/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+* [💰 Monetizing Apps / Badges](for-developers/monetizing-apps-badges.md)
 * [🧑‍🏫 Tutorials](for-developers/tutorials/README.md)
   * [Create and Host Off-Chain Balances](for-developers/tutorials/create-and-host-off-chain-balances.md)
   * [Create a Smart Contract](for-developers/tutorials/create-a-wasm-contract.md)

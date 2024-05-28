@@ -10,7 +10,7 @@ You can also create your own custom plugin that is not in the directory and add 
 
 
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### User Inputs (Frontend)
 
@@ -20,7 +20,7 @@ If your plugin requires no user prompting, then you can skip this section. To be
 
 If your plugin requires user inputs from the frontend side, we will direct the user to your plugin's frontend URI provided when they are submitting the claim.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -185,7 +185,7 @@ All responses expect a 200 success OK status code for a successful.
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
