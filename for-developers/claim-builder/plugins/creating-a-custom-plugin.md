@@ -207,9 +207,9 @@ If your plugin does not require user inputs, you may be able to reuse it for non
 
 ### Testing Your Plugin
 
-Before publishing, please test your plugin thoroughly. An easy way to do this is to test it with an address list claim. The address list can be deleted after you are done testing. Or, test it out on a testnet.
+We recommend first creating a private plugin and testing it thoroughly. An easy way to do this is to test it with an address list claim. The address list can be deleted after you are done testing. Or, test it out on a testnet. When creating the claim, select the custom plugin option to add your own custom plugin details.
 
-When creating the claim, select the custom plugin option to add your own custom plugin details.
+Once you are ready, you can initiate the publishing process via the developer portal.
 
 ### Updating Your Plugin
 
