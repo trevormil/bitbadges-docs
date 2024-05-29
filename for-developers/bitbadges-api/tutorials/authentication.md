@@ -21,7 +21,7 @@ https://bitbadges.io/oauth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_U
 You can also specify a **state** parameter for passing arbitrary data (like a nonce). You can also specify **scope** to be predefined scopes that you would like access to. By default, we allow the user to select, but if you specify what you want, we will hardcode the scopes to those and disallow selecting others.
 
 ```
-....&state=something&scopes=[{ scopeName: 'Complete Claims' }, ... ] //in URL encoded format
+....&state=something&scopes=[{ "scopeName": "Complete Claims" }, ... ] //in URL encoded format
 ```
 
 Visit https://bitbadges.io/oauth to see the full list of approved scopes. You only should specify the labels (scope names). Let us know if you would like us to add other scopes.
