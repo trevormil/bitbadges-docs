@@ -124,6 +124,7 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 * **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
 * **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
 * **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
+* **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
 * **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
@@ -138,7 +139,8 @@ const payload = {
     priorState: { }, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
-    cosmosAddress: apiCall?.passAddress ? context.cosmosAddress : null,
+    claimAttemptId: context.claimAttemptId,
+    cosmosAddress: context.cosmosAddress,
     _isSimulation: context._isSimulation,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt
