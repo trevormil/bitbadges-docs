@@ -49,14 +49,6 @@ Note: this is all handled for you if you use the BitBadges API SDK.
 
 See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
 
-## Routes
-
-See all documentation for routes here.&#x20;
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ### Using the API SDK (Recommended)
 
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience. This will give you typed routes, provide quality checks, and also auto-convert all responses to your desired number type (bigint, Number, etc).
