@@ -169,6 +169,10 @@ Private values are not supported by default. Private claim parameters can be con
 
 The user inputs can be assumed to be passed through secure communication channels, but like explained above, add extra measures to protect against certain worst case scenarios.
 
+**Specific Claim Numbers**
+
+If your plugin needs to assign specific claim numbers, see the claim numbers preset below. Claim numbers may be used to distribute specific badges.
+
 **Authentication**
 
 A typical use case for a plugin is to perform authenticated logic for your users. However, plugins do not have access to BitBadges sessions and cannot implement typical session cookies. Treat BitBadges as the middleman.
@@ -204,6 +208,8 @@ IMPORTANT: Do not assume that a successful response means a successful claim and
 **Claim Numbers Preset**
 
 This preset expects a { claimNumber } in the response. The claim number is the claim number that will be assigned if the claim number is successful. Claim numbers are 0-based, so claimNumber === 0 is the first claim, and so on.
+
+The prior state of the number of uses plugin will be passed via the request payload.
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
 
