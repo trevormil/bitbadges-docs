@@ -201,6 +201,12 @@ This preset expects a { newState } in the response. If the claim is successful, 
 
 IMPORTANT: Do not assume that a successful response means a successful claim and a successful set of the new state. Think of this as a hypothetical state transition. From the prior state in the payload, this is what the new state will be **IF** the claim is successful.
 
+**Claim Numbers Preset**
+
+This preset expects a { claimNumber } in the response. The claim number is the claim number that will be assigned if the claim number is successful. Claim numbers are 0-based, so claimNumber === 0 is the first claim, and so on.
+
+IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
+
 ### Reusing for Non-Indexed Balances
 
 Pre-Reading: [Claim Actions](../claim-actions.md)
