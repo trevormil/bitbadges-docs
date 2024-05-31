@@ -1,5 +1,7 @@
 # Overview
 
+Zapier BitBadges Integration Invite Link: [https://zapier.com/developer/public-invite/203980/ce0b2c34275cfdb61ef1aac1ed0aa38c/](https://zapier.com/developer/public-invite/203980/ce0b2c34275cfdb61ef1aac1ed0aa38c/)
+
 **What is Zapier?**
 
 Zapier is an online automation tool that connects your favorite apps, such as Gmail, Slack, Mailchimp, and more than 2,000 others. You can automate repetitive tasks with workflows known as Zaps. A Zap connects two or more apps to automate part of your business or personal tasks. A Zap is created using a trigger and one or more actions. A trigger is an event in an app that starts the Zap. After a trigger occurs, Zapier automatically completes an action—or series of actions—in another app. This seamless connection between apps enables complex tasks to be completed automatically, saving time and improving productivity.
