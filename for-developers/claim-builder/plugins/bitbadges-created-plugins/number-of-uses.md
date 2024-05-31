@@ -8,7 +8,6 @@ This plugin restricts the number of times specific addresses can claim and the m
 
 #### Public Parameters
 
-* **maxUsesPerAddress**: The maximum number of uses allowed for each address.
 * **assignMethod**: The method used to assign uses. It can be either `firstComeFirstServe` or `codeIdx`. If codeIdx, the code number will determine the claim number. If first come first serve, the claim number will increment by 1 each claim.
 * **maxUses**: The maximum number of uses allowed for the code overall.
 
