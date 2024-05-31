@@ -8,8 +8,6 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 You can also create your own custom plugin that is not in the directory and add it when creating a claim. Only you (the plugin creator) and approved users will be able to use this plugin in a claim. These non-published plugins will not be shown in the directory, but note that they are not private. The metadata and details will still be displayed to the end user.&#x20;
 
-
-
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### User Inputs (Frontend)
@@ -126,6 +124,7 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 * **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 * **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
 * **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
+* **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
@@ -143,7 +142,9 @@ const payload = {
     cosmosAddress: context.cosmosAddress,
     _isSimulation: context._isSimulation,
     lastUpdated: context.lastUpdated,
-    createdAt: context.createdAt
+    createdAt: context.createdAt,
+    maxUses: context.maxUses,
+    currUses: context.currUses
 };
 ```
 
