@@ -214,6 +214,8 @@ The prior state of the number of uses plugin will be passed via the request payl
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
 
+Another important decision you will have to consider is whether to reuse your plugin for address lists because claim numbers do not matter for address list plugins. So basically, your plugin will function like the stateless preset for address list claims, if selected.
+
 ### Reusing for Non-Indexed Balances
 
 Pre-Reading: [Claim Actions](../claim-actions.md)
