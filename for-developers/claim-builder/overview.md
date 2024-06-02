@@ -2,6 +2,12 @@
 
 BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the experience for you and your users. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. The end goal is for all use cases to be supported by the BitBadges Claims. Out of the box, it offers plenty of built-in plugins and features with no code required and directly claimable by users in the site.&#x20;
 
+**When to use claims vs self-hosted balances?**
+
+Claims are handled on a trigger basis. When something occurs, a claim can be completed and transfer badges / perform another claim action. However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
+
+**Approaches**
+
 With BitBadges claims, you have a few approaches.
 
 **Option 1: Directly In-Site via Plugins**
