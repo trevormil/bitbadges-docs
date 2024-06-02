@@ -18,7 +18,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
 
-**Do you want to self-host off-chain balances or metadata?** See the [tutorials](tutorials/create-and-host-off-chain-balances.md) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
+**Do you want to self-host off-chain balances or metadata?** See the [tutorials](broken-reference) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
 ## Distributing badges?
 

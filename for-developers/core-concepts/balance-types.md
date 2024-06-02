@@ -189,7 +189,7 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 
 This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
-For another tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
+For another tutorial, see [here](broken-reference). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
 
 ### Off-Chain - Non-Indexed
 
@@ -250,6 +250,6 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-For a full tutorial, see [here](../tutorials/create-and-host-off-chain-balances.md). Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
+For a full tutorial, see [here](broken-reference). Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
 
 Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!

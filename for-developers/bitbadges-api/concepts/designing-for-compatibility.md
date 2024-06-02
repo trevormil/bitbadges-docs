@@ -14,8 +14,8 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 [balance-types.md](../../core-concepts/balance-types.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../tutorials/create-and-host-off-chain-balances.md" %}
-[create-and-host-off-chain-balances.md](../../tutorials/create-and-host-off-chain-balances.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 #### Approval Metadata

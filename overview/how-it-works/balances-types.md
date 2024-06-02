@@ -16,7 +16,7 @@ We do give the option to make balances non-public. This can either mean you want
 
 ## Off-Chain
 
-Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).&#x20;
+Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).
 
 Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending $BADGE along with an approval). Everything must occur off-chain.
 
@@ -30,7 +30,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 * **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
 * **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
 * **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
-* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.&#x20;
+* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
 
@@ -38,7 +38,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
   since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE, and claims) is not supported. Everything is implemented off-chain in a custom manner.
 * **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 * **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
-  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.&#x20;
+  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
   * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
 
 ### Indexed vs Non-Indexed
@@ -48,7 +48,7 @@ Off-chain balances can either be indexed or non-indexed. The differences are as 
 * Indexed balances have a total verifiable supply defined on-chain. Non-indexed does not.
 * At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
 * For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
-* Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.&#x20;
+* Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.
 * Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
 ### Suitability of Off-Chain Balances
@@ -68,7 +68,7 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](../../for-developers/tutorials/create-and-host-off-chain-balances.md). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
+See [here](broken-reference). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
 
 #### Advantages Over Standard Solutions
 
