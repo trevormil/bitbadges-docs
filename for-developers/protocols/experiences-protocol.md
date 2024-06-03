@@ -1,6 +1,6 @@
 # Experiences Protocol
 
-Pre-Readings: [Experiences Protocol](../../overview/ecosystem/protocols/experiences-protocol.md)
+Pre-Readings: [Experiences Protocol](../../overview/protocols/experiences-protocol.md)
 
 Behind the scenes, the BitBadges experiences protocol is pretty simple.&#x20;
 

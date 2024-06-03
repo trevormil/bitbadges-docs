@@ -6,4 +6,4 @@ Every user can create their own experiences collection. Then, they send the corr
 
 Currently, we expect the collection to have the following badges and IDs respectively. In the future, we plan to add more.
 
-<figure><img src="../../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>

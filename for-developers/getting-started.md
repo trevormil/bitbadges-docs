@@ -8,7 +8,9 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
-**Quickstart Repo:** Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
+## Quickstart
+
+Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
@@ -18,7 +20,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
 
-**Do you want to self-host off-chain balances or metadata?** See the [tutorials](broken-reference) for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
+**Do you want to self-host off-chain balances or metadata?** See utorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
 
 ## Distributing badges?
 
@@ -54,9 +56,9 @@ Querying badge ownership is simply querying for the current balances which can b
 
 ## **Custom integrations?**
 
-**Want to integrate your tool into the BitBadges site natively?** See [here](broken-reference).&#x20;
-
 **Want to integrate BitBadges into your application / tool?** Check out the API / SDK and all other documentation to see what all is possible with BitBadges.
+
+**Want to integrate your tool into the BitBadges site natively?** See creating a custom claim plugin, or submit a code contribution to one of our repositories.
 
 ## **Submit blockchain transactions?**
 

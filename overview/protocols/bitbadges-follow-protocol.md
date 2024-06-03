@@ -1,6 +1,6 @@
 # BitBadges Follow Protocol
 
-<figure><img src="../../../.gitbook/assets/image (43).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (43).png" alt="" width="375"><figcaption></figcaption></figure>
 
 The BitBadges multi-chain follow protocol is an extension of the BitBadges platform, designed to enable users to follow one another across different blockchain networks. This protocol allows for seamless cross-chain following, allowing an Ethereum user to follow a Solana user and vice versa.
 
