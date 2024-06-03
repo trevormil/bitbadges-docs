@@ -75,7 +75,9 @@ By being open-source and developer friendly, we aim to facilitate an ecosystem o
 
 Our product is more scalable, easier to use, and more secure than competitors (see [here](overview/faq.md#what-makes-bitbadges-better-than-competitors)) .
 
-### Innovative Features
+### Innovative Token Standard
+
+The BitBadges token (badge) standard is state-of-the-art compared to existing token standards (ERC20, ERC721, etc) and does not require smart contracts. The standard is ever-evolving and natively supports never-before-seen features like time-dependent ownership, fine-grained transferability requirements, and hybrid off-chain balances.&#x20;
 
 <figure><img src=".gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
