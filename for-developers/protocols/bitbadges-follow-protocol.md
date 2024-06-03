@@ -1,6 +1,6 @@
 # BitBadges Follow Protocol
 
-Pre-Readings: [Follow Protocol](../../overview/protocols/bitbadges-follow-protocol.md)
+Pre-Readings: [Follow Protocol](../../overview/ecosystem/protocols/bitbadges-follow-protocol.md)
 
 Behind the scenes, the BitBadges follow protocol is pretty simple.&#x20;
 

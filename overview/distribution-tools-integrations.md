@@ -1,4 +1,4 @@
-# 🔀 Distribution Tools
+# 🔀 Distribution
 
 ## Building Blocks
 
@@ -8,7 +8,7 @@ For off-chain balances, the creator has complete control over how to allocate ba
 
 **On-Chain Balances**
 
-On the BitBadges site, we natively support  many customization options (whitelists, passwords, claim codes and more) and have interfaces for you to share the following:
+On the BitBadges site, we natively support  many customization options (whitelists, passwords, claim codes and more) through a directory of plugins and have interfaces for you to share the following:
 
 * **Plaintext Codes / Passwords:** For codes / passwords, you can share/copy/download the codes yourself and distribute how you would like.
 * **Direct Claim Links:** Provide a unique secret link to the claim page. These links can be distributed however (QR codes, email, etc). Note that claiming requires a transaction, so wallets must be handy at claim time.

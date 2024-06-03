@@ -97,6 +97,18 @@ In addition to the standard features of existing token standards (mint, transfer
 
 And much more!
 
+## Build Applications
+
+Through our suite of developer tools, BitBadges allows you to seamlessly build multi-chain, token-gated applications **all with one interface**. Before BitBadges, building multi-chain applications was a nightmare due to having to support all the various interfaces, protocols, and more for each blockchain ecosystem. Now, it is all in one place.
+
+**Authentication**&#x20;
+
+Outsource all your authentication for your application to Sign In with BitBadges. Tiered services can be implemented by checking who owns what badge, and passwords can be replaced with cryptographic signatures. This leaves you with no storage required to manage your authentication.
+
+{% content-ref url="overview/verification-tools.md" %}
+[verification-tools.md](overview/verification-tools.md)
+{% endcontent-ref %}
+
 ## Distribution
 
 {% content-ref url="overview/distribution-tools-integrations.md" %}
@@ -112,43 +124,13 @@ BitBadges aims to have a vast ecosystem of community-built distribution tools. O
 
 <figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-## Build Applications
+## Verifiable Secrets
 
-Through our sutie&#x20;
-
-##
-
-## Privacy Tools
-
-While all badge collections are public and created on the BitBadges blockchain, we recognize privacy is an important aspect in many cases. Here are some ways BitBadges can be used in a privacy-preserving context.
+While all badge collections are public and created on the BitBadges blockchain, we recognize privacy is an important aspect in many cases.&#x20;
 
 **Verifiable Secrets**
 
-The BitBadges site allows anyone to commit, issue, and hold secrets which are secret messages signed by some issuer. The most common use case of these is credentials, and  such secrets can be added to any BitBadges login flow (e.g. verify you are 21 for access).
-
-**Proof of Knowledge for Approval**
-
-Certain secrets may even be configured to perform on-chain actions (e.g. solve a zero-knowledge proof for approval or insert a secret code for approval).
-
-**Gated / Hidden Balances**
-
-You can also select the "Private" or "None" balances standard on the site. This will allow you to secretly define who owns the badge. Everything else will be public (metadata, etc), but ownership is decided privately by you.
-
-## Ecosystem Tools
-
-Ecosystem tools are anything from tools for authenticating users, communicating with badge holders, to distributing badges, and more!
-
-Similar to distribution tools, we want to support a vast ecosystem of tools built by different teams, each with their own unique niche.
-
-{% content-ref url="overview/ecosystem/" %}
-[ecosystem](overview/ecosystem/)
-{% endcontent-ref %}
-
-{% content-ref url="overview/verification-tools.md" %}
-[verification-tools.md](overview/verification-tools.md)
-{% endcontent-ref %}
-
-<figure><img src=".gitbook/assets/image (47).png" alt="" width="539"><figcaption></figcaption></figure>
+The BitBadges site allows anyone to commit, issue, and hold secrets which are secret messages signed by some issuer. The most common use case of these is credentials, and such secrets can be added to any BitBadges login flow (e.g. verify you are 21 for access).
 
 ## **Need additional functionality?**
 

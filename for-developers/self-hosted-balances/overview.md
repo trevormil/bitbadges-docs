@@ -1,6 +1,6 @@
-# 💾 Self-Hosted Balances
+# Overview
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](core-concepts/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
 
 The collection will be stored on the blockchain, but all balances will be assigned off-chain. This allows you to have complete control over assignment of the balances at no cost and no transactions required. You can integrate with any application (even non-crypto ones).&#x20;
 
@@ -25,7 +25,7 @@ For non-indexed balances, you simply need to set up a server which can return th
 Couple notes:
 
 * The URL stored on-chain must have {address} as a placeholder for the address to query.
-* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](core-concepts/accounts.md).
+* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../core-concepts/accounts.md).
 
 Example:
 
@@ -51,7 +51,7 @@ See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/
 
 The map is simply a cosmosAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
-Note that if you use address list IDs for the keys ([see here to learn more](core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
+Note that if you use address list IDs for the keys ([see here to learn more](../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badges in this map than what was created on-chain (via the "Mint" address). The BitBadges indexer / API will throw an error in the above cases.
 
 You may also find the [**createBalanceMapForOffChainBalances**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/functions/createBalanceMapForOffChainBalances.html) function helpful.
 
