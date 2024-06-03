@@ -4,8 +4,6 @@ The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101b
 
 The delegated part is because token holders can delegate their stake ($BADGE) to validators and split the earned $BADGE, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
 
-
-
 ### Option 1: Delegate
 
 For most users, delegating is the preferred option. You can delegate your $BADGE to an existing validator to be staked. This validator will split the $BADGE earned from securing the network with you (they may charge a commission).&#x20;
@@ -17,3 +15,7 @@ Visit [https://bitbadges.io/stake](https://bitbadges.io/stake). Behind the scene
 ### **Option 2: Become a Validator**
 
 If you want to become a validator and stake directly by running a validator node, see [here](../for-developers/bitbadges-blockchain/run-a-node/).&#x20;
+
+## **Governance**
+
+Initially, we do not plan to use a governance structure to allow us to ship fast and build a great prduct. Over time as we shift to becoming more decentralized, we will allow token holders of $BADGE to propose and vote on governance proposals, weighted via their amount of $BADGE. This will be via the [Cosmos SDK governance module](https://docs.cosmos.network/main/modules/gov). These governance proposals will allow $BADGE holders to decide on the future of BitBadges.

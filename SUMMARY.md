@@ -25,7 +25,6 @@
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
 * [🦊 MetaMask Snap](overview/metamask-snap.md)
 * [📊 Explorers](overview/explorers.md)
-* [🏫 Governance](overview/governance.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
   * [📽️ Protocols](overview/protocols/README.md)
     * [BitBadges Follow Protocol](overview/protocols/bitbadges-follow-protocol.md)
