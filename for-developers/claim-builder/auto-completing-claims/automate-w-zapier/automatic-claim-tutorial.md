@@ -19,7 +19,7 @@ You will use the BitBadges API Zapier plugin with the Complete Claim action to p
 
 The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. To help, select the Zapier approach when creating.
 
-<figure><img src="../../../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
 
 **No Signed In with BitBadges Plugin**
 
@@ -29,11 +29,9 @@ Make sure this plugin is disabled. This should be disabled to allow Zapier to cl
 
 **Gate with Custom Password**
 
-However, it is IMPORTANT to note that not requiring SIWBB relaxes the restriction for everyone. Thus, you will have to gate the claim in other ways to ensure that it **only** allows Zapier to claim on users' behalf.&#x20;
+However, it is IMPORTANT to note that not requiring SIWBB relaxes the restriction for everyone. Thus, you will have to gate the claim in other ways to ensure that it **only** allows Zapier to claim on users' behalf.
 
 To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
-
-<figure><img src="../../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
 
 **Other Plugins**
 
@@ -43,7 +41,7 @@ Currently, the only other claim plugins that are compatible are ones that only n
 * Min $BADGE
 * Time Window
 * Ownership Requirements
-* Whitelist&#x20;
+* Whitelist
 
 All other plugins require addiitional stuff which is not compatible with the Zapier integration.
 
@@ -66,22 +64,20 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
-You can get the details from the form when you are creating the claim.
+You can get the claim information from the form when you are creating the claim.
 
-<figure><img src="../../../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
 
 Step 4: Simulate / Test
 
-You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.&#x20;
+You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.
 
 Note that behind the scenes, this is just a simulation (does not actually complete the claim) if sent manually from the test step. The claim will be completed for successful Zaps once live.
 
 Step 5: Track Progress
 
 For most use cases, just submitting the claim is typically adequate. However, you can also track it with the other BitBadges action in Zapier (Get Claim Attempt Status). You will pass the ID received from the submission to this. Note that we use a queue system so it may take some time to officially process.
-
-
 
 And, it is as easy as that!
