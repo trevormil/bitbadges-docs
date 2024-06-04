@@ -24,13 +24,19 @@ For address list claims. If you can meet the criteria, you can get your address 
 
 While we do not support custom generic claims out of the box, you can get creative and use one of the above to implement your own claims with custom actions. For example, create an address list claim and track successful claims / addresses but perform your own custom actions when you need to.
 
+## Custom Claim Numbers
+
+By default, we use an incrementing claim number system. For example, claim #1, then claim #2, etc. However, certain plugins may require specifying claim numbers in order to function. Claim numbers can be used to distribute specific badges. They are not applicable to address lists or non-indexed (see below) actions.
+
+Only one plugin is allowed to assign claim numbers which is determined by the **assignMethod** of the claim. If the assignMethod === a plugin's unique instance ID, we allow it to assign claim numbers.
+
 ## **Reusing Plugins for Assigning Non-Indexed Balances**
 
-Badges with "Off-Chain - Non-Indexed" balances type are slightly different because there is no claiming process because non-indexed balances are stateless. Thus, claims (which have state) are not possible.
+Badges with "Off-Chain - Non-Indexed" balances type are slightly different because there is no claiming process. They are fetched on-demand, and any address must be able to be checked at any given time.
 
-For these, we reuse some of the plugins in order to query specific criteria and assign balances based on whether it is met or not. Because of the stateless requirement though, many options are disabled. The queries are executed on-demand whenever a user requests the balances for a specific address. If the criteria is met, we assign a balance of x1. If the criteria is not met, we assign a balance of x0 for all badges.&#x20;
+For these, we reuse some plugins (if compatible) to assign balances whether the plugin criteria is met or not. Compatiibility requires the plugin to be able to function with zero user interaction and only knowledge of the user's address. Plugins that require anything other than just the user's crypto address are incompatible.&#x20;
 
-Plugins that require anything other than just the user's crypto address are incompatible.&#x20;
+For example, checking a minimum balance of $BADGE is safe to use because we always know a user's balance at any given time wihtout user interaction and just their address.
 
 <figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
