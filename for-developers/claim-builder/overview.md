@@ -42,7 +42,7 @@ Because the authentication check is disabled, you can specify any claiming addre
 
 **OAuth - Complete Claim Scope**
 
-Or, you could also be authorized to complete claims on behalf of the user via the BitBadges API, but this is only used in rare cases. You will need separate authorizations from every claiming user. Also, the Complete Claim scope currently is generic and not&#x20;
+Or, you could also be authorized to complete claims on behalf of the user via the BitBadges API, but this is only used in rare cases. You will need separate authorizations from every claiming user.
 
 ## Distribution of Claim Information
 

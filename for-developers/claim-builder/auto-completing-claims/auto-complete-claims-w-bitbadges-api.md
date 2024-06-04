@@ -35,7 +35,7 @@ The custom body (if needed) should be in the following format
 
 ```typescript
 {
-    [pluginId: string]: { ...pluginBody }
+    [instanceId: string]: { ...pluginBody }
 }
 ```
 
@@ -43,13 +43,13 @@ For example,
 
 ```typescript
 {
-    [`abc123`]: { //password plugin ID = "abc123"
+    [`abc123`]: { //password instance ID = "abc123"
         password: "abc123"
     },
-    [`codes1234`]: { //codes plugin ID = "codes1234"
+    [`codes1234`]: { //codes instance ID = "codes1234"
         code: "supersecretcode"
     },
-    customPluginId: {
+    custom: {
         customInput: "xyz",
     }
 }

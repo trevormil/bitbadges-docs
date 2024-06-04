@@ -41,9 +41,16 @@ Response details are confined to the request parameters passed in, so this means
 To make this easy, we have exported the following function which prunes requests before they are sent and appends the new results to the cached values.
 
 ```typescript
-const res2 = await BitBadgesApi.getCollections({ collectionsToFetch: [{ collectionId: 1n, metadataToFetch: { badgeIds: [{ start: 11n, end: 20n }] } }] })
-const collection2 = res2.collections[0]
-collection.updateWithNewResponse(collection2)
+const res2 = await BitBadgesApi.getCollections({
+    collectionsToFetch: [
+        {
+            collectionId: 1n,
+            metadataToFetch: { badgeIds: [{ start: 11n, end: 20n }] },
+        },
+    ],
+});
+const collection2 = res2.collections[0];
+collection.updateWithNewResponse(collection2);
 ```
 
 Or, if you use many of the class functions, these are handled behind the scenes for you!
@@ -82,8 +89,8 @@ await collection.fetchBadgeBalances(BitBadgesApi, 'cosmos....');
 You can fetch then use the balances using one of two methods below, but note that they must be fetched prior or else may return undefined (or throw is you use the mustGet function).
 
 ```typescript
-collection.owners.find(x => x.cosmosAddress === "Mint")
-collection.owners.find(x => x.cosmosAddress === "Total")
+collection.owners.find((x) => x.cosmosAddress === 'Mint');
+collection.owners.find((x) => x.cosmosAddress === 'Total');
 ```
 
 ```typescript
@@ -100,7 +107,7 @@ Everything above handles balances on a collection level, but sometimes, you may 
 
 ```
 const { activity, pagination } = await collection.getBadgeActivity(BitBadgesApi, 1n, { bookmark: '...' })
-const { owners, pagination } = await collection.getOwnersForBadge(BitBadgesApi, 1n, { bookmark: '...' }) 
+const { owners, pagination } = await collection.getOwnersForBadge(BitBadgesApi, 1n, { bookmark: '...' })
 ```
 
 ### NSFW / Reported
@@ -121,8 +128,6 @@ The fetched collection metadata (if requested) will be stored in **cachedCollect
 {% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
 [badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
 {% endcontent-ref %}
-
-
 
 Note this is different from **collectionMetadataTimeline** and **badgeMetadataTimeline** which simply store the URIs, not the actual metadata itself.
 
@@ -159,13 +164,13 @@ export interface BadgeMetadataTimeline&#x3C;T extends NumberType> extends Timeli
 
 ```typescript
 export interface BadgeMetadataDetails<T extends NumberType> {
-  metadataId?: T,
-  badgeIds: UintRange<T>[],
-  metadata: Metadata<T>,
-  uri?: string
-  customData?: string
+    metadataId?: T;
+    badgeIds: UintRange<T>[];
+    metadata: Metadata<T>;
+    uri?: string;
+    customData?: string;
 
-  toUpdate?: boolean
+    toUpdate?: boolean;
 }
 ```
 
@@ -207,9 +212,9 @@ Views have a base **viewType** describing the query type and a unique **viewId**
 
 The collection interface supports the following base **viewType** values.
 
-* 'transferActivity' : Fetches latest transfer activity documents.
-* 'reviews': Fetches latest reviews for collection
-* 'owners': Fetches owners of the collection
+-   'transferActivity' : Fetches latest transfer activity documents.
+-   'reviews': Fetches latest reviews for collection
+-   'owners': Fetches owners of the collection
 
 ```typescript
 export type CollectionViewKey = 'transferActivity' | 'reviews' | 'owners';
@@ -224,8 +229,6 @@ await collection.fetchNextForView(BitBadgesApi, 'owners', 'owners');
 
 const ownersView = collection.getOwnersView('owners')
 ```
-
-
 
 The collection interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
 
@@ -285,80 +288,80 @@ The **ids** returned in each view will correspond to the **\_docId** field in it
 This logic is handled behind the scenes with the corresponding helper function
 
 ```typescript
-const collectedView = collection.getOwnersView('owners')
+const collectedView = collection.getOwnersView('owners');
 ```
 
 ### **Fetch Route**
 
-#### **POST /api/v0/collections - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchSuccessResponse.html)**)**
+#### **POST /api/v0/collections - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionsPayload.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetCollectionBatchSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 
 ```typescript
-export interface GetCollectionBatchBody {
-  collectionsToFetch: ({ collectionId: NumberType } 
-    & GetMetadataForCollectionBody 
-    & GetAdditionalCollectionDetailsBody
-  )[],
+export interface GetCollectionsPayload {
+    collectionsToFetch: ({
+        collectionId: NumberType;
+    } & GetMetadataForCollectionPayload &
+        GetAdditionalCollectionDetailsPayload)[];
 }
 
-export interface GetAdditionalCollectionDetailsBody {
-  /**
-   * If present, the specified views will be fetched.
-   */
-  viewsToFetch?: {
-    viewType: CollectionViewKey;
-    viewId: string;
-    bookmark: string;
-  }[];
+export interface GetAdditionalCollectionDetailsPayload {
+    /**
+     * If present, the specified views will be fetched.
+     */
+    viewsToFetch?: {
+        viewType: CollectionViewKey;
+        viewId: string;
+        bookmark: string;
+    }[];
 
-  /**
-   * If true, the total and mint balances will be fetched and will be put in owners[].
-   */
-  fetchTotalAndMintBalances?: boolean;
-  /**
-   * If present, the merkle challenges corresponding to the specified merkle challenge IDs will be fetched.
-   */
-  challengeTrackersToFetch?: ChallengeTrackerIdDetails<NumberType>[];
-  /**
-   * If present, the approvals trackers corresponding to the specified approvals tracker IDs will be fetched.
-   */
-  approvalTrackersToFetch?: AmountTrackerIdDetails<NumberType>[];
-  /**
-   * If true, we will append defaults (such as timelines) with empty values where applicable.
-   */
-  handleAllAndAppendDefaults?: boolean;
+    /**
+     * If true, the total and mint balances will be fetched and will be put in owners[].
+     */
+    fetchTotalAndMintBalances?: boolean;
+    /**
+     * If present, the merkle challenges corresponding to the specified merkle challenge IDs will be fetched.
+     */
+    challengeTrackersToFetch?: ChallengeTrackerIdDetails<NumberType>[];
+    /**
+     * If present, the approvals trackers corresponding to the specified approvals tracker IDs will be fetched.
+     */
+    approvalTrackersToFetch?: AmountTrackerIdDetails<NumberType>[];
+    /**
+     * If true, we will append defaults (such as timelines) with empty values where applicable.
+     */
+    handleAllAndAppendDefaults?: boolean;
 }
 
-export interface GetMetadataForCollectionBody {
-  /**
-   * If present, we will fetch the metadata corresponding to the specified options.
-   */
-  metadataToFetch?: MetadataFetchOptions;
+export interface GetMetadataForCollectionPayload {
+    /**
+     * If present, we will fetch the metadata corresponding to the specified options.
+     */
+    metadataToFetch?: MetadataFetchOptions;
 }
 
 export interface MetadataFetchOptions {
-  /**
-   * If true, collection metadata will not be fetched.
-   */
-  doNotFetchCollectionMetadata?: boolean;
-  /**
-   * If present, the metadata corresponding to the specified metadata IDs will be fetched. See documentation for how to determine metadata IDs.
-   */
-  metadataIds?: NumberType[] | UintRange<NumberType>[];
-  /**
-   * If present, the metadata corresponding to the specified URIs will be fetched.
-   */
-  uris?: string[];
-  /**
-   * If present, the metadata corresponding to the specified badge IDs will be fetched.
-   */
-  badgeIds?: NumberType[] | UintRange<NumberType>[];
+    /**
+     * If true, collection metadata will not be fetched.
+     */
+    doNotFetchCollectionMetadata?: boolean;
+    /**
+     * If present, the metadata corresponding to the specified metadata IDs will be fetched. See documentation for how to determine metadata IDs.
+     */
+    metadataIds?: NumberType[] | UintRange<NumberType>[];
+    /**
+     * If present, the metadata corresponding to the specified URIs will be fetched.
+     */
+    uris?: string[];
+    /**
+     * If present, the metadata corresponding to the specified badge IDs will be fetched.
+     */
+    badgeIds?: NumberType[] | UintRange<NumberType>[];
 }
 ```
 
 ```typescript
 export interface GetCollectionBatchSuccessResponse<T extends NumberType> {
-  collections: BitBadgesCollection<T>[]
+    collections: BitBadgesCollection<T>[];
 }
 ```

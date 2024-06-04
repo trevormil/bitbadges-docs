@@ -204,7 +204,7 @@ account.getAccountBalancesView('badgesCollected');
 
 ### **Fetch Route**
 
-#### **POST /api/v0/users - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsBody.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsSuccessResponse.html)**)**
+#### **POST /api/v0/users - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsPayload.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 
@@ -227,7 +227,7 @@ export type AccountFetchDetails = {
     }[];
 };
 
-export interface GetAccountsBody {
+export interface GetAccountsPayload {
     accountsToFetch: AccountFetchDetails[];
 }
 ```

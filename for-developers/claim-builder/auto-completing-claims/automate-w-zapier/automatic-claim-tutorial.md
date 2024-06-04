@@ -64,7 +64,7 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 <figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Step 3: Configure the Complete Claim by BitBadges integration. The password, plugin ID, and claim ID will be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
+Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

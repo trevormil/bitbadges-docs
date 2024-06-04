@@ -11,7 +11,7 @@ However, you can self-generate locally and upload via the BitBadges API as well.
 The creation interface is as follows. All secrets are a series of one or more **secretMessages** which can be either in 'json' or 'plaintext' **messageFormat**. The schema of the message is left up to the issuer.
 
 ```typescript
-export interface CreateSecretBody {
+export interface CreateSecretPayload {
     proofOfIssuance: {
         message: string;
         signature: string;
