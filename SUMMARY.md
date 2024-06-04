@@ -117,6 +117,7 @@
 * [🏗️ BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
+  * [Plugin ID vs Instance ID](for-developers/claim-builder/plugin-id-vs-instance-id.md)
   * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Plugins Directory](https://bitbadges.io/claims/directory)

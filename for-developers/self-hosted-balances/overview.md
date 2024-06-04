@@ -47,6 +47,8 @@ See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/
 
 ### Indexed Balances
 
+With indexed balances, you store and host the entire balance map all at one endpoint.
+
 **Step 1: Create Your Map**
 
 The map is simply a cosmosAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
@@ -61,7 +63,46 @@ const transfers: TransferWithIncrements<bigint>[] = [...];
 const balanceMap = await createBalanceMapForOffChainBalances(transfers);
 ```
 
-See [https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/](https://bafybeiav4hvef6co2sfpmldqn24tmjzrzfbi6d74q5n2sbks4rhnativbq.ipfs.dweb.link/) for an example.
+For example,
+
+```json
+{
+  "cosmos1qjgpfmk93lqdak3ea7xqp5ec6v8nd79krktww4": [
+    {
+      "amount": "1",
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "1"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1",
+          "end": "18446744073709551615"
+        }
+      ]
+    }
+  ],
+  "cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl": [
+    {
+      "amount": "1",
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "1"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1",
+          "end": "18446744073709551615"
+        }
+      ]
+    }
+  ]
+}
+```
 
 **Step 2: Host your map as a JSON file via some URL**
 
