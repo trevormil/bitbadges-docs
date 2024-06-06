@@ -23,6 +23,7 @@
 * [🪙 Tokenomics](overview/tokenomics.md)
 * [🔁 Getting $BADGE](overview/getting-usdbadge.md)
 * [🤝 Staking $BADGE](overview/staking-usdbadge.md)
+* [🧩 Chrome Extension](overview/chrome-extension.md)
 * [🦊 MetaMask Snap](overview/metamask-snap.md)
 * [📊 Explorers](overview/explorers.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
