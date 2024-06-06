@@ -1,6 +1,8 @@
 # API
 
-### Getting Started
+### Getting Started - API Keys
+
+By default, certain routes are available publicly in a rate limited manner with no API key. However, API keys allow you access to all routes with higher limits.  &#x20;
 
 1. Get an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer). Keys expire after one year, but it is recommended that you rotate them even more often than that.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
