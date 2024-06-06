@@ -6,6 +6,6 @@ The BitBadges Chrome extension provides a quick preview of a user's badges and p
 
 **Settings Page:** [https://bitbadges.io/chrome-extension](https://bitbadges.io/chrome-extension)
 
-**Note for Developers:** The auto-scan feature only works if you have the **full** address somewhere in the DOM. If you abbreviate addresses (0xabc...123), it cannot pick up on these.&#x20;
+**Note for Developers:** The auto-scan feature only works if you have the **full** address somewhere in the DOM. If you abbreviate addresses (0xabc...123), it cannot pick up on these. It will scan if you have it anywhere such as an **alt** prop.
 
 <figure><img src="../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
