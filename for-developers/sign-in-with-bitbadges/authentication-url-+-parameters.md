@@ -10,8 +10,8 @@ https://bitbadges.io/auth/codegen?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
-* **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
-* **Parameters**: Custom parameters specific to your implementation.
+-   **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
+-   **Parameters**: Custom parameters specific to your implementation.
 
 If you need assistance generating these parameters, you can use the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
@@ -36,7 +36,7 @@ const popupParams: {
 
     otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
 
-    expectSecretsPresentations?: boolean;
+    expectAttestationsPresentations?: boolean;
     onlyProofs?: boolean;
 } =  { ... } as CodeGenQueryParams;
 ```
@@ -86,7 +86,7 @@ const popupParams = {
         address, // 0x or cosmos1 or bc1 or other supported address
         uri: 'https://bitbadges.io',
         nonce: '*',
-        
+
         //Optional
         expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
         notBefore: undefined,
@@ -164,13 +164,13 @@ For a better user experience and interface, we can simulate certain aspects abou
 
 The default is false. If true, we check only a few details out of the box, but passing in **verifyOptions** will let us know the expected verification options and can help us further enhance our simulation feature. See Verification page for all options explained.
 
-**Secrets**
+**Attestations**
 
 ```typescript
 const popupParams = {
     ...,
-    expectSecretsPresentations: true
+    expectAttestationsPresentations: true
 }
 ```
 
-**expectSecretsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved secrets in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
+**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).

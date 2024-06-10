@@ -2,14 +2,14 @@
 
 While all badge collections are public and created on the BitBadges blockchain, we recognize privacy is an important aspect in many cases. Here are some ways BitBadges can be used in a privacy-preserving context.
 
-### **Verifiable Secrets**
+### **Verifiable Attestations**
 
-Secrets are a centralized, off-chain feature that allow issuers to sign any message(s) cryptographically, store them via BitBadges, and generate proofs of their validity.
+Attestations are a centralized, off-chain feature that allow issuers to sign any message(s) cryptographically, store them via BitBadges, and generate proofs of their validity.
 
 The most common use case is credentials where an issuer generates a credential, hands it out to an issuer, and the holder can generate proofs of validity to give to any potential verifier with zero trust involved. See the link below to learn more.
 
-{% content-ref url="verifiable-secrets/" %}
-[verifiable-secrets](verifiable-secrets/)
+{% content-ref url="verifiable-attestations/" %}
+[verifiable-attestations](verifiable-attestations/)
 {% endcontent-ref %}
 
 ### **Proof of Knowledge for Approval**
@@ -40,7 +40,7 @@ Given a snapshot of a collection's balances or list of addresses that is agreed 
 
 **Examples**
 
-For an implemented ZKP example of proving your address is in a tree / set of Ethereum addresses, check out the addr\_membership.circom or pubkey\_membership.circom at [https://github.com/personaelabs/spartan-ecdsa](https://github.com/personaelabs/spartan-ecdsa).
+For an implemented ZKP example of proving your address is in a tree / set of Ethereum addresses, check out the addr_membership.circom or pubkey_membership.circom at [https://github.com/personaelabs/spartan-ecdsa](https://github.com/personaelabs/spartan-ecdsa).
 
 **Resources + Extensions**
 

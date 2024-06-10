@@ -6,7 +6,7 @@ From the prior pages, you should now have the **code** for the user. You can now
 
 The response will contain all authentication details, including a **verificationResponse**. Note that the signature may be blank if you selected **allowReuseOfBitBadgesSignIn.**
 
-<pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, SecretsProof } from "bitbadgesjs-sdk";
+<pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, AttestationsProof } from "bitbadgesjs-sdk";
 </strong>
 
 const options: VerifyChallengeOptions = { ... }
@@ -18,7 +18,7 @@ const res = await BitBadgesApi.getAndVerifySIWBBRequest({
     redirectUri: '...' //only needed if redirected
 });
 const blockinChallenge = res.blockin;
-const { params, address, chain, verificationResponse, publicKey, otherSignIns, message, signature, secretsPresentations } = blockinChallenge;
+const { params, address, chain, verificationResponse, publicKey, otherSignIns, message, signature, attestationsPresentations } = blockinChallenge;
 if (!verificationResponse.success) {
     console.log(verificationResponse.errorMessage);    
     throw new Error("Not authenticated");
@@ -41,9 +41,9 @@ if (!verificationResponse.success) {
 // - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
 // - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
 
-//TODO: If using secrets proofs, are the contents valid? Above, we verified them to be well-formed from a cryptographic perspective, but you need to check the contents to ensure the proof is valid according to your application's rules.
+//TODO: If using attestations proofs, are the contents valid? Above, we verified them to be well-formed from a cryptographic perspective, but you need to check the contents to ensure the proof is valid according to your application's rules.
 //For example:
-// - Verify the contents of the secret messages are correct
+// - Verify the contents of the attestation messages are correct
 // - Verify the creator is who you expect
 // - Verify the metadata is correct
 // - Verify the on-chain anchors / update history are correct
@@ -96,7 +96,7 @@ Does check :white_check_mark:
 -   Signature is valid and signed by the address specified in the provided message.
 -   Asset ownership criteria is met for the address (if requested)
 -   Any options specified in the verify challenge options
--   Secrets (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **secret.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+-   Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
@@ -104,8 +104,8 @@ Does not check :x:
 -   Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
 -   Does not handle sessions or check any session information
 -   The content of the challenge message is not checked by default except for well-formedness. You should assume the content may be manipulated and check it matches your desired auth details every time. Consider using the **expectedChallengeParams** options to help you.
--   Does not check if **secret.createdBy** is the expected issuer (we check that they validly issued the secret with correct signatures, but only you know who this is supposed to be).
--   Does not check the content of the secret messages or anything else about the secrets
+-   Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+-   Does not check the content of the attestation messages or anything else about the attestations
 
 **Phished Signature Attacks**
 

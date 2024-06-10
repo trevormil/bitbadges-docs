@@ -24,7 +24,7 @@ The process of claiming a badge can be customized with Zapier to integrate any a
 #### **2. Course Completion Certificates**
 
 * **Trigger:** A user completes an online course.
-* **Action:** Zapier communicates with your course platform and issues the user a unique claim code or secret ID for the certification badge or ceritification secret.
+* **Action:** Zapier communicates with your course platform and issues the user a unique claim code or secret ID for the claiming process.
 
 Remember, these are just examples to spark ideas. The possibilities are endless with Zapier and BitBadges integration. Familiarize yourself with both platforms to make the most out of your automations.
 

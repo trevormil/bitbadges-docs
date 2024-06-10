@@ -1,6 +1,6 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify secret signatures, and verify ownership of badges, NFTs, and more. This documentation will guide you through utilizing our authentication tools effectively.
+Authentication becomes seamless with BitBadges, offering a unified interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, and verify ownership of badges, NFTs, and more. This documentation will guide you through utilizing our authentication tools effectively.
 
 Note that this is different from the BitBadges API authorization. Sign In with BitBadges aims to be a way to authenticate users for YOUR application.&#x20;
 
@@ -26,11 +26,11 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 **Scope of SIWBB**
 
-Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user secrets). Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
+Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user attestations). Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
 
 -   Prompting and verifying challenge message signatures from users
 -   Querying asset ownership (badges, address lists, NFTs on other chains)
--   Verify secret signatures from other issuers (e.g. attestations or credentials)
+-   Verify attestation signatures from other issuers
 -   Check sign-ins of other socials (Discord, GitHub, Google, X)
 
 Once the above is checked, the user is authenticated, excluding any other self-implemented requirements. From here, we leave the rest up to you. SIWBB does not handle sessions, authorizations, etc. Those are all to be implemented alongside SIWBB using industry standards such as OAuth 2.0, JWTs, or whatever method you prefer.
@@ -43,7 +43,7 @@ However, the difference is that instead of generating and providing access token
 
 **Key Parts**
 
-BitBadges authentication is structured into three key components: verifying address ownership, verifying asset ownership, and verifying secrets or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
+BitBadges authentication is structured into three key components: verifying address ownership, verifying asset ownership, and verifying attestations or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
 
 Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses support for all three components within a unified interface. However, you have the freedom to customize and integrate these components according to your needs, allowing for a tailored authentication solution.
 
@@ -54,7 +54,7 @@ Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses 
 2. **Authentication Details Retrieval:**
     - Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID.&#x20;
 3. **Verification Process:**
-    - At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided secrets.
+    - At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided attestations.
 4. **Application-Specific Logic:**
     - Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
 
@@ -107,9 +107,9 @@ The BitBadges API currently supports all BitBadges assets, as well as Ethereum /
 
 <figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
-**Verifying Secrets / Signatures**
+**Verifying Attestations / Signatures**
 
-Lastly, you may also have additional secret signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university.
+Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university.
 
 ## **Immediate or Delayed Authentication?**
 
