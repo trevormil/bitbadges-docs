@@ -164,6 +164,8 @@ Otherwise, you can handle state on your end. An example of this might be if you 
 
 The plugin secret will be given to you upon creation of the plugin, and BitBadges will pass this to every request, so you can ensure BitBadges as the origin of the call. This is important to maintain privacy.
 
+We also recommend taking extra precautions such as checking origin in the worst cases of data breaches or compromises on the BitBadges end.
+
 **Private Values**
 
 Private values are not supported by default. Private claim parameters can be configured and handled by you (see [Creation Parameters](creating-a-custom-plugin.md#creation-parameters) above). Anything else private should be managed and handled by you (e.g. API keys, etc). Consider setting up a proxy intermediary, if necessary.
