@@ -1,8 +1,14 @@
 # Overview
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
+For off-chain balances, the badge collection will be stored on the blockchain, but all balances will be assigned off-chain. This allows you to have complete control over assignment of the balances at no cost and no transactions required. You can integrate with any application (even non-crypto ones).
 
-The collection will be stored on the blockchain, but all balances will be assigned off-chain. This allows you to have complete control over assignment of the balances at no cost and no transactions required. You can integrate with any application (even non-crypto ones).&#x20;
+Examples: &#x20;
+
+* Spreadsheets - Assign badges based on addresses in a spreadsheet.
+* Subscriptions - Set up your own subscription service and send badges to subscribers!
+* Custom Integrations - Integrate with any app you want!
+
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
 
 **Refresh Queue**
 
