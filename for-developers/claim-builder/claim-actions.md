@@ -10,7 +10,7 @@ Badges with the on-chain balance type are slightly different from the rest becau
 
 Behind the scenes, this works by issuing unique claim codes which are automatically populated when claming in-site. On-chian, these are the leaves of [Merkle challenge](../core-concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Off-Chain Badges - Indexed**
 

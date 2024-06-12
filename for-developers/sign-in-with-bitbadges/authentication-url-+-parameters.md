@@ -10,46 +10,43 @@ https://bitbadges.io/auth/codegen?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
--   **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
--   **Parameters**: Custom parameters specific to your implementation.
-
-If you need assistance generating these parameters, you can use the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
+* **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
+* **Parameters**: Custom parameters specific to your implementation.
 
 ```typescript
 import { CodeGenQueryParams } from 'bitbadgesjs-sdk';
 
-const popupParams: {
-    name: string;
-    description: string;
-    image: string;
+export interface CodeGenQueryParams {
+  ownershipRequirements?: AssetConditionGroup<NumberType>;
 
-    clientId: string;
-    redirectUri?: string;
-    state?: string;
+  name: string;
+  description: string;
+  image: string;
 
-    challengeParams: ChallengeParams<NumberType>;
-    allowAddressSelect?: boolean;
-    autoGenerateNonce?: boolean;
+  verifyOptions?: VerifyChallengeOptions;
+  expectVerifySuccess?: boolean;
 
-    verifyOptions?: VerifyChallengeOptions;
-    expectVerifySuccess?: boolean;
+  otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
 
-    otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
+  redirectUri?: string;
+  clientId: string;
+  state?: string;
 
-    expectAttestationsPresentations?: boolean;
-    onlyProofs?: boolean;
-} =  { ... } as CodeGenQueryParams;
+  expectAttestationsPresentations?: boolean;
+}
 ```
 
-#### Cached at Click Time <a href="#cached-at-click-time" id="cached-at-click-time"></a>
 
-All parameters are cached at the time the URL is opened. Consider either implementing dynamic checks on your end or make sure to use dynamic fields like **verifyOptions.issuedAtTimeWindowMs.**
+
+We recommend using the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ### **Parameter Options**
 
 **App Configuration**
 
-All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer).
+All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer). You can create multiple apps for differet use cases.
 
 Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).
 
@@ -69,9 +66,9 @@ const popupParams = {
 }
 ```
 
-**Challenge Parameters**
+**Ownership Requirements**
 
-The core details about your challenge message and authentication request are the challenge parameters. We have dedicated that to its own page to fully explain.
+Which badges / assets should we verify that the user owns? We have dedicated that to its own page to fully explain.
 
 {% content-ref url="challenge-parameters.md" %}
 [challenge-parameters.md](challenge-parameters.md)
@@ -80,34 +77,10 @@ The core details about your challenge message and authentication request are the
 ```typescript
 const popupParams = {
     ...,
-    challengeParams: {
-        domain: 'https://bitbadges.io',
-        statement: 'This request ...',
-        address, // 0x or cosmos1 or bc1 or other supported address
-        uri: 'https://bitbadges.io',
-        nonce: '*',
-
-        //Optional
-        expirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14).toISOString(),
-        notBefore: undefined,
-        resources: ['Full Access: Full access to all features.'],
-        assetOwnershipRequirements: undefined
-    },
-    allowAddressSelect: true,
-    autoGenerateNonce: false
+   
+    ownershipRequirements: { ... }
 }
 ```
-
-**Allow Reuse of BitBadges Sign-In**
-
-```typescript
-const popupParams = {
-    ...,
-    allowReuseOfBitBadgesSignIn: true
-}
-```
-
-This flag will allow a user's authentication on BitBadges to double as their signature (or proof of identity) for their SIWBB request. This is better for user experience because it is one less signature potentially, but for verification purposes, you will not receive a signature, and no signature will be stored with the request.
 
 **Other Sign Ins**
 
@@ -144,7 +117,7 @@ const popupParams = {
 }
 ```
 
-**name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user. They are not included anywhere in the message.
+**name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user.&#x20;
 
 **Simulations**
 
@@ -152,8 +125,6 @@ const popupParams = {
 const popupParams = {
     ...,
     verifyOptions: {
-        expectedChallengeParams: { ... ],
-        skipSignatureVerification: false,
         ...
     },
     expectVerifySuccess: true
@@ -173,4 +144,4 @@ const popupParams = {
 }
 ```
 
-**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified. Note this will require the user to be signed in to BitBadges to fetch the proofs (which may be an additional step in the process).
+**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified.
