@@ -22,4 +22,4 @@ If using the BitBadges claim builder, you can customize your claiming flow to tr
 
 The easiest way to do this is through the Zapier integration. Select Stripe (or another payment service) as the trigger and complete the claim upon new subscription, new payment, etc.
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
