@@ -28,12 +28,12 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user attestations). Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
 
-* Prompting and verifying users
+* Prompting and verifying users for proof of address
 * Querying asset ownership (badges, address lists, NFTs on other chains)
 * Verify attestation signatures from other issuers
 * Check sign-ins of other socials (Discord, GitHub, Google, X)
 
-Once the above is checked, the user is authenticated, excluding any other self-implemented requirements. From here, we leave the rest up to you. SIWBB does not handle sessions, etc. Those are all to be implemented alongside SIWBB using industry standards such as JWTs, or whatever method you prefer.
+We leave the rest up to you. SIWBB does not handle sessions, etc. Those are all to be implemented alongside SIWBB using industry standards such as JWTs, or whatever method you prefer.
 
 **Is the flow OAuth 2.0 compatible?**
 
@@ -72,7 +72,7 @@ The BitBadges API currently supports all BitBadges assets, as well as Ethereum /
 
 **Verifying Attestations / Signatures**
 
-Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university.
+Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university. These can be attached along with the sign in request.
 
 ## **Immediate or Delayed Authentication?**
 

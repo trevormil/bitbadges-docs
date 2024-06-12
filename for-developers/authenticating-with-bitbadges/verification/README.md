@@ -24,19 +24,9 @@ if (!verificationResponse.success) {
     throw new Error("Not authenticated");
 }
 
-// Alternative syntax: 
-// const blockinChallenge = await BlockinChallenge.FromSIWBBRequestId(api, { code, options });
-// const verificationResposne = blockinChallenge.verificationResponse
-// ...
-
-// If you want to verify with new options:
-// const api = YOUR_API_INSTANCE
-// await blockinChallenge.verify(api, { ... });
-// console.log(blockinChallenge.verficationResponse)
-
 
 //TODO: Handle other checks and logic here
-// - Prevent replay attacks by checking the timestamp of the message or nonces
+// - Prevent replay attacks by checking timestamps or nonces
 // - Need to cache the signature and message for later use?
 // - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
 // - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
@@ -78,9 +68,7 @@ Note that we do not provide verification responses by default. You will need to 
 ```typescript
 await blockinChallenge.verify(api, ...);
 await blockinChallenge.verifyOffline(...);
-
 // or
-
 await BitBadgesApi.verifySIWBBRequest({ ... });
 await BitBadgesApi.getAndVerifySIWBBRequest({ code: blockinChallenge._docId, options: { ... }});
 ```
@@ -106,6 +94,8 @@ Does not check :x:
 * The ownership requirements content is not checked. You should assume the requirements were manipulated and check that the badges / assets are correct and match your desired auth details.
 * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
 * Does not check the content of the attestation messages or anything else about the attestations
+
+
 
 **Flash Ownership Attacks**
 
