@@ -9,7 +9,14 @@ The response will contain all authentication details, including a **verification
 <pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, AttestationsProof } from "bitbadgesjs-sdk";
 </strong>
 
-const options: VerifyChallengeOptions = { ... }
+const options: VerifySIWBBOptions = { 
+    // Set expected values for potentially manipulated values
+    ownershipRequirements,
+    otherSignIns: [],
+    
+    // Make sure the request is valid within 
+    issuedAtTimeWindowMs: 60 * 1000
+}
 const res = await BitBadgesApi.getAndVerifySIWBBRequest({ 
     code, 
     options,
@@ -85,15 +92,15 @@ Does check :white\_check\_mark:
 * Asset ownership criteria is met for the address (if requested)
 * Any options specified in the verify challenge options
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+* The ownership requirements and other sign ins are correctly returned as expected. This is checked by you specifying the correct options for verification.
 
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
 * Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
-* The ownership requirements content is not checked. You should assume the requirements were manipulated and check that the badges / assets are correct and match your desired auth details.
 * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
-* Does not check the content of the attestation messages or anything else about the attestations
+* Does not check the content of the attestation messages or anything else about the attestations.
 
 
 
