@@ -23,7 +23,6 @@ export interface CodeGenQueryParams {
   description: string;
   image: string;
 
-  verifyOptions?: VerifyChallengeOptions;
   expectVerifySuccess?: boolean;
 
   otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
