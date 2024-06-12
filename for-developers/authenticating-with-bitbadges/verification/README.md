@@ -93,6 +93,7 @@ Does check :white\_check\_mark:
 * Any options specified in the verify challenge options
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 * The ownership requirements and other sign ins are correctly returned as expected. This is checked by you specifying the correct options for verification.
+* Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
 
 Does not check :x:
 
