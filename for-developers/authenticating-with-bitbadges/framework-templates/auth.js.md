@@ -18,7 +18,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 This is a provider template integrated into Next Auth JS to help you get started.&#x20;
 
-Starter Repository: [https://github.com/BitBadges/bitbadges-auth-example](https://github.com/BitBadges/bitbadges-auth-example)
+Starter Repository: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
 
 You will need to configure your environment variables as such
 
