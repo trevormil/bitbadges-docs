@@ -22,6 +22,20 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 <figure><img src="../../.gitbook/assets/image (80).png" alt="" width="563"><figcaption></figcaption></figure>
 
+## Alternatives
+
+Before diving in, we want to preface by saying that Sign In with BitBadges may be overkill for many use cases. The Peer Address Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
+
+Peer Address Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) all directly via the site. This can establish proof of address because BitBadges accounts require proof of address for authentication in the first place. So for example, you, as a verifier, might verify proof of address ownership then view their BitBadges profile to verify badge ownership.
+
+<figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+
+While this is easy to use, its functionality is limited:
+
+* Non-customizable: Everything is directly in-site. You do not have any backend server setup for custom functionality or automatic processing. This also means session handling is not possible.
+* Only supports proof of address. You can navigate to a profile once verified, but it doesn't support native SIWBB features like auto-checking ownership requirements, other tracked sign-ins, sessions, and attestations.
+* Requires two-way connection: Both devices must be online, and there is a process to initiate the websocket connection. The prover must also be signed in at authentication time (whereas SIWBB QR codes are pre-generated and only require sign in at generation time).
+
 ## **Execution Flow**
 
 **Scope of SIWBB**
