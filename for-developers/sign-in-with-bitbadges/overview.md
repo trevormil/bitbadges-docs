@@ -22,19 +22,25 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 <figure><img src="../../.gitbook/assets/image (80).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## Alternatives
+## P2P Verification
 
-Before diving in, we want to preface by saying that Sign In with BitBadges may be overkill for many use cases. The Peer Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
+Before diving in, we want to preface by saying that fully implementing Sign In with BitBadges may be overkill for many use cases. The Peer Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
 
-Peer Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) and potentially ownership of badges all directly via the site. This can establish proof of address because BitBadges accounts require proof of address for authentication in the first place. So for example, you, as a verifier, might verify proof of address ownership then view their BitBadges profile to verify badge ownership.
+Peer Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) and potentially ownership of badges / attestations all directly via the site.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
-While this is easy to use and has no setup required, its functionality is limited:
+There are two modes supported:
 
-* Non-customizable: Everything is directly in-site. You do not have any backend server setup for custom functionality or automatic processing. This also means session handling is not possible.
-* Only supports proof of address and checking badge ownership. It doesn't support native SIWBB features like other tracked sign-ins, sessions, and attestations.
-* Requires two-way connection: Both devices must be online, and there is a handshake process to initiate the websocket connection. The prover must also be signed in at authentication time. This is as opposed to SIWBB QR codes where the prover can present a pre-generated QR code in an offline setting without signing in.
+* Device to device: Two devices can establish a websocket connection through a QR code. The prover can show the verifier certain criteria is met. Verification is done directly on the verifier's device, and they can visit profiles for more information.&#x20;
+  * Pros: No setup required. Accessible on the go. All directly in-site.
+  * Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
+  * Example Uses
+    * A restaurant sets up a prover QR code on their front window. Anyone can scan this QR code and verify badge ownership / attestations, such as a inspection quality badge.
+    * In an in-person meetup, you want to verify another user's identity.
+* Pre-Configured Client ID: If the verifier's client ID is known ahead of time, they can configure it and generate QR codes to be presented on the fly. The verifier scans the QR codes and can handle it via their backend.
+  * Pros: QRs generated on the fly. Verification handled on backend so can be customized.
+  * Cons: Getting client ID may take time. Requires backend setup. Requires two way connection and prover must be online and authenticated at authentication time (as opposed to pre-generated ones with SIWBB where prover must only be online at generation time).
 
 ## **Execution Flow**
 
