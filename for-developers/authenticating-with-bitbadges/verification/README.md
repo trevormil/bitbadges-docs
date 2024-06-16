@@ -82,22 +82,24 @@ await BitBadgesApi.getAndVerifySIWBBRequest({ code: blockinChallenge._docId, opt
 
 ## **IMPORTANT: What is verified vs not?**
 
-It is important to note that calling any verification function only checks from a cryptographic standpoint and does not implement any application specific logic. We handle checking the user's signature and verifying ownership of specified badges (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
+It is important to note that calling any verification function only checks from a cryptographic standpoint and does not implement any application specific logic. We handle checking the user's signature and verifying ownership of specified badges / attestations (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
 
-As an authentication provider, you should NOT assume the returned details are correct. It is critical you verify the message is in the expected format when received from the user. There is no guarantee that the user (or BitBadges) did not manipulate the original message and sign a manipulated one. Blockin verifies the message as-is, so a manipulated message will get a manipulated verification response.&#x20;
+As an authentication provider, you should NOT assume the parameters are correct. It is critical that you verify that the parameters are as expected because the user could change them. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification. This mainly includes checking that the returned ownership requirements, attestations, and other tracked sign ins were correctly configured.
+
+For example, if the user manipulates the request to check x1 of badge ID 2 instead of badge ID 1, BItBadges checks the received parameters. You need to check on your end that x1 of badge ID 1 was checked. This can be done server-side using the verification options.
 
 Does check :white\_check\_mark:
 
-* Proof of address ownership
+* Proof of address ownership via their authenticated BitBadges account
 * Asset ownership criteria is met for the address (if requested)
 * Any options specified in the verify challenge options
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
-* The ownership requirements and other sign ins are correctly returned as expected. This is checked by you specifying the correct options for verification.
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
 
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
+* The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
 * Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
 * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
