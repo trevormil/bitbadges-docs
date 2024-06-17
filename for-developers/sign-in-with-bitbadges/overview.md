@@ -30,17 +30,14 @@ Peer Verification lets a prover device (which is signed in to a BitBadges accoun
 
 <figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
-There are two modes supported:
+Pros: No setup required. Accessible on the go. All directly in-site.
 
-* Device to device: Two devices can establish a websocket connection through a QR code. The prover can show the verifier certain criteria is met. Verification is done directly on the verifier's device, and they can visit profiles for more information.&#x20;
-  * Pros: No setup required. Accessible on the go. All directly in-site.
-  * Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
-  * Example Uses
-    * A restaurant sets up a prover QR code on their front window. Anyone can scan this QR code and verify badge ownership / attestations, such as a inspection quality badge.
-    * In an in-person meetup, you want to verify another user's identity.
-* Pre-Configured Client ID: If the verifier's client ID is known ahead of time, they can configure it and generate QR codes to be presented on the fly. The verifier scans the QR codes and can handle it via their backend.
-  * Pros: QRs generated on the fly. Verification handled on backend so can be customized.
-  * Cons: Getting client ID may take time. Requires backend setup. Requires two way connection and prover must be online and authenticated at authentication time (as opposed to pre-generated ones with SIWBB where prover must only be online at generation time).
+Cons:  No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
+
+Example Uses
+
+* A restaurant sets up a prover QR code on their front window. Anyone can scan this QR code and verify badge ownership / attestations, such as a inspection quality badge.
+* In an in-person meetup, you want to verify another user's identity.
 
 ## **Execution Flow**
 
