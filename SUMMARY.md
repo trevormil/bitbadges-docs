@@ -148,6 +148,7 @@
   * [Framework Templates](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [Auth.js](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
+    * [PassportJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
   * [Authentication URL + Parameters](for-developers/sign-in-with-bitbadges/authentication-url-+-parameters.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Ownership Requirements](for-developers/sign-in-with-bitbadges/challenge-parameters.md)
