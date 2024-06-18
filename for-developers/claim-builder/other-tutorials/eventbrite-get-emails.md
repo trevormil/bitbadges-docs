@@ -25,4 +25,10 @@
 3. Right-click in the input field and select "Paste" from the context menu.
 4. Ensure all copied email addresses are correctly pasted.
 
+
+
+
+
+<figure><img src="../../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+
 ###

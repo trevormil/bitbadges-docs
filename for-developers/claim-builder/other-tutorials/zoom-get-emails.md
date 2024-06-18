@@ -22,3 +22,7 @@
 #### Step 4: Paste into BitBadges Email Plugin
 
 1. Finally, paste the addresses into the email plugin when creating a claim.
+
+
+
+<figure><img src="../../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
