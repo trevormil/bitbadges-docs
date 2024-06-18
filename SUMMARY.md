@@ -141,6 +141,7 @@
     * [Build a Distribution Tool](for-developers/claim-builder/other-tutorials/build-a-distribution-tool.md)
     * [Calendly - Get Emails](for-developers/claim-builder/other-tutorials/calendly-get-emails.md)
     * [Google Calendar - Get Emails](for-developers/claim-builder/other-tutorials/google-calendar-get-emails.md)
+    * [Page](for-developers/claim-builder/other-tutorials/page.md)
 * [💾 Self-Hosted Balances](for-developers/self-hosted-balances.md)
   * [Overview](for-developers/self-hosted-balances/overview.md)
   * [Examples / Tutorials](for-developers/self-hosted-balances/examples-tutorials/README.md)
