@@ -2,7 +2,7 @@
 
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the claim attempt should be denied or successful, plus potentially tells us how to manage the plugin state. All plugins must pass for a claim attempt to be successful.
 
-We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible.
+We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. If configured, we can provide you with certain information like user emails / socials which are authenticated on our end.&#x20;
 
 To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim.&#x20;
 
@@ -22,7 +22,7 @@ If your plugin requires user inputs from the frontend side, we will direct the u
 
 
 
-Via the query params, we will pass some contextual information as well.
+Via the query params, we will pass some contextual information as well. Note that the address is only passed if you configue to receive the address in the configuration.
 
 ```typescript
 window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
@@ -135,11 +135,18 @@ const payload = {
     ...customBody,//if applicable
         
     // Context info
+    
+    email: { id: 'bob@abc.com' }, //If pass email is configured
+    discord: { id: '...', username: '...', discriminator: '...' }, //If configured
+    twitch: { id: '...', username: '...' }, //If configured
+    twitter: { id: '...', username: '...' }, //If configured
+    github: { id: '...', username: '...' }, //If configured
+    google: { id: '...', username: '...' }, //If configured
     priorState: { }, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
-    cosmosAddress: context.cosmosAddress,
+    cosmosAddress: context.cosmosAddress, //If pass address is configured
     _isSimulation: context._isSimulation,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
