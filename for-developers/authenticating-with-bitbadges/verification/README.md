@@ -17,7 +17,7 @@ const options: VerifySIWBBOptions = {
     // Make sure the request is valid within 
     issuedAtTimeWindowMs: 60 * 1000
 }
-const res = await BitBadgesApi.getAndVerifySIWBBRequest({ 
+const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
     code, 
     options,
     clientSecret: '...',
@@ -73,11 +73,8 @@ const blockinChallenge = res.SIWBBRequests[0];
 Note that we do not provide verification responses by default. You will need to verify each individually. If you have time-dependent checks, note that by default, verification is done for the current time.
 
 ```typescript
-await blockinChallenge.verify(api, ...);
-await blockinChallenge.verifyOffline(...);
-// or
 await BitBadgesApi.verifySIWBBRequest({ ... });
-await BitBadgesApi.getAndVerifySIWBBRequest({ code: blockinChallenge._docId, options: { ... }});
+await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code: blockinChallenge._docId, options: { ... }});
 ```
 
 ## **IMPORTANT: What is verified vs not?**
@@ -88,24 +85,22 @@ As an authentication provider, you should NOT assume the parameters are correct.
 
 For example, if the user manipulates the request to check x1 of badge ID 2 instead of badge ID 1, BItBadges checks the received parameters. You need to check on your end that x1 of badge ID 1 was checked. This can be done server-side using the verification options.
 
-Does check :white\_check\_mark:
+Does check :white_check_mark:
 
-* Proof of address ownership via their authenticated BitBadges account
-* Asset ownership criteria is met for the address (if requested)
-* Any options specified in the verify challenge options
-* Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
-* Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
+-   Proof of address ownership via their authenticated BitBadges account
+-   Asset ownership criteria is met for the address (if requested)
+-   Any options specified in the verify challenge options
+-   Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+-   Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
 
 Does not check :x:
 
-* Additional app-specific criteria needed for signing in
-* The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
-* Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
-* Does not handle sessions or check any session information
-* Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
-* Does not check the content of the attestation messages or anything else about the attestations.
-
-
+-   Additional app-specific criteria needed for signing in
+-   The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
+-   Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
+-   Does not handle sessions or check any session information
+-   Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+-   Does not check the content of the attestation messages or anything else about the attestations.
 
 **Flash Ownership Attacks**
 
@@ -124,4 +119,3 @@ const isVerified = await blockinChallenge.verifyOffline(api, options); // Verify
 //Backend - Full verification checking everything
 const isVerified = await blockinChallenge.verify(api, options); // Verify with all options
 ```
-

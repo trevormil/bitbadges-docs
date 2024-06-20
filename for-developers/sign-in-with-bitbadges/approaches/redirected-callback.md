@@ -30,8 +30,8 @@ For codes created with redirect URIs, BitBadges will store them temporarily (min
 
 To ensure the security of the data exchange process, consider the following practices:
 
-* Validate the `state` parameter according to your requirements (if applicable)
-* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+-   Validate the `state` parameter according to your requirements (if applicable)
+-   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
 
 ```typescript
 const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -40,7 +40,7 @@ const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const state = req.query.state as string;
 
   //TODO: Fetch authentication details (see Verification page)
-  //      const res = await BitBadgesApi.getAndVerifySIWBBRequest({ code, ... });
+  //      const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code, ... });
   //TODO: Any application specific requirements
 })
 ```

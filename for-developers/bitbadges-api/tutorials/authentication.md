@@ -40,7 +40,7 @@ const callback = async (req: NextApiRequest, res: NextApiResponse) => {
 
 You then need to exchange the code for an access token.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>// POST https://api.bitbadges.io/api/v0/oauth/token
+<pre class="language-typescript"><code class="lang-typescript"><strong>// POST https://api.bitbadges.io/api/v0/siwbb/token
 </strong><strong>const res = await BitBadgesApi.getOauthAccessToken({
 </strong>    client_id,
     client_secret,
@@ -83,7 +83,7 @@ Using the refresh token obtained from step 3, you can exchange for a new access 
 Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections tab in-site.
 
 ```typescript
-// POST https://api.bitbadges.io/api/v0/oauth/token/revoke
+// POST https://api.bitbadges.io/api/v0/siwbb/token/revoke
 await BitBadgesApi.revokeOauthAuthorization({ token });
 ```
 

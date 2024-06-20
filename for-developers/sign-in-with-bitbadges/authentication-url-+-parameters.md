@@ -2,40 +2,38 @@
 
 Each implementation will feature a unique authentication URL tailored to your application's needs. Users must visit this URL to sign the challenge message. Parameters will vary based on your specific implementation and requirements.
 
-The base URL is [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen), with parameters appended to it. For instance:
+The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it. For instance:
 
 ```vbnet
-https://bitbadges.io/auth/codegen?name=Event&description=...
+https://bitbadges.io/siwbb/authorize?name=Event&description=...
 ```
 
 This URL structure adheres to the following interface:
 
-* **Base URL**: [https://bitbadges.io/auth/codegen](https://bitbadges.io/auth/codegen)
-* **Parameters**: Custom parameters specific to your implementation.
+-   **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
+-   **Parameters**: Custom parameters specific to your implementation.
 
 ```typescript
 import { CodeGenQueryParams } from 'bitbadgesjs-sdk';
 
 export interface CodeGenQueryParams {
-  ownershipRequirements?: AssetConditionGroup<NumberType>;
+    ownershipRequirements?: AssetConditionGroup<NumberType>;
 
-  name: string;
-  description: string;
-  image: string;
+    name: string;
+    description: string;
+    image: string;
 
-  expectVerifySuccess?: boolean;
+    expectVerifySuccess?: boolean;
 
-  otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
+    otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
 
-  redirectUri?: string;
-  clientId: string;
-  state?: string;
+    redirectUri?: string;
+    clientId: string;
+    state?: string;
 
-  expectAttestationsPresentations?: boolean;
+    expectAttestationsPresentations?: boolean;
 }
 ```
-
-
 
 We recommend using the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
@@ -76,7 +74,7 @@ Which badges / assets should we verify that the user owns? We have dedicated tha
 ```typescript
 const popupParams = {
     ...,
-   
+
     ownershipRequirements: { ... }
 }
 ```
