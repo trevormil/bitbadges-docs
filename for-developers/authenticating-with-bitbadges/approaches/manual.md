@@ -21,3 +21,7 @@ The code will be stored in the users' BitBadges account under the Authentication
 Like we mentioned, obtaining the code is up to you. The code will be a 32 byte hex string that you need to get. Typically, this can be via you scanning the users' QR code (whose contents are the code itself).
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
+
+**Custom QR Implementations**
+
+Note that this is provided for convenience, but your application may have differnet requirements for QR codes. You may consider self-implementing a solution as well. You may have to use the callback approach and generate QRs for your users on your end.
