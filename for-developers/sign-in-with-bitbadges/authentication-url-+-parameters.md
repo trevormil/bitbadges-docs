@@ -93,7 +93,9 @@ const popupParams = {
 }
 ```
 
+Its important that you verify the ownership requirements are correct on your end during verification because this is a client-side parameter that may be changed. More is explained on the verification page.
 
+Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements after the fact too.&#x20;
 
 **Other Sign Ins**
 
@@ -107,6 +109,8 @@ const popupParams = {
 If **otherSignIns** is defined, we will additionally make the user sign in to the requested services and pass you their connected username / account ID with the authentication details. Note we do not pass any access tokens or private details (simply username / account ID).
 
 This can be used to implement, for example, badge gating Discord servers. Check badges, address ownership, and Discord account ownership via here, then grant roles based on successful authentication.
+
+Its important that you verify this correct on your end during verification because this is a client-side parameter that may be changed. More is explained on the verification page.
 
 ```typescript
 {
