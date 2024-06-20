@@ -2,7 +2,7 @@
 
 Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, and verify ownership of badges, NFTs, and more. This documentation will guide you through utilizing our authentication tools effectively.
 
-Note that this is different from the BitBadges API authorization. Sign In with BitBadges aims to be a way to authenticate users for YOUR application. It does not grant access to any gated API requests on behalf of the user. Thus, no access tokens are obtainable or used in this flow.
+This is the all-in-one flow for authentication and authorization. We envision most use cases will just want to authenticate users for their application; however, this flow also supports authorizing scopes for the BItBadges API.
 
 #### Example Use Cases:
 

@@ -85,7 +85,6 @@
   * [Routes](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
-    * [API Authorization](for-developers/bitbadges-api/tutorials/authentication.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
     * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
     * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)

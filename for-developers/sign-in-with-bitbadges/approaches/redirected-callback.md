@@ -2,7 +2,7 @@
 
 The callback approach is useful if you want to obtain the authentication details as soon as the user generates them. For immediate authentication, the callback approach is the only option. For delayed authentication, this is useful if you want to cache the details upon the user signing them, rather than fetching from the API at verification time (e.g. the [No Callback method](../../authenticating-with-bitbadges/approaches/manual.md)).
 
-To enable callbacks, the popupParams must have **redirectUri** set. With the callback, the user should never even see the code (or resulting signature). Everything should be handled behind the scenes.
+To enable callbacks, the popupParams must have a redirect URI set. With the callback, the user should never even see the code (or resulting signature). Everything should be handled behind the scenes.
 
 **How do callbacks work?**
 
@@ -30,8 +30,8 @@ For codes created with redirect URIs, BitBadges will store them temporarily (min
 
 To ensure the security of the data exchange process, consider the following practices:
 
--   Validate the `state` parameter according to your requirements (if applicable)
--   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+* Validate the `state` parameter according to your requirements (if applicable)
+* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
 
 ```typescript
 const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {

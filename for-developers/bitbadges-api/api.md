@@ -97,8 +97,8 @@ Otherwise, check out the docs below. This follows a standard OAuth 2.0 flow.&#x2
 
 Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application.
 
-{% content-ref url="tutorials/authentication.md" %}
-[authentication.md](tutorials/authentication.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### Confined Responses

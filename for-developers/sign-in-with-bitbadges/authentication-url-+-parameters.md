@@ -10,28 +10,28 @@ https://bitbadges.io/siwbb/authorize?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
--   **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
--   **Parameters**: Custom parameters specific to your implementation.
+* **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
+* **Parameters**: Custom parameters specific to your implementation.
 
 ```typescript
 import { CodeGenQueryParams } from 'bitbadgesjs-sdk';
 
 export interface CodeGenQueryParams {
-    ownershipRequirements?: AssetConditionGroup<NumberType>;
+  ownershipRequirements?: AssetConditionGroup<NumberType>;
+  expectVerifySuccess?: boolean;
 
-    name: string;
-    description: string;
-    image: string;
+  name?: string;
+  description?: string;
+  image?: string;
 
-    expectVerifySuccess?: boolean;
+  otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
 
-    otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
+  redirect_uri?: string;
+  client_id: string;
+  state?: string;
+  scope?: string;
 
-    redirectUri?: string;
-    clientId: string;
-    state?: string;
-
-    expectAttestationsPresentations?: boolean;
+  expectAttestationsPresentations?: boolean;
 }
 ```
 
@@ -43,13 +43,13 @@ We recommend using the helper tool available at [https://bitbadges.io/auth/linkg
 
 **App Configuration**
 
-All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer). You can create multiple apps for differet use cases.
+All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer). You can create multiple apps for different use cases.
 
-Each app is identified by the **clientId,** which is mandatory. The **redirectUri** is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirectUri (if applicable).
+Each app is identified by the client ID**,** which is mandatory. The redirect URI is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirect URI (if applicable).
 
-For instant authentication, the **redirectUri** is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
+For instant authentication, the redirect URI is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
 
-If you are implementing delayed authentication where the user is to present you their code manually, you can leave the **redirectUri** blank.
+If you are implementing delayed authentication where the user is to present you their code manually, you can leave the redirect URI blank.
 
 If it is blank, we will store the code in the user's account under the Authentication Codes tab. They are to manually present you the code.
 
@@ -57,11 +57,25 @@ If it is blank, we will store the code in the user's account under the Authentic
 const popupParams = {
     ...,
 
-    clientId: '...',
-    redirectUri: 'https://...',
+    client_id: '...',
+    redirect_uri: 'https://...',
     state: ''
 }
 ```
+
+**Scopes**
+
+```typescript
+const popupParams = {
+    ...,
+
+    scope: 'Complete Claims,Read Address Lists'
+}
+```
+
+Visit https://bitbadges.io/auth/linkgen to see the full list of approved scopes. You only should specify the labels (scope names). Let us know if you would like us to add other scopes. These should be comma delimited. By default, we always return the user crypto address even if no scope is specified. Scopes must be used with instant authentication an dredirect URIs. Delayed QR codes are not supported if scopes are present.
+
+By specifying scopes, we will give you an access token / refresh token to use. If no scopes are specified, we will not give you such tokens.
 
 **Ownership Requirements**
 
@@ -78,6 +92,8 @@ const popupParams = {
     ownershipRequirements: { ... }
 }
 ```
+
+
 
 **Other Sign Ins**
 
@@ -114,7 +130,7 @@ const popupParams = {
 }
 ```
 
-**name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user.&#x20;
+**name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user.
 
 **Simulations**
 

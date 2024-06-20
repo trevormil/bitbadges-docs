@@ -2,9 +2,13 @@
 
 ## Verification
 
-From the prior pages, you should now have the **code** for the user. You can now fetch the authentication details for the user, by providing the code and valid app configuration details. Be sure to keep **clientSecret** secret.
+From the prior pages, you should now have the **code** for the user. You can now fetch the authentication details for the user, by providing the code and valid app configuration details. Be sure to keep the client secret secret. The response will contain all authentication details, including a **verificationResponse**.
 
-The response will contain all authentication details, including a **verificationResponse**. Note that the signature may be blank if you selected **allowReuseOfBitBadgesSignIn.**
+**Access Tokens vs None**
+
+If you specified API authorization scopes to be able to access, we return access tokens and refresh tokens for you to perform this functionality. In other words, scopes.length > 0. Otherwise, we do not return anything, and you will receive the user crypto address in the response. You will then handle everything else.
+
+**Verification Example**
 
 <pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, AttestationsProof } from "bitbadgesjs-sdk";
 </strong>
@@ -13,24 +17,27 @@ const options: VerifySIWBBOptions = {
     // Set expected values for potentially manipulated values
     ownershipRequirements,
     otherSignIns: [],
-    
     // Make sure the request is valid within 
     issuedAtTimeWindowMs: 60 * 1000
 }
 const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
     code, 
     options,
-    clientSecret: '...',
-    clientId: '...',
-    redirectUri: '...' //only needed if redirected
+    grant_type: 'authorization_code',
+    client_secret: '...',
+    client_id: '...',
+    redirect_uri: '...' //only needed if redirected
 });
-const blockinChallenge = res.blockin;
-const { ownershipRequirements, address, chain, verificationResponse, otherSignIns, attestationsPresentations } = blockinChallenge;
+
+const { ownershipRequirements, address, chain, verificationResponse, otherSignIns, attestationsPresentations } = res;
 if (!verificationResponse.success) {
     console.log(verificationResponse.errorMessage);    
     throw new Error("Not authenticated");
 }
 
+// If you received an access token because you are accessing the API w/ scopes
+const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
+// TODO: Store these in the users sessions for future use and access
 
 //TODO: Handle other checks and logic here
 // - Prevent replay attacks by checking timestamps or nonces
@@ -77,6 +84,48 @@ await BitBadgesApi.verifySIWBBRequest({ ... });
 await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code: blockinChallenge._docId, options: { ... }});
 ```
 
+## Access Tokens
+
+If you do not have access tokens, you can skip this section. Most apps only need to identify the user address.
+
+With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
+
+<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+
+If you are using the SDK, you can instead do this which handles the header setting:
+
+```typescript
+BitBadgesApi.setAccessToken(token);
+BitBadgesApi.unsetAccessToken();
+```
+
+Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. Note that they may also become invalid as the user revokes access to them as well.&#x20;
+
+**Refreshing**
+
+```typescript
+const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
+    refresh_token
+    grant_type: 'refresh_token',
+    client_secret: '...',
+    client_id: '...',
+    redirect_uri: '...' //only needed if redirected
+});
+
+const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
+```
+
+Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.&#x20;
+
+**Revoking Access**
+
+Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections -> Authorizations tab in-site. This can be done by either the user or the app.
+
+```typescript
+// POST https://api.bitbadges.io/api/v0/siwbb/token/revoke
+await BitBadgesApi.revokeOauthAuthorization({ token });
+```
+
 ## **IMPORTANT: What is verified vs not?**
 
 It is important to note that calling any verification function only checks from a cryptographic standpoint and does not implement any application specific logic. We handle checking the user's signature and verifying ownership of specified badges / attestations (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
@@ -85,37 +134,23 @@ As an authentication provider, you should NOT assume the parameters are correct.
 
 For example, if the user manipulates the request to check x1 of badge ID 2 instead of badge ID 1, BItBadges checks the received parameters. You need to check on your end that x1 of badge ID 1 was checked. This can be done server-side using the verification options.
 
-Does check :white_check_mark:
+Does check :white\_check\_mark:
 
--   Proof of address ownership via their authenticated BitBadges account
--   Asset ownership criteria is met for the address (if requested)
--   Any options specified in the verify challenge options
--   Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
--   Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
+* Proof of address ownership via their authenticated BitBadges account
+* Asset ownership criteria is met for the address (if requested)
+* Any options specified in the verify challenge options
+* Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+* Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
 
 Does not check :x:
 
--   Additional app-specific criteria needed for signing in
--   The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
--   Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
--   Does not handle sessions or check any session information
--   Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
--   Does not check the content of the attestation messages or anything else about the attestations.
+* Additional app-specific criteria needed for signing in
+* The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
+* Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
+* Does not handle sessions or check any session information
+* Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+* Does not check the content of the attestation messages or anything else about the attestations.
 
 **Flash Ownership Attacks**
 
 If authenticating with assets, you should be aware of flash ownership attacks. Basically, two sign ins at different times would be approved if the badge is transferred between the time of the first sign in and the second one. You may have to implement a one use per badge approach. Or, you can make the badges non-transferable during the time period of sign ins. See [here](https://blockin.gitbook.io/blockin/developer-docs/core-concepts) for more information.
-
-**Frontend vs Backend?**
-
-Typically, your backend is the one that authenticates users and handles sessions, so verification is often done there. However, verifying on frontend vs backend is up to you and your application's requirements.
-
-You can also consider a hybrid approach (e.g. check certain stuff and fail early on frontend). For example, you may do:
-
-```tsx
-//Frontend - Fails early if offline only checks fail
-const isVerified = await blockinChallenge.verifyOffline(api, options); // Verify without assets. Does not require an API call.
-
-//Backend - Full verification checking everything
-const isVerified = await blockinChallenge.verify(api, options); // Verify with all options
-```
