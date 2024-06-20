@@ -6,7 +6,9 @@ From the prior pages, you should now have the **code** for the user. You can now
 
 **Access Tokens vs None**
 
-If you specified API authorization scopes to be able to access, we return access tokens and refresh tokens for you to perform this functionality. In other words, scopes.length > 0. Otherwise, we do not return anything, and you will receive the user crypto address in the response. You will then handle everything else.
+If you specified API authorization scopes to be able to access, we return access tokens and refresh tokens for you to perform this functionality. In other words, scopes.length > 0. Otherwise, we do not return anything, and you will just receive the user crypto address in the response. You will then handle everything else on your end (session handling, etc).
+
+If no access tokens are to be needed, we will simply return the user address as the access token for comaptibility with tools (just so the access token is not blank).
 
 **Verification Example**
 
@@ -53,6 +55,8 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 // - Verify the on-chain anchors / update history are correct
 // - Verify the update history is correct
 </code></pre>
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **Verification - Manual**
 
@@ -116,6 +120,8 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 ```
 
 Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.&#x20;
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 **Revoking Access**
 

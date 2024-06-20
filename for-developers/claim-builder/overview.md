@@ -54,4 +54,4 @@ The BitBadges claim builder adopts a plugin-based approach to allow for maximum 
 
 {% embed url="https://bitbadges.io/claims/directory" %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
