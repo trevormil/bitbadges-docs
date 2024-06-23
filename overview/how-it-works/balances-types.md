@@ -8,7 +8,7 @@ BitBadges offers different ways to store the badge balances and owners for your 
 
 Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain.
 
-This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including the core $BADGE currency).
+This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including $BADGE).
 
 ## Non-Public
 

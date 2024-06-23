@@ -106,7 +106,7 @@ This will return the user's cosmos address, account ID, sequence (nonce), and pu
 
 IMPORTANT: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1.&#x20;
 
-To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any gas fees).
+To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
 
 To get the public key for an unregistered user, see below. Public keys are expected to be in base64 format.
 
