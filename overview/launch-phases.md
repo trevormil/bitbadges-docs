@@ -8,7 +8,7 @@ Betanet is the initial phase of BitBadges upon launch. This is a phase where we 
 
 ### **Phase 2: Mainnet**
 
-Once betanet is concluded and we feel ready, we will officially deploy a mainnet version of BitBadges. Everything will carry over expect. In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. This will most likely be started when the betanet faucet runs out. At this time, we will also look to explore other means of $BADGE distribution.
+Once betanet is concluded and we feel ready, we will officially deploy a mainnet version of BitBadges. Everything will carry over. In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. This will most likely be started when the betanet faucet runs out. At this time, we will also look to explore other means of $BADGE distribution and exchanging.
 
 ### **Tokenomics of $BADGE**
 
