@@ -14,6 +14,8 @@ Once betanet is concluded and we feel ready, we will officially deploy a mainnet
 
 $BADGE is the in-app compute credits system we use to maintain our infrastructure with, such as staking for nodes or creating badges. All important operations will require a fee of some number of credits.
 
+IMPORTANT: $BADGE is NOT to be speculated upon. It is a system which is intended for purchase and usage as cimpute credits, not trading, exchanging, etc.
+
 **Total Supply: 100,000,000**
 
 All $BADGE credits will be minted upon mainnet genesis (i.e. no inflation / deflation).&#x20;
