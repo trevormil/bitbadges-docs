@@ -8,8 +8,8 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 **Chain IDs:** When a chain ID is required, use the following:
 
-* "bitbadges\_1-1" for the mainnet chain ID (currently inactive)
-* "bitbadges\_1-2" for the betanet chain ID
+* "bitbadges\_1-1" for the mainnet chain ID
+* "bitbadges\_1-2" for the testnet chain ID
 
 **Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
 

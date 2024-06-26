@@ -11,7 +11,7 @@ You have a couple options for fetching / building binaries. The source code live
 <strong>docker build -t bitbadgeschaind .
 </strong></code></pre>
 
-By default, it builds all necessary binaries for all upgrades from genesis. Of you just want the latest binary, you can add the flags --build-arg BUILD\_LATEST\_ONLY=true to the build command.
+By default, it builds all necessary binaries for all upgrades from genesis. Of you just want the latest binary, you can add the flags --build-arg BUILD_LATEST_ONLY=true to the build command.
 
 ```
 docker build --build-arg BUILD_LATEST_ONLY=true -t bitbadgeschaind .
@@ -29,7 +29,7 @@ Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet]
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
+If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86_64.so: cannot open shared object file: No such file or directory".
 
 Example
 
@@ -87,7 +87,7 @@ RUN make cosmovisor
 
 **Installing Cosmovisor**
 
-You will then need to set the following environment variables. The DAEMON\_HOME will be the home of your config files.
+You will then need to set the following environment variables. The DAEMON_HOME will be the home of your config files.
 
 <pre class="language-docker"><code class="lang-docker"><strong>DAEMON_HOME=/root/.bitbadgeschain
 </strong>DAEMON_NAME=bitbadgeschaind
@@ -101,24 +101,24 @@ Then, run the following to setup your Cosmovisor directory. The executable shoul
 cosmosvisor init ./bitbadgeschaind
 ```
 
-This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.&#x20;
+This will create the necessary folders and copy the executable into the DAEMON_HOME/cosmovisor/genesis/bin.&#x20;
 
 IMPORTANT: Depending on your sync method (explained later), you will need to download all relevant executables. If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time. See Adding Upgrades below. You must repeat this process for all such executables.
 
 **Adding Upgrades**
 
-For a given upgrade, it will have a new binary and a \<upgrade-name>.  \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.&#x20;
+For a given upgrade, it will have a new binary and a \<upgrade-name>. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.&#x20;
 
 Depending on your version of cosmovisor, you may be able to run the following. Again, make sure the binary name is bitbadgeschaind.
 
 ```
-cosmovisor add-upgrade ... 
+cosmovisor add-upgrade ...
 ```
 
 Or, to manually upgrade, do the following.
 
 1. Download the new binary and name it bitbadgeschaind. Do this in a separate folder to not interfere with anything currently running.
-2. Create the DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
+2. Create the DAEMON_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
 3. Copy the new upgrade executable to the folder (keeping its name as bitbadgeschaind).
 
 ```dockerfile
@@ -128,9 +128,9 @@ RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
 RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
 ```
 
-## RUN\_COMMAND
+## RUN_COMMAND
 
-Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN\_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN\_COMMAND
+Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN_COMMAND
 
 **Cosmovisor**
 
@@ -174,21 +174,21 @@ You can configure your config.toml to use the Cosmos SDK state sync to quickly s
 
 **Snapshot**
 
-You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain.
+You can get the necessary files from an existing snapshot, add them to your DAEMON_HOME, and start the chain.
 
 ### **From Genesis**
 
 Syncing from genesis means that you start with the blank genesis state and verify all transactions from block 1 to the current block. Thus, this may take while. Also, note that the chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis).
 
-To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges\_1-2" for betanet. Initialization should only be performed once.&#x20;
+To initialize a new chain, run the following (depending on your build method). CHAIN_ID will be "bitbadges_1-1" for mainnet. Initialization should only be performed once.&#x20;
 
 ```
 RUN_COMMAND init <moniker> --chain-id CHAIN_ID
 ```
 
-You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges\_1-2 for betanet).
+You'll need to replace `<moniker>` with a custom username for your node and the CHAIN_ID for the chain you want (bitbadges_1-1 for mainnet).
 
-Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON\_HOME.&#x20;
+Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON_HOME.&#x20;
 
 If you are getting directories do not exist error, you may have to do the following first. These will be overwritten when the init command is executed, but it is just to get the errors out of there.
 
@@ -213,7 +213,7 @@ curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/
 
 ## Configuration
 
-Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
+Inside the DAEMON_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
 
 Tweak these as desired. Some important ones are highlighted below.
 
@@ -229,7 +229,7 @@ These entries follow the format `nodeId@listenaddress:port`. Additionally, you c
 
 **Listen Addresses / Firewalls**
 
-Ensure that the listen address settings are correct, using your IP address or domain name if configured.  Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
+Ensure that the listen address settings are correct, using your IP address or domain name if configured. Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
 
 ## Running the Node
 
@@ -243,10 +243,10 @@ RUN_COMMAND run start
 
 Setting up your node infrastructure correctly and with best practices is crucial to ensure security. There are many options for this, so below we just give some general guidelines.&#x20;
 
-* DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
-* Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
-* Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
-* Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
+-   DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
+-   Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
+-   Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
+-   Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
 
 ## Running a Validator
 
