@@ -290,7 +290,7 @@ RUN_COMMAND tx staking create-validator /path/to/validator.json \
   --chain-id="name_of_chain_id" \
   --gas="auto" \
   --gas-adjustment="1.2" \
-  --gas-prices="0.025badge" \
+  --gas-prices="0.025ubadge" \
   --from=mykey
 ```
 

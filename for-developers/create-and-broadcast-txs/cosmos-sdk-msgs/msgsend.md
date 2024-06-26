@@ -19,7 +19,7 @@ export interface MsgSend<T extends NumberType> {
 
 
 /**
- * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'badge' }).
+ * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
  *
  * @typedef {Object} CosmosCoin
  * @property {NumberType} amount - The amount of the coin.
@@ -38,7 +38,7 @@ export interface CosmosCoin<T extends NumberType> {
   "toAddress": "cosmos1uy4my3dwzwv9drgq06pt433z742l9vrlnx88ds",
   "amount": [
     {
-      "denom": "badge",
+      "denom": "ubadge",
       "amount": "1"
     }
   ]

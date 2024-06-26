@@ -38,7 +38,7 @@ cosmovisor run keys ...
           "address": "cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a",
           "coins": [
             {
-              "denom": "badge",
+              "denom": "ubadge",
               "amount": "1"
             }
           ]

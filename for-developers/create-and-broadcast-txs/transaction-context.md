@@ -18,7 +18,7 @@ import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
 
 const chain = {
   chainId: 2,
-  cosmosChainId: 'bitbadges_1-2',
+  cosmosChainId: 'bitbadges_1-1',
   chain: SupportedChain.ETH //signing chain
 }
 
@@ -31,7 +31,7 @@ const sender = {
 
 const fee = {
   amount: '20',
-  denom: 'badge',
+  denom: 'ubadge',
   gas: '200000',
 }
 
@@ -82,7 +82,7 @@ To get the **gas**, we recommend simulating the transaction right before broadca
 ```typescript
 const fee = {
   amount: '20',
-  denom: 'badge',
+  denom: 'ubadge',
   gas: '200000',
 }
 ```
