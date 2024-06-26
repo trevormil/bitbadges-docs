@@ -44,7 +44,7 @@ The rest of the supply is up for purchase via the BitBadges site. BitBadges rese
 
 **Inflation: 7-20% (Set at 13%)**&#x20;
 
-$STAKE will inflate at rate of 7-20% per year. Learn more about how this works [here](https://docs.cosmos.network/main/build/modules/mint). This serves as an incentive for nodes to put their stake to work and secure the netowrk and earn more.
+$STAKE will inflate at rate of 7-20% per year. Learn more about how this works [here](https://docs.cosmos.network/main/build/modules/mint). This serves as an incentive for nodes to put their stake to work and secure the network and earn more.
 
 **Allocation**
 
