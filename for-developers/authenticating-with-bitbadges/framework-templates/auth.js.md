@@ -4,7 +4,7 @@
 
 ```typescript
 import NextAuth from 'next-auth';
-import BitBadges from "next-auth/core/providers/bitbadges"
+import { BitBadgesNextAuth as BitBadges } from 'bitbadgesjs-sdk';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [BitBadges],
