@@ -16,9 +16,9 @@ In mainnet, we will look to decentralize further, operate under a governance mod
 
 ## **Credits ($BADGE vs $STAKE)**
 
-$BADGE is the in-app compute credits system we use for all operation fees, such as creating or transferring badges. All important operations will require a fee of some number of credits.
+$BADGE is the in-app compute credits system we use for blockchain transaction fees, such as creating or transferring badges. All transactions will require a fee of some number of credits.&#x20;
 
-$STAKE is the credits system used by nodes to secure the network (via proof-of-stake). Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.
+$STAKE is used by nodes to secure the network. BitBadges operates under a proof-of-stake consensus model using $STAKE. Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.&#x20;
 
 IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
 
