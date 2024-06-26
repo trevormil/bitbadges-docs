@@ -198,7 +198,7 @@
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
-  * [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
+  * [Staking / Validators](overview/staking-usdbadge.md)
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
     * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
     * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)

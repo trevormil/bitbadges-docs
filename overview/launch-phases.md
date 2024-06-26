@@ -16,7 +16,7 @@ Once betanet is concluded and we feel ready, we will officially deploy a mainnet
 
 $BADGE is the in-app compute credits system we use to maintain our infrastructure with, such as staking for nodes or creating badges. All important operations will require a fee of some number of credits.
 
-$STAKE is the credits system used by nodes to secure the network (via proof-of-stake). Once mainnet launches, we also plan for these to be used in governance decisions.
+$STAKE is the credits system used by nodes to secure the network (via proof-of-stake). Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.
 
 IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon. It is a system which is intended for purchase and usage as compute credits, not trading, exchanging, etc.
 
