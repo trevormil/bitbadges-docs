@@ -12,6 +12,10 @@ const res = await BitBadgesApi.getClaimAttemptStatus(res.claimAttemptId);
 console.log(res); // { success: true }
 ```
 
+When creating on the BitBadges site, go to the API Code tab, and you should see code snippets customized to your claim.
+
+<figure><img src="../../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
+
 Couple notes with auto-completing claims:
 
 * Claims have different "actions". For on-chain badges, a successful claim will reserve the ability to claim in the future. For off-chain badges and address lists, there is no reserve step, the badge transfers / list append is instant.
@@ -21,7 +25,9 @@ Couple notes with auto-completing claims:
 
 **Simulating**
 
-You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.
+You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.&#x20;
+
+The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.
 
 ```typescript
 const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
@@ -54,3 +60,7 @@ For example,
     }
 }
 ```
+
+**Customization**
+
+The rest is left up to you. You decide when to trigger this code. It could be when a user signs in, you can auto-trigger based on certain criteria, or anything else you want.
