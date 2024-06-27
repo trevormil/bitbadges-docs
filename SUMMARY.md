@@ -135,6 +135,7 @@
     * [Distribute Claim Information Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
   * [Other Tutorials](for-developers/claim-builder/other-tutorials/README.md)
+    * [Create a Tutorial](for-developers/claim-builder/other-tutorials/create-a-tutorial.md)
     * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/discord.md)
     * [Build a Distribution Tool](for-developers/claim-builder/other-tutorials/build-a-distribution-tool.md)
     * [Calendly - Get Emails](for-developers/claim-builder/other-tutorials/calendly-get-emails.md)
