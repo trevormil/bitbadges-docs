@@ -143,6 +143,7 @@
     * [Zoom - Get Emails](for-developers/claim-builder/other-tutorials/zoom-get-emails.md)
     * [Eventbrite - Get Emails](for-developers/claim-builder/other-tutorials/eventbrite-get-emails.md)
     * [Cvent - Get Emails](for-developers/claim-builder/other-tutorials/cvent-get-emails.md)
+    * [Mailchimp - Get Emails](https://mailchimp.com/help/view-export-contacts/)
 * [💾 Self-Hosted Balances](for-developers/self-hosted-balances.md)
   * [Overview](for-developers/self-hosted-balances/overview.md)
   * [Examples / Tutorials](for-developers/self-hosted-balances/examples-tutorials/README.md)
