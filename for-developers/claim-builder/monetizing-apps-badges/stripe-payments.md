@@ -2,7 +2,7 @@
 
 Claims can be gated with Stripe payments to implement use cases such as recurring membership payments, concert tickets, etc. There are a couple implementation approaches you can take.&#x20;
 
-IMPORTANT: Note that these approaches show you how to implement the core success flows, but you should also consider when stuff goes wrong (Zapier is down, user refreshes and loses their payment ID, etc).
+IMPORTANT: Note that these approaches show you how to implement the core success flows, but you should also consider when stuff goes wrong (Zapier is down, your handler is down, user refreshes and loses their payment ID, etc).
 
 ### Integrate with Zapier
 
