@@ -21,6 +21,8 @@ For example,
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything.
 * And so on.
 
+Tip: If you redirect the user to the claim page with code=abc or password=123 in the URL, it will auto-populate the fields for them.
+
 ### End to End Quickstarter
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-plugins" %}
