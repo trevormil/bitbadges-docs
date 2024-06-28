@@ -24,6 +24,10 @@ Connect your claim to auto-complete upon receiving successful Stripe payments us
 
 <figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+### Codes Plugin
+
+You can create a claim which uses the Codes plugin and give out claim codes to those who successfully complete payments.&#x20;
+
 ### BitBadges API Auto Completion
 
 Upon verifying a successful payment intent with Stripe, you can auto-complete the claim with the BitBadges API. For the setup, we refer you to their documentation (such as Stripe's below).
