@@ -1,5 +1,15 @@
 # Auto-Complete Claims w/ BitBadges API
 
+### Do you really need to auto-complete?
+
+Before going through the entire process, consider whether you can implement your use case with a plugin-only approach. Get creative!&#x20;
+
+Use plugins like Codes, Password, or Email which are generic and can be used with pretty much any app. For example, give out claim codes to those who meet the criteria on your end. Then, they can claim in the BitBadges site, and you do not need to implement the claiming logic.
+
+Or, explore if Zapier can help you implement it with no-code!
+
+### Auto-Completion
+
 You can use the BitBadges SDK to auto-complete claims for users.
 
 ```typescript
