@@ -20,7 +20,11 @@ If your plugin requires no user prompting, then you can skip this section. To be
 
 **Setup + Configuration**
 
-If your plugin requires user inputs from the frontend side, we will direct the user to your plugin's frontend URI provided when they are submitting the claim.&#x20;
+If your plugin requires user inputs from the frontend side, you can add custom inputs to the plugin itself. This will all be in the BitBadges site.&#x20;
+
+<figure><img src="../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
+
+Or, we can direct the user to your plugin's frontend URI provided when they are submitting the claim. for you to handle via your UI.
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
