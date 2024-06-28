@@ -131,7 +131,7 @@
       * [Whitelist](for-developers/claim-builder/plugins/bitbadges-created-plugins/whitelist.md)
   * [Monetizing Claims](for-developers/monetizing-apps-badges.md)
     * [Overview](for-developers/claim-builder/monetizing-apps-badges/overview.md)
-    * [Stripe Payments](for-developers/claim-builder/monetizing-apps-badges/stripe-payments.md)
+    * [Stripe](for-developers/claim-builder/monetizing-apps-badges/stripe.md)
   * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
   * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
     * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
