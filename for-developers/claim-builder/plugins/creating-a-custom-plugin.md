@@ -10,6 +10,17 @@ You can also create your own custom plugin that is not in the directory and add 
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+### Do you actually need a custom plugin?
+
+Before going through the enire plugin  creation process, consider whether you actually need a plugin for your use case. For many use cases, you can develop them with workarounds using existing plugins.
+
+For example,
+
+* Use the Codes plugin and give out claim codes from your side to those who meet the criteria
+* Give out a secret password to those who satisfy a criteria
+* Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything.
+* And so on.
+
 ### End to End Quickstarter
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-plugins" %}
