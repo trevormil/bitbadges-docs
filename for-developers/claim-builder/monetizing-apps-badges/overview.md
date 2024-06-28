@@ -1,4 +1,4 @@
-# Monetizing Claims
+# Overview
 
 If your use case requires monetization, you have a couple options.
 
