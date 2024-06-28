@@ -12,7 +12,7 @@ You can also create your own custom plugin that is not in the directory and add 
 
 ### Do you actually need a custom plugin?
 
-Before going through the enire plugin  creation process, consider whether you actually need a plugin for your use case. For many use cases, you can develop them with workarounds using existing plugins.
+Before going through the enire plugin  creation process, consider whether you actually need a plugin for your use case. For many use cases, you can develop them with workarounds using existing plugins. Get creative!
 
 For example,
 
