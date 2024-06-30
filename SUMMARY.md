@@ -124,7 +124,7 @@
     * [BitBadges Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
       * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
       * [Signed in to BitBadges](for-developers/claim-builder/plugins/bitbadges-created-plugins/signed-in-to-bitbadges.md)
-      * [Authentication-Based Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/authentication-based-plugins.md)
+      * [Socials / Email Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/authentication-based-plugins.md)
       * [Codes](for-developers/claim-builder/plugins/bitbadges-created-plugins/codes.md)
       * [Password](for-developers/claim-builder/plugins/bitbadges-created-plugins/password.md)
       * [Transfer Times](for-developers/claim-builder/plugins/bitbadges-created-plugins/transfer-times.md)

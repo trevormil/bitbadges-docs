@@ -1,8 +1,10 @@
-# Authentication-Based Plugins
+# Socials / Email Plugins
 
 **Plugin IDs: `twitter, github, discord, google, email, twitch`**
 
 These plugins restrict the number of times specific users from different social platforms can use the claim.&#x20;
+
+We also support assigning specific claim numbers if assignMethod === instance ID. We will use the zero-based index in the list o f\[...username,s ...ids]. Note we take first match so duplicates here are not supported.
 
 **Usernames vs IDs**
 
