@@ -4,7 +4,9 @@
 
 This plugin restricts claims to be received by users who are on a predefined whitelist.
 
-With this plugin, we reuse the [Address List ](../../../core-concepts/address-lists-lists.md)types. IDs will be the list ID. Only one list should be defined out of the parameters. The lsit can either be made public with the claim or kept private.
+With this plugin, we reuse the [Address List ](../../../core-concepts/address-lists-lists.md)types. IDs will be the list ID. Only one list vs list ID should be defined out of the parameters. The lsit can either be made public with the claim or kept private.
+
+We also support specific claim numbers dependent on the zero-based index using the assignMethod == instanceId. This is only applicable if it is a whitelist. Also, duplicates are not handled for this. We always take first match.
 
 ### Public Parameters
 

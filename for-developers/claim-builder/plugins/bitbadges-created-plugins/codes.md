@@ -2,7 +2,9 @@
 
 ### Plugin ID: `codes`
 
-This plugin manages a code challenge, where users must provide a valid one-time-use code to claim. Note that codes are assigned a zero-based index and we keep track of which indices have been used. This allows for the code to be rotated and consistency with on-chain approvals. Thus, note that the&#x20;
+This plugin manages a code challenge, where users must provide a valid one-time-use code to claim. Note that codes are assigned a zero-based index and we keep track of which indices have been used. This allows for the code to be rotated and consistency with on-chain approvals. Thus, note that the code value changing does not mean its used status changes.
+
+We also support specific claim numbers dependent on the zero-based codeIdx using the assignMethod == instanceId.
 
 ### Public Parameters
 
