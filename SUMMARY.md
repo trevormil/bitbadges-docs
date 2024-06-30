@@ -21,6 +21,7 @@
 * [🕵️ Authentication with Badges](overview/verification-tools.md)
 * [🔀 Distribution](overview/distribution-tools-integrations.md)
 * [📱 Mobile Support](overview/mobile-support.md)
+* [🤝 Link Sharing](overview/link-sharing.md)
 * [🤵‍♂️ LinkedIn Certifications](overview/linkedin-certifications.md)
 * [🧩 Chrome Extension](overview/chrome-extension.md)
 * [🦊 MetaMask Snap](overview/metamask-snap.md)
