@@ -138,6 +138,7 @@
       * [GitHub Contributions](for-developers/claim-builder/plugins/bitbadges-created-plugins/github-contributions.md)
       * [Min $BADGE](for-developers/claim-builder/plugins/bitbadges-created-plugins/min-usdbadge.md)
       * [Ownership Requirements](for-developers/claim-builder/plugins/bitbadges-created-plugins/ownership-requirements.md)
+  * [Universal Approaches](for-developers/claim-builder/universal-approaches.md)
   * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
     * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
     * [Distribute Claim Information Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
