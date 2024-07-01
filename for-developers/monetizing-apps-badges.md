@@ -1,6 +1,6 @@
 # 💰 Monetizing Badges
 
-If your use case requires monetization (such as memberships or recurring payments), we recommend using existing payment processors. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We intend for $BADGE to mainly be used as a compute credits system for on-chain transactions. It is not meant to be a payment currency.
+If your use case requires monetization (such as memberships or recurring payments), we recommend using existing payment processors. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We intend for $BADGE to mainly be used as a compute credits system for on-chain transactions. **It is not meant to be a payment currency.**
 
 We recommend to accept payments using existing processors like Stripe or PayPal. Then, behind the scenes, connect it to BitBadges claims (gate to or auto-complete for those who have paid) or use it when determining your self-hosted balances (assign based on successful payments). This can be via any payment method you want to accept.&#x20;
 
