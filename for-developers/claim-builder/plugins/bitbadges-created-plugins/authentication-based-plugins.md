@@ -17,6 +17,7 @@ The user list is only allowed to be private. You may consider hosting the list o
 ### Public Parameters
 
 * **maxUsesPerUser**: The maximum number of uses allowed per user.
+* **blacklist:** Whether this should deny users on the IDs / usernames or not
 
 ### Private Parameters
 
@@ -28,6 +29,8 @@ If both are left blank, we do not check any whitelist restrictions.&#x20;
 ### State
 
 State is maintained by tracking the number of claims each user makes. It keeps a record of user IDs and usernames.
+
+Note that in order to maintain correctness, we replace all "." values with "\[dot]" to ensure the keysa re a single string. If micro-managing state through the API, you will need to do this.
 
 ```json
 {
