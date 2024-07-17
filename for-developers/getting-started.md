@@ -72,7 +72,7 @@ However, if you do, you can either 1) use the [custom helper broadcast tool](cre
 
 ## **Building a frontend?**
 
-Use the quickstart code as a starting point and/or reference. See demos [here](https://blockin-quickstart.vercel.app/) and [here](https://blockin-quickstart-5gxg.vercel.app/). Feel free to reuse any UI components from the official frontend as well.
+Use the quickstart code as a starting point and/or reference. See demos [here](https://blockin-quickstart.vercel.app/) and [here](https://blockin-quickstart-5gxg.vercel.app/). Feel free to reach out for code for any of the components we use in the frontend.
 
 ## **Need additional functionality?**
 

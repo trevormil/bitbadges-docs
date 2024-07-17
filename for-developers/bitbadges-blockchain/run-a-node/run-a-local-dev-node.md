@@ -71,8 +71,8 @@ http://localhost:1317 will be the node's REST API port for queries. Navigate to 
 
 http://localhost:26657 will be the Tendermint RPC. You can also navigate here in the browser.
 
-**Running the Full-Stack**
+<!-- **Running the Full-Stack**
 
 To run the indexer and frontend along with a local development chain, we refer you to the documentation for those. Make sure that the URLs are configured properly (i.e. pointing to localhost and not the main deployed one).&#x20;
 
-Please reach out if you have problems.
+Please reach out if you have problems. -->

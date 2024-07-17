@@ -36,6 +36,5 @@ See the map Msg definitions for handling the important stuff on-chain. Maps (and
 
 Other things that you may consider:
 
-* Submit a pull request adding a template to the BitBadges frontend Create -> Template page which allows users to create a well-formatted collection and set it all in one step. Also, support the protocol in other applicable areas of the site.&#x20;
 * If your protocol has genesis conditions in order to be implemented correctly, make it easy for apps to verify them, potentially with a library.
 * Create an indexer for your protocol. For example, for a follow protocol, an important aspect of building an app is to query the followers / following. You can visit the BitBadges indexer to see how we index followers / following for the BitBadges Follow Protocol.
