@@ -49,8 +49,6 @@ app.get('/nonIndexed/:address', async (req, res) => {
 });
 ```
 
-See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/15\_non\_indexed\_balances.json) for an example creation Msg. See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
-
 ### Indexed Balances
 
 With indexed balances, you store and host the entire balance map all at one endpoint.
@@ -119,8 +117,6 @@ Note permanent storage (i.e. IPFS) coupled with not being able to update the URL
 **Step 3: Create Your Collection**
 
 Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not. Set the **managerTimeline** and **canUpdateOffChainBalancesMetadata** permission accordingly. Do not overallocate via **badgesToCreate**.
-
-See [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup/bootstrapped-collections/5\_off\_chain\_balances.json) for an example.
 
 **Future Refreshes / Updates**
 

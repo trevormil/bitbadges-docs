@@ -1,9 +1,7 @@
-# 🔃 Create and Broadcast Txs
+# 🔃 Create, Generate, and Sign Txs
 
 To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
 
 We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
 
-You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and does not have native EIP712 Ethereum or Solana support.
-
-See [here for tutorials and examples.](../bitbadges-sdk/common-snippets/creating-signing-and-broadcasting-txs.md) You can also refer to the BitBadges frontend code.
+You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.

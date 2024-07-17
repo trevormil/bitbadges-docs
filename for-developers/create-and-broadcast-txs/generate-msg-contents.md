@@ -1,8 +1,8 @@
 # Generate Msg Contents
 
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction. See here for [sample Msgs](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/setup). You can also visit [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/bootstrap.ts) for how we bootstrap and simulate Msgs for a development network in plain JavaScript. See the frontend code for how we do so within a dApp. Both follow this tutorial pretty closely.
+The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.&#x20;
 
-If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs.
+If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
 
 ### **Building the Msgs**
 

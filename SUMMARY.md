@@ -161,7 +161,7 @@
   * [Overview](for-developers/self-hosted-balances/overview.md)
   * [Examples / Tutorials](for-developers/self-hosted-balances/examples-tutorials/README.md)
     * [Indexed](for-developers/self-hosted-balances/examples-tutorials/indexed.md)
-    * [ETH First Tx - (Non-Indexed)](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts)
+    * [Non-Indexed](for-developers/self-hosted-balances/examples-tutorials/non-indexed.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Framework Templates](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
