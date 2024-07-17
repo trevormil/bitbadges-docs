@@ -44,4 +44,4 @@ const signTxn = async (context: TxContext, payload: TransactionPayload, simulate
 
 ### Full Snippet
 
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/contexts/chains/BitcoinContext.tsx" %}
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/chains/chain_contexts/insite/BitcoinContext.tsx" %}

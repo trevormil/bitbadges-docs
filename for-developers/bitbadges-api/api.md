@@ -79,8 +79,6 @@ await BitBadgesApi.getCollections(...);
 await BitBadgesApi.simulateTx(...);
 ```
 
-Check out [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/bitbadges-api/api.ts) for a working reference of the API routes using the SDK.
-
 ### Using BitBadges JS/SDK
 
 Check out the BitBadges JS/SDK for implementing further functionality beyond just API requests / responses, such as manipulating balances, handling approvals, checking permissions, etc.

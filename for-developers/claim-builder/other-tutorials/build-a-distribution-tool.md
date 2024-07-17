@@ -48,9 +48,7 @@ Note you will need to design for compatibility of certain features offered on th
 
 **Step 3: Get It Added to the BitBadges Website / Docs**
 
-If compatible, create a pull request adding it to the tools array in the frontend directory! Please provide us a brief description of the tool, an image for your logo, and the URL of the tool.
-
-See [https://github.com/BitBadges/bitbadges-frontend/blob/main/src/components/display/ToolIcon.tsx](https://github.com/BitBadges/bitbadges-frontend/blob/main/src/components/display/ToolIcon.tsx).&#x20;
+If compatible, reach out to us to add it to the tools array in the frontend directory! Please provide us a brief description of the tool, an image for your logo, and the URL of the tool.
 
 ### Examples
 

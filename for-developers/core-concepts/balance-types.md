@@ -249,7 +249,3 @@ app.get('/nonIndexed/:address', async (req, res) => {
   return res.status(200).send({ balances });
 });
 ```
-
-For a full tutorial, see [here](broken-reference). Or, see [here](https://github.com/BitBadges/bitbadges-indexer/blob/master/src/routes/ethFirstTx.ts) for how we implement the first Ethereum tx badge.
-
-Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
