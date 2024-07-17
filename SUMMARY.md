@@ -221,7 +221,6 @@
 * [🤝 Protocols](for-developers/protocols/README.md)
   * [BitBadges Follow Protocol](for-developers/protocols/bitbadges-follow-protocol.md)
   * [Experiences Protocol](for-developers/protocols/experiences-protocol.md)
-* [💻 BitBadges Frontend](for-developers/bitbadges-frontend.md)
 * [✏️ Chain Details](for-developers/chain-details.md)
 * [👨‍💻 Contributing](for-developers/contributing.md)
 * [❓ FAQ - Dev](for-developers/faq-dev.md)
