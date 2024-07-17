@@ -14,6 +14,8 @@ Once betanet is concluded and we feel ready, we will officially deploy a mainnet
 
 In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. Time of this phase is TBD but most likely, this will be started when the betanet faucet runs out.
 
+We will also look to migrate to being fully open-source where possible.
+
 ## **Credits ($BADGE vs $STAKE)**
 
 $BADGE is the in-app compute credits system we use for blockchain transaction fees, such as creating or transferring badges. All transactions will require a fee of some number of credits.&#x20;
