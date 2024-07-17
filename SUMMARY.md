@@ -218,6 +218,7 @@
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
     * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
     * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
+    * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
 * [🤝 Protocols](for-developers/protocols/README.md)
   * [BitBadges Follow Protocol](for-developers/protocols/bitbadges-follow-protocol.md)
   * [Experiences Protocol](for-developers/protocols/experiences-protocol.md)

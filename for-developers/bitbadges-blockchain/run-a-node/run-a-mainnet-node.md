@@ -1,25 +1,14 @@
 # Run a Mainnet Node
 
+## DAEMON\_HOME
+
+Your DAEMON\_HOME is the folder that will contain everything about the blockchain state, configuration, genesis, etc. Ensure that this folder persists across upgrades and changes. This is especially important if you plan to run the node using a container approach (Docker, Kubernetes, etc).
+
 ## Fetch / Build Binaries
 
-You have a couple options for fetching / building binaries. The source code lives at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). We recommend using Docker because a lot of the behind the scenes complexities are handled for you.
+### Download
 
-### **Docker**
-
-<pre><code><strong>git clone https://github.com/BitBadges/bitbadges-docker
-</strong>cd bitbadges-docker
-<strong>docker build -t bitbadgeschaind .
-</strong></code></pre>
-
-By default, it builds all necessary binaries for all upgrades from genesis. Of you just want the latest binary, you can add the flags --build-arg BUILD\_LATEST\_ONLY=true to the build command.
-
-```
-docker build --build-arg BUILD_LATEST_ONLY=true -t bitbadgeschaind .
-```
-
-### **Download**
-
-Download the executable directly. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.
+Download the executable directly from GitHub. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.
 
 ```
 wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
@@ -40,93 +29,29 @@ Example
 
 ### **Build from Source**
 
-If building from source, we refer you to the README of the repository.
-
-## Handling Upgrades - Cosmovisor
-
-BitBadges handles binary upgrades using Cosmovisor, a tool for automating software upgrades in Cosmos SDK-based blockchains with zero downtime enabling the chain to continue operating. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html). We use Cosmos SDK v0.47.5, so please use a compatible Cosmovisor version. It is expected all validators are using Cosmovisor.
-
-Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
+We refer you to the README of the blockchain code repository.
 
 ### **Docker**
 
-**Setting Up**
-
-No additional setup is required.
-
-**New Upgrades**
-
-If you are running with Docker, all you need to do is simply pull the latest build and restart. All binary upgrades are handled for you within the build.
-
-<pre class="language-bash"><code class="lang-bash"><strong># Stop executable
-</strong>git pull # from the bitbadges-docker repo
-docker build -t bitbadgeschaind .
-# Restart executable with same command
-</code></pre>
-
-### **Manual**
-
-**Installing Cosmovisor**
-
-The first step is to download Cosmovisor as an executable using [their documentation](https://docs.cosmos.network/v0.50/build/tooling/cosmovisor). Below is the Dockerized way we do it.
-
-```dockerfile
-FROM --platform=linux golang:1.21 AS builder
-
-ENV COSMOS_VERSION=v0.47.5
-RUN apt-get update && apt-get install -y git curl
-RUN apt-get install -y make wget
-
-WORKDIR /root
-RUN git clone --depth 1 --branch ${COSMOS_VERSION} https://github.com/cosmos/cosmos-sdk.git
-
-WORKDIR /root/cosmos-sdk/tools/cosmovisor
-
-RUN make cosmovisor
-```
-
-**Installing Cosmovisor**
-
-You will then need to set the following environment variables. The DAEMON\_HOME will be the home of your config files.
-
-<pre class="language-docker"><code class="lang-docker"><strong>DAEMON_HOME=/root/.bitbadgeschain
-</strong>DAEMON_NAME=bitbadgeschaind
-</code></pre>
-
-**Initializing Executables**
-
-Then, run the following to setup your Cosmovisor directory. The executable should be named bitbadgeschaind (if not, please rename).
+Running with Docker may be the easiest option, but it also is not compatible with automatic upgrades through Cosmovisor (see section below). This means you will sacrifice availability (which is especially important for validators who are slashed when down).
 
 ```bash
-cosmosvisor init ./bitbadgeschaind
+docker pull bitbadges/bitbadgeschain:latest
 ```
 
-This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.
+## Handling Upgrades - Cosmovisor
 
-IMPORTANT: Depending on your sync method (explained later), you will need to download all relevant executables. If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time. See Adding Upgrades below. You must repeat this process for all such executables.
+BitBadges handles binary upgrades using Cosmovisor, a tool for automating upgrades with zero downtime. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html).&#x20;
 
-**Adding Upgrades**
+We use Cosmos SDK v0.47.5, so please use a compatible Cosmovisor version. It is expected all validators are using Cosmovisor.
 
-For a given upgrade, it will have a new binary and a \<upgrade-name>. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
+Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
 
-Depending on your version of cosmovisor, you may be able to run the following. Again, make sure the binary name is bitbadgeschaind.
+### **Installation / Setup**
 
-```
-cosmovisor add-upgrade ...
-```
-
-Or, to manually upgrade, do the following.
-
-1. Download the new binary and name it bitbadgeschaind. Do this in a separate folder to not interfere with anything currently running.
-2. Create the DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
-3. Copy the new upgrade executable to the folder (keeping its name as bitbadgeschaind).
-
-```dockerfile
-# upgrade name = abc123
-RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/
-RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
-RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
-```
+{% content-ref url="cosmovisor.md" %}
+[cosmovisor.md](cosmovisor.md)
+{% endcontent-ref %}
 
 ## RUN\_COMMAND
 
@@ -138,7 +63,7 @@ Depending on your setup method, you may have different commands to run the binar
 cosmovisor run ....
 ```
 
-**Plain**
+**Plain Executable**
 
 ```
 ./bitbadgeschaind ....
@@ -146,8 +71,8 @@ cosmovisor run ....
 
 **Docker**
 
-<pre class="language-bash"><code class="lang-bash"># Replace DAEMON_HOME, &#x3C;moniker>, and CHAIN_ID
-<strong>docker run -it \
+<pre class="language-bash"><code class="lang-bash"><strong># Replace DAEMON_HOME
+</strong><strong>docker run -it \
 </strong>    -p 26656:26656 \
     -p 26657:26657 \
     -p 26660:26660 \
@@ -155,9 +80,7 @@ cosmovisor run ....
     -p 9090:9090 \
     -p 1317:1317 \
 <strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-</strong>    --mount type=volume,dst=/root/.bitbadgeschain/cosmovisor \
-    --mount type=volume,dst=/root/.bitbadgeschain/bip322-js \
-    bitbadgeschaind run ...
+</strong>    bitbadges/bitbadgeschain:latest run ... 
 </code></pre>
 
 ## Initialization / Syncing
