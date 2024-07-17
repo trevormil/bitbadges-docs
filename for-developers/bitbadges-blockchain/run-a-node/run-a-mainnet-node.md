@@ -59,7 +59,10 @@ Depending on your setup method, you may have different commands to run the binar
 
 **Cosmovisor**
 
-```
+```bash
+# The "run" is important. Ex:
+# cosmovisor run init -> Blockchain initialixation
+# cosmosvisor init -> Cosmosvisor folder initialization
 cosmovisor run ....
 ```
 
@@ -80,7 +83,7 @@ cosmovisor run ....
     -p 9090:9090 \
     -p 1317:1317 \
 <strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-</strong>    bitbadges/bitbadgeschain:latest run ... 
+</strong>    bitbadges/bitbadgeschain:latest ... 
 </code></pre>
 
 ## Initialization / Syncing
