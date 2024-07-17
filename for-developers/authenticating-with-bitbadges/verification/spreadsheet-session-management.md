@@ -13,6 +13,7 @@ See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 Zapier's integration capabilities can significantly enhance the functionality and user experience of applications utilizing Sign In with BitBadges. By connecting BitBadges with Zapier, developers can automate various processes, such as:
 
 * **Access Management:** Automate the provisioning or deprovisioning of user access to other connected services based on their BitBadge credentials. For instance, granting access to a private repository on GitHub or a restricted channel on Discord when a user signs in with a specific BitBadge.
+
 * **Event Logging:** Connect BitBadges to logging or analytics platforms, such as Google Sheets, to automatically track user sign-ins or other significant events, aiding in data-driven decision-making.
 
 Integrating Zapier with Sign In with BitBadges opens up a world of possibilities for automating tasks, enhancing user engagement, and streamlining operations by leveraging the wide array of apps available in Zapier's ecosystem.

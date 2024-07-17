@@ -18,7 +18,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Other Quickstarters:**
 
-* Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+-   Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
 
 ## **Creating badges / lists?**
 
@@ -52,7 +52,7 @@ Do you need additional data not offered by the BitBadges API? Run your own index
 
 ## **Authenticate with badges?**
 
-Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, authenticating also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out Blockin and the quickstart repository. Notably, you may find the [Sign In with BitBadges](broken-reference) page helpful.
+Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, authenticating also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out Blockin and the quickstart repository.
 
 {% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
 [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
@@ -62,7 +62,7 @@ Querying badge ownership is simply querying for the current balances which can b
 
 **Want to integrate BitBadges into your application / tool?** Check out the API / SDK and all other documentation to see what all is possible with BitBadges.
 
-**Want to integrate your tool into the BitBadges site natively?** See creating a custom claim plugin, or submit a code contribution to one of our repositories.
+**Want to integrate your tool into the BitBadges site natively?** See creating a custom claim plugin, or reach out to us for a native integration, if custom claim plugins are not sufficient.
 
 ## **Submit blockchain transactions?**
 

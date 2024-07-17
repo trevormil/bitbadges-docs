@@ -4,7 +4,7 @@
 
 ### Public Parameters
 
-* **repository**: The repository path - Ex: bitbadges/bitbadges-frontend
+* **repository**: The repository path - Ex: bitbadges/bitbadgeschain
 
 ### Private Parameters
 
