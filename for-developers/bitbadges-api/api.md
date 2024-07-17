@@ -93,13 +93,7 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 **For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.**
 
-Otherwise, check out the docs below. This follows a standard OAuth 2.0 flow.&#x20;
-
-Note that this is different than Sign In with BitBadges. Authorizing allows you to do stuff on the BitBadges API on behalf of the user. SIWBB is for authenticating users in your own application.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
+Otherwise, check out the authorization docs. This follows a standard OAuth 2.0 flow.&#x20;
 
 ### Confined Responses
 
