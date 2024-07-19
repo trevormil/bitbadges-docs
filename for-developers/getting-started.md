@@ -1,6 +1,6 @@
 # 🚴‍♂️ Getting Started
 
-Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else. &#x20;
+Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.
 
 **Existing Tools?** Don't forget to check the [tutorials ](tutorials/)or ecosystem tools to see if someone else has already done what you are looking for! The BitBadges website also tries to be as developer friendly as possible, so in most cases, you will not even need to do anything technical yourself.
 
@@ -10,6 +10,8 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 ## Quickstart
 
+#### [Demo Hosted Quickstart URL](https://sea-turtle-app-2lz87.ondigitalocean.app/)
+
 Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
@@ -18,13 +20,13 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Other Quickstarters:**
 
--   Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+* Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
 
 ## **Creating badges / lists?**
 
 **Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
 
-**Do you want to self-host off-chain balances or metadata?** See utorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).&#x20;
+**Do you want to self-host off-chain balances or metadata?** See utorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).
 
 ## Distributing badges?
 
@@ -40,7 +42,7 @@ By default, users can claim on the BitBadges site under the claim component. If 
 [distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
 {% endcontent-ref %}
 
-**Off-Chain Balances - Self-Hosting**&#x20;
+**Off-Chain Balances - Self-Hosting**
 
 For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
