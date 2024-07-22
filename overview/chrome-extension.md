@@ -2,7 +2,7 @@
 
 The BitBadges Chrome extension provides a quick preview of a user's badges and portfolio by scanning the addresses on the current webpage and recommending ones to view. This tool is useful for easily assessing a user's trustworthiness through their BitBadges portfolio while browsing websites. You can add custom requirements as seen below which check for ownership of a custom set of requirements that you want to check.
 
-**Install Link: TODO**
+**Install Link:** [**https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en**](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en)
 
 **Settings Page:** [https://bitbadges.io/chrome-extension](https://bitbadges.io/chrome-extension)
 
