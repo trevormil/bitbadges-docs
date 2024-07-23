@@ -7,6 +7,7 @@
 * [🧠 Core Concepts](overview/how-it-works/README.md)
   * [Accounts](overview/how-it-works/accounts.md)
   * [Badges vs Lists](overview/how-it-works/badges-vs-address-lists.md)
+  * [Protocols](overview/how-it-works/protocols.md)
   * [Verifiable Attestations](overview/how-it-works/verifiable-attestations.md)
   * [Distribution / Collection](overview/how-it-works/distribution.md)
   * [Manager](overview/how-it-works/manager.md)
