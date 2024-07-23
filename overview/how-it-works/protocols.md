@@ -24,35 +24,14 @@ Protocols use a subset of the map interface (a way of organizing data). They wor
 
 #### Example Setup
 
-Users can set up their collections for different protocols. Here’s how it might look:
+Users can set up their collections for different protocols. Here’s how it might look for a specific address:
 
 ```json
-jsonCopy code{
+// 0x123456...789 set the following protocol values
+{
     "BitBadges Follow Protocol": 12, // Collection ID 12 is used for my follows
     "Experiences Protocol": 13       // Collection ID 13 is used for my experiences
 }
 ```
 
 This information is stored on-chain for reliability and accessibility.
-
-### Genesis Conditions
-
-Some protocols might have initial conditions (genesis conditions) that need to be met. These are handled by the app you use and not checked on-chain.
-
-#### Examples of Genesis Conditions:
-
-* The creator must always be the manager.
-* The total supply is fixed at a certain amount.
-* Balances must be stored on-chain.
-
-### Ideas for New Protocols
-
-#### Messaging Protocol
-
-Create a protocol where each badge sent is a message. The message content can be included in the metadata or memo field.
-
-#### Social Media Protocols
-
-Create protocols for various social media actions like posts, likes, follows, and usernames. For instance, a post could own a like badge. Use the "No Balances Standard" for items where balances don't matter.
-
-###
