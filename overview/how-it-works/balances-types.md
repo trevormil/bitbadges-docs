@@ -45,7 +45,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 
 Off-chain balances can either be indexed or non-indexed. The differences are as follows:
 
-* Indexed balances have a total verifiable supply defined on-chain. Non-indexed does not.
+* Indexed balances have a total verifiable supply. Non-indexed does not.
 * At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
 * For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
 * Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.
@@ -68,7 +68,7 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](broken-reference). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
+See [here](broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../ecosystem/)page!
 
 #### Advantages Over Standard Solutions
 

@@ -116,7 +116,7 @@ For example, you can dynamically revoke and assign based on if users pay their s
 
 Off-chain balances can either be indexed or non-indexed. The differences are as follows:
 
-* Indexed balances have a total verifiable supply defined on-chain. Non-indexed does not.
+* Indexed balances have a total verifiable supply. Non-indexed does not.
 * At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
 * For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
 * Indexed balances will show up in standard search results like user's portfolios. For non-indexed, you have to check it manually.
@@ -136,14 +136,9 @@ For indexed balances, indexers are expected to do and know the following:
 * Keep track of ALL owners and their balances at any given time
 * Create a ledger of activity for any balance updates
 
-To facilitate this, at any time, we must:
-
-* Know the expected total supply which is verifiable on-chain
-* Be able to query ALL balances at any given time.
-
 We do this by the following:
 
-* The badges that live in the "Mint" address is considered the total verifiable maximum supply. Since no transfers are allowed on-chain, they will permanently live in the "Mint" address once created. When querying the balances from the URI, the querier should verify that the maximum supply defined on-chain (the badge balance of the "Mint" address) is not exceeded (i.e. the provider is not overallocating badges). We throw errors in the BitBadges indexer if this happens.
+* The badge IDs that live in the "Mint" address are considered the "active" badge IDs for the collection. There is no enforceable total supply since everything is managed off-chain.
 * Each balances query will return a map of ALL balances for the collection. This is done via a JSON of user -> balance definitions. See below.
 
 **What format should the balances be in?**
@@ -189,7 +184,7 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 
 This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
-For another tutorial, see [here](broken-reference). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
+For another tutorial, see [here](broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
 
 ### Off-Chain - Non-Indexed
 
