@@ -21,6 +21,6 @@ const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 
 Consider using the Webhooks by Zapier plugin as an additional action to the flow.
 
-**BitBadges APi**
+**BitBadges API**
 
 If you already are auto-claiming with the BitBadges API, you already know when users claim, so you can just implement whatever you need right there.
