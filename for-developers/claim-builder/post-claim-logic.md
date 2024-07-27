@@ -4,9 +4,9 @@ You may consider completing some additional action upon the user claiming succes
 
 **Webhooks Plugin**
 
-Consider using the in-site webhooks plugin which will send a request upon every claim attempt. It is important to note that this may send on FAILED attempts and simulations as well (or other parties could send spoofed requests).
+Consider using the in-site webhooks plugin which will send a request upon every claim attempt. It is important to note that this may send on FAILED attempts and simulations as well (or other parties could send spoofed requests). This is because it is an actual plugin and part of the validation process. Thus, it might send a webhook but fail a later plugin (resulting in the claim overall failing). This also means it will trigger during simulations as well, so you need to filter.
 
-You must double check that the attempt was successful by verifying it via its attempt ID.
+To handle this, you must double check that the attempt was successful by verifying it via its attempt ID.
 
 ```typescript
 // At your webhook handler POST URL
