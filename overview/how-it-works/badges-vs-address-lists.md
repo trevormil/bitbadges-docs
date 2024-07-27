@@ -1,6 +1,4 @@
-# Badges vs Address Lists
-
-There are two ways you can create using BItBadges. Visit the Create tab on the site to get started.
+# Badges vs Lists
 
 ## **Badges**
 

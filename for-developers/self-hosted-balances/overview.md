@@ -116,7 +116,7 @@ Note permanent storage (i.e. IPFS) coupled with not being able to update the URL
 
 **Step 3: Create Your Collection**
 
-Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not. Set the **managerTimeline** and **canUpdateOffChainBalancesMetadata** permission accordingly. Do not overallocate via **badgesToCreate**.
+Create your collection and specify your URL via the **offChainBalancesMetadata** timeline. Decide whether you want to be able to update the URL in the future or not. Set the **managerTimeline** and **canUpdateOffChainBalancesMetadata** permission accordingly.
 
 **Future Refreshes / Updates**
 

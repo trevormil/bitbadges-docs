@@ -8,7 +8,7 @@ For developers, see here:
 [authenticating-with-bitbadges](../for-developers/authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-### Sign In With BitBadges Popup Window
+### Sign In With BitBadges
 
 Digitally, you can authenticate users and verify badge ownership, such as badge-gating a website.&#x20;
 

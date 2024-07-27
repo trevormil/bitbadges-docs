@@ -8,7 +8,7 @@ Claim actions are the final action executed upon a successful claim. BitBadges s
 
 Badges with the on-chain balance type are slightly different from the rest because it involves blockchain transactions to actually transfer the badges. For these claims, a successful claim will result in **reserving** the right to claim, but an additional transaction signature from the claimee is required to complete the process and obtain the badges. The transaction can be facilitated through the BitBadges site.
 
-Behind the scenes, this works by issuing unique claim codes which are automatically populated when claming in-site. On-chian, these are the leaves of [Merkle challenge](../core-concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
+Behind the scenes, this works by issuing unique claim codes which are automatically populated when claming in-site. On-chain, these are the leaves of [Merkle challenge](../core-concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

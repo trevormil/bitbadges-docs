@@ -138,7 +138,7 @@ For indexed balances, indexers are expected to do and know the following:
 
 We do this by the following:
 
-* The badge IDs that live in the "Mint" address are considered the "active" badge IDs for the collection. There is no enforceable total supply since everything is managed off-chain.
+* There is no enforceable total supply since everything is managed off-chain. The valid badge ID range is still specified on-chain.
 * Each balances query will return a map of ALL balances for the collection. This is done via a JSON of user -> balance definitions. See below.
 
 **What format should the balances be in?**

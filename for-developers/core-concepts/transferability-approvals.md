@@ -22,9 +22,17 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 
 ### Approvals != Escrows
 
-When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes. This responsibility extends to the collection-level transferability. such as ensuring adequate balances for transfers from the "Mint" address.
+When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes.&#x20;
+
+This responsibility extends to the collection-level transferability. such as ensuring adequate approvalss for transfers from the "Mint" address.
 
 On a similar note, if approvals become no longer valid (such as approving a badge but it was revoked via a different approval), the former approval doesn't automatically get cancelled. It is the approver's responsibility to handle them accordingly.
+
+### Mint - Unlimited Balances
+
+It is important to note that the Mint address has unlimited balances. So, it is extra critical to set these approvals correctly.
+
+The Mint address does not have incoming / outgoing approvals that can be controlled. For all Mint approvals, they must forcefully override the user-level outgoing approval because it cannot be managed.
 
 ### Representation
 
@@ -117,6 +125,8 @@ As mentioned before, we check the collection level approvals first, and if not o
 The Mint address is a special case. It technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria/#overrides) on the next page for how).
 
 It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint, which could be very bad. See Example 2 below.
+
+Again, remember the Mint address has unlimited balances.
 
 #### Approval IDs
 
