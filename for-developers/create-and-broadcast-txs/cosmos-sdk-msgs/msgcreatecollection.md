@@ -4,25 +4,25 @@ Collections are initially created via [MsgCreateCollection](https://bitbadges.gi
 
 ```typescript
 export interface MsgCreateCollection<T extends NumberType> {
-  creator: string
-  
-  //collectionId
-  
-  balancesType?: string //"Standard" | "Off-Chain"
-  
-  defaultBalances: UserBalanceStore;
-  
-  badgesToCreate?: Balance<T>[]
-  
-  collectionPermissions?: CollectionPermissions<T>
-  managerTimeline?: ManagerTimeline<T>[]
-  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
-  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
-  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
-  customDataTimeline?: CustomDataTimeline<T>[]
-  collectionApprovals?: CollectionApproval<T>[]
-  standardsTimeline?: StandardsTimeline<T>[]
-  isArchivedTimeline?: IsArchivedTimeline<T>[]
+    creator: string;
+
+    //collectionId
+
+    balancesType?: string; //"Standard" | "Off-Chain"
+
+    defaultBalances: UserBalanceStore;
+
+    badgeIdsToAdd?: UintRange<T>[];
+
+    collectionPermissions?: CollectionPermissions<T>;
+    managerTimeline?: ManagerTimeline<T>[];
+    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
+    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
+    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
+    customDataTimeline?: CustomDataTimeline<T>[];
+    collectionApprovals?: CollectionApproval<T>[];
+    standardsTimeline?: StandardsTimeline<T>[];
+    isArchivedTimeline?: IsArchivedTimeline<T>[];
 }
 ```
 

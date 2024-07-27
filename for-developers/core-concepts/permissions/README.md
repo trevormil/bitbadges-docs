@@ -44,8 +44,8 @@ Besides the collection permissions, there are also userPermissions that can be s
 
 However, setting user permissions can be leveraged in some cases for specific purposes.
 
-* Locking that a specific badge can never be transferred out of the account
-* Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
+-   Locking that a specific badge can never be transferred out of the account
+-   Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
 
 **Defaults**
 
@@ -62,11 +62,11 @@ Permissions allow you to define permitted or forbidden times to be able to execu
 There are three states that a permission can be in at any one time:
 
 1. **Forbidden + Permanently Frozen (permanentlyForbiddenTimes):** This permission is forbidden and will always remain forbidden.
-   1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
+    1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
 2. **Permitted + Not Frozen (Unhandled):** This permission is currently permitted but can be changed to one of the other two states.
-   1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
+    1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
 3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
-   1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
+    1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
 There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
 
@@ -109,6 +109,7 @@ Ex: If we have the following permission definitions in an array \[elem1, elem2]:
    permanentlyPermittedTimes: []
    permanentlyForbiddenTimes: [{ start: 1, end: 10 }]
    ```
+
 2. ```
    timelineTimes: [{ start: 1, end: 100 }]
 
@@ -126,7 +127,7 @@ Similar to approved transfers, even though we allow range logic to be specified,
 
 For permissions, all criteria must be satisfied for it to be a match. If you satisfy N-1 criteria, it is not a match.
 
-For example, for the **canCreateMoreBadges** permission, the criteria involves which badge IDs can the manager create more of and at what times can they be owned (circulating times or ownership times).
+For example, lets say you had a permission with badge IDs and ownership times:
 
 ```
 badgeIds: [{ start: 1, end: 10 }]

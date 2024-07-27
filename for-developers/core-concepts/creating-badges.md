@@ -35,7 +35,7 @@ Or, you can "mint" badges and use another address as the escrow. It can be entir
   ],
   ...
   "collectionPermissions": {
-    "canCreateMoreBadges": [....],
+    "canUpdateValidBadgeIds": [....],
     ...
   }
 }

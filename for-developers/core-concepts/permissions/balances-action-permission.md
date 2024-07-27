@@ -25,7 +25,7 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 {% endcontent-ref %}
 
 ```json
-"canCreateMoreBadges": [
+"canUpdateValidBadgeIds": [
   {
     "badgeIds": [
       {

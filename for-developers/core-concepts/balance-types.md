@@ -225,7 +225,7 @@ Standard indexed balances return the whole map of user -> balances whereas non-i
 ]
 ```
 
-The created badges on-chain (the ones sent to the Mint address via **badgesToCreate**) are only used for the expected badge IDs of the collection.
+The badges range on-chain (the ones via **badgeIdsToAdd**) is only used for the expected badge IDs of the collection.
 
 #### Custom Logic Implementation
 

@@ -5,7 +5,7 @@ MsgUniversalUpdateCollection is a universal message that supports both creating 
 ```typescript
 interface MsgUniversalUpdateCollection {
     badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    badgesToCreate?: Balance<T>[];
+    badgeIdsToAdd?: UintRange<T>[];
     balancesType?: string;
     collectionApprovals?: CollectionApproval<T>[];
     collectionId: T;

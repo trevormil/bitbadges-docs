@@ -6,35 +6,33 @@ Note that if you only want to update off-chain balances stored at a URI and noth
 
 ```typescript
 export interface MsgUpdateCollection<T extends NumberType> {
-  creator: string
-  collectionId: T //0 for new collections (will be assigned)
+    creator: string;
+    collectionId: T; //0 for new collections (will be assigned)
 
-  //Note no defaults or balances types here because that is only for new collections
+    //Note no defaults or balances types here because that is only for new collections
 
-  badgesToCreate?: Balance<T>[]
-  
-  updateCollectionPermissions?: boolean
-  collectionPermissions?: CollectionPermissions<T>
-  updateManagerTimeline?: boolean
-  managerTimeline?: ManagerTimeline<T>[]
-  updateCollectionMetadataTimeline?: boolean
-  collectionMetadataTimeline?: CollectionMetadataTimeline<T>[]
-  updateBadgeMetadataTimeline?: boolean
-  badgeMetadataTimeline?: BadgeMetadataTimeline<T>[]
-  updateOffChainBalancesMetadataTimeline?: boolean
-  offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[]
-  updateCustomDataTimeline?: boolean
-  customDataTimeline?: CustomDataTimeline<T>[]
-  updateCollectionApprovals?: boolean
-  collectionApprovals?: CollectionApproval<T>[]
-  updateStandardsTimeline?: boolean
-  standardsTimeline?: StandardsTimeline<T>[]
-  updateIsArchivedTimeline?: boolean
-  isArchivedTimeline?: IsArchivedTimeline<T>[]
+    badgeIdsToAdd?: UintRange<T>[];
+
+    updateCollectionPermissions?: boolean;
+    collectionPermissions?: CollectionPermissions<T>;
+    updateManagerTimeline?: boolean;
+    managerTimeline?: ManagerTimeline<T>[];
+    updateCollectionMetadataTimeline?: boolean;
+    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
+    updateBadgeMetadataTimeline?: boolean;
+    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
+    updateOffChainBalancesMetadataTimeline?: boolean;
+    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
+    updateCustomDataTimeline?: boolean;
+    customDataTimeline?: CustomDataTimeline<T>[];
+    updateCollectionApprovals?: boolean;
+    collectionApprovals?: CollectionApproval<T>[];
+    updateStandardsTimeline?: boolean;
+    standardsTimeline?: StandardsTimeline<T>[];
+    updateIsArchivedTimeline?: boolean;
+    isArchivedTimeline?: IsArchivedTimeline<T>[];
 }
 ```
-
-
 
 **Update Flags**
 
