@@ -2,13 +2,24 @@
 
 You may consider completing some additional action upon the user claiming successfully.
 
-**In-Site**
+**Webhooks Plugin**
 
-If you need real-time webhooks, you can poll the GET claims endpoint and check the difference in users who have claimed between calls.&#x20;
+Consider using the in-site webhooks plugin which will send a request upon every claim attempt. It is important to note that this may send on FAILED attempts as well (or other parties could send spoofed requests).
 
-**Zapier**
+You must double check that the attempt was successful by verifying it.
 
-Consider using the Webhooks by Zapier plugin as an additional action.
+```typescript
+// At your webhook handler POST URL
+
+const claimAtemptId = req.body.claimAttemptId;
+const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+
+// Handle 
+```
+
+**Webhooks by Zapier**
+
+Consider using the Webhooks by Zapier plugin as an additional action to the flow.
 
 **BitBadges APi**
 
