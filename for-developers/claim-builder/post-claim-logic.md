@@ -43,3 +43,5 @@ Consider using the Webhooks by Zapier plugin as an additional action to the flow
 **BitBadges API**
 
 If you already are auto-claiming with the BitBadges API, you already know when users claim, so you can just implement whatever you need right there.
+
+Or, you can poll the GET claims endpoint to detect when new users have successfully claimed.
