@@ -2,69 +2,67 @@
 
 ```typescript
 const ownershipRequirements = {
-  $and: [
-    {
-      assets: [
+    $and: [
         {
-          chain: 'BitBadges',
-          collectionId: 1n,
-          assetIds: [{ start: 1n, end: 1n }],
-          ownershipTimes: UintRangeArray.FullRanges(),
-          mustOwnAmounts: { start: 0n, end: 0n }
-        }
-      ]
-    },
-    {
-      assets: [
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 1n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
         {
-          chain: 'BitBadges',
-          collectionId: 2n,
-          assetIds: [{ start: 1n, end: 1n }],
-          ownershipTimes: UintRangeArray.FullRanges(),
-          mustOwnAmounts: { start: 0n, end: 0n }
-        }
-      ]
-    }
-  ]
-}
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 2n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+    ],
+};
 
 const popupParams = {
-  ...
-  
-  ownershipRequirements
-}
+    ...ownershipRequirements,
+};
 ```
 
 ### **Asset Ownership Requirements**
 
-The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied.  You can implement the "not" case by saying owns x0 of a badge.
+The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a badge.
 
 ```typescript
 assetOwnershipRequirements: {
-  $or: [
-    {
-      assets: [
+    $or: [
         {
-          chain: 'BitBadges',
-          collectionId: 1n,
-          assetIds: [{ start: 1n, end: 1n }],
-          ownershipTimes: UintRangeArray.FullRanges(),
-          mustOwnAmounts: { start: 0n, end: 0n }
-        }
-      ]
-    },
-    {
-      assets: [
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 1n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
         {
-          chain: 'BitBadges',
-          collectionId: 2n,
-          assetIds: [{ start: 1n, end: 1n }],
-          ownershipTimes: UintRangeArray.FullRanges(),
-          mustOwnAmounts: { start: 1n, end: 1n }
-        }
-      ]
-    }
-  ]
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 2n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 1n, end: 1n },
+                },
+            ],
+        },
+    ];
 }
 ```
 
@@ -115,25 +113,25 @@ For BitBadges address lists, they are supported with the collection ID = 'BitBad
 }
 ```
 
-**Ethereum / Polygon NFTs**
+**Ethereum / Polygon / Solana NFTs (Beta)**
 
-We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure.
+We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure. Use at your own risk.
 
 ```typescript
 {
-  $and: [
-    {
-      assets: [
+    $and: [
         {
-          chain: 'Polygon', //Or 'Ethereum'
-          collectionId: '0x9a7f0b7d4b6c1c3f3b6d4e6d5b6e6d5b6e6d5b6e',
-          assetIds: ['1'],
-          ownershipTimes: [],
-          mustOwnAmounts: { start: 0n, end: 0n }
-        }
-      ]
-    }
-  ]
+            assets: [
+                {
+                    chain: 'Polygon', //Or 'Ethereum'
+                    collectionId: '0x9a7f0b7d4b6c1c3f3b6d4e6d5b6e6d5b6e6d5b6e',
+                    assetIds: ['1'],
+                    ownershipTimes: [],
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+    ];
 }
 ```
 
@@ -146,7 +144,7 @@ ownershipTimes: []
 The default when ownership times is empty or missing is to verify at the current time. If this is the case, we dynamically add the current time as \[{ start: currTime, end: currTime }].&#x20;
 
 ```typescript
-ownershipTimes: UintRangeArray.FullRanges()
+ownershipTimes: UintRangeArray.FullRanges();
 ```
 
 For assets that support ownership times like BitBadges badges, you can specify custom times to check.

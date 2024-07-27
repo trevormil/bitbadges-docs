@@ -83,7 +83,7 @@ Verifying address ownership entails users signing in to BitBadges. We reuse the 
 
 The next part of authentication is to query asset ownership. Balances can be verified by querying them somehow, which can be via the BitBadges website, BitBadges API, directly from source for off-chain balances, or directly from a blockchain node. You can run your own API / node or self-host balances for further decentralization and other benefits like low latency, availability, etc. Keep in mind the technical knowledge required, potential delay / lag, availability, and pros and cons for all the options.
 
-The BitBadges API currently supports all BitBadges assets, as well as Ethereum / Polygon NFTs.
+The BitBadges API currently supports all BitBadges assets, as well as other chains NFTs (Ethereum, Polygon, Solana) which are in beta mode.
 
 <figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
