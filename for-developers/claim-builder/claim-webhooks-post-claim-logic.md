@@ -1,12 +1,12 @@
-# Post-Claim Logic
+# Claim Webhooks (Post-Claim Logic)
 
-You may consider completing some additional action upon the user claiming successfully.
+Need to perform some additional action upon the user claiming successfully?
 
 **Custom Plugins as Webhooks**
 
-Consider creating a custom plugin and using it as a webhook. It does not even need to have any logic, just return a 200 OK.
+Consider creating a custom plugin and using it as a webhook. It does not even need to have any logic, just return a 200 OK.&#x20;
 
-Note that since it is a plugin though, it will send upon every attempt (even if failed or a simulated attempt). Thus, it is important you verify that the attempt was successful via the ID. Note you may have to wait a couple seconds for processing.
+Note that since it is a plugin though, it will send upon every attempt (even if failed or a simulated attempt). Thus, it is important you verify that the attempt was successful via the ID. Also, you may have to sleep a couple seconds for processing.
 
 ```typescript
 // At your webhook plugin handler URL
