@@ -2,14 +2,14 @@
 
 You may consider completing some additional action upon the user claiming successfully.
 
-**Webhooks Plugin**
+**Custom Plugins as Webhooks**
 
-Consider using the in-site webhooks plugin which will send a request upon every claim attempt. It is important to note that this may send on FAILED attempts and simulations as well (or other parties could send spoofed requests). This is because it is an actual plugin and part of the validation process. Thus, it might send a webhook but fail a later plugin (resulting in the claim overall failing). This also means it will trigger during simulations as well, so you need to filter.
+Consider creating a custom plugin and using it as a webhook. It does not even need to have any logic, just return a 200 OK.
 
-To handle this, you must double check that the attempt was successful by verifying it via its attempt ID.
+Note that since it is a plugin though, it will send upon every attempt (even if failed or a simulated attempt). Thus, it is important you verify that the attempt was successful via the ID. Note you may have to wait a couple seconds for processing.
 
 ```typescript
-// At your webhook handler POST URL
+// At your webhook plugin handler URL
 
 const body = req.body;
 /*
@@ -24,7 +24,7 @@ const body = req.body;
   maxUses: 1,
   currUses: 0,
   instanceId: 'e44ba88643381cd5fa09be288490a92c64add8bcd2327d29a11a4227fab55e5e',
-  pluginId: 'webhooks'
+  pluginId: '...'
 }
 */
 
