@@ -1,4 +1,4 @@
-# 💰 Monetizing Badges
+# Monetization
 
 If your use case requires monetization (such as memberships or recurring payments), we recommend using existing payment processors. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We intend for $BADGE to mainly be used as a compute credits system for on-chain transactions. **It is not meant to be a payment currency.**
 
@@ -22,7 +22,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
@@ -36,8 +36,8 @@ Upon verifying a successful payment intent with Stripe, you can auto-complete th
 
 For auto-completing the claims, we refer you here.
 
-{% content-ref url="claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md" %}
-[auto-complete-claims-w-bitbadges-api.md](claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
+{% content-ref url="../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md" %}
+[auto-complete-claims-w-bitbadges-api.md](../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
 {% endcontent-ref %}
 
 For the Stripe webhook approach, this may look something like the following:
@@ -83,7 +83,7 @@ You can also build a custom plugin that directs the user to your payment page an
 
 To implement, you will use the claim token approach where the unique claim token is the unique payment ID (thus enforcing one claim per ID).
 
-{% content-ref url="claim-builder/plugins/creating-a-custom-plugin.md" %}
-[creating-a-custom-plugin.md](claim-builder/plugins/creating-a-custom-plugin.md)
+{% content-ref url="../plugins/creating-a-custom-plugin.md" %}
+[creating-a-custom-plugin.md](../plugins/creating-a-custom-plugin.md)
 {% endcontent-ref %}
 
