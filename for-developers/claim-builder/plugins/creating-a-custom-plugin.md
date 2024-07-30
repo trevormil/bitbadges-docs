@@ -16,6 +16,7 @@ Before going through the enire plugin  creation process, consider whether you ac
 
 For example,
 
+* Use the Custom Validate plugin as a more streamlined alternative if you do not need any additional information besides  the user address and claim configuration.
 * Use the Codes plugin and give out claim codes from your side to those who meet the criteria
 * Give out a secret password to those who satisfy a criteria
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything.
