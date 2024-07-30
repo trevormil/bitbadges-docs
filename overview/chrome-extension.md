@@ -1,11 +1,11 @@
 # 🧩 Chrome Extension
 
-The BitBadges Chrome extension provides a quick preview of a user's badges and portfolio by scanning the addresses on the current webpage and recommending ones to view. This tool is useful for easily assessing a user's trustworthiness through their BitBadges portfolio while browsing websites. You can add custom requirements as seen below which check for ownership of a custom set of requirements that you want to check.
+The BitBadges Chrome extension provides a quick preview of a user's badges and portfolio directly via the extension popup, meaning you never have to leave the site you are currently on.
 
-**Install Link:** [**https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en**](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en)
+You can add custom requirements as seen below which check for ownership of a custom set of requirements that you want to check.
 
-**Settings Page:** [https://bitbadges.io/chrome-extension](https://bitbadges.io/chrome-extension)
+Install Link: [https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en)
 
-**Note for Developers:** The auto-scan feature only works if you have the **full** address somewhere in the DOM. If you abbreviate addresses (0xabc...123), it cannot pick up on these. It will scan if you have it anywhere (even if not visible to users) such as an **alt** prop.
+Settings Page: [https://bitbadges.io/chrome-extension](https://bitbadges.io/chrome-extension)
 
 <figure><img src="../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
