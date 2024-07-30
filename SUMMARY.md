@@ -145,7 +145,7 @@
     * [Distribute Claim Information Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
   * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Claim Webhooks (Post-Claim Logic)](for-developers/claim-builder/claim-webhooks-post-claim-logic.md)
+  * [Post-Claim Logic / Webhooks](for-developers/claim-builder/post-claim-logic-webhooks.md)
   * [Other Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [Create a Tutorial](for-developers/claim-builder/other-tutorials/create-a-tutorial.md)
     * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
