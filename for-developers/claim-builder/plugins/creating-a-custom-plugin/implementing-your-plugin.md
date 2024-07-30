@@ -28,15 +28,15 @@ Or, you can configure a custom inputs frontend that the user should be redirecte
 
 You can also get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
 
-### Creation Parameters
+### Cusotm Creation Parameters
 
-If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this is left up to you. You can provide a URL for how to do so when creating the plugin. The claim creator will be directed to this URL.
+If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this can be done in-site via the creation inputs section, or you can specify a URL for the claim creator to be redirected to.
 
-These parameters are left completely up to you. We do not store any of them. There is no window.postMessage or anything. You should store these on your end per claim (if needed).
+<figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
-If no creator URI is provided, we assume there is nothing additional the claim creator has to do.
+Note that unlike user inputs, there is currently no auto pass back advanced feature (no window.postMessage or anything). If you use the redirect URL, we leave the storage and handling up to you.
 
-<figure><img src="../../../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
+If nonea re provided, we assume there is nothing additional the claim creator has to configure.
 
 ### **Backend Request**
 
