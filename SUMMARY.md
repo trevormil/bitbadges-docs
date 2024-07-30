@@ -32,6 +32,7 @@
     * [BitBadges Follow Protocol](overview/protocols/bitbadges-follow-protocol.md)
     * [Experiences Protocol](overview/protocols/experiences-protocol.md)
   * [Blockin](overview/ecosystem/blockin.md)
+* [📚 Learn](overview/learn.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [❓ FAQ](overview/faq.md)
 
