@@ -24,7 +24,7 @@ $STAKE is used by nodes to secure the network. BitBadges operates under a proof-
 
 IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
 
-## **Tokenomics of $BADGE**
+## **$BADGE**
 
 **Total Supply: 100,000,000**
 
@@ -42,7 +42,7 @@ To claim, go to the [BitBadges website](https://bitbadges.io), sign in, and navi
 
 The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease according to demand.&#x20;
 
-## **Tokenomics of $STAKE**
+## **$STAKE**
 
 **Initial Supply: 100,000,000**
 
