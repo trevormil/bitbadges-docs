@@ -22,7 +22,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
@@ -83,7 +83,7 @@ You can also build a custom plugin that directs the user to your payment page an
 
 To implement, you will use the claim token approach where the unique claim token is the unique payment ID (thus enforcing one claim per ID).
 
-{% content-ref url="../plugins/creating-a-custom-plugin.md" %}
-[creating-a-custom-plugin.md](../plugins/creating-a-custom-plugin.md)
+{% content-ref url="../plugins/creating-a-custom-plugin/" %}
+[creating-a-custom-plugin](../plugins/creating-a-custom-plugin/)
 {% endcontent-ref %}
 
