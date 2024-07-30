@@ -37,7 +37,7 @@ This is a streamlined alternative that can be used for many use cases with nos e
   
   pluginId: string
   instanceId: string
-  pluginSecret: string;
+  pluginSecret: string; //This is the validation secret entered (used to check origin)
 }
 ```
 
