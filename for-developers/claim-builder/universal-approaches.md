@@ -4,7 +4,7 @@ BitBadges is designed to be as generic and universal to allow you to implement y
 
 Use plugins like Codes, Password, or Email which are generic and can be used with pretty much any app. For example, give out claim codes to those who meet the criteria on your end. Then, they can claim in the BitBadges site, and you do not need to implement the claiming logic.
 
-## Codes / Passwords
+#### Codes / Passwords: Example
 
 1. Create a claim with the Codes or Password plugin.
 2. Check everything you need on your end. If the user is eligible, give them the corresponding information (e.g. unique claim code).

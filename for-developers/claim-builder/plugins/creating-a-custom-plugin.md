@@ -4,9 +4,7 @@ Custom plugins are, in simple terms, just a configured HTTP request that we call
 
 We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. If configured, we can provide you with certain information like user emails / socials which are authenticated on our end.&#x20;
 
-To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim.&#x20;
-
-You can also create your own custom plugin that is not in the directory and add it when creating a claim. Only you (the plugin creator) and approved users will be able to use this plugin in a claim. These non-published plugins will not be shown in the directory, but note that they are not private. The metadata and details will still be displayed to the end user.&#x20;
+To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used by you and approved users,
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -16,7 +14,7 @@ Before going through the entire plugin  creation process, consider whether you a
 
 For example,
 
-* Use the Custom Validate plugin as a more streamlined alternative. Less features but no configuration required.
+* Use the Custom Validate plugin as a more streamlined alternative.
 * Use the Codes plugin and give out claim codes from your side to those who meet the criteria
 * Give out a secret password to those who satisfy a criteria
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything.
