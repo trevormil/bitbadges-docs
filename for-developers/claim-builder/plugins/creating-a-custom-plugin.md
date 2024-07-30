@@ -12,11 +12,11 @@ You can also create your own custom plugin that is not in the directory and add 
 
 ### Do you actually need a custom plugin?
 
-Before going through the enire plugin  creation process, consider whether you actually need a plugin for your use case. For many use cases, you can develop them with workarounds using existing plugins. Get creative!
+Before going through the entire plugin  creation process, consider whether you actually need a plugin for your use case. For many use cases, you can develop them with workarounds using existing plugins. Get creative!
 
 For example,
 
-* Use the Custom Validate plugin as a more streamlined alternative if you do not need any additional information besides  the user address and claim configuration.
+* Use the Custom Validate plugin as a more streamlined alternative. Less features but no configuration required.
 * Use the Codes plugin and give out claim codes from your side to those who meet the criteria
 * Give out a secret password to those who satisfy a criteria
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything.
