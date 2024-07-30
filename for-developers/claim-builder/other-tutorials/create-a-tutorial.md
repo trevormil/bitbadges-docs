@@ -1,7 +1,7 @@
 # Create a Tutorial
 
-If you have a tutorial that you want to add, reach out to us, and we can get it added here and to the BitBadges site for developers to see when users create their claim!
+If you have a tutorial that you want to add, submit a pull request to thte tutorials repository. If you want it added to the site, we will need an image, title and description as well.
 
-All we will need is a URL to the tutorial, logo image, title, and description.
+Repository: [https://github.com/BitBadges/bitbadges-tutorials](https://github.com/BitBadges/bitbadges-tutorials)
 
 <figure><img src="../../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
