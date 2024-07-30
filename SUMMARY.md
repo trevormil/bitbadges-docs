@@ -154,6 +154,7 @@
   * [Post-Claim Logic / Webhooks](for-developers/claim-builder/post-claim-logic-webhooks.md)
   * [Other Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [Create a Tutorial](for-developers/claim-builder/other-tutorials/create-a-tutorial.md)
+    * [Tutorials Repo](https://github.com/BitBadges/bitbadges-tutorials/tree/main)
     * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
       * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
       * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
