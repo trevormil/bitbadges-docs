@@ -6,6 +6,8 @@ Before going through the entire process, consider whether you can implement your
 
 Use plugins like Codes, Password, or Email which are generic and can be used with pretty much any app. For example, give out claim codes to those who meet the criteria on your end. Then, they can claim in the BitBadges site, and you do not need to implement the claiming logic.
 
+Or, create a custom plugin handler. All claiming logic will still be in-site for users, but you can configure a custom HTTP handler to approve / deny claim attempts.
+
 Or, explore if Zapier can help you implement it with no-code! You may also even consider using a wrapped approach with Zapier Webhooks. Instead of dealing with all the API logic, you use the simpler Zapier approach and trigger the webhook.
 
 ### Auto-Completion
