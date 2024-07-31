@@ -112,7 +112,7 @@ While all badge collections are public and created on the BitBadges blockchain, 
 
 The BitBadges site allows anyone to commit, issue, and hold attestations which are messages signed by some issuer. The most common use case of these is credentials, and such attestations can be added to any BitBadges login flow (e.g. verify you are 21 for access).
 
-### Innovative Token Standard
+## Innovative Token Standard
 
 The BitBadges token (badge) standard is state-of-the-art compared to existing token standards (ERC20, ERC721, etc) and does not require smart contracts. The standard is ever-evolving and natively supports never-before-seen features like time-dependent ownership, fine-grained transferability requirements, and hybrid off-chain balances.
 

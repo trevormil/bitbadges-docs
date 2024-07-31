@@ -1,4 +1,4 @@
-# 👤 Multi-Chain Addresses
+# 👤 Handling Addresses
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/accounts-technical.md) will give you more in-depth explanations.
 
@@ -10,7 +10,20 @@ You will often come across places in development where you need to specify a **c
 
 The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.&#x20;
 
-As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the Cosmos address cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a.
+Ethereum Example:
+
+* Mapped Cosmos Address (Bech32): cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
+* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
+
+Solana Example:
+
+* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Mapped Cosmos Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
+
+Bitcoin Example
+
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Mapped Cosmos Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
 <figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -42,20 +55,3 @@ Signature compatibility means that we can verify transaction signatures from any
 
 1. You can use the [BitBadges API](bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
 2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html)
-
-#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-Ethereum Example:
-
-* Mapped Cosmos Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-
-Solana Example:
-
-* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Mapped Cosmos Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
-
-Bitcoin Example
-
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Mapped Cosmos Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
