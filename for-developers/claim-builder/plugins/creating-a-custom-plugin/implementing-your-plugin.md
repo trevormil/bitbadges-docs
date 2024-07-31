@@ -28,7 +28,7 @@ Or, you can configure a custom inputs frontend that the user should be redirecte
 
 You can also get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
 
-### Cusotm Creation Parameters
+### Custom Creation Parameters
 
 If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this can be done in-site via the creation inputs section, or you can specify a URL for the claim creator to be redirected to.
 
@@ -129,15 +129,17 @@ The stateless preset is simple. If we receive the 200, the plugin is successful.
 
 **Claim Token Preset**
 
-This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time.
+This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you. We will deny a user who attempts to use a claim token a second time. The token should not contain any "." characters (we will throw) because that messes up the state handler.
 
 <figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Transitions Preset**
 
-This preset expects a { newState } in the response. If the claim is successful, we will set the current state stored in our plugin to the new state. If this option is selected, you also have acces to the prior state in the request payload.
+This preset expects a { newState } in the response. If the claim is successful, we will set the current state stored in our plugin to the new state. If this option is selected, you also have access to the prior state in the request payload.
 
 IMPORTANT: Do not assume that a successful response means a successful claim and a successful set of the new state. Think of this as a hypothetical state transition. From the prior state in the payload, this is what the new state will be **IF** the claim is successful.
+
+Note: Ensure the JSON object keys do not contain any "." characters because that may mess up the state handler. For example, emails should be bob@abc\[dot]com rather than bob@abc.com.
 
 **Claim Numbers Preset**
 
