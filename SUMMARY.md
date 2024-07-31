@@ -39,7 +39,7 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
-* [👤 Multi-Chain Addresses](for-developers/accounts.md)
+* [👤 Handling Addresses](for-developers/accounts.md)
 * [🧠 Core Concepts](for-developers/core-concepts/README.md)
   * [🔢 Big Numbers](for-developers/core-concepts/big-numbers.md)
   * [🔢 Uint Ranges](for-developers/core-concepts/uint-ranges.md)
