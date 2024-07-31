@@ -39,11 +39,11 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+* [👤 Multi-Chain Addresses](for-developers/accounts.md)
 * [🧠 Core Concepts](for-developers/core-concepts/README.md)
-  * [👤 Accounts](for-developers/core-concepts/accounts.md)
-  * [👥 Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
   * [🔢 Big Numbers](for-developers/core-concepts/big-numbers.md)
   * [🔢 Uint Ranges](for-developers/core-concepts/uint-ranges.md)
+  * [👥 Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
   * [📧 Address Lists](for-developers/core-concepts/address-lists-lists.md)
   * [⏳ Timelines](for-developers/core-concepts/timelines.md)
   * [🖼️ Metadata](for-developers/core-concepts/metadata.md)

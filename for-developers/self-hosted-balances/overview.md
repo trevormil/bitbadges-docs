@@ -31,7 +31,7 @@ For non-indexed balances, you simply need to set up a server which can return th
 Couple notes:
 
 * The URL stored on-chain must have {address} as a placeholder for the address to query.
-* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../core-concepts/accounts.md).
+* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../accounts.md).
 
 Example:
 
