@@ -2,7 +2,7 @@
 
 BitBadges plans to execute a two-phased launch:
 
-### **Phase 1: Beta**&#x20;
+### **Phase 1: Betanet**
 
 Betanet is the initial phase of BitBadges upon launch. This is a phase where we plan to ship fast, gain feedback quickly, and iron out all bugs as quickly as possible in order to build the best product for you long term.
 
