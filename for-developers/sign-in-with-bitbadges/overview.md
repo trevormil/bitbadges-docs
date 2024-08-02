@@ -79,27 +79,25 @@ Verifying address ownership entails users signing in to BitBadges. We reuse the 
 
 **Querying Asset Ownership**
 
-The next part of authentication is to query asset ownership. Balances can be verified by querying them somehow, which can be via the BitBadges website, BitBadges API, directly from source for off-chain balances, or directly from a blockchain node. You can run your own API / node or self-host balances for further decentralization and other benefits like low latency, availability, etc. Keep in mind the technical knowledge required, potential delay / lag, availability, and pros and cons for all the options.
-
-The BitBadges API currently supports all BitBadges assets, as well as other chains NFTs (Ethereum, Polygon, Solana) which are in beta mode.
+The next part of authentication is to query asset ownership. We recommend outsourcing this to the BitBadges API, but you can also self-implement. The BitBadges API currently supports all BitBadges assets, as well as other chains NFTs (Ethereum, Polygon, Solana) which are in beta mode.
 
 <figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Attestations / Signatures**
 
-Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university. These can be attached along with the sign in request.
+Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university. These can be attached along with the sign in request and verified by you.
 
-## **Immediate or Delayed Authentication?**
+## **Digital or QR Authentication?**
 
 Authentication can be facilitated in many settings (in-person, digitally, etc). This is an important question to ask before starting your implementation.
 
-**Immediate**
+**Immediate (Digital)**
 
 You can authenticate users and verify badge ownership, such as badge-gating a website. This process is immediate, meaning as soon as a user is prompted, you can proceed to the verification step. Nothing needs to be cached or stored because the details are immediately used.
 
 <figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
 
-**Delayed Authentication**
+**Delayed Authentication (QR Codes)**
 
 Or, you can pre-generate with authentication QR codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.
 

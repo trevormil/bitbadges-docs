@@ -81,7 +81,7 @@ By specifying scopes, we will give you an access token / refresh token to use. I
 
 Which badges / assets should we verify that the user owns? We have dedicated that to its own page to fully explain.
 
-IMPORTANT: This parameter is just for user display purposes and is not cached with the request. The requirements are NOT cached with the request. You will have to respecify the requirements during verification or check hem on your end.
+IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to respecify the requirements server-side during the verification step.
 
 {% content-ref url="challenge-parameters.md" %}
 [challenge-parameters.md](challenge-parameters.md)
@@ -98,7 +98,18 @@ const popupParams = {
 
 Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution.
 
-By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as distributing later.
+By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as if assets are not distributed yet.
+
+**Attestations**
+
+```typescript
+const popupParams = {
+    ...,
+    expectAttestationsPresentations: true
+}
+```
+
+**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified.
 
 **Other Sign Ins**
 
@@ -109,11 +120,11 @@ const popupParams = {
 }
 ```
 
-If **otherSignIns** is defined, we will additionally make the user sign in to the requested services and pass you their connected username / account ID with the authentication details. Note we do not pass any access tokens or private details (simply username / account ID).
+If **otherSignIns** is defined, we will additionally make the user sign in to the requested services and pass you their connected username / account ID with the authentication details. Note we DO NOT pass any access tokens or private details (simply username / account ID).
 
 This can be used to implement, for example, badge gating Discord servers. Check badges, address ownership, and Discord account ownership via here, then grant roles based on successful authentication.
 
-Its important that you verify this correct on your end during verification because this is a client-side parameter that may be changed. More is explained on the verification page.
+Its important that you verify you receive responses (e.g. response.otherSignIns.discord.username !== undefined) for these and do not trust the verification response blindly. This is because this is a client-side parameter that may be changed. More is explained on the verification page.
 
 ```typescript
 {
@@ -126,7 +137,7 @@ Its important that you verify this correct on your end during verification becau
 
 <figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-**Metadata**
+**Custom Metadata**
 
 ```typescript
 const popupParams = {
@@ -141,13 +152,3 @@ const popupParams = {
 
 These are optional. By default, we use your app's name, image, and description.
 
-**Attestations**
-
-```typescript
-const popupParams = {
-    ...,
-    expectAttestationsPresentations: true
-}
-```
-
-**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified.

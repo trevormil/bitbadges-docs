@@ -1,4 +1,4 @@
-# Access Tokens
+# API Access Tokens
 
 If you do not have access tokens, you can skip this section. Most apps only need to identify the user address.
 
