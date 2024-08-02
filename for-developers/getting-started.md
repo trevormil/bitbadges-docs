@@ -16,7 +16,7 @@ Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bit
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
-<figure><img src="../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
 **Other Quickstarters:**
 
