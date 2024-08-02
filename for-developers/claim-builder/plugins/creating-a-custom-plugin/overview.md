@@ -4,7 +4,9 @@ Custom plugins are, in simple terms, just a configured HTTP request that we call
 
 We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. If configured, we can provide you with certain information like user emails / socials which are authenticated on our end and passed to you.
 
-To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used by you and approved users,
+To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab.&#x20;
+
+Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used by you and approved users as desired.
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
