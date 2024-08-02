@@ -4,9 +4,17 @@ From the prior pages, you should now have the authorization **code** for the use
 
 You can now fetch the authentication details for the user, by exchanging the code and valid app configuration details. Be sure to keep the client secret secret. The response will contain all authentication details, including a **verificationResponse**.
 
+**Verifying Ownership Requirements**
+
+Its important to note any ownership requirements must be specified via **options.ownershipRequirements. T**he ownershipRequirements previously specified in the URL / client-side is just for display purposes and is not cached with the request.
+
+You may also choose to custom verify requirements yourself too, rather than outsourcing this step to BitBadges.
+
 **Access Tokens vs None**
 
-If you specified API authorization scopes to be able to access, we return access tokens and refresh tokens for you to perform this functionality. In other words, scopes.length > 0. Otherwise, we do not return anything, and you will just receive the user crypto address in the response. You will then handle everything else on your end (session handling, etc).
+If you specified API authorization scopes to be able to access, we return access tokens and refresh tokens for you to perform this functionality. In other words, scopes.length > 0.
+
+Otherwise, we do not return anything, and you will just receive the user crypto address in the response. You will then handle everything else on your end (session handling, etc).
 
 If no access tokens are to be needed, we will simply return the user address as the access token for comaptibility with tools (just so the access token is not blank).
 
@@ -77,7 +85,6 @@ Does check :white\_check\_mark:
 
 * Proof of address ownership via their authenticated BitBadges account
 * Asset ownership criteria is met for the address (if requested via **options.ownershipRequirements**).
-  * Its important to note that this must be specified via **options.ownershipRequirements. T**he ownershipRequirements specified in the URL / client-side is just for display purposes.&#x20;
 * Anything specified in the verify challenge options
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
