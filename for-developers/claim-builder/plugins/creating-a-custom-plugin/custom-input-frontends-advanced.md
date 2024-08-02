@@ -63,6 +63,8 @@ function PluginTestScreen() {
     testData: 'testData',
   });
 
+  const expectedPluginId = '....';
+
   return (
     <Content className="full-area" style={{ minHeight: '100vh', padding: 8 }}>
       <div className="flex-center">
@@ -75,7 +77,12 @@ function PluginTestScreen() {
           <div className="flex-center">
             <button
               onClick={async () => {
-                if (window.opener) {
+                if (claimContext.pluginId !== expectedPluginId) {
+                  throw new Error("Invalid plugin ID")
+                }
+              
+                if (window.opener) {              
+                
                   console.log('Sending message to opener', customBody, FRONTEND_URL);
                   window.opener.postMessage(customBody, FRONTEND_URL);
                   window.close();
