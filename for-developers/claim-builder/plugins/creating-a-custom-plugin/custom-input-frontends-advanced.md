@@ -1,4 +1,4 @@
-# Custom User Inputs Frontend
+# Custom Input Frontends (Advanced)
 
 If you want to further customize the inputs process beyond just users inputting stuff directly in-site, consider creating a custom frontend as well to pass back inputs. This can be used, for example, for more secure authenticated logic.
 
@@ -19,12 +19,15 @@ window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
 ```
 
 ```typescript
-export interface ContextInfo {
+interface ContextInfo {
   address: string;
   claimId: string;
   cosmosAddress: string;
   createdAt: number;
   lastUpdated: number;
+  
+  pluginId: string;
+  instanceId: string;
 }
 ```
 
@@ -34,7 +37,7 @@ export interface ContextInfo {
 
 At the configured URL, you can then perform whatever logic you need to do (i.e. authentication, prompting the user, etc). This is left up to you. Once you are ready to submit, you can pass back the inputs via a JSON back to our site via a window.opener.postMessage call. The passed data will be the user's input body parameters for this specific plugin.
 
-IMPORTANT: Please take extra care in this step. You want to ensure that only BitBadges can read the custom body. See [https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) and other references. Use window.opener.postMessage and specify the origin as https://bitbadges.io.&#x20;
+
 
 ```typescript
 import { Layout } from 'antd';
@@ -88,7 +91,15 @@ function PluginTestScreen() {
 }
 ```
 
-Note that BitBadges should just be treated as the messenger or middleman here. Although, if implemented correctly, everything will be passed via secure communication channels,  it is not recommended to pass sensitive information via the body. A workaround might be to issue claim codes instead. Consider adding extra challenges and security to your execution flows which assume that communication is intercepted or BitBadges is compromised (e.g. claim codes with quick expirations, additional challenges , etc).
+**Security Considerations**
+
+You want to ensure that only BitBadges can read the custom body. See [https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) and other references. Use window.opener.postMessage and specify the origin as https://bitbadges.io.&#x20;
+
+BitBadges should just be treated as the messenger or middleman here. Although, if implemented correctly, everything will be passed via secure communication channels,  it is not recommended to pass sensitive information via the body. A workaround might be to issue claim codes instead. Consider adding extra challenges and security to your execution flows which assume that communication is intercepted or BitBadges is compromised (e.g. claim codes with quick expirations, additional challenges , etc).
+
+
+
+You should also consider the case that another BitBadges plugin redirects to the same URI maliciously. You do not want to pass sensitive inforamtion to a malicious plugin. Consider allowlisting only specific pluginIds received in the context or verify that specific instance IDs are correct via the BitBadges API.
 
 **Quickstart**
 

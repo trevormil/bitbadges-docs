@@ -22,8 +22,8 @@ The easiest way to do this is to just configure the expected schemas directly in
 
 Or, you can configure a custom inputs frontend that the user should be redirected to. We will expect the inputs to be returned via browser message communications from your custom frontend.
 
-{% content-ref url="custom-user-inputs-frontend-advanced.md" %}
-[custom-user-inputs-frontend-advanced.md](custom-user-inputs-frontend-advanced.md)
+{% content-ref url="custom-input-frontends-advanced.md" %}
+[custom-input-frontends-advanced.md](custom-input-frontends-advanced.md)
 {% endcontent-ref %}
 
 You can also get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
