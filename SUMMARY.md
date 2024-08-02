@@ -185,7 +185,7 @@
   * [Ownership Requirements](for-developers/sign-in-with-bitbadges/challenge-parameters.md)
   * [Generating the URL](for-developers/sign-in-with-bitbadges/generating-the-url.md)
   * [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)
-    * [Manual](for-developers/authenticating-with-bitbadges/approaches/manual.md)
+    * [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
     * [Redirected Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
   * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
   * [Add-Ons](for-developers/sign-in-with-bitbadges/add-ons/README.md)

@@ -1,4 +1,4 @@
-# Manual
+# QR Codes
 
 Manual redirection is suitable for scenarios where delayed authentication is implemented, and BitBadges caches details for you. This approach does require internet/API access during verification. Users directly navigate to the link provided and complete the authentication process by signing the challenge message.
 
@@ -22,6 +22,10 @@ Like we mentioned, obtaining the code is up to you. The code will be a 32 byte h
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
 
+**Verification**
+
+The QR code text value will be the code that you exchange in the verification process.
+
 **Custom QR Implementations**
 
-Note that this is provided for convenience, but your application may have differnet requirements for QR codes. You may consider self-implementing a solution as well. You may have to use the callback approach and generate QRs for your users on your end.
+Note that this is provided for convenience, but your application may have different requirements for QR codes. You may consider self-implementing a solution as well. You may have to use the callback approach and generate QRs for your users on your end.
