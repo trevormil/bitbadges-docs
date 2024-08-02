@@ -188,7 +188,7 @@
     * [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
     * [Redirected Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
   * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
-    * [Verify by Exchanging Codes](for-developers/authenticating-with-bitbadges/verification/verify-by-exchanging-codes.md)
+    * [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
     * [API Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
     * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
   * [Add-Ons](for-developers/sign-in-with-bitbadges/add-ons/README.md)
