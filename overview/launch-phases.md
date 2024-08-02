@@ -22,7 +22,7 @@ $BADGE is the in-app compute credits system we use for blockchain transaction fe
 
 $STAKE is used by nodes to secure the network. BitBadges operates under a proof-of-stake consensus model using $STAKE. Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.&#x20;
 
-IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
+IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon and are NOT financial assets. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
 
 ## **$BADGE**
 
@@ -30,17 +30,13 @@ IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon. It is a system which
 
 **Inflation: None**
 
-All $BADGE credits will be minted upon genesis (i.e. no inflation / deflation) and distributed as explained below.
+**Initial Airdrops**
 
-**Initial Airdrop: 10,000,000**
+We plan to airdrop the first 10,000,000 of the credits supply completely free of charge to select users. Please reach out to us on Discord if you or your community are interested in building with BitBadges and would like some free credits to get started.&#x20;
 
-Criteria: TBD
+**Faucet: Remaining Supply**
 
-To claim, go to the [BitBadges website](https://bitbadges.io), sign in, and navigate to a page which requires registration, such as the Create tab.
-
-**Faucet: 90,000,000**
-
-The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease according to demand.&#x20;
+The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand.&#x20;
 
 ## **$STAKE**
 
