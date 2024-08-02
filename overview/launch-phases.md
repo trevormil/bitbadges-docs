@@ -36,7 +36,7 @@ We plan to airdrop the first 10,000,000 of the credits supply completely free of
 
 **Faucet: Remaining Supply**
 
-The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand.&#x20;
+The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand. It will begin at $1 per credit.
 
 ## **$STAKE**
 
