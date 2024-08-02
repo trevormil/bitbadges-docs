@@ -81,6 +81,8 @@ By specifying scopes, we will give you an access token / refresh token to use. I
 
 Which badges / assets should we verify that the user owns? We have dedicated that to its own page to fully explain.
 
+IMPORTANT: This parameter is just for user display purposes and is not cached with the request. The requirements are NOT cached with the request. You will have to respecify the requirements during verification or check hem on your end.
+
 {% content-ref url="challenge-parameters.md" %}
 [challenge-parameters.md](challenge-parameters.md)
 {% endcontent-ref %}
@@ -89,13 +91,14 @@ Which badges / assets should we verify that the user owns? We have dedicated tha
 const popupParams = {
     ...,
 
-    ownershipRequirements: { ... }
+    ownershipRequirements: { ... },
+    expectVerifySuccess: true
 }
 ```
 
-Its important that you verify the ownership requirements are correct on your end during verification because this is a client-side parameter that may be changed. More is explained on the verification page.
+Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution.
 
-Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements after the fact too.&#x20;
+By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as distributing later.
 
 **Other Sign Ins**
 
@@ -136,21 +139,7 @@ const popupParams = {
 
 **name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user.
 
-**Simulations**
-
-```typescript
-const popupParams = {
-    ...,
-    verifyOptions: {
-        ...
-    },
-    expectVerifySuccess: true
-}
-```
-
-For a better user experience and interface, we can simulate certain aspects about the request (asset ownership, etc) if you pass in **expectVerifySuccess**. This lets us check and catch certain errors and warn the user before they sign rather than after. Some use cases, however, may not be expected to pass at sign time, such as pre-generating a QR code for a later time.
-
-The default is false. If true, we check only a few details out of the box, but passing in **verifyOptions** will let us know the expected verification options and can help us further enhance our simulation feature. See Verification page for all options explained.
+These are optional. By default, we use your app's name, image, and description.
 
 **Attestations**
 

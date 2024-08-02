@@ -20,19 +20,17 @@ Similar to how websites implement authentication popups, BitBadges facilitates a
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference. This has a full end-to-end implementation of Sign In with BitBadges.
 
-<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="563"><figcaption></figcaption></figure>
-
 ## P2P Verification
 
 Before diving in, we want to preface by saying that fully implementing Sign In with BitBadges may be overkill for many use cases. The Peer Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
 
-Peer Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) and potentially ownership of badges / attestations all directly via the site.&#x20;
+Peer Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) and potentially ownership of badges / attestations all directly via the site.
 
 <figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
 Pros: No setup required. Accessible on the go. All directly in-site.
 
-Cons:  No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
+Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
 
 Example Uses
 
@@ -54,7 +52,7 @@ We leave the rest up to you. SIWBB does not handle sessions, etc. Those are all 
 
 **Is the flow OAuth 2.0 compatible?**
 
-Yes, we are OAuth 2.0 compatible and integrate with different OAuth 2.0 helper tools.&#x20;
+Yes, we are OAuth 2.0 compatible and integrate with different OAuth 2.0 helper tools.
 
 **Key Parts**
 
