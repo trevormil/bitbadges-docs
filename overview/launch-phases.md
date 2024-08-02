@@ -34,6 +34,11 @@ IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon and are NOT financial
 
 We plan to airdrop the first 10,000,000 of the credits supply completely free of charge to select users. Please reach out to us on Discord if you or your community are interested in building with BitBadges and would like some free credits to get started.&#x20;
 
+Airdrops Planned
+
+* 10 $BADGE for first 100k users on the site (claimable any transaction page on site like the mint page)
+* 100 $BADGE to developers who want to build on top of BitBadges (up to 5000 developers)
+
 **Faucet: Remaining Supply**
 
 The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand. It will begin at $1 per credit.
