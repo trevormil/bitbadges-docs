@@ -188,6 +188,7 @@
     * [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
     * [Redirected Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
   * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
+    * [Access Tokens](for-developers/authenticating-with-bitbadges/verification/access-tokens.md)
   * [Add-Ons](for-developers/sign-in-with-bitbadges/add-ons/README.md)
     * [Extending with Zapier](for-developers/authenticating-with-bitbadges/verification/spreadsheet-session-management.md)
     * [Badge-Gating Discord Servers](for-developers/authenticating-with-bitbadges/verification/badge-gating-discord-servers.md)

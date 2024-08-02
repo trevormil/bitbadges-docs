@@ -10,6 +10,10 @@ If you specified API authorization scopes to be able to access, we return access
 
 If no access tokens are to be needed, we will simply return the user address as the access token for comaptibility with tools (just so the access token is not blank).
 
+{% content-ref url="access-tokens.md" %}
+[access-tokens.md](access-tokens.md)
+{% endcontent-ref %}
+
 **Verification Example**
 
 <pre class="language-tsx"><code class="lang-tsx"><strong>import { BlockinChallenge, BigIntify, BitBadgesApi, AttestationsProof } from "bitbadgesjs-sdk";
@@ -88,62 +92,16 @@ await BitBadgesApi.verifySIWBBRequest({ ... });
 await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code: blockinChallenge._docId, options: { ... }});
 ```
 
-## Access Tokens
-
-If you do not have access tokens, you can skip this section. Most apps only need to identify the user address.
-
-With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
-
-<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
-
-If you are using the SDK, you can instead do this which handles the header setting:
-
-```typescript
-BitBadgesApi.setAccessToken(token);
-BitBadgesApi.unsetAccessToken();
-```
-
-Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. Note that they may also become invalid as the user revokes access to them as well.&#x20;
-
-**Refreshing**
-
-```typescript
-const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
-    refresh_token
-    grant_type: 'refresh_token',
-    client_secret: '...',
-    client_id: '...',
-    redirect_uri: '...' //only needed if redirected
-});
-
-const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
-```
-
-Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.&#x20;
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Revoking Access**
-
-Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections -> Authorizations tab in-site. This can be done by either the user or the app.
-
-```typescript
-// POST https://api.bitbadges.io/api/v0/siwbb/token/revoke
-await BitBadgesApi.revokeOauthAuthorization({ token });
-```
+##
 
 ## **IMPORTANT: What is verified vs not?**
 
 It is important to note that calling any verification function only checks from a cryptographic standpoint and does not implement any application specific logic. We handle checking the user's signature and verifying ownership of specified badges / attestations (if any). Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.). It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
 
-As an authentication provider, you should NOT assume the parameters are correct. It is critical that you verify that the parameters are as expected because the user could change them. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification. This mainly includes checking that the returned ownership requirements, attestations, and other tracked sign ins were correctly configured.
-
-For example, if the user manipulates the request to check x1 of badge ID 2 instead of badge ID 1, BItBadges checks the received parameters. You need to check on your end that x1 of badge ID 1 was checked. This can be done server-side using the verification options.
-
 Does check :white\_check\_mark:
 
 * Proof of address ownership via their authenticated BitBadges account
-* Asset ownership criteria is met for the address (if requested)
+* Asset ownership criteria is met for the address (if requested via **options.ownershipRequirements**). Its important to note that the ownershipRequirements specified in the URL / client-side is just for display purposes. You must request / check it server-side.
 * Any options specified in the verify challenge options
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified.
@@ -151,11 +109,20 @@ Does check :white\_check\_mark:
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
-* The parameters were configured correctly. Consider using **options.ownershipRequirements** and **options.otherSignIns** to check this server-side.
 * Any stateful data (e.g. handling sessions or checking nonces or preventing replay attacks or phishing attacks or flash ownership attacks)
 * Does not handle sessions or check any session information
-* Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
-* Does not check the content of the attestation messages or anything else about the attestations.
+* Does not check the content of the attestation messages or anything else about the attestations besides that they are well-formed cryptographically.
+  * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+* If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
+  * ```typescript
+    for (const social of ['discord', 'twitter', 'github', 'google']) {
+      if (!resp.otherSignIns?.[social]) {
+        throw new Error('Invalid other sign in. Does not match expected.');
+      }
+    }
+    ```
+
+
 
 **Flash Ownership Attacks**
 
