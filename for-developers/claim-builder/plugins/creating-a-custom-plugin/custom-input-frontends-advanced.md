@@ -99,7 +99,7 @@ BitBadges should just be treated as the messenger or middleman here. Although, i
 
 
 
-You should also consider the case that another BitBadges plugin redirects to the same URI maliciously. You do not want to pass sensitive information to a malicious plugin. Consider allowlisting only specific pluginIds received in the context or verify that specific instance IDs are correct via the BitBadges API.
+You should also consider the case that another BitBadges plugin redirects to the same URI maliciously. You do not want to pass sensitive information to a malicious plugin. Consider allowlisting only your specific pluginId received in the context.
 
 **Quickstart**
 
