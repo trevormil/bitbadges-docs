@@ -30,6 +30,10 @@ You can implement a hybrid approach in your own using the BitBadges API and conn
 const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
 ```
 
+**Get Creative!**
+
+A common theme you may see when implementing claims is to get creative and think outside the box. There is a ton of integrations and features already implemented. Even if your use case doesn't exactly match the implementation, you can get creative and reuse implementations.&#x20;
+
 ## Claiming on Behalf of Others
 
 With each claim, there is only one address (the claiming address). There is no initiator and recipient like with standard approvals. If you want to initiate a claim on behalf of others, you have to get a little creative.
