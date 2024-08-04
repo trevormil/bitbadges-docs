@@ -10,9 +10,9 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 ## Quickstart
 
-#### [Demo Hosted Quickstart URL](https://sea-turtle-app-2lz87.ondigitalocean.app/)
+#### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
 
-Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart). It also provides a simple implementation of a hybrid dApp where users can sign in with Web2 username / passwords, and everything is mapped to addresses behind the scenes.
+Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart).&#x20;
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
