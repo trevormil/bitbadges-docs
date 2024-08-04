@@ -10,8 +10,8 @@ BitBadges offers various options for obtaining and presenting the code, such as 
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account, rather than being transmitted to the redirect URI. We will store the code in the user's BitBadges account via the Authentication Codes page.
 
-{% content-ref url="../../sign-in-with-bitbadges/generating-the-url.md" %}
-[generating-the-url.md](../../sign-in-with-bitbadges/generating-the-url.md)
+{% content-ref url="../authentication-url-+-parameters/generating-the-url.md" %}
+[generating-the-url.md](../authentication-url-+-parameters/generating-the-url.md)
 {% endcontent-ref %}
 
 **Obtaining Codes**
