@@ -4,16 +4,6 @@ Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 int
 
 This is the all-in-one flow for authentication and authorization. We envision most use cases will just want to authenticate users for their application; however, this flow also supports authorizing scopes for the BItBadges API.
 
-#### Example Use Cases:
-
-**In-Person QR Codes:**
-
-In scenarios where verifying users via a QR code is preferable to signing a message with a crypto wallet, BitBadges simplifies the process. For instance, during in-person events, expecting users to have their crypto wallets readily available for signing authentication messages may not be practical. In such cases, users can sign their authentication messages beforehand, enabling the generation of a QR code (or alternative methods like NFC) through BitBadges. This QR code can then be presented during authentication, streamlining the process.
-
-**Sign In with BitBadges Popup Window:**
-
-Similar to how websites implement authentication popups, BitBadges facilitates a streamlined approach with "Sign In with BitBadges." This feature allows users to authenticate seamlessly without leaving the current context, enhancing user experience and security.
-
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 ## Quickstart
@@ -31,11 +21,6 @@ Peer Verification lets a prover device (which is signed in to a BitBadges accoun
 Pros: No setup required. Accessible on the go. All directly in-site.
 
 Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
-
-Example Uses
-
-* A restaurant sets up a prover QR code on their front window. Anyone can scan this QR code and verify badge ownership / attestations, such as a inspection quality badge.
-* In an in-person meetup, you want to verify another user's identity.
 
 ## **Execution Flow**
 

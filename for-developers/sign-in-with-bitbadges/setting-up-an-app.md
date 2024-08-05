@@ -4,11 +4,13 @@ App registration is done at [https://btibadges.io/developer](https://btibadges.i
 
 **Client IDs**
 
-To initiate an authentication request with BitBadges, ensure you correctly fill in the client ID field in your application's request. The client ID is a unique identifier assigned to your application when you register it with BitBadges. This identifier is crucial for the authentication process, allowing BitBadges to recognize your application and process authentication requests accordingly.
+The client ID is a unique identifier assigned to your application when you register it with BitBadges. This identifier allows BitBadges to recognize your application and process authentication requests accordingly.
 
 **Client Secrets**
 
-The client secret is a cryptographic key provided by BitBadges upon registering your application. It is used alongside the client ID to authenticate requests made from your application to the BitBadges API. You must keep your client secret confidential and never expose it in client-side code or any place where it might be accessed by unauthorized users. Treat your client secret as securely as you would treat a password to ensure the security of your application's interactions with BitBadges.
+The client secret is a cryptographic key provided by BitBadges upon registering your application. It is used alongside the client ID to authenticate requests made from your application to the BitBadges API.&#x20;
+
+You must keep your client secret confidential and never expose it in client-side code or any place where it might be accessed by unauthorized users. Treat your client secret as securely as you would treat a password to ensure the security of your application's interactions with BitBadges.
 
 In order to fetch the authentication details for any user of your application, you must prove that you know the client secret.
 
