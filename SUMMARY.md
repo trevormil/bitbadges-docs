@@ -21,6 +21,7 @@
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [🕵️ Authentication with Badges](overview/verification-tools.md)
 * [🔀 Distribution](overview/distribution-tools-integrations.md)
+* [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📱 Mobile Support](overview/mobile-support.md)
 * [🤝 Link Sharing](overview/link-sharing.md)
 * [🤵‍♂️ LinkedIn Certifications](overview/linkedin-certifications.md)
