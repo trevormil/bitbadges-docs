@@ -39,7 +39,6 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
-* [🧪 Testnet Mode](for-developers/testnet-mode.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧠 Core Concepts](for-developers/core-concepts/README.md)
   * [🔢 Big Numbers](for-developers/core-concepts/big-numbers.md)
@@ -83,6 +82,7 @@
     * [Creating a Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
     * [Creating and Verifying a Proof](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
     * [Presentations](for-developers/core-concepts/verifiable-attestations/presentations.md)
+* [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
   * [Routes](https://bitbadges.stoplight.io/docs/bitbadges)

@@ -4,13 +4,9 @@ Testnet mode provides a separate environment for testing purposes. It is isolate
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-### Usage
+### Important Notes
 
-Testnet mode is designed for:
-
-* Testing new features
-* Experimenting with configurations
-* Conducting trials without affecting live data
+You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything). This means it may or may not be the solution for you.
 
 ### Differences
 
@@ -25,10 +21,7 @@ Testnet mode is designed for:
   * Faucet may be more lenient
 * Performance also may differ from the production environment
 
-### Important Notes
-
-* Users should treat testnet as an entirely separate service
-* No data or settings carry over between testnet and production modes
+###
 
 ### Links
 
