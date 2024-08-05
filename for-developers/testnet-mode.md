@@ -1,6 +1,8 @@
 # 🧪 Testnet Mode
 
-Testnet mode provides a separate environment for testing purposes. It is isolated from the production environment and uses its own resources, such as a testnet blockchain ,database, and more.
+Testnet mode provides a separate environment for testing purposes. It is isolated from the production environment and uses its own resources, such as a testnet blockchain, database, and more.
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Usage
 
@@ -28,6 +30,14 @@ Testnet mode is designed for:
 * Users should treat testnet as an entirely separate service
 * No data or settings carry over between testnet and production modes
 
-### Caution
+### Links
 
-Testnet is for testing purposes only. Do not use it for live transactions or rely on it for production-level operations.
+Frontend: https://testnet.bitbadges.io
+
+Backend: https://api.bitbadges.io/testnet (append the normal routes to this base URL)
+
+Testnet Node: http://138.197.10.8
+
+### Feedback
+
+If there is anything we can do to make development easier, let us know.

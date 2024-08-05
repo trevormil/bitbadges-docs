@@ -21,7 +21,6 @@
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [🕵️ Authentication with Badges](overview/verification-tools.md)
 * [🔀 Distribution](overview/distribution-tools-integrations.md)
-* [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📱 Mobile Support](overview/mobile-support.md)
 * [🤝 Link Sharing](overview/link-sharing.md)
 * [🤵‍♂️ LinkedIn Certifications](overview/linkedin-certifications.md)
@@ -40,6 +39,7 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+* [🧪 Testnet Mode](for-developers/testnet-mode.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧠 Core Concepts](for-developers/core-concepts/README.md)
   * [🔢 Big Numbers](for-developers/core-concepts/big-numbers.md)

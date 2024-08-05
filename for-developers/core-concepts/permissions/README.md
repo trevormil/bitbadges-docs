@@ -16,7 +16,7 @@ Note: The [Approved Transfers](../transferability-approvals.md) and [Permissions
 }
 ```
 
-### Collection Permissions&#x20;
+### Collection Permissions
 
 #### Manager
 
@@ -40,12 +40,12 @@ The current manager is determined by the **managerTimeline.** Transferring the m
 
 ### **User Permissions**
 
-Besides the collection permissions, there are also userPermissions that can be set. Typically, these will remain empty / unset, so that the user can always have full control over their approvals. If empty, they are permitted by default (but not frozen).&#x20;
+Besides the collection permissions, there are also userPermissions that can be set. Typically, these will remain empty / unset, so that the user can always have full control over their approvals. If empty, they are permitted by default (but not frozen).
 
 However, setting user permissions can be leveraged in some cases for specific purposes.
 
--   Locking that a specific badge can never be transferred out of the account
--   Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
+* Locking that a specific badge can never be transferred out of the account
+* Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
 
 **Defaults**
 
@@ -55,18 +55,18 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
 There are three states that a permission can be in at any one time:
 
 1. **Forbidden + Permanently Frozen (permanentlyForbiddenTimes):** This permission is forbidden and will always remain forbidden.
-    1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
+   1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
 2. **Permitted + Not Frozen (Unhandled):** This permission is currently permitted but can be changed to one of the other two states.
-    1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
+   1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
 3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
-    1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
+   1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
 
 There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
 
@@ -109,7 +109,6 @@ Ex: If we have the following permission definitions in an array \[elem1, elem2]:
    permanentlyPermittedTimes: []
    permanentlyForbiddenTimes: [{ start: 1, end: 10 }]
    ```
-
 2. ```
    timelineTimes: [{ start: 1, end: 100 }]
 
@@ -168,7 +167,7 @@ permanentlyPermittedTimes: []
 
 A common pattern you will see is to brute force all possible combinations. For example, in the above example we brute forced all possible combinations for badge IDs 11+. No subsequent element specifying a badge ID 11+ will ever get matched to.
 
-To brute force a specific criteria (such as IDs 11+), you specify it, then for all other N - 1 criteria, you set them equal to ALL values. All values in the case of UintRanges is 1 - max Uint64. For address lists / IDs, this is all possible addresses / IDs.&#x20;
+To brute force a specific criteria (such as IDs 11+), you specify it, then for all other N - 1 criteria, you set them equal to ALL values. All values in the case of UintRanges is 1 - max Uint64. For address lists / IDs, this is all possible addresses / IDs.
 
 The following brute forces badge IDs 1-10.
 

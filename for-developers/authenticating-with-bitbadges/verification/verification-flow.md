@@ -1,4 +1,4 @@
-# Verify by Exchanging Codes
+# Verification Flow
 
 From the prior pages, you should now have the authorization **code** for the user. This is either the QR code value for in-person or the redirect code you receive in your handler for the standard digital flow.
 
@@ -24,7 +24,7 @@ See more o the following page.
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verification Example**
 
