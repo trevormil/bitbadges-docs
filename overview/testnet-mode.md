@@ -6,20 +6,21 @@ Testnet mode provides a separate environment for testing purposes. It is isolate
 
 ### Important Notes
 
-You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything). This means it may or may not be the solution for you.
+You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything).
+
+Consider this before determining whether testnet mode is the correct option for you.
 
 ### Differences
 
-* Some features available in production may not be accessible in testnet:
-  * Social Sign Ins&#x20;
-  * Balances are not hosted to the p
-  * Buying $BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
+-   Some features available in production may not be accessible in testnet:
+    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+    -   Buying $BADGE credits
+    -   Push notifications
+    -   And more
+-   Some restrictions may be more relaxed
+    -   No API keys required
+    -   Faucet may be more lenient
+-   Performance also may differ from the production environment
 
 ###
 

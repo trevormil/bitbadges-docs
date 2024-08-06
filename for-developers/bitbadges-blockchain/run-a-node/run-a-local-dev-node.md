@@ -2,7 +2,7 @@
 
 Running a local development node follows pretty much the same instructions as the mainnet ones except the following.
 
-* Chain ID should be something non-conflicting (i.e. not bitbadges\_1-1 or \_1-2)
+* Chain ID should be something non-conflicting (i.e. not bitbadges-1 or -2)
 * No need for seed nodes or peers (since you are running a single node local chain)
 * Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
   * If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.

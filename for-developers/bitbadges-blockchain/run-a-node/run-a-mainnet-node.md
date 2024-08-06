@@ -106,13 +106,13 @@ You can get the necessary files from an existing snapshot, add them to your DAEM
 
 Syncing from genesis means that you start with the blank genesis state and verify all transactions from block 1 to the current block. Thus, this may take while. Also, note that the chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis).
 
-To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges\_1-1" for mainnet. Initialization should only be performed once.
+To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
 
 ```
 RUN_COMMAND init <moniker> --chain-id CHAIN_ID
 ```
 
-You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges\_1-1 for mainnet).
+You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges-1 for mainnet).
 
 Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON\_HOME.
 

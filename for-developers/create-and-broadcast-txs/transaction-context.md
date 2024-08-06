@@ -17,8 +17,8 @@ The first step is to fetch and identify the transaction context and the account 
 import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
 
 const chain = {
-  chainId: 2,
-  cosmosChainId: 'bitbadges_1-1',
+  chainId: 1,
+  cosmosChainId: 'bitbadges-1',
   chain: SupportedChain.ETH //signing chain
 }
 

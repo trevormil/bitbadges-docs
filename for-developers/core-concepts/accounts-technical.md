@@ -38,7 +38,7 @@ EIP712 is only allowed for small messages due to its poor performance on-chain. 
         "salt": "0x5d1e2c0e9b8a5c395979525d5f6d5f0c595d5a5c5e5e5b5d5ecd5a5e5d2e5412"
     },
     "message": {
-        "chain_id": "bitbadges_1-1",
+        "chain_id": "bitbadges-1",
         "account_number": "12",
         "sequence": "1",
         "fee": {
@@ -77,7 +77,7 @@ BitBadges also extends the SDK's functionality to support Solana signatures sign
 Solana has a limit of \~1000 byte message signatures. If the JSON exceeds this limit, we allow signing the SHA256 hash of the JSON as well.&#x20;
 
 ```
-{"account_number":"13","chain_id":"bitbadges_1-1","fee":{"amount":[{"amount":"0","denom":"ubadge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"ubadge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
+{"account_number":"13","chain_id":"bitbadges-1","fee":{"amount":[{"amount":"0","denom":"ubadge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"ubadge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
 ```
 
 ### **Cosmos**
@@ -91,7 +91,7 @@ BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
 **Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
 
 ```
-{"account_number":"13","chain_id":"bitbadges_1-1","fee":{"amount":[{"amount":"0","denom":"ubadge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"ubadge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
+{"account_number":"13","chain_id":"bitbadges-1","fee":{"amount":[{"amount":"0","denom":"ubadge"}],"gas":"100000000000"},"memo":"","msg0":{"type":"cosmos-sdk/MsgSend","value":{"amount":[{"amount":"1","denom":"ubadge"}],"from_address":"cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl","to_address":"cosmos1rgtvs7f82uprnlkdxsadye20mqtgyuj7n4npzz"}},"sequence":"0"}
 ```
 
 ### **Public Key Types**
