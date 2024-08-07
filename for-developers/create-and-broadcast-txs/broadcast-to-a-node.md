@@ -22,6 +22,8 @@ This will return the gas used on a dry run of the transaction and any errors if 
 
 Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
 
+Once simulated, replace the expected gas you want in the transaction context.
+
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
     gas_info: {
@@ -61,6 +63,8 @@ https://api.bitbadges.io/api/v0/broadcast
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
 </strong></code></pre>
 
+This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on.
+
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
     tx_response: {
@@ -96,3 +100,4 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
     };
 }
 ```
+

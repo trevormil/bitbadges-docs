@@ -1,6 +1,6 @@
 # Signing - Cosmos
 
-Follow the prior pages to generate the context and payloads.
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
 
 #### Signing with Keplr
 
@@ -8,6 +8,7 @@ Follow the prior pages to generate the context and payloads.
 const signTxn = async (
     context: TxContext,
     payload: TransactionPayload,
+    protoMsgs: any[],
     simulate: boolean
 ) => {
     if (!account) {
@@ -20,7 +21,7 @@ const signTxn = async (
     if (!simulate) {
         const signResponse = await window?.keplr?.signDirect(
             chainId,
-            sender.accountAddress,
+            sender.address,
             {
                 bodyBytes: payload.signDirect.body.toBinary(),
                 authInfoBytes: payload.signDirect.authInfo.toBinary(),
@@ -45,17 +46,11 @@ const signTxn = async (
 
     const hexSig = Buffer.from(signatures[0]).toString('hex');
 
-    const txBody = createTxBroadcastBody(context, payload, hexSig);
+    const txBody = createTxBroadcastBody(context, protoMsgs, hexSig);
     return txBody;
 };
 ```
 
-See [https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/chains/chain_contexts/insite/CosmosContext.tsx](https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/chains/chain_contexts/insite/CosmosContext.tsx) for full snippet. Or, the quickstart has it already implemted for you.
-
 ### Output
 
 This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-### Full Snippet
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-quickstart/blob/main/src/chains/chain_contexts/insite/CosmosContext.tsx" %}

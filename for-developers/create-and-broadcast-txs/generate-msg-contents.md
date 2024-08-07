@@ -6,7 +6,7 @@ If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev
 
 ### **Building the Msgs**
 
-You can build out the transaction from the Proto definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
+You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
 
 See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
@@ -22,36 +22,41 @@ const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
 const protoMsgs = [
     new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'cosmos...' }),
     //Add more here (executed in order)
-];
-
-//console.log(protomsgs[0].toJsonString())
+]
 ```
 
 ### Building the Transaction
 
 ```typescript
-const txDetails = { ... } //See prior page
+const txContext = { ... } //See prior page
 
-const txnPayload = createTransactionPayload(txDetails, protoMsgs);
+const txnPayload = createTransactionPayload(txContext, protoMsgs);
 ```
 
-The outputted **txn** will be in the following format. Each of these has a different purpose depending on which signature mode you plan to use (Solana/Bitcoin vs Ethereum EIP712 vs Standard Cosmos SDK).
+The outputted payload will be in the following format.
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>export interface TxPayload {
-</strong>  signDirect: {
-    body: Proto.Cosmos.Transactions.Tx.TxBody
-    authInfo: Proto.Cosmos.Transactions.Tx.AuthInfo
-    signBytes: string
-  }
+For Cosmos, you will use signDIrect.
+
+For Ethereum/Solana/Bitcoin, you will use txnString.
+
+If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
+
+```typescript
+export interface TransactionPayload {
   legacyAmino: {
-    body: Proto.Cosmos.Transactions.Tx.TxBody
-    authInfo: Proto.Cosmos.Transactions.Tx.AuthInfo
-    signBytes: string
-  }
-  eipToSign: EIP712ToSign | undefined
-  jsonToSign: string | undefined
+    body: TxBody;
+    authInfo: AuthInfo;
+    signBytes: string;
+  };
+  signDirect: {
+    body: TxBody;
+    authInfo: AuthInfo;
+    signBytes: string;
+  };
+  txnString: string;
+  txnJson: Record<string, any>;
 }
-</code></pre>
+```
 
 ### Next Steps
 
