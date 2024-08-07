@@ -94,6 +94,8 @@ In order to catch up to the current consensus, you will need to get your node sy
 
 If you do not want to reconstruct the entire history of the chain from genesis, you can start from a checkpoint. This can potentially save you days of syncing but requires you to trust an existing node.
 
+{% embed url="https://explorer.bitbadges.io/BitBadges%20Mainnet/statesync" %}
+
 **State Sync**
 
 You can configure your config.toml to use the Cosmos SDK state sync to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
