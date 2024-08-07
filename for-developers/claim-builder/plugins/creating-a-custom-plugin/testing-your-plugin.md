@@ -10,4 +10,4 @@ The easiest way to test your plugin is with an address list claim. After your pl
 
 
 
-This can be done either on the mainnet or testnet. Once you are ready, you can initiate the publishing process via the developer portal.
+You may also consider creating it first on testnet mode, but note that everything will have to be reconfigured.
