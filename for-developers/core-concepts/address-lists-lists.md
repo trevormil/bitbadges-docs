@@ -32,7 +32,7 @@ Lists are invertible meaning we can create a list that includes all addresses EX
 
 ### **Storage**
 
-**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../create-and-broadcast-txs/cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
+**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../bitbadges-blockchain/cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
 
 An address list is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
@@ -72,7 +72,7 @@ export const generateReservedListId = (
 
 Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain everytime first. However, long list IDs are very inefficient, especially if used multiple times (e.g. "AllWithoutMint:cosmos123...:cosmos456...").
 
-For efficiency, consider creating a list with a unique short reusable ID and reference the list that way, rather than the long ID.  You can create a list which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
+For efficiency, consider creating a list with a unique short reusable ID and reference the list that way, rather than the long ID. You can create a list which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 
 ### Examples
 

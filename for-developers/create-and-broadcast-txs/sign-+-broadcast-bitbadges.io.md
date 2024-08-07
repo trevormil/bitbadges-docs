@@ -1,8 +1,12 @@
 # Sign + Broadcast - bitbadges.io
 
-To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast)  user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+**Option 1: Copy / Paste**
 
-Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated.  It is expected to be a JSON stringified TxInfo\[].
+To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+
+**Option 2: Redirect**
+
+Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
 
 ```typescript
 export interface TxInfo {
