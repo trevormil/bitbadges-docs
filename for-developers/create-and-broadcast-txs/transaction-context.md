@@ -13,6 +13,8 @@ If you plan to use option 2, see below.
 
 The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
 
+Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
+
 ```typescript
 import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
 
@@ -39,11 +41,13 @@ const txContext = {
 };
 ```
 
-For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
+
 
 **Get Public Key - Cosmos**
 
 For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.&#x20;
+
+Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
 
 ```typescript
 const getPublicKey = async () => {
