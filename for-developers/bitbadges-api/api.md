@@ -23,6 +23,10 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 See the documentation for all routes at [https://bitbadges.stoplight.io/docs/bitbadges](https://bitbadges.stoplight.io/docs/bitbadges)
 
+### Testnet Mode
+
+A testnet version of the API is available with the base URL [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet). Everything else is the same, just add the /testnet before all paths. Note that this testnet API is an entirely separate service from normal API. Nothing carries over. It commmunicates with the frontend with testnet mode turned on and uses the testnet BitBadges blockchain.
+
 ### Using the API SDK (Recommended)
 
 If you are using JavaScript / TypeScript, consider using the typed API SDK for convenience. This will give you typed routes, provide quality checks, and also auto-convert all responses to your desired number type (bigint, Number, etc).
