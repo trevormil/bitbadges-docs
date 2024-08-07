@@ -37,6 +37,7 @@ console.log(res);
 ### Verifying Requirements
 
 If you do not need the balances themselves and you just want to verify if a user meets certain ownership requirements, consider using the following.
+
 ```typescript
 const res = await BitBadgesApi.verifyOwnershipRequirements({
     cosmosAddress,

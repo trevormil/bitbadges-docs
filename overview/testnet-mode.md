@@ -12,15 +12,15 @@ Consider this before determining whether testnet mode is the correct option for 
 
 ### Differences
 
-* Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-  * Buying $BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
+-   Some features available in production may not be accessible in testnet:
+    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+    -   Buying $BADGE credits
+    -   Push notifications
+    -   And more
+-   Some restrictions may be more relaxed
+    -   No API keys required
+    -   Faucet may be more lenient
+-   Performance also may differ from the production environment
 
 ###
 
@@ -30,7 +30,7 @@ Frontend: https://testnet.bitbadges.io
 
 Backend: https://api.bitbadges.io/testnet (append the normal routes to this base URL)
 
-Testnet Node: http://138.197.10.8
+Testnet Node: http://138.197.10.8:YOUR_PORT or https://testnet.bitbadges.io/api (for REST API) or https://testnet.node.bitbadges.io/rpc (for RPC)
 
 ### Feedback
 
