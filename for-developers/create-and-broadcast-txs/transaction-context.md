@@ -55,7 +55,7 @@ const getPublicKey = async () => {
 
 **Fee**
 
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the gas prices via the BitBadgesApi.getStatus() route.
+Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
 
 **Sender Details**
 
