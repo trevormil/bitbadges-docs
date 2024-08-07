@@ -1,4 +1,4 @@
-# ✏️ Chain Details
+# Chain Details
 
 Cosmos Chain ID (Mainnet) - bitbadges-1
 

@@ -2,7 +2,7 @@
 
 ### Getting Started - API Keys
 
-By default, certain routes are available publicly in a rate limited manner with no API key. However, API keys allow you access to all routes with higher limits.  &#x20;
+By default, certain routes are available publicly in a rate limited manner with no API key. However, API keys allow you access to all routes with higher limits.
 
 1. Get an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer). Keys expire after one year, but it is recommended that you rotate them even more often than that.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
@@ -37,7 +37,7 @@ export interface ErrorResponse {
 
 ### Pre-Readings
 
-We recommend reading all [concepts](concepts/) for background information. Also visit the [Tutorials](../tutorials/) for common execution flows.
+We recommend reading all [concepts](concepts/) for background information. Also visit the [Tutorials](../tutorials.md) for common execution flows.
 
 ### Number Types / Stringified Responses
 
@@ -91,7 +91,7 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 **For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.**
 
-Otherwise, check out the authorization docs. This follows a standard OAuth 2.0 flow.&#x20;
+Otherwise, check out the authorization docs. This follows a standard OAuth 2.0 flow.
 
 ### Confined Responses
 

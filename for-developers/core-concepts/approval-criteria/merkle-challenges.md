@@ -23,7 +23,7 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 </code></pre>
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/msgtransferbadges.md)).
+Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../cosmos-sdk-msgs/msgtransferbadges.md)).
 
 For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.&#x20;
 

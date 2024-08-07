@@ -2,7 +2,7 @@
 
 Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.
 
-**Existing Tools?** Don't forget to check the [tutorials ](tutorials/)or ecosystem tools to see if someone else has already done what you are looking for! The BitBadges website also tries to be as developer friendly as possible, so in most cases, you will not even need to do anything technical yourself.
+**Existing Tools?** Don't forget to check the [tutorials ](tutorials.md)or ecosystem tools to see if someone else has already done what you are looking for! The BitBadges website also tries to be as developer friendly as possible, so in most cases, you will not even need to do anything technical yourself.
 
 **Finished?** Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem/).
 
@@ -78,7 +78,7 @@ Use the quickstart code as a starting point and/or reference. See demos [here](h
 
 ## **Need additional functionality?**
 
-Consider customizing further using the BitBadges SDK, or if you need to extend the badge interface on-chain, you can do so with a [CosmWasm smart contract](tutorials/create-a-wasm-contract.md). Or, reach out to us to see what we can do.
+Consider customizing further using the BitBadges SDK, or if you need to extend the badge interface on-chain, you can do so with a [CosmWasm smart contract](bitbadges-blockchain/create-a-wasm-contract.md). Or, reach out to us to see what we can do.
 
 ## **Run a blockchain node?**
 

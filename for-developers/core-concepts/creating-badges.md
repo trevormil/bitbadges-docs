@@ -9,7 +9,7 @@ All collections will "create" some supply of badges on-chain; however, the inter
 
 **Creating Badges**
 
-During creation and update transaction ([MsgCreateCollection](../bitbadges-blockchain/cosmos-sdk-msgs/msgcreatecollection.md) and [MsgUpdateCollection](../bitbadges-blockchain/cosmos-sdk-msgs/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
+During creation and update transaction ([MsgCreateCollection](../cosmos-sdk-msgs/msgcreatecollection.md) and [MsgUpdateCollection](../cosmos-sdk-msgs/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
 
 The Mint address has unlimited balances. No one controls the "Mint" address. It can only be transferred out of, not transferred to. The **ownershipTimes** will be the times that the badges can be owned aka in circulation. The **badgeIds** are the IDs of each unique badge. Badge IDs must start at 1 and have no gaps.
 

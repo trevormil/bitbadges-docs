@@ -32,7 +32,7 @@ Lists are invertible meaning we can create a list that includes all addresses EX
 
 ### **Storage**
 
-**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../bitbadges-blockchain/cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
+**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
 
 An address list is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
