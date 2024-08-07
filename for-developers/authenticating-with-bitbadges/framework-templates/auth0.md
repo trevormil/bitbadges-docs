@@ -1,10 +1,14 @@
 # Auth0
 
-**Social Connection Integration**
+### **Social Connection Integration**
 
-When adding a Social Connection, you will see BitBadges as a preconfigured option. This has everything setup for you. You will simply need to specify your client ID and client secret. You will also have to configure your redirect URI to match your Auth0 application's domain (for example, [https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback](https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback)).
+When adding a Social Connection, you will see BitBadges as a preconfigured option. This has everything setup for you. You will simply need to specify your client ID and client secret. You will also have to configure your redirect URI to match your Auth0 application's domain. This typically ends with /callback (for example, [https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback](https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback)).
 
-**Custom Auth0 Connections**
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
+
+### Custom
 
 You can also customize the connection further by creating a custom connection. This allows you to add parameters beyond the standard flow.
 

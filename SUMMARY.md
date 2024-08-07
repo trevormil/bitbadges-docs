@@ -179,7 +179,7 @@
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-  * [Framework Templates](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
+  * [Using Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [Auth.js](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [PassportJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
