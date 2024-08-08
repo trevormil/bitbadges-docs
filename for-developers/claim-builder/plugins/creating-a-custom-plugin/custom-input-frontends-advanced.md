@@ -2,13 +2,11 @@
 
 If you want to further customize the inputs process beyond just users inputting stuff directly in-site, consider creating a custom frontend as well to pass back inputs. This can be used, for example, for more secure authenticated logic.
 
-
-
 **Setup + Configuration**
 
 We can direct the user to your plugin's frontend URI provided when they are submitting the claim. for you to handle via your UI.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

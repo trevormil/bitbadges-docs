@@ -8,7 +8,7 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used by you and approved users as desired.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Reusing for Non-Indexed Balances&#x20;
 
