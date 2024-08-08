@@ -4,15 +4,61 @@ Configuration tools help automate the plugin configuration process for the creat
 
 Tools will be permissionless such that the user can enter any tool URL and get configuration parameters; however, a specific plugin can define a featured tool to be highlighted.
 
-**Examples**
+<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 
-* Create a tool that automatically fetches emails from a recent Google Calendar event and populates the Emails plugin correctly.
+<figure><img src="../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
 
-**Testing It**
+**Implementation**
 
-Tools are permissionless, so you can simply enter it on the claim creation page and check if it works!
+We will redirect the user to your tool URL and expect a window.postMessage back. Please ensure the target origin is set to https://bitbadges.io for security concerns.
 
-**Featuring It**
+For the time being, we only allow the **pluginId, publicParams, privateParams,** and **metadata** to be set during the initial creation process.
+
+```tsx
+import { Layout } from 'antd';
+import { ClaimIntegrationPrivateParamsType, ClaimIntegrationPublicParamsType } from 'bitbadgesjs-sdk';
+import { InformationDisplayCard } from '../components/display/InformationDisplayCard';
+import { FRONTEND_URL } from '../constants';
+
+const { Content } = Layout;
+
+function PluginTestScreen() {
+  return (
+    <Content className="full-area" style={{ minHeight: '100vh', padding: 8 }}>
+      <div className="flex-center">
+        <InformationDisplayCard title="Inputs" md={12} xs={24} sm={24} style={{ marginTop: '10px' }}>
+          <div className="flex-center">
+            <button
+              onClick={async () => {
+                if (window.opener) {
+                  window.opener.postMessage(
+                    {
+                      pluginId: 'email',
+                      publicParams: {} as ClaimIntegrationPublicParamsType<'email'>,
+                      privateParams: {
+                        ids: ['test@test.com']
+                      } as ClaimIntegrationPrivateParamsType<'email'>,
+                      metadata: { name: '', description: '' } //optional
+                    },
+                    'https://bitbadges.io'
+                  );
+                  window.close();
+                }
+              }}>
+              Submit
+            </button>
+          </div>
+        </InformationDisplayCard>
+      </div>
+    </Content>
+  );
+}
+
+export default PluginTestScreen;
+
+```
+
+**Publishing**
 
 Create a pull request to this repository with your tool and its information. If you want us to feature it directly in-site, let us know!
 
