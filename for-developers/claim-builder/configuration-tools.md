@@ -64,6 +64,12 @@ export default PluginTestScreen;
 
 ```
 
+**Testing**
+
+When creating a claim, you should see an input box for a custom tool URL. Enter yours there and test it out!
+
+<figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
+
 **Publishing / Featuring**
 
 Create a pull request to this repository with your tool and its information. If you want us to feature it directly in-site, let us know!
