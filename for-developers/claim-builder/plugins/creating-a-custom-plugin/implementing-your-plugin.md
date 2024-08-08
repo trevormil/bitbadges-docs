@@ -10,17 +10,19 @@ On your end, you will simply need to setup a HTTP handler API to accept the inco
 
 ### Custom User Inputs
 
-If your plugin requires no user prompting, then you can skip this section. Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are not allowed.
+If your plugin requires no user prompting, then you can skip this section. Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).
 
-Note that BitBadges is just the UI / middleman in this flow. While everything is handled via secure communication channels and protocols, you masy consider adding an additional layer of abstraction to avoid letting BitBadges know anything secret,
+BitBadges is just the UI / middleman in this flow. While everything is handled via secure communication channels and protocols, you may consider adding an additional layer of abstraction to avoid letting BitBadges know anything secret. For example, keep information secret on your end and use claim codes instead of sending it directly through BitBadges.
 
-**Approaches**
+**Schemas**
 
-The easiest way to do this is to just configure the expected schemas directly in the form. Users will be prompted to enter such information which will be relayed along to your handler.&#x20;
+When creating the plugin, configure the expected schemas directly in the form. Users will be prompted to enter such information which will be relayed along to your handler.&#x20;
 
 <figure><img src="../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
-Or, you can configure a custom inputs frontend that the user should be redirected to. We will expect the inputs to be returned via browser message communications from your custom frontend.
+**Build a Custom Inputs Frontend**
+
+If the inputs are advanced and you would like to automate this process with a more user friendly frontend, consider creating a helper tool that the user will be redirected to. You will pass the parameters back to BitBadges through browser communication.
 
 {% content-ref url="custom-input-frontends-advanced.md" %}
 [custom-input-frontends-advanced.md](custom-input-frontends-advanced.md)
@@ -30,13 +32,21 @@ You can also get creative and combine approaches. For example, handle secure stu
 
 ### Custom Creation Parameters
 
-If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this can be done in-site via the creation inputs section, or you can specify a URL for the claim creator to be redirected to.
+If you need to allow the claim creator to configure parameters (e.g. max 10 uses per user), this can be done in-site via the creation inputs schema section. If none are provided, we assume there is nothing additional the claim creator has to configure.
 
 <figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
-Note that unlike user inputs, there is currently no auto pass back advanced feature (no window.postMessage or anything). If you use the redirect URL, we leave the storage and handling up to you.
+**Tutorials**
 
-If nonea re provided, we assume there is nothing additional the claim creator has to configure.
+Consider creating a tutorial to walk creators through this process.
+
+{% content-ref url="../../other-tutorials/create-a-tutorial.md" %}
+[create-a-tutorial.md](../../other-tutorials/create-a-tutorial.md)
+{% endcontent-ref %}
+
+**Helper Tools**
+
+You may also create a helper tool to handle inputs automatically for the claim creator (e.g. auto-populate emails from a specific service).
 
 ### **Backend Request**
 
