@@ -29,6 +29,9 @@ function PluginTestScreen() {
   } catch (e) {
     console.error('Error parsing context', e);
   }
+  const claimId = claimContext?.claimId
+  
+  ...
 
   return (
     <div className="flex-center">
