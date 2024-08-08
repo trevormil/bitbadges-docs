@@ -14,43 +14,44 @@ We will redirect the user to your tool URL and expect a window.postMessage back.
 
 For the time being, we only allow the **pluginId, publicParams, privateParams,** and **metadata** to be set during the initial creation process.
 
-```tsx
-import { Layout } from 'antd';
-import { ClaimIntegrationPrivateParamsType, ClaimIntegrationPublicParamsType } from 'bitbadgesjs-sdk';
-import { InformationDisplayCard } from '../components/display/InformationDisplayCard';
-import { FRONTEND_URL } from '../constants';
+We will pass along certain contextual information such as claimId via the URL query parameters.
 
-const { Content } = Layout;
+```tsx
+import { ClaimIntegrationPrivateParamsType, ClaimIntegrationPublicParamsType } from 'bitbadgesjs-sdk';
 
 function PluginTestScreen() {
+  const router = useRouter();
+  const { context } = router.query;
+
+  let claimContext = undefined;
+  try {
+    claimContext = JSON.parse(context?.toString() || '');
+  } catch (e) {
+    console.error('Error parsing context', e);
+  }
+
   return (
-    <Content className="full-area" style={{ minHeight: '100vh', padding: 8 }}>
-      <div className="flex-center">
-        <InformationDisplayCard title="Inputs" md={12} xs={24} sm={24} style={{ marginTop: '10px' }}>
-          <div className="flex-center">
-            <button
-              onClick={async () => {
-                if (window.opener) {
-                  window.opener.postMessage(
-                    {
-                      pluginId: 'email',
-                      publicParams: {} as ClaimIntegrationPublicParamsType<'email'>,
-                      privateParams: {
-                        ids: ['test@test.com']
-                      } as ClaimIntegrationPrivateParamsType<'email'>,
-                      metadata: { name: '', description: '' } //optional
-                    },
-                    'https://bitbadges.io'
-                  );
-                  window.close();
-                }
-              }}>
-              Submit
-            </button>
-          </div>
-        </InformationDisplayCard>
-      </div>
-    </Content>
+    <div className="flex-center">
+      <button
+        onClick={async () => {
+          if (window.opener) {
+            window.opener.postMessage(
+              {
+                pluginId: 'email',
+                publicParams: {} as ClaimIntegrationPublicParamsType<'email'>,
+                privateParams: {
+                  ids: ['test@test.com']
+                } as ClaimIntegrationPrivateParamsType<'email'>,
+                metadata: { name: '', description: '' } //optional
+              },
+              'https://bitbadges.io'
+            );
+            window.close();
+          }
+        }}>
+        Submit
+      </button>
+    </div>
   );
 }
 
