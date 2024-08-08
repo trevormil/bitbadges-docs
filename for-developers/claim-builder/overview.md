@@ -1,24 +1,32 @@
 # Overview
 
-BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the experience for you and your users. It allows you to easily establish the requirements for claiming your badges or being added to your address lists. The end goal is for all use cases to be supported by the BitBadges Claims. Out of the box, it offers plenty of built-in plugins and features with no code required and directly claimable by users in the site.
+BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the distribution criteria for your badges and address lists.
+
+Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
 
 **When to use claims vs self-hosted balances?**
 
-Claims are handled on a trigger basis. When something occurs, a claim can be completed and transfer badges / perform another claim action. However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
+Claims are handled on a trigger basis. When something occurs, a claim can be completed and transfer badges / perform another claim action.&#x20;
 
-**Approaches**
+However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
+
+## **Approaches**
 
 With BitBadges claims, you have a few approaches.
 
 **Option 1: Directly In-Site via Plugins**
 
-If everything you need is directly implementable with plugins, there is no extra dev work needed. BitBadges offers some core plugins, and custom plugins can also be created by developers.
+If everything you need is directly implementable with plugins, there is no extra development work needed. BitBadges offers some core plugins, and custom plugins can also be created by developers.
+
+See [https://bitbadges.io/claims/directory](https://bitbadges.io/claims/directory).
 
 <figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
-You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 6000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps). For example, make a purchase on Shopify -> get airdropped a badge or complete a course on Udemy -> get a completion badge. The "airdrop" is a claim completion.
+You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 7000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).&#x20;
+
+For example, make a purchase on Shopify -> get airdropped a badge or complete a course on Udemy -> get a completion badge. The "airdrop" is a claim completion.
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
@@ -32,7 +40,12 @@ const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
 
 **Get Creative!**
 
-A common theme you may see when implementing claims is to get creative and think outside the box. There is a ton of integrations and features already implemented. Even if your use case doesn't exactly match the implementation, you can get creative and reuse implementations.&#x20;
+A common theme you may see when implementing claims is to get creative and think outside the box. There is a ton of integrations and features already implemented. Even if your use case doesn't exactly match the implementation, you can get creative and reuse implementations. Avoid unnecessary implementations.
+
+For example,
+
+* Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
+* Many apps and services are email based rather than username based. Consider using the Email plugin universally.
 
 ## Claiming on Behalf of Others
 
