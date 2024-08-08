@@ -89,6 +89,24 @@ const payload = {
 };
 ```
 
+For local development, you can mock requests with the expected payload. For example,
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "pluginSecret": "...",
+    "_isSimulation": false,
+    "claimId": "abcxyz123",
+    "claimAttemptId": "...",
+    "currUses": 0,
+    "maxUses": 10,
+    "lastUpdated": 1800000000000,
+    "createdAt": 1800000000000
+  }' \
+  http://localhost:3001/api/handler
+```
+
 ### **Handling**
 
 The custom logic of the plugin is left up to you. From the provided request, you can check everything you need, perform the custom logic, and more.
