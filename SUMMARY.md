@@ -121,6 +121,7 @@
   * [Overview](for-developers/claim-builder/overview.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
   * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
+  * [Claim Links](for-developers/claim-builder/claim-links.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Plugin ID vs Instance ID](for-developers/claim-builder/plugins/plugin-id-vs-instance-id.md)
     * [Plugins Directory](https://bitbadges.io/claims/directory)
