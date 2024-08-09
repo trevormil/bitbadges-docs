@@ -1,0 +1,77 @@
+# Claim Codes - A Universal Approach
+
+In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that there are universal approaches that can work with any integration.
+
+The most universal approach is claim codes. This is because these are multi-faceted and are just text strings so can be used with any application / criteria regardless if you have prior information or not. For example,
+
+* Give codes to finishers of a race
+* Give codes to attendees of an event
+* Give codes to those who sign in to your website
+* Distribute codes via email, SMS, etc
+* And so on. You distribute according to your needs!
+
+## **Codes Plugin**
+
+Use the Codes plugin to set the codes for your claim. We recommend auto-generating them for sufficient randomness, but you may also custom create them.&#x20;
+
+**Custom Metadata**
+
+Consider also setting custom metadata to let users know what the codes are for, how to get them, etc.
+
+**Configuration Tools**
+
+If you are building a tool / service, consider creating a [configuration tool](plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service. &#x20;
+
+An example configuration input would be:
+
+```
+{"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
+```
+
+
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+## **Obtaining Codes**
+
+Codes can be obtained by the claim creator by clicking on the Distribute or Codes button which will bring up a distribution modal with all the codes.&#x20;
+
+If you have a large number of codes, consider using the Copy Seed Code button under the Batch tab  (only applicable to automatically generated codes) instead of copying all N codes and calculate them dynamically. See snippet below.
+
+Using a configuration tool would take this step out for the claim creator.
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+**Generate Codes from Seed Snippet**
+
+Auto-generated codes are calculated from a seed code, rather than needing to store all N codes.
+
+```typescript
+import CryptoJS from 'crypto-js';
+const { SHA256 } = CryptoJS;
+export const generateCodesFromSeed = (seedCode: string, numCodes: number): string[] => {
+  let currCode = seedCode;
+  const codes = [];
+  for (let i = 0; i < numCodes; i++) {
+    currCode = SHA256(currCode + seedCode).toString();
+    codes.push(currCode);
+  }
+  return codes;
+};
+```
+
+## **Claim Links**
+
+To make it even easier for users, you can redirect them to the claim page with the code in the URL parameters and have it auto-filled for the user in the form.
+
+See more on the prior page for configuring claim links.
+
+https://bitbadges.io/CLAIM\_PATH?claimId=YOUR\_CLAIM\_ID\&code=YOUR\_CODE
+
+## **Save for Later Links**
+
+You may also consider using a save for later link. See example below.
+
+[https://bitbadges.io/saveforlater?value=38d3fe58dffea3f7a675b587bc9239e0360047b7482d245f6770deb589aef869](https://bitbadges.io/saveforlater?value=38d3fe58dffea3f7a675b587bc9239e0360047b7482d245f6770deb589aef869)

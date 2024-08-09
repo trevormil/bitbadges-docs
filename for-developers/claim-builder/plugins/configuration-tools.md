@@ -74,7 +74,7 @@ Or, for more rapid development, enter the tool JSON you pass back via postMessag
 {"pluginId":"codes","publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 **Publishing / Featuring**
 

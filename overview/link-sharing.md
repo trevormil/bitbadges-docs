@@ -2,7 +2,7 @@
 
 With the way BitBadges has been developed, sharing standard links on platforms like Discord / X have the default BitBadges logo / app description.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 If you want to display them with metadata, prefix the route with /x.  Supported routes:
 

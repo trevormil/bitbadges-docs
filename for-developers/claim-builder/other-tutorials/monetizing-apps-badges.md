@@ -22,7 +22,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
