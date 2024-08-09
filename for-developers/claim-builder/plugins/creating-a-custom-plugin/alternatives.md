@@ -16,8 +16,8 @@ Tip: If you redirect the user to the claim page with code=abc or password=123 in
 
 If you can implement everything you need while using existing plugins, consider creating  a configuration tool rather than a plugin.
 
-{% content-ref url="../../configuration-tools.md" %}
-[configuration-tools.md](../../configuration-tools.md)
+{% content-ref url="../configuration-tools.md" %}
+[configuration-tools.md](../configuration-tools.md)
 {% endcontent-ref %}
 
 ### Custom Validation URL Plugin: Streamlined Alternative
