@@ -10,6 +10,10 @@ Tools can be featured / highlighted, but we also leave them to be super generic.
 
 <figure><img src="../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
 
+**E2E Examples - BitBadges Official Tools**
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-tools" %}
+
 **Implementation**
 
 From the site, we will redirect the user to your tool URL and expect a window.postMessage back. Please ensure the target origin is set to https://bitbadges.io for security concerns.
