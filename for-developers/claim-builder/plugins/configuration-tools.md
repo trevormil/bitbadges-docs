@@ -1,8 +1,12 @@
 # Configuration Tools
 
-Configuration tools are a helper layer abstracted over the core plugin implementations. Instead of creating new, individual plugins for each use case, you can often reuse existing ones. For example, Google Calendar can be implemented by configuring the Email plugin with the attendee emails. Or any application can be implemented by issuing claim codes with the Codes plugin.
+Configuration tools are a helper layer abstracted over the core plugin implementations. Instead of creating new, individual plugins for each use case, you can often reuse existing ones. For example,&#x20;
 
-These tools help automate the process of plugin  configuration for the creator automatically. They will be visible upon the claim creation / plugin creation screen.
+* Google Calendar can be implemented by configuring the Email plugin with the attendee emails
+* Auto-configure approved user addresses with the Address Restrictions plugin
+* Or any application can be implemented by issuing claim codes with the Codes plugin.
+
+These tools help automate the process of plugin  configuration for the creator automatically.
 
 <figure><img src="../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 
