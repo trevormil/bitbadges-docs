@@ -10,9 +10,19 @@ On your end, you will simply need to setup a HTTP handler API to accept the inco
 
 ### Custom User Inputs
 
-If your plugin requires no user prompting, then you can skip this section. Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).
+If your plugin requires no user prompting, then you can skip this section.
 
 BitBadges is just the UI / middleman in this flow. While everything is handled via secure communication channels and protocols, you may consider adding an additional layer of abstraction to avoid letting BitBadges know anything secret. For example, keep information secret on your end and use claim codes instead of sending it directly through BitBadges.
+
+Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).
+
+**User Authentication + Authorized Requests**
+
+Note that many plugins may require API requests that must be authorized by a specific user first or may require details about the claiming user. For these plugins, you have a couple options.
+
+1. If the method is supported on the BitBadges site (e.g. crypto addresses, Discord, X, GitHub, etc), we give you the option to pass the user's username / ID or other public identifying details to your plugin. We will authenticate the user, and you can use this info to execute additional queries (e.g. public GitHub contributions). Note though no access tokens or auth details are passed along (just username / ID), so authorized requests are not possible. Typically, this is used for public queries only.
+2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code or pass along whatever is needed via the user inputs.
+3. We are also willing to cooperate with you and add plugins natively to the BitBadges backend. All authentication, requests, etc will be done in-house rather than outsourced to you. If this is of interest, let us know.
 
 **Schemas**
 
@@ -36,6 +46,16 @@ If you need to allow the claim creator to configure parameters (e.g. max 10 uses
 
 <figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
+**Snapshots vs Dynamic Requests**
+
+There are a couple common implementation patterns for plugins. If possible, we recommend the first option.
+
+1. Snapshot + User Auth - At creation time, configure the parameters (potentially with an authorized request from the creator) and no future requests on behalf of the creator need to be made. At claim time, you could use user authentication to check criteria. For example,
+   1. Configure all approved emails -> verify user email at claim time
+   2. Configure the Twitch channel name -> use user Twitch authorization to check subscription
+2. Dynamic - Some plugins, however, may need to execute creator authorized requests upon each claim. For this, you will need to cache the creator details or somehow make it so that you will have authorization from the creator during all claim times.&#x20;
+   1. Note that you should consider all possibilities like access token expirations -> refresh functionality.
+
 **Tutorials**
 
 Consider creating a tutorial to walk creators through this process.
@@ -44,9 +64,9 @@ Consider creating a tutorial to walk creators through this process.
 [create-a-tutorial.md](../../other-tutorials/create-a-tutorial.md)
 {% endcontent-ref %}
 
-**Helper Tools**
+**Helper Tools (Configuration Tools)**
 
-You may also create a helper tool to handle inputs automatically for the claim creator (e.g. auto-populate emails from a specific service).
+You may also create a helper tool to handle inputs automatically for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
 
 ### **Backend Request**
 

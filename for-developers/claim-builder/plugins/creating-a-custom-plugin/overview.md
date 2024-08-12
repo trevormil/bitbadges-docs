@@ -6,7 +6,7 @@ We have designed plugins in a way to allow you maximum customization by letting 
 
 To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab.&#x20;
 
-Publishing involves passing a review process. Published plugins will be displayable in the directory and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used by you and approved users as desired.
+Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim. You can also choose not to publish and keep it restricted to only be used in claims by you and invited users.
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

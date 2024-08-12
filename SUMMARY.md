@@ -133,7 +133,6 @@
       * [Implementing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
-      * [BitBadges Hosted?](for-developers/claim-builder/plugins/creating-a-custom-plugin/bitbadges-hosted.md)
       * [Custom Input Frontends (Advanced)](for-developers/claim-builder/plugins/creating-a-custom-plugin/custom-input-frontends-advanced.md)
     * [BitBadges Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
       * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
