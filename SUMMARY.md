@@ -119,7 +119,7 @@
     * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
 * [🏗️ BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
-  * [Claim Codes (Universal Approach)](for-developers/claim-builder/claim-codes-universal-approach.md)
+  * [Claim Codes (Universal Approach)](for-developers/claim-builder/claim-codes-a-universal-approach.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
   * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Claim Links](for-developers/claim-builder/claim-links.md)
