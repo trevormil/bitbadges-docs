@@ -1,8 +1,6 @@
-# Claim Codes - A Universal Approach
+# Claim Codes (Universal Approach)
 
-In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that there are universal approaches that can work with any integration.
-
-The most universal approach is claim codes. This is because these are multi-faceted and are just text strings so can be used with any application / criteria regardless if you have prior information or not. For example,
+In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that claim codes are a universal approach that can be used with any application / criteria. For example,
 
 * Give codes to finishers of a race
 * Give codes to attendees of an event
