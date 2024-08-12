@@ -22,7 +22,7 @@ Note that many plugins may require API requests that must be authorized by a spe
 
 1. If the method is supported on the BitBadges site (e.g. crypto addresses, Discord, X, GitHub, etc), we give you the option to pass the user's username / ID or other public identifying details to your plugin. We will authenticate the user, and you can use this info to execute additional queries (e.g. public GitHub contributions). Note though no access tokens or auth details are passed along (just username / ID), so authorized requests are not possible. Typically, this is used for public queries only.
 2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code or pass along whatever is needed via the user inputs.
-3. We are also willing to cooperate with you and add plugins natively to the BitBadges backend. All authentication, requests, etc will be done in-house rather than outsourced to you. If this is of interest, let us know.
+3. We are also willing to cooperate with you and add your plugin natively to the BitBadges backend. If this is of interest, let us know.
 
 **Schemas**
 
