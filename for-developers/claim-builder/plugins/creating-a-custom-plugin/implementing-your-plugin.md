@@ -21,7 +21,7 @@ Note to be compatible with Zapier (and possibly API auto-claiming), user inputs 
 Note that many plugins may require API requests that must be authorized by a specific user first or may require details about the claiming user. For these plugins, you have a couple options.
 
 1. If the method is supported on the BitBadges site (e.g. crypto addresses, Discord, X, GitHub, etc), we give you the option to pass the user's username / ID or other public identifying details to your plugin. We will authenticate the user, and you can use this info to execute additional queries (e.g. public GitHub contributions). Note though no access tokens or auth details are passed along (just username / ID), so authorized requests are not possible. Typically, this is used for public queries only.
-2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code or pass along whatever is needed via the user inputs.
+2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code, unique authorization code, or pass along whatever is needed via the user inputs in the claim body which is to be used in your backend plugin hadnler.
    1. For example, upon claiming, user gets redirected to your service (frontend) -> get auth details -> set claim body -> user claims -> your plugin (backend) is called -> use the claim body in your criteria logic.
 3. We are also willing to cooperate with you and add your plugin natively to the BitBadges backend. If this is of interest, let us know.
 
