@@ -9,6 +9,7 @@ For example,
 * Use the Custom Validate plugin as a more streamlined alternative.
 * Use the Codes plugin and give out claim codes from your side to those who meet the criteria
 * Give out a secret password to those who satisfy a criteria
+* See if Zapier can satisfy what you need
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything. Or in a similar fashion, if you have the users' crypto addresses, you can use the Address Restrictions plugin.
 * And so on.
 
@@ -17,6 +18,8 @@ If you can implement everything you need while using existing plugins, consider 
 {% content-ref url="../configuration-tools.md" %}
 [configuration-tools.md](../configuration-tools.md)
 {% endcontent-ref %}
+
+Or, consider creating a Zapier integration instead of a BitBadges custom plugin. Zapier's functionality is more complete than what BitBadges offers, especially for authenticated routes.
 
 ### Custom Validation URL Plugin: Streamlined Alternative
 
