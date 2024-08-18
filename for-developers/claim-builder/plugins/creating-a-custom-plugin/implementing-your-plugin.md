@@ -2,7 +2,7 @@
 
 Get started by going to the developer portal and creating a plugin via the form. This should walk you through the whole process of configuration and submitting it to be used on the BitBadges site.
 
-On your end, you will simply need to setup a HTTP handler API to accept the incomign requests -> perform your validation logic -> return with valid state.
+On your end, you will simply need to setup a HTTP handler API to accept the incoming requests -> perform your validation logic -> return with valid state.
 
 ### End to End Quickstarter
 
@@ -15,15 +15,6 @@ If your plugin requires no user prompting, then you can skip this section.
 BitBadges is just the UI / middleman in this flow. While everything is handled via secure communication channels and protocols, you may consider adding an additional layer of abstraction to avoid letting BitBadges know anything secret. For example, keep information secret on your end and use claim codes instead of sending it directly through BitBadges.
 
 Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).
-
-**User Authentication + Authorized Requests**
-
-Note that many plugins may require API requests that must be authorized by a specific user first or may require details about the claiming user. For these plugins, you have a couple options.
-
-1. If the method is supported on the BitBadges site (e.g. crypto addresses, Discord, X, GitHub, etc), we give you the option to pass the user's username / ID or other public identifying details to your plugin. We will authenticate the user, and you can use this info to execute additional queries (e.g. public GitHub contributions). Note though no access tokens or auth details are passed along (just username / ID), so authorized requests are not possible. Typically, this is used for public queries only.
-2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code, unique authorization code, or pass along whatever is needed via the user inputs in the claim body which is to be used in your backend plugin hadnler.
-   1. For example, upon claiming, user gets redirected to your service (frontend) -> get auth details -> set claim body -> user claims -> your plugin (backend) is called -> use the claim body in your criteria logic.
-3. We are also willing to cooperate with you and add your plugin natively to the BitBadges backend. If this is of interest, let us know.
 
 **Schemas**
 
@@ -40,6 +31,17 @@ If the inputs are advanced and you would like to automate this process with a mo
 {% endcontent-ref %}
 
 You can also get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
+
+**User Authentication + Authorized Requests**
+
+Note that many plugins may require API requests that must be authorized by a specific user first or may require details about the claiming user.&#x20;
+
+For these plugins, you have a couple options.
+
+1. If the method is supported on the BitBadges site (e.g. crypto addresses, Discord, X, GitHub, etc), we give you the option to pass the user's username / ID or other public identifying details (i.e. addresses) to your plugin. We will authenticate the user on our end, and you can use their identifying information to execute queries (e.g. public GitHub contributions). Note no access tokens or auth details are passed along so private, authorized requests are not possible. Typically, this is used for public queries only.
+2. The next option is you will need to handle all authentication / authorization that is needed on your end. You can then issue a claim code, unique authorization code, or pass along whatever is needed via the user inputs in the claim body which is to be used in your backend plugin hadnler.
+   1. For example, upon claiming, user gets redirected to your service (frontend) -> handle authorization logic -> set claim body -> user claims -> your plugin (backend) is called -> use the claim body in your criteria logic.&#x20;
+3. We are also willing to cooperate with you and add your plugin natively to the BitBadges backend. If this is of interest, let us know.
 
 ### Custom Creation Parameters
 
@@ -68,6 +70,10 @@ Consider creating a tutorial to walk creators through this process.
 **Helper Tools (Configuration Tools)**
 
 You may also create a helper tool to handle inputs automatically for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
+
+{% content-ref url="../configuration-tools.md" %}
+[configuration-tools.md](../configuration-tools.md)
+{% endcontent-ref %}
 
 ### **Backend Request**
 
@@ -106,7 +112,8 @@ const payload = {
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     maxUses: context.maxUses,
-    currUses: context.currUses
+    currUses: context.currUses,
+    version: context.version
 };
 ```
 

@@ -4,7 +4,7 @@
 
 After publishing and completing the review process, we leave updates and version control management up to you. It is your responsibility to keep claims compatible and functioning. Updating can be done at https://bitbadges.io/developer for the stuff stored on our end. On your end, you have control over what you&#x20;
 
-If you need to implement a breaking change, consider using the createdAt or lastUpdated fields passed to implement version control and handle it on your end.
+If you need to implement a breaking change, consider using the createdAt, lastUpdated, or version fields passed via the context to implement version control and handle it on your end.
 
 ### Publishing Your Plugin
 

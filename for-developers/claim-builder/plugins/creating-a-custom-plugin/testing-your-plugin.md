@@ -8,6 +8,4 @@ The easiest way to test your plugin is with an address list claim. After your pl
 
 **Step 3:** Delete the address list.
 
-
-
-You may also consider creating it first on testnet mode, but note that everything will have to be reconfigured.
+You may also consider creating it first on testnet mode, but note that everything will have to be reconfigured as all databases are separate.

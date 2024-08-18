@@ -2,7 +2,7 @@
 
 Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the claim attempt should be denied or successful, plus potentially tells us how to manage the plugin state. All plugins must pass for a claim attempt to be successful.
 
-We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. If configured, we can provide you with certain information like user emails / socials which are authenticated on our end and passed to you.
+We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. This is a design decision as we believe the core logic of the distribution process should be decentralized and community-driven (not centralized on BitBadges servers). Think of plugins not as handling the actual logic but more as an API connecting your handling logic to BitBadges claims.
 
 To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab.&#x20;
 

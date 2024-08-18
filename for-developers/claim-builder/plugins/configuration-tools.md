@@ -1,6 +1,8 @@
 # Configuration Tools
 
-Configuration tools are a helper layer abstracted over the core plugin implementations. Instead of creating new, individual plugins for each use case, you can often reuse existing ones. For example,&#x20;
+Configuration tools are a helper layer abstracted over the core plugin implementations. Instead of creating new, individual plugins for each use case, you can often reuse existing ones. Configuration tools help the user configure the parameters of existing plugins.
+
+For example,&#x20;
 
 * Google Calendar can be implemented by configuring the Email plugin with the attendee emails
 * Auto-configure approved user addresses with the Address Restrictions plugin
