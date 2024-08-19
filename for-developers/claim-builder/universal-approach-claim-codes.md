@@ -1,4 +1,4 @@
-# Claim Codes (Universal Approach)
+# Universal Approach - Claim Codes
 
 In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that claim codes are a universal approach that can be used with any application / criteria. For example,
 
@@ -18,7 +18,7 @@ Consider also setting custom metadata to let users know what the codes are for, 
 
 **Configuration Tools**
 
-If you are building a tool / service, consider creating a [configuration tool](plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service. &#x20;
+If you are building a tool / service, consider creating a [configuration tool](configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service. &#x20;
 
 An example configuration input would be:
 
@@ -28,7 +28,7 @@ An example configuration input would be:
 
 
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -38,9 +38,9 @@ If you have a large number of codes, consider using the Copy Seed Code button un
 
 Using a configuration tool would take this step out for the claim creator.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 

@@ -1,16 +1,12 @@
-# Custom Input Frontends (Advanced)
+# User Input Frontends (Advanced)
 
 If you want to further customize the inputs process beyond just users inputting stuff directly in-site, consider creating a custom frontend as well to pass back inputs. This can be used, for example, for more secure authenticated logic.
 
 **Setup + Configuration**
 
-We can direct the user to your plugin's frontend URI provided when they are submitting the claim. for you to handle via your UI.
+We can direct the user to your plugin's frontend URI provided when they are submitting the claim. for you to handle via your UI. Configure this in the User Inputs section of the form.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-
-Via the query params, we will pass some contextual information as well. Note that the address is only passed if you configue to receive the address in the configuration.
+Via the query params, we will pass some contextual information as well if you need. Note that the address is only passed if you configue to receive the address in the configuration.
 
 ```typescript
 window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
@@ -34,8 +30,6 @@ interface ContextInfo {
 **Logic Handling**
 
 At the configured URL, you can then perform whatever logic you need to do (i.e. authentication, prompting the user, etc). This is left up to you. Once you are ready to submit, you can pass back the inputs via a JSON back to our site via a window.opener.postMessage call. The passed data will be the user's input body parameters for this specific plugin.
-
-
 
 ```typescript
 import { Layout } from 'antd';

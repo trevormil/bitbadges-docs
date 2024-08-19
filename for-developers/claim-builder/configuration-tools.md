@@ -10,11 +10,11 @@ For example,&#x20;
 
 These tools help automate the process of plugin  configuration for the creator automatically.
 
-<figure><img src="../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 
 Tools can be featured / highlighted, but we also leave them to be super generic. You can navigate to any tool URL for custom help.
 
-<figure><img src="../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
 
 **E2E Examples - BitBadges Official Tools**
 
@@ -84,7 +84,7 @@ Or, for more rapid development, enter the tool JSON you pass back via postMessag
 {"pluginId":"codes","publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Publishing / Featuring**
 

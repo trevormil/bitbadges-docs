@@ -26,7 +26,7 @@ The metadata details depend on the type of badge collection or [Standard](../../
 
 **Socials:** Provide socials links (Discord, Telegram, etc)
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### For Developers
 

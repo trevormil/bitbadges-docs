@@ -16,9 +16,9 @@ Some examples include
 * **Codes:** Generate unique one-time use only codes that allow users to claim.
 * **Whitelists / Blacklists**: Only allow specific addresses to claim.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## How do you collect badges / get on a list?
 

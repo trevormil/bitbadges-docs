@@ -1,11 +1,11 @@
 # Testing Your Plugin
 
-The easiest way to test your plugin is with an address list claim. After your plugin has been created (does not have to be published):
+The easiest way to test your plugin is with the Test Claims tab in the developer portal.
 
-**Step 1:** Create a private address list which has a claim configured with your plugin.
+<figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-**Step 2:** Experiment with the claim and ensure your plugin is working correctly. Attempt to claim, try with different accounts, etc. Test it thoroughly.
+After your plugin has been created (does not have to be published):
 
-**Step 3:** Delete the address list.
+**Step 1:** Create a test claim which is configured with your plugin. The claim is not linked with any collection, list, etc, and will be deleted after you are done.
 
-You may also consider creating it first on testnet mode, but note that everything will have to be reconfigured as all databases are separate.
+**Step 2:** Experiment with the claim and ensure your plugin is working correctly. Attempt to claim, try with different accounts, etc. Test it thoroughly. Try your configuration tools, user inputs, and more!

@@ -25,7 +25,7 @@ Bitcoin Example
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
 * Mapped Cosmos Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Why can I convert Solana address to a Cosmos / ETH / BTC address but not the other way around?
 
