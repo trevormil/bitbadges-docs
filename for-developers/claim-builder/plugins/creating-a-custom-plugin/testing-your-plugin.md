@@ -9,3 +9,7 @@ After your plugin has been created (does not have to be published):
 **Step 1:** Create a test claim which is configured with your plugin. The claim is not linked with any collection, list, etc, and will be deleted after you are done.
 
 **Step 2:** Experiment with the claim and ensure your plugin is working correctly. Attempt to claim, try with different accounts, etc. Test it thoroughly. Try your configuration tools, user inputs, and more!
+
+
+
+Use the console, developer tools, and error messages to debug. Also, do not hesitate to reach out for help.
