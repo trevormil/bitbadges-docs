@@ -6,7 +6,7 @@ If you want to further customize the inputs process beyond just users inputting 
 
 We can direct the user to your plugin's frontend URI provided when they are submitting the claim. for you to handle via your UI. Configure this in the User Inputs section of the form.
 
-Via the query params, we will pass some contextual information as well if you need. Note that the address is only passed if you configue to receive the address in the configuration.
+Via the query params, we will pass some contextual information as well. Note that the address is only passed if you configue to receive the address in the configuration.
 
 ```typescript
 window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
@@ -74,9 +74,15 @@ function PluginTestScreen() {
                 }
               
                 if (window.opener) {              
-                
-                  console.log('Sending message to opener', customBody, FRONTEND_URL);
-                  window.opener.postMessage(customBody, FRONTEND_URL);
+                  const res = {
+                     inputs: customBody,
+                     pluginId: expectedPluginId,
+                     instanceId: claimContext.instanceId
+                  };
+                  
+                  
+                  console.log('Sending message to opener', res, FRONTEND_URL);
+                  window.opener.postMessage(res, FRONTEND_URL);
                   window.close();
                 }
               }}>
