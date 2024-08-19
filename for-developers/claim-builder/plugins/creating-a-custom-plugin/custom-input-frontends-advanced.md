@@ -31,6 +31,8 @@ interface ContextInfo {
 
 At the configured URL, you can then perform whatever logic you need to do (i.e. authentication, prompting the user, etc). This is left up to you. Once you are ready to submit, you can pass back the inputs via a JSON back to our site via a window.opener.postMessage call. The passed data will be the user's input body parameters for this specific plugin.
 
+The inputs should match the set schema for the user inputs. Unknown fields will be ignored.
+
 ```typescript
 import { Layout } from 'antd';
 import { useRouter } from 'next/router';

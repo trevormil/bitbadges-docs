@@ -26,6 +26,8 @@ From the site, we will redirect the user to your tool URL and expect a window.po
 
 For the time being, we only allow the **pluginId, publicParams, privateParams,** and **metadata** to be set. We also only allow tools to be used when creating a plugin, not updating existing ones. **instanceId** will be set for you, and a default blank state will be used.
 
+All should obey the respective schemas. Unknown fields will be ignored.
+
 We will pass along certain contextual information such as claimId via the URL query parameters.
 
 ```tsx
