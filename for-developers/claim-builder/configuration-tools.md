@@ -78,9 +78,11 @@ export default PluginTestScreen;
 
 **Testing**
 
-When creating a claim, you should see an input box for a custom tool URL. Enter your URL there and test it out!
+When creating a claim, you should see an input box for a custom tool URL. Enter your URL there and test it out!&#x20;
 
 Or, for more rapid development, enter the tool JSON you pass back via postMessage manually here. This is nice because you do not have to use a deployed production version of your tool every time.&#x20;
+
+If you just want a test environment, use the Test Claims tab in the developer portal.
 
 ```json
 {"pluginId":"codes","publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
