@@ -8,6 +8,8 @@ If you need to implement a breaking change, consider using the createdAt, lastUp
 
 The version number will increment by 1 every change you make to the plugin.
 
+You may also consider creating new plugins for breaking changes.
+
 ### Deleting Your Plugin
 
 You can delete your plugin via https://bitbadges.io/developer. Note that this is a soft delete. It removes it from the directory, but all details will still be stored to allow existing claims to still be attempted.
