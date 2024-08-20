@@ -78,7 +78,7 @@ export default PluginTestScreen;
 
 **Testing**
 
-When creating a claim, you should see an input box for a custom tool URL. Enter your URL there and test it out!&#x20;
+When creating a claim, you should see an input box for a custom tool URL. Enter your URL there and test it out! This supports localhost URLs because it is in your browser.
 
 Or, for more rapid development, enter the tool JSON you pass back via postMessage manually here. This is nice because you do not have to use a deployed production version of your tool every time.&#x20;
 

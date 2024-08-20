@@ -111,3 +111,7 @@ You should also consider the case that another BitBadges plugin redirects to the
 **Quickstart**
 
 See the plugin-frontend.tsx in the BitBadges quickstart repository for a starting implementation.
+
+**Testing**
+
+Use the Claim Tester int he developer portal to test out the claim form for users. Because the redirects are all in your browser, you should be able to set the redirect URL as localhost for local development.
