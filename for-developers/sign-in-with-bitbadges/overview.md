@@ -10,7 +10,7 @@ This is the all-in-one flow for authentication and authorization. We envision mo
 
 **Token URL:** https://api.bitbadges.io/api/v0/siwbb/token
 
-**Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/revoke
+**Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/token/revoke
 
 ## Quickstart
 
