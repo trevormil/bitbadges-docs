@@ -6,6 +6,12 @@ This is the all-in-one flow for authentication and authorization. We envision mo
 
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
+**Authorization URL:** https://bitbadges.io/siwbb/authorize
+
+**Token URL:** https://api.bitbadges.io/api/v0/siwbb/token
+
+**Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/revoke
+
 ## Quickstart
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference. This has a full end-to-end implementation of Sign In with BitBadges.
