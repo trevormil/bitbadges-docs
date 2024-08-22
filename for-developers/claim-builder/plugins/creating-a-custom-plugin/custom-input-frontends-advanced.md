@@ -1,6 +1,8 @@
-# User Input Frontends (Advanced)
+# User Input Redirects
 
 If you want to further customize the inputs process beyond just users inputting stuff directly in-site, consider creating a custom frontend as well to pass back inputs. This can be used, for example, for more secure authenticated logic.
+
+The redirect is typically your own handler frontend. However, you may even consider redirecting the user directly to an Oauth2 URL -> auhtoirze -> redirect to your handler -> postMessage back to BitBadges.
 
 **Setup + Configuration**
 
