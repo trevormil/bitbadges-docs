@@ -59,6 +59,7 @@ function PluginTestScreen() {
                 privateParams: {
                   ids: ['test@test.com']
                 } as ClaimIntegrationPrivateParamsType<'email'>,
+                version: '0', //version of the plugin to use
                 metadata: { name: '', description: '' } //optional
               },
               'https://bitbadges.io'

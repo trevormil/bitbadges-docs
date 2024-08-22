@@ -24,6 +24,7 @@ interface ContextInfo {
   
   pluginId: string;
   instanceId: string;
+  version: string;
 }
 ```
 
@@ -81,7 +82,8 @@ function PluginTestScreen() {
                   const res = {
                      inputs: customBody,
                      pluginId: expectedPluginId,
-                     instanceId: claimContext.instanceId
+                     instanceId: claimContext.instanceId,
+                     version: claimContext.version //TODO: Handle version control as necessary
                   };
                   
                   
