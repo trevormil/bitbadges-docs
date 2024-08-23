@@ -20,9 +20,11 @@ curl -X POST https://bitbadges.io  -H 'Content-Type: application/json' -d '{
 }'
 ```
 
-**Test Claims**
+**Claim Tester**
 
-The easiest way to test your plugin integration with Bitbagdes is with the Test Claims tab in the developer portal.
+The easiest way to test your plugin integration with BitBadges is with the Claim Tester tab in the developer portal.
+
+This is the only place you will be able to test unfinalized versions of your plugin.
 
 <figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
