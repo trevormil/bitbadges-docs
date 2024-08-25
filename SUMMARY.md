@@ -128,6 +128,7 @@
     * [Overview](for-developers/claim-builder/plugins/overview.md)
     * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
       * [Alternatives](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
+      * [AI Prompts](for-developers/claim-builder/plugins/creating-a-custom-plugin/ai-prompts.md)
       * [Implementing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin.md)
       * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/design-considerations.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
