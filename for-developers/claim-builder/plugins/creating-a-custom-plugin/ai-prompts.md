@@ -1,8 +1,6 @@
 # AI Prompts
 
-**Creating the Configuration File**
-
-Fill in as needed.
+Fill in as needed. Note this is experimental.
 
 In the developer portal, use the JSON feature to copy / paste the resulting configuration JSON.
 
