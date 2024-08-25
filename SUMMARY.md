@@ -134,6 +134,7 @@
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
       * [User Input Redirects](for-developers/claim-builder/plugins/creating-a-custom-plugin/custom-input-frontends-advanced.md)
+      * [Team Collaboration](for-developers/claim-builder/plugins/creating-a-custom-plugin/team-collaboration.md)
     * [Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
       * [Plugins Directory](https://bitbadges.io/claims/directory)
       * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
