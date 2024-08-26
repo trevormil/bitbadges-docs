@@ -86,6 +86,8 @@ Which claim must the user pass to be successfully granted access? This is a supe
 
 It is also powerful because certain state can be outsourced to the claim (e.g. max 1 use per address, etc). This may eliminate some of the need for maintianing this on your end.
 
+SIWBB claims can be created and managed in the developer portal
+
 **claimId** is the ID of the claim to display. We disable the sign in button until this claim is successful. **hideIfAlreadyClaimed** lets us know to not display the claim to the user if they have already succesfully passed a minimum of 1 times. Note that you can also just not pass the claimId in the params if you do not want to display it for specific users / cases.&#x20;
 
 IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to check claim requirements / ID server-side during the verification step.&#x20;
