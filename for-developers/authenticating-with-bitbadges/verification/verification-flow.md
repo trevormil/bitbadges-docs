@@ -4,11 +4,48 @@ From the prior pages, you should now have the authorization **code** for the use
 
 You can now fetch the authentication details for the user, by exchanging the code and valid app configuration details. Be sure to keep the client secret secret. The response will contain all authentication details, including a **verificationResponse**.
 
-**Verifying Ownership Requirements**
+**Verifying Ownership Requirements and Claim Criteria**
 
-Its important to note any ownership requirements must be specified via **options.ownershipRequirements. T**he ownershipRequirements previously specified in the URL / client-side is just for display purposes and is not cached with the request.
+Its important to note ownership requirements and claims must be checked server-side. The  parameters previously specified in the URL / client-side are just for display purposes and are not cached with the request.&#x20;
 
-You may also choose to custom verify requirements yourself too, rather than outsourcing this step to BitBadges.
+For ownership requirements, you should specify them via **options.ownershipRequirements**. Alternatively, you could self check yourself, but this outsources it to us.
+
+For claims, you must specify the **claimId**. If it is a non-indexed claim, you can just use the **simulateClaim** feature to simulate and check criteria at verify time. Alternatively, you can use the **checkClaimedMinOnce** flag to see if the user to be signed in has at least one successful claim. If you need more advanced checks than just >= 1 successful claim, you will have to do that on your end. See the snippet below.
+
+```typescript
+export interface VerifySIWBBOptions {
+  /** The expected ownership requirements for the user */
+  ownershipRequirements?: AssetConditionGroup<NumberType>;
+
+  /** Claim ID to check for. */
+  claimId?: string;
+  /** If true, we will only check for the existence of the claim. */
+  checkClaimedMinOnce?: boolean;
+  /** If true, we will simulate the claim. Only compatible with non-indexed claims. */
+  simulateClaim?: boolean;
+
+  /** How recent the challenge must be in milliseconds. Defaults to 10 minutes. If 0, we will not check the time. */
+  issuedAtTimeWindowMs?: number;
+  /** Skip asset verification. This may be useful for simulations or testing */
+  skipAssetVerification?: boolean;
+}
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>//For self checks if the supported options are not enough
+</strong><strong>const claimsRes = await BitBadgesApi.getClaims({
+</strong>    claimIds: [claimId]
+});
+const claim = claimsRes.claims[0];
+const cosmosAddress = convertToCosmosAddress(...);
+const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
+<strong>const claimNumbers = numUsesPlugin?.publicState.claimedUsers[cosmosAddress];
+</strong>// claimNumbers is a 0-based claim numbers array (e.g. [0, 3, 5])
+
+//TODO: Customize as needed
+<strong>if (claimNumbers.length >= 1) {
+</strong>    //User has successfully claimed at least once
+}
+</code></pre>
 
 **Access Tokens vs None**
 
@@ -36,7 +73,10 @@ const options: VerifySIWBBOptions = {
     ownershipRequirements,
     // Make sure the code was issued recently (defaults to 10 minutes) 
     // Set to 0 for skipping this check
-    issuedAtTimeWindowMs: 60 * 1000
+    issuedAtTimeWindowMs: 60 * 1000,
+    claimId: 'abc',
+    simulateClaim: false,
+    checkClaimedMinOnce: true
 }
 
 const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
@@ -86,31 +126,15 @@ Does check :white\_check\_mark:
 
 * Proof of address ownership via their authenticated BitBadges account
 * Asset ownership criteria is met for the address (if requested via **options.ownershipRequirements**).
+* Claim criteria was met according to the options provided.
 * Anything specified in the verify challenge options
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
 
 Does not check :x:
 
-* Does not assert any claims were successful. You must verify any claims you want to check server-side on your own. The claimId should match the one passed in the parameters.
-
-<pre class="language-typescript"><code class="lang-typescript">const claimsRes = await BitBadgesApi.getClaims({
-    claimIds: [claimId]
-});
-const claim = claimsRes.claims[0];
-const cosmosAddress = convertToCosmosAddress(...);
-const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
-<strong>const claimNumbers = numUsesPlugin?.publicState.claimedUsers[cosmosAddress];
-</strong>// claimNumbers is a 0-based claim numbers array (e.g. [0, 3, 5])
-
-//TODO: Customize as needed
-<strong>if (claimNumbers.length >= 1) {
-</strong>    //User has successfully claimed at least once
-}
-</code></pre>
-
 * Additional app-specific criteria needed for signing in
-* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks)
+* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end.
 * Does not check the content of the attestation messages
   * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
 * If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
