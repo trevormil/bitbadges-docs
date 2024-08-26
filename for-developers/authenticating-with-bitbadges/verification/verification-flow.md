@@ -134,7 +134,7 @@ Does check :white\_check\_mark:
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
-* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end.
+* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
 * Does not check the content of the attestation messages
   * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
 * If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
