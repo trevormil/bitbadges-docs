@@ -63,6 +63,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 // - Need to cache the signature and message for later use?
 // - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
 // - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
+// - Verify claim criteria
 
 //TODO: If using attestations proofs, are the contents valid? Above, we verified them to be well-formed from a cryptographic perspective, but you need to check the contents to ensure the proof is valid according to your application's rules.
 //For example:
@@ -91,8 +92,25 @@ Does check :white\_check\_mark:
 
 Does not check :x:
 
+* Does not assert any claims were successful. You must verify any claims you want to check server-side on your own. The claimId should match the one passed in the parameters.
+
+<pre class="language-typescript"><code class="lang-typescript">const claimsRes = await BitBadgesApi.getClaims({
+    claimIds: [claimId]
+});
+const claim = claimsRes.claims[0];
+const cosmosAddress = convertToCosmosAddress(...);
+const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
+<strong>const claimNumbers = numUsesPlugin?.publicState.claimedUsers[cosmosAddress];
+</strong>// claimNumbers is a 0-based claim numbers array (e.g. [0, 3, 5])
+
+//TODO: Customize as needed
+<strong>if (claimNumbers.length >= 1) {
+</strong>    //User has successfully claimed at least once
+}
+</code></pre>
+
 * Additional app-specific criteria needed for signing in
-* Does not handle sessions or check any session information. Does not handle any stateful data either   (e.g. preventing replay attacks or flash ownership attacks)
+* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks)
 * Does not check the content of the attestation messages
   * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
 * If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
