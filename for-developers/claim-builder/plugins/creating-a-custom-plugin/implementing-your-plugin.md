@@ -38,6 +38,16 @@ For creator inputs, see configuration tools which automatically for the claim cr
 [configuration-tools.md](../../configuration-tools.md)
 {% endcontent-ref %}
 
+**Supported Schema Types**
+
+Primitives: String, Number, Boolean
+
+Date: UNIX millisecond timestamp
+
+URL: Stringified URL
+
+Attestations (for user inputs): [User inputted attestation proofs](../../../core-concepts/verifiable-attestations/) array.
+
 ### Identifying the Claiming User
 
 You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc). We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
