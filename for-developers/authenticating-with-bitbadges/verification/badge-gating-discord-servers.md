@@ -18,9 +18,7 @@ You can also customize everything further if you would like. We leave any other 
 
 ### Assigning Roles
 
-Once you get the details, you can verify and assign roles to successful authentication requests. This can be using any method you wish such as Discord.js, setting up a Zapier zap, or manually.
-
-
+Once you get the details in your handler, you can verify and assign roles to successful authentication requests. This can be using any method you wish such as Discord.js, setting up a Zapier zap, or manually.
 
 ```typescript
 import Discord from 'discord.js';
