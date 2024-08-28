@@ -30,6 +30,10 @@ Note though that a successful plugin response may not mean a successful claim (a
 [claim-builder](../overview/claim-builder/)
 {% endcontent-ref %}
 
+**Option 3: Public Lookups**
+
+There may already be services that map addresses to Discord usernames or vice versa. If there are, you can optionally use those instead. All that you would need to do is lookup the (address, Discord ID) pair and assign the roles.
+
 ### Create Roles / Gated Channels
 
 Within the Discord interface, you can create roles and channels gated to those roles. We leave this up to you.&#x20;
