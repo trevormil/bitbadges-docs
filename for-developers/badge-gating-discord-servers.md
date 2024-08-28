@@ -4,7 +4,7 @@ A common use case of BitBadges is to gate your Discord server or specific channe
 
 To implement, you will need to handle the assignment of roles somewhere. For this, you have two options. Both are similar but have different tradeoffs / implementations.
 
-**Option 1: Sign In with BitBadges**
+**Option 1: Sign In with BitBadges (Recommended)**
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
@@ -22,9 +22,9 @@ Sign In with BitBadges is easier to implement because it is OAuth2 compatible, y
 
 **Option 2: BitBadges Claims**&#x20;
 
-You can also create a custom plugin with the **passDiscord** option enabled and implement the role assignment logic in your plugin handler logic. Note though that a successful plugin response may not mean a successful claim (all plugins need to pass).
+You can also create a custom plugin with the **passDiscord** option enabled and implement the role assignment logic in your plugin handler logic. If you select this option, you can handle everything within a single BitBadges claim (e.g. as soon as a user claims, assign them a role).
 
-If you select this option, you can handle everything within a single BitBadges claim (e.g. as soon as a user claims, assign them a role).&#x20;
+Note though that a successful plugin response may not mean a successful claim (all plugins need to pass). &#x20;
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
