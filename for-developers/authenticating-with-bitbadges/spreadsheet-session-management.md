@@ -6,14 +6,13 @@ Zapier is an online automation tool that connects your favorite apps, such as Gm
 
 See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
-<figure><img src="../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
 **How does Zapier fit in with Sign In with BitBadges?**
 
 Zapier's integration capabilities can significantly enhance the functionality and user experience of applications utilizing Sign In with BitBadges. By connecting BitBadges with Zapier, developers can automate various processes, such as:
 
 * **Access Management:** Automate the provisioning or deprovisioning of user access to other connected services based on their BitBadge credentials. For instance, granting access to a private repository on GitHub or a restricted channel on Discord when a user signs in with a specific BitBadge.
-
 * **Event Logging:** Connect BitBadges to logging or analytics platforms, such as Google Sheets, to automatically track user sign-ins or other significant events, aiding in data-driven decision-making.
 
 Integrating Zapier with Sign In with BitBadges opens up a world of possibilities for automating tasks, enhancing user engagement, and streamlining operations by leveraging the wide array of apps available in Zapier's ecosystem.
@@ -26,8 +25,8 @@ Integrating Sign In with BitBadges with Zapier involves several steps designed t
 
 Ensure you have a functioning Sign In with BitBadges setup for your application. This involves having your application registered, having access to BitBadges API credentials, and having a way to fetch the authentication details for your users (typically a callback handler).
 
-{% content-ref url="../" %}
-[..](../)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 #### Step 2: Create a Zapier Account
@@ -40,7 +39,7 @@ A "Zap" is an automated workflow in Zapier. Create a new Zap and search for the 
 
 #### Step 4: Configure the Trigger
 
-Set up the Webhook to listen for a specific event from your BitBadges implementation, such as a successful sign-in.&#x20;
+Set up the Webhook to listen for a specific event from your BitBadges implementation, such as a successful sign-in.
 
 You can customize what data is passed to this webhook. It is typically recommended to not pass sensitive information (signatures, etc) as these will be known by Zapier. Only pass the minimum data needed.
 

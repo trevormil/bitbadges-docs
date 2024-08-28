@@ -1,0 +1,115 @@
+# 🔮 Gating Discord Servers
+
+A common use case of BitBadges is to gate your Discord server or specific channels with badge ownership or other requirements. Below, we walk you through the process of doing so.
+
+To implement, you will need to handle the assignment of roles somewhere. For this, you have two options. Both are similar but have different tradeoffs / implementations.
+
+**Option 1: Sign In with BitBadges**
+
+{% content-ref url="authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](authenticating-with-bitbadges/)
+{% endcontent-ref %}
+
+Use the Sign in with BitBadges flow to authenticate your users. Use the **otherSignInMethods** to include Discord sign ins (in addition to crypto authentication).
+
+```
+otherSignIns: ['discord']
+```
+
+Then, in your redirect handler, you can implement the role assignment logic.
+
+Sign In with BitBadges is easier to implement because it is OAuth2 compatible, you do not have to go through the custom plugin creation process, and you can also attach a claim with additional functionality (if needed).
+
+**Option 2: BitBadges Claims**&#x20;
+
+You can also create a custom plugin with the **passDiscord** option enabled and implement the role assignment logic in your plugin handler logic. Note though that a successful plugin response may not mean a successful claim (all plugins need to pass).
+
+If you select this option, you can handle everything within a single BitBadges claim (e.g. as soon as a user claims, assign them a role).&#x20;
+
+{% content-ref url="../overview/claim-builder/" %}
+[claim-builder](../overview/claim-builder/)
+{% endcontent-ref %}
+
+### Create Roles / Gated Channels
+
+Within the Discord interface, you can create roles and channels gated to those roles. We leave this up to you.&#x20;
+
+### Creating a Discord Bot
+
+* Go to the [Discord Developer Portal](https://discord.com/developers/applications).
+* Click on "New Application" and give your application a name.
+* After creating the application, go to the "Bot" tab and click "Add Bot".
+* Customize your bot's name and avatar if desired.
+* Under the "Token" section, click "Copy" to copy your bot token. Keep this token secret!
+
+### Invite the Discord Bot to Your Server
+
+* Go back to the Discord Developer Portal and select your application.
+* Go to the "OAuth2" tab and then "URL Generator".
+* Under "Scopes", select "bot".
+* Under "Bot Permissions", select the permissions your bot needs (at minimum: "Send Messages", "Manage Roles").
+* Copy the generated URL and open it in a new browser tab.
+* Select the server you want to add the bot to and authorize it.
+
+### Getting Server ID (Guild ID)
+
+1. **Enable Developer Mode:**
+   * Open Discord settings by clicking the gear icon near your username.
+   * Go to "Advanced" in the left sidebar.
+   * Toggle on "Developer Mode".
+2. **Obtain Server ID:**
+   * Right-click on your server's name in the server list.
+   * Click "Copy ID" at the bottom of the context menu.
+   * The server ID is now in your clipboard.
+
+### Getting Role Names and IDs
+
+1. **View Server Roles:**
+   * Right-click on your server's name and select "Server Settings".
+   * Click on "Roles" in the left sidebar.
+   * You'll see a list of all roles in the server.
+2. **Get Role ID:**
+   * Right-click on a role name.
+   * Click "Copy ID".
+   * The role ID is now in your clipboard.
+
+### Assigning Roles
+
+In your handler, you are now ready to assign roles to users. This can be using any method you wish such as Discord.js (below), setting up a Zapier zap, or manually.
+
+```typescript
+import Discord from 'discord.js';
+
+const client = new Discord.Client({
+  intents: ['Guilds', 'GuildMembers']
+});
+
+//Initiate Discord bot
+const BOT_TOKEN = process.env.BOT_TOKEN;
+client.login(BOT_TOKEN);
+
+//TODO: Replace res with the Discord details passed from BitBadges
+const { id: discordUserId, username: discordUsername } = res;
+
+const userId = discordUserId;
+const guildId = process.env.GUILD_ID; //TODO: Configure with your server ID
+const guild = await client.guilds.fetch(guildId ?? '');
+if (!guild) {
+  return res.status(400).json({ success: false, errorMessage: 'Guild not found' });
+}
+
+const member = await guild.members.fetch(userId);
+
+//TODO: Configure with your role IDs
+//      You can also use role.name for role names instead of role IDs
+const role = guild.roles.cache.find((role) => role.id === process.env.ROLE_ID);
+if (role && member) {
+  await member.roles.add(role).then(() => {
+    console.log(`User has been assigned the ${role.name} role.`);
+  });
+} else {
+  throw new Error('Role or member not found');
+}
+```
+
+You can customize everything further if you would like. We leave any other custom logic up to you like periodic retries, revoking, preventing replay attacks, flash ownership attacks, and so on. Much of this is application / badge specific to your requirements.&#x20;
