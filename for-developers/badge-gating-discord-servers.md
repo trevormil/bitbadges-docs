@@ -4,6 +4,8 @@ A common use case of BitBadges is to gate your Discord server or specific channe
 
 To implement, you will need to handle the assignment of roles somewhere. For this, you have two options. Both are similar but have different tradeoffs / implementations.
 
+### **Obtaining (Username / ID, Address) Pairs**
+
 **Option 1: Sign In with BitBadges (Recommended)**
 
 {% content-ref url="authenticating-with-bitbadges/" %}
