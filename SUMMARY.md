@@ -157,7 +157,7 @@
     * [Distribute Claim Information Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
   * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Post-Claim Logic / Webhooks](for-developers/claim-builder/post-claim-logic-webhooks.md)
+  * [Post-Claim Actions / Webhooks](for-developers/claim-builder/post-claim-logic-webhooks.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [Create a Tutorial](for-developers/claim-builder/other-tutorials/create-a-tutorial.md)
     * [Tutorials Repo](https://github.com/BitBadges/bitbadges-tutorials/tree/main)
