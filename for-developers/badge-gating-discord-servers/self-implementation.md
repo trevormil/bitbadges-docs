@@ -1,15 +1,11 @@
-# 🔮 Gating Discord Servers
-
-A common use case of BitBadges is to gate your Discord server or specific channels with badge ownership or other requirements. Below, we walk you through the process of doing so.
-
-To implement, you will need to handle the assignment of roles somewhere. For this, you have two options. Both are similar but have different tradeoffs / implementations.
+# Self-Implementation
 
 ### **Obtaining (Username / ID, Address) Pairs**
 
 **Option 1: Sign In with BitBadges (Recommended)**
 
-{% content-ref url="authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](authenticating-with-bitbadges/)
+{% content-ref url="../authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
 Use the Sign in with BitBadges flow to authenticate your users. Use the **otherSignInMethods** to include Discord sign ins (in addition to crypto authentication).
@@ -22,23 +18,19 @@ Then, in your redirect handler, you can implement the role assignment logic.
 
 Sign In with BitBadges is easier to implement because it is OAuth2 compatible, you do not have to go through the custom plugin creation process, and you can also attach a claim with additional functionality (if needed).
 
-**Option 2: BitBadges Claims**&#x20;
+**Option 2: BitBadges Claims**
 
 You can also create a custom plugin with the **passDiscord** option enabled and implement the role assignment logic in your plugin handler logic. If you select this option, you can handle everything within a single BitBadges claim (e.g. as soon as a user claims, assign them a role).
 
 Note though that a successful plugin response may not mean a successful claim (all plugins need to pass). &#x20;
 
-{% content-ref url="../overview/claim-builder/" %}
-[claim-builder](../overview/claim-builder/)
+{% content-ref url="../../overview/claim-builder/" %}
+[claim-builder](../../overview/claim-builder/)
 {% endcontent-ref %}
 
 **Option 3: Public Lookups**
 
 There may already be services that map addresses to Discord usernames or vice versa. If there are, you can optionally use those instead. All that you would need to do is lookup the (address, Discord ID) pair and assign the roles.
-
-### Create Roles / Gated Channels
-
-Within the Discord interface, you can create roles and channels gated to those roles. We leave this up to you.&#x20;
 
 ### Creating a Discord Bot
 
@@ -56,6 +48,15 @@ Within the Discord interface, you can create roles and channels gated to those r
 * Under "Bot Permissions", select the permissions your bot needs (at minimum: "Send Messages", "Manage Roles").
 * Copy the generated URL and open it in a new browser tab.
 * Select the server you want to add the bot to and authorize it.
+
+### Ensure Proper Hierarchy
+
+* **View Server Roles:**
+  * Right-click on your server's name and select "Server Settings".
+  * Click on "Roles" in the left sidebar.
+  * You'll see a list of all roles in the server.
+* **Ensure Higher Priority:**&#x20;
+  * Ensure the added bot role has a higher priority than the roles you wish to add. Bots can only assign roles lower in the hierarchy than them.
 
 ### Assigning Roles
 
@@ -99,25 +100,3 @@ if (role && member) {
 ```
 
 You can customize everything further if you would like. We leave any other custom logic up to you like periodic retries, revoking, preventing replay attacks, flash ownership attacks, and so on. Much of this is application / badge specific to your requirements.&#x20;
-
-### Getting Server ID (Guild ID)
-
-1. **Enable Developer Mode:**
-   * Open Discord settings by clicking the gear icon near your username.
-   * Go to "Advanced" in the left sidebar.
-   * Toggle on "Developer Mode".
-2. **Obtain Server ID:**
-   * Right-click on your server's name in the server list.
-   * Click "Copy ID" at the bottom of the context menu.
-   * The server ID is now in your clipboard.
-
-### Getting Role Names and IDs
-
-1. **View Server Roles:**
-   * Right-click on your server's name and select "Server Settings".
-   * Click on "Roles" in the left sidebar.
-   * You'll see a list of all roles in the server.
-2. **Get Role ID:**
-   * Right-click on a role name.
-   * Click "Copy ID".
-   * The role ID is now in your clipboard.
