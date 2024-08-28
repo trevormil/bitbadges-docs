@@ -4,12 +4,15 @@ Need to perform some additional action upon the user claiming successfully?
 
 **Custom Plugins as Webhooks**
 
-Consider using a custom plugin or the Custom Validation URL plugin as a webhook that is triggered for each claim attempt.
+Consider using a custom plugin or the Custom Validation URL plugin as a webhook that is triggered for each claim attempt.&#x20;
 
-Note that since it is a plugin though, it will send upon every attempt (even if failed or a simulated attempt). Thus, it is important you verify that the attempt was successful via the ID. You may have to sleep a couple seconds for processing.
+Note that since it is a plugin within the claim:
+
+* It will send upon every attempt (even if failed or a simulated attempt). If you need to verify success status,  you can verify attempt was successful via the passed ID. This will require an asynchronous approach. You will need to return 200 OK at claim attempt time (in order for the claim to succeed). Think of this like a "received webhook successfully" response. Then, you can wait a couple seconds for processing, and then execute the action / check status.
+* Some post-claim actions may be able to fail without affecting the claim status. However, all plugins in the claim must pass to successfully claim. Workaround this by sending a 200 OK back to BitBadges from the plugin at claim attempt time, acknowledging the webhook was received. Then, you can execute the action after the fact (potentially failing).&#x20;
 
 ```typescript
-// At your webhook plugin handler URL
+// At your plugin handler URL
 
 const body = req.body;
 /*
@@ -38,7 +41,7 @@ const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 
 **Webhooks by Zapier**
 
-Consider using the Webhooks by Zapier plugin as an additional action to the flow.
+Consider using the Webhooks by Zapier plugin on Zapier as an additional action to your Zap flow.
 
 **BitBadges API**
 
