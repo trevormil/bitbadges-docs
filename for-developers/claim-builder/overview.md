@@ -10,6 +10,10 @@ Claims are handled on a trigger basis. When something occurs, a claim can be com
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
+**What are plugins?**
+
+Claims are made up of one or more plugins executed in order. For a claim to be successful, all plugins must pass.&#x20;
+
 ## **Approaches**
 
 With BitBadges claims, you have a few approaches.
