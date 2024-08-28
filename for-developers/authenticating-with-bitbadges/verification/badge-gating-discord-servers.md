@@ -29,10 +29,7 @@ const client = new Discord.Client({
 
 //See signIn.ts for self-verification example (not API)
 
-//Initiate Discord client
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+//Initiate Discord bot
 const BOT_TOKEN = process.env.BOT_TOKEN;
 client.login(BOT_TOKEN);
 
@@ -57,5 +54,4 @@ if (role && member) {
 } else {
   throw new Error('Role or member not found');
 }
-
 ```
