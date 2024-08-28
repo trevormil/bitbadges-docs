@@ -40,7 +40,7 @@ Within the Discord interface, you can create roles and channels gated to those r
 * Click on "New Application" and give your application a name.
 * After creating the application, go to the "Bot" tab and click "Add Bot".
 * Customize your bot's name and avatar if desired.
-* Under the "Token" section, click "Copy" to copy your bot token. Keep this token secret!
+* Under the "Token" section, click "Copy" to copy your bot token. Keep this token secret! This is your BOT\_TOKEN int the code snippet below.
 
 ### Invite the Discord Bot to Your Server
 
@@ -50,28 +50,6 @@ Within the Discord interface, you can create roles and channels gated to those r
 * Under "Bot Permissions", select the permissions your bot needs (at minimum: "Send Messages", "Manage Roles").
 * Copy the generated URL and open it in a new browser tab.
 * Select the server you want to add the bot to and authorize it.
-
-### Getting Server ID (Guild ID)
-
-1. **Enable Developer Mode:**
-   * Open Discord settings by clicking the gear icon near your username.
-   * Go to "Advanced" in the left sidebar.
-   * Toggle on "Developer Mode".
-2. **Obtain Server ID:**
-   * Right-click on your server's name in the server list.
-   * Click "Copy ID" at the bottom of the context menu.
-   * The server ID is now in your clipboard.
-
-### Getting Role Names and IDs
-
-1. **View Server Roles:**
-   * Right-click on your server's name and select "Server Settings".
-   * Click on "Roles" in the left sidebar.
-   * You'll see a list of all roles in the server.
-2. **Get Role ID:**
-   * Right-click on a role name.
-   * Click "Copy ID".
-   * The role ID is now in your clipboard.
 
 ### Assigning Roles
 
@@ -89,6 +67,8 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 client.login(BOT_TOKEN);
 
 //TODO: Replace res with the Discord details passed from BitBadges
+//      For claims, this will be payload.discord
+//      For SIWBB, this will be res.otherSignIns.discord
 const { id: discordUserId, username: discordUsername } = res;
 
 const userId = discordUserId;
@@ -113,3 +93,25 @@ if (role && member) {
 ```
 
 You can customize everything further if you would like. We leave any other custom logic up to you like periodic retries, revoking, preventing replay attacks, flash ownership attacks, and so on. Much of this is application / badge specific to your requirements.&#x20;
+
+### Getting Server ID (Guild ID)
+
+1. **Enable Developer Mode:**
+   * Open Discord settings by clicking the gear icon near your username.
+   * Go to "Advanced" in the left sidebar.
+   * Toggle on "Developer Mode".
+2. **Obtain Server ID:**
+   * Right-click on your server's name in the server list.
+   * Click "Copy ID" at the bottom of the context menu.
+   * The server ID is now in your clipboard.
+
+### Getting Role Names and IDs
+
+1. **View Server Roles:**
+   * Right-click on your server's name and select "Server Settings".
+   * Click on "Roles" in the left sidebar.
+   * You'll see a list of all roles in the server.
+2. **Get Role ID:**
+   * Right-click on a role name.
+   * Click "Copy ID".
+   * The role ID is now in your clipboard.
