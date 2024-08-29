@@ -2,9 +2,13 @@
 
 Pre-Readings: [Verifiable Attestations](./)
 
-As a holder, you are expected to generate proof(s) to be disclosed to verifiers rather than disclosing the original attestation with all details.&#x20;
+**Proofs vs Core Attestations**
+
+As a holder, you are expected to generate proof(s) to be disclosed to verifiers rather than disclosing the original attestation with all details. If supported, a proof may only reveal a subset of the messages in the original attestation. Proofs may also optionally have different metadata.In many cases, the proof will be basically the same as the original.
 
 There are user interfaces for handling this all on the frontend which should be adequate for almost all use cases. However, below, we go into detail for how you can do it yourself.
+
+
 
 Check out [https://bitbadges.io/attestations/proofgen](https://bitbadges.io/attestations/proofgen) for a helper tool for generating BBS+ signatures.
 
@@ -49,14 +53,14 @@ It is important to note that proof verification is not limited to that is provid
 
 All attestations / credentials inherently get their credibility from the issuer, so there is already a bit of trust there. However, additional measures can be taken to protect against a malicious issuer. Some examples include:
 
--   On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
--   Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
+* On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
+* Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
 
 ### On-Chain Anchors + Update History
 
 There are a couple fields here which are used to prove data integrity and proof of knowledge. These are not necessary for all use cases.
 
-Anchors are proof that the credential was known / issued by a certain time. These should not reveal any confidential information publicly.&#x20;
+Anchors are proof that the credential was known / issued by a certain time. These should not reveal any confidential information publicly.
 
 If an anchor is created through the BitBadges site, we use the following algorithm. If we have N attestation messages, we also have N entropies. We can then post the SHA256 hash of (message + entropy) on-chain. When revealed to a verifier in a proof, they can verify that data integrity has been maintained if they have the palintext message + entropy value. The random hash posted on-chain reveals nothing confidential but provides a verifiable timestamp for the data. This is facilitated through the x/anchor module's MsgAddCustomData.
 
@@ -77,7 +81,7 @@ Update history is maintained by BItBadges in a centralized manner, but it could 
 
 ### **Standard Proofs**
 
-For standard proofs, selective disclosure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the attestation exactly as is.&#x20;
+For standard proofs, selective disclosure is not possible / supported. Simply copy and paste the **dataIntegrityProof** from the attestation exactly as is.
 
 ### **BBS+ Proofs - Verifying Proof of Issuance**
 
@@ -113,13 +117,13 @@ await getChainDriver(chain).verifySignature(
 
 ### **BBS+ Proofs - Creation and Verification**
 
-For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature.&#x20;
+For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature.
 
 We expect the **dataIntegrityProof.signature** to always be a derived proof when using the **iAttestationsProof** interface. However, the **proofOfIssuance** may have the original.
 
 To create the proof from the original attestation, the following code can be used. **revealed** is he zero-based indices of the messages that are revealed (i.e. messages elem 0 is revealed = \[0])
 
-&#x20;We use a generic "nonce" as the nonce because we expect proofs to be verified using an alternative sign-in flow that handles replay attacks there.
+We use a generic "nonce" as the nonce because we expect proofs to be verified using an alternative sign-in flow that handles replay attacks there.
 
 <pre class="language-typescript"><code class="lang-typescript">import { createAttestationsProof } from "bitbadgesjs-sdk";
 

@@ -2,9 +2,11 @@
 
 Pre-Readings: [Verifiable Attestations](./)
 
-It is important to note that proofs / attestations are just cryptographic signatures. If a malicious party gets the signature, the signature will still be valid. Thus, it is important to protect against replay attacks.
+It is important to note that proofs / attestations are just cryptographic signatures. If a malicious party gets the signature, the signature will still be valid. Thus, it is important to protect against replay attacks and verify any address ownership as needed.
 
-With BitBadges attestations, we aim to leverage our authentication flow (Sign In with BitBadges) to be used in conjunction with proof verification. The authentication flow natively has protective measures against replay attacks, time windows for verification, and more. For a credential / attestation to be valid, the holder must present a) proof of the credential AND b) proof of address ownership via Blockin.
+With BitBadges attestations, we aim to leverage our authentication flow (Sign In with BitBadges) and claims (BitBadges Claims) to be used in conjunction with proof verification.
+
+These flows natively have protective measures against replay attacks, time windows for verification, and more. For a credential / attestation to be valid, the holder must present a) proof of the credential AND b) proof of address ownership.
 
 {% content-ref url="../../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
@@ -17,6 +19,10 @@ Note that attestations are stored by BitBadges. For a user to generate a proof f
 If you are implementing Sign In with BitBadges (this is a popup window that redirects the user to BitBadges and passes the important sign-in details back to the site) or Authentication QR codes, you can pass the **expectAttestationsPresentations** variable to the URL query request for your sign-in. This lets the user know that they should attach proofs to their request. You will receive the proofs back in **attestationsPresentations.**
 
 You can also attach the **onlyProofs** variable to not require any signature from the user (just proofs).
+
+**BitBadges Claims**
+
+Create a custom plugin with a user input with type "Attestations". Then, you rplugin handler will be able to receive the proofs.
 
 **Self-Implementations**
 
