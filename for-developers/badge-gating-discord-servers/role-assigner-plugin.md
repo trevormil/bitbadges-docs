@@ -12,7 +12,7 @@ Follow these steps to set up the BitBadges Bot and configure it for your Discord
 
 ### 2. Invite the BitBadges Bot to Your Server
 
-1. Visit the [BitBadges Bot invitation page](https://bitbadges.io/bot).
+1. Enter the [bot invite URL](https://discord.com/oauth2/authorize?client\_id=1278443710039855167\&permissions=268437504\&integration\_type=0\&scope=bot) in to your web browser and navigate to the URL.
 2. Select your server from the dropdown menu.
 3. Review and grant the necessary permissions.
 4. Click "Authorize" to add the bot to your server.
