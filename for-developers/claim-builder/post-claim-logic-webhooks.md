@@ -1,15 +1,14 @@
 # Post-Claim Actions / Webhooks
 
-Need to perform some additional action upon the user claiming successfully?
+Need to perform some additional action upon the user claiming successfully? There are two ways you can wait until success.
+
+1. You will receive the claim attempt ID within the context. You can then poll with the API to check its status. This may take a couple seconds for processing.
+2. If creating a custom plugin, you can subscribe to status webhooks. We will send a duplicate request post-completion with attemptStatus='success'. Note this sends to the same handler, same URI, same method, so you have to catch the attemptStatus accordingly.
+   1. You should send a 200 OK (or however your plugin is configured) during execution time to allow the claim to succeed.
 
 **Custom Plugins as Webhooks**
 
 Consider using a custom plugin or the Custom Validation URL plugin as a webhook that is triggered for each claim attempt.&#x20;
-
-Note that since it is a plugin within the claim:
-
-* It will send upon every attempt (even if failed or a simulated attempt). If you need to verify success status,  you can verify attempt was successful via the passed ID. This will require an asynchronous approach. You will need to return 200 OK at claim attempt time (in order for the claim to succeed). Think of this like a "received webhook successfully" response. Then, you can wait a couple seconds for processing, and then execute the action / check status.
-* Some post-claim actions may be able to fail without affecting the claim status. However, all plugins in the claim must pass to successfully claim. Workaround this by sending a 200 OK back to BitBadges from the plugin at claim attempt time, acknowledging the webhook was received. Then, you can execute the action after the fact (potentially failing).&#x20;
 
 ```typescript
 // At your plugin handler URL
@@ -24,6 +23,7 @@ const body = req.body;
   createdAt: 1722088273192,
   claimAttemptId: '',
   isClaimNumberAssigner: false,
+  _attemptStatus: 'executing', // or 'success'
   maxUses: 1,
   currUses: 0,
   instanceId: 'e44ba88643381cd5fa09be288490a92c64add8bcd2327d29a11a4227fab55e5e',

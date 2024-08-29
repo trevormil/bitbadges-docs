@@ -65,6 +65,7 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 * **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
 * **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
 * **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
+* **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
@@ -87,6 +88,7 @@ const payload = {
     claimAttemptId: context.claimAttemptId,
     cosmosAddress: context.cosmosAddress, //If pass address is configured
     _isSimulation: context._isSimulation,
+    _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     maxUses: context.maxUses,

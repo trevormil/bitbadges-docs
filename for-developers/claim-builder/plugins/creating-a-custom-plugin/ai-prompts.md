@@ -63,6 +63,9 @@ export interface iPluginVersionConfig<T extends NumberType> {
   /** Reuse for address list claims? Address list claims are similar to standard badge claims and supports all features, except order of claims (claim numbers) do not matter. */
 
   reuseForLists: boolean;
+  
+  /** Whether the plugin should receive status webhooks */
+  receiveStatusWebhook: boolean;
 
   /** Preset type for how the plugin state is to be maintained. */
 
@@ -205,6 +208,7 @@ const payload = {
     claimAttemptId: context.claimAttemptId,
     cosmosAddress: context.cosmosAddress, //If pass address is configured
     _isSimulation: context._isSimulation,
+    _attemptStatus: context._attemptStatus, // 'executing' for during or 'success' for post-completion 
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     maxUses: context.maxUses,
