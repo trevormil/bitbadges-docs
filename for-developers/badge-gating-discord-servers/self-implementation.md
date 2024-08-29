@@ -32,6 +32,10 @@ Note though that a successful plugin response may not mean a successful claim (a
 
 There may already be services that map addresses to Discord usernames or vice versa. If there are, you can optionally use those instead. All that you would need to do is lookup the (address, Discord ID) pair and assign the roles.
 
+## Role Assignment Implementation
+
+Below, we explore using Discord.js (below), but this can be any method for managing roles such as setting up a Zapier zap, or manually.
+
 ### Creating a Discord Bot
 
 * Go to the [Discord Developer Portal](https://discord.com/developers/applications).
@@ -60,7 +64,7 @@ There may already be services that map addresses to Discord usernames or vice ve
 
 ### Assigning Roles
 
-In your handler, you are now ready to assign roles to users. This can be using any method you wish such as Discord.js (below), setting up a Zapier zap, or manually.
+In your handler, you are now ready to assign roles to users.&#x20;
 
 ```typescript
 import Discord from 'discord.js';
