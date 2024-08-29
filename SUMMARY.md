@@ -121,6 +121,7 @@
   * [Overview](for-developers/claim-builder/overview.md)
   * [Universal Approach - Claim Codes](for-developers/claim-builder/universal-approach-claim-codes.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
+  * [Non-Indexed Claims](for-developers/claim-builder/non-indexed-claims.md)
   * [Creating / Maintaining Claims](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Claim Links](for-developers/claim-builder/claim-links.md)
   * [Configuration Tools](for-developers/claim-builder/configuration-tools.md)
