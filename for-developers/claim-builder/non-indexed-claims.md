@@ -7,6 +7,7 @@ In other words, nothing is stored, there is no inputs or claim step, and these c
 For the claim to have these properties, all plugins must have the properties. Some example plugins include:
 
 * Public badge ownership queries
+* Minimuum $BADGE balance checks
 * Transfer time checks
 
 For example, checking a minimum balance of $BADGE is safe to use because we always know a user's balance at any given time wihtout user interaction and just their address.
