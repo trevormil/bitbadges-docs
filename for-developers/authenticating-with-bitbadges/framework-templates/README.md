@@ -1,5 +1,2 @@
-# Framework Templates
+# Integrations
 
-
-
-##
