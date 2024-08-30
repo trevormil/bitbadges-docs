@@ -38,8 +38,8 @@ By default, users can claim on the BitBadges site under the claim component. If 
 [claim-builder](../overview/claim-builder/)
 {% endcontent-ref %}
 
-{% content-ref url="../overview/distribution-tools-integrations.md" %}
-[distribution-tools-integrations.md](../overview/distribution-tools-integrations.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Off-Chain Balances - Self-Hosting**

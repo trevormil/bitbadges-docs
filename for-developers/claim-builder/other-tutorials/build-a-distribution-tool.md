@@ -2,8 +2,8 @@
 
 Distribution tools are helper tools that streamline the process of distributing badges upon creation. An example tool might be to fetch and distribute badges to the the addresses of all users who attended an event. Other example ideas include distributing via e-mail, QR codes, location, etc.
 
-{% content-ref url="../../../overview/distribution-tools-integrations.md" %}
-[distribution-tools-integrations.md](../../../overview/distribution-tools-integrations.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ### **Have an idea for a tool?**
@@ -53,9 +53,5 @@ If compatible, reach out to us to add it to the tools array in the frontend dire
 ### Examples
 
 [https://bitbadges-email-distribution-tool-trevormil.vercel.app/](https://bitbadges-email-distribution-tool-trevormil.vercel.app/) ([Code](https://github.com/BitBadges/bitbadges-email-distribution-tool))
-
-
-
-
 
 <figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>

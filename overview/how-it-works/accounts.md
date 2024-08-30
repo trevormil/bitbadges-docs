@@ -16,12 +16,4 @@ All addresses map to an equivalent one in a different ecosystem (see the image b
 
 ### **Which chains / wallets are supported?**
 
-**Ethereum**
-
-**Cosmos**
-
-**Solana**
-
-**Bitcoin**
-
-**More Coming Soon!**
+Ethereum, Cosmos, Solana, Bitcoin
