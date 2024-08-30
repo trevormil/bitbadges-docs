@@ -1,31 +1,65 @@
 # Distribution / Collection
 
-BitBadges is multi-chain meaning that any blockchain user from one ecosystem (e.g. Ethereum) can receive and send badges to and from users from another ecosystem (e.g. Cosmos).
+BitBadges operates on a multi-chain platform, enabling users from various blockchain ecosystems (e.g., Ethereum, Cosmos) to seamlessly send and receive badges across different networks.
 
-See [here](balances-types.md) to learn about the pros and cons of the different balance types (on-chain vs off-chain).
+For information on the advantages and disadvantages of different balance types (on-chain vs off-chain), please refer to our [balance types guide](balances-types.md).
 
-## How is everything distributed?
+## Distribution Methods
 
-Distributing depends on your unique requirements and the type of collection / list you have created. Typically, the creator sets up the rules for how everything is distributed. **To see how a specific collection / list is distributed, you must visit the page for that collection.**
+The distribution process for badges or lists is highly customizable, depending on the creator's specific requirements and the type of collection or list they've created. To understand how a particular collection or list is distributed, you should visit the dedicated page for that collection.
 
-The collection / list creator can determine how the badge is distributed. There are many options for such badges, ranging from manual distribution to setting up claims that integrate with over 7000+ apps. Distribution criteria is completely customization. All options have their own tradeoffs.
+Creators have a wide range of options for distributing badges, from manual distribution to automated claims integrated with thousands of applications. Each method has its own set of trade-offs and benefits.
 
-Some examples include
+### Three Main Approaches to Gating Distribution / Collection
 
-* **Passwords:** Set up a reusable password that must be entered to claim a badge.
-* **Codes:** Generate unique one-time use only codes that allow users to claim.
-* **Whitelists / Blacklists**: Only allow specific addresses to claim.
+1. **Zapier Integration**
+
+    - Trigger -> Complete Claim: Set up a Zapier trigger that initiates the claim process when certain conditions are met.
+    - Complete Claim -> Post-action Trigger: Configure actions to occur after a successful claim, such as updating a database or sending a notification.
+
+2. **In-site Community-driven Plugin Integrations**
+
+    - Utilize pre-built integrations developed by the BitBadges community.
+    - These plugins can connect your distribution process to popular platforms and services.
+
+3. **Custom Integration via BitBadges API**
+    - For advanced users or unique requirements, create a custom distribution system using the BitBadges API.
+    - This option provides the most flexibility and control over the distribution process.
+
+### Examples of Distribution Methods
+
+-   **Passwords:** Implement a reusable password that users must enter to claim a badge.
+-   **Unique Codes:** Generate one-time use codes for individual claims.
+-   **Whitelists / Blacklists:** Restrict claims to specific addresses or exclude certain addresses from claiming.
 
 <figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-## How do you collect badges / get on a list?
+## Collection / Claiming Process
 
-Again, this is super open ended. The most common flow is the creator wil lgive you a claim link that takes you to the BitBadges site. But depending on the configuration, the creator can also auto-claim on your behalf.
+The process of collecting badges or getting on a list can vary depending on the creator's setup. Here are the typical methods:
 
-**Always interact with third parties at your own risk!**
+1. **BitBadges Site Claiming**
 
-### **Notifications / Alerts**
+    - The most common method involves the creator providing a claim link.
+    - Users visit the BitBadges site and complete a claim form to receive their badge or be added to a list.
+    - This process may involve verifying information or meeting specific criteria set by the creator.
 
-Notification (or claim alerts) can be sent in-site, or you can use your preferred method of communicating with your users.
+2. **Airdrops**
+
+    - Creators can directly distribute badges to user addresses without requiring any action from the recipients.
+    - This method is useful for rewarding existing community members or incentivizing participation.
+
+3. **Custom Claim Flows**
+    - Some creators may opt to create their own claim flows or integrate the claiming process into their websites or applications.
+    - These custom solutions still utilize the BitBadges API but offer a more tailored user experience.
+
+### Notifications / Alerts
+
+To keep users informed about available claims or successful distributions, creators can leverage claim alerts. These can be implemented in several ways:
+
+-   **In-site Notifications:** Users receive alerts directly on the BitBadges platform.
+-   **Existing Communication Channels:** Creators can use their established communication methods (e.g., email, Discord, Telegram) to notify users about claim opportunities or successful distributions.
+
+**Important Note:** Always exercise caution when interacting with third-party claims or distribution methods. Verify the authenticity of the source before providing any information or connecting your wallet.

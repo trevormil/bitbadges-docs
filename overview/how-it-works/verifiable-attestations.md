@@ -2,28 +2,48 @@
 
 ### What Are Verifiable Attestations?
 
-Verifiable Attestations are like Verifiable Credentials, which are becoming popular in the blockchain world. They let you prove something about yourself (like a credential) in a secure and privacy-respecting way to a verifier.
+Verifiable Attestations are digital proofs similar to Verifiable Credentials, a concept gaining traction in the blockchain ecosystem. They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier.
 
 #### What Is an Attestation?
 
-Simply put, an attestation is a cryptographic signature of a message. This means that when someone (an issuer) signs a message, it ensures the message's data stays intact. Anyone who receives or checks the attestation can verify that it was indeed issued by the issuer by checking the signature.
+An attestation, at its core, is a cryptographic signature of a message or set of claims. When an entity (known as the issuer) signs a message, it creates a cryptographic seal that ensures the integrity of the message's data. This process involves:
 
-Example: A university (issuer) signs a diploma attestation for a student (holder)
+1. The issuer creating a message with specific claims or information
+2. The issuer signing this message with their private key
+3. The resulting signature being attached to the original message
+
+Anyone who receives or checks the attestation can verify its authenticity and integrity by:
+
+1. Checking the signature using the issuer's public key
+2. Confirming that the message hasn't been altered since it was signed
+
+Example: A university (issuer) creates and signs a digital diploma attestation for a graduate (holder). The graduate can then present this attestation to potential employers (verifiers) who can cryptographically verify its authenticity without needing to contact the university directly.
 
 ### Benefits of Using Verifiable Attestations
 
-#### 1. Uses Less Blockchain Resources
+#### 1. Efficient Use of Blockchain Resources
 
-Since most of the process happens off-chain, verifiable attestations use fewer blockchain resources. This makes them efficient and cost-effective because you don't need to pay for blockchain transactions to create or verify an attestation.
+Verifiable attestations are designed to be lightweight and efficient in terms of blockchain usage:
 
-#### 2. Private by Default
+-   Most of the attestation process occurs off-chain, reducing the need for on-chain transactions
+-   Only cryptographic proofs or minimal anchoring data may be stored on-chain, if necessary
+-   This approach significantly reduces gas costs and blockchain bloat
+-   Verification can often be done without any on-chain transactions, further saving resources
 
-Verifiable attestations are private by default. The data in an attestation is not stored on the blockchain, which means it remains confidential. Only the cryptographic proof (the signature) is used for verification, ensuring your information stays private.
+#### 2. Privacy by Default
 
-You may choose to reveal it publicly or anchor its existence on-chain, but by default, they remain private.
+Verifiable attestations prioritize user privacy:
 
-#### 3. Selective Disclosure
+-   The actual data contained in an attestation is not stored on the blockchain
+-   Only the holder of the attestation has access to the full contents by default
+-   Cryptographic proofs allow for verification without revealing the underlying data
+-   Users have full control over when and how much of their attestation data to reveal
+-   Optional on-chain anchoring can prove an attestation's existence without exposing its contents
 
-With verifiable attestations, you have the power of selective disclosure. This means you can choose what information to share and with whom. For example, you might show your diploma badge publicly but keep detailed information about your grades private. You control who sees the full details and who only sees the proof.
+#### 3. Zero-Knowledge Selective Disclosure
 
-With BitBadges, we also support zero-knowledge selective disclosure through advanced cryptography. For example, lets say you have a diploma attestation which includes a few messages such as your GPA, attendance records, student records, etc. If an employer only needs to see your GPA, you can cryptographically reveal only the GPA even though the attestation has lots more details to it.
+Verifiable attestations empower users with fine-grained control over their personal information:
+
+-   Users can choose which specific parts of an attestation to share in different contexts
+-   This allows for sharing only the necessary information for a given situation while not sacrificing the ability to verify the attestation cryptographically.
+-   Example: A diploma attestation might include degree name, graduation date, and GPA. The holder could choose to share only the degree name and graduation date for one purpose, while sharing the full details for another.
