@@ -129,7 +129,7 @@ In addition to the standard features of existing token standards (mint, transfer
 
 And much more!
 
-### Links
+## Links
 
 BitBadges App - [https://bitbadges.io](https://bitbadges.io)
 
