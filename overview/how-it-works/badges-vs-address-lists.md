@@ -12,9 +12,9 @@ The first step in creating badges is to create a collection. Collections are the
 
 When creating a badge collection, the creator can customize the following properties however they would like:
 
-[**Collection Metadata**](metadata.md)**:** What is the collection's name, description, image, category, etc?
+[**Collection Metadata**](broken-reference)**:** What is the collection's name, description, image, category, etc?
 
-[**Badge Metadata**](metadata.md)**:** For each badge, what is its name description, image, category, etc?
+[**Badge Metadata**](broken-reference)**:** For each badge, what is its name description, image, category, etc?
 
 [**Supply**](total-supplys.md)**:** How much should the total supply of each badge within the collection be? (e.g. badge ID #1 may have a supply of x100 whereas badge ID #2 only has x1)
 

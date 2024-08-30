@@ -1,4 +1,4 @@
-# 🕵️ Authentication with Badges
+# 🕵️ Sign In with BitBadges
 
 Authentication is a great use case for badges. For example, grant access to this user if they own the membership badge but deny those who do not. Authentication can be facilitated in many settings (in-person, digitally, etc).&#x20;
 
@@ -8,7 +8,7 @@ For developers, see here:
 [authenticating-with-bitbadges](../for-developers/authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-### Sign In With BitBadges
+### Sign In With BitBadges - Digital
 
 Digitally, you can authenticate users and verify badge ownership, such as badge-gating a website.&#x20;
 

@@ -2,8 +2,8 @@
 
 Collections can define metadata for both the collection and individual badges via their **collectionMetadataTimeline** and **badgeMetadataTimeline,** respectively. Both will follow the same metadata interface, as explained here. For the **badgeMetadataTimeline,** we take first match of a specific badge ID via linear scan, so the .**badgeMetadata\[]** order matters.
 
-{% content-ref url="../../overview/how-it-works/metadata.md" %}
-[metadata.md](../../overview/how-it-works/metadata.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 Within the collection interface, this would look like:
