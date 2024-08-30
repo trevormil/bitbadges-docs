@@ -1,7 +1,7 @@
 ---
 description: >-
-    Here, you will find documentation about BitBadges, how it works, how to
-    interact, and how to contribute!
+  Here, you will find documentation about BitBadges, how it works, how to
+  interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
@@ -22,43 +22,37 @@ When combined with blockchain technology, badges become even more secure and mor
 
 <figure><img src=".gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
-### Beyond Badges
+### Lists, Protocols, and Attestations
 
 While badges are the main feature of BitBadges, we offer different ways to enhance your digital identity and portfolio:
 
 1. **Address Lists:** Manage users from any supported blockchain with simple address lists. This streamlined alternative to traditional badges allows for efficient user management across multiple chains.
-
 2. **Protocols / Maps:** Leverage reusable protocols to manage information such as preferences, reputation, and more across applications and chains. These protocols create a standardized way to store and access data, enhancing interoperability between different platforms and ecosystems.
-
 3. **Attestations:** Use attestations to prove information, such as credentials, privately with zero-knowledge selective disclosure. This feature allows you to verify specific details without revealing unnecessary personal information, enhancing privacy and security in digital interactions.
 
 These additional tools complement our badge system, providing a comprehensive suite for managing digital identities and interactions in the blockchain space.
 
 ## All-In-One Authentication
 
-Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity.
-You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
+Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity. You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
 
 Thus, BitBadges becomes the all-in-one authentication provider, revolutionizing how users prove their identity and credentials across various platforms. With BitBadges, you can:
 
--   Authenticate using your address from any supported blockchain
--   Prove ownership of specific badges
--   Verify particular attestations
--   Demonstrate membership in address lists
--   Validate adherence to protocols
+* Authenticate using your address from any supported blockchain
+* Prove ownership of specific badges
+* Verify particular attestations
+* Demonstrate membership in address lists
+* Validate adherence to protocols
+* Create custom experiences for your users based on protocols, ownership and more!
 
 All in one place! All outsourced to BitBadges!
-
-Create custom experiences for your users. For example, do they have the dark mode protocol set? Do they have the verified badge? Offer different experiences to different users based on their BitBadges portfolio.
 
 This comprehensive approach to authentication works both digitally and in-person:
 
 1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
-
-![alt text](image-1.png)
-![alt text](image-2.png)
-
 2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification.
+
+![](image-1.png)
 
 ## Multi-Chain
 
@@ -74,18 +68,15 @@ Through our suite of developer tools, BitBadges allows you to seamlessly build m
 
 ## Integrations
 
-BitBadges is super customizable, has a vast ecosystem of over 7000+ no-code integrations, and is developer friendly for you to build your own integrations!
-Connect BitBadges to any app or platform you wish!
+BitBadges is super customizable, has a vast ecosystem of over 7000+ no-code integrations, and is developer friendly for you to build your own integrations! Connect BitBadges to any app or platform you wish!
 
-Integrations are used for gating access to a specific resource. This can be used for gating claiming access for badges, address list spots, and more!
-You can also use integrations in the authentication flow (e.g. check if a user has a verified badge before allowing them to sign in).
+Integrations are used for gating access to a specific resource. This can be used for gating claiming access for badges, address list spots, and more! You can also use integrations in the authentication flow (e.g. check if a user has a verified badge before allowing them to sign in).
 
 BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
 
 ### Zapier
 
-BitBadges has a Zapier integration that allows you to connect BitBadges to any app. Automatically trigger BitBadges claims upon custom triggers
-from any app.
+BitBadges has a Zapier integration that allows you to connect BitBadges to any app. Automatically trigger BitBadges claims upon custom triggers from any app.
 
 ![zapier](image.png)
 
@@ -105,14 +96,14 @@ Because you can create a badge for anything, there are infinitely many possible 
 
 Below are some of our favorite use cases:
 
--   **Attendance Badges -** Mint an attendance badge for an event, trip, etc as a souvenir!
--   **Memberships/Subscriptions/Premium Content -** Badges are all time-based, so you can offer time-dependent memberships / subscriptions and offer the utility only to those who own the badge at a certain time!
--   **Access Tokens** - Use badges as access tokens. This can be digital (websites, Discord servers, etc) or in-person (tickets, event entry, etc).
--   **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.
--   **Authentication / Tiered Services -** Companies can outsource their authentication to Web3 / [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Cheaper, more secure, and less work!
--   **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
--   **Truth Badges:** In a world of deep fakes and fake news, badges can serve as the undeniable source of truth for things.
--   See more use cases [here](broken-reference/)!
+* **Attendance Badges -** Mint an attendance badge for an event, trip, etc as a souvenir!
+* **Memberships/Subscriptions/Premium Content -** Badges are all time-based, so you can offer time-dependent memberships / subscriptions and offer the utility only to those who own the badge at a certain time!
+* **Access Tokens** - Use badges as access tokens. This can be digital (websites, Discord servers, etc) or in-person (tickets, event entry, etc).
+* **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, completing a class, etc.
+* **Authentication / Tiered Services -** Companies can outsource their authentication to Web3 / [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/) and verify ownership through tiered services badges (family plan badge vs normal user badge). Cheaper, more secure, and less work!
+* **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
+* **Truth Badges:** In a world of deep fakes and fake news, badges can serve as the undeniable source of truth for things.
+* See more use cases [here](broken-reference/)!
 
 <figure><img src=".gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
@@ -122,19 +113,19 @@ The BitBadges token (badge) standard is state-of-the-art compared to existing to
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
--   [**Time-Based Balances**](overview/how-it-works/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
--   [**Off-Chain Balances:**](overview/how-it-works/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
--   [**Fine-Grained Transferability and Approvals Customization**](overview/how-it-works/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
-    -   Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
-    -   [**Must Own Badges:** ](overview/how-it-works/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
-    -   [**Fine-Grained Approvals:** ](overview/how-it-works/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-    -   [**Incoming Approvals:** ](overview/how-it-works/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
-        -   Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
-    -   And more!
--   [**Customizable Permissions**](overview/how-it-works/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
--   [**Time-Based Details**](for-developers/core-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
--   [**Batch Transfers**](overview/how-it-works/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
-    -   Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
+* [**Time-Based Balances**](overview/how-it-works/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
+* [**Off-Chain Balances:**](overview/how-it-works/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
+* [**Fine-Grained Transferability and Approvals Customization**](overview/how-it-works/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
+  * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
+  * [**Must Own Badges:** ](overview/how-it-works/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
+  * [**Fine-Grained Approvals:** ](overview/how-it-works/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
+  * [**Incoming Approvals:** ](overview/how-it-works/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+    * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
+  * And more!
+* [**Customizable Permissions**](overview/how-it-works/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Time-Based Details**](for-developers/core-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
+* [**Batch Transfers**](overview/how-it-works/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+  * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
 And much more!
 
@@ -148,13 +139,13 @@ Discord - [https://discord.com/invite/TJMaEd9bar](https://discord.com/invite/TJM
 
 LinkedIn - [https://linkedin.com/company/bitbadges](https://linkedin.com/company/bitbadges)
 
-Twitter - [https://twitter.com/bitbadges_io](https://twitter.com/bitbadges_io)
+Twitter - [https://twitter.com/bitbadges\_io](https://twitter.com/bitbadges\_io)
 
 Facebook - [https://facebook.com/profile.php?id=100092259215026](https://facebook.com/profile.php?id=100092259215026)
 
-Instagram - [https://instagram.com/bitbadges_official/](https://instagram.com/bitbadges_official/)
+Instagram - [https://instagram.com/bitbadges\_official/](https://instagram.com/bitbadges\_official/)
 
-Slack - [https://bitbadges.slack.com/join/shared_invite/zt-1tws89arl-TMSK_4bdTLOLdyp177811Q#/shared-invite/email](https://bitbadges.slack.com/join/shared_invite/zt-1tws89arl-TMSK_4bdTLOLdyp177811Q#/shared-invite/email)
+Slack - [https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email](https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email)
 
 Reddit -[ ](https://www.reddit.com/r/BitBadges/)[https://www.reddit.com/r/BitBadges/](https://www.reddit.com/r/BitBadges/)
 
