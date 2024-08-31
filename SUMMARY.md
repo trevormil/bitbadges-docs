@@ -115,7 +115,7 @@
     * [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
     * [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
-* [🏗️ BitBadges Claims](overview/claim-builder/README.md)
+* [🏗️ Claims / Plugins](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Universal Approach - Claim Codes](for-developers/claim-builder/universal-approach-claim-codes.md)
   * [Claim Actions](for-developers/claim-builder/claim-actions.md)
