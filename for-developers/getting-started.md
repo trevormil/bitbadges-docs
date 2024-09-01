@@ -12,7 +12,7 @@ Where you start depends on your use case. At a minimum, we recommend familiarizi
 
 #### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
 
-Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc). See [here](https://github.com/BitBadges/bitbadges-quickstart).&#x20;
+Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc).&#x20;
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
@@ -22,42 +22,34 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 * Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
 
-## **Creating badges / lists?**
+## **Creating badges / lists / attestations / protocols?**
 
-**Is everything you need supported by the BitBadges web app?** If so, then create a collection using the Create tab on the BitBadges web app. We envision 95% of badges can be created through this form. If not, see how to generate and broadcast a MsgCreateCollection transaction.
+**Is everything you need supported by the BitBadges web app?** If so, then create using the Create tab on the BitBadges web app. We envision 95% of use cases can be created through this form. The forms are developer friendly too to allow you to customize small parts of the process.
 
-**Do you want to self-host off-chain balances or metadata?** See utorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).
+**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).
 
-## Distributing badges?
+For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
-Customizing the process of claiming a badge can be done directly via the BitBadges site when creating your badge collection or address list. The criteria can also be maintained through the "update" forms.
+## Integrations? Gate distribution? Create a custom plugin?
 
-By default, users can claim on the BitBadges site under the claim component. If you want to customize your claim further, see the link below. This may include auto-completion of claims for your users, extending the functionality, distributing the claim information, creating a reusable plugin, or integrating with Zapier which allows you to auto-complete claims upon triggers from ovr 6000+ apps.
+BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directy in-site via the developer portal or other respective creation flows.
+
+By default, you have access to all in-site integrations with no code required. However, you can also custom manage claims, auto-complete claims and integrate via Zapier or the BitBadges API, or even build your own custom in-site plugin.&#x20;
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-**Off-Chain Balances - Self-Hosting**
-
-For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
-
 ## **Query data?**
 
-Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).
+Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).  Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 
-Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
+## **Authenticate w/ Sign In with BitBadges?**
 
-## **Authenticate with badges?**
+Authenticate your users from any chain, potentially checking badge ownership,  attestations, integrating with any supported app, and more along the way.
 
-Querying badge ownership is simply querying for the current balances which can be done through the web app or alternative methods; however, authenticating also involves proving a user owns an address too (typically through a cryptographic siganture). If you need to verify ownership of badges (and not just query them), check out Blockin and the quickstart repository.
-
-{% content-ref url="https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/" %}
-[Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
+{% content-ref url="authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
 ## **Custom integrations?**
@@ -71,10 +63,6 @@ Querying badge ownership is simply querying for the current balances which can b
 The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom program your own transaction generation and broadcast.**
 
 However, if you do, you can either 1) use the [custom helper broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md) on the BitBadges site or 2) [generate them programmatically through the SDK](create-and-broadcast-txs/). The blockchain node's CLI also works but only supports signatures from Cosmos addresses (not any other chain). You can also redirect to a popup of the helper broadcast tool, and all signing logic will be outsourced to BitBadges. You can just await the transaction hash.
-
-## **Building a frontend?**
-
-Use the quickstart code as a starting point and/or reference. See demos [here](https://blockin-quickstart.vercel.app/) and [here](https://blockin-quickstart-5gxg.vercel.app/). Feel free to reach out for code for any of the components we use in the frontend.
 
 ## **Need additional functionality?**
 
