@@ -22,7 +22,9 @@ Theoretically, address lists are just a simplified version of the badge interfac
 
 **Using Lists to Define Transferability / Approvals**
 
-When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is used for this on-chain. On-chain address lists are created via the MsgCreateAddressList interface.
+When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is reused for this on-chain.&#x20;
+
+We currently only support permanent lists on-chain vis the MsgCreateAddressList interface.
 
 ### Inverting (Whitelist vs Blacklist)
 

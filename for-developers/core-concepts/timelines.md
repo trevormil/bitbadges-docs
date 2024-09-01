@@ -17,7 +17,6 @@ badgeMetadataTimeline: BadgeMetadataTimeline<T>[],
 offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[],
 customDataTimeline: CustomDataTimeline<T>[],
 standardsTimeline: StandardsTimeline<T>[],
-contractAddressTimeline: ContractAddressTimeline<T>[],
 isArchivedTimeline: IsArchivedTimeline<T>[],
 ```
 
