@@ -2,7 +2,7 @@
 
 BitBadges allows defining metadata for both collections and individual badges using `collectionMetadataTimeline` and `badgeMetadataTimeline` respectively. Both timelines follow the same metadata interface, but with slight differences in implementation.
 
-Other interfaces like lists, maps, etc will also have a corresponding metadata field.
+Other interfaces like lists, maps, etc will also have a corresponding metadata field that follows the same interface.
 
 ### Metadata Timelines
 

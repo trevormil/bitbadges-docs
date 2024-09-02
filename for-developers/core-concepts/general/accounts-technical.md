@@ -17,7 +17,7 @@ For non-Cosmos signatures, we map everything to a content hash to get a string s
 This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679
 ```
 
-We then verify the signatures of the string as a personal message signature via the respective signature algorithm.
+We then verify the signatures of the transaction string as a personal message signature via the respective signature algorithm (e.g. ECDSA for Ethereum).
 
 ### **Cosmos**
 
@@ -25,7 +25,7 @@ Normal Cosmos accounts are also supported with all the Cosmos SDK's native funct
 
 ### **Ethereum**
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` for Ethereum type accounts, unlike other Cosmos accounts that use Coin type `118.`
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys.
 
 ### **Solana**
 
