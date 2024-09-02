@@ -24,8 +24,6 @@ This may be used as a stagenet to test new unreleased features.
   * Faucet may be more lenient
 * Performance also may differ from the production environment
 
-###
-
 ### Links
 
 Frontend: https://testnet.bitbadges.io
