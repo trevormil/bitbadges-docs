@@ -4,5 +4,5 @@ Anchors, in the context of blockchain technology, refer to specific transactions
 
 This is facilitated through the x/anchor module which simply has one message (MsgAddCustomData) that simply lets you store a string. It will store it on-chain with a timestamp and the address that inititated the transaction.
 
-<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
 

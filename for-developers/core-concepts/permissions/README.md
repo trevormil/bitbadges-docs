@@ -187,7 +187,7 @@ The following brute forces badge IDs 1-10.
 
 ### **Permission Categories**
 
-There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](../different-time-fields.md) for examples and explanations.
+There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](../general/different-time-fields.md) for examples and explanations.
 
 {% content-ref url="action-permission.md" %}
 [action-permission.md](action-permission.md)
