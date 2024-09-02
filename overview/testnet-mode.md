@@ -10,6 +10,8 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 Consider this before determining whether testnet mode is the correct option for you.
 
+This may be used as a stagenet to test new unreleased features.
+
 ### Differences
 
 * Some features available in production may not be accessible in testnet:

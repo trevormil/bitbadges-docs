@@ -14,10 +14,6 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 [balance-types.md](../../core-concepts/balance-types.md)
 {% endcontent-ref %}
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 #### Approval Metadata
 
 For providing additional details about an approval, you can host a JSON via the **`approval.uri`** field. This allows the BitBadges site to obtain certain metadata about the approval. Markdown is supported for description.

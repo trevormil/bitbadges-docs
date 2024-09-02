@@ -188,7 +188,7 @@
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
     * [Parameters](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/parameters/README.md)
-      * [Overview](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/parameters/overview.md)
+      * [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/parameters/overview.md)
       * [Ownership Requirements](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/parameters/challenge-parameters.md)
     * [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
   * [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)

@@ -17,21 +17,9 @@ You will use the BitBadges API Zapier plugin with the Complete Claim action to p
 
 ### Create the Claim
 
-The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. To help, select the Zapier approach when creating.
+The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. Select the Zapier approach when creating.
 
 <figure><img src="../../../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
-
-**No Signed In with BitBadges Plugin**
-
-Make sure this plugin is disabled. This should be disabled to allow Zapier to claim on behalf of others without needing to authenticate. In other words, whoever is claiming can specify the intended recipient without actually needing to authenticate as this recipient.
-
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Gate with Custom Password**
-
-However, it is IMPORTANT to note that not requiring SIWBB relaxes the restriction for everyone. Thus, you will have to gate the claim in other ways to ensure that it **only** allows Zapier to claim on users' behalf.
-
-To solve this, you must create a custom password which will only be known by Zapier. This allows claims from Zapier to pass but claims from anyone else not to (because noone else knows the password).
 
 **Other Plugins**
 
@@ -62,7 +50,7 @@ Step 2: Select and configure your trigger. Triggers are the action that initiate
 
 <figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant. However, the address may be fetched from prior integrations or manually provided. This is up to you.
+Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
 <figure><img src="../../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
