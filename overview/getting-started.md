@@ -22,7 +22,7 @@ For in-site claims, head over to the respective list / badge page and complete t
 
 ### **Sign In with BitBadges**
 
-Sign In with BitBadges is a more developer-oriented flow since you will have your own server /resource you are gating access to. We refer you to the documentation here.
+Sign In with BitBadges is a more developer-oriented flow since you will have your own server or resource you are gating access to. We refer you to the documentation here.
 
 {% content-ref url="../for-developers/authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../for-developers/authenticating-with-bitbadges/)
