@@ -1,5 +1,9 @@
 # Indexed
 
+Live: [https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances](https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances)
+
+JSON:&#x20;
+
 ```json
 {
   "cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl": [

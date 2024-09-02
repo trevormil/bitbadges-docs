@@ -71,7 +71,7 @@ There are two ways to define the balances. Both can not be used together.
 
 Predetermined balances can quickly change, such as in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
 
-To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../cosmos-sdk-msgs/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
+To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
 </strong>    approvalId: string;

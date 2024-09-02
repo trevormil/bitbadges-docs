@@ -1,4 +1,4 @@
-# Refresh Queue
+# Refresh / Claim Completion Queue
 
 The API / indexer makes use of a load-balanced refresh queue system whenever we need to fetch anything from a source URI (metadata, off-chain balances, etc). Because this is a queue-based system, certain metadata may take awhile to fully load and populate. Once we fetch the metadata, we cache it and return the fetched values until it is refreshed again.
 
@@ -8,7 +8,7 @@ Refreshes are triggered automatically when certain things occur on-chain, such a
 
 **What happens if the fetch fails?**
 
-See [Restrictions / Limits](../limits-restrictions.md). We implement an exponential retry system.
+See [Restrictions / Limits](limits-restrictions.md). We implement an exponential retry system.
 
 **Off-Chain Balances**
 

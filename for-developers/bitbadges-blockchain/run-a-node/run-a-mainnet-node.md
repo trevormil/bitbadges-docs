@@ -41,9 +41,7 @@ docker pull bitbadges/bitbadgeschain:latest
 
 ## Handling Upgrades - Cosmovisor
 
-BitBadges handles binary upgrades using Cosmovisor, a tool for automating upgrades with zero downtime. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html).
-
-We use Cosmos SDK v0.47.5, so please use a compatible Cosmovisor version. It is expected all validators are using Cosmovisor.
+BitBadges handles binary upgrades using Cosmovisor, a tool for automating upgrades with zero downtime. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html). It is expected all validators are using Cosmovisor.
 
 Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
 

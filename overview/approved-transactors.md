@@ -4,6 +4,8 @@ icon: wallet
 
 # Approved Transactors
 
+**Approved Transactors**
+
 In your account settings, BitBadges provides the option to approve other wallets to transact on-chain your behalf. Note this is different from the alternate sign ins on the prior page which approve other ways to access your BitBadges account (off-chain). This feature can be used to configure hot wallets, for example, that are easier to access and can sign on your behalf.
 
 Note: This feature is opt-in and not enabled by default.

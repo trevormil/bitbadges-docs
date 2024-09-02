@@ -1,6 +1,8 @@
 # Fetching Lists
 
-You can also fetch address lists using the BitBadges API. AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
+You can also fetch address lists using the BitBadges API.  AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
+
+Note off-chain list IDs are prefixed with "cosmosAddress\_".&#x20;
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const listsRes = await BitBadgesApi.getAddressLists([{
 </strong><strong>    //example
@@ -40,4 +42,3 @@ The list interface only currently supports "listActivity" to fetch the latest li
 The **private** field denotes whether it is to show up in search results or not.&#x20;
 
 If **private** and **viewableWithLink** are true, the list is private but can be viewed by others with the link / list ID. If **private** and not viewable with a link, it is only viewable by the creator.
-

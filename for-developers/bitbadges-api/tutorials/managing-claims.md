@@ -1,6 +1,8 @@
 # Managing Claims
 
-The BitBadges API allows you to manage claims through various functions. Typically, you will not need this as claims can be managed and updated via the BitBadges site. However, for more advanced cases, you may want to use the API. All require the proper permissions and authorizations.
+The BitBadges API allows you to manage claims through various functions. Typically, you will not need this as claims can be managed and updated via the BitBadges site. See the developer portal or respective update page for your list, collection, etc.
+
+However, for more advanced cases, you may want to use the API. All require the proper permissions and authorizations.
 
 ### Creating Claims
 

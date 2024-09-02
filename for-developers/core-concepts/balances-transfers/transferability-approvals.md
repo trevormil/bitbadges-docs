@@ -70,7 +70,7 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 

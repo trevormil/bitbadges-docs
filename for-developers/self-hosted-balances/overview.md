@@ -8,7 +8,7 @@ Examples: &#x20;
 * Subscriptions - Set up your own subscription service and send badges to subscribers!
 * Custom Integrations - Integrate with any app you want!
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details (your URL) directly into the form.
 
 **Refresh Queue**
 
@@ -18,7 +18,7 @@ Note that while balance updates on your site will be instant. BitBadges uses a q
 
 Self-hosted balances can be customized to be assigned for anything. You can setup your own assignment process or connect it to a claiming tool (e.g. when a user does something, update their balances). This is all left up to you.
 
-Note that self-hosted balances are not compatible with BitBadges claims. For BItBadges claims, the balances must be stored and maintained by BitBadges. One workaround is to use BitBadges claims for th claiming process and then migrate to a self-hosted option.
+Note that self-hosted balances are not compatible with BitBadges claims. For BItBadges claims, the balances must be stored and maintained by BitBadges. One workaround is to use BitBadges claims for the claiming process and then migrate to a self-hosted option.
 
 **URL Requirements**
 

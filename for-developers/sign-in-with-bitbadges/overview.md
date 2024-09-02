@@ -1,8 +1,8 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more. This documentation will guide you through utilizing our authentication tools effectively.
+Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more all in one place! This is the all-in-one flow for authentication and authorization.&#x20;
 
-This is the all-in-one flow for authentication and authorization.&#x20;
+This documentation will guide you through utilizing our authentication tools effectively.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
@@ -12,7 +12,7 @@ This is the all-in-one flow for authentication and authorization.&#x20;
 
 **Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/token/revoke
 
-We envision most use cases will just want to authenticate users for their application; however, this flow also supports authorizing scopes for the BItBadges API.
+We envision most use cases will just want to authenticate users for their application; however, this flow also supports OAuth authorization scopes for the BItBadges API.
 
 ## Quickstart
 

@@ -9,7 +9,7 @@ const getClaims = async () => {
   try {
     const res = await BitBadgesApi.getClaims({ 
       claimIds: ['claimId1', 'claimId2', 'claimId3'],
-      listId: 'optionalListId' // only required if claim is for a private list
+      listId: '...' // only required if claim is for a private list and you are not claim creator
     });
     
     const { claims } = res;
@@ -22,4 +22,4 @@ const getClaims = async () => {
 getClaims();
 ```
 
-Or, you can get it via the **claims** field on the returned values for collections and address lists.
+You can also get claims via the **claims** field on the returned values for collections and address lists.

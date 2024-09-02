@@ -2,7 +2,7 @@
 
 You have two options for generating, signing, and brodcasting messages.
 
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
+1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
 2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
 
 If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
