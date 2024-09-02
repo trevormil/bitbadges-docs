@@ -22,6 +22,11 @@ We do give the option to make balances non-public. This can either mean you want
 
 With standard balances, everything is facilitated on-chain in a decentralized manner. All balances are stored on the blockchain, and everything is facilitated through on-chain transfers and approvals. All transfers require sufficient balances and valid approvals for the collection, sender, and recipient.
 
+* All transfers must specify the collection approvals, sender's outgoing approvals, and recipient's incoming approvals. The collection approvals are managed by the manager and can optionally override the user-level approvals.
+* The "Mint" address has unlimited balances, can only send badges, not receive them. The circulating supply will live out according to the permissions, approvals, and transfers of the collection from the Mint address.
+* Thus, the circulating supply will be restricted by transfers / approvals from the Mint address. You can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria/).
+  * Consider using the Mint address as an escrow (e.g. token unlocks).
+
 ## Off-Chain
 
 With off-chain balances, you will create a new collection on-chain and will define details unique to this created collection such as badge metadata, standards, etc. **However, all transfers and approval transactions will throw an error if attempted because these are to be facilitated off-chain.**
