@@ -40,7 +40,7 @@ export interface CodeGenQueryParams {
 
 We recommend using the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Parameter Options**
 
@@ -94,8 +94,8 @@ IMPORTANT: This parameter is just for user display purposes and is not cached wi
 
 For all features / tutorials, see below.
 
-{% content-ref url="../../../../overview/claim-builder/" %}
-[claim-builder](../../../../overview/claim-builder/)
+{% content-ref url="../../../overview/claim-builder/" %}
+[claim-builder](../../../overview/claim-builder/)
 {% endcontent-ref %}
 
 ```typescript
@@ -107,7 +107,7 @@ const popupParams = {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Ownership Requirements**
 
@@ -128,7 +128,7 @@ const popupParams = {
 }
 ```
 
-Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution. Or, instead provide a custom description specifying requirements rather than this. We aim to be as flexible as possible.&#x20;
+Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution. Or, instead provide a custom description specifying requirements rather than this. Or, check this within your attached BitBadges claim rather than here. We aim to be as flexible as possible.&#x20;
 
 By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as if assets are not distributed yet.
 
@@ -167,7 +167,7 @@ Its important that you verify you receive responses (e.g. response.otherSignIns.
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Custom Metadata**
 

@@ -1,4 +1,4 @@
-# Claim Links
+# Claim Links (URLs)
 
 There are two main methods for users to claim. This is only applicable if users are claiming in-site. If you are auto-claiming on behalf of users, this is not necessary.
 
@@ -8,7 +8,7 @@ Users can navigate directly to the claim page and enter everything manually into
 
 ### 2. Redirect with Claim Link
 
-Users can be redirected using a claim link that auto-fills certain details for them.
+Users can be given a claim link to navigate it. The link can be customized to auto-fill certain details for them.
 
 #### Auto-filled Details
 

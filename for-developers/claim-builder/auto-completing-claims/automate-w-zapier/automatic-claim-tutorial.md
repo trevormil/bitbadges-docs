@@ -17,7 +17,7 @@ You will use the BitBadges API Zapier plugin with the Complete Claim action to p
 
 ### Create the Claim
 
-The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. Select the Zapier approach when creating.
+The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. Select the Zapier approach when creating, and it should guide you through the process.
 
 <figure><img src="../../../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
 
@@ -56,13 +56,11 @@ Step 3: Configure the Complete Claim by BitBadges integration. The password and 
 
 You can get the claim information from the form when you are creating the claim.
 
-<figure><img src="../../../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
-
 Step 4: Simulate / Test
 
 You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.
 
-Note that behind the scenes, this is just a simulation (does not actually complete the claim) if sent manually from the test step. The claim will be completed for successful Zaps once live.
+Note that behind the scenes, this is just a simulation (does not actually complete the claim) if sent manually from the test step. The claim will actually be completed for successful Zaps once live.
 
 Step 5: Track Progress
 

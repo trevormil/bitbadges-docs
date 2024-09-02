@@ -8,7 +8,7 @@ We have designed plugins in a way to allow you maximum customization by letting 
 
 * Claim Creator - Entity creating the claim that uses the plugin
 * Claiming User - End user attempting to claim
-* You - The plugin creator
+* Plugin Creator - Entity creating the plugin
 
 **Parts of the Plugin**
 
@@ -16,7 +16,7 @@ We have designed plugins in a way to allow you maximum customization by letting 
 * Claim Creator Input Handlers - The creator will need to configure public and private parameters for the specific claim, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-See example diagram and templates below.
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 
@@ -31,9 +31,3 @@ Plugins are private and only usable by the creator and approved users by default
 Plugin IDs are constant and specific to a specific plugin type. For example, the password pluginId is "password".&#x20;
 
 Instance IDs are a unique identifier for a specific plugin in your claim. This is to handle duplicates. For example, you may have two password plugins, one with instance Id "abc" and one with "def". This is just used as a unique identifier and can really be anything. If you only have one instance of a specific type, you can name it the same as the pluginId as well.
-
-### Example Flow - Claim Time w/ Custom User Frontend Input Redirect
-
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
-
-In the future, we are looking to expand on the customization options to allow you to build your plugin exactly how you want. If you would like further customization (custom UI components, other presets to add, custom state functions, etc), reach out to us.

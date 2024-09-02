@@ -1,8 +1,4 @@
-# Creating / Maintaining Claims
-
-Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD; however, this is typically not necessary as everything can also be done directly in-site.
-
-## Design Considerations
+# Design Considerations
 
 **Collecting Addresses vs Allowing User Selection**
 

@@ -6,9 +6,13 @@ Need to perform some additional action upon the user claiming successfully? Ther
 2. If creating a custom plugin, you can subscribe to status webhooks. We will send a duplicate request post-completion with attemptStatus='success'. Note this sends to the same handler, same URI, same method, so you have to catch the attemptStatus accordingly.
    1. You should send a 200 OK (or however your plugin is configured) during execution time to allow the claim to succeed.
 
+**In-Site Webhook Plugins**
+
+Consider using  the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
+
 **Custom Plugins as Webhooks**
 
-Consider using a custom plugin or the Custom Validation URL plugin as a webhook that is triggered for each claim attempt. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim.
+Or, you can implement your own custom plugin. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim.
 
 ```typescript
 // At your plugin handler URL

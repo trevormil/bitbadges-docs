@@ -6,8 +6,8 @@
 
 * **ownershipRequirements**: The ownership requirements a user must satisfy. See the link below for format and documentation.
 
-{% content-ref url="../../../authenticating-with-bitbadges/authentication-url-+-parameters/parameters/challenge-parameters.md" %}
-[challenge-parameters.md](../../../authenticating-with-bitbadges/authentication-url-+-parameters/parameters/challenge-parameters.md)
+{% content-ref url="../../../authenticating-with-bitbadges/authentication-url-+-parameters/challenge-parameters.md" %}
+[challenge-parameters.md](../../../authenticating-with-bitbadges/authentication-url-+-parameters/challenge-parameters.md)
 {% endcontent-ref %}
 
 ### Private Parameters
