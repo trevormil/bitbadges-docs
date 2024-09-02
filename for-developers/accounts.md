@@ -42,7 +42,7 @@ The mapped addresses can be converted behind the scenes using the converter func
 const cosmosAddressFromSolana = convertToCosmosAddress(solAddress);
 const btcAddress = mustConvertToBtcAddress(address);
 
-//Note there is no convertToSolanaAddress due to how the addresses work. See above
+// Note there is no convertToSolanaAddress due to how the addresses work. See above
 </code></pre>
 
 **What is signature compatibility?**
