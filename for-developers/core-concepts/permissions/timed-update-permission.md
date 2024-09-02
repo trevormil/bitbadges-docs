@@ -21,7 +21,7 @@ export interface TimedUpdatePermission<T extends NumberType> {
 }
 ```
 
-**TimedUpdatePermission**s simply denote for what **timelineTimes**, can the manager update the scheduled value? These are only applicable to normal [timeline-based fields](../timelines.md) such as the collection metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
+**TimedUpdatePermission**s simply denote for what **timelineTimes**, can the manager update the scheduled value? These are only applicable to normal [timeline-based fields](../general/timelines.md) such as the collection metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
 
 The **timelineTimes** are which timeline time values can be updated. The permitted / forbidden times are when the permission can be executed (the update can take place). Note these may not be aligned. Maybe, you want to forbid updating the timeline from Jan 2024 - Dec 2024 during 2023.
 

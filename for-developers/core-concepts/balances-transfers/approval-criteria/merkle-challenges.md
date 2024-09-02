@@ -23,7 +23,7 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 </code></pre>
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../cosmos-sdk-msgs/msgtransferbadges.md)).
+Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../cosmos-sdk-msgs/msgtransferbadges.md)).
 
 For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.&#x20;
 
@@ -76,7 +76,7 @@ See Predetermined Balances below for reserving specific leaf indices for specifi
 
 #### **Creating a Merkle Tree**
 
-We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
+We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
 
 The important part is making sure all leaves are on the same layer and have the same proof length, or else, they will fail on-chain.
 

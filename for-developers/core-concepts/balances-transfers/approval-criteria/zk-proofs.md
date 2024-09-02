@@ -1,6 +1,6 @@
 # ZK Proofs
 
-Zero knowledge proofs are also supported in the approval interface. If you provide a valid proof, you are granted approval.&#x20;
+Zero knowledge proofs are also supported in the approval interface. If you provide a valid proof, you are granted approval.
 
 Pre-Readings: [https://docs.circom.io/background/background/](https://docs.circom.io/background/background/) and have a basic understanding of the concepts of zkSnarks and ZK Proofs from a high level. You do not need to fully know the math / cryptography behind the scenes to write ZK circuits, but you should be familiar with the main concepts.
 
@@ -10,7 +10,7 @@ Each valid proof solution can only be used once. This is tracked with the **zkpT
 
 **Storage**
 
-On the blockchain, we store an array of proofs that need to be solved for each approval (if array is empty, there is no need). Users must solve all the proofs in the array for approval. This is stored in the approval's **approvalCriteria.zkProofs.** See the iZkProof interface below. All that we store on-chain (for scalability reasons) is the verification key. You may provide additional details (such as the circuit, proving key, etc) via the uri or customData.&#x20;
+On the blockchain, we store an array of proofs that need to be solved for each approval (if array is empty, there is no need). Users must solve all the proofs in the array for approval. This is stored in the approval's **approvalCriteria.zkProofs.** See the iZkProof interface below. All that we store on-chain (for scalability reasons) is the verification key. You may provide additional details (such as the circuit, proving key, etc) via the uri or customData.
 
 ```typescript
 export interface iZkProof {
@@ -79,9 +79,9 @@ template Multiplier2 () {
 
 With every compiled Circom circuit + valid proof, you will get the following files:
 
--   verification_key.json - The verification key for proving the circuit
--   proof.json - A succint proof proving all criteria is satisfied
--   public.json - The public inputs to the proof.
+* verification\_key.json - The verification key for proving the circuit
+* proof.json - A succint proof proving all criteria is satisfied
+* public.json - The public inputs to the proof.
 
 These JSON files should be stringified, and they are what is passed on-chain via storage and the solutions.
 
@@ -93,9 +93,9 @@ The public.json is what you will pass into publicInputs of iZkProofSolution.
 
 Examples
 
-<figure><img src="../../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
 Create Collection Msg w/ Proof
 
@@ -269,7 +269,7 @@ Create Collection Msg w/ Proof
 }
 ```
 
-Sample Transfer Msg&#x20;
+Sample Transfer Msg
 
 ```json
 {

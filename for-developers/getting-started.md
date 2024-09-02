@@ -20,7 +20,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 **Is everything you need supported by the BitBadges web app?** If so, then create using the Create tab on the BitBadges web app. We envision 95% of use cases can be created through this form. The forms are developer friendly too to allow you to customize small parts of the process.
 
-**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).
+**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balances-transfers/balance-types.md).
 
 For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 

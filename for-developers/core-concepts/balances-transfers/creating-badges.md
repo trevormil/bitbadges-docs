@@ -8,7 +8,7 @@
 
 **Creating Badges**
 
-During creation and update transaction ([MsgCreateCollection](../cosmos-sdk-msgs/msgcreatecollection.md) and [MsgUpdateCollection](../cosmos-sdk-msgs/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
+During creation and update transaction ([MsgCreateCollection](../../cosmos-sdk-msgs/msgcreatecollection.md) and [MsgUpdateCollection](../../cosmos-sdk-msgs/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
 
 **Example**
 

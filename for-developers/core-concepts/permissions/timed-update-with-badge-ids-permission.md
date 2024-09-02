@@ -17,7 +17,7 @@ export interface TimedUpdateWithBadgeIdsPermission<T extends NumberType> {
 }
 ```
 
-**TimedUpdatePermissionWithBadgeId**s simply denote for what **timelineTimes** and **badgeIds** combinations, can the manager update the scheduled value? These are only applicable to badge ID [timeline-based fields](../timelines.md) such as the badge metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
+**TimedUpdatePermissionWithBadgeId**s simply denote for what **timelineTimes** and **badgeIds** combinations, can the manager update the scheduled value? These are only applicable to badge ID [timeline-based fields](../general/timelines.md) such as the badge metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
 
 The **timelineTimes** are which timeline time values can be updated. The **badgeIds** are which badge IDs can be updated. For a pair such as (Mon-Fri, IDs 1-10), this means the values corresponding to the badge IDs at the timeline times can be updated or not. Both have to match. IDs 11+ are not handled at all in this case. Sunday is not handled. Updating IDs 1-10 on Sunday is not handled.
 

@@ -1,8 +1,8 @@
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../overview/how-it-works/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](../../../overview/how-it-works/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/how-it-works/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
@@ -18,7 +18,7 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 ### Approvals != Escrows
 
@@ -72,7 +72,7 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../cosmos-sdk-msgs/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
@@ -80,9 +80,9 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../cosmos-sdk-msgs/). Cannot access off-chain lists.
-* **transferTimes**: When can the transfer takes place? A [UintRange](uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](uint-ranges.md)\[] of badge IDs.
+* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../cosmos-sdk-msgs/). Cannot access off-chain lists.
+* **transferTimes**: When can the transfer takes place? A [UintRange](../general/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../general/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:
@@ -141,7 +141,7 @@ All approvals must have a unique **approvalId** for identification per level. Th
 
 **Metadata**
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../bitbadges-api/concepts/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
+We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../../bitbadges-api/concepts/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
 
 This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
 

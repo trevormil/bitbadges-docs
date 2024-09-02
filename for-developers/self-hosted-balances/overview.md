@@ -8,7 +8,7 @@ Examples: &#x20;
 * Subscriptions - Set up your own subscription service and send badges to subscribers!
 * Custom Integrations - Integrate with any app you want!
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details directly into the form.
 
 **Refresh Queue**
 

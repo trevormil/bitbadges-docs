@@ -1,10 +1,10 @@
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../overview/how-it-works/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/how-it-works/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Non-Public
 
@@ -150,9 +150,9 @@ We do this by the following:
 
 To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are Cosmos addresses / address list IDs and the values are Balance\<string>\[]. See [https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/](https://bafybeiejae7ylsndxcpxfrfctdlzh2my7ts5hk6fxhxverib7vei3wjn4a.ipfs.dweb.link/).
 
-Note that if you use address list IDs for the keys ([see here to learn more](address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
+Note that if you use address list IDs for the keys ([see here to learn more](../address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
-See [here](../bitbadges-sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
+See [here](../../bitbadges-sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 
 **How are balances refreshed on the BitBadges indexer for unfrozen off-chain collections?**
 
@@ -189,7 +189,7 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 
 This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
-For another tutorial, see [here](broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../overview/ecosystem/)page!
+For another tutorial, see [here](../broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../../overview/ecosystem/)page!
 
 ### Off-Chain - Non-Indexed
 
