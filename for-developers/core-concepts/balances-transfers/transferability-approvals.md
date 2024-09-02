@@ -22,15 +22,13 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 
 ### Approvals != Escrows
 
-When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes.&#x20;
-
-This responsibility extends to the collection-level transferability. such as ensuring adequate approvalss for transfers from the "Mint" address.
+When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes. This responsibility extends to the collection-level transferability as well.
 
 On a similar note, if approvals become no longer valid (such as approving a badge but it was revoked via a different approval), the former approval doesn't automatically get cancelled. It is the approver's responsibility to handle them accordingly.
 
 ### Mint - Unlimited Balances
 
-It is important to note that the Mint address has unlimited balances. So, it is extra critical to set these approvals correctly.
+For on-chain balances, the Mint address has unlimited balances. So, it is extra critical to set these approvals correctly.
 
 The Mint address does not have incoming / outgoing approvals that can be controlled. For all Mint approvals, they must forcefully override the user-level outgoing approval because it cannot be managed.
 
@@ -63,11 +61,11 @@ export interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-User incoming / outgoing approvals follow the same interface except **toList** is auto-populated with the user's address for incoming approvals and similarly the **fromList** for outgoingApprovals.
+Note; User incoming / outgoing approvals follow the same interface except **toList** is auto-populated with the user's address for incoming approvals and similarly the **fromList** for outgoingApprovals.
 
 **Approved vs Unapproved**
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer can map to multiple approvals on the same level.
+Approvals are simply a set of criteria, so it is entirely possible the same transfer could satisfy multiple approvals on the same level.
 
 We handle approvals per level in the following manner:
 
@@ -80,7 +78,7 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../cosmos-sdk-msgs/). Cannot access off-chain lists.
+* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
 * **transferTimes**: When can the transfer takes place? A [UintRange](../general/uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](../general/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
@@ -122,7 +120,7 @@ Note the approval only applies to the details defined and must match ALL details
 
 As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/outgoing approvals.
 
-The Mint address is a special case. It technically has its own approvals, but since it is not a real address, they are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria/#overrides) on the next page for how).
+The Mint address is a special case. It technically has its own approvals, but since it is not a real address, the user approvals are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria/#overrides) on the next page for how).
 
 It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint, which could be very bad. See Example 2 below.
 
@@ -143,7 +141,7 @@ All approvals must have a unique **approvalId** for identification per level. Th
 
 We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../../bitbadges-api/concepts/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
 
-This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree.
+This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree. Learn more in the approval criteria merkle challenges section.
 
 #### Approval Criteria
 
@@ -274,7 +272,7 @@ Likewise, we also need to check Alice's incoming approvals using the same proces
 
 **Satisfied?**
 
-If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary. See [tutorials ](broken-reference)for further examples.
+If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary.
 
 **Extending the Example: Prioritized Approvals**
 

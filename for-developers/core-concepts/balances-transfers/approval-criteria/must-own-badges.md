@@ -1,10 +1,10 @@
-# Must Own Badges
+# Ownership Requirements
 
-Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned at custom times in order to be approved.
+Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned in order to be approved. This is checked on-chain.
 
 For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
 
-Note that collections with "Off-Chain" balances are not supported for this feature because the blockchain does not have access to off-chain balances.
+Note that alternatively, you may choose to check / enforce this off-chain as well via BitBadges claims.
 
 ```typescript
 export interface MustOwnBadges<T extends NumberType> {

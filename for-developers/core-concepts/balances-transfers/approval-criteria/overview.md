@@ -4,8 +4,6 @@ In the transferability page, we mainly talked about how we match and check an ap
 
 These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set (everything talked about in the last page AND the **approvalCriteria**).
 
-Note these are just the native options provided in the interface for convenience and consistency, but you can always implement your own approvals via custom logic with a CosmWASM smart contract.
-
 ```typescript
 export interface iApprovalCriteria<T extends NumberType> {
   /** The list of must own badges to be approved. */
@@ -37,6 +35,15 @@ export interface iApprovalCriteria<T extends NumberType> {
 }
 ```
 
+**Extending Functionality**
+
+These are just the native options provided in the interface for convenience and consistency, but you can always implement your own approvals via custom logic with a CosmWASM smart contract.
+
+Or, you can leverage the native features for custom implementations:
+
+* Use Merkle challenges as a commit-reveal claim code mechanism. This is what we do for BitBadges claims. Then, you can assign claim codes how you wish.&#x20;
+* Create custom, general-purpose zero-knowledge circuits that need to be satisfied. Implement your custom logic within in the circuit (if it lends itself to this approach).
+
 #### Tracker IDs
 
 The approval interface utilizes trackers behind the scenes for certain fields which are identified by IDs (**amountTrackerId, challengeTrackerId)**. Trackers are increment only and immutable in storage and referenced by an ID consisting of **approvalId-trackerId** plus other identifying details. Because the **approvalId** is in there, this enforces that all trackers are scoped to a specific approvalId. However, since they are ID based and increment only, it is important to be careful to not use previous IDs that have state. See best practices below.
@@ -53,6 +60,6 @@ To combat this, we recommend the following best practices:
 
 #### Scoped vs Cross-Approval Logic
 
-All approvals' state is expected to be scoped, but sometimes, you may want to implement cross-approval logic (do not allow double dipping between two approvals). This, unfortunately, is out of scope for the native interface at the moment.&#x20;
+All approvals' state is expected to be scoped, but sometimes, you may want to implement cross-approval logic (e.g. do not allow double dipping between two approvals). This, unfortunately, is out of scope for the native interface at the moment.  Consider workarounds and careful design decisions.&#x20;
 
-Many approvals can fit into the native interface. Consider workarounds and careful design decisions. However, if you do need more advanced functionality, you have to go up a level and use CosmWASM or alternative solutions. If you run into this problem, let us know, and we can ssee what to do to add it natively.
+However, if you do need more advanced functionality, you may have to go up a level and use CosmWASM or alternative solutions. If you run into this problem, let us know, and we can recommend what to do.&#x20;

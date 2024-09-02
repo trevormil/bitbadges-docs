@@ -1,8 +1,8 @@
 # $BADGE Transfers
 
-**coinTransfers** are the $BADGE to be sent **every** use of the approval. There can be multiple transfers to implement complex royalty systems, for example. Or, you can leave it blank for no $BADGE tranfers.
+**coinTransfers** are the $BADGE credits to be sent **every** use of the approval. There can be multiple transfers here to implement complex royalty systems, for example. Or, you can leave it blank for no $BADGE transfers.
 
-Note: $BADGE refers to the native gas token of the blockchain, not a specific badge. These are the compute credits.
+Note: $BADGE refers to the native gas credits token of the blockchain, not a specific badge.
 
 ```typescript
 export interface iCoinTransfer<T extends NumberType> {
