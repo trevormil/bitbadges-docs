@@ -12,9 +12,10 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 <figure><img src="../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
-**Other Quickstarters:**
+**Other Links:**
 
-* Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+* Auth.js / Next.js Sign In with BitBadges Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+* Developer Portal: [https://bitbadges.io/developer](https://bitbadges.io/developer)
 
 ## **Creating badges / lists / attestations / protocols?**
 
@@ -26,9 +27,9 @@ For off-chain balances, you can manually control the allocation of badges via yo
 
 ## Integrations? Gate distribution? Create a custom plugin?
 
-BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directy in-site via the developer portal or other respective creation flows.
+BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directly in-site via the developer portal or other respective creation flows.
 
-By default, you have access to all in-site integrations with no code required. However, you can also custom manage claims, auto-complete claims and integrate via Zapier or the BitBadges API, or even build your own custom in-site plugin.&#x20;
+Create sample test claims in the [developer portal](https://bitbadges.io/developer) (Claim Tester tab) to see all that is possible!
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
