@@ -70,9 +70,9 @@ const newBody = collection.pruneBody()
 
 ### Balances
 
-#### Mint / Total Supply
+#### Total / Circulating Supply
 
-The "Mint" or unminted balances as well as the "Total" supply balances are treated just as any other user's balances.
+The "Total" supply balances are treated just as any other user's balances. Use "Total" as the cosmosAddress / address.
 
 **Fetching Balances from API**
 
@@ -212,10 +212,10 @@ Views have a base **viewType** describing the query type and a unique **viewId**
 
 The collection interface supports the following base **viewType** values.
 
--   'transferActivity' : Fetches latest transfer activity documents.
--   'amountTrackers': Fetches latest amount trackers for collection
--   'challengeTrackers': Fetches latest challenge trackers for collection
--   'owners': Fetches owners of the collection
+* 'transferActivity' : Fetches latest transfer activity documents.
+* 'amountTrackers': Fetches latest amount trackers for collection
+* 'challengeTrackers': Fetches latest challenge trackers for collection
+* 'owners': Fetches owners of the collection
 
 ```typescript
 export type CollectionViewKey =

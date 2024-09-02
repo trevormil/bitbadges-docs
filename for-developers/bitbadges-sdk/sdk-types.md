@@ -29,7 +29,7 @@ const balance = new Balance<bigint>({
     badgeIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }]
 })
-const convertedBalance = balance.convert(Numberify);
+const convertedBalance = balance.convert(Numberify); //1, 100 instead of 1n, 100n
 ```
 
 **Interfaces**

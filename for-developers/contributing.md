@@ -1,8 +1,6 @@
 # 👨‍💻 Contributing
 
-Everything is open-sourced and can be found at [https://github.com/bitbadges](https://github.com/bitbadges). Contributions to the core source code are greatly appreciated.&#x20;
-
-Additionally, you can contribute by building on top of BitBadges. This can be anything from a dApp (decentralized application) to a developer tool to your own frontend for badges! If you do, reach out to us, so we can help and also add it to [Ecosystem](../overview/ecosystem/).
+Everything is open-sourced and can be found at [https://github.com/bitbadges](https://github.com/bitbadges). Contributions to the core source code are greatly appreciated.  Additionally, you can contribute by building on top of BitBadges. This can be anything from a dApp (decentralized application) to a developer tool to your own frontend for badges! If you do, reach out to us, so we can help and also add it to [Ecosystem](../overview/ecosystem/).
 
 **Rewarding Developers**
 
