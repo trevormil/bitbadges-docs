@@ -52,7 +52,7 @@ Attestations (for user inputs): [User inputted attestation proofs](../../../core
 
 You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc). We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
 
-<figure><img src="../../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Backend Handler**
 

@@ -26,7 +26,7 @@ The easiest way to test your plugin integration with BitBadges is with the Claim
 
 This is the only place you will be able to test unfinalized versions of your plugin.
 
-<figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 After your plugin has been created (does not have to be published):
 

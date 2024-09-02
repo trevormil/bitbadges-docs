@@ -12,7 +12,7 @@ Signature compatibility means that users from any of the above blockchain ecosys
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped Cosmos address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 

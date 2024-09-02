@@ -10,7 +10,7 @@ Please reach out in Discrd if you are having trouble, have feedback, or have fea
 
 Head over to the BitBadges site -> Create tab to get started! The forms should walk you through the entire process. You can then manage them from their respective page.
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 ### **In-Site Claims**
 
@@ -24,13 +24,13 @@ For in-site claims, head over to the respective list / badge page and complete t
 
 For manually setting protocol values, you can do so on the protocols page.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 ### Adding Attestations via Invite Codes
 
 If you are the recipient or holder of an attestation, the issuer or creator may give you an invite code to add it to your account. The attestation can then be added on the Attestations -> Add via Code page.
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 ### **Sign In with BitBadges**
 
