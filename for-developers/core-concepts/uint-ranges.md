@@ -6,25 +6,58 @@
 }
 </code></pre>
 
-A core type behind the scenes in BitBadges is the [UintRange](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/UintRange.html) type, which simply defines a range of numbers from some start value to some end value, inclusive. This allows us to apply powerful range logic.
+### Overview
 
-These are typically used for representing badge IDs and time ranges. For example, transferring badges will require an UintRange\<number>\[] of badgeIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the badge IDs 1-10 and 20-50.
+The `UintRange` type is a fundamental component in BitBadges, representing an inclusive range of numbers from a start value to an end value. This type enables powerful range-based operations and is primarily used for badge IDs and time ranges.
 
-**Time UintRanges**
+### Usage
 
-We use UintRanges for denoting times as well such as **transferTimes**. The uint values are UNIX milliseconds since the epoch.
+#### Badge IDs
 
-**Restricted Values**
+When transferring badges, specify an array of `UintRange<number>` to indicate which badge IDs to transfer.
 
-If used for badge IDs or times, we only allow the start and end to be within the range of 1 to Go's math.MaxUint64 or 18446744073709551615 (**so no zero value and no value greater than that**).
+Example:
 
-To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709551615 }]. If we invert a range, we get all the values from 1 to 18446744073709551615 that are not in the current range.
-
-```json
-"transferTimes": [
-  {
-    "start": "1",
-    "end": "18446744073709551615"
-  }
-]
+```typescript
+const badgeIdsToTransfer: UintRange<number>[] = [
+  { start: 1, end: 10 },
+  { start: 20, end: 50 }
+];
 ```
+
+#### Time Ranges
+
+`UintRange` is also used for time-based operations, such as `transferTimes`. In this context, the values represent UNIX milliseconds since the epoch.
+
+Example:
+
+```typescript
+const transferTimes: UintRange<string>[] = [
+  { start: "1630000000000", end: "1640000000000" }
+];
+// This represents a transfer time range from 2021-08-26 to 2021-12-20
+```
+
+### Restrictions
+
+Unless otherwise specified, we only allow numbers in the ranges to be from 1 to Go Max UInt64
+
+* Valid ranges: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
+* Zero and values greater than the maximum are not allowed
+
+### Special Cases
+
+#### Full Range
+
+To represent a complete range, use:
+
+```typescript
+const fullRange: UintRange<string> = {
+  start: "1",
+  end: "18446744073709551615"
+};
+```
+
+#### Range Inversion
+
+Inverting a range results in all values from 1 to 18446744073709551615 that are not in the current range.

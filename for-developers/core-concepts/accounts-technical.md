@@ -7,7 +7,17 @@
 
 ### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
 
-For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
+For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent Cosmos address and being signature compatible (able to verify signatures of the native signature schemes).
+
+### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
+
+For non-Cosmos signatures, we map everything to a content hash to get a string such as:
+
+```
+This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679
+```
+
+We then verify the signatures of the string as a personal message signature via the respective signature algorithm.
 
 ### **Cosmos**
 
@@ -17,19 +27,13 @@ Normal Cosmos accounts are also supported with all the Cosmos SDK's native funct
 
 BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` for Ethereum type accounts, unlike other Cosmos accounts that use Coin type `118.`
 
-**Signing Method:** Transactions can be signed with a human readable message string with a generated transaction content hash. These can be generated via the BitBadges SDK.&#x20;
-
 ### **Solana**
 
 BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
 
-**Signing Method:** Transactions can be signed with a human readable message string with a generated transaction content hash. These can be generated via the BitBadges SDK.&#x20;
-
 ### Bitcoin
 
 BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
-
-**Signing Method:** Transactions can be signed with a human readable message string with a generated transaction content hash. These can be generated via the BitBadges SDK.&#x20;
 
 ### **Public Key Types**
 

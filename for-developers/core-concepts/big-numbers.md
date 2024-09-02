@@ -1,8 +1,6 @@
-# 🔢 Big Numbers in Blockchain Development
+# 🔢 Big Numbers
 
-## The Need for Big Numbers
-
-In blockchain development, especially when dealing with token amounts, block heights, or other large numerical values, we often encounter numbers that exceed the capacity of standard integer types. This is where big number handling becomes crucial.
+In our development, especially when dealing with token amounts, block heights, or other large numerical values, we often encounter numbers that exceed the capacity of standard integer types. This is where big number handling becomes crucial.
 
 ## Cosmos SDK's Uint Class
 
@@ -20,20 +18,17 @@ To ensure consistent and precise number handling across different parts of the B
 
 ### On the Blockchain
 
--   All number types in submitted Messages (Msgs) and transactions must be first stringified.
--   These stringified numbers are then parsed as `Cosmos.Uint` on-chain.
+* All number types in submitted Messages (Msgs) and transactions must be first stringified.
+* These stringified numbers are then parsed as `Cosmos.Uint` on-chain.
 
 ### In the SDK and API
 
--   We use `BigInt` for the main functionality.
--   When sending data over HTTP via the API, all big numbers are stringified.
+* We use `BigInt` for the main functionality.
+* When sending data over HTTP via the API, all big numbers are stringified.
 
 ## Best Practices for Developers
 
 1. **Always Use String Representation**: When dealing with potentially large numbers, always use string representation in your data structures and API calls.
-
 2. **Parse Carefully**: When receiving number data, always parse it using appropriate big number libraries or classes.
-
 3. **Perform Calculations with Big Number Types**: Don't convert to standard number types for calculations, as this may lead to precision loss.
-
 4. **Be Aware of Language/Platform Limitations**: Different programming languages and platforms have different limitations for number handling. Always use appropriate big number libraries.

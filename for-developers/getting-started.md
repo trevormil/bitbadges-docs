@@ -1,11 +1,5 @@
 # 🚴‍♂️ Getting Started
 
-Where you start depends on your use case. At a minimum, we recommend familiarizing yourself with the core concepts before doing anything else.
-
-**Existing Tools?** Don't forget to check the [tutorials ](tutorials.md)or ecosystem tools to see if someone else has already done what you are looking for! The BitBadges website also tries to be as developer friendly as possible, so in most cases, you will not even need to do anything technical yourself.
-
-**Finished?** Is it a tool that others can use? Let us know, so we can add it to [Ecosystem](../overview/ecosystem/).
-
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
 ## Quickstart
@@ -44,7 +38,7 @@ By default, you have access to all in-site integrations with no code required. H
 
 Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).  Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 
-## **Authenticate w/ Sign In with BitBadges?**
+## **Authenticate via Sign In with BitBadges?**
 
 Authenticate your users from any chain, potentially checking badge ownership,  attestations, integrating with any supported app, and more along the way.
 

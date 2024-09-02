@@ -1,83 +1,109 @@
 # 🕒 Different Time Fields
 
-There are different time fields within the interface with different purposes which could get confusing:
+BitBadges uses various time-related fields to manage permissions, timelines, transfers, and ownership. Understanding these fields is crucial for effectively managing collections and badges.
 
-* **permanentlyPermittedTimes**: The times that a permission will **always** be able to be executed successfully
-* **permanentlyForbiddenTimes**: The times that a permission will **always** be forbidden from being executed
-* **timelineTimes**: The times that some field is scheduled to be a specific value for a timeline-based field
-  * Ex: X from timelineTimes 1 - 100 but changes to value Y from timelineTimes 100-200
-* **transferTimes**: The times that a transfer transaction can occur
-* **ownershipTimes**: The times that a user owns a badge from
+### Time Representation
 
-Times are defined via [UNIX time](https://developer.mozilla.org/en-US/docs/Glossary/Unix\_time) or the number of milliseconds elapsed since the [epoch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Date#the\_epoch\_timestamps\_and\_invalid\_date), which is defined as the midnight at the beginning of January 1, 1970, UTC.
+All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
 
-**Examples**
+### Time Field Types
 
-To provide a concrete understanding of the times, let's delve into a couple of illustrative scenarios.
+#### 1. permanentlyPermittedTimes
+
+* Purpose: Defines the times when a permission will always be executable.
+* Usage: Setting allowed periods for specific actions.
+
+#### 2. permanentlyForbiddenTimes
+
+* Purpose: Defines the times when a permission will always be forbidden.
+* Usage: Setting restricted periods for specific actions.
+
+#### 3. timelineTimes
+
+* Purpose: Specifies when a field is scheduled to have a specific value in a timeline-based field.
+* Usage: Scheduling changes to collection or badge properties over time.
+
+#### 4. transferTimes
+
+* Purpose: Defines when a transfer transaction can occur.
+* Usage: Setting periods when badges can be transferred between addresses.
+
+#### 5. ownershipTimes
+
+* Purpose: Specifies the times that a user owns a badge.
+* Usage: Defining the duration of badge ownership for users.
+
+### Important Note
+
+The `timelineTimes` in permissions correspond to the updatability of the timeline, while `timelineTimes` in the actual timeline represent the actual times for the values.
+
+### Examples
 
 #### Example 1: Presidential Election Badges
 
-Imagine a scenario where users participate in a US presidential election by casting their votes through badge transfers. The timeline spans from the conclusion of voting, marked as T1, to the tenure of the elected president from T2 to T3. Here's how it might be structured:
+Scenario: Users participate in a US presidential election by casting votes through badge transfers.
 
-* The president badge can be transferred after the voting conclusion period (T1 to T2) indicated by `transferTimes`.
-* The individual who holds the president badge (the president) during the term (T2 to T3) is designated by `ownershipTimes`.
+* T1: Conclusion of voting
+* T2: Start of presidential term
+* T3: End of presidential term
+
+Setup:
+
+* `transferTimes`: \[{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+* `ownershipTimes`: \[{ start: T2, end: T3 }] (Defines the presidential term)
 
 #### Example 2: Managing Collection Archival
 
-Let's say we have a collection that can be optionally archived by the manager from T1 to T2 (permanentlyPermittedTimes) but is non-archivable at all other times (permanentlyForbiddenTimes). From T1 to T2, they are permitted to update the archival status for any time.
+Scenario: A collection can be optionally archived by the manager from T1 to T2, but is non-archivable at all other times.
 
-Let's look at the before and after of the manager executing this permission for all times.
-
-IMPORTANT: The permission corresponds to the **updatability** of the timeline. The timeline corresponds to the actual values. So, timelineTimes in the permission is which timeline times can be updated whereas timelineTimes in the actual timeline are the actual times for the values.
-
-**Before:**
-
-Permission:&#x20;
+Before archiving:
 
 ```
-permanentlyPermittedTimes -> [{ start: T1, end: T2 }]
-permanentlyForbiddenTimes -> [ everything but T1 to T2}]
-timelineTimes -> [{ start: 1, end: MAX_TIME }]
+Permission:
+permanentlyPermittedTimes: [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes: [everything but T1 to T2]
+timelineTimes: [{ start: 1, end: MAX_TIME }]
+
+Archived Timeline:
+isArchived: false for [{ start: 1, end: MAX_TIME }]
 ```
 
-Archived Timeline
+After archiving for all times:
 
 ```
-isArchived -> false for [{ start: 1, end: MAX_TIME }] (timelineTimes)
+Permission: (unchanged)
+permanentlyPermittedTimes: [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes: [everything but T1 to T2]
+timelineTimes: [{ start: 1, end: MAX_TIME }]
+
+Archived Timeline:
+isArchived: true for [{ start: 1, end: MAX_TIME }]
 ```
 
-**After**
+#### Example 3: Permanently Locking Permissions
 
-Now after they archive the collection for all times, the permission won't change but the archived timeline will.
+Scenario: Continuing from Example 2, the manager wants to permanently lock the permission.
 
-Permission:&#x20;
-
-```
-permanentlyPermittedTimes -> [{ start: T1, end: T2 }]
-permanentlyForbiddenTimes -> [ everything but T1 to T2}]
-timelineTimes -> [{ start: 1, end: MAX_TIME }]
-```
-
-Archived Timeline
+Final state:
 
 ```
-isArchived -> true for [{ start: 1, end: MAX_TIME }] (timelineTimes)
+Permission:
+permanentlyPermittedTimes: []
+permanentlyForbiddenTimes: [{ start: 1, end: MAX_TIME }]
+timelineTimes: [{ start: 1, end: MAX_TIME }]
+
+Archived Timeline:
+isArchived: true for [{ start: 1, end: MAX_TIME }]
 ```
 
-**Example 3:**&#x20;
+### Best Practices
 
-Now, let's continue the example from example 2. let's say they want to permanently lock the permission. This means the timeline is now forbidden to be updated for all timeline times and will remain forever as currently set.
+1. **Clear Timelines**: Always define clear and non-overlapping time ranges for each field to avoid confusion and conflicts.
+2. **Permission Management**: Carefully consider the implications of setting `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`, as these can significantly impact the flexibility of your collection.
+3. **Timeline Planning**: When using `timelineTimes`, plan your collection's lifecycle in advance to minimize the need for frequent updates.
+4. **Transfer Windows**: Use `transferTimes` to create specific windows for badge transfers, which can be useful for time-limited events or phased distributions.
+5. **Ownership Tracking**: Leverage `ownershipTimes` to create badges with time-bound ownership, useful for temporary privileges or rotating responsibilities.
+6. **Permission Locking**: Be cautious when permanently locking permissions (as in Example 3), as this action is irreversible and may limit future flexibility.
+7. **Time Synchronization**: Ensure all systems interacting with your BitBadges collection are properly time-synchronized to avoid discrepancies in time-based operations.
 
-Permission:&#x20;
-
-```
-permanentlyPermittedTimes -> []
-permanentlyForbiddenTimes -> [{ start: 1, end: MAX_TIME }]
-timelineTimes -> [{ start: 1, end: MAX_TIME }]
-```
-
-Archived Timeline
-
-```
-isArchived -> true for [{ start: 1, end: MAX_TIME }] (timelineTimes)
-```
+By understanding and effectively using these time fields, you can create sophisticated and dynamic badge systems in BitBadges, enabling complex scenarios from voting systems to time-bound privileges and beyond.
