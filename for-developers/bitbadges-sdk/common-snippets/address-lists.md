@@ -20,6 +20,6 @@ list.remove('cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh')
 const isEmpty = list.isEmpty()
 
 
-const MintList = AddressList.Reserved('MintList')
+const MintList = AddressList.Reserved('Mint')
 const All = AddressList.AllAddresses();
 ```
