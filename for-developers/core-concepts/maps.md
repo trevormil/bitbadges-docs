@@ -4,6 +4,13 @@ Maps are similar to anchors, but they allow you to store data on-chain in a stru
 
 ```json
 {
+    "cosmos...1234": "English",
+    "cosmos...5678": "Spanish"
+}
+```
+
+```json
+{
     "BitBadges Follow Protocol": 12, //collection ID 12 is used for my follows
     "Experiences Protocol": 13
 }
