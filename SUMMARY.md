@@ -17,6 +17,7 @@
   * [Transferability](overview/how-it-works/transferability.md)
   * [Standards](overview/how-it-works/standards.md)
   * [Aliases](overview/how-it-works/aliases.md)
+* [🔨 Getting Started](overview/getting-started.md)
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [🕵️ Sign In with BitBadges](overview/verification-tools.md)
 * [📱 Alternate Sign Ins / Mobile](overview/mobile-support.md)

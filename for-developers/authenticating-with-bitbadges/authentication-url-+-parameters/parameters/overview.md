@@ -1,4 +1,4 @@
-# Overview
+# Configuration
 
 Each implementation will feature a unique authentication URL tailored to your application's needs. Users must visit this URL to authenticate. Parameters will vary based on your specific implementation and requirements.
 
@@ -107,7 +107,7 @@ const popupParams = {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Ownership Requirements**
 
@@ -167,7 +167,7 @@ Its important that you verify you receive responses (e.g. response.otherSignIns.
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Custom Metadata**
 
