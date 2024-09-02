@@ -20,8 +20,6 @@ const ethAddress = cosmosToEth(cosmosAddress);
 It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../create-and-broadcast-txs/) for how to use.
 
 ```typescript
-// Find a node URL from a network endpoint:
-// https://docs.evmos.org/develop/api/networks.
 const nodeUrl = ...
 
 const postOptions = {

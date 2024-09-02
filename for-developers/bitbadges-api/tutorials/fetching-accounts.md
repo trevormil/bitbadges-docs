@@ -134,28 +134,36 @@ The user interface supports the following base **viewType** values.
 -   'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
 -   'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
 -   'createdLists': Lists that the user has created (excludes private lists)
+-   'publicAttestationProofs': Public attestation proofs that the user has created
 
 The following require authentication:
 
 -   'latestClaimAlerts': Latest claim alerts
 -   'siwbbRequests': Authentication QR codes for the user
 -   'privateLists': Private lists created by the user
-
+-   'createdAttestations': Attestations that the user has created
+-   'receivedAttestations': Attestations that the user has received
+-   'attestationProofs': Attestation proofs that the user has created
+  
 ```typescript
 export type AccountViewKey =
     | 'createdLists'
     | 'privateLists'
     | 'siwbbRequests'
     | 'transferActivity'
-    | 'reviews'
     | 'badgesCollected'
-    | 'latestClaimAlerts'
+    | 'sentClaimAlerts'
+    | 'claimAlerts'
     | 'allLists'
     | 'whitelists'
     | 'blacklists'
     | 'createdBadges'
     | 'managingBadges'
-    | 'listsActivity';
+    | 'listsActivity'
+    | 'createdAttestations'
+    | 'receivedAttestations'
+    | 'attestationProofs'
+    | 'publicAttestationProofs';
 ```
 
 Request:
