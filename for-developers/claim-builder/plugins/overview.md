@@ -34,6 +34,6 @@ Instance IDs are a unique identifier for a specific plugin in your claim. This i
 
 ### Example Flow - Claim Time w/ Custom User Frontend Input Redirect
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the future, we are looking to expand on the customization options to allow you to build your plugin exactly how you want. If you would like further customization (custom UI components, other presets to add, custom state functions, etc), reach out to us.

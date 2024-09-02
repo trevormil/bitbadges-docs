@@ -30,4 +30,4 @@ This is a streamlined alternative that can be used for many use cases with no se
 
 This uses the same request / response flow as custom plugins themselves except the pluginSecret is the inputted secret instead. Note that no user inputs, state management, etc are available, just a simple POST request with a 200 OK expected
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

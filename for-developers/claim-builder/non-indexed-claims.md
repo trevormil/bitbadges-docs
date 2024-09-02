@@ -19,4 +19,4 @@ Because of these unique properties, you are able to do the following:
 * SIWBB requests would not require the "claim step" from the user. We can just check all such information on the go.
 * Non-indexed balances meaning that we just lookup balances for any user at any given time. No transfers need to take place. (see picture below).
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
