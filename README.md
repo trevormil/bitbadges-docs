@@ -32,7 +32,7 @@ While badges are the main feature of BitBadges, we offer different ways to enhan
 
 These additional tools complement our badge system, providing a comprehensive suite for managing digital identities and interactions in the blockchain space.
 
-## All-In-One Authentication
+## Sign In with BitBadges
 
 Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity. You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
 
