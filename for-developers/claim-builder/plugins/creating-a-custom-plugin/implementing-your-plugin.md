@@ -131,7 +131,7 @@ Another important decision you will have to consider is whether to reuse your pl
 
 ### **Error Responses**
 
-If your plugin fails, we will save the error and may display it to both the claiming user and claim creator. Make errors informative but do not reveal sensitive information.
+If your plugin fails, we will save the error for debugging / monitor purposes. It may be displayed to the claiming user and / or claim cretor, so make errors informative but do not reveal sensitive information.
 
 ### Example Plugin Handler
 
