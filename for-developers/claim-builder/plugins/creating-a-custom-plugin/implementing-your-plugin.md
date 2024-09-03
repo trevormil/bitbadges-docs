@@ -129,6 +129,10 @@ IMPORTANT: Only one plugin can control claim number assignment. If you select th
 
 Another important decision you will have to consider is whether to reuse your plugin for address lists because claim numbers do not matter for address list plugins. So basically, your plugin will function like the stateless preset for address list claims, if selected.
 
+### **Error Responses**
+
+If your plugin fails, we will save the error and may display it to both the claiming user and claim creator. Make errors informative but do not reveal sensitive information.
+
 ### Example Plugin Handler
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>//TODO: Fill in missing information
