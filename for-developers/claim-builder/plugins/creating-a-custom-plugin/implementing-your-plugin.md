@@ -133,6 +133,8 @@ Another important decision you will have to consider is whether to reuse your pl
 
 If your plugin fails, we will save the error for debugging / monitor purposes. It may be displayed to the claiming user and / or claim cretor, so make errors informative but do not reveal sensitive information.
 
+Please follow the { message } interface for returned JSON error responses.
+
 ### Example Plugin Handler
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>//TODO: Fill in missing information
