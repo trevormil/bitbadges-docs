@@ -12,6 +12,7 @@ We also support specific claim numbers dependent on the zero-based codeIdx using
 * **hideCurrentState**: If true, we will NOT reveal the state to users by default.&#x20;
   * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
   * The **publicState** will just be an empty {} by default.
+  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
 
 ### Private Parameters
 
