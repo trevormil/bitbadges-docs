@@ -9,6 +9,9 @@ We also support specific claim numbers dependent on the zero-based codeIdx using
 ### Public Parameters
 
 * **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
+* **hideCurrentState**: If true, we will NOT reveal the state to users by default.&#x20;
+  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
+  * The **publicState** will just be an empty {} by default.
 
 ### Private Parameters
 
@@ -41,3 +44,5 @@ The default state of the plugin is defined as follows:
 #### Public State
 
 State is made public as-is, showing the indices of used codes.
+
+Note: For the **publicState**, we pre-parse the indices into an array (e.g. \['0', '1']) instead fof returning the { "0": 1 } object.
