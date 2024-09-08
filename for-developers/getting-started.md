@@ -2,6 +2,8 @@
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
+**Need $BADGE credits?** Reach out to us via DIscord. Especially in early stages / beta, we plan to subsidize lots of developers with free credits to help you get started!
+
 ## Quickstart
 
 #### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
