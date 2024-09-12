@@ -14,7 +14,7 @@ Cosmos Chain ID (Testnet) - bitbadges-2
 
 Tendermint Node ID: 859f19f7582fa74cf50a1dcf07f8386abf618596
 
-See betanet.genesis.json in source code repository for genesis file.
+See genesis.json in source code repository for genesis file.
 
 If you are looking for the browser compatible version, you may have to use the IP address directly as the domain name does not support HTTPS but browsers auto-upgrade to HTTPS. Or, if you need an HTTPS connection, you can use the reverse proxy URL.
 
@@ -42,4 +42,10 @@ https://node.bitbadges.io/api = http://node.bitbadges.io:1317
 
 **Web App**
 
-[https://bitbadges.io](https://bitbadges.io)
+{% embed url="https://bitbadges.io" %}
+
+**Testnet**
+
+Node ID: 745b694aeef8c2e831ed6ec65060230a91f17914
+
+Hosted At: http://138.197.10.8:(1317 | 26657)
