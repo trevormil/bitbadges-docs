@@ -1,8 +1,8 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more. This documentation will guide you through utilizing our authentication tools effectively.
+Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more all in one place! This is the all-in-one flow for authentication and authorization.&#x20;
 
-This is the all-in-one flow for authentication and authorization.&#x20;
+This documentation will guide you through utilizing our authentication tools effectively.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
@@ -12,7 +12,7 @@ This is the all-in-one flow for authentication and authorization.&#x20;
 
 **Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/token/revoke
 
-We envision most use cases will just want to authenticate users for their application; however, this flow also supports authorizing scopes for the BItBadges API.
+We envision most use cases will just want to authenticate users for their application; however, this flow also supports OAuth authorization scopes for the BItBadges API.
 
 ## Quickstart
 
@@ -45,22 +45,24 @@ We leave the rest up to you. SIWBB does not handle sessions, etc. Those are all 
 
 **Is the flow OAuth 2.0 compatible?**
 
-Yes, we are OAuth 2.0 compatible and integrate with different OAuth 2.0 helper tools.
+Yes, we are OAuth 2.0 compatible and integrate with different OAuth 2.0 helper tools and frameworks.
 
 **Key Parts**
 
-BitBadges authentication is structured into three key components: verifying address ownership, verifying asset ownership, and verifying attestations or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
+BitBadges authentication is structured into a couple components: verifying address ownership and verifying custom requirements like asset ownership,  attestations, or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
 
-Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses support for all three components within a unified interface. However, you have the freedom to customize and integrate these components according to your needs, allowing for a tailored authentication solution.
+"Sign In with BitBadges" encompasses support for all components within a unified interface and even allows you to add a BitBadges claim too for further integrations and verification logic.
+
+However, you have the freedom to customize and integrate these components according to your needs, allowing for a tailored authentication solution.
 
 #### Execution Flow:
 
 1. **User Interaction:**
    * Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they prove address ownership, generating a unique authorization code.
 2. **Authentication Details Retrieval:**
-   * Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID.
+   * Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID. This depends whether you are implementing digital or QR code authentication.
 3. **Verification Process:**
-   * At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership, asset ownership, and any other provided attestations.
+   * At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership and other additional logic.
 4. **Application-Specific Logic:**
    * Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
 
@@ -68,17 +70,9 @@ Our primary implementation, "Sign In with BitBadges" and "Blockin," encompasses 
 
 **Verifying Address Ownership**
 
-Verifying address ownership entails users signing in to BitBadges. We reuse the address signature from BitBadges sign ins as proof of identity / address for your application as well. The process is cost-free and doesn't involve blockchain transactions, just simple message signatures.
+Verifying address ownership entails users signing in to BitBadges. We reuse the address signature from the user's original BitBadges sign in as proof of identity / address for your application as well. This enables them to not have to sign another message which is poor user experience.
 
-**Querying Asset Ownership**
-
-The next part of authentication is to query asset ownership. We recommend outsourcing this to the BitBadges API, but you can also self-implement. The BitBadges API currently supports all BitBadges assets, as well as other chains NFTs (Ethereum, Polygon, Solana) which are in beta mode.
-
-<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
-
-**Verifying Attestations / Signatures**
-
-Lastly, you may also have additional attestation signatures / proofs that you want to check. For example, maybe you want to verify ownership of a diploma badge but also verify a secret attestation to one's GPA signed by the university. These can be attached along with the sign in request and verified by you.
+The process is cost-free and doesn't involve blockchain transactions, just simple message signatures.
 
 ## **Digital or QR Authentication?**
 

@@ -1,6 +1,6 @@
 # Fetching Accounts
 
-The main use case of the API are fetching collection and fetching account information. This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
+This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
 ```typescript
 const accountsRes = await BitBadgesApi.getAccounts({
@@ -58,27 +58,21 @@ const badgesCollectedView = account.getAccountBalancesView('badgesCollected');
 
 ### Chains
 
-We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**.
+We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**.  See the algorithm for deftermining "native" chain in the Concepts section. We also return each equivalent address to their native address via: **btcAddress**, **solAddress**, **ethAddress**, and **cosmosAddress**.
 
-We also return each equivalent address in the respective corresponding field: **btcAddress**, **solAddress**, **ethAddress**, and **cosmosAddress**.
-
-Note that **solAddress** may be blank if we do not have adequate information. This is because Solana addresses are one-way conversions.
+Note that **solAddress** may be blank if we do not have adequate information. This is because Solana addresses can only be converted from and not to.
 
 ### NSFW / Reported
 
 NSFW or reported accounts will be flagged with the **nsfw** or **reported** properties. Everything is still fetched as normal with typical requests, and it is up to you to do what you want with these accounts.
 
-On the app, we hide all profile details (links, bios, etc) and provide a warning message.
-
 ### Usernames and Avatars
 
-**username** will be the user's BitBadges username that they have set. **resolvedName** will be from a naming service (currently only supports ENS for eth addresses).
-
-In a similar manner, **profilePicUrl** will be the user's pofile pic set on BitBadges. **avatar** will be their resolved avatar from a naming service like ENS (if applicable).
+**username** will be the user's BitBadges username that they have set. In a similar manner, **profilePicUrl** will be the user's pofile pic set on BitBadges. We leave external services like ENS images / names up to you to implement as those are out of scope for our API.
 
 ### Sequences / Account Numbers
 
-**sequence** and **accountNumber** will be their sequence (nonce) and accountNumber for the BitBadges blockchain. These are used for generating and signing transactions. **publicKey** is also used.
+**sequence** and **accountNumber** will be the sequence (nonce) and accountNumber for the BitBadges blockchain. These are used for generating and signing transactions. **publicKey** is also provided.
 
 ### $BADGE vs Badge Balances
 
@@ -124,27 +118,27 @@ The account interface also supports different filtering options. Make sure that 
 
 The user interface supports the following base **viewType** values.
 
--   'transferActivity' : Fetches latest transfer activity documents for the user.
--   'listsActivity': Fetches latest list activity documents for the user
--   'reviews': Fetches latest reviews for the user
--   'badgesCollected': Fetches badges owned by the user
--   'createdBadges': Collections / badges that the user has created
--   'managingBadges': Collections / badges that the user is managing currently
--   'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
--   'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
--   'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
--   'createdLists': Lists that the user has created (excludes private lists)
--   'publicAttestationProofs': Public attestation proofs that the user has created
+* 'transferActivity' : Fetches latest transfer activity documents for the user.
+* 'listsActivity': Fetches latest list activity documents for the user
+* 'reviews': Fetches latest reviews for the user
+* 'badgesCollected': Fetches badges owned by the user
+* 'createdBadges': Collections / badges that the user has created
+* 'managingBadges': Collections / badges that the user is managing currently
+* 'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
+* 'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
+* 'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
+* 'createdLists': Lists that the user has created (excludes private lists)
+* 'publicAttestationProofs': Public attestation proofs that the user has created
 
 The following require authentication:
 
--   'latestClaimAlerts': Latest claim alerts
--   'siwbbRequests': Authentication QR codes for the user
--   'privateLists': Private lists created by the user
--   'createdAttestations': Attestations that the user has created
--   'receivedAttestations': Attestations that the user has received
--   'attestationProofs': Attestation proofs that the user has created
-  
+* 'latestClaimAlerts': Latest claim alerts
+* 'siwbbRequests': Authentication QR codes for the user
+* 'privateLists': Private lists created by the user
+* 'createdAttestations': Attestations that the user has created
+* 'receivedAttestations': Attestations that the user has received
+* 'attestationProofs': Attestation proofs that the user has created
+
 ```typescript
 export type AccountViewKey =
     | 'createdLists'

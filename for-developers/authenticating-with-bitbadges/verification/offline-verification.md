@@ -9,8 +9,7 @@ const res = await BitBadgesApi.getSIWBBRequestsForDeveloperApp({
     clientId,
     bookmark: '',
 });
-console.log(res.SIWBBRequests);
-const blockinChallenge = res.SIWBBRequests[0];
+console.log(res);
 ```
 
 Note that we do not provide verification responses by default. You will need to verify each individually. If you have time-dependent checks, note that by default, verification is done for the current time.

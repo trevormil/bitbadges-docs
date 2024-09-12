@@ -1,8 +1,8 @@
-# Redirected Callback
+# Redirect URI Callback
 
 The callback approach is useful if you want to obtain the authentication details as soon as the user generates them. For immediate authentication, the callback approach is the only option. For delayed authentication, this is useful if you want to cache the details upon the user signing them, rather than fetching from the API at verification time (e.g. the [No Callback method](../../authenticating-with-bitbadges/approaches/manual.md)).
 
-To enable callbacks, the popupParams must have a redirect URI set. With the callback, the user should never even see the code (or resulting signature). Everything should be handled behind the scenes.
+To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user should never even see the code (or resulting signature). Everything should be handled behind the scenes.
 
 **How do callbacks work?**
 
@@ -12,7 +12,7 @@ A high-level overview is:
 2. The user will be waked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI.
 3. The redirect URI can then fetch the authentication details from the transmitted code with knowledge of the configured app's clientSecret.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generating the URL**
 

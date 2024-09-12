@@ -59,9 +59,7 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 ### Customization Options
 
-At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations
-
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations:
 
 * Who can transfer to who? And who can initiate the transaction?
 * When can the transfer take place?
@@ -77,6 +75,7 @@ At each level, we offer the following functionality for defining approved transf
   * Ex: Must own a membership to transfer or must now own a scammer badge to transfer
 * Require sender to be the initiator? Require sender to not be the initiator?
 * Require recipient to be the initiator? Require recipient to not be the initiator?
+* And more!
 
 ### **Updatability**
 

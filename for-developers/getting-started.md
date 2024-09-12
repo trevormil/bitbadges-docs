@@ -2,6 +2,8 @@
 
 **Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
 
+**Need $BADGE credits?** Reach out to us via DIscord. Especially in early stages / beta, we plan to subsidize lots of developers with free credits to help you get started!
+
 ## Quickstart
 
 #### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
@@ -12,23 +14,24 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 <figure><img src="../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
-**Other Quickstarters:**
+**Other Links:**
 
-* Auth.js / Next.js SIWBB Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+* Auth.js / Next.js Sign In with BitBadges Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
+* Developer Portal: [https://bitbadges.io/developer](https://bitbadges.io/developer)
 
 ## **Creating badges / lists / attestations / protocols?**
 
 **Is everything you need supported by the BitBadges web app?** If so, then create using the Create tab on the BitBadges web app. We envision 95% of use cases can be created through this form. The forms are developer friendly too to allow you to customize small parts of the process.
 
-**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balance-types.md).
+**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balances-transfers/balance-types.md).
 
 For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
 ## Integrations? Gate distribution? Create a custom plugin?
 
-BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directy in-site via the developer portal or other respective creation flows.
+BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directly in-site via the developer portal or other respective creation flows.
 
-By default, you have access to all in-site integrations with no code required. However, you can also custom manage claims, auto-complete claims and integrate via Zapier or the BitBadges API, or even build your own custom in-site plugin.&#x20;
+Create sample test claims in the [developer portal](https://bitbadges.io/developer) (Claim Tester tab) to see all that is possible!
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)

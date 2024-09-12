@@ -65,9 +65,13 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 ### BitBadges API Authorization
 
-**For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.**
+For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.
 
-Otherwise, check out the authorization docs. This follows a standard OAuth 2.0 flow.
+Otherwise, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow.
+
+{% content-ref url="../authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
+{% endcontent-ref %}
 
 ### Confined Responses
 

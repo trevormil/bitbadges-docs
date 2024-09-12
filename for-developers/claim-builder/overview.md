@@ -6,7 +6,7 @@ Out of the box, we offer plenty of built-in plugins and features with no code re
 
 **When to use claims vs self-hosted balances?**
 
-Claims are handled on a trigger basis. When something occurs, a claim can be completed and transfer badges / perform another claim action.&#x20;
+Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.&#x20;
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
@@ -14,17 +14,21 @@ However, note claims may not be the right choice for you, especially if you alre
 
 Claims are made up of one or more plugins executed in order. For a claim to be successful, all plugins must pass.&#x20;
 
+**How to create / manage claims?**
+
+Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  The developer portal also has an interface for testing and managing claims. You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD.
+
 ## **Approaches**
 
 With BitBadges claims, you have a few approaches.
 
 **Option 1: Directly In-Site via Plugins**
 
-If everything you need is directly implementable with plugins, there is no extra development work needed. BitBadges offers some core plugins, and custom plugins can also be created by developers.
+If everything you need is directly implementable with plugins, there is no extra development work needed. BitBadges has created some plugins, and custom plugins can also be created by developers.
 
 See [https://bitbadges.io/claims/directory](https://bitbadges.io/claims/directory).
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -36,15 +40,15 @@ For example, make a purchase on Shopify -> get airdropped a badge or complete a 
 
 **Option 3: Custom Claims**
 
-You can implement a hybrid approach in your own using the BitBadges API and connect it behind the scenes. This allows you full flexibility over the claiming process.
+You can implement a hybrid approach on your own using the BitBadges API and connect it behind the scenes. This allows you full flexibility over the claiming process.
 
 ```typescript
-const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
+const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
 ```
 
 **Get Creative!**
 
-A common theme you may see when implementing claims is to get creative and think outside the box. There is a ton of integrations and features already implemented. Even if your use case doesn't exactly match the implementation, you can get creative and reuse implementations. Avoid unnecessary implementations.
+A common theme you may see when implementing claims is to get creative and think outside the box. There are a ton of integrations and features already implemented. Even if your use case doesn't exactly match the implementation, you can get creative and implement workarounds.
 
 For example,
 
@@ -63,16 +67,8 @@ Because the authentication check is disabled, you can specify any claiming addre
 
 **OAuth - Complete Claim Scope**
 
-Or, you could also be authorized to complete claims on behalf of the user via the BitBadges API, but this is only used in rare cases. You will need separate authorizations from every claiming user.
+Or, you could also be authorized to complete claims on behalf of the user via the BitBadges API, but this is only used in some cases. You will need separate authorizations from every claiming user.
 
 ## Distribution of Claim Information
 
 If your users require secret information to be able to claim (e.g. unique claim codes via the Codes plugin), you can do this via any method you prefer since this information is non-crypto native (BitBadges in-site claim alerts, email, SMS, etc). You know your users best!
-
-## **Plugins**
-
-The BitBadges claim builder adopts a plugin-based approach to allow for maximum customization and integrations. See all plugins and helper tools via the directory. Mix and match plugins as you wish. ALL plugins for a claim need to pass for a successful claim.
-
-{% embed url="https://bitbadges.io/claims/directory" %}
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

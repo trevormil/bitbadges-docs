@@ -1,6 +1,20 @@
-# 🗺️ Maps
+# 🗺️ Maps / Protocols
 
-Maps are similar to anchors, but they allow you to store data on-chain in a structured way. They are simply key-value maps, and the configuration can be set with customization options like "no duplicates", "expect integere values"", and so on.&#x20;
+Maps are similar to anchors, but they allow you to store data on-chain in a structured way. They are simply key-value maps, and the configuration can be set with customization options like "no duplicates", "expect integere values"", and so on. With maps, you can create universal, reusable, flexible protocols for your users.&#x20;
+
+```json
+{
+    "cosmos...1234": "English",
+    "cosmos...5678": "Spanish"
+}
+```
+
+```json
+{
+    "BitBadges Follow Protocol": 12, //collection ID 12 is used for my follows
+    "Experiences Protocol": 13
+}
+```
 
 This is all facilitated through the x/maps module and its correspondingMsgs. See the Msgs for more information.
 
@@ -36,6 +50,10 @@ All maps are identified by a **mapId.** The following **mapId** values are reser
 The manager is similar to the badges interface. They are granted admin privileges to update certain things about the map.This is handled by **managerTImeline** and the **canUpdateManager** permission.
 
 Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the badge collection specified will be used instead of the **managerTimeline** field.
+
+**Genesis Conditions**
+
+Protocols may have expected genesis conditions or additional checks to be correctly implemented. There are no checks on-chain for genesis conditions but these can be handled by you.
 
 **Map Type**
 

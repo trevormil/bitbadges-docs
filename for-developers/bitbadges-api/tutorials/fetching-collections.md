@@ -76,7 +76,7 @@ The "Total" supply balances are treated just as any other user's balances. Use "
 
 **Fetching Balances from API**
 
-To fetch the total and mint balances, you can fetch them in a request with the **fetchMintAndTotalBalances** set to true. They will then be stored in the **owners** array of the returned collection.
+To fetch the total (circulating) balances, you can fetch them in a request with the **fetchTotalBalances** set to true. They will then be stored in the **owners** array of the returned collection.
 
 To fetch a generic user address balance, you can fetch them with the following command. This will also append that balance to the **owners** array.
 
@@ -89,12 +89,10 @@ await collection.fetchBadgeBalances(BitBadgesApi, 'cosmos....');
 You can fetch then use the balances using one of two methods below, but note that they must be fetched prior or else may return undefined (or throw is you use the mustGet function).
 
 ```typescript
-collection.owners.find((x) => x.cosmosAddress === 'Mint');
 collection.owners.find((x) => x.cosmosAddress === 'Total');
 ```
 
 ```typescript
-console.log(collection.getBadgeBalances('Mint'))
 console.log(collection.getBadgeBalances('Total'))
 console.log(collection.getBadgeBalanceInfo('cosmos....') //returns whole doc w/ approvals and more not just balances
 ```
@@ -105,7 +103,7 @@ getBadgeBalances returns just the balances, whereas getBadgeBalanceInfo returns 
 
 Everything above handles balances on a collection level, but sometimes, you may want to fetch activity / balances for a specific badge ID. You can do so via the badge-specific API routes; however, note you have to handle paginations yourself.
 
-```
+```typescript
 const { activity, pagination } = await collection.getBadgeActivity(BitBadgesApi, 1n, { bookmark: '...' })
 const { owners, pagination } = await collection.getOwnersForBadge(BitBadgesApi, 1n, { bookmark: '...' })
 ```
@@ -123,78 +121,20 @@ reported?: { badgeIds: UintRange<T>[], reason: string };
 
 ### Metadata
 
-The fetched collection metadata (if requested) will be stored in **cachedCollectionMetadata.** The requested badge metadata will be fetched and stored in **cachedBadgeMetadata.** Subsequent fetches will append the new metadata to the existing **cachedBadgeMetadata**. See the SDK for handling these fields.
+The fetched collection / badge metadata will be stored in the respective metadata timelines array.
 
-{% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
-[badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
-{% endcontent-ref %}
-
-Note this is different from **collectionMetadataTimeline** and **badgeMetadataTimeline** which simply store the URIs, not the actual metadata itself.
-
-```typescript
-cachedCollectionMetadata?: Metadata<T>;
-cachedBadgeMetadata: BadgeMetadataDetails<T>[];
-collectionMetadataTimeline: CollectionMetadataTimeline<T>[];
-badgeMetadataTimeline: BadgeMetadataTimeline<T>[];
+```
+collectionMetadataTimeline: CollectionMetadataTimelineWithDetails<T>[];
+badgeMetadataTimeline: BadgeMetadataTimelineWithDetails<T>[];
 ```
 
-<pre class="language-typescript"><code class="lang-typescript">export interface TimelineItem&#x3C;T extends NumberType> {
-  timelineTimes: UintRange&#x3C;T>[];
-}
+<pre class="language-typescript"><code class="lang-typescript"><strong>// Ex: collection.collectionMetadata[0].collectionMetadata.metadata
+</strong><strong>const collectionMetadata = await collection.getCollectionMetadata();
+</strong><strong>// Ex: collection.badgeMetadataTimeline[0].badgeMetadata[0].metadata
+</strong>const badgeMetadata = await collection.getBadgeMetadata(1n)
 
-export interface CollectionMetadata {
-  uri: string
-  customData: string
-}
-
-export interface BadgeMetadata&#x3C;T extends NumberType> {
-  uri: string
-  customData: string
-  badgeIds: UintRange&#x3C;T>[]
-}
-
-export interface BadgeMetadataTimeline&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
-  badgeMetadata: BadgeMetadata&#x3C;T>[]
-}
-
-<strong>export interface CollectionMetadataTimeline&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
-</strong>  collectionMetadata: CollectionMetadata
-}
-</code></pre>
-
-```typescript
-export interface BadgeMetadataDetails<T extends NumberType> {
-    metadataId?: T;
-    badgeIds: UintRange<T>[];
-    metadata: Metadata<T>;
-    uri?: string;
-    customData?: string;
-
-    toUpdate?: boolean;
-}
-```
-
-```json
-cachedBadgeMetdata: [{
-    "metadata": {
-        "name": "Verification",
-        "description": "The Verification Badge is a symbol of trust and authenticity in the digital world. It's the ultimate proof that the holder's identity or credentials have been verified, making it invaluable for influencers, celebrities, and professionals. With this badge, users can gain credibility, attract more followers, and ensure that their online presence is recognized as genuine and reliable.",
-        "image": "ipfs://QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj",
-        "fetchedAt": "1704837218398",
-        "fetchedAtBlock": "24",
-        "_isUpdating": false
-    },
-    "badgeIds": [
-        {
-            "start": "1",
-            "end": "1"
-        }
-    ],
-    "uri": "ipfs://QmTpELFKNwxTEHPSb8Jkkbyt76syfGMdnM8XvQtizZaz8Q",
-    "metadataId": "1"
-}, ...
-],
-cachedCollectionMetadata: {
+// Response
+{
     "name": "Verification",
     "description": "The Verification Badge is a symbol of trust and authenticity in the digital world. It's the ultimate proof that the holder's identity or credentials have been verified, making it invaluable for influencers, celebrities, and professionals. With this badge, users can gain credibility, attract more followers, and ensure that their online presence is recognized as genuine and reliable.",
     "image": "ipfs://QmPfdaLWBUxH6ZrWmX1t7zf6zDiNdyZomafBqY5V5Lgwvj",
@@ -202,7 +142,42 @@ cachedCollectionMetadata: {
     "fetchedAtBlock": "24",
     "_isUpdating": false
 }
-```
+
+//Alternatively, you can use .getCollectionMetadataDetails() or .getBadgeMetadataDetails()
+//which returns the parent { uri, customData, metadata } object as seen below
+</code></pre>
+
+For most cases, you will not need to edit these values, but if you do, see the SDK for more info.
+
+{% content-ref url="../../bitbadges-sdk/common-snippets/badge-metadata.md" %}
+[badge-metadata.md](../../bitbadges-sdk/common-snippets/badge-metadata.md)
+{% endcontent-ref %}
+
+<pre class="language-typescript"><code class="lang-typescript">export interface TimelineItem&#x3C;T extends NumberType> {
+  timelineTimes: UintRange&#x3C;T>[];
+}
+
+export interface CollectionMetadataWithDetails {
+  uri: string
+  customData: string
+  metadata: iMetadata&#x3C;NumberType>
+}
+
+export interface BadgeMetadataWithDetails&#x3C;T extends NumberType> {
+  uri: string
+  customData: string
+  badgeIds: UintRange&#x3C;T>[]
+  metadata: iMetadata&#x3C;NumberType>
+}
+
+export interface BadgeMetadataTimelineWithDetails&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
+  badgeMetadata: BadgeMetadataWithDetails&#x3C;T>[]
+}
+
+<strong>export interface CollectionMetadataTimelineWithDetails&#x3C;T extends NumberType> extends TimelineItem&#x3C;T> {
+</strong>  collectionMetadata: CollectionMetadataWithDetails
+}
+</code></pre>
 
 ### **Views / Paginations**
 
@@ -225,7 +200,7 @@ export type CollectionViewKey =
     | 'challengeTrackers';
 ```
 
-```
+```typescript
 const hasMore = collection.viewHasMore('owners')
 const pagination = collection.getViewPagination('owners')
 const bookmark = collection.getViewBookmark('owners')
@@ -237,18 +212,17 @@ const ownersView = collection.getOwnersView('owners')
 
 The collection interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
 
-```ts
-viewsToFetch?: {
-  //The base view type to fetch.
+<pre class="language-ts"><code class="lang-ts"><strong>viewsToFetch?: {
+</strong>  //The base view type to fetch.
   viewType: CollectionViewKey;
   //A unique view ID. This is used for pagination. All fetches w/ same ID should be made with same criteria.
   viewId: string;
   //A bookmark to pass in for pagination. "" for first request.
-  bookmark: string;
+  bookmark?: string;
   //If defined, we will return the oldest items first..
   oldestFirst?: boolean;
 }[];
-```
+</code></pre>
 
 Request:
 
@@ -277,7 +251,7 @@ Response:
 }
 ```
 
-Next Request:
+Following Request:
 
 <pre class="language-json"><code class="lang-json"><strong>viewsToFetch: [{
 </strong>    viewType: 'owners',

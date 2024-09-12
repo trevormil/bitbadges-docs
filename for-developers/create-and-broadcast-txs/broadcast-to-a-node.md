@@ -103,7 +103,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a nod until the transaction is confirmed like below. note this is a blockchain REST API\_URL, not the BitBadges API.
+Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
 
 Use [http://node.bitbadges.io:1317](http://node.bitbadges.io:1317) or one of the aliases below for the BitBadges maintained node.
 

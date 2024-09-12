@@ -1,6 +1,8 @@
 # Generating the URL
 
-The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it. For instance:
+The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it.&#x20;
+
+For instance:
 
 ```vbnet
 https://bitbadges.io/siwbb/authorize?name=Event&description=...
@@ -8,8 +10,8 @@ https://bitbadges.io/siwbb/authorize?name=Event&description=...
 
 This URL structure adheres to the following interface:
 
--   **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
--   **Parameters**: Custom parameters specific to your implementation.
+* **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
+* **Parameters**: Custom parameters specific to your implementation.
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL. The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may consider using a URL shortener.
 

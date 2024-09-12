@@ -12,19 +12,13 @@ The answer is simple. We believe in the potential of digital blockchain tokens, 
 
 The main use case we envision is authentication. Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance, especially if using a centralized service. With BitBadges, all authentication and token-gating can be **outsourced** to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.
 
-However, badges can be created for anything, so there are lots of use cases!
-
 ### **Are there plans to support digital collectibles (tokens with value) rather than just badges?**
 
-We want to focus on badges and leave "valuable" tokens to each respective blockchain ecosystem. We want BitBadges to be a hub for achievements, reputation, authentication, etc, not a place for buying, selling, and speculating.&#x20;
-
-### **What makes BitBadges better than competitors?**
-
-See [here](../#improvements-over-existing-standards).
+We want to focus on badges and leave "valuable" tokens to each respective blockchain ecosystem. We want BitBadges to be a hub for achievements, reputation, authentication, etc, not a place for buying, selling, and speculating. That is why $BADGE should be treated as an in-app credits system, not a financial asset.
 
 ### **Are smart contracts needed?**
 
-No, badges do not require smart contracts. All badges follow the same state-of-the-art interface with lots of functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
+No, we do not require smart contracts. All badges follow the same state-of-the-art interface with lots of functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
@@ -35,14 +29,6 @@ BitBadges is its own Layer-1 blockchain built with Cosmos SDK.
 The BitBadges protocol consists of the decentralized blockchain that is maintained by the BitBadges team, but it will be ultimately governed in a decentralized manner via the $BADGE token.
 
 BitBadges (the company) offers tools and services to interact with the protocol, such as the frontend at https://bitbadges.io, the API, the SDK, etc.
-
-### **Why not just be completely on-chain for all features?**
-
-For our most important features where verifiability, availability, and security are very important (badges, transfers, etc), these are all on-chain.
-
-As for our less important features where the above requirements are not as strict (reviews, etc), these are useful features but are implemented off-chain via a centralized server because the blockchain has limited resources (storage and computing power), and it is not worth the tradeoff.
-
-Eventually, we do plan to either migrate all features on-chain or decentralize the indexer, but currently, it is not worth the resources.
 
 ### **Why the registry architecture over unique smart contracts for every collection?**
 

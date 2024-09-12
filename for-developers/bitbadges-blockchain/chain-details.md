@@ -42,4 +42,10 @@ https://node.bitbadges.io/api = http://node.bitbadges.io:1317
 
 **Web App**
 
-[https://bitbadges.io](https://bitbadges.io)
+{% embed url="https://bitbadges.io" %}
+
+**Testnet**
+
+Node ID: 745b694aeef8c2e831ed6ec65060230a91f17914
+
+Hosted At: http://138.197.10.8:(1317 | 26657)

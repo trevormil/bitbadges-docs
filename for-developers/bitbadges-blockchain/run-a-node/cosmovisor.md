@@ -61,5 +61,3 @@ RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/
 RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
 RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
 ```
-
-##

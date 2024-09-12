@@ -6,11 +6,11 @@ You can now fetch the authentication details for the user, by exchanging the cod
 
 **Verifying Ownership Requirements and Claim Criteria**
 
-Its important to note ownership requirements and claims must be checked server-side. The  parameters previously specified in the URL / client-side are just for display purposes and are not cached with the request.&#x20;
+IMPORTANT: Note ownership requirements and claims must be checked server-side. The additional  parameters specified in the URL / client-side are just for display purposes and are not cached with the request and may potentially be manipulated by a malicious user.
 
-For ownership requirements, you should specify them via **options.ownershipRequirements**. Alternatively, you could self check yourself, but this outsources it to us.
+For ownership requirements, you should specify them via **options.ownershipRequirements**. Alternatively, you could self check requirements yourself.
 
-For claims, you must specify the **claimId**. If it is a non-indexed claim, you can just use the **simulateClaim** feature to simulate and check criteria at verify time. Alternatively, you can use the **checkClaimedMinOnce** flag to see if the user to be signed in has at least one successful claim. If you need more advanced checks than just >= 1 successful claim, you will have to do that on your end. See the snippet below.
+For claims, you must specify the **claimId**. If it is a non-indexed claim, you can just use the **simulateClaim** option to simulate and check criteria at verify time. Alternatively, you can use the **checkClaimedMinOnce** flag to see if the user to be signed in has at least one successful claim for that ID. If you need more advanced checks than just >= 1 successful claim or passes simulation, you will have to do that on your end. See the snippet below.
 
 ```typescript
 export interface VerifySIWBBOptions {
@@ -61,7 +61,7 @@ See more o the following page.
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verification Example**
 

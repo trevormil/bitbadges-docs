@@ -32,7 +32,7 @@ While badges are the main feature of BitBadges, we offer different ways to enhan
 
 These additional tools complement our badge system, providing a comprehensive suite for managing digital identities and interactions in the blockchain space.
 
-## All-In-One Authentication
+## Universal Authentication - Sign In with BitBadges
 
 Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity. You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
 
@@ -56,13 +56,15 @@ This comprehensive approach to authentication works both digitally and in-person
 
 ## Multi-Chain
 
-BitBadges is built from the ground up to support multiple blockchain ecosystems all with the SAME interface. No longer do you need to support multiple interfaces for each blockchain ecosystem you want to support. For example, you can authenticate users from Cosmos, Solana, Bitcoin, and Ethereum all with the same interface. All users can own the SAME badges and use the SAME protocols.
+BitBadges is built from the ground up to support multiple blockchain ecosystems all with the SAME interface. No longer do you need to support multiple interfaces for each blockchain ecosystem you want to support. For example, you can authenticate users from Cosmos, Solana, Bitcoin, and Ethereum all with the same interface. All users can own the SAME badges, use the SAME protocols, and so on.
 
-Through our suite of developer tools, BitBadges allows you to seamlessly build multi-chain, token-gated applications **all with one interface**. Before BitBadges, building multi-chain applications was a nightmare due to having to support all the various interfaces, protocols, and more for each blockchain ecosystem. Now, it is all in one place.
+Before BitBadges, building multi-chain applications was a nightmare due to having to support all the various interfaces, protocols, and more for each blockchain ecosystem. Now, it is all in one place.
+
+
 
 <div data-full-width="false">
 
-<figure><img src=".gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 </div>
 
@@ -72,19 +74,17 @@ BitBadges is super customizable, has a vast ecosystem of over 7000+ no-code inte
 
 Integrations are used for gating access to a specific resource. This can be used for gating claiming access for badges, address list spots, and more! You can also use integrations in the authentication flow (e.g. check if a user has a verified badge before allowing them to sign in).
 
-BitBadges aims to have a vast ecosystem of community-built distribution tools. Our goal is that users will have thousands of options to choose from built by different teams, each offering their own unique niche.
-
 ### Zapier
 
-BitBadges has a Zapier integration that allows you to connect BitBadges to any app. Automatically trigger BitBadges claims upon custom triggers from any app.
+BitBadges has a Zapier integration that allows you to connect BitBadges to any app supported by Zapier ([https://zapier.com/apps](https://zapier.com/apps)). Automatically trigger BitBadges claims or trigger actions upon successful claims.
 
 ![zapier](image.png)
 
-### Preconfigured Plugins
+### In-Site Plugins
 
 Natively within the BitBadges site, we offer a directory of preconfigured plugins built by us and the community. Anyone can publish their own plugin to the directory!
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use Cases
 
@@ -123,7 +123,7 @@ In addition to the standard features of existing token standards (mint, transfer
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
 * [**Customizable Permissions**](overview/how-it-works/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
-* [**Time-Based Details**](for-developers/core-concepts/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
+* [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 * [**Batch Transfers**](overview/how-it-works/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 

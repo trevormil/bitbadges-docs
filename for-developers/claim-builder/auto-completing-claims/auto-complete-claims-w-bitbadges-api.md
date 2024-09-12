@@ -1,6 +1,6 @@
-# Auto-Complete Claims w/ BitBadges API
+# Complete Claims w/ BitBadges API
 
-### Do you really need to auto-complete?
+### Do you really need to auto-complete / custom implement?
 
 Before going through the entire process, consider whether you can implement your use case with a plugin-only approach. Get creative!&#x20;
 
@@ -15,7 +15,7 @@ Or, explore if Zapier can help you implement it with no-code! You may also even 
 You can use the BitBadges SDK to auto-complete claims for users.
 
 ```typescript
-const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
+const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
 console.log(res.claimAttemptId);
 
 //Sleep 2 seconds to wait for it to be processed in the queue
@@ -31,15 +31,14 @@ When creating on the BitBadges site, go to the API Code tab, and you should see 
 Couple notes with auto-completing claims:
 
 * Claims have different "actions". For on-chain badges, a successful claim will reserve the ability to claim in the future. For off-chain badges and address lists, there is no reserve step, the badge transfers / list append is instant.
-* If your claim is setup to require proof of address, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled.
+* If your claim is setup to require proof of address, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled. Or else, implement the necessary logic on your end.
 * Otherwise, you can setup your claim to be open to anyone but restricted by non-session criteria. For example, do not require proof of address but all claimees must present a valid password (potentially only known by you or the one who is expected to claim).
-* Consider sending a BitBadges claim alert after a claim if extra input is required from the user (e.g. code is reserved but needs an on-chain transaction to receive badges). If badges are automatically sent or addresses are automatically added, this will show up in their activity automatically.
 
 **Simulating**
 
-You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.&#x20;
+You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.  The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.&#x20;
 
-The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.
+The body is the same as the completeClaim route. See below.
 
 ```typescript
 const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
@@ -49,10 +48,13 @@ const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
 
 Only two core plugins currently require a custom body input (the "codes" and "password" plugin). Custom plugins may also require custom body inputs from the user. If you are using a custom plugin not created by you, refer to that plugin's documentation or contact the creator for more input on the custom body schema.
 
+You will need to pass \_expectedVersion. This is the version number of the claim that you expect to complete. If there is a version mismatch at claim time, the claim will fail. This is to avoid instances where the claim creaatr maliciously changes criteria / actions without you knowing.
+
 The custom body (if needed) should be in the following format
 
 ```typescript
 {
+    _expectedVersion: '0', //version of the claim 
     [instanceId: string]: { ...pluginBody }
 }
 ```
@@ -61,6 +63,7 @@ For example,
 
 ```typescript
 {
+    _expectedVersion: '0', //version of the claim 
     [`abc123`]: { //password instance ID = "abc123"
         password: "abc123"
     },

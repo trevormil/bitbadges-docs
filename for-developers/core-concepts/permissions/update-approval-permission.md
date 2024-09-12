@@ -1,10 +1,10 @@
 # Update Approval Permission
 
-Pre-Readings: [Transferability](../transferability-approvals.md) and [Approval Criteria](../approval-criteria/)
+Pre-Readings: [Transferability](../balances-transfers/transferability-approvals.md) and [Approval Criteria](../balances-transfers/approval-criteria/)
 
 The ApprovalPermissions refer to the UPDATABILITY of the currently set approvals / transferability. These can be leveraged to freeze specific transferability / approvals in order to give users more confidence that they cannot be changed in the future. Note this refers to the updatability of them and has no bearing on what they are currently set to.
 
-For what transfer combinations (see [Representing Transfers](../transferability-approvals.md)), can I create / delete / update approvals?&#x20;
+For what transfer combinations (see [Representing Transfers](../balances-transfers/transferability-approvals.md)), can I create / delete / update approvals?&#x20;
 
 ```json
 "userPermissions": {

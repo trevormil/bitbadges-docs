@@ -1,6 +1,6 @@
 # 👤 Handling Addresses
 
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/accounts-technical.md) will give you more in-depth explanations.
+This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
 **Mapping to a Common Address (cosmosAddress)**
 
@@ -25,13 +25,13 @@ Bitcoin Example
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
 * Mapped Cosmos Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
 
-<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Why can I convert Solana address to a Cosmos / ETH / BTC address but not the other way around?
 
 You may notice that you cannot go from a Cosmos / ETH / BTC address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / Cosmos address), you cannot deduce the preimage without prior knowledge of it.
 
-#### &#x20;**How to convert?**
+#### **How to convert?**
 
 The mapped addresses can be converted behind the scenes using the converter functions from [BitBadges SDK](bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 

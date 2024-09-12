@@ -25,7 +25,7 @@ Give your authenticated user (the claiming user) a unique value (such as an auth
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more). Note that claims may take a couple minutes for the user to complete the process, so a 30 second expiration time, for example, may be too low.
 
-<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Snapshots vs Dynamic Requests**
 
@@ -36,8 +36,8 @@ There are a couple common implementation patterns for plugins. If possible, we r
    2. Configure the Twitch channel name -> use user Twitch authorization to check subscription
 2. Dynamic - Some plugins, however, may need to execute creator authorized requests upon each claim. For this, you will need to cache the creator details or somehow make it so that you will have authorization from the creator during all claim times.  Note that you should consider all possibilities like access token expirations -> refresh functionality.
 
-### Reusing for Non-Indexed Balances&#x20;
+### Reusing for Non-Indexed Claims / Balances&#x20;
 
 Pre-Reading: [Claim Actions](../../claim-actions.md)
 
-If your plugin does not require user inputs, you may be able to reuse it for non-indexed balance assignment. Such plugins must be stateless, require no user inputs, and can function with only the contextual information passed.
+If your plugin does not require user inputs, you may be able to reuse it for non-indexed claims. Such plugins must be stateless, require no user inputs, and can function with only the contextual information passed. See [here](../../claim-actions.md) for more information.
