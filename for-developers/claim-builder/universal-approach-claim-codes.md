@@ -2,11 +2,11 @@
 
 In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that claim codes are a universal approach that can be used with any application / criteria. For example,
 
-* Give codes to finishers of a race
-* Give codes to attendees of an event
-* Give codes to those who sign in to your website
-* Distribute codes via email, SMS, etc
-* And so on. You distribute according to your needs!
+-   Give codes to finishers of a race
+-   Give codes to attendees of an event
+-   Give codes to those who sign in to your website
+-   Distribute codes via email, SMS, etc
+-   And so on. You distribute according to your needs!
 
 ## **Codes Plugin**
 
@@ -26,15 +26,13 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-
-
 <figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
 Codes can be obtained by the claim creator by clicking on the Distribute or Codes button which will bring up a distribution modal with all the codes.&#x20;
 
-If you have a large number of codes, consider using the Copy Seed Code button under the Batch tab  (only applicable to automatically generated codes) instead of copying all N codes and calculate them dynamically. See snippet below.
+If you have a large number of codes, consider using the Copy Seed Code button under the Batch tab (only applicable to automatically generated codes) instead of copying all N codes and calculate them dynamically. See snippet below.
 
 Using a configuration tool would take this step out for the claim creator.
 
@@ -49,14 +47,17 @@ Auto-generated codes are calculated from a seed code, rather than needing to sto
 ```typescript
 import CryptoJS from 'crypto-js';
 const { SHA256 } = CryptoJS;
-export const generateCodesFromSeed = (seedCode: string, numCodes: number): string[] => {
-  let currCode = seedCode;
-  const codes = [];
-  for (let i = 0; i < numCodes; i++) {
-    currCode = SHA256(currCode + seedCode).toString();
-    codes.push(currCode);
-  }
-  return codes;
+export const generateCodesFromSeed = (
+    seedCode: string,
+    numCodes: number
+): string[] => {
+    let currCode = seedCode;
+    const codes = [];
+    for (let i = 0; i < numCodes; i++) {
+        currCode = SHA256(`${seedCode}-${i}`).toString();
+        codes.push(`${currCode}-${i}`);
+    }
+    return codes;
 };
 ```
 
