@@ -2,13 +2,13 @@
 
 ```typescript
 export interface MerkleChallenge<T extends NumberType> {
-  root: string
-  expectedProofLength: T;
-  useCreatorAddressAsLeaf: boolean
-  maxUsesPerLeaf: T
-  uri: string
-  customData: string
-  challengeTrackerId: string
+    root: string;
+    expectedProofLength: T;
+    useCreatorAddressAsLeaf: boolean;
+    maxUsesPerLeaf: T;
+    uri: string;
+    customData: string;
+    challengeTrackerId: string;
 }
 ```
 
@@ -17,7 +17,7 @@ export interface MerkleChallenge<T extends NumberType> {
    "expectedProofLength": "1",
    "useCreatorAddressAsLeaf": true,
    "maxOneUsePerLeaf": true,
-   "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
+   "uri": "ipfs://QmT6BgSjoodu24V1rQav3qggeo7W5gCkqZd1h3VgMaRHeu",
    "customData": "",
    "challengeTrackerId": "uniqueId"
 }
@@ -95,9 +95,13 @@ const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 For whitelists, replace with this code.
 
 ```typescript
-addresses.push(...toAddresses.map(x => convertToCosmosAddress(x)));
+addresses.push(...toAddresses.map((x) => convertToBitBadgesAddress(x)));
 
-const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, treeOptions)
+const addressesTree = new MerkleTree(
+    addresses.map((x) => SHA256(x)),
+    SHA256,
+    treeOptions
+);
 const addressesRoot = addressesTree.getRoot().toString('hex');
 ```
 
@@ -105,7 +109,7 @@ A valid proof can then be created via where codeToSubmit is the code submitted b
 
 ```typescript
 const passwordCodeToSubmit = '....'
-const leaf = isWhitelist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
+const leaf = isWhitelist ? SHA256(chain.bitbadgesAddress).toString() : SHA256(passwordCodeToSubmit).toString();
 const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
@@ -121,7 +125,7 @@ const codeProof = {
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {
-  creator: chain.cosmosAddress,
+  creator: chain.bitbadgesAddress,
   collectionId: collectionId,
   transfers: [{
     ...

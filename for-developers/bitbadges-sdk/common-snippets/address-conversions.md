@@ -3,11 +3,17 @@
 Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Address Utils
 
 ```ts
-import { convertToCosmosAddress, convertToBtcAddress, convertToEthAddress } from "bitbadgesjs-sdk"
+import {
+    convertToBitBadgesAddress,
+    convertToBtcAddress,
+    convertToEthAddress,
+} from 'bitbadgesjs-sdk';
 
-let address = convertToCosmosAddress("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
-// "cosmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"
+let address = convertToBitBadgesAddress(
+    '0xAF79152AC5dF276D9A8e1E2E22822f9713474902'
+);
+// "bb14au322k9munkmx5wrchz9q30juf5wjgzrvkhc4"
 
-let address = convertToEthAddress("cosmos1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw")
-// "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"
+let address = convertToEthAddress('bb14au322k9munkmx5wrchz9q30juf5wjgzrvkhc4');
+// "0xAF79152AC5dF276D9A8e1E2E22822f9713474902"
 ```

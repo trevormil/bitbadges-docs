@@ -35,7 +35,7 @@ cosmovisor run keys ...
       ...
       "balances": [
         {
-          "address": "cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a",
+          "address": "bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv",
           "coins": [
             {
               "denom": "ubadge",

@@ -14,7 +14,7 @@ During creation and update transaction ([MsgCreateCollection](../../cosmos-sdk-m
 
 ```json
 {
-  "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+  "creator": "bb1kfr2xajdvs46h0ttqadu50nhu8x4v0tc2wajnh",
   ...
   "badgeIdsToAdd": [
       {

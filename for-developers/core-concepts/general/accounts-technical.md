@@ -2,8 +2,8 @@
 
 ## Pre-Readings
 
-* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
-* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
+-   [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
+-   [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
 
 ### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
 
@@ -50,36 +50,46 @@ For standard Ethereum accounts, the public key will have the `"@type": "/ethereu
 Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
 
 ```typescript
-import { Wallet } from 'ethers'
-import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
+import { Wallet } from 'ethers';
+import { Address as EthereumUtilsAddress } from 'ethereumjs-util';
 
-const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'cosmos'
-const isPrivateKey: boolean = true /* just for the example */
+const mnemonic =
+    'indoor dish desk flag debris potato excuse depart ticket judge file exit';
+const privateKey =
+    'afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890';
+const defaultDerivationPath = "m/44'/60'/0'/0/0";
+const defaultBech32Prefix = 'bb';
+const isPrivateKey: boolean = true; /* just for the example */
 
-const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
-const ethereumAddress = wallet.address
-const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const cosmosAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
+const wallet = isPrivateKey
+    ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath)
+    : new Wallet(privateKey);
+const ethereumAddress = wallet.address;
+const addressBuffer = EthereumUtilsAddress.fromString(
+    ethereumAddress.toString()
+).toBuffer();
+const bitbadgesAddress = bech32.encode(
+    defaultBech32Prefix,
+    bech32.toWords(addressBuffer)
+);
 ```
 
 Let's see an example code snipped on how to derive a public key from a private key:
 
 ```typescript
-import secp256k1 from 'secp256k1'
+import secp256k1 from 'secp256k1';
 
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
-const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
+const privateKey =
+    'afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890';
+const privateKeyHex = Buffer.from(privateKey.toString(), 'hex');
+const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex);
 
-const buf1 = Buffer.from([10])
-const buf2 = Buffer.from([publicKeyByte.length])
-const buf3 = Buffer.from(publicKeyByte)
+const buf1 = Buffer.from([10]);
+const buf2 = Buffer.from([publicKeyByte.length]);
+const buf3 = Buffer.from(publicKeyByte);
 
-const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethereum.PubKey'
+const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64');
+const type = '/ethereum.PubKey';
 ```
 
 #### Acknowledgements

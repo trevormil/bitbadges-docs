@@ -4,9 +4,9 @@ For off-chain balances, the badge collection will be stored on the blockchain, b
 
 Examples: &#x20;
 
-* Spreadsheets - Assign badges based on addresses in a spreadsheet.
-* Subscriptions - Set up your own subscription service and send badges to subscribers!
-* Custom Integrations - Integrate with any app you want!
+-   Spreadsheets - Assign badges based on addresses in a spreadsheet.
+-   Subscriptions - Set up your own subscription service and send badges to subscribers!
+-   Custom Integrations - Integrate with any app you want!
 
 There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details (your URL) directly into the form.
 
@@ -30,8 +30,8 @@ For non-indexed balances, you simply need to set up a server which can return th
 
 Couple notes:
 
-* The URL stored on-chain must have {address} as a placeholder for the address to query.
-* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../accounts.md).
+-   The URL stored on-chain must have {address} as a placeholder for the address to query.
+-   The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../accounts.md).
 
 Example:
 
@@ -39,9 +39,9 @@ On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
 
 ```typescript
 app.get('/nonIndexed/:address', async (req, res) => {
-  const address = req.params.address; 
-  const cosmosAddress = convertToCosmosAddress();
-  
+  const address = req.params.address;
+  const bitbadgesAddress = convertToBitBadgesAddress();
+
   //custom logic - (e.g. check subscription status or check some local DB value)
 
   const balances: Balance<bigint>[] = [...];
@@ -55,7 +55,7 @@ With indexed balances, you store and host the entire balance map all at one endp
 
 **Step 1: Create Your Map**
 
-The map is simply a cosmosAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
+The map is simply a bitbadgesAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
 Note that if you use address list IDs for the keys ([see here to learn more](../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badge IDs in this map than what was created on-chain (via the "Mint" address).
 
@@ -71,40 +71,40 @@ For example,
 
 ```json
 {
-  "cosmos1qjgpfmk93lqdak3ea7xqp5ec6v8nd79krktww4": [
-    {
-      "amount": "1",
-      "badgeIds": [
+    "bb1qjgpfmk93lqdak3ea7xqp5ec6v8nd79kqtrajy": [
         {
-          "start": "1",
-          "end": "1"
+            "amount": "1",
+            "badgeIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1",
+                    "end": "18446744073709551615"
+                }
+            ]
         }
-      ],
-      "ownershipTimes": [
+    ],
+    "bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw": [
         {
-          "start": "1",
-          "end": "18446744073709551615"
+            "amount": "1",
+            "badgeIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1",
+                    "end": "18446744073709551615"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl": [
-    {
-      "amount": "1",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "1"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ]
-    }
-  ]
+    ]
 }
 ```
 

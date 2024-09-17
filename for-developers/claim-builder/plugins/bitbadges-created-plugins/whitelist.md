@@ -10,14 +10,14 @@ We also support specific claim numbers dependent on the zero-based index using t
 
 ### Public Parameters
 
-* **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
-* **listId**: The  [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
-* **maxUsesPerAddress**: The maximum number of uses allowed for each address.
+-   **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
+-   **listId**: The [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
+-   **maxUsesPerAddress**: The maximum number of uses allowed for each address.
 
 ### Private Parameters
 
-* **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
-* **listId**: The  [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
+-   **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
+-   **listId**: The [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
 
 ### State
 
@@ -26,7 +26,7 @@ State is maintained by incrementing the numUses by 1 **every** claim by any user
 ```
 {
   addresses: {
-    "cosmos1...": 10 // claimed 10 times
+    "bb1...": 10 // claimed 10 times
   }
 }
 ```

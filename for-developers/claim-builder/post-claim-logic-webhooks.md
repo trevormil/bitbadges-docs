@@ -4,11 +4,11 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 1. You will receive the claim attempt ID within the context. You can then poll with the API to check its status. This may take a couple seconds for processing.
 2. If creating a custom plugin, you can subscribe to status webhooks. We will send a duplicate request post-completion with attemptStatus='success'. Note this sends to the same handler, same URI, same method, so you have to catch the attemptStatus accordingly.
-   1. You should send a 200 OK (or however your plugin is configured) during execution time to allow the claim to succeed.
+    1. You should send a 200 OK (or however your plugin is configured) during execution time to allow the claim to succeed.
 
 **In-Site Webhook Plugins**
 
-Consider using  the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
+Consider using the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
 
 **Custom Plugins as Webhooks**
 
@@ -20,7 +20,7 @@ Or, you can implement your own custom plugin. In the configuration form, you can
 const body = req.body;
 /*
 {
-  cosmosAddress: 'cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl',
+  bitbadgesAddress: 'bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw',
   claimId: '7a5b61ce3f2cf5eeb89f453c87f2b970328356395bf4ac4a23702d2fb0fb63c9',
   _isSimulation: false,
   lastUpdated: 1722088273192,
@@ -40,7 +40,7 @@ if (body._isSimulation) return;
 const claimAtemptId = body.claimAttemptId;
 const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 
-// Handle 
+// Handle
 ```
 
 **Webhooks by Zapier**

@@ -5,9 +5,9 @@ Fill in as needed. Note this is experimental.
 In the developer portal, use the JSON feature to copy / paste the resulting configuration JSON.
 
 ```
-Using the following interface, could you build a BitBadges plugin 
+Using the following interface, could you build a BitBadges plugin
 JSON, handler function, and potentially the frontend helper redirects
-for ENTER_YOUR_IDEA_HERE. 
+for ENTER_YOUR_IDEA_HERE.
 
 My pluginId is ENTER_HERE and the version is ENTER_HERE (0 for new ones).
 
@@ -28,9 +28,9 @@ Some additional information to note:
 - requiresSessions is false sisnce this is custom created.
 
 The state function preset should be "Stateless" or "ClaimToken". If claimToken,
-the handler should return a 200 OK with a unique one time use only "claimToken": "..." 
+the handler should return a 200 OK with a unique one time use only "claimToken": "..."
 in the body. For preventing double claiming, ensure the same claim token is returned
-for duplicate requests / criteria as necessary. If stateless, a 200 OK is all that is needed. Note that a successful 
+for duplicate requests / criteria as necessary. If stateless, a 200 OK is all that is needed. Note that a successful
 response does not always mean the claim is successful (other plugins may fail).
 
 Certain identifiers may be passed automatically (passAddress (crypto address), passGithub, pass email). These
@@ -63,7 +63,7 @@ export interface iPluginVersionConfig<T extends NumberType> {
   /** Reuse for address list claims? Address list claims are similar to standard badge claims and supports all features, except order of claims (claim numbers) do not matter. */
 
   reuseForLists: boolean;
-  
+
   /** Whether the plugin should receive status webhooks */
   receiveStatusWebhook: boolean;
 
@@ -189,13 +189,13 @@ export type JsonBodyInputSchema = {
 
 };
 
-For the handler, here is a template. Everything will be provided in the body as 
+For the handler, here is a template. Everything will be provided in the body as
 const payload = {
     ...customBody,//if applicable
     ...allConfiguredParams, //if applicable
-        
+
     // Context info
-    
+
     email: { id: 'bob@abc.com' }, //If pass email is configured
     discord: { id: '...', username: '...', discriminator: '...' }, //If configured
     twitch: { id: '...', username: '...' }, //If configured
@@ -206,9 +206,9 @@ const payload = {
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
-    cosmosAddress: context.cosmosAddress, //If pass address is configured
+    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured
     _isSimulation: context._isSimulation,
-    _attemptStatus: context._attemptStatus, // 'executing' for during or 'success' for post-completion 
+    _attemptStatus: context._attemptStatus, // 'executing' for during or 'success' for post-completion
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     maxUses: context.maxUses,
@@ -221,7 +221,7 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { priorState, claimId, pluginSecret, cosmosAddress, _isSimulation, lastUpdated, createdAt } = body;
+    const { priorState, claimId, pluginSecret, bitbadgesAddress, _isSimulation, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct
@@ -231,7 +231,7 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     //Step 3: Implement your custom logic here. Consider checking the plugin's creation / last updated time to implement version control.
-    //TODO: 
+    //TODO:
 
     //Step 4: Return the response to the plugin based on your configured state function preset
     // const claimTokenRes = { claimToken: '...'  }
@@ -281,8 +281,8 @@ function PluginTestScreen() {
     <Content className="full-area" style={{ minHeight: '100vh', padding: 8 }}>
       <div className="flex-center">
         <DisplayCard title="User Inputs - Plugin Logic" md={12} xs={24} sm={24} style={{ marginTop: '10px' }}>
-          {/* 
-            //TODO: Add your custom logic here to prompt the user for any additional information required for the claim. 
+          {/*
+            //TODO: Add your custom logic here to prompt the user for any additional information required for the claim.
           */}
 
 
@@ -292,16 +292,16 @@ function PluginTestScreen() {
                 if (claimContext.pluginId !== expectedPluginId) {
                   throw new Error("Invalid plugin ID")
                 }
-              
-                if (window.opener) {              
+
+                if (window.opener) {
                   const res = {
                      inputs: customBody,
                      pluginId: expectedPluginId,
                      instanceId: claimContext.instanceId,
                      version: claimContext.version //TODO: Handle version control as necessary
                   };
-                  
-                  
+
+
                   console.log('Sending message to opener', res, FRONTEND_URL);
                   window.opener.postMessage(res, FRONTEND_URL);
                   window.close();

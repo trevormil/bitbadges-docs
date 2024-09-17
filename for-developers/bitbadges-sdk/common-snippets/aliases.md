@@ -8,6 +8,6 @@ See below for how we generate badge, collection, and list aliases.
 const badgeAlias = generateAlias('badges', getAliasDerivationKeysForBadge(1n, 10000n))
 const collectionAlias = generateAlias('collections', getAliasDerivationKeysForCollection(1n))
 const listAlias = generateAlias('lists', getAliasDerivationKeysForCollection(1n))
-// cosmos1u4xn6kst47y2hgl3532emz5dlg93te3dhdqsgwucpxu560u8zflqk7f6qm
+// bb1u4xn6kst47y2hgl3532emz5dlg93te3dhdqsgwucpxu560u8zflqk7f6qm
 ```
 

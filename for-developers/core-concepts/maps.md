@@ -4,8 +4,8 @@ Maps are similar to anchors, but they allow you to store data on-chain in a stru
 
 ```json
 {
-    "cosmos...1234": "English",
-    "cosmos...5678": "Spanish"
+    "bb1...1234": "English",
+    "bb1...5678": "Spanish"
 }
 ```
 
@@ -20,15 +20,15 @@ This is all facilitated through the x/maps module and its correspondingMsgs. See
 
 ```typescript
 export interface iMap<T extends NumberType> {
-  creator: string;
-  mapId: string;
-  inheritManagerTimelineFrom: T;
-  managerTimeline: iManagerTimeline<T>[];
-  updateCriteria: iMapUpdateCriteria<T>;
-  valueOptions: iValueOptions;
-  defaultValue: string;
-  permissions: iMapPermissions<T>;
-  metadataTimeline: iMapMetadataTimeline<T>[];
+    creator: string;
+    mapId: string;
+    inheritManagerTimelineFrom: T;
+    managerTimeline: iManagerTimeline<T>[];
+    updateCriteria: iMapUpdateCriteria<T>;
+    valueOptions: iValueOptions;
+    defaultValue: string;
+    permissions: iMapPermissions<T>;
+    metadataTimeline: iMapMetadataTimeline<T>[];
 }
 ```
 
@@ -36,14 +36,14 @@ export interface iMap<T extends NumberType> {
 
 All maps are identified by a **mapId.** The following **mapId** values are reserved:
 
-* Any valid Bech32 Cosmos address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
-* Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
+-   Any valid Bech32 Cosmos address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
+-   Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
 
 **Use Cases**
 
-* Alternative permissions - Store other permissions related to a collection in these maps on-chain
-* Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
-* Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
+-   Alternative permissions - Store other permissions related to a collection in these maps on-chain
+-   Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
+-   Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
 
 **Manager**
 
@@ -59,17 +59,17 @@ Protocols may have expected genesis conditions or additional checks to be correc
 
 There are really four different map types.&#x20;
 
-* Manager only means only the manager can update values
-* Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
-* Creator only means keys are address-based. You can only update the value for your address. This uses mapped Cosmos addresses.
-* First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
+-   Manager only means only the manager can update values
+-   Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
+-   Creator only means keys are address-based. You can only update the value for your address. This uses mapped Cosmos addresses.
+-   First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
 
 ```typescript
 export interface iMapUpdateCriteria<T extends NumberType> {
-  managerOnly: boolean;
-  collectionId: T;
-  creatorOnly: boolean;
-  firstComeFirstServe: boolean;
+    managerOnly: boolean;
+    collectionId: T;
+    creatorOnly: boolean;
+    firstComeFirstServe: boolean;
 }
 ```
 
@@ -77,20 +77,20 @@ export interface iMapUpdateCriteria<T extends NumberType> {
 
 ```typescript
 export interface iValueOptions {
-  noDuplicates: boolean;
-  permanentOnceSet: boolean;
-  expectUint: boolean;
-  expectBoolean: boolean;
-  expectAddress: boolean;
-  expectUri: boolean;
+    noDuplicates: boolean;
+    permanentOnceSet: boolean;
+    expectUint: boolean;
+    expectBoolean: boolean;
+    expectAddress: boolean;
+    expectUri: boolean;
 }
 ```
 
 ```typescript
 export interface iMapPermissions<T extends NumberType> {
-  canUpdateMetadata: iTimedUpdatePermission<T>[];
-  canUpdateManager: iTimedUpdatePermission<T>[];
-  canDeleteMap: iActionPermission<T>[];
+    canUpdateMetadata: iTimedUpdatePermission<T>[];
+    canUpdateManager: iTimedUpdatePermission<T>[];
+    canDeleteMap: iActionPermission<T>[];
 }
 ```
 
@@ -100,7 +100,7 @@ Map metadata follows the same interfaces as badges and address lists.
 
 ```typescript
 export interface iMapMetadataTimeline<T extends NumberType> {
-  timelineTimes: iUintRange<T>[];
-  metadata: iCollectionMetadata;
+    timelineTimes: iUintRange<T>[];
+    metadata: iCollectionMetadata;
 }
 ```

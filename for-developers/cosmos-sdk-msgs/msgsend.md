@@ -34,8 +34,8 @@ export interface CosmosCoin<T extends NumberType> {
 
 ```json
 {
-  "fromAddress": "cosmos1pa6p7nsqg57yqv23khnu5dumfhycr45930m3ve",
-  "toAddress": "cosmos1uy4my3dwzwv9drgq06pt433z742l9vrlnx88ds",
+  "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
+  "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
   "amount": [
     {
       "denom": "ubadge",

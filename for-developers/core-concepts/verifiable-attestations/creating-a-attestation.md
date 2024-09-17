@@ -2,11 +2,9 @@
 
 Pre-Readings: [Verifiable Attestations](./)
 
-On the official site, we provide interfaces to create attestations.  However, you can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.&#x20;
+On the official site, we provide interfaces to create attestations. However, you can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.&#x20;
 
 <figure><img src="../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
-
-
 
 The creation interface is as follows. All attestations are a series of one or more **attestationMessages** which can be either in 'json' or 'plaintext' **messageFormat**. The schema of the message is left up to the issuer.
 
@@ -86,9 +84,9 @@ The integrity of the data is committed to by a cryptographic signature as we wil
 
 In a a system like this, typically, the attestation gains its credibility from the issuer, so there is inherently some trust there. However, you may also opt to use additional protection measures against a malicious issuer. For example:
 
-* On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
-* On-chain map of badge ID -> attestation IDs to protect against duplicate attestations issued per badge
-* Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
+-   On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
+-   On-chain map of badge ID -> attestation IDs to protect against duplicate attestations issued per badge
+-   Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
 
 ### Standard Signatures
 
@@ -138,7 +136,7 @@ Because BBS+ are not actually signed by your "main" address, we also require a *
 ```typescript
 const message = `I approve the issuance of credentials signed with BBS+ ${attestation.dataIntegrityProof.signer} as my own.\n\n`;
 const sig = await chain.signChallenge(message);
-const publicKey = await chain.getPublicKey(chain.cosmosAddress);
+const publicKey = await chain.getPublicKey(chain.bitbadgesAddress);
 body = {
     ...attestation,
     proofOfIssuance: {

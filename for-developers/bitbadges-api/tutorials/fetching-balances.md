@@ -21,10 +21,7 @@ However, note that these only apply to standard on-chain or off-chain indexed ba
 You can also fetch balances directly using the getBadgeBalanceByAddress API route. This will work for all balance types (standard, off-chain indexed, and off-chain non-indexed).
 
 ```typescript
-const res = await BitBadgesApi.getBadgeBalanceByAddress(
-    collectionId,
-    address
-);
+const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address);
 console.log(res);
 ```
 
@@ -34,7 +31,7 @@ If you do not need the balances themselves and you just want to verify if a user
 
 ```typescript
 const res = await BitBadgesApi.verifyOwnershipRequirements({
-    cosmosAddress,
+    bitbadgesAddress,
     assetOwnershipRequirements: {
         $and: [
             {

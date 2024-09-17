@@ -6,8 +6,6 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-
-
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
@@ -31,7 +29,7 @@ You can also customize the connection further by creating a custom connection. T
 ```javascript
 function(accessToken, ctx, cb) {
     const address = accessToken;
-  	
+
    	request.post(
     {
       url: 'https://api.bitbadges.io/api/v0/users',
@@ -39,7 +37,7 @@ function(accessToken, ctx, cb) {
 				'Content-Type': 'application/json',
 			},
       body: JSON.stringify({
-       	accountsToFetch: [{ address: accessToken }] 
+       	accountsToFetch: [{ address: accessToken }]
       })
     }, (err, resp, body) => {
       if (err) {
@@ -54,13 +52,13 @@ function(accessToken, ctx, cb) {
       } catch (jsonError) {
         return cb(new Error(body));
       }
-      
+
       const account = bodyParsed.accounts[0];
 
       const profile = {
         address: account.address,
         chain: account.chain,
-        id: account.cosmosAddress,
+        id: account.bitbadgesAddress,
         name: account.address,
       };
       cb(null, profile);

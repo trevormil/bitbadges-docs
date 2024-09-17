@@ -2,8 +2,8 @@
 
 ## Pre-Readings
 
-* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
-* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
+-   [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
+-   [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
 
 ### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) and Validator Operators <a href="#injective-accounts" id="injective-accounts"></a>
 
@@ -11,7 +11,7 @@ For accounts (standard senders of transactions) and validator operators, we supp
 
 ### **Ethereum**
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike other Cosmos chains that use Coin type `118.`
 
 **Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
 
@@ -37,9 +37,9 @@ BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-sdk';
 </strong><strong>
-</strong><strong>const cosmosAddress = ethToCosmos(address);
-</strong>const ethAddress = cosmosToEth(cosmosAddress);
-const cosmosAddressFromSolana = solanaToCosmos(address);
+</strong><strong>const bitbadgesAddress = ethToCosmos(address);
+</strong>const ethAddress = cosmosToEth(bitbadgesAddress);
+const bitbadgesAddressFromSolana = solanaToCosmos(address);
 //Note there is no cosmosToSolana or ethToSolana due to how the addresses work
 </code></pre>
 
@@ -51,18 +51,18 @@ The Bech32 format is the default format for Cosmos-SDK queries and transactions 
 
 Ethereum Example:
 
-* Address (Bech32): `cosmos14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
+-   Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgzrvkhc4`
+-   Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
 
 Solana Example:
 
-* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Address (Bech32): cosmos18el5ug46umcws58m445ql5scgg2n3tzat53tsw
+-   Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+-   Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
 
 Bitcoin Example&#x20;
 
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Address (Bech32): cosmos19s7rynm5pwhluhecsmlku8rn5yej5wdgy4k845
+-   Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+-   Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
 
 #### **Public Key Types**
 
@@ -79,36 +79,46 @@ For standard Ethereum accounts, the public key will have the `"@type": "/ethereu
 Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
 
 ```typescript
-import { Wallet } from 'ethers'
-import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
+import { Wallet } from 'ethers';
+import { Address as EthereumUtilsAddress } from 'ethereumjs-util';
 
-const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'cosmos'
-const isPrivateKey: boolean = true /* just for the example */
+const mnemonic =
+    'indoor dish desk flag debris potato excuse depart ticket judge file exit';
+const privateKey =
+    'afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890';
+const defaultDerivationPath = "m/44'/60'/0'/0/0";
+const defaultBech32Prefix = 'bb';
+const isPrivateKey: boolean = true; /* just for the example */
 
-const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
-const ethereumAddress = wallet.address
-const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const cosmosAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
+const wallet = isPrivateKey
+    ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath)
+    : new Wallet(privateKey);
+const ethereumAddress = wallet.address;
+const addressBuffer = EthereumUtilsAddress.fromString(
+    ethereumAddress.toString()
+).toBuffer();
+const bitbadgesAddress = bech32.encode(
+    defaultBech32Prefix,
+    bech32.toWords(addressBuffer)
+);
 ```
 
 Let's see an example code snipped on how to derive a public key from a private key:
 
 ```typescript
-import secp256k1 from 'secp256k1'
+import secp256k1 from 'secp256k1';
 
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
-const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
+const privateKey =
+    'afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890';
+const privateKeyHex = Buffer.from(privateKey.toString(), 'hex');
+const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex);
 
-const buf1 = Buffer.from([10])
-const buf2 = Buffer.from([publicKeyByte.length])
-const buf3 = Buffer.from(publicKeyByte)
+const buf1 = Buffer.from([10]);
+const buf2 = Buffer.from([publicKeyByte.length]);
+const buf3 = Buffer.from(publicKeyByte);
 
-const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethereum.PubKey'
+const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64');
+const type = '/ethereum.PubKey';
 ```
 
 #### Acknowledgements

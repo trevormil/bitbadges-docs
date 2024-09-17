@@ -6,156 +6,156 @@
 
 ### Enumerations
 
-- [DistributionMethod](enums/DistributionMethod.md)
-- [MetadataAddMethod](enums/MetadataAddMethod.md)
-- [SupportedChain](enums/SupportedChain.md)
-- [TransactionStatus](enums/TransactionStatus.md)
+-   [DistributionMethod](enums/DistributionMethod.md)
+-   [MetadataAddMethod](enums/MetadataAddMethod.md)
+-   [SupportedChain](enums/SupportedChain.md)
+-   [TransactionStatus](enums/TransactionStatus.md)
 
 ### Interfaces
 
-- [AccountDocs](interfaces/AccountDocs.md)
-- [AccountDocument](interfaces/AccountDocument.md)
-- [AccountMap](interfaces/AccountMap.md)
-- [AccountResponse](interfaces/AccountResponse.md)
-- [ActivityItem](interfaces/ActivityItem.md)
-- [Addresses](interfaces/Addresses.md)
-- [AnnouncementActivityItem](interfaces/AnnouncementActivityItem.md)
-- [Approval](interfaces/Approval.md)
-- [BadgeMetadata](interfaces/BadgeMetadata.md)
-- [BadgeMetadataMap](interfaces/BadgeMetadataMap.md)
-- [BadgeSupplyAndAmount](interfaces/BadgeSupplyAndAmount.md)
-- [BadgeUri](interfaces/BadgeUri.md)
-- [Balance](interfaces/Balance.md)
-- [BalanceObject](interfaces/BalanceObject.md)
-- [BalancesMap](interfaces/BalancesMap.md)
-- [BitBadgeCollection](interfaces/BitBadgeCollection.md)
-- [BitBadgeMintObject](interfaces/BitBadgeMintObject.md)
-- [BitBadgesUserInfo](interfaces/BitBadgesUserInfo.md)
-- [ClaimItem](interfaces/ClaimItem.md)
-- [ClaimItemWithTrees](interfaces/ClaimItemWithTrees.md)
-- [Claims](interfaces/Claims.md)
-- [CollectionDocs](interfaces/CollectionDocs.md)
-- [CollectionMap](interfaces/CollectionMap.md)
-- [CosmosAccountInformation](interfaces/CosmosAccountInformation.md)
-- [DbStatus](interfaces/DbStatus.md)
-- [Docs](interfaces/Docs.md)
-- [GetAccountResponse](interfaces/GetAccountResponse.md)
-- [GetBadgeBalanceResponse](interfaces/GetBadgeBalanceResponse.md)
-- [GetBalanceResponse](interfaces/GetBalanceResponse.md)
-- [GetCollectionResponse](interfaces/GetCollectionResponse.md)
-- [GetOwnersResponse](interfaces/GetOwnersResponse.md)
-- [GetPortfolioResponse](interfaces/GetPortfolioResponse.md)
-- [IdRange](interfaces/IdRange.md)
-- [IndexerStatus](interfaces/IndexerStatus.md)
-- [LatestBlockStatus](interfaces/LatestBlockStatus.md)
-- [MetadataDocs](interfaces/MetadataDocs.md)
-- [MetadataDocument](interfaces/MetadataDocument.md)
-- [PaginationInfo](interfaces/PaginationInfo.md)
-- [PasswordDocument](interfaces/PasswordDocument.md)
-- [PendingTransfer](interfaces/PendingTransfer.md)
-- [Proof](interfaces/Proof.md)
-- [SearchResponse](interfaces/SearchResponse.md)
-- [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
-- [SubassetSupply](interfaces/SubassetSupply.md)
-- [TransferActivityItem](interfaces/TransferActivityItem.md)
-- [TransferList](interfaces/TransferList.md)
-- [TransferListWithUnregisteredUsers](interfaces/TransferListWithUnregisteredUsers.md)
-- [Transfers](interfaces/Transfers.md)
-- [TransfersExtended](interfaces/TransfersExtended.md)
-- [UserBalance](interfaces/UserBalance.md)
+-   [AccountDocs](interfaces/AccountDocs.md)
+-   [AccountDocument](interfaces/AccountDocument.md)
+-   [AccountMap](interfaces/AccountMap.md)
+-   [AccountResponse](interfaces/AccountResponse.md)
+-   [ActivityItem](interfaces/ActivityItem.md)
+-   [Addresses](interfaces/Addresses.md)
+-   [AnnouncementActivityItem](interfaces/AnnouncementActivityItem.md)
+-   [Approval](interfaces/Approval.md)
+-   [BadgeMetadata](interfaces/BadgeMetadata.md)
+-   [BadgeMetadataMap](interfaces/BadgeMetadataMap.md)
+-   [BadgeSupplyAndAmount](interfaces/BadgeSupplyAndAmount.md)
+-   [BadgeUri](interfaces/BadgeUri.md)
+-   [Balance](interfaces/Balance.md)
+-   [BalanceObject](interfaces/BalanceObject.md)
+-   [BalancesMap](interfaces/BalancesMap.md)
+-   [BitBadgeCollection](interfaces/BitBadgeCollection.md)
+-   [BitBadgeMintObject](interfaces/BitBadgeMintObject.md)
+-   [BitBadgesUserInfo](interfaces/BitBadgesUserInfo.md)
+-   [ClaimItem](interfaces/ClaimItem.md)
+-   [ClaimItemWithTrees](interfaces/ClaimItemWithTrees.md)
+-   [Claims](interfaces/Claims.md)
+-   [CollectionDocs](interfaces/CollectionDocs.md)
+-   [CollectionMap](interfaces/CollectionMap.md)
+-   [CosmosAccountInformation](interfaces/CosmosAccountInformation.md)
+-   [DbStatus](interfaces/DbStatus.md)
+-   [Docs](interfaces/Docs.md)
+-   [GetAccountResponse](interfaces/GetAccountResponse.md)
+-   [GetBadgeBalanceResponse](interfaces/GetBadgeBalanceResponse.md)
+-   [GetBalanceResponse](interfaces/GetBalanceResponse.md)
+-   [GetCollectionResponse](interfaces/GetCollectionResponse.md)
+-   [GetOwnersResponse](interfaces/GetOwnersResponse.md)
+-   [GetPortfolioResponse](interfaces/GetPortfolioResponse.md)
+-   [IdRange](interfaces/IdRange.md)
+-   [IndexerStatus](interfaces/IndexerStatus.md)
+-   [LatestBlockStatus](interfaces/LatestBlockStatus.md)
+-   [MetadataDocs](interfaces/MetadataDocs.md)
+-   [MetadataDocument](interfaces/MetadataDocument.md)
+-   [PaginationInfo](interfaces/PaginationInfo.md)
+-   [PasswordDocument](interfaces/PasswordDocument.md)
+-   [PendingTransfer](interfaces/PendingTransfer.md)
+-   [Proof](interfaces/Proof.md)
+-   [SearchResponse](interfaces/SearchResponse.md)
+-   [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
+-   [SubassetSupply](interfaces/SubassetSupply.md)
+-   [TransferActivityItem](interfaces/TransferActivityItem.md)
+-   [TransferList](interfaces/TransferList.md)
+-   [TransferListWithUnregisteredUsers](interfaces/TransferListWithUnregisteredUsers.md)
+-   [Transfers](interfaces/Transfers.md)
+-   [TransfersExtended](interfaces/TransfersExtended.md)
+-   [UserBalance](interfaces/UserBalance.md)
 
 ### Type Aliases
 
-- [Permissions](modules.md#permissions)
+-   [Permissions](modules.md#permissions)
 
 ### Variables
 
-- [AllAddressesTransferList](modules.md#alladdressestransferlist)
-- [CHAIN\_DETAILS](modules.md#chain_details)
-- [CanCreateMoreBadgesDigit](modules.md#cancreatemorebadgesdigit)
-- [CanDeleteDigit](modules.md#candeletedigit)
-- [CanManagerBeTransferredDigit](modules.md#canmanagerbetransferreddigit)
-- [CanUpdateBytesDigit](modules.md#canupdatebytesdigit)
-- [CanUpdateDisallowedDigit](modules.md#canupdatedisalloweddigit)
-- [CanUpdateUrisDigit](modules.md#canupdateurisdigit)
-- [DefaultPlaceholderMetadata](modules.md#defaultplaceholdermetadata)
-- [ErrorMetadata](modules.md#errormetadata)
-- [GO\_MAX\_UINT\_64](modules.md#go_max_uint_64)
-- [MAX\_DATE\_TIMESTAMP](modules.md#max_date_timestamp)
-- [METADATA\_PAGE\_LIMIT](modules.md#metadata_page_limit)
-- [MINT\_ACCOUNT](modules.md#mint_account)
-- [NUM\_PERMISSIONS](modules.md#num_permissions)
+-   [AllAddressesTransferList](modules.md#alladdressestransferlist)
+-   [CHAIN_DETAILS](modules.md#chain_details)
+-   [CanCreateMoreBadgesDigit](modules.md#cancreatemorebadgesdigit)
+-   [CanDeleteDigit](modules.md#candeletedigit)
+-   [CanManagerBeTransferredDigit](modules.md#canmanagerbetransferreddigit)
+-   [CanUpdateBytesDigit](modules.md#canupdatebytesdigit)
+-   [CanUpdateDisallowedDigit](modules.md#canupdatedisalloweddigit)
+-   [CanUpdateUrisDigit](modules.md#canupdateurisdigit)
+-   [DefaultPlaceholderMetadata](modules.md#defaultplaceholdermetadata)
+-   [ErrorMetadata](modules.md#errormetadata)
+-   [GO_MAX_UINT_64](modules.md#go_max_uint_64)
+-   [MAX_DATE_TIMESTAMP](modules.md#max_date_timestamp)
+-   [METADATA_PAGE_LIMIT](modules.md#metadata_page_limit)
+-   [MINT_ACCOUNT](modules.md#mint_account)
+-   [NUM_PERMISSIONS](modules.md#num_permissions)
 
 ### Functions
 
-- [AddBalancesForIdRanges](modules.md#addbalancesforidranges)
-- [DeleteBalanceForIdRanges](modules.md#deletebalanceforidranges)
-- [GetAccountByNumberRoute](modules.md#getaccountbynumberroute)
-- [GetAccountRoute](modules.md#getaccountroute)
-- [GetAccountsRoute](modules.md#getaccountsroute)
-- [GetBadgeBalanceRoute](modules.md#getbadgebalanceroute)
-- [GetBalanceInfoToInsertToStorage](modules.md#getbalanceinfotoinserttostorage)
-- [GetBalanceRoute](modules.md#getbalanceroute)
-- [GetBalancesForIdRanges](modules.md#getbalancesforidranges)
-- [GetCollectionRoute](modules.md#getcollectionroute)
-- [GetCollectionsRoute](modules.md#getcollectionsroute)
-- [GetIdRangeToInsert](modules.md#getidrangetoinsert)
-- [GetIdRangesToInsertToStorage](modules.md#getidrangestoinserttostorage)
-- [GetIdRangesWithOmitEmptyCaseHandled](modules.md#getidrangeswithomitemptycasehandled)
-- [GetIdxSpanForRange](modules.md#getidxspanforrange)
-- [GetIdxToInsertForNewId](modules.md#getidxtoinsertfornewid)
-- [GetMetadataRoute](modules.md#getmetadataroute)
-- [GetOwnersRoute](modules.md#getownersroute)
-- [GetPermissionNumberValue](modules.md#getpermissionnumbervalue)
-- [GetPermissions](modules.md#getpermissions)
-- [GetPortfolioRoute](modules.md#getportfolioroute)
-- [GetSearchRoute](modules.md#getsearchroute)
-- [GetStatusRoute](modules.md#getstatusroute)
-- [InsertRangeToIdRanges](modules.md#insertrangetoidranges)
-- [MergePrevOrNextIfPossible](modules.md#mergeprevornextifpossible)
-- [NormalizeIdRange](modules.md#normalizeidrange)
-- [RemoveIdsFromIdRange](modules.md#removeidsfromidrange)
-- [SafeAdd](modules.md#safeadd)
-- [SafeSubtract](modules.md#safesubtract)
-- [SearchBalances](modules.md#searchbalances)
-- [SearchIdRangesForId](modules.md#searchidrangesforid)
-- [SetBalanceForIdRanges](modules.md#setbalanceforidranges)
-- [SortIdRangesAndMergeIfNecessary](modules.md#sortidrangesandmergeifnecessary)
-- [SubtractBalancesForIdRanges](modules.md#subtractbalancesforidranges)
-- [UpdateBalancesForIdRanges](modules.md#updatebalancesforidranges)
-- [UpdatePermissions](modules.md#updatepermissions)
-- [ValidatePermissions](modules.md#validatepermissions)
-- [ValidatePermissionsUpdate](modules.md#validatepermissionsupdate)
-- [checkIfApproved](modules.md#checkifapproved)
-- [checkIfApprovedInTransferList](modules.md#checkifapprovedintransferlist)
-- [checkIfIdRangesOverlap](modules.md#checkifidrangesoverlap)
-- [convertToBitBadgesUserInfo](modules.md#converttobitbadgesuserinfo)
-- [convertToCosmosAddress](modules.md#converttocosmosaddress)
-- [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
-- [doesChainMatchName](modules.md#doeschainmatchname)
-- [filterBadgeActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
-- [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
-- [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
-- [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
-- [getBalanceAfterTransfers](modules.md#getbalanceaftertransfers)
-- [getBlankBalance](modules.md#getblankbalance)
-- [getChainForAddress](modules.md#getchainforaddress)
-- [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
-- [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
-- [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
-- [getMaxBatchId](modules.md#getmaxbatchid)
-- [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
-- [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
-- [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
-- [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
-- [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
-- [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
-- [isAddressValid](modules.md#isaddressvalid)
-- [isTransferListFull](modules.md#istransferlistfull)
-- [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
-- [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
-- [updateMetadataMap](modules.md#updatemetadatamap)
-- [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
+-   [AddBalancesForIdRanges](modules.md#addbalancesforidranges)
+-   [DeleteBalanceForIdRanges](modules.md#deletebalanceforidranges)
+-   [GetAccountByNumberRoute](modules.md#getaccountbynumberroute)
+-   [GetAccountRoute](modules.md#getaccountroute)
+-   [GetAccountsRoute](modules.md#getaccountsroute)
+-   [GetBadgeBalanceRoute](modules.md#getbadgebalanceroute)
+-   [GetBalanceInfoToInsertToStorage](modules.md#getbalanceinfotoinserttostorage)
+-   [GetBalanceRoute](modules.md#getbalanceroute)
+-   [GetBalancesForIdRanges](modules.md#getbalancesforidranges)
+-   [GetCollectionRoute](modules.md#getcollectionroute)
+-   [GetCollectionsRoute](modules.md#getcollectionsroute)
+-   [GetIdRangeToInsert](modules.md#getidrangetoinsert)
+-   [GetIdRangesToInsertToStorage](modules.md#getidrangestoinserttostorage)
+-   [GetIdRangesWithOmitEmptyCaseHandled](modules.md#getidrangeswithomitemptycasehandled)
+-   [GetIdxSpanForRange](modules.md#getidxspanforrange)
+-   [GetIdxToInsertForNewId](modules.md#getidxtoinsertfornewid)
+-   [GetMetadataRoute](modules.md#getmetadataroute)
+-   [GetOwnersRoute](modules.md#getownersroute)
+-   [GetPermissionNumberValue](modules.md#getpermissionnumbervalue)
+-   [GetPermissions](modules.md#getpermissions)
+-   [GetPortfolioRoute](modules.md#getportfolioroute)
+-   [GetSearchRoute](modules.md#getsearchroute)
+-   [GetStatusRoute](modules.md#getstatusroute)
+-   [InsertRangeToIdRanges](modules.md#insertrangetoidranges)
+-   [MergePrevOrNextIfPossible](modules.md#mergeprevornextifpossible)
+-   [NormalizeIdRange](modules.md#normalizeidrange)
+-   [RemoveIdsFromIdRange](modules.md#removeidsfromidrange)
+-   [SafeAdd](modules.md#safeadd)
+-   [SafeSubtract](modules.md#safesubtract)
+-   [SearchBalances](modules.md#searchbalances)
+-   [SearchIdRangesForId](modules.md#searchidrangesforid)
+-   [SetBalanceForIdRanges](modules.md#setbalanceforidranges)
+-   [SortIdRangesAndMergeIfNecessary](modules.md#sortidrangesandmergeifnecessary)
+-   [SubtractBalancesForIdRanges](modules.md#subtractbalancesforidranges)
+-   [UpdateBalancesForIdRanges](modules.md#updatebalancesforidranges)
+-   [UpdatePermissions](modules.md#updatepermissions)
+-   [ValidatePermissions](modules.md#validatepermissions)
+-   [ValidatePermissionsUpdate](modules.md#validatepermissionsupdate)
+-   [checkIfApproved](modules.md#checkifapproved)
+-   [checkIfApprovedInTransferList](modules.md#checkifapprovedintransferlist)
+-   [checkIfIdRangesOverlap](modules.md#checkifidrangesoverlap)
+-   [convertToBitBadgesUserInfo](modules.md#converttobitbadgesuserinfo)
+-   [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
+-   [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
+-   [doesChainMatchName](modules.md#doeschainmatchname)
+-   [filterBadgeActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
+-   [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
+-   [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
+-   [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
+-   [getBalanceAfterTransfers](modules.md#getbalanceaftertransfers)
+-   [getBlankBalance](modules.md#getblankbalance)
+-   [getChainForAddress](modules.md#getchainforaddress)
+-   [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
+-   [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
+-   [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
+-   [getMaxBatchId](modules.md#getmaxbatchid)
+-   [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
+-   [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
+-   [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
+-   [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
+-   [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
+-   [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
+-   [isAddressValid](modules.md#isaddressvalid)
+-   [isTransferListFull](modules.md#istransferlistfull)
+-   [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
+-   [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
+-   [updateMetadataMap](modules.md#updatemetadatamap)
+-   [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
 
 ## Type Aliases
 
@@ -165,14 +165,14 @@
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `CanCreateMoreBadges` | `boolean` |
-| `CanDelete` | `boolean` |
+| Name                      | Type      |
+| :------------------------ | :-------- |
+| `CanCreateMoreBadges`     | `boolean` |
+| `CanDelete`               | `boolean` |
 | `CanManagerBeTransferred` | `boolean` |
-| `CanUpdateBytes` | `boolean` |
-| `CanUpdateDisallowed` | `boolean` |
-| `CanUpdateUris` | `boolean` |
+| `CanUpdateBytes`          | `boolean` |
+| `CanUpdateDisallowed`     | `boolean` |
+| `CanUpdateUris`           | `boolean` |
 
 #### Defined in
 
@@ -188,84 +188,84 @@
 
 [badges.ts:109](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L109)
 
-___
+---
 
-### CHAIN\_DETAILS
+### CHAIN_DETAILS
 
-• `Const` **CHAIN\_DETAILS**: `Object`
+• `Const` **CHAIN_DETAILS**: `Object`
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `chainId` | `number` |
+| Name            | Type     |
+| :-------------- | :------- |
+| `chainId`       | `number` |
 | `cosmosChainId` | `string` |
 
 #### Defined in
 
 [constants.ts:9](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L9)
 
-___
+---
 
 ### CanCreateMoreBadgesDigit
 
-• `Const` **CanCreateMoreBadgesDigit**: ``2``
+• `Const` **CanCreateMoreBadgesDigit**: `2`
 
 #### Defined in
 
 [permissions.ts:16](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L16)
 
-___
+---
 
 ### CanDeleteDigit
 
-• `Const` **CanDeleteDigit**: ``6``
+• `Const` **CanDeleteDigit**: `6`
 
 #### Defined in
 
 [permissions.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L12)
 
-___
+---
 
 ### CanManagerBeTransferredDigit
 
-• `Const` **CanManagerBeTransferredDigit**: ``4``
+• `Const` **CanManagerBeTransferredDigit**: `4`
 
 #### Defined in
 
 [permissions.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L14)
 
-___
+---
 
 ### CanUpdateBytesDigit
 
-• `Const` **CanUpdateBytesDigit**: ``5``
+• `Const` **CanUpdateBytesDigit**: `5`
 
 #### Defined in
 
 [permissions.ts:13](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L13)
 
-___
+---
 
 ### CanUpdateDisallowedDigit
 
-• `Const` **CanUpdateDisallowedDigit**: ``1``
+• `Const` **CanUpdateDisallowedDigit**: `1`
 
 #### Defined in
 
 [permissions.ts:17](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L17)
 
-___
+---
 
 ### CanUpdateUrisDigit
 
-• `Const` **CanUpdateUrisDigit**: ``3``
+• `Const` **CanUpdateUrisDigit**: `3`
 
 #### Defined in
 
 [permissions.ts:15](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L15)
 
-___
+---
 
 ### DefaultPlaceholderMetadata
 
@@ -275,7 +275,7 @@ ___
 
 [constants.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L14)
 
-___
+---
 
 ### ErrorMetadata
 
@@ -285,51 +285,51 @@ ___
 
 [constants.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L20)
 
-___
+---
 
-### GO\_MAX\_UINT\_64
+### GO_MAX_UINT_64
 
-• `Const` **GO\_MAX\_UINT\_64**: ``1000000000000000``
+• `Const` **GO_MAX_UINT_64**: `1000000000000000`
 
 #### Defined in
 
 [constants.ts:7](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L7)
 
-___
+---
 
-### MAX\_DATE\_TIMESTAMP
+### MAX_DATE_TIMESTAMP
 
-• `Const` **MAX\_DATE\_TIMESTAMP**: `number`
+• `Const` **MAX_DATE_TIMESTAMP**: `number`
 
 #### Defined in
 
 [constants.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L5)
 
-___
+---
 
-### METADATA\_PAGE\_LIMIT
+### METADATA_PAGE_LIMIT
 
-• `Const` **METADATA\_PAGE\_LIMIT**: ``100``
+• `Const` **METADATA_PAGE_LIMIT**: `100`
 
 #### Defined in
 
 [constants.ts:3](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L3)
 
-___
+---
 
-### MINT\_ACCOUNT
+### MINT_ACCOUNT
 
-• `Const` **MINT\_ACCOUNT**: [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)
+• `Const` **MINT_ACCOUNT**: [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)
 
 #### Defined in
 
 [chains.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L5)
 
-___
+---
 
-### NUM\_PERMISSIONS
+### NUM_PERMISSIONS
 
-• `Const` **NUM\_PERMISSIONS**: ``6``
+• `Const` **NUM_PERMISSIONS**: `6`
 
 #### Defined in
 
@@ -343,11 +343,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name              | Type                                       |
+| :---------------- | :----------------------------------------- |
 | `userBalanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
-| `ranges` | [`IdRange`](interfaces/IdRange.md)[] |
-| `balanceToAdd` | `number` |
+| `ranges`          | [`IdRange`](interfaces/IdRange.md)[]       |
+| `balanceToAdd`    | `number`                                   |
 
 #### Returns
 
@@ -357,7 +357,7 @@ ___
 
 [balances-gpt.ts:116](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L116)
 
-___
+---
 
 ### DeleteBalanceForIdRanges
 
@@ -365,9 +365,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `ranges` | [`IdRange`](interfaces/IdRange.md)[] |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
 | `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -378,7 +378,7 @@ ___
 
 [balances-gpt.ts:142](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L142)
 
-___
+---
 
 ### GetAccountByNumberRoute
 
@@ -386,8 +386,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type     |
+| :--- | :------- |
 | `id` | `number` |
 
 #### Returns
@@ -398,7 +398,7 @@ ___
 
 [routes.ts:8](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L8)
 
-___
+---
 
 ### GetAccountRoute
 
@@ -406,8 +406,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type     |
+| :-------------- | :------- |
 | `bech32address` | `string` |
 
 #### Returns
@@ -418,7 +418,7 @@ ___
 
 [routes.ts:4](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L4)
 
-___
+---
 
 ### GetAccountsRoute
 
@@ -432,7 +432,7 @@ ___
 
 [routes.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L12)
 
-___
+---
 
 ### GetBadgeBalanceRoute
 
@@ -440,9 +440,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `collectionId` | `number` |
+| Name            | Type     |
+| :-------------- | :------- |
+| `collectionId`  | `number` |
 | `accountNumber` | `number` |
 
 #### Returns
@@ -453,7 +453,7 @@ ___
 
 [routes.ts:28](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L28)
 
-___
+---
 
 ### GetBalanceInfoToInsertToStorage
 
@@ -461,8 +461,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                       |
+| :------------ | :----------------------------------------- |
 | `balanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
 
 #### Returns
@@ -473,7 +473,7 @@ ___
 
 [balances-gpt.ts:254](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L254)
 
-___
+---
 
 ### GetBalanceRoute
 
@@ -481,8 +481,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type     |
+| :-------------- | :------- |
 | `bech32address` | `string` |
 
 #### Returns
@@ -493,7 +493,7 @@ ___
 
 [routes.ts:16](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L16)
 
-___
+---
 
 ### GetBalancesForIdRanges
 
@@ -501,9 +501,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeIds` | [`IdRange`](interfaces/IdRange.md)[] |
+| Name                  | Type                                 |
+| :-------------------- | :----------------------------------- |
+| `badgeIds`            | [`IdRange`](interfaces/IdRange.md)[] |
 | `currentUserBalances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -514,7 +514,7 @@ ___
 
 [balances-gpt.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L36)
 
-___
+---
 
 ### GetCollectionRoute
 
@@ -522,8 +522,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name           | Type     |
+| :------------- | :------- |
 | `collectionId` | `number` |
 
 #### Returns
@@ -534,7 +534,7 @@ ___
 
 [routes.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L20)
 
-___
+---
 
 ### GetCollectionsRoute
 
@@ -548,7 +548,7 @@ ___
 
 [routes.ts:24](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L24)
 
-___
+---
 
 ### GetIdRangeToInsert
 
@@ -556,25 +556,25 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `start` | `number` |
-| `end` | `number` |
+| `end`   | `number` |
 
 #### Returns
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `end` | `number` |
+| Name    | Type     |
+| :------ | :------- |
+| `end`   | `number` |
 | `start` | `number` |
 
 #### Defined in
 
 [idRanges.ts:152](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L152)
 
-___
+---
 
 ### GetIdRangesToInsertToStorage
 
@@ -582,8 +582,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                 |
+| :--------- | :----------------------------------- |
 | `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -594,7 +594,7 @@ ___
 
 [idRanges.ts:31](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L31)
 
-___
+---
 
 ### GetIdRangesWithOmitEmptyCaseHandled
 
@@ -602,8 +602,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name  | Type                                 |
+| :---- | :----------------------------------- |
 | `ids` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -614,7 +614,7 @@ ___
 
 [idRanges.ts:144](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L144)
 
-___
+---
 
 ### GetIdxSpanForRange
 
@@ -622,9 +622,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `targetRange` | [`IdRange`](interfaces/IdRange.md) |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `targetRange`    | [`IdRange`](interfaces/IdRange.md)   |
 | `targetIdRanges` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -635,7 +635,7 @@ ___
 
 [idRanges.ts:111](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L111)
 
-___
+---
 
 ### GetIdxToInsertForNewId
 
@@ -643,9 +643,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `id` | `number` |
+| Name        | Type                                 |
+| :---------- | :----------------------------------- |
+| `id`        | `number`                             |
 | `targetIds` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -656,7 +656,7 @@ ___
 
 [idRanges.ts:176](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L176)
 
-___
+---
 
 ### GetMetadataRoute
 
@@ -664,8 +664,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name           | Type     |
+| :------------- | :------- |
 | `collectionId` | `number` |
 
 #### Returns
@@ -676,7 +676,7 @@ ___
 
 [routes.ts:40](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L40)
 
-___
+---
 
 ### GetOwnersRoute
 
@@ -684,10 +684,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name           | Type     |
+| :------------- | :------- |
 | `collectionId` | `number` |
-| `badgeId` | `number` |
+| `badgeId`      | `number` |
 
 #### Returns
 
@@ -697,7 +697,7 @@ ___
 
 [routes.ts:32](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L32)
 
-___
+---
 
 ### GetPermissionNumberValue
 
@@ -705,8 +705,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                    |
+| :------------ | :-------------------------------------- |
 | `permissions` | [`Permissions`](modules.md#permissions) |
 
 #### Returns
@@ -717,7 +717,7 @@ ___
 
 [permissions.ts:19](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L19)
 
-___
+---
 
 ### GetPermissions
 
@@ -725,8 +725,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type     |
+| :------------ | :------- |
 | `permissions` | `number` |
 
 #### Returns
@@ -737,7 +737,7 @@ ___
 
 [permissions.ts:118](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L118)
 
-___
+---
 
 ### GetPortfolioRoute
 
@@ -745,8 +745,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type     |
+| :-------------- | :------- |
 | `accountNumber` | `number` |
 
 #### Returns
@@ -757,7 +757,7 @@ ___
 
 [routes.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L36)
 
-___
+---
 
 ### GetSearchRoute
 
@@ -765,8 +765,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type     |
+| :------ | :------- |
 | `query` | `string` |
 
 #### Returns
@@ -777,7 +777,7 @@ ___
 
 [routes.ts:44](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L44)
 
-___
+---
 
 ### GetStatusRoute
 
@@ -791,7 +791,7 @@ ___
 
 [routes.ts:48](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L48)
 
-___
+---
 
 ### InsertRangeToIdRanges
 
@@ -799,10 +799,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `rangeToAdd` | [`IdRange`](interfaces/IdRange.md) |
-| `targetIds` | [`IdRange`](interfaces/IdRange.md)[] |
+| Name         | Type                                 |
+| :----------- | :----------------------------------- |
+| `rangeToAdd` | [`IdRange`](interfaces/IdRange.md)   |
+| `targetIds`  | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
 
@@ -812,7 +812,7 @@ ___
 
 [idRanges.ts:274](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L274)
 
-___
+---
 
 ### MergePrevOrNextIfPossible
 
@@ -820,10 +820,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `targetIds` | [`IdRange`](interfaces/IdRange.md)[] |
-| `insertedAtIdx` | `number` |
+| Name            | Type                                 |
+| :-------------- | :----------------------------------- |
+| `targetIds`     | [`IdRange`](interfaces/IdRange.md)[] |
+| `insertedAtIdx` | `number`                             |
 
 #### Returns
 
@@ -833,7 +833,7 @@ ___
 
 [idRanges.ts:218](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L218)
 
-___
+---
 
 ### NormalizeIdRange
 
@@ -841,24 +841,24 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name               | Type                               |
+| :----------------- | :--------------------------------- |
 | `rangeToNormalize` | [`IdRange`](interfaces/IdRange.md) |
 
 #### Returns
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `end` | `number` |
+| Name    | Type     |
+| :------ | :------- |
+| `end`   | `number` |
 | `start` | `number` |
 
 #### Defined in
 
 [idRanges.ts:164](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L164)
 
-___
+---
 
 ### RemoveIdsFromIdRange
 
@@ -866,10 +866,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type                               |
+| :-------------- | :--------------------------------- |
 | `rangeToRemove` | [`IdRange`](interfaces/IdRange.md) |
-| `rangeObject` | [`IdRange`](interfaces/IdRange.md) |
+| `rangeObject`   | [`IdRange`](interfaces/IdRange.md) |
 
 #### Returns
 
@@ -879,7 +879,7 @@ ___
 
 [idRanges.ts:47](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L47)
 
-___
+---
 
 ### SafeAdd
 
@@ -887,9 +887,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `left` | `number` |
+| Name    | Type     |
+| :------ | :------- |
+| `left`  | `number` |
 | `right` | `number` |
 
 #### Returns
@@ -900,7 +900,7 @@ ___
 
 [balances-gpt.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L5)
 
-___
+---
 
 ### SafeSubtract
 
@@ -908,9 +908,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `left` | `number` |
+| Name    | Type     |
+| :------ | :------- |
+| `left`  | `number` |
 | `right` | `number` |
 
 #### Returns
@@ -921,7 +921,7 @@ ___
 
 [balances-gpt.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L14)
 
-___
+---
 
 ### SearchBalances
 
@@ -929,9 +929,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `targetAmount` | `number` |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `targetAmount`   | `number`                             |
 | `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -942,7 +942,7 @@ ___
 
 [balances-gpt.ts:224](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L224)
 
-___
+---
 
 ### SearchIdRangesForId
 
@@ -950,9 +950,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `id` | `number` |
+| Name       | Type                                 |
+| :--------- | :----------------------------------- |
+| `id`       | `number`                             |
 | `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -963,7 +963,7 @@ ___
 
 [idRanges.ts:92](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L92)
 
-___
+---
 
 ### SetBalanceForIdRanges
 
@@ -971,10 +971,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `ranges` | [`IdRange`](interfaces/IdRange.md)[] |
-| `amount` | `number` |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
+| `amount`         | `number`                             |
 | `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -985,7 +985,7 @@ ___
 
 [balances-gpt.ts:183](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L183)
 
-___
+---
 
 ### SortIdRangesAndMergeIfNecessary
 
@@ -993,8 +993,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                 |
+| :--------- | :----------------------------------- |
 | `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -1005,7 +1005,7 @@ ___
 
 [idRanges.ts:3](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L3)
 
-___
+---
 
 ### SubtractBalancesForIdRanges
 
@@ -1013,11 +1013,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name              | Type                                       |
+| :---------------- | :----------------------------------------- |
 | `userBalanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
-| `ranges` | [`IdRange`](interfaces/IdRange.md)[] |
-| `balanceToRemove` | `number` |
+| `ranges`          | [`IdRange`](interfaces/IdRange.md)[]       |
+| `balanceToRemove` | `number`                                   |
 
 #### Returns
 
@@ -1027,7 +1027,7 @@ ___
 
 [balances-gpt.ts:129](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L129)
 
-___
+---
 
 ### UpdateBalancesForIdRanges
 
@@ -1035,10 +1035,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `ranges` | [`IdRange`](interfaces/IdRange.md)[] |
-| `newAmount` | `number` |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
+| `newAmount`      | `number`                             |
 | `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -1049,7 +1049,7 @@ ___
 
 [balances-gpt.ts:22](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L22)
 
-___
+---
 
 ### UpdatePermissions
 
@@ -1057,11 +1057,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `currPermissions` | `number` |
-| `permissionDigit` | `number` |
-| `value` | `boolean` |
+| Name              | Type      |
+| :---------------- | :-------- |
+| `currPermissions` | `number`  |
+| `permissionDigit` | `number`  |
+| `value`           | `boolean` |
 
 #### Returns
 
@@ -1071,7 +1071,7 @@ ___
 
 [permissions.ts:97](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L97)
 
-___
+---
 
 ### ValidatePermissions
 
@@ -1079,8 +1079,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type     |
+| :------------ | :------- |
 | `permissions` | `number` |
 
 #### Returns
@@ -1091,7 +1091,7 @@ ___
 
 [permissions.ts:53](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L53)
 
-___
+---
 
 ### ValidatePermissionsUpdate
 
@@ -1099,8 +1099,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name             | Type     |
+| :--------------- | :------- |
 | `oldPermissions` | `number` |
 | `newPermissions` | `number` |
 
@@ -1112,7 +1112,7 @@ ___
 
 [permissions.ts:60](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L60)
 
-___
+---
 
 ### checkIfApproved
 
@@ -1120,11 +1120,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `userBalance` | [`UserBalance`](interfaces/UserBalance.md) |
-| `accountNumber` | `number` |
-| `balancesToCheck` | [`Balance`](interfaces/Balance.md)[] |
+| Name              | Type                                       |
+| :---------------- | :----------------------------------------- |
+| `userBalance`     | [`UserBalance`](interfaces/UserBalance.md) |
+| `accountNumber`   | `number`                                   |
+| `balancesToCheck` | [`Balance`](interfaces/Balance.md)[]       |
 
 #### Returns
 
@@ -1134,7 +1134,7 @@ ___
 
 [badges.ts:311](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L311)
 
-___
+---
 
 ### checkIfApprovedInTransferList
 
@@ -1142,11 +1142,11 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `addresses` | [`Addresses`](interfaces/Addresses.md) |
-| `connectedUser` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
-| `managerAccountNumber` | `number` |
+| Name                   | Type                                                   |
+| :--------------------- | :----------------------------------------------------- |
+| `addresses`            | [`Addresses`](interfaces/Addresses.md)                 |
+| `connectedUser`        | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
+| `managerAccountNumber` | `number`                                               |
 
 #### Returns
 
@@ -1156,7 +1156,7 @@ ___
 
 [badges.ts:130](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L130)
 
-___
+---
 
 ### checkIfIdRangesOverlap
 
@@ -1164,8 +1164,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                 |
+| :--------- | :----------------------------------- |
 | `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
 
 #### Returns
@@ -1176,7 +1176,7 @@ ___
 
 [idRanges.ts:301](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L301)
 
-___
+---
 
 ### convertToBitBadgesUserInfo
 
@@ -1184,8 +1184,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name          | Type                                               |
+| :------------ | :------------------------------------------------- |
 | `accountInfo` | [`AccountResponse`](interfaces/AccountResponse.md) |
 
 #### Returns
@@ -1196,16 +1196,16 @@ ___
 
 [users.ts:4](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/users.ts#L4)
 
-___
+---
 
-### convertToCosmosAddress
+### convertToBitBadgesAddress
 
-▸ **convertToCosmosAddress**(`address`): `string`
+▸ **convertToBitBadgesAddress**(`address`): `string`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type     |
+| :-------- | :------- |
 | `address` | `string` |
 
 #### Returns
@@ -1216,7 +1216,7 @@ ___
 
 [chains.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L12)
 
-___
+---
 
 ### createCollectionFromMsgNewCollection
 
@@ -1224,14 +1224,14 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `msgNewCollection` | `MessageMsgNewCollection` |
-| `collectionMetadata` | [`BadgeMetadata`](interfaces/BadgeMetadata.md) |
-| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `connectedUser` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
-| `claimItems` | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
-| `existingCollection?` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
+| Name                      | Type                                                       |
+| :------------------------ | :--------------------------------------------------------- |
+| `msgNewCollection`        | `MessageMsgNewCollection`                                  |
+| `collectionMetadata`      | [`BadgeMetadata`](interfaces/BadgeMetadata.md)             |
+| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)       |
+| `connectedUser`           | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)     |
+| `claimItems`              | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
+| `existingCollection?`     | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)   |
 
 #### Returns
 
@@ -1241,7 +1241,7 @@ ___
 
 [badges.ts:29](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L29)
 
-___
+---
 
 ### doesChainMatchName
 
@@ -1249,10 +1249,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name    | Type                                        |
+| :------ | :------------------------------------------ |
 | `chain` | [`SupportedChain`](enums/SupportedChain.md) |
-| `name?` | `string` |
+| `name?` | `string`                                    |
 
 #### Returns
 
@@ -1262,7 +1262,7 @@ ___
 
 [chains.ts:87](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L87)
 
-___
+---
 
 ### filterBadgeActivityForBadgeId
 
@@ -1270,9 +1270,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeId` | `number` |
+| Name       | Type                                                           |
+| :--------- | :------------------------------------------------------------- |
+| `badgeId`  | `number`                                                       |
 | `activity` | [`TransferActivityItem`](interfaces/TransferActivityItem.md)[] |
 
 #### Returns
@@ -1283,7 +1283,7 @@ ___
 
 [badges.ts:10](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L10)
 
-___
+---
 
 ### getAbbreviatedAddress
 
@@ -1291,8 +1291,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type     |
+| :-------- | :------- |
 | `address` | `string` |
 
 #### Returns
@@ -1303,29 +1303,29 @@ ___
 
 [chains.ts:46](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L46)
 
-___
+---
 
 ### getBadgeIdsToDisplayForPageNumber
 
-▸ **getBadgeIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)  }[]
+▸ **getBadgeIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `collections` | { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)  }[] | `[]` |
-| `startIdxNum` | `number` | `undefined` |
-| `pageSize` | `number` | `undefined` |
+| Name          | Type                                                                                                                            | Default value |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------ | :------------ |
+| `collections` | { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[] | `[]`          |
+| `startIdxNum` | `number`                                                                                                                        | `undefined`   |
+| `pageSize`    | `number`                                                                                                                        | `undefined`   |
 
 #### Returns
 
-{ `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)  }[]
+{ `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
 
 #### Defined in
 
 [badges.ts:197](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L197)
 
-___
+---
 
 ### getBalanceAfterTransfer
 
@@ -1333,13 +1333,13 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `balance` | [`UserBalance`](interfaces/UserBalance.md) |
-| `startSubbadgeId` | `number` |
-| `endSubbadgeId` | `number` |
-| `amountToTransfer` | `number` |
-| `numRecipients` | `number` |
+| Name               | Type                                       |
+| :----------------- | :----------------------------------------- |
+| `balance`          | [`UserBalance`](interfaces/UserBalance.md) |
+| `startSubbadgeId`  | `number`                                   |
+| `endSubbadgeId`    | `number`                                   |
+| `amountToTransfer` | `number`                                   |
+| `numRecipients`    | `number`                                   |
 
 #### Returns
 
@@ -1349,7 +1349,7 @@ ___
 
 [balances.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L14)
 
-___
+---
 
 ### getBalanceAfterTransfers
 
@@ -1357,9 +1357,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `balance` | [`UserBalance`](interfaces/UserBalance.md) |
+| Name        | Type                                                     |
+| :---------- | :------------------------------------------------------- |
+| `balance`   | [`UserBalance`](interfaces/UserBalance.md)               |
 | `transfers` | [`TransfersExtended`](interfaces/TransfersExtended.md)[] |
 
 #### Returns
@@ -1370,7 +1370,7 @@ ___
 
 [balances.ts:21](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L21)
 
-___
+---
 
 ### getBlankBalance
 
@@ -1384,7 +1384,7 @@ ___
 
 [balances.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L5)
 
-___
+---
 
 ### getChainForAddress
 
@@ -1392,8 +1392,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type     |
+| :-------- | :------- |
 | `address` | `string` |
 
 #### Returns
@@ -1404,7 +1404,7 @@ ___
 
 [chains.ts:26](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L26)
 
-___
+---
 
 ### getClaimsFromClaimItems
 
@@ -1412,25 +1412,25 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `balance` | [`UserBalance`](interfaces/UserBalance.md) |
+| Name         | Type                                                       |
+| :----------- | :--------------------------------------------------------- |
+| `balance`    | [`UserBalance`](interfaces/UserBalance.md)                 |
 | `claimItems` | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
 
 #### Returns
 
 `Object`
 
-| Name | Type |
-| :------ | :------ |
-| `claims` | [`Claims`](interfaces/Claims.md)[] |
-| `undistributedBalance` | `any` |
+| Name                   | Type                               |
+| :--------------------- | :--------------------------------- |
+| `claims`               | [`Claims`](interfaces/Claims.md)[] |
+| `undistributedBalance` | `any`                              |
 
 #### Defined in
 
 [claims.ts:63](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/claims.ts#L63)
 
-___
+---
 
 ### getIdRangesForAllBadgeIdsInCollection
 
@@ -1438,8 +1438,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name         | Type                                                     |
+| :----------- | :------------------------------------------------------- |
 | `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
@@ -1450,7 +1450,7 @@ ___
 
 [badges.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L20)
 
-___
+---
 
 ### getMatchingAddressesFromTransferList
 
@@ -1458,12 +1458,12 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `list` | [`TransferList`](interfaces/TransferList.md)[] |
-| `toAddresses` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
-| `chain` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
-| `managerAccountNumber` | `number` |
+| Name                   | Type                                                     |
+| :--------------------- | :------------------------------------------------------- |
+| `list`                 | [`TransferList`](interfaces/TransferList.md)[]           |
+| `toAddresses`          | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
+| `chain`                | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)   |
+| `managerAccountNumber` | `number`                                                 |
 
 #### Returns
 
@@ -1473,7 +1473,7 @@ ___
 
 [badges.ts:153](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L153)
 
-___
+---
 
 ### getMaxBatchId
 
@@ -1481,8 +1481,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name         | Type                                                     |
+| :----------- | :------------------------------------------------------- |
 | `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
@@ -1493,7 +1493,7 @@ ___
 
 [badges.ts:245](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L245)
 
-___
+---
 
 ### getMetadataForBadgeId
 
@@ -1501,9 +1501,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeId` | `number` |
+| Name          | Type                                                 |
+| :------------ | :--------------------------------------------------- |
+| `badgeId`     | `number`                                             |
 | `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
 
 #### Returns
@@ -1514,28 +1514,28 @@ ___
 
 [badges.ts:183](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L183)
 
-___
+---
 
 ### getMetadataMapObjForBadgeId
 
-▸ **getMetadataMapObjForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string`  }
+▸ **getMetadataMapObjForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeId` | `number` |
+| Name          | Type                                                 |
+| :------------ | :--------------------------------------------------- |
+| `badgeId`     | `number`                                             |
 | `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
 
 #### Returns
 
-`undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string`  }
+`undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
 
 #### Defined in
 
 [badges.ts:170](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L170)
 
-___
+---
 
 ### getNonTransferableDisallowedTransfers
 
@@ -1549,7 +1549,7 @@ ___
 
 [badges.ts:105](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L105)
 
-___
+---
 
 ### getSupplyByBadgeId
 
@@ -1557,9 +1557,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeId` | `number` |
+| Name       | Type                                 |
+| :--------- | :----------------------------------- |
+| `badgeId`  | `number`                             |
 | `balances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -1570,7 +1570,7 @@ ___
 
 [balances.ts:48](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L48)
 
-___
+---
 
 ### getTransferListForSelectOptions
 
@@ -1578,14 +1578,14 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `isFromList` | `boolean` |
-| `unregistered` | `string`[] |
-| `users` | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
-| `all` | `boolean` |
-| `none` | `boolean` |
-| `everyoneExcept` | `boolean` |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `isFromList`     | `boolean`                                                |
+| `unregistered`   | `string`[]                                               |
+| `users`          | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
+| `all`            | `boolean`                                                |
+| `none`           | `boolean`                                                |
+| `everyoneExcept` | `boolean`                                                |
 
 #### Returns
 
@@ -1595,7 +1595,7 @@ ___
 
 [transferLists.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L36)
 
-___
+---
 
 ### getTransfersFromClaimItems
 
@@ -1603,10 +1603,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name         | Type                                     |
+| :----------- | :--------------------------------------- |
 | `claimItems` | [`ClaimItem`](interfaces/ClaimItem.md)[] |
-| `accounts` | [`AccountMap`](interfaces/AccountMap.md) |
+| `accounts`   | [`AccountMap`](interfaces/AccountMap.md) |
 
 #### Returns
 
@@ -1616,7 +1616,7 @@ ___
 
 [claims.ts:6](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/claims.ts#L6)
 
-___
+---
 
 ### isAddressValid
 
@@ -1624,10 +1624,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name      | Type     |
+| :-------- | :------- |
 | `address` | `string` |
-| `chain?` | `string` |
+| `chain?`  | `string` |
 
 #### Returns
 
@@ -1637,7 +1637,7 @@ ___
 
 [chains.ts:55](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L55)
 
-___
+---
 
 ### isTransferListFull
 
@@ -1645,8 +1645,8 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name            | Type                                           |
+| :-------------- | :--------------------------------------------- |
 | `transfersList` | [`TransferList`](interfaces/TransferList.md)[] |
 
 #### Returns
@@ -1657,7 +1657,7 @@ ___
 
 [transferLists.ts:27](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L27)
 
-___
+---
 
 ### populateFieldsOfOtherBadges
 
@@ -1665,13 +1665,13 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name                      | Type                                                 |
+| :------------------------ | :--------------------------------------------------- |
 | `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `badgeIds` | [`IdRange`](interfaces/IdRange.md)[] |
-| `key` | `string` |
-| `value` | `any` |
-| `metadataToSet?` | [`BadgeMetadata`](interfaces/BadgeMetadata.md) |
+| `badgeIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
+| `key`                     | `string`                                             |
+| `value`                   | `any`                                                |
+| `metadataToSet?`          | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
 
 #### Returns
 
@@ -1681,7 +1681,7 @@ ___
 
 [metadata.ts:61](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/metadata.ts#L61)
 
-___
+---
 
 ### updateMetadataForBadgeIdsFromIndexerIfAbsent
 
@@ -1689,10 +1689,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `badgeIdsToDisplay` | `number`[] |
-| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
+| Name                | Type                                                     |
+| :------------------ | :------------------------------------------------------- |
+| `badgeIdsToDisplay` | `number`[]                                               |
+| `collection`        | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
 
@@ -1702,7 +1702,7 @@ ___
 
 [badges.ts:264](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L264)
 
-___
+---
 
 ### updateMetadataMap
 
@@ -1710,12 +1710,12 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name              | Type                                                 |
+| :---------------- | :--------------------------------------------------- |
 | `currMetadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `metadata` | [`BadgeMetadata`](interfaces/BadgeMetadata.md) |
-| `badgeIds` | [`IdRange`](interfaces/IdRange.md) |
-| `uri` | `string` |
+| `metadata`        | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
+| `badgeIds`        | [`IdRange`](interfaces/IdRange.md)                   |
+| `uri`             | `string`                                             |
 
 #### Returns
 
@@ -1725,7 +1725,7 @@ ___
 
 [metadata.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/metadata.ts#L5)
 
-___
+---
 
 ### updateTransferListAccountNums
 
@@ -1733,10 +1733,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `accountNumber` | `number` |
-| `remove` | `boolean` |
+| Name                    | Type                                   |
+| :---------------------- | :------------------------------------- |
+| `accountNumber`         | `number`                               |
+| `remove`                | `boolean`                              |
 | `transferListAddresses` | [`Addresses`](interfaces/Addresses.md) |
 
 #### Returns

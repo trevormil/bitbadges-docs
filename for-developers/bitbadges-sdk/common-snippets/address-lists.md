@@ -4,22 +4,23 @@ AddressLists are the base type for lists. The BitBadgesAddressList class you see
 
 ```typescript
 const list = new AddressList({
-  addresses: ['cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh'],
-  whitelist: true,
-  customData: '',
-  uri: '',
-  createdBy: 'cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh',
-  listId: 'abc123',
-})
+    addresses: ['bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls'],
+    whitelist: true,
+    customData: '',
+    uri: '',
+    createdBy: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+    listId: 'abc123',
+});
 
-const isInList = list.checkAddress('cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh') // true
-const invertedList = list.toInverted()
-const isInListNow = invertedList.checkAddress('cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh') // false
+const isInList = list.checkAddress('bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls'); // true
+const invertedList = list.toInverted();
+const isInListNow = invertedList.checkAddress(
+    'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls'
+); // false
 
-list.remove('cosmos1hsk6jryyqjfhp5g4g7j0qldj9nqdj0qc02fgmh')
-const isEmpty = list.isEmpty()
+list.remove('bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls');
+const isEmpty = list.isEmpty();
 
-
-const MintList = AddressList.Reserved('Mint')
+const MintList = AddressList.Reserved('Mint');
 const All = AddressList.AllAddresses();
 ```

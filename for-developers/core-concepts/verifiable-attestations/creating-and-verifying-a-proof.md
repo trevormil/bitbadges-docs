@@ -49,8 +49,8 @@ It is important to note that proof verification is not limited to that is provid
 
 All attestations / credentials inherently get their credibility from the issuer, so there is already a bit of trust there. However, additional measures can be taken to protect against a malicious issuer. Some examples include:
 
-* On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
-* Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
+-   On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
+-   Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
 
 ### On-Chain Anchors + Update History
 
@@ -100,7 +100,8 @@ const address = body.proofOfIssuance.signer;
 const chain = getChainForAddress(address);
 
 if (
-    convertToCosmosAddress(address) !== convertToCosmosAddress(body.createdBy)
+    convertToBitBadgesAddress(address) !==
+    convertToBitBadgesAddress(body.createdBy)
 ) {
     throw new Error('Signer does not match creator');
 }

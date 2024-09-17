@@ -20,9 +20,9 @@ import { proto } from 'bitbadgesjs-sdk';
 const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
 
 const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'cosmos...' }),
+    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb1...' }),
     //Add more here (executed in order)
-]
+];
 ```
 
 ### Building the Transaction
@@ -43,18 +43,18 @@ If you stringify txnJSON and SHA256 it, you will get the content hash from the t
 
 ```typescript
 export interface TransactionPayload {
-  legacyAmino: {
-    body: TxBody;
-    authInfo: AuthInfo;
-    signBytes: string;
-  };
-  signDirect: {
-    body: TxBody;
-    authInfo: AuthInfo;
-    signBytes: string;
-  };
-  txnString: string;
-  txnJson: Record<string, any>;
+    legacyAmino: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    signDirect: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    txnString: string;
+    txnJson: Record<string, any>;
 }
 ```
 
