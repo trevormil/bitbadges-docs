@@ -97,3 +97,7 @@ Submit a response to your form.
 
 
 
+**Add-Ons**
+
+Consider adding functionality to the script like sending the code via emails, protecting against multiple submissions, etc. We leave thi sup to you and your needs.
+
