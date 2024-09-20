@@ -2,15 +2,15 @@
 
 In the following pages, we will explain how to further customize claims beyond what is natively available. However, we want to highlight that claim codes are a universal approach that can be used with any application / criteria. For example,
 
--   Give codes to finishers of a race
--   Give codes to attendees of an event
--   Give codes to those who sign in to your website
--   Distribute codes via email, SMS, etc
--   And so on. You distribute according to your needs!
+* Give codes to finishers of a race
+* Give codes to attendees of an event
+* Give codes to those who sign in to your website
+* Distribute codes via email, SMS, etc
+* And so on. You distribute according to your needs!
 
 ## **Codes Plugin**
 
-Use the Codes plugin to set the codes for your claim. We recommend auto-generating them for sufficient randomness, but you may also custom create them.&#x20;
+Use the Codes plugin to set the codes for your claim. We recommend auto-generating them for sufficient randomness, but you may also custom create them.
 
 **Custom Metadata**
 
@@ -18,7 +18,7 @@ Consider also setting custom metadata to let users know what the codes are for, 
 
 **Configuration Tools**
 
-If you are building a tool / service, consider creating a [configuration tool](configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service. &#x20;
+If you are building a tool / service, consider creating a [configuration tool](configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
 
 An example configuration input would be:
 
@@ -30,7 +30,7 @@ An example configuration input would be:
 
 ## **Obtaining Codes**
 
-Codes can be obtained by the claim creator by clicking on the Distribute or Codes button which will bring up a distribution modal with all the codes.&#x20;
+Codes can be obtained by the claim creator by clicking on the Distribute or Codes button which will bring up a distribution modal with all the codes.
 
 If you have a large number of codes, consider using the Copy Seed Code button under the Batch tab (only applicable to automatically generated codes) instead of copying all N codes and calculate them dynamically. See snippet below.
 
@@ -38,7 +38,7 @@ Using a configuration tool would take this step out for the claim creator.
 
 <figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 
