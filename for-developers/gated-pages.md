@@ -2,7 +2,7 @@
 icon: spider-web
 ---
 
-# Gated Pages
+# 🕸️ Gated Pages
 
 ### What is Gated Content / Pages?
 
@@ -11,6 +11,8 @@ Gated content, also known as gated pages, refers to digital content that is rest
 On the BitBadges site, we offer a gated content (Gated Pages) feature to allow you to host Markdown content gated by criteria (reusing the BitBadges claims interface).
 
 Note this is an easy to use place for you to host static information that is gated. If you need more dynamic functionality, consider implementing your own site with Sign In with BitBadges.
+
+<figure><img src="../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
 
 ### Getting Started
 
