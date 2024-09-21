@@ -47,19 +47,29 @@ Auto-generated codes are calculated from a seed code, rather than needing to sto
 ```typescript
 import CryptoJS from 'crypto-js';
 const { SHA256 } = CryptoJS;
-export const generateCodesFromSeed = (
-    seedCode: string,
-    numCodes: number
-): string[] => {
-    let currCode = seedCode;
-    const codes = [];
-    for (let i = 0; i < numCodes; i++) {
-        currCode = SHA256(`${seedCode}-${i}`).toString();
-        codes.push(`${currCode}-${i}`);
-    }
-    return codes;
+export const generateCodesFromSeed = (seedCode: string, numCodes: number): string[] => {
+  let currCode = seedCode;
+  const codes = [];
+  for (let i = 0; i < numCodes; i++) {
+    currCode = SHA256(`${seedCode}-${i}`).toString();
+    codes.push(`${currCode}-${i}`);
+  }
+  return codes;
 };
 ```
+
+**Generate Codes from Seed API Endpoint**
+
+Or, outsource the generation to our API route:
+
+POST https://api.bitbadges.io/api/generate-code
+
+The request body should be a JSON object with the following properties:
+
+* `seedCode` (string): The seed used to generate the code.
+* `idx` (number): A non-negative integer index.
+
+Response: { "code": "generatedCode" }
 
 ## **Claim Links**
 
