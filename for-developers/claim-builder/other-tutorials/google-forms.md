@@ -1,6 +1,16 @@
 # Google Forms
 
-## Setting Up a Claim with Google Forms
+## Setting Up a Claim with Google Forms Zapier
+
+The easiest way is to simply create a Zap using the Google Forms and BitBadges integrations. See the link below for a full tutorial.
+
+<figure><img src="../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+
+{% content-ref url="../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md" %}
+[distribute-claim-information-tutorial.md](../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
+{% endcontent-ref %}
+
+## Setting Up a Claim with Google Forms Script Editor
 
 This guide will walk you through setting up a Google Form to generate unique claim codes using a seed code from the BitBadges Codes plugin.
 
