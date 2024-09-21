@@ -26,7 +26,7 @@ IMPORTANT: Claims have to be non-indexed for gated content.
 * **List Ownership:** Require users to be or not be on a list.
 * **On-Chain Checks:** Require certain on-chain details about a user to be met.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Use Cases
 

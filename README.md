@@ -84,7 +84,7 @@ BitBadges has a Zapier integration that allows you to connect BitBadges to any a
 
 Natively within the BitBadges site, we offer a directory of preconfigured plugins built by us and the community. Anyone can publish their own plugin to the directory!
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use Cases
 
