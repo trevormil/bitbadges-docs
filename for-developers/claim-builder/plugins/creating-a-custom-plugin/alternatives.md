@@ -31,3 +31,23 @@ This is a streamlined alternative that can be used for many use cases with no se
 This uses the same request / response flow as custom plugins themselves except the pluginSecret is the inputted secret instead. Note that no user inputs, state management, etc are available, just a simple POST request with a 200 OK expected
 
 <figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+**Using with Zapier / Other Tools**
+
+Note that within the custom body, we pass the following context. This might be useful when implementing with other tools like Zapier because you will have the claimee address, attempt ID, etc.
+
+```typescript
+export interface ContextInfo {
+  cosmosAddress: string;
+  claimId: string;
+  _isSimulation: boolean;
+  _attemptStatus: string;
+  lastUpdated: number;
+  createdAt: number;
+  claimAttemptId: string;
+  assignMethod: string | undefined;
+  isClaimNumberAssigner: boolean;
+  maxUses: number;
+  currUses: number;
+}
+```
