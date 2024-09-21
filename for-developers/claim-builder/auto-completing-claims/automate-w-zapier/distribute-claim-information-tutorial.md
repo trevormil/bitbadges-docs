@@ -8,9 +8,9 @@ The first option is to distribute the necessary information to claim on the BitB
 
 The cool thing about this approach is that you do not need to communicate through crypto-native channels. This means that you do not need to know users' addresses beforehand. You can send the claim code, for example, via the Email by Zapier Plugin or Gmail plugin, and once the user receives the email, they can log on to the BitBadges site and select their address to receive the badges for when claiming.
 
-For this approach, you do not need any communication with the BitBadges API Zapier plugin. Everything can be done via existing plugins, apps, and integrations. The downside to this approach is that since you are only distributing claim information and not initiating the claim itself, the end user always has to initiate the claim to complete the action. It is not automatic.
+Everything can be done via existing plugins, apps, and integrations. The downside to this approach is that since you are only distributing claim information and not initiating the claim itself, the end user always has to initiate the claim to complete the action. It is not automatic.
 
-You may also consider using the Send Claim Alert action with the BitBadges API Zapier plugin to send secret claim information. This will send an in-app notification on the BitBadges site to the user.
+You may also consider using the Send Claim Alert action with the BitBadges API Zapier plugin to send secret claim information. This will send an in-app notification on the BitBadges site to the user.&#x20;
 
 See the tutorial via the link below for more information.&#x20;
 
@@ -24,7 +24,7 @@ For the tutorial below, we use claim codes, so if you want to follow along exact
 
 Before beginning, we want to note that this is NOT the only way to do so. You can experiment with different integrations and see what works best for your use case. This tutorial uses the following execution flow in the image below. Also, note that the tutorial is for claim codes but can be replaced for any claim information to be distributed like passwords or secret IDs.
 
-<figure><img src="../../../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -44,13 +44,11 @@ For more advanced manipulation, see [https://store.zapier.com/](https://store.za
 
 <figure><img src="../../../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
 
-Step 4: Setup a Google Sheets with the Claim Codes. The sheet should have two columns (one with an incrementing ID and one with the code value. You should have column headers as well. The codes can be copy and pasted from bitbadges.io.
+Step 4: Setup the Get Claim Code action via the BitBadges integration. Your seed code can be obtained from the distribute modal of the Codes plugin -> Batch -> Copy Seed Code.
 
-<figure><img src="../../../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+Note that code indices are zero-based, so the first code will have index 0, and so on. Configure it so that it dynamically increments using the previous increment plugin (or implement a custom solution).
 
-Step 4: Setup the Lookup Spreadsheet Row for Google Sheets action in Zapier. Select your spreadsheet. The lookup column should be your numeric ID column (not the code value). The lookup value should be your numResponses variable from the previous Storage by Zapier action.
-
-<figure><img src="../../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
 
 Step 5: Setup your final actions. In our case above, we are sending an email via Gmail with the code. Whatever your action is, you can insert the unique claim code to be distributed from the Lookup Row step. For example, in our email body we dynamically use the code value from the Codes column from our prior step.
 
