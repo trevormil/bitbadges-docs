@@ -38,7 +38,9 @@ Note that Zaps are asynchronous, so the time at which a Zap is triggered and eve
 
 If you are auto-completing claims with Zapier, this ensures the Zap will succeed before the claim is completed. You can also take other measures to ensure the Zap succeeds before the claim is completed like issuing claim codes via the Zap.
 
-You may also consider triggering the Zap during the execution of the claim or after its success. For executing during it, this can be done with custom plugins or the Custom Validate URL plugin supported natively in-site. However mroe typically, you would want to execute the Zap after a claim has been completed. For this, use the Success Webhook plugin in-site or the sucess webhooks features when creating a custom plugin.
+You may also consider triggering the Zap during the execution of the claim or after its success. The easiest way to do this is with the custom trigger (Get Claim Successes) of the BitBadges Zapier integration.&#x20;
+
+Alternatively though, for executing during it, this can be done with custom plugins or the Custom Validate URL plugin supported natively in-site. Or for custom post-success logic, you can use the Success Webhook plugin in-site or the sucess webhooks features when creating a custom plugin.
 
 ## **Error Handling**
 

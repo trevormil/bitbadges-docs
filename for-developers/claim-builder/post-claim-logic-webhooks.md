@@ -45,7 +45,7 @@ const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 
 **Webhooks by Zapier**
 
-Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success.
+Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.&#x20;
 
 **BitBadges API**
 
