@@ -1,53 +1,30 @@
-# Alternatives
+# Alternatives - Webhook URLs
 
-### Do you actually need a custom plugin?
+### Custom Validation URL / Success Webhook Plugin: Streamlined Alternative
 
-Before going through the entire plugin creation process, consider whether you actually need a plugin for your use case. Get creative!
+To streamline the plugin process, we also offer prebuilt webhook plugins that allow you to implement logic via your custom URL The Custom Validation URL will check logic during the claim and fail if the logic fails. The Success Webhook plugin will only be sent after successful claims.
 
-For example,
+This is a streamlined alternative that can be used for many use cases with no setup required (just select it in the directory in-site). Note that no user inputs, state management, etc are available, just a simple POST request with a 200 OK expected. If you need additional features like this, you should create a custom plugin.
 
-* Use the Custom Validate plugin as a more streamlined alternative.
-* Use the Codes plugin and give out claim codes from your side to those who meet the criteria
-* Give out a secret password to those who satisfy a criteria
-* See if Zapier can satisfy what you need
-* Redirect users to the claim page w/ information like claim codes auto-filled out rather than needing a full custom plugin integration.
-* Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything. Or in a similar fashion, if you have the users' crypto addresses, you can use the Address Restrictions plugin.
-* And so on.
+**Successes**
 
-If you can implement everything you need while using existing plugins, consider creating  a configuration tool rather than a plugin.
+We expect a 200 response within a reasonable time (10 seconds) for both. For success webhooks, typically you may be implementing long-running async logic. You should send a 200 OK when the webhook is received and implement your details after.&#x20;
 
-{% content-ref url="../../configuration-tools.md" %}
-[configuration-tools.md](../../configuration-tools.md)
-{% endcontent-ref %}
+If we do not receive a 200 OK for the successs webhoook plugins, we use an exponential backoff and will resend until we do.
 
-Or, consider creating a Zapier integration instead of a BitBadges custom plugin. Zapier's functionality is more complete than what BitBadges offers, especially for authenticated routes.
+**Configuration**
 
-### Custom Validation URL Plugin: Streamlined Alternative
+Both are hardcoded to have no additional user inputs and are POST routes of your choice. You can optionally choose to pass user details like their address or connected socials (if needed).
 
-If your plugin can function with at most this information and returning a 200 OK success code, consider using the preconfigured Custom Validation URL plugin.
+You can also customize a validation secret to ensure that the request is coming from BitBadges and not another origin.
 
-This is a streamlined alternative that can be used for many use cases with no setup required.&#x20;
+**Implementation**
 
-This uses the same request / response flow as custom plugins themselves except the pluginSecret is the inputted secret instead. Note that no user inputs, state management, etc are available, just a simple POST request with a 200 OK expected
-
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+This uses the same request / response flow as custom plugins themselves except the pluginSecret is the inputted validation secret instead.  We refer you to those docs to avoid repetition (if needed).
 
 **Using with Zapier / Other Tools**
 
-Note that within the custom body, we pass the following context. This might be useful when implementing with other tools like Zapier because you will have the claimee address, attempt ID, etc.
+Webhooks can also be sent to other tools like Zapier which allow you to implement complex custom automation flows.&#x20;
 
-```typescript
-export interface ContextInfo {
-  cosmosAddress: string;
-  claimId: string;
-  _isSimulation: boolean;
-  _attemptStatus: string;
-  lastUpdated: number;
-  createdAt: number;
-  claimAttemptId: string;
-  assignMethod: string | undefined;
-  isClaimNumberAssigner: boolean;
-  maxUses: number;
-  currUses: number;
-}
-```
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
