@@ -16,9 +16,9 @@ Claims are made up of one or more plugins executed in order. For a claim to be s
 
 **How to create / manage claims?**
 
-Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  The developer portal also has an interface for testing and managing claims. You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD.
+Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  The developer portal also has an interface for testing, creating, and managing claims. You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD.
 
-## **Approaches**
+## **Completion Methods**
 
 With BitBadges claims, you have a few approaches.
 
@@ -38,7 +38,7 @@ For example, make a purchase on Shopify -> get airdropped a badge or complete a 
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
-**Option 3: Custom Claims**
+**Option 3: Auto-Claim by API**
 
 You can implement a hybrid approach on your own using the BitBadges API and connect it behind the scenes. This allows you full flexibility over the claiming process.
 
