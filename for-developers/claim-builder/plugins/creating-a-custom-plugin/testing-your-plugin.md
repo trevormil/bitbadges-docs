@@ -18,6 +18,7 @@ curl -X POST https://bitbadges.io  -H 'Content-Type: application/json' -d '{
   "createdAt": 1800000000000,
   "version": "0",
   "_attemptStatus": "executing",
+  ...USER_ID_DETAILS, //whatever is configured
   ...YOUR_INPUTS
 }'
 ```

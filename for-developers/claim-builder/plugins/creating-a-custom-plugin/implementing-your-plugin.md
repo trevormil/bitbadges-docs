@@ -58,42 +58,45 @@ You can also select to automatically pass supported identifying details about th
 
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
 
-* **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
-* **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
-* **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
-* **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
-* **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
-* **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
-* **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
-* **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
+-   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
+-   **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
+-   **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
+-   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
+-   **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
+-   **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
+-   **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
+-   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
 ```typescript
 const payload = {
-    ...customBody,//if applicable
+    ...customBody, //if applicable
     ...allConfiguredParams, //if applicable
-        
+
     // Context info
-    
+
     email: { id: 'bob@abc.com' }, //If pass email is configured
     discord: { id: '...', username: '...', discriminator: '...' }, //If configured
     twitch: { id: '...', username: '...' }, //If configured
     twitter: { id: '...', username: '...' }, //If configured
     github: { id: '...', username: '...' }, //If configured
     google: { id: '...', username: '...' }, //If configured
-    priorState: { }, //If using state transition preset function (see below)
+    priorState: {}, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
     cosmosAddress: context.cosmosAddress, //If pass address is configured
+    ethAddress: context.ethAddress, //If pass address is configured
+    solAddress: context.solAddress, //If pass address is configured
+    btcAddress: context.btcAddress, //If pass address is configured
     _isSimulation: context._isSimulation,
     _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     maxUses: context.maxUses,
     currUses: context.currUses,
-    version: context.version
+    version: context.version,
 };
 ```
 
@@ -142,7 +145,7 @@ Please follow the { message } interface for returned JSON error responses.
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { priorState, claimId, pluginSecret, cosmosAddress, _isSimulation, lastUpdated, createdAt } = body;
+    const { priorState, claimId, pluginSecret, cosmosAddress, ethAddress, solAddress, btcAddress, _isSimulation, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct
