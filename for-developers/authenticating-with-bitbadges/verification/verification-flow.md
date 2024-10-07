@@ -10,7 +10,7 @@ IMPORTANT: Note ownership requirements and claims must be checked server-side. T
 
 For ownership requirements, you should specify them via **options.ownershipRequirements**. Alternatively, you could self check requirements yourself.
 
-For claims, you must specify the **claimId**. If it is a non-indexed claim, you can just use the **simulateClaim** option to simulate and check criteria at verify time. Alternatively, you can use the **checkClaimedMinOnce** flag to see if the user to be signed in has at least one successful claim for that ID. If you need more advanced checks than just >= 1 successful claim or passes simulation, you will have to do that on your end. See the snippet below.
+For claims, you must specify the **claimId**. If it is a non-indexed (on-demand) claim, you can just use the **simulateClaim** option to simulate and check criteria at verify time. Alternatively, you can use the **checkClaimedMinOnce** flag to see if the user to be signed in has at least one successful claim for that ID. If you need more advanced checks than just >= 1 successful claim or passes simulation, you will have to do that on your end. See the snippet below.
 
 ```typescript
 export interface VerifySIWBBOptions {
@@ -21,7 +21,7 @@ export interface VerifySIWBBOptions {
   claimId?: string;
   /** If true, we will only check for the existence of the claim. */
   checkClaimedMinOnce?: boolean;
-  /** If true, we will simulate the claim. Only compatible with non-indexed claims. */
+  /** If true, we will simulate the claim. Only compatible with non-indexed on-demand claims. */
   simulateClaim?: boolean;
 
   /** How recent the challenge must be in milliseconds. Defaults to 10 minutes. If 0, we will not check the time. */

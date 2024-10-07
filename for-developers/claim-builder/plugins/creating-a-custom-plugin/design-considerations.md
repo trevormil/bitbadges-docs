@@ -14,8 +14,8 @@ As a design decision, we do NOT recommend or supporting private values like API 
 
 Consider workarounds such as:
 
-* Intermediate handler proxies
-* Passing authorization codes rather than the sensitive values themselves (similar to the OAuth flow)
+-   Intermediate handler proxies
+-   Passing authorization codes rather than the sensitive values themselves (similar to the OAuth flow)
 
 Although everything will be communicated through secure communication channels, you should treat BitBadges as a semi-trusted middleman. Add extra measures to protect against certain worst case scenarios, or add an additional layer of abstraction to avoid letting BitBadges know anything secret.&#x20;
 
@@ -32,11 +32,11 @@ This approach follows the same flow as OAuth authorization codes, except with a 
 There are a couple common implementation patterns for plugins. If possible, we recommend the first option.
 
 1. Snapshot + User Auth - At creation time, configure the parameters (potentially with an authorized request from the creator) and no future requests on behalf of the creator need to be made. At claim time, you could use user authentication to check criteria. For example,
-   1. Configure all approved emails -> verify user email at claim time
-   2. Configure the Twitch channel name -> use user Twitch authorization to check subscription
-2. Dynamic - Some plugins, however, may need to execute creator authorized requests upon each claim. For this, you will need to cache the creator details or somehow make it so that you will have authorization from the creator during all claim times.  Note that you should consider all possibilities like access token expirations -> refresh functionality.
+    1. Configure all approved emails -> verify user email at claim time
+    2. Configure the Twitch channel name -> use user Twitch authorization to check subscription
+2. Dynamic - Some plugins, however, may need to execute creator authorized requests upon each claim. For this, you will need to cache the creator details or somehow make it so that you will have authorization from the creator during all claim times. Note that you should consider all possibilities like access token expirations -> refresh functionality.
 
-### Reusing for Non-Indexed Claims / Balances&#x20;
+### Reusing for Non-Indexed (On-Demand) Claims / Balances&#x20;
 
 Pre-Reading: [Claim Actions](../../claim-actions.md)
 

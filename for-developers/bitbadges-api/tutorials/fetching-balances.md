@@ -18,7 +18,7 @@ However, note that these only apply to standard on-chain or off-chain indexed ba
 
 ### Fetching Directly
 
-You can also fetch balances directly using the getBadgeBalanceByAddress API route. This will work for all balance types (standard, off-chain indexed, and off-chain non-indexed).
+You can also fetch balances directly using the getBadgeBalanceByAddress API route. This will work for all balance types (standard, off-chain indexed, and non-indexed).
 
 ```typescript
 const res = await BitBadgesApi.getBadgeBalanceByAddress(

@@ -23,7 +23,7 @@ You can additionally provide a tutorial for parameter configuration for the clai
 Leave blank if not needed.
 
 Some additional information to note:
-- Reusing for non-indexed balances should only be true if it can function with no user inputs and just a crypto address.
+- Reusing for non-indexed (on-demand) balances should only be true if it can function with no user inputs and just a crypto address.
 - postProcessingJs is not to be used. This is an internal tool only.
 - requiresSessions is false sisnce this is custom created.
 

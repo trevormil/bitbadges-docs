@@ -24,7 +24,7 @@ Note that self-hosted balances are not compatible with BitBadges claims. For BIt
 
 The URLs should be a GET endpoints accessible to whoever needs it (e.g. BitBadges indexer). It is your responsibility to handle CORS errors and such yourself.
 
-### Non-Indexed Balances
+### Non-Indexed Balances (On-Demand)
 
 For non-indexed balances, you simply need to set up a server which can return the current balances for a specified Cosmos address.
 

@@ -16,7 +16,7 @@ On-chain, these are the leaves of [Merkle challenge](../core-concepts/balances-t
 
 **Off-Chain Badges - Indexed**
 
-For badges with the "Off-Chain - Indexed" balance type, everything works the same, except that upon successful claim, we actually allocate the badges (aka assigning them off-chain). There is no reserve step or transaction step for the user other than the claiming step.  To work, BitBadges needs to store and host the balances (you can migrate to self-host after the claim is done).
+For badges with the "Off-Chain - Indexed" balance type, everything works the same, except that upon successful claim, we actually allocate the badges (aka assigning them off-chain). There is no reserve step or transaction step for the user other than the claiming step. To work, BitBadges needs to store and host the balances (you can migrate to self-host after the claim is done).
 
 **Address Lists**
 
@@ -36,21 +36,21 @@ By default, we use an incrementing claim number system. For example, claim #1, t
 
 Only one plugin is allowed to assign claim numbers which is determined by the **assignMethod** of the claim. If the assignMethod === a plugin's unique instance ID, we allow it to assign claim numbers.
 
-## Non-Indexed Claims
+## Non-Indexed Claims (On-Demand)
 
-**Non-indexed claims are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.**&#x20;
+**Non-indexed or on-demand claims are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.**&#x20;
 
 In other words, nothing is stored, there is no inputs or claim step, and these can be queried / fetched dynamically from source (on-demand) at any time. For the claim to have these properties, all plugins must have the properties.&#x20;
 
 Some example plugins include:
 
-* Public badge ownership queries
-* Minimum $BADGE balance checks
-* Transfer time checks
+-   Public badge ownership queries
+-   Minimum $BADGE balance checks
+-   Transfer time checks
 
 For example, checking a minimum balance of $BADGE is safe to use because we always know a user's balance at any given time wihtout user interaction and just their address.
 
 Because of these unique properties, you are able to do the following, for example:
 
-* SIWBB requests would not require the "claim step" from the user. We can just check all such information on the go.
-* Non-indexed balances meaning that we just lookup balances for any user at any given time. No transfers need to take place. (see picture below).
+-   SIWBB requests would not require the "claim step" from the user. We can just check all such information on the go.
+-   Non-indexed (on-demand) balances meaning that we just lookup balances for any user at any given time. No transfers need to take place. (see picture below).
