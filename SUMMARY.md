@@ -121,6 +121,7 @@
 * [🏗️ Claims / Plugins](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Universal Approach - Claim Codes](for-developers/claim-builder/universal-approach-claim-codes.md)
+  * [Fetching Claims w/ API](for-developers/claim-builder/fetching-claims-w-api.md)
   * [Claim Types](for-developers/claim-builder/claim-actions.md)
   * [Design Considerations](for-developers/claim-builder/creating-maintaining-claims.md)
   * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
