@@ -170,6 +170,7 @@
       * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
       * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
       * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
+    * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
     * [Build a Distribution Tool](for-developers/claim-builder/other-tutorials/build-a-distribution-tool.md)
     * [Monetization](for-developers/claim-builder/other-tutorials/monetizing-apps-badges.md)
     * [Calendly - Get Emails](for-developers/claim-builder/other-tutorials/calendly-get-emails.md)
