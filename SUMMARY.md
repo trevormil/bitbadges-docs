@@ -103,6 +103,7 @@
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
     * [Designing for Compatibility](for-developers/bitbadges-api/concepts/designing-for-compatibility.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
+  * [Use via Pipedream](for-developers/bitbadges-api/use-via-pipedream.md)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
   * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
