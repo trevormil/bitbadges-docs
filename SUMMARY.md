@@ -162,7 +162,7 @@
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
     * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
   * [Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Post-Claim Actions / Webhooks](for-developers/claim-builder/post-claim-logic-webhooks.md)
+  * [Implementing Post-Claim Actions (Rewards)](for-developers/claim-builder/post-claim-logic-webhooks.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [Create a Tutorial](for-developers/claim-builder/other-tutorials/create-a-tutorial.md)
     * [Google Forms](for-developers/claim-builder/other-tutorials/google-forms.md)

@@ -6,7 +6,7 @@ You can now fetch the authentication details for the user, by exchanging the cod
 
 **Verifying Ownership Requirements and Claim Criteria**
 
-IMPORTANT: Note ownership requirements and claims must be checked server-side. The additional  parameters specified in the URL / client-side are just for display purposes and are not cached with the request and may potentially be manipulated by a malicious user.
+IMPORTANT: Note ownership requirements and claims must be checked server-side. The additional parameters specified in the URL / client-side are just for display purposes and are not cached with the request and may potentially be manipulated by a malicious user.
 
 For ownership requirements, you should specify them via **options.ownershipRequirements**. Alternatively, you could self check requirements yourself.
 
@@ -61,7 +61,7 @@ See more o the following page.
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verification Example**
 
@@ -118,7 +118,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 
 It is important to note that BitBadges only checks from a cryptographic standpoint and does not implement any application specific logic. We handle checking the user's signature and verifying ownership of specified badges / attestations (if any), verifying well-formedness, etc.
 
-Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.).&#x20;
+Any other custom requirements need to be handled by you separately (e.g. stamping users hands, checking IDs, etc.).
 
 It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
 
@@ -134,7 +134,7 @@ Does check :white\_check\_mark:
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
-* Does not handle sessions or check any session information. Does not handle any stateful data either  (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
+* Does not handle sessions or check any session information. Does not handle any stateful data either (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
 * Does not check the content of the attestation messages
   * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
 * If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
@@ -145,8 +145,6 @@ Does not check :x:
       }
     }
     ```
-
-
 
 **Flash Ownership Attacks**
 

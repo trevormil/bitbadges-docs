@@ -1,22 +1,62 @@
-# Post-Claim Actions / Webhooks
+# Implementing Post-Claim Actions (Rewards)
 
-Need to perform some additional action upon the user claiming successfully? There are two ways you can wait until success.
+Need to perform some additional action upon the user claiming successfully? There are a few ways you can implement this.
 
-1. You will receive the claim attempt ID within the context. You can then poll with the API to check its status. This may take a couple seconds for processing.
-2. If creating a custom plugin, you can subscribe to status webhooks. We will send a duplicate request post-completion with attemptStatus='success'. Note this sends to the same handler, same URI, same method, so you have to catch the attemptStatus accordingly.
-   1. You should send a 200 OK (or however your plugin is configured) during execution time to allow the claim to succeed.
+## **Preconfigured Plugins**
 
-**In-Site Webhook Plugins**
+The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Alert plugin.&#x20;
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+## **In-Site Rewards**
+
+When creating rewards on the claim builder page, you can also link gated content / codes to only be visible to users upon successfully claiming minimum one time.
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+## Polling Claim State
+
+You can also simply poll the claimed users by the claim ID since the claimees and claim numbers are public. Note this will only give you the claim address and number and not any of the features as custom plugins below. This can be done via the API or as a custom trigger through our Zapier integration.
+
+{% content-ref url="automate-w-zapier/post-success-zaps.md" %}
+[post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
+{% endcontent-ref %}
+
+{% content-ref url="fetching-claims-w-api.md" %}
+[fetching-claims-w-api.md](fetching-claims-w-api.md)
+{% endcontent-ref %}
+
+## **Custom Plugins / Webhooks**
+
+Plugins and the pre-configured webhook plugins can be customized to send requests to custom URL and expect a 200 OK response. There are two types of requests:
+
+* Success Hooks: If configured, we can send a success webhook which will only send upon a successful claim. This can be checked using the \_attemptStatus. If we do not receive a 200 OK, we will exponentially backoff but keep retrying until we do.&#x20;
+  * Typically, you may implement a queue-like system (send 200 OK to denote received -> implemnet your logic via the queue system)
+* During Execution Hook: Or, if your logic is critical to whether the claim is successful or not. We can call the URL during the claim execution and fail if we do not receive a 200 OK.
+
+**Webhooks by Zapier**
+
+Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.&#x20;
+
+This is super easy as you can connect to 7000+ apps upon a successful claim.
+
+{% content-ref url="automate-w-zapier/post-success-zaps.md" %}
+[post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
+{% endcontent-ref %}
+
+<figure><img src="../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
+
+**Custom Webhooks**
 
 Consider using  the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
 
 <figure><img src="../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
 
-**Custom Plugins as Webhooks**
+**Custom Plugins**
 
 Or, you can implement your own custom plugin. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim.
 
-You can identify the user in many different ways via teh passed socials / their address.
+You can identify the user in many different ways via the passed socials / their address.
 
 ```typescript
 // At your plugin handler URL
@@ -35,7 +75,10 @@ const body = req.body;
   maxUses: 1,
   currUses: 0,
   instanceId: 'e44ba88643381cd5fa09be288490a92c64add8bcd2327d29a11a4227fab55e5e',
-  pluginId: '...'
+  pluginId: '...',
+  
+  discord: { username: '', id: '' } //if configured
+  //and so on
 }
 */
 
@@ -43,18 +86,8 @@ if (body._isSimulation) return;
 
 const claimAtemptId = body.claimAttemptId;
 const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
-
-// Handle 
 ```
 
-**Webhooks by Zapier**
+## Auto-Completion
 
-Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.&#x20;
-
-<figure><img src="../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
-
-**BitBadges API**
-
-If you already are auto-claiming with the BitBadges API, you already know when users claim, so you can just implement whatever you need right there.
-
-Or, you can poll the GET claims endpoint to detect when new users have successfully claimed.
+And finally, we want to note that if you already are auto-claiming with the BitBadges API, you already know when users claim, so you can just implement whatever you need right there.

@@ -12,7 +12,7 @@ A high-level overview is:
 2. The user will be waked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI.
 3. The redirect URI can then fetch the authentication details from the transmitted code with knowledge of the configured app's clientSecret.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generating the URL**
 

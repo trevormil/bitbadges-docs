@@ -12,7 +12,7 @@ On your end, you will need to setup a HTTP handler API to accept the incoming re
 
 If your plugin requires inputs from the claiming user or claim creator, you can do this in the BitBadges site or via a window.postMessage from a custom frontend / tool. All inputs will be passed along to your handler. If none are provided, we assume there is nothing needed to be passed.
 
-Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).&#x20;
+Note to be compatible with Zapier (and possibly API auto-claiming), user inputs are typically not allowed (because the user is not manually initiating anything).
 
 User inputs are private, but creator inputs have the option to be public or private to the user.
 
@@ -24,7 +24,7 @@ When creating the plugin, configure the expected schemas. We will prompt the use
 
 **Option 2: Build a Custom Inputs Frontend**
 
-Consider creating your own frontend that the user will be redirected to. You will pass the parameters back to BitBadges through browser communication. Get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.&#x20;
+Consider creating your own frontend that the user will be redirected to. You will pass the parameters back to BitBadges through browser communication. Get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
 
 For user inputs, see here:
 
@@ -58,14 +58,14 @@ You can also select to automatically pass supported identifying details about th
 
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
 
--   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
--   **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
--   **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
--   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
--   **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
--   **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.&#x20;
--   **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
--   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
+* **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
+* **Claiming Address:** The **cosmosAddress** of the user who is attempting to claim.
+* **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
+* **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
+* **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
+* **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.
+* **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
+* **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
@@ -108,13 +108,13 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 **Stateless Preset**
 
-The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).&#x20;
+The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
-This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you.&#x20;
+This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you.
 
 <figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
