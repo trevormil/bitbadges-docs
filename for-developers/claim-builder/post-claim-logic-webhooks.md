@@ -18,7 +18,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You can also simply poll the claimed users by the claim ID since the claimees and claim numbers are public. Note this will only give you the claim address and number and not any of the features as custom plugins below. This can be done via the API or as a custom trigger through our Zapier integration.
 
-With this flow, you may find you need to authenticate users via Sign In with BItBadges on your end too.
+With this flow, you may find you need to authenticate users via Sign In with BItBadges on your end too. Note your claim may also have assigned, for example, unique badge IDs to each claimee, so you may also be able to authenticate or gate rewards by checking such requirements instead of using solely their address.
 
 {% content-ref url="automate-w-zapier/post-success-zaps.md" %}
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
