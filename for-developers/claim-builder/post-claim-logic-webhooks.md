@@ -10,9 +10,13 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 Consider using  the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
 
+<figure><img src="../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
+
 **Custom Plugins as Webhooks**
 
 Or, you can implement your own custom plugin. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim.
+
+You can identify the user in many different ways via teh passed socials / their address.
 
 ```typescript
 // At your plugin handler URL
@@ -46,6 +50,8 @@ const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 **Webhooks by Zapier**
 
 Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
 
 **BitBadges API**
 

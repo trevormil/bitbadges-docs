@@ -5,3 +5,5 @@ If you want to implement post-success Zaps, consider using the New Claim Success
 <figure><img src="../../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
 
 If you need more information like user socials or custom inputs, consider creating a custom plugin or using a webhook plugin to handle this and trigger the Zap manually via the Webhoks by Zapier plugin.
+
+<figure><img src="../../../.gitbook/assets/image (148).png" alt=""><figcaption></figcaption></figure>
