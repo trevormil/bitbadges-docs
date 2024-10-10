@@ -4,13 +4,17 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 ## **Preconfigured Plugins**
 
-The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Alert plugin.&#x20;
+The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Notification plugin.&#x20;
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## **In-Site Rewards**
 
-When creating rewards on the claim builder page, you can also link gated content / codes to only be visible to users upon successfully claiming minimum one time.
+When creating rewards on the claim builder page, you can also link gated content / codes to only be visible to users upon successfully claiming.
+
+Gated content / URLS - We check 1+ successful claim
+
+Codes - We assign a unique code to each successful claim number.
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
