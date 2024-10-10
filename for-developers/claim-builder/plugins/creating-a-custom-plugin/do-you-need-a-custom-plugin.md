@@ -16,8 +16,8 @@ For example,
 
 If you can implement everything you need while using existing plugins, consider creating  a configuration tool rather than a plugin.
 
-{% content-ref url="../../configuration-tools.md" %}
-[configuration-tools.md](../../configuration-tools.md)
+{% content-ref url="../configuration-tools.md" %}
+[configuration-tools.md](../configuration-tools.md)
 {% endcontent-ref %}
 
 Or, consider creating a Zapier integration instead of a BitBadges custom plugin. Zapier's functionality is more complete than what BitBadges offers, especially for authenticated routes.

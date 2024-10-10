@@ -34,8 +34,8 @@ For user inputs, see here:
 
 For creator inputs, see configuration tools which automatically for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
 
-{% content-ref url="../../configuration-tools.md" %}
-[configuration-tools.md](../../configuration-tools.md)
+{% content-ref url="../configuration-tools.md" %}
+[configuration-tools.md](../configuration-tools.md)
 {% endcontent-ref %}
 
 **Supported Schema Types**

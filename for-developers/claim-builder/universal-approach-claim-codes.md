@@ -18,7 +18,7 @@ Consider also setting custom metadata to let users know what the codes are for, 
 
 **Configuration Tools**
 
-If you are building a tool / service, consider creating a [configuration tool](configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
+If you are building a tool / service, consider creating a [configuration tool](plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
 
 An example configuration input would be:
 
