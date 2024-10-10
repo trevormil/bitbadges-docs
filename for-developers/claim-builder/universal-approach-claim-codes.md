@@ -42,7 +42,7 @@ Using a configuration tool would take this step out for the claim creator.
 
 **Generate Codes from Seed Snippet**
 
-Auto-generated codes are calculated from a seed code, rather than needing to store all N codes.
+Auto-generated codes are calculated from a seed code, rather than needing to store all N codes. Note indexes are zero-based (code #1 = idx 0).
 
 ```typescript
 import CryptoJS from 'crypto-js';

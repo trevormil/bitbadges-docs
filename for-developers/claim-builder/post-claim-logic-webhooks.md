@@ -14,7 +14,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 Gated content / URLS - We check 1+ successful claim
 
-Codes - We assign a unique code to each successful claim number.
+Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md "mention") for more information (reuses same code).
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
