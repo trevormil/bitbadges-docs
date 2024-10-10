@@ -1,5 +1,5 @@
 # Discord
 
-{% content-ref url="../../badge-gating-discord-servers/" %}
-[badge-gating-discord-servers](../../badge-gating-discord-servers/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
