@@ -3,8 +3,8 @@
 If your use case requires monetization (such as memberships or recurring payments), we leave you to use existing payment processors and your own implementations. You may connect it to BitBadges claims and just check it as another plugin / criteria.
 
 ```javascript
-if (addressHasPaid) { return success }
-else { return false }
+if (addressHasPaid) { return success } //Ex: Return 200 OK
+else { throw new Error("Payment was not satisfied") }
 ```
 
 While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We intend for $BADGE to mainly be used as a compute credits system for on-chain transactions. **It is not meant to be a payment currency.**
