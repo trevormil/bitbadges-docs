@@ -125,6 +125,7 @@
   * [Fetching Claims](for-developers/claim-builder/fetching-claims-w-api.md)
   * [Claim Types](for-developers/claim-builder/claim-actions.md)
   * [Design Considerations](for-developers/claim-builder/creating-maintaining-claims.md)
+  * [Success Logic](for-developers/claim-builder/success-logic.md)
   * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
   * [Plugins](for-developers/claim-builder/plugins/README.md)
     * [Overview](for-developers/claim-builder/plugins/overview.md)
