@@ -1,6 +1,6 @@
 # Success Logic
 
-Certain claims may make use of the **satsifyMethod** property to implement dynamic logic.&#x20;
+Certain claims may make use of the **satsifyMethod** property to implement dynamic logic. This option is currently only available behind the scenes. Frontend defaults to all are required (satisfyMethod = undefined).
 
 This works in the following ways:
 
