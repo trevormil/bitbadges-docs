@@ -26,12 +26,12 @@ The URLs should be a GET endpoints accessible to whoever needs it (e.g. BitBadge
 
 ### Non-Indexed Balances (On-Demand)
 
-For non-indexed balances, you simply need to set up a server which can return the current balances for a specified Cosmos address.
+For non-indexed balances, you simply need to set up a server which can return the current balances for a specified BitBadges address.
 
 Couple notes:
 
 * The URL stored on-chain must have {address} as a placeholder for the address to query.
-* The URL param is expected to support converted Cosmos addresses. It is up to you whether you want to support native addresses as well, but converted Cosmos address support is mandatory. See [here for more information](../accounts.md).
+* The URL param is expected to support converted BitBadges addresses. It is up to you whether you want to support native addresses as well, but converted BitBadges address support is mandatory. See [here for more information](../accounts.md).
 
 Example:
 
@@ -40,7 +40,7 @@ On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
 ```typescript
 app.get('/nonIndexed/:address', async (req, res) => {
   const address = req.params.address; 
-  const cosmosAddress = convertToCosmosAddress();
+  const bitbadgesAddress = convertToBitBadgesAddress();
   
   //custom logic - (e.g. check subscription status or check some local DB value)
 
@@ -55,7 +55,7 @@ With indexed balances, you store and host the entire balance map all at one endp
 
 **Step 1: Create Your Map**
 
-The map is simply a cosmosAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
+The map is simply a bitbadgesAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
 Note that if you use address list IDs for the keys ([see here to learn more](../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badge IDs in this map than what was created on-chain (via the "Mint" address).
 
@@ -71,7 +71,7 @@ For example,
 
 ```json
 {
-  "cosmos1qjgpfmk93lqdak3ea7xqp5ec6v8nd79krktww4": [
+  "bb1qjgpfmk93lqdak3ea7xqp5ec6v8nd79kqtrajy": [
     {
       "amount": "1",
       "badgeIds": [
@@ -88,7 +88,7 @@ For example,
       ]
     }
   ],
-  "cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl": [
+  "bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw": [
     {
       "amount": "1",
       "badgeIds": [

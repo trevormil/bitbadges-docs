@@ -28,7 +28,7 @@ const msgCreateProtocol = new MsgCreateProtocol({
   "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
   "customData": "Test",
   "isFrozen": false,
-  "creator": chain.cosmosAddress
+  "creator": chain.bitbadgesAddress
 })
 const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
 const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');

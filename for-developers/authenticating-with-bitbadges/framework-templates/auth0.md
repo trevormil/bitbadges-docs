@@ -60,7 +60,7 @@ function(accessToken, ctx, cb) {
       const profile = {
         address: account.address,
         chain: account.chain,
-        id: account.cosmosAddress,
+        id: account.bitbadgesAddress,
         name: account.address,
       };
       cb(null, profile);

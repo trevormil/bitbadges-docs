@@ -23,7 +23,7 @@ See [**https://docs.cosmos.network/v0.45/run-node/run-node.html**](https://docs.
 
 With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON\_HOME/config/genesis.json -> app\_state.bank.balances path as seen below.
 
-You can use any converted Cosmos address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI.  To get one or view your existing ones, run&#x20;
+You can use any converted BitBadges address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI.  To get one or view your existing ones, run&#x20;
 
 ```
 cosmovisor run keys ...
@@ -35,7 +35,7 @@ cosmovisor run keys ...
       ...
       "balances": [
         {
-          "address": "cosmos1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a",
+          "address": "bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv",
           "coins": [
             {
               "denom": "ubadge",

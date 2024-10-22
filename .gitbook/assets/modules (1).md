@@ -130,7 +130,7 @@
 - [checkIfApprovedInTransferList](modules.md#checkifapprovedintransferlist)
 - [checkIfIdRangesOverlap](modules.md#checkifidrangesoverlap)
 - [convertToBitBadgesUserInfo](modules.md#converttobitbadgesuserinfo)
-- [convertToCosmosAddress](modules.md#converttocosmosaddress)
+- [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
 - [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
 - [doesChainMatchName](modules.md#doeschainmatchname)
 - [filterBadgeActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
@@ -1198,9 +1198,9 @@ ___
 
 ___
 
-### convertToCosmosAddress
+### convertToBitBadgesAddress
 
-▸ **convertToCosmosAddress**(`address`): `string`
+▸ **convertToBitBadgesAddress**(`address`): `string`
 
 #### Parameters
 

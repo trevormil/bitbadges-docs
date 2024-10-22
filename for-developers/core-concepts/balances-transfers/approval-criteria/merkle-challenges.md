@@ -39,7 +39,7 @@ Whitelist trees can be used to distribute gas costs among N users rather than th
 
 If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.&#x20;
 
-To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the Cosmos address of the initiator of the transfer transaction.
+To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the BitBadges address of the initiator of the transfer transaction.
 
 **Max Uses per Leaf**
 
@@ -95,7 +95,7 @@ const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 For whitelists, replace with this code.
 
 ```typescript
-addresses.push(...toAddresses.map(x => convertToCosmosAddress(x)));
+addresses.push(...toAddresses.map(x => convertToBitBadgesAddress(x)));
 
 const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, treeOptions)
 const addressesRoot = addressesTree.getRoot().toString('hex');
@@ -105,7 +105,7 @@ A valid proof can then be created via where codeToSubmit is the code submitted b
 
 ```typescript
 const passwordCodeToSubmit = '....'
-const leaf = isWhitelist ? SHA256(chain.cosmosAddress).toString() : SHA256(passwordCodeToSubmit).toString();
+const leaf = isWhitelist ? SHA256(chain.bitbadgesAddress).toString() : SHA256(passwordCodeToSubmit).toString();
 const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
@@ -121,7 +121,7 @@ const codeProof = {
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {
-  creator: chain.cosmosAddress,
+  creator: chain.bitbadgesAddress,
   collectionId: collectionId,
   transfers: [{
     ...

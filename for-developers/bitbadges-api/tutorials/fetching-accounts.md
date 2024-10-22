@@ -7,7 +7,7 @@ const accountsRes = await BitBadgesApi.getAccounts({
     accountsToFetch: [
         {
             //example
-            address: 'cosmos...',
+            address: 'bb1...',
             fetchSequence: true,
             fetchBalance: true,
             viewsToFetch: [
@@ -23,7 +23,7 @@ const accountsRes = await BitBadgesApi.getAccounts({
 const account = accountsRes.accounts[0];
 
 //Option 2:
-// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'cosmos...', fetchSequence: true, fetchBalance: true, viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
+// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'bb...', fetchSequence: true, fetchBalance: true, viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
 
 console.log(account.sequence);
 console.log(account.balance?.amount);
@@ -48,7 +48,7 @@ if (badgesCollectedViewHasMore) {
 
     //Option 2:
     // const badgesCollectedBookmark = account.getViewBookmark('badgesCollected')
-    // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'cosmos...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
+    // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'bb...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
     // const account2 = res4.accounts[0]
     // account.updateWithNewResponse(account2)
 }
@@ -58,7 +58,7 @@ const badgesCollectedView = account.getAccountBalancesView('badgesCollected');
 
 ### Chains
 
-We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**.  See the algorithm for deftermining "native" chain in the Concepts section. We also return each equivalent address to their native address via: **btcAddress**, **solAddress**, **ethAddress**, and **cosmosAddress**.
+We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**. See the algorithm for deftermining "native" chain in the Concepts section. We also return each equivalent address to their native address via: **btcAddress**, **solAddress**, **ethAddress**, and **bitbadgesAddress**.
 
 Note that **solAddress** may be blank if we do not have adequate information. This is because Solana addresses can only be converted from and not to.
 
@@ -118,26 +118,26 @@ The account interface also supports different filtering options. Make sure that 
 
 The user interface supports the following base **viewType** values.
 
-* 'transferActivity' : Fetches latest transfer activity documents for the user.
-* 'listsActivity': Fetches latest list activity documents for the user
-* 'reviews': Fetches latest reviews for the user
-* 'badgesCollected': Fetches badges owned by the user
-* 'createdBadges': Collections / badges that the user has created
-* 'managingBadges': Collections / badges that the user is managing currently
-* 'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
-* 'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
-* 'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
-* 'createdLists': Lists that the user has created (excludes private lists)
-* 'publicAttestationProofs': Public attestation proofs that the user has created
+-   'transferActivity' : Fetches latest transfer activity documents for the user.
+-   'listsActivity': Fetches latest list activity documents for the user
+-   'reviews': Fetches latest reviews for the user
+-   'badgesCollected': Fetches badges owned by the user
+-   'createdBadges': Collections / badges that the user has created
+-   'managingBadges': Collections / badges that the user is managing currently
+-   'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
+-   'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
+-   'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
+-   'createdLists': Lists that the user has created (excludes private lists)
+-   'publicAttestationProofs': Public attestation proofs that the user has created
 
 The following require authentication:
 
-* 'latestClaimAlerts': Latest claim alerts
-* 'siwbbRequests': Authentication QR codes for the user
-* 'privateLists': Private lists created by the user
-* 'createdAttestations': Attestations that the user has created
-* 'receivedAttestations': Attestations that the user has received
-* 'attestationProofs': Attestation proofs that the user has created
+-   'latestClaimAlerts': Latest claim alerts
+-   'siwbbRequests': Authentication QR codes for the user
+-   'privateLists': Private lists created by the user
+-   'createdAttestations': Attestations that the user has created
+-   'receivedAttestations': Attestations that the user has received
+-   'attestationProofs': Attestation proofs that the user has created
 
 ```typescript
 export type AccountViewKey =
@@ -288,7 +288,7 @@ export interface AccountInfoBase<T extends NumberType> {
 
     publicKey: string;
     chain: SupportedChain;
-    cosmosAddress: string;
+    bitbadgesAddress: string;
     ethAddress: string;
     solAddress: string;
     btcAddress: string;

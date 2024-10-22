@@ -39,7 +39,7 @@ export interface MerkleProof {
 
 **To / From Addresses**
 
-The to and from addresses must be valid Cosmos addresses. The from address can also be "Mint".
+The to and from addresses must be valid BitBadges addresses. The from address can also be "Mint".
 
 **Precalculations**
 

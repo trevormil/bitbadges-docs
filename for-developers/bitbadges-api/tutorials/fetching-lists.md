@@ -2,7 +2,7 @@
 
 You can also fetch address lists using the BitBadges API.  AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
-Note off-chain list IDs are prefixed with "cosmosAddress\_".&#x20;
+Note off-chain list IDs are prefixed with "bitbadgesAddress\_".&#x20;
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const listsRes = await BitBadgesApi.getAddressLists([{
 </strong><strong>    //example
@@ -29,7 +29,7 @@ On the app, we hide all profile details (links, bios, etc) and provide a warning
 
 ### Alias
 
-The **alias** field is the alias Cosmos address for the list (a fake account that can receive badges).
+The **alias** field is the alias BitBadges address for the list (a fake account that can receive badges).
 
 ### **Views / Paginations**
 

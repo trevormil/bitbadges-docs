@@ -26,7 +26,7 @@ State is maintained by incrementing the numUses by 1 **every** claim by any user
 ```
 {
   addresses: {
-    "cosmos1...": 10 // claimed 10 times
+    "bb1...": 10 // claimed 10 times
   }
 }
 ```

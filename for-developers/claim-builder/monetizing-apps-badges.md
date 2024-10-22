@@ -67,7 +67,7 @@ For the Stripe webhook approach, this may look something like the following:
         const paymentIntent = event.data.object;
 
         //TODO: Auto-completion logic
-        const address = mustConvertToCosmosAddress(paymentIntent.metadata.cosmosAddress);
+        const address = mustConvertToBitBadgesAddress(paymentIntent.metadata.bitbadgesAddress);
         const res = await BitBadgesApi.completeClaim(claimId, address, { ...body });
 <strong>        console.log(res.claimAttemptId);
 </strong>      default:

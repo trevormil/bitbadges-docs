@@ -7,7 +7,7 @@
 
 ### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
 
-For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent Cosmos address and being signature compatible (able to verify signatures of the native signature schemes).
+For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent BitBadges address and being signature compatible (able to verify signatures of the native signature schemes).
 
 ### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
 
@@ -56,13 +56,13 @@ import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
 const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
 const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
 const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'cosmos'
+const defaultBech32Prefix = 'bb'
 const isPrivateKey: boolean = true /* just for the example */
 
 const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
 const ethereumAddress = wallet.address
 const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const cosmosAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
+const bitbadgesAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
 ```
 
 Let's see an example code snipped on how to derive a public key from a private key:

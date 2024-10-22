@@ -39,7 +39,7 @@ In a JSON hosted at **merkleChallenge.uri,** you can also provide Merkle challen
 
 IMPORTANT: Do not reveal any secret codes via **leaves** (Merkle leaves) here, as whatever is stored here is publicly visible.
 
-Whitelist trees: **leaves** are the Cosmos addresses and **isHashed** is false.
+Whitelist trees: **leaves** are the BitBadges addresses and **isHashed** is false.
 
 Codes trees: **leaves** are the secret codes SHA256 hashed once and **isHashed** is true. KEEP THE PREIMAGES (SECRET CODES) PRIVATE. The only thing that should be publicly visible are the hashed codes.
 

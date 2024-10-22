@@ -138,7 +138,7 @@ Because BBS+ are not actually signed by your "main" address, we also require a *
 ```typescript
 const message = `I approve the issuance of credentials signed with BBS+ ${attestation.dataIntegrityProof.signer} as my own.\n\n`;
 const sig = await chain.signChallenge(message);
-const publicKey = await chain.getPublicKey(chain.cosmosAddress);
+const publicKey = await chain.getPublicKey(chain.bitbadgesAddress);
 body = {
     ...attestation,
     proofOfIssuance: {

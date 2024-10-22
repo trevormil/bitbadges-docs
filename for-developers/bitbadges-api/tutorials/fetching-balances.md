@@ -34,7 +34,7 @@ If you do not need the balances themselves and you just want to verify if a user
 
 ```typescript
 const res = await BitBadgesApi.verifyOwnershipRequirements({
-    cosmosAddress,
+    bitbadgesAddress,
     assetOwnershipRequirements: {
         $and: [
             {

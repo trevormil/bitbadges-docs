@@ -47,16 +47,16 @@ There are a couple IDs for AddressLists that are reserved for efficient shorthan
 * "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
 * Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
   * "Mint" specifies the "Mint" address only.
-  * "cosmos1abc..." specified the list with "cosmos1abc...." only
+  * "bb1abc..." specified the list with "bb1abc...." only
 * Combination shorthands
-  * Using the ":" character, you can combine multiple addresses such as "Mint:cosmos1abc...". This would represent the list with Mint and cosmos1abc...
+  * Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
 * Inversion shorthands
   * If prefixed with "!", it denotes to invert the address list.
     * "!id123" inverts the "id123" address list
     * "!Mint" inverts the Mint list
-    *   "!Mint:cosmos1abc..." inverts the "Mint:cosmos1abc..." list which means all but the two specified addresses
+    *   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
 
-        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:cosmos1abc...)" if you would like
+        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
 
 Use the SDK functions below for generating IDs / lists.
 
@@ -72,18 +72,18 @@ export const generateReservedListId = (
 
 ### Custom IDs
 
-Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain everytime first. However, long list IDs are very inefficient, especially if used multiple times (e.g. "AllWithoutMint:cosmos123...:cosmos456...").
+Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain everytime first. However, long list IDs are very inefficient, especially if used multiple times (e.g. "AllWithoutMint:bb123...:bb456...").
 
-For efficiency, consider creating a list with a unique short reusable ID and reference the list that way, rather than the long ID. You can create a list which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
+For efficiency, consider creating a list with a unique short reusable ID and reference the list that way, rather than the long ID. You can create a list which is all addresses except Mint, bb123..., bb456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:bb123...:bb456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 
 ### Examples
 
-This is the list which includes all addresses except "cosmos123...." and "cosmos456...."
+This is the list which includes all addresses except "bb123...." and "bb456...."
 
 ```typescript
 {
   "listId": "abcdef",
-  "addresses": ["cosmos123...", "cosmos456...."],
+  "addresses": ["bb123...", "bb456...."],
   "whitelist": false,
   ...
 }

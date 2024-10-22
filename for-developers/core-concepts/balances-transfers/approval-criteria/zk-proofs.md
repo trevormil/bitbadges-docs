@@ -101,7 +101,7 @@ Create Collection Msg w/ Proof
 
 ```json
 {
-    "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+    "creator": "bb1kfr2xajdvs46h0ttqadu50nhu8x4v0tc2wajnh",
     "collectionId": "0",
     "balancesType": "Standard",
     "defaultBalances": {
@@ -273,12 +273,12 @@ Sample Transfer Msg
 
 ```json
 {
-    "creator": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+    "creator": "bb1kfr2xajdvs46h0ttqadu50nhu8x4v0tc2wajnh",
     "collectionId": "21",
     "transfers": [
         {
             "from": "Mint",
-            "toAddresses": ["cosmos178m3nrv6arrfwh6r6gcr60v6m63cyxrycf4ywe"],
+            "toAddresses": ["bb178m3nrv6arrfwh6r6gcr60v6m63cyxrym5ahjg"],
             "balances": [
                 {
                     "amount": "1",

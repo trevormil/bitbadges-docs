@@ -31,7 +31,7 @@ console.log(collection.getBadgeMetadata(1n))
 console.log(collection.getCollectionMetadata())
 console.log(collection.getBadgeBalances('Mint'))
 console.log(collection.getBadgeBalances('Total'))
-console.log(collection.getBadgeBalanceInfo('cosmos....') //returns whole doc w/ approvals and more not just balances
+console.log(collection.getBadgeBalanceInfo('bb....') //returns whole doc w/ approvals and more not just balances
 ```
 
 ### Pruning Requests + Pruning Paginations
@@ -72,7 +72,7 @@ const newBody = collection.pruneBody()
 
 #### Total / Circulating Supply
 
-The "Total" supply balances are treated just as any other user's balances. Use "Total" as the cosmosAddress / address.
+The "Total" supply balances are treated just as any other user's balances. Use "Total" as the bitbadgesAddress / address.
 
 **Fetching Balances from API**
 
@@ -81,7 +81,7 @@ To fetch the total (circulating) balances, you can fetch them in a request with 
 To fetch a generic user address balance, you can fetch them with the following command. This will also append that balance to the **owners** array.
 
 ```typescript
-await collection.fetchBadgeBalances(BitBadgesApi, 'cosmos....');
+await collection.fetchBadgeBalances(BitBadgesApi, 'bb....');
 ```
 
 **Using Balances**
@@ -89,12 +89,12 @@ await collection.fetchBadgeBalances(BitBadgesApi, 'cosmos....');
 You can fetch then use the balances using one of two methods below, but note that they must be fetched prior or else may return undefined (or throw is you use the mustGet function).
 
 ```typescript
-collection.owners.find((x) => x.cosmosAddress === 'Total');
+collection.owners.find((x) => x.bitbadgesAddress === 'Total');
 ```
 
 ```typescript
 console.log(collection.getBadgeBalances('Total'))
-console.log(collection.getBadgeBalanceInfo('cosmos....') //returns whole doc w/ approvals and more not just balances
+console.log(collection.getBadgeBalanceInfo('bb....') //returns whole doc w/ approvals and more not just balances
 ```
 
 getBadgeBalances returns just the balances, whereas getBadgeBalanceInfo returns the whole balance document (approvals, permissions, and balances).
@@ -104,8 +104,16 @@ getBadgeBalances returns just the balances, whereas getBadgeBalanceInfo returns 
 Everything above handles balances on a collection level, but sometimes, you may want to fetch activity / balances for a specific badge ID. You can do so via the badge-specific API routes; however, note you have to handle paginations yourself.
 
 ```typescript
-const { activity, pagination } = await collection.getBadgeActivity(BitBadgesApi, 1n, { bookmark: '...' })
-const { owners, pagination } = await collection.getOwnersForBadge(BitBadgesApi, 1n, { bookmark: '...' })
+const { activity, pagination } = await collection.getBadgeActivity(
+    BitBadgesApi,
+    1n,
+    { bookmark: '...' }
+);
+const { owners, pagination } = await collection.getOwnersForBadge(
+    BitBadgesApi,
+    1n,
+    { bookmark: '...' }
+);
 ```
 
 ### NSFW / Reported
@@ -187,10 +195,10 @@ Views have a base **viewType** describing the query type and a unique **viewId**
 
 The collection interface supports the following base **viewType** values.
 
-* 'transferActivity' : Fetches latest transfer activity documents.
-* 'amountTrackers': Fetches latest amount trackers for collection
-* 'challengeTrackers': Fetches latest challenge trackers for collection
-* 'owners': Fetches owners of the collection
+-   'transferActivity' : Fetches latest transfer activity documents.
+-   'amountTrackers': Fetches latest amount trackers for collection
+-   'challengeTrackers': Fetches latest challenge trackers for collection
+-   'owners': Fetches owners of the collection
 
 ```typescript
 export type CollectionViewKey =
@@ -201,13 +209,13 @@ export type CollectionViewKey =
 ```
 
 ```typescript
-const hasMore = collection.viewHasMore('owners')
-const pagination = collection.getViewPagination('owners')
-const bookmark = collection.getViewBookmark('owners')
+const hasMore = collection.viewHasMore('owners');
+const pagination = collection.getViewPagination('owners');
+const bookmark = collection.getViewBookmark('owners');
 
 await collection.fetchNextForView(BitBadgesApi, 'owners', 'owners');
 
-const ownersView = collection.getOwnersView('owners')
+const ownersView = collection.getOwnersView('owners');
 ```
 
 The collection interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.

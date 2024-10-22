@@ -28,7 +28,7 @@ State is maintained by incrementing the numUses by 1 **every** claim by any user
 ```
 {
   claimedUsers: {
-    "cosmos1...": [0, 1]
+    "bb1...": [0, 1]
   },
   numUses: 0
 }

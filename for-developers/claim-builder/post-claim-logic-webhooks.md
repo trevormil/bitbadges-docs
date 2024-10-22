@@ -70,7 +70,7 @@ You can identify the user in many different ways via the passed socials / their 
 const body = req.body;
 /*
 {
-  cosmosAddress: 'cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl',
+  bitbadgesAddress: 'bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw',
   claimId: '7a5b61ce3f2cf5eeb89f453c87f2b970328356395bf4ac4a23702d2fb0fb63c9',
   _isSimulation: false,
   lastUpdated: 1722088273192,

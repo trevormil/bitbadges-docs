@@ -100,7 +100,7 @@ const address = body.proofOfIssuance.signer;
 const chain = getChainForAddress(address);
 
 if (
-    convertToCosmosAddress(address) !== convertToCosmosAddress(body.createdBy)
+    convertToBitBadgesAddress(address) !== convertToBitBadgesAddress(body.createdBy)
 ) {
     throw new Error('Signer does not match creator');
 }

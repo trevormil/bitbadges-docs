@@ -152,7 +152,7 @@ We do this by the following:
 
 **What format should the balances be in?**
 
-To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are Cosmos addresses / address list IDs and the values are Balance\<string>\[]. See [https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances](https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances).
+To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are BitBadges addresses / address list IDs and the values are Balance\<string>\[]. See [https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances](https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances).
 
 Note that if you use address list IDs for the keys ([see here to learn more](../address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
@@ -208,7 +208,7 @@ At any given time, we do not know the entire list of owners and balances, unlike
 
 The benefit of this is that this approach is much more scalable to indexers. Indexers do not need to worry about caching and maintaining logs of balances. As a result, there is no limit on the number of unique owners, whereas there is a limit (currently 15000 for the BitBadges API / Indexer) for standard indexed balances.
 
-All URIs must contain the "{address}" placeholder in the on-chain specified URI. This is to be replaced at fetch time with the user's Cosmos address. it is up to you whether you want to support native chain addresses as well, but the converted Cosmos address is a minimum requirement.
+All URIs must contain the "{address}" placeholder in the on-chain specified URI. This is to be replaced at fetch time with the user's BitBadges address. it is up to you whether you want to support native chain addresses as well, but the converted BitBadges address is a minimum requirement.
 
 The return value from the URI should be dynamic in the following format:
 
@@ -246,7 +246,7 @@ On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
 ```typescript
 app.get('/nonIndexed/:address', async (req, res) => {
   const address = req.params.address;
-  const cosmosAddress = convertToCosmosAddress();
+  const bitbadgesAddress = convertToBitBadgesAddress();
 
   //custom logic
 

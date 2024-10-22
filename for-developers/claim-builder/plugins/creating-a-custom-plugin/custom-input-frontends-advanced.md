@@ -18,7 +18,7 @@ window.open(baseUri + '?context=' + JSON.stringify(context), '_blank');
 interface ContextInfo {
   address: string;
   claimId: string;
-  cosmosAddress: string;
+  bitbadgesAddress: string;
   createdAt: number;
   lastUpdated: number;
   

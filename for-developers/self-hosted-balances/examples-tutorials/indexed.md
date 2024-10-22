@@ -6,7 +6,7 @@ JSON:&#x20;
 
 ```json
 {
-  "cosmos1zd5dsage58jfrgmsu377pk6w0q5zhc67fn4gsl": [
+  "bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw": [
     {
       "amount": "1",
       "badgeIds": [
@@ -23,7 +23,7 @@ JSON:&#x20;
       ]
     }
   ],
-  "cosmos1spgqdupvv8jex2v9zrvj9umqa26rrzc0mkcxc8": [
+  "bb1spgqdupvv8jex2v9zrvj9umqa26rrzc0cts4yk": [
     {
       "amount": "1",
       "badgeIds": [

@@ -40,25 +40,25 @@ There are a couple IDs for AddressLists that are reserved for efficient shorthan
 * Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
 * "Mint" specifies the "Mint" address only.
 * "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
-* "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:cosmos123...:cosmos456...")
+* "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:bb123...:bb456...")
 * "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 
 See below for the function for generating them.
 
 ### Custom IDs
 
-Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:cosmos123...:cosmos456...").&#x20;
+Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:bb123...:bb456...").&#x20;
 
-For efficiency, consider creating a list with a unique short ID and reference the list that way. You can create a list which is all addresses except Mint, cosmos123..., cosmos456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:cosmos123...:cosmos456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
+For efficiency, consider creating a list with a unique short ID and reference the list that way. You can create a list which is all addresses except Mint, bb123..., bb456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:bb123...:bb456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 
 ### Examples
 
-This is the list which includes all addresses except "cosmos123...." and "cosmos456...."
+This is the list which includes all addresses except "bb123...." and "bb456...."
 
 ```typescript
 {
   "listId": "abcdef",
-  "addresses": ["cosmos123...", "cosmos456...."],
+  "addresses": ["bb123...", "bb456...."],
   "whitelist": false,
   ...
 }
@@ -125,7 +125,7 @@ This is the list which includes all addresses except "cosmos123...." and "cosmos
     //For tracker IDs, we allow aliasses(aka non valid addresses)
     if (!allowAliases) {
       for (let address of addressesToCheck) {
-        if (address != 'Mint' &#x26;&#x26; !convertToCosmosAddress(address)) {
+        if (address != 'Mint' &#x26;&#x26; !convertToBitBadgesAddress(address)) {
           allAreValid = false
         }
       }

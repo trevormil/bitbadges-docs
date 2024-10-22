@@ -7,8 +7,8 @@ import Moralis from 'moralis';
 import { serializeError } from 'serialize-error';
 import typia from 'typia';
 
-export const getBalancesForEthFirstTx = async (cosmosAddress: string): Promise<Array<Balance<bigint>>> => {
-  const ethAddress = mustConvertToEthAddress(cosmosAddress);
+export const getBalancesForEthFirstTx = async (bitbadgesAddress: string): Promise<Array<Balance<bigint>>> => {
+  const ethAddress = mustConvertToEthAddress(bitbadgesAddress);
   const response = await Moralis.EvmApi.wallets.getWalletActiveChains({
     address: ethAddress
   });
@@ -35,9 +35,9 @@ export const getBalancesForEthFirstTx = async (cosmosAddress: string): Promise<A
 
 export async function getBalancesForEthFirstTxRoute(req: Request, res: Response) {
   try {
-    typia.assert<string>(req.params.cosmosAddress);
-    const cosmosAddress = req.params.cosmosAddress;
-    const balances = await getBalancesForEthFirstTx(cosmosAddress);
+    typia.assert<string>(req.params.bitbadgesAddress);
+    const bitbadgesAddress = req.params.bitbadgesAddress;
+    const balances = await getBalancesForEthFirstTx(bitbadgesAddress);
     return res.status(200).send({ balances });
   } catch (e) {
     console.error(e);

@@ -36,9 +36,9 @@ export interface VerifySIWBBOptions {
 </strong>    claimIds: [claimId]
 });
 const claim = claimsRes.claims[0];
-const cosmosAddress = convertToCosmosAddress(...);
+const bitbadgesAddress = convertToBitBadgesAddress(...);
 const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
-<strong>const claimNumbers = numUsesPlugin?.publicState.claimedUsers[cosmosAddress];
+<strong>const claimNumbers = numUsesPlugin?.publicState.claimedUsers[bitbadgesAddress];
 </strong>// claimNumbers is a 0-based claim numbers array (e.g. [0, 3, 5])
 
 //TODO: Customize as needed

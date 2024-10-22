@@ -27,7 +27,7 @@ The current manager is determined by the **managerTimeline.** Transferring the m
 ```json
 "managerTimeline": [
   {
-    "manager": "cosmos1kfr2xajdvs46h0ttqadu50nhu8x4v0tcfn4p0x",
+    "manager": "bb1kfr2xajdvs46h0ttqadu50nhu8x4v0tc2wajnh",
     "timelineTimes": [
       {
         "start": 1,

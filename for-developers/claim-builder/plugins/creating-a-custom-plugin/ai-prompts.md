@@ -206,7 +206,7 @@ const payload = {
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
-    cosmosAddress: context.cosmosAddress, //If pass address is configured
+    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured
     ethAddress: context.ethAddress, //If pass address is configured
     solAddress: context.solAddress, //If pass address is configured
     btcAddress: context.btcAddress, //If pass address is configured
@@ -224,7 +224,7 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { priorState, claimId, pluginSecret, cosmosAddress, _isSimulation, lastUpdated, createdAt } = body;
+    const { priorState, claimId, pluginSecret, bitbadgesAddress, _isSimulation, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct

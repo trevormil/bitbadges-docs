@@ -7,7 +7,7 @@ Note: $BADGE refers to the native gas credits token of the blockchain, not a spe
 ```typescript
 export interface iCoinTransfer<T extends NumberType> {
     /**
-     * The recipient of the coin transfer. This should be a Bech32 Cosmos address.
+     * The recipient of the coin transfer. This should be a Bech32 BitBadges address.
      */
     to: string;
     /**

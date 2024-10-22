@@ -22,7 +22,7 @@ You can generate and submit your transactions (Msgs) via:
 
 **What is the creator field?**
 
-The **creator** field for each message should be the transaction signer's cosmos address.
+The **creator** field for each message should be the transaction signer's BitBadges address.
 
 ## Msg Definitions
 

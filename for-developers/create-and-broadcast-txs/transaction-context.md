@@ -65,6 +65,6 @@ Generating the fee can be tricky. It should be reasonable for the current gas pr
 
 To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](broken-reference/). You can also query a node directly.&#x20;
 
-This will return the user's cosmos address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
+This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
 
 <figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
