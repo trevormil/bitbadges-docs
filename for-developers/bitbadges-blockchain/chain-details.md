@@ -4,7 +4,7 @@ Cosmos Chain ID (Mainnet) - bitbadges-1
 
 Cosmos Chain ID (Testnet) - bitbadges-2
 
-[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 $BADGE = 1 * 10^9 ubadge)
+[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 $BADGE = 1 \* 10^9 ubadge)
 
 ### Official Links
 
@@ -12,7 +12,7 @@ Cosmos Chain ID (Testnet) - bitbadges-2
 
 [http://node.bitbadges.io:26657](http://node.bitbadges.io:26657)
 
-Tendermint Node ID: 8d1ca31723a66b9058651220fd8da4618bc6f67c
+Tendermint Node ID: 2703c1304a70186372aa726a762d60da94c29ffe
 
 See genesis.json in source code repository for genesis file. See [here](htttps://github.com/bitbadges/bitbadgeschain) for source code repository.
 

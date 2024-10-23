@@ -15,7 +15,7 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 **BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
 
-Node ID (mainnet): 8d1ca31723a66b9058651220fd8da4618bc6f67c
+Node ID (mainnet): 2703c1304a70186372aa726a762d60da94c29ffe
 
 **Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-dwontime using Cosmovisor.
 
