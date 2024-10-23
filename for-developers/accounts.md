@@ -2,28 +2,35 @@
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
+```
+Note: We have recently migrated from "cosmos" -> "bb" prefixes for mapping to Cosmos.
+
+The terms Cosmos and BitBadges addresses may be used interchangeably.
+Some learning material and documentation may still use "cosmos".
+```
+
 **Mapping to a Common Address (bitbadgesAddress)**
 
-To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.&#x20;
+To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.
 
-You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.** We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed.&#x20;
+You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.** We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed.
 
-The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.&#x20;
+The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.
 
 Ethereum Example:
 
--   Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
--   Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
+* Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
+* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
 
 Solana Example:
 
--   Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
--   Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
+* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
 
 Bitcoin Example
 
--   Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
--   Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
 
 <figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -54,4 +61,4 @@ Signature compatibility means that we can verify transaction signatures from any
 #### **How do I query details for an address?**
 
 1. You can use the [BitBadges API](bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
-2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html)
+2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API](https://docs.cosmos.network/v0.46/run-node/interact-node.html)
