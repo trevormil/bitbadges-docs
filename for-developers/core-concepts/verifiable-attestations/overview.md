@@ -1,29 +1,47 @@
 # Overview
 
-Attestations are very similar to Verifiable Credentials. [Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) are growing in popularity, especially in the blockchain space. They provide a mechanism to express [credentials](https://www.w3.org/TR/vc-data-model-2.0/#dfn-credential) on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable. While the BitBadges attestations implementation does not claim to be 100% compatible with the W3C Verifiable Credentials standard, it follows a very similar execution flow.
+An attestation represents claims about a subject, similar to a Verifiable Credential. The concept has gained significant traction in blockchain and Web3 spaces, where different implementations offer varying approaches to creating secure, verifiable, and privacy-respecting credentials.
 
-Very simply, attestations are just cryptographic signatures of message(s). Because they are cryptographically signed by an issuer, it maintains the data integrity, so any holder / verifier of the attestation can prove it was issued by the issuer (simply by checking the signature). All is facilitated off-chain, unless you want to anchor its existence (without revealing the data) on-chain for data commitment and time verification purposes.
+They can take many forms:
 
-It is important to note that this is a centralized solution (i.e. we store the attestations) provided for convenience. Everything about attestations is already decentralized, and you can always choose to self-implement your own solution.
+* W3C Verifiable Credentials standard
+* BitBadges attestations
+* Credly credentials (Open Badges standard)
+* Other attestation providers
+
+Each approach offers different tradeoffs in terms of:
+
+* Cryptographic security features
+* Privacy mechanisms
+* Machine verifiability
+* Compatibility and standards compliance
+* Implementation complexity
+
+BitBadges aims to offer our own attestation service as well as integrate with tons of other providers as well to give you the most options possible. Alternative providers include:
+
+* Credly Badges
+* Custom Uploads (any plaintext or JSON)
+
+Currently, our core suite supports two approaches. Both are cryptographically signed, and thus, data integrity is maintained. These are stored off-chain (centralized) but can be anchored or posted on-chain if desired.
+
+* BBS+: Messages are signed with the BBS+ signature scheme and a proof of issuance is linked with another proof message signature. BBS+ signatures allow for zero-knowledge selective disclosure (reveal only M of N messages).&#x20;
+  * The BBS+ signature algorithm allows an issuer to sign N messages to produce a signature. From that signature, a holder can derive a cryptographic proof that only reveals any subset of the N messages. This allows selectvie disclosure of the credential. For example, you may only want to reveal your GPA to an employer, but the diploma credential has other identifying fields like courses taken, student records, etc.
+  * To create the link between a "main" crypto address and the BBS+ public key, we sign a message from the main address saying that attestations from BBS+ key can be treated as my own.
+* Standard Signatures: Messages are signed via any supported wallet / ecosystem (Bitcoin, Ethereum, Solana, Cosmos). These do not support selective disclosure.
+
+Implementation Note: While BitBadges provides a centralized storage solution for convenience, the attestation system's underlying architecture is decentralized. Users have the flexibility to:
+
+* Use the provided storage solution
+* Implement their own storage and verification systems
+* Choose alternative attestation providers
+* Mix different approaches based on specific needs
 
 <figure><img src="../../../.gitbook/assets/image (134).png" alt="" width="375"><figcaption></figcaption></figure>
 
-**Badges and Attestations**
+**Badges vs Attestations**
 
-Badges and attestations can be used together to get the best of both worlds (e.g. issue a public diploma badge but issue private credentials about that diploma as a attestation). To "have the credential", you must prove ownership of the badge and the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain private (attestations). The design also may enable credentials to be transferable.
+Badges and attestations can be used together to get the best of both worlds (e.g. issue a public diploma badge but issue private credentials about that diploma as a attestation).&#x20;
+
+To "have the credential", you must prove ownership of the badge and the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain private (attestations). The design also may enable credentials to be transferable.
 
 Badges can also be used for on-chain, tamper-proof, decentralized revocation or suspension statuses. In the credential somewhere, you say that this badge must not be burned or revoken on-chain for it to be valid.
-
-**Differences in W3C Verifiable Credentials vs BitBadges**
-
-With both BitBadges and W3C, issuers can sign arbitrary data. W3C expects everything to be in JSON-LD format with specific schemas (e.g. credentialSubject, context, etc) whereas BitBadges doesn't care what format it is in (we leave this up to the issuer). The data just has to be stringified. BitBadges also doesn't fully support the Verifiable Presentations interface because we opt to attach it to our sign-in protocol (Blockin) instead.
-
-Overall though, both achieve the same purpose, but the implementations differ slightly.
-
-**Signature Algorithms**
-
-BitBadges supports the signature algorithms for any chain that is supported.
-
-We also support the BBS+ signature algorithm to allow **selective disclosure**. The BBS+ signature algorithm allows an issuer to sign N messages to produce a signature. From that signature, a holder can derive a cryptographic proof that only reveals any subset of the N messages. This allows selectvie disclosure of the credential. For example, you may only want to reveal your GPA to an employer, but the diploma credential has other identifying fields like courses taken, student records, etc.
-
-To create the link between a "main" crypto address and the BBS+ public key, we sign a message from the main address saying that attestations from BBS+ key can be treated as my own.

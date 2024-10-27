@@ -4,14 +4,15 @@ Pre-Readings: [Verifiable Attestations](./)
 
 **Proofs vs Core Attestations**
 
-As a holder, you are expected to generate proof(s) to be disclosed to verifiers rather than disclosing the original attestation with all details. A proof may only reveal a subset of the messages in the original attestation (or oftentimes, it may include all of the messages). Proofs may also optionally have different metadata.In many cases, the proof will be basically the same as the original.
+As a holder, you are expected to generate proof(s) to be disclosed to verifiers rather than disclosing the original attestation with all details. A proof may only reveal a subset of the messages in the original attestation (or oftentimes, it may include all of the messages) depending on the scheme and supported properties. Proofs may also optionally have different metadata. In many cases though, the proof will be basically the same as the original.
 
 There are user interfaces for handling this all on the frontend. However, below, we go into detail for how you can do it yourself. Check out [https://bitbadges.io/attestations/proofgen](https://bitbadges.io/attestations/proofgen) for a helper tool for generating BBS+ signatures.
 
 ```typescript
 export interface iAttestationsProof<T extends NumberType> {
     createdBy: string;
-    scheme: 'bbs' | 'standard';
+    scheme: 'bbs' | 'standard' | string;
+    originalProvider: string;
 
     attestationMessages: string[];
 
@@ -43,7 +44,7 @@ export interface iAttestationsProof<T extends NumberType> {
 
 ### Custom Logic
 
-It is important to note that proof verification is not limited to that is provided in the interface, you will typically also need to check the attestation messages are as expected against other private values (e.g. matching attestation data to a user). This is application-specific, but we expect you to handle everything for proper verification.
+It is important to note that proof verification is not limited to that is provided in the interface, you will typically also need to check the attestation messages are as expected against other private values (e.g. matching attestation data to a user). A valid proof is not sufficient if the data is not as expected. This is application-specific, but we expect you to handle everything for proper verification.
 
 **Inherent Trust for the Issuer**
 
@@ -58,7 +59,7 @@ While the cryptographic signature prove data integrity / proof of knowledge, you
 
 Anchors do not necessarily have to reveal private information. Posting a hash, encryption, etc is sufficient as long as it can prove what you need it to prove.
 
-For BitBadges, anchors are facilitated through the x/anchor module (MsgAddCustomData). It is a very simple module that allows you to store arbitrary strings.&#x20;
+For BitBadges, anchors are facilitated through the x/anchor module (MsgAddCustomData). It is a very simple module that allows you to store arbitrary strings.
 
 If an anchor is created through the BitBadges site, we use the following algorithm. If we have N attestation messages, we also have N entropies. We can then post the SHA256 hash of (message + entropy) on-chain. When revealed to a verifier in a proof, they can verify that data integrity has been maintained if they have the palintext message + entropy value. The random hash posted on-chain reveals nothing confidential but provides a verifiable timestamp for the data. This is facilitated through the x/anchor module's MsgAddCustomData.
 
@@ -154,3 +155,7 @@ import { verifyAttestationsPresentationSignatures } from 'bitbadgesjs-sdk';
 const isDerivedProof = true;
 await verifyAttestationsPresentationSignatures(proof, isDerivedProof);
 ```
+
+### Alternative Schemes
+
+Note that non-BitBadges native schemes / approaches may have different verification algorithms. Please use the original provider's algorithm.

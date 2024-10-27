@@ -130,6 +130,7 @@ Does check :white\_check\_mark:
 * Anything specified in the verify challenge options
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
 * Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+  * IMPORTANT: This is only checked for BitBadges core attestations (scheme == 'bbs' || scheme == 'standard'). For alternative providers, you are responsible for verifying according to their approach.
 
 Does not check :x:
 

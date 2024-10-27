@@ -2,50 +2,50 @@
 
 ### What Are Attestations?
 
-Attestations are digital proofs similar to Verifiable Credentials, a concept gaining traction in the blockchain ecosystem. They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier. These are a nice alternative to badges because they are private by default as opposed to being public and on-chain.
+Attestations are digital proofs that can attest to some credential or data. They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier. These are a nice alternative to badges because they are private by default as opposed to being public and on-chain.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-02 at 11.55.15 AM.png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### What Is an Attestation?
 
-An attestation, at its core, is a cryptographic signature of a message or set of claims. When an entity (known as the issuer) signs a message, it creates a cryptographic seal that ensures the integrity of the message's data. This process involves:
+An attestation is a set of claims made by one entity (the issuer) about another entity or subject. Attestations can range from simple written statements to cryptographically verifiable digital proofs. When implemented digitally, attestations may include:
 
 1. The issuer creating a message with specific claims or information
-2. The issuer signing this message with their private key
-3. The resulting signature being attached to the original message
+2. Optional digital signing or certification of the claims
+3. A mechanism for verification (which may be manual or automated)
 
-Anyone who receives or checks the attestation can verify its authenticity and integrity by:
+Verification methods can vary depending on the attestation type:
 
-1. Checking the signature using the issuer's public key
-2. Confirming that the message hasn't been altered since it was signed
+* For cryptographic attestations: Using digital signatures and public key verification
+* For traditional attestations: Manual verification through trusted channels, official documentation, or direct communication
+* For hybrid approaches: Combining digital and traditional verification methods
 
-Example: A university (issuer) creates and signs a digital diploma attestation for a graduate (holder). The graduate can then present this attestation to potential employers (verifiers) who can cryptographically verify its authenticity without needing to contact the university directly.
+Example: A university (issuer) can create an attestation of a student's graduation in various forms:
 
-### Benefits of Using Verifiable Attestations
+* A traditional paper diploma with security features
+* A digitally signed electronic certificate
+* A blockchain-anchored credential
+* A simple written statement
 
-#### 1. Efficient Use of Blockchain Resources
+## Benefits of Attestations
 
-Verifiable attestations are designed to be lightweight and efficient in terms of blockchain usage:
+1. Flexibility and Efficiency Attestations can be designed to match specific needs and resources:
 
-* Most of the attestation process occurs off-chain, reducing the need for on-chain transactions
-* Only cryptographic proofs or minimal anchoring data may be stored on-chain, if necessary
-* This approach significantly reduces gas costs and blockchain bloat
-* Verification can often be done without any on-chain transactions, further saving resources
+* Can be implemented with or without blockchain technology
+* May use traditional verification methods or cryptographic proofs
+* Scale from simple statements to complex verifiable credentials
+* Verification costs and complexity can be optimized for the use case
 
-#### 2. Privacy by Default
+2. Privacy Considerations Modern attestation systems can protect privacy through various means:
 
-Verifiable attestations prioritize user privacy:
+* Selective information sharing
+* Secure storage of sensitive data
+* Optional use of cryptographic techniques for enhanced privacy
+* Control over how and when attestation data is shared
 
-* The actual data contained in an attestation is not stored on the blockchain
-* Only the holder of the attestation has access to the full contents by default
-* Cryptographic proofs allow for verification without revealing the underlying data
-* Users have full control over when and how much of their attestation data to reveal
-* Optional on-chain anchoring can prove an attestation's existence without exposing its contents
+3. Selective Disclosure Attestations can support varying levels of information sharing:
 
-#### 3. Zero-Knowledge Selective Disclosure
-
-Verifiable attestations empower users with fine-grained control over their personal information:
-
-* Users can choose which specific parts of an attestation to share in different contexts
-* This allows for sharing only the necessary information for a given situation while not sacrificing the ability to verify the attestation cryptographically.
-* Example: A diploma attestation might include degree name, graduation date, and GPA. The holder could choose to share only the degree name and graduation date for one purpose, while sharing the full details for another.
+* Ability to share full or partial information as needed
+* Support for both simple and complex verification requirements
+* Flexible presentation options based on context
+* Example: An academic credential might be shared in full for employment but only partially for other purposes
