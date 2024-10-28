@@ -38,10 +38,8 @@ Implementation Note: While BitBadges provides a centralized storage solution for
 
 <figure><img src="../../../.gitbook/assets/image (134).png" alt="" width="375"><figcaption></figcaption></figure>
 
-**Badges vs Attestations**
+**What gives the attestation credibility?**
 
-Badges and attestations can be used together to get the best of both worlds (e.g. issue a public diploma badge but issue private credentials about that diploma as a attestation).&#x20;
+In a system like this, the attestation gains its credibility from the issuer. However, techniques like cryptographic signatures help provide data integrity and make the attestation tamper proof from a malicious issuer since the signature can never be forged or changed. It always ensures that the holder can always provide valid proof of attestation from that specific issuer.
 
-To "have the credential", you must prove ownership of the badge and the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain private (attestations). The design also may enable credentials to be transferable.
-
-Badges can also be used for on-chain, tamper-proof, decentralized revocation or suspension statuses. In the credential somewhere, you say that this badge must not be burned or revoken on-chain for it to be valid.
+For our attestations, we use cryptographic signatures, but note that other approaches may use different verification methods.

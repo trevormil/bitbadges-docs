@@ -1,12 +1,21 @@
-# Creating a Attestation
+# Creating an Attestation
 
 Pre-Readings: [Verifiable Attestations](./)
 
-On the official site, we provide interfaces to create attestations. However, you can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
+On the official site, we provide interfaces to create attestations (Create -> Attestations).
+
+You can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
 <figure><img src="../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
 
-The creation interface is as follows. All attestations are a series of one or more **attestationMessages** which can be either in 'json' or 'plaintext' **messageFormat**.&#x20;
+The creation interface is as follows. All attestations are a series of one or more **attestationMessages** which can be either in 'json' or 'plaintext' **messageFormat**. You can use the corresponding API endpoint to create programmatically.
+
+```typescript
+await BitBadgesApi.createAttestation(...)
+await BitBadgesApi.updateAttestation(...)
+await BitBadgesApi.createAttestationProof(...)
+await BitBadgesApi.updateAttestationProof(...)
+```
 
 ```typescript
 export interface CreateAttestationPayload {
@@ -73,29 +82,11 @@ The **scheme** field will determine a lot about the attestation:
 
 * 'bbs': The N **attestationMessages** must be signed using the BBS+ signature algorithm. A proof of issuance is also required. The schema of the message is left up to the issuer. See below.
 * 'standard': Only 1 attestation message is expected. The message should be signed using a standard wallet signature. The schema of the message is left up to the issuer. See below.
-* 'custom' or anything else: If you do not want to use a BitBadges native scheme, you can also simply add your own. Feel free to use existing models such as the [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) model, create your own, or anything else.&#x20;
+* 'custom' or anything else: If you do not want to use a BitBadges native scheme, you can also simply add your own. Feel free to use existing models such as the [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) model, create your own, or anything else.
 
-Note that for BitBadges schemes ('bbs' or 'standard'), we ensure signatures are always cryptographically correct such that you can expect them to be correct when you receive one via the API.
+More can be found in the individual scheme documentation later in this section.
 
-For any non-BitBadges schemes, we do not maintain any message schemas, verifying integrity, etc. This should all be verified on your end.
-
-**Data Integrity**
-
-The integrity of the data for BitBadges schemes ('bbs' or 'standard') is committed to by a cryptographic signature as we will show below. For other schemes, we leave the verification process up to the original provider's verification approach.
-
-**Benefits of cryptographic signatures?**
-
-Cryptographic signatures prove to any potential verifier that the issuer did indeed issue this attestation because a cryptographic signature cannot be forged. The signatures are stored by the holders along with the credential and presented to verifiers to prove this.
-
-**What gives it credibility?**
-
-In a system like this, typically, the attestation gains its credibility from the issuer, so there is inherently some trust there. However, you may also opt to use additional protection measures against a malicious issuer. For example:
-
-* On-chain map of ID -> signatures to protect against an issuer issuing duplicate IDs
-* On-chain map of badge ID -> attestation IDs to protect against duplicate attestations issued per badge
-* Anchor the signature on-chain to prove existence by a certain time and to maintain data integrity (more on this in the next page with anchors)
-
-### Verifying Signatures
+### Creating / Verifying Signatures
 
 Note: When received from the BitBadges API directly, you can assume that signatures are already correct for non-custom implementations (bb or standard). However, it is always best practice to verify them on your end as well.
 
@@ -161,3 +152,6 @@ body = {
 };
 ```
 
+### Alternative Schemes
+
+Note that non-BitBadges native schemes / approaches may have different verification algorithms. Please make sure your approach follows the verification approach.
