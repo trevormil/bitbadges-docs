@@ -72,7 +72,7 @@ interface WitnessProof {
 }
 ```
 
-Note: When stringified, it would be like
+Note: When stringified, it would be like this where we have an array of stringified JSON proofs with length 1.
 
 ```json
 "attestationMessages": [
