@@ -80,6 +80,7 @@
   * [🗝️ Attestations](for-developers/core-concepts/verifiable-attestations/README.md)
     * [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
     * [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
+    * [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
     * [Proofs vs Attestations](for-developers/core-concepts/verifiable-attestations/proofs-vs-attestations.md)
     * [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
     * [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
