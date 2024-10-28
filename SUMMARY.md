@@ -84,6 +84,8 @@
     * [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
     * [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
     * [Verification / Presentations](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
+    * [Custom Schemes](for-developers/core-concepts/verifiable-attestations/custom-schemes/README.md)
+      * [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
   * [🖊️ Standards](for-developers/core-concepts/standards.md)
   * [🔓 Archived Collections](for-developers/core-concepts/archived-collections.md)
   * [🕵️ ZK / Privacy Preservation](for-developers/core-concepts/zk-privacy-preservation.md)
