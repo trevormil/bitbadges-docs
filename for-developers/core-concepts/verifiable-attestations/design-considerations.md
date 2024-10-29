@@ -6,15 +6,15 @@ Attestations are super open-ended with many different approaches with varying tr
 
 Leveraging on-chain badges or tokens could be useful to you if you need stateful data, a ledger of activity, transferability requirements, and more. For example,
 
-* To "have the credential", you must prove ownership of the badge and the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain private (attestations). The design also may enable credentials to be transferable.
-* Badges can also be used for on-chain, tamper-proof, decentralized revocation or suspension statuses. In the credential somewhere, you say that this badge must not be burned or revoken on-chain for it to be valid.
+-   To "have the credential", you must prove ownership of the badge and the credential. This can be used in cases where the credential itself can be public and is to be displayed in a portfolio (BitBadges) but has certain aspects that may need to maintain private (attestations). The design also may enable credentials to be transferable.
+-   Badges can also be used for on-chain, tamper-proof, decentralized revocation or suspension statuses. In the credential somewhere, you say that this badge must not be burned or revoken on-chain for it to be valid.
 
 ### Malicious Issuers
 
 All attestations / credentials inherently get their credibility from the issuer, so there is already a bit of trust there. However, additional measures can be taken to protect against a malicious issuer. Some examples include:
 
-* On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
-* Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
+-   On-chain ID -> data integrity maps to prevent issuer from issuing duplicates (each credential ID can only correspond to one credential)
+-   Anchors / Data Commitments - The issuer or holder can commit to proof of knowledge on-chain at some point which can be verified later. This gives a verifiable timestamp for when the data was known by. See below for more info.
 
 ### Custom Logic
 
@@ -24,9 +24,9 @@ It is important to note that proof verification is not limited to that is provid
 
 Signatures are static, always verifiable, and not "revokable". If a signature gets in a malicious parties' hands, the signature will still be valid. There are many things that can be done to help mitigate this:
 
-* Revocation registries
-* Authenticating the holder at verification time
-* And many more approaches
+-   Revocation registries
+-   Authenticating the holder at verification time
+-   And many more approaches
 
 ### On-Chain Anchors + Update History
 
@@ -41,7 +41,7 @@ If an anchor is created through the BitBadges site, we use the following algorit
     type: 'MsgAddCustomData',
     msg: {
       data: JSON.stringify(
-        attestation.attestationMessages.map((message, idx) => {
+        attestation.messages.map((message, idx) => {
           return CryptoJS.SHA256(message + entropies[idx]).toString();
         })
       )

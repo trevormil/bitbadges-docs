@@ -21,7 +21,7 @@ For example
   "name": "Custom Name",
   "image": "ipfs://QmNytJNN44stkMndshtdfcCW2mzaCm6A23maiKaQvUqoj8",
   "description": "",
-  "attestationMessages": [
+  "messages": [
     "super secret message"
   ]
 }
@@ -30,5 +30,5 @@ const url = 'https://bitbadges.io/attestations/create?toSet=' + JSON.stringify(c
 </code></pre>
 
 ```
-https://bitbadges.io/attestations/create?toSet={ "messageFormat": "plaintext", "type": "credential", "scheme": "standard", "name": "Custom Name", "image": "ipfs://QmNytJNN44stkMndshtdfcCW2mzaCm6A23maiKaQvUqoj8", "description": "gfdsgxdfgsdf", "attestationMessages": [ "super secret message" ] }
+https://bitbadges.io/attestations/create?toSet={ "messageFormat": "plaintext", "type": "credential", "scheme": "standard", "name": "Custom Name", "image": "ipfs://QmNytJNN44stkMndshtdfcCW2mzaCm6A23maiKaQvUqoj8", "description": "gfdsgxdfgsdf", "messages": [ "super secret message" ] }
 ```

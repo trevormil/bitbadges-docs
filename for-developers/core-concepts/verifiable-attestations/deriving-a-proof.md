@@ -29,7 +29,8 @@ const address = body.proofOfIssuance.signer;
 const chain = getChainForAddress(address);
 
 if (
-    convertToBitBadgesAddress(address) !== convertToBitBadgesAddress(body.createdBy)
+    convertToBitBadgesAddress(address) !==
+    convertToBitBadgesAddress(body.createdBy)
 ) {
     throw new Error('Signer does not match creator');
 }
@@ -57,10 +58,10 @@ We use a generic "nonce" as the nonce because we expect proofs to be verified us
 const derivedProof = await createAttestationsProof({
 <strong>  signature: Uint8Array.from(Buffer.from(attestation.dataIntegrityProof.signature, 'hex')),
 </strong>  publicKey: Uint8Array.from(Buffer.from(attestation.dataIntegrityProof.signer, 'hex')),
-  messages: attestation.attestationMessages.map((message) => Uint8Array.from(Buffer.from(message, 'utf-8'))),
+  messages: attestation.messages.map((message) => Uint8Array.from(Buffer.from(message, 'utf-8'))),
   nonce: Uint8Array.from(Buffer.from('nonce', 'utf8')),
-  revealed: attestation.attestationMessages
-    .map((_, idx) => (proof.attestationMessages.includes(attestation.attestationMessages[idx]) ? idx : -1))
+  revealed: attestation.messages
+    .map((_, idx) => (proof.messages.includes(attestation.messages[idx]) ? idx : -1))
     .filter((x) => x !== -1)
 });
 
