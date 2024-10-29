@@ -23,7 +23,7 @@ These flows natively have protective measures against replay attacks, time windo
 
 We do want to note that if you obtain attestations that use BitBadges schemes ('bbs' or 'standard') from these two flows, you can assume the attestations are cryptographically correct. However, it is always best practice to verify on your end as well (do not trust, verify!).&#x20;
 
-By cryptogrpahically correct, we simply mean that the data integrity proofs / signatures are verified. Nothing else about content, on-chain hashes, etc is guaranteed to be correct. That should be verified on your end.
+By cryptographically correct, we simply mean that the data integrity proofs / signatures are verified. Nothing else about content, on-chain hashes, etc is guaranteed to be correct. That should be verified on your end.
 
 For any non-BitBadges schemes, we do not maintain any message schemas, verifying integrity, etc. This should all be verified on your end.
 

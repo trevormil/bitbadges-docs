@@ -35,6 +35,11 @@ export interface CreateAttestationPayload {
 
   /** The message format of the attestationMessages. */
   messageFormat: 'plaintext' | 'json';
+  
+  /** Whether or not the attestation is displayable on the user's profile / queryable by ID.
+      If true, the attestation can be queried by anyone with the ID. */
+  publicVisibility?: boolean;
+
   /**
    * The scheme of the attestation. BBS+ signatures are supported and can be used where selective disclosure is a requirement.
    * Otherwise, you can simply use your native blockchain's signature scheme.
@@ -62,6 +67,7 @@ export interface CreateAttestationPayload {
     signature: string;
     signer: string;
     publicKey?: string;
+    isDerived?: boolean //Used for BBS signatures to differentiate original vs derived proofs
   };
 
   /** Metadata for the attestation for display purposes. Note this should not contain anything sensitive. It may be displayed to verifiers. */
@@ -119,6 +125,8 @@ body = {
 
 For BBS+ signatures (**scheme** = 'bbs'), you can sign N **attestationMessages** and the **dataIntegrityProof** will be the BBS signature of those N message. On the BitBadges site, all BBS+ key pairs are one-time use only. The key pair is generated, signs the transaction, and then is discarded because it is never needed again.
 
+Note: blsSign creates the original and proofs can be derived from that (see later pages in this section).
+
 <pre class="language-typescript"><code class="lang-typescript">import { BlsKeyPair, blsSign, generateBls12381G2KeyPair } from '@mattrglobal/bbs-signatures';
 
 <strong>const signature = await blsSign({
@@ -130,7 +138,8 @@ setAttestation((prev) => ({
   ...prev,
   dataIntegrityProof: {
 <strong>    signer: Buffer.from(keyPair?.publicKey ?? '').toString('hex'),
-</strong>    signature: Buffer.from(signature).toString('hex')
+</strong>    signature: Buffer.from(signature).toString('hex'),
+    isDerived: false
   }
 }));
 </code></pre>

@@ -129,8 +129,9 @@ Does check :white\_check\_mark:
 * Claim criteria was met according to the options provided.
 * Anything specified in the verify challenge options
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
-* Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.createdBy** issued the credential, and it is valid according to the BitBadges expected format.
+* Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.dataIntegrityProof** and **data.proofOfIssuance** are correct if needed.&#x20;
   * IMPORTANT: This is only checked for BitBadges core attestations (scheme == 'bbs' || scheme == 'standard'). For alternative providers, you are responsible for verifying according to their approach.
+  * It is also always a best practice to verify on your end as well.
 
 Does not check :x:
 

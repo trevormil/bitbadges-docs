@@ -44,13 +44,13 @@ await getChainDriver(chain).verifySignature(
 
 ### **BBS+ Proofs - Creation and Verification**
 
-For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature.
+For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature. This is determined by **dataIntegrityProof.isDerived.** Typically, we expect the **dataIntegrityProof.signature** to always be a derived proof when using the **iAttestationsProof** interface.&#x20;
 
-We expect the **dataIntegrityProof.signature** to always be a derived proof when using the **iAttestationsProof** interface. However, the **proofOfIssuance** may have the original.
+Note: A proof can only be derived from the original. You cannot derive a proof from another proof.
 
 To create the proof from the original attestation, the following code can be used. **revealed** is he zero-based indices of the messages that are revealed (i.e. messages elem 0 is revealed = \[0])
 
-We use a generic "nonce" as the nonce because we expect proofs to be verified using an alternative sign-in flow that handles replay attacks there.
+We use a generic "nonce" as the nonce because we expect proofs to be verified using an alternative sign-in flow that handles replay attacks there / verification.
 
 <pre class="language-typescript"><code class="lang-typescript">import { createAttestationsProof } from "bitbadgesjs-sdk";
 
@@ -69,7 +69,8 @@ setProof(
     ...proof,
     dataIntegrityProof: {
       signature: Buffer.from(derivedProof).toString('hex'),
-      signer: attestation.dataIntegrityProof.signer
+      signer: attestation.dataIntegrityProof.signer,
+      isDerived: true
     }
   })
 );

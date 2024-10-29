@@ -105,7 +105,6 @@ Everything else is customizable as-is.
   "messageFormat": "json",
   "attestationId": "009a55376a52b5df74e15f47397052b3abbf74aee60d8f7399357d566c35e56a",
   "inviteCode": "b969dd52bf7a9e8ce0811eb214e8249a88cff064b1e61221a3f4c1fda446e423",
-  "type": "credential",
   "scheme": "witness-proof",
   "dataIntegrityProof": {
     "signer": "",
@@ -128,5 +127,4 @@ Everything else is customizable as-is.
   "createdAt": "1730123162836",
   "originalProvider": "Witness"
 }
-
 ```
