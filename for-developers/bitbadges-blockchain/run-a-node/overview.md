@@ -17,6 +17,8 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
 
+**State Snapshots:** See [Chain Details](../chain-details.md)
+
 **Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-downtime using Cosmovisor.
 
 **Discord:** Communications and announcements for node operators is facilitated via our Discord.

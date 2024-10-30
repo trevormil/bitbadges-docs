@@ -32,6 +32,10 @@ http://134.122.12.165:1317 = http://node.bitbadges.io:1317
 
 https://node.bitbadges.io/api = http://node.bitbadges.io:1317
 
+**State Snapshots (Unofficial)**
+
+[https://snapshots.whenmoonwhenlambo.money/](https://snapshots.whenmoonwhenlambo.money/)
+
 **BitBadges API / Indexer**
 
 [https://api.bitbadges.io](https://api.bitbadges.io)
