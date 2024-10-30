@@ -21,9 +21,21 @@ These flows natively have protective measures against replay attacks, time windo
 [claim-builder](../../../overview/claim-builder/)
 {% endcontent-ref %}
 
-We do want to note that if you obtain attestations that use BitBadges schemes ('bbs' or 'standard') from these two flows, you can assume the attestations are cryptographically correct. However, it is always best practice to verify on your end as well (do not trust, verify!). By cryptographically correct, we simply mean that the data integrity proofs / signatures are verified. Nothing else about content, on-chain hashes, etc is guaranteed to be correct. That should be verified on your end.
+We do want to note that if you obtain attestations that use BitBadges schemes ('bbs' or 'standard') from these two flows, you can assume the attestations are cryptographically correct. By cryptographically correct, we simply mean that the data integrity proofs / signatures are verified. Nothing else about content, on-chain hashes, etc is guaranteed to be correct. That should be verified on your end.
 
-For any non-BitBadges schemes, we do not maintain any message schemas, verifying integrity, etc. This should all be verified on your end.
+However, it is always best practice to verify on your end as well (do not trust, verify!).&#x20;
+
+```typescript
+import { BitBadgesApi, verifyAttestationsPresentationSignatures } from "bitbadgesjs-sdk";
+
+//To outsource to server
+await BitBadgesApi.verifyAttestation({ attestation });
+
+//To do it locally
+await verifyAttestationsPresentationSignatures(attestation);
+```
+
+For any non-BitBadges schemes, we do not maintain any message schemas, verifying integrity, etc. This should all be handled on your end.
 
 **Verification**
 

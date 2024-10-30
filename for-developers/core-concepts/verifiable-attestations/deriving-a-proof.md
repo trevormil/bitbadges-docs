@@ -45,7 +45,7 @@ await getChainDriver(chain).verifySignature(
 
 ### **BBS+ Proofs - Creation and Verification**
 
-For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature. This is determined by **dataIntegrityProof.isDerived.** Typically, we expect the **dataIntegrityProof.signature** to always be a derived proof when using the **iAttestationsProof** interface.&#x20;
+For verifying BBS+ signatures, it is important to note whether you are verifying a derived proof or the original signature. This is determined by **dataIntegrityProof.isDerived.** Typically, we expect the **dataIntegrityProof.signature** to always be a derived proof when using the **iAttestationsProof** interface.
 
 Note: A proof can only be derived from the original. You cannot derive a proof from another proof.
 
@@ -79,9 +79,12 @@ setProof(
 
 To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof.
 
-```tsx
-import { verifyAttestationsPresentationSignatures } from 'bitbadgesjs-sdk';
+```typescript
+import { BitBadgesApi, verifyAttestationsPresentationSignatures } from "bitbadgesjs-sdk";
 
-const isDerivedProof = true;
-await verifyAttestationsPresentationSignatures(proof, isDerivedProof);
+//To outsource to server
+await BitBadgesApi.verifyAttestation({ attestation });
+
+//To do it locally
+await verifyAttestationsPresentationSignatures(attestation);
 ```
