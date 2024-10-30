@@ -13,8 +13,6 @@ The creation interface is as follows. All attestations are a series of one or mo
 ```typescript
 await BitBadgesApi.createAttestation(...)
 await BitBadgesApi.updateAttestation(...)
-await BitBadgesApi.createAttestationProof(...)
-await BitBadgesApi.updateAttestationProof(...)
 ```
 
 ```typescript
@@ -85,9 +83,9 @@ The **messageFormat** = 'json' or 'plaintext' will determine what format the mes
 
 The **scheme** field will determine a lot about the attestation:
 
--   'bbs': The N **messages** must be signed using the BBS+ signature algorithm. A proof of issuance is also required. The schema of the message is left up to the issuer. See below.
--   'standard': Only 1 attestation message is expected. The message should be signed using a standard wallet signature. The schema of the message is left up to the issuer. See below.
--   'custom' or anything else: If you do not want to use a BitBadges native scheme, you can also simply add your own. Feel free to use existing models such as the [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) model, create your own, or anything else.
+* 'bbs': The N **messages** must be signed using the BBS+ signature algorithm. A proof of issuance is also required. The schema of the message is left up to the issuer. See below.
+* 'standard': Only 1 attestation message is expected. The message should be signed using a standard wallet signature. The schema of the message is left up to the issuer. See below.
+* 'custom' or anything else: If you do not want to use a BitBadges native scheme, you can also simply add your own. Feel free to use existing models such as the [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) model, create your own, or anything else.
 
 More can be found in the individual scheme documentation later in this section.
 
