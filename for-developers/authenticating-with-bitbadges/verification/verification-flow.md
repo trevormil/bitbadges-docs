@@ -129,16 +129,16 @@ Does check :white\_check\_mark:
 * Claim criteria was met according to the options provided.
 * Anything specified in the verify challenge options
 * Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
-* Attestations (if applicable) are well-formed from a cryptographic standpoint (data integrity, signed correctly) by the issuer. In other words, **attestation.dataIntegrityProof** and **data.proofOfIssuance** are correct if needed.&#x20;
-  * IMPORTANT: This is only checked for BitBadges core attestations (scheme == 'bbs' || scheme == 'standard'). For alternative providers, you are responsible for verifying according to their approach.
-  * It is also always a best practice to verify on your end as well.
 
 Does not check :x:
 
 * Additional app-specific criteria needed for signing in
-* Does not handle sessions or check any session information. Does not handle any stateful data either (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
+* While we do our best to maintain the well-formedness and verification of attestations, attestations might be custom uploaded, be an unsupported schema type, etc, or we might even have a bug. As best practice, you should always verify on your end. Don't trust, verify!&#x20;
+  * If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you should use the SDK's verifyAttestationsPresentationsSignatures function.
+  * If it is a third-party upload, see the corresponding documentation.
 * Does not check the content of the attestation messages
   * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+* Does not handle sessions or check any session information. Does not handle any stateful data either (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
 * If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
   * ```typescript
     for (const social of ['discord', 'twitter', 'github', 'google']) {
