@@ -80,11 +80,11 @@ setProof(
 To verify the original, you need all N messages and will use blsVerify. To verify a derived proof, you only need to know the messages used to derive the proof.
 
 ```typescript
-import { BitBadgesApi, verifyAttestationsPresentationSignatures } from "bitbadgesjs-sdk";
+import { BitBadgesApi, verifyAttestation } from 'bitbadgesjs-sdk';
 
 //To outsource to server
 await BitBadgesApi.verifyAttestation({ attestation });
 
 //To do it locally
-await verifyAttestationsPresentationSignatures(attestation);
+await verifyAttestation(attestation);
 ```

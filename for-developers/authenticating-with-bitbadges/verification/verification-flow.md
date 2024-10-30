@@ -14,20 +14,20 @@ For claims, you must specify the **claimId**. If it is a non-indexed (on-demand)
 
 ```typescript
 export interface VerifySIWBBOptions {
-  /** The expected ownership requirements for the user */
-  ownershipRequirements?: AssetConditionGroup<NumberType>;
+    /** The expected ownership requirements for the user */
+    ownershipRequirements?: AssetConditionGroup<NumberType>;
 
-  /** Claim ID to check for. */
-  claimId?: string;
-  /** If true, we will only check for the existence of the claim. */
-  checkClaimedMinOnce?: boolean;
-  /** If true, we will simulate the claim. Only compatible with non-indexed on-demand claims. */
-  simulateClaim?: boolean;
+    /** Claim ID to check for. */
+    claimId?: string;
+    /** If true, we will only check for the existence of the claim. */
+    checkClaimedMinOnce?: boolean;
+    /** If true, we will simulate the claim. Only compatible with non-indexed on-demand claims. */
+    simulateClaim?: boolean;
 
-  /** How recent the challenge must be in milliseconds. Defaults to 10 minutes. If 0, we will not check the time. */
-  issuedAtTimeWindowMs?: number;
-  /** Skip asset verification. This may be useful for simulations or testing */
-  skipAssetVerification?: boolean;
+    /** How recent the challenge must be in milliseconds. Defaults to 10 minutes. If 0, we will not check the time. */
+    issuedAtTimeWindowMs?: number;
+    /** Skip asset verification. This may be useful for simulations or testing */
+    skipAssetVerification?: boolean;
 }
 ```
 
@@ -122,31 +122,33 @@ Any other custom requirements need to be handled by you separately (e.g. stampin
 
 It is also critical that you prevent replay attacks, man-in-the-middle attacks, and flash ownership attacks (if verifying with assets) with best practices.
 
-Does check :white\_check\_mark:
+Does check :white_check_mark:
 
-* Proof of address ownership via their authenticated BitBadges account
-* Asset ownership criteria is met for the address (if requested via **options.ownershipRequirements**).
-* Claim criteria was met according to the options provided.
-* Anything specified in the verify challenge options
-* Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
+-   Proof of address ownership via their authenticated BitBadges account
+-   Asset ownership criteria is met for the address (if requested via **options.ownershipRequirements**).
+-   Claim criteria was met according to the options provided.
+-   Anything specified in the verify challenge options
+-   Issued at is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
 
 Does not check :x:
 
-* Additional app-specific criteria needed for signing in
-* While we do our best to maintain the well-formedness and verification of attestations, attestations might be custom uploaded, be an unsupported schema type, etc, or we might even have a bug. As best practice, you should always verify on your end. Don't trust, verify!&#x20;
-  * If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you should use the SDK's verifyAttestationsPresentationsSignatures function.
-  * If it is a third-party upload, see the corresponding documentation.
-* Does not check the content of the attestation messages
-  * Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
-* Does not handle sessions or check any session information. Does not handle any stateful data either (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
-* If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
-  * ```typescript
-    for (const social of ['discord', 'twitter', 'github', 'google']) {
-      if (!resp.otherSignIns?.[social]) {
-        throw new Error('Invalid other sign in. Does not match expected.');
-      }
-    }
-    ```
+-   Additional app-specific criteria needed for signing in
+-   While we do our best to maintain the well-formedness and verification of attestations, attestations might be custom uploaded, be an unsupported schema type, etc, or we might even have a bug. As best practice, you should always verify on your end. Don't trust, verify!&#x20;
+    -   If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you should use the SDK's verifyAttestation function.
+    -   If it is a third-party upload, see the corresponding documentation.
+-   Does not check the content of the attestation messages
+    -   Does not check if **attestation.createdBy** is the expected issuer (we check that they validly issued the attestation with correct signatures, but only you know who this is supposed to be).
+-   Does not handle sessions or check any session information. Does not handle any stateful data either (e.g. preventing replay attacks or flash ownership attacks). This should be implemented on your end. You may use information provided like claim numbers, access token expirations, etc to help you in handling your sessions.
+-   If requesting **otherSignIns,** you should verify that you receive a response (username / ID) for the requested sign-ins and not trust the response blindly. This is a client-side parameter so could potentially be tampered with maliciously. BitBadges verifies requests as-is, so a manipulated request will get a manipulated verification.
+    -   ```typescript
+        for (const social of ['discord', 'twitter', 'github', 'google']) {
+            if (!resp.otherSignIns?.[social]) {
+                throw new Error(
+                    'Invalid other sign in. Does not match expected.'
+                );
+            }
+        }
+        ```
 
 **Flash Ownership Attacks**
 
