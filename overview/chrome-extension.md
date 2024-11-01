@@ -1,4 +1,4 @@
-# 🧩 Chrome Extension
+# 🌐 Chrome Extension
 
 The BitBadges Chrome extension provides a quick preview of a user's badges and portfolio directly via the extension popup, meaning you never have to leave the site you are currently on.
 
