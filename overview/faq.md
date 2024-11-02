@@ -4,10 +4,6 @@
 
 Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas credit system used for paying transaction fees. This is the in-app compute credits system. All transactions on the BitBadges blockchain require $BADGE to be paid as a fee. This is not to be confused with badges / badge collections.
 
-### **Why is there a need for BitBadges?**
-
-The answer is simple. We believe in the potential of digital blockchain tokens, but this potential cannot be realized with the current infrastructure and technology in place today ([see here](../)). BitBadges wants to help blockchain tokens realize their potential by building this infrastructure!
-
 ### **Main use case for BitBadges?**
 
 The main use case we envision is authentication. Almost all existing products today require some sort authentication, digital tokens, or token-gating (e.g. tiered services) in their backend infrastructure. And oftentimes, this infrastructure costs millions of dollars and utilizes thousands of hours in maintenance, especially if using a centralized service. With BitBadges, all authentication and token-gating can be **outsourced** to **greatly** reduce maintenance, overhead, and cost, as well as improving security, verifiability, availability, and much more.

@@ -4,11 +4,11 @@
 
 **Need $BADGE credits?** Reach out to us via DIscord. Especially in early stages / beta, we plan to subsidize lots of developers with free credits to help you get started!
 
-## Quickstart
+## API / SDK / Sign In with BitBadges Quickstart
 
 #### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
 
-Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc).&#x20;
+Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc).
 
 The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
 
@@ -27,7 +27,7 @@ The quickstart repo will be ever-evolving. New branches may offer different flav
 
 For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
 
-## Integrations? Gate distribution? Create a custom plugin?
+## Create claims? Gate distribution? Create a custom plugin?
 
 BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directly in-site via the developer portal or other respective creation flows.
 
@@ -39,11 +39,11 @@ Create sample test claims in the [developer portal](https://bitbadges.io/develop
 
 ## **Query data?**
 
-Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/).  Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
+Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/). Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
 
 ## **Authenticate via Sign In with BitBadges?**
 
-Authenticate your users from any chain, potentially checking badge ownership,  attestations, integrating with any supported app, and more along the way.
+Authenticate your users from any chain, potentially checking badge ownership, attestations, integrating with any supported app, and more along the way.
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)

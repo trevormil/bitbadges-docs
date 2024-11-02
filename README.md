@@ -10,9 +10,13 @@ description: >-
 
 ## Overview
 
-**BitBadges can be described as tokenization-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven token standard and suite of tools that enable you to create, customize, verify, and integrate with blockchain tokens and more for any use case you desire.**
+**BitBadges can be described as gating-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven token standard and suite of tools for you to gate any app or service. This includes being able to create, customize, verify, and integrate with blockchain tokens (badges) and more for any use case you desire.**
 
-The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to authentication to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
+The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to a universal multi-chain authentication standard to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
+
+### **Motive for building BitBadges?**
+
+The answer is simple. We believe in the potential of blockchains and a multi-chain world, but this potential cannot be realized with the current infrastructure and technology in place today. BitBadges wants to help by building the critical infrastructure the right way!
 
 ### Badges
 
@@ -24,7 +28,7 @@ When combined with blockchain technology, badges become even more secure and mor
 
 ### Lists, Protocols, and Attestations
 
-While badges are the main feature of BitBadges, we offer different ways to enhance your digital identity and portfolio:
+We also offer alternatives to badges to enhance your digital identity and portfolio:
 
 1. **Address Lists:** Manage users from any supported blockchain with simple address lists. This streamlined alternative to traditional badges allows for efficient user management across multiple chains.
 2. **Protocols / Maps:** Leverage reusable protocols to manage information such as preferences, reputation, and more across applications and chains. These protocols create a standardized way to store and access data, enhancing interoperability between different platforms and ecosystems.
@@ -32,29 +36,7 @@ While badges are the main feature of BitBadges, we offer different ways to enhan
 
 These additional tools complement our badge system, providing a comprehensive suite for managing digital identities and interactions in the blockchain space.
 
-## Universal Authentication - Sign In with BitBadges
-
-Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity. You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
-
-Thus, BitBadges becomes the all-in-one authentication provider, revolutionizing how users prove their identity and credentials across various platforms. With BitBadges, you can:
-
-* Authenticate using your address from any supported blockchain
-* Prove ownership of specific badges
-* Verify particular attestations
-* Demonstrate membership in address lists
-* Validate adherence to protocols
-* Create custom experiences for your users based on protocols, ownership and more!
-
-All in one place! All outsourced to BitBadges!
-
-This comprehensive approach to authentication works both digitally and in-person:
-
-1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
-2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification.
-
-![](image-1.png)
-
-## Multi-Chain
+### Multi-Chain
 
 BitBadges is built from the ground up to support multiple blockchain ecosystems all with the SAME interface. No longer do you need to support multiple interfaces for each blockchain ecosystem you want to support. For example, you can authenticate users from Cosmos, Solana, Bitcoin, and Ethereum all with the same interface. All users can own the SAME badges, use the SAME protocols, and so on.
 
@@ -68,23 +50,46 @@ Before BitBadges, building multi-chain applications was a nightmare due to havin
 
 </div>
 
-## Integrations
+## BitBadges Claims
 
-BitBadges is super customizable, has a vast ecosystem of over 7000+ no-code integrations, and is developer friendly for you to build your own integrations! Connect BitBadges to any app or platform you wish!
+Claims are the core of BitBadges allowing you to check criteria from over 7000+ apps and integrations. Tons of plugins are supported directly no-code and in-site, but we also have flexible implementation options to allow you to add your own logic (webhooks, API, building / publishing your own plugin).
 
-Integrations are used for gating access to a specific resource. This can be used for gating claiming access for badges, address list spots, and more! You can also use integrations in the authentication flow (e.g. check if a user has a verified badge before allowing them to sign in).
+<figure><img src=".gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
+
+Combine criteria checks to gate anything from content to websites to badge distribution and more. Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility.&#x20;
+
+The most powerful feature of claims is that they are compatible with every other aspect of BitBadges (ex: gating badge distribution with claims, Sign In with BitBadges and check claims all in one flow).
+
+<figure><img src=".gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
 
 ### Zapier
 
 BitBadges has a Zapier integration that allows you to connect BitBadges to any app supported by Zapier ([https://zapier.com/apps](https://zapier.com/apps)). Automatically trigger BitBadges claims or trigger actions upon successful claims.
 
-![zapier](image.png)
+![](image.png)
 
-### In-Site Plugins
+## Universal Authentication - Sign In with BitBadges
 
-Natively within the BitBadges site, we offer a directory of preconfigured plugins built by us and the community. Anyone can publish their own plugin to the directory!
+Putting it all together, think of your BitBadges portfolio as a digital data backpack / identity. You own it. You control it. You take it with you everywhere you go and can use it to prove anything.
 
-<figure><img src=".gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+![](image-1.png)
+
+Thus, BitBadges becomes the all-in-one authentication provider, revolutionizing how users prove their identity and credentials across various platforms. With BitBadges, you can:
+
+* Authenticate using your address from any supported blockchain
+* Prove ownership of specific badges
+* Verify particular attestations
+* Demonstrate membership in address lists
+* Validate adherence to protocols
+* Connect with claims to check any criteria
+* Create custom experiences for your users based on protocols, ownership and more!
+
+All in one place! All outsourced to BitBadges!
+
+This comprehensive approach to authentication works both digitally and in-person:
+
+1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
+2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification. Export the QR codes to formats like Apple Wallet or any prefererd format.
 
 ## Use Cases
 
@@ -104,8 +109,6 @@ Below are some of our favorite use cases:
 * **Protocols:** Use BitBadges to implement multi-chain protocols, such as an attendance protocol or a follow protocol.
 * **Truth Badges:** In a world of deep fakes and fake news, badges can serve as the undeniable source of truth for things.
 * See more use cases [here](broken-reference/)!
-
-<figure><img src=".gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 ## 100x Token Standard
 

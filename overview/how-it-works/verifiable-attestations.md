@@ -1,8 +1,12 @@
 # Attestations
 
-### What Are Attestations?
-
 Attestations are digital proofs that can attest to some credential or data. They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier. These are a nice alternative to badges because they are private by default as opposed to being public and on-chain.
+
+BitBadges aims to support an ecosystem of providers and approaches to attestations. While we offer an attestation service natively, we also support custom uploads from thrird-party providers.&#x20;
+
+Each method / approach may have different properties and tradeoffs. For example, BitBadges attestations are decentraized and secured by cryptography whereas other providers may use centralized verification methods.
+
+Attestations are privately stored in your account by default but can be displayed on profiles and disclosed to verifiers as you need through flows like claims or Sign In with BitBadges.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-02 at 11.55.15 AM.png" alt="" width="563"><figcaption></figcaption></figure>
 

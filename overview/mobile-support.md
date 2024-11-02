@@ -1,6 +1,10 @@
 # 📱 Alternate Sign Ins / Mobile
 
-Mobile support is a bit tricky since many wallets are geared towards desktop usage. If you want access to your BitBadges account on the go, consider adding approved sign-in methods in your account settings. This allows you to access certain aspects of your account via Signing In with Discord, Google, etc, or an alternate wallet. Use at your own risk though as approving socials means account compromise on your socials -. account compromise on BitBadges. Only assign the scopes that you need.
+Mobile support is a bit tricky since many wallets are geared towards desktop usage. If you want access to your BitBadges account on the go, consider adding approved sign-in methods in your account settings.&#x20;
+
+This allows you to access certain aspects of your account via Signing In with Discord, Google, etc, or an alternate wallet. Use at your own risk though as approving socials means account compromise on your socials -. account compromise on BitBadges. Only assign the scopes that you need.
+
+<figure><img src="../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
 **Mobile App (PWA)**
 

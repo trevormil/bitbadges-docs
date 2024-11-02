@@ -11,7 +11,7 @@ For accounts (standard senders of transactions) , we support users from four L1 
 
 ### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
 
-For non-Cosmos signatures, we map everything to a content hash to get a string such as:
+For non-Cosmos signatures, we map everything to a SHA256 content hash to get a string such as:
 
 ```
 This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679

@@ -16,6 +16,8 @@ We abstract everything to a clearly defined interface that accounts for all thes
 
 <figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
+
 ## Approval Levels
 
 We define three levels of approved transfers: collection-wide, incoming, and outgoing.&#x20;
