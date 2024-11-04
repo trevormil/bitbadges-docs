@@ -4,9 +4,9 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 ## **Preconfigured Plugins**
 
-The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Notification plugin.&#x20;
+The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Notification plugin.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **In-Site Rewards**
 
@@ -16,7 +16,7 @@ Gated content / URLS - We check 1+ successful claim
 
 Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md "mention") for more information (reuses same code).
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Polling Claim State
 
@@ -36,13 +36,13 @@ With this flow, you may find you need to authenticate users via Sign In with BIt
 
 Plugins and the pre-configured webhook plugins can be customized to send requests to custom URL and expect a 200 OK response. There are two types of requests:
 
-* Success Hooks: If configured, we can send a success webhook which will only send upon a successful claim. This can be checked using the \_attemptStatus. If we do not receive a 200 OK, we will exponentially backoff but keep retrying until we do.&#x20;
+* Success Hooks: If configured, we can send a success webhook which will only send upon a successful claim. This can be checked using the \_attemptStatus. If we do not receive a 200 OK, we will exponentially backoff but keep retrying until we do.
   * Typically, you may implement a queue-like system (send 200 OK to denote received -> implemnet your logic via the queue system)
 * During Execution Hook: Or, if your logic is critical to whether the claim is successful or not. We can call the URL during the claim execution and fail if we do not receive a 200 OK.
 
 **Webhooks by Zapier**
 
-Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.&#x20;
+Consider using the Webhooks by Zapier plugin on Zapier and trigger additional actions upon execution or success. Or, use the Get Claim Success trigger natively supported with the BitBadges integration.
 
 This is super easy as you can connect to 7000+ apps upon a successful claim.
 
@@ -54,7 +54,7 @@ This is super easy as you can connect to 7000+ apps upon a successful claim.
 
 **Custom Webhooks**
 
-Consider using  the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
+Consider using the Custom Validation URL in-site plugin or the Success Webhook in-site plugin and trigger an action from those. The Success Webhook plugin will send a request upon success, but the Custom Validation URL will send during execution (so does not guarantee success). The Custom Validation URL expects a 200 OK, or else, the claim will fail.
 
 <figure><img src="../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
 

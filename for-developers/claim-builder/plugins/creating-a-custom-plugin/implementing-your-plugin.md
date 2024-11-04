@@ -8,6 +8,21 @@ On your end, you will need to setup a HTTP handler API to accept the incoming re
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-plugins" %}
 
+### Timing of Hooks
+
+BitBadges sends three types of hooks (simulation - before processing, during processing, success - after successful claim). Certain settings in the creation form can be set to customize how we send these.&#x20;
+
+* Simulation hooks are sent right before a user claims (if simulation fails, we don't actually trigger a real claim)
+* Processing hooks are checked during the execution of the claim
+* Success hooks are only sent after the claim is successful
+
+**Trusting Simulations**
+
+One of the most important properties of building a performant plugin is whether to trust simulation results or not. If enabled in the creation form, we will not send a processing hook and use the simulation result. This greatly helps scalability because:
+
+* You only need to check criteria once, not twice
+* BitBadges can outsource and parallelize result processing on our end. The alternative (not trusting simulations) is that we need to process synchronously. So for example, if your plugin resolves in 1s, 1000 claims would take min 1000 seconds to process.
+
 ### Handling User / Creator Inputs
 
 If your plugin requires inputs from the claiming user or claim creator, you can do this in the BitBadges site or via a window.postMessage from a custom frontend / tool. All inputs will be passed along to your handler. If none are provided, we assume there is nothing needed to be passed.
@@ -53,6 +68,8 @@ Attestations (for user inputs): [User inputted attestation proofs](../../../core
 You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc). We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
 
 <figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### **Backend Handler**
 
@@ -110,7 +127,7 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 

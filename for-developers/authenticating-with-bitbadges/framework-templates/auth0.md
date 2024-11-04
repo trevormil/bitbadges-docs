@@ -6,13 +6,11 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
@@ -26,7 +24,7 @@ You can also customize the connection further by creating a custom connection. T
 
 **Fields:** Get your client ID and client secret at https://bitbadgesio/developer.
 
-**Fetch Profile Script**:&#x20;
+**Fetch Profile Script**:
 
 ```javascript
 function(accessToken, ctx, cb) {

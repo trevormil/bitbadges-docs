@@ -9,7 +9,7 @@ else { throw new Error("Payment was not satisfied") }
 
 While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We intend for $BADGE to mainly be used as a compute credits system for on-chain transactions. **It is not meant to be a payment currency.**
 
-We recommend to accept payments using existing processors like Stripe or PayPal. Then, behind the scenes, check user payments with a custom plugin / webhook  or use it when determining your self-hosted balances (assign based on successful payments). This can be via any payment method you want to accept.&#x20;
+We recommend to accept payments using existing processors like Stripe or PayPal. Then, behind the scenes, check user payments with a custom plugin / webhook or use it when determining your self-hosted balances (assign based on successful payments). This can be via any payment method you want to accept.
 
 {% embed url="https://docs.stripe.com/payments/quickstart?lang=node&client=next" %}
 
@@ -21,7 +21,7 @@ Implementation is left up to you!
 
 ## Approaches and Examples
 
-There are a couple implementation approaches you can take.&#x20;
+There are a couple implementation approaches you can take.
 
 IMPORTANT: Note that these approaches show you how to implement the core success flows, but you should also consider when stuff goes wrong (Zapier is down, your handler is down, user refreshes and loses their payment ID, etc).
 
@@ -29,7 +29,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
@@ -93,4 +93,3 @@ To implement, you will use the claim token approach where the unique claim token
 {% content-ref url="plugins/creating-a-custom-plugin/" %}
 [creating-a-custom-plugin](plugins/creating-a-custom-plugin/)
 {% endcontent-ref %}
-
