@@ -202,7 +202,6 @@ const payload = {
     twitter: { id: '...', username: '...' }, //If configured
     github: { id: '...', username: '...' }, //If configured
     google: { id: '...', username: '...' }, //If configured
-    priorState: { }, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
@@ -210,12 +209,9 @@ const payload = {
     ethAddress: context.ethAddress, //If pass address is configured
     solAddress: context.solAddress, //If pass address is configured
     btcAddress: context.btcAddress, //If pass address is configured
-    _isSimulation: context._isSimulation,
     _attemptStatus: context._attemptStatus, // 'executing' for during or 'success' for post-completion
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
-    maxUses: context.maxUses,
-    currUses: context.currUses,
     version: context.version
 };
 
@@ -224,7 +220,7 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { priorState, claimId, pluginSecret, bitbadgesAddress, _isSimulation, lastUpdated, createdAt } = body;
+    const { claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct
@@ -238,7 +234,6 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
 
     //Step 4: Return the response to the plugin based on your configured state function preset
     // const claimTokenRes = { claimToken: '...'  }
-    // const stateTransitionRes = { ...newState }
     // const statelessRes = {};
     return res.status(200).json({});
   } catch (err) {

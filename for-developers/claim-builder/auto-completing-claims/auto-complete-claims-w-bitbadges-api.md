@@ -36,7 +36,7 @@ Couple notes with auto-completing claims:
 
 **Simulating**
 
-You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.  The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.&#x20;
+You can also simulate the claim (which is instant and not put into the actual queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.  The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.&#x20;
 
 The body is the same as the completeClaim route. See below.
 

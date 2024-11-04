@@ -167,7 +167,6 @@ Please follow the { message } interface for returned JSON error responses.
 
     //Step 4: Return the response to the plugin based on your configured state function preset
     // const claimTokenRes = { claimToken: '...'  }
-    // const stateTransitionRes = { ...newState }
     // const statelessRes = {};
     return res.status(200).json({});
   } catch (err) {

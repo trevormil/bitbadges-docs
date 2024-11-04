@@ -72,14 +72,11 @@ const body = req.body;
 {
   bitbadgesAddress: 'bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw',
   claimId: '7a5b61ce3f2cf5eeb89f453c87f2b970328356395bf4ac4a23702d2fb0fb63c9',
-  _isSimulation: false,
   lastUpdated: 1722088273192,
   createdAt: 1722088273192,
   claimAttemptId: '',
   isClaimNumberAssigner: false,
   _attemptStatus: 'executing', // or 'success'
-  maxUses: 1,
-  currUses: 0,
   instanceId: 'e44ba88643381cd5fa09be288490a92c64add8bcd2327d29a11a4227fab55e5e',
   pluginId: '...',
   
@@ -87,8 +84,6 @@ const body = req.body;
   //and so on
 }
 */
-
-if (body._isSimulation) return;
 
 const claimAtemptId = body.claimAttemptId;
 const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
