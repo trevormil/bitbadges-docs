@@ -9,13 +9,11 @@ An important aspect to consider when implementing your plugin is that your plugi
 
 ### State Management
 
-An important aspect to consider is how you will handle state (if applicable). The golden rule here is that a successful response from your plugin DOES NOT mean the overall claim attempt was successful. Other plugins might fail.
-
-Because of this, state that is core to the claim must be managed on BitBadges end to avoid race conditions. Use the preset response patterns to customize how BitBadges controls state for your plugin. You can also consider utilizing other already implemented plugins to do such work for you. For example, if you want to implement a query of Discord users (one claim per user) who attended an event, the one claim per user must be set and tracked on the BitBadges end.
-
-A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
+An important aspect to consider is how you will handle state (if applicable). The golden rule here is that a successful response from your plugin DOES NOT mean the overall claim attempt was successful. Other plugins might fail. Or vice versa, your plugin may fail, but the claim succeeds.
 
 We only update state on our end if your plugin passed and was in the success path.
+
+Because of this, state that is core to the claim must be managed on BitBadges end to avoid race conditions. Use the preset response patterns to customize how BitBadges controls state for your plugin. A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
 
 ### **Authentication / Sensitive Values**
 

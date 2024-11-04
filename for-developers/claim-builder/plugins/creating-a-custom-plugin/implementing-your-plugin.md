@@ -10,18 +10,22 @@ On your end, you will need to setup a HTTP handler API to accept the incoming re
 
 ### Timing of Hooks
 
-BitBadges sends three types of hooks (simulation - before processing, during processing, success - after successful claim). Certain settings in the creation form can be set to customize how we send these.&#x20;
+BitBadges sends two types of hooks (during processing hooks and success hooks- after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive both or just one.
 
-* Simulation hooks are sent right before a user claims (if simulation fails, we don't actually trigger a real claim)
-* Processing hooks are checked during the execution of the claim
-* Success hooks are only sent after the claim is successful
+* Processing hooks are checked during the execution of the claim and could influence whether the claim succeeds or not.
+* Success hooks are only sent after the claim is successful. Typically used for post-claim actions.
 
-**Trusting Simulations**
+### Asynchronous Processing
 
-One of the most important properties of building a performant plugin is whether to trust simulation results or not. If enabled in the creation form, we will not send a processing hook and use the simulation result. This greatly helps scalability because:
+An important concept to understand when building plugins is that BitBadges processes plugins asynchronously before the claim is fully processed. Typically, there will only be a couple seconds between processing times, but claim state is not guaranteed to stay the same between your individual plugin processing and claim processing.
 
-* You only need to check criteria once, not twice
-* BitBadges can outsource and parallelize result processing on our end. The alternative (not trusting simulations) is that we need to process synchronously. So for example, if your plugin resolves in 1s, 1000 claims would take min 1000 seconds to process.
+**However, this means that you should NOT depend on the current claim state in any form when implementing your processing hook logic (i.e. the state on BitBadges' end like number of claims processed).**&#x20;
+
+You may manage your own state on your end, and we have settings for you to set state in an eventually consistent manner on BitBadges end (see handler response formats below).&#x20;
+
+This mainly applies for processing hooks. For success hooks, you can assume that the respective attempt has succeeded already.
+
+Parameters are okay to depend on. We will pass the parameters of your plugin to you via the handler. If you need other plugins' parameters, you may query them via the API, but ensure the claim versions match to avoid race conditions.
 
 ### Handling User / Creator Inputs
 
@@ -77,11 +81,8 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 
 * **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
 * **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim.
-* **Simulation**: For simulated claims, we pass the \_isSimulation = true. You can use this flag, for example, to not update important state information for simulations.
 * **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
-* **Claim Attempt Id:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
-* **Prior State:** If you select the state transition preset type (see response section), we will pass the current state via **priorState**.
-* **Curr / Max Uses:** We also provide you with the current number of successful uses (not counting the current claim) and total max number of uses.
+* **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
 * **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
@@ -99,7 +100,6 @@ const payload = {
     twitter: { id: '...', username: '...' }, //If configured
     github: { id: '...', username: '...' }, //If configured
     google: { id: '...', username: '...' }, //If configured
-    priorState: {}, //If using state transition preset function (see below)
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
@@ -107,12 +107,9 @@ const payload = {
     ethAddress: context.ethAddress, //If pass address is configured
     solAddress: context.solAddress, //If pass address is configured
     btcAddress: context.btcAddress, //If pass address is configured
-    _isSimulation: context._isSimulation,
     _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
-    maxUses: context.maxUses,
-    currUses: context.currUses,
     version: context.version,
 };
 ```
@@ -135,15 +132,9 @@ This preset expects a { claimToken} in the response. The claim token is a one-ti
 
 <figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-**State Transitions Preset**
-
-This preset expects a { newState } in the response. If the claim is successful, we will set the current state stored in our plugin to the new state. If this option is selected, you also have access to the prior state in the request payload.
-
 **Claim Numbers Preset**
 
 This preset expects a { claimNumber } in the response. The claim number is the claim number that will be assigned if the claim number is successful. Claim numbers are 0-based, so claimNumber === 0 is the first claim, and so on.
-
-The prior state of the number of uses plugin will be passed via the request payload.
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
 
@@ -162,7 +153,7 @@ Please follow the { message } interface for returned JSON error responses.
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { priorState, claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, _isSimulation, lastUpdated, createdAt } = body;
+    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct

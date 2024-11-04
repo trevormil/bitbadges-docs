@@ -9,11 +9,8 @@ Use your favorite tool to simulate requests to your handler such as the one belo
 ```bash
 curl -X POST https://bitbadges.io  -H 'Content-Type: application/json' -d '{
   "pluginSecret": "068145b0058668ac5b880e23ca2556e4207efe8066227f4eb3466a6b0d16daa4",
-  "_isSimulation": false,
   "claimId": "abcxyz123",
   "claimAttemptId": "...",
-  "currUses": 0,
-  "maxUses": 10,
   "lastUpdated": 1800000000000,
   "createdAt": 1800000000000,
   "version": "0",

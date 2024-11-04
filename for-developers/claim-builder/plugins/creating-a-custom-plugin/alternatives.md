@@ -5,7 +5,7 @@
 We provide prebuilt webhook plugins to simplify custom logic implementation:
 
 * **Success Webhook Plugin**: For post-claim logic.
-* **Custom Validate URL Plugin**: For checking criteria during execution.
+* **Custom Validation URL Plugin**: For checking criteria during execution.
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require user inputs or state management, a custom plugin is necessary.
 
