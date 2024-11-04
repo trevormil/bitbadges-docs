@@ -4,8 +4,8 @@
 
 An important aspect to consider when implementing your plugin is that your plugin status is not representative of the overall claim status.
 
-* Your plugin might pass but others might fail -> The entire claim fails
-* Your plugin fails but another success path (custom success logic) succeeds -> The claim succeeds
+* Your plugin might pass but others might fail -> The claim fails
+* Your plugin fails but another plugin succeeds (ex: 1 out of 10 must pass) succeeds -> The claim succeeds
 
 ### State Management
 
