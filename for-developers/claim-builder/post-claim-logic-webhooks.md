@@ -60,9 +60,9 @@ Consider using the Custom Validation URL in-site plugin or the Success Webhook i
 
 **Custom Plugins**
 
-Or, you can implement your own custom plugin. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim.
+Or, you can implement your own custom plugin. In the configuration form, you can select to receive a success webhook with \_attemptStatus: 'success' if you are implementing logic that is dependent on the success of the claim. You can also identify the user in many different ways via the passed socials / their address.
 
-You can identify the user in many different ways via the passed socials / their address.
+It is super easy to implement (just an HTTP request). See the creating plugins documentation for more information.
 
 ```typescript
 // At your plugin handler URL
