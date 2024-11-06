@@ -19,7 +19,7 @@
   * [Standards](overview/how-it-works/standards.md)
   * [Aliases](overview/how-it-works/aliases.md)
 * [🔨 Getting Started](overview/getting-started.md)
-* [⚖️ Comparing BitBadges to Other Protocols](overview/comparing-bitbadges-to-other-protocols.md)
+* [⚖️ BitBadges L1 vs Other Protocols](overview/bitbadges-l1-vs-other-protocols.md)
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [🧩 Supported Wallets](overview/supported-wallets.md)
 * [📱 Alternate Sign Ins / Mobile](overview/mobile-support.md)
@@ -262,4 +262,3 @@
   * [BitBadges Follow Protocol](for-developers/protocols/bitbadges-follow-protocol.md)
   * [Experiences Protocol](for-developers/protocols/experiences-protocol.md)
 * [👨‍💻 Contributing](for-developers/contributing.md)
-* [❓ FAQ - Dev](for-developers/faq-dev.md)

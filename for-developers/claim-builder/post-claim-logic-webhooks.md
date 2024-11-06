@@ -6,7 +6,7 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Notification plugin.
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **In-Site Rewards**
 
@@ -16,7 +16,7 @@ Gated content / URLS - We check 1+ successful claim
 
 Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md "mention") for more information (reuses same code).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Polling Claim State
 
