@@ -33,6 +33,8 @@ NOTE: Catching simulations is especially important for success hooks.
 You most likely do not want to execute success logic on a dry run.
 ```
 
+It is not recommended, but you can select to not receive simulation hooks at all in the usage settings when creating your plugin in the developer portal.
+
 ### Asynchronous Processing
 
 An important concept to understand when building plugins is that BitBadges processes plugins asynchronously before the claim is fully processed. Typically, there will only be a couple seconds between processing times, but claim state is not guaranteed to stay the same between your individual plugin processing and claim processing.
