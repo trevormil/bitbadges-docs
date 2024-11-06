@@ -10,18 +10,36 @@ On your end, you will need to setup a HTTP handler API to accept the incoming re
 
 ### Timing of Hooks
 
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 BitBadges sends two types of hooks (during processing hooks and success hooks- after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive both or just one.
 
-* Processing hooks are checked during the execution of the claim and could influence whether the claim succeeds or not.
-* Success hooks are only sent after the claim is successful. Typically used for post-claim actions.
+* Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
+* Success hooks (\_attemptStatus = "success") are only sent after the claim is successful. Typically used for post-claim actions or success logic.
+
+### Simulations
+
+We allow users to simulate claims as a dry run before they actually submit for real. The scope of the dry run is left up to you, but we recommend as a rule of thumb is that if the user successfully simulates, they are expected to always pass at execution time.
+
+To determine whether you are receiving a simulation hook or a "for real" hook, you can use the \_isSimulation flag that is passed. The claimAttemptId will also be empty, but the rest of the payload should remain the same.&#x20;
+
+For building scalable plugins, we also recommend implementing some sort of caching mechanisms to avoid double processing your logic (cache at simulation time and reuse at actual time).
+
+Simulations done via the simulate endpoint rather than the complete claim API endpoint. The BitBadges site will always simulate once before submitting, but you should not depend on every claim attempt having a prior simulation.
+
+```
+NOTE: Catching simulations is especially important for success hooks. 
+
+You most likely do not want to execute success logic on a dry run.
+```
 
 ### Asynchronous Processing
 
 An important concept to understand when building plugins is that BitBadges processes plugins asynchronously before the claim is fully processed. Typically, there will only be a couple seconds between processing times, but claim state is not guaranteed to stay the same between your individual plugin processing and claim processing.
 
-**However, this means that you should NOT depend on the current claim state in any form when implementing your processing hook logic (i.e. the state on BitBadges' end like number of claims processed).**&#x20;
+**However, this means that you should NOT depend on the current claim state in any form when implementing your processing hook logic (i.e. the state on BitBadges' end like number of claims processed).**
 
-You may manage your own state on your end, and we have settings for you to set state in an eventually consistent manner on BitBadges end (see handler response formats below).&#x20;
+You may manage your own state on your end, and we have settings for you to set state in an eventually consistent manner on BitBadges end (see handler response formats below).
 
 This mainly applies for processing hooks. For success hooks, you can assume that the respective attempt has succeeded already.
 
@@ -73,8 +91,6 @@ You can also select to automatically pass supported identifying details about th
 
 <figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
-
-
 ### **Backend Handler**
 
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
@@ -124,7 +140,7 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
