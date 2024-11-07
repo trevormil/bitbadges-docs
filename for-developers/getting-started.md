@@ -6,6 +6,10 @@
 
 ## API / SDK / Sign In with BitBadges Quickstart
 
+```
+npm i bitbadgesjs-sdk
+```
+
 #### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
 
 Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc).
