@@ -5,12 +5,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 -   [BitBadges App](https://bitbadges.io)
 -   [Explorer](https://explorer.bitbadges.io)
 
-### Integrations
-
--   [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](how-it-works/distribution.md))
--   [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0&hl=en) ([Docs](chrome-extension.md))
--   [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](metamask-snap.md))
-
 ### Socials
 
 -   [Discord](https://discord.com/invite/TJMaEd9bar)
@@ -22,6 +16,13 @@ Below is a list of official links for socials and other platforms. Our preferred
 -   [Reddit](https://www.reddit.com/r/BitBadges/)
 -   [Telegram](https://t.me/BitBadges)
 -   [GitHub](https://github.com/bitbadges)
+-
+
+### Integrations
+
+-   [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](how-it-works/distribution.md))
+-   [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0&hl=en) ([Docs](chrome-extension.md))
+-   [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](metamask-snap.md))
 
 ### API & SDK
 
