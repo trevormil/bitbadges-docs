@@ -25,7 +25,7 @@ Note: this is all handled for you if you use the BitBadges API SDK.
 
 [Stoplight (Main Docs for all routes)](https://bitbadges.stoplight.io/docs/bitbadges)&#x20;
 
-[Postman](https://elements.getpostman.com/redirect?entityId=11647629-888b6693-8d73-49a6-b5a7-3edddd67b594\&entityType=collection)
+[Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
 
 You can also see the full [OpenAPI file](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml) here.
 
