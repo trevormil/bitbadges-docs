@@ -1,4 +1,4 @@
-# 🦊 MetaMask Snap
+# MetaMask Snap
 
 BitBadges has created a MetaMask Snap extension to help guard your wallet and automatically check badge / asset ownership for addresses in your transactions and signatures.
 
@@ -6,4 +6,4 @@ BitBadges has created a MetaMask Snap extension to help guard your wallet and au
 
 **Configure Settings:** [https://bitbadges.io/snap](https://bitbadges.io/snap)
 
-<figure><img src="../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
