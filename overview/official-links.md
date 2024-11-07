@@ -16,7 +16,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 * [Reddit](https://www.reddit.com/r/BitBadges/)
 * [Telegram](https://t.me/BitBadges)
 * [GitHub](https://github.com/bitbadges)
-*
 
 ### Integrations
 
