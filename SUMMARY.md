@@ -3,6 +3,7 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
+* [🔨 Getting Started](overview/getting-started.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links](overview/official-links.md)
 * [🧠 Core Concepts](overview/how-it-works/README.md)
@@ -19,7 +20,6 @@
   * [Transferability](overview/how-it-works/transferability.md)
   * [Standards](overview/how-it-works/standards.md)
   * [Aliases](overview/how-it-works/aliases.md)
-* [🔨 Getting Started](overview/getting-started.md)
 * [⚖️ BitBadges L1 vs Other Protocols](overview/comparing-bitbadges-to-other-protocols.md)
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [Wallets and Sign Ins](overview/wallets-and-sign-ins/README.md)
@@ -29,15 +29,12 @@
 * [🤵‍♂️ LinkedIn Certifications](overview/linkedin-certifications.md)
 * [🌐 Chrome Extension](overview/chrome-extension.md)
 * [🦊 MetaMask Snap](overview/metamask-snap.md)
-* [📊 Explorers](overview/explorers.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
   * [Protocols](overview/protocols/README.md)
     * [BitBadges Follow Protocol](overview/protocols/bitbadges-follow-protocol.md)
     * [Experiences Protocol](overview/protocols/experiences-protocol.md)
   * [Blockin](overview/ecosystem/blockin.md)
-* [📚 Learn](overview/learn.md)
 * [🤝 Link Sharing](overview/link-sharing.md)
-* [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [❓ FAQ](overview/faq.md)
 
 ## ⌨️ For Developers
