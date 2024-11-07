@@ -4,6 +4,7 @@
 
 * [👋 BitBadges Overview](README.md)
 * [🎨 Use Cases](overview/use-cases.md)
+* [🔗 Official Links](overview/official-links.md)
 * [🧠 Core Concepts](overview/how-it-works/README.md)
   * [Multi-Chain Accounts](overview/how-it-works/accounts.md)
   * [BitBadges Claims](overview/how-it-works/distribution.md)

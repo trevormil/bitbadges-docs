@@ -131,31 +131,3 @@ In addition to the standard features of existing token standards (mint, transfer
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
 And much more!
-
-## Links
-
-BitBadges App - [https://bitbadges.io](https://bitbadges.io)
-
-Explorer - [https://explorer.bitbadges.io](https://explorer.bitbadges.io)
-
-Discord - [https://discord.com/invite/TJMaEd9bar](https://discord.com/invite/TJMaEd9bar)
-
-LinkedIn - [https://linkedin.com/company/bitbadges](https://linkedin.com/company/bitbadges)
-
-Twitter - [https://twitter.com/bitbadges\_io](https://twitter.com/bitbadges\_io)
-
-Facebook - [https://facebook.com/profile.php?id=100092259215026](https://facebook.com/profile.php?id=100092259215026)
-
-Instagram - [https://instagram.com/bitbadges\_official/](https://instagram.com/bitbadges\_official/)
-
-Slack - [https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email](https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email)
-
-Reddit -[ ](https://www.reddit.com/r/BitBadges/)[https://www.reddit.com/r/BitBadges/](https://www.reddit.com/r/BitBadges/)
-
-Telegram - [https://t.me/BitBadges](https://t.me/BitBadges)
-
-GitHub - [https://github.com/bitbadges](https://github.com/bitbadges)
-
-Project Board - [https://github.com/bitbadges/projects](https://github.com/orgs/BitBadges/projects)
-
-Improvement Proposals - [https://github.com/BitBadges/BBIPs](https://github.com/BitBadges/BBIPs)
