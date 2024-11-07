@@ -4,7 +4,7 @@ Mobile support is a bit tricky since many wallets are geared towards desktop usa
 
 This allows you to access certain aspects of your account via Signing In with Discord, Google, etc, or an alternate wallet. Use at your own risk though as approving socials means account compromise on your socials -. account compromise on BitBadges. Only assign the scopes that you need.
 
-<figure><img src="../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
 **Mobile App (PWA)**
 
@@ -12,4 +12,4 @@ While we do not have an official app on any app store, our web app is mobile fri
 
 If you are using a mobile crypto wallet, please use best practices for that wallet. Some may require you to use their in-app browser, for example.
 
-<figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>

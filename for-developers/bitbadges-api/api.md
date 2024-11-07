@@ -9,19 +9,25 @@ By default, certain routes are available publicly in a rate limited manner with 
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
+### Quickstarter
+
+See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
+
+
+
 ### Number Types / Stringified Responses
 
 All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
-### Quickstart
-
-See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
-
 ### Routes Documentation
 
-See the documentation for all routes at [https://bitbadges.stoplight.io/docs/bitbadges](https://bitbadges.stoplight.io/docs/bitbadges)
+[Stoplight (Main Docs for all routes)](https://bitbadges.stoplight.io/docs/bitbadges)&#x20;
+
+[Postman](https://elements.getpostman.com/redirect?entityId=11647629-888b6693-8d73-49a6-b5a7-3edddd67b594\&entityType=collection)
+
+You can also see the full [OpenAPI file](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml) here.
 
 ### Testnet Mode
 
