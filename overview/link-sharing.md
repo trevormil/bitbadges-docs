@@ -1,4 +1,10 @@
-# 🤝 Link Sharing
+# 🤝 Brand Guidelines / Link Sharing
+
+**Brand Guidelines**
+
+Feel free to use BitBadges name and logo in your site as you see fit. If you have any questions or concerns about usage, please let us know.
+
+**Link Sharing**
 
 With the way BitBadges has been developed, sharing standard links on platforms like Discord / X have the default BitBadges logo / app description.
 

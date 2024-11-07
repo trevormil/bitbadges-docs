@@ -34,7 +34,7 @@
     * [BitBadges Follow Protocol](overview/protocols/bitbadges-follow-protocol.md)
     * [Experiences Protocol](overview/protocols/experiences-protocol.md)
   * [Blockin](overview/ecosystem/blockin.md)
-* [🤝 Link Sharing](overview/link-sharing.md)
+* [🤝 Brand Guidelines / Link Sharing](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
 
 ## ⌨️ For Developers
