@@ -1,8 +1,10 @@
 # Parameters
 
-Each plugin can configure the expected scheme of parameters inputted by the creator when creating the claim. Parameters can either be public and visible to any user or kept privately stored. Like previously stated though, the private parameters are not displayed to the user and kept secure, but we do not recommend storing sensitive information like API keys in here.
+Each plugin can configure the expected schema of parameters inputted by the creator when creating the claim. Note these are different from user inputs.&#x20;
 
-These will all be passed to your backend handler in the payload.
+Parameters can either be public and visible to any user or kept privately stored. Like previously stated though, the private parameters are not displayed to the user and kept secure, but we do not recommend storing sensitive information like API keys in here.
+
+Parameters will be passed to your backend handler in the payload.
 
 <figure><img src="../../../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
 

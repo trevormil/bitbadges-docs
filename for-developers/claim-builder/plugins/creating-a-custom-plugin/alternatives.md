@@ -24,3 +24,7 @@ If you do not want to actually set up a full handler, you can also use the Forms
 ### Implementation
 
 The request/response flow mirrors that of custom plugins, with the `pluginSecret` replaced by the inputted validation secret. For detailed implementation guidance, refer to the respective documentation.
+
+
+
+<figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>

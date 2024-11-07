@@ -1,13 +1,13 @@
-# Timings and Dry Runs
+# Hook Types and Simulations
 
 ### Timing of Hooks
-
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 BitBadges sends two types of hooks (during processing hooks and success hooks- after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
 
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
+
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
