@@ -210,6 +210,7 @@ const payload = {
     solAddress: context.solAddress, //If pass address is configured
     btcAddress: context.btcAddress, //If pass address is configured
     _attemptStatus: context._attemptStatus, // 'executing' for during or 'success' for post-completion
+    _isSimulation: context._isSimulation, //True if this is a simulation (dry run) vs not
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
     version: context.version
@@ -222,6 +223,9 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
     const { claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
+    const { _isSimulation } = body;
+
+    //TODO: Handle dry runs (_isSimulation === true) as necessary
 
     //Step 2: Verify BitBadges as origin by checking plugin secret is correct
     const YOUR_PLUGIN_SECRET = '';
