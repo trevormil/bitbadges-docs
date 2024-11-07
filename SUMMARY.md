@@ -25,7 +25,6 @@
   * [🧩 Supported Wallets](overview/wallets-and-sign-ins/supported-wallets.md)
   * [📱 Alternate Sign Ins / Mobile](overview/wallets-and-sign-ins/mobile-support.md)
   * [Approved Transactors](overview/wallets-and-sign-ins/approved-transactors.md)
-* [🤝 Link Sharing](overview/link-sharing.md)
 * [🤵‍♂️ LinkedIn Certifications](overview/linkedin-certifications.md)
 * [🌐 Chrome Extension](overview/chrome-extension.md)
 * [🦊 MetaMask Snap](overview/metamask-snap.md)
@@ -36,6 +35,7 @@
     * [Experiences Protocol](overview/protocols/experiences-protocol.md)
   * [Blockin](overview/ecosystem/blockin.md)
 * [📚 Learn](overview/learn.md)
+* [🤝 Link Sharing](overview/link-sharing.md)
 * [🙂 Team / Contact Us](overview/team-contact-us.md)
 * [❓ FAQ](overview/faq.md)
 

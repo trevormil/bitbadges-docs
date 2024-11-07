@@ -6,7 +6,7 @@ Need to perform some additional action upon the user claiming successfully? Ther
 
 The easiest and most typical approach is to just do this with preconfigured plugins. Many use cases are already implemented for you. For example, Send BitBadges Notification plugin.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **In-Site Rewards**
 
@@ -14,9 +14,9 @@ When creating rewards on the claim builder page, you can also link gated content
 
 Gated content / URLS - We check 1+ successful claim
 
-Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md 'mention') for more information (reuses same code).
+Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md "mention") for more information (reuses same code).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Polling Claim State
 
@@ -36,9 +36,9 @@ With this flow, you may find you need to authenticate users via Sign In with BIt
 
 Plugins and the pre-configured webhook plugins can be customized to send requests to custom URL and expect a 200 OK response. There are two types of requests:
 
--   Success Hooks: If configured, we can send a success webhook which will only send upon a successful claim. This can be checked using the \_attemptStatus. If we do not receive a 200 OK, we will exponentially backoff but keep retrying until we do.
-    -   Typically, you may implement a queue-like system (send 200 OK to denote received -> implemnet your logic via the queue system)
--   During Execution Hook: Or, if your logic is critical to whether the claim is successful or not. We can call the URL during the claim execution and fail if we do not receive a 200 OK.
+* Success Hooks: If configured, we can send a success webhook which will only send upon a successful claim. This can be checked using the \_attemptStatus. If we do not receive a 200 OK, we will exponentially backoff but keep retrying until we do.
+  * Typically, you may implement a queue-like system (send 200 OK to denote received -> implemnet your logic via the queue system)
+* During Execution Hook: Or, if your logic is critical to whether the claim is successful or not. We can call the URL during the claim execution and fail if we do not receive a 200 OK.
 
 **Webhooks by Zapier**
 
