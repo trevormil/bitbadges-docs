@@ -2,7 +2,7 @@
 
 ### Do you actually need a custom plugin?
 
-Before going through the entire plugin creation process, consider whether you actually need a plugin for your use case. Get creative!
+Before going through the entire plugin creation process, consider whether you actually need a plugin for your use case. Get creative! Test build one in the developer portal to see if stuff is already implemented for you.
 
 For example,
 
