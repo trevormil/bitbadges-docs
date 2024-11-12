@@ -85,7 +85,7 @@ Check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. This c
 
 If you want to perform authenticated operations on behalf of your **own account**, consider the flow below. We recognize that wallet signatures may be a bit difficult to sign in with, so we have designed this alternative.
 
-The password approved sign in approach may be useful, for example, for programmatically creating attestations, completing claims, etc, without needing to directly interact with the site.
+The password approved sign in approach may be useful, for example, for programmatically creating attestations, completing claims, etc, without needing to directly interact with the site.&#x20;
 
 1\. Set up an approved password sign in in your account settings with the desired scopes.
 
@@ -101,6 +101,8 @@ const verificationRes = await BitBadgesApi.verifySignIn({
 //If successful, you can now perform authenticated requests for the approved scopes
 <strong>//await BitBadgesApi.completeClaim(...)
 </strong></code></pre>
+
+Note this approach leverages HTTP session cookies as opposed to access tokens. Make sure your requests support them (e.g. for axios, { withCredentials: true }).
 
 ### Confined Responses
 
