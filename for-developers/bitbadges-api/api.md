@@ -71,13 +71,34 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 ### BitBadges API Authorization
 
-For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.
+For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend. However if you do:
 
-Otherwise, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow.
+**OAuth Authorization**
+
+Check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. This could be useful for performing actions on behalf of others.
 
 {% content-ref url="../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
+
+**Password Self-Approve Method**
+
+If you want to perform authenticated operations on behalf of your **own account**, consider the below. We recognize that wallet signatures may be a bit difficult to sign in with, so we have designed this alternative.
+
+First, Set up an approved password sign in in your account settings with the desired scopes.
+
+Then, sign in with:
+
+<pre class="language-typescript"><code class="lang-typescript">const { message } = await BitBadgesApi.getSignInChallenge(...);
+const verificationRes = await BitBadgesApi.verifySignIn({
+    message,
+    signature: '', //Empty string
+    password: '...'
+})
+
+//If successful, you can now perform authenticated requests for the approved scopes
+<strong>//await BitBadgesApi.completeClaim(...)
+</strong></code></pre>
 
 ### Confined Responses
 
