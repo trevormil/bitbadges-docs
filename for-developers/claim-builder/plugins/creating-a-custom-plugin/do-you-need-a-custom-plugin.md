@@ -14,7 +14,7 @@ For example,
 * Many apps / services use emails to identify users. If you have a list of emails, consider copy / pasting them into the Email plugin rather than needing to implement everything. Or in a similar fashion, if you have the users' crypto addresses, you can use the Address Restrictions plugin.
 * And so on.
 
-If you can implement everything you need while using existing plugins, consider creating  a configuration tool rather than a plugin.
+If you can implement everything you need while using existing plugins, consider directly updating the claim parameters programmatically or creating  a configuration tool rather than a plugin.&#x20;
 
 {% content-ref url="../configuration-tools.md" %}
 [configuration-tools.md](../configuration-tools.md)
