@@ -83,11 +83,13 @@ Check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. This c
 
 **Password Self-Approve Method**
 
-If you want to perform authenticated operations on behalf of your **own account**, consider the below. We recognize that wallet signatures may be a bit difficult to sign in with, so we have designed this alternative.
+If you want to perform authenticated operations on behalf of your **own account**, consider the flow below. We recognize that wallet signatures may be a bit difficult to sign in with, so we have designed this alternative.
 
-First, Set up an approved password sign in in your account settings with the desired scopes.
+The password approved sign in approach may be useful, for example, for programmatically creating attestations, completing claims, etc, without needing to directly interact with the site.
 
-Then, sign in with:
+1\. Set up an approved password sign in in your account settings with the desired scopes.
+
+2\. Sign in with:
 
 <pre class="language-typescript"><code class="lang-typescript">const { message } = await BitBadgesApi.getSignInChallenge(...);
 const verificationRes = await BitBadgesApi.verifySignIn({
