@@ -108,9 +108,9 @@ For [https://snapshots.whenmoonwhenlambo.money/bitbadges-1](https://snapshots.wh
 lz4 -c -d bitbadges-1-snapshot-latest.tar.lz4 | tar -x -C /cosmos/.bitbadgeschain
 ```
 
-### **From Genesis**
+### **From Block Sync**
 
-Syncing from genesis means that you start with the blank genesis state and verify all transactions from block 1 to the current block (time consuming). This is not recommended unless you want to run a full archive node.
+Syncing from genesis or via block sync means that you start with the blank genesis state and verify all transactions from the start block to the current block (time consuming). This is not recommended unless you need to run a full archive node.
 
 **Chain Binaries**
 
@@ -122,7 +122,7 @@ The chain binary may be upgraded over time. To continue syncing, you will always
 NOTE: We had a hard fork after block 711315
 ```
 
-Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork.&#x20;
+Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork.  You will need to manually handle this.
 
 For handling this, you can either:
 
@@ -136,6 +136,8 @@ RUN_COMMAND start
 </code></pre>
 
 2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.&#x20;
+
+See ./scripts/handle-fork-711315.sh in the btibadgeschain GitHub repository for a full script. Or, do the following below:
 
 You can get blocks 1-711315 via running it below or via a snapshot (recommended).&#x20;
 
@@ -155,7 +157,7 @@ If you want to migrate and join together the blockstores / transaction indexes s
 </strong><strong># Edit migrate.go to use your intended source / target DB paths
 </strong><strong># Run migrate.go which copies all blockstores / transaction data and sets base height back to 1
 </strong><strong># Note: If you need more than just block data (cs.wal, state.db, or evidence.dd), this is left  up to you. 
-</strong>go run ./scripts/migrate.go
+</strong>go run scripts/migrate.go -source /path/to/snapshot/data -target /path/to/target/data
 </code></pre>
 
 **Testnet Genesis**&#x20;
