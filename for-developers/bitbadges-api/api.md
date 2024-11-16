@@ -6,8 +6,11 @@ By default, certain routes are available publicly in a rate limited manner with 
 
 1. Get an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer).
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
+3. For higher tiers / paid plans, visit [https://bitbadges.io/pricing](https://bitbadges.io/pricing).
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### Quickstarter
 
