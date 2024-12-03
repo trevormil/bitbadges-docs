@@ -48,7 +48,7 @@ We recommend using the helper tool available at [https://bitbadges.io/auth/linkg
 
 All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer). You can create multiple apps for different use cases.
 
-Each app is identified by the client ID**,** which is mandatory. The redirect URI is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirect URI (if applicable).
+Each app is identified by the client I&#x44;**,** which is mandatory. The redirect URI is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirect URI (if applicable).
 
 For instant authentication, the redirect URI is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
 

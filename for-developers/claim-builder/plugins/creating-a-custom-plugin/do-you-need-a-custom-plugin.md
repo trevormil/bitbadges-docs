@@ -7,6 +7,7 @@ Before going through the entire plugin creation process, consider whether you ac
 For example,
 
 * Use the Custom Validate plugin as a more streamlined alternative.
+* Use dynamic stores to allow BitBadges to maintain user lists (emails, addresses, or other identifiers) for you.
 * Use the Codes plugin and give out claim codes from your side to those who meet the criteria
 * Give out a secret password to those who satisfy a criteria
 * See if Zapier can satisfy what you need
