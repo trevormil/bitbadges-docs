@@ -16,7 +16,7 @@ Head over to the BitBadges site -> Create tab to get started! The forms should w
 
 For in-site claims, head over to the respective list / badge/ claim page and complete the claim forms. Note that some creators might implement custom flows which are handled outside the BitBadges site. This is specific to the badge collection / list.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 
 
