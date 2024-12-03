@@ -173,6 +173,7 @@
     * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
   * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
     * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
+    * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
     * [Distribute Claim Information Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
     * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
