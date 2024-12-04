@@ -1,6 +1,6 @@
 # Adding Data
 
-Once your store is added, you can add users / data to it. Note that we add via a queue-based approach, so the data may take some moments to populate.
+Once your store is added, you can add users / data to it. Note that we add via a queue-based approach, so the data may take a couple moments to populate.
 
 ### Store ID / Secret
 
@@ -34,3 +34,12 @@ await BitBadgesApi.performBatchBinAction(...)
 Use the BitBadges Zapier integration to automate workflows for you. Zapier connects to over 7000+ integrations. Typically, you will automatically populate data from your trigger (e.g. Eventbrite attendee email) into the BitBadges Store Action step.&#x20;
 
 <figure><img src="../../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+
+You can also use the Zapier approach to check criteria as well. For example,
+
+1. Setup a Google Form that users can enter their email (or parse the Gmail from the metadata).
+2. Setup a Zap to trigger upon Google Forms responses.
+3. Check if existing Mailchimp subscriber using email provided via the Mailchimp integration plugin.
+4. Add email to dynamic store if subscribed
+
+If setting up an in-site claim, you can redirect the users to the form via the URL Click plugin, Custom Instructions Plugin, or just in the description as well.
