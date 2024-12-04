@@ -40,6 +40,6 @@ You can also use the Zapier approach to check criteria as well. For example,
 1. Setup a Google Form that users can enter their email (or parse the Gmail from the metadata).
 2. Setup a Zap to trigger upon Google Forms responses.
 3. Check if existing Mailchimp subscriber using email provided via the Mailchimp integration plugin.
-4. Add email to dynamic store if subscribed
+4. Add email to dynamic store if subscribed (note: we only allow claims for verified emails)
 
 If setting up an in-site claim, you can redirect the users to the form via the URL Click plugin, Custom Instructions Plugin, or just in the description as well.
