@@ -40,6 +40,8 @@ Typically, you will want to field map data from your trigger (e.g. Eventbrite at
 
 You may notice that we have a few different identifier fields (email, address, id, username). Leave the ones you don't need blank. Which field you populate should correspond to the store type you have created.
 
+<figure><img src="../../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+
 <figure><img src="../../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
 You can also use the Zapier approach to check criteria as well. For example,
