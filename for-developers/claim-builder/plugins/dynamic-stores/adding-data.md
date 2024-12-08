@@ -31,7 +31,12 @@ await BitBadgesApi.performBatchBinAction(...)
 
 **Method 3: Zapier**
 
-Use the BitBadges Zapier integration to automate workflows for you. Zapier connects to over 7000+ integrations. Typically, you will automatically populate data from your trigger (e.g. Eventbrite attendee email) into the BitBadges Store Action step.&#x20;
+Use the BitBadges Zapier integration to automate workflows for you. Zapier connects to over 7000+ integrations. In this case, your trigger will be the app you want to integrate nad the action will be BitBadges Add User to Dynamic Store.
+
+Typically, you will want to field map data from your trigger (e.g. Eventbrite attendee email) into the BitBadges Store Action step. For documentation on how to do this, see Zapiers documentation.
+
+* [Field Mapping](https://help.zapier.com/hc/en-us/articles/31709122224653-Enter-data-in-Zap-fields#01JC4MFMXXJXSS7GBAYZP32XKZ)
+* [Send Data Between Steps By Mapping Fields](https://help.zapier.com/hc/en-us/articles/8496343026701-Send-data-between-steps-by-mapping-fields)
 
 <figure><img src="../../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
