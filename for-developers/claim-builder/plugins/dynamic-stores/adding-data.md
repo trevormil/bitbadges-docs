@@ -38,6 +38,8 @@ Typically, you will want to field map data from your trigger (e.g. Eventbrite at
 * [Field Mapping](https://help.zapier.com/hc/en-us/articles/31709122224653-Enter-data-in-Zap-fields#01JC4MFMXXJXSS7GBAYZP32XKZ)
 * [Send Data Between Steps By Mapping Fields](https://help.zapier.com/hc/en-us/articles/8496343026701-Send-data-between-steps-by-mapping-fields)
 
+You may notice that we have a few different identifier fields (email, address, id, username). Leave the ones you don't need blank. Which field you populate should correspond to the store type you have created.
+
 <figure><img src="../../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
 You can also use the Zapier approach to check criteria as well. For example,
