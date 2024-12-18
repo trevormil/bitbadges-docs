@@ -22,7 +22,7 @@ For in-site claims, head over to the respective list / badge/ claim page and com
 
 ### **Creating Application / Product Pages**
 
-Application or product pages are an abstraction over badges, claims, and all else we offer. This allows you to create an all-in-one page that displays everything for your application.\ and redirects users wherever necessary.
+Application or product pages are an abstraction over badges, claims, and all else we offer. This allows you to create an all-in-one page that displays everything for your application.\ and redirects users wherever necessary. Create pages in the developer portal.
 
 The only entrypoint is claims, so to showcase badges, lists, etc, you can make a wrapper parent claim that can check for badge ownership, list inclusion, or anything else you want to check.
 
