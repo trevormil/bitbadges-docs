@@ -28,7 +28,7 @@
   * [Approved Transactors](overview/wallets-and-sign-ins/approved-transactors.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
   * [MetaMask Snap](overview/ecosystem/metamask-snap.md)
-  * [Chrome Extension](overview/ecosystem/chrome-extension.md)
+  * [Browser Extensions](overview/ecosystem/chrome-extension.md)
   * [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
   * [Protocols](overview/protocols/README.md)
     * [BitBadges Follow Protocol](overview/protocols/bitbadges-follow-protocol.md)
