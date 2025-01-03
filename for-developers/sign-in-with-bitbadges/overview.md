@@ -20,17 +20,7 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 ## Alternatives
 
-**BitBadges Claims**
 
-An alternative to the complete SIWBB flow is to just use BitBadges claims as well. Many features are shared between the two.&#x20;
-
-Sign In with BitBadges offers the full OAuth flow (access tokens w/ exchange), but you may choose to also gate your service by only verifying successful claim attempts. For example, upon claim success, configure a unique one time use code sent via email as a reward which can be used for authorization.
-
-Pros: A little more streamlined and can be configured to not require addresses (although you lose access to address-based functionality like badge ownership)
-
-Cons: No BitBadges API / scope access, claims are more public by default, no instant redirect
-
-Note: Claims can also be attached to the full SIWBB process, so you can get the best of both worlds if you desire.
 
 **P2P Verification**
 
@@ -43,6 +33,23 @@ Pros: No setup required. Accessible on the go. All directly in-site.
 Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
 
 <figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+
+**BitBadges Claims - QR Reward Codes**
+
+An alternative to the complete SIWBB flow is to just use the QR codes rewards feature of BitBadges claims. You can additionally get the claim number from the QR code and lookup details about the claim attempt.
+
+Pros of this approach include:
+
+* Depending on configuration, you can use the proof of successful claim instead of verifying addresses / implementing OAuth, so it is a little more streamlined.
+* May be able to configure the claim to not need crypto address verification or addresses at all
+
+However, this is a limited approach because:
+
+* Reward codes are static and should be one-time use only whereas SIWBB is more robust and supports expiring access tokens with refresh logic.
+* No BitBadges API / scope access&#x20;
+* No instant redirect currently supported
+
+Typically, you will want a hybrid approach. Claims can 1) be attached to the full SIWBB process and 2) since claim attempts are linked with an address, if you verify an address via SIWBB and the claim attempt required the user to be signed in, you inherently have proof of successful claim.
 
 ## **Execution Flow**
 
