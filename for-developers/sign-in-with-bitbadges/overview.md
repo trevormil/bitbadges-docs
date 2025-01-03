@@ -18,7 +18,21 @@ We envision most use cases will just want to authenticate users for their applic
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference. This has a full end-to-end implementation of Sign In with BitBadges.
 
-## P2P Verification
+## Alternatives
+
+**BitBadges Claims**
+
+An alternative to the complete SIWBB flow is to just use BitBadges claims as well. Many features are shared between the two.&#x20;
+
+Sign In with BitBadges offers the full OAuth flow (access tokens w/ exchange), but you may choose to also gate your service by only verifying successful claim attempts. For example, upon claim success, configure a unique one time use code sent via email as a reward which can be used for authorization.
+
+Pros: A little more streamlined and can be configured to not require addresses (although you lose access to address-based functionality like badge ownership)
+
+Cons: No BitBadges API / scope access, claims are more public by default
+
+Note: Claims can also be attached to the full SIWBB process, so you can get the best of both worlds if you desire.
+
+**P2P Verification**
 
 Before diving in, we want to preface by saying that the Peer Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
 
