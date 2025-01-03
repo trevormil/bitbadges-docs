@@ -28,7 +28,7 @@ Sign In with BitBadges offers the full OAuth flow (access tokens w/ exchange), b
 
 Pros: A little more streamlined and can be configured to not require addresses (although you lose access to address-based functionality like badge ownership)
 
-Cons: No BitBadges API / scope access, claims are more public by default
+Cons: No BitBadges API / scope access, claims are more public by default, no instant redirect
 
 Note: Claims can also be attached to the full SIWBB process, so you can get the best of both worlds if you desire.
 
