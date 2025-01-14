@@ -7,7 +7,7 @@ You can also browse featured badges at [https://bitbadges.io/browse](https://bit
 ### Badge Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
 
 * **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](how-it-works/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
-* **Attendance Badges -** Mint an attendance badge as a souvenir!
+* **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).
 * **Truth Badges -** Badges become the source of truth for scams, deep fakes, and more. For example, in a world of artificial intelligence, badges can be used to verify the root truth of some statement or thing.&#x20;
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
 * **Premium Content** - Premium content can be offered only to badge holders.

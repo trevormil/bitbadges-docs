@@ -6,8 +6,11 @@ By default, certain routes are available publicly in a rate limited manner with 
 
 1. Get an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer).
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
+3. For higher tiers / paid plans, visit [https://bitbadges.io/pricing](https://bitbadges.io/pricing).
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+
 
 ### Quickstarter
 
@@ -71,13 +74,38 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 ### BitBadges API Authorization
 
-For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend.
+For most applications, you should be fine without needing to access private user authenticated information. This is typically only needed by the official BitBadges frontend. However if you do:
 
-Otherwise, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow.
+**OAuth Authorization**
+
+Check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. This could be useful for performing actions on behalf of others.
 
 {% content-ref url="../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
+
+**Password Self-Approve Method**
+
+If you want to perform authenticated operations on behalf of your **own account**, consider the flow below. We recognize that wallet signatures may be a bit difficult to sign in with, so we have designed this alternative.
+
+The password approved sign in approach may be useful, for example, for programmatically creating attestations, completing claims, etc, without needing to directly interact with the site.&#x20;
+
+1\. Set up an approved password sign in in your account settings with the desired scopes.
+
+2\. Sign in with:
+
+<pre class="language-typescript"><code class="lang-typescript">const { message } = await BitBadgesApi.getSignInChallenge(...);
+const verificationRes = await BitBadgesApi.verifySignIn({
+    message,
+    signature: '', //Empty string
+    password: '...'
+})
+
+//If successful, you can now perform authenticated requests for the approved scopes
+<strong>//await BitBadgesApi.completeClaim(...)
+</strong></code></pre>
+
+Note this approach leverages HTTP session cookies as opposed to access tokens. Make sure your requests support them (e.g. for axios, { withCredentials: true }).
 
 ### Confined Responses
 

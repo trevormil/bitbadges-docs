@@ -14,7 +14,7 @@ See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
 The process of claiming a badge can be customized with Zapier to integrate any app you would like.&#x20;
 
-When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action  (claim a badge, distribute a code).
+When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action  (claim a badge, distribute a code, add to dynamic store).
 
 **Example Use Cases w/ BitBadges and Zapier**
 

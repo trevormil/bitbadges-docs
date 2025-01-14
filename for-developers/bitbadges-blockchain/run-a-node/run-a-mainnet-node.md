@@ -16,7 +16,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -86,9 +86,9 @@ cosmovisor run ....
 
 ## Initialization / Syncing
 
-In order to catch up to the current consensus, you will need to get your node synced. This can be done from genesis (time consuming but no trust needed) or from a recent snapshot of the state (faster but requires a trusted node).
+In order to catch up to the current consensus, you will need to get your node synced. This can be done from genesis (time consuming but no trust needed) or from a recent snapshot of the state (much faster but requires slight trust assumptions).
 
-### **From Snapshot / State Sync**
+### **From Snapshosts (Recommended)**
 
 If you do not want to reconstruct the entire history of the chain from genesis, you can start from a checkpoint. This can potentially save you days of syncing but requires you to trust an existing node.
 
@@ -96,17 +96,75 @@ If you do not want to reconstruct the entire history of the chain from genesis, 
 
 **State Sync**
 
-You can configure your config.toml to use the Cosmos SDK state sync to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
+You can configure your config.toml to use the Cosmos SDK state sync feature to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
 
-**Snapshot**
+**From Snapshots**
 
-You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain.
+You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain. See [Chain Details](../chain-details.md) for providers.
 
-See [Chain Details](../chain-details.md) for providers.
+For [https://snapshots.whenmoonwhenlambo.money/bitbadges-1](https://snapshots.whenmoonwhenlambo.money/bitbadges-1), use this command. Replace /cosmos/.bitbadgeschain with your home directoyry.
 
-### **From Genesis**
+```
+lz4 -c -d bitbadges-1-snapshot-latest.tar.lz4 | tar -x -C /cosmos/.bitbadgeschain
+```
 
-Syncing from genesis means that you start with the blank genesis state and verify all transactions from block 1 to the current block. Thus, this may take while. Also, note that the chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis).
+### **From Block Sync**
+
+Syncing from genesis or via block sync means that you start with the blank genesis state and verify all transactions from the start block to the current block (time consuming). This is not recommended unless you need to run a full archive node.
+
+**Chain Binaries**
+
+The chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis). See Cosmovisor section.
+
+**Chain Forks**
+
+```
+NOTE: We had a hard fork after block 711315
+```
+
+Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork.  You will need to manually handle this.
+
+For handling this, you can either:
+
+1. Start with block 711316 genesis or later (recommended). Everything will work as intended.
+
+<pre><code>cd DAEMON_HOME/config
+<strong>rm genesis.json
+</strong>curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis-711316.json
+RUN_COMMAND comet unsafe-reset-all
+RUN_COMMAND start
+</code></pre>
+
+2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.&#x20;
+
+See ./scripts/handle-fork-711315.sh in the btibadgeschain GitHub repository for a full script. Or, do the following below:
+
+You can get blocks 1-711315 via running it below or via a snapshot (recommended).&#x20;
+
+```
+cd DAEMON_HOME/config
+rm genesis.json
+curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis.json
+RUN_COMMAND start 
+```
+
+If you want to migrate and join together the blockstores / transaction indexes so they are all in one place:
+
+<pre class="language-bash"><code class="lang-bash"># Backup the /data folder for blocks 1-711315 somewhere for later use
+# Get the chain up and running for 711316+ (see above). Sync a few blocks. Stop the chain. 
+
+<strong>git clone https://github.com/bitbadges/bitbadgeschain
+</strong><strong># Edit migrate.go to use your intended source / target DB paths
+</strong><strong># Run migrate.go which copies all blockstores / transaction data and sets base height back to 1
+</strong><strong># Note: If you need more than just block data (cs.wal, state.db, or evidence.dd), this is left  up to you. 
+</strong>go run scripts/migrate.go -source /path/to/snapshot/data -target /path/to/target/data
+</code></pre>
+
+**Testnet Genesis**&#x20;
+
+Note: Replace the genesis files with the corresponding testnet ones if you are planning to run a testnet node
+
+## Configuration
 
 To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
 
@@ -120,26 +178,11 @@ Take note of where your configuration files live. We expect it to be in /root/.b
 
 If you are getting directories do not exist error, you may have to do the following first. These will be overwritten when the init command is executed, but it is just to get the errors out of there.
 
-```
-cd DAEMON_HOME
-mkdir config
+<pre><code><strong>cd DAEMON_HOME
+</strong>mkdir config
 mkdir data
 mkdir wasm
-```
-
-**Fetching the Correct Genesis JSON**
-
-The init command creates a default genesis, but you will need to replace it with the agreed upon version.
-
-To do this for betanet, execute the following:
-
-```
-cd DAEMON_HOME/config
-rm genesis.json
-curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/betanet.genesis.json
-```
-
-## Configuration
+</code></pre>
 
 Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
 
@@ -164,7 +207,7 @@ Ensure that the listen address settings are correct, using your IP address or do
 Once you have the node all configured, run the following to start the chain. You should see blocks being synced if configured correctly.
 
 ```
-RUN_COMMAND run start
+RUN_COMMAND start
 ```
 
 **Other Considerations**
