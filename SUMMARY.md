@@ -150,7 +150,7 @@
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
     * [Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
-      * [Plugins Directory](https://bitbadges.io/claims/directory)
+      * [Plugins Directory](https://bitbadges.io/plugin-directory)
       * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
       * [Signed in to BitBadges](for-developers/claim-builder/plugins/bitbadges-created-plugins/signed-in-to-bitbadges.md)
       * [Socials / Email Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/authentication-based-plugins.md)
