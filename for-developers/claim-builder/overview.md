@@ -16,7 +16,7 @@ Claims are made up of one or more plugins executed in order. For a claim to be s
 
 **How to create / manage claims?**
 
-Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list.  The developer portal also has an interface for testing, creating, and managing claims. You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD.
+Claims are created and maintained through the BitBadges site. You will get the chance to create and update claims when creating / updating a badge collection or address list. The developer portal also has an interface for testing, creating, and managing claims. You can also use the [BitBadges API](../bitbadges-api/tutorials/) for more programmatic CRUD.
 
 ## **Completion Methods**
 
@@ -26,7 +26,7 @@ With BitBadges claims, you have a few approaches.
 
 If everything you need is directly implementable with plugins, there is no extra development work needed. BitBadges has created some plugins, and custom plugins can also be created by developers.
 
-See [https://bitbadges.io/claims/directory](https://bitbadges.io/claims/directory).
+See [https://bitbadges.io/plugin-directory](https://bitbadges.io/plugin-directory).
 
 <figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
 
@@ -52,8 +52,8 @@ A common theme you may see when implementing claims is to get creative and think
 
 For example,
 
-* Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
-* Many apps and services are email based rather than username based. Consider using the Email plugin universally.
+-   Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
+-   Many apps and services are email based rather than username based. Consider using the Email plugin universally.
 
 ## Claiming on Behalf of Others
 
