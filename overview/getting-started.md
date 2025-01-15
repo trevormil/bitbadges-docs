@@ -16,7 +16,7 @@ Head over to the BitBadges site -> Create tab to get started! The forms should w
 
 For in-site claims, head over to the respective list / badge/ claim page and complete the claim forms. Note that some creators might implement custom flows which are handled outside the BitBadges site. This is specific to the badge collection / list.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 
 
@@ -26,13 +26,13 @@ Application or product pages are an abstraction over badges, claims, and all els
 
 The only entrypoint is claims, so to showcase badges, lists, etc, you can make a wrapper parent claim that can check for badge ownership, list inclusion, or anything else you want to check.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ### **Setting Protocol Values**
 
 For manually setting protocol values, you can do so on the protocols page.
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Adding Attestations via Invite Codes
 

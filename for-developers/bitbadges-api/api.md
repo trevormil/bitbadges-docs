@@ -4,7 +4,7 @@
 
 By default, certain routes are available publicly in a rate limited manner with no API key. However, API keys allow you access to all routes with higher limits.
 
-1. Get an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer).
+1. Sign in on and create an API key by going to [https://bitbadges.io/developer](https://bitbadges.io/developer) -> API Keys tab.
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
 3. For higher tiers / paid plans, visit [https://bitbadges.io/pricing](https://bitbadges.io/pricing).
 

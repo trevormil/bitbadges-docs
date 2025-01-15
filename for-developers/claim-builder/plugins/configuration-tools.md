@@ -89,7 +89,7 @@ If you just want a test environment, use the Test Claims tab in the developer po
 {"pluginId":"codes","publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Publishing / Featuring**
 

@@ -24,11 +24,7 @@ No longer do you need to support multiple interfaces for each blockchain ecosyst
 
 Before BitBadges, building multi-chain applications was a nightmare due to having to support all the various interfaces, protocols, and more for each blockchain ecosystem. Now, it is all in one place.
 
-<div data-full-width="false">
-
-<figure><img src=".gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 ### Badges
 
@@ -69,7 +65,7 @@ This comprehensive approach to authentication works both digitally and in-person
 1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
 2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification. Export the QR codes to formats like Apple Wallet or any prefererd format.
 
-<figure><img src=".gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### BitBadges Claims
 

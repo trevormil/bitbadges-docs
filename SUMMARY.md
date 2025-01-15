@@ -93,6 +93,7 @@
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
+  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Routes](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
