@@ -1,6 +1,6 @@
 # API Access Tokens
 
-With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
+With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR_ACCESS_TOKEN".
 
 If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.&#x20;
 
@@ -18,7 +18,7 @@ Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. 
 **Refreshing**
 
 ```typescript
-const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ 
+const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
     refresh_token
     grant_type: 'refresh_token',
     client_secret: '...',
