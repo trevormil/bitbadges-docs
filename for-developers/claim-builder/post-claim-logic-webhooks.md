@@ -14,7 +14,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 Gated content / URLS - We check 1+ successful claim
 
-Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](universal-approach-claim-codes.md "mention") for more information (reuses same code).
+Codes - We assign a unique code to each successful claim number. See [universal-approach-claim-codes.md](design-decisions/universal-approach-claim-codes.md "mention") for more information (reuses same code).
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -28,8 +28,8 @@ With this flow, you may find you need to authenticate users via Sign In with BIt
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
 {% endcontent-ref %}
 
-{% content-ref url="fetching-claims-w-api.md" %}
-[fetching-claims-w-api.md](fetching-claims-w-api.md)
+{% content-ref url="bitbadges-api-claims/fetching-claims-w-api.md" %}
+[fetching-claims-w-api.md](bitbadges-api-claims/fetching-claims-w-api.md)
 {% endcontent-ref %}
 
 ## **Custom Plugins / Webhooks**

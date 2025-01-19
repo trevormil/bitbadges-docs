@@ -7,8 +7,8 @@ IMPORTANT: Verifying claim attempts are two-fold:
 * Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
 * Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
 
-{% content-ref url="../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
+{% content-ref url="../../authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
 ## Options

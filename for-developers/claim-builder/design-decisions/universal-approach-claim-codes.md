@@ -18,7 +18,7 @@ Consider also setting custom metadata to let users know what the codes are for, 
 
 **Configuration Tools**
 
-If you are building a tool / service, consider creating a [configuration tool](plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
+If you are building a tool / service, consider creating a [configuration tool](../plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
 
 An example configuration input would be:
 
@@ -26,7 +26,7 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -36,9 +36,9 @@ If you have a large number of codes, consider using the Copy Seed Code button un
 
 Using a configuration tool would take this step out for the claim creator.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 

@@ -1,6 +1,6 @@
 # Utility Flows
 
-Checking criteria is pointless without a reward or utility offered to those who successfully "claim". The utility or rewards is left super open ended for you to custom implement the utility for your app.&#x20;
+Checking criteria is pointless without a reward or utility offered to those who successfully "claim". The utility or rewards is left super open-ended for you to custom implement the utility for your app.&#x20;
 
 In some cases, the end utility may be directly on the BitBadges site:
 
@@ -18,3 +18,5 @@ In other cases, the end utility can be more custom implemented by you or the ser
 * Literally anything you can think of!
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+Note: You may often have multi-level flows. For example, use one claim to gate badge distribution, and use another that checks ownership for that badge and gates somehting else like points.

@@ -27,8 +27,3 @@ Out of the box, we offer plenty of built-in plugins and features with no code re
 
 <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-**When to use claims vs self-hosted balances?**
-
-For claims that gate badge distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.
-
-However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
