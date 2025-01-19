@@ -2,7 +2,7 @@
 
 ### Badges
 
-<figure><img src="../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 Badges are blockchain tokens with customizable properties. They're more complex but offer greater flexibility than address lists.
 
@@ -24,7 +24,7 @@ Badges are blockchain tokens with customizable properties. They're more complex 
 
 ### Address Lists
 
-<figure><img src="../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
 Address lists are simpler, being a simple list of users identified by their addresses. They offer less complexity (no balance ownership, no transferability, etc.), but this comes at the cost of flexibility / customization. The list creator can manage the list, its rules, and who is on it.
 

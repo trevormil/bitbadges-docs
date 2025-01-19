@@ -1,7 +1,10 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface for multi-chain authentication,
-custom claim verification (which includes badge ownership checks, 7000+ integrations, and more), be granted BitBadges API scopes, receive private attestation data, and more all in one flow!
+Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more all in one flow! This is the all-in-one flow for authentication and authorization.
+
+Think of Sign In with BitBadges like replacing the Sign In with Google button on your site. Outsource all the heavy lifting of authentication, allowing you to focus on your core utility.&#x20;
+
+<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 **Authorization URL:** https://bitbadges.io/siwbb/authorize
 
@@ -10,8 +13,6 @@ custom claim verification (which includes badge ownership checks, 7000+ integrat
 **Revoke URL:** https://api.bitbadges.io/api/v0/siwbb/token/revoke
 
 We envision most use cases will just want to authenticate users for their application; however, this flow also supports OAuth authorization scopes for the BItBadges API.
-
-<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
@@ -78,18 +79,3 @@ You can authenticate users and verify badge ownership, such as badge-gating a we
 Or, you can pre-generate with authentication QR codes. For example, you may not expect users to have wallets handy at authentication time, so you have them pre-generate their authentication details to present to you at authentication time. An example use case might be presenting a QR code at a ticket gate in real life.
 
 <figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
-
-## **Security Considerations**
-
-This flow is OAuth 2.0 compatible, so we refer you to the official spec and other OAuth 2.0 resources for security considerations with the protocol itself (replay attacks, man in the middle, etc). We also refer you to the Sign In with Ethereum spec as SIWBB uses an extension of this behind the scenes for message signatures. Below, we explain some security considerations that may be unique to SIWBB or different from typical flows:
-
-#### **Flash Ownership Attacks** <a href="#security-flash-ownership-attacks" id="security-flash-ownership-attacks"></a>
-
-If you are authenticating with assets (e.g. verify Bob owns this asset at sign-in time), you need to have protection against what we call flash ownership attacks. This attack is where, for example, Bob signs in with Asset A and immediately transfers Asset A to Alice who then also signs in successfully with Asset A. Two sign ins were approved for Asset A when only one should have been.
-
-Solutions can vary dependent on the application, but here are some ideas:
-
--   Assert that the asset cannot be transferred on-chain. This can be by making it completely non-transferable or only transferable in desired ways (such as by a trusted entity).
--   If assets are non-fungible, consider preventing two sign ins with the same badge
-
-Note that for chains that support ownership times (such as BitBadges), this is not adequate since ownership times can be transferred. For example Bob signs in with Asset A (Monday - Wednesday) but then transfers the badge + rights from Monday - Wednesday to Alice.

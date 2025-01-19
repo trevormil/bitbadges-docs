@@ -223,6 +223,7 @@
     * [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
     * [API Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
     * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
+    * [Other Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
   * [Blockin Docs](https://blockin.gitbook.io/blockin)
 * [🔃 Create, Generate, and Sign Txs](for-developers/create-and-broadcast-txs/README.md)
   * [Transaction Context](for-developers/create-and-broadcast-txs/transaction-context.md)

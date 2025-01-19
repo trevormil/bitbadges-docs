@@ -1,74 +1,95 @@
 # 🚴‍♂️ Getting Started
 
-**Have questions or feedback?** Feel free to ask the BitBadges team or other developers in the BitBadges Discord. We are always willing to help!
+> **Need help?** Join our Discord for support from the BitBadges team and community developers.
+>
+> **Need $BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
+>
+> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just create with no-code directly in-site!
 
-**Need $BADGE credits?** Reach out to us via DIscord. Especially in early stages / beta, we plan to subsidize lots of developers with free credits to help you get started!
+## Quick Start Guide
 
-## API / SDK / Sign In with BitBadges Quickstart
+1. Install the SDK and use the API:
 
-```
+```bash
 npm i bitbadgesjs-sdk
 ```
 
-#### [Demo Hosted Quickstart URL](https://bitbadges.io/quickstart) - https://bitbadges.io/quickstart
+```ts
+import { BitBadgesAPI } from 'bitbadgesjs-sdk';
 
-Check out the [BitBadges quickstart repository](https://github.com/BitBadges/bitbadges-quickstart). This gets you started for multiple aspects of BitBadges development (authentication, signing transactions, self-hosting, integrations, API / SDK, etc).
+const api = new BitBadgesAPI({
+  ...YOUR_CONFIG
+});
 
-The quickstart repo will be ever-evolving. New branches may offer different flavors (Tailwind CSS vs other UI). The main branch will also continue adding integrations, functionality, and more! Feel free to contribute to enhance the developer experience.
+await BitBadgesAPI.getCollections(...);
+```
+
+2. Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart)
+    - Includes authentication, transactions, self-hosting, and API examples
+    - Multiple flavors available (e.g., Tailwind CSS)
+    - Open for community contributions!
 
 <figure><img src="../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
-**Other Links:**
+**Additional Resources:**
 
-* Auth.js / Next.js Sign In with BitBadges Template: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
-* Developer Portal: [https://bitbadges.io/developer](https://bitbadges.io/developer)
+-   [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example)
 
-## **Creating badges / lists / attestations / protocols?**
+## Development Paths
 
-**Is everything you need supported by the BitBadges web app?** If so, then create using the Create tab on the BitBadges web app. We envision 95% of use cases can be created through this form. The forms are developer friendly too to allow you to customize small parts of the process.
+### 1. Creating Badges, Lists, Claims, & Attestations
 
-**Do you want to self-host off-chain balances or metadata?** See tutorials for self-hosting. Note that you can manually enter your self-hosted URL into the Create form. Learn more here about the different [balance types](core-concepts/balances-transfers/balance-types.md).
-
-For off-chain balances, you can manually control the allocation of badges via your self-hosted server. You can allocate them however you would like. Since they are off-chain, you can also access non-blockchain data (web2) to further enhance the allocation logic. For example, you may want to dynamically update badges based on who has paid their subscription for the month.
-
-## Create claims? Gate distribution? Create a custom plugin?
-
-BitBadges claims are a part of many aspects of BitBadges development. They can be used to gate badge distribution, gate spots on an address list, and even gate authentication attempts. This can be created managed directly in-site via the developer portal or other respective creation flows.
-
-Create sample test claims in the [developer portal](https://bitbadges.io/developer) (Claim Tester tab) to see all that is possible!
+-   **Get Started**: Use the Create tab on BitBadges web app
+-   **Self-Hosted / Advanced Solutions**:
+    -   Host your own off-chain balances or metadata
+    -   Control off-chain badge allocation via your server
+    -   Integrate with Web2 data (e.g., subscription status)
+    -   Learn more about [balance types](core-concepts/balances-transfers/balance-types.md)
+    -   Test and manage claims in the [developer portal](https://bitbadges.io/developer)
+    -   Build custom claim plugins
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
 {% endcontent-ref %}
 
-## **Query data?**
+### 2. Data Access & API Integration
 
-Gain familiarity with the [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/). Do you need additional data not offered by the BitBadges API? Run your own indexer and customize the data you store! If not, simply use the BitBadges API for fetching data.
+-   Use [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/) for data queries
+-   Run custom indexers for specialized data needs
 
-## **Authenticate via Sign In with BitBadges?**
+### 3. Sign In with BitBadges
 
-Authenticate your users from any chain, potentially checking badge ownership, attestations, integrating with any supported app, and more along the way.
+This is the typical flow for most developers creating because everything is accessible all in one place!
+
+-   Multi-chain authentication
+-   Claim checks which means you can check criteria like badge ownership or anything from 7000+ integrations
+-   Directly receive private attestation data or other sign in data
+-   Access BitBadges API scopes on behalf of users
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-## **Custom integrations?**
+### 4. Integration Options
 
-**Want to integrate BitBadges into your application / tool?** Check out the API / SDK and all other documentation to see what all is possible with BitBadges.
+-   **Integrate BitBadges Into Your App**: Use our API/SDK
+-   **Integrate Your Tool Into BitBadges**:
+    -   Create custom claim plugins
+    -   Create badges, listings, address lists, anything else
+    -   Contact us for native integration options
 
-**Want to integrate your tool into the BitBadges site natively?** See creating a custom claim plugin, or reach out to us for a native integration, if custom claim plugins are not sufficient.
+### 5. Blockchain-Based Development
 
-## **Submit blockchain transactions?**
+**Transaction Management Options:**
 
-The Create tab and other features on the BitBadges web app are pretty thorough and have lots of customization options. **For almost all use cases, these should be sufficient, and you should not need to custom program your own transaction generation and broadcast.**
+-   **Recommended**: Use the BitBadges web app Create tab
+-   **Alternative Methods**:
+    1. Use our [helper in-site broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
+    2. Generate transactions via [SDK](create-and-broadcast-txs/)
+    3. Use blockchain node CLI (BitBadges addresses only)
 
-However, if you do, you can either 1) use the [custom helper broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md) on the BitBadges site or 2) [generate them programmatically through the SDK](create-and-broadcast-txs/). The blockchain node's CLI also works but only supports signatures from BitBadges addresses (not any other chain). You can also redirect to a popup of the helper broadcast tool, and all signing logic will be outsourced to BitBadges. You can just await the transaction hash.
+**Other Options:**
 
-## **Need additional functionality?**
-
-Consider customizing further using the BitBadges SDK, or if you need to extend the badge interface on-chain, you can do so with a [CosmWasm smart contract](bitbadges-blockchain/create-a-wasm-contract.md). Or, reach out to us to see what we can do.
-
-## **Run a blockchain node?**
-
-See [Run a Node](bitbadges-blockchain/run-a-node/).
+-   [Run a Node](bitbadges-blockchain/run-a-node/) for direct blockchain interaction
+-   Create [CosmWasm smart contracts](bitbadges-blockchain/create-a-wasm-contract.md)
+-   Extend functionality with BitBadges SDK
