@@ -10,7 +10,14 @@ description: >-
 
 ## Overview
 
-BitBadges' services can be described as gating-as-a-service. We offer an open-source, multi-chain, state-of-the-art, community-driven token standard and suite of tools (Sign In with BitBadges, attestations, claim checking) for you to gate any app or service from websites to in-person events to Discord servers to repositories. Anything you want!
+BitBadges' services can be described as gating-as-a-service. We offer a multi-chain, state-of-the-art, community-driven token standard and suite of tools (Sign In with BitBadges, attestations, claim checking) for you to gate any app or service from websites to in-person events to Discord servers to repositories. Anything you want!
+
+BitBadges can be simply thought of in two parts.&#x20;
+
+1. Criteria Checking: Let us do the heavy lifting of checking the criteria through multi-chain authentication, criteria checks from 7000+ apps, on-chain badges, points, address lists, and much more!
+2. Utility - Apps and services can seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
+
+<figure><img src=".gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to a universal multi-chain authentication standard to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -72,8 +79,6 @@ Claims are a core aspect of BitBadges allowing you to check criteria from over 7
 The most powerful feature of claims is that they are compatible with every other aspect of BitBadges (ex: gating badge distribution with claims, Sign In with BitBadges and check claims all in one flow).
 
 Combine criteria checks to gate anything from content to websites to badge distribution to anything you want! Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility.
-
-<figure><img src=".gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
 
