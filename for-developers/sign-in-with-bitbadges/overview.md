@@ -10,6 +10,8 @@ Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution 
 
 Outsource the heavy lifting of authentication to us, allowing you to focus on your core utility. We aim to provide maximum flexibility in the design process.
 
+[**Demo**](https://bitbadges.io/siwbb/authorize?expectAttestationsPresentations=true\&client_id=example-client-id\&redirect_uri=https://example.com&)
+
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
