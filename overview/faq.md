@@ -14,17 +14,11 @@ We want to focus on badges and leave "valuable" tokens to each respective blockc
 
 ### **Are smart contracts needed?**
 
-No, we do not require smart contracts. All badges follow the same state-of-the-art interface with lots of functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
+No, badges do not require smart contracts and are no-code by default! All badges follow the same state-of-the-art interface with lots of functionality supported. Although, you can create a smart contract to add custom functionality not already implemented.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
-BitBadges is its own Layer-1 blockchain built with Cosmos SDK.
-
-### **What is the difference between BitBadges (company) and BitBadges (protocol)?**
-
-The BitBadges protocol consists of the decentralized blockchain that is maintained by the BitBadges team, but it will be ultimately governed in a decentralized manner via the $BADGE token.
-
-BitBadges (the company) offers tools and services to interact with the protocol, such as the frontend at https://bitbadges.io, the API, the SDK, etc.
+BitBadges is its own Layer-1 blockchain built with Cosmos SDK. We also offer many off-chain services built on top of the blockchain as well.
 
 ### **Why the registry architecture over unique smart contracts for every collection?**
 
