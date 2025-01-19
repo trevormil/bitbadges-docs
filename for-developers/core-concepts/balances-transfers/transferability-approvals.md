@@ -18,7 +18,7 @@ Approved transfers encompass three hierarchical levels: collection, incoming, an
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
-<figure><img src="../../../.gitbook/assets/image (33) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 ### Approvals != Escrows
 

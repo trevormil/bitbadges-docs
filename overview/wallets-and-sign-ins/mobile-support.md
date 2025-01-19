@@ -12,4 +12,4 @@ While we do not have an official app on any app store, our web app is mobile fri
 
 If you are using a mobile crypto wallet, please use best practices for that wallet. Some may require you to use their in-app browser, for example.
 
-<figure><img src="../../.gitbook/assets/image (41) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
