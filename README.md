@@ -10,12 +10,12 @@ description: >-
 
 ## Overview
 
-BitBadges' services can be described as gating-as-a-service. We offer a multi-chain, state-of-the-art, community-driven token standard and suite of tools (Sign In with BitBadges, attestations, claim checking) for you to gate any app or service from websites to in-person events to Discord servers to repositories. Anything you want!
+BitBadges offers gating-as-a-service. We offer a multi-chain, state-of-the-art, community-driven token standard and suite of tools (Sign In with BitBadges, attestations, claim checking) for you to gate any app or service from websites to in-person events to Discord servers to repositories. Anything you want!
 
 BitBadges can be simply thought of in two parts.&#x20;
 
-1. Criteria Checking: Let us do the heavy lifting of checking the criteria through multi-chain authentication, criteria checks from 7000+ apps, on-chain badges, points, address lists, and much more!
-2. Utility - Apps and services can seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
+1. Criteria Checking: Let us do the heavy lifting of checking the criteria through multi-chain authentication, criteria checks from 7000+ apps, multi-chain badges, points, address lists, and much more!
+2. Utility - Seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
 
 <figure><img src=".gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
