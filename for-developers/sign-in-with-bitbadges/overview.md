@@ -1,6 +1,6 @@
 # Overview
 
-Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and handles:
+Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and can be configured to handle the folliwng all in one flow:
 
 * Multi-chain authentication
 * Verification of attestation signatures
