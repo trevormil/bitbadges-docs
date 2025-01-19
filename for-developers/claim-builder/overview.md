@@ -1,18 +1,24 @@
 # Overview
 
-BitBadges Claims are designed to be a comprehensive tool directly within the site or via the API for you to customize the distribution criteria for your badges and address lists.
+BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Complete the claim -> Offer utility / rewards**
+
+They are the backbone of everything else in the site. They can be used with badges to gate distribution. They can be used with Sign In with BitBadges to add criteria checks to an authentication flow.  They even have native plugins for combining checks from all our services like checking badge ownership, checking points, etc.
+
+The implementation process aims to be super flexible, allowing you maximum customization.
+
+<figure><img src="../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
 
 Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
 
 **When to use claims vs self-hosted balances?**
 
-Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.&#x20;
+Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
 **What are plugins?**
 
-Claims are made up of one or more plugins executed in order. For a claim to be successful, all plugins must pass.&#x20;
+Claims are made up of one or more plugins executed in order. For a claim to be successful, all plugins must pass.
 
 **How to create / manage claims?**
 
@@ -32,7 +38,7 @@ See [https://bitbadges.io/plugin-directory](https://bitbadges.io/plugin-director
 
 **Option 2: Auto-Claim by Zapier**
 
-You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 7000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).&#x20;
+You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 7000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
 For example, make a purchase on Shopify -> get airdropped a badge or complete a course on Udemy -> get a completion badge. The "airdrop" is a claim completion.
 
@@ -52,8 +58,8 @@ A common theme you may see when implementing claims is to get creative and think
 
 For example,
 
--   Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
--   Many apps and services are email based rather than username based. Consider using the Email plugin universally.
+* Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
+* Many apps and services are email based rather than username based. Consider using the Email plugin universally.
 
 ## Claiming on Behalf of Others
 
