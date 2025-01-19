@@ -88,9 +88,9 @@ It is also powerful because certain state can be outsourced to the claim (e.g. m
 
 SIWBB claims can be created and managed in the developer portal
 
-**claimId** is the ID of the claim to display. We disable the sign in button until this claim is successful. **hideIfAlreadyClaimed** lets us know to not display the claim to the user if they have already succesfully passed a minimum of 1 times. Note that you can also just not pass the claimId in the params if you do not want to display it for specific users / cases.&#x20;
+**claimId** is the ID of the claim to display. We disable the sign in button until this claim is successful. **hideIfAlreadyClaimed** lets us know to not display the claim to the user if they have already succesfully passed a minimum of 1 times. Note that you can also just not pass the claimId in the params if you do not want to display it for specific users / cases.
 
-IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to check claim requirements / ID server-side during the verification step.&#x20;
+IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to check claim requirements / ID server-side during the verification step.
 
 For all features / tutorials, see below.
 
@@ -107,13 +107,13 @@ const popupParams = {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Ownership Requirements**
 
 Which badges / assets should we verify that the user owns? We have dedicated that to its own page to fully explain.
 
-IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to respecify the requirements server-side during the verification step.&#x20;
+IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to respecify the requirements server-side during the verification step.
 
 {% content-ref url="challenge-parameters.md" %}
 [challenge-parameters.md](challenge-parameters.md)
@@ -128,7 +128,7 @@ const popupParams = {
 }
 ```
 
-Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution. Or, instead provide a custom description specifying requirements rather than this. Or, check this within your attached BitBadges claim rather than here. We aim to be as flexible as possible.&#x20;
+Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution. Or, instead provide a custom description specifying requirements rather than this. Or, check this within your attached BitBadges claim rather than here. We aim to be as flexible as possible.
 
 By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as if assets are not distributed yet.
 
@@ -167,7 +167,7 @@ Its important that you verify you receive responses (e.g. response.otherSignIns.
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Custom Metadata**
 

@@ -16,7 +16,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -122,7 +122,7 @@ The chain binary may be upgraded over time. To continue syncing, you will always
 NOTE: We had a hard fork after block 711315
 ```
 
-Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork.  You will need to manually handle this.
+Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork. You will need to manually handle this.
 
 For handling this, you can either:
 
@@ -135,11 +135,11 @@ RUN_COMMAND comet unsafe-reset-all
 RUN_COMMAND start
 </code></pre>
 
-2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.&#x20;
+2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.
 
 See ./scripts/handle-fork-711315.sh in the btibadgeschain GitHub repository for a full script. Or, do the following below:
 
-You can get blocks 1-711315 via running it below or via a snapshot (recommended).&#x20;
+You can get blocks 1-711315 via running it below or via a snapshot (recommended).
 
 ```
 cd DAEMON_HOME/config
@@ -160,7 +160,7 @@ If you want to migrate and join together the blockstores / transaction indexes s
 </strong>go run scripts/migrate.go -source /path/to/snapshot/data -target /path/to/target/data
 </code></pre>
 
-**Testnet Genesis**&#x20;
+**Testnet Genesis**
 
 Note: Replace the genesis files with the corresponding testnet ones if you are planning to run a testnet node
 

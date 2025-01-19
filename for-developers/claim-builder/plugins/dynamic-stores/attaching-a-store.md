@@ -8,4 +8,4 @@ When creating your claims, look for the respecitve plugins for your store type
 
 Then select, use dynamic store and it should walk you through the process. When a claim is attempted, we will fetch the latest data for the store and compare against that to determine success or not.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

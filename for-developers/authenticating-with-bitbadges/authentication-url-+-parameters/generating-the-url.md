@@ -13,7 +13,13 @@ This URL structure adheres to the following interface:
 * **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
 * **Parameters**: Custom parameters specific to your implementation.
 
-You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL. The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may consider using a URL shortener.
+You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may consider using a URL shortener.
 
 **Snippets**
 
