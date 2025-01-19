@@ -41,7 +41,7 @@
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
-* [🧠 Core Concepts](for-developers/core-concepts/README.md)
+* [🧠 Concepts](for-developers/core-concepts/README.md)
   * [General](for-developers/core-concepts/general/README.md)
     * [🔢 Big Numbers](for-developers/core-concepts/general/big-numbers.md)
     * [🔢 Uint Ranges](for-developers/core-concepts/general/uint-ranges.md)
