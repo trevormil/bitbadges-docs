@@ -1,8 +1,8 @@
 # API Access Tokens
 
-If you do not have access tokens, you can skip this section. Most apps only need to identify the user address.
-
 With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
+
+If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.&#x20;
 
 <figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
 

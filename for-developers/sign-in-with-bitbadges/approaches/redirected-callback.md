@@ -1,6 +1,6 @@
-# Redirect URI Callback
+# Redirect Callback
 
-The callback approach is used for immediate authentication.T o enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes.
+The callback approach is used for immediate authentication. To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes.
 
 **How do callbacks work?**
 
@@ -39,5 +39,5 @@ At your redirect URI, you will need to set up a handler to handle the code / sta
 
 To ensure the security of the data exchange process, consider the following practices:
 
--   Validate the `state` parameter according to your requirements (if applicable)
--   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+* Validate the `state` parameter according to your requirements (if applicable)
+* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
