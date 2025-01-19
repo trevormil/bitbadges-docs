@@ -11,9 +11,7 @@ IMPORTANT: Verifying claim attempts are two-fold:
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-## Options
-
-### Option 1: Get Claim Attempts
+### Standard Option 1: Get Claim Attempts
 
 The easiest way to get claim attempts is to use the `getClaimAttempts` method. This will return a paginated list of claim attempts for a specific address and claim ID.
 
@@ -37,7 +35,7 @@ const claimAttempts = docs;
 const success = claimAttempts.some((attempt) => attempt.success);
 ```
 
-### Option 2: Parse State
+### Standard Option 2: Parse State
 
 You can also parse the state of the claim to get more information. This is useful if you want to check specific plugin state values (maybe email or some other). Note that certain state is private and only accessible via authenticated requests and when requested. You can see an example JSON of a specific claim in-site with the info circle button -> JSON tab.
 
@@ -58,6 +56,10 @@ if (claimNumbers.length >= 1) {
 }
 ```
 
-### Option 3: More Advanced Implementations
+### On-Demand Option 1: Simulations
+
+TODO
+
+### More Advanced Implementations
 
 Depending on your implementation, you may already have what you need. You can also setup custom plugins, custom success webhooks, or custom forms (we store more detailed request information for you) for more advanced implementations. We refer you to the corresponding plugin and our documentation for more info.

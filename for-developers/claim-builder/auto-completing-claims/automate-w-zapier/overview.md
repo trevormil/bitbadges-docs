@@ -1,6 +1,6 @@
 # Overview
 
-Zapier BitBadges Integration Invite Link: [https://zapier.com/developer/public-invite/203980/ce0b2c34275cfdb61ef1aac1ed0aa38c/](https://zapier.com/developer/public-invite/203980/ce0b2c34275cfdb61ef1aac1ed0aa38c/)
+Zapier BitBadges Integration: [https://zapier.com/apps/bitbadges/integrations](https://zapier.com/apps/bitbadges/integrations)
 
 **What is Zapier?**
 

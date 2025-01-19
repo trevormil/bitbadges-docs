@@ -1,13 +1,15 @@
 # Configuring Plugins
 
-A claim is made up of one or more plugins. There are tons natively offered in-site, and you can also custom implement / add your own logic via plugins. Certain plugins may become unavailable due to design decisions. For example, claim codes make no sense for on-demand claims since there is no "complete claim" action.
+A claim is made up of one or more plugins. There are tons natively offered in-site, and you can also custom implement / add your own logic via custom plugins.&#x20;
+
+Note: Certain plugins may become unavailable due to design decisions. For example, claim codes make no sense for on-demand claims since there is no "complete claim" action.
 
 **Get Creative**
 
 While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!&#x20;
 
 * Use claim codes or a password which can be used for anything
-* Can your users be identified by email? Addresses? Use those plugins
+* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
 * Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
 
 <figure><img src="../../.gitbook/assets/image (192).png" alt=""><figcaption></figcaption></figure>
