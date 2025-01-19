@@ -8,7 +8,6 @@
   * [Exploring / Claiming](overview/getting-started/exploring-claiming.md)
   * [Gating URLs / Content](overview/getting-started/gating-urls-content.md)
 * [🎨 Use Cases](overview/use-cases.md)
-* [🔗 Official Links](overview/official-links.md)
 * [🧠 Core Concepts](overview/how-it-works/README.md)
   * [Multi-Chain Accounts](overview/how-it-works/accounts.md)
   * [BitBadges Claims](overview/how-it-works/distribution.md)
@@ -23,6 +22,7 @@
   * [Transferability](overview/how-it-works/transferability.md)
   * [Standards](overview/how-it-works/standards.md)
   * [Aliases](overview/how-it-works/aliases.md)
+* [🔗 Official Links](overview/official-links.md)
 * [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
 * [🪙 Launch Phases](overview/launch-phases.md)
 * [Wallets and Sign Ins](overview/wallets-and-sign-ins/README.md)
@@ -34,7 +34,7 @@
   * [Browser Extensions](overview/ecosystem/chrome-extension.md)
   * [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
   * [Blockin](overview/ecosystem/blockin.md)
-* [🤝 Brand Guidelines / Link Sharing](overview/link-sharing.md)
+* [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
 
 ## ⌨️ For Developers
@@ -181,6 +181,7 @@
     * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
     * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
   * [Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
+  * [Verifying Claim Attempts w/ API](for-developers/claim-builder/verifying-claim-attempts-w-api.md)
   * [Implementing Post-Claim Actions (Rewards)](for-developers/claim-builder/post-claim-logic-webhooks.md)
   * [Payment Checking](for-developers/claim-builder/monetizing-apps-badges.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
