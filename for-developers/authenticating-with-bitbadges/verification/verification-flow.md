@@ -15,6 +15,8 @@ You can now exchange the code and valid app configuration details. Be sure to ke
 
 The next step is to exchange the code for authentication details. This is done via the exchange endpoint. This follows typical OAuth2 flow. You can also specify options to check the issued at time of code generation. Typically for in-person, you may need to disable the issued at time check of 10 minutes.
 
+[API Reference](https://bitbadges.stoplight.io/docs/bitbadges) -> Exchange SIWBB Code
+
 ```typescript
 // 32 byte hex string
 async function myHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -87,7 +89,8 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
 
     // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
     // const claimAttemptsByAddress = await BitBadgesApi.getClaimAttempts(claimId, { address });
-    // console.log(claimAttemptsByAddress);
+    // const ownershipRequirementsRes = await BitBadgesApi.verifyOwnershipRequirements(...);
+    // const addressListsRes = await BitBadgesApi.getAddressLists(...);
 }
 ```
 
