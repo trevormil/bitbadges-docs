@@ -17,7 +17,7 @@ You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkge
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-
+<figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
 The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may consider using a URL shortener.
 

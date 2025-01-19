@@ -51,7 +51,7 @@ Best for web applications where users can authenticate immediately:
 Ideal for in-person or offline scenarios:
 
 * Pre-generate authentication QR codes
-* Users can authenticate ahead of time
+* Users can authenticate ahead of time. No need for wallets at presentation time.
 * Verify credentials at point of use
 * Great for ticket verification or physical access control
 

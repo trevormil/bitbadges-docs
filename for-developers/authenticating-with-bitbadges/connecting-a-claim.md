@@ -6,9 +6,9 @@ Sign In with BitBadges becomes super powerful when you connect a BitBadges claim
 * Check social sign-ins from any supported social
 * Receive privately held attestations securely
 * Connect to 7000+ app integration plugins
-* And much more
+* And much more all within the same flow.
 
-Consider claims as "attached" or a complement to SIWBB because they are separate entities and are verified separately. But, they are often used together because to prove a successful claim, you need to both 1) authenticate (SIWBB) and 2) prove claim criteria was met (the claim attempt itself). With both, you can prove the user successfully met the criteria.&#x20;
+Treat claims as just "attached" and not a part of the core SIWBB process. You need to verify it separately server-side accordingly to your needs. Specifying the `claimId` in the URL parameters will display it to the user in the interface, but it does not guarantee verification. You will use the combination of 1) Sign In with BitBadges address authentication and 2) looking up the successful claim attempt server-side for that address to verify the user has satisfied the claim criteria.
 
 Create claims and manage them in the developer portal separately, and see corresponding  documentation for more information on managing / verifying them. Note you can attach both on-demand claims and indexed claims. Indexed claims require a "completion" action by the user whereas on-demand is just behind the scenes.
 
@@ -31,6 +31,8 @@ Specify the `claimId`in the URL parameters and prompt the user on the authorize 
 **Approach 2: Behind the Scenes**
 
 For on-demand ones, you may not even want to display the criteria to the user. You can simply omit it from any interface and just check it server-side behind the scenes.
+
+For example, just check badge ownership behind the scenes.
 
 **Approach 3: Claim Rewards**
 
