@@ -1,11 +1,11 @@
 # Overview
 
-For off-chain balances, the badge collection will be stored on the blockchain, but all balances will be assigned off-chain. This allows you to have complete control over assignment of the balances at no cost and no transactions required. You can integrate with any application (even non-crypto ones).
+For off-chain balances, the collection will be stored on the blockchain, but all balances will be allocated off-chain via a server endpoint. This allows you to have complete control over assignment of the balances at no cost and no transactions required. You can integrate with any application (even non-crypto ones).
 
 Examples:
 
 * Spreadsheets - Assign badges based on addresses in a spreadsheet.
-* Subscriptions - Set up your own subscription service and send badges to subscribers!
+* Subscriptions - Set up your own subscription service and allocate badges to subscribers!
 * Custom Integrations - Integrate with any app you want!
 
 There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details (your URL) directly into the form.
@@ -39,9 +39,9 @@ On-Chain URL: "http://localhost:3000/nonIndexed/{address}"
 
 ```typescript
 app.get('/nonIndexed/:address', async (req, res) => {
-  const address = req.params.address; 
+  const address = req.params.address;
   const bitbadgesAddress = convertToBitBadgesAddress();
-  
+
   //custom logic - (e.g. check subscription status or check some local DB value)
 
   const balances: Balance<bigint>[] = [...];
@@ -71,40 +71,40 @@ For example,
 
 ```json
 {
-  "bb1qjgpfmk93lqdak3ea7xqp5ec6v8nd79kqtrajy": [
-    {
-      "amount": "1",
-      "badgeIds": [
+    "bb1qjgpfmk93lqdak3ea7xqp5ec6v8nd79kqtrajy": [
         {
-          "start": "1",
-          "end": "1"
+            "amount": "1",
+            "badgeIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1",
+                    "end": "18446744073709551615"
+                }
+            ]
         }
-      ],
-      "ownershipTimes": [
+    ],
+    "bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw": [
         {
-          "start": "1",
-          "end": "18446744073709551615"
+            "amount": "1",
+            "badgeIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1",
+                    "end": "18446744073709551615"
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "bb1zd5dsage58jfrgmsu377pk6w0q5zhc672wamvw": [
-    {
-      "amount": "1",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "1"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ]
-    }
-  ]
+    ]
 }
 ```
 

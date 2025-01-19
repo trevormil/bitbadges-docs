@@ -1,10 +1,6 @@
 # 🎨 Use Cases
 
-Because you can create a badge for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorite ideas for potential use cases.&#x20;
-
-You can also browse featured badges at [https://bitbadges.io/browse](https://bitbadges.io/browse).
-
-### Badge Use Cases <a href="#potential-use-cases-1" id="potential-use-cases-1"></a>
+Because you can check criteria for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorites. You can also browse featured items at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
 * **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](how-it-works/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).

@@ -1,8 +1,8 @@
 # API Access Tokens
 
-With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR_ACCESS_TOKEN".
+With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
 
-If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.&#x20;
+If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.
 
 <figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
 
@@ -31,7 +31,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 
 Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Revoking Access**
 

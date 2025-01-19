@@ -1,8 +1,8 @@
 # 🧪 Testnet Mode
 
-Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to testnet.bitbadges.io). It is isolated from the production environment and uses its own resources, such as a testnet blockchain, database, and more.
+Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment and uses its own resources, such as a testnet blockchain, database, and more.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -26,11 +26,15 @@ This may be used as a stagenet to test new unreleased features.
 
 ### Links
 
-Frontend: https://testnet.bitbadges.io
+Frontend: [https://testnet.bitbadges.io](https://testnet.bitbadges.io)
 
-Backend: https://api.bitbadges.io/testnet (append the normal routes to this base URL)
+Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (append the normal routes to this base URL)
 
-Testnet Node: http://138.197.10.8:YOUR\_PORT or https://testnet.bitbadges.io/api (for REST API) or https://testnet.node.bitbadges.io/rpc (for RPC)
+Testnet Node:
+
+* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
+* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
+* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
 
 ### Feedback
 

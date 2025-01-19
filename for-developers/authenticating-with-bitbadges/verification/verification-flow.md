@@ -67,7 +67,7 @@ Note this is not the only way of implementing sessions. You may implement custom
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
@@ -75,7 +75,7 @@ IMPORTANT: Note that the authorization code ONLY checks address verification. Fo
 
 You must use the combination of 1) address verification via SIWBB and 2) your other checks like claims to ensure the user meets the criteria. Address verification is handled via SIWBB (the authorization code), but the other checks are a separate process that needs to be checked server-side.
 
-We refer you to the respective documentation for how to verify other criteria.
+Claims are an all inclusive way to build complex no-code criteria flows, but this can be anything you want. We refer you to the respective documentation for how to verify other criteria.
 
 ```typescript
 async function myHandler(req: NextApiRequest, res: NextApiResponse) {

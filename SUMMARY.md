@@ -3,7 +3,10 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [🔨 Getting Started](overview/getting-started.md)
+* [🔨 Getting Started](overview/getting-started/README.md)
+  * [Creating Items](overview/getting-started/creating-items.md)
+  * [Exploring / Claiming](overview/getting-started/exploring-claiming.md)
+  * [Gating URLs / Content](overview/getting-started/gating-urls-content.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links](overview/official-links.md)
 * [🧠 Core Concepts](overview/how-it-works/README.md)
@@ -38,7 +41,7 @@
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
-* [🧠 Concepts](for-developers/core-concepts/README.md)
+* [🧠 Core Concepts](for-developers/core-concepts/README.md)
   * [General](for-developers/core-concepts/general/README.md)
     * [🔢 Big Numbers](for-developers/core-concepts/general/big-numbers.md)
     * [🔢 Uint Ranges](for-developers/core-concepts/general/uint-ranges.md)
