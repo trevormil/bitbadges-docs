@@ -2,7 +2,7 @@
 
 Claims are the backbone of pretty much all aspects of BitBadges. Combine criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to badge distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.&#x20;
 
-Claims are simply thought of as: Meet criteria? You get this utility. The utility can be anything from website access to badge distribution to being added to a list. Its all up to you!
+Claims can be simply thought of as: Meet criteria? You get this utility. The utility can be anything from website access to badge distribution to being added to a list. Its all up to you!
 
 Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility. &#x20;
 

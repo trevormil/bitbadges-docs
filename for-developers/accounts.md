@@ -9,7 +9,7 @@ The terms Cosmos and BitBadges addresses may be used interchangeably.
 Some learning material and documentation may still use "cosmos".
 ```
 
-<figure><img src="broken-reference" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
