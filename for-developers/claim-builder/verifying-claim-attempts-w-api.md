@@ -2,10 +2,14 @@
 
 A big part of offering gated utility is to actually check if the user meets the criteria or not. While claims and BitBadges allows you to outsource all the heavy authentication logic to us, you still need to implement the connection logic and verify the attempt with the API if you are offering custom utility.
 
-Verifying claim attempts are two-fold:
+IMPORTANT: Verifying claim attempts are two-fold:
 
--   Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
--   Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
+* Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
+* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
+
+{% content-ref url="../authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
+{% endcontent-ref %}
 
 ## Options
 
@@ -35,8 +39,7 @@ const success = claimAttempts.some((attempt) => attempt.success);
 
 ### Option 2: Parse State
 
-You can also parse the state of the claim to get more information. This is useful if you want to check specific
-plugin state values. Note that certain state is private and only accessible via authenticated requests and when requested. You can see an example JSON of a specific claim in-site with the info circle button -> JSON tab.
+You can also parse the state of the claim to get more information. This is useful if you want to check specific plugin state values (maybe email or some other). Note that certain state is private and only accessible via authenticated requests and when requested. You can see an example JSON of a specific claim in-site with the info circle button -> JSON tab.
 
 ```ts
 const claimsRes = await BitBadgesApi.getClaims({
