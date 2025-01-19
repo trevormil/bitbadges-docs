@@ -33,6 +33,8 @@ No longer do you need to support multiple interfaces for each blockchain ecosyst
 
 ### Badges
 
+With our innovative 100x token standard, create multi-chain tokens (badges) that can be owned, transferred, and traded by BitBadges accounts. By multi-chain, users from ANY chain can own and transfer the SAME token (badge)! Something completely novel in the ecosystem today.
+
 Tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for many [use cases](./#use-cases), each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), while some may be purely digital (e.g. verification checkmark). Some may signify something about your reputation (certifications), while some may just be collected for fun.
 
 When combined with blockchain technology, badges become even more secure and more powerful, due to the unique properties of the blockchain (verifiable, decentralized, tamper-proof, and so on). However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens (not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time).
