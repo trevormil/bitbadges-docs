@@ -205,6 +205,7 @@
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+  * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Integrations](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
