@@ -1,6 +1,7 @@
 # Overview
 
-Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface across different blockchain ecosystems. Instead of managing multiple interfaces, BitBadges allows you to authenticate users from any chain, verify attestation signatures, verify ownership of badges, NFTs, integrate with any supported app / plugin, and more all in one flow! This is the all-in-one flow for authentication and authorization.&#x20;
+Authentication becomes seamless with BitBadges, offering a unified OAuth 2.0 interface for multi-chain authentication,
+custom claim verification (which includes badge ownership checks, 7000+ integrations, and more), be granted BitBadges API scopes, receive private attestation data, and more all in one flow!
 
 **Authorization URL:** https://bitbadges.io/siwbb/authorize
 
@@ -24,10 +25,10 @@ As you read along, you can refer to the [BitBadges quickstart repo](https://gith
 
 Think of SIWBB as outsourcing the core username / password step with a cryptographic signature plus additional verification criteria (like verifying badges or user attestations). Pretty much, you can use our libraries, tools, and user interface to help you build your set of criteria for verification and handle the verification logic. This can include the following
 
-* Prompting and verifying users for proof of address
-* Querying asset ownership (badges, address lists, NFTs on other chains)
-* Verify attestation signatures from other issuers
-* Check sign-ins of other socials (Discord, GitHub, Google, X)
+-   Prompting and verifying users for proof of address
+-   Querying asset ownership (badges, address lists, NFTs on other chains)
+-   Verify attestation signatures from other issuers
+-   Check sign-ins of other socials (Discord, GitHub, Google, X)
 
 We leave the rest up to you. SIWBB does not handle sessions, etc. Those are all to be implemented alongside SIWBB using industry standards such as JWTs, or whatever method you prefer.
 
@@ -37,7 +38,7 @@ Yes, we are OAuth 2.0 compatible and integrate with different OAuth 2.0 helper t
 
 **Key Parts**
 
-BitBadges authentication is structured into a couple components: verifying address ownership and verifying custom requirements like asset ownership,  attestations, or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
+BitBadges authentication is structured into a couple components: verifying address ownership and verifying custom requirements like asset ownership, attestations, or off-chain signatures. Depending on your requirements, you can tailor your implementation by utilizing one or more of these components. We aim to provide maximum flexibility in the design process.
 
 "Sign In with BitBadges" encompasses support for all components within a unified interface and even allows you to add a BitBadges claim too for further integrations and verification logic.
 
@@ -46,13 +47,13 @@ However, you have the freedom to customize and integrate these components accord
 #### Execution Flow:
 
 1. **User Interaction:**
-   * Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they prove address ownership, generating a unique authorization code.
+    - Users access a personalized BitBadges URL, either directly or through a popup window. At this URL, they prove address ownership, generating a unique authorization code.
 2. **Authentication Details Retrieval:**
-   * Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID. This depends whether you are implementing digital or QR code authentication.
+    - Authentication details can be obtained either through a callback from the popup window or retrieved from the user's BitBadges account, specifically under the "Authentication Codes" tab, using the associated code ID. This depends whether you are implementing digital or QR code authentication.
 3. **Verification Process:**
-   * At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership and other additional logic.
+    - At verification time, which may be immediate or delayed according to your implementation, utilize the BitBadges API and SDK to verify address ownership and other additional logic.
 4. **Application-Specific Logic:**
-   * Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
+    - Implement application-specific requirements, such as session management, prevention of replay attacks, and any other custom logic necessary for your use case. This step ensures the seamless integration of BitBadges authentication into your application workflow.
 
 <figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
@@ -88,7 +89,7 @@ If you are authenticating with assets (e.g. verify Bob owns this asset at sign-i
 
 Solutions can vary dependent on the application, but here are some ideas:
 
-* Assert that the asset cannot be transferred on-chain. This can be by making it completely non-transferable or only transferable in desired ways (such as by a trusted entity).
-* If assets are non-fungible, consider preventing two sign ins with the same badge
+-   Assert that the asset cannot be transferred on-chain. This can be by making it completely non-transferable or only transferable in desired ways (such as by a trusted entity).
+-   If assets are non-fungible, consider preventing two sign ins with the same badge
 
 Note that for chains that support ownership times (such as BitBadges), this is not adequate since ownership times can be transferred. For example Bob signs in with Asset A (Monday - Wednesday) but then transfers the badge + rights from Monday - Wednesday to Alice.
