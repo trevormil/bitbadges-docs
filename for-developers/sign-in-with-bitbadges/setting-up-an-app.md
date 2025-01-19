@@ -3,6 +3,7 @@
 ### App Registration
 
 * Register at [https://btibadges.io/developer](https://btibadges.io/developer) -> OAuth Apps
+* Take note of your client ID / secret
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
