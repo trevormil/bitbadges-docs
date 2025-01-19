@@ -61,6 +61,7 @@ Ideal for in-person or offline scenarios:
    * Receives authentication response
    * Manages user sessions
    * Implements security measures (prevent replay attacks, etc.)
+   * Focus on your core utility
 
 ## Getting Started
 
