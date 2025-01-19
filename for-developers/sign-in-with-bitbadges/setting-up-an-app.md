@@ -23,7 +23,7 @@
 
 * Endpoints where users are redirected after authentication
 * Must be pre-registered and use HTTPS
-* Not used for delayed/QR code authentication
+* Not needed for delayed/QR code authentication. Only for immediate digital redirects.
 
 ### Security Notes
 
