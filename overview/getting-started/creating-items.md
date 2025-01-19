@@ -1,4 +1,4 @@
-# Creating Items
+# Creating
 
 BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more!&#x20;
 
@@ -11,3 +11,11 @@ Please reach out in Discord if you are having trouble, have feedback, or have fe
 If you just want to test out creating claims, see the Claim Tester. This allows you to create claims that will auto-delete when you are done.
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+BitBadges claims allow you to check any criteria you want and offer your own custom utility to those who meet that criteria. In some cases, that may be other in-site services (points, badge distribution, etc). In other cases, you may have custom content you want to gate like URLs.&#x20;
+
+There is plenty of customization in the design process. The easiest way though is to add a secret URL in the rewards tab which is gated to successful claimees.
+
+Test it out with the Claim Tester in the developer portal.
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>

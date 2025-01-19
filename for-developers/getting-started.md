@@ -4,7 +4,7 @@
 >
 > **Need $BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
 >
-> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just create with no-code directly in-site!
+> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site!
 
 ## Quick Start Guide
 

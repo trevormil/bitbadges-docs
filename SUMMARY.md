@@ -4,9 +4,8 @@
 
 * [👋 BitBadges Overview](README.md)
 * [🔨 Getting Started](overview/getting-started/README.md)
-  * [Creating Items](overview/getting-started/creating-items.md)
-  * [Exploring / Claiming](overview/getting-started/exploring-claiming.md)
-  * [Gating URLs / Content](overview/getting-started/gating-urls-content.md)
+  * [Creating](overview/getting-started/creating-items.md)
+  * [Exploring](overview/getting-started/exploring-claiming.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🧠 Core Concepts](overview/how-it-works/README.md)
   * [Multi-Chain Accounts](overview/how-it-works/accounts.md)
