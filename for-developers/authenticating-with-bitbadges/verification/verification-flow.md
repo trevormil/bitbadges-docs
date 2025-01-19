@@ -73,9 +73,9 @@ Note this is not the only way of implementing sessions. You may implement custom
 
 IMPORTANT: Note that the authorization code ONLY checks address verification. For any other criteria like claim verification, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
 
-You must use the combination of 1) address verification via SIWBB and 2) your other checks like claims to ensure the user meets the criteria. Address verification is handled via SIWBB (the authorization code), but the other checks are a separate process that needs to be checked server-side.&#x20;
+You must use the combination of 1) address verification via SIWBB and 2) your other checks like claims to ensure the user meets the criteria. Address verification is handled via SIWBB (the authorization code), but the other checks are a separate process that needs to be checked server-side.
 
-Claims are an all inclusive way to build complex no-code criteria flows, but this can be anything you want. We refer you to the respective documentation for how to verify other criteria.
+We refer you to the respective documentation for how to verify other criteria.
 
 ```typescript
 async function myHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -148,14 +148,14 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
 
 ## **IMPORTANT: What is verified natively vs not?**
 
-Does check :white_check_mark:
+Does check :white\_check\_mark:
 
--   Proof of address ownership via their authenticated BitBadges account
--   Anything specified in the verify challenge options
--   Issued at time of code generation is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
--   One exchange per authorization code -> access / refresh token
+* Proof of address ownership via their authenticated BitBadges account
+* Anything specified in the verify challenge options
+* Issued at time of code generation is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
+* One exchange per authorization code -> access / refresh token
 
 Does not check natively :x:
 
--   Additional app-specific criteria needed for signing in (claims, owenrship requirements)
--   Does not natively prevent against flash ownership attacks, replay attacks, or man-in-the-middle attacks other than what OAuth2 protects against
+* Additional app-specific criteria needed for signing in (claims, owenrship requirements)
+* Does not natively prevent against flash ownership attacks, replay attacks, or man-in-the-middle attacks other than what OAuth2 protects against

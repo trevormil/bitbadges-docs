@@ -9,6 +9,8 @@ The terms Cosmos and BitBadges addresses may be used interchangeably.
 Some learning material and documentation may still use "cosmos".
 ```
 
+<figure><img src="../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
+
 **Mapping to a Common Address (bitbadgesAddress)**
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.
