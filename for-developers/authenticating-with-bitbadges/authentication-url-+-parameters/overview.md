@@ -1,181 +1,57 @@
 # Configuration
 
-Each implementation will feature a unique authentication URL tailored to your application's needs. Users will visit this URL to authenticate and receive an authorization code which you will use. This code  will be behind the scenes for digital flows or the actual QR code for in-person / delayed flows.
+BitBadges authentication uses an OAuth URL with custom parameters: `https://bitbadges.io/siwbb/authorize?client_id=...`. Users will visit this URL to authenticate and receive an authorization code. This code will be passed behind the scenes for digital flows via the redirect or it will be the actual QR code for in-person / delayed flows.
 
-Parameters will vary based on your specific implementation and requirements. The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it. For instance:
+By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
-```vbnet
-https://bitbadges.io/siwbb/authorize?client_id=...
-```
+-   Specify the `scope` to request additional BitBadges API permissions for the user
+-   Specify a `claimId` to display a specific claim to the user
 
-This URL structure adheres to the following interface:
+And what does attaching a BitBadges claim open up?
 
-* **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
-* **Parameters**: Custom parameters specific to your implementation.
+-   Check other social sign-ins (e.g. Discord, Twitter, GitHub, Google)
+-   Check badge ownership, receive private attestations from the user accounts, check criteria from the 7000+ connected apps and integrations, and much more!
+
+Treat claims as just "attached" and not a part of the core process. You need to verify it separately server-side accordingly to your needs. Specifying the `claimId` in the URL parameters will display it to the user, but it does not guarantee verification. You will use the combination of 1) Sign In with BitBadges address authentication and 2) looking up the successful claim attempt for that address to verify the current user has satisfied the claim criteria.
+
+Along similar lines, you may not even want to display the claim criteria to the user. If this is the case, you can simply omit the `claimId` parameter and just server-side verify the claim criteria.
+
+## Parameter Interface
 
 ```typescript
-import { CodeGenQueryParams } from 'bitbadgesjs-sdk';
+interface CodeGenQueryParams {
+    client_id: string; // Required: Your app's client ID
+    redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
+    state?: string; // Optional: Additional data passed to redirect
+    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'Complete Claims,Read Address Lists')
 
-export interface CodeGenQueryParams {
-  ownershipRequirements?: AssetConditionGroup<NumberType>;
-  expectVerifySuccess?: boolean;
-
-  name?: string;
-  description?: string;
-  image?: string;
-
-  otherSignIns?: ('discord' | 'twitter' | 'github' | 'google')[];
-
-  redirect_uri?: string;
-  client_id: string;
-  state?: string;
-  scope?: string;
-
-  expectAttestationsPresentations?: boolean;
-  
-  claimId?: string;
-  hideIfAlreadyClaimed?: boolean;
+    // Claims (optional)
+    claimId?: string; // ID of required claim
+    hideIfAlreadyClaimed?: boolean; // Hide if already claimed
+    expectVerifySuccess?: boolean;
 }
 ```
 
-### **Parameter Options**
+## Key Features
 
-**App Configuration**
+### 1. App Configuration
 
-All BitBadges authentication requests must specify an app that the request is for. Apps can be created and managed at [https://bitbadges.io/developer](https://bitbadges.io/developer). You can create multiple apps for different use cases.
+-   Create OAuth apps at [bitbadges.io/developer](https://bitbadges.io/developer)
+-   `client_id` is mandatory (obtained from app registration)
+-   `redirect_uri` required for instant auth, optional for delayed auth
+-   If `redirect_uri` is blank, QR code is generated and stored in user's account
+-   See OAuth tutorials for more details
 
-Each app is identified by the client I&#x44;**,** which is mandatory. The redirect URI is a critical component in the BitBadges authentication process, acting as the destination URL to which authentication details are transmitted for verification by your application. This URI must be precisely defined in your app's settings on BitBadges, ensuring a secure and expected pathway for the authentication flow. Lastly, **state** is additional information that may be passed to the redirect URI (if applicable).
+### 2. Scopes
 
-For instant authentication, the redirect URI is mandatory, and we do not store the code in the user's account. The code should all be handled behind the scenes for the user.
+-   Format: `scope: 'Complete Claims,Read Address Lists'`
+-   View available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
+-   User's address always returned
 
-If you are implementing delayed authentication where the user is to present you their code manually, you can leave the redirect URI blank.
+### 3. Claims
 
-If it is blank, we will store the code in the user's account under the Authentication Codes tab. They are to manually present you the code.
-
-```typescript
-const popupParams = {
-    ...,
-
-    client_id: '...',
-    redirect_uri: 'https://...',
-    state: ''
-}
-```
-
-**Scopes**
-
-```typescript
-const popupParams = {
-    ...,
-
-    scope: 'Complete Claims,Read Address Lists'
-}
-```
-
-Visit https://bitbadges.io/auth/linkgen to see the full list of approved scopes. You only should specify the labels (scope names). Let us know if you would like us to add other scopes. These should be comma delimited. By default, we always return the user crypto address even if no scope is specified. Scopes must be used with instant authentication an dredirect URIs. Delayed QR codes are not supported if scopes are present.
-
-By specifying scopes, we will give you an access token / refresh token to use. If no scopes are specified, we will not give you such tokens.
-
-**Claims**
-
-Which claim must the user pass to be successfully granted access? This is a super powerful feature because your sign ins now have access to any integration, Zapier, and are completely customizable.
-
-It is also powerful because certain state can be outsourced to the claim (e.g. max 1 use per address, etc). This may eliminate some of the need for maintianing this on your end.
-
-SIWBB claims can be created and managed in the developer portal
-
-**claimId** is the ID of the claim to display. We disable the sign in button until this claim is successful. **hideIfAlreadyClaimed** lets us know to not display the claim to the user if they have already succesfully passed a minimum of 1 times. Note that you can also just not pass the claimId in the params if you do not want to display it for specific users / cases.
-
-IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to check claim requirements / ID server-side during the verification step.
-
-For all features / tutorials, see below.
-
-{% content-ref url="../../../overview/claim-builder/" %}
-[claim-builder](../../../overview/claim-builder/)
-{% endcontent-ref %}
-
-```typescript
-const popupParams = {
-    ...,
-
-    claimId: "0ab12...",
-    hideIfAlreadyClaimed: true
-}
-```
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Ownership Requirements**
-
-Which badges / assets should we verify that the user owns? We have dedicated that to its own page to fully explain.
-
-IMPORTANT: This parameter is just for user display purposes and is not cached with the request. You will have to respecify the requirements server-side during the verification step.
-
-{% content-ref url="challenge-parameters.md" %}
-[challenge-parameters.md](challenge-parameters.md)
-{% endcontent-ref %}
-
-```typescript
-const popupParams = {
-    ...,
-
-    ownershipRequirements: { ... },
-    expectVerifySuccess: true
-}
-```
-
-Since badges can be queried publicly, you may consider also leaving this step out of the sign in flow and verifying any necessary requirements behind the scenes. Or, self-implement your own solution. Or, instead provide a custom description specifying requirements rather than this. Or, check this within your attached BitBadges claim rather than here. We aim to be as flexible as possible.
-
-By default, we simulate and warn the user if the ownership requirements fail. This can be controlled with **expectVerifySuccess**. Some use cases may not be expected to pass ownership requirements at sign time, such as if assets are not distributed yet.
-
-**Attestations**
-
-```typescript
-const popupParams = {
-    ...,
-    expectAttestationsPresentations: true
-}
-```
-
-**expectAttestationsPresentations** will tell us whether you expect the user to provide additional proof of credentials (i.e. saved attestations in their BitBadges account) to be verified.
-
-**Other Sign Ins**
-
-```typescript
-const popupParams = {
-    ...,
-    otherSignIns: ['discord']
-}
-```
-
-If **otherSignIns** is defined, we will additionally make the user sign in to the requested services and pass you their connected username / account ID with the authentication details. Note we DO NOT pass any access tokens or private details (simply username / account ID).
-
-This can be used to implement, for example, badge gating Discord servers. Check badges, address ownership, and Discord account ownership via here, then grant roles based on successful authentication.
-
-Its important that you verify you receive responses (e.g. response.otherSignIns.discord.username !== undefined) for these and do not trust the verification response blindly. This is because this is a client-side parameter that may be changed. More is explained on the verification page.
-
-```typescript
-{
-    discord?: { username: string; discriminator?: string | undefined; id: string } | undefined;
-    github?: { username: string; id: string } | undefined;
-    google?: { username: string; id: string } | undefined;
-    twitter?: { username: string; id: string } | undefined;
-}
-```
-
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Custom Metadata**
-
-```typescript
-const popupParams = {
-    ...,
-    name: 'Event',
-    description: 'Grants access to the event',
-    image: 'ipfs://...'
-}
-```
-
-**name**, **description**, and **image** follow the base metadata format. These will only be used for UI purposes and displaying everything nicely to the user.
-
-These are optional. By default, we use your app's name, image, and description.
+-   Specify required claim to be satisfied with `claimId`
+-   Create the claim in the developer portal. See claim docs for more details.
+-   `hideIfAlreadyClaimed` hides if user passed claim
+-   `expectVerifySuccess` is used by us to catch errors early. If the user fails to meet claim criteria, we will not allow them to proceed.
+-   Claims are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
