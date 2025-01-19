@@ -203,6 +203,7 @@
     * [Non-Indexed](for-developers/self-hosted-balances/examples-tutorials/non-indexed.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+  * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Integrations](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [Pre: Custom Configurations](for-developers/authenticating-with-bitbadges/framework-templates/pre-custom-configurations.md)

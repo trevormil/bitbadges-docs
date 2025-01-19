@@ -18,39 +18,6 @@ We envision most use cases will just want to authenticate users for their applic
 
 As you read along, you can refer to the [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) to get started and as an implementation reference. This has a full end-to-end implementation of Sign In with BitBadges.
 
-## Alternatives
-
-
-
-**P2P Verification**
-
-Before diving in, we want to preface by saying that the Peer Verification feature that is natively integrated into the BitBadges site may be enough for you. Consider the best approach for your use case.
-
-Peer Verification lets a prover device (which is signed in to a BitBadges account) prove their signed in address to a verifier device (no login required) and potentially ownership of badges / attestations all directly via the site.
-
-Pros: No setup required. Accessible on the go. All directly in-site.
-
-Cons: No backend server which means no session handling, custom functionality, automatic handling, etc. Requires two way connection. Both devices must be online and prover must be signed in. A connection must also be established.
-
-<figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
-
-**BitBadges Claims - QR Reward Codes**
-
-An alternative to the complete SIWBB flow is to just use the QR codes rewards feature of BitBadges claims. You can additionally get the claim number from the QR code and lookup details about the claim attempt.
-
-Pros of this approach include:
-
-* Depending on configuration, you can use the proof of successful claim instead of verifying addresses / implementing OAuth, so it is a little more streamlined.
-* May be able to configure the claim to not need crypto address verification or addresses at all
-
-However, this is a limited approach because:
-
-* Reward codes are static and should be one-time use only whereas SIWBB is more robust and supports expiring access tokens with refresh logic.
-* No BitBadges API / scope access&#x20;
-* No instant redirect currently supported
-
-Typically, you will want a hybrid approach. Claims can 1) be attached to the full SIWBB process and 2) since claim attempts are linked with an address, if you verify an address via SIWBB and the claim attempt required the user to be signed in, you inherently have proof of successful claim.
-
 ## **Execution Flow**
 
 **Scope of SIWBB**
