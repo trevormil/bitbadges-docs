@@ -6,5 +6,5 @@ This is facilitated through the x/anchor module which simply has one message (Ms
 
 For another reference, see [https://docs.witness.co/](https://docs.witness.co/). WITNESS is an alternative to BitBadges native anchors but is the exact same concept.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (62) (1).png" alt=""><figcaption></figcaption></figure>
 

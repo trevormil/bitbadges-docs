@@ -14,7 +14,7 @@ In digital environments, you can authenticate users and verify badge ownership t
 
 Sign In with BitBadges provides a way for any website to authenticate users while outsourcing all logic to a BitBadges popup. This approach is similar to "Sign In with Google" or other major tech companies.
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption><p>Sign In With BitBadges Interface</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (50) (1).png" alt=""><figcaption><p>Sign In With BitBadges Interface</p></figcaption></figure>
 
 ### Integrated Authentication Checks
 
