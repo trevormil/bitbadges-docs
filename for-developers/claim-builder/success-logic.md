@@ -2,7 +2,7 @@
 
 Certain claims may make use of the **satsifyMethod** property to implement dynamic logic. This option is currently only available behind the scenes. Frontend defaults to all are required (satisfyMethod = undefined). By default, all plugins must pass without any custom success logic specified.
 
-<figure><img src="../../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
 
 This works in the following ways:
 

@@ -18,6 +18,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 * No verifiable list of users who have claimed
 * Limited in feature set because you need to be able to check criteria at any time, so you cannot use authenticated sessions or other apporaches
 * Calculated in real-time
+* No success webhooks
 
 For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
 

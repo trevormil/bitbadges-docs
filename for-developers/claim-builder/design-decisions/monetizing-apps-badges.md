@@ -29,7 +29,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
@@ -43,8 +43,8 @@ Upon verifying a successful payment intent with Stripe, you can auto-complete th
 
 For auto-completing the claims, we refer you here.
 
-{% content-ref url="bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md" %}
-[auto-complete-claims-w-bitbadges-api.md](bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
+{% content-ref url="../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md" %}
+[auto-complete-claims-w-bitbadges-api.md](../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
 {% endcontent-ref %}
 
 For the Stripe webhook approach, this may look something like the following:
@@ -90,6 +90,6 @@ You can also build a custom plugin that directs the user to your payment page an
 
 To implement, you will use the claim token approach where the unique claim token is the unique payment ID (thus enforcing one claim per ID).
 
-{% content-ref url="plugins/creating-a-custom-plugin/" %}
-[creating-a-custom-plugin](plugins/creating-a-custom-plugin/)
+{% content-ref url="../plugins/creating-a-custom-plugin/" %}
+[creating-a-custom-plugin](../plugins/creating-a-custom-plugin/)
 {% endcontent-ref %}

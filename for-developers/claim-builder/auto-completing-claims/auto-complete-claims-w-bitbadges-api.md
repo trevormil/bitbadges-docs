@@ -2,7 +2,7 @@
 
 ### Do you really need to auto-complete / custom implement?
 
-Before going through the entire process, consider whether you can implement your use case with a plugin-only approach. Get creative!&#x20;
+Before going through the entire process, consider whether you can implement your use case with a plugin-only approach. Get creative!
 
 Use plugins like Codes, Password, or Email which are generic and can be used with pretty much any app. For example, give out claim codes to those who meet the criteria on your end. Then, they can claim in the BitBadges site, and you do not need to implement the claiming logic.
 
@@ -36,7 +36,7 @@ Couple notes with auto-completing claims:
 
 **Simulating**
 
-You can also simulate the claim (which is instant and not put into the actual queue). There are also options within this request to simulate specific plugins only for further fine-grained testing.  The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.&#x20;
+You can also simulate the claim (which is instant and not put into the actual queue). There are also options within this request to simulate specific plugins only for further fine-grained testing. The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.
 
 The body is the same as the completeClaim route. See below.
 

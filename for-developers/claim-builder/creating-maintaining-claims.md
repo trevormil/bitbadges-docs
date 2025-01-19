@@ -20,3 +20,4 @@
 * Protect against cases where the BitBadges off-chain claim can be reserved but not executed on-chain or vice versa. This may happen if the claim criteria does not match the on-chain approval.
   * For example, if you create a BitBadges claim that can be reserved by Bob, but Bob is not approved on-chain, Bob cannot actually receive the badges.
   * This is commonly a problem for approved addresses and transfer/claim times not aligning up.
+
