@@ -1,8 +1,8 @@
 # Configuration
 
-Each implementation will feature a unique authentication URL tailored to your application's needs. Users must visit this URL to authenticate. Parameters will vary based on your specific implementation and requirements.
+Each implementation will feature a unique authentication URL tailored to your application's needs. Users will visit this URL to authenticate and receive an authorization code which you will use. This code  will be behind the scenes for digital flows or the actual QR code for in-person / delayed flows.
 
-The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it. For instance:
+Parameters will vary based on your specific implementation and requirements. The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it. For instance:
 
 ```vbnet
 https://bitbadges.io/siwbb/authorize?client_id=...
@@ -37,10 +37,6 @@ export interface CodeGenQueryParams {
   hideIfAlreadyClaimed?: boolean;
 }
 ```
-
-We recommend using the helper tool available at [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen).
-
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Parameter Options**
 
