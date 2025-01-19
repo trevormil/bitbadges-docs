@@ -2,13 +2,6 @@
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
-```
-Note: We migrated from "cosmos" -> "bb" prefixes for mapping to Cosmos.
-
-The terms Cosmos and BitBadges addresses may be used interchangeably.
-Some learning material and documentation may still use "cosmos".
-```
-
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**

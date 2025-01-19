@@ -6,4 +6,4 @@ All you need to do to gate a URL is to add it as a gated reward in the rewards t
 
 You can do this in the Rewards section when configuring the claim.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
