@@ -37,13 +37,14 @@ Tokens (badges) are simply something that you can own digitally and prove owners
 
 When combined with blockchain technology, badges become even more secure and more powerful, due to the unique properties of the blockchain (verifiable, decentralized, tamper-proof, and so on). However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens (not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time).
 
-### Lists, Protocols, and Attestations
+### Alternatives - Lists, Protocols, Attestations, Points, Tiers, Quests
 
 We also offer alternatives to badges to enhance your digital identity and portfolio:
 
 1. **Address Lists:** Manage users from any supported blockchain with simple address lists. This streamlined alternative to traditional badges allows for efficient user management across multiple chains.
 2. **Protocols / Maps:** Leverage reusable protocols to manage information such as preferences, reputation, and more across applications and chains. These protocols create a standardized way to store and access data, enhancing interoperability between different platforms and ecosystems.
 3. **Attestations:** Use attestations to prove information, such as credentials, privately with zero-knowledge selective disclosure. This feature allows you to verify specific details without revealing unnecessary personal information, enhancing privacy and security in digital interactions.
+4. **Points / Tiers / Quests** - Gamify user experiences with a points based leaderboard, quests, or gamified tiers they can earn.
 
 These additional tools complement our badge system, providing a comprehensive suite for managing digital identities and interactions in the blockchain space.
 
