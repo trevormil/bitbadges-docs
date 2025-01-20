@@ -234,7 +234,7 @@
     * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
   * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
     * [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
-    * [API Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
+    * [Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
     * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
     * [Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
   * [Blockin Docs](https://blockin.gitbook.io/blockin)

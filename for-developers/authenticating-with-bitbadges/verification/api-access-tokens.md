@@ -1,4 +1,4 @@
-# API Access Tokens
+# Access Tokens
 
 With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
 
@@ -18,6 +18,8 @@ Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. 
 **Health Checks**
 
 To check that you are signed in, use the following route. This will return signedIn: false if not authenticated, access token is expired, or authorization has been revoked.
+
+Note: This can even be used when no scopes are requested.
 
 ```typescript
 // POST /api/v0/auth/status {}
