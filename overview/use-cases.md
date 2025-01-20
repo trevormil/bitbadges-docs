@@ -9,7 +9,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 * **Premium Content** - Premium content can be offered only to badge holders.
 * **Decentralized Verification** - Multiple verification services can give out verification badges, and you can choose which person/entity to get your verification ticks from. Or, verification can be more fine-grained and each entity / company can assign badges to their own registered employees / community.
 * **Security and Safety -** Maybe a badge is assigned to every address who's private keys are compromised. Apps can then refuse service to such addresses.
-* **Cross-Chain Protocols -** Implement a cross-chain follow, messaging, social media, etc protocols where every post, message, item is a badge being transferred / minted. For example, see the [BitBadges Multi-Chain Follow Protocol](broken-reference).&#x20;
+* **Cross-Chain Protocols -** Implement a cross-chain follow, messaging, social media, etc protocols where every post, message, item is a badge being transferred / minted.&#x20;
 * **Visual Block Explorers:** Query on-chain activity in a visual way with badges. For example, to see when a user's first blockchain transaction was, see which badge they own (OG 2015 User vs OG 2023 User, etc.)
 * **Recognition of Achievement or Completion** - Job certifications, awards, athletic accomplishments, etc.
 * **E-Learning** - Gamify the learning experience through learning badges
