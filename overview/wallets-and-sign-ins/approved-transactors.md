@@ -10,7 +10,7 @@ In your account settings, BitBadges provides the option to approve other wallets
 
 Note: This feature is opt-in and not enabled by default.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **BitBadges Embedded Wallet**
 

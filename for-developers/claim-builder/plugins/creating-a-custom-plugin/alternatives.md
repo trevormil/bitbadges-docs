@@ -6,7 +6,7 @@ Webhooks can also be sent to tools like Zapier, enabling you to create complex c
 
 If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
 
@@ -60,4 +60,4 @@ export default handlePlugin
 
 <figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
