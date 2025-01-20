@@ -15,6 +15,17 @@ BitBadgesApi.unsetAccessToken();
 
 Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. Note that they may also become invalid as the user revokes access to them as well.
 
+**Health Checks**
+
+To check that you are signed in, use the following route. This will return signedIn: false if not authenticated, access token is expired, or authorization has been revoked.
+
+```typescript
+// POST /api/v0/auth/status {}
+const res = await BitBadgesApi.checkIfSignedIn({})
+// 200 { signedIn: boolean, scopes: [...], ... }
+console.log(res.signedIn)
+```
+
 **Refreshing**
 
 ```typescript
