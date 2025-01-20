@@ -2,7 +2,7 @@
 
 The BitBadges browser extension provides a quick preview of a user's badges and portfolio directly via the extension popup, meaning you never have to leave the site you are currently on. You can add custom requirements as seen below which check for ownership of a custom set of requirements that you want to check.
 
-Note: Chrome should have full settings functionality, but o
+Note: Chrome should have full settings functionality, but others may be limited.
 
 
 

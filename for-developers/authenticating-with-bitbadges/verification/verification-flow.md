@@ -67,11 +67,11 @@ Note this is not the only way of implementing sessions. You may implement custom
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
-IMPORTANT: Note that the authorization code ONLY checks address verification. For any other criteria like claim verification, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
+IMPORTANT: Note that the authorization code ONLY checks address verification. For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
 
 You must use the combination of 1) address verification via SIWBB and 2) your other checks like claims to ensure the user meets the criteria. Address verification is handled via SIWBB (the authorization code), but the other checks are a separate process that needs to be checked server-side.
 
@@ -79,6 +79,16 @@ Claims are an all inclusive way to build complex no-code criteria flows, but thi
 
 {% content-ref url="../../claim-builder/verifying-claim-attempts-w-api.md" %}
 [verifying-claim-attempts-w-api.md](../../claim-builder/verifying-claim-attempts-w-api.md)
+{% endcontent-ref %}
+
+As for attestations, we refer you to the following documentaion. Treat BitBadges as the middleman, and verify everything server-side on your end. You will receive an attestationPresentations array directly from the response if the query URL requested attestations.
+
+```typescript
+const { ..., attestationPresentations } = res;
+```
+
+{% content-ref url="../../claim-builder/receiving-attestations.md" %}
+[receiving-attestations.md](../../claim-builder/receiving-attestations.md)
 {% endcontent-ref %}
 
 ```typescript
@@ -161,5 +171,5 @@ Does check :white\_check\_mark:
 
 Does not check natively :x:
 
-* Additional app-specific criteria needed for signing in (claims, owenrship requirements)
+* Additional app-specific criteria needed for signing in (claims, ownership requirements, attestations)
 * Does not natively prevent against flash ownership attacks, replay attacks, or man-in-the-middle attacks other than what OAuth2 protects against

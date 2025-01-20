@@ -12,7 +12,7 @@ For developers interested in implementing these features, please refer to our de
 
 In digital environments, you can authenticate users and verify badge ownership to enable features like badge-gated website access.
 
-Sign In with BitBadges provides a way for any website to authenticate users while outsourcing all logic to a BitBadges popup. This approach is similar to "Sign In with Google" or other major tech companies.
+Sign In with BitBadges provides a way for any website to authenticate users while outsourcing all logic to a BitBadges popup. This approach is similar to "Sign In with Google" or other major tech companies. Additionally, check anything all in one flow: claim criteria, badge ownership, whatever you want!
 
 <figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption><p>Sign In With BitBadges Interface</p></figcaption></figure>
 
@@ -42,14 +42,3 @@ Use cases for QR code authentication include:
 QR codes in the BitBadges system can be configured in two main ways:
 
 Users have the flexibility to export and save these QR codes using multiple methods, accommodating various preferences and use cases.
-
-### Customizing QR Code Behavior
-
-Depending on the provider's requirements, QR codes can be set up with different behaviors:
-
-* Expiration dates
-* Usage limits
-* Specific authentication requirements (e.g., must be scanned at a particular location)
-* Linked to specific badges or collections
-
-By leveraging these authentication tools and integrations, BitBadges provides a robust and flexible system for verifying user identities, permissions, and badge ownership across a wide range of digital and physical scenarios.

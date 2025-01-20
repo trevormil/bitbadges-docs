@@ -2,7 +2,7 @@
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 

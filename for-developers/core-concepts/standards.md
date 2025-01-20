@@ -19,5 +19,4 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## List of Standards
 
-See [here](../../overview/how-it-works/standards.md).
-
+See [here](../../overview/how-it-works/badge-concepts/standards.md).

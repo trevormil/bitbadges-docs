@@ -15,11 +15,11 @@ Badges are blockchain tokens with customizable properties. They're more complex 
 
 1. [Collection Metadata](metadata.md): Name, description, image, category, etc.
 2. [Badge Metadata](metadata.md): Individual badge details
-3. [Supply](total-supplys.md): Total supply for each badge
-4. [Balances Types](balances-types.md): On-chain or off-chain storage
-5. [Transferability](transferability.md): Rules for badge transfers and distribution
-6. [Manager](manager.md): Optional admin with customizable permissions
-7. [Standard](standards.md): Defines how to interpret badge details
+3. [Supply](badge-concepts/total-supplys.md): Total supply for each badge
+4. [Balances Types](badge-concepts/balances-types.md): On-chain or off-chain storage
+5. [Transferability](badge-concepts/transferability.md): Rules for badge transfers and distribution
+6. [Manager](badge-concepts/manager.md): Optional admin with customizable permissions
+7. [Standard](badge-concepts/standards.md): Defines how to interpret badge details
 8. And more!
 
 ### Address Lists
