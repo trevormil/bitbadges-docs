@@ -16,7 +16,7 @@ While we do offer a ton of functionality directly in-site, your desired function
 
 **Multiple Ways of Implementing**
 
-Even for something that is already implemented in-site, there are often multiple ways of doing so.  Evaluate the pros and cons of each approach. Select the best one for your use case.
+For most ideas, there are often multiple ways of implementation.  Evaluate the pros and cons of each approach. Select the best one for your use case.
 
 <figure><img src="../../.gitbook/assets/image (193).png" alt=""><figcaption></figcaption></figure>
 

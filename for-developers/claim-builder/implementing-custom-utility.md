@@ -14,9 +14,9 @@ The easiest and most typical approach is to just do this with preconfigured plug
 
 ## **In-Site Rewards**
 
-When creating rewards on the claim builder page, you can also link gated content / URLs to only be visible to users upon successfully claiming.
+When creating rewards on the claim builder page, you can also link gated content / URLs to only be visible to users upon successfully claiming. You can add dynamic variables, but note that this does not protect against the users sharing the secret URL.&#x20;
 
-You may even consider this URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
+You may need additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
