@@ -68,6 +68,14 @@ Ideal for in-person or offline scenarios:
    * Implements security measures (prevent replay attacks, etc.)
    * Focus on your core utility
 
+## Button Graphics
+
+We do not have an official Sign In with BitBadges interface button that we expect to be used. We do not even require BitBadges logo to be anywhere on your site.&#x20;
+
+If you want to custom create a SIWBB button or add a "Powered by BItBadges", feel free. If you want to keep it simple with a plain Sign In, that is no issue.
+
+Whatever you think is best!
+
 ## Getting Started
 
 Check out our [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a complete implementation example and reference code.
