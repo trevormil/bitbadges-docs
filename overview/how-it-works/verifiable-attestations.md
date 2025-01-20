@@ -8,7 +8,7 @@ Each method / approach may have different properties and tradeoffs. For example,
 
 Attestations are privately stored in your account by default but can be displayed on profiles and disclosed to verifiers as you need through flows like claims or Sign In with BitBadges.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-02 at 11.55.15 AM.png" alt="" width="563"><figcaption></figcaption></figure>
 
