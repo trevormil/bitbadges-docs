@@ -28,8 +28,8 @@ To lookup claim state or recent claim attempts by address or other claim informa
 await BitBadgesApi.getClaimAttempts(...)
 ```
 
-{% content-ref url="bitbadges-api-and-claims/" %}
-[bitbadges-api-and-claims](bitbadges-api-and-claims/)
+{% content-ref url="bitbadges-api-claims/" %}
+[bitbadges-api-claims](bitbadges-api-claims/)
 {% endcontent-ref %}
 
 ## Use Post-Success Zaps

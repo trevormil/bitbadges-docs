@@ -1,2 +1,0 @@
-# BitBadges API - Claims
-

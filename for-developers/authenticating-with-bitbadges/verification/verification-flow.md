@@ -77,8 +77,8 @@ You must use the combination of 1) address verification via SIWBB and 2) your ot
 
 Claims are an all inclusive way to build complex no-code criteria flows, but this can be anything you want. We refer you to the respective documentation for how to verify other criteria.
 
-{% content-ref url="../../claim-builder/bitbadges-api-and-claims/verifying-claim-attempts-w-api.md" %}
-[verifying-claim-attempts-w-api.md](../../claim-builder/bitbadges-api-and-claims/verifying-claim-attempts-w-api.md)
+{% content-ref url="../../claim-builder/verifying-claim-attempts-w-api.md" %}
+[verifying-claim-attempts-w-api.md](../../claim-builder/verifying-claim-attempts-w-api.md)
 {% endcontent-ref %}
 
 ```typescript

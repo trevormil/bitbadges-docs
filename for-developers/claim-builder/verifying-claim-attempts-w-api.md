@@ -7,8 +7,8 @@ IMPORTANT: Verifying claim attempts are two-fold:
 * Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
 * Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
 
-{% content-ref url="../../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
+{% content-ref url="../authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
 ### Standard Option 1: Get Claim Attempts
@@ -66,8 +66,8 @@ For these, you can use the simulate claim endpoint. Simulations are treated the 
 await BitBadgesApi.simulateClaim(...)
 ```
 
-{% content-ref url="auto-complete-claims-w-bitbadges-api.md" %}
-[auto-complete-claims-w-bitbadges-api.md](auto-complete-claims-w-bitbadges-api.md)
+{% content-ref url="auto-completing-claims/auto-complete-claims-w-bitbadges-api.md" %}
+[auto-complete-claims-w-bitbadges-api.md](auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
 {% endcontent-ref %}
 
 ### More Advanced Implementations
