@@ -16,15 +16,27 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 ## Number Types / Stringified Responses
 
-All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX_SAFE_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
+All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
 ## Routes Documentation
 
--   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
--   [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share&creator=11647629)
--   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
+* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+
+In this documentation, we often use the SDK format for explanation purposes
+
+```typescript
+await BitBadgesApi.routeFn(...)
+```
+
+Please convert the corresponding function name to vanilla HTTP if you are not using the SDK from the documentation above.
+
+```
+POST https://api.bitbadges.io/api/v0/routeFn
+```
 
 ## Testnet Mode
 
@@ -87,7 +99,6 @@ If you want to perform authenticated operations on behalf of your **own account*
 The password approved sign in approach may be useful, for example, for programmatically creating attestations, completing claims, etc, without needing to directly interact with the site.
 
 1. Set up an approved password sign in in your account settings with the desired scopes.
-
 2. Sign in with:
 
 ```typescript
