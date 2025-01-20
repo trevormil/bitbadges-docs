@@ -29,7 +29,7 @@ IMPORTANT: Note that these approaches show you how to implement the core success
 
 Connect your claim to auto-complete upon receiving successful Stripe payments using Zapier (or any other compatible processor)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Codes Plugin
 
@@ -43,8 +43,8 @@ Upon verifying a successful payment intent with Stripe, you can auto-complete th
 
 For auto-completing the claims, we refer you here.
 
-{% content-ref url="../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md" %}
-[auto-complete-claims-w-bitbadges-api.md](../auto-completing-claims/auto-complete-claims-w-bitbadges-api.md)
+{% content-ref url="../bitbadges-api-and-claims/auto-complete-claims-w-bitbadges-api.md" %}
+[auto-complete-claims-w-bitbadges-api.md](../bitbadges-api-and-claims/auto-complete-claims-w-bitbadges-api.md)
 {% endcontent-ref %}
 
 For the Stripe webhook approach, this may look something like the following:

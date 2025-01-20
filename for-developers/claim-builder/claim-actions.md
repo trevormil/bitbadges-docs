@@ -17,9 +17,9 @@ You may even often have multi-level flows. For example, use one claim to gate ba
 
 One important thing to consider is that utility completion and the claim are often separate actions that, if misconfigured, may not be aligned correctly. For example, the eventual on-chain badge transfer transaction depends on a successful claim, but there may be a case if misconfigured that the claim can be completed but the transaction cannot.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

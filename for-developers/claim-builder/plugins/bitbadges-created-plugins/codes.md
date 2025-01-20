@@ -6,6 +6,10 @@ This plugin manages a code challenge, where users must provide a valid one-time-
 
 We also support specific claim numbers dependent on the zero-based codeIdx using the assignMethod == instanceId.
 
+{% content-ref url="../../universal-approach-claim-codes.md" %}
+[universal-approach-claim-codes.md](../../universal-approach-claim-codes.md)
+{% endcontent-ref %}
+
 ### Public Parameters
 
 * **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.

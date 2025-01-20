@@ -14,11 +14,11 @@ Use the Codes plugin to set the codes for your claim. We recommend auto-generati
 
 **Custom Metadata**
 
-Consider also setting custom metadata to let users know what the codes are for, how to get them, etc.
+Consider also setting custom description to let users know what the codes are for, how to get them, etc.
 
 **Configuration Tools**
 
-If you are building a tool / service, consider creating a [configuration tool](configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
+If you are building a tool / service, consider creating a [configuration tool](plugins/configuration-tools.md) to auto-configure the plugin for the claim creator. Or, have the user copy / paste them to your service.
 
 An example configuration input would be:
 
@@ -26,7 +26,7 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -36,9 +36,9 @@ If you have a large number of codes, consider using the Copy Seed Code button un
 
 Using a configuration tool would take this step out for the claim creator.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 
@@ -84,3 +84,12 @@ https://bitbadges.io/CLAIM\_PATH?claimId=YOUR\_CLAIM\_ID\&code=YOUR\_CODE
 You may also consider using a save for later link. See example below.
 
 [https://bitbadges.io/saveforlater?value=38d3fe58dffea3f7a675b587bc9239e0360047b7482d245f6770deb589aef869](https://bitbadges.io/saveforlater?value=38d3fe58dffea3f7a675b587bc9239e0360047b7482d245f6770deb589aef869)
+
+## **Zapier**
+
+The get code via idx from seedCode route is also available in Zapier opening up some cool possibilities.
+
+{% content-ref url="auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md" %}
+[distribute-claim-information-tutorial.md](auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
+{% endcontent-ref %}
+

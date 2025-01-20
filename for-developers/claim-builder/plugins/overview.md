@@ -1,6 +1,6 @@
 # Overview
 
-Custom plugins are, in simple terms, just a configured HTTP request that we call upon attempting to claim. The plugin (your logic) will handle if the plugin status should be failed or successful, plus it potentially tells us how to manage the plugin state.
+Plugins are, in simple terms, just a configured HTTP request or function that we call upon attempting to claim. The plugin (your logic) will handle if the plugin status should be failed or successful, plus it potentially tells us how to manage the plugin state.
 
 We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. This is a design decision as we believe the core logic of the distribution process should be decentralized and community-driven (not centralized on BitBadges servers).
 
@@ -14,15 +14,15 @@ We have designed plugins in a way to allow you maximum customization by letting 
 
 Plugins can either be:
 
-* Success hooks: Only sent after the claim succeeds. Typically for post-claim logic
+* Success hooks: Only sent after the claim succeeds. Typically for post-claim logic or rewards
 * Processing hooks: Sent during execution and can affect the overall outcome of the claim.
 
-We also allow users to simulate (dry run) their claim attempts. Plugins are expected to handle these as necessary. These are all configurable in the creation process.
+We also allow users to simulate (dry run) their claim attempts. Plugins are expected to handle these as necessary. These are all configurable in the creation process in-site.
 
 **Parts of the Plugin**
 
 * Backend Handler (Your API) - All plugins have a backend handler that we expect a 200 OK response from, along with other details depending on the configuration, at claim time.
-* Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameters for the specific claim, if applicable. This can be done in-site or outsourced to a configuration tool.
+* Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
 <figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
@@ -37,7 +37,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 

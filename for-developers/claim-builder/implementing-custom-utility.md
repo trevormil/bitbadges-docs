@@ -18,7 +18,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may need additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -28,8 +28,8 @@ To lookup claim state or recent claim attempts by address or other claim informa
 await BitBadgesApi.getClaimAttempts(...)
 ```
 
-{% content-ref url="bitbadges-api-claims/" %}
-[bitbadges-api-claims](bitbadges-api-claims/)
+{% content-ref url="bitbadges-api-and-claims/" %}
+[bitbadges-api-and-claims](bitbadges-api-and-claims/)
 {% endcontent-ref %}
 
 ## Use Post-Success Zaps

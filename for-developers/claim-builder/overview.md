@@ -2,7 +2,7 @@
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards**
 
-The implementation process aims to be super flexible, allowing you maximum customization. This is why the documentation may be a little overwhelming at first. You will not need 95% of what is documented in this section.&#x20;
+The implementation process aims to be super flexible, allowing you maximum customization. This is why the documentation may be a little overwhelming at first. You will not need 95% of what is documented in this section. Also in many sections, we explain along with the developer low-level explanations which will often be taken care of for you.
 
 The easiest way we recommend to get started is to go to the Claim Tester in the Developer Portal and just experiment. Come back to the relevant sections when you have specific questions. In most cases, you actually will be able to offer everything you want to directly in-site with no code! Or, the questions will be answered for you.
 
