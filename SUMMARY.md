@@ -225,7 +225,7 @@
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
-  * [What If I Need Wallets On App Side?](for-developers/authenticating-with-bitbadges/what-if-i-need-wallets-on-app-side.md)
+  * [What If I Need Wallets On App Side?](for-developers/authenticating-with-bitbadges/hybrid-dapps.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
     * [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/overview.md)
     * [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)

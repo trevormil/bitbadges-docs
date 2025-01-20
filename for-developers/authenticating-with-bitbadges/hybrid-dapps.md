@@ -4,7 +4,7 @@ Sign In with BitBadges is unique because it allows you to build hybrid dApps, as
 
 However, if your app already uses wallets, you can still use SIWBB.  The flow is the exact same, and as the user navigates to the SIWBB page, the user's wallet should auto-connect, resulting in a seamless experience. SIWBB can still be useful and provide authentication, a consistent claim interface, or be used to receive private attestations.&#x20;
 
-Note: If you do have wallets and implement authentication on your end, SIWBB may be overkill as you can just use a claim directly or check other criteria behind the scenes.&#x20;
+Note: If you do have wallets and implement authentication on your end, SIWBB may be overkill as there are alternatives like using claim directly or checking other criteria behind the scenes without this step.&#x20;
 
 <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
