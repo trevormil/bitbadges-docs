@@ -27,8 +27,6 @@ Bitcoin Example
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
 * Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 #### Why can I convert Solana address to a BitBadges / ETH / BTC address but not the other way around?
 
 You may notice that you cannot go from a BitBadges / ETH / BTC address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / BitBadges address), you cannot deduce the preimage without prior knowledge of it.
