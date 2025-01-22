@@ -36,6 +36,14 @@ This is a powerful tool because then you can create gated channels and offer fur
 
 <figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
 
+## Collect User Emails, Socials, Form Questions 📝
+
+Use the Forms plugin to collect user inputs and social identifiers. This allows you to maintain a list of users who you want to offer your gated utility too (e.g. send emails to the emails you collect),
+
+All storage is handled on our end, and you can simply view the collected details in-site and export them to CSV.
+
+<figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
+
 ## Gating a Digital Service (Websites) 🌐
 
 Gating your website is similar to URLs, but you will need authentication on your end.
