@@ -32,7 +32,7 @@ Once published, users will need to successfully complete the claim process to vi
 
 Instead of gating a URL / content, you can also use certain plugins to auto implement utility for you with no-code. For example, assign a Discord role to users who successfully claim.
 
-This is a powerful tool because then you can create gated channels and offer further gated experiences!
+This is a powerful tool because then you can create gated channels and offer further gated experiences however you see fit!
 
 <figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
 
