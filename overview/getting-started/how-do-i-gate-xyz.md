@@ -1,2 +1,53 @@
 # How Do I Gate XYZ?
 
+BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. This guide will walk you through the most common gating scenarios and how to implement them in the recommended ways. Note: BitBadges aims to be as flexible as possible, so there are often multiple ways to achieve the same result.
+
+## Gating a URL / Content 🔗
+
+The simplest way to gate a URL is to use BitBadges' built-in URL gating feature:
+
+1. Go to the [Create Claim page](https://bitbadges.io/create)
+2. Set up your desired criteria (e.g., badge ownership, password, points, etc.)
+3. In the "Rewards" section, select "URL"
+4. Enter the URL you want to gate and select the parameters for showing the URL (e.g. min one claim)
+5. Save and publish your claim
+
+Once published, users will need to successfully complete the claim process to view the URL. This is perfect for:
+
+-   Private Discord invites
+-   Google Doc/Drive links
+-   File downloads
+-   Software downloads
+-   Exclusive website access
+-   Event registration links
+-   And more!
+
+**Pro Tip**: For additional security, consider using one-time-use URLs or implementing additional verification on your destination website.
+
+## Gating a Digital Service (Websites) 🌐
+
+Websites are similar to URLs, but you will need authentication on your end.
+
+1. Create a claim (see above or tutorials)
+2. Implement Sign In with BitBadges on your website
+3. On the authorize page, you can prompt users to send you private attestations, complete claims, check badge ownership, or any other criteria you want to gate access to. All in one flow!
+4. On your end, you simply can check this all in one flow (e.g. claim successm, authentication, any other criteria)
+
+This flow can be used for any digital service, including:
+
+-   Discord servers
+-   Google Docs
+-   GitHub permissions
+-   Telegram channels
+-   Slack channels
+-   SaaS
+-   Web apps
+-   In-app experiences
+-   Games
+-   And more!
+
+## Gating an In-Person Service (Events, etc.) 🎫
+
+1. Create a claim (see above or tutorials)
+2. This will follow the same flow as the website gating above, expect you will use the QR code feature of Sign In with BitBadges to gate access to the event.
+3. Use any session management tool to manage the event (e.g. stamping users in, etc.)
