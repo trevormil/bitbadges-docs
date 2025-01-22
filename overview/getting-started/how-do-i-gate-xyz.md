@@ -28,14 +28,22 @@ Once published, users will need to successfully complete the claim process to vi
 
 **Pro Tip**: For additional security, consider using one-time-use URLs or implementing additional verification on your destination website.
 
+## Gating a Discord, Telegram, Slack Channel 💬
+
+Instead of gating a URL / content, you can also use certain plugins to auto implement utility for you with no-code. For example, assign a Discord role to users who successfully claim.
+
+This is a powerful tool because then you can create gated channels and offer further gated experiences!
+
+<figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
+
 ## Gating a Digital Service (Websites) 🌐
 
-Gqating your website is similar to URLs, but you will need authentication on your end.
+Gating your website is similar to URLs, but you will need authentication on your end.
 
 1. Create a claim (see above or tutorials)
 2. Implement Sign In with BitBadges on your website
 3. On the authorize page, you can prompt users to send you private attestations, complete claims, check badge ownership, or any other criteria you want to gate access to. All in one flow!
-4. On your end, you simply can check this all in one flow (e.g. claim successm, authentication, any other criteria)
+4. On your end, you simply can check this all in one flow (e.g. claim success, authentication, any other criteria)
 
 This flow can be used for any digital service, including:
 
