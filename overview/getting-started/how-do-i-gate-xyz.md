@@ -38,9 +38,9 @@ This is a powerful tool because then you can create gated channels and offer fur
 
 ## Collect User Emails, Socials, Form Questions 📝
 
-Use the Forms plugin to collect user inputs and social identifiers. This allows you to maintain a list of users who you want to offer your gated utility too (e.g. send emails to the emails you collect),
+Use the Forms plugin to collect user inputs and social identifiers. This allows you to maintain a list of users who you want to offer your gated utility too (e.g. send emails to the emails you collect), All storage is handled on our end, and you can simply view the collected details in-site and export them to CSV.
 
-All storage is handled on our end, and you can simply view the collected details in-site and export them to CSV.
+This is great for services like newsletters, custom services, and much more! If you need a more programmatic solution, you can collect this same data at your own endpoint via the Success Webhook plugin or a custom plugin. See developer docs for more information.
 
 <figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
