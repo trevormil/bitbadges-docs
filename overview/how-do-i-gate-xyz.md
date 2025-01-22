@@ -1,4 +1,4 @@
-# How Do I Gate XYZ?
+# 🔐 How Do I Gate XYZ?
 
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. This guide will walk you through the most common gating scenarios and how to implement them in the recommended ways. Note: BitBadges aims to be as flexible as possible, so there are often multiple ways to achieve the same result.
 
@@ -34,7 +34,7 @@ Instead of gating a URL / content, you can also use certain plugins to auto impl
 
 This is a powerful tool because then you can create gated channels and offer further gated experiences however you see fit!
 
-<figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
 
 ## Collect User Emails, Socials, Form Questions 📝
 
@@ -42,9 +42,9 @@ Use the Forms plugin to collect user inputs and social identifiers. This allows 
 
 This is great for services like newsletters, custom services, and much more! If you need a more programmatic solution, you can collect this same data via [Zapier](https://zapier.com/apps/bitbadges/integrations) or at your own endpoint via webhooks or custom plugins. See developer docs for more information.
 
-<figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a Digital Service (Websites) 🌐
 
@@ -62,6 +62,7 @@ This flow can be used for any digital service, including:
 * GitHub permissions
 * Telegram channels
 * Slack channels
+* Discourse forums
 * SaaS
 * Web apps
 * In-app experiences

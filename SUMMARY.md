@@ -6,7 +6,7 @@
 * [🔨 Getting Started](overview/getting-started/README.md)
   * [Creating](overview/getting-started/creating-items.md)
   * [Exploring](overview/getting-started/exploring-claiming.md)
-  * [How Do I Gate XYZ?](overview/getting-started/how-do-i-gate-xyz.md)
+* [🔐 How Do I Gate XYZ?](overview/how-do-i-gate-xyz.md)
 * [🎒 Tutorials](overview/tutorials/README.md)
   * [Create Your First Claim](overview/tutorials/create-your-first-claim.md)
   * [Gate a URL](overview/tutorials/gate-a-url.md)
