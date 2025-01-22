@@ -40,9 +40,11 @@ This is a powerful tool because then you can create gated channels and offer fur
 
 Use the Forms plugin to collect user inputs and social identifiers. This allows you to maintain a list of users who you want to offer your gated utility too (e.g. send emails to the emails you collect), All storage is handled on our end, and you can simply view the collected details in-site and export them to CSV.
 
-This is great for services like newsletters, custom services, and much more! If you need a more programmatic solution, you can collect this same data via Zapier or at your own endpoint via webhooks or custom plugins. See developer docs for more information.
+This is great for services like newsletters, custom services, and much more! If you need a more programmatic solution, you can collect this same data via [Zapier](https://zapier.com/apps/bitbadges/integrations) or at your own endpoint via webhooks or custom plugins. See developer docs for more information.
 
 <figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a Digital Service (Websites) 🌐
 

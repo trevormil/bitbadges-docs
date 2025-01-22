@@ -12,7 +12,7 @@ If you just want to test out creating claims, see the Claim Tester. This allows 
 
 Claims are the backbone of almost everything else on the site. They can be used with badges or address lists to gate distribution. They can be standalone to gate custom utility. They can be combined with Sign In with BItBadges to create your own custom apps!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 BitBadges claims allow you to check any criteria you want and offer your own custom utility to those who meet that criteria. In some cases, that may be other in-site services (points, badge distribution, etc). In other cases, you may have custom content you want to gate like URLs.&#x20;
 
