@@ -2,6 +2,10 @@
 
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. This guide will walk you through the most common gating scenarios and how to implement them in the recommended ways. Note: BitBadges aims to be as flexible as possible, so there are often multiple ways to achieve the same result.
 
+```
+Pro Tip: Browse to see if there is an ecosystem tool that meets your needs
+```
+
 ## Gating a URL / Content 🔗
 
 The simplest way to gate a URL is to use BitBadges' built-in URL gating feature:
@@ -14,19 +18,19 @@ The simplest way to gate a URL is to use BitBadges' built-in URL gating feature:
 
 Once published, users will need to successfully complete the claim process to view the URL. This is perfect for:
 
--   Private Discord invites
--   Google Doc/Drive links
--   File downloads
--   Software downloads
--   Exclusive website access
--   Event registration links
--   And more!
+* Private Discord invites
+* Google Doc/Drive links
+* File downloads
+* Software downloads
+* Exclusive website access
+* Event registration links
+* And more!
 
 **Pro Tip**: For additional security, consider using one-time-use URLs or implementing additional verification on your destination website.
 
 ## Gating a Digital Service (Websites) 🌐
 
-Websites are similar to URLs, but you will need authentication on your end.
+Gqating your website is similar to URLs, but you will need authentication on your end.
 
 1. Create a claim (see above or tutorials)
 2. Implement Sign In with BitBadges on your website
@@ -35,16 +39,16 @@ Websites are similar to URLs, but you will need authentication on your end.
 
 This flow can be used for any digital service, including:
 
--   Discord servers
--   Google Docs
--   GitHub permissions
--   Telegram channels
--   Slack channels
--   SaaS
--   Web apps
--   In-app experiences
--   Games
--   And more!
+* Discord servers
+* Google Docs
+* GitHub permissions
+* Telegram channels
+* Slack channels
+* SaaS
+* Web apps
+* In-app experiences
+* Games
+* And more!
 
 ## Gating an In-Person Service (Events, etc.) 🎫
 
