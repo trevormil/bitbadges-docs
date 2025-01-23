@@ -2,7 +2,7 @@
 
 1. Sign in and go to the Developer Portal. We will use the Claim Tester tab to create a test claim.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Then, simply follow the in-site instructions to setup your claim and criteria. Use the in-site completion method. Criteria is customizable from universal plugins like a password / claim codes / address restrictions to your favorite apps (Discord, GitHub, etc).
 
