@@ -1,12 +1,12 @@
 # Create Proof of Purchase Badge w/ Zapier
 
-A cool application of badges is to create proof of authenticity badges for product purchases from storefronts like Shopify. This tutorial will walk you through an example on how to do swith Zapier.&#x20;
+A cool application of badges is to create proof of authenticity badges for product purchases from storefronts like Shopify, BigCommerce, or Adobe Commerce. This tutorial will walk you through an example on how to do swith Zapier.&#x20;
 
 1. Create a dynamic email store in the developer portal at [https://bitbadges.io/developer](https://bitbadges.io/developer).&#x20;
 
 <figure><img src="../../.gitbook/assets/image (208).png" alt=""><figcaption></figcaption></figure>
 
-2. Create a Zapier Zap that adds the emails to the dynamic store upon new Shopify orders. Use the manage tab in the dynamic store interface to auto-create the template for you. Make sure you dynamically replace the customer email with the one entered into the dynamic store.
+2. Create a Zapier Zap that adds the emails to the dynamic store upon new orders. Use the manage tab in the dynamic store interface to auto-create the template for you. Make sure you dynamically replace the customer email with the one entered into the dynamic store.
 
 <figure><img src="../../.gitbook/assets/image (209).png" alt=""><figcaption></figcaption></figure>
 
