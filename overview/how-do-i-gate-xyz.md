@@ -44,7 +44,7 @@ This is great for services like newsletters, custom services, and much more! If 
 
 <figure><img src="../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a Digital Service (Websites) 🌐
 
