@@ -4,10 +4,10 @@
 
 The easiest way is to simply create a Zap using the Google Forms and BitBadges integrations. See the link below for a full tutorial.
 
-<figure><img src="../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
 
-{% content-ref url="../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md" %}
-[distribute-claim-information-tutorial.md](../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 ## Setting Up a Claim with Google Forms Script Editor
@@ -32,7 +32,7 @@ This guide will walk you through setting up a Google Form to generate unique cla
 * In your Google Form, click on the three dots in the upper right corner.
 * Select Script editor.
 
-<figure><img src="../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
 
 #### 3. Add the Script
 
@@ -78,7 +78,7 @@ function setCustomConfirmation(form, code) {
 * Select Batch.
 * Copy the seed code.
 
-<figure><img src="../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
 
 #### 4. Set Up the Trigger
 
@@ -90,9 +90,9 @@ function setCustomConfirmation(form, code) {
   * Select event source: From form
   * Select event type: On form submit
 
-<figure><img src="../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (137).png" alt="" width="554"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (137).png" alt="" width="554"><figcaption></figcaption></figure>
 
 #### 5. Save and Close
 

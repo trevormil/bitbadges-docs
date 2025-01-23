@@ -26,7 +26,7 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -38,7 +38,7 @@ Using a configuration tool would take this step out for the claim creator.
 
 <figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 
@@ -89,7 +89,7 @@ You may also consider using a save for later link. See example below.
 
 The get code via idx from seedCode route is also available in Zapier opening up some cool possibilities.
 
-{% content-ref url="../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md" %}
-[distribute-claim-information-tutorial.md](../auto-completing-claims/automate-w-zapier/distribute-claim-information-tutorial.md)
+{% content-ref url="../automate-w-zapier/distribute-claim-information-tutorial/" %}
+[distribute-claim-information-tutorial](../automate-w-zapier/distribute-claim-information-tutorial/)
 {% endcontent-ref %}
 

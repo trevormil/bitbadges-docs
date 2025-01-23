@@ -39,8 +39,8 @@ The custom trigger step is left up to you to implement from any of the 7000+ app
 
 With the claim or action step of the automated flow, you have a couple options depending on your use case.
 
-{% content-ref url="distribute-claim-information-tutorial.md" %}
-[distribute-claim-information-tutorial.md](distribute-claim-information-tutorial.md)
+{% content-ref url="../../automate-w-zapier/distribute-claim-information-tutorial/" %}
+[distribute-claim-information-tutorial](../../automate-w-zapier/distribute-claim-information-tutorial/)
 {% endcontent-ref %}
 
 {% content-ref url="automatic-claim-tutorial.md" %}
