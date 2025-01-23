@@ -10,7 +10,7 @@
 * [🎒 Tutorials](overview/tutorials/README.md)
   * [Create Your First Claim](overview/tutorials/create-your-first-claim.md)
   * [Gate a URL](overview/tutorials/gate-a-url.md)
-  * [Create Proof of Purchase Badge](overview/tutorials/create-proof-of-purchase-badge.md)
+  * [Create Proof of Purchase Badge w/ Zapier](overview/tutorials/create-proof-of-purchase-badge-w-zapier.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🧠 Concepts](overview/how-it-works/README.md)
   * [Multi-Chain Accounts](overview/how-it-works/accounts.md)
