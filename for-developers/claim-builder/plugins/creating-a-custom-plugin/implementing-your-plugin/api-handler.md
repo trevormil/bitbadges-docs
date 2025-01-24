@@ -39,6 +39,12 @@ const payload = {
 };
 ```
 
+### **Identifying the Claiming User**
+
+If you need to identify the claiming user, we pass their address + other requested socials to your endpoint. The socials will all be verified and signed in on our side. The address will be authorized if your plugin specifies the require sign in? option or the claim creator requires sign in.
+
+Although that may not be enough if you identify your users in another way, or you may just not want to fully trust BitBadges. You can also simply check via a secret authorization code. Give them the authorization code on your end while authenticated. Have them enter it as a custom user input in-site. Then, verify it on your end.
+
 ### **Responses**
 
 All responses expect a 200 success OK status code within 10 seconds for a successful attempt. For any of the below, do not assume that a 200 OK response means a successful claim and a successful set of the new state. Think of this as a hypothetical state transition IF the claim is eventually successful.
