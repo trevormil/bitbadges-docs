@@ -30,7 +30,42 @@ Get started by creating a workflow with the BitBadges configuration. Then, you c
 [workflow-triggers](workflow-triggers/)
 {% endcontent-ref %}
 
+For the inputs, there are two ways of configuring. You may nee dto slightly adapt the templates to fit your desired flow.
 
+Props - You set it manually via the props
+
+```typescript
+export default defineComponent({
+  props: {
+    bitbadges: {
+      type: "app",
+      app: "bitbadges",
+    },
+    claimInfo: {
+      type: "string",
+      "label":  "Claim Information",
+      optional: false, // Use optional: false instead of required: true
+    },
+...
+```
+
+Dynamic - Parse from the trigger / another step (steps.trigger.event)
+
+```typescript
+export default defineComponent({
+  props: {
+    bitbadges: {
+      type: "app",
+      app: "bitbadges",
+    }
+  },
+  async run({steps, $}) {
+    try {
+      const response = await axios($, {
+        method: 'POST',
+        url: `https://api.bitbadges.io/api/v0/claims/status/${steps.trigger.event.claimAttemptId}`,
+ ...
+```
 
 <figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
