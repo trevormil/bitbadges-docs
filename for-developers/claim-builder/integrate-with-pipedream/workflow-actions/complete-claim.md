@@ -65,7 +65,7 @@ export default defineComponent({
         data,
       });
 
-      const result = response.data;
+      const result = response;
 
       // Note: This means a successful trigger (add to queue), not a claim completion
       // You can use the claimAttemptId to poll
