@@ -12,6 +12,8 @@ Because Pipedream allows more customization on your level (in addition to just a
 
 **Automation Workflows**
 
+Automation workflows with Pipedream and BitBadges allow you to auto-complete claims, auto-add users to dynamic stores, implement post-claim logic, and more
+
 Get started by creating a workflow with the BitBadges configuration. Then, you can copy/paste the code provided from the actions / triggers in the subpages of this section to programmatically interact with the BitBadges API. We refer you to the Zapier flows documentation for the high-level concepts and designs.
 
 {% embed url="https://pipedream.com/apps/bitbadges" %}
