@@ -4,7 +4,7 @@ To complete a claim, enter this code in your workflow with [the BitBadges integr
 
 The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}.
 
-You can setup the password plugin manually or select the Zapier completion method -> Copy.
+You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
 
 ```
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
@@ -14,6 +14,10 @@ You can setup the password plugin manually or select the Zapier completion metho
 
 ```typescript
 import { axios } from "@pipedream/platform";
+
+//TODO: Edit where you get the props from. Static manually entered props are in via
+//      the props field. Or you can configure to use steps.trigger.event.propName
+//      for dynamic props from the trigger or other steps
 
 export default defineComponent({
   props: {
