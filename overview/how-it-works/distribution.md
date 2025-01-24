@@ -12,7 +12,7 @@ The utility can be anything from website access to badge distribution to being a
 
 Typically, the end user will claim directly on the BitBadges site, but you may also optionally auto-trigger claims for users via the API, Zapier, or however you choose to implement.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Creating a Claim**
 
