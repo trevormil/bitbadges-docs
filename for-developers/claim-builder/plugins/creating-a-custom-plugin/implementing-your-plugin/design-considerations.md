@@ -51,7 +51,7 @@ Parameters are okay because they are hardcoded and not changed (e.g. set min ETH
 
 ### **Authentication / Sensitive Values**
 
-As a design decision, we do NOT want to handle authentication or sensitive values. Treat BitBadges as an untrusted middleman. Authentication should either be fully managed by BitBadges (as it is with core plugins) or fully managed by you. We also do not pass any session cookies or details for any socials requested. If you need authenticated scopes, that is left up to you on your end.
+As a design decision, we do NOT want to handle your authentication or sensitive values. Treat BitBadges as an untrusted middleman. Authentication should either be fully managed by BitBadges (as it is with core plugins) or fully managed by you. We also do not pass any session cookies or details for any socials requested. If you need authenticated scopes, that is left up to you on your end.
 
 We also do not pass any session cookies or details to plugins. Anything like this should be managed on the plugin end. Consider workarounds such as:
 
