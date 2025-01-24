@@ -1,16 +1,18 @@
 # End to End Example
 
-This will walk you through an entire end-to-end auto-completion flow for Pipedream. This will assume you need the whole stack of user authentication. If you do not, you can remove some of these steps and adapt for your use case.
+This will walk you through an entire end-to-end auto-completion flow for Pipedream. This will assume you need the whole stack of user authentication. If you do not, you can remove some of these steps and adapt for your use case.&#x20;
 
-With user authentication, you will need your users to go through the Pipedream Connect authorize flow somehow. Each user will be identified by an `external_user_id` that you set, and once they authorize, you can specify to use that user's authorization details in the automation flow. Their authorization details are stored under that user ID within your Connect app.
+Note: This is not the only way to implement. It is just a guided tutorial.
+
+With user authentication, you will need your users to go through the Pipedream Connect authorize flow somehow. Each user will be identified by an `external_user_id` that you set, and once they authorize, you can specify to use that user's authorization details in the automation workflow. Their authorization details are stored under that user ID within your Connect app.
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
 <figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the code, but Pipedream also lets you self-implement for more custom flows.
+We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also lets you self-implement for more custom flows.
 
-You will need to create a **token** (short-lived) which can be used to create a Connect Link (see [https://pipedream.com/docs/connect/connect-link](https://pipedream.com/docs/connect/connect-link)). Note the `external_user_id`you use for this user.
+You will need to create a **token** (short-lived) which can be used to create a Connect Link (see [https://pipedream.com/docs/connect/connect-link](https://pipedream.com/docs/connect/connect-link)). Note the `external_user_id`you use for this user. This is done server-side.
 
 ```typescript
 import { serverConnectTokenCreate } from "./server"
@@ -20,13 +22,13 @@ const { token, expires_at } = await serverConnectTokenCreate({
 });
 ```
 
-Generate the link like and redirect your users there. This is open-ended. If you want to have a headless no frontend plugin, you can consider adding the Custom Instructions plugin in a claim with a link to a handler endpoint. Because tokens are short-lived and generated dynamically, this should be a proxy one that generates the Connect URL and redirects users there (User -> Proxy Handler -> Generate Connect Link -> Redirect to Connect Link).&#x20;
+Generate the link and redirect your users there. This is also open-ended. If you want to have a headless no frontend plugin, you can consider adding the Custom Instructions plugin in a claim with a link to a proxy handler endpoint.  Because tokens are short-lived and generated dynamically, this should be a proxy one that generates the Connect URL and redirects users there (User -> Proxy Handler -> Generate Connect Link -> Redirect to Connect Link).&#x20;
 
 ```
 https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={appSlug}
 ```
 
-Once the user has completed the authorization, you can now sue that `external_user_id`to perform authenticated requests.&#x20;
+Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests.&#x20;
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -43,7 +45,7 @@ For this tutorial, we will auto-complete a claim with their no-code workflow ([h
 
 <figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-5. Lastly, set up the BitBadges action step as the final action. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually  claiming for real.
+5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually  claiming for real.
 
 <figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
