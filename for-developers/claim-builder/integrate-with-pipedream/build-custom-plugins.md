@@ -47,4 +47,6 @@ Note that there are two flows for authenticating users:
 
 Your frontend URL or connect URL can be configured in the tutorial / user input redirect URI when building your custom plugin. Then, once you have the authentication, you can handle your logic in the plugin handler as you see fit.&#x20;
 
+Or, alternatives including adding custom instructions or developing a configuration tool.
+
 <figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption></figcaption></figure>
