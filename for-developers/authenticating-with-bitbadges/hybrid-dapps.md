@@ -6,7 +6,7 @@ However, if your app already uses wallets, you can still use SIWBB.  The flow is
 
 Note: If you do have wallets and implement authentication on your end, SIWBB may be overkill as there are alternatives like using claim directly or checking other criteria behind the scenes without this step.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

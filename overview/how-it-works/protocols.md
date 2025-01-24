@@ -13,4 +13,4 @@ Protocols group user data for specific purposes, organizing and managing similar
    * Customizable management (off-chain or on-chain storage)
    * Users control their own collections
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
