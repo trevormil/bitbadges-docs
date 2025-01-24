@@ -2,9 +2,9 @@
 
 To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed. &#x20;
 
-The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}.
+The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}. You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
 
-You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
+This is the approach we use for automation workflows. We remove any sign in requirements, but anyone claim must specify the secret password (only known to Pipedream / Zapier).
 
 ```
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
