@@ -12,7 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 // Or for custom configurations
 export const { handlers, signIn, signOut, auth } = NextAuth({
-    providers: [BitBadges({ expectAttestationsPresentations: true, ownershipRequirements: { ... })]
+    providers: [BitBadges({ expectAttestations: true, ownershipRequirements: { ... })]
 });
 ```
 
