@@ -12,16 +12,16 @@ We also support specific claim numbers dependent on the zero-based codeIdx using
 
 ### Public Parameters
 
-* **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
-* **hideCurrentState**: If true, we will NOT reveal the state to users by default.&#x20;
-  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
-  * The **publicState** will just be an empty {} by default.
-  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
+-   **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
+-   **hideCurrentState**: If true, we will NOT reveal the state to users by default.&#x20;
+    -   If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
+    -   The **publicState** will just be an empty {} by default.
+    -   Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
 
 ### Private Parameters
 
-* **codes**: An array of valid codes that users can provide.
-* **seedCode**: A seed used to generate a list of valid codes.
+-   **codes**: An array of valid codes that users can provide.
+-   **seedCode**: A seed used to generate a list of valid codes.
 
 ### State
 
@@ -29,10 +29,10 @@ State is maintained by tracking which codes have been used.
 
 ```json
 {
-  "usedCodeIndices": {
-    "0": 1,
-    "1": 1
-  }
+    "usedCodeIndices": {
+        "0": 1,
+        "1": 1
+    }
 }
 ```
 
@@ -42,12 +42,21 @@ The default state of the plugin is defined as follows:
 
 ```json
 {
-  "usedCodeIndices": {}
+    "usedCodeIndices": {}
 }
 ```
 
 #### Public State
 
-State is made public as-is, showing the indices of used codes.
+State is made public with a `usedCodeRanges` array. Code indices are zero-based.
 
-Note: For the **publicState**, we pre-parse the indices into an array (e.g. \['0', '1']) instead fof returning the { "0": 1 } object.
+```json
+{
+    "usedCodeRanges": [
+        {
+            "start": 0,
+            "end": 1
+        }
+    ]
+}
+```
