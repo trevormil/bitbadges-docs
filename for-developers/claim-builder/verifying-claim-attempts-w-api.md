@@ -4,8 +4,8 @@ A big part of offering gated utility is to actually check if the user meets the 
 
 IMPORTANT: Verifying claim attempts are two-fold:
 
-* Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
-* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
+-   Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
+-   Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
 
 {% content-ref url="../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
@@ -42,7 +42,8 @@ You can also parse the state of the claim to get more information. This is usefu
 ```ts
 const claimsRes = await BitBadgesApi.getClaims({
     claimIds: [claimId],
-    includePrivateParams: false // True to return private params (must have permissions to view)
+    fetchPrivateParams: false, // True to return private params (must have permissions to view)
+    privateStatesToFetch: [{ claimId, instanceId }] // If you need private state (certain state is public)
 });
 const claim = claimsRes.claims[0];
 const bitbadgesAddress = convertToBitBadgesAddress(...);
