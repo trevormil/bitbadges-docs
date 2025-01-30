@@ -36,9 +36,3 @@ The **alias** field is the alias BitBadges address for the list (a fake account 
 Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.
 
 The list interface only currently supports "listActivity" to fetch the latest list information.
-
-### **Privacy / Permission**
-
-The **private** field denotes whether it is to show up in search results or not.&#x20;
-
-If **private** and **viewableWithLink** are true, the list is private but can be viewed by others with the link / list ID. If **private** and not viewable with a link, it is only viewable by the creator.
