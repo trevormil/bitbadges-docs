@@ -4,14 +4,27 @@ A big part of offering gated utility is to actually check if the user meets the 
 
 IMPORTANT: Verifying claim attempts are two-fold:
 
--   Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
--   Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
+* Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
+* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
 
 {% content-ref url="../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-### Standard Option 1: Get Claim Attempts
+### Flexible Option 1: Check Claim Success
+
+The recommended way to check if a user has claimed or not is simply with the checkClaimSuccess router. This is compatible with both standard and on-demand claims.
+
+This simply returns a **successCount** with the number of times a user has completed the claim. For on-demand claims, the success count will be 1. With standard, it will be the number of times the user has claimed in the current state.
+
+For more information, you can fetch specific claim attempts or parse state as needed.
+
+```tsx
+const res = await BitBadgesApi.checkClaimSuccess(claimId, chain.bitbadgesAddress ?? '');
+setAlreadyClaimed(res.successCount > 0);
+```
+
+### Standard Only Option 1: Get Claim Attempts
 
 The easiest way to get claim attempts is to use the `getClaimAttempts` method. This will return a paginated list of claim attempts for a specific address and claim ID.
 
@@ -35,7 +48,7 @@ const claimAttempts = docs;
 const success = claimAttempts.some((attempt) => attempt.success);
 ```
 
-### Standard Option 2: Parse State
+### Standard Only Option 2: Parse State
 
 You can also parse the state of the claim to get more information. This is useful if you want to check specific plugin state values (maybe email or some other). Note that certain state is private and only accessible via authenticated requests and when requested. You can see an example JSON of a specific claim in-site with the info circle button -> JSON tab.
 
