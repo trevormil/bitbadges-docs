@@ -48,4 +48,18 @@ The default state of the plugin is defined as follows. Claim numbers are zero-ba
 
 **Public State**
 
-State is made public as-is.
+State is made public as-is, plus the **usedClaimNumbers** object.
+
+Note: The **claimedUsers** object is not made public by default for scalability reasons. You need
+to manually set the **fetchAllClaimedUsers** flag to true in the API request to get the claimed users.
+If not specified, the **claimedUsers** object will be an empty object {}.
+
+```
+{
+  claimedUsers: {
+    "bb1...": [0, 1]
+  },
+  usedClaimNumbers: [{ start: 0, end: 1 }],
+  numUses: 0
+}
+```

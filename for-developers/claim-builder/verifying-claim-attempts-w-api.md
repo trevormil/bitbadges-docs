@@ -43,6 +43,7 @@ You can also parse the state of the claim to get more information. This is usefu
 const claimsRes = await BitBadgesApi.getClaims({
     claimIds: [claimId],
     fetchPrivateParams: false, // True to return private params (must have permissions to view)
+    fetchAllClaimedUsers: true, // True to return all claimed users for the claim (in the numUses plugin publicState)
     privateStatesToFetch: [{ claimId, instanceId }] // If you need private state (certain state is public)
 });
 const claim = claimsRes.claims[0];

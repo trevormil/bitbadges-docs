@@ -8,8 +8,7 @@ import { BitBadgesApi } from 'bitbadges-api';
 const getClaims = async () => {
   try {
     const res = await BitBadgesApi.getClaims({ 
-      claimIds: ['claimId1', 'claimId2', 'claimId3'],
-      listId: '...' // only required if claim is for a private list and you are not claim creator
+      claimIds: ['claimId1', 'claimId2', 'claimId3']
     });
     
     const { claims } = res;
@@ -26,7 +25,7 @@ You can also get claims via the **claims** field on the returned values for coll
 
 **Fetching Claimees**
 
-First, assume you have a claim object that contains the claim information.Then do the following,
+First, assume you have a claim object that contains the claim information. Then do the following,
 
 * Look for a plugin of type 'numUses' in the claim's plugins array.
 * If found, access the publicState.claimedUsers object.
