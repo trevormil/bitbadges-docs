@@ -8,6 +8,8 @@ BitBadges offers various options for obtaining and presenting the code to you, s
 
 Provide your users instructions on how you expect them to present the code. If they are not expected to have their wallets handy at authentication time, it is best practice to not expect them to have access to their BitBadges account.
 
+Note: The QR codes we use are one time "exchange" only. If you need more functionality than this, please consider additional layers or self-implementing the QR code step.
+
 **Generating URL**
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account, rather than being transmitted to the redirect URI. See the [Generating the URL](../authentication-url-+-parameters/generating-the-url.md) section for more details.
