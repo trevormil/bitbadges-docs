@@ -8,8 +8,6 @@ const accountsRes = await BitBadgesApi.getAccounts({
         {
             //example
             address: 'bb1...',
-            fetchSequence: true,
-            fetchBalance: true,
             viewsToFetch: [
                 {
                     viewType: 'badgesCollected',
@@ -23,7 +21,7 @@ const accountsRes = await BitBadgesApi.getAccounts({
 const account = accountsRes.accounts[0];
 
 //Option 2:
-// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'bb...', fetchSequence: true, fetchBalance: true, viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
+// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'bb...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
 
 console.log(account.sequence);
 console.log(account.balance?.amount);
@@ -214,8 +212,6 @@ Batch fetch details about multiple collections.
 export type AccountFetchDetails = {
     address?: string;
     username?: string;
-    fetchSequence?: boolean;
-    fetchBalance?: boolean;
     noExternalCalls?: boolean;
     viewsToFetch?: {
         viewId: string;
