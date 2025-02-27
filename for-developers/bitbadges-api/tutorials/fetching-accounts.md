@@ -212,7 +212,6 @@ Batch fetch details about multiple collections.
 export type AccountFetchDetails = {
     address?: string;
     username?: string;
-    noExternalCalls?: boolean;
     viewsToFetch?: {
         viewId: string;
         viewType: AccountViewKey;

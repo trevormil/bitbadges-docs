@@ -141,7 +141,7 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
     // TODO: You can use these tokens for session management and authorized API access
 
     // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
-    // const claimsRes = await BitBadgesApi.getClaims({ claimIds: ['...'] });
+    // const claimsRes = await BitBadgesApi.getClaims({ ... });
 
     //TODO: Handle other checks and logic here
     // - Prevent replay attacks by checking timestamps or nonces

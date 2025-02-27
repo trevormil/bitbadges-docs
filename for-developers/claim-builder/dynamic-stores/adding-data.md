@@ -23,8 +23,8 @@ You can directly manage your store in the interface.&#x20;
 If you want to use the BitBadges API to send hooks / POST requests to, you can do so manually. We refer you to the interface in the developer portal  for getting the exact route / body you might need.
 
 ```typescript
-await BitBadgesApi.performBinAction(...)
-await BitBadgesApi.performBatchBinAction(...)
+await BitBadgesApi.performStoreAction(...)
+await BitBadgesApi.performBatchStoreAction(...)
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>

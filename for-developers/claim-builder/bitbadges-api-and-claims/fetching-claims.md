@@ -7,10 +7,8 @@ More documentation is available via the API routes for fetching claims. Go to th
 {% endcontent-ref %}
 
 ```typescript
-const claimsRes = await BitBadgesApi.getClaims({****
-    claimIds: [claimId],
-    fetchPrivateParams: false, // True to return private params (must have permissions to view)
-    privateStatesToFetch: [{ claimId, instanceId }] // If you need private state (certain state is public)
+const claimsRes = await BitBadgesApi.getClaims({
+    claimsToFetch: [{ claimId, fetchPrivateParams: false, fetchAllClaimedUsers: true, privateStatesToFetch: [instanceId] }],
 });
 const claim = claimsRes.claims[0];
 const bitbadgesAddress = convertToBitBadgesAddress(...);

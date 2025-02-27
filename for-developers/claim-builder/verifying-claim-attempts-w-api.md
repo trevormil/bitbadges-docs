@@ -4,8 +4,8 @@ A big part of offering gated utility is to actually check if the user meets the 
 
 IMPORTANT: Verifying claim attempts are two-fold:
 
-* Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
-* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
+-   Authentication: Verify the user owns the claiming address (can be done with Sign In with BitBadges)
+-   Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the address satisfied criteria
 
 {% content-ref url="../authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../authenticating-with-bitbadges/)
@@ -20,7 +20,10 @@ This simply returns a **successCount** with the number of times a user has compl
 For more information, you can fetch specific claim attempts or parse state as needed.
 
 ```tsx
-const res = await BitBadgesApi.checkClaimSuccess(claimId, chain.bitbadgesAddress ?? '');
+const res = await BitBadgesApi.checkClaimSuccess(
+    claimId,
+    chain.bitbadgesAddress ?? ''
+);
 setAlreadyClaimed(res.successCount > 0);
 ```
 
@@ -54,10 +57,7 @@ You can also parse the state of the claim to get more information. This is usefu
 
 ```ts
 const claimsRes = await BitBadgesApi.getClaims({
-    claimIds: [claimId],
-    fetchPrivateParams: false, // True to return private params (must have permissions to view)
-    fetchAllClaimedUsers: true, // True to return all claimed users for the claim (in the numUses plugin publicState)
-    privateStatesToFetch: [{ claimId, instanceId }] // If you need private state (certain state is public)
+    claimsToFetch: [{ claimId, fetchPrivateParams: false, fetchAllClaimedUsers: true, privateStatesToFetch: [instanceId] }],
 });
 const claim = claimsRes.claims[0];
 const bitbadgesAddress = convertToBitBadgesAddress(...);

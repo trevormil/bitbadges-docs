@@ -18,7 +18,7 @@ export default defineComponent({
     try {
       await axios($, {
         method: 'POST',
-        url: `https://api.bitbadges.io/api/v0/bin-actions/add/${steps.trigger.event.dynamicDataId}/${steps.trigger.event.dataSecret}`,
+        url: `https://api.bitbadges.io/api/v0/storeActions/add/${steps.trigger.event.dynamicDataId}/${steps.trigger.event.dataSecret}`,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
