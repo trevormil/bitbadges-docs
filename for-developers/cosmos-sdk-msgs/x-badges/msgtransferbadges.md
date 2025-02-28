@@ -1,12 +1,12 @@
 # MsgTransferBadges
 
-Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgTransferBadges.html).
+Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html).
 
 ```typescript
 export interface MsgTransferBadges<T extends NumberType> {
-  creator: string;
-  collectionId: T;
-  transfers: Transfer<T>[];
+    creator: string;
+    collectionId: T;
+    transfers: Transfer<T>[];
 }
 
 export interface Transfer<T extends NumberType> {
@@ -21,19 +21,19 @@ export interface Transfer<T extends NumberType> {
 }
 
 export interface ApprovalIdentifierDetails {
-  approvalId: string
-  approvalLevel: string //"incoming", "outgoing", or "collection"
-  approverAddress: string //leave "" if collection
+    approvalId: string;
+    approvalLevel: string; //"incoming", "outgoing", or "collection"
+    approverAddress: string; //leave "" if collection
 }
 
 export interface MerklePathItem {
-  aunt: string
-  onRight: boolean
+    aunt: string;
+    onRight: boolean;
 }
 
 export interface MerkleProof {
-  aunts: MerklePathItem[]
-  leaf: string
+    aunts: MerklePathItem[];
+    leaf: string;
 }
 ```
 

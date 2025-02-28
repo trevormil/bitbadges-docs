@@ -16,15 +16,15 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 ## Number Types / Stringified Responses
 
-All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
+All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX_SAFE_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
 ## Routes Documentation
 
-* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
-* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
-* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+-   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+-   [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share&creator=11647629)
+-   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
 
 In this documentation, we often use the SDK format for explanation purposes
 
@@ -64,7 +64,7 @@ const BitBadgesApi = new BitBadgesAPI({
     apiUrl: '...' //defaults to official one if empty
 });
 
-//See https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/classes/BitBadgesAPI.html for documentation
+//See https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html for documentation
 //Some might require authentication. Some might be CORS only from the official site.
 await BitBadgesApi.getAccounts(...);
 await BitBadgesApi.getAddressLists(...);
@@ -125,7 +125,7 @@ Throughout the API, we use a bookmark technique. For the first request, you will
 
 ## Status Codes
 
-We use standard HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/ErrorResponse.html) type.
+We use standard HTTP error codes. 200 is the success code. All errors should follow the [ErrorResponse](https://bitbadges.github.io/bitbadgesjs/interfaces/ErrorResponse.html) type.
 
 ```typescript
 /**

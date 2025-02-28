@@ -1,6 +1,6 @@
 # Fetching Lists
 
-You can also fetch address lists using the BitBadges API.  AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
+You can also fetch address lists using the BitBadges API. AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
 Note off-chain list IDs are prefixed with "bitbadgesAddress\_".&#x20;
 

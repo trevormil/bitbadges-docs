@@ -1,6 +1,6 @@
 # MsgCreateCollection
 
-Collections are initially created via [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/MsgCreateCollection.html) . The interface looks as follows.&#x20;
+Collections are initially created via [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) . The interface looks as follows.&#x20;
 
 ```typescript
 export interface MsgCreateCollection<T extends NumberType> {

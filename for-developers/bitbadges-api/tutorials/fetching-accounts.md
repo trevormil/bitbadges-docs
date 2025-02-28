@@ -1,6 +1,6 @@
 # Fetching Accounts
 
-This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
+This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
 
 ```typescript
 const accountsRes = await BitBadgesApi.getAccounts({
@@ -204,7 +204,7 @@ account.getAccountBalancesView('badgesCollected');
 
 ### **Fetch Route**
 
-#### **POST /api/v0/users - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsPayload.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/GetAccountsSuccessResponse.html)**)**
+#### **POST /api/v0/users - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/interfaces/iGetAccountsPayload.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/interfaces/iGetAccountsSuccessResponse.html)**)**
 
 Batch fetch details about multiple collections.
 

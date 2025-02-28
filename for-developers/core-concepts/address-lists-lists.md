@@ -1,16 +1,16 @@
 # 📧 Address Lists
 
-[AddressLists](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/AddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
+[AddressLists](https://bitbadges.github.io/bitbadgesjs/interfaces/iAddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
 ```typescript
 export interface AddressList {
-  listId: string;
+    listId: string;
 
-  addresses: string[];
-  whitelist: boolean;
+    addresses: string[];
+    whitelist: boolean;
 
-  uri: string; 
-  customData: string;
+    uri: string;
+    customData: string;
 }
 ```
 
@@ -44,19 +44,21 @@ An address list is not unique to a collection on-chain and can be used for defin
 
 There are a couple IDs for AddressLists that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
-* "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
-* Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
-  * "Mint" specifies the "Mint" address only.
-  * "bb1abc..." specified the list with "bb1abc...." only
-* Combination shorthands
-  * Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
-* Inversion shorthands
-  * If prefixed with "!", it denotes to invert the address list.
-    * "!id123" inverts the "id123" address list
-    * "!Mint" inverts the Mint list
-    *   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
+-   "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
+-   Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
+    -   "Mint" specifies the "Mint" address only.
+    -   "bb1abc..." specified the list with "bb1abc...." only
+-   Combination shorthands
+    -   Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
+-   Inversion shorthands
 
-        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
+    -   If prefixed with "!", it denotes to invert the address list.
+
+        -   "!id123" inverts the "id123" address list
+        -   "!Mint" inverts the Mint list
+        -   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
+
+            The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
 
 Use the SDK functions below for generating IDs / lists.
 

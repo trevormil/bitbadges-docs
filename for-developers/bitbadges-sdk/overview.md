@@ -4,7 +4,7 @@ The BitBadges SDK is a bundle of TypeScript libraries that provide all the tools
 
 GitHub: [https://github.com/bitbadges/bitbadgesjs](https://github.com/bitbadges/bitbadgesjs)
 
-Full Documentation: [https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/)
+Full Documentation: [https://bitbadges.github.io/bitbadgesjs/](https://bitbadges.github.io/bitbadgesjs/)
 
 ```
 npm install bitbadgesjs-sdk

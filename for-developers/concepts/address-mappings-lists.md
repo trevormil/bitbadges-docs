@@ -1,16 +1,16 @@
 # 📧 Address Lists (Lists)
 
-[AddressLists](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs/interfaces/AddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
+[AddressLists](https://bitbadges.github.io/bitbadgesjs/interfaces/iAddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
 ```typescript
 export interface AddressList {
-  listId: string;
+    listId: string;
 
-  addresses: string[];
-  whitelist: boolean;
+    addresses: string[];
+    whitelist: boolean;
 
-  uri: string; 
-  customData: string;
+    uri: string;
+    customData: string;
 }
 ```
 
@@ -30,24 +30,22 @@ The same address list is not unique to a collection on-chain and can be used for
 
 **Off-Chain:** Address lists can also be created off-chain through our indexer / API. These are updatable and deletable, along with additional options. However, this is a centralized solution and doesn't use the blockchain. Everything is simply stored on our centralized servers
 
-
-
 ### **Reserved Address List IDs**
 
 There are a couple IDs for AddressLists that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
-* If prefixed with "!", it denotes to invert the address list (e.g. "!id123" inverts the "id123" address list)
-* Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
-* "Mint" specifies the "Mint" address only.
-* "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
-* "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:bb123...:bb456...")
-* "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
+-   If prefixed with "!", it denotes to invert the address list (e.g. "!id123" inverts the "id123" address list)
+-   Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
+-   "Mint" specifies the "Mint" address only.
+-   "AllWithoutAddress1" denotes all valid user addresses excluding Address1 (e.g. "AllWithoutMint")
+-   "AllWithoutAddress1:Address2:Address3" denotes all valid user addresses excluding Address 1,2,and3 (e.g. "AllWithoutMint:bb123...:bb456...")
+-   "All" or "AllWithMint" denotes all valid user addresses as well as the "Mint" address
 
 See below for the function for generating them.
 
 ### Custom IDs
 
-Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g.  "AllWithoutMint:bb123...:bb456...").&#x20;
+Reserved address lists are provided for convenience, so you don't actually have to create an AddressList on-chain first. However, long list IDs are very inefficient, especially if used multiple times (e.g. "AllWithoutMint:bb123...:bb456...").&#x20;
 
 For efficiency, consider creating a list with a unique short ID and reference the list that way. You can create a list which is all addresses except Mint, bb123..., bb456... and identified by the ID "abc". Instead of repeating the long "AllWithoutMint:bb123...:bb456..." wherever the ID is needed, you can simply repeat "abc" which saves a lot of resources.
 
@@ -155,4 +153,4 @@ This is the list which includes all addresses except "bb123...." and "bb456...."
 }
 </code></pre>
 
-[^1]: 
+[^1]:
