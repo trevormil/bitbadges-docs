@@ -1,0 +1,72 @@
+name: Generate LLM Training Text
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch: # Allows manual triggering
+
+jobs:
+    generate-llm-text:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: '3.10'
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+
+            - name: Create for-llms.txt file
+              run: |
+                  echo "# Gitbook Documentation Compilation" > for-llms.txt
+                  echo "Generated on $(date)" >> for-llms.txt
+                  echo "" >> for-llms.txt
+
+                  # Find all markdown files
+                  find . -type f -name "*.md" | sort | while read -r file; do
+                    # Skip hidden directories and node_modules
+                    if [[ "$file" != *"/.git/"* && "$file" != */node_modules/* && "$file" != */build/* && "$file" != */dist/* ]]; then
+                      echo "Processing $file"
+                      
+                      # Add file path as header
+                      echo -e "\n\n## File: $file\n" >> for-llms.txt
+                      
+                      # Add file content
+                      cat "$file" >> for-llms.txt
+                    fi
+                  done
+
+                  # Also find and process any other text-based documentation files
+                  find . -type f -name "*.txt" -o -name "*.yaml" -o -name "*.yml" -o -name "*.json" | sort | while read -r file; do
+                    if [[ "$file" != *"/.git/"* && "$file" != */node_modules/* && "$file" != */build/* && "$file" != */dist/* && "$file" != *"for-llms.txt"* ]]; then
+                      echo "Processing $file"
+                      
+                      # Add file path as header
+                      echo -e "\n\n## File: $file\n" >> for-llms.txt
+                      echo '```' >> for-llms.txt
+                      
+                      # Add file content
+                      cat "$file" >> for-llms.txt
+                      
+                      echo '```' >> for-llms.txt
+                    fi
+                  done
+
+            - name: Upload for-llms.txt as artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: llm-training-data
+                  path: for-llms.txt
+
+            - name: Commit and push for-llms.txt
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+                  git add for-llms.txt
+                  git commit -m "Update for-llms.txt via GitHub Action" || echo "No changes to commit"
+                  git push
