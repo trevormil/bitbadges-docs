@@ -2,7 +2,7 @@ name: Generate LLM Training Text
 
 on:
     push:
-        branches: [main]
+        branches: [main, master]
     workflow_dispatch: # Allows manual triggering
 
 jobs:
@@ -58,7 +58,7 @@ jobs:
                   done
 
             - name: Upload for-llms.txt as artifact
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: llm-training-data
                   path: for-llms.txt
