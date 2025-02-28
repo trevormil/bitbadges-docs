@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Feb 28 15:31:39 UTC 2025
+Generated on Fri Feb 28 20:19:57 UTC 2025
 
 
 
@@ -17520,7 +17520,7 @@ Also, note that if what you are trying to do is related to Cosmos SDK or CosmWAS
 
 # 🪄 AI Resources
 
-For a single .txt file dump for this entire documentation, see [https://github.com/trevormil/bitbadges-docs/blob/master/for-llms.txt](../for-llms.txt).
+For a single .txt file dump for this entire documentation to use with your favorite LLMs, see [https://github.com/trevormil/bitbadges-docs/blob/master/for-llms.txt](../for-llms.txt).
 
 
 
