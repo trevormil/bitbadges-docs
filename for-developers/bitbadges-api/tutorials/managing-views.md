@@ -90,13 +90,15 @@ getActivityView(viewId: string) {
 
 ### Common View Types
 
-Different interfaces support different view types:
+Different interfaces support different view types. See the corresponding documentation for each interface to see what views are supported.
 
 #### Collections Interface
 
 -   `owners`: List of badge owners
 -   `activity`: Transfer activity
 -   `approvalTrackers`: Approval tracking documents
+
+See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/CollectionViewKey.html)
 
 #### Account Interface
 
@@ -106,9 +108,7 @@ Different interfaces support different view types:
 -   `managingBadges`: Collections being managed
 -   `allLists`: Address lists the user is on
 
-#### List Interface
-
--   `listActivity`: Activity related to the address list
+See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
 
 ## Helper Functions
 
