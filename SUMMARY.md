@@ -105,6 +105,7 @@
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
+    * [Managing Views](for-developers/bitbadges-api/tutorials/managing-views.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
     * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
     * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
