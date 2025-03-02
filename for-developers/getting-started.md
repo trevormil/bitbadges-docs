@@ -82,8 +82,8 @@ await BitBadgesAPI.getCollections(...);
 
 * **Recommended**: Use the BitBadges web app Create tab
 * **Alternative Methods**:
-  1. Use our [helper in-site broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
-  2. Generate transactions via [SDK](create-and-broadcast-txs/)
+  1. Use our [helper in-site broadcast tool](bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
+  2. Generate transactions via [SDK](bitbadges-blockchain/create-and-broadcast-txs/)
   3. Use blockchain node CLI (BitBadges addresses only)
 
 **Other Options:**

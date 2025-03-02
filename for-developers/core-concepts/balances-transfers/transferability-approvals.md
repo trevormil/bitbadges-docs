@@ -70,7 +70,7 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
@@ -78,7 +78,7 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
+* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
 * **transferTimes**: When can the transfer takes place? A [UintRange](../general/uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](../general/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)

@@ -23,21 +23,21 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 </code></pre>
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)).
+Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)).
 
-For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.&#x20;
+For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.
 
 Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim. This can be used to distribute gas costs among N users rather than the collection creator defining an address list with N users on-chain and paying all gas fees.
 
 #### Expected Proof Length
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**&#x20;
+The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**
 
 **Whitelist Trees**
 
 Whitelist trees can be used to distribute gas costs among N users rather than the collection creator defining an expensive address list with N users on-chain and paying all gas fees. For small N, we recommend not using whitelist trees for user experience.
 
-If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.&#x20;
+If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.
 
 To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the BitBadges address of the initiator of the transfer transaction.
 
@@ -45,7 +45,7 @@ To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true.
 
 For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks. For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
-We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.&#x20;
+We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.
 
 The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. The full ID contains the **approvalId,** so you know state will always be scoped to an approval and the tracker cannot be used by any other approval.
 

@@ -9,7 +9,7 @@ const getClaims = async () => {
     try {
         const res = await BitBadgesApi.getClaims({
             claimsToFetch: [
-                { claimId: 'claimId1' },
+                { claimId: 'claimId1', fetchAllClaimedUsers: true },
                 { claimId: 'claimId2' },
                 { claimId: 'claimId3' },
             ],
@@ -31,10 +31,10 @@ You can also get claims via the **claims** field on the returned values for coll
 
 First, assume you have a claim object that contains the claim information. Then do the following,
 
--   Look for a plugin of type 'numUses' in the claim's plugins array.
--   If found, access the publicState.claimedUsers object.
--   Find the entry for the user's BitBadges address.
--   Convert the resulting data into an array of claim numbers (zero-based).
+* Look for a plugin of type 'numUses' in the claim's plugins array.
+* If found, access the publicState.claimedUsers object.
+* Find the entry for the user's BitBadges address.
+* Convert the resulting data into an array of claim numbers (zero-based).
 
 Again, its important to note that the claim numbers are zero-based. CLaim #1 (as maybe seen on the UI) is actually claim number 0 behind the scenes and so on.
 

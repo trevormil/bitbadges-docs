@@ -195,7 +195,7 @@ Your contract is now deployed on the blockchain and ready to be interacted with.
 
 Once deployed, you need to to let your users interact with it.
 
-This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](../create-and-broadcast-txs/) for a tutorial.
+This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](create-and-broadcast-txs/) for a tutorial.
 
 Consider building your own dApp frontend, so users can easily interact with your contract! Get started with the quickstart repo.
 

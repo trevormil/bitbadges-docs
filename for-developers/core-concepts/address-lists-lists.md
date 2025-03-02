@@ -22,7 +22,7 @@ Theoretically, address lists are just a simplified version of the badge interfac
 
 **Using Lists to Define Transferability / Approvals**
 
-When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is reused for this on-chain.&#x20;
+When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is reused for this on-chain.
 
 We currently only support permanent lists on-chain vis the MsgCreateAddressList interface.
 
@@ -34,7 +34,7 @@ Lists are invertible meaning we can create a list that includes all addresses EX
 
 ### **Storage**
 
-**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
+**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../bitbadges-blockchain/cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
 
 An address list is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
@@ -44,21 +44,19 @@ An address list is not unique to a collection on-chain and can be used for defin
 
 There are a couple IDs for AddressLists that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
--   "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
--   Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
-    -   "Mint" specifies the "Mint" address only.
-    -   "bb1abc..." specified the list with "bb1abc...." only
--   Combination shorthands
-    -   Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
--   Inversion shorthands
+* "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
+* Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
+  * "Mint" specifies the "Mint" address only.
+  * "bb1abc..." specified the list with "bb1abc...." only
+* Combination shorthands
+  * Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
+* Inversion shorthands
+  * If prefixed with "!", it denotes to invert the address list.
+    * "!id123" inverts the "id123" address list
+    * "!Mint" inverts the Mint list
+    *   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
 
-    -   If prefixed with "!", it denotes to invert the address list.
-
-        -   "!id123" inverts the "id123" address list
-        -   "!Mint" inverts the Mint list
-        -   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
-
-            The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
+        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
 
 Use the SDK functions below for generating IDs / lists.
 
