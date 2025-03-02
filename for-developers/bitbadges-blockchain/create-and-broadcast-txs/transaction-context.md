@@ -41,11 +41,9 @@ const txContext = {
 };
 ```
 
-
-
 **Get Public Key - Cosmos**
 
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.&#x20;
+For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
 
 Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
 
@@ -63,8 +61,8 @@ Generating the fee can be tricky. It should be reasonable for the current gas pr
 
 **Sender Details**
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](broken-reference/). You can also query a node directly.&#x20;
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../../create-and-broadcast-txs/broken-reference/). You can also query a node directly.
 
 This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>

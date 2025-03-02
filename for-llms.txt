@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Feb 28 20:19:57 UTC 2025
+Generated on Sun Mar  2 13:51:28 UTC 2025
 
 
 
@@ -3746,9 +3746,9 @@ And much more!
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [API](for-developers/bitbadges-api/api.md)
-  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
-  * [Routes](https://bitbadges.stoplight.io/docs/bitbadges)
+  * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
     * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
     * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
@@ -3891,15 +3891,6 @@ And much more!
     * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
     * [Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
   * [Blockin Docs](https://blockin.gitbook.io/blockin)
-* [🔃 Create, Generate, and Sign Txs](for-developers/create-and-broadcast-txs/README.md)
-  * [Transaction Context](for-developers/create-and-broadcast-txs/transaction-context.md)
-  * [Generate Msg Contents](for-developers/create-and-broadcast-txs/generate-msg-contents.md)
-  * [Signing - Cosmos](for-developers/create-and-broadcast-txs/signing-cosmos.md)
-  * [Signing - Ethereum](for-developers/create-and-broadcast-txs/signing-ethereum.md)
-  * [Signing - Solana](for-developers/create-and-broadcast-txs/signing-solana.md)
-  * [Signing - Bitcoin](for-developers/create-and-broadcast-txs/signing-bitcoin.md)
-  * [Broadcast to a Node](for-developers/create-and-broadcast-txs/broadcast-to-a-node.md)
-  * [Sign + Broadcast - bitbadges.io](for-developers/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
@@ -3911,28 +3902,37 @@ And much more!
     * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
     * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
   * [Create a Smart Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
-* [📩 Cosmos SDK Msgs](for-developers/cosmos-sdk-msgs/README.md)
-  * [x/anchor](for-developers/cosmos-sdk-msgs/x-anchor/README.md)
-    * [MsgAddCustomData](for-developers/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
-  * [x/badges](for-developers/cosmos-sdk-msgs/x-badges/README.md)
-    * [MsgCreateCollection](for-developers/cosmos-sdk-msgs/x-badges/msgcreatecollection.md)
-    * [MsgUpdateCollection](for-developers/cosmos-sdk-msgs/x-badges/msgupdatecollection.md)
-    * [MsgDeleteCollection](for-developers/cosmos-sdk-msgs/x-badges/msgdeletecollection.md)
-    * [MsgCreateAddressLists](for-developers/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md)
-    * [MsgTransferBadges](for-developers/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)
-    * [MsgUpdateUserApprovals](for-developers/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md)
-    * [MsgUniversalUpdateCollection](for-developers/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md)
-  * [x/wasmx](for-developers/cosmos-sdk-msgs/x-wasmx/README.md)
-    * [MsgStoreCodeCompat](for-developers/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
-    * [MsgInstantiateContractCompat](for-developers/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
-    * [MsgExecuteContractCompat](for-developers/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
-  * [x/maps](for-developers/cosmos-sdk-msgs/x-maps/README.md)
-    * [MsgCreateMap](for-developers/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
-    * [MsgUpdateMap](for-developers/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
-    * [MsgDeleteMap](for-developers/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
-    * [MsgSetValue](for-developers/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
-  * [MsgSend](for-developers/cosmos-sdk-msgs/msgsend.md)
-  * [Cosmos Native Msgs](for-developers/cosmos-sdk-msgs/cosmos-native-msgs.md)
+  * [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
+    * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
+    * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
+    * [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
+    * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
+    * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
+    * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+  * [📩 Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
+    * [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
+      * [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
+    * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
+      * [MsgCreateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreatecollection.md)
+      * [MsgUpdateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdatecollection.md)
+      * [MsgDeleteCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgdeletecollection.md)
+      * [MsgCreateAddressLists](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md)
+      * [MsgTransferBadges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)
+      * [MsgUpdateUserApprovals](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md)
+      * [MsgUniversalUpdateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md)
+    * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
+      * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
+      * [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
+      * [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
+    * [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
+      * [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
+      * [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
+      * [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
+      * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
+    * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
+    * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
 * [👨‍💻 Contributing](for-developers/contributing.md)
 * [🧑‍🏫 Other References](for-developers/tutorials.md)
 
@@ -5657,7 +5657,7 @@ const getClaims = async () => {
     try {
         const res = await BitBadgesApi.getClaims({
             claimsToFetch: [
-                { claimId: 'claimId1' },
+                { claimId: 'claimId1', fetchAllClaimedUsers: true },
                 { claimId: 'claimId2' },
                 { claimId: 'claimId3' },
             ],
@@ -5679,10 +5679,10 @@ You can also get claims via the **claims** field on the returned values for coll
 
 First, assume you have a claim object that contains the claim information. Then do the following,
 
--   Look for a plugin of type 'numUses' in the claim's plugins array.
--   If found, access the publicState.claimedUsers object.
--   Find the entry for the user's BitBadges address.
--   Convert the resulting data into an array of claim numbers (zero-based).
+* Look for a plugin of type 'numUses' in the claim's plugins array.
+* If found, access the publicState.claimedUsers object.
+* Find the entry for the user's BitBadges address.
+* Convert the resulting data into an array of claim numbers (zero-based).
 
 Again, its important to note that the claim numbers are zero-based. CLaim #1 (as maybe seen on the UI) is actually claim number 0 behind the scenes and so on.
 
@@ -5951,6 +5951,601 @@ Node ID: 745b694aeef8c2e831ed6ec65060230a91f17914
 Hosted At: http://138.197.10.8:(1317 | 26657)
 
 
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md
+
+# 📩 Cosmos SDK Msgs
+
+**What are Cosmos SDK Msgs? Msgs vs Transactions?**
+
+In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.
+
+Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
+
+**What Msgs does the BitBadges blockchain implement?**
+
+The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
+
+The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
+
+**How to broadcast transactions with Msgs?**
+
+You can generate and submit your transactions (Msgs) via:
+
+* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+* CLI: Run your own node and interact with the command line
+* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
+
+**What is the creator field?**
+
+The **creator** field for each message should be the transaction signer's BitBadges address.
+
+## Msg Definitions
+
+Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.
+
+**x/badges**
+
+* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
+* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
+* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
+
+**x/wasmx**
+
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../create-a-wasm-contract.md) for tutorial.
+
+**x/maps**
+
+* MsgCreateMap - Creates a map, uniquely identifed by an ID
+* MsgUpdateMap - Updates an existing map.
+* MsgDeleteMap - Deletes a map
+* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+
+**x/anchor**
+
+* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
+
+**Other Cosmos SDK Modules**
+
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/classes/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md
+
+# Cosmos Native Msgs
+
+We refer you to Cosmos SDK documentation for other Cosmos native Msgs.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md
+
+# MsgSend
+
+MsgSend is the Msg to send $BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
+
+```typescript
+/**
+ * MsgSend represents a message to send coins from one account to another.
+ *
+ * @typedef {Object} MsgSend
+ * @property {string} fromAddress - The sender of the transaction.
+ * @property {string} toAddress - The recipient of the transaction.
+ * @property {CosmosCoin[]} amount - The amount of coins to send.
+ */
+export interface MsgSend<T extends NumberType> {
+  fromAddress: string
+  toAddress: string
+  amount: CosmosCoin<T>[]
+}
+
+
+/**
+ * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
+ *
+ * @typedef {Object} CosmosCoin
+ * @property {NumberType} amount - The amount of the coin.
+ * @property {string} denom - The denomination of the coin.
+ */
+export interface CosmosCoin<T extends NumberType> {
+  amount: T,
+  denom: string,
+}
+
+```
+
+```json
+{
+  "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
+  "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
+  "amount": [
+    {
+      "denom": "ubadge",
+      "amount": "1"
+    }
+  ]
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md
+
+# x/anchor
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md
+
+# MsgAddCustomData
+
+MsgAddCustomData is a part of the x/anchor module which allows you to anchor any custom data to the blockchain. The blcokchain will store with an incrementing location ID along with the timestamp. This can be used to prove knowledge of something at a specific time by anchoring it to the chain.
+
+```protobuf
+message MsgAddCustomData {
+  string creator = 1;
+  string data    = 2;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md
+
+# x/badges
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md
+
+# MsgCreateAddressLists
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreatecollection.md
+
+# MsgCreateCollection
+
+Collections are initially created via [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) . The interface looks as follows.&#x20;
+
+```typescript
+export interface MsgCreateCollection<T extends NumberType> {
+    creator: string;
+
+    //collectionId
+
+    balancesType?: string; //"Standard" | "Off-Chain"
+
+    defaultBalances: UserBalanceStore;
+
+    badgeIdsToAdd?: UintRange<T>[];
+
+    collectionPermissions?: CollectionPermissions<T>;
+    managerTimeline?: ManagerTimeline<T>[];
+    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
+    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
+    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
+    customDataTimeline?: CustomDataTimeline<T>[];
+    collectionApprovals?: CollectionApproval<T>[];
+    standardsTimeline?: StandardsTimeline<T>[];
+    isArchivedTimeline?: IsArchivedTimeline<T>[];
+}
+```
+
+The collectionId will be assigned at execution time and is obtainable in the transaction response. Subsequent updates to the collection will be through MsgUpdateCollection.
+
+**Creation Only Properties**
+
+The creation or genesis transaction for a collection is unique in a couple ways.
+
+1. There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
+2. This is the only time that you can specify **balancesType** and the **defaultBalances** information (defaultOutgoingApprovals, defaultIncomingApprovals, defaultAutoApproveSelfInitiatedOutgoingTransfers, defaultAutoApproveSelfInitiatedIncomingTransfers, and defaultUserPermissions)**.**&#x20;
+
+**Rest of Fields**
+
+For the rest of the fields, we refer you to the following section.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgdeletecollection.md
+
+# MsgDeleteCollection
+
+Deleting a collection is self-explanatory. The manager can delete the collection with [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) as long as they have the permission to do so (the **canDeleteCollection** permission).&#x20;
+
+Deleting a collection will wipe it from the blockchain entirely.
+
+```typescript
+export interface MsgDeleteCollection<T extends NumberType> {
+    creator: string;
+    collectionId: T;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md
+
+# MsgTransferBadges
+
+Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html).
+
+```typescript
+export interface MsgTransferBadges<T extends NumberType> {
+    creator: string;
+    collectionId: T;
+    transfers: Transfer<T>[];
+}
+
+export interface Transfer<T extends NumberType> {
+    from: string;
+    toAddresses: string[];
+    balances: Balance<T>[];
+    precalculateBalancesFromApproval?: ApprovalIdentifierDetails;
+    merkleProofs?: MerkleProof[];
+    memo?: string;
+    prioritizedApprovals?: ApprovalIdentifierDetails[];
+    onlyCheckPrioritizedApprovals?: boolean;
+}
+
+export interface ApprovalIdentifierDetails {
+    approvalId: string;
+    approvalLevel: string; //"incoming", "outgoing", or "collection"
+    approverAddress: string; //leave "" if collection
+}
+
+export interface MerklePathItem {
+    aunt: string;
+    onRight: boolean;
+}
+
+export interface MerkleProof {
+    aunts: MerklePathItem[];
+    leaf: string;
+}
+```
+
+**To / From Addresses**
+
+The to and from addresses must be valid BitBadges addresses. The from address can also be "Mint".
+
+**Precalculations**
+
+If you are targeting to use an approval which uses the **predeterminedBalances** field (see [Approvals](../../../core-concepts/balances-transfers/approval-criteria/)), then you want to calculate the balances at execution time because they are possibly dynamic and can change between submit time and execution time. For example, if badge IDs increment by 1 every transfer, at signing time, the user does not know what badges they will receive because there could be transfers in between sign time and execution time.
+
+If this is the case, you can use **precalculateBalancesFromApproval** to specify which approval to precalculate from, and the balances will be calculated at execution time to what the current predetermined values are, rather than what is defined in **balances.**
+
+**Merkle Proofs**
+
+If any approval that you are targeting has a Merkle challenge, you must provide a valid Merkle proof via the **merkleProofs.**
+
+**Prioritized Approvals**
+
+By default, we linearly scan approvals in the order they are defined on-chain. However, sometimes, you may want to prioritize one approval over the other.
+
+You can specify which ones to check first via **prioritizedApprovals**. If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md
+
+# MsgUniversalUpdateCollection
+
+MsgUniversalUpdateCollection is a universal message that supports both creating and updating collections. If collection ID == 0, it is a create txn. This is mainly used for legacy purposes. We recommend using MsgCreateCollection and MsgUpdateCollection instead, respectively. We refer you to their documentation for further details.
+
+```typescript
+interface MsgUniversalUpdateCollection {
+    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
+    badgeIdsToAdd?: UintRange<T>[];
+    balancesType?: string;
+    collectionApprovals?: CollectionApproval<T>[];
+    collectionId: T;
+    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
+    collectionPermissions?: CollectionPermissions<T>;
+    creator: string;
+    customDataTimeline?: CustomDataTimeline<T>[];
+    defaultBalances?: UserBalanceStore;
+    isArchivedTimeline?: IsArchivedTimeline<T>[];
+    managerTimeline?: ManagerTimeline<T>[];
+    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
+    standardsTimeline?: StandardsTimeline<T>[];
+    updateBadgeMetadataTimeline?: boolean;
+    updateCollectionApprovals?: boolean;
+    updateCollectionMetadataTimeline?: boolean;
+    updateCollectionPermissions?: boolean;
+    updateCustomDataTimeline?: boolean;
+    updateIsArchivedTimeline?: boolean;
+    updateManagerTimeline?: boolean;
+    updateOffChainBalancesMetadataTimeline?: boolean;
+    updateStandardsTimeline?: boolean;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdatecollection.md
+
+# MsgUpdateCollection
+
+For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html). This is only executable by the manager, and all updates must obey the previously set permissions.
+
+Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain (doesn't require this Msg).
+
+```typescript
+export interface MsgUpdateCollection<T extends NumberType> {
+    creator: string;
+    collectionId: T; //0 for new collections (will be assigned)
+
+    //Note no defaults or balances types here because that is only for new collections
+
+    badgeIdsToAdd?: UintRange<T>[];
+
+    updateCollectionPermissions?: boolean;
+    collectionPermissions?: CollectionPermissions<T>;
+    updateManagerTimeline?: boolean;
+    managerTimeline?: ManagerTimeline<T>[];
+    updateCollectionMetadataTimeline?: boolean;
+    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
+    updateBadgeMetadataTimeline?: boolean;
+    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
+    updateOffChainBalancesMetadataTimeline?: boolean;
+    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
+    updateCustomDataTimeline?: boolean;
+    customDataTimeline?: CustomDataTimeline<T>[];
+    updateCollectionApprovals?: boolean;
+    collectionApprovals?: CollectionApproval<T>[];
+    updateStandardsTimeline?: boolean;
+    standardsTimeline?: StandardsTimeline<T>[];
+    updateIsArchivedTimeline?: boolean;
+    isArchivedTimeline?: IsArchivedTimeline<T>[];
+}
+```
+
+**Update Flags**
+
+We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep the currently set value.
+
+**Permissions**
+
+**All updates must obey the previously set permissions.** By previously set, we mean the ones before the Msg was started. If you update the permissions in the current Msg, those are applied last and will not be applicable until the following transaction.
+
+**Rest of Fields**
+
+For the rest of the fields, we refer you to the following section.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md
+
+# MsgUpdateUserApprovals
+
+To update approvals, you can use [MsgUpdateUserApprovals](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html). Upon genesis, every user's approval store and permissions will be the defaults specified by the collection.&#x20;
+
+From there, they can be updated according to the permissions set (i.e. the **userPermissions** previously set). Users can only update thier own approvals.
+
+We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep what was previously set.
+
+```typescript
+export interface MsgUpdateUserApprovals<T extends NumberType> {
+    creator: string;
+    collectionId: T;
+    updateOutgoingApprovals?: boolean;
+    outgoingApprovals?: UserOutgoingApproval<T>[];
+    updateIncomingApprovals?: boolean;
+    incomingApprovals?: UserIncomingApproval<T>[];
+    updateAutoApproveSelfInitiatedOutgoingTransfers?: boolean;
+    autoApproveSelfInitiatedOutgoingTransfers?: boolean;
+    updateAutoApproveSelfInitiatedIncomingTransfers?: boolean;
+    autoApproveSelfInitiatedIncomingTransfers?: boolean;
+    updateUserPermissions?: boolean;
+    userPermissions?: UserPermissions<T>;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
+
+# x/maps
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md
+
+# MsgCreateMap
+
+MsgCreateMap creates a map on-chain. We refer you to here for more information on each individual field.
+
+{% content-ref url="../../../core-concepts/maps.md" %}
+[maps.md](../../../core-concepts/maps.md)
+{% endcontent-ref %}
+
+```typescript
+export interface iMsgCreateMap<T extends NumberType> {
+  creator: string;
+  mapId: string;
+
+  inheritManagerTimelineFrom: T;
+  managerTimeline: iManagerTimeline<T>[];
+
+  updateCriteria: iMapUpdateCriteria<T>;
+  valueOptions: iValueOptions;
+  defaultValue: string;
+
+  metadataTimeline: iMapMetadataTimeline<T>[];
+
+  permissions: iMapPermissions<T>;
+}
+```
+
+```typescript
+export interface iValueOptions {
+  noDuplicates: boolean;
+  permanentOnceSet: boolean;
+  expectUint: boolean;
+  expectBoolean: boolean;
+  expectAddress: boolean;
+  expectUri: boolean;
+}
+```
+
+```typescript
+export interface iMapPermissions<T extends NumberType> {
+  canUpdateMetadata: iTimedUpdatePermission<T>[];
+  canUpdateManager: iTimedUpdatePermission<T>[];
+  canDeleteMap: iActionPermission<T>[];
+}
+```
+
+```typescript
+export interface iMapMetadataTimeline<T extends NumberType> {
+  timelineTimes: iUintRange<T>[];
+  metadata: iCollectionMetadata;
+}
+```
+
+```typescript
+export interface iMapUpdateCriteria<T extends NumberType> {
+  managerOnly: boolean;
+  collectionId: T;
+  creatorOnly: boolean;
+  firstComeFirstServe: boolean;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md
+
+# MsgDeleteMap
+
+MsgDeleteProtocol deletes the map with the given name.
+
+<pre class="language-typescript"><code class="lang-typescript"><a data-footnote-ref href="#user-content-fn-1">export</a> interface MsgDeleteMap {
+  creator: string,
+  mapId: string,
+}
+</code></pre>
+
+[^1]: 
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md
+
+# MsgSetValue
+
+MsgSetValue sets the specific key-value pair for the mapId. For example, set my BitBadges Follow Protocol collection to collection ID 12.&#x20;
+
+All values are stringified for comaptibility, but it will check they are in proper format within the Msg logic. You can set **options.useMostRecentCollectionId** to auto-fetch the latest collection ID. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
+
+```typescript
+export interface iMsgSetValue {
+  creator: string;
+  mapId: string;
+  key: string;
+  value: string;
+  options: iSetOptions;
+}
+
+export interface iSetOptions {
+  useMostRecentCollectionId: boolean;
+}
+```
+
+**Combining with MsgCreateCollection or MsgUpdateCollection**
+
+The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](broken-reference) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
+
+```typescript
+const msgs: MessageGenerated[] = [];
+msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateCollections
+msgs.push(...bootstrapSetProtocols().map(x => createProtoMsg(x))); //MsgSetCollectionForProtocol
+
+//Note how MsgCreateAddressLists is first in the array
+const txn = createTransactionPayload(txContext, msgs);
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md
+
+# MsgUpdateMap
+
+MsgUpdateMap updates the map with the matching ID. Similar to the x/badges Msgs, we use an update flag + value interface. If update flag = true, we update with the corresponding value. Else, we ignore it.
+
+```typescript
+export interface iMsgUpdateMap<T extends NumberType> {
+  creator: string;
+  mapId: string;
+
+  updateManagerTimeline: boolean;
+  managerTimeline: iManagerTimeline<T>[];
+
+  updateMetadataTimeline: boolean;
+  metadataTimeline: iMapMetadataTimeline<T>[];
+
+  updatePermissions: boolean;
+  permissions: iMapPermissions<T>;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md
+
+# x/wasmx
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md
+
+# MsgExecuteContractCompat
+
+
+
+```typescript
+/**
+ * MsgExecuteContractCompat defines a ExecuteContractCompat message.
+ *
+ * @typedef {Object} MsgExecuteContractCompat
+ * @property {string} sender - The sender of the transaction.
+ * @property {string} contract - The contract address to execute.
+ * @property {string} msg - The message to pass to the contract. Must be a valid JSON string.
+ * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
+ */
+export interface MsgExecuteContractCompat {
+  sender: string
+  contract: string
+  msg: string
+  funds: string
+}
+```
+
+MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../create-a-wasm-contract.md) tutorial for more information.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md
+
+# MsgInstantiateContractCompat
+
+```typescript
+export interface MsgInstantiateContractCompat {
+  sender: string
+  codeId: string
+  label: string
+  funds: string
+}
+```
+
+MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../create-a-wasm-contract.md) tutorial for more information.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md
+
+# MsgStoreCodeCompat
+
+```typescript
+export interface MsgStoreCodeCompat {
+  sender: string
+  hexWasmByteCode: string
+}
+```
+
+MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../create-a-wasm-contract.md) tutorial for more information.
+
+
 ## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
 
 # Create a Smart Contract
@@ -6150,7 +6745,7 @@ Your contract is now deployed on the blockchain and ready to be interacted with.
 
 Once deployed, you need to to let your users interact with it.
 
-This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](../create-and-broadcast-txs/) for a tutorial.
+This can be done with MsgExecuteContractCompat. MsgExecuteContractCompat simply is a helper Msg that parses everything in a compatible manner (support for users from all supported chains rather than just Cosmos) and then calls the actual CosmWasm's **MsgExecuteContract.** This is the same as broadcasting any other transaction, so we refer you to [Creating, Signing, and Broadcasting Txs](create-and-broadcast-txs/) for a tutorial.
 
 Consider building your own dApp frontend, so users can easily interact with your contract! Get started with the quickstart repo.
 
@@ -6183,6 +6778,583 @@ const msgExecuteContract: MsgExecuteContractCompat = {
     "funds": "1badge"
 }
 ```
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md
+
+# 🔃 Create, Generate, and Sign Txs
+
+To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
+
+We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
+
+You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
+
+# Broadcast to a Node
+
+**Pre-Req:** You have the body variable with a valid signature (see prior pages).
+
+### **Simulating**
+
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.&#x20;
+
+To do this, you can use&#x20;
+
+```
+https://api.bitbadges.io/api/v0/simulate
+```
+
+**or**
+
+```typescript
+http://URL:1317/cosmos/tx/v1beta1/simulate
+```
+
+This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
+
+Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
+
+Once simulated, replace the expected gas you want in the transaction context.
+
+```typescript
+export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
+    gas_info: {
+        gas_used: string;
+        gas_wanted: string;
+    };
+    result: {
+        data: string;
+        log: string;
+        events: {
+            type: string;
+            attributes: {
+                key: string;
+                value: string;
+                index: boolean;
+            }[];
+        }[];
+        msg_responses: any[];
+    };
+}
+```
+
+### **Broadcasting**
+
+You can replace the URL below with any valid BitBadges blockchain node.
+
+```typescript
+`http://URL:1317${generateEndpointBroadcast()}`
+```
+
+Or, you can use the BitBadges API to broadcast.
+
+```typescript
+https://api.bitbadges.io/api/v0/broadcast
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
+</strong></code></pre>
+
+This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+
+```typescript
+export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
+    tx_response: {
+        code: number;
+        codespace: string;
+        data: string;
+        events: {
+            type: string;
+            attributes: {
+                key: string;
+                value: string;
+                index: boolean;
+            }[];
+        }[];
+        gas_wanted: string;
+        gas_used: string;
+        height: string;
+        info: string;
+        logs: {
+            events: {
+                type: string;
+                attributes: {
+                    key: string;
+                    value: string;
+                    index: boolean;
+                }[];
+            }[];
+        }[];
+        raw_log: string;
+        timestamp: string;
+        tx: object | null;
+        txhash: string;
+    };
+}
+```
+
+### Polling
+
+Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
+
+Use [http://node.bitbadges.io:1317](http://node.bitbadges.io:1317) or one of the aliases below for the BitBadges maintained node.
+
+http://134.122.12.165:1317
+
+https://node.bitbadges.io/api
+
+```typescript
+const txHash = res.data.tx_response.txhash;
+const code = res.data.tx_response.code;
+if (code !== undefined && code !== 0) {
+  throw new Error(`Error broadcasting transaction: Code ${code}: ${JSON.stringify(res.data.tx_response, null, 2)}`);
+}
+
+let fetched = false;
+while (!fetched) {
+  try {
+    const res = await axios.get(`${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`);
+    fetched = true;
+
+    return res;
+  } catch (e) {
+    // wait 1 sec
+    console.log('Waiting 1 sec to fetch tx');
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+}
+
+return res;
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md
+
+# Generate Msg Contents
+
+The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.&#x20;
+
+If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
+
+### **Building the Msgs**
+
+You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
+
+See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
+
+```typescript
+import { proto } from 'bitbadgesjs-sdk';
+
+//proto.cosmos.module for standard Cosmos
+//proto.badges for BitBadges x/badges
+//proto.wasmx for BitBadges x/wasmx
+//proto.protocols for BitBadges x/protocols
+const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
+
+const protoMsgs = [
+    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
+    //Add more here (executed in order)
+];
+```
+
+### Building the Transaction
+
+```typescript
+const txContext = { ... } //See prior page
+
+const txnPayload = createTransactionPayload(txContext, protoMsgs);
+```
+
+The outputted payload will be in the following format.
+
+For Cosmos, you will use signDIrect.
+
+For Ethereum/Solana/Bitcoin, you will use txnString.
+
+If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
+
+```typescript
+export interface TransactionPayload {
+    legacyAmino: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    signDirect: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    txnString: string;
+    txnJson: Record<string, any>;
+}
+```
+
+### Next Steps
+
+Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
+
+1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
+2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
+
+# Sign + Broadcast - bitbadges.io
+
+**Option 1: Copy / Paste**
+
+To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+
+**Option 2: Redirect**
+
+Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
+
+```typescript
+export interface TxInfo {
+  type: string, //'MsgCreateCollection'
+  msg: object, //JSON stringified message
+}
+```
+
+This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
+
+If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
+
+```typescript
+import { proto } from 'bitbadgesjs-sdk';
+
+const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
+const msgCreateProtocol = new MsgCreateProtocol({
+  "name": "Test",
+  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+  "customData": "Test",
+  "isFrozen": false,
+  "creator": chain.bitbadgesAddress
+})
+const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
+const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+
+setLoading(true);
+// You can further customize the child window as needed
+openedWindow?.focus();
+
+//set listener for when the child window closes
+const timer = setInterval(() => {
+  if (openedWindow?.closed) {
+    clearInterval(timer);
+    setLoading(false);
+  }
+}, 1000);
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
+</strong><strong>if (window.opener) {
+</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
+    window.close();
+}
+</code></pre>
+
+```typescript
+//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+const FRONTEND_URL = 'https://bitbadges.io';
+const handleChildWindowMessage = async (event: MessageEvent) => {
+
+  if (event.origin === FRONTEND_URL) {
+
+    if (!event.source) {
+      throw new Error('Event source is null');
+    }
+
+    const txHash = event.data.txHash;
+    if (!txHash) {
+      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
+      return
+    }
+
+
+    setLoading(false);
+  }
+};
+
+// Add a listener to handle messages from the child window
+useEffect(() => {
+  window.addEventListener('message', handleChildWindowMessage);
+
+  // Cleanup the listener when the component unmounts
+  return () => {
+    window.removeEventListener('message', handleChildWindowMessage);
+  };
+}, []);
+```
+
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
+
+# Signing - Bitcoin
+
+**Signing with Bitcoin - Phantom Wallet**
+
+Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
+
+```typescript
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.bitcoin;
+    if (provider?.isPhantom) {
+      return provider;
+    }
+
+    window.open('https://phantom.app/', '_blank');
+  }
+};
+
+function bytesToBase64(bytes: Uint8Array) {
+  const binString = String.fromCodePoint(...bytes);
+  return btoa(binString);
+}
+
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+    const bitcoinProvider = getProvider();
+
+    let sig = '';
+    if (!simulate) {
+      const message = payload.txnString;
+      const encodedMessage = new TextEncoder().encode(message);
+      const signedMessage = await bitcoinProvider.signMessage(address, encodedMessage);
+
+      const base64Sig = bytesToBase64(signedMessage.signature);
+      sig = Buffer.from(base64Sig, 'base64').toString('hex');
+    }
+
+    const txBody = createTxBroadcastBody(context, messages, sig);
+    return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
+
+# Signing - Cosmos
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+#### Signing with Keplr
+
+```ts
+const signTxn = async (
+    context: TxContext,
+    payload: TransactionPayload,
+    protoMsgs: any[],
+    simulate: boolean
+) => {
+    if (!account) {
+        throw new Error('Account does not exist');
+    }
+    const { sender } = context;
+    await window.keplr?.enable(chainId);
+
+    let signatures = [new Uint8Array(Buffer.from('0x', 'hex'))];
+    if (!simulate) {
+        const signResponse = await window?.keplr?.signDirect(
+            chainId,
+            sender.address,
+            {
+                bodyBytes: payload.signDirect.body.toBinary(),
+                authInfoBytes: payload.signDirect.authInfo.toBinary(),
+                chainId: chainId,
+                accountNumber: new Long(sender.accountNumber),
+            },
+            {
+                preferNoSetFee: true,
+            }
+        );
+
+        if (!signResponse) {
+            throw new Error('No signature returned from Keplr');
+        }
+
+        signatures = [
+            new Uint8Array(
+                Buffer.from(signResponse.signature.signature, 'base64')
+            ),
+        ];
+    }
+
+    const hexSig = Buffer.from(signatures[0]).toString('hex');
+
+    const txBody = createTxBroadcastBody(context, protoMsgs, hexSig);
+    return txBody;
+};
+```
+
+### Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
+
+# Signing - Ethereum
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
+
+```typescript
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+  const sig = simulate
+    ? ''
+    : await signMessageAsync({
+        message: payload.txnString
+      });
+ 
+  const txBody = createTxBroadcastBody(context, messages, sig);
+  return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md
+
+# Signing - Solana
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+**Signing with Solana - Phantom Wallet**
+
+
+
+Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
+
+```typescript
+const getProvider = () => {
+    if ('phantom' in window) {
+        const phantomWindow = window as any;
+        const provider = phantomWindow.phantom?.solana;
+        if (provider?.isPhantom) {
+            return provider;
+        }
+
+        window.open('https://phantom.app/', '_blank');
+    }
+};
+
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+  if (!account) throw new Error('Account not found.');
+
+  let sig = '';
+  if (!simulate) {
+    //Phantom has a weird error where messages must be < ~1000 bytes
+    //If we are within limit, we can have user sign the JSON
+    //Else, we hash the JSON and have user sign the hash
+    const encodedMessage = new TextEncoder().encode(payload.txnString);
+
+    const signedMessage = await getProvider().request({
+      method: 'signMessage',
+      params: {
+        message: encodedMessage,
+        display: 'utf8'
+      }
+    });
+    sig = signedMessage.signature.toString('hex');
+  }
+
+  //We need to pass in solAddress manually here
+  const txBody = createTxBroadcastBody(context, messages, sig, address);
+  return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
+
+# Transaction Context
+
+You have two options for generating, signing, and brodcasting messages.
+
+1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
+2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
+
+If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
+
+If you plan to use option 2, see below.
+
+### Generating Transaction Context
+
+The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
+
+Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
+
+```typescript
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
+
+//TODO: Fetch the account details (see below)
+
+//Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
+const txContext = {
+  testnet: false,
+  sender: {
+    //Must be in native format ('0xabc..' vs 'bc1...' etc)
+    address: account.address,
+    sequence: account.sequence,
+    accountNumber: account.accountNumber,
+    //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+    publicKey: account.publicKey
+  }, 
+  //TODO: adjust accordingly
+  fee: {
+    amount: `0`,
+    denom: 'ubadge',
+    gas: `400000`
+  },
+  memo: ''
+};
+```
+
+**Get Public Key - Cosmos**
+
+For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
+
+Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
+
+```typescript
+const getPublicKey = async () => {
+    const account = await window?.keplr?.getKey('bitbadges-1')
+    if (!account) return '';
+    return Buffer.from(account.pubKey).toString('base64')
+}
+```
+
+**Fee**
+
+Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
+
+**Sender Details**
+
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../../create-and-broadcast-txs/broken-reference/). You can also query a node directly.
+
+This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
+
+<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/overview.md
@@ -7258,7 +8430,7 @@ const bitbadgesAddress = convertToBitBadgesAddress(address);
 const ethAddress = bitbadgesToEth(bitbadgesAddress);
 ```
 
-It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../create-and-broadcast-txs/) for how to use.
+It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../bitbadges-blockchain/create-and-broadcast-txs/) for how to use.
 
 ```typescript
 const nodeUrl = ...
@@ -7350,7 +8522,7 @@ balances.addBalances([{ ... }]); //adds balances in-place
 
 ### **Proto Types**
 
-The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../create-and-broadcast-txs/))).&#x20;
+The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../bitbadges-blockchain/create-and-broadcast-txs/))).&#x20;
 
 Some might have duplicates between the two types.
 
@@ -11626,7 +12798,7 @@ Theoretically, address lists are just a simplified version of the badge interfac
 
 **Using Lists to Define Transferability / Approvals**
 
-When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is reused for this on-chain.&#x20;
+When defining transferability and approvals on-chain, you need to define the list of addresses who can send, receive, and initiate the transfer. The AddressList interface is reused for this on-chain.
 
 We currently only support permanent lists on-chain vis the MsgCreateAddressList interface.
 
@@ -11638,7 +12810,7 @@ Lists are invertible meaning we can create a list that includes all addresses EX
 
 ### **Storage**
 
-**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
+**On-Chain:** AddressLists are **permanent and not updatable** once created, if stored on-chain. These can be created using [MsgCreateAddressLists](../bitbadges-blockchain/cosmos-sdk-msgs/). They can be used to define transferability on-chain. For example, those on list "xyz" can only transfer to list "abc" initiated by those on the reserved "AllWithoutMint" list.
 
 An address list is not unique to a collection on-chain and can be used for defining transferability by any collection.
 
@@ -11648,21 +12820,19 @@ An address list is not unique to a collection on-chain and can be used for defin
 
 There are a couple IDs for AddressLists that are reserved for efficient shorthand methods. To enable this, "\_" and ":" and "!" are not allowed anywhere in a standard ID.
 
--   "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
--   Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
-    -   "Mint" specifies the "Mint" address only.
-    -   "bb1abc..." specified the list with "bb1abc...." only
--   Combination shorthands
-    -   Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
--   Inversion shorthands
+* "All" denotes all valid user addresses (as well as the "Mint" address which is important when specifying the sender list of transferability)
+* Any valid Cosmos (bech32) address is reserved as the list that ONLY includes that specific address.
+  * "Mint" specifies the "Mint" address only.
+  * "bb1abc..." specified the list with "bb1abc...." only
+* Combination shorthands
+  * Using the ":" character, you can combine multiple addresses such as "Mint:bb1abc...". This would represent the list with Mint and bb1abc...
+* Inversion shorthands
+  * If prefixed with "!", it denotes to invert the address list.
+    * "!id123" inverts the "id123" address list
+    * "!Mint" inverts the Mint list
+    *   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
 
-    -   If prefixed with "!", it denotes to invert the address list.
-
-        -   "!id123" inverts the "id123" address list
-        -   "!Mint" inverts the Mint list
-        -   "!Mint:bb1abc..." inverts the "Mint:bb1abc..." list which means all but the two specified addresses
-
-            The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
+        The above bullet may look a little weird to developers because it may only seem like the "Mint' is inverted but others aren't. You can also wrap everything in a parentheses such as "!(Mint:bb1abc...)" if you would like
 
 Use the SDK functions below for generating IDs / lists.
 
@@ -11918,21 +13088,21 @@ export interface MerkleChallenge<T extends NumberType> {
 }
 </code></pre>
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)).
+Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)).
 
-For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.&#x20;
+For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.
 
 Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim. This can be used to distribute gas costs among N users rather than the collection creator defining an address list with N users on-chain and paying all gas fees.
 
 #### Expected Proof Length
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**&#x20;
+The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**
 
 **Whitelist Trees**
 
 Whitelist trees can be used to distribute gas costs among N users rather than the collection creator defining an expensive address list with N users on-chain and paying all gas fees. For small N, we recommend not using whitelist trees for user experience.
 
-If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.&#x20;
+If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.
 
 To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the BitBadges address of the initiator of the transfer transaction.
 
@@ -11940,7 +13110,7 @@ To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true.
 
 For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks. For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
 
-We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.&#x20;
+We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.
 
 The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. The full ID contains the **approvalId,** so you know state will always be scoped to an approval and the tracker cannot be used by any other approval.
 
@@ -12221,7 +13391,7 @@ There are two ways to define the balances. Both can not be used together.
 
 Predetermined balances can quickly change, such as in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
 
-To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
+To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
 </strong>    approvalId: string;
@@ -13113,7 +14283,7 @@ By understanding these concepts and following these practices, you can effective
 
 **Creating Badges**
 
-During creation and update transaction ([MsgCreateCollection](../../cosmos-sdk-msgs/x-badges/msgcreatecollection.md) and [MsgUpdateCollection](../../cosmos-sdk-msgs/x-badges/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
+During creation and update transaction ([MsgCreateCollection](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreatecollection.md) and [MsgUpdateCollection](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdatecollection.md)), you can specify the badge IDs ranges that are valid via the **badgeIdsToAdd** field.
 
 **Example**
 
@@ -13210,7 +14380,7 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
 
@@ -13218,7 +14388,7 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
+* **toList, fromList, initiatedByList**: [AddressLists](../address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
 * **transferTimes**: When can the transfer takes place? A [UintRange](../general/uint-ranges.md)\[] of times (UNIX milliseconds).
 * **badgeIds**: What badge IDs can be transferred? A [UintRange](../general/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
@@ -15759,752 +16929,6 @@ Available at: [https://github.com/personaelabs/spartan-ecdsa](https://github.com
 
 
 
-## File: ./for-developers/cosmos-sdk-msgs/README.md
-
-# 📩 Cosmos SDK Msgs
-
-**What are Cosmos SDK Msgs? Msgs vs Transactions?**
-
-In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.
-
-Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
-
-**What Msgs does the BitBadges blockchain implement?**
-
-The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
-
-The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
-
-**How to broadcast transactions with Msgs?**
-
-You can generate and submit your transactions (Msgs) via:
-
--   [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
--   CLI: Run your own node and interact with the command line
--   Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
-
-**What is the creator field?**
-
-The **creator** field for each message should be the transaction signer's BitBadges address.
-
-## Msg Definitions
-
-Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.
-
-**x/badges**
-
--   [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
--   [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
--   [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
-    -   Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
--   [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
--   [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
--   [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
--   [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
-
-**x/wasmx**
-
--   [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../bitbadges-blockchain/create-a-wasm-contract.md) for tutorial.
-
-**x/maps**
-
--   MsgCreateMap - Creates a map, uniquely identifed by an ID
--   MsgUpdateMap - Updates an existing map.
--   MsgDeleteMap - Deletes a map
--   MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
-
-**x/anchor**
-
--   MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
-
-**Other Cosmos SDK Modules**
-
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/classes/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
-
-
-## File: ./for-developers/cosmos-sdk-msgs/cosmos-native-msgs.md
-
-# Cosmos Native Msgs
-
-We refer you to Cosmos SDK documentation for other Cosmos native Msgs.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/msgsend.md
-
-# MsgSend
-
-MsgSend is the Msg to send $BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
-
-```typescript
-/**
- * MsgSend represents a message to send coins from one account to another.
- *
- * @typedef {Object} MsgSend
- * @property {string} fromAddress - The sender of the transaction.
- * @property {string} toAddress - The recipient of the transaction.
- * @property {CosmosCoin[]} amount - The amount of coins to send.
- */
-export interface MsgSend<T extends NumberType> {
-  fromAddress: string
-  toAddress: string
-  amount: CosmosCoin<T>[]
-}
-
-
-/**
- * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
- *
- * @typedef {Object} CosmosCoin
- * @property {NumberType} amount - The amount of the coin.
- * @property {string} denom - The denomination of the coin.
- */
-export interface CosmosCoin<T extends NumberType> {
-  amount: T,
-  denom: string,
-}
-
-```
-
-```json
-{
-  "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
-  "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
-  "amount": [
-    {
-      "denom": "ubadge",
-      "amount": "1"
-    }
-  ]
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-anchor/README.md
-
-# x/anchor
-
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md
-
-# MsgAddCustomData
-
-MsgAddCustomData is a part of the x/anchor module which allows you to anchor any custom data to the blockchain. The blcokchain will store with an incrementing location ID along with the timestamp. This can be used to prove knowledge of something at a specific time by anchoring it to the chain.
-
-```protobuf
-message MsgAddCustomData {
-  string creator = 1;
-  string data    = 2;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/README.md
-
-# x/badges
-
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md
-
-# MsgCreateAddressLists
-
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgcreatecollection.md
-
-# MsgCreateCollection
-
-Collections are initially created via [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) . The interface looks as follows.&#x20;
-
-```typescript
-export interface MsgCreateCollection<T extends NumberType> {
-    creator: string;
-
-    //collectionId
-
-    balancesType?: string; //"Standard" | "Off-Chain"
-
-    defaultBalances: UserBalanceStore;
-
-    badgeIdsToAdd?: UintRange<T>[];
-
-    collectionPermissions?: CollectionPermissions<T>;
-    managerTimeline?: ManagerTimeline<T>[];
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    customDataTimeline?: CustomDataTimeline<T>[];
-    collectionApprovals?: CollectionApproval<T>[];
-    standardsTimeline?: StandardsTimeline<T>[];
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-}
-```
-
-The collectionId will be assigned at execution time and is obtainable in the transaction response. Subsequent updates to the collection will be through MsgUpdateCollection.
-
-**Creation Only Properties**
-
-The creation or genesis transaction for a collection is unique in a couple ways.
-
-1. There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
-2. This is the only time that you can specify **balancesType** and the **defaultBalances** information (defaultOutgoingApprovals, defaultIncomingApprovals, defaultAutoApproveSelfInitiatedOutgoingTransfers, defaultAutoApproveSelfInitiatedIncomingTransfers, and defaultUserPermissions)**.**&#x20;
-
-**Rest of Fields**
-
-For the rest of the fields, we refer you to the following section.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgdeletecollection.md
-
-# MsgDeleteCollection
-
-Deleting a collection is self-explanatory. The manager can delete the collection with [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) as long as they have the permission to do so (the **canDeleteCollection** permission).&#x20;
-
-Deleting a collection will wipe it from the blockchain entirely.
-
-```typescript
-export interface MsgDeleteCollection<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgtransferbadges.md
-
-# MsgTransferBadges
-
-Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html).
-
-```typescript
-export interface MsgTransferBadges<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-    transfers: Transfer<T>[];
-}
-
-export interface Transfer<T extends NumberType> {
-    from: string;
-    toAddresses: string[];
-    balances: Balance<T>[];
-    precalculateBalancesFromApproval?: ApprovalIdentifierDetails;
-    merkleProofs?: MerkleProof[];
-    memo?: string;
-    prioritizedApprovals?: ApprovalIdentifierDetails[];
-    onlyCheckPrioritizedApprovals?: boolean;
-}
-
-export interface ApprovalIdentifierDetails {
-    approvalId: string;
-    approvalLevel: string; //"incoming", "outgoing", or "collection"
-    approverAddress: string; //leave "" if collection
-}
-
-export interface MerklePathItem {
-    aunt: string;
-    onRight: boolean;
-}
-
-export interface MerkleProof {
-    aunts: MerklePathItem[];
-    leaf: string;
-}
-```
-
-**To / From Addresses**
-
-The to and from addresses must be valid BitBadges addresses. The from address can also be "Mint".
-
-**Precalculations**
-
-If you are targeting to use an approval which uses the **predeterminedBalances** field (see [Approvals](../../core-concepts/balances-transfers/approval-criteria/)), then you want to calculate the balances at execution time because they are possibly dynamic and can change between submit time and execution time. For example, if badge IDs increment by 1 every transfer, at signing time, the user does not know what badges they will receive because there could be transfers in between sign time and execution time.
-
-If this is the case, you can use **precalculateBalancesFromApproval** to specify which approval to precalculate from, and the balances will be calculated at execution time to what the current predetermined values are, rather than what is defined in **balances.**
-
-**Merkle Proofs**
-
-If any approval that you are targeting has a Merkle challenge, you must provide a valid Merkle proof via the **merkleProofs.**
-
-**Prioritized Approvals**
-
-By default, we linearly scan approvals in the order they are defined on-chain. However, sometimes, you may want to prioritize one approval over the other.
-
-You can specify which ones to check first via **prioritizedApprovals**. If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md
-
-# MsgUniversalUpdateCollection
-
-MsgUniversalUpdateCollection is a universal message that supports both creating and updating collections. If collection ID == 0, it is a create txn. This is mainly used for legacy purposes. We recommend using MsgCreateCollection and MsgUpdateCollection instead, respectively. We refer you to their documentation for further details.
-
-```typescript
-interface MsgUniversalUpdateCollection {
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    badgeIdsToAdd?: UintRange<T>[];
-    balancesType?: string;
-    collectionApprovals?: CollectionApproval<T>[];
-    collectionId: T;
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    collectionPermissions?: CollectionPermissions<T>;
-    creator: string;
-    customDataTimeline?: CustomDataTimeline<T>[];
-    defaultBalances?: UserBalanceStore;
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-    managerTimeline?: ManagerTimeline<T>[];
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    standardsTimeline?: StandardsTimeline<T>[];
-    updateBadgeMetadataTimeline?: boolean;
-    updateCollectionApprovals?: boolean;
-    updateCollectionMetadataTimeline?: boolean;
-    updateCollectionPermissions?: boolean;
-    updateCustomDataTimeline?: boolean;
-    updateIsArchivedTimeline?: boolean;
-    updateManagerTimeline?: boolean;
-    updateOffChainBalancesMetadataTimeline?: boolean;
-    updateStandardsTimeline?: boolean;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgupdatecollection.md
-
-# MsgUpdateCollection
-
-For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html). This is only executable by the manager, and all updates must obey the previously set permissions.
-
-Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain (doesn't require this Msg).
-
-```typescript
-export interface MsgUpdateCollection<T extends NumberType> {
-    creator: string;
-    collectionId: T; //0 for new collections (will be assigned)
-
-    //Note no defaults or balances types here because that is only for new collections
-
-    badgeIdsToAdd?: UintRange<T>[];
-
-    updateCollectionPermissions?: boolean;
-    collectionPermissions?: CollectionPermissions<T>;
-    updateManagerTimeline?: boolean;
-    managerTimeline?: ManagerTimeline<T>[];
-    updateCollectionMetadataTimeline?: boolean;
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    updateBadgeMetadataTimeline?: boolean;
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    updateOffChainBalancesMetadataTimeline?: boolean;
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    updateCustomDataTimeline?: boolean;
-    customDataTimeline?: CustomDataTimeline<T>[];
-    updateCollectionApprovals?: boolean;
-    collectionApprovals?: CollectionApproval<T>[];
-    updateStandardsTimeline?: boolean;
-    standardsTimeline?: StandardsTimeline<T>[];
-    updateIsArchivedTimeline?: boolean;
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-}
-```
-
-**Update Flags**
-
-We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep the currently set value.
-
-**Permissions**
-
-**All updates must obey the previously set permissions.** By previously set, we mean the ones before the Msg was started. If you update the permissions in the current Msg, those are applied last and will not be applicable until the following transaction.
-
-**Rest of Fields**
-
-For the rest of the fields, we refer you to the following section.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md
-
-# MsgUpdateUserApprovals
-
-To update approvals, you can use [MsgUpdateUserApprovals](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html). Upon genesis, every user's approval store and permissions will be the defaults specified by the collection.&#x20;
-
-From there, they can be updated according to the permissions set (i.e. the **userPermissions** previously set). Users can only update thier own approvals.
-
-We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep what was previously set.
-
-```typescript
-export interface MsgUpdateUserApprovals<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-    updateOutgoingApprovals?: boolean;
-    outgoingApprovals?: UserOutgoingApproval<T>[];
-    updateIncomingApprovals?: boolean;
-    incomingApprovals?: UserIncomingApproval<T>[];
-    updateAutoApproveSelfInitiatedOutgoingTransfers?: boolean;
-    autoApproveSelfInitiatedOutgoingTransfers?: boolean;
-    updateAutoApproveSelfInitiatedIncomingTransfers?: boolean;
-    autoApproveSelfInitiatedIncomingTransfers?: boolean;
-    updateUserPermissions?: boolean;
-    userPermissions?: UserPermissions<T>;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-maps/README.md
-
-# x/maps
-
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md
-
-# MsgCreateMap
-
-MsgCreateMap creates a map on-chain. We refer you to here for more information on each individual field.
-
-{% content-ref url="../../core-concepts/maps.md" %}
-[maps.md](../../core-concepts/maps.md)
-{% endcontent-ref %}
-
-```typescript
-export interface iMsgCreateMap<T extends NumberType> {
-  creator: string;
-  mapId: string;
-
-  inheritManagerTimelineFrom: T;
-  managerTimeline: iManagerTimeline<T>[];
-
-  updateCriteria: iMapUpdateCriteria<T>;
-  valueOptions: iValueOptions;
-  defaultValue: string;
-
-  metadataTimeline: iMapMetadataTimeline<T>[];
-
-  permissions: iMapPermissions<T>;
-}
-```
-
-```typescript
-export interface iValueOptions {
-  noDuplicates: boolean;
-  permanentOnceSet: boolean;
-  expectUint: boolean;
-  expectBoolean: boolean;
-  expectAddress: boolean;
-  expectUri: boolean;
-}
-```
-
-```typescript
-export interface iMapPermissions<T extends NumberType> {
-  canUpdateMetadata: iTimedUpdatePermission<T>[];
-  canUpdateManager: iTimedUpdatePermission<T>[];
-  canDeleteMap: iActionPermission<T>[];
-}
-```
-
-```typescript
-export interface iMapMetadataTimeline<T extends NumberType> {
-  timelineTimes: iUintRange<T>[];
-  metadata: iCollectionMetadata;
-}
-```
-
-```typescript
-export interface iMapUpdateCriteria<T extends NumberType> {
-  managerOnly: boolean;
-  collectionId: T;
-  creatorOnly: boolean;
-  firstComeFirstServe: boolean;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md
-
-# MsgDeleteMap
-
-MsgDeleteProtocol deletes the map with the given name.
-
-<pre class="language-typescript"><code class="lang-typescript"><a data-footnote-ref href="#user-content-fn-1">export</a> interface MsgDeleteMap {
-  creator: string,
-  mapId: string,
-}
-</code></pre>
-
-[^1]: 
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md
-
-# MsgSetValue
-
-MsgSetValue sets the specific key-value pair for the mapId. For example, set my BitBadges Follow Protocol collection to collection ID 12.&#x20;
-
-All values are stringified for comaptibility, but it will check they are in proper format within the Msg logic. You can set **options.useMostRecentCollectionId** to auto-fetch the latest collection ID. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
-
-```typescript
-export interface iMsgSetValue {
-  creator: string;
-  mapId: string;
-  key: string;
-  value: string;
-  options: iSetOptions;
-}
-
-export interface iSetOptions {
-  useMostRecentCollectionId: boolean;
-}
-```
-
-**Combining with MsgCreateCollection or MsgUpdateCollection**
-
-The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](broken-reference) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
-
-```typescript
-const msgs: MessageGenerated[] = [];
-msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateCollections
-msgs.push(...bootstrapSetProtocols().map(x => createProtoMsg(x))); //MsgSetCollectionForProtocol
-
-//Note how MsgCreateAddressLists is first in the array
-const txn = createTransactionPayload(txContext, msgs);
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md
-
-# MsgUpdateMap
-
-MsgUpdateMap updates the map with the matching ID. Similar to the x/badges Msgs, we use an update flag + value interface. If update flag = true, we update with the corresponding value. Else, we ignore it.
-
-```typescript
-export interface iMsgUpdateMap<T extends NumberType> {
-  creator: string;
-  mapId: string;
-
-  updateManagerTimeline: boolean;
-  managerTimeline: iManagerTimeline<T>[];
-
-  updateMetadataTimeline: boolean;
-  metadataTimeline: iMapMetadataTimeline<T>[];
-
-  updatePermissions: boolean;
-  permissions: iMapPermissions<T>;
-}
-```
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-wasmx/README.md
-
-# x/wasmx
-
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md
-
-# MsgExecuteContractCompat
-
-
-
-```typescript
-/**
- * MsgExecuteContractCompat defines a ExecuteContractCompat message.
- *
- * @typedef {Object} MsgExecuteContractCompat
- * @property {string} sender - The sender of the transaction.
- * @property {string} contract - The contract address to execute.
- * @property {string} msg - The message to pass to the contract. Must be a valid JSON string.
- * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
- */
-export interface MsgExecuteContractCompat {
-  sender: string
-  contract: string
-  msg: string
-  funds: string
-}
-```
-
-MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../bitbadges-blockchain/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md
-
-# MsgInstantiateContractCompat
-
-```typescript
-export interface MsgInstantiateContractCompat {
-  sender: string
-  codeId: string
-  label: string
-  funds: string
-}
-```
-
-MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../bitbadges-blockchain/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./for-developers/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md
-
-# MsgStoreCodeCompat
-
-```typescript
-export interface MsgStoreCodeCompat {
-  sender: string
-  hexWasmByteCode: string
-}
-```
-
-MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../bitbadges-blockchain/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./for-developers/create-and-broadcast-txs/README.md
-
-# 🔃 Create, Generate, and Sign Txs
-
-To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
-
-We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
-
-You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
-
-
-## File: ./for-developers/create-and-broadcast-txs/broadcast-to-a-node.md
-
-# Broadcast to a Node
-
-**Pre-Req:** You have the body variable with a valid signature (see prior pages).
-
-### **Simulating**
-
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.&#x20;
-
-To do this, you can use&#x20;
-
-```
-https://api.bitbadges.io/api/v0/simulate
-```
-
-**or**
-
-```typescript
-http://URL:1317/cosmos/tx/v1beta1/simulate
-```
-
-This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
-
-Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
-
-Once simulated, replace the expected gas you want in the transaction context.
-
-```typescript
-export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
-    gas_info: {
-        gas_used: string;
-        gas_wanted: string;
-    };
-    result: {
-        data: string;
-        log: string;
-        events: {
-            type: string;
-            attributes: {
-                key: string;
-                value: string;
-                index: boolean;
-            }[];
-        }[];
-        msg_responses: any[];
-    };
-}
-```
-
-### **Broadcasting**
-
-You can replace the URL below with any valid BitBadges blockchain node.
-
-```typescript
-`http://URL:1317${generateEndpointBroadcast()}`
-```
-
-Or, you can use the BitBadges API to broadcast.
-
-```typescript
-https://api.bitbadges.io/api/v0/broadcast
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
-</strong></code></pre>
-
-This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
-
-```typescript
-export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
-    tx_response: {
-        code: number;
-        codespace: string;
-        data: string;
-        events: {
-            type: string;
-            attributes: {
-                key: string;
-                value: string;
-                index: boolean;
-            }[];
-        }[];
-        gas_wanted: string;
-        gas_used: string;
-        height: string;
-        info: string;
-        logs: {
-            events: {
-                type: string;
-                attributes: {
-                    key: string;
-                    value: string;
-                    index: boolean;
-                }[];
-            }[];
-        }[];
-        raw_log: string;
-        timestamp: string;
-        tx: object | null;
-        txhash: string;
-    };
-}
-```
-
-### Polling
-
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
-
-Use [http://node.bitbadges.io:1317](http://node.bitbadges.io:1317) or one of the aliases below for the BitBadges maintained node.
-
-http://134.122.12.165:1317
-
-https://node.bitbadges.io/api
-
-```typescript
-const txHash = res.data.tx_response.txhash;
-const code = res.data.tx_response.code;
-if (code !== undefined && code !== 0) {
-  throw new Error(`Error broadcasting transaction: Code ${code}: ${JSON.stringify(res.data.tx_response, null, 2)}`);
-}
-
-let fetched = false;
-while (!fetched) {
-  try {
-    const res = await axios.get(`${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`);
-    fetched = true;
-
-    return res;
-  } catch (e) {
-    // wait 1 sec
-    console.log('Waiting 1 sec to fetch tx');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
-}
-
-return res;
-```
-
-
 ## File: ./for-developers/create-and-broadcast-txs/cosmos-sdk-msgs/msgcreateaddressmappings.md
 
 # MsgCreateAddressLists
@@ -16549,434 +16973,6 @@ msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateColl
 const txn = createTransactionPayload(txContext, msgs);
 ```
 
-
-
-## File: ./for-developers/create-and-broadcast-txs/generate-msg-contents.md
-
-# Generate Msg Contents
-
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.&#x20;
-
-If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
-
-### **Building the Msgs**
-
-You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
-
-See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-//proto.cosmos.module for standard Cosmos
-//proto.badges for BitBadges x/badges
-//proto.wasmx for BitBadges x/wasmx
-//proto.protocols for BitBadges x/protocols
-const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
-
-const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
-    //Add more here (executed in order)
-];
-```
-
-### Building the Transaction
-
-```typescript
-const txContext = { ... } //See prior page
-
-const txnPayload = createTransactionPayload(txContext, protoMsgs);
-```
-
-The outputted payload will be in the following format.
-
-For Cosmos, you will use signDIrect.
-
-For Ethereum/Solana/Bitcoin, you will use txnString.
-
-If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
-
-```typescript
-export interface TransactionPayload {
-    legacyAmino: {
-        body: TxBody;
-        authInfo: AuthInfo;
-        signBytes: string;
-    };
-    signDirect: {
-        body: TxBody;
-        authInfo: AuthInfo;
-        signBytes: string;
-    };
-    txnString: string;
-    txnJson: Record<string, any>;
-}
-```
-
-### Next Steps
-
-Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
-
-
-## File: ./for-developers/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
-
-# Sign + Broadcast - bitbadges.io
-
-**Option 1: Copy / Paste**
-
-To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
-
-**Option 2: Redirect**
-
-Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
-
-```typescript
-export interface TxInfo {
-  type: string, //'MsgCreateCollection'
-  msg: object, //JSON stringified message
-}
-```
-
-This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
-
-If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
-const msgCreateProtocol = new MsgCreateProtocol({
-  "name": "Test",
-  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
-  "customData": "Test",
-  "isFrozen": false,
-  "creator": chain.bitbadgesAddress
-})
-const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
-const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-
-setLoading(true);
-// You can further customize the child window as needed
-openedWindow?.focus();
-
-//set listener for when the child window closes
-const timer = setInterval(() => {
-  if (openedWindow?.closed) {
-    clearInterval(timer);
-    setLoading(false);
-  }
-}, 1000);
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
-</strong><strong>if (window.opener) {
-</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
-    window.close();
-}
-</code></pre>
-
-```typescript
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-const FRONTEND_URL = 'https://bitbadges.io';
-const handleChildWindowMessage = async (event: MessageEvent) => {
-
-  if (event.origin === FRONTEND_URL) {
-
-    if (!event.source) {
-      throw new Error('Event source is null');
-    }
-
-    const txHash = event.data.txHash;
-    if (!txHash) {
-      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
-      return
-    }
-
-
-    setLoading(false);
-  }
-};
-
-// Add a listener to handle messages from the child window
-useEffect(() => {
-  window.addEventListener('message', handleChildWindowMessage);
-
-  // Cleanup the listener when the component unmounts
-  return () => {
-    window.removeEventListener('message', handleChildWindowMessage);
-  };
-}, []);
-```
-
-<figure><img src="../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/create-and-broadcast-txs/signing-bitcoin.md
-
-# Signing - Bitcoin
-
-**Signing with Bitcoin - Phantom Wallet**
-
-Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
-
-```typescript
-const getProvider = () => {
-  if ('phantom' in window) {
-    const phantomWindow = window as any;
-    const provider = phantomWindow.phantom?.bitcoin;
-    if (provider?.isPhantom) {
-      return provider;
-    }
-
-    window.open('https://phantom.app/', '_blank');
-  }
-};
-
-function bytesToBase64(bytes: Uint8Array) {
-  const binString = String.fromCodePoint(...bytes);
-  return btoa(binString);
-}
-
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-    const bitcoinProvider = getProvider();
-
-    let sig = '';
-    if (!simulate) {
-      const message = payload.txnString;
-      const encodedMessage = new TextEncoder().encode(message);
-      const signedMessage = await bitcoinProvider.signMessage(address, encodedMessage);
-
-      const base64Sig = bytesToBase64(signedMessage.signature);
-      sig = Buffer.from(base64Sig, 'base64').toString('hex');
-    }
-
-    const txBody = createTxBroadcastBody(context, messages, sig);
-    return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./for-developers/create-and-broadcast-txs/signing-cosmos.md
-
-# Signing - Cosmos
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-#### Signing with Keplr
-
-```ts
-const signTxn = async (
-    context: TxContext,
-    payload: TransactionPayload,
-    protoMsgs: any[],
-    simulate: boolean
-) => {
-    if (!account) {
-        throw new Error('Account does not exist');
-    }
-    const { sender } = context;
-    await window.keplr?.enable(chainId);
-
-    let signatures = [new Uint8Array(Buffer.from('0x', 'hex'))];
-    if (!simulate) {
-        const signResponse = await window?.keplr?.signDirect(
-            chainId,
-            sender.address,
-            {
-                bodyBytes: payload.signDirect.body.toBinary(),
-                authInfoBytes: payload.signDirect.authInfo.toBinary(),
-                chainId: chainId,
-                accountNumber: new Long(sender.accountNumber),
-            },
-            {
-                preferNoSetFee: true,
-            }
-        );
-
-        if (!signResponse) {
-            throw new Error('No signature returned from Keplr');
-        }
-
-        signatures = [
-            new Uint8Array(
-                Buffer.from(signResponse.signature.signature, 'base64')
-            ),
-        ];
-    }
-
-    const hexSig = Buffer.from(signatures[0]).toString('hex');
-
-    const txBody = createTxBroadcastBody(context, protoMsgs, hexSig);
-    return txBody;
-};
-```
-
-### Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./for-developers/create-and-broadcast-txs/signing-ethereum.md
-
-# Signing - Ethereum
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
-
-```typescript
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  const sig = simulate
-    ? ''
-    : await signMessageAsync({
-        message: payload.txnString
-      });
- 
-  const txBody = createTxBroadcastBody(context, messages, sig);
-  return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./for-developers/create-and-broadcast-txs/signing-solana.md
-
-# Signing - Solana
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-**Signing with Solana - Phantom Wallet**
-
-
-
-Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
-
-```typescript
-const getProvider = () => {
-    if ('phantom' in window) {
-        const phantomWindow = window as any;
-        const provider = phantomWindow.phantom?.solana;
-        if (provider?.isPhantom) {
-            return provider;
-        }
-
-        window.open('https://phantom.app/', '_blank');
-    }
-};
-
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  if (!account) throw new Error('Account not found.');
-
-  let sig = '';
-  if (!simulate) {
-    //Phantom has a weird error where messages must be < ~1000 bytes
-    //If we are within limit, we can have user sign the JSON
-    //Else, we hash the JSON and have user sign the hash
-    const encodedMessage = new TextEncoder().encode(payload.txnString);
-
-    const signedMessage = await getProvider().request({
-      method: 'signMessage',
-      params: {
-        message: encodedMessage,
-        display: 'utf8'
-      }
-    });
-    sig = signedMessage.signature.toString('hex');
-  }
-
-  //We need to pass in solAddress manually here
-  const txBody = createTxBroadcastBody(context, messages, sig, address);
-  return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./for-developers/create-and-broadcast-txs/transaction-context.md
-
-# Transaction Context
-
-You have two options for generating, signing, and brodcasting messages.
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
-
-If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
-
-If you plan to use option 2, see below.
-
-### Generating Transaction Context
-
-The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
-
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
-
-```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
-
-//TODO: Fetch the account details (see below)
-
-//Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
-const txContext = {
-  testnet: false,
-  sender: {
-    //Must be in native format ('0xabc..' vs 'bc1...' etc)
-    address: account.address,
-    sequence: account.sequence,
-    accountNumber: account.accountNumber,
-    //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
-    publicKey: account.publicKey
-  }, 
-  //TODO: adjust accordingly
-  fee: {
-    amount: `0`,
-    denom: 'ubadge',
-    gas: `400000`
-  },
-  memo: ''
-};
-```
-
-
-
-**Get Public Key - Cosmos**
-
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.&#x20;
-
-Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
-
-```typescript
-const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1')
-    if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64')
-}
-```
-
-**Fee**
-
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
-
-**Sender Details**
-
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](broken-reference/). You can also query a node directly.&#x20;
-
-This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
-
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/getting-started.md
@@ -17065,8 +17061,8 @@ await BitBadgesAPI.getCollections(...);
 
 * **Recommended**: Use the BitBadges web app Create tab
 * **Alternative Methods**:
-  1. Use our [helper in-site broadcast tool](create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
-  2. Generate transactions via [SDK](create-and-broadcast-txs/)
+  1. Use our [helper in-site broadcast tool](bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
+  2. Generate transactions via [SDK](bitbadges-blockchain/create-and-broadcast-txs/)
   3. Use blockchain node CLI (BitBadges addresses only)
 
 **Other Options:**

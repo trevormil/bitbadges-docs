@@ -2,8 +2,8 @@
 
 MsgCreateMap creates a map on-chain. We refer you to here for more information on each individual field.
 
-{% content-ref url="../../core-concepts/maps.md" %}
-[maps.md](../../core-concepts/maps.md)
+{% content-ref url="../../../core-concepts/maps.md" %}
+[maps.md](../../../core-concepts/maps.md)
 {% endcontent-ref %}
 
 ```typescript
