@@ -6,7 +6,7 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
--   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'Complete Claims,Read Address Lists')
+-   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
 -   Specify a `claimId` to display a specific claim to the user
 
 **"Attaching" a Claim**
@@ -27,7 +27,7 @@ interface CodeGenQueryParams {
     client_id: string; // Required: Your app's client ID
     redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
     state?: string; // Optional: Additional data passed to redirect
-    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'Complete Claims,Read Address Lists')
+    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readAddressLists')
 
     // Claim UI Options (optional)
     claimId?: string; // ID of required claim
@@ -52,7 +52,7 @@ interface CodeGenQueryParams {
 ### 2. Scopes
 
 -   This is only needed for authorized BitBadges API access. By default, you will verify address ownership with no scopes.
--   Format: `scope: 'Complete Claims,Read Address Lists'`
+-   Format: `scope: 'completeClaims,readAddressLists'`
 -   View all available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
 
 ### 3. Claims

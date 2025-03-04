@@ -8,7 +8,7 @@ By not including a sign-in requirement, this makes the user experience better (n
 
 If you are planning to auto complete claims behind the scenes via the API or via Zapier, note that you have two approaches.
 
-1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have "Complete Claims" scope
+1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have the Complete Claims ("completeClaims") scope.
 2. Disable + Gate In Another Way - For example, our Zapier flow does not check user sign in but gates with a password that only Zapier knows.
 
 <figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>

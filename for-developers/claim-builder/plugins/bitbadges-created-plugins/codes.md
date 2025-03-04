@@ -60,3 +60,15 @@ State is made public with a `usedCodeRanges` array. Code indices are zero-based.
     ]
 }
 ```
+
+### Custom Body Type
+
+The custom body type for the codes plugin requires a `code` string parameter in the request:
+
+```typescript
+type CustomBodyType = {
+    code: string;
+};
+```
+
+This code will be validated against the list of valid codes defined in the private parameters. The code must match exactly (case-sensitive) and must not have been previously used.

@@ -6,11 +6,23 @@ This plugin restricts access based on a password that must be provided by the cl
 
 ### Public Parameters
 
-* **None**
+-   **None**
 
 ### Private Parameters
 
-* **password**: The password required to successfully make a claim.
+-   **password**: The password required to successfully make a claim.
+
+### Custom Body Type
+
+The custom body type for the password plugin requires a `password` string parameter in the request:
+
+```typescript
+type CustomBodyType = {
+    password: string;
+};
+```
+
+This password will be validated against the password defined in the private parameters. The password must match exactly (case-sensitive).
 
 ### State
 
