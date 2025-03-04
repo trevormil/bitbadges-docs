@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Mar  2 14:34:57 UTC 2025
+Generated on Tue Mar  4 19:44:16 UTC 2025
 
 
 
@@ -4120,7 +4120,7 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
--   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'Complete Claims,Read Address Lists')
+-   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
 -   Specify a `claimId` to display a specific claim to the user
 
 **"Attaching" a Claim**
@@ -4141,7 +4141,7 @@ interface CodeGenQueryParams {
     client_id: string; // Required: Your app's client ID
     redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
     state?: string; // Optional: Additional data passed to redirect
-    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'Complete Claims,Read Address Lists')
+    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readAddressLists')
 
     // Claim UI Options (optional)
     claimId?: string; // ID of required claim
@@ -4166,7 +4166,7 @@ interface CodeGenQueryParams {
 ### 2. Scopes
 
 -   This is only needed for authorized BitBadges API access. By default, you will verify address ownership with no scopes.
--   Format: `scope: 'Complete Claims,Read Address Lists'`
+-   Format: `scope: 'completeClaims,readAddressLists'`
 -   View all available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
 
 ### 3. Claims
@@ -9392,7 +9392,7 @@ By not including a sign-in requirement, this makes the user experience better (n
 
 If you are planning to auto complete claims behind the scenes via the API or via Zapier, note that you have two approaches.
 
-1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have "Complete Claims" scope
+1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have the Complete Claims ("completeClaims") scope.
 2. Disable + Gate In Another Way - For example, our Zapier flow does not check user sign in but gates with a password that only Zapier knows.
 
 <figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
@@ -10463,6 +10463,18 @@ State is made public with a `usedCodeRanges` array. Code indices are zero-based.
 }
 ```
 
+### Custom Body Type
+
+The custom body type for the codes plugin requires a `code` string parameter in the request:
+
+```typescript
+type CustomBodyType = {
+    code: string;
+};
+```
+
+This code will be validated against the list of valid codes defined in the private parameters. The code must match exactly (case-sensitive) and must not have been previously used.
+
 
 ## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/discord-server.md
 
@@ -10865,11 +10877,23 @@ This plugin restricts access based on a password that must be provided by the cl
 
 ### Public Parameters
 
-* **None**
+-   **None**
 
 ### Private Parameters
 
-* **password**: The password required to successfully make a claim.
+-   **password**: The password required to successfully make a claim.
+
+### Custom Body Type
+
+The custom body type for the password plugin requires a `password` string parameter in the request:
+
+```typescript
+type CustomBodyType = {
+    password: string;
+};
+```
+
+This password will be validated against the password defined in the private parameters. The password must match exactly (case-sensitive).
 
 ### State
 
@@ -18958,7 +18982,7 @@ Note: The embedded wallet is its own address and needs to.be treated as such. It
 
 To sign transactions:
 
-1. You must be signed in to the BitBadges account of the main wallet with permission to use the embedded wallet (the Embedded Wallet scope). You can configure alternate sign in methods (socials or other addresses) via the Sign In Methods tab. Ensure the Embedded Wallet              scope is enabled.
+1. You must be signed in to the BitBadges account of the main wallet with permission to use the embedded wallet (the Embedded Wallet scope). You can configure alternate sign in methods (socials or other addresses) via the Sign In Methods tab. Ensure the Embedded Wallet scope is enabled.
 2. The desired transaction message types must be approved in the account settings before transacting.
 3. The wallet must have sufficient $BADGE credits.
 
