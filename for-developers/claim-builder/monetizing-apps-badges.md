@@ -48,8 +48,8 @@ However, there are a handful of cases where internal state logic may lead to rac
 
 These cases are rare but definitely possible and need to be accounted for. As a result of this, we have two ways that we can capture the Stripe payments: before or after claim completion with various tradeoffs.
 
-1. Capture Before: We capture after Step 1) and before Step 2). Thus, we know the claim should succeed in almost all cases, but if one of the race conditions happens, we need to refund the user.
-2. Capture After: We capture immediately after the claim has been completed (after Step 4). If it fails, we keep retrying. Note: In Step 1), we confirm the payment is ready to capture, so the capture is expected to succeed, unless in extreme circumstances like a card closure in those exact seconds. We have yet to see a case where this has failed. However, it still needs to be accounted for. You must be okay with the fact that in an edge case, a user can successfully claim without payment going through.
+1. Capture Before: We capture after Step 1) and before Step 2). Thus, we know the claim should succeed in almost all cases, but if one of the race conditions happens, we need to refund the user. You cover the Stripe fees in the refund.
+2. Capture After: We capture immediately after the claim has been completed (after Step 4). If it fails, we keep retrying. Note: In Step 1), we confirm the payment is ready to capture, so the capture is expected to succeed, unless in extreme circumstances like a card closure in those exact seconds. We have yet to see a case where this has failed. However, it still needs to be accounted for. You must be okay with the fact that in an edge case, a user can successfully claim without payment going through. We notify you if this ever occurs.
 
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
