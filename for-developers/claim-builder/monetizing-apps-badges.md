@@ -14,6 +14,10 @@ To setup a Stripe Connect account, go to the connected accounts section of the D
 
 Once setup, you can then get started creating claims with the Stripe Payment plugin. Users will be prompted to complete the checkout process before claiming.
 
+Note: Refunds are possible (learn more below). In the event of an auto-refund, the Stripe fees are not returned, and you make up the difference.
+
+To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
+
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
