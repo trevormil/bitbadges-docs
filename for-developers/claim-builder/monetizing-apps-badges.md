@@ -16,11 +16,9 @@ Once setup, you can then get started creating claims with the Stripe Payment plu
 
 Note: Refunds are possible (learn more below). In the event of an auto-refund, the Stripe fees are not returned, and you make up the difference.
 
-To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
+To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Payment Capture
 
