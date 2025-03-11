@@ -31,7 +31,7 @@ Since claims and Stripe are two separate services, we can either capture payment
 5. At the queue's final processing time, we rerun the claim's internal logic (state handling) to ensure it still passes and there are no race conditions. We reuse any external logic from Step 1.
    1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
 
-This process is often immediate, but the time ultimately goes at the speed of the queue.
+This process is often immediate (<1 second), but the time ultimately goes at the speed of the queue.
 
 #### Capture Before Claim
 
