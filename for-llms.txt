@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 11 21:16:50 UTC 2025
+Generated on Wed Mar 12 15:21:51 UTC 2025
 
 
 
@@ -3814,7 +3814,6 @@ And much more!
         * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
         * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
         * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-        * [Configuration Test URI](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/configuration-test-uri.md)
         * [User Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
         * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
         * [AI Prompts](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/ai-prompts.md)
@@ -10974,96 +10973,20 @@ For example,&#x20;
 * Auto-configure approved user addresses with the Address Restrictions plugin
 * Or any application can be implemented by issuing claim codes with the Codes plugin.
 
-These tools help automate the process of plugin  configuration for the creator automatically.
+```
+Note: This is a more advanced option and is not a great user experience. 
+This should only be used in select cases.
 
-<figure><img src="../../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
-
-Tools can be featured / highlighted, but we also leave them to be super generic. You can navigate to any tool URL for custom help.
-
-<figure><img src="../../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
-
-**E2E Examples - BitBadges Official Tools**
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-tools" %}
-
-**Implementation**
-
-From the site, we will redirect the user to your tool URL and expect a window.postMessage back. Please ensure the target origin is set to https://bitbadges.io for security concerns.
-
-For the time being, we only allow the **pluginId, publicParams, privateParams,** and **metadata** to be set. We also only allow tools to be used when creating a plugin, not updating existing ones. **instanceId** will be set for you, and a default blank state will be used.
-
-All should obey the respective schemas. Unknown fields will be ignored.
-
-We will pass along certain contextual information such as claimId via the URL query parameters.
-
-```tsx
-import { ClaimIntegrationPrivateParamsType, ClaimIntegrationPublicParamsType } from 'bitbadgesjs-sdk';
-
-function PluginTestScreen() {
-  const router = useRouter();
-  const { context } = router.query;
-
-  let claimContext = undefined;
-  try {
-    claimContext = JSON.parse(context?.toString() || '');
-  } catch (e) {
-    console.error('Error parsing context', e);
-  }
-  const claimId = claimContext?.claimId
-  
-  ...
-
-  return (
-    <div className="flex-center">
-      <button
-        onClick={async () => {
-          if (window.opener) {
-            window.opener.postMessage(
-              {
-                pluginId: 'email',
-                publicParams: {} as ClaimIntegrationPublicParamsType<'email'>,
-                privateParams: {
-                  ids: ['test@test.com']
-                } as ClaimIntegrationPrivateParamsType<'email'>,
-                version: '0', //version of the plugin to use
-                metadata: { name: '', description: '' } //optional
-              },
-              'https://bitbadges.io'
-            );
-            window.close();
-          }
-        }}>
-        Submit
-      </button>
-    </div>
-  );
-}
-
-export default PluginTestScreen;
-
+Please create custom plugins for better UX.
 ```
 
-**Testing**
+Simply prompt the user to add the copy / paste the stringified JSON to the Configuration Tools tab on the claim builder.
 
-When creating a claim, you should see an input box for a custom tool URL. Enter your URL there and test it out! This supports localhost URLs because it is in your browser.
-
-Or, for more rapid development, enter the tool JSON you pass back via postMessage manually here. This is nice because you do not have to use a deployed production version of your tool every time.&#x20;
-
-If you just want a test environment, use the Test Claims tab in the developer portal.
+<figure><img src="../../../.gitbook/assets/image (214).png" alt=""><figcaption></figcaption></figure>
 
 ```json
 {"pluginId":"codes","publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
 ```
-
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Publishing / Featuring**
-
-Create a pull request to this repository with your tool and its information. If you want us to feature it directly in-site, let us know!
-
-If your tool is for your custom plugin, add the URL under the claim creator section, and it will be displayed to users when they are attempting to use the plugin.
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-tutorials/tree/main" %}
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md
@@ -11620,43 +11543,6 @@ export default handlePlugin;
 </code></pre>
 
 
-## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/configuration-test-uri.md
-
-# Configuration Test URI
-
-Optionally, you can configure a URI that we call before allowing the claim creator to add the plugin to their claim. This is a helper URI and is used by our frontend to catch errors early and improve creator experience.
-
-<figure><img src="../../../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
-
-The URI can be configured when creating your plugin under the Tester URI input.
-
-<figure><img src="../../../../../.gitbook/assets/image (177).png" alt=""><figcaption></figcaption></figure>
-
-We expect a success: true if the user is allowed to proceed (but you can also provide a message for the user to double check or take additional action). If success: false, we do not allow them to add the plugin until a test succeeds.
-
-```
-200 OK - { success: true, message: 'Success. We have found records for ...'  } 
-Non-200 BAD - { success: false, message: 'Please fix formatting for this parameter' }
-```
-
-Similar to the implementation of the plugin itself, we will provide the pluginSecret to allow you to verify that requests are coming from BitBadges.  We also provide the creator inputted parameters for you directly in the body to perform validation on. Only POST is supported for now.
-
-The rest is left up to you. Your logic can do as little as you want or as much as you want. It can range from a simple type check to fully executing API logic and checking everything you need.
-
-```typescript
-const testerResponse = await axios.post(testerUri, {
-    _isTester: true,
-    publicParams,
-    privateParams,
-    pluginId,
-    version,
-    pluginSecret: plugin.pluginSecret
-});
-```
-
-Note: This is just a frontend helper option to improve user experience but is not a replacement for proper logic implementation and schema validation on your end.
-
-
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/custom-input-frontends-advanced.md
 
 # User Input Redirects
@@ -11951,17 +11837,11 @@ When creating the plugin, configure the expected schemas. We will prompt the use
 
 <figure><img src="../../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
-**Option 2: Build a Custom Inputs Frontend**
+**Option 2: Build a Custom Frontend**
 
-Consider creating your own frontend that the user will be redirected to. You will pass the parameters back to BitBadges through browser communication. Get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
+Consider creating your own frontend that the user will be redirected to via the redirect URL.You will need to combine approaches. This typically follows a code approach. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site -> use the code for whatever.
 
-For user inputs, see here:
-
-{% content-ref url="custom-input-frontends-advanced.md" %}
-[custom-input-frontends-advanced.md](custom-input-frontends-advanced.md)
-{% endcontent-ref %}
-
-For creator inputs, see configuration tools which automatically for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
+Note: For creator inputs, you can also use configuration tools which automatically populate for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
 
 {% content-ref url="../../configuration-tools.md" %}
 [configuration-tools.md](../../configuration-tools.md)
