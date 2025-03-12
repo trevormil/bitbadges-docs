@@ -14,17 +14,11 @@ When creating the plugin, configure the expected schemas. We will prompt the use
 
 <figure><img src="../../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
-**Option 2: Build a Custom Inputs Frontend**
+**Option 2: Build a Custom Frontend**
 
-Consider creating your own frontend that the user will be redirected to. You will pass the parameters back to BitBadges through browser communication. Get creative and combine approaches. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site.
+Consider creating your own frontend that the user will be redirected to via the redirect URL.You will need to combine approaches. This typically follows a code approach. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site -> use the code for whatever.
 
-For user inputs, see here:
-
-{% content-ref url="custom-input-frontends-advanced.md" %}
-[custom-input-frontends-advanced.md](custom-input-frontends-advanced.md)
-{% endcontent-ref %}
-
-For creator inputs, see configuration tools which automatically for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
+Note: For creator inputs, you can also use configuration tools which automatically populate for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
 
 {% content-ref url="../../configuration-tools.md" %}
 [configuration-tools.md](../../configuration-tools.md)

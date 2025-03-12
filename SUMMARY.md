@@ -169,7 +169,6 @@
         * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
         * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
         * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-        * [Configuration Test URI](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/configuration-test-uri.md)
         * [User Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
         * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
         * [AI Prompts](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/ai-prompts.md)
