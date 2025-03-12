@@ -1,4 +1,4 @@
-# User Inputs
+# Custom Inputs
 
 ### Handling User / Creator Inputs
 
@@ -8,21 +8,15 @@ If your plugin requires inputs from the claiming user or claim creator, you can 
 
 Note to be compatible with Zapier (and possibly API auto-claiming) or on-demand claims, user inputs are typically not allowed (because the user is not manually initiating anything).&#x20;
 
-**Option 1: In-Site**
+**Option 1: Completely In-Site**
 
 When creating the plugin, configure the expected schemas. We will prompt the users / creators to enter such information in-site via a form. All outsourced to BitBadges.
 
 <figure><img src="../../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
-**Option 2: Build a Custom Frontend**
+**Option 2: Custom Frontend**
 
 Consider creating your own frontend that the user will be redirected to via the redirect URL.You will need to combine approaches. This typically follows a code approach. For example, handle secure stuff on your end -> grant an authorization / claim code -> have user add it directly in the site -> use the code for whatever.
-
-Note: For creator inputs, you can also use configuration tools which automatically populate for the claim creator (e.g. auto-populate emails from a specific service). See the bitbadges/bitbadges-tools repository on Github.
-
-{% content-ref url="../../configuration-tools.md" %}
-[configuration-tools.md](../../configuration-tools.md)
-{% endcontent-ref %}
 
 **Supported Schema Types**
 
