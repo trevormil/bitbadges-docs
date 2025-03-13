@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 12 18:03:48 UTC 2025
+Generated on Thu Mar 13 12:26:39 UTC 2025
 
 
 
@@ -11340,13 +11340,11 @@ NOTE: Catching simulations is important.
 You do not want to execute success logic on a dry run.
 ```
 
-We allow users to simulate claims as a dry run before they actually submit for real. The scope of the dry run is left up to you, but we recommend as a rule of thumb is that if the user successfully simulates, they are expected to always pass at execution time.
+We allow users to simulate claims as a dry run before they actually submit for real. The BitBadges site will always simulate once before submitting, but you should not depend on every claim attempt having a prior simulation.
+
+The scope of the dry run is left up to you, but we recommend as a rule of thumb is that if the user successfully simulates, they are expected to always pass at execution time.
 
 To determine whether you are receiving a simulation hook or a "for real" hook, you can use the \_isSimulation flag that is passed. The claimAttemptId will also be empty, but the rest of the payload should remain the same.
-
-For building scalable plugins, we also recommend implementing some sort of caching mechanisms to avoid double processing your logic (cache at simulation time and reuse at actual time).
-
-Simulations done via the simulate endpoint rather than the complete claim API endpoint. The BitBadges site will always simulate once before submitting, but you should not depend on every claim attempt having a prior simulation.
 
 It is not recommended, but you can select to not receive simulation hooks at all in the usage settings when creating your plugin in the developer portal.
 
