@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Mar 14 13:25:37 UTC 2025
+Generated on Fri Mar 14 13:44:53 UTC 2025
 
 
 
@@ -17446,7 +17446,7 @@ This is great for services like newsletters, custom services, and much more! If 
 Gating your website is similar to URLs, but you will need authentication on your end.
 
 1. Create a claim (see above or tutorials)
-2. Implement Sign In with BitBadges on your website
+2. Implement Sign In with BitBadges on your website or use our WordPress plugin for a no-code solution
 3. On the authorize page, you can prompt users to send you private attestations, complete claims, check badge ownership, or any other criteria you want to gate access to. All in one flow!
 4. On your end, you simply can check this all in one flow (e.g. claim success, authentication, any other criteria)
 
