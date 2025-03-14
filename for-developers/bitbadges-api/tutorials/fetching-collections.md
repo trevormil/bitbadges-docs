@@ -2,8 +2,7 @@
 
 This guide explains how to fetch collection data from the BitBadges API. Collections contain badge metadata, ownership information, and other details.
 
-See the [BitBadges API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) for more details on the API side.
-See the [BitBadges SDK Documentation](../../bitbadges-sdk/) for more details on the SDK side.
+See the [BitBadges API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) for more details on the API side. See the [BitBadges SDK Documentation](../../bitbadges-sdk/) for more details on the SDK side.
 
 ## Basic Collection Fetching
 

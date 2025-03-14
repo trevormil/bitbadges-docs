@@ -1,7 +1,6 @@
 # 👨‍💻 Contributing
 
-The code for BitBadges can be found at [https://github.com/bitbadges](https://github.com/bitbadges).
-Our plan is to go fully open-source in the future, but for now, certain parts of the code are not open-source.
+The code for BitBadges can be found at [https://github.com/bitbadges](https://github.com/bitbadges). Our plan is to go fully open-source in the future, but for now, certain parts of the code are not open-source.
 
 **Building On Top Of BitBadges**
 

@@ -19,9 +19,9 @@ const firstRequest = {
 ```
 
 2. **Response Structure**: Each paginated response includes:
-    - The requested data
-    - A `bookmark` string for the next page
-    - A `hasMore` boolean indicating if more data exists
+   * The requested data
+   * A `bookmark` string for the next page
+   * A `hasMore` boolean indicating if more data exists
 
 ```typescript
 {
@@ -52,8 +52,7 @@ const nextRequest = {
 
 ## Understanding the Views Object
 
-The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces
-(BitBadgesCollection, BitBadgesAddressList, BitBadgesUserInfo, etc). It follows this structure:
+The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesAddressList, BitBadgesUserInfo, etc). It follows this structure:
 
 ```typescript
 views: {
@@ -94,19 +93,19 @@ Different interfaces support different view types. See the corresponding documen
 
 #### Collections Interface
 
--   `owners`: List of badge owners
--   `activity`: Transfer activity
--   `approvalTrackers`: Approval tracking documents
+* `owners`: List of badge owners
+* `activity`: Transfer activity
+* `approvalTrackers`: Approval tracking documents
 
 See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/CollectionViewKey.html)
 
 #### Account Interface
 
--   `transferActivity`: User's transfer history
--   `badgesCollected`: Badges owned by the user
--   `createdBadges`: Collections created by the user
--   `managingBadges`: Collections being managed
--   `allLists`: Address lists the user is on
+* `transferActivity`: User's transfer history
+* `badgesCollected`: Badges owned by the user
+* `createdBadges`: Collections created by the user
+* `managingBadges`: Collections being managed
+* `allLists`: Address lists the user is on
 
 See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
 

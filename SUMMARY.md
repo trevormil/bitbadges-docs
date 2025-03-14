@@ -227,6 +227,7 @@
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
+    * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
     * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
