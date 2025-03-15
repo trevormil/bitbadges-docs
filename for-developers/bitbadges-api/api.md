@@ -1,4 +1,4 @@
-# API
+# Getting Started
 
 ## Getting Started - API Keys
 
@@ -16,15 +16,15 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 ## Number Types / Stringified Responses
 
-All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX_SAFE_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
+All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
-## Routes Documentation
+## Reference
 
--   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
--   [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share&creator=11647629)
--   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
+* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
 
 In this documentation, we often use the SDK format for explanation purposes
 
@@ -117,8 +117,6 @@ Note this approach leverages HTTP session cookies as opposed to access tokens. M
 
 ## Confined Responses
 
-**IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need. The [Tutorials](tutorials/) and [Concepts](concepts/) will be extremely beneficial to help you deal with this.
-
 ### Bookmarking
 
 Throughout the API, we use a bookmark technique. For the first request, you will not need to specify a bookmark (e.g. ""), and it will fetch the first page. Within the response, it will return a **bookmark** and **hasMore**. **hasMore** defines whether there are more pages to be fetched. To fetch the next page, you will specify the returned bookmark from the previous request to the next request. This process can be repeated until all are loaded.
@@ -146,9 +144,3 @@ export interface ErrorResponse {
     unauthorized?: boolean;
 }
 ```
-
-## Tutorials
-
-{% content-ref url="tutorials/" %}
-[tutorials](tutorials/)
-{% endcontent-ref %}
