@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Mar 14 16:06:52 UTC 2025
+Generated on Sat Mar 15 18:31:12 UTC 2025
 
 
 
@@ -3527,6 +3527,8 @@ description: >-
 
 # 👋 BitBadges Overview
 
+
+
 <figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
 
 ## Overview
@@ -3538,7 +3540,9 @@ BitBadges can be simply thought of in two parts.&#x20;
 1. Criteria Checking: Let us do the heavy lifting of checking the criteria through multi-chain authentication, criteria checks from 7000+ apps, multi-chain badges, points, address lists, and much more!
 2. Utility - Seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
 
-<figure><img src=".gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
+By checking any criteria and delivering any reward, you can gate anything!
+
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to a universal multi-chain authentication standard to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -3550,7 +3554,9 @@ This applies to not only our token standard but everything we do. We have built 
 
 No longer do you need to support multiple interfaces for each blockchain ecosystem you want to support. For example, you can authenticate users from Cosmos, Solana, Bitcoin, and Ethereum all with the same interface. All users can own the SAME badges, use the SAME protocols, and so on. Before BitBadges, building multi-chain applications was a nightmare due to having to support all the various interfaces, protocols, and more for each blockchain ecosystem. Now, it is all in one place.
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
+
+## Our Services
 
 ### Badges
 
@@ -3594,7 +3600,7 @@ This comprehensive approach to authentication works both digitally and in-person
 1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
 2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification. Export the QR codes to formats like Apple Wallet or any prefererd format.
 
-<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### BitBadges Claims
 
@@ -3624,18 +3630,18 @@ The BitBadges token (badge) standard is state-of-the-art compared to existing to
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
-* [**Time-Based Balances**](overview/how-it-works/badge-concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
-* [**Off-Chain Balances:**](overview/how-it-works/badge-concepts/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
-* [**Fine-Grained Transferability and Approvals Customization**](overview/how-it-works/badge-concepts/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
+* [**Time-Based Balances**](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
+* [**Off-Chain Balances:**](overview/learn-the-basics/badge-concepts/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
+* [**Fine-Grained Transferability and Approvals Customization**](overview/learn-the-basics/badge-concepts/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
-  * [**Must Own Badges:** ](overview/how-it-works/badge-concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
-  * [**Fine-Grained Approvals:** ](overview/how-it-works/badge-concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-  * [**Incoming Approvals:** ](overview/how-it-works/badge-concepts/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+  * [**Must Own Badges:** ](overview/learn-the-basics/badge-concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
+  * [**Fine-Grained Approvals:** ](overview/learn-the-basics/badge-concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
+  * [**Incoming Approvals:** ](overview/learn-the-basics/badge-concepts/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
-* [**Customizable Permissions**](overview/how-it-works/badge-concepts/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](overview/learn-the-basics/badge-concepts/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
 * [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
-* [**Batch Transfers**](overview/how-it-works/badge-concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
 And much more!
@@ -3648,32 +3654,29 @@ And much more!
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [🔨 Getting Started](overview/getting-started/README.md)
-  * [Creating](overview/getting-started/creating-items.md)
-  * [Exploring](overview/getting-started/exploring-claiming.md)
-* [🔐 How Do I Gate XYZ?](overview/how-do-i-gate-xyz.md)
+* [👨‍💻 Learn the Basics](overview/learn-the-basics/README.md)
+  * [BitBadges Claims](overview/learn-the-basics/distribution.md)
+  * [Multi-Chain Accounts](overview/learn-the-basics/accounts.md)
+  * [Sign In with BitBadges](overview/learn-the-basics/verification-tools.md)
+  * [Badges](overview/learn-the-basics/badges.md)
+  * [Address Lists](overview/learn-the-basics/address-lists.md)
+  * [Attestations](overview/learn-the-basics/attestations.md)
+  * [Applications (Points)](overview/learn-the-basics/applications-points.md)
+  * [Additional Badge Concepts](overview/learn-the-basics/badge-concepts/README.md)
+    * [Manager](overview/learn-the-basics/badge-concepts/manager.md)
+    * [Total Supplys](overview/learn-the-basics/badge-concepts/total-supplys.md)
+    * [Time-Dependent Ownership](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)
+    * [Balances Types](overview/learn-the-basics/badge-concepts/balances-types.md)
+    * [Transferability](overview/learn-the-basics/badge-concepts/transferability.md)
+    * [Standards](overview/learn-the-basics/badge-concepts/standards.md)
+* [🔨 Getting Started](overview/getting-started.md)
+* [🔐 How Do I ...?](overview/how-do-i-gate-xyz.md)
 * [🎒 Tutorials](overview/tutorials/README.md)
   * [Create Your First Claim](overview/tutorials/create-your-first-claim.md)
   * [Gate a URL](overview/tutorials/gate-a-url.md)
   * [Create Proof of Purchase Badge w/ Zapier](overview/tutorials/create-proof-of-purchase-badge-w-zapier.md)
 * [🪄 AI Resources](overview/ai-resources.md)
 * [🎨 Use Cases](overview/use-cases.md)
-* [🧠 Concepts](overview/how-it-works/README.md)
-  * [Multi-Chain Accounts](overview/how-it-works/accounts.md)
-  * [BitBadges Claims](overview/how-it-works/distribution.md)
-  * [Applications (Points, Tiers, Quests)](overview/how-it-works/applications-points-tiers-quests.md)
-  * [Sign In with BitBadges](overview/how-it-works/verification-tools.md)
-  * [Badges vs Lists](overview/how-it-works/badges-vs-address-lists.md)
-  * [Protocols](overview/how-it-works/protocols.md)
-  * [Attestations](overview/how-it-works/verifiable-attestations.md)
-  * [Badge Concepts](overview/how-it-works/badge-concepts/README.md)
-    * [Manager](overview/how-it-works/badge-concepts/manager.md)
-    * [Total Supplys](overview/how-it-works/badge-concepts/total-supplys.md)
-    * [Time-Dependent Ownership](overview/how-it-works/badge-concepts/time-dependent-ownership.md)
-    * [Balances Types](overview/how-it-works/badge-concepts/balances-types.md)
-    * [Transferability](overview/how-it-works/badge-concepts/transferability.md)
-    * [Standards](overview/how-it-works/badge-concepts/standards.md)
-    * [Aliases](overview/how-it-works/badge-concepts/aliases.md)
 * [🔗 Official Links](overview/official-links.md)
 * [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
 * [🪙 Launch Phases](overview/launch-phases.md)
@@ -3682,6 +3685,7 @@ And much more!
   * [📱 Alternate Sign Ins / Mobile](overview/wallets-and-sign-ins/mobile-support.md)
   * [Approved Transactors](overview/wallets-and-sign-ins/approved-transactors.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
+  * [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
   * [MetaMask Snap](overview/ecosystem/metamask-snap.md)
   * [Browser Extensions](overview/ecosystem/chrome-extension.md)
   * [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
@@ -3764,6 +3768,30 @@ And much more!
     * [Designing for Compatibility](for-developers/bitbadges-api/concepts/designing-for-compatibility.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
   * [Use via Pipedream](for-developers/bitbadges-api/use-via-pipedream.md)
+* [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
+  * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+  * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
+  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+  * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
+  * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
+    * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
+    * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
+    * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
+    * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
+    * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
+  * [What If I Need Wallets On App Side?](for-developers/authenticating-with-bitbadges/hybrid-dapps.md)
+  * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
+    * [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/overview.md)
+    * [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
+  * [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)
+    * [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
+    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
+  * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
+    * [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
+    * [Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
+    * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
+    * [Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
+  * [Blockin Docs](https://blockin.gitbook.io/blockin)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
   * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
@@ -3866,30 +3894,6 @@ And much more!
   * [Examples / Tutorials](for-developers/self-hosted-balances/examples-tutorials/README.md)
     * [Indexed](for-developers/self-hosted-balances/examples-tutorials/indexed.md)
     * [Non-Indexed](for-developers/self-hosted-balances/examples-tutorials/non-indexed.md)
-* [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
-  * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
-  * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
-  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-  * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
-  * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
-    * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
-    * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
-    * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
-    * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
-    * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
-  * [What If I Need Wallets On App Side?](for-developers/authenticating-with-bitbadges/hybrid-dapps.md)
-  * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
-    * [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/overview.md)
-    * [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
-  * [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)
-    * [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
-    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
-  * [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
-    * [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
-    * [Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
-    * [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
-    * [Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
-  * [Blockin Docs](https://blockin.gitbook.io/blockin)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
@@ -3942,7 +3946,7 @@ And much more!
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
@@ -4015,9 +4019,9 @@ Cons: No backend server which means no session handling, custom functionality, a
 
 
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/approaches/README.md
@@ -4044,7 +4048,7 @@ Note: The QR codes we use are one time "exchange" only. If you need more functio
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account, rather than being transmitted to the redirect URI. See the [Generating the URL](../authentication-url-+-parameters/generating-the-url.md) section for more details.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (4).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (5).png" alt="" width="539"><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md
@@ -4072,7 +4076,7 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
@@ -4279,11 +4283,11 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
@@ -4341,7 +4345,7 @@ function(accessToken, ctx, cb) {
 
 **Custom Headers:** None
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
 
@@ -4384,7 +4388,7 @@ Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadge
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 ### Installation
 
@@ -4451,9 +4455,9 @@ However, if your app already uses wallets, you can still use SIWBB.  The flow is
 
 Note: If you do have wallets and implement authentication on your end, SIWBB may be overkill as there are alternatives like using claim directly or checking other criteria behind the scenes without this step.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -4511,7 +4515,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 
 Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Revoking Access**
 
@@ -4638,7 +4642,7 @@ Note this is not the only way of implementing sessions. You may implement custom
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
@@ -6059,19 +6063,19 @@ const ownersView = collection.getOwnersView('owners');
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Lastly, complete the form, selecting your newly created API key. Enter your email, enter promo code (if applicable), and complete the rest of the form.
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
 
@@ -6942,7 +6946,7 @@ If you want to instantiate it with funds. the **funds** property will be in the 
 
 Your contract is now deployed on the blockchain and ready to be interacted with.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Step 3: Interacting with the Contract**
 
@@ -7294,7 +7298,7 @@ useEffect(() => {
 }, []);
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
@@ -7802,7 +7806,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (3).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -8846,7 +8850,7 @@ We want to note that functionality is slightly different for badges with on-chai
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create the Claim
 
@@ -8864,7 +8868,7 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
@@ -9125,7 +9129,7 @@ const bitbadgesAddress = convertToBitBadgesAddress(...);
 const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/bitbadges-api-claims/README.md
@@ -9155,13 +9159,13 @@ You may even often have multi-level flows. For example, use one claim to gate ba
 
 One important thing to consider is that utility completion and the claim are often separate actions that, if misconfigured, may not be aligned correctly. For example, the eventual on-chain badge transfer transaction depends on a successful claim, but there may be a case if misconfigured that the claim can be completed but the transaction cannot.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -9198,7 +9202,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -9281,7 +9285,7 @@ For claims that gate badge distribution, you may want to evaluate the tradeoff o
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/standard-vs-on-demand.md
@@ -9295,7 +9299,7 @@ Claims, at their core, are just criteria checks, but there are two ways we can c
 * Can maintain statefulness
 * Ledger of users who have claimed
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The second is on-demand (sometimes described as non-indexed). These are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.
 
@@ -9310,7 +9314,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/configuring-plugins.md
@@ -9436,7 +9440,7 @@ When creating your claims, look for the respecitve plugins for your store type
 
 Then select, use dynamic store and it should walk you through the process of selecting it. When a claim is attempted, we will fetch the latest data for the store and compare against that to determine success or not.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/dynamic-stores/creating-a-store.md
@@ -9531,7 +9535,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may need additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -9663,7 +9667,7 @@ With user authentication, you will need your users to go through the Pipedream C
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
 
@@ -9755,7 +9759,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -9770,11 +9774,11 @@ Below, we will explain at a high level and will skip over some lower level detai
    1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
 4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. The workflow setup is now complete. The workflow will be triggered upon the HTTP request. It will then use the provided `external_user_id`and execute the claim criteria checks from your configured apps and finally, it will complete a BitBadges claim or add to a dynamic store as the final action properly gating the claim.
 
@@ -9878,7 +9882,7 @@ export default defineComponent({
  ...
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -9948,7 +9952,7 @@ This is the approach we use for automation workflows. We remove any sign in requ
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import { axios } from "@pipedream/platform";
@@ -10141,7 +10145,7 @@ If your use case requires monetization (such as memberships or recurring payment
 
 Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Setting Up Your Account
 
@@ -10155,7 +10159,7 @@ Note: Refunds are possible (learn more below). In the event of an auto-refund, t
 
 To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Payment Capture
 
@@ -10249,7 +10253,7 @@ To get your discord server ID, this can be done by right clicking on the  server
 
 # Get Discord User ID
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md
@@ -10271,7 +10275,7 @@ The best way to get started with a tutorial is to use the Claim Tester in-site, 
 
 If you need to see the resulting claim JSON (for advanced implementations), you can also see this in-site under the JSON tab of the claim details.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -10304,7 +10308,7 @@ Claims are made up of one or more plugins executed in order. For a claim to be s
 
 Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -11065,7 +11069,7 @@ Webhooks can also be sent to tools like Zapier, enabling you to create complex c
 
 If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
 
@@ -11119,7 +11123,7 @@ export default handlePlugin
 
 <figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/do-you-need-a-custom-plugin.md
@@ -11216,13 +11220,13 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
 This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you.
 
-<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Numbers Preset**
 
@@ -11350,7 +11354,7 @@ Give your authenticated user (the claiming user) a unique value (such as an auth
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more). Note that claims may take a couple minutes for the user to complete the process, so a 30 second expiration time, for example, may be too low.
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Snapshots vs Dynamic Requests**
 
@@ -11372,7 +11376,7 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 You will have to enter a handler URI (can be changed later). You can setup a simple HTTP API handler beforehand, or for testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Published vs Private**
 
@@ -11392,7 +11396,7 @@ BitBadges sends two types of hooks (during processing hooks and success hooks- a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -11524,7 +11528,7 @@ In the creation / update interface, there will be a Send Test Request button whi
 
 The easiest way to test your plugin integration with BitBadges is with the Claim Tester tab in the developer portal. This is the only place you will be able to test unfinalized versions of your plugin.
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After your plugin has been created (does not have to be published):
 
@@ -11564,7 +11568,7 @@ We also allow users to simulate (dry run) their claim attempts. Plugins are expe
 * Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 
@@ -11576,7 +11580,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
@@ -11647,7 +11651,7 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -11657,9 +11661,9 @@ If you have a large number of codes, consider using the Copy Seed Code button un
 
 Using a configuration tool would take this step out for the claim creator.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 
@@ -11730,9 +11734,9 @@ IMPORTANT: While we do our best to maintain the well-formedness and verification
 
 You should also note that we simply provide you with the attestation. Treat BitBadges as the middleman. All custom checks like the content of the messages, issuer is correct, etc.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/success-logic.md
@@ -12362,19 +12366,8 @@ Let us know if you have another idea, are having trouble, or how we can help. We
 
 ## File: ./for-developers/core-concepts/README.md
 
-# 🧠 Core Concepts
+# 🧠 Concepts
 
-Before developing with BitBadges, we strongly recommend you read through the pages in this section to understand the behind the scenes of BitBadges.
-
-Also if you haven't already, read the [How It Works](../../overview/how-it-works/) section for understanding the core concepts of badges and badge collections. &#x20;
-
-This section also assumes you have a basic understanding of blockchains and [Cosmos SDK](https://docs.cosmos.network/main). We will do our best to explain where there is a possibility for confusion.
-
-**Can't find what you are looking for?**
-
-Although we try to provide in-depth tutorials and examples in this documentation, we may have not covered everything, or some things may be confusing. Feel free to check out the source code directly at [https://github.com/bitbadges](https://github.com/bitbadges). The BitBadges website and indexer / API code has implemented and used everything outlined in this section.&#x20;
-
-If you do come across something not in the docs or something could be improved, it would be greatly appreciated if you could contact us to get it added or create a [tutorial](../tutorials.md)!
 
 
 ## File: ./for-developers/core-concepts/address-lists-lists.md
@@ -12849,7 +12842,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (8).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/core-concepts/balances-transfers/approval-criteria/overview.md
@@ -13511,11 +13504,11 @@ Sample Transfer Msg
 
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/how-it-works/badge-concepts/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/learn-the-basics/badge-concepts/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Non-Public
 
@@ -13533,10 +13526,10 @@ We do give the option to make balances non-public. This can either mean you want
 
 With standard balances, everything is facilitated on-chain in a decentralized manner. All balances are stored on the blockchain, and everything is facilitated through on-chain transfers and approvals. All transfers require sufficient balances and valid approvals for the collection, sender, and recipient.
 
--   All transfers must specify the collection approvals, sender's outgoing approvals, and recipient's incoming approvals. The collection approvals are managed by the manager and can optionally override the user-level approvals.
--   The "Mint" address has unlimited balances, can only send badges, not receive them. The circulating supply will live out according to the permissions, approvals, and transfers of the collection from the Mint address.
--   Thus, the circulating supply will be restricted by transfers / approvals from the Mint address. You can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria/).
--   Permissions are also settable to control the updatability of approvals (whether approvals are frozen or editable).
+* All transfers must specify the collection approvals, sender's outgoing approvals, and recipient's incoming approvals. The collection approvals are managed by the manager and can optionally override the user-level approvals.
+* The "Mint" address has unlimited balances, can only send badges, not receive them. The circulating supply will live out according to the permissions, approvals, and transfers of the collection from the Mint address.
+* Thus, the circulating supply will be restricted by transfers / approvals from the Mint address. You can customize the transferability according to the collection's approvals as explained in [Approvals](transferability-approvals.md) and [Approval Criteria](approval-criteria/).
+* Permissions are also settable to control the updatability of approvals (whether approvals are frozen or editable).
 
 ## Off-Chain
 
@@ -13565,20 +13558,20 @@ With off-chain balances, you sacrifice decentralization and on-chain transfers f
 
 #### Benefits
 
--   **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the core collection details need to be created / updated on-chain, and future balance updates do not require blockchain transactions (assuming the URI does not change).
--   **Non-Blockchain Data and Tools**: Balances can be customized easier using non-blockchain tools and data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc). Or, you can access your private databases to assign badges dynamically.
--   **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
--   **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
--   **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
+* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the core collection details need to be created / updated on-chain, and future balance updates do not require blockchain transactions (assuming the URI does not change).
+* **Non-Blockchain Data and Tools**: Balances can be customized easier using non-blockchain tools and data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc). Or, you can access your private databases to assign badges dynamically.
+* **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
+* **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
+* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
 
--   **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE, and claims) is not supported. Everything is implemented off-chain in a custom manner.
--   **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS). Or, you can add additional checks against a malicious entity such as proving zkTLS data.
--   **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain (if at all), there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
-    -   Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
-    -   Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
+* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
+  since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE, and claims) is not supported. Everything is implemented off-chain in a custom manner.
+* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS). Or, you can add additional checks against a malicious entity such as proving zkTLS data.
+* **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain (if at all), there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
+  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
+  * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
 
 #### Suitability of Off-Chain Balances
 
@@ -13591,10 +13584,10 @@ We envision collections adopting off-chain balances if they align with one of th
 
 Compared to traditional client-server non-blockchain based solutions, badge collections with off-chain balances offer numerous advantages, including:
 
--   **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
--   **Seamless Integration**: Integration with the complete suite of BitBadges tools.
--   **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
--   **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
+* **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
+* **Seamless Integration**: Integration with the complete suite of BitBadges tools.
+* **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
+* **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
 
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
 
@@ -13636,10 +13629,10 @@ Off-chain balances can either be indexed or non-indexed. Note that we use non-in
 
 The differences are as follows:
 
--   Indexed balances have a total verifiable supply. Non-indexed does not.
--   At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time we need them with heavy caching.
--   For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the currently fetched balances at any given time.
--   Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
+* Indexed balances have a total verifiable supply. Non-indexed does not.
+* At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time we need them with heavy caching.
+* For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the currently fetched balances at any given time.
+* Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
 Technically speaking, the difference is that non-indexed balances are queried on a per-address basis and only return one balance at a time. Indexed balances return the **entire** list of owners via a JSON map when queried.
 
@@ -13652,13 +13645,13 @@ There are two options when creating off-chain balances: "Off-Chain - Indexed" an
 
 For indexed balances, indexers are expected to do and know the following:
 
--   Keep track of ALL owners and their balances at any given time
--   Create a ledger of activity for any balance updates
+* Keep track of ALL owners and their balances at any given time
+* Create a ledger of activity for any balance updates
 
 We do this by the following:
 
--   There is no enforceable total supply since everything is managed off-chain. The valid badge ID range is still specified on-chain.
--   Each balances query will return a map of ALL balances for the collection. This is done via a JSON of user -> balance definitions. See below.
+* There is no enforceable total supply since everything is managed off-chain. The valid badge ID range is still specified on-chain.
+* Each balances query will return a map of ALL balances for the collection. This is done via a JSON of user -> balance definitions. See below.
 
 **What format should the balances be in?**
 
@@ -13704,7 +13697,7 @@ app.get('/api/v0/airdrop/balances', async (req, res) => {
 });
 ```
 
-This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API_URL/api/v0/airdrop/balances)/
+This dynamically updates what balances are returned from the URL based on who has received an airdrop or not (using a private airdrop database). This is all done off-chain, meaning balances are updated without a blockchain transaction (i.e. the on-chain URL stays the same as API\_URL/api/v0/airdrop/balances)/
 
 ### Off-Chain - Non-Indexed (On-Demand)
 
@@ -13915,9 +13908,9 @@ During creation and update transaction ([MsgCreateCollection](../../bitbadges-bl
 
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../../overview/how-it-works/badge-concepts/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](../../../overview/learn-the-basics/badge-concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/how-it-works/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn-the-basics/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
@@ -15078,9 +15071,9 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 
 # Overview
 
-First, read [Permissions](../../../overview/how-it-works/badge-concepts/manager.md) for an overview.
+First, read [Permissions](../../../overview/learn-the-basics/badge-concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/how-it-works/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/learn-the-basics/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -15133,7 +15126,7 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
@@ -15805,7 +15798,7 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## List of Standards
 
-See [here](../../overview/how-it-works/badge-concepts/standards.md).
+See [here](../../overview/learn-the-basics/badge-concepts/standards.md).
 
 
 ## File: ./for-developers/core-concepts/verifiable-attestations/README.md
@@ -16934,7 +16927,7 @@ A high-level overview is:
 2. The user will be walked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI via the query parameters `code` and `state`.
 3. The redirect URI can then fetch the details from the API using the transmitted code with knowledge of the configured app's client secret.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generating the URL**
 
@@ -16985,7 +16978,7 @@ Outsource the heavy lifting of authentication to us, allowing you to focus on yo
 
 <figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
@@ -17063,7 +17056,7 @@ Note: SIWBB is fully OAuth 2.0 compatible and works with standard OAuth framewor
 * Register at [https://btibadges.io/developer](https://btibadges.io/developer) -> OAuth Apps
 * Take note of your client ID / secret
 
-<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Key Components
 
@@ -17141,7 +17134,7 @@ BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK that ai
 
 While BitBadges may lack some of the native smart contract support and interoperability features of other protocols, its self-contained design and API-like token standard can be a compelling solution for certain use cases.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Chain Architecture
 
@@ -17269,9 +17262,9 @@ Coming Soon...
 
 Easily add badges, lists, or attestations to your LinkedIn certtfications with one click!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/ecosystem/metamask-snap.md
@@ -17285,6 +17278,15 @@ BitBadges has created a MetaMask Snap extension to help guard your wallet and au
 **Configure Settings:** [https://bitbadges.io/snap](https://bitbadges.io/snap)
 
 <figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./overview/ecosystem/wordpress-plugin.md
+
+# WordPress Plugin
+
+{% content-ref url="../../for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md" %}
+[wordpress.md](../../for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
+{% endcontent-ref %}
 
 
 ## File: ./overview/faq.md
@@ -17344,56 +17346,22 @@ Once development is BitBadges is complete and final, we would like to make the s
 Personally, we believe it will always be a multi-chain world, and there will never be 100% convergence to a single ecosystem. Even if one blockchain ecosystem like Ethereum (EVM) becomes dominant, there will always be new blockchain experiments and ecosystems popping up, which means there will always be a need for multi-chain infrastructure like BitBadges.
 
 
-## File: ./overview/getting-started/README.md
+## File: ./overview/getting-started.md
 
 # 🔨 Getting Started
 
+BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more! The site should walk you through the entire process.&#x20;
 
+In many cases, everything you want to do is already possible in-site! If you do need more advanced functionality or are confused at any part, we refer you to the respective parts of this documentation for more information. The developer documentation can help you implement more custom applications and flows. However, the site should walk you through most of the process.
 
-## File: ./overview/getting-started/creating-items.md
+Please reach out in Discord if you are having trouble, have feedback, or have feature requests!&#x20;
 
-# Creating
-
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more!&#x20;
-
-If you do need more advanced functionality or are confused at any part, we refer you to the respective parts of this documentation for more information. The developer documentation can help you implement more custom applications and flows.
-
-Please reach out in Discord if you are having trouble, have feedback, or have feature requests!
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-If you just want to test out creating claims, see the Claim Tester. This allows you to create claims that will auto-delete when you are done.
-
-Claims are the backbone of almost everything else on the site. They can be used with badges or address lists to gate distribution. They can be standalone to gate custom utility. They can be combined with Sign In with BItBadges to create your own custom apps!
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-BitBadges claims allow you to check any criteria you want and offer your own custom utility to those who meet that criteria. In some cases, that may be other in-site services (points, badge distribution, etc). In other cases, you may have custom content you want to gate like URLs.&#x20;
-
-There is plenty of customization in the design process. The easiest way though is to add a secret URL in the rewards tab which is gated to successful claimees.
-
-Test it out with the Claim Tester in the developer portal.
-
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./overview/getting-started/exploring-claiming.md
-
-# Exploring
-
-With regards to the user experience, everything is offered in-site as well from claims to transferring badges to anything we offer. We'd recommend to get started on the Browse / Explore tab or search an address, badge, anything with the top search bar.
-
-If you have questions about a specific item, the specific page for that item should walk you through the entire process. Note that each creator may implement some of their logic in a different way (custom instructions, external flows).  The creator / provider will provide you with instructions if the flow is non-standard.
-
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/how-do-i-gate-xyz.md
 
-# 🔐 How Do I Gate XYZ?
+# 🔐 How Do I ...?
 
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. This guide will walk you through the most common gating scenarios and how to implement them in the recommended ways. Note: BitBadges aims to be as flexible as possible, so there are often multiple ways to achieve the same result.
 
@@ -17439,7 +17407,7 @@ This is great for services like newsletters, custom services, and much more! If 
 
 <figure><img src="../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a Digital Service (Websites) 🌐
 
@@ -17471,22 +17439,97 @@ This flow can be used for any digital service, including:
 3. Use any session management tool to manage the event (e.g. stamping users in, etc.)
 
 
-## File: ./overview/how-it-works/README.md
+## File: ./overview/how-it-works/verifiable-secrets.md
 
-# 🧠 Core Concepts
+# Verifiable Attestations
 
-### **Pre-Readings**
+**Off-Chain Attestations and On-Chain Anchoring**
 
-It is assumed that you have a basic understanding of how Web3 and blockchains work from a high-level user perspective (what an address is, what a transaction is, what a wallet is, etc). If not, we recommend first familiarizing yourself with these terms. There are plenty of resources available online.
+Besides traditional on-chain badges, BitBadges supports the storage of off-chain verifiable attestations. These can be any form of data that is secured by a signature, such as credentials or attestations. The flexibility to store data off-chain while still having the option to anchor it on-chain for verification purposes is often useful for use cases that have privacy and security requirements. Attestations are just signatures of one or more message using a crypto wallet.
 
-### **Further Readings**
+BitBadges offers a centralized, easy to use solution for attestations with many neat features. The centralized part just comes from the fact that BitBadges stores the signatures for you. If you would like to self-host, you can for a decentralized experience.
 
-See the subpages for further in-depth explanations.
+Some of the neat features include:
 
-See the [For Developers](broken-reference) section for further technical explanations.
+-   **Integration into Authentication Flows:** Attestations can be used to prove certain criteria to authentication providers. If you can prove you meet the criteria via a attestation, you will be authenticated. This can be integrated into the Sign In with BitBadges flow, so for example, you can prove public ownership of a diploma badge whilst also verifying attestation data such as a users' GPA.
+-   **Anchoring:** Anchoring credentials on-chain provides a transparent and verifiable record of issuance, enhancing the trustworthiness and integrity of the credential without compromising the holder's privacy. The blockchain can be used for proof of knowledge of a attestation at a certain time or to maintain data integrity.
+
+**Issuance and Storage**
+
+The credential issuance process begins when an issuer (for example, a university) signs a piece of private data (such as a student’s diploma) and transfers this signed data, along with the credential, to a recipient (the student). This action gives the holder concrete proof of their credential, which they can then present to any verifier. The system also ensures that verifiers receive cryptographic assurance of the data's authenticity.
+
+A distinctive feature of BitBadges is the ability for issuers to **selectively disclose** information. This means they can prove claims (like a GPA above 3.0) without disclosing any additional personal information that's irrelevant to the verifier's needs.
+
+For data integrity and verification purposes, credentials are signed and stored off-chain in the holder's BitBadges account. Issuers have the option to anchor these credentials on-chain to commit to the data publicly and verify its issuance time, although this step is optional and not always necessary.
 
 
-## File: ./overview/how-it-works/accounts.md
+## File: ./overview/launch-phases.md
+
+# 🪙 Launch Phases
+
+BitBadges plans to execute a two-phased launch:
+
+### **Phase 1: Betanet**
+
+Betanet is the initial phase of BitBadges upon launch. This is a phase where we plan to ship fast, gain feedback quickly, and iron out all bugs as quickly as possible in order to build the best product for you long term.
+
+To allow us to do so, there will be no governance decisions, and all in-app credits will be purchasable via a faucet-like system (explained below).
+
+### **Phase 2: Official Mainnet**
+
+Once betanet is concluded and we feel ready, we will officially deploy a mainnet version of BitBadges. Everything will carry over.
+
+In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. Time of this phase is TBD but most likely, this will be started when the betanet faucet runs out.
+
+We will also look to migrate to being fully open-source where possible.
+
+## **Credits ($BADGE vs $STAKE)**
+
+$BADGE is the in-app compute credits system we use for blockchain transaction fees, such as creating or transferring badges. All transactions will require a fee of some number of credits.&#x20;
+
+$STAKE is used by nodes to secure the network. BitBadges operates under a proof-of-stake consensus model using $STAKE. Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.&#x20;
+
+IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon and are NOT financial assets. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
+
+## **$BADGE**
+
+**Total Supply: 100,000,000**
+
+**Inflation: None**
+
+**Initial Airdrops**
+
+We plan to airdrop the first 10,000,000 of the credits supply completely free of charge to select users. Please reach out to us on Discord if you or your community are interested in building with BitBadges and would like some free credits to get started.&#x20;
+
+Airdrops Planned
+
+* 10 $BADGE for first 100k users on the site (claimable any transaction page on site like the mint page)
+* 100 $BADGE to developers who want to build on top of BitBadges (up to 5000 developers)
+
+**Faucet: Remaining Supply**
+
+The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand. It will begin at $1 per credit.
+
+## **$STAKE**
+
+**Initial Supply: 100,000,000**
+
+**Inflation: 7-20% (Set at 13%)**&#x20;
+
+$STAKE will inflate at rate of 7-20% per year. Learn more about how this works [here](https://docs.cosmos.network/main/build/modules/mint). This serves as an incentive for nodes to put their stake to work and secure the network and earn more.
+
+**Allocation**
+
+Reach out to us in DIscord if you are interested in running a node. $STAKE will be distributed (while supplys last) to the first \~100 who complete a quick application process. This is to ensure the quality of node operators in our ecosystem.
+
+
+## File: ./overview/learn-the-basics/README.md
+
+# 👨‍💻 Learn the Basics
+
+
+
+## File: ./overview/learn-the-basics/accounts.md
 
 # Multi-Chain Accounts
 
@@ -17504,42 +17547,61 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
+### Why is it per ecosystem and not per chain?
 
-## File: ./overview/how-it-works/applications-points-tiers-quests.md
-
-# Applications (Points, Tiers, Quests)
-
-Using claims, you can offer points, tiers, and quests to users, and create gamified experiences directly in the site. Claims are the main entrypoint to these, so you get x10 points for satisfying claim criteria, for example.
-
-Create an application that offters points, tiers, and/or quests all in one page in the developer portal.
-
-<figure><img src="../../.gitbook/assets/image (201).png" alt=""><figcaption></figcaption></figure>
+As you may have noticed, we do not differentiate between EVM chains, for example. All are treated the same with our architecture, so we just default to the emain chain of the ecosystem for display purposes (e.g. EVM for Ethereum).
 
 
-## File: ./overview/how-it-works/badge-concepts/README.md
+## File: ./overview/learn-the-basics/address-lists.md
+
+# Address Lists
+
+Address lists are a streamlined alternative to badges. Instead of dealing with the complexity of badges, you can create a simple list (public but off-chain). These can also be gated by claims, allowing you to gate spots on the list by any criteria imaginable.
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./overview/learn-the-basics/applications-points.md
+
+# Applications (Points)
+
+Applications allow you to create gamified points, quests, and tiers for your users. Behind the scenes, these just use claims with assigned weights for points, for example. Points can then be used as criteria for other gated utility, like a points-gated airdrop.
+
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./overview/learn-the-basics/attestations.md
+
+# Attestations
+
+Attestations are private by default credentials (e.g. signature of a specific claim like "Bob earned this diploma"). They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier.
+
+These can be stored in your BItBadges account (or sent to the recipients) and selectively disclosed to whoever needs to verify them through claims or Sign In with BitBadges.  Attestations are off-chain by default, but you can always anchor or prove existence of the attestation on-chain.
+
+Attestations may come in different forms with varying properties, such as:
+
+* Standard Signatures: Sign messages with your connected wallet address
+* BBS+: Supports selectively disclosing only a subset of the N messages in the attestation. For example, disclose you are 21 without revealing your name.&#x20;
+* URLs: Attestations can even be a link to a URL as long as the verifier can verify it
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./overview/learn-the-basics/badge-concepts/README.md
 
 # Badge Concepts
 
 
 
-## File: ./overview/how-it-works/badge-concepts/aliases.md
-
-# Aliases
-
-Alias addresses are an address for a non-claimable account that can receive badges. They have a portfolio and can receive badges, but they can never generate or submit transactions. Alias addresses are slightly longer than traditional addresses.
-
-Aliases are used in the cases where you want a collection, specific badge, or list to own a badge. For example, you might want to assign a trustworthy badge to a collection. To do this, you send the trustworthy badge to the alias address' portfolio.
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (3).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./overview/how-it-works/badge-concepts/balances-types.md
+## File: ./overview/learn-the-basics/badge-concepts/balances-types.md
 
 # Balances Types
 
@@ -17569,29 +17631,29 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 
 #### Benefits
 
--   **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
--   **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
--   **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
--   **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
--   **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
+* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
+* **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
+* **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
+* **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
+* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
 
--   **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
--   **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
--   **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
-    -   Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
-    -   Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
+* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
+  since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
+* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
+* **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
+  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
+  * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
 
 ### Indexed vs Non-Indexed
 
 Off-chain balances can either be indexed or non-indexed. Note we use on-demand and non-indexed interchangeably. The differences are as follows:
 
--   Indexed balances have a total verifiable supply. Non-indexed does not.
--   At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
--   For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
--   Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
+* Indexed balances have a total verifiable supply. Non-indexed does not.
+* At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
+* For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
+* Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
 ### Suitability of Off-Chain Balances
 
@@ -17610,31 +17672,29 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](../broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../ecosystem/)page!
+See [here](../../how-it-works/broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](../../ecosystem/)page!
 
 #### Advantages Over Standard Solutions
 
 Compared to traditional client-server solutions, off-chain balances offer numerous advantages, including:
 
--   **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
--   **Seamless Integration**: Integration with the complete suite of BitBadges tools.
--   **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
--   **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
+* **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
+* **Seamless Integration**: Integration with the complete suite of BitBadges tools.
+* **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
+* **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
 
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
 
 
-## File: ./overview/how-it-works/badge-concepts/manager.md
+## File: ./overview/learn-the-basics/badge-concepts/manager.md
 
 # Manager
 
-In the BitBadges ecosystem, each badge collection can optionally have a designated manager or administrator. This role comes with special administrative privileges that can be customized according to the collection's needs.
+Each badge collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.&#x20;
 
-It's important to note that relinquishing the manager role means giving up all associated privileges.
+<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (11).png" alt=""><figcaption><p>Manager Dashboard Overview</p></figcaption></figure>
-
-## Manager Permissions
+**Manager Permissions**
 
 The manager role can be granted various permissions, allowing for flexible administration of the collection. These permissions include, but are not limited to:
 
@@ -17655,7 +17715,7 @@ It's worth noting that the manager role can extend beyond on-chain functionaliti
 
 One of the key features of the manager role in BitBadges is the ability to customize permissions at a granular level. This allows for precise control over the collection's management.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
 
 Permissions can be customized based on various factors, including:
 
@@ -17685,7 +17745,7 @@ It's important to note that there is no "Forbidden + Not Frozen" state. This is 
 This system of states allows for both flexibility and security in managing collection permissions, enabling creators to set up governance structures that can evolve over time or remain fixed, depending on their needs.
 
 
-## File: ./overview/how-it-works/badge-concepts/standards.md
+## File: ./overview/learn-the-basics/badge-concepts/standards.md
 
 # Standards
 
@@ -17707,7 +17767,7 @@ standards: ["non-fungible", "attendance-event", "No User Ownership"]
 
 
 
-## File: ./overview/how-it-works/badge-concepts/time-dependent-ownership.md
+## File: ./overview/learn-the-basics/badge-concepts/time-dependent-ownership.md
 
 # Time-Dependent Ownership
 
@@ -17721,7 +17781,7 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
 3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Example of Ownership Structure
 
@@ -17769,7 +17829,7 @@ To elucidate the functioning of this ownership system, let's delve into practica
 Incorporating time-based ownership into the conventional badge ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
 
 
-## File: ./overview/how-it-works/badge-concepts/total-supplys.md
+## File: ./overview/learn-the-basics/badge-concepts/total-supplys.md
 
 # Total Supplys
 
@@ -17788,7 +17848,7 @@ BitBadges doesn't necessarily categorize them by these names because we use a se
 Badges cannot be "burned" once created. However, they can be transferred (if allowed) to addresses where no private key is known such as the Ethereum zero address.
 
 
-## File: ./overview/how-it-works/badge-concepts/transferability.md
+## File: ./overview/learn-the-basics/badge-concepts/transferability.md
 
 # Transferability
 
@@ -17878,290 +17938,76 @@ We also support fine-grained updatability for all combinations of the above func
 For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable. One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
 
 
-## File: ./overview/how-it-works/badges-vs-address-lists.md
+## File: ./overview/learn-the-basics/badges.md
 
-# Badges vs Lists
+# Badges
 
-### Badges
+Badges are on-chain, public tokens ownable and transferable by users from different addresses. These are handled on our own L1 blockchain and show up in your portfolio.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+Badges offer many never-seen-before-features and ways of implementation like time-dependent balances, off-chain hybrid balances, and much more. Badge distribution can be gated by claims, allowing you to offer minting / approvals gated by any criteria imaginable. On the flip side, use ownership as criteria to gate any service imaginable.
 
-Badges are blockchain tokens with customizable properties. They're more complex but offer greater flexibility than address lists.
-
-#### Key Concepts
-
-* Collections: Core units of BitBadges, identified by numeric IDs
-* Badges: Individual tokens within collections, also with numeric IDs
-
-#### Customization Options
-
-1. [Collection Metadata](metadata.md): Name, description, image, category, etc.
-2. [Badge Metadata](metadata.md): Individual badge details
-3. [Supply](badge-concepts/total-supplys.md): Total supply for each badge
-4. [Balances Types](badge-concepts/balances-types.md): On-chain or off-chain storage
-5. [Transferability](badge-concepts/transferability.md): Rules for badge transfers and distribution
-6. [Manager](badge-concepts/manager.md): Optional admin with customizable permissions
-7. [Standard](badge-concepts/standards.md): Defines how to interpret badge details
-8. And more!
-
-### Address Lists
-
-<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
-
-Address lists are simpler, being a simple list of users identified by their addresses. They offer less complexity (no balance ownership, no transferability, etc.), but this comes at the cost of flexibility / customization. The list creator can manage the list, its rules, and who is on it.
-
-### **Connecting to Claims**
-
-The distribution process for badges or lists is highly customizable with BitBadges claims, depending on the creator's specific requirements and the type of collection or list they've created. To understand how a particular collection or list is distributed, you should visit the dedicated page for that collection.
-
-Creators have a wide range of options for distributing badges and list spots, from manual distribution to automated claims integrated with thousands of applications. Each method has its own set of trade-offs and benefits.
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/how-it-works/distribution.md
+## File: ./overview/learn-the-basics/distribution.md
 
 # BitBadges Claims
 
-Claims are the backbone of pretty much all aspects of BitBadges. Combine criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to badge distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.&#x20;
+Claims are the backbone (or connectors) of pretty much all aspects of BitBadges. Create criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to badge distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
+Claims can be simply thought of as:&#x20;
 
-Claims can be simply thought of as: Meet criteria? You get this utility.&#x20;
+1. Meet criteria - Owns badge? Is in Discord server? Provided secret attendance code?
+2. Receive reward - Access to services? Receive badges?
 
-The utility can be anything from website access to badge distribution to being added to a list. Its all up to you! Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility. &#x20;
+What the criteria and / or rewards are all up to you!&#x20;
 
-**The Claiming Process**
+Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility. We offer tools to help on either end (badges, address lists, etc), but ultimately, you can check any criteria and deliver any reward you want!
 
-Typically, the end user will claim directly on the BitBadges site, but you may also optionally auto-trigger claims for users via the API, Zapier, or however you choose to implement.&#x20;
+Claims have super flexible implementation as well. For example:
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+* Check criteria on-demand vs have users claim in-site vs auto-complete on behalf of users?
+* Add any plugin you want from 7000+ no-code integrations
+* Custom webhooks to connect to any service on either end
+* No-code Zapier / Pipedream automation workflows on either criteria or rewards side
 
-**Creating a Claim**
+The best way we recommend to deep dive into what all is possible is just to experiment with the claim tester in the developer portal: [https://bitbadges.io/developer](https://bitbadges.io/developer). Or, explore the site.
 
-Experiment creating one in the developer portal -> Claim Tester directly on the BitBadges site!&#x20;
+For additional documentation, see here:
 
-<figure><img src="../../.gitbook/assets/image (155).png" alt=""><figcaption></figcaption></figure>
+{% content-ref url="../claim-builder/" %}
+[claim-builder](../claim-builder/)
+{% endcontent-ref %}
 
-### Examples of Plugins
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
-* **Passwords:** Implement a reusable password that users must enter to claim a badge.
-* **Unique Claim Codes:** Generate one-time use codes for individual claims.
-* **Whitelists / Blacklists:** Restrict claims to specific addresses or exclude certain addresses from claiming.
-* **Discord Server:** Prove a user has joined a specific server
-* **Badge, Lists, Points, ...:** Check badge ownership, list ownership, anything from our core services
-
-
-
-## File: ./overview/how-it-works/protocols.md
-
-# Protocols
-
-Protocols group user data for specific purposes, organizing and managing similar activities or goals across applications. The data is stored on-chain, allowing for a decentralized and transparent approach. This also enables protocols to be leveraged across multiple applications in a universal way.
-
-#### Examples
-
-1. **Preferences Protocol**
-   * Set personal preferences once for use across multiple apps
-   * E.g., Setting dark mode preference applies to all supporting apps
-2. **BitBadges Follow Protocol**
-   * Users create "follow badge collections"
-   * Owning a follow badge indicates following that user
-   * Customizable management (off-chain or on-chain storage)
-   * Users control their own collections
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/how-it-works/verifiable-attestations.md
-
-# Attestations
-
-Attestations are digital proofs that can attest to some credential or data. They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier. These are a nice alternative to badges because they are private by default as opposed to being public and on-chain.
-
-BitBadges aims to support an ecosystem of providers and approaches to attestations. While we offer an attestation service natively, we also support custom uploads from thrird-party providers.&#x20;
-
-Each method / approach may have different properties and tradeoffs. For example, BitBadges attestations are decentraized and secured by cryptography whereas other providers may use centralized verification methods.
-
-Attestations are privately stored in your account by default but can be displayed on profiles and disclosed to verifiers as you need through flows like claims or Sign In with BitBadges.
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/Screenshot 2024-09-02 at 11.55.15 AM.png" alt="" width="563"><figcaption></figcaption></figure>
-
-#### What Is an Attestation?
-
-An attestation is a set of claims made by one entity (the issuer) about another entity or subject. Attestations can range from simple written statements to cryptographically verifiable digital proofs. When implemented digitally, attestations may include:
-
-1. The issuer creating a message with specific claims or information
-2. Optional digital signing or certification of the claims
-3. A mechanism for verification (which may be manual or automated)
-
-Verification methods can vary depending on the attestation type:
-
-* For cryptographic attestations: Using digital signatures and public key verification
-* For traditional attestations: Manual verification through trusted channels, official documentation, or direct communication
-* For hybrid approaches: Combining digital and traditional verification methods
-
-Example: A university (issuer) can create an attestation of a student's graduation in various forms:
-
-* A traditional paper diploma with security features
-* A digitally signed electronic certificate
-* A blockchain-anchored credential
-* A simple written statement
-
-## Benefits of Attestations
-
-1. Flexibility and Efficiency Attestations can be designed to match specific needs and resources:
-
-* Can be implemented with or without blockchain technology
-* May use traditional verification methods or cryptographic proofs
-* Scale from simple statements to complex verifiable credentials
-* Verification costs and complexity can be optimized for the use case
-
-2. Privacy Considerations Modern attestation systems can protect privacy through various means:
-
-* Selective information sharing
-* Secure storage of sensitive data
-* Optional use of cryptographic techniques for enhanced privacy
-* Control over how and when attestation data is shared
-
-3. Selective Disclosure Attestations can support varying levels of information sharing:
-
-* Ability to share full or partial information as needed
-* Support for both simple and complex verification requirements
-* Flexible presentation options based on context
-* Example: An academic credential might be shared in full for employment but only partially for other purposes
-
-
-## File: ./overview/how-it-works/verifiable-secrets.md
-
-# Verifiable Attestations
-
-**Off-Chain Attestations and On-Chain Anchoring**
-
-Besides traditional on-chain badges, BitBadges supports the storage of off-chain verifiable attestations. These can be any form of data that is secured by a signature, such as credentials or attestations. The flexibility to store data off-chain while still having the option to anchor it on-chain for verification purposes is often useful for use cases that have privacy and security requirements. Attestations are just signatures of one or more message using a crypto wallet.
-
-BitBadges offers a centralized, easy to use solution for attestations with many neat features. The centralized part just comes from the fact that BitBadges stores the signatures for you. If you would like to self-host, you can for a decentralized experience.
-
-Some of the neat features include:
-
--   **Integration into Authentication Flows:** Attestations can be used to prove certain criteria to authentication providers. If you can prove you meet the criteria via a attestation, you will be authenticated. This can be integrated into the Sign In with BitBadges flow, so for example, you can prove public ownership of a diploma badge whilst also verifying attestation data such as a users' GPA.
--   **Anchoring:** Anchoring credentials on-chain provides a transparent and verifiable record of issuance, enhancing the trustworthiness and integrity of the credential without compromising the holder's privacy. The blockchain can be used for proof of knowledge of a attestation at a certain time or to maintain data integrity.
-
-**Issuance and Storage**
-
-The credential issuance process begins when an issuer (for example, a university) signs a piece of private data (such as a student’s diploma) and transfers this signed data, along with the credential, to a recipient (the student). This action gives the holder concrete proof of their credential, which they can then present to any verifier. The system also ensures that verifiers receive cryptographic assurance of the data's authenticity.
-
-A distinctive feature of BitBadges is the ability for issuers to **selectively disclose** information. This means they can prove claims (like a GPA above 3.0) without disclosing any additional personal information that's irrelevant to the verifier's needs.
-
-For data integrity and verification purposes, credentials are signed and stored off-chain in the holder's BitBadges account. Issuers have the option to anchor these credentials on-chain to commit to the data publicly and verify its issuance time, although this step is optional and not always necessary.
-
-
-## File: ./overview/how-it-works/verification-tools.md
+## File: ./overview/learn-the-basics/verification-tools.md
 
 # Sign In with BitBadges
 
-Authentication is a powerful use case for badges. For example, you can grant access to users who own a specific membership badge while denying access to those who don't. This authentication can be implemented in various settings, including in-person and digital environments.
+Gate any service (digital or in-person) with Sign In with BitBadges. All chains, one interface.
+
+Gate your digital services with an industry standard OAuth 2..0 multi-chain authentication. This approach is a multi-chain replacement to "Sign In with Google". Or, leverage the QR code feature to create QR codes for gating in-person events. QR codes are exportable to any preferred format (email, Apple Wallet), so you do not need wallets at authentication time.
+
+Additionally, use along with checking a claim to allow you to gate based on any criteria you want:
+
+* Payment-gated website
+* Badge-gated event
+* Attestation-gated digital services
+* Any combination of gated access!
+
+We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 For developers interested in implementing these features, please refer to our detailed guide:
 
 {% content-ref url="../../for-developers/authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](../../for-developers/authenticating-with-bitbadges/)
 {% endcontent-ref %}
-
-### Sign In With BitBadges - Digital
-
-In digital environments, you can authenticate users and verify badge ownership to enable features like badge-gated website access.
-
-Sign In with BitBadges provides a way for any website to authenticate users while outsourcing all logic to a BitBadges popup. This approach is similar to "Sign In with Google" or other major tech companies. Additionally, check anything all in one flow: claim criteria, badge ownership, whatever you want!
-
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption><p>Sign In With BitBadges Interface</p></figcaption></figure>
-
-### Integrated Authentication Checks
-
-BitBadges can tap into a wide range of integrations to perform various authentication checks. This flexibility allows for complex and diverse authentication scenarios. Some of the supported integrations include:
-
-1. **Badge Ownership Checks**: Verify if a user owns specific badges or collections.
-2. **Discord Server Checks**: Confirm a user's membership or role in a particular Discord server.
-3. **Token Holdings**: Check if a user holds a certain amount of specific tokens across various blockchains.
-4. **NFT Ownership**: Verify ownership of specific NFTs or collections.
-5. **On-chain Activity**: Authenticate based on specific on-chain actions or transactions.
-6. **Social Media Verification**: Confirm a user's identity or following on platforms like Twitter.
-
-These integrations allow for highly customizable authentication flows.
-
-## QR Codes
-
-QR codes offer a flexible solution for verification when you need to pre-generate signatures for later use. This is particularly useful in scenarios where users might not have immediate access to their digital wallets.
-
-Use cases for QR code authentication include:
-
-* Presenting a digital ticket at a real-world event gate
-* Verifying membership at physical locations
-* Providing quick access to badge-gated content in various settings
-
-QR codes in the BitBadges system can be configured in two main ways:
-
-Users have the flexibility to export and save these QR codes using multiple methods, accommodating various preferences and use cases.
-
-
-## File: ./overview/launch-phases.md
-
-# 🪙 Launch Phases
-
-BitBadges plans to execute a two-phased launch:
-
-### **Phase 1: Betanet**
-
-Betanet is the initial phase of BitBadges upon launch. This is a phase where we plan to ship fast, gain feedback quickly, and iron out all bugs as quickly as possible in order to build the best product for you long term.
-
-To allow us to do so, there will be no governance decisions, and all in-app credits will be purchasable via a faucet-like system (explained below).
-
-### **Phase 2: Official Mainnet**
-
-Once betanet is concluded and we feel ready, we will officially deploy a mainnet version of BitBadges. Everything will carry over.
-
-In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. Time of this phase is TBD but most likely, this will be started when the betanet faucet runs out.
-
-We will also look to migrate to being fully open-source where possible.
-
-## **Credits ($BADGE vs $STAKE)**
-
-$BADGE is the in-app compute credits system we use for blockchain transaction fees, such as creating or transferring badges. All transactions will require a fee of some number of credits.&#x20;
-
-$STAKE is used by nodes to secure the network. BitBadges operates under a proof-of-stake consensus model using $STAKE. Once mainnet phase launches, we also plan for $STAKE to be used in governance decision votes.&#x20;
-
-IMPORTANT: $BADGE and $STAKE are NOT to be speculated upon and are NOT financial assets. It is a system which is intended for purchase and usage as in-app compute credits, not trading, exchanging, etc.
-
-## **$BADGE**
-
-**Total Supply: 100,000,000**
-
-**Inflation: None**
-
-**Initial Airdrops**
-
-We plan to airdrop the first 10,000,000 of the credits supply completely free of charge to select users. Please reach out to us on Discord if you or your community are interested in building with BitBadges and would like some free credits to get started.&#x20;
-
-Airdrops Planned
-
-* 10 $BADGE for first 100k users on the site (claimable any transaction page on site like the mint page)
-* 100 $BADGE to developers who want to build on top of BitBadges (up to 5000 developers)
-
-**Faucet: Remaining Supply**
-
-The rest of the supply is simply up for purchase via the BitBadges site. BitBadges reserves the right to dynamically increase / decrease price according to demand. It will begin at $1 per credit.
-
-## **$STAKE**
-
-**Initial Supply: 100,000,000**
-
-**Inflation: 7-20% (Set at 13%)**&#x20;
-
-$STAKE will inflate at rate of 7-20% per year. Learn more about how this works [here](https://docs.cosmos.network/main/build/modules/mint). This serves as an incentive for nodes to put their stake to work and secure the network and earn more.
-
-**Allocation**
-
-Reach out to us in DIscord if you are interested in running a node. $STAKE will be distributed (while supplys last) to the first \~100 who complete a quick application process. This is to ensure the quality of node operators in our ecosystem.
 
 
 ## File: ./overview/link-sharing.md
@@ -18172,11 +18018,11 @@ Feel free to use BitBadges name and logo in your site as you see fit. If you hav
 
 **Text Logo**
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Square Logo**
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -18193,17 +18039,17 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 * [Discord](https://discord.com/invite/TJMaEd9bar)
 * [LinkedIn](https://linkedin.com/company/bitbadges)
-* [Twitter](https://twitter.com/bitbadges\_io)
+* [Twitter](https://twitter.com/bitbadges_io)
 * [Facebook](https://facebook.com/profile.php?id=100092259215026)
-* [Instagram](https://instagram.com/bitbadges\_official/)
-* [Slack](https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email)
+* [Instagram](https://instagram.com/bitbadges_official/)
+* [Slack](https://bitbadges.slack.com/join/shared_invite/zt-1tws89arl-TMSK_4bdTLOLdyp177811Q#/shared-invite/email)
 * [Reddit](https://www.reddit.com/r/BitBadges/)
 * [Telegram](https://t.me/BitBadges)
 * [GitHub](https://github.com/bitbadges)
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](how-it-works/distribution.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn-the-basics/distribution.md))
 * [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
 * [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
 
@@ -18258,7 +18104,7 @@ Initially, we do not plan to use a governance structure to allow us to ship fast
 
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment and uses its own resources, such as a testnet blockchain, database, and more.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -18320,7 +18166,7 @@ A cool application of badges is to create proof of authenticity badges for produ
 3. Create a badge at [https://bitbadges.io/create](https://bitbadges.io/create).
 4. When you reach the claim select step, configure your claim to use the Email plugin to gate mints. For on-chain badges, this will be the Minting step. Then, select "Use Dynamic Store?" and select your store.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (210).png" alt=""><figcaption></figcaption></figure>
 
@@ -18332,7 +18178,7 @@ A cool application of badges is to create proof of authenticity badges for produ
 
 The claim will be part of the badge or list creation process or can be standalone if used for other purposes.
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/tutorials/create-your-first-claim.md
@@ -18341,11 +18187,11 @@ The claim will be part of the badge or list creation process or can be standalon
 
 1. Sign in and go to the Developer Portal. We will use the Claim Tester tab to create a test claim.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Then, simply follow the in-site instructions to setup your claim and criteria. Use the in-site completion method. Criteria is customizable from universal plugins like a password / claim codes / address restrictions to your favorite apps (Discord, GitHub, etc).
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. For non test-only claims, the claim will be available via a link if it is standalone or via the badge / list interface if it is tied to one of them. Simply direct your users to the claim interface in-site and have them claim!
 
@@ -18360,7 +18206,7 @@ All you need to do to gate a URL is to add it as a gated reward in the rewards t
 
 You can do this in the Rewards section when configuring the claim.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/use-cases.md
@@ -18369,7 +18215,7 @@ You can do this in the Rewards section when configuring the claim.
 
 Because you can check criteria for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorites. You can also browse featured items at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
-* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](how-it-works/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](learn-the-basics/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).
 * **Truth Badges -** Badges become the source of truth for scams, deep fakes, and more. For example, in a world of artificial intelligence, badges can be used to verify the root truth of some statement or thing.&#x20;
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
@@ -18411,7 +18257,7 @@ In your account settings, BitBadges provides the option to approve other wallets
 
 Note: This feature is opt-in and not enabled by default.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **BitBadges Embedded Wallet**
 
@@ -18434,7 +18280,7 @@ Note this is opt-in and can be revoked at any time. This is provided as a way to
 
 Mobile support is a bit tricky since many wallets are geared towards desktop usage. If you want access to your BitBadges account on the go, consider adding approved sign-in methods in your account settings.&#x20;
 
-This allows you to access certain aspects of your account via Signing In with Discord, Google, etc, or an alternate wallet. Use at your own risk though as approving socials means account compromise on your socials -. account compromise on BitBadges. Only assign the scopes that you need.
+This allows you to access certain aspects of your account via Signing In with Discord, Google, etc, or an alternate approved method. Use at your own risk though as approving socials means account compromise on your socials -> account compromise on BitBadges. Only assign the scopes that you need.
 
 <figure><img src="../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
@@ -18463,7 +18309,7 @@ BitBadges is compatible with wallets from any of the supported chain's ecosystem
 
 **Guest Accounts -** We also support browser-based, rotatable, temporary guest accounts.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Note: Because we verify signatures on our own chain and do not pull data from any other chain, contract wallets like Coinbase Smart Wallet are not supported.
 
