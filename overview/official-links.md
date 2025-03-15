@@ -9,17 +9,17 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 * [Discord](https://discord.com/invite/TJMaEd9bar)
 * [LinkedIn](https://linkedin.com/company/bitbadges)
-* [Twitter](https://twitter.com/bitbadges\_io)
+* [Twitter](https://twitter.com/bitbadges_io)
 * [Facebook](https://facebook.com/profile.php?id=100092259215026)
-* [Instagram](https://instagram.com/bitbadges\_official/)
-* [Slack](https://bitbadges.slack.com/join/shared\_invite/zt-1tws89arl-TMSK\_4bdTLOLdyp177811Q#/shared-invite/email)
+* [Instagram](https://instagram.com/bitbadges_official/)
+* [Slack](https://bitbadges.slack.com/join/shared_invite/zt-1tws89arl-TMSK_4bdTLOLdyp177811Q#/shared-invite/email)
 * [Reddit](https://www.reddit.com/r/BitBadges/)
 * [Telegram](https://t.me/BitBadges)
 * [GitHub](https://github.com/bitbadges)
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](how-it-works/distribution.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn-the-basics/distribution.md))
 * [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
 * [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
 

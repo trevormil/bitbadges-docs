@@ -14,8 +14,12 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
+
+### Why is it per ecosystem and not per chain?
+
+As you may have noticed, we do not differentiate between EVM chains, for example. All are treated the same with our architecture, so we just default to the emain chain of the ecosystem for display purposes (e.g. EVM for Ethereum).

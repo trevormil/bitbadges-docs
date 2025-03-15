@@ -4,7 +4,7 @@ Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadge
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 ### Installation
 
