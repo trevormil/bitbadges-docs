@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Mar 15 19:15:54 UTC 2025
+Generated on Sat Mar 15 19:32:29 UTC 2025
 
 
 
@@ -3718,22 +3718,16 @@ And much more!
       * [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
-  * [API](for-developers/bitbadges-api/api.md)
+  * [Getting Started](for-developers/bitbadges-api/api.md)
   * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
-  * [Tutorials](for-developers/bitbadges-api/tutorials/README.md)
-    * [Managing Views](for-developers/bitbadges-api/tutorials/managing-views.md)
-    * [Fetching Collections](for-developers/bitbadges-api/tutorials/fetching-collections.md)
-    * [Fetching Accounts](for-developers/bitbadges-api/tutorials/fetching-accounts.md)
-    * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
-    * [Fetching Lists](for-developers/bitbadges-api/tutorials/fetching-lists.md)
-    * [Getting Claims](for-developers/bitbadges-api/tutorials/getting-claims.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
     * [Designing for Compatibility](for-developers/bitbadges-api/concepts/designing-for-compatibility.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
+    * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
   * [Use via Pipedream](for-developers/bitbadges-api/use-via-pipedream.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
@@ -7817,7 +7811,7 @@ See [here](../../overview/learn-the-basics/badge-concepts/standards.md).
 
 ## File: ./for-developers/bitbadges-api/api.md
 
-# API
+# Getting Started
 
 ## Getting Started - API Keys
 
@@ -7835,15 +7829,15 @@ See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for
 
 ## Number Types / Stringified Responses
 
-All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX_SAFE_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
+All requests / responses are stringified before being sent over HTTP to avoid losing precision with big numbers > JavaScript's MAX\_SAFE\_INTEGER. For how to convert the responses to your desired NumberType (bigint, JS number, etc), please see [Number Type Conversions](../bitbadges-sdk/common-snippets/numbertype-conversions.md) from the SDK. We recommend using the JavaScript bigint type.
 
 Note: this is all handled for you if you use the BitBadges API SDK.
 
-## Routes Documentation
+## Reference
 
--   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
--   [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share&creator=11647629)
--   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
+* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
 
 In this documentation, we often use the SDK format for explanation purposes
 
@@ -7936,8 +7930,6 @@ Note this approach leverages HTTP session cookies as opposed to access tokens. M
 
 ## Confined Responses
 
-**IMPORTANT**: Remember that each retrieval is confined to what is stipulated in the query options. It is your responsibility to append the data to your previous responses as you need. The [Tutorials](tutorials/) and [Concepts](concepts/) will be extremely beneficial to help you deal with this.
-
 ### Bookmarking
 
 Throughout the API, we use a bookmark technique. For the first request, you will not need to specify a bookmark (e.g. ""), and it will fetch the first page. Within the response, it will return a **bookmark** and **hasMore**. **hasMore** defines whether there are more pages to be fetched. To fetch the next page, you will specify the returned bookmark from the previous request to the next request. This process can be repeated until all are loaded.
@@ -7965,12 +7957,6 @@ export interface ErrorResponse {
     unauthorized?: boolean;
 }
 ```
-
-## Tutorials
-
-{% content-ref url="tutorials/" %}
-[tutorials](tutorials/)
-{% endcontent-ref %}
 
 
 ## File: ./for-developers/bitbadges-api/concepts/README.md
@@ -8079,774 +8065,7 @@ This applies to any external fetches, including metadata URIs and other external
 Note: These limits may change over time. Please refer to our latest documentation for current values.
 
 
-## File: ./for-developers/bitbadges-api/concepts/native-chain-algorithm.md
-
-# Native Chain Algorithm
-
-### How is a user's "native" chain determined?
-
-You may have noticed that on the BitBadges site and other places, a user's "preferred" or "main" blockchain is remembered and auto-populated. This is how we populate the **chain** and **address** field in account route responses. We determine the main chain in the following order.
-
-1. Chain of last signed BitBadges transaction
-2. Chain of last sign in on BitBadges app
-3. Try to check any transaction history (e.g. submitted any transactions on Ethereum mainnet chain?)
-4. Requested address format
-5. Guess / default to Ethereum since it is the most popular
-
-
-## File: ./for-developers/bitbadges-api/concepts/refresh-queue.md
-
-# Refresh / Claim Completion Queue
-
-The API / indexer makes use of a load-balanced refresh queue system whenever we need to fetch anything from a source URI (metadata, off-chain balances, etc). Because this is a queue-based system, certain metadata may take awhile to fully load and populate. Once we fetch the metadata, we cache it and return the fetched values until it is refreshed again.
-
-**When do we trigger refreshes?**
-
-Refreshes are triggered automatically when certain things occur on-chain, such as a collection is created / URI is changed. You can also manually trigger refreshes (note there are cooldown limits in place to prevent spam) to refresh the cached values via the refresh endpoints.
-
-**What happens if the fetch fails?**
-
-See [Restrictions / Limits](limits-restrictions.md). We implement an exponential retry system.
-
-**Off-Chain Balances**
-
-Note that for off-chain balances, we also throw an error if the fetched balances exceed the total supply of badges defined on-chain (i.e. you are trying to allocate more badges than you should).
-
-**Checking Status**
-
-If you are having issues, you can check the BitBadges collection page on site -> Actions -> Refresh for statuses. Or, if you need a programmatic solution, you can use following route to see its status and see if it has any error docs.
-
-```typescript
-await BitBadgesApi.getRefreshStatus()
-```
-
-
-
-## File: ./for-developers/bitbadges-api/indexer.md
-
-# Indexer
-
-If you want to run your own indexer and API, check out the source code at [https://github.com/bitbadges/bitbadges-indexer](https://github.com/bitbadges/bitbadges-indexer).
-
-The indexer is split into two main parts: the poller and the API. The poller fetches the latest block from a connected node every second and updates the MongoDB database accordingly. The API is an Express.js API that makes the indexed data queryable to users.
-
-Although you can query other blockchain nodes, it is strongly recommended that you run your own node and query that. HTTP requests can reach >100 per second.
-
-### Running from Scratch
-
-1. Install and setup CouchDB
-2. Setup a valid .env file. See environment.d.ts below for the expected format of the .env file.&#x20;
-3. Use **npm run setup** to setup the CouchDB databases. Note that you can run **npm run setup with-delete** to restart all indexer databases from scratch.
-4. Use **npm run indexer-dev** to start in development mode.
-5. Use **npm run build** and **npm run indexer** to start in production mode.
-
-### Running with Docker
-
-See [https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker).
-
-### Customization Options (.env file)
-
-Below are the supported customization options. Some may be applicable. Some may not.
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-indexer/blob/master/environment.d.ts" %}
-
-
-
-## File: ./for-developers/bitbadges-api/tutorials/README.md
-
-# Tutorials
-
-
-
-## File: ./for-developers/bitbadges-api/tutorials/fetching-accounts.md
-
-# Fetching Accounts
-
-This page explains fetching accounts. Accounts are stored and fetched as the [BitBadgesUserInfo ](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesUserInfo.html)interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
-
-```typescript
-const accountsRes = await BitBadgesApi.getAccounts({
-    accountsToFetch: [
-        {
-            //example
-            address: 'bb1...',
-            viewsToFetch: [
-                {
-                    viewType: 'badgesCollected',
-                    viewId: 'badgesCollected',
-                    bookmark: '',
-                },
-            ],
-        },
-    ],
-});
-const account = accountsRes.accounts[0];
-
-//Option 2:
-// const account = await BitBadgesUserInfo.FetchAndInitialize(BitBadgesApi, { address: 'bb...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: '' }] })
-
-console.log(account.sequence);
-console.log(account.balance?.amount);
-console.log(account.getBadgeBalances(1n)); //collection 1
-console.log(account.getBadgeBalances(2n)); //collection 2
-console.log(account.getBadgeBalanceInfo(1n)); //approvals + permissions + balances
-```
-
-### Pruning Requests + Pruning Paginations
-
-Response details are confined to the request parameters passed in, so this means that merging responses with previous responses needs to be handled. To make this easy, we have exported helper functions that do this behind the scenes, or you can add a new response with the .updateWithNewResponse().
-
-```typescript
-const badgesCollectedViewHasMore = account.viewHasMore('badgesCollected');
-if (badgesCollectedViewHasMore) {
-    await account.fetchNextForView(
-        BitBadgesApi,
-        'badgesCollected',
-        'badgesCollected'
-    );
-    //await account.fetchAndUpdate(...)
-
-    //Option 2:
-    // const badgesCollectedBookmark = account.getViewBookmark('badgesCollected')
-    // const res4 = await BitBadgesApi.getAccounts({ accountsToFetch: [{ address: 'bb...', viewsToFetch: [{ viewType: 'badgesCollected', viewId: 'badgesCollected', bookmark: badgesCollectedBookmark }] }] })
-    // const account2 = res4.accounts[0]
-    // account.updateWithNewResponse(account2)
-}
-
-const badgesCollectedView = account.getAccountBalancesView('badgesCollected');
-```
-
-### Chains
-
-We will return the address corresponding to a user's preferred chain via **address**. This will match the chain returned in **chain**. See the algorithm for deftermining "native" chain in the Concepts section. We also return each equivalent address to their native address via: **btcAddress**, **solAddress**, **ethAddress**, and **bitbadgesAddress**.
-
-Note that **solAddress** may be blank if we do not have adequate information. This is because Solana addresses can only be converted from and not to.
-
-### NSFW / Reported
-
-NSFW or reported accounts will be flagged with the **nsfw** or **reported** properties. Everything is still fetched as normal with typical requests, and it is up to you to do what you want with these accounts.
-
-### Usernames and Avatars
-
-**username** will be the user's BitBadges username that they have set. In a similar manner, **profilePicUrl** will be the user's pofile pic set on BitBadges. We leave external services like ENS images / names up to you to implement as those are out of scope for our API.
-
-### Sequences / Account Numbers
-
-**sequence** and **accountNumber** will be the sequence (nonce) and accountNumber for the BitBadges blockchain. These are used for generating and signing transactions. **publicKey** is also provided.
-
-### $BADGE vs Badge Balances
-
-The **balance** field is for $BADGE balance, whereas the **collected** array is an array of balance documents for collected badges.
-
-### Custom Pages, Watchlists, Hidden
-
-Each profile will return their custom pages to be displayed on their portfolio: **customPages.** These are pages where the user has grouped together lists or badges and designated them to be displayed together on a page on their profile with a title and description.
-
-Watchlists (**watchlists**) follow the same interface but are for user watchlists. They are not to be displayed publicly on the profile but are rather a way for a user to keep track of badges.
-
-Hidden badges (**hiddenLists** and **hiddenBadges**) are similar, minus the title and description. These are badges that should be hidden from a user's portfolio. If they are hidden, we will hide them from standard search results.
-
-### Alias
-
-The **alias** field denotes whether this is an alias address for a list (address list) or a collection. If it isn't, this will be blank.
-
-### **Views / Paginations**
-
-The colleuserction interface uses a view system with paginations + bookmarks.
-
-Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.
-
-The account interface also supports different filtering options. Make sure that all fetches with the same viewId specify the same filter options.
-
-```ts
-//An array of views to fetch
-  viewsToFetch?: {
-    //Unique view ID. Used for pagination. All fetches w/ same ID should be made with same criteria.
-    viewId: string,
-    //The base view type to fetch.
-    viewType: AccountViewKey,
-    //If defined, we will filter the view to only include the specified collections.
-    specificCollections?: BatchBadgeDetails<NumberType>[];
-    //If defined, we will filter the view to only include the specified lists.
-    specificLists?: string[];
-    //Oldest first. By default, we fetch newest
-    oldestFirst?: boolean;
-    //A bookmark to pass in for pagination. "" for first request.
-    bookmark: string
-  }[];
-```
-
-The user interface supports the following base **viewType** values.
-
--   'transferActivity' : Fetches latest transfer activity documents for the user.
--   'listsActivity': Fetches latest list activity documents for the user
--   'reviews': Fetches latest reviews for the user
--   'badgesCollected': Fetches badges owned by the user
--   'createdBadges': Collections / badges that the user has created
--   'managingBadges': Collections / badges that the user is managing currently
--   'allLists': Fetches lists that the user are explicitly defined on (whitelist or blacklists)
--   'whitelists': Fetches lists that the user are explicitly included (i.e. whitelists)
--   'blacklists': Fetches lists that the user are explicitly excluded (i.e. blacklists)
--   'createdLists': Lists that the user has created (excludes private lists)
--   'publicAttestationProofs': Public attestation proofs that the user has created
-
-The following require authentication:
-
--   'latestClaimAlerts': Latest claim alerts
--   'siwbbRequests': Authentication QR codes for the user
--   'privateLists': Private lists created by the user
--   'createdAttestations': Attestations that the user has created
--   'receivedAttestations': Attestations that the user has received
--   'attestationProofs': Attestation proofs that the user has created
-
-```typescript
-export type AccountViewKey =
-    | 'createdLists'
-    | 'privateLists'
-    | 'siwbbRequests'
-    | 'transferActivity'
-    | 'badgesCollected'
-    | 'sentClaimAlerts'
-    | 'claimAlerts'
-    | 'allLists'
-    | 'whitelists'
-    | 'blacklists'
-    | 'createdBadges'
-    | 'managingBadges'
-    | 'listsActivity'
-    | 'createdAttestations'
-    | 'receivedAttestations'
-    | 'attestationProofs'
-    | 'publicAttestationProofs';
-```
-
-Request:
-
-<pre class="language-json"><code class="lang-json"><strong>viewsToFetch: [{
-</strong>    viewType: 'badgesCollected',
-    viewId: 'uniqueCollectedId',
-    bookmark: ''
-}]
-</code></pre>
-
-Response:
-
-```json
-{
-    ...,
-    collected: [....],
-    views: {
-        uniqueCollectedId: {
-            ids: [...],
-            pagination: {
-                bookmark: 'abc',
-                hasMore: true
-            }
-        }
-    }
-}
-```
-
-Next Request:
-
-<pre class="language-json"><code class="lang-json"><strong>viewsToFetch: [{
-</strong>    viewType: 'badgesCollected',
-    viewId: 'uniqueCollectedId',
-    bookmark: 'abc'
-}]
-</code></pre>
-
-And so on. Remember, each response is confined to its request, so it will fetch the next 25 docs, but you have to append it to the previous 25 docs as explained above.
-
-The **ids** returned in each view will correspond to the **\_docId** field in its corresponding array (e.g. **activity** for the 'latestActivity' view). You can fetch the entire view with the helper functions.
-
-```typescript
-account.getAccountBalancesView('badgesCollected');
-```
-
-### **Fetch Route**
-
-#### **POST /api/v0/users - (**[**Request**](https://bitbadges.github.io/bitbadgesjs/interfaces/iGetAccountsPayload.html)**,** [**Response**](https://bitbadges.github.io/bitbadgesjs/interfaces/iGetAccountsSuccessResponse.html)**)**
-
-Batch fetch details about multiple collections.
-
-```typescript
-export type AccountFetchDetails = {
-    address?: string;
-    username?: string;
-    viewsToFetch?: {
-        viewId: string;
-        viewType: AccountViewKey;
-        filteredCollections?: {
-            badgeIds: UintRange<NumberType>[];
-            collectionId: NumberType;
-        }[];
-        filteredLists?: string[];
-        bookmark: string;
-    }[];
-};
-
-export interface GetAccountsPayload {
-    accountsToFetch: AccountFetchDetails[];
-}
-```
-
-```typescript
-export interface GetAccountsSuccessResponse<T extends NumberType> {
-    accounts: BitBadgesUserInfo<T>[];
-}
-```
-
-### **Interfaces**
-
-```ts
-export interface BitBadgesUserInfo<T extends NumberType>
-    extends ProfileInfoBase<T>,
-        AccountInfoBase<T> {
-    resolvedName?: string;
-    avatar?: string;
-    solAddress: string;
-    airdropped?: boolean;
-    address: string;
-
-    //Dynamically loaded as needed
-    collected: BalanceDocWithDetails<T>[];
-    activity: TransferActivityDoc<T>[];
-    listsActivity: ListActivityDoc<T>[];
-    announcements: AnnouncementDoc<T>[];
-    reviews: ReviewDoc<T>[];
-    merkleChallenges: MerkleChallengeDoc<T>[];
-    approvalTrackers: ApprovalTrackerDoc<T>[];
-    addressLists: AddressListWithMetadata<T>[];
-    claimAlerts: ClaimAlertDoc<T>[];
-    siwbbRequests: SIWBBRequestDoc<T>[];
-
-    nsfw?: { reason: string };
-    reported?: { reason: string };
-
-    views: {
-        [viewId: string]:
-            | {
-                  ids: string[];
-                  type: string;
-                  pagination: PaginationInfo;
-              }
-            | undefined;
-    };
-
-    alias?: {
-        collectionId?: T;
-        listId?: string;
-    };
-}
-
-export interface AccountInfoBase<T extends NumberType> {
-    //stored in DB and cached for fast access and permanence
-
-    publicKey: string;
-    chain: SupportedChain;
-    bitbadgesAddress: string;
-    ethAddress: string;
-    solAddress: string;
-    btcAddress: string;
-    accountNumber: T;
-
-    //dynamically fetched
-
-    sequence?: T;
-    balance?: CosmosCoin<T>;
-}
-
-export interface ProfileInfoBase<T extends NumberType> {
-    fetchedProfile?: boolean;
-
-    seenActivity?: T;
-    createdAt?: T;
-
-    //ProfileDoc customization
-    discord?: string;
-    twitter?: string;
-    github?: string;
-    telegram?: string;
-    readme?: string;
-
-    customLinks?: CustomLink[];
-
-    hiddenBadges?: {
-        collectionId: T;
-        badgeIds: UintRange<T>[];
-    }[];
-    hiddenLists?: string[];
-
-    customListPages?: CustomListPage[];
-    customPages?: CustomPage<T>[];
-
-    watchedBadgePages?: CustomPage<T>[];
-    watchedListPages?: CustomListPage[];
-
-    profilePicUrl?: string;
-    username?: string;
-
-    latestSignedInChain?: SupportedChain;
-    solAddress?: string;
-}
-
-export interface CustomPage<T extends NumberType> {
-    title: string;
-    description: string;
-    badges: {
-        collectionId: T;
-        badgeIds: UintRange<T>[];
-    }[];
-}
-
-export interface CustomListPage {
-    title: string;
-    description: string;
-    listIds: string[];
-}
-
-export enum SupportedChain {
-    BTC = 'Bitcoin',
-    ETH = 'Ethereum',
-    COSMOS = 'Cosmos',
-    SOLANA = 'Solana',
-    UNKNOWN = 'Unknown', //If unknown address, we don't officially know the chain yet. For now, we assume it's Ethereum
-}
-
-export interface CosmosCoin<T extends NumberType> {
-    amount: T;
-    denom: string;
-}
-```
-
-
-## File: ./for-developers/bitbadges-api/tutorials/fetching-balances.md
-
-# Fetching Balances
-
-There are a couple ways to fetch badge balances, depending on the [balance type](../../badges-advanced/balances-transfers/balance-types.md) of the collections you are trying to fetch. Note this is different from $BADGE (see [here](fetching-balances.md) for fetching $BADGE balance).
-
-### Fetching by User or by Collection
-
-If you want to fetch badges owned by a specific user or specific owners for a collection, we refer you to the prior tutorials. Notably, you can fetch a paginated view using the **badgesCollected** view key for accounts or the **owners** view key for a collection. These are paginated, so you will need to pass in the prior bookmark received to the next request to fetch the next page (if it has more).
-
-However, note that these only apply to standard on-chain or off-chain indexed balanced. Off-chain non-indexed balances must be fetched directly on demand (see below). You can also fetch off-chain indexed balances directly from source.
-
-{% content-ref url="fetching-collections.md" %}
-[fetching-collections.md](fetching-collections.md)
-{% endcontent-ref %}
-
-{% content-ref url="fetching-accounts.md" %}
-[fetching-accounts.md](fetching-accounts.md)
-{% endcontent-ref %}
-
-### Fetching Directly
-
-You can also fetch balances directly using the getBadgeBalanceByAddress API route. This will work for all balance types (standard, off-chain indexed, and non-indexed).
-
-```typescript
-const res = await BitBadgesApi.getBadgeBalanceByAddress(
-    collectionId,
-    address
-);
-console.log(res);
-```
-
-### Verifying Requirements
-
-If you do not need the balances themselves and you just want to verify if a user meets certain ownership requirements, consider using the following route which supports custom AND / OR verification checkers.
-
-```typescript
-const res = await BitBadgesApi.verifyOwnershipRequirements({
-    bitbadgesAddress,
-    assetOwnershipRequirements: {
-        $and: [
-            {
-                assets: [
-                    {
-                        chain: 'BitBadges',
-                        collectionId: 1n,
-                        assetIds: [{ start: 1n, end: 1n }],
-                        ownershipTimes: UintRangeArray.FullRanges(),
-                        mustOwnAmounts: { start: 0n, end: 0n },
-                    },
-                ],
-            },
-            {
-                assets: [
-                    {
-                        chain: 'BitBadges',
-                        collectionId: 2n,
-                        assetIds: [{ start: 1n, end: 1n }],
-                        ownershipTimes: UintRangeArray.FullRanges(),
-                        mustOwnAmounts: { start: 0n, end: 0n },
-                    },
-                ],
-            },
-        ],
-    },
-});
-console.log(res);
-```
-
-
-## File: ./for-developers/bitbadges-api/tutorials/fetching-collections.md
-
-# Fetching Collections
-
-This guide explains how to fetch collection data from the BitBadges API. Collections contain badge metadata, ownership information, and other details.
-
-See the [BitBadges API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) for more details on the API side. See the [BitBadges SDK Documentation](../../bitbadges-sdk/) for more details on the SDK side.
-
-## Basic Collection Fetching
-
-Here's a simple example of fetching a collection:
-
-```typescript
-const res = await BitBadgesApi.getCollections({
-    collectionsToFetch: [
-        {
-            collectionId: 1n,
-            metadataToFetch: {
-                badgeIds: [{ start: 1n, end: 10n }],
-            },
-            fetchTotalAndMintBalances: true,
-        },
-    ],
-});
-const collection = res.collections[0];
-
-// HTTP equivalent:
-// POST /api/v0/collections
-// Body: {
-//   "collectionsToFetch": [{
-//     "collectionId": "1",
-//     "metadataToFetch": {
-//       "badgeIds": [{"start": "1", "end": "10"}]
-//     },
-//     "fetchTotalAndMintBalances": true
-//   }]
-// }
-```
-
-## Working with Collection Data
-
-### Fetching Metadata
-
-```typescript
-// Get metadata for a specific badge
-const badgeMetadata = collection.getBadgeMetadata(1n);
-
-// Get collection-level metadata
-const collectionMetadata = collection.getCollectionMetadata();
-```
-
-### Checking Balances
-
-```typescript
-// Get total supply
-const totalSupply = collection.getBadgeBalances('Total');
-
-// Get specific address balance
-const userBalance = collection.getBadgeBalances('bb1234...');
-
-// Get full balance info including approvals
-const balanceInfo = collection.getBadgeBalanceInfo('bb1234...');
-```
-
-## Pagination and Views
-
-Views are used to fetch paginated data like transfer history and owner lists. Each view uses a bookmark system for pagination.
-
-```typescript
-// Fetch owners with pagination
-const viewRequest = {
-    viewType: 'owners',
-    viewId: 'owners-list',
-    bookmark: '', // Empty for first page
-};
-
-// Fetch first page
-await collection.fetchNextForView(BitBadgesApi, 'owners', 'owners-list');
-
-// Check if more pages exist
-const hasMore = collection.viewHasMore('owners-list');
-
-// Get next bookmark
-const nextBookmark = collection.getViewBookmark('owners-list');
-```
-
-## Content Warnings
-
-Collections can be flagged as NSFW or reported. These flags will be present in the response:
-
-```typescript
-// Example flags in response
-{
-  nsfw: {
-    badgeIds: [{ start: 1n, end: 10n }],
-    reason: "Adult content"
-  },
-  reported: {
-    badgeIds: [{ start: 5n, end: 5n }],
-    reason: "Copyright violation"
-  }
-}
-```
-
-## Efficient Fetching
-
-To avoid refetching data you already have:
-
-```typescript
-// Check if a request would fetch new data
-const isRedundant = collection.isRedundantRequest({
-    collectionId: 1n,
-    metadataToFetch: { badgeIds: [{ start: 1n, end: 10n }] },
-});
-
-// Only fetch new badge IDs
-await collection.fetchMetadata(BitBadgesApi, {
-    metadataToFetch: {
-        badgeIds: [{ start: 11n, end: 20n }], // New range
-    },
-});
-```
-
-For complete API documentation, visit the [BitBadges SDK Documentation](../../bitbadges-sdk/).
-
-
-## File: ./for-developers/bitbadges-api/tutorials/fetching-lists.md
-
-# Fetching Lists
-
-You can also fetch address lists using the BitBadges API. AddressLists are stored and fetched using the [BitBadgesAddressList](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAddressList.html) interface. Visit the [SDK docs](../../bitbadges-sdk/) for lots of useful functions for dealing with accounts.
-
-Note off-chain list IDs are prefixed with "bitbadgesAddress\_".&#x20;
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const listsRes = await BitBadgesApi.getAddressLists([{
-</strong><strong>    //example
-</strong><strong>    listId: "...",
-</strong><strong>    viewsToFetch: [{
-</strong>        viewType: 'listActivity',
-        viewId: 'listActivity',
-        bookmark: ''
-    }]
-<strong>}])
-</strong><strong>
-</strong><strong>const list = listsRes[0];
-</strong></code></pre>
-
-### Metadata
-
-The **metadata** will be in the same format as badges / collections.&#x20;
-
-### NSFW / Reported
-
-NSFW or reported lists will be flagged with the **nsfw** or **reported** properties. Everything is still fetched as normal with typical requests, and it is up to you to do what you want with these accounts.
-
-On the app, we hide all profile details (links, bios, etc) and provide a warning message.
-
-### Alias
-
-The **alias** field is the alias BitBadges address for the list (a fake account that can receive badges).
-
-### **Views / Paginations**
-
-Views have a base **viewType** describing the query type and a unique **viewId** for identification. Each request you will pass in a bookmark obtained from the previous request (pass in '' for the first request). This will fetch the next 25 documents for that view. Once no more docs can be fetched, the returned **hasMore** will be false.
-
-The list interface only currently supports "listActivity" to fetch the latest list information.
-
-
-## File: ./for-developers/bitbadges-api/tutorials/getting-claims.md
-
-# Getting Claims
-
-If you know the claim ID:
-
-```typescript
-import { BitBadgesApi } from 'bitbadges-api';
-
-const getClaims = async () => {
-    try {
-        const res = await BitBadgesApi.getClaims({
-            claimsToFetch: [
-                { claimId: 'claimId1', fetchAllClaimedUsers: true },
-                { claimId: 'claimId2' },
-                { claimId: 'claimId3' },
-            ],
-        });
-
-        const { claims } = res;
-        console.log(claims);
-    } catch (error) {
-        console.error('Error fetching claims:', error);
-    }
-};
-
-getClaims();
-```
-
-You can also get claims via the **claims** field on the returned values for collections and address lists.
-
-**Fetching Claimees**
-
-First, assume you have a claim object that contains the claim information. Then do the following,
-
-* Look for a plugin of type 'numUses' in the claim's plugins array.
-* If found, access the publicState.claimedUsers object.
-* Find the entry for the user's BitBadges address.
-* Convert the resulting data into an array of claim numbers (zero-based).
-
-Again, its important to note that the claim numbers are zero-based. CLaim #1 (as maybe seen on the UI) is actually claim number 0 behind the scenes and so on.
-
-Here's a code example demonstrating this process:
-
-```javascript
-function getClaimeeNumbers(claim, userBitBadgesAddress) {
-    // Find the 'numUses' plugin
-    const numUsesPlugin = claim.plugins.find(
-        (plugin) => plugin.type === 'numUses'
-    );
-
-    if (!numUsesPlugin) {
-        return []; // No 'numUses' plugin found
-    }
-
-    // Get the claimed users for the given address
-    const claimedUsers =
-        numUsesPlugin.publicState.claimedUsers[userBitBadgesAddress];
-
-    if (!claimedUsers) {
-        return []; // No claims found for this user
-    }
-
-    return claimNumbers; //Ex: [0, 5, 10]
-}
-
-// Usage example
-const claim = {
-    // ... other claim properties ...
-    plugins: [
-        {
-            type: 'numUses',
-            publicState: {
-                claimedUsers: {
-                    'bb1abc...': [0, 5, 10],
-                },
-            },
-        },
-    ],
-};
-
-const userBitBadgesAddress = 'bb1abc...';
-const claimeeNumbers = getClaimeeNumbers(claim, userBitBadgesAddress);
-console.log(claimeeNumbers); // Output: [0, 2, 4]
-```
-
-
-## File: ./for-developers/bitbadges-api/tutorials/managing-views.md
+## File: ./for-developers/bitbadges-api/concepts/managing-views.md
 
 # Managing Views
 
@@ -8984,6 +8203,79 @@ const ownersView = collection.getOwnersView('owners');
 3. **Document Mapping**: Use helper functions when available for mapping IDs to documents
 4. **Pagination State**: Track both bookmark and hasMore status for proper pagination
 5. **Response Merging**: Remember that each response is confined to its request - use helper functions or manually merge data as needed
+
+
+## File: ./for-developers/bitbadges-api/concepts/native-chain-algorithm.md
+
+# Native Chain Algorithm
+
+### How is a user's "native" chain determined?
+
+You may have noticed that on the BitBadges site and other places, a user's "preferred" or "main" blockchain is remembered and auto-populated. This is how we populate the **chain** and **address** field in account route responses. We determine the main chain in the following order.
+
+1. Chain of last signed BitBadges transaction
+2. Chain of last sign in on BitBadges app
+3. Try to check any transaction history (e.g. submitted any transactions on Ethereum mainnet chain?)
+4. Requested address format
+5. Guess / default to Ethereum since it is the most popular
+
+
+## File: ./for-developers/bitbadges-api/concepts/refresh-queue.md
+
+# Refresh / Claim Completion Queue
+
+The API / indexer makes use of a load-balanced refresh queue system whenever we need to fetch anything from a source URI (metadata, off-chain balances, etc). Because this is a queue-based system, certain metadata may take awhile to fully load and populate. Once we fetch the metadata, we cache it and return the fetched values until it is refreshed again.
+
+**When do we trigger refreshes?**
+
+Refreshes are triggered automatically when certain things occur on-chain, such as a collection is created / URI is changed. You can also manually trigger refreshes (note there are cooldown limits in place to prevent spam) to refresh the cached values via the refresh endpoints.
+
+**What happens if the fetch fails?**
+
+See [Restrictions / Limits](limits-restrictions.md). We implement an exponential retry system.
+
+**Off-Chain Balances**
+
+Note that for off-chain balances, we also throw an error if the fetched balances exceed the total supply of badges defined on-chain (i.e. you are trying to allocate more badges than you should).
+
+**Checking Status**
+
+If you are having issues, you can check the BitBadges collection page on site -> Actions -> Refresh for statuses. Or, if you need a programmatic solution, you can use following route to see its status and see if it has any error docs.
+
+```typescript
+await BitBadgesApi.getRefreshStatus()
+```
+
+
+
+## File: ./for-developers/bitbadges-api/indexer.md
+
+# Indexer
+
+If you want to run your own indexer and API, check out the source code at [https://github.com/bitbadges/bitbadges-indexer](https://github.com/bitbadges/bitbadges-indexer).
+
+The indexer is split into two main parts: the poller and the API. The poller fetches the latest block from a connected node every second and updates the MongoDB database accordingly. The API is an Express.js API that makes the indexed data queryable to users.
+
+Although you can query other blockchain nodes, it is strongly recommended that you run your own node and query that. HTTP requests can reach >100 per second.
+
+### Running from Scratch
+
+1. Install and setup CouchDB
+2. Setup a valid .env file. See environment.d.ts below for the expected format of the .env file.&#x20;
+3. Use **npm run setup** to setup the CouchDB databases. Note that you can run **npm run setup with-delete** to restart all indexer databases from scratch.
+4. Use **npm run indexer-dev** to start in development mode.
+5. Use **npm run build** and **npm run indexer** to start in production mode.
+
+### Running with Docker
+
+See [https://github.com/bitbadges/bitbadges-docker](https://github.com/bitbadges/bitbadges-docker).
+
+### Customization Options (.env file)
+
+Below are the supported customization options. Some may be applicable. Some may not.
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-indexer/blob/master/environment.d.ts" %}
+
 
 
 ## File: ./for-developers/bitbadges-api/upgrading-an-api-key-tier.md
@@ -12043,11 +11335,9 @@ If you need more information like user socials or custom inputs, consider creati
 
 # Fetching Claims
 
-More documentation is available via the API routes for fetching claims. Go to the JSON tab of the claim details in-site to see an example one. Note that fetchPrivateParams: true is necessary to get certain private information. You must have permissions to view private parameters.
+More documentation is available via the API routes for fetching claims.&#x20;
 
-{% content-ref url="../../bitbadges-api/tutorials/getting-claims.md" %}
-[getting-claims.md](../../bitbadges-api/tutorials/getting-claims.md)
-{% endcontent-ref %}
+Go to the JSON tab of the claim details in-site to see an example one. Note that fetchPrivateParams: true is necessary to get certain private information. You must have permissions to view private parameters.
 
 ```typescript
 const claimsRes = await BitBadgesApi.getClaims({
@@ -12056,6 +11346,7 @@ const claimsRes = await BitBadgesApi.getClaims({
 const claim = claimsRes.claims[0];
 const bitbadgesAddress = convertToBitBadgesAddress(...);
 const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
+const allClaimedUsers = Object.keys(numUsesPlugin.publicState.claimedUsers);
 ```
 
 <figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
