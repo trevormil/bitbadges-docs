@@ -6,16 +6,27 @@ A flexible storage system on BitBadges' side for maintaining lists of:
 
 * Email addresses
 * User Crypto addresses
-* User IDs / usernames names from platforms like:
-  * Discord
-  * GitHub
-  * And more
+* User IDs / usernames names from platforms like Discord, etc
 
-These can be thought of as a separate store for maintaining a list of users. You then "attach" stores to their respective plugins when creating a claim. Then, instead of checking from a static list when chewcking criteria, we check from the dynamic store.
+These can be thought of as a separate store for maintaining a list of users. You then "attach" stores to a claim and gate the claim by checking if a user is in the store. You control it. We store it. Update it:
 
-This is an alternative to custom plugins because the validation and storage is performed by BitBadges. No storage required on your end. You just update the store as you go with API calls or hooks.
+* Manually in-site in the developer portal
+* Automatically w/ API calls
 
-<figure><img src="../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
+```typescript
+await BitBadgesApi.performStoreAction(...)
+await BitBadgesApi.performBatchStoreAction(...)
+```
+
+* Automatically w/ Zapier - Listen to 7000+ apps and add users to store in no-code
+
+To get started, go to the Developer Portal. This will walk you through the process of creating, attaching, and adding data to the store.
+
+Once your store is created, you can add users / data to it. Note that we add via a queue-based approach, so the data may take a couple moments to populate.
+
+**Store ID and Store Secret**
+
+When creating your store, you will get a store ID and secret. These are to be provided by the API / Zapier when managing data. You can also manage the store without the secret if you are signed in with the owner address.
 
 #### Core Advantages
 
@@ -39,19 +50,8 @@ This is an alternative to custom plugins because the validation and storage is p
 * All accounting for claims and other BitBadges services is done primarily with crypto addresses. For example, to complete a claim, you need to specify a claiming address. However, many apps and services do not have such a link from user ID on the app -> crypto address.&#x20;
   * This approach allows you to not need to worry about addresses and only the app identifiers / emails. BitBadges handles the rest.&#x20;
 
-### Integration Capabilities
-
-#### Zapier Compatibility
-
-* Trigger-based updates
-* Connect with 7000+ apps
-* Automate list management from any integrated platform
+<figure><img src="../../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 
-#### API Flexibility
-
-Simply manage your store via the BitBadges API automatically. This can be used to create flexible flows like catch a webhook from any app -> parse email -> update email store, for example.
-
-<figure><img src="../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../../.gitbook/assets/image (223).png" alt=""><figcaption></figcaption></figure>

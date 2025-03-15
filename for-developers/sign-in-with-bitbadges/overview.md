@@ -10,19 +10,21 @@ Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution 
 
 Outsource the heavy lifting of authentication to us, allowing you to focus on your core utility. We aim to provide maximum flexibility in the design process.
 
+#### OAuth Endpoints
+
+* **Authorization:** `https://bitbadges.io/siwbb/authorize?your_params`
+* **Token:** `https://api.bitbadges.io/api/v0/siwbb/token`
+* **Revoke:** `https://api.bitbadges.io/api/v0/siwbb/token/revoke`&#x20;
+
 [**Demo**](https://bitbadges.io/siwbb/authorize?expectAttestations=true\&client_id=example-client-id\&redirect_uri=https://example.com&)
 
-<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
-## OAuth Endpoints
 
-* **Authorization:** `https://bitbadges.io/siwbb/authorize`
-* **Token:** `https://api.bitbadges.io/api/v0/siwbb/token`
-* **Revoke:** `https://api.bitbadges.io/api/v0/siwbb/token/revoke`
 
 ## What SIWBB Handles
 
@@ -30,7 +32,7 @@ SIWBB manages the core authentication flow:
 
 * Proof of address ownership
 
-And by attaching a BitBadges calim, you can seamlessly verify:
+And by attaching a BitBadges claim, you can seamlessly verify:
 
 * Asset ownership (badges, NFTs, etc.)
 * Attestations

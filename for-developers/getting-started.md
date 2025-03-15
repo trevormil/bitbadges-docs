@@ -4,33 +4,81 @@
 >
 > **Need $BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
 >
-> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site!
+> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
+>
+> Get creative. You can gate URLs, Discords, and integrate with many of your favorite tools without a single line of code!
 >
 > **Video Tutorial Series** Check out our three intro to development video tutorial courses ([Intro to BitBadges](https://www.udemy.com/course/multichain-dapps/learn/), [The BitBadges Token Standard](https://www.udemy.com/course/multichain/learn/lecture/46271653#overview), and [Developing MultiChain Applications](https://www.udemy.com/course/crosschain-dapps/learn/lecture/46271733#overview)).
 
-## Gate Any Service with Any Criteria In 2 Steps
+## Explore First, Read Later
 
-Want to implement your own gated service? Any service can be gated simply in just 2 steps.
+We strongly recommend, if you have not already, to explore the claim tester and other creation options in-site. Many of your questions should be answered by the interface and is much easier to understand than a bunch of long text here in this documentation. Just go explore and experiment first.
 
-1. Authenticate your user. We recommend Sign In with BitBadges, but this can be however you want to.
-2. Verify your authenticated user meets the criteria for a claim (set it up with any criteria from payments, badge ownership, points, other claims, anything)
+Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).&#x20;
+
+## Gate Any Service In 2 Steps
+
+Any service can be gated simply in just 2 steps.
+
+1. Authenticate - We recommend Sign In with BitBadges (multi-chain authentication with one interface)
+
+{% content-ref url="authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](authenticating-with-bitbadges/)
+{% endcontent-ref %}
+
+2. Verify Claim Success - Check the user satisfies a BitBadges claim.&#x20;
+
+Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
+
+{% content-ref url="../overview/claim-builder/" %}
+[claim-builder](../overview/claim-builder/)
+{% endcontent-ref %}
 
 ```typescript
-// By address
+// Pre-Req: Set up your claim at https://bitbadges.io/create
+
+// 1. By address (if you already have it)
+// GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
 const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-// if (res.successCount >= 1) ...
+if (res.successCount >= 1) { doSomething(); }
 
-// By attempt ID
+// 2. By attempt ID 
+// GET https://api.bitbadges.io/api/v0/claims/status/{claimAttemptId}
+// 1. Set up the success webhook plugin 
+// 2. Receive webhooks for each successful claim
+// 3. The webhook will provide you with the attempt ID, address, and
+//    any social (Discord, etc) or email identifier requested
 const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
-// if (res.success) ...
-
-// You might also do so via post-success webhooks or another approach
-// This might allow you to map emails -> addresses, for example, if you authenticate via email
+if (res.success) { doSomething() }
 ```
 
-## Quick Start Guide
+By outsourcing authentication + a claim to us, you can leave all the criteria checks to us, allowing you to focus on your core utility. For example,
 
-1. Install the SDK and use the API:
+* Payment-gated websites
+* Badge-gated Discord servers
+* Attestation-gated events
+
+## Quick Start - Claims
+
+This includes documentation everything from custom plugins to Zapier to dynamic stores and mroe
+
+{% content-ref url="../overview/claim-builder/" %}
+[claim-builder](../overview/claim-builder/)
+{% endcontent-ref %}
+
+## Quick Start - API
+
+{% content-ref url="bitbadges-api/" %}
+[bitbadges-api](bitbadges-api/)
+{% endcontent-ref %}
+
+{% content-ref url="bitbadges-sdk/" %}
+[bitbadges-sdk](bitbadges-sdk/)
+{% endcontent-ref %}
+
+{% content-ref url="authenticating-with-bitbadges/" %}
+[authenticating-with-bitbadges](authenticating-with-bitbadges/)
+{% endcontent-ref %}
 
 ```bash
 npm i bitbadgesjs-sdk
@@ -40,74 +88,10 @@ npm i bitbadgesjs-sdk
 import { BitBadgesAPI } from 'bitbadgesjs-sdk';
 
 const api = new BitBadgesAPI({
-  ...YOUR_CONFIG
+  ...YOUR_CONFIG_AND_API_KEY
 });
 
-await BitBadgesAPI.getCollections(...);
+await BitBadgesAPI.getCollection(...);
 ```
 
-2. Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart)
-   * Includes authentication, transactions, self-hosting, and API examples
-   * Multiple flavors available (e.g., Tailwind CSS)
-   * Open for community contributions!
-
-<figure><img src="../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
-
-**Additional Resources:**
-
-* [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example)
-
-## Development Paths
-
-### 1. Creating Badges, Lists, Claims, & Attestations
-
-* **Get Started**: Use the Create tab on BitBadges web app
-* **Self-Hosted / Advanced Solutions**:
-  * Host your own off-chain balances or metadata
-  * Control off-chain badge allocation via your server
-  * Integrate with Web2 data (e.g., subscription status)
-  * Learn more about [balance types](badges-advanced/balances-transfers/balance-types.md)
-  * Test and manage claims in the [developer portal](https://bitbadges.io/developer)
-  * Build custom claim plugins
-
-{% content-ref url="../overview/claim-builder/" %}
-[claim-builder](../overview/claim-builder/)
-{% endcontent-ref %}
-
-### 2. Creating a Custom App / Use Case?
-
-* Use [BitBadges API](bitbadges-api/api.md) and [SDK](bitbadges-sdk/) for data queries
-* Use Sign In with BitBadges for multi-chain authentication / API scope authorizations
-  * One interface, all chains!
-* Create custom claims and check any criteria you want behind the scenes seamlessly!
-  * Claim checks which means you can check criteria like badge ownership or anything from 7000+ integrations
-  * Directly receive private attestation data or other sign in data
-* Run custom indexers for specialized data needs
-
-{% content-ref url="authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](authenticating-with-bitbadges/)
-{% endcontent-ref %}
-
-### 3. Integration Options
-
-* **Integrate BitBadges Into Your App**: Use our API/SDK
-* **Integrate Your Tool Into BitBadges**:
-  * Create custom claim plugins
-  * Create badges, listings, address lists, anything else
-  * Contact us for native integration options
-
-### 4. Blockchain
-
-**Transaction Management Options:**
-
-* **Recommended**: Use the BitBadges web app Create tab
-* **Alternative Methods**:
-  1. Use our [helper in-site broadcast tool](bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md). This even supports redirects with custom inputs!
-  2. Generate transactions via [SDK](bitbadges-blockchain/create-and-broadcast-txs/)
-  3. Use blockchain node CLI (BitBadges addresses only)
-
-**Other Options:**
-
-* [Run a Node](bitbadges-blockchain/run-a-node/) for direct blockchain interaction
-* Create [CosmWasm smart contracts](bitbadges-blockchain/create-a-wasm-contract.md)
-* Extend functionality with BitBadges SDK
+Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart). Or, see out [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example).

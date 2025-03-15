@@ -31,13 +31,13 @@ You have a couple options:
 
 ### Reusing for Non-Indexed (On-Demand) Claims / Balances
 
-Pre-Reading: [Claim Actions](../../../claim-actions.md)
+Pre-Reading: [Claim Actions](broken-reference)
 
 To be used with on-demand claims, the plugin must meet specific requirements and have specific properties:
 
 * Stateless - No per-attempt state
 * No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
-* Only Needs Context - The plugin should be able to function with just the contextual information passed. See [here](../../../claim-actions.md) for more information. The context mainly includes the plugin information, claim information, and the claimee's address.
+* Only Needs Context - The plugin should be able to function with just the contextual information passed.  The context mainly includes the plugin information, claim information, and the claimee's address.
 
 <figure><img src="../../../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
 
@@ -67,7 +67,7 @@ Give your authenticated user (the claiming user) a unique value (such as an auth
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more). Note that claims may take a couple minutes for the user to complete the process, so a 30 second expiration time, for example, may be too low.
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Snapshots vs Dynamic Requests**
 

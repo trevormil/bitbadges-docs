@@ -21,7 +21,7 @@ BitBadges can be simply thought of in two parts.&#x20;
 
 By checking any criteria and delivering any reward, you can gate anything!
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to a universal multi-chain authentication standard to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -79,7 +79,7 @@ This comprehensive approach to authentication works both digitally and in-person
 1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
 2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification. Export the QR codes to formats like Apple Wallet or any prefererd format.
 
-<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### BitBadges Claims
 

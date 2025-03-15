@@ -2,14 +2,14 @@
 
 Claims are the backbone (or connectors) of pretty much all aspects of BitBadges. Create criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to badge distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.&#x20;
 
-Claims can be simply thought of as:&#x20;
-
 1. Meet criteria - Owns badge? Is in Discord server? Provided secret attendance code?
 2. Receive reward - Access to services? Receive badges?
 
 What the criteria and / or rewards are all up to you!&#x20;
 
 Let BitBadges do the heavy lifting, enabling you to focus on offering your core utility. We offer tools to help on either end (badges, address lists, etc), but ultimately, you can check any criteria and deliver any reward you want!
+
+Claims can be simply thought of as:&#x20;
 
 Claims have super flexible implementation as well. For example:
 
@@ -26,6 +26,6 @@ For additional documentation, see here:
 [claim-builder](../claim-builder/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>

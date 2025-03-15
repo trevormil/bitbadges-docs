@@ -1,29 +1,49 @@
 # Overview
 
-BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards**
+```
+Note: This documentation is not meant to explain everything in the claim builder 
+interface. It is to provide developer documentation for more advanced use cases.
 
-The implementation process aims to be super flexible, allowing you maximum customization. This is why the documentation may be a little overwhelming at first. You will not need 95% of what is documented in this section. Also in many sections, we explain along with the developer low-level explanations which will often be taken care of for you.
+Visit https://bitbadges.io/create to get started and experiment with building claims.
+Most of the time, all your desired functionality is handled for you without a single 
+line of code! Or, the interface will at least be a lot less confusing.
+```
 
-The easiest way we recommend to get started is to go to the Claim Tester in the Developer Portal and just experiment. Come back to the relevant sections when you have specific questions. In most cases, you actually will be able to offer everything you want to directly in-site with no code! Or, the questions will be answered for you.
+**What are claims?**
 
-<figure><img src="../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
+BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.&#x20;
 
-They are the backbone of everything else in the site. They can be used with badges to gate distribution. They can be used with Sign In with BitBadges to add criteria checks to an authentication flow.  They even have native plugins for combining checks from all our services like checking badge ownership, checking points, etc.
+**How do claims work? What are plugins?**
+
+Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
+
+Note: Certain plugins may become unavailable due to design decisions. For example, claim codes make no sense for on-demand claims since there is no "complete claim" action.
+
+**Get Creative**
+
+While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!&#x20;
+
+* Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
+* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
+* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+
+There may also be plenty of ways for you to implement the same thing with varying tradeoffs. Select the best for your use case.
 
 **How to create / manage claims?**
 
-Claims are created and maintained through the BitBadges site.&#x20;
+Claims are created and managed in the developer portal.
 
-* Linked to a badge / list? Maintain them through their respective interfaces
-* Standalone? Manage through the developer portal
+**What is possible in-site?**
 
-Go to the Create tab to get started. Use the Claim Tester for experimenting.
+Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
-**What are plugins?**
+* Gate URLs / Content to those who claim with the Rewards tab
+* Use the Discord Role Assigner plugin to create gated channels
+* Use Stripe Payments to create payment-gated claims
+* And much more
 
-Claims are made up of one or more plugins executed in order. For a claim to be successful by default, all plugins must pass. Or, you can customize the success logic. As you see above, the claim has 3 plugins (number of uses, IP, and email) which all must pass.
+**Can claims connect to other BitBadges services?**
 
-Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
+Claims are the universal connector. You can not only check criteria from any BitBadges service (badge ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>

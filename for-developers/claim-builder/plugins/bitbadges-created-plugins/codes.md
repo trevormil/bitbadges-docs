@@ -6,22 +6,22 @@ This plugin manages a code challenge, where users must provide a valid one-time-
 
 We also support specific claim numbers dependent on the zero-based codeIdx using the assignMethod == instanceId.
 
-{% content-ref url="../universal-approach-claim-codes.md" %}
-[universal-approach-claim-codes.md](../universal-approach-claim-codes.md)
+{% content-ref url="../../concepts/universal-approach-claim-codes.md" %}
+[universal-approach-claim-codes.md](../../concepts/universal-approach-claim-codes.md)
 {% endcontent-ref %}
 
 ### Public Parameters
 
--   **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
--   **hideCurrentState**: If true, we will NOT reveal the state to users by default.&#x20;
-    -   If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
-    -   The **publicState** will just be an empty {} by default.
-    -   Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
+* **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
+* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
+  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
+  * The **publicState** will just be an empty {} by default.
+  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
 
 ### Private Parameters
 
--   **codes**: An array of valid codes that users can provide.
--   **seedCode**: A seed used to generate a list of valid codes.
+* **codes**: An array of valid codes that users can provide.
+* **seedCode**: A seed used to generate a list of valid codes.
 
 ### State
 

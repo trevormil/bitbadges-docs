@@ -1,9 +1,13 @@
-# 🔗 Official Links
+# 🔗 Official Links and Resources
 
 Below is a list of official links for socials and other platforms. Our preferred contact is Discord. This is not an exhaustive list. See the rest of the documentation for more information on specific subjects.
 
 * [BitBadges App](https://bitbadges.io)
 * [Explorer](https://explorer.bitbadges.io)
+
+### Documentation
+
+* [LLM .txt](../for-llms.txt) - Entire documentation dumped into one file
 
 ### Socials
 

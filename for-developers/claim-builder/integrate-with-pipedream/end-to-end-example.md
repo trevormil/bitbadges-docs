@@ -8,7 +8,7 @@ With user authentication, you will need your users to go through the Pipedream C
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
 
@@ -100,7 +100,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -115,11 +115,11 @@ Below, we will explain at a high level and will skip over some lower level detai
    1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
 4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. The workflow setup is now complete. The workflow will be triggered upon the HTTP request. It will then use the provided `external_user_id`and execute the claim criteria checks from your configured apps and finally, it will complete a BitBadges claim or add to a dynamic store as the final action properly gating the claim.
 

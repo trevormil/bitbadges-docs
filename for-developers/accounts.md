@@ -2,13 +2,13 @@
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.
 
-You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.** We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed.
+We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed. You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.**&#x20;
 
 The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.
 
