@@ -153,7 +153,7 @@ We do this by the following:
 
 To facilitate the expected functionality of indexed balances, the returned balances are expected to be in a specific format. It should be a JSON object where the keys are BitBadges addresses / address list IDs and the values are Balance\<string>\[]. See [https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances](https://bitbadges-balances.nyc3.digitaloceanspaces.com/airdrop/balances).
 
-Note that if you use address list IDs for the keys ([see here to learn more](../address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
+Note that if you use address list IDs for the keys ([see here to learn more](../../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else).
 
 See [here](../../bitbadges-sdk/common-snippets/off-chain-balances.md) for further info using the SDK for off-chain balances.
 

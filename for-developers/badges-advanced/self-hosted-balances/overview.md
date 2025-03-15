@@ -4,11 +4,11 @@ For off-chain balances, the collection will be stored on the blockchain, but all
 
 Examples:
 
--   Spreadsheets - Assign badges based on addresses in a spreadsheet.
--   Subscriptions - Set up your own subscription service and allocate badges to subscribers!
--   Custom Integrations - Integrate with any app you want!
+* Spreadsheets - Assign badges based on addresses in a spreadsheet.
+* Subscriptions - Set up your own subscription service and allocate badges to subscribers!
+* Custom Integrations - Integrate with any app you want!
 
-There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../core-concepts/balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details (your URL) directly into the form.
+There are two types of off-chain balances: indexed and non-indexed. See the [balances type documentation](../balances-transfers/balance-types.md) for more information. For both options, you must create or have a collection with the desired balances type. The recommended way to create a collection is via the Create form on the BitBadges app. You will be able to enter all self-hosted details (your URL) directly into the form.
 
 **Refresh Queue**
 
@@ -30,8 +30,8 @@ For non-indexed balances, you simply need to set up a server which can return th
 
 Couple notes:
 
--   The URL stored on-chain must have {address} as a placeholder for the address to query.
--   The URL param is expected to support converted BitBadges addresses. It is up to you whether you want to support native addresses as well, but converted BitBadges address support is mandatory. See [here for more information](../accounts.md).
+* The URL stored on-chain must have {address} as a placeholder for the address to query.
+* The URL param is expected to support converted BitBadges addresses. It is up to you whether you want to support native addresses as well, but converted BitBadges address support is mandatory. See [here for more information](../../accounts.md).
 
 Example:
 
@@ -57,7 +57,7 @@ With indexed balances, you store and host the entire balance map all at one endp
 
 The map is simply a bitbadgesAddress/listId -> Balance\<NumberType>\[] map. You can create this yourself by using the **OffChainBalancesMap\<NumberType>** type.
 
-Note that if you use address list IDs for the keys ([see here to learn more](../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badge IDs in this map than what was created on-chain (via the "Mint" address).
+Note that if you use address list IDs for the keys ([see here to learn more](../../core-concepts/address-lists-lists.md)), the corresponding address list must be a whitelist (whitelist = false) and should be stored on-chain for reproducability (not off-chain via the BitBadges servers or somewhere else). You should also not allocate more badge IDs in this map than what was created on-chain (via the "Mint" address).
 
 You may also find the [**createBalanceMapForOffChainBalances**](https://bitbadges.github.io/bitbadgesjs/functions/createBalanceMapForOffChainBalances.html) function helpful.
 

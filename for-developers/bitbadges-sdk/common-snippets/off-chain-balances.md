@@ -1,3 +1,3 @@
 # Off-Chain Balances
 
-We refer you to [here](../../self-hosted-balances.md).
+We refer you to [here](../../badges-advanced/self-hosted-balances/).

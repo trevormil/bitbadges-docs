@@ -1,6 +1,6 @@
 # Fetching Balances
 
-There are a couple ways to fetch badge balances, depending on the [balance type](../../core-concepts/balances-transfers/balance-types.md) of the collections you are trying to fetch. Note this is different from $BADGE (see [here](fetching-balances.md) for fetching $BADGE balance).
+There are a couple ways to fetch badge balances, depending on the [balance type](../../badges-advanced/balances-transfers/balance-types.md) of the collections you are trying to fetch. Note this is different from $BADGE (see [here](fetching-balances.md) for fetching $BADGE balance).
 
 ### Fetching by User or by Collection
 

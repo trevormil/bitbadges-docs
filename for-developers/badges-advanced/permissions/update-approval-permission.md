@@ -44,7 +44,7 @@ Ex: I can/cannot update the approvals for the transfer combinations ("All", "All
 
 IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination because multiple approvals could match to it.
 
-To specify IDs, you can use the "All" reserved ID to represent all IDs, or you can use other shorthand methods such as "!xyz" to denote all IDs but xyz. These shorthands are the same as reserved lists, so we refer you[ there for more info](../address-lists-lists.md). Just replace the addresses with the IDs.
+To specify IDs, you can use the "All" reserved ID to represent all IDs, or you can use other shorthand methods such as "!xyz" to denote all IDs but xyz. These shorthands are the same as reserved lists, so we refer you[ there for more info](../../core-concepts/address-lists-lists.md). Just replace the addresses with the IDs.
 
 ## Break Down Logic
 

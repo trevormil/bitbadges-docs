@@ -10,8 +10,8 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 
 #### Off-Chain Balances Metadata
 
-{% content-ref url="../../core-concepts/balances-transfers/balance-types.md" %}
-[balance-types.md](../../core-concepts/balances-transfers/balance-types.md)
+{% content-ref url="../../badges-advanced/balances-transfers/balance-types.md" %}
+[balance-types.md](../../badges-advanced/balances-transfers/balance-types.md)
 {% endcontent-ref %}
 
 #### Approval Metadata

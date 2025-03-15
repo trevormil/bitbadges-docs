@@ -1,4 +1,4 @@
-# 🕒 Different Time Fields
+# Different Time Fields
 
 BitBadges uses various time-related fields to manage permissions, timelines, transfers, and ownership. Understanding these fields is crucial for effectively managing collections and badges.
 

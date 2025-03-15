@@ -8,6 +8,26 @@
 >
 > **Video Tutorial Series** Check out our three intro to development video tutorial courses ([Intro to BitBadges](https://www.udemy.com/course/multichain-dapps/learn/), [The BitBadges Token Standard](https://www.udemy.com/course/multichain/learn/lecture/46271653#overview), and [Developing MultiChain Applications](https://www.udemy.com/course/crosschain-dapps/learn/lecture/46271733#overview)).
 
+## Gate Any Service with Any Criteria In 2 Steps
+
+Want to build a gated service? Any service can be gated simply in just 2 steps.
+
+1. Authenticate your user. We recommend Sign In with BitBadges, but this can be however you want to.
+2. Verify your authenticated user meets the criteria for a claim. Claims are the universal connector of everything. You can set up claims to check any criteria including payments, badge ownership, points, other claims, anything.
+
+```typescript
+// By address
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+// if (res.successCount >= 1) ...
+
+// By attempt ID
+const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+// if (res.success) ...
+
+// You might also do so via post-success webhooks or another approach
+// This might allow you to map emails -> addresses, for example, if you authenticate via email
+```
+
 ## Quick Start Guide
 
 1. Install the SDK and use the API:
@@ -46,7 +66,7 @@ await BitBadgesAPI.getCollections(...);
   * Host your own off-chain balances or metadata
   * Control off-chain badge allocation via your server
   * Integrate with Web2 data (e.g., subscription status)
-  * Learn more about [balance types](core-concepts/balances-transfers/balance-types.md)
+  * Learn more about [balance types](badges-advanced/balances-transfers/balance-types.md)
   * Test and manage claims in the [developer portal](https://bitbadges.io/developer)
   * Build custom claim plugins
 
