@@ -10,10 +10,10 @@
 
 ## Gate Any Service with Any Criteria In 2 Steps
 
-Want to build a gated service? Any service can be gated simply in just 2 steps.
+Want to implement your own gated service? Any service can be gated simply in just 2 steps.
 
 1. Authenticate your user. We recommend Sign In with BitBadges, but this can be however you want to.
-2. Verify your authenticated user meets the criteria for a claim. Claims are the universal connector of everything. You can set up claims to check any criteria including payments, badge ownership, points, other claims, anything.
+2. Verify your authenticated user meets the criteria for a claim (set it up with any criteria from payments, badge ownership, points, other claims, anything)
 
 ```typescript
 // By address
