@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Mar 15 18:48:49 UTC 2025
+Generated on Sat Mar 15 19:15:54 UTC 2025
 
 
 
@@ -3729,8 +3729,6 @@ And much more!
     * [Fetching Balances](for-developers/bitbadges-api/tutorials/fetching-balances.md)
     * [Fetching Lists](for-developers/bitbadges-api/tutorials/fetching-lists.md)
     * [Getting Claims](for-developers/bitbadges-api/tutorials/getting-claims.md)
-    * [Completing Claims](for-developers/bitbadges-api/tutorials/completing-claims.md)
-    * [Managing Claims](for-developers/bitbadges-api/tutorials/managing-claims.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
@@ -3935,7 +3933,6 @@ And much more!
       * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
     * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
     * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
-* [👨‍💻 Contributing](for-developers/contributing.md)
 * [🧑‍🏫 Other References](for-developers/tutorials.md)
 
 
@@ -8161,17 +8158,6 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 
 
-## File: ./for-developers/bitbadges-api/tutorials/completing-claims.md
-
-# Completing Claims
-
-For completing claims, we refer you to this section of the documentation.
-
-{% content-ref url="../../../overview/claim-builder/" %}
-[claim-builder](../../../overview/claim-builder/)
-{% endcontent-ref %}
-
-
 ## File: ./for-developers/bitbadges-api/tutorials/fetching-accounts.md
 
 # Fetching Accounts
@@ -8857,125 +8843,6 @@ const claim = {
 const userBitBadgesAddress = 'bb1abc...';
 const claimeeNumbers = getClaimeeNumbers(claim, userBitBadgesAddress);
 console.log(claimeeNumbers); // Output: [0, 2, 4]
-```
-
-
-## File: ./for-developers/bitbadges-api/tutorials/managing-claims.md
-
-# Managing Claims
-
-The BitBadges API allows you to manage claims through various functions. Typically, you will not need this as claims can be managed and updated via the BitBadges site. See the developer portal or respective update page for your list, collection, etc.
-
-However, for more advanced cases, you may want to use the API. All require the proper permissions and authorizations.
-
-### Creating Claims
-
-To create a claim using the BitBadges API, use the following function. Not all fields will be applicable depending on the type of claim you are creating. Please read below because certain claim types have specific requirements for creation.
-
-```javascript
-await BitBadgesApi.createClaim({
-  claims: [{
-    claimId: 'unique-claim-id',
-    balancesToSet: { /* your balances here */ }, //for off-chain indexed
-    plugins: [/* your plugins here */],
-    manualDistribution: false,
-    automatic: true,
-    seedCode: 'your-seed-code', //if applicable
-    metadata: { /* your metadata here */ }, 
-    listId: 'your-list-id', // for address list claims
-    collectionId: 1, // for badge claims
-    cid: 'your-cid'
-  }]
-});
-```
-
-#### Address List Claims
-
-For address list claims, simply specify the list ID. The list creator must equal the claim creator.
-
-```javascript
-await BitBadgesApi.createClaim({
-  claims: [{
-    claimId: 'unique-claim-id',
-    listId: 'your-list-id',
-    plugins: [/* your plugins here */],
-    metadata: { /* your metadata here */ }
-    ...
-  }]
-});
-```
-
-#### Collections with On-Chain Balances
-
-For claims that map to an on-chain approval, you will need to make sure the claim ID == the challenge tracker ID of your on-chain approval. This will tie the two together inherently. The ID must be unique from any other claim, and you must use the same address to create the claim and blockchain transaction (that creates the approval). This address also needs to be the manager address.&#x20;
-
-You must create the claim first (reserves the ID behind the scenes) and then the approval after. This does not require the collection ID, so this can be done before the collection is even created.
-
-```javascript
-await BitBadgesApi.createClaim({
-  claims: [{
-    claimId: 'challenge-tracker-id',
-    plugins: [/* your plugins here */],
-    metadata: { /* your metadata here */ }
-  }]
-});
-// Then handle the blockchain transaction with the same address.
-```
-
-#### Collections with Off-Chain Balances
-
-For off-chain balances, the collection must be created first. We check that the claim creator is the current manager of the collection.
-
-```javascript
-await BitBadgesApi.createClaim({
-  claims: [{
-    claimId: 'unique-claim-id',
-    collectionId: 'existing-collection-id',
-    plugins: [/* your plugins here */],
-    metadata: { /* your metadata here */ }
-  }]
-});
-```
-
-### Updating Claims
-
-To update a claim, you can do the following:
-
-```javascript
-await BitBadgesApi.updateClaim({
-  claims: [{
-    claimId: 'unique-claim-id',
-    plugins: [/* updated plugins here */],
-    metadata: { /* updated metadata here */ }
-    ...
-  }]
-});
-```
-
-Each plugin can have a `resetState` or `newState` field to manage its state. It is important that if you are using the new state field, you must configure this properly (see docs for the respective plugin).  You may also find the `onlyUpdateProvidedNewState` useful to only set the specific properties in `newState` and not overwrite everything.
-
-```javascript
-await BitBadgesApi.updateClaim({
-  claims: [{
-    claimId: 'unique-claim-id',
-    plugins: [{
-      ...
-      resetState: true // or newState: {/* new state configuration */}
-    }]
-  }]
-});
-```
-
-It is best practice to perform any claim updates when they are not active, if possible, because of race conditions.&#x20;
-
-### Deleting Claims
-
-Claims can be deleted as well. However, note this is a soft delete (will not be displayed but state and everything can be reinstated later).
-
-```javascript
-await BitBadgesApi.deleteClaim({
-  claimIds: ['unique-claim-id']
-});
 ```
 
 
@@ -12248,7 +12115,7 @@ The following details can be auto-filled for the user if specified in the query 
 * `code`: The unique code for the Codes plugin (assumes only one code plugin)
 * `password`: A password for the Passwords plugin (assumes only one password plugin)
 * `claimId`: The unique identifier for the claim. This lets us know which one to highlight.
-* `customBody`: The preconfigured JSON encoded claim body for the user. See [here for more information](../bitbadges-api/tutorials/completing-claims.md).  Note that you will have to URL encode it.
+* `customBody`: The preconfigured JSON encoded claim body for the user. See the API for more information. Note that you will have to URL encode it.
 * `approvalLevel`: "collection" | "incoming" | "outgoing". We scan for the claimId (collection level first) but for on-chain collections, you may have claims for user level approvals as well. This is used in the case of duplicate claimIds on different levels.
 
 https://bitbadges.io/collections/1?code=ABC123\&password=securepass\&claimId=98765\&customBody={"exampleInstanceId":%20"abc123"}
@@ -15405,27 +15272,6 @@ To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709
 ```
 
 
-## File: ./for-developers/contributing.md
-
-# 👨‍💻 Contributing
-
-The code for BitBadges can be found at [https://github.com/bitbadges](https://github.com/bitbadges). Our plan is to go fully open-source in the future, but for now, certain parts of the code are not open-source.
-
-**Building On Top Of BitBadges**
-
-The best way to contribute to BitBadges is to build on top of it. Explore the rest of the documentation to learn more about how to build with BitBadges. The most common way to contribute is 1) building a custom plugin which checks criteria for a claim or 2) building a utility tool to easily allow users to offer utility gated by badges, claims, or anything else.
-
-If you do build a cool tool, create a new listing on the Explore page (see the developer portal for more details).
-
-**Rewarding Developers**
-
-Checkout our campaigns page [here](https://bitbadges.io/campaigns) for any ongoing hackathons or events.
-
-**Other Methods**
-
-Let us know if you have another idea, are having trouble, or how we can help. We want to make it as easy as possible for you to build with BitBadges.
-
-
 ## File: ./for-developers/core-concepts/README.md
 
 # 🧠 Concepts
@@ -16733,10 +16579,10 @@ const txn = createTransactionPayload(txContext, msgs);
 
 ## Gate Any Service with Any Criteria In 2 Steps
 
-Want to build a gated service? Any service can be gated simply in just 2 steps.
+Want to implement your own gated service? Any service can be gated simply in just 2 steps.
 
 1. Authenticate your user. We recommend Sign In with BitBadges, but this can be however you want to.
-2. Verify your authenticated user meets the criteria for a claim. Claims are the universal connector of everything. You can set up claims to check any criteria including payments, badge ownership, points, other claims, anything.
+2. Verify your authenticated user meets the criteria for a claim (set it up with any criteria from payments, badge ownership, points, other claims, anything)
 
 ```typescript
 // By address
