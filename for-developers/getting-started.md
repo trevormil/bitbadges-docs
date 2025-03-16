@@ -20,7 +20,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 Any service can be gated by ANY criteria simply in just 2 steps.
 
-1. **Authenticate** - We recommend Sign In with BitBadges
+1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
@@ -29,21 +29,6 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
-
-{% content-ref url="../overview/claim-builder/" %}
-[claim-builder](../overview/claim-builder/)
-{% endcontent-ref %}
-
-```typescript
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-if (res.successCount >= 1) { doSomething(); }
-// ----or---- 
-const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
-if (res.success) { doSomething() }
-// ----or----
-// Configure a post-success webhook to receive the attempt details and take out the 
-// API verification step
-```
 
 ## Quick Start - Claims
 

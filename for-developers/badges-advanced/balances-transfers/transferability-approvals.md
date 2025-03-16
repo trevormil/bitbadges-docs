@@ -1,8 +1,8 @@
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../../overview/learn-the-basics/badge-concepts/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](../../../overview/learn/badge-concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn-the-basics/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
