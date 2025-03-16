@@ -6,9 +6,9 @@ Note: This documentation is not meant to explain everything in the claim builder
 
 **What are claims?**
 
-BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.&#x20;
+BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 **How do claims work? What are plugins?**
 
@@ -18,7 +18,7 @@ Note: Certain plugins may become unavailable due to design decisions. For exampl
 
 **Get Creative**
 
-While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!&#x20;
+While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!
 
 * Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
 * Can your users be identified by email? Addresses? Use those plugins or dynamic stores

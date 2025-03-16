@@ -1,7 +1,5 @@
 # Managing Views
 
-## Bookmark Pagination Overview
-
 Throughout the BitBadges API, we use a bookmark-based pagination system for efficient data retrieval. This system is particularly useful when dealing with large datasets that need to be fetched in smaller chunks.
 
 Some endpoints like the get accounts or get collections will use a generic viewsToFetch and views object which can maintain multiple paginated views. Some endpoints will request the bookmark directly. Refer to the documentation for each endpoint to see how it handles pagination.
@@ -51,6 +49,11 @@ const nextRequest = {
 4. **Completion**: Continue this process until `hasMore` is `false`.
 
 ## Understanding the Views Object
+
+```
+Note: This is planning to be deprecated in favor of more confined view routes. 
+Please use those instead. They are much less confusing.
+```
 
 The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesAddressList, BitBadgesUserInfo, etc). It follows this structure:
 

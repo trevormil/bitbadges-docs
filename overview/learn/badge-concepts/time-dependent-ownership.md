@@ -1,6 +1,6 @@
 # Time-Dependent Ownership
 
-Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Badge IDs 1-199). BitBadges introduces a third part: ownership times.&#x20;
+Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Badge IDs 1-199). BitBadges introduces a third part: ownership times.
 
 For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from March-December.
 
@@ -10,7 +10,7 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
 3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Example of Ownership Structure
 

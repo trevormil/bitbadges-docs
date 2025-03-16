@@ -1,4 +1,4 @@
-# ❓ How Do I Check...?
+# 💻 How Do I Check...?
 
 On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
 
@@ -26,9 +26,9 @@ Configure the corresponding plugin to check if the claiming user is on the list.
 
 ## Dynamic Stores
 
-Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible!
+Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible! You can then attach your store to your claim and check that in real-time.
 
-You can then attach your store to your claim and check that in real-time.
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## Check Your Own Criteria
 

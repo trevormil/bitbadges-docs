@@ -17,4 +17,4 @@ Because you can check criteria for anything, there are infinitely many possible 
 * **Publications** - Verify you are the author of a publication
 * **Real Estate** - Custom encrypted title ownership, HOAs, and even MLS documents registered through the blockchain
 * **Praise / Vouch Badges** - Praise, recommend, or vouch for something or someone/
-* And more!
+* Literally anything!

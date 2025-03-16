@@ -1,6 +1,6 @@
 # Manager
 
-Each badge collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.&#x20;
+Each badge collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.
 
 <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -23,7 +23,7 @@ It's worth noting that the manager role can extend beyond on-chain functionaliti
 
 One of the key features of the manager role in BitBadges is the ability to customize permissions at a granular level. This allows for precise control over the collection's management.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
 
 Permissions can be customized based on various factors, including:
 

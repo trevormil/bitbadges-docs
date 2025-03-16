@@ -22,7 +22,7 @@
     * [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
     * [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 * [🔨 Getting Started](overview/getting-started.md)
-* [❓ How Do I Check...?](overview/how-do-i-check-xyz.md)
+* [💻 How Do I Check...?](overview/how-do-i-check-xyz.md)
 * [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links and Resources](overview/official-links.md)

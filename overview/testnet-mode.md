@@ -5,11 +5,11 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
-You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything).  Consider this before determining whether testnet mode is the correct option for you.&#x20;
+You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything). Consider this before determining whether testnet mode is the correct option for you.
 
 ### Differences
 

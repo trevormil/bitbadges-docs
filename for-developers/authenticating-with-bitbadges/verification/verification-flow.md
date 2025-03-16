@@ -41,6 +41,8 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
         console.log(verificationResponse.errorMessage);
         throw new Error('Not authenticated');
     }
+    
+    //Verify claims or anything else you need to do here
 }
 ```
 
@@ -67,23 +69,17 @@ Note this is not the only way of implementing sessions. You may implement custom
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
-IMPORTANT: Note that the authorization code ONLY checks address verification. For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
-
-You must use the combination of 1) address verification via SIWBB and 2) your other checks like claims to ensure the user meets the criteria. Address verification is handled via SIWBB (the authorization code), but the other checks are a separate process that needs to be checked server-side.
-
-Claims are an all inclusive way to build complex no-code criteria flows, but this can be anything you want. We refer you to the respective documentation for how to verify other criteria.
+For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
 
 {% content-ref url="../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
 [verifying-claim-attempts-w-the-api.md](../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
-
-
-As for attestations, we refer you to the following documentaion. Treat BitBadges as the middleman, and verify everything server-side on your end. You will receive an attestationPresentations array directly from the response if the query URL requested attestations.
+As for attestations, we refer you to the following documentation. Treat BitBadges as the middleman, and verify everything server-side on your end. You will receive an attestationPresentations array directly from the response if the query URL requested attestations.
 
 ```typescript
 const { ..., attestationPresentations } = res;

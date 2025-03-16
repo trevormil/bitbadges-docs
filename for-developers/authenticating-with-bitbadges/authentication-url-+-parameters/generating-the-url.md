@@ -1,6 +1,6 @@
 # Generating the URL
 
-The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it.&#x20;
+The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it.
 
 For instance:
 
@@ -15,7 +15,7 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 

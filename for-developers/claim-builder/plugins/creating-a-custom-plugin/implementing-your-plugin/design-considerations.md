@@ -11,8 +11,9 @@ If you receive a post-success hook, you can be sure the claim has succeeded. Or,
 Claims are processed in an asynchronous manner. For processing hooks, your plugin may succeed, but the claim may not complete until a later time.
 
 Best practices:
-- If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
-- Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
+
+* If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
+* Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
 
 This is not really applicable to post-success hooks.
 
@@ -32,7 +33,7 @@ To be used with on-demand claims, the plugin must meet specific requirements and
 
 * Stateless - No per-attempt state
 * No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
-* Only Needs Context - The plugin should be able to function with just the contextual information passed.  The context mainly includes the plugin information, claim information, and the claimee's address.
+* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
 
 Typically, these are only possible with crypto-native plugins. For example,
 
@@ -52,4 +53,4 @@ Consider a workaround such as storing any information yourself, mapping it to a 
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more).
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

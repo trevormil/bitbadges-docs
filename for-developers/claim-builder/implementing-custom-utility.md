@@ -1,6 +1,6 @@
 # Implementing Custom Utility
 
-Need to perform some additional action upon the user claiming successfully?&#x20;
+Need to perform some additional action upon the user claiming successfully?
 
 ## **Preconfigured Plugins**
 
@@ -18,11 +18,11 @@ Some integrations may check claims automatically for you. For example, create a 
 
 ## **In-Site Rewards - URLs / Content**
 
-When creating rewards on the claim builder page, you can also link gated content / URLs to only be visible to users upon successfully claiming.&#x20;
+When creating rewards on the claim builder page, you can also link gated content / URLs to only be visible to users upon successfully claiming.
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -34,7 +34,7 @@ To lookup claim state or recent claim attempts by address or other claim informa
 
 ## Use Post-Success Zaps
 
-If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.&#x20;
+If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.
 
 For example, new claim -> add to Mailchimp list or add to Google Sheets.
 
