@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Mar 16 16:40:06 UTC 2025
+Generated on Sun Mar 16 19:32:54 UTC 2025
 
 
 
@@ -3654,24 +3654,24 @@ And much more!
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [👨‍💻 Learn the Basics](overview/learn-the-basics/README.md)
-  * [BitBadges Claims](overview/learn-the-basics/distribution.md)
-  * [Multi-Chain Accounts](overview/learn-the-basics/accounts.md)
-  * [Sign In with BitBadges](overview/learn-the-basics/verification-tools.md)
-  * [Badges](overview/learn-the-basics/badges.md)
-  * [Address Lists](overview/learn-the-basics/address-lists.md)
-  * [Attestations](overview/learn-the-basics/attestations.md)
-  * [Applications (Points)](overview/learn-the-basics/applications-points.md)
-  * [Additional Badge Concepts](overview/learn-the-basics/badge-concepts/README.md)
-    * [Manager](overview/learn-the-basics/badge-concepts/manager.md)
-    * [Total Supplys](overview/learn-the-basics/badge-concepts/total-supplys.md)
-    * [Time-Dependent Ownership](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)
-    * [Balances Types](overview/learn-the-basics/badge-concepts/balances-types.md)
-    * [Transferability](overview/learn-the-basics/badge-concepts/transferability.md)
-  * [Wallets and Sign Ins](overview/learn-the-basics/wallets-and-sign-ins/README.md)
-    * [Supported Wallets](overview/learn-the-basics/wallets-and-sign-ins/supported-wallets.md)
-    * [Alternate Sign Ins / Mobile](overview/learn-the-basics/wallets-and-sign-ins/mobile-support.md)
-    * [Approved Transactors](overview/learn-the-basics/wallets-and-sign-ins/approved-transactors.md)
+* [👨‍💻 Learn the Basics](overview/learn/README.md)
+  * [BitBadges Claims](overview/learn/distribution.md)
+  * [Multi-Chain Accounts](overview/learn/accounts.md)
+  * [Sign In with BitBadges](overview/learn/verification-tools.md)
+  * [Badges](overview/learn/badges.md)
+  * [Address Lists](overview/learn/address-lists.md)
+  * [Attestations](overview/learn/attestations.md)
+  * [Applications (Points)](overview/learn/applications-points.md)
+  * [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
+    * [Manager](overview/learn/badge-concepts/manager.md)
+    * [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
+    * [Time-Dependent Ownership](overview/learn/badge-concepts/time-dependent-ownership.md)
+    * [Balances Types](overview/learn/badge-concepts/balances-types.md)
+    * [Transferability](overview/learn/badge-concepts/transferability.md)
+  * [Wallets and Sign Ins](overview/learn/wallets-and-sign-ins/README.md)
+    * [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
+    * [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
+    * [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 * [🔨 Getting Started](overview/getting-started.md)
 * [🔐 How Do I Check...?](overview/how-do-i-check-xyz.md)
 * [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
