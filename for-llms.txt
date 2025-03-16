@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Mar 16 19:32:54 UTC 2025
+Generated on Sun Mar 16 19:42:42 UTC 2025
 
 
 
@@ -3630,18 +3630,18 @@ The BitBadges token (badge) standard is state-of-the-art compared to existing to
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
-* [**Time-Based Balances**](overview/learn/badge-concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
-* [**Off-Chain Balances:**](overview/learn/badge-concepts/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
-* [**Fine-Grained Transferability and Approvals Customization**](overview/learn/badge-concepts/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
+* [**Time-Based Balances**](broken-reference)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
+* [**Off-Chain Balances:**](broken-reference) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
+* [**Fine-Grained Transferability and Approvals Customization**](broken-reference)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
-  * [**Must Own Badges:** ](overview/learn/badge-concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
-  * [**Fine-Grained Approvals:** ](overview/learn/badge-concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-  * [**Incoming Approvals:** ](overview/learn/badge-concepts/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+  * [**Must Own Badges:** ](broken-reference)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
+  * [**Fine-Grained Approvals:** ](broken-reference)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
+  * [**Incoming Approvals:** ](broken-reference)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
-* [**Customizable Permissions**](overview/learn/badge-concepts/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](broken-reference)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
 * [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
-* [**Batch Transfers**](overview/learn/badge-concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](broken-reference)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
 And much more!
@@ -3666,14 +3666,14 @@ And much more!
     * [Manager](overview/learn/badge-concepts/manager.md)
     * [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
     * [Time-Dependent Ownership](overview/learn/badge-concepts/time-dependent-ownership.md)
-    * [Balances Types](overview/learn/badge-concepts/balances-types.md)
     * [Transferability](overview/learn/badge-concepts/transferability.md)
+    * [Balances Types](overview/learn/badge-concepts/balances-types.md)
   * [Wallets and Sign Ins](overview/learn/wallets-and-sign-ins/README.md)
     * [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
     * [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
     * [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 * [🔨 Getting Started](overview/getting-started.md)
-* [🔐 How Do I Check...?](overview/how-do-i-check-xyz.md)
+* [❓ How Do I Check...?](overview/how-do-i-check-xyz.md)
 * [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
@@ -3905,8 +3905,8 @@ And much more!
     * [⏳ Timelines](for-developers/core-concepts/general/timelines.md)
     * [🖼️ Metadata](for-developers/core-concepts/general/metadata.md)
     * [⚓ Anchors](for-developers/core-concepts/general/anchors.md)
-  * [📧 Address Lists](for-developers/core-concepts/address-lists-lists.md)
-  * [🗺️ Maps / Protocols](for-developers/core-concepts/maps.md)
+  * [Address Lists](for-developers/core-concepts/address-lists-lists.md)
+  * [Maps / Protocols](for-developers/core-concepts/maps.md)
   * [🗝️ Attestations](for-developers/core-concepts/verifiable-attestations/README.md)
     * [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
     * [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
@@ -4155,10 +4155,19 @@ Sign In with BitBadges becomes super powerful when you connect a BitBadges claim
 * Connect to 7000+ app integration plugins
 * And much more all within the same flow.
 
-Treat claims as not a part of the core SIWBB process. Do it all in one flow but verify it separately. 1) Authenticate the user 2) Verify the authenticated address meets claim criteria during the exchange flow.
+Treat claims as not a part of the core SIWBB process. Do it all in one flow but verify it separately. 1) Authenticate the user 2) Verify the authenticated address meets claim criteria.
+
+The claim verification is typically during the exchange flow handling.
+
+1. Exchange and verify SIWBB request
+2. Post-authentication, verify claim
 
 {% content-ref url="../../overview/claim-builder/" %}
 [claim-builder](../../overview/claim-builder/)
+{% endcontent-ref %}
+
+{% content-ref url="../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
+[verifying-claim-attempts-w-the-api.md](../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
 
@@ -5701,7 +5710,7 @@ Sample Transfer Msg
 
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/learn/badge-concepts/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](broken-reference) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
@@ -6105,9 +6114,9 @@ During creation and update transaction ([MsgCreateCollection](../../bitbadges-bl
 
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../../overview/learn/badge-concepts/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](broken-reference)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
@@ -6745,9 +6754,9 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 
 # Overview
 
-First, read [Permissions](../../../overview/learn/badge-concepts/manager.md) for an overview.
+First, read [Permissions](broken-reference) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -7715,7 +7724,7 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## List of Standards
 
-See [here](../../overview/learn/badge-concepts/standards.md).
+See [here](broken-reference).
 
 
 ## File: ./for-developers/bitbadges-api/README.md
@@ -11278,13 +11287,13 @@ Note: You may also implement other ways of verifying claim attempts such as pars
 
 # Checking Custom Criteria
 
-If the in-site plugins are not enough on the  criteria side, consider one of the following:
+If the in-site plugins are not enough on the criteria side, consider one of the following:
 
-## Dynamic Storesl
+## Dynamic Stores
 
-Dynamic stores can be created in the developer portal. They are simply a ist of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.&#x20;
+Dynamic stores can be created in the developer portal. They are simply a list of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.
 
-Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed. They are serverless. 
+Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed. They are serverless.
 
 You can:
 
@@ -11304,7 +11313,7 @@ Configure your claim with custom webhooks. Use the "Check Your Own Criteria" plu
 
 Note: The in-site webhook plugins are streamlined alternatives to building your own custom plugins which are a little more feature-rich and reusable.
 
-Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome. &#x20;
+Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome.
 
 {% content-ref url="plugins/" %}
 [plugins](plugins/)
@@ -14194,7 +14203,7 @@ To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709
 
 ## File: ./for-developers/core-concepts/address-lists-lists.md
 
-# 📧 Address Lists
+# Address Lists
 
 [AddressLists](https://bitbadges.github.io/bitbadgesjs/interfaces/iAddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
@@ -14667,9 +14676,9 @@ Inverting a range results in all values from 1 to 18446744073709551615 that are 
 
 ## File: ./for-developers/core-concepts/maps.md
 
-# 🗺️ Maps / Protocols
+# Maps / Protocols
 
-Maps are similar to anchors, but they allow you to store data on-chain in a structured way. They are simply key-value maps, and the configuration can be set with customization options like "no duplicates", "expect integere values"", and so on. With maps, you can create universal, reusable, flexible protocols for your users.&#x20;
+Maps are similar to anchors, but they allow you to store data on-chain in a structured way. They are simply key-value maps, and the configuration can be set with customization options like "no duplicates", "expect integere values"", and so on. With maps, you can create universal, reusable, flexible protocols for your users.
 
 ```json
 {
@@ -14705,14 +14714,14 @@ export interface iMap<T extends NumberType> {
 
 All maps are identified by a **mapId.** The following **mapId** values are reserved:
 
--   Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
--   Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
+* Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
+* Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
 
 **Use Cases**
 
--   Alternative permissions - Store other permissions related to a collection in these maps on-chain
--   Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
--   Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
+* Alternative permissions - Store other permissions related to a collection in these maps on-chain
+* Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
+* Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
 
 **Manager**
 
@@ -14726,12 +14735,12 @@ Protocols may have expected genesis conditions or additional checks to be correc
 
 **Map Type**
 
-There are really four different map types.&#x20;
+There are really four different map types.
 
--   Manager only means only the manager can update values
--   Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
--   Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
--   First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
+* Manager only means only the manager can update values
+* Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
+* Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
+* First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
 
 ```typescript
 export interface iMapUpdateCriteria<T extends NumberType> {
@@ -15509,7 +15518,7 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
+2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
@@ -15930,9 +15939,11 @@ Please reach out in Discord if you are having trouble, have feedback, or have fe
 
 ## File: ./overview/how-do-i-check-xyz.md
 
-# 🔐 How Do I Check ...?
+# ❓ How Do I Check...?
 
 On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
+
+<figure><img src="../.gitbook/assets/image (224).png" alt=""><figcaption></figcaption></figure>
 
 ## Checking BitBadges Services - Badge Ownership, Points, List Membership
 
@@ -15944,7 +15955,7 @@ Configure the claim to check for one-time use only claim codes or secret passwor
 
 ## Receiving Attestations
 
-Configure a custom webhook or plugin to request user attestations stored in their account. 
+Configure a custom webhook or plugin to request user attestations stored in their account.
 
 ## Checking Payments
 
@@ -15956,13 +15967,14 @@ Configure the corresponding plugin to check if the claiming user is on the list.
 
 ## Dynamic Stores
 
-Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible! 
+Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible!
 
 You can then attach your store to your claim and check that in real-time.
 
 ## Check Your Own Criteria
 
-If you want to custom check criteria, configure your own custom plugin (publishable and reusable) or a webhook where you can receive user inputs, attestations, social identifiers, and more!  Or, you can also auto-complete claims on behalf of users with the API or Zapier.
+If you want to custom check criteria, configure your own custom plugin (publishable and reusable) or a webhook where you can receive user inputs, attestations, social identifiers, and more! Or, you can also auto-complete claims on behalf of users with the API or Zapier.
+
 
 ## File: ./overview/how-do-i-gate-xyz.md
 
@@ -16422,7 +16434,7 @@ Incorporating time-based ownership into the conventional badge ownership paradig
 
 # Total Supplys
 
-Each badge in a collection will have its own circulating supply. Fou can think of the "Mint" address having unlimited balances, and the circulating supply is determined by the approvals and permissions of transfers from minting set up by the collection manager.
+Each badge in a collection will have its own circulating supply. You can think of the "Mint" address having unlimited balances, and the circulating supply is determined by the approvals and permissions of transfers from minting set up by the collection manager.
 
 Badges can be fungible, non-fungible, or anything in between. Each has its own supply. And with time-dependent balances, this supply may change over time automatically.
 
@@ -16711,7 +16723,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn/distribution.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](broken-reference))
 * [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
 * [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
 
@@ -16810,7 +16822,7 @@ If there is anything we can do to make development easier, let us know.
 
 Because you can check criteria for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorites. You can also browse featured items at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
-* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](learn/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](broken-reference)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).
 * **Truth Badges -** Badges become the source of truth for scams, deep fakes, and more. For example, in a world of artificial intelligence, badges can be used to verify the root truth of some statement or thing.&#x20;
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
