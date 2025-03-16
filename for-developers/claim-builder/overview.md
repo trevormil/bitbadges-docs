@@ -1,8 +1,7 @@
 # Overview
 
 ```
-Note: This documentation is not meant to explain everything in the claim builder 
-interface. It is to provide developer documentation for more advanced use cases.
+Note: This documentation is not meant to explain everything in the claim builder interface. It is to provide developer documentation for more advanced use cases.
 ```
 
 **What are claims?**

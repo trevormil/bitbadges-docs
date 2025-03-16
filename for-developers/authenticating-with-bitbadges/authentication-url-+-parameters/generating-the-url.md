@@ -5,7 +5,7 @@ The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwb
 For instance:
 
 ```vbnet
-https://bitbadges.io/siwbb/authorize?name=Event&description=...
+https://bitbadges.io/siwbb/authorize?client_id=...
 ```
 
 This URL structure adheres to the following interface:
@@ -19,8 +19,6 @@ You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkge
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
-The URL is to be distributed to your users via any communication method or directly in your frontend. The generated URL can be quite long, so you may consider using a URL shortener.
-
 **Snippets**
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
@@ -32,7 +30,7 @@ const popupParams: CodeGenQueryParams {
 <strong>const authUrl = generateBitBadgesAuthUrl(popupParams);
 </strong></code></pre>
 
-```typescript
+```ts
 export const generateBitBadgesAuthUrl = (params: CodeGenQueryParams) => {
     let url = `https://bitbadges.io/siwbb/authorize?`;
     for (const [key, value] of Object.entries(params)) {

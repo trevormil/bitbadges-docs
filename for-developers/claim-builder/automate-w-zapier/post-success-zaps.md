@@ -1,16 +1,19 @@
 # Post-Success Zaps
 
-If you want to implement post-success Zaps, consider using the New Claim Success trigger. This will poll and execute the Zap for every new claim that is completed. You have access to the claiming address / claim number (zero-based) in the response.
+Post-success Zaps are a great way to implement custom utility from over 7000+ apps upon claim successes.
 
-<figure><img src="../../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
+There are two options:
 
-If you need more information like user socials or custom inputs, consider creating a custom plugin or using a webhook plugin to handle this and trigger the Zap manually via the Webhooks by Zapier plugin. Note this should NOT use the BitBadges integration as shown above. It uses the dedicated Webhooks by Zapier trigger.
+1. Use Webhooks by Zapier plugin and catch a POST request + Post-Success Zap plugin in your claim. This is recommended as it is much more feature complete and allows you to get social identifiers like emails, apps, etc.
+2. Use the Claim Success trigger provided by BitBadges x Zapier Integration
+
+For this tutorial, we will showcase Option 1:
 
 1. Setup your Zap with Webhooks by Zapier and catch a POST request
 
 <figure><img src="../../../.gitbook/assets/image (204).png" alt=""><figcaption></figcaption></figure>
 
-2. Configure your Zapier Webhook plugin in the BitBadges site. Add the webhook URL it gives you. For Zapier, the validation secret is not as important, but you can additionally add a step to check it within the Zap. The JSON preview it shows you will give you all the available fields you can use.&#x20;
+2. Configure your Post-Success Zapier Webhook plugin in the BitBadges site. Add the webhook URL it gives you from Step 1. For Zapier, the validation secret is not as important, but you can additionally add a step to check it within the Zap. The JSON preview it shows you will give you all the available fields you can use.&#x20;
 
 <figure><img src="../../../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
 
@@ -18,7 +21,7 @@ If you need more information like user socials or custom inputs, consider creati
 
 <figure><img src="../../../.gitbook/assets/image (205).png" alt=""><figcaption></figcaption></figure>
 
-4. Configure your action and dynamically replace values where needed. For example, if your action is an outbound send email, you will need to parse the email from the webhook and automatically populate the recipient address for the email.
+4. Configure your action with any app and dynamically replace values where needed. For example, if your action is an outbound send email, you will need to parse the email from the webhook and automatically populate the recipient address for the email.
 
 <figure><img src="../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
 

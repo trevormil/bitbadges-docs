@@ -1,8 +1,6 @@
 # Offline Verification
 
-If you need to pre-fetch all (code, request) pairs before verification time (e.g. you are verifying in an offline setting), you can fetch all codes created via BitBadges for your client ID via the SDK below.&#x20;
-
-This is a paginated request, so you will need to specify the bookmark received from the previous request. This does not fetch or include any requests with redirect URIs (only ones stored in users' accounts via the manual approach).
+If you need to pre-fetch all (code, request) pairs before verification time (e.g. you are verifying in an offline setting), you can fetch all codes created via BitBadges for your client ID with the API.&#x20; This just returns the authorization codes, and you still need to exchange them (which is a one-time only process).
 
 ```typescript
 const res = await BitBadgesApi.getSIWBBRequestsForDeveloperApp({
@@ -11,8 +9,6 @@ const res = await BitBadgesApi.getSIWBBRequestsForDeveloperApp({
 });
 console.log(res);
 ```
-
-Note that we do not provide verification responses by default. You will need to verify each individually. If you have time-dependent checks, note that by default, verification is done for the current time.
 
 ```typescript
 await BitBadgesApi.verifySIWBBRequest({ ... });

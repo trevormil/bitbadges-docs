@@ -4,8 +4,6 @@ The BitBadges browser extension provides a quick preview of a user's badges and 
 
 Note: Chrome should have full settings functionality, but others may be limited.
 
-
-
 **Chrome**
 
 Install Link: [https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en)

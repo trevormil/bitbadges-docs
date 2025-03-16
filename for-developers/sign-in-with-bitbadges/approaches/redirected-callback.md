@@ -1,6 +1,6 @@
 # Redirect Callback
 
-The callback approach is used for immediate authentication. To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes.
+The standard OAuth callback approach is used for immediate authentication. To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes immediately.
 
 **How do callbacks work?**
 
@@ -9,8 +9,6 @@ A high-level overview is:
 1. Users navigate to the custom SIWBB URL for your authentication request.
 2. The user will be walked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI via the query parameters `code` and `state`.
 3. The redirect URI can then fetch the details from the API using the transmitted code with knowledge of the configured app's client secret.
-
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generating the URL**
 
@@ -32,6 +30,8 @@ const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     //TODO: Fetch authentication details (see Verification page)
     //      const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code, ... });
     //TODO: Any application specific requirements
+
+    //Learn more in the verification steps
 };
 ```
 

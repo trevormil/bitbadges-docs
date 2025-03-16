@@ -5,6 +5,8 @@ IMPORTANT: Verifying claim attempts are two-fold:
 * Authentication: Authenticate the user (can be done with Sign In with BitBadges or however)
 * Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the user has satisfied the criteria
 
+Note: You may opt to simply receive a post-success webhook which would take the API verification step out of it.
+
 ```typescript
 // Pre-Req: Set up your claim at https://bitbadges.io/create
 // Pre-Req: User is authenticated

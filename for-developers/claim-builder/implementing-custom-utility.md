@@ -8,7 +8,7 @@ The easiest and most typical approach is to just do this with preconfigured plug
 
 <figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
-## Integrations
+## **Integrations**
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
 

@@ -6,7 +6,7 @@ If users claim in-site, simply direct them to the claim page, such as the follow
 
 Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
 
-#### Auto-filled Details (Advanced)
+#### Auto-filled Details (Advanced / Experimental)
 
 The following details can be auto-filled for the user if specified in the query parameters.
 

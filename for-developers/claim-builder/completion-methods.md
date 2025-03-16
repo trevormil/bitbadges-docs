@@ -4,7 +4,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 **Option 1: Directly In-Site (Recommended)**
 
-Users can claim directly on the corresponding page directly in the BitBadges site.
+Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

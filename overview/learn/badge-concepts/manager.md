@@ -17,8 +17,6 @@ The manager role can be granted various permissions, allowing for flexible admin
 7. **Transferability Updates:** This involves modifying the collection's approval settings, which determine how badges can be transferred. (For more details, see [transferability](transferability.md))
 8. **Custom Permissions:** Depending on the collection's setup, there may be additional, collection-specific permissions available to the manager.
 
-### Off-Chain Permissions
-
 It's worth noting that the manager role can extend beyond on-chain functionalities. Various tools and platforms can offer custom off-chain utilities exclusive to the manager, further expanding the role's capabilities and responsibilities.
 
 ## Fine-Grained Customizability

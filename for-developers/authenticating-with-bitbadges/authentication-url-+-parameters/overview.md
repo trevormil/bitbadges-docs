@@ -6,19 +6,9 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
--   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
--   Specify a `claimId` to display a specific claim to the user
-
-**"Attaching" a Claim**
-
-And what does attaching a BitBadges claim open up?
-
--   Check other social sign-ins (e.g. Discord, Twitter, GitHub, Google)
--   Check badge ownership, receive private attestations from the user accounts, check criteria from the 7000+ connected apps and integrations, and much more!
-
-{% content-ref url="../connecting-a-claim.md" %}
-[connecting-a-claim.md](../connecting-a-claim.md)
-{% endcontent-ref %}
+-  Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
+-  Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like badge ownership checks, payments, anything
+-  You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
 
 ## Parameter Interface
 
@@ -59,8 +49,6 @@ interface CodeGenQueryParams {
 
 -   Specify required claim to be satisfied with `claimId`
 -   Create the claim in the developer portal. See claim docs for more details.
--   `hideIfAlreadyClaimed` hides if user passed claim
--   `expectVerifySuccess` is used by us to catch errors early. If the user fails to meet claim criteria, we will not allow them to proceed. This should be false if they are not expected to pass criteria at SIWBB time.
 -   Claims are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
 
 ### 4. Attestations

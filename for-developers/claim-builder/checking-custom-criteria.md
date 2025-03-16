@@ -2,11 +2,11 @@
 
 If the in-site plugins are not enough on the  criteria side, consider one of the following:
 
-## Dynamic Stores
+## Dynamic Storesl
 
-Dynamic stores can be created in the developer portal. They are simply a list of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.&#x20;
+Dynamic stores can be created in the developer portal. They are simply a ist of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.&#x20;
 
-Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed
+Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed. They are serverless. 
 
 You can:
 

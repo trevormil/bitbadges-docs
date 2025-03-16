@@ -1,15 +1,16 @@
 # Parameters
 
-Each plugin can configure the expected schema of parameters inputted by the creator when creating the claim. Note these are different from user inputs.&#x20;
+Each plugin can configure the expected schema of parameters inputted by the claim creator and the end user. These will all be available in the payload of your handler in addition to contextual information like address, attempt ID, etc.
 
-Parameters can either be public and visible to any user or kept privately stored. Like previously stated though, the private parameters are not displayed to the user and kept secure, but we do not recommend storing sensitive information like API keys in here.
+```json
+{
+    ...context,
+    ...publicParams, // Public to the end users
+    ...privateParams, // Private to BitBadges and the claim creator
+    ...userInputs
+}
+```
 
 Parameters will be passed to your backend handler in the payload.
 
 <figure><img src="../../../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
-
-Each parameter has different customization options. The creation form will walk you through everything.
-
-<figure><img src="../../../../../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>

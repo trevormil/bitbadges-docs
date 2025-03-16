@@ -14,8 +14,6 @@ For example, what if you need to be able to revoke? Freeze one's ability to tran
 
 We abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
 
-<figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
 
 ## Approval Levels
@@ -26,15 +24,15 @@ We define three levels of approved transfers: collection-wide, incoming, and out
 
 ### **Collection Approvals**
 
-The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set).
+The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.**  This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
 
-For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify challenges that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). This also encompasses transfers from the Mint address. See all possibilities below.
+For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify claims that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
 
-The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking badges or forcefully freezing badges. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.**
+The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking badges or forcefully freezing badges. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.** This is what is used in the case of approving mints.
 
 ### **Outgoing Approvals**
 
-The outgoing approvals are the approved transfers of the sender. By default, all transfers where the sender equals the transaction initiator are allowed, and all others are disallowed. The sender can optionally approve other addresses to transfer on their behalf. If you are familiar with other blockchain NFTs and tokens, this is the same as those approvals.
+The outgoing approvals are the approved transfers of the sender. By default, all transfers where the sender equals the transaction initiator are allowed, and all others are disallowed. The sender can optionally approve other addresses to transfer on their behalf. If you are familiar with other blockchain NFTs and tokens, this is similar.
 
 The collection can define a default outgoing approved transfers for each user. This can then be updated by the user as they desire.
 
@@ -44,14 +42,16 @@ The incoming approvals are the approved transfers of the recipient. By default, 
 
 The collection can define a default incoming approved transfers for each user. They can then be updated by the user as they desire. They can then be updated by the user as they desire.
 
+Typically, this is left open-ended to allow all incoming transfers, but this can be customized for more advanced use cases.
+
 ### Transfer Validation Scenario
 
 Let's delve into a transfer scenario to understand the process of approval validation:
 
-#### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for January to March&#x20;
+#### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for the times January to March&#x20;
 
 1. **Collection-Level Approval Check**:
-   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable within the collection, the transfer attempt would be deemed unsuccessful.
+   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
 2. **Incoming Approval Check**:
    * If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific badge collection in question.
 3. **Outgoing Approval Check**:
@@ -78,6 +78,8 @@ At each level, we offer the following functionality for defining approved transf
 * Require sender to be the initiator? Require sender to not be the initiator?
 * Require recipient to be the initiator? Require recipient to not be the initiator?
 * And more!
+
+The best way to see all that is possible is to view the badge creation process.
 
 ### **Updatability**
 

@@ -24,6 +24,13 @@ To get started, go to the Developer Portal. This will walk you through the proce
 
 Once your store is created, you can add users / data to it. Note that we add via a queue-based approach, so the data may take a couple moments to populate.
 
+**Attach to a Claim**
+
+The interface should walk you through the process of attaching it to a claim:
+1. Directly in claim builder, you should see your stores in the templates section
+2. In the stores tab, click Create Claim for a one-click create a claim which is auto-configured
+3. Add the corresponding plugin (email for email stores) and add the store in the parameters select
+
 **Store ID and Store Secret**
 
 When creating your store, you will get a store ID and secret. These are to be provided by the API / Zapier when managing data. You can also manage the store without the secret if you are signed in with the owner address.
