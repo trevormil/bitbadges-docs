@@ -3,15 +3,13 @@
 ```
 Note: This documentation is not meant to explain everything in the claim builder 
 interface. It is to provide developer documentation for more advanced use cases.
-
-Visit https://bitbadges.io/create to get started and experiment with building claims.
-Most of the time, all your desired functionality is handled for you without a single 
-line of code! Or, the interface will at least be a lot less confusing.
 ```
 
 **What are claims?**
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.&#x20;
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **How do claims work? What are plugins?**
 

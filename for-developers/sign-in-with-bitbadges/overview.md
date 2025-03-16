@@ -18,68 +18,32 @@ Outsource the heavy lifting of authentication to us, allowing you to focus on yo
 
 [**Demo**](https://bitbadges.io/siwbb/authorize?expectAttestations=true\&client_id=example-client-id\&redirect_uri=https://example.com&)
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
-
-
-
-## What SIWBB Handles
-
-SIWBB manages the core authentication flow:
-
-* Proof of address ownership
-
-And by attaching a BitBadges claim, you can seamlessly verify:
-
-* Asset ownership (badges, NFTs, etc.)
-* Attestations
-* Social account connections (Discord, GitHub, etc.)
-* Criteria checks from your favorite app!
-
-## Authentication Methods
-
-### 1. Digital Authentication (Immediate)
-
-Best for web applications where users can authenticate immediately:
-
-* User clicks "Sign In with BitBadges"
-* Popup window opens for authentication
-* Verification happens instantly
-* Perfect for badge-gated websites
-
-### 2. QR Code Authentication (Delayed)
-
-Ideal for in-person or offline scenarios:
-
-* Pre-generate authentication QR codes
-* Users can authenticate ahead of time. No need for wallets at presentation time.
-* Verify credentials at point of use
-* Great for ticket verification or physical access control
 
 ## Implementation Flow
 
 1. **Authentication- BitBadges Side**
    * User accesses BitBadges URL (direct or popup)
    * Proves address ownership and other criteria (badges, attestations, etc.)
-   * Receives authorization code from BitBadges (QR or behind the scenes)
+   * Receives authorization code from BitBadges (QR or behind the scenes via redirect)
 2. **Integration- Your App Side**
    * Receive authentication response
+   * Check criteria on your end
    * Implements security measures (prevent replay attacks, etc.)
    * Focus on your core utility
-
-## Button Graphics
-
-We do not have an official Sign In with BitBadges interface button that we expect to be used. We do not even require BitBadges logo to be anywhere on your site.
-
-If you want to custom create a SIWBB button or add a "Powered by BItBadges", feel free. If you want to keep it simple with a plain Sign In, that is no issue.
-
-Whatever you think is best!
 
 ## Getting Started
 
 Check out our [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a complete implementation example and reference code.
 
 Note: SIWBB is fully OAuth 2.0 compatible and works with standard OAuth frameworks and tools.
+
+**Hybrid No Wallet dApps**
+
+Sign In with BitBadges is unique because it allows you to build hybrid dApps, as we term them. Hybrid dApps outsource ALL of the wallet connection, signing, authentication to us. You have no need to implement anything wallet-related on your app side if not needed.
+
+However, if your app already uses wallets, you can still use SIWBB.  The flow is the exact same, and as the user navigates to the SIWBB page, the user's wallet should auto-connect, resulting in a seamless experience.

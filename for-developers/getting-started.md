@@ -18,15 +18,15 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Gate Any Service In 2 Steps
 
-Any service can be gated simply in just 2 steps.
+Any service can be gated by ANY criteria simply in just 2 steps.
 
-1. Authenticate - We recommend Sign In with BitBadges (multi-chain authentication with one interface)
+1. **Authenticate** - We recommend Sign In with BitBadges
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-2. Verify Claim Success - Check the user satisfies a BitBadges claim.&#x20;
+2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
@@ -35,28 +35,15 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 {% endcontent-ref %}
 
 ```typescript
-// Pre-Req: Set up your claim at https://bitbadges.io/create
-
-// 1. By address (if you already have it)
-// GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
 const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
 if (res.successCount >= 1) { doSomething(); }
-
-// 2. By attempt ID 
-// GET https://api.bitbadges.io/api/v0/claims/status/{claimAttemptId}
-// 1. Set up the success webhook plugin 
-// 2. Receive webhooks for each successful claim
-// 3. The webhook will provide you with the attempt ID, address, and
-//    any social (Discord, etc) or email identifier requested
+// ----or---- 
 const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 if (res.success) { doSomething() }
+// ----or----
+// Configure a post-success webhook to receive the attempt details and take out the 
+// API verification step
 ```
-
-By outsourcing authentication + a claim to us, you can leave all the criteria checks to us, allowing you to focus on your core utility. For example,
-
-* Payment-gated websites
-* Badge-gated Discord servers
-* Attestation-gated events
 
 ## Quick Start - Claims
 

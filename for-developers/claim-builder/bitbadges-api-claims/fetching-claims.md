@@ -14,4 +14,4 @@ const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUse
 const allClaimedUsers = Object.keys(numUsesPlugin.publicState.claimedUsers);
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
