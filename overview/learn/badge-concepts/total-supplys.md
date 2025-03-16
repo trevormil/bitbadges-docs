@@ -1,6 +1,6 @@
 # Total Supplys
 
-Each badge in a collection will have its own circulating supply. Fou can think of the "Mint" address having unlimited balances, and the circulating supply is determined by the approvals and permissions of transfers from minting set up by the collection manager.
+Each badge in a collection will have its own circulating supply. You can think of the "Mint" address having unlimited balances, and the circulating supply is determined by the approvals and permissions of transfers from minting set up by the collection manager.
 
 Badges can be fungible, non-fungible, or anything in between. Each has its own supply. And with time-dependent balances, this supply may change over time automatically.
 

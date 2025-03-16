@@ -1,12 +1,12 @@
 # Checking Custom Criteria
 
-If the in-site plugins are not enough on the  criteria side, consider one of the following:
+If the in-site plugins are not enough on the criteria side, consider one of the following:
 
-## Dynamic Storesl
+## Dynamic Stores
 
-Dynamic stores can be created in the developer portal. They are simply a ist of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.&#x20;
+Dynamic stores can be created in the developer portal. They are simply a list of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.
 
-Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed. They are serverless. 
+Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed. They are serverless.
 
 You can:
 
@@ -26,7 +26,7 @@ Configure your claim with custom webhooks. Use the "Check Your Own Criteria" plu
 
 Note: The in-site webhook plugins are streamlined alternatives to building your own custom plugins which are a little more feature-rich and reusable.
 
-Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome. &#x20;
+Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome.
 
 {% content-ref url="plugins/" %}
 [plugins](plugins/)

@@ -23,7 +23,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn/distribution.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](broken-reference))
 * [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
 * [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
 

@@ -26,7 +26,7 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
+2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 

@@ -1,8 +1,8 @@
 # Overview
 
-First, read [Permissions](../../../overview/learn/badge-concepts/manager.md) for an overview.
+First, read [Permissions](broken-reference) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {

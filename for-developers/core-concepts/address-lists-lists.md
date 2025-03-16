@@ -1,4 +1,4 @@
-# 📧 Address Lists
+# Address Lists
 
 [AddressLists](https://bitbadges.github.io/bitbadgesjs/interfaces/iAddressList.html) are a powerful feature with range logic similar to UintRanges. They allow us to specify a list of addresses, identified by a listId.
 
