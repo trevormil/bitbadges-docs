@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Mar 15 22:22:09 UTC 2025
+Generated on Sun Mar 16 00:30:23 UTC 2025
 
 
 
@@ -3542,7 +3542,7 @@ BitBadges can be simply thought of in two parts.&#x20;
 
 By checking any criteria and delivering any reward, you can gate anything!
 
-<figure><img src=".gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 The BitBadges ecosystem aims to offer the full-stack of tools and services you may need from the required storage (blockchain, data indexing, off-chain data storage) to a universal multi-chain authentication standard to distribution to offline-first verification tools (in-person verification, website gated sign-ins) to communicating with your badge holders and more!
 
@@ -3600,7 +3600,7 @@ This comprehensive approach to authentication works both digitally and in-person
 1. **Digital Authentication:** Use "Sign In with BitBadges" for seamless access to websites and applications. This method allows you to prove your identity and credentials without creating new accounts or sharing unnecessary personal information.
 2. **In-Person Authentication:** Utilize QR codes to verify your identity, badge ownership, or attestations in real-world scenarios, such as event entry or age verification. Export the QR codes to formats like Apple Wallet or any prefererd format.
 
-<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### BitBadges Claims
 
@@ -3712,15 +3712,14 @@ And much more!
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
-  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-  * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
     * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
-  * [What If I Need Wallets On App Side?](for-developers/authenticating-with-bitbadges/hybrid-dapps.md)
+  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+  * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
     * [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/overview.md)
     * [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
@@ -3744,18 +3743,18 @@ And much more!
     * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-  * [Fetching Claims](for-developers/claim-builder/fetching-claims.md)
-  * [Verifying Claims w/ the API](for-developers/claim-builder/verifying-claims-w-the-api.md)
+    * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
+    * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
-  * [Implementing Post-Success Utility](for-developers/claim-builder/implementing-custom-utility.md)
-  * [Payment Checking](for-developers/claim-builder/monetizing-apps-badges.md)
-  * [Receiving Attestations](for-developers/claim-builder/receiving-attestations.md)
+  * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
+  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
+    * [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
+    * [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
+    * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
   * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
     * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
     * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-  * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/auto-complete-claims-w-bitbadges-api.md)
-  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims.md)
-  * [Custom Plugins](for-developers/claim-builder/plugins/README.md)
+  * [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
     * [Overview](for-developers/claim-builder/plugins/overview.md)
     * [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
     * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
@@ -3931,7 +3930,7 @@ And much more!
 
 This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
@@ -4004,9 +4003,9 @@ Cons: No backend server which means no session handling, custom functionality, a
 
 
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/approaches/README.md
@@ -4033,7 +4032,7 @@ Note: The QR codes we use are one time "exchange" only. If you need more functio
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account, rather than being transmitted to the redirect URI. See the [Generating the URL](../authentication-url-+-parameters/generating-the-url.md) section for more details.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (6).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (7).png" alt="" width="539"><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md
@@ -4061,7 +4060,7 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
@@ -4183,7 +4182,7 @@ Sign In with BitBadges becomes super powerful when you connect a BitBadges claim
 * Connect to 7000+ app integration plugins
 * And much more all within the same flow.
 
-Treat claims as not a part of the core SIWBB process. Do it all in one flow but verify it separately. 1) Authenticate the user 2) Verify the authenticated address meets claim criteria.
+Treat claims as not a part of the core SIWBB process. Do it all in one flow but verify it separately. 1) Authenticate the user 2) Verify the authenticated address meets claim criteria during the flow
 
 {% content-ref url="../../overview/claim-builder/" %}
 [claim-builder](../../overview/claim-builder/)
@@ -4246,11 +4245,11 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
@@ -4308,7 +4307,7 @@ function(accessToken, ctx, cb) {
 
 **Custom Headers:** None
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
 
@@ -4408,22 +4407,6 @@ The plugin implements the following security measures:
 
 
 
-## File: ./for-developers/authenticating-with-bitbadges/hybrid-dapps.md
-
-# What If I Need Wallets On App Side?
-
-Sign In with BitBadges is unique because it allows you to build hybrid dApps, as we term them. Hybrid dApps outsource ALL of the wallet connection, signing, authentication to us. You have no need to implement anything wallet-related on your app side.
-
-However, if your app already uses wallets, you can still use SIWBB.  The flow is the exact same, and as the user navigates to the SIWBB page, the user's wallet should auto-connect, resulting in a seamless experience. SIWBB can still be useful and provide authentication, a consistent claim interface, or be used to receive private attestations.&#x20;
-
-Note: If you do have wallets and implement authentication on your end, SIWBB may be overkill as there are alternatives like using claim directly or checking other criteria behind the scenes without this step.&#x20;
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-
 ## File: ./for-developers/authenticating-with-bitbadges/verification/README.md
 
 # Verification
@@ -4478,7 +4461,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 
 Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Revoking Access**
 
@@ -4605,7 +4588,7 @@ Note this is not the only way of implementing sessions. You may implement custom
 [api-access-tokens.md](api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
@@ -4615,8 +4598,8 @@ You must use the combination of 1) address verification via SIWBB and 2) your ot
 
 Claims are an all inclusive way to build complex no-code criteria flows, but this can be anything you want. We refer you to the respective documentation for how to verify other criteria.
 
-{% content-ref url="../../claim-builder/verifying-claims-w-the-api.md" %}
-[verifying-claims-w-the-api.md](../../claim-builder/verifying-claims-w-the-api.md)
+{% content-ref url="../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
+[verifying-claim-attempts-w-the-api.md](../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
 
@@ -4627,8 +4610,8 @@ As for attestations, we refer you to the following documentaion. Treat BitBadges
 const { ..., attestationPresentations } = res;
 ```
 
-{% content-ref url="../../claim-builder/receiving-attestations.md" %}
-[receiving-attestations.md](../../claim-builder/receiving-attestations.md)
+{% content-ref url="../../claim-builder/concepts/receiving-attestations.md" %}
+[receiving-attestations.md](../../claim-builder/concepts/receiving-attestations.md)
 {% endcontent-ref %}
 
 ```typescript
@@ -5099,7 +5082,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (11).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/badges-advanced/balances-transfers/approval-criteria/overview.md
@@ -6860,7 +6843,7 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
@@ -8215,19 +8198,19 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Lastly, complete the form, selecting your newly created API key. Enter your email, enter promo code (if applicable), and complete the rest of the form.
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
 
@@ -9085,7 +9068,7 @@ If you want to instantiate it with funds. the **funds** property will be in the 
 
 Your contract is now deployed on the blockchain and ready to be interacted with.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Step 3: Interacting with the Contract**
 
@@ -9437,7 +9420,7 @@ useEffect(() => {
 }, []);
 ```
 
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
@@ -9945,7 +9928,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (5).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -10891,81 +10874,6 @@ import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/badges";
 ```
 
 
-## File: ./for-developers/claim-builder/auto-complete-claims-w-bitbadges-api.md
-
-# Complete Claims w/ BitBadges API
-
-### Do you really need to auto-complete / custom implement?
-
-Before going through the entire process, consider whether you can implement your use case with a plugin-only approach. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
-
-### Auto-Completion
-
-You can use the BitBadges SDK to auto-complete claims for users.
-
-```typescript
-const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
-console.log(res.claimAttemptId);
-
-//Sleep 2 seconds to wait for it to be processed in the queue
-
-const res = await BitBadgesApi.getClaimAttemptStatus(res.claimAttemptId);
-console.log(res); // { success: true }
-```
-
-When creating on the BitBadges site, go to the API Code tab, and you should see code snippets customized to your claim.
-
-<figure><img src="../../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
-
-Couple notes with auto-completing claims:
-
-* If your claim is setup to require proof of sign in, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled.
-* Otherwise, you can setup your claim to be open to anyone but restricted by non-session criteria. For example, do not require proof of address but all claimees must present a valid password (potentially only known by you or the code which is expected to claim).
-
-**Simulating**
-
-You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing (\_specificInstanceIds). The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.
-
-The body is the same as the completeClaim route. See below.
-
-```typescript
-const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
-```
-
-**Custom Body**
-
-Custom plugins may also require custom body inputs from the user. If you are using a custom plugin not created by you, refer to that plugin's documentation or contact the creator for more input on the custom body schema.
-
-You will need to pass \_expectedVersion. This is the version number of the claim that you expect to complete. If there is a version mismatch at claim time, the claim will fail. This is to avoid instances where the claim creator maliciously changes criteria / actions without you knowing. You can specify -1 for don't check, but this is not recommended.
-
-The custom body (if needed) should be in the following format
-
-```typescript
-{
-    _expectedVersion: '0', //version of the claim (obtained from fetching the claim)
-    [instanceId: string]: { ...pluginBody }
-}
-```
-
-For example,
-
-```typescript
-{
-    _expectedVersion: '0', //version of the claim 
-    [`abc123`]: { //password plugin w/ instance ID = "abc123"
-        password: "abc123"
-    },
-    [`codes1234`]: { //codes plugin w/ instance ID = "codes1234"
-        code: "supersecretcode"
-    },
-}
-```
-
-**Customization**
-
-The rest is left up to you. You decide when to trigger this code. It could be when a user signs in, you can auto-trigger based on certain criteria, or anything else you want.
-
-
 ## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
 
 # Integrate with Zapier
@@ -10989,7 +10897,7 @@ We want to note that functionality is slightly different for badges with on-chai
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create the Claim
 
@@ -11007,7 +10915,7 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
@@ -11215,7 +11123,9 @@ Consider adding functionality to the script like sending the code via emails, pr
 
 # Dynamic Store Zaps
 
-We refer you [here](../dynamic-stores/adding-data.md) for more information.  Zaps to add users to a dynamic store may be the most common use case for the BitBadges Zapier integration, notably because they can operate without crypto addresses in favor of emails. You can simply just use the Zap to parse email or user ID or username -> add to the store and let BitBadges handle the rest of the crypto-native stuff.
+We refer you [here](../dynamic-stores/adding-data.md) for more information.&#x20;
+
+Zaps to add users to a dynamic store may be the most common use case for the BitBadges Zapier integration, notably because they can operate without crypto addresses in favor of emails. You can simply just use the Zap to parse email or user ID or username -> add to the store and let BitBadges handle the rest of the crypto-native stuff.
 
 <figure><img src="../../../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
 
@@ -11249,17 +11159,200 @@ If you need more information like user socials or custom inputs, consider creati
 5. Setup the rest of your Zap, create the claim, and you are good to go!
 
 
-## File: ./for-developers/claim-builder/bitbadges-api-claims.md
+## File: ./for-developers/claim-builder/bitbadges-api-claims/README.md
 
 # BitBadges API & Claims
 
+
+
+## File: ./for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md
+
+# Auto-Complete Claims w/ BitBadges API
+
+Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.&#x20;
+
+Typically, we recommend making a custom webhook / plugin over this. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
+
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+### Auto-Completion
+
+You can use the BitBadges SDK to auto-complete claims for users.
+
+```typescript
+const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
+console.log(res.claimAttemptId);
+
+//Sleep 2 seconds to wait for it to be processed in the queue
+
+const res = await BitBadgesApi.getClaimAttemptStatus(res.claimAttemptId);
+console.log(res); // { success: true }
+```
+
+When creating on the BitBadges site, go to the API Code tab, and you should see code snippets customized to your claim.
+
+<figure><img src="../../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
+
+Couple notes with auto-completing claims:
+
+* If your claim is setup to require proof of sign in, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled.
+* Otherwise, you can setup your claim to be open to anyone but restricted by non-session criteria. For example, do not require proof of address but all claimees must present a valid password (potentially only known by you or the code which is expected to claim).
+
+**Simulating**
+
+You can also simulate the claim (which is instant and not put into the queue). There are also options within this request to simulate specific plugins only for further fine-grained testing (\_specificInstanceIds). The complete claim route automatically simulates and returns instantly if simulation fails. If simulation passes, it is put into the queue.
+
+The body is the same as the completeClaim route. See below.
+
+```typescript
+const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
+```
+
+**Custom Body**
+
+Custom plugins may also require custom body inputs from the user. If you are using a custom plugin not created by you, refer to that plugin's documentation or contact the creator for more input on the custom body schema.
+
+You will need to pass \_expectedVersion. This is the version number of the claim that you expect to complete. If there is a version mismatch at claim time, the claim will fail. This is to avoid instances where the claim creator maliciously changes criteria / actions without you knowing. You can specify -1 for don't check, but this is not recommended.
+
+The custom body (if needed) should be in the following format
+
+```typescript
+{
+    _expectedVersion: '0', //version of the claim (obtained from fetching the claim)
+    [instanceId: string]: { ...pluginBody }
+}
+```
+
+For example,
+
+```typescript
+{
+    _expectedVersion: '0', //version of the claim 
+    [`abc123`]: { //password plugin w/ instance ID = "abc123"
+        password: "abc123"
+    },
+    [`codes1234`]: { //codes plugin w/ instance ID = "codes1234"
+        code: "supersecretcode"
+    },
+}
+```
+
+**Customization**
+
+The rest is left up to you. You decide when to trigger this code. It could be when a user signs in, you can auto-trigger based on certain criteria, or anything else you want.
+
+
+## File: ./for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md
+
+# Fetching Claims
+
+More documentation is available via the API routes for fetching claims.&#x20;
+
+Go to the JSON tab of the claim details in-site to see an example one. Note that fetchPrivateParams: true is necessary to get certain private information. You must have permissions to view private parameters.
+
+```typescript
+const claimsRes = await BitBadgesApi.getClaims({
+    claimsToFetch: [{ claimId, fetchPrivateParams: false, fetchAllClaimedUsers: true, privateStatesToFetch: [instanceId] }],
+});
+const claim = claimsRes.claims[0];
+const bitbadgesAddress = convertToBitBadgesAddress(...);
+const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
+const allClaimedUsers = Object.keys(numUsesPlugin.publicState.claimedUsers);
+```
+
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md
+
+# Verifying Claim Attempts w/ the API
+
+IMPORTANT: Verifying claim attempts are two-fold:
+
+* Authentication: Authenticate the user (can be done with Sign In with BitBadges or however)
+* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the user has satisfied the criteria
+
+```typescript
+// Pre-Req: Set up your claim at https://bitbadges.io/create
+// Pre-Req: User is authenticated
+
+// 1. By address (if you already have it)
+// GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
+// successCount will be 1 for on-demand claims and the number of completions for standard
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+if (res.successCount >= 1) { doSomething(); }
+
+// 2. By attempt ID 
+// GET https://api.bitbadges.io/api/v0/claims/status/{claimAttemptId}
+const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+if (res.success) { doSomething() }
+
+// You may also browse all claim-based API routes in the reference like a fetch all claim
+// attempts for a user, but the above two are typically what you are looking for.
+```
+
+**Claim Attempt IDs vs By Address**
+
+If you already have the user address, you can simply use option 1.
+
+If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via Zapier or the API), or you can set up a custom webhook to receive it.
+
+Note: If you are receiving a post-success webhook, you already know the claim has gone through by the nature of it, so you do not need to verify it.
+
+This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
+
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
+
+<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+
+**More Advanced Ways**
+
+Note: You may also implement other ways of verifying claim attempts such as parsing state directly, storing data yourself from webhooks, etc. You can also trust the post-success webook to only be fired upon success. For these, we refer you to the corresponding documentation such as the API. The process is flexible, but the above should be all you need.
 
 
 ## File: ./for-developers/claim-builder/checking-custom-criteria.md
 
 # Checking Custom Criteria
 
-If the in-site plugins,&#x20;
+If the in-site plugins are not enough on the  criteria side, consider one of the following:
+
+## Dynamic Stores
+
+Dynamic stores can be created in the developer portal. They are simply a list of users stored by BitBadges, managed by you. You attach it to a claim and gate the claim to users in the list.&#x20;
+
+Stores are nice because they are not tied to a specific claim, and you do not have to deal with addresses if not needed
+
+You can:
+
+1. Update users manually in-site
+2. Update programmatically via the API
+3. Update via Zapier - Triggers from 7000+ apps -> add to dynamic store
+
+{% content-ref url="dynamic-stores/" %}
+[dynamic-stores](dynamic-stores/)
+{% endcontent-ref %}
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+## Custom Webhooks / Plugins
+
+Configure your claim with custom webhooks. Use the "Check Your Own Criteria" plugin. Alternatively, you can use the Forms / Collect Inputs plugin to instead let us store the requests for you, and you can fetch the details in-site / export to CSV format.
+
+Note: The in-site webhook plugins are streamlined alternatives to building your own custom plugins which are a little more feature-rich and reusable.
+
+Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome. &#x20;
+
+{% content-ref url="plugins/" %}
+[plugins](plugins/)
+{% endcontent-ref %}
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+## Auto-Completion
+
+You could also initiate the completion of claims on behalf of users with the API or via Zapier. This is advanced and a custom plugin / webhook is oftnetimes a better alternative.
 
 
 ## File: ./for-developers/claim-builder/claim-links.md
@@ -11295,7 +11388,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -11378,7 +11471,80 @@ For claims that gate badge distribution, you may want to evaluate the tradeoff o
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./for-developers/claim-builder/concepts/monetizing-apps-badges.md
+
+# Payment Checking
+
+If your use case requires monetization (such as memberships or recurring payments), we host an in-site Stripe plugin for you to use. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We recommend to accept payments using existing processors like Stripe.&#x20;
+
+Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
+
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+### Setting Up Your Account
+
+To setup a Stripe Connect account, go to the connected accounts section of the Developer Portal ([https://bitbadges.io/developer](https://bitbadges.io/developer)).&#x20;
+
+### Creating a Claim
+
+Once setup, you can then get started creating claims with the Stripe Payment plugin. Users will be prompted to complete the checkout process before claiming.
+
+Note: Refunds are possible (learn more below). In the event of an auto-refund, the Stripe fees are not returned, and you make up the difference.
+
+To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+### Payment Capture
+
+Since claims and Stripe are two separate services, we can either capture payments immediately before or after the claim has been completed. For our design, we capture claims before to guarantee payment before the claim.
+
+#### How Claims Work Behind the Scenes (The Basic Process)
+
+1. The claim is fully completed / simulated to see if it will succeed (both external and internal logic). This also includes a ready to capture payment check to ensure the user has completed checkout and we are ready.&#x20;
+2. If all claim checks pass, the claim is queued. We cache any external logic.
+3. We capture the payment here.
+4. The claim is added to a queue
+5. At the queue's final processing time, we rerun the claim's internal logic (state handling) to ensure it still passes and there are no race conditions. We reuse any external logic from Step 1.
+   1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
+
+This process is often immediate (<1 second), but the time ultimately goes at the speed of the queue.
+
+#### Capture Before Claim
+
+* **What happens**: The payment is captured immediately before the final processing of the claim but after confirming a full simulation.
+* **Advantage**: Guarantees payment for successful claims. 100% of users who complete the claim have guaranteed payment went through.
+* **Risk**: In the rare case of the sanity check of failing after Step 1) full simulation succeeded, we automatically issue refunds to the customer. Stripe fees are NOT returned, you make up the difference in the refund to each customer (poor user experience as well - 2 charges on statements plus additional processing).
+* **Proper Design:** This can always be mitigated with proper claim design. **T**he golden rule is design your claims such that a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
+  * When might the refund case occur?
+    * **Max Uses Exceeded:** 1000 users submit at exact same time with only 1 claim use left. All 1000 get added to the queue. We have to refund 999 of them.
+    * **Claim Codes:** If you give out a one-time use code to two users and they both submit at the same time and both make it into the queue, we will have to refund one.
+  * Note though, these cases are rare but need to be accounted for
+    * It only applies to internal state race conditions, not external fetches
+    * Even just a second or two between claim submissions typically would invalidate the initial simulation (Step 1) leading to it never being placed in the queue and payment never being captured.
+    * We do our best on our end to mitigate and prevent such cases before they happen
+
+
+## File: ./for-developers/claim-builder/concepts/receiving-attestations.md
+
+# Receiving Attestations
+
+Within the user inputs for both pre-built and custom plugins, we support accepting the "Attestation" type. This allows you to securely receive user selected attestations they have saved or uploaded which may be private. This is only possible with standard in-site claims because the user has to be signed in and select it manually.
+
+{% content-ref url="../plugins/creating-a-custom-plugin/alternatives.md" %}
+[alternatives.md](../plugins/creating-a-custom-plugin/alternatives.md)
+{% endcontent-ref %}
+
+IMPORTANT: While we do our best to maintain the well-formedness and verification of attestations, attestations might be custom uploaded, be an unsupported schema type, etc, or we might even have a bug. As best practice, you should always verify on your end (server-side). Don't trust, verify! If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you should use the SDK's **verifyAttestation** function. If it is a third-party upload, see the corresponding documentation.&#x20;
+
+You should also note that we simply provide you with the attestation. Treat BitBadges as the middleman. All custom checks like the content of the messages, issuer is correct, etc.
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
@@ -11410,7 +11576,7 @@ Claims, at their core, are just criteria checks, but there are two ways we can c
 * Can maintain statefulness
 * Ledger of users who have claimed
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The second is on-demand (sometimes described as non-indexed). These are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.
 
@@ -11425,7 +11591,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/universal-approach-claim-codes.md
@@ -11458,7 +11624,7 @@ An example configuration input would be:
 {"pluginId":"codes", "publicParams": {"numCodes": 10}, "privateParams": {"seedCode": "abc123", "codes": []}}
 ```
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Obtaining Codes**
 
@@ -11468,9 +11634,9 @@ If you have a large number of codes, consider using the Copy Seed Code button un
 
 Using a configuration tool would take this step out for the claim creator.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generate Codes from Seed Snippet**
 
@@ -11630,36 +11796,11 @@ When creating your store, you will get a store ID and secret. These are to be pr
 <figure><img src="../../../.gitbook/assets/image (223).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./for-developers/claim-builder/fetching-claims.md
-
-# Fetching Claims
-
-More documentation is available via the API routes for fetching claims.&#x20;
-
-Go to the JSON tab of the claim details in-site to see an example one. Note that fetchPrivateParams: true is necessary to get certain private information. You must have permissions to view private parameters.
-
-```typescript
-const claimsRes = await BitBadgesApi.getClaims({
-    claimsToFetch: [{ claimId, fetchPrivateParams: false, fetchAllClaimedUsers: true, privateStatesToFetch: [instanceId] }],
-});
-const claim = claimsRes.claims[0];
-const bitbadgesAddress = convertToBitBadgesAddress(...);
-const numUsesPlugin = claim.plugins.find((plugin) => plugin.pluginId === 'numUses');
-const allClaimedUsers = Object.keys(numUsesPlugin.publicState.claimedUsers);
-```
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
 ## File: ./for-developers/claim-builder/implementing-custom-utility.md
 
-# Implementing Post-Success Utility
+# Implementing Custom Utility
 
-Need to perform some additional action upon the user claiming successfully? There are a few ways you can implement this. Note that depending on your use case, you may also need to authenticate the user as well on your end. We recommend using Sign In with BitBadges for this.
-
-{% content-ref url="../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
-{% endcontent-ref %}
+Need to perform some additional action upon the user claiming successfully?&#x20;
 
 ## **Preconfigured Plugins**
 
@@ -11681,19 +11822,21 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
 To lookup claim state or recent claim attempts by address or other claim information, use the BitBadges API to query this data. Then, implement your logic as you see fit.
 
-{% content-ref url="verifying-claims-w-the-api.md" %}
-[verifying-claims-w-the-api.md](verifying-claims-w-the-api.md)
+{% content-ref url="bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
+[verifying-claim-attempts-w-the-api.md](bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
 ## Use Post-Success Zaps
 
-If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.
+If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.&#x20;
+
+For example, new claim -> add to Mailchimp list or add to Google Sheets.
 
 <figure><img src="../../.gitbook/assets/image (219).png" alt=""><figcaption></figcaption></figure>
 
@@ -11701,13 +11844,11 @@ If you want to automate this process, consider using Zapier to auto-execute logi
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
 {% endcontent-ref %}
 
-## **Custom Plugins / Webhooks**
+## **Use Post-Success Webhooks / Plugins**
 
 <figure><img src="../../.gitbook/assets/image (217).png" alt=""><figcaption></figcaption></figure>
 
-Set up a custom validation URL (during execution) or success webhook (post-success) and receive the following information (plus any custom user inputs or configured user socials you want to receive) via the payload. See the custom plugin documentation for more information. Note the passed socials are just the user identifiers and have no sensitive authentication info like access tokens.
-
-This can either be setup through the in-site plugins as shown above, or you can custom create and potentially publish your own from scratch.
+Set up a custom success webhook or plugin (post-success) and receive the following information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
 
 <figure><img src="../../.gitbook/assets/image (218).png" alt=""><figcaption></figcaption></figure>
 
@@ -11786,7 +11927,7 @@ With user authentication, you will need your users to go through the Pipedream C
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
 
@@ -11878,7 +12019,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -11893,11 +12034,11 @@ Below, we will explain at a high level and will skip over some lower level detai
    1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
 4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. The workflow setup is now complete. The workflow will be triggered upon the HTTP request. It will then use the provided `external_user_id`and execute the claim criteria checks from your configured apps and finally, it will complete a BitBadges claim or add to a dynamic store as the final action properly gating the claim.
 
@@ -12001,7 +12142,7 @@ export default defineComponent({
  ...
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -12071,7 +12212,7 @@ This is the approach we use for automation workflows. We remove any sign in requ
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import { axios } from "@pipedream/platform";
@@ -12256,60 +12397,6 @@ For polling claim attempts, we recommend that you jsut set up a custom success w
 <figure><img src="../../../../.gitbook/assets/image (213).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./for-developers/claim-builder/monetizing-apps-badges.md
-
-# Payment Checking
-
-If your use case requires monetization (such as memberships or recurring payments), we host an in-site Stripe plugin for you to use. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We recommend to accept payments using existing processors like Stripe.&#x20;
-
-Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
-
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Setting Up Your Account
-
-To setup a Stripe Connect account, go to the connected accounts section of the Developer Portal ([https://bitbadges.io/developer](https://bitbadges.io/developer)).&#x20;
-
-### Creating a Claim
-
-Once setup, you can then get started creating claims with the Stripe Payment plugin. Users will be prompted to complete the checkout process before claiming.
-
-Note: Refunds are possible (learn more below). In the event of an auto-refund, the Stripe fees are not returned, and you make up the difference.
-
-To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Payment Capture
-
-Since claims and Stripe are two separate services, we can either capture payments immediately before or after the claim has been completed. For our design, we capture claims before to guarantee payment before the claim.
-
-#### How Claims Work Behind the Scenes (The Basic Process)
-
-1. The claim is fully completed / simulated to see if it will succeed (both external and internal logic). This also includes a ready to capture payment check to ensure the user has completed checkout and we are ready.&#x20;
-2. If all claim checks pass, the claim is queued. We cache any external logic.
-3. We capture the payment here.
-4. The claim is added to a queue
-5. At the queue's final processing time, we rerun the claim's internal logic (state handling) to ensure it still passes and there are no race conditions. We reuse any external logic from Step 1.
-   1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
-
-This process is often immediate (<1 second), but the time ultimately goes at the speed of the queue.
-
-#### Capture Before Claim
-
-* **What happens**: The payment is captured immediately before the final processing of the claim but after confirming a full simulation.
-* **Advantage**: Guarantees payment for successful claims. 100% of users who complete the claim have guaranteed payment went through.
-* **Risk**: In the rare case of the sanity check of failing after Step 1) full simulation succeeded, we automatically issue refunds to the customer. Stripe fees are NOT returned, you make up the difference in the refund to each customer (poor user experience as well - 2 charges on statements plus additional processing).
-* **Proper Design:** This can always be mitigated with proper claim design. **T**he golden rule is design your claims such that a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
-  * When might the refund case occur?
-    * **Max Uses Exceeded:** 1000 users submit at exact same time with only 1 claim use left. All 1000 get added to the queue. We have to refund 999 of them.
-    * **Claim Codes:** If you give out a one-time use code to two users and they both submit at the same time and both make it into the queue, we will have to refund one.
-  * Note though, these cases are rare but need to be accounted for
-    * It only applies to internal state race conditions, not external fetches
-    * Even just a second or two between claim submissions typically would invalidate the initial simulation (Step 1) leading to it never being placed in the queue and payment never being captured.
-    * We do our best on our end to mitigate and prevent such cases before they happen
-
-
 ## File: ./for-developers/claim-builder/other-tutorials/README.md
 
 # Other
@@ -12372,7 +12459,7 @@ To get your discord server ID, this can be done by right clicking on the  server
 
 # Get Discord User ID
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md
@@ -12394,7 +12481,7 @@ The best way to get started with a tutorial is to use the Claim Tester in-site, 
 
 If you need to see the resulting claim JSON (for advanced implementations), you can also see this in-site under the JSON tab of the claim details.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -12405,15 +12492,13 @@ If you need to see the resulting claim JSON (for advanced implementations), you 
 ```
 Note: This documentation is not meant to explain everything in the claim builder 
 interface. It is to provide developer documentation for more advanced use cases.
-
-Visit https://bitbadges.io/create to get started and experiment with building claims.
-Most of the time, all your desired functionality is handled for you without a single 
-line of code! Or, the interface will at least be a lot less confusing.
 ```
 
 **What are claims?**
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.&#x20;
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 **How do claims work? What are plugins?**
 
@@ -13202,13 +13287,9 @@ Prompt the user to add the copy / paste the stringified JSON to the Configuratio
 
 # Pre-Built Webhook Plugins
 
-We provide certain prebuilt webhook plugins in the site to help streamline the process. These allow you to easily set up a webhook by simply just configuring the endpoint and what you want to receive. No need to create a totally custom plugin. This is typically the better choice unless you are looking to publish a reusable plugin.
+Configure prebuilt webhook plugins in the claim builder without needing to create an entirely new custom plugin. Just enter the endpoint and configure what you want to receive.If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site (serverless).
 
-Webhooks can also be sent to tools like Zapier, enabling you to create complex custom automation flows. Or, certain plugins are aliases for receiving specific attestations like WITNESS proofs.&#x20;
-
-If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site.
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
 
@@ -13216,9 +13297,10 @@ If you do not want to actually set up a full handler, you can also use the Forms
 
 * **POST Routes**: Customizable routes for your needs.
 * **User Details**: Optionally select to receive user details, like their address, custom inputs, or connected socials (only identifying information and no authentication tokens or details)
-* **Validation Secret**: Customize a validation secret to confirm requests are from BitBadges.
+* **Validation Secret**: Customize a validation secret to confirm requests are from BitBadges. This is what is entered in the form.
 * **Expected Response:** 200 OK within 10 seconds
   * For non-critical logic, consider returning 200 early and asynchronously process.
+  * Stateless
 
 ### Forms Plugin  - Serverless
 
@@ -13226,43 +13308,11 @@ The forms plugin is a serverless alternative. Think of this like a request stora
 
 ### Implementation
 
-The request/response flow mirrors that of custom plugins, with the `pluginSecret` replaced by the inputted validation secret. For detailed implementation guidance, refer to the respective documentation. The configuration is done in-site.
+The request/response flow mirrors that of custom plugins, with the `pluginSecret` replaced by the inputted validation secret. For detailed implementation guidance, refer to the respective documentation. The configuration is done in-site via the claim builder.
 
 1. Setup your plugin handler (see plugin documentation for more information)
 2. Create your claim and configure the webhook as one of the plugins, specifying your endpoint
 3. Test it out to make sure it is working
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>//TODO: Fill in missing information
-</strong>const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    //Step 1: Handle the request payload from the plugin
-    const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, lastUpdated, createdAt } = body;
-    const { ...otherCustomProvidedInputs } = body;
-
-    //Step 2: Verify BitBadges as origin by checking plugin secret is correct
-    const YOUR_PLUGIN_SECRET = '';
-    if (pluginSecret !== YOUR_PLUGIN_SECRET) {
-      return res.status(401).json({ message: 'Invalid plugin secret' });
-    }
-
-    //Step 3: Implement your custom logic here. Consider checking the plugin's creation / last updated time to implement version control.
-    //TODO: 
-
-    //Step 4: Return the response to the plugin based on your configured state function preset
-    return res.status(200).json({});
-  } catch (err) {
-    console.log(err);
-    return res.status(401).json({ message: `${err}` });
-  }
-};
-
-export default handlePlugin
-</code></pre>
-
-<figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/do-you-need-a-custom-plugin.md
@@ -13359,13 +13409,13 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
 This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you.
 
-<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Numbers Preset**
 
@@ -13493,7 +13543,7 @@ Give your authenticated user (the claiming user) a unique value (such as an auth
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more). Note that claims may take a couple minutes for the user to complete the process, so a 30 second expiration time, for example, may be too low.
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Snapshots vs Dynamic Requests**
 
@@ -13515,7 +13565,7 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 You will have to enter a handler URI (can be changed later). You can setup a simple HTTP API handler beforehand, or for testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Published vs Private**
 
@@ -13535,7 +13585,7 @@ BitBadges sends two types of hooks (during processing hooks and success hooks- a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -13682,7 +13732,39 @@ Also, do not hesitate to reach out for help.
 
 # Overview
 
-Plugins are, in simple terms, just a configured HTTP request or function that we call upon attempting to claim. The plugin (your logic) will handle if the plugin status should be failed or successful, plus it potentially tells us how to manage the plugin state.
+Plugins / webhooks are simply HTTP requests.
+
+1. Configure your plugin / webhook in the BitBadges site
+2. Set up your handler at the specified URL / method. Use the payload to implement your logic. The payload includes context about the attempt plus can include the user address, email, social usernames, custom inputs, and more.
+   1. Check the pluginSecret to verify BitBadges as the origin of the request if this is important
+3. Return the expected response that was configured (e.g. 200 OK)
+
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+```typescript
+const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
+  //Step 1: Handle the request payload from the plugin
+  const body = req.body; //For POST
+  const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, lastUpdated, createdAt } = body;
+  const { ...otherCustomProvidedInputs } = body;
+  
+  //Step 1.5: Catch simulations if applicable. Don't run success logic on a dry run
+  // if (_isSimulation) return doDryRunStuffOnly();
+  
+  //Step 2: Verify BitBadges as origin by checking plugin secret is correct
+  const YOUR_PLUGIN_SECRET = '';
+  if (pluginSecret !== YOUR_PLUGIN_SECRET) {
+    return res.status(401).json({ message: 'Invalid plugin secret' });
+  }
+  
+  //Step 3: Implement your custom logic here. Consider checking the plugin's creation / last updated time to implement version control.
+  
+  //Step 4: Return expected responses
+  return res.status(200).json({});
+};
+
+export default handlePlugin;
+```
 
 We have designed plugins in a way to allow you maximum customization by letting you handle as much of the plugin logic as possible. This is a design decision as we believe the core logic of the distribution process should be decentralized and community-driven (not centralized on BitBadges servers).
 
@@ -13697,7 +13779,7 @@ We have designed plugins in a way to allow you maximum customization by letting 
 Plugins can either be:
 
 * Success hooks: Only sent after the claim succeeds. Typically for post-claim logic or rewards
-* Processing hooks: Sent during execution and can affect the overall outcome of the claim.
+* Processing hooks: Sent during execution and can affect the overall outcome of the claim depending on the response.
 
 We also allow users to simulate (dry run) their claim attempts. Plugins are expected to handle these as necessary. These are all configurable in the creation process in-site.
 
@@ -13707,7 +13789,7 @@ We also allow users to simulate (dry run) their claim attempts. Plugins are expe
 * Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 
@@ -13719,64 +13801,13 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
 Plugin IDs are constant and specific to a specific plugin type. For example, the password pluginId is "password".
 
 Instance IDs are a unique identifier for a specific plugin in your claim. This is to handle duplicates. For example, you may have two password plugins, one with instance Id "abc" and one with "def". This is just used as a unique identifier and can really be anything. If you only have one instance of a specific type, you can name it the same as the pluginId as well.
-
-### Example
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>//TODO: Fill in missing information
-</strong>const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    //Step 1: Handle the request payload from the plugin
-    const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, lastUpdated, createdAt } = body;
-    const { ...otherCustomProvidedInputs } = body;
-
-    //Step 2: Verify BitBadges as origin by checking plugin secret is correct
-    const YOUR_PLUGIN_SECRET = '';
-    if (pluginSecret !== YOUR_PLUGIN_SECRET) {
-      return res.status(401).json({ message: 'Invalid plugin secret' });
-    }
-
-    //Step 3: Implement your custom logic here. Consider checking the plugin's creation / last updated time to implement version control.
-    //TODO: 
-
-    //Step 4: Return the response to the plugin based on your configured state function preset
-    // const claimTokenRes = { claimToken: '...'  }
-    // const statelessRes = {};
-    return res.status(200).json({});
-  } catch (err) {
-    console.log(err);
-    return res.status(401).json({ message: `${err}` });
-  }
-};
-
-export default handlePlugin;
-</code></pre>
-
-
-## File: ./for-developers/claim-builder/receiving-attestations.md
-
-# Receiving Attestations
-
-Within the user inputs for both pre-built and custom plugins, we support accepting the "Attestation" type. This allows you to securely receive user selected attestations they have saved or uploaded which may be private. This is only possible with standard in-site claims because the user has to be signed in and select it manually.
-
-{% content-ref url="plugins/creating-a-custom-plugin/alternatives.md" %}
-[alternatives.md](plugins/creating-a-custom-plugin/alternatives.md)
-{% endcontent-ref %}
-
-IMPORTANT: While we do our best to maintain the well-formedness and verification of attestations, attestations might be custom uploaded, be an unsupported schema type, etc, or we might even have a bug. As best practice, you should always verify on your end (server-side). Don't trust, verify! If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you should use the SDK's **verifyAttestation** function. If it is a third-party upload, see the corresponding documentation.&#x20;
-
-You should also note that we simply provide you with the attestation. Treat BitBadges as the middleman. All custom checks like the content of the messages, issuer is correct, etc.
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/success-logic.md
@@ -13807,50 +13838,6 @@ export interface iSatisfyMethod {
 }
 ```
 
-
-
-## File: ./for-developers/claim-builder/verifying-claims-w-the-api.md
-
-# Verifying Claims w/ the API
-
-IMPORTANT: Verifying claim attempts are two-fold:
-
-* Authentication: Authenticate the user (can be done with Sign In with BitBadges or however)
-* Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the user has satisfied the criteria
-
-```typescript
-// Pre-Req: Set up your claim at https://bitbadges.io/create
-// Pre-Req: User is authenticated
-
-// 1. By address (if you already have it)
-// GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
-// successCount will be 1 for on-demand claims and the number of completions for standard
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-if (res.successCount >= 1) { doSomething(); }
-
-// 2. By attempt ID 
-// GET https://api.bitbadges.io/api/v0/claims/status/{claimAttemptId}
-const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
-if (res.success) { doSomething() }
-```
-
-**Claim Attempt IDs vs By Address**
-
-If you already have the user address, you can simply use option 1.
-
-If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via Zapier or the API), or you can set up a custom webhook to receive it.&#x20;
-
-This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
-
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
-
-Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
-
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
-
-**More Advanced Ways**
-
-Note: You may also implement other ways of verifying claim attempts such as parsing state directly, storing data yourself from webhooks, etc. For these, we refer you to the corresponding documentation such as the API. The process is flexible, but the above should be all you need.
 
 
 ## File: ./for-developers/concepts/README.md
@@ -15648,15 +15635,15 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Gate Any Service In 2 Steps
 
-Any service can be gated simply in just 2 steps.
+Any service can be gated by ANY criteria simply in just 2 steps.
 
-1. Authenticate - We recommend Sign In with BitBadges (multi-chain authentication with one interface)
+1. **Authenticate** - We recommend Sign In with BitBadges
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
-2. Verify Claim Success - Check the user satisfies a BitBadges claim.&#x20;
+2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
@@ -15665,28 +15652,15 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 {% endcontent-ref %}
 
 ```typescript
-// Pre-Req: Set up your claim at https://bitbadges.io/create
-
-// 1. By address (if you already have it)
-// GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
 const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
 if (res.successCount >= 1) { doSomething(); }
-
-// 2. By attempt ID 
-// GET https://api.bitbadges.io/api/v0/claims/status/{claimAttemptId}
-// 1. Set up the success webhook plugin 
-// 2. Receive webhooks for each successful claim
-// 3. The webhook will provide you with the attempt ID, address, and
-//    any social (Discord, etc) or email identifier requested
+// ----or---- 
 const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
 if (res.success) { doSomething() }
+// ----or----
+// Configure a post-success webhook to receive the attempt details and take out the 
+// API verification step
 ```
-
-By outsourcing authentication + a claim to us, you can leave all the criteria checks to us, allowing you to focus on your core utility. For example,
-
-* Payment-gated websites
-* Badge-gated Discord servers
-* Attestation-gated events
 
 ## Quick Start - Claims
 
@@ -15741,7 +15715,7 @@ A high-level overview is:
 2. The user will be walked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI via the query parameters `code` and `state`.
 3. The redirect URI can then fetch the details from the API using the transmitted code with knowledge of the configured app's client secret.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Generating the URL**
 
@@ -15796,71 +15770,35 @@ Outsource the heavy lifting of authentication to us, allowing you to focus on yo
 
 [**Demo**](https://bitbadges.io/siwbb/authorize?expectAttestations=true\&client_id=example-client-id\&redirect_uri=https://example.com&)
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
-
-
-
-## What SIWBB Handles
-
-SIWBB manages the core authentication flow:
-
-* Proof of address ownership
-
-And by attaching a BitBadges claim, you can seamlessly verify:
-
-* Asset ownership (badges, NFTs, etc.)
-* Attestations
-* Social account connections (Discord, GitHub, etc.)
-* Criteria checks from your favorite app!
-
-## Authentication Methods
-
-### 1. Digital Authentication (Immediate)
-
-Best for web applications where users can authenticate immediately:
-
-* User clicks "Sign In with BitBadges"
-* Popup window opens for authentication
-* Verification happens instantly
-* Perfect for badge-gated websites
-
-### 2. QR Code Authentication (Delayed)
-
-Ideal for in-person or offline scenarios:
-
-* Pre-generate authentication QR codes
-* Users can authenticate ahead of time. No need for wallets at presentation time.
-* Verify credentials at point of use
-* Great for ticket verification or physical access control
 
 ## Implementation Flow
 
 1. **Authentication- BitBadges Side**
    * User accesses BitBadges URL (direct or popup)
    * Proves address ownership and other criteria (badges, attestations, etc.)
-   * Receives authorization code from BitBadges (QR or behind the scenes)
+   * Receives authorization code from BitBadges (QR or behind the scenes via redirect)
 2. **Integration- Your App Side**
    * Receive authentication response
+   * Check criteria on your end
    * Implements security measures (prevent replay attacks, etc.)
    * Focus on your core utility
-
-## Button Graphics
-
-We do not have an official Sign In with BitBadges interface button that we expect to be used. We do not even require BitBadges logo to be anywhere on your site.
-
-If you want to custom create a SIWBB button or add a "Powered by BItBadges", feel free. If you want to keep it simple with a plain Sign In, that is no issue.
-
-Whatever you think is best!
 
 ## Getting Started
 
 Check out our [BitBadges quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a complete implementation example and reference code.
 
 Note: SIWBB is fully OAuth 2.0 compatible and works with standard OAuth frameworks and tools.
+
+**Hybrid No Wallet dApps**
+
+Sign In with BitBadges is unique because it allows you to build hybrid dApps, as we term them. Hybrid dApps outsource ALL of the wallet connection, signing, authentication to us. You have no need to implement anything wallet-related on your app side if not needed.
+
+However, if your app already uses wallets, you can still use SIWBB.  The flow is the exact same, and as the user navigates to the SIWBB page, the user's wallet should auto-connect, resulting in a seamless experience.
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/setting-up-an-app.md
@@ -15872,7 +15810,7 @@ Note: SIWBB is fully OAuth 2.0 compatible and works with standard OAuth framewor
 * Register at [https://btibadges.io/developer](https://btibadges.io/developer) -> OAuth Apps
 * Take note of your client ID / secret
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Key Components
 
@@ -15916,7 +15854,7 @@ BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK that ai
 
 While BitBadges may lack some of the native smart contract support and interoperability features of other protocols, its self-contained design and API-like token standard can be a compelling solution for certain use cases.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Chain Architecture
 
@@ -16044,9 +15982,9 @@ Coming Soon...
 
 Easily add badges, lists, or attestations to your LinkedIn certtfications with one click!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/ecosystem/metamask-snap.md
@@ -16189,7 +16127,7 @@ This is great for services like newsletters, custom services, and much more! If 
 
 <figure><img src="../.gitbook/assets/image (203).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a Digital Service (Websites) 🌐
 
@@ -16329,7 +16267,7 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -16346,7 +16284,7 @@ As you may have noticed, we do not differentiate between EVM chains, for example
 
 Address lists are a streamlined alternative to badges. Instead of dealing with the complexity of badges, you can create a simple list (public but off-chain). These can also be gated by claims, allowing you to gate spots on the list by any criteria imaginable.
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/learn-the-basics/applications-points.md
@@ -16372,9 +16310,9 @@ Attestations may come in different forms with varying properties, such as:
 * BBS+: Supports selectively disclosing only a subset of the N messages in the attestation. For example, disclose you are 21 without revealing your name.&#x20;
 * URLs: Attestations can even be a link to a URL as long as the verifier can verify it
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/learn-the-basics/badge-concepts/README.md
@@ -16497,7 +16435,7 @@ It's worth noting that the manager role can extend beyond on-chain functionaliti
 
 One of the key features of the manager role in BitBadges is the ability to customize permissions at a granular level. This allows for precise control over the collection's management.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
 
 Permissions can be customized based on various factors, including:
 
@@ -16563,7 +16501,7 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
 3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Example of Ownership Structure
 
@@ -16728,7 +16666,7 @@ Badges are on-chain, public tokens ownable and transferable by users from differ
 
 Badges offer many never-seen-before-features and ways of implementation like time-dependent balances, off-chain hybrid balances, and much more. Badge distribution can be gated by claims, allowing you to offer minting / approvals gated by any criteria imaginable. On the flip side, use ownership as criteria to gate any service imaginable.
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/learn-the-basics/distribution.md
@@ -16761,9 +16699,9 @@ For additional documentation, see here:
 [claim-builder](../claim-builder/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/learn-the-basics/verification-tools.md
@@ -16783,7 +16721,7 @@ Additionally, use along with checking a claim to allow you to gate based on any 
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For developers interested in implementing these features, please refer to our detailed guide:
 
@@ -16808,7 +16746,7 @@ In your account settings, BitBadges provides the option to approve other wallets
 
 Note: This feature is opt-in and not enabled by default.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **BitBadges Embedded Wallet**
 
@@ -16860,7 +16798,7 @@ BitBadges is compatible with wallets from any of the supported chain's ecosystem
 
 **Guest Accounts -** We also support browser-based, rotatable, temporary guest accounts.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Note: Because we verify signatures on our own chain and do not pull data from any other chain, contract wallets like Coinbase Smart Wallet are not supported.
 
@@ -16873,11 +16811,11 @@ Feel free to use BitBadges name and logo in your site as you see fit. If you hav
 
 **Text Logo**
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Square Logo**
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -16963,7 +16901,7 @@ Initially, we do not plan to use a governance structure to allow us to ship fast
 
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment and uses its own resources, such as a testnet blockchain, database, and more.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -17024,7 +16962,7 @@ A cool application of badges is to create proof of authenticity badges for produ
 3. Create a badge at [https://bitbadges.io/create](https://bitbadges.io/create).
 4. When you reach the claim select step, configure your claim to use the Email plugin to gate mints. For on-chain badges, this will be the Minting step. Then, select "Use Dynamic Store?" and select your store.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (210).png" alt=""><figcaption></figcaption></figure>
 
@@ -17036,7 +16974,7 @@ A cool application of badges is to create proof of authenticity badges for produ
 
 The claim will be part of the badge or list creation process or can be standalone if used for other purposes.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/tutorials/create-your-first-claim.md
@@ -17045,11 +16983,11 @@ The claim will be part of the badge or list creation process or can be standalon
 
 1. Sign in and go to the Developer Portal. We will use the Claim Tester tab to create a test claim.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Then, simply follow the in-site instructions to setup your claim and criteria. Use the in-site completion method. Criteria is customizable from universal plugins like a password / claim codes / address restrictions to your favorite apps (Discord, GitHub, etc).
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. For non test-only claims, the claim will be available via a link if it is standalone or via the badge / list interface if it is tied to one of them. Simply direct your users to the claim interface in-site and have them claim!
 
@@ -17064,7 +17002,7 @@ All you need to do to gate a URL is to add it as a gated reward in the rewards t
 
 You can do this in the Rewards section when configuring the claim.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/use-cases.md
