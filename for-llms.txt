@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Mar 16 00:30:23 UTC 2025
+Generated on Sun Mar 16 00:38:08 UTC 2025
 
 
 
@@ -3630,18 +3630,18 @@ The BitBadges token (badge) standard is state-of-the-art compared to existing to
 
 In addition to the standard features of existing token standards (mint, transfer, approve, etc), we expand and offer the following functionality:
 
-* [**Time-Based Balances**](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
-* [**Off-Chain Balances:**](overview/learn-the-basics/badge-concepts/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
-* [**Fine-Grained Transferability and Approvals Customization**](overview/learn-the-basics/badge-concepts/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
+* [**Time-Based Balances**](overview/learn/badge-concepts/time-dependent-ownership.md)**:** Badge balances are all time-dependent which allow you to, for example, transfer only a specific period of time (e.g. subscription token for a month), clearly define token unlock schedules, or approve a transfer only for a specific period of time.
+* [**Off-Chain Balances:**](overview/learn/badge-concepts/balances-types.md) New ways to store and track balances, in addition to the standard on-chain storage of balances. Storing balances off-chain can offer over 1000x better scalability and much better user experience because users never need to transact with the blockchain. Badges are auto assigned to their wallets. This also allows seamless connection to any Web2 app since you are not limited to only blockchain data anymore.
+* [**Fine-Grained Transferability and Approvals Customization**](overview/learn/badge-concepts/transferability.md)**:** Simply abstracting transferability to "transferable" or "non-transferable" is too simple for many use cases. We recognize that transferability is a complex protocol of who can transfer to who? at what times? what badges? how many? revokable? freezable? etc.
   * Example: Only those who own the verified checkmark badge can transfer the badge IDs 1-5 to each other from Monday to Tuesday 12PM, but badges will be revokable by the manager after that.
-  * [**Must Own Badges:** ](overview/learn-the-basics/badge-concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
-  * [**Fine-Grained Approvals:** ](overview/learn-the-basics/badge-concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
-  * [**Incoming Approvals:** ](overview/learn-the-basics/badge-concepts/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
+  * [**Must Own Badges:** ](overview/learn/badge-concepts/transferability.md)Restrict sending and receiving badges to only those who own specific badges of other collections (e.g. a KYC badge, a verified badge).
+  * [**Fine-Grained Approvals:** ](overview/learn/badge-concepts/transferability.md)In addition to simply specifying approval of X amount, you can customize approvals further with details like predetermined balances (x1 of ID 1, then x1 of ID 2), max number of transfers allowed, and more!
+  * [**Incoming Approvals:** ](overview/learn/badge-concepts/transferability.md)In addition to having control over your outgoing transfers, have control over your incoming transfers via incoming approvals.
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
-* [**Customizable Permissions**](overview/learn-the-basics/badge-concepts/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
+* [**Customizable Permissions**](overview/learn/badge-concepts/manager.md)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
 * [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
-* [**Batch Transfers**](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
+* [**Batch Transfers**](overview/learn/badge-concepts/time-dependent-ownership.md)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
 And much more!
@@ -3654,25 +3654,25 @@ And much more!
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [👨‍💻 Learn the Basics](overview/learn-the-basics/README.md)
-  * [BitBadges Claims](overview/learn-the-basics/distribution.md)
-  * [Multi-Chain Accounts](overview/learn-the-basics/accounts.md)
-  * [Sign In with BitBadges](overview/learn-the-basics/verification-tools.md)
-  * [Badges](overview/learn-the-basics/badges.md)
-  * [Address Lists](overview/learn-the-basics/address-lists.md)
-  * [Attestations](overview/learn-the-basics/attestations.md)
-  * [Applications (Points)](overview/learn-the-basics/applications-points.md)
-  * [Additional Badge Concepts](overview/learn-the-basics/badge-concepts/README.md)
-    * [Manager](overview/learn-the-basics/badge-concepts/manager.md)
-    * [Total Supplys](overview/learn-the-basics/badge-concepts/total-supplys.md)
-    * [Time-Dependent Ownership](overview/learn-the-basics/badge-concepts/time-dependent-ownership.md)
-    * [Balances Types](overview/learn-the-basics/badge-concepts/balances-types.md)
-    * [Transferability](overview/learn-the-basics/badge-concepts/transferability.md)
-    * [Standards](overview/learn-the-basics/badge-concepts/standards.md)
-  * [Wallets and Sign Ins](overview/learn-the-basics/wallets-and-sign-ins/README.md)
-    * [Supported Wallets](overview/learn-the-basics/wallets-and-sign-ins/supported-wallets.md)
-    * [Alternate Sign Ins / Mobile](overview/learn-the-basics/wallets-and-sign-ins/mobile-support.md)
-    * [Approved Transactors](overview/learn-the-basics/wallets-and-sign-ins/approved-transactors.md)
+* [👨‍💻 Learn](overview/learn/README.md)
+  * [BitBadges Claims](overview/learn/distribution.md)
+  * [Multi-Chain Accounts](overview/learn/accounts.md)
+  * [Sign In with BitBadges](overview/learn/verification-tools.md)
+  * [Badges](overview/learn/badges.md)
+  * [Address Lists](overview/learn/address-lists.md)
+  * [Attestations](overview/learn/attestations.md)
+  * [Applications (Points)](overview/learn/applications-points.md)
+  * [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
+    * [Manager](overview/learn/badge-concepts/manager.md)
+    * [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
+    * [Time-Dependent Ownership](overview/learn/badge-concepts/time-dependent-ownership.md)
+    * [Balances Types](overview/learn/badge-concepts/balances-types.md)
+    * [Transferability](overview/learn/badge-concepts/transferability.md)
+    * [Standards](overview/learn/badge-concepts/standards.md)
+  * [Wallets and Sign Ins](overview/learn/wallets-and-sign-ins/README.md)
+    * [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
+    * [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
+    * [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 * [🔨 Getting Started](overview/getting-started.md)
 * [🔐 How Do I ...?](overview/how-do-i-gate-xyz.md)
 * [🎒 Tutorials](overview/tutorials/README.md)
@@ -5744,7 +5744,7 @@ Sample Transfer Msg
 
 # 🪙 Balance Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/learn-the-basics/badge-concepts/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
+BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](../../../overview/learn/badge-concepts/balances-types.md) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
 
@@ -6148,9 +6148,9 @@ During creation and update transaction ([MsgCreateCollection](../../bitbadges-bl
 
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](../../../overview/learn-the-basics/badge-concepts/transferability.md)for an overview of approved transfers.
+First, read [Transferability ](../../../overview/learn/badge-concepts/transferability.md)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn-the-basics/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
@@ -6788,9 +6788,9 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 
 # Overview
 
-First, read [Permissions](../../../overview/learn-the-basics/badge-concepts/manager.md) for an overview.
+First, read [Permissions](../../../overview/learn/badge-concepts/manager.md) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/learn-the-basics/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](../../../overview/learn/badge-concepts/manager.md)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -7758,7 +7758,7 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 
 ## List of Standards
 
-See [here](../../overview/learn-the-basics/badge-concepts/standards.md).
+See [here](../../overview/learn/badge-concepts/standards.md).
 
 
 ## File: ./for-developers/bitbadges-api/README.md
@@ -15637,7 +15637,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 Any service can be gated by ANY criteria simply in just 2 steps.
 
-1. **Authenticate** - We recommend Sign In with BitBadges
+1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
 
 {% content-ref url="authenticating-with-bitbadges/" %}
 [authenticating-with-bitbadges](authenticating-with-bitbadges/)
@@ -15646,21 +15646,6 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim.&#x20;
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
-
-{% content-ref url="../overview/claim-builder/" %}
-[claim-builder](../overview/claim-builder/)
-{% endcontent-ref %}
-
-```typescript
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-if (res.successCount >= 1) { doSomething(); }
-// ----or---- 
-const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
-if (res.success) { doSomething() }
-// ----or----
-// Configure a post-success webhook to receive the attempt details and take out the 
-// API verification step
-```
 
 ## Quick Start - Claims
 
@@ -16243,13 +16228,13 @@ $STAKE will inflate at rate of 7-20% per year. Learn more about how this works [
 Reach out to us in DIscord if you are interested in running a node. $STAKE will be distributed (while supplys last) to the first \~100 who complete a quick application process. This is to ensure the quality of node operators in our ecosystem.
 
 
-## File: ./overview/learn-the-basics/README.md
+## File: ./overview/learn/README.md
 
 # 👨‍💻 Learn the Basics
 
 
 
-## File: ./overview/learn-the-basics/accounts.md
+## File: ./overview/learn/accounts.md
 
 # Multi-Chain Accounts
 
@@ -16278,7 +16263,7 @@ Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 As you may have noticed, we do not differentiate between EVM chains, for example. All are treated the same with our architecture, so we just default to the emain chain of the ecosystem for display purposes (e.g. EVM for Ethereum).
 
 
-## File: ./overview/learn-the-basics/address-lists.md
+## File: ./overview/learn/address-lists.md
 
 # Address Lists
 
@@ -16287,7 +16272,7 @@ Address lists are a streamlined alternative to badges. Instead of dealing with t
 <figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/learn-the-basics/applications-points.md
+## File: ./overview/learn/applications-points.md
 
 # Applications (Points)
 
@@ -16296,7 +16281,7 @@ Applications allow you to create gamified points, quests, and tiers for your use
 <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/learn-the-basics/attestations.md
+## File: ./overview/learn/attestations.md
 
 # Attestations
 
@@ -16315,13 +16300,13 @@ Attestations may come in different forms with varying properties, such as:
 <figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/learn-the-basics/badge-concepts/README.md
+## File: ./overview/learn/badge-concepts/README.md
 
 # Badge Concepts
 
 
 
-## File: ./overview/learn-the-basics/badge-concepts/balances-types.md
+## File: ./overview/learn/badge-concepts/balances-types.md
 
 # Balances Types
 
@@ -16406,7 +16391,7 @@ Compared to traditional client-server solutions, off-chain balances offer numero
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
 
 
-## File: ./overview/learn-the-basics/badge-concepts/manager.md
+## File: ./overview/learn/badge-concepts/manager.md
 
 # Manager
 
@@ -16465,7 +16450,7 @@ It's important to note that there is no "Forbidden + Not Frozen" state. This is 
 This system of states allows for both flexibility and security in managing collection permissions, enabling creators to set up governance structures that can evolve over time or remain fixed, depending on their needs.
 
 
-## File: ./overview/learn-the-basics/badge-concepts/standards.md
+## File: ./overview/learn/badge-concepts/standards.md
 
 # Standards
 
@@ -16487,7 +16472,7 @@ standards: ["non-fungible", "attendance-event", "No User Ownership"]
 
 
 
-## File: ./overview/learn-the-basics/badge-concepts/time-dependent-ownership.md
+## File: ./overview/learn/badge-concepts/time-dependent-ownership.md
 
 # Time-Dependent Ownership
 
@@ -16549,7 +16534,7 @@ To elucidate the functioning of this ownership system, let's delve into practica
 Incorporating time-based ownership into the conventional badge ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
 
 
-## File: ./overview/learn-the-basics/badge-concepts/total-supplys.md
+## File: ./overview/learn/badge-concepts/total-supplys.md
 
 # Total Supplys
 
@@ -16568,7 +16553,7 @@ BitBadges doesn't necessarily categorize them by these names because we use a se
 Badges cannot be "burned" once created. However, they can be transferred (if allowed) to addresses where no private key is known such as the Ethereum zero address.
 
 
-## File: ./overview/learn-the-basics/badge-concepts/transferability.md
+## File: ./overview/learn/badge-concepts/transferability.md
 
 # Transferability
 
@@ -16658,7 +16643,7 @@ We also support fine-grained updatability for all combinations of the above func
 For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable. One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
 
 
-## File: ./overview/learn-the-basics/badges.md
+## File: ./overview/learn/badges.md
 
 # Badges
 
@@ -16669,7 +16654,7 @@ Badges offer many never-seen-before-features and ways of implementation like tim
 <figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/learn-the-basics/distribution.md
+## File: ./overview/learn/distribution.md
 
 # BitBadges Claims
 
@@ -16704,7 +16689,7 @@ For additional documentation, see here:
 <figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./overview/learn-the-basics/verification-tools.md
+## File: ./overview/learn/verification-tools.md
 
 # Sign In with BitBadges
 
@@ -16730,13 +16715,13 @@ For developers interested in implementing these features, please refer to our de
 {% endcontent-ref %}
 
 
-## File: ./overview/learn-the-basics/wallets-and-sign-ins/README.md
+## File: ./overview/learn/wallets-and-sign-ins/README.md
 
 # Wallets and Sign Ins
 
 
 
-## File: ./overview/learn-the-basics/wallets-and-sign-ins/approved-transactors.md
+## File: ./overview/learn/wallets-and-sign-ins/approved-transactors.md
 
 # Approved Transactors
 
@@ -16763,7 +16748,7 @@ To sign transactions:
 Note this is opt-in and can be revoked at any time. This is provided as a way to trade off centralization / trust for enhanced user experience but is completely optional. Also note that the BitBadges embedded wallet is not the only option. We provide the functionality for you to approve any wallet.
 
 
-## File: ./overview/learn-the-basics/wallets-and-sign-ins/mobile-support.md
+## File: ./overview/learn/wallets-and-sign-ins/mobile-support.md
 
 # Alternate Sign Ins / Mobile
 
@@ -16780,7 +16765,7 @@ While we do not have an official app on any app store, our web app is mobile fri
 Also, if you are using a mobile crypto wallet, please use best practices for that wallet. Some may require you to use their in-app browser, for example.
 
 
-## File: ./overview/learn-the-basics/wallets-and-sign-ins/supported-wallets.md
+## File: ./overview/learn/wallets-and-sign-ins/supported-wallets.md
 
 # Supported Wallets
 
@@ -16846,7 +16831,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn-the-basics/distribution.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](learn/distribution.md))
 * [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
 * [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
 
@@ -17011,7 +16996,7 @@ You can do this in the Rewards section when configuring the claim.
 
 Because you can check criteria for anything, there are infinitely many possible use cases for BitBadges! Below are some of our favorites. You can also browse featured items at [https://bitbadges.io/browse](https://bitbadges.io/browse).
 
-* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](learn-the-basics/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
+* **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](learn/verification-tools.md)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
 * **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).
 * **Truth Badges -** Badges become the source of truth for scams, deep fakes, and more. For example, in a world of artificial intelligence, badges can be used to verify the root truth of some statement or thing.&#x20;
 * **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
