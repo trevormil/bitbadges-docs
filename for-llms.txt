@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Mar 17 13:04:17 UTC 2025
+Generated on Mon Mar 17 13:06:42 UTC 2025
 
 
 
@@ -15935,6 +15935,10 @@ On the criteria side, you can check any criteria. This is all configured in your
 
 Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
 
+```
+Any service can be gated by any criteria with a claim
+```
+
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
 {% endcontent-ref %}
@@ -15993,6 +15997,10 @@ If you want to custom check criteria, configure your own custom plugin (publisha
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. Explore the claim builder and the rest of this documentation for more information.
 
 Even if you create a badge, list, or other item, you will eventually create a badge-gated claim (separate), for example, to gate your app or service.
+
+```
+Any service can be gated by any criteria with a claim
+```
 
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
