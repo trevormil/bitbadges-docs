@@ -1,26 +1,6 @@
 # Overview
 
-An attestation represents claims about a subject, similar to a Verifiable Credential. The concept has gained significant traction in blockchain and Web3 spaces, where different implementations offer varying approaches to creating secure, verifiable, and privacy-respecting credentials.
-
-They can take many forms:
-
-* W3C Verifiable Credentials standard
-* BitBadges attestations
-* Credly credentials (Open Badges standard)
-* Other attestation providers
-
-Each approach offers different tradeoffs in terms of:
-
-* Cryptographic security features
-* Privacy mechanisms
-* Machine verifiability
-* Compatibility and standards compliance
-* Implementation complexity
-
-BitBadges aims to offer our own attestation service as well as integrate with tons of other providers as well to give you the most options possible. Alternative providers include:
-
-* Credly Badges
-* Custom Uploads (any plaintext or JSON)
+An attestation represents claims about a subject. They can come in many different forms (signatures, BBS, simple URLs) as long as they are verifiable. Each scheme can offer varying tradeoffs. We support a couple natively while also allowing you to custom upload your attestation.
 
 Currently, our core suite supports two approaches. Both are cryptographically signed, and thus, data integrity is maintained. These are stored off-chain (centralized) but can be anchored or posted on-chain if desired.
 
@@ -29,17 +9,6 @@ Currently, our core suite supports two approaches. Both are cryptographically si
   * To create the link between a "main" crypto address and the BBS+ public key, we sign a message from the main address saying that attestations from BBS+ key can be treated as my own.
 * Standard Signatures: Messages are signed via any supported wallet / ecosystem (Bitcoin, Ethereum, Solana, Cosmos). These do not support selective disclosure.
 
-Implementation Note: While BitBadges provides a centralized storage solution for convenience, the attestation system's underlying architecture is decentralized. Users have the flexibility to:
-
-* Use the provided storage solution
-* Implement their own storage and verification systems
-* Choose alternative attestation providers
-* Mix different approaches based on specific needs
+To get started, simply create an attestation in-site.
 
 <figure><img src="../../../.gitbook/assets/image (134).png" alt="" width="375"><figcaption></figcaption></figure>
-
-**What gives the attestation credibility?**
-
-In a system like this, the attestation gains its credibility from the issuer. However, techniques like cryptographic signatures help provide data integrity and make the attestation tamper proof from a malicious issuer since the signature can never be forged or changed. It always ensures that the holder can always provide valid proof of attestation from that specific issuer.
-
-For our attestations, we use cryptographic signatures, but note that other approaches may use different verification methods.

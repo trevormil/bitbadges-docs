@@ -2,10 +2,14 @@
 
 Attestations are the original document from which different proofs can be derived from, depending on the selected scheme. For example, for BBS signatures, you can selectively reveal M of N messages.
 
-Proofs follow a similar interface plus/minus a few fields, but proofs may change the following details, depending on the implementation:
+```
+Proofs are a derivation from the core attestation with a few changes.
+```
 
--   May have different metadata or visibility properties
--   Can selectively disclose certain information but not others (for approaches that support selective disclosure).
+Proofs follow a very similar interface plus/minus a few fields, but proofs may change the following details, depending on the implementation:
+
+* May have different metadata or visibility properties
+* Can selectively disclose certain information but not others (for approaches that support selective disclosure).
 
 There are user interfaces for handling this all on the frontend. However, below, we go into detail for how you can do it yourself. Check out [https://bitbadges.io/attestations/proofgen](https://bitbadges.io/attestations/proofgen) for a helper tool for generating BBS+ signatures.
 

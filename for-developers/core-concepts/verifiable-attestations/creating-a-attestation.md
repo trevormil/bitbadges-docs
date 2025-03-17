@@ -2,11 +2,11 @@
 
 Pre-Readings: [Verifiable Attestations](./)
 
-On the official site, we provide interfaces to create attestations (Create -> Attestations).
-
-You can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
+On the official site, we provide interfaces to create attestations (Create -> Attestations). You can also self-generate locally and upload via the BitBadges API as well. Below, we provide information on how it works behind the scenes.
 
 <figure><img src="../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
+
+**Programmatic Generation / Verification**
 
 The creation interface is as follows. All attestations are a series of one or more **messages** which can be either in 'json' or 'plaintext' **messageFormat**. You can use the corresponding API endpoint to create programmatically.
 

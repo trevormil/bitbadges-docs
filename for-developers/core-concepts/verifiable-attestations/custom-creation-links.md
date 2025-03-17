@@ -1,8 +1,6 @@
 # Custom Creation Links
 
-To make it convenient for you to redirect users and auto-create attestations, you can create unique create / update links with the details auto-filled out.
-
-There are two query parameters that can be passed.
+To make it convenient for you to redirect users and auto-create attestations, you can create unique create / update links with the details auto-filled out. There are two query parameters that can be passed.
 
 **attestationId:** ID of the existing attestation. Only needed for updates. For create links, leave blank.
 
