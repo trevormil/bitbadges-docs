@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Mar 16 20:09:24 UTC 2025
+Generated on Mon Mar 17 13:04:17 UTC 2025
 
 
 
@@ -3640,7 +3640,7 @@ In addition to the standard features of existing token standards (mint, transfer
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
 * [**Customizable Permissions**](broken-reference)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
-* [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
+* [**Time-Based Details**](for-developers/badges-advanced/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 * [**Batch Transfers**](broken-reference)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 
@@ -3855,7 +3855,11 @@ And much more!
     * [Update Approval Permission](for-developers/badges-advanced/permissions/update-approval-permission.md)
   * [Standards](for-developers/badges-advanced/standards.md)
   * [Archived Collections](for-developers/badges-advanced/archived-collections.md)
+  * [Metadata](for-developers/badges-advanced/metadata.md)
+  * [Timelines](for-developers/badges-advanced/timelines.md)
   * [Different Time Fields](for-developers/badges-advanced/different-time-fields.md)
+  * [List IDs](for-developers/badges-advanced/list-ids.md)
+  * [Uint Ranges](for-developers/badges-advanced/uint-ranges.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
@@ -3899,15 +3903,11 @@ And much more!
     * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
     * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
 * [🧠 Other Concepts](for-developers/core-concepts/README.md)
-  * [General](for-developers/core-concepts/general/README.md)
-    * [🔢 Uint Ranges](for-developers/core-concepts/general/uint-ranges.md)
-    * [👥 Accounts (Low-Level)](for-developers/core-concepts/general/accounts-technical.md)
-    * [⏳ Timelines](for-developers/core-concepts/general/timelines.md)
-    * [🖼️ Metadata](for-developers/core-concepts/general/metadata.md)
-    * [⚓ Anchors](for-developers/core-concepts/general/anchors.md)
+  * [Uint Ranges](for-developers/core-concepts/uint-ranges.md)
+  * [Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
   * [Address Lists](for-developers/core-concepts/address-lists-lists.md)
   * [Maps / Protocols](for-developers/core-concepts/maps.md)
-  * [🗝️ Attestations](for-developers/core-concepts/verifiable-attestations/README.md)
+  * [Attestations - Advanced](for-developers/core-concepts/verifiable-attestations/README.md)
     * [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
     * [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
     * [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
@@ -3923,7 +3923,7 @@ And much more!
 
 # 👤 Handling Addresses
 
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/general/accounts-technical.md) will give you more in-depth explanations.
+This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](core-concepts/accounts-technical.md) will give you more in-depth explanations.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -6189,8 +6189,8 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
 * **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
-* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/general/uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/general/uint-ranges.md)\[] of badge IDs.
+* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:
@@ -6632,11 +6632,159 @@ isArchived: true for [{ start: 1, end: MAX_TIME }]
 By understanding and effectively using these time fields, you can create sophisticated and dynamic badge systems in BitBadges, enabling complex scenarios from voting systems to time-bound privileges and beyond.
 
 
+## File: ./for-developers/badges-advanced/list-ids.md
+
+# List IDs
+
+As you may have noticed, we use a list ID system for the from, to, and initiatedBy in the collection approval interfaces.&#x20;
+
+```typescript
+{
+    ...restOfApproval,
+    "fromListId": "Mint",
+    "initiatedByListId": "bb1..."
+}
+```
+
+A summary is:
+
+* These can either be registered on-chain as a reusable list with an ID and referenced
+* They can follow a specific pattern for reserved IDs.&#x20;
+  * Plain addresses (BitBadges supported only) as-is
+  * Separate multiple addresses in list with a :
+  * Prefix with a ! for inversion (blacklist)
+
+```
+Mint
+```
+
+```
+bb1...:bb1....
+```
+
+Learn more
+
+{% content-ref url="../core-concepts/address-lists-lists.md" %}
+[address-lists-lists.md](../core-concepts/address-lists-lists.md)
+{% endcontent-ref %}
+
+
+
+## File: ./for-developers/badges-advanced/metadata.md
+
+# Metadata
+
+BitBadges allows defining metadata for both collections and individual badges using `collectionMetadataTimeline` and `badgeMetadataTimeline` respectively. Both timelines follow the same metadata interface, but with slight differences in implementation.
+
+Other interfaces like lists, maps, etc will also have a corresponding metadata field that follows the same interface.
+
+### Metadata Timelines
+
+#### Collection Metadata Timeline
+
+The `collectionMetadataTimeline` defines metadata for the entire collection over time.
+
+Example:
+
+```json
+"collectionMetadataTimeline": [
+  {
+    "timelineTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "collectionMetadata": {
+      "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub",
+      "customData": ""
+    }
+  }
+]
+```
+
+#### Badge Metadata Timeline
+
+The `badgeMetadataTimeline` defines metadata for individual badges over time. The order of `badgeMetadata` entries matters, as it uses a first-match approach via linear scan for specific badge IDs.
+
+Example:
+
+```json
+"badgeMetadataTimeline": [
+  {
+    "timelineTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615"
+      }
+    ],
+    "badgeMetadata": [
+      {
+        "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}",
+        "badgeIds": [
+          {
+            "start": "1",
+            "end": "10000000000000"
+          }
+        ],
+        "customData": ""
+      }
+    ]
+  }
+]
+```
+
+### Metadata Interface
+
+The BitBadges API, Indexer, and Site expect metadata to follow this format by default:
+
+```typescript
+export interface Metadata<T extends NumberType> {
+  name: string;
+  description: string;
+  image: string;
+  video?: string;
+  category?: string;
+  externalUrl?: string;
+  tags?: string[];
+  socials?: {
+    [key: string]: string;
+  }
+  offChainTransferabilityInfo?: {
+    host: string
+    assignMethod: string
+  }
+}
+```
+
+#### Key Points:
+
+1. **Dynamic Badge ID**: If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID. For example, `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1.
+2. **Off-Chain Balances**: For collections hosting balances off-chain, you can specify details about where they are hosted and how they are assigned using the `offChainTransferabilityInfo` field.
+
+### Best Practices
+
+1. **Ordering**: For `badgeMetadataTimeline`, arrange entries from most specific to least specific, as the first match is used.
+2. **URI Design**: Use the `{id}` placeholder in badge metadata URIs for dynamic content generation.
+3. **Comprehensive Metadata**: Provide as much relevant information as possible in the metadata to enhance the user experience and discoverability of your badges.
+4. **Time Ranges**: Ensure that your time ranges cover all possible times to avoid gaps where metadata might be undefined.
+5. **Off-Chain Info**: If using off-chain balance management, clearly specify the host and assignment method in the `offChainTransferabilityInfo` field.
+
+By following these guidelines and utilizing the flexible metadata structure provided by BitBadges, you can create rich, dynamic, and informative badge collections.
+
+
 ## File: ./for-developers/badges-advanced/overview.md
 
 # Overview
 
 This section is a knowledge dump for more advanced use cases and how badges operate behind the scenes.  For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+
+```typescript
+const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, { ...options });
+console.log(res);
+
+const res = await BitBadgesApi.getBadgeMetadata(1, 5);
+```
 
 {% content-ref url="../bitbadges-api/" %}
 [bitbadges-api](../bitbadges-api/)
@@ -7065,7 +7213,7 @@ export interface TimedUpdatePermission<T extends NumberType> {
 }
 ```
 
-**TimedUpdatePermission**s simply denote for what **timelineTimes**, can the manager update the scheduled value? These are only applicable to normal [timeline-based fields](../../core-concepts/general/timelines.md) such as the collection metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
+**TimedUpdatePermission**s simply denote for what **timelineTimes**, can the manager update the scheduled value? These are only applicable to normal [timeline-based fields](../timelines.md) such as the collection metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
 
 The **timelineTimes** are which timeline time values can be updated. The permitted / forbidden times are when the permission can be executed (the update can take place). Note these may not be aligned. Maybe, you want to forbid updating the timeline from Jan 2024 - Dec 2024 during 2023.
 
@@ -7137,7 +7285,7 @@ export interface TimedUpdateWithBadgeIdsPermission<T extends NumberType> {
 }
 ```
 
-**TimedUpdatePermissionWithBadgeId**s simply denote for what **timelineTimes** and **badgeIds** combinations, can the manager update the scheduled value? These are only applicable to badge ID [timeline-based fields](../../core-concepts/general/timelines.md) such as the badge metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
+**TimedUpdatePermissionWithBadgeId**s simply denote for what **timelineTimes** and **badgeIds** combinations, can the manager update the scheduled value? These are only applicable to badge ID [timeline-based fields](../timelines.md) such as the badge metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
 
 The **timelineTimes** are which timeline time values can be updated. The **badgeIds** are which badge IDs can be updated. For a pair such as (Mon-Fri, IDs 1-10), this means the values corresponding to the badge IDs at the timeline times can be updated or not. Both have to match. IDs 11+ are not handled at all in this case. Sunday is not handled. Updating IDs 1-10 on Sunday is not handled.
 
@@ -7723,6 +7871,116 @@ Note the BitBadges API / Indexer expects certain formatting and interfaces to be
 See [here](broken-reference).
 
 
+## File: ./for-developers/badges-advanced/timelines.md
+
+# Timelines
+
+BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
+
+### Key Concepts
+
+1. **Time Representation**:
+   * Times are represented as UNIX time (milliseconds since the epoch).
+   * Epoch: Midnight at the beginning of January 1, 1970, UTC.
+2. **Value Assignment**:
+   * Values are assigned to specific time ranges.
+   * No overlapping time ranges are allowed for a single field.
+3. **Default Behavior**:
+   * If no value is set for the current time, the field assumes an empty/null/default value.
+
+### Structure
+
+Timeline-based fields extend the `TimelineItem` interface:
+
+```typescript
+export interface TimelineItem<T extends NumberType> {
+  timelineTimes: UintRange<T>[];
+}
+```
+
+### Example Timeline Fields
+
+The collection interface includes the following timeline-based fields:
+
+* `managerTimeline: ManagerTimeline<T>[]`
+* `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
+* `badgeMetadataTimeline: BadgeMetadataTimeline<T>[]`
+* `offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[]`
+* `customDataTimeline: CustomDataTimeline<T>[]`
+* `standardsTimeline: StandardsTimeline<T>[]`
+* `isArchivedTimeline: IsArchivedTimeline<T>[]`
+
+### Example: CollectionMetadataTimeline
+
+#### Protocol Buffers Definition
+
+```protobuf
+message CollectionMetadataTimeline {
+  CollectionMetadata collectionMetadata = 1;
+  repeated UintRange timelineTimes = 2;
+}
+```
+
+#### Usage Example
+
+```typescript
+const collectionMetadataTimeline = [
+  {
+    timelineTimes: [{ start: 1n, end: 10n }],
+    collectionMetadata: {
+      uri: 'ipfs://abc123',
+      customData: '',
+    },
+  },
+  {
+    timelineTimes: [{ start: 11n, end: 10000000n }],
+    collectionMetadata: {
+      uri: 'ipfs://xyz456',
+      customData: '',
+    },
+  }
+];
+```
+
+In this example:
+
+* From time 1 to 10, the collection metadata URI is 'ipfs://abc123'.
+* From time 11 to 10000000, the collection metadata URI is 'ipfs://xyz456'.
+* At time 5, the first entry would be used.
+* At time 20, the second entry would be used.
+
+### Practical Application
+
+This feature allows for automatic, time-based updates to collection attributes. For example, you can set a collection's metadata URL to change at specific times:
+
+```typescript
+const metadataTimeline = [
+  {
+    timelineTimes: [{ start: 1672531200000n, end: 1680307199000n }], // Jan 1, 2023 to Mar 31, 2023
+    collectionMetadata: { uri: 'https://example1.com', customData: '' },
+  },
+  {
+    timelineTimes: [{ start: 1680307200000n, end: 1704067199000n }], // Apr 1, 2023 to Dec 31, 2023
+    collectionMetadata: { uri: 'https://example2.com', customData: '' },
+  }
+];
+```
+
+This setup would automatically switch the metadata URL from example1.com to example2.com on April 1, 2023, without requiring any additional blockchain transactions.
+
+
+## File: ./for-developers/badges-advanced/uint-ranges.md
+
+# Uint Ranges
+
+Refer here:
+
+{% content-ref url="../core-concepts/uint-ranges.md" %}
+[uint-ranges.md](../core-concepts/uint-ranges.md)
+{% endcontent-ref %}
+
+
+
 ## File: ./for-developers/bitbadges-api/README.md
 
 # 📚 Indexer / API
@@ -7836,8 +8094,8 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 
 #### Badge and Collection Metadata Format
 
-{% content-ref url="../../core-concepts/general/metadata.md" %}
-[metadata.md](../../core-concepts/general/metadata.md)
+{% content-ref url="../../badges-advanced/metadata.md" %}
+[metadata.md](../../badges-advanced/metadata.md)
 {% endcontent-ref %}
 
 #### Off-Chain Balances Metadata
@@ -14154,6 +14412,97 @@ To represent a "full" or "complete" range, use \[{ start: 1, end: 18446744073709
 
 
 
+## File: ./for-developers/core-concepts/accounts-technical.md
+
+# Accounts (Low-Level)
+
+## Pre-Readings
+
+* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
+* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
+
+### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
+
+For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent BitBadges address and being signature compatible (able to verify signatures of the native signature schemes).
+
+### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
+
+For non-Cosmos signatures, we map everything to a SHA256 content hash to get a string such as:
+
+```
+This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679
+```
+
+We then verify the signatures of the transaction string as a personal message signature via the respective signature algorithm (e.g. ECDSA for Ethereum).
+
+### **Cosmos**
+
+Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
+
+### **Ethereum**
+
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys.
+
+### **Solana**
+
+BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
+
+### Bitcoin
+
+BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
+
+### **Public Key Types**
+
+For standard Cosmos accounts and Bitcoin accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
+
+For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
+
+For standard Ethereum accounts, the public key will have the `"@type": "/ethereum.PubKey"`.
+
+`{"@type":"/ethereum.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
+
+### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
+
+Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
+
+```typescript
+import { Wallet } from 'ethers'
+import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
+
+const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
+const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
+const defaultDerivationPath = "m/44'/60'/0'/0/0"
+const defaultBech32Prefix = 'bb'
+const isPrivateKey: boolean = true /* just for the example */
+
+const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
+const ethereumAddress = wallet.address
+const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
+const bitbadgesAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
+```
+
+Let's see an example code snipped on how to derive a public key from a private key:
+
+```typescript
+import secp256k1 from 'secp256k1'
+
+const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
+const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
+const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
+
+const buf1 = Buffer.from([10])
+const buf2 = Buffer.from([publicKeyByte.length])
+const buf3 = Buffer.from(publicKeyByte)
+
+const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
+const type = '/ethereum.PubKey'
+```
+
+#### Acknowledgements
+
+Credit to [https://docs.injective.network/learn/basic-concepts/accounts](https://docs.injective.network/learn/basic-concepts/accounts) and [https://docs.evmos.org/protocol/concepts/accounts](https://docs.evmos.org/protocol/concepts/accounts).
+
+
 ## File: ./for-developers/core-concepts/address-lists-lists.md
 
 # Address Lists
@@ -14246,385 +14595,6 @@ This is the list which includes all addresses except "bb123...." and "bb456...."
   ...
 }
 ```
-
-
-## File: ./for-developers/core-concepts/general/README.md
-
-# General
-
-
-
-## File: ./for-developers/core-concepts/general/accounts-technical.md
-
-# 👥 Accounts (Low-Level)
-
-## Pre-Readings
-
-* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
-* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
-
-### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
-
-For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent BitBadges address and being signature compatible (able to verify signatures of the native signature schemes).
-
-### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
-
-For non-Cosmos signatures, we map everything to a SHA256 content hash to get a string such as:
-
-```
-This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679
-```
-
-We then verify the signatures of the transaction string as a personal message signature via the respective signature algorithm (e.g. ECDSA for Ethereum).
-
-### **Cosmos**
-
-Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
-
-### **Ethereum**
-
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys.
-
-### **Solana**
-
-BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
-
-### Bitcoin
-
-BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
-
-### **Public Key Types**
-
-For standard Cosmos accounts and Bitcoin accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
-
-For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
-
-For standard Ethereum accounts, the public key will have the `"@type": "/ethereum.PubKey"`.
-
-`{"@type":"/ethereum.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
-
-### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
-
-Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
-
-```typescript
-import { Wallet } from 'ethers'
-import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
-
-const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'bb'
-const isPrivateKey: boolean = true /* just for the example */
-
-const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
-const ethereumAddress = wallet.address
-const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const bitbadgesAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
-```
-
-Let's see an example code snipped on how to derive a public key from a private key:
-
-```typescript
-import secp256k1 from 'secp256k1'
-
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
-const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
-
-const buf1 = Buffer.from([10])
-const buf2 = Buffer.from([publicKeyByte.length])
-const buf3 = Buffer.from(publicKeyByte)
-
-const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethereum.PubKey'
-```
-
-#### Acknowledgements
-
-Credit to [https://docs.injective.network/learn/basic-concepts/accounts](https://docs.injective.network/learn/basic-concepts/accounts) and [https://docs.evmos.org/protocol/concepts/accounts](https://docs.evmos.org/protocol/concepts/accounts).
-
-
-## File: ./for-developers/core-concepts/general/anchors.md
-
-# ⚓ Anchors
-
-Anchors, in the context of blockchain technology, refer to specific transactions utilized to validate the presence or absence of particular data on the blockchain. These transactions serve as cryptographic proofs, verifying the existence of data at a given point in time. Anchors play a crucial role in establishing the integrity and immutability of data stored on the blockchain, enhancing transparency and trust within decentralized systems.
-
-This is facilitated through the x/anchor module which simply has one message (MsgAddCustomData) that simply lets you store a string. It will store it on-chain with a timestamp and the address that initiated the transaction.
-
-For another reference, see [https://docs.witness.co/](https://docs.witness.co/). WITNESS is an alternative to BitBadges native anchors but is the exact same concept.&#x20;
-
-<figure><img src="../../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
-
-
-
-## File: ./for-developers/core-concepts/general/metadata.md
-
-# 🖼️ Metadata
-
-BitBadges allows defining metadata for both collections and individual badges using `collectionMetadataTimeline` and `badgeMetadataTimeline` respectively. Both timelines follow the same metadata interface, but with slight differences in implementation.
-
-Other interfaces like lists, maps, etc will also have a corresponding metadata field that follows the same interface.
-
-### Metadata Timelines
-
-#### Collection Metadata Timeline
-
-The `collectionMetadataTimeline` defines metadata for the entire collection over time.
-
-Example:
-
-```json
-"collectionMetadataTimeline": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "collectionMetadata": {
-      "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub",
-      "customData": ""
-    }
-  }
-]
-```
-
-#### Badge Metadata Timeline
-
-The `badgeMetadataTimeline` defines metadata for individual badges over time. The order of `badgeMetadata` entries matters, as it uses a first-match approach via linear scan for specific badge IDs.
-
-Example:
-
-```json
-"badgeMetadataTimeline": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeMetadata": [
-      {
-        "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}",
-        "badgeIds": [
-          {
-            "start": "1",
-            "end": "10000000000000"
-          }
-        ],
-        "customData": ""
-      }
-    ]
-  }
-]
-```
-
-### Metadata Interface
-
-The BitBadges API, Indexer, and Site expect metadata to follow this format by default:
-
-```typescript
-export interface Metadata<T extends NumberType> {
-  name: string;
-  description: string;
-  image: string;
-  video?: string;
-  category?: string;
-  externalUrl?: string;
-  tags?: string[];
-  socials?: {
-    [key: string]: string;
-  }
-  offChainTransferabilityInfo?: {
-    host: string
-    assignMethod: string
-  }
-}
-```
-
-#### Key Points:
-
-1. **Dynamic Badge ID**: If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID. For example, `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1.
-2. **Off-Chain Balances**: For collections hosting balances off-chain, you can specify details about where they are hosted and how they are assigned using the `offChainTransferabilityInfo` field.
-
-### Best Practices
-
-1. **Ordering**: For `badgeMetadataTimeline`, arrange entries from most specific to least specific, as the first match is used.
-2. **URI Design**: Use the `{id}` placeholder in badge metadata URIs for dynamic content generation.
-3. **Comprehensive Metadata**: Provide as much relevant information as possible in the metadata to enhance the user experience and discoverability of your badges.
-4. **Time Ranges**: Ensure that your time ranges cover all possible times to avoid gaps where metadata might be undefined.
-5. **Off-Chain Info**: If using off-chain balance management, clearly specify the host and assignment method in the `offChainTransferabilityInfo` field.
-
-By following these guidelines and utilizing the flexible metadata structure provided by BitBadges, you can create rich, dynamic, and informative badge collections.
-
-
-## File: ./for-developers/core-concepts/general/timelines.md
-
-# ⏳ Timelines
-
-BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
-
-### Key Concepts
-
-1. **Time Representation**:
-   * Times are represented as UNIX time (milliseconds since the epoch).
-   * Epoch: Midnight at the beginning of January 1, 1970, UTC.
-2. **Value Assignment**:
-   * Values are assigned to specific time ranges.
-   * No overlapping time ranges are allowed for a single field.
-3. **Default Behavior**:
-   * If no value is set for the current time, the field assumes an empty/null/default value.
-
-### Structure
-
-Timeline-based fields extend the `TimelineItem` interface:
-
-```typescript
-export interface TimelineItem<T extends NumberType> {
-  timelineTimes: UintRange<T>[];
-}
-```
-
-### Example Timeline Fields
-
-The collection interface includes the following timeline-based fields:
-
-* `managerTimeline: ManagerTimeline<T>[]`
-* `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
-* `badgeMetadataTimeline: BadgeMetadataTimeline<T>[]`
-* `offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[]`
-* `customDataTimeline: CustomDataTimeline<T>[]`
-* `standardsTimeline: StandardsTimeline<T>[]`
-* `isArchivedTimeline: IsArchivedTimeline<T>[]`
-
-### Example: CollectionMetadataTimeline
-
-#### Protocol Buffers Definition
-
-```protobuf
-message CollectionMetadataTimeline {
-  CollectionMetadata collectionMetadata = 1;
-  repeated UintRange timelineTimes = 2;
-}
-```
-
-#### Usage Example
-
-```typescript
-const collectionMetadataTimeline = [
-  {
-    timelineTimes: [{ start: 1n, end: 10n }],
-    collectionMetadata: {
-      uri: 'ipfs://abc123',
-      customData: '',
-    },
-  },
-  {
-    timelineTimes: [{ start: 11n, end: 10000000n }],
-    collectionMetadata: {
-      uri: 'ipfs://xyz456',
-      customData: '',
-    },
-  }
-];
-```
-
-In this example:
-
-* From time 1 to 10, the collection metadata URI is 'ipfs://abc123'.
-* From time 11 to 10000000, the collection metadata URI is 'ipfs://xyz456'.
-* At time 5, the first entry would be used.
-* At time 20, the second entry would be used.
-
-### Practical Application
-
-This feature allows for automatic, time-based updates to collection attributes. For example, you can set a collection's metadata URL to change at specific times:
-
-```typescript
-const metadataTimeline = [
-  {
-    timelineTimes: [{ start: 1672531200000n, end: 1680307199000n }], // Jan 1, 2023 to Mar 31, 2023
-    collectionMetadata: { uri: 'https://example1.com', customData: '' },
-  },
-  {
-    timelineTimes: [{ start: 1680307200000n, end: 1704067199000n }], // Apr 1, 2023 to Dec 31, 2023
-    collectionMetadata: { uri: 'https://example2.com', customData: '' },
-  }
-];
-```
-
-This setup would automatically switch the metadata URL from example1.com to example2.com on April 1, 2023, without requiring any additional blockchain transactions.
-
-
-## File: ./for-developers/core-concepts/general/uint-ranges.md
-
-# 🔢 Uint Ranges
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>export interface UintRange&#x3C;T extends NumberType> {
-</strong>  start: T;
-  end: T;
-}
-</code></pre>
-
-### Overview
-
-The `UintRange` type is a fundamental component in BitBadges, representing an inclusive range of numbers from a start value to an end value. This type enables powerful range-based operations and is primarily used for badge IDs and time ranges.
-
-### Usage
-
-#### Badge IDs
-
-When transferring badges, specify an array of `UintRange<number>` to indicate which badge IDs to transfer.
-
-Example:
-
-```typescript
-const badgeIdsToTransfer: UintRange<number>[] = [
-  { start: 1, end: 10 },
-  { start: 20, end: 50 }
-];
-```
-
-#### Time Ranges
-
-`UintRange` is also used for time-based operations, such as `transferTimes`. In this context, the values represent UNIX milliseconds since the epoch.
-
-Example:
-
-```typescript
-const transferTimes: UintRange<string>[] = [
-  { start: "1630000000000", end: "1640000000000" }
-];
-// This represents a transfer time range from 2021-08-26 to 2021-12-20
-```
-
-### Restrictions
-
-Unless otherwise specified, we only allow numbers in the ranges to be from 1 to Go Max UInt64
-
-* Valid ranges: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
-* Zero and values greater than the maximum are not allowed
-
-### Special Cases
-
-#### Full Range
-
-To represent a complete range, use:
-
-```typescript
-const fullRange: UintRange<string> = {
-  start: "1",
-  end: "18446744073709551615"
-};
-```
-
-#### Range Inversion
-
-Inverting a range results in all values from 1 to 18446744073709551615 that are not in the current range.
 
 
 ## File: ./for-developers/core-concepts/maps.md
@@ -14737,9 +14707,76 @@ export interface iMapMetadataTimeline<T extends NumberType> {
 ```
 
 
+## File: ./for-developers/core-concepts/uint-ranges.md
+
+# Uint Ranges
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>export interface UintRange&#x3C;T extends NumberType> {
+</strong>  start: T;
+  end: T;
+}
+</code></pre>
+
+### Overview
+
+The `UintRange` type is a fundamental component in BitBadges, representing an inclusive range of numbers from a start value to an end value. This type enables powerful range-based operations and is primarily used for badge IDs and time ranges.
+
+### Usage
+
+#### Badge IDs
+
+When transferring badges, specify an array of `UintRange<number>` to indicate which badge IDs to transfer.
+
+Example:
+
+```typescript
+const badgeIdsToTransfer: UintRange<number>[] = [
+  { start: 1, end: 10 },
+  { start: 20, end: 50 }
+];
+```
+
+#### Time Ranges
+
+`UintRange` is also used for time-based operations, such as `transferTimes`. In this context, the values represent UNIX milliseconds since the epoch.
+
+Example:
+
+```typescript
+const transferTimes: UintRange<string>[] = [
+  { start: "1630000000000", end: "1640000000000" }
+];
+// This represents a transfer time range from 2021-08-26 to 2021-12-20
+```
+
+### Restrictions
+
+Unless otherwise specified, we only allow numbers in the ranges to be from 1 to Go Max UInt64
+
+* Valid ranges: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
+* Zero and values greater than the maximum are not allowed
+
+### Special Cases
+
+#### Full Range
+
+To represent a complete range, use:
+
+```typescript
+const fullRange: UintRange<string> = {
+  start: "1",
+  end: "18446744073709551615"
+};
+```
+
+#### Range Inversion
+
+Inverting a range results in all values from 1 to 18446744073709551615 that are not in the current range.
+
+
 ## File: ./for-developers/core-concepts/verifiable-attestations/README.md
 
-# 🗝️ Attestations
+# Attestations - Advanced
 
 
 
@@ -15894,7 +15931,13 @@ Claims are the universal connectors. Gate anything with any criteria. For exampl
 
 # 💻 How Do I Check...?
 
-On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
+On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Get started in the Developer Portal.
+
+Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
+
+{% content-ref url="claim-builder/" %}
+[claim-builder](claim-builder/)
+{% endcontent-ref %}
 
 <figure><img src="../.gitbook/assets/image (224).png" alt=""><figcaption></figcaption></figure>
 
@@ -15902,9 +15945,15 @@ On the criteria side, you can check any criteria. This is all configured in your
 
 Configure your claim with in-site plugins for each respective service. Check badge ownership with the Badge Requirements plugin. Check points with the Points checker plugin. And so on. These are all supported for on-demand claims too.
 
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.47.22 AM.png" alt=""><figcaption></figcaption></figure>
+
 ## Claim Codes / Passwords
 
 Configure the claim to check for one-time use only claim codes or secret passwords the user must provide. This is a universal option that can be used for any use case. No need for a specific integration or identifying a user specifically. Simply hand out the claim codes and let them claim.
+
+
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.46.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 ## Receiving Attestations
 
@@ -15914,9 +15963,17 @@ Configure a custom webhook or plugin to request user attestations stored in thei
 
 Use the Stripe Payment plugin to gate claims to those who have paid.
 
+
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.45.49 AM.png" alt=""><figcaption></figcaption></figure>
+
 ## Gating by Address, Username, or Email List
 
 Configure the corresponding plugin to check if the claiming user is on the list. Lists can be static or dynamic (see dynamic stores below),
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.48.22 AM.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Dynamic Stores
 
@@ -15934,6 +15991,12 @@ If you want to custom check criteria, configure your own custom plugin (publisha
 # 🔐 How Do I Gate...?
 
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. Explore the claim builder and the rest of this documentation for more information.
+
+Even if you create a badge, list, or other item, you will eventually create a badge-gated claim (separate), for example, to gate your app or service.
+
+{% content-ref url="claim-builder/" %}
+[claim-builder](claim-builder/)
+{% endcontent-ref %}
 
 ## Gating a URL / Content
 
