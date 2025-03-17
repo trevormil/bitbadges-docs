@@ -1,6 +1,12 @@
 # 💻 How Do I Check...?
 
-On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
+On the criteria side, you can check any criteria. This is all configured in your claim builder via plugins! Get started in the Developer Portal.
+
+Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
+
+{% content-ref url="claim-builder/" %}
+[claim-builder](claim-builder/)
+{% endcontent-ref %}
 
 <figure><img src="../.gitbook/assets/image (224).png" alt=""><figcaption></figcaption></figure>
 
@@ -8,9 +14,15 @@ On the criteria side, you can check any criteria. This is all configured in your
 
 Configure your claim with in-site plugins for each respective service. Check badge ownership with the Badge Requirements plugin. Check points with the Points checker plugin. And so on. These are all supported for on-demand claims too.
 
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.47.22 AM.png" alt=""><figcaption></figcaption></figure>
+
 ## Claim Codes / Passwords
 
 Configure the claim to check for one-time use only claim codes or secret passwords the user must provide. This is a universal option that can be used for any use case. No need for a specific integration or identifying a user specifically. Simply hand out the claim codes and let them claim.
+
+
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.46.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 ## Receiving Attestations
 
@@ -20,9 +32,17 @@ Configure a custom webhook or plugin to request user attestations stored in thei
 
 Use the Stripe Payment plugin to gate claims to those who have paid.
 
+
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.45.49 AM.png" alt=""><figcaption></figcaption></figure>
+
 ## Gating by Address, Username, or Email List
 
 Configure the corresponding plugin to check if the claiming user is on the list. Lists can be static or dynamic (see dynamic stores below),
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.48.22 AM.png" alt=""><figcaption></figcaption></figure>
+
+
 
 ## Dynamic Stores
 

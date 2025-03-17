@@ -1,4 +1,4 @@
-# 👥 Accounts (Low-Level)
+# Accounts (Low-Level)
 
 ## Pre-Readings
 

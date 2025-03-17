@@ -2,6 +2,12 @@
 
 BitBadges provides flexible ways to gate (restrict access to) various types of content and utilities. Explore the claim builder and the rest of this documentation for more information.
 
+Even if you create a badge, list, or other item, you will eventually create a badge-gated claim (separate), for example, to gate your app or service.
+
+{% content-ref url="claim-builder/" %}
+[claim-builder](claim-builder/)
+{% endcontent-ref %}
+
 ## Gating a URL / Content
 
 The simplest way to gate a static URL or content is to use BitBadges' built-in URL gating feature. This can be found in the rewards tab when creating a claim. Users will need to successfully complete the claim process to view the URL. This is perfect for:

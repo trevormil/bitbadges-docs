@@ -79,8 +79,8 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
 * **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
-* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/general/uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/general/uint-ranges.md)\[] of badge IDs.
+* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
 * **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:

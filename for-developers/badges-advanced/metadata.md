@@ -1,4 +1,4 @@
-# 🖼️ Metadata
+# Metadata
 
 BitBadges allows defining metadata for both collections and individual badges using `collectionMetadataTimeline` and `badgeMetadataTimeline` respectively. Both timelines follow the same metadata interface, but with slight differences in implementation.
 

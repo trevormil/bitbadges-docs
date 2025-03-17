@@ -119,7 +119,7 @@ In addition to the standard features of existing token standards (mint, transfer
     * Ex: Block certain users from transferring to you. Block all transfers unless you opt-in to receiving them.
   * And more!
 * [**Customizable Permissions**](broken-reference)**:** Each collection has fine-grained customizable permissions that can be optionally set and executed by a special party called the manager, such as archiving the collection, deleting it, updating its metadata, updating transferability, etc.
-* [**Time-Based Details**](for-developers/core-concepts/general/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
+* [**Time-Based Details**](for-developers/badges-advanced/timelines.md)**:** Important collection details such as metadata are time-based, allowing you to automatically commit to updating it at a future time without needing to transact at that time. Ex: Set the metadata to be one value from January 1 to January 10 and then auto-change to another value!
 * [**Batch Transfers**](broken-reference)**:** Batch transfer badges instead of only being able to transfer one by one.
   * Instead of needing 1000 transactions to send 1000 unique non-fungible badges in a collection (e.g. x1 of Badge ID 1, x1 of ID 2, ...), you can batch all into one transaction efficiently (e.g. send x1 of Badge IDs 1-1000).
 

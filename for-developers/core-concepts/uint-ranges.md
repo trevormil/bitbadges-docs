@@ -1,4 +1,4 @@
-# 🔢 Uint Ranges
+# Uint Ranges
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>export interface UintRange&#x3C;T extends NumberType> {
 </strong>  start: T;

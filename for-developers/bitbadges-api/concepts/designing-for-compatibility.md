@@ -4,8 +4,8 @@ To make your collection compatible with the BitBadges Indexer / API (and thus th
 
 #### Badge and Collection Metadata Format
 
-{% content-ref url="../../core-concepts/general/metadata.md" %}
-[metadata.md](../../core-concepts/general/metadata.md)
+{% content-ref url="../../badges-advanced/metadata.md" %}
+[metadata.md](../../badges-advanced/metadata.md)
 {% endcontent-ref %}
 
 #### Off-Chain Balances Metadata

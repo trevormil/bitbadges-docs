@@ -1,4 +1,4 @@
-# ⏳ Timelines
+# Timelines
 
 BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
 
