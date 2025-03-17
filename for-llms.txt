@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Mar 17 13:06:42 UTC 2025
+Generated on Mon Mar 17 13:12:54 UTC 2025
 
 
 
@@ -15973,7 +15973,7 @@ Use the Stripe Payment plugin to gate claims to those who have paid.
 
 ## Gating by Address, Username, or Email List
 
-Configure the corresponding plugin to check if the claiming user is on the list. Lists can be static or dynamic (see dynamic stores below),
+Configure the corresponding plugin to check if the claiming user is on the list. Lists can be static (just copy and paste them into the plugin itself) or dynamic (see dynamic stores below).
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-03-17 at 8.48.22 AM.png" alt=""><figcaption></figcaption></figure>
 
