@@ -4,6 +4,10 @@ On the criteria side, you can check any criteria. This is all configured in your
 
 Plenty of in-site plugins are available, but you can always bring your own logic. Explore the claim builder and the rest of this documentation for more information.
 
+```
+Any service can be gated by any criteria with a claim
+```
+
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
 {% endcontent-ref %}

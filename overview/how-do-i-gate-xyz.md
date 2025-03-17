@@ -4,6 +4,10 @@ BitBadges provides flexible ways to gate (restrict access to) various types of c
 
 Even if you create a badge, list, or other item, you will eventually create a badge-gated claim (separate), for example, to gate your app or service.
 
+```
+Any service can be gated by any criteria with a claim
+```
+
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
 {% endcontent-ref %}
