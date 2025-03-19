@@ -56,6 +56,7 @@
     * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+  * [Already Have Web3 Auth?](for-developers/authenticating-with-bitbadges/already-have-web3-auth.md)
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
