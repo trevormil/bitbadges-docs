@@ -8,14 +8,6 @@ Even if you create a badge, list, or other item, you will eventually create a ba
 Any service can be gated by any criteria with a claim
 ```
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>// Most common approach:
-</strong><strong>// 1. Authenticate the address (Sign In with BitBadges is recommended)
-</strong>// 2. Check claim success
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-
-// Other approaches: post-success webhooks, no-code integrations, and much more!
-</code></pre>
-
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
 {% endcontent-ref %}
@@ -70,7 +62,10 @@ Use the BitBadges WordPress plugin to create sites gated by Sign In with BitBadg
 
 Use Sign In with BitBadges to implement your own gated website or any digital service. Authenticate and check claim successes to make your website gated by anything you want.
 
-<figure><img src="../.gitbook/assets/Screenshot 2025-03-16 at 3.51.48 PM.png" alt=""><figcaption></figcaption></figure>
+<pre class="language-typescript"><code class="lang-typescript"><strong>// 1. Authenticate the address (Sign In with BitBadges is recommended but not mandatory)
+</strong>// 2. Check claim success
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+</code></pre>
 
 ## Sign In with BitBadges QR Codes - In-Person Services
 
