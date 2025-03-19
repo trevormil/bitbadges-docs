@@ -8,6 +8,10 @@ Even if you create a badge, list, or other item, you will eventually create a ba
 Any service can be gated by any criteria with a claim
 ```
 
+```typescript
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+```
+
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
 {% endcontent-ref %}
