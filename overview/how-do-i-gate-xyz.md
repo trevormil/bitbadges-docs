@@ -8,9 +8,13 @@ Even if you create a badge, list, or other item, you will eventually create a ba
 Any service can be gated by any criteria with a claim
 ```
 
-```typescript
+<pre class="language-typescript"><code class="lang-typescript"><strong>// Most common approach:
+</strong><strong>// 1. Authenticate the address (Sign In with BitBadges is recommended)
+</strong>// 2. Check claim success
 const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-```
+
+// Other approaches: post-success webhooks, no-code integrations, and much more!
+</code></pre>
 
 {% content-ref url="claim-builder/" %}
 [claim-builder](claim-builder/)
