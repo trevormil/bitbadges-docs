@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 19 15:19:30 UTC 2025
+Generated on Wed Mar 19 15:22:41 UTC 2025
 
 
 
@@ -3707,6 +3707,7 @@ And much more!
     * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
 * [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+  * [Already Have Web3 Auth?](for-developers/authenticating-with-bitbadges/already-have-web3-auth.md)
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
@@ -3984,6 +3985,22 @@ Signature compatibility means that we can verify transaction signatures from any
 
 # 🖱️ Sign In with BitBadges
 
+
+
+## File: ./for-developers/authenticating-with-bitbadges/already-have-web3-auth.md
+
+# Already Have Web3 Auth?
+
+If you already have Web3 authentication, then there is no need for the full Sign In with BitBadges step. Simply attach a claim verification step to your authentication process!
+
+```typescript
+// Pre-req: Create claim in BitBadges site
+// 1. Authenticate your user (using your existing setup)
+// 2. Verify claim success
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+```
+
+Now, your service is gated by any criteria imaginable!
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md
