@@ -22,6 +22,8 @@ The forms plugin is a serverless alternative. This is titled "Collect User Input
 Think of this like a request storage bin. We store the requests that would've been sent to the webhooks for you. You can then view them in-site or fetch them from the API when needed.
 
 ```typescript
+// Pre: Get the attempt ID. If you do not have it already, see the API reference endpoints
+
 // GET /api/v0/requestBin/attemptData/{claimId}/{claimAttemptId}
 const res = await BitBadgesApi.getAttemptDataFromRequestBin("claim123", "attempt123", { ... });
 console.log(res);
