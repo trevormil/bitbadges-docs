@@ -90,7 +90,6 @@
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
     * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
-    * [Using the Request Bin](for-developers/claim-builder/concepts/using-the-request-bin.md)
     * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)

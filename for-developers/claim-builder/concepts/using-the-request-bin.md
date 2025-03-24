@@ -1,2 +1,0 @@
-# Using the Request Bin
-

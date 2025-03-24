@@ -44,10 +44,12 @@ For example, new claim -> add to Mailchimp list or add to Google Sheets.
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
 {% endcontent-ref %}
 
-## **Use Post-Success Webhooks / Plugins**
+## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
 
 <figure><img src="../../.gitbook/assets/image (217).png" alt=""><figcaption></figcaption></figure>
 
-Set up a custom success webhook or plugin (post-success) and receive the following information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
+Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
+
+Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
 
 <figure><img src="../../.gitbook/assets/image (218).png" alt=""><figcaption></figcaption></figure>
