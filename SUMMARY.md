@@ -89,6 +89,7 @@
     * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
+    * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
     * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
     * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
