@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Mar 24 13:21:52 UTC 2025
+Generated on Mon Mar 24 13:36:59 UTC 2025
 
 
 
@@ -3741,7 +3741,6 @@ And much more!
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
     * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
-    * [Using the Request Bin](for-developers/claim-builder/concepts/using-the-request-bin.md)
     * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
@@ -11851,12 +11850,6 @@ The get code via idx from seedCode route is also available in Zapier opening up 
 {% endcontent-ref %}
 
 
-## File: ./for-developers/claim-builder/concepts/using-the-request-bin.md
-
-# Using the Request Bin
-
-
-
 ## File: ./for-developers/claim-builder/dynamic-stores/README.md
 
 # Dynamic Stores
@@ -12023,11 +12016,13 @@ For example, new claim -> add to Mailchimp list or add to Google Sheets.
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
 {% endcontent-ref %}
 
-## **Use Post-Success Webhooks / Plugins**
+## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
 
 <figure><img src="../../.gitbook/assets/image (217).png" alt=""><figcaption></figcaption></figure>
 
-Set up a custom success webhook or plugin (post-success) and receive the following information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
+Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
+
+Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
 
 <figure><img src="../../.gitbook/assets/image (218).png" alt=""><figcaption></figcaption></figure>
 
