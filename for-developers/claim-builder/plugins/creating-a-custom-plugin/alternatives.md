@@ -17,9 +17,20 @@ Configure prebuilt webhook plugins in the claim builder without needing to creat
 
 ### Forms Plugin  - Serverless
 
-The forms plugin is a serverless alternative. Think of this like a request storage bin. We store the requests that would've been sent to the endpoints in the claim state. You can then view them in-site or fetch them from the API when needed.
+The forms plugin is a serverless alternative. This is titled "Collect User Inputs" in the site.
 
-### Implementation
+Think of this like a request storage bin. We store the requests that would've been sent to the webhooks for you. You can then view them in-site or fetch them from the API when needed.
+
+```typescript
+// GET /api/v0/requestBin/attemptData/{claimId}/{claimAttemptId}
+const res = await BitBadgesApi.getAttemptDataFromRequestBin("claim123", "attempt123", { ... });
+console.log(res);
+// { bitbadgesAddress, email, claimAttemptId } 
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Implementation - Handlers
 
 The request/response flow mirrors that of custom plugins, with the `pluginSecret` replaced by the inputted validation secret. For detailed implementation guidance, refer to the respective documentation. The configuration is done in-site via the claim builder.
 
