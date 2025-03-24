@@ -2,11 +2,11 @@
 
 We want to highlight that claim codes are a universal approach that can be used with any application / criteria. For example,
 
-* Give codes to finishers of a race
-* Give codes to attendees of an event
-* Give codes to those who sign in to your website
-* Distribute codes via email, SMS, etc
-* And so on. You distribute according to your needs!
+-   Give codes to finishers of a race
+-   Give codes to attendees of an event
+-   Give codes to those who sign in to your website
+-   Distribute codes via email, SMS, etc
+-   And so on. You distribute according to your needs!
 
 No need for a custom integration or to identify the user by an identifier. Simply identify them with a code.
 
@@ -19,29 +19,23 @@ Auto-generated codes are calculated from a seed code, rather than needing to sto
 ```typescript
 import CryptoJS from 'crypto-js';
 const { SHA256 } = CryptoJS;
-export const generateCodesFromSeed = (seedCode: string, numCodes: number): string[] => {
-  let currCode = seedCode;
-  const codes = [];
-  for (let i = 0; i < numCodes; i++) {
-    currCode = SHA256(`${seedCode}-${i}`).toString();
-    codes.push(`${currCode}-${i}`);
-  }
-  return codes;
+export const generateCodesFromSeed = (
+    seedCode: string,
+    numCodes: number
+): string[] => {
+    let currCode = seedCode;
+    const codes = [];
+    for (let i = 0; i < numCodes; i++) {
+        currCode = SHA256(`${seedCode}-${i}`).toString();
+        codes.push(`${currCode}-${i}`);
+    }
+    return codes;
 };
 ```
 
 **Generate Codes from Seed API Endpoint**
 
-Or, outsource the generation to our API route:
-
-POST https://api.bitbadges.io/api/generate-code
-
-The request body should be a JSON object with the following properties:
-
-* `seedCode` (string): The seed used to generate the code.
-* `idx` (number): A non-negative integer index.
-
-Response: { "code": "generatedCode" }
+Or, outsource the generation to our [API Route](https://bitbadges.stoplight.io/docs/bitbadges/abee9e7fa5f8d-get-code-codes-plugin)
 
 ## **Save for Later Links**
 
@@ -56,4 +50,3 @@ The get code via idx from seedCode route is also available in Zapier opening up 
 {% content-ref url="../automate-w-zapier/distribute-claim-information-tutorial/" %}
 [distribute-claim-information-tutorial](../automate-w-zapier/distribute-claim-information-tutorial/)
 {% endcontent-ref %}
-
