@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 25 11:54:24 UTC 2025
+Generated on Tue Mar 25 13:43:33 UTC 2025
 
 
 
@@ -3715,6 +3715,7 @@ And much more!
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
+    * [Supabase](for-developers/authenticating-with-bitbadges/framework-templates/supabase.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
@@ -4340,6 +4341,12 @@ Then, integrate with Discourse here:
 # PassportJS
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-passportjs-example/blob/main/index.ts" %}
+
+
+## File: ./for-developers/authenticating-with-bitbadges/framework-templates/supabase.md
+
+# Supabase
+
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md
