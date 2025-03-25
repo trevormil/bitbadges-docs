@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 25 15:36:25 UTC 2025
+Generated on Tue Mar 25 15:39:59 UTC 2025
 
 
 
@@ -3715,6 +3715,7 @@ And much more!
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
     * [Supabase](for-developers/authenticating-with-bitbadges/framework-templates/supabase.md)
+    * [Others](for-developers/authenticating-with-bitbadges/framework-templates/others.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
@@ -4301,6 +4302,19 @@ Then, integrate with Discourse here:
 **OAuth2 Plugin**
 
 {% embed url="https://meta.discourse.org/t/discourse-oauth2-basic/33879" %}
+
+
+## File: ./for-developers/authenticating-with-bitbadges/framework-templates/others.md
+
+# Others
+
+Many of your favorite frameworks already support Auth0, and you can simply use Sign In with BitBadges through that.
+
+* Auth.js (Next Auth) - [https://authjs.dev/getting-started/providers/auth0](https://authjs.dev/getting-started/providers/auth0)
+* Amazon Cognito - [https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services](https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services)
+* Supabase - [https://supabase.com/partners/integrations/auth0](https://supabase.com/partners/integrations/auth0)
+
+If you have any suggestions for unsupported integrations as well, let us know!
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md
