@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 25 15:23:26 UTC 2025
+Generated on Tue Mar 25 15:36:25 UTC 2025
 
 
 
@@ -3711,7 +3711,6 @@ And much more!
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
-    * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
@@ -4194,46 +4193,6 @@ The claim verification is typically during the exchange flow handling.
 
 # Integrations
 
-
-
-## File: ./for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md
-
-# Auth.js
-
-**Next Auth (Auth.js) Template**
-
-```typescript
-import NextAuth from 'next-auth';
-import { BitBadgesNextAuth as BitBadges } from 'bitbadgesjs-sdk';
-
-export const { handlers, signIn, signOut, auth } = NextAuth({
-    providers: [BitBadges],
-});
-
-// Or for custom configurations
-export const { handlers, signIn, signOut, auth } = NextAuth({
-    providers: [BitBadges({ expectAttestations: true, ownershipRequirements: { ... })]
-});
-```
-
-This is a provider template integrated into Next Auth JS to help you get started.&#x20;
-
-Starter Repository: [https://github.com/BitBadges/bitbadges-authjs-example](https://github.com/BitBadges/bitbadges-authjs-example)
-
-You will need to configure your environment variables as such
-
-```properties
-BITBADGES_CLIENT_ID="a3e6ad11d9a971b2707d9147c80721919a1ba826c1087a294201ffcb03f62002"
-BITBADGES_CLIENT_SECRET="020906c8eb7a96b5c8595208d08d8de21c22d5902a33635254cbb5ba12dfcb0a"
-```
-
-And, the redirect URI should be configured to match your callback handler.
-
-```typescript
-https://example.com/api/auth/callback/bitbadges
-```
-
-For the rest of the setup we refer you to the setup documentation.
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/framework-templates/auth0.md
