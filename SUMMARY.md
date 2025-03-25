@@ -64,6 +64,7 @@
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
     * [Supabase](for-developers/authenticating-with-bitbadges/framework-templates/supabase.md)
+    * [Others](for-developers/authenticating-with-bitbadges/framework-templates/others.md)
   * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
   * [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
   * [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
