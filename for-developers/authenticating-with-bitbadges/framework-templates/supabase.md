@@ -7,7 +7,9 @@ This repository is a basic example for getting started with Supabase and Sign in
 This example:
 
 * Uses the Next.js x Supabase template
-* Uses traditional authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a (username <-> address) mapping that you can use.
+* Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
+
+<figure><img src="../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
 
 Anything else is left as an exercise for you.
 
