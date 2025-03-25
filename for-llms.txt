@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 25 13:43:33 UTC 2025
+Generated on Tue Mar 25 13:53:20 UTC 2025
 
 
 
@@ -4346,6 +4346,31 @@ Then, integrate with Discourse here:
 ## File: ./for-developers/authenticating-with-bitbadges/framework-templates/supabase.md
 
 # Supabase
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-supabase-demo" %}
+
+This repository is a basic example for getting started with Supabase and Sign in with BitBadges. It is meant to be a starting point and is not production ready.
+
+This example:
+
+* Uses the Next.js x Supabase template
+* Uses traditional authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a (username <-> address) mapping that you can use.
+
+Anything else is left as an exercise for you.
+
+* Gating the entire site rather than using traditional authentication
+* Gating specific pages / implementing your utility
+* Linking claims
+
+Note: Supabase is flexible. You may choose to implement it via Express, Auth0, or another way as well. This is just a reference to help you get started.
+
+**Setup**
+
+1. Setup Supabase as explained via their documentation
+2. Add your BitBadges API key, client ID, and client secret to your .env
+3. Execute the SQL in supabase/migrations folder to setup the tables. This can be done via the SQL Editor in the dashboard.
+
+
 
 
 
