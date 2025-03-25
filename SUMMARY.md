@@ -60,7 +60,6 @@
   * [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
   * [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
     * [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
-    * [Auth.js (Next Auth)](for-developers/authenticating-with-bitbadges/framework-templates/auth.js.md)
     * [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
     * [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
     * [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
