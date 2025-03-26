@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 25 15:42:07 UTC 2025
+Generated on Wed Mar 26 20:02:07 UTC 2025
 
 
 
@@ -3766,24 +3766,17 @@ And much more!
         * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-    * [Created Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md)
-      * [Plugins Directory](https://bitbadges.io/plugin-directory)
-      * [Number of Uses](for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md)
-      * [Signed in to BitBadges](for-developers/claim-builder/plugins/bitbadges-created-plugins/signed-in-to-bitbadges.md)
-      * [Socials / Email Plugins](for-developers/claim-builder/plugins/bitbadges-created-plugins/authentication-based-plugins.md)
-      * [Codes](for-developers/claim-builder/plugins/bitbadges-created-plugins/codes.md)
-      * [Password](for-developers/claim-builder/plugins/bitbadges-created-plugins/password.md)
-      * [Transfer Times](for-developers/claim-builder/plugins/bitbadges-created-plugins/transfer-times.md)
-      * [Whitelist](for-developers/claim-builder/plugins/bitbadges-created-plugins/whitelist.md)
-      * [Halt](for-developers/claim-builder/plugins/bitbadges-created-plugins/halt.md)
-      * [IP Restrictions](for-developers/claim-builder/plugins/bitbadges-created-plugins/ip-restrictions.md)
-      * [Geolocation](for-developers/claim-builder/plugins/bitbadges-created-plugins/geolocation.md)
-      * [Discord Server](for-developers/claim-builder/plugins/bitbadges-created-plugins/discord-server.md)
-      * [Twitch Follow / Subscription](for-developers/claim-builder/plugins/bitbadges-created-plugins/twitch-follow-subscription.md)
-      * [GitHub Contributions](for-developers/claim-builder/plugins/bitbadges-created-plugins/github-contributions.md)
-      * [Min $BADGE](for-developers/claim-builder/plugins/bitbadges-created-plugins/min-usdbadge.md)
-      * [Ownership Requirements](for-developers/claim-builder/plugins/bitbadges-created-plugins/ownership-requirements.md)
     * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
+  * [Created Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
+    * [Plugins Directory](https://bitbadges.io/plugin-directory)
+    * [Plugin References](for-developers/claim-builder/bitbadges-created-plugins/plugin-references.md)
+    * [Number of Uses](for-developers/claim-builder/bitbadges-created-plugins/number-of-uses.md)
+    * [Socials / Email Plugins](for-developers/claim-builder/bitbadges-created-plugins/authentication-based-plugins.md)
+    * [Codes](for-developers/claim-builder/bitbadges-created-plugins/codes.md)
+    * [Whitelist](for-developers/claim-builder/bitbadges-created-plugins/whitelist.md)
+    * [IP Restrictions](for-developers/claim-builder/bitbadges-created-plugins/ip-restrictions.md)
+    * [Geolocation](for-developers/claim-builder/bitbadges-created-plugins/geolocation.md)
+    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
     * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
     * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
@@ -4017,9 +4010,9 @@ Cons: No backend server which means no session handling, custom functionality, a
 
 
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/approaches/README.md
@@ -4038,7 +4031,7 @@ If you do not specify a redirect URL, we will generate a QR code from the author
 
 The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account as a QR, rather than being transmitted to the redirect URI. See the [Generating the URL](../authentication-url-+-parameters/generating-the-url.md) section for more details.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (9).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (10).png" alt="" width="539"><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md
@@ -4066,7 +4059,7 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
@@ -4206,11 +4199,11 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
@@ -4509,7 +4502,7 @@ const { access_token, access_token_expires_at, refresh_token, refresh_token_expi
 
 Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Revoking Access**
 
@@ -5110,7 +5103,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (14).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/badges-advanced/balances-transfers/approval-criteria/overview.md
@@ -8440,7 +8433,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
@@ -10170,7 +10163,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (8).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -11548,7 +11541,7 @@ Note: If you are receiving a post-success webhook, you already know the claim ha
 
 This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
 
@@ -11557,6 +11550,559 @@ Use one of the plugins pictured below or a custom plugin to do so when setting u
 **More Advanced Ways**
 
 Note: You may also implement other ways of verifying claim attempts such as parsing state directly, storing data yourself from webhooks, etc. You can also trust the post-success webook to only be fired upon success. For these, we refer you to the corresponding documentation such as the API. The process is flexible, but the above should be all you need.
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/README.md
+
+# BitBadges Created Plugins
+
+##
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/authentication-based-plugins.md
+
+# Socials / Email Plugins
+
+**Plugin IDs: `twitter, github, discord, google, email, twitch, and other socials`**
+
+These plugins restrict the number of times specific users from different social platforms can use the claim.&#x20;
+
+**Usernames vs IDs**
+
+We differentiate by account IDs (should be constant) and usernames for display purposes / ease of use.  For the email plugin, we use { id: bob@gmail.com, username: id@gmail.com }
+
+```typescript
+export const IdsVsUsernamesExplanationMap: Record<string, string> = {
+  bluesky: 'Username: Handle format (e.g. alice.bsky.social)\nID: Decentralized identifier (e.g. did:plc:abcdef123...)',
+
+  discord: 'Username: Current format is just the username (e.g. discord_user)\nID: Snowflake format - 17-20 digit number (e.g. 123456789012345678)',
+
+  twitter: 'Username: @ handle without the @ symbol (e.g. elonmusk)\nID: Numerical string, typically 7-20 digits (e.g. 44196397)',
+
+  github: 'Username: Case-insensitive alphanumeric with hyphens (e.g. octocat)\nID: Numerical identifier (e.g. 583231)',
+
+  google: 'Username: Email address (e.g. user@gmail.com)\nID: Sub identifier from OAuth - alphanumeric string (e.g. 110248495415936123456)',
+
+  facebook: 'Username: Custom username in URL (e.g. zuck)\nID: Numerical string, typically 15+ digits (e.g. 4)',
+
+  reddit: 'Username: u/ prefix without the u/ (e.g. spez)\nID: Base36 string (e.g. 13h2kf)',
+  
+  twitch: 'Username: Lowercase alphanumeric (e.g. ninja)\nID: Numerical user ID (e.g. 19571641)',
+
+  telegram: 'Username: Optional @ handle without @ (e.g. durov)\nID: Numerical user ID, can be negative for groups (e.g. 12345)',
+
+  farcaster: 'Username: Case-insensitive handle (e.g. dwr)\nID: Numerical FID (e.g. 2)',
+
+  slack: 'Username: Lowercase with underscores (e.g. slack_user)\nID: Uppercase string starting with U (e.g. U0G9QF9C6)'
+};
+```
+
+**Custom Claim Numbers**
+
+We also support assigning specific claim numbers if assignMethod === instance ID. We will use the zero-based index in the list of \[...usernames, ...ids]. Note we take first match so duplicates here are not supported.
+
+**Private Lists**
+
+The user list is only allowed to be private. You may consider hosting the list on your end, so users know if they can claim or not.
+
+### Public Parameters
+
+* **maxUsesPerUser**: The maximum number of uses allowed per user.
+* **blacklist:** Whether this should deny users on the IDs / usernames or not
+
+### Private Parameters
+
+If both are left blank, we do not check any whitelist restrictions.&#x20;
+
+* **usernames**: An optional list of whitelisted usernames who are allowed to claim.
+* **ids:** An optional list of whitelisted user IDs who are allowed to claim.
+
+### State
+
+State is maintained by tracking the number of claims each user makes. It keeps a record of user IDs and usernames.
+
+Note that in order to maintain correctness, we replace all "." values with "\[dot]" to ensure the keysa re a single string. If micro-managing state through the API, you will need to do this.
+
+```json
+{
+  "ids": {
+    "user_id": 1
+  },
+  "usernames": {
+    "username": "user_id"
+  }
+}
+```
+
+#### Default State
+
+The default state of the plugin is defined as follows:
+
+```json
+{
+  "ids": {},
+  "usernames": {}
+}
+```
+
+#### Public State
+
+State is not made public to users.
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/codes.md
+
+# Codes
+
+### Plugin ID: `codes`
+
+This plugin manages a code challenge, where users must provide a valid one-time-use code to claim. Note that codes are assigned a zero-based index and we keep track of which indices have been used. This allows for the code to be rotated and consistency with on-chain approvals. Thus, note that the code value changing does not mean its used status changes.
+
+We also support specific claim numbers dependent on the zero-based codeIdx using the assignMethod == instanceId.
+
+{% content-ref url="../concepts/universal-approach-claim-codes.md" %}
+[universal-approach-claim-codes.md](../concepts/universal-approach-claim-codes.md)
+{% endcontent-ref %}
+
+### Public Parameters
+
+* **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
+* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
+  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
+  * The **publicState** will just be an empty {} by default.
+  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
+
+### Private Parameters
+
+* **codes**: An array of valid codes that users can provide.
+* **seedCode**: A seed used to generate a list of valid codes.
+
+### State
+
+State is maintained by tracking which codes have been used.
+
+```json
+{
+    "usedCodeIndices": {
+        "0": 1,
+        "1": 1
+    }
+}
+```
+
+#### Default State
+
+The default state of the plugin is defined as follows:
+
+```json
+{
+    "usedCodeIndices": {}
+}
+```
+
+#### Public State
+
+State is made public with a `usedCodeRanges` array. Code indices are zero-based.
+
+```json
+{
+    "usedCodeRanges": [
+        {
+            "start": 0,
+            "end": 1
+        }
+    ]
+}
+```
+
+### Custom Body Type
+
+The custom body type for the codes plugin requires a `code` string parameter in the request:
+
+```typescript
+type CustomBodyType = {
+    code: string;
+};
+```
+
+This code will be validated against the list of valid codes defined in the private parameters. The code must match exactly (case-sensitive) and must not have been previously used.
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/geolocation.md
+
+# Geolocation
+
+### Plugin ID:  geolocation
+
+This plugin checks the location of a specific IP address. This should be treated as a "best effort".
+
+### Public Parameters
+
+```typescriptreact
+https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+```
+
+* **allowedCountryCodes:** String array of country codes allowed. If blank, all are allowed by default.
+* **disallowedCountryCodes**: String array of country codes allowed. If blank, none are disallowed by default.
+* **pindrop:** The latitude, longitude, and radius of the pindrop location. Radius is in coordinates, so please convert first from miles or km or whatever unit you are using.
+
+```typescript
+const { latitude, longitude, radius } = pindrop;
+```
+
+### Private Parameters
+
+* **None**
+
+### State
+
+State is not maintained for this plugin.
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/ip-restrictions.md
+
+# IP Restrictions
+
+### Plugin ID: `ip`
+
+This plugin rezstricts how often an IP address can claim.
+
+### Public Parameters
+
+* **maxUsesPerIp:** Max times a specific IP can claim
+
+### Private Parameters
+
+* **None**
+
+### State
+
+State is maintained by incrementing the uses by 1 **every** claim.
+
+```
+{
+  ipsUsed: {
+    "127.0.0.1": 10 // claimed 10 times
+  }
+}
+```
+
+#### Default State
+
+The default state of the plugin is defined as follows:
+
+```
+{
+  ipsUsed: {}
+}
+```
+
+**Public State**
+
+None
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/number-of-uses.md
+
+# Number of Uses
+
+**Plugin ID: `numUses`**
+
+This plugin restricts the number of times specific addresses can claim and the maximum overall amount of times users can claim.
+
+### Public Parameters
+
+#### Public Parameters
+
+* **maxUses**: The maximum number of uses allowed for the code overall.
+* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
+  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
+  * The **publicState** will just be an empty {} by default.
+  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
+* **displayAsUnlimited:** This is a UI display option. When enabled, we label the claim as "unlimited uses" to the user. Note this does NOT actually make it unlimited behind the scenes. We still track normally. If you use this option, we recommend setting maxUses to something crazy that will never be met like > 1000000000 uses.
+  * Please use with hideCurrentState = true.
+  * This is typically used with Sign In with BitBadges claims.
+
+**Private Parameters**
+
+None
+
+### State
+
+State is maintained by incrementing the numUses by 1 **every** claim by any user. For each user, we track the claim numbers assigned to that user.
+
+```
+{
+  claimedUsers: {
+    "bb1...": [0, 1]
+  },
+  numUses: 0
+}
+```
+
+#### Default State
+
+The default state of the plugin is defined as follows. Claim numbers are zero-based.
+
+```
+{
+  claimedUsers: {},
+  usedClaimNumbers: [{ start: 0, end: 1000000000 }],
+  numUses: 0
+}
+```
+
+**Public State**
+
+State is made public as-is, plus the **usedClaimNumbers** object.
+
+Note: The **claimedUsers** object is not made public by default for scalability reasons. You need to manually set the **fetchAllClaimedUsers** flag to true in the API request to get the claimed users. If not specified, the **claimedUsers** object will be an empty object {}.
+
+```
+{
+  claimedUsers: {
+    "bb1...": [0, 1]
+  },
+  usedClaimNumbers: [{ start: 0, end: 1 }],
+  numUses: 0
+}
+```
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md
+
+# Ownership Requirements
+
+### Plugin ID: must-own-badges
+
+### Public Parameters
+
+* **ownershipRequirements**: The ownership requirements a user must satisfy. See the link below for format and documentation.
+
+### Private Parameters
+
+* None
+
+### State
+
+State is not maintained for this plugin.
+
+### Ownership Requirements
+
+```typescript
+const ownershipRequirements = {
+    $and: [
+        {
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 1n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+        {
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 2n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+    ],
+};
+
+const popupParams = {
+    ...ownershipRequirements,
+};
+```
+
+#### **Asset Ownership Requirements**
+
+The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a badge.
+
+```typescript
+assetOwnershipRequirements: {
+    $or: [
+        {
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 1n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+        {
+            assets: [
+                {
+                    chain: 'BitBadges',
+                    collectionId: 2n,
+                    assetIds: [{ start: 1n, end: 1n }],
+                    ownershipTimes: UintRangeArray.FullRanges(),
+                    mustOwnAmounts: { start: 1n, end: 1n },
+                },
+            ],
+        },
+    ];
+}
+```
+
+**Options**
+
+As an alternative to $or, we also support specifying **options.numMatchesForVerification** which sets a threshold for how many assets in the current group the criteria needs to pass for. For example, below requires 1 / 1000 badges to be owned out of the IDs 1-1000.
+
+```typescript
+assetOwnershipRequirements: {
+  assets: [
+    {
+      chain: 'BitBadges',
+      collectionId: 1n,
+      assetIds: [{ start: 1n, end: 1000n }],
+      ownershipTimes: UintRangeArray.FullRanges(),
+      mustOwnAmounts: { start: 1n, end: 1n }
+    }
+  ],
+  options: { numMatchesForVerification: 1n }
+}
+```
+
+**BitBadges Badge Collections**
+
+For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to be numeric, and all assetIds to be UintRanges. Querying a user owns a badge at a specific time is also supported via ownership times.
+
+```typescript
+{
+  chain: 'BitBadges',
+  collectionId: 1n,
+  assetIds: [{ start: 1n, end: 1000n }],
+  ownershipTimes: UintRangeArray.FullRanges(),
+  mustOwnAmounts: { start: 0n, end: 0n }
+}
+```
+
+**BitBadges Address Lists**
+
+For BitBadges address lists, they are supported with the collection ID = 'BitBadges Lists'. The assetIds will be the string list ID. A user will be considered to own x1 if they are on the list and x0 if they are not on the list. Note that with blacklists, they are flipped. Not being on a blacklist equals x1 owned.
+
+```typescript
+{
+    chain: 'BitBadges',
+    collectionId: 'BitBadges Lists',
+    assetIds: ["listId"],
+    ownershipTimes: UintRangeArray.FullRanges(),
+    mustOwnAmounts: { start: 1n, end: 1n }
+}
+```
+
+**Ethereum / Polygon / Solana NFTs (Beta)**
+
+We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure. Use at your own risk.
+
+```typescript
+{
+    $and: [
+        {
+            assets: [
+                {
+                    chain: 'Polygon', //Or 'Ethereum'
+                    collectionId: '0x9a7f0b7d4b6c1c3f3b6d4e6d5b6e6d5b6e6d5b6e',
+                    assetIds: ['1'],
+                    ownershipTimes: [],
+                    mustOwnAmounts: { start: 0n, end: 0n },
+                },
+            ],
+        },
+    ];
+}
+```
+
+#### **Ownership Times** <a href="#ownership-times" id="ownership-times"></a>
+
+```
+ownershipTimes: []
+```
+
+The default when ownership times is empty or missing is to verify at the current time. If this is the case, we dynamically add the current time as \[{ start: currTime, end: currTime }].
+
+```typescript
+ownershipTimes: UintRangeArray.FullRanges();
+```
+
+For assets that support ownership times like BitBadges badges, you can specify custom times to check.
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/plugin-references.md
+
+# Plugin References
+
+Head over to the the BitBadges site link below with the plugin ID you are interested in.
+
+```
+https://bitbadges.io/plugins/{pluginId} (e.g. "password")
+```
+
+This will give you documentation on the configuration of each plugin, including state management, parameter schemas, user input schemas and more.
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+
+
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/whitelist.md
+
+# Whitelist
+
+### Plugin ID: `whitelist`
+
+This plugin restricts claims to be received by users who are on a predefined whitelist.
+
+With this plugin, we reuse the [Address List ](../../core-concepts/address-lists-lists.md)types. IDs will be the list ID. Only one list vs list ID should be defined out of the parameters. The lsit can either be made public with the claim or kept private.
+
+We also support specific claim numbers dependent on the zero-based index using the assignMethod == instanceId. This is only applicable if it is a whitelist. Also, duplicates are not handled for this. We always take first match.
+
+### Public Parameters
+
+* **list**: An [Address List ](../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
+* **listId**: The [Address List ](../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
+* **maxUsesPerAddress**: The maximum number of uses allowed for each address.
+
+### Private Parameters
+
+* **list**: An [Address List ](../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
+* **listId**: The [Address List ](../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
+
+### State
+
+State is maintained by incrementing the numUses by 1 **every** claim by any user. For each user, we track the claim numbers assigned to that user.
+
+```
+{
+  addresses: {
+    "bb1...": 10 // claimed 10 times
+  }
+}
+```
+
+#### Default State
+
+The default state of the plugin is defined as follows:
+
+```
+{
+  addresses: {}
+}
+```
+
+**Public State**
+
+State is made public as-is.
 
 
 ## File: ./for-developers/claim-builder/checking-custom-criteria.md
@@ -11635,7 +12181,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -11760,7 +12306,7 @@ Note: Refunds are possible (learn more below). In the event of an auto-refund, t
 
 To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Payment Capture
 
@@ -11808,7 +12354,7 @@ IMPORTANT: Don't trust, verify! You should also note that we simply provide you 
 
 You need to verify the attestations on your side. Verification is done according to the expected format. If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you can use the SDK's **verifyAttestation** function or API **verifyAttestation** route. If it is a third-party upload, see the corresponding documentation.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -11857,7 +12403,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/universal-approach-claim-codes.md
@@ -12060,7 +12606,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -12259,7 +12805,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -12781,713 +13327,6 @@ Claims are the universal connector. You can not only check criteria from any Bit
 
 
 
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/README.md
-
-# BitBadges Created Plugins
-
-##
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/authentication-based-plugins.md
-
-# Socials / Email Plugins
-
-**Plugin IDs: `twitter, github, discord, google, email, twitch, and other socials`**
-
-These plugins restrict the number of times specific users from different social platforms can use the claim.&#x20;
-
-**Usernames vs IDs**
-
-We differentiate by account IDs (should be constant) and usernames for display purposes / ease of use.  For the email plugin, we use { id: bob@gmail.com, username: id@gmail.com }
-
-```typescript
-export const IdsVsUsernamesExplanationMap: Record<string, string> = {
-  bluesky: 'Username: Handle format (e.g. alice.bsky.social)\nID: Decentralized identifier (e.g. did:plc:abcdef123...)',
-
-  discord: 'Username: Current format is just the username (e.g. discord_user)\nID: Snowflake format - 17-20 digit number (e.g. 123456789012345678)',
-
-  twitter: 'Username: @ handle without the @ symbol (e.g. elonmusk)\nID: Numerical string, typically 7-20 digits (e.g. 44196397)',
-
-  github: 'Username: Case-insensitive alphanumeric with hyphens (e.g. octocat)\nID: Numerical identifier (e.g. 583231)',
-
-  google: 'Username: Email address (e.g. user@gmail.com)\nID: Sub identifier from OAuth - alphanumeric string (e.g. 110248495415936123456)',
-
-  facebook: 'Username: Custom username in URL (e.g. zuck)\nID: Numerical string, typically 15+ digits (e.g. 4)',
-
-  reddit: 'Username: u/ prefix without the u/ (e.g. spez)\nID: Base36 string (e.g. 13h2kf)',
-  
-  twitch: 'Username: Lowercase alphanumeric (e.g. ninja)\nID: Numerical user ID (e.g. 19571641)',
-
-  telegram: 'Username: Optional @ handle without @ (e.g. durov)\nID: Numerical user ID, can be negative for groups (e.g. 12345)',
-
-  farcaster: 'Username: Case-insensitive handle (e.g. dwr)\nID: Numerical FID (e.g. 2)',
-
-  slack: 'Username: Lowercase with underscores (e.g. slack_user)\nID: Uppercase string starting with U (e.g. U0G9QF9C6)'
-};
-```
-
-**Custom Claim Numbers**
-
-We also support assigning specific claim numbers if assignMethod === instance ID. We will use the zero-based index in the list of \[...usernames, ...ids]. Note we take first match so duplicates here are not supported.
-
-**Private Lists**
-
-The user list is only allowed to be private. You may consider hosting the list on your end, so users know if they can claim or not.
-
-### Public Parameters
-
-* **maxUsesPerUser**: The maximum number of uses allowed per user.
-* **blacklist:** Whether this should deny users on the IDs / usernames or not
-
-### Private Parameters
-
-If both are left blank, we do not check any whitelist restrictions.&#x20;
-
-* **usernames**: An optional list of whitelisted usernames who are allowed to claim.
-* **ids:** An optional list of whitelisted user IDs who are allowed to claim.
-
-### State
-
-State is maintained by tracking the number of claims each user makes. It keeps a record of user IDs and usernames.
-
-Note that in order to maintain correctness, we replace all "." values with "\[dot]" to ensure the keysa re a single string. If micro-managing state through the API, you will need to do this.
-
-```json
-{
-  "ids": {
-    "user_id": 1
-  },
-  "usernames": {
-    "username": "user_id"
-  }
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows:
-
-```json
-{
-  "ids": {},
-  "usernames": {}
-}
-```
-
-#### Public State
-
-State is not made public to users.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/codes.md
-
-# Codes
-
-### Plugin ID: `codes`
-
-This plugin manages a code challenge, where users must provide a valid one-time-use code to claim. Note that codes are assigned a zero-based index and we keep track of which indices have been used. This allows for the code to be rotated and consistency with on-chain approvals. Thus, note that the code value changing does not mean its used status changes.
-
-We also support specific claim numbers dependent on the zero-based codeIdx using the assignMethod == instanceId.
-
-{% content-ref url="../../concepts/universal-approach-claim-codes.md" %}
-[universal-approach-claim-codes.md](../../concepts/universal-approach-claim-codes.md)
-{% endcontent-ref %}
-
-### Public Parameters
-
-* **numCodes**: The total number of codes that can be generated or used. Unless in edge cases, this should match the total possible number of claims.
-* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
-  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
-  * The **publicState** will just be an empty {} by default.
-  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
-
-### Private Parameters
-
-* **codes**: An array of valid codes that users can provide.
-* **seedCode**: A seed used to generate a list of valid codes.
-
-### State
-
-State is maintained by tracking which codes have been used.
-
-```json
-{
-    "usedCodeIndices": {
-        "0": 1,
-        "1": 1
-    }
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows:
-
-```json
-{
-    "usedCodeIndices": {}
-}
-```
-
-#### Public State
-
-State is made public with a `usedCodeRanges` array. Code indices are zero-based.
-
-```json
-{
-    "usedCodeRanges": [
-        {
-            "start": 0,
-            "end": 1
-        }
-    ]
-}
-```
-
-### Custom Body Type
-
-The custom body type for the codes plugin requires a `code` string parameter in the request:
-
-```typescript
-type CustomBodyType = {
-    code: string;
-};
-```
-
-This code will be validated against the list of valid codes defined in the private parameters. The code must match exactly (case-sensitive) and must not have been previously used.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/discord-server.md
-
-# Discord Server
-
-### Plugin ID: `discord-server`
-
-### Public Parameters
-
-* **serverName**: The server name to display
-
-### Private Parameters
-
-* **serverId:** The server ID of the Discord server. This is the ID number (e.g. 846474505189588992).
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/geolocation.md
-
-# Geolocation
-
-### Plugin ID:  geolocation
-
-This plugin checks the location of a specific IP address. This should be treated as a "best effort".
-
-### Public Parameters
-
-```typescriptreact
-https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-```
-
-* **allowedCountryCodes:** String array of country codes allowed. If blank, all are allowed by default.
-* **disallowedCountryCodes**: String array of country codes allowed. If blank, none are disallowed by default.
-* **pindrop:** The latitude, longitude, and radius of the pindrop location. Radius is in coordinates, so please convert first from miles or km or whatever unit you are using.
-
-```typescript
-const { latitude, longitude, radius } = pindrop;
-```
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/github-contributions.md
-
-# GitHub Contributions
-
-### Plugin ID: `github-contributions`
-
-### Public Parameters
-
-* **repository**: The repository path - Ex: bitbadges/bitbadgeschain
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/halt.md
-
-# Halt
-
-### Plugin ID: `halt`
-
-This plugin make the claim auto-fail if in the claim.
-
-### Public Parameters
-
-* **None**
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/ip-restrictions.md
-
-# IP Restrictions
-
-### Plugin ID: `ip`
-
-This plugin rezstricts how often an IP address can claim.
-
-### Public Parameters
-
-* **maxUsesPerIp:** Max times a specific IP can claim
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is maintained by incrementing the uses by 1 **every** claim.
-
-```
-{
-  ipsUsed: {
-    "127.0.0.1": 10 // claimed 10 times
-  }
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows:
-
-```
-{
-  ipsUsed: {}
-}
-```
-
-**Public State**
-
-None
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/min-usdbadge.md
-
-# Min $BADGE
-
-### Plugin ID: min-badge
-
-### Public Parameters
-
-* **minBalance**: The minimum balance of $BADGE a user must own. We check >= to this value.
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/number-of-uses.md
-
-# Number of Uses
-
-**Plugin ID: `numUses`**
-
-This plugin restricts the number of times specific addresses can claim and the maximum overall amount of times users can claim.
-
-### Public Parameters
-
-#### Public Parameters
-
-* **maxUses**: The maximum number of uses allowed for the code overall.
-* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
-  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
-  * The **publicState** will just be an empty {} by default.
-  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
-* **displayAsUnlimited:** This is a UI display option. When enabled, we label the claim as "unlimited uses" to the user. Note this does NOT actually make it unlimited behind the scenes. We still track normally. If you use this option, we recommend setting maxUses to something crazy that will never be met like > 1000000000 uses.
-  * Please use with hideCurrentState = true.
-  * This is typically used with Sign In with BitBadges claims.
-
-**Private Parameters**
-
-None
-
-### State
-
-State is maintained by incrementing the numUses by 1 **every** claim by any user. For each user, we track the claim numbers assigned to that user.
-
-```
-{
-  claimedUsers: {
-    "bb1...": [0, 1]
-  },
-  numUses: 0
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows. Claim numbers are zero-based.
-
-```
-{
-  claimedUsers: {},
-  usedClaimNumbers: [{ start: 0, end: 1000000000 }],
-  numUses: 0
-}
-```
-
-**Public State**
-
-State is made public as-is, plus the **usedClaimNumbers** object.
-
-Note: The **claimedUsers** object is not made public by default for scalability reasons. You need to manually set the **fetchAllClaimedUsers** flag to true in the API request to get the claimed users. If not specified, the **claimedUsers** object will be an empty object {}.
-
-```
-{
-  claimedUsers: {
-    "bb1...": [0, 1]
-  },
-  usedClaimNumbers: [{ start: 0, end: 1 }],
-  numUses: 0
-}
-```
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/ownership-requirements.md
-
-# Ownership Requirements
-
-### Plugin ID: must-own-badges
-
-### Public Parameters
-
-* **ownershipRequirements**: The ownership requirements a user must satisfy. See the link below for format and documentation.
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-### Ownership Requirements
-
-```typescript
-const ownershipRequirements = {
-    $and: [
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 1n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 2n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-    ],
-};
-
-const popupParams = {
-    ...ownershipRequirements,
-};
-```
-
-#### **Asset Ownership Requirements**
-
-The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a badge.
-
-```typescript
-assetOwnershipRequirements: {
-    $or: [
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 1n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 2n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 1n, end: 1n },
-                },
-            ],
-        },
-    ];
-}
-```
-
-**Options**
-
-As an alternative to $or, we also support specifying **options.numMatchesForVerification** which sets a threshold for how many assets in the current group the criteria needs to pass for. For example, below requires 1 / 1000 badges to be owned out of the IDs 1-1000.
-
-```typescript
-assetOwnershipRequirements: {
-  assets: [
-    {
-      chain: 'BitBadges',
-      collectionId: 1n,
-      assetIds: [{ start: 1n, end: 1000n }],
-      ownershipTimes: UintRangeArray.FullRanges(),
-      mustOwnAmounts: { start: 1n, end: 1n }
-    }
-  ],
-  options: { numMatchesForVerification: 1n }
-}
-```
-
-**BitBadges Badge Collections**
-
-For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to be numeric, and all assetIds to be UintRanges. Querying a user owns a badge at a specific time is also supported via ownership times.
-
-```typescript
-{
-  chain: 'BitBadges',
-  collectionId: 1n,
-  assetIds: [{ start: 1n, end: 1000n }],
-  ownershipTimes: UintRangeArray.FullRanges(),
-  mustOwnAmounts: { start: 0n, end: 0n }
-}
-```
-
-**BitBadges Address Lists**
-
-For BitBadges address lists, they are supported with the collection ID = 'BitBadges Lists'. The assetIds will be the string list ID. A user will be considered to own x1 if they are on the list and x0 if they are not on the list. Note that with blacklists, they are flipped. Not being on a blacklist equals x1 owned.
-
-```typescript
-{
-    chain: 'BitBadges',
-    collectionId: 'BitBadges Lists',
-    assetIds: ["listId"],
-    ownershipTimes: UintRangeArray.FullRanges(),
-    mustOwnAmounts: { start: 1n, end: 1n }
-}
-```
-
-**Ethereum / Polygon / Solana NFTs (Beta)**
-
-We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure. Use at your own risk.
-
-```typescript
-{
-    $and: [
-        {
-            assets: [
-                {
-                    chain: 'Polygon', //Or 'Ethereum'
-                    collectionId: '0x9a7f0b7d4b6c1c3f3b6d4e6d5b6e6d5b6e6d5b6e',
-                    assetIds: ['1'],
-                    ownershipTimes: [],
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-    ];
-}
-```
-
-#### **Ownership Times** <a href="#ownership-times" id="ownership-times"></a>
-
-```
-ownershipTimes: []
-```
-
-The default when ownership times is empty or missing is to verify at the current time. If this is the case, we dynamically add the current time as \[{ start: currTime, end: currTime }].
-
-```typescript
-ownershipTimes: UintRangeArray.FullRanges();
-```
-
-For assets that support ownership times like BitBadges badges, you can specify custom times to check.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/password.md
-
-# Password
-
-### Plugin ID: `password`
-
-This plugin restricts access based on a password that must be provided by the claimer.
-
-### Public Parameters
-
--   **None**
-
-### Private Parameters
-
--   **password**: The password required to successfully make a claim.
-
-### Custom Body Type
-
-The custom body type for the password plugin requires a `password` string parameter in the request:
-
-```typescript
-type CustomBodyType = {
-    password: string;
-};
-```
-
-This password will be validated against the password defined in the private parameters. The password must match exactly (case-sensitive).
-
-### State
-
-State is not maintained for this plugin as it relies solely on the provided password for validation.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/signed-in-to-bitbadges.md
-
-# Signed in to BitBadges
-
-### Plugin ID: `initiatedBy`
-
-This plugin ensures that claims are initiated by a specific address (their signed in one). This serves as validation that the recipient of the claim is also the initiator because signing into BitBadges requires a signature and thus proof of address.
-
-### Public Parameters
-
-* **None**
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is not maintained for this plugin as it relies solely on the validation of the address provided.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/transfer-times.md
-
-# Transfer Times
-
-This plugin restricts claims based on specified transfer times, allowing claims only within certain time ranges.
-
-### Public Parameters
-
-* **transferTimes**: An array of time ranges during which transfers are allowed, defined using the `UintRangeArray` type.
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is not maintained for this plugin as it relies solely on the provided transfer times for validation.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/twitch-follow-subscription.md
-
-# Twitch Follow / Subscription
-
-### Plugin ID: `twitch-follow / twitch-subscription`
-
-### Public Parameters
-
-* **channelName**: Channel login name. For example, twitch.tv/CHANNEL\_NAME\_HERE
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/plugins/bitbadges-created-plugins/whitelist.md
-
-# Whitelist
-
-### Plugin ID: `whitelist`
-
-This plugin restricts claims to be received by users who are on a predefined whitelist.
-
-With this plugin, we reuse the [Address List ](../../../core-concepts/address-lists-lists.md)types. IDs will be the list ID. Only one list vs list ID should be defined out of the parameters. The lsit can either be made public with the claim or kept private.
-
-We also support specific claim numbers dependent on the zero-based index using the assignMethod == instanceId. This is only applicable if it is a whitelist. Also, duplicates are not handled for this. We always take first match.
-
-### Public Parameters
-
-* **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
-* **listId**: The  [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
-* **maxUsesPerAddress**: The maximum number of uses allowed for each address.
-
-### Private Parameters
-
-* **list**: An [Address List ](../../../core-concepts/address-lists-lists.md)specifying who can claim vs not.
-* **listId**: The  [Address List ](../../../core-concepts/address-lists-lists.md)ID that points to a valid address list for who can claim vs not.
-
-### State
-
-State is maintained by incrementing the numUses by 1 **every** claim by any user. For each user, we track the claim numbers assigned to that user.
-
-```
-{
-  addresses: {
-    "bb1...": 10 // claimed 10 times
-  }
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows:
-
-```
-{
-  addresses: {}
-}
-```
-
-**Public State**
-
-State is made public as-is.
-
-
 ## File: ./for-developers/claim-builder/plugins/configuration-tools.md
 
 # Configuration Tools
@@ -13556,7 +13395,7 @@ console.log(res);
 // { bitbadgesAddress, email, claimAttemptId } 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation - Handlers
 
@@ -13633,7 +13472,7 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (2).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
@@ -13778,7 +13617,7 @@ BitBadges can send the request at two different times (during processing hooks a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -13978,7 +13817,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
@@ -15762,7 +15601,7 @@ BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK that ai
 
 While BitBadges may lack some of the native smart contract support and interoperability features of other protocols, its self-contained design and API-like token standard can be a compelling solution for certain use cases.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Chain Architecture
 
@@ -15888,9 +15727,9 @@ Coming Soon...
 
 Easily add badges, lists, or attestations to your LinkedIn certtfications with one click!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/ecosystem/metamask-snap.md
@@ -16043,7 +15882,7 @@ Configure the corresponding plugin to check if the claiming user is on the list.
 
 Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible! You can then attach your store to your claim and check that in real-time.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Check Your Own Criteria
 
@@ -16238,7 +16077,7 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -16662,7 +16501,7 @@ For additional documentation, see here:
 [claim-builder](../claim-builder/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -16780,7 +16619,7 @@ Feel free to use BitBadges name and logo in your site as you see fit. If you hav
 
 **Square Logo**
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -16869,7 +16708,7 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
