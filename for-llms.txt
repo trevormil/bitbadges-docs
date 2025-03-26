@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 26 20:02:07 UTC 2025
+Generated on Wed Mar 26 21:17:32 UTC 2025
 
 
 
@@ -3767,16 +3767,6 @@ And much more!
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
     * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
-  * [Created Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
-    * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Plugin References](for-developers/claim-builder/bitbadges-created-plugins/plugin-references.md)
-    * [Number of Uses](for-developers/claim-builder/bitbadges-created-plugins/number-of-uses.md)
-    * [Socials / Email Plugins](for-developers/claim-builder/bitbadges-created-plugins/authentication-based-plugins.md)
-    * [Codes](for-developers/claim-builder/bitbadges-created-plugins/codes.md)
-    * [Whitelist](for-developers/claim-builder/bitbadges-created-plugins/whitelist.md)
-    * [IP Restrictions](for-developers/claim-builder/bitbadges-created-plugins/ip-restrictions.md)
-    * [Geolocation](for-developers/claim-builder/bitbadges-created-plugins/geolocation.md)
-    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
     * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
     * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
@@ -3795,6 +3785,13 @@ And much more!
     * [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
       * [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
     * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
+  * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
+    * [Plugins Directory](https://bitbadges.io/plugin-directory)
+    * [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
+    * [Socials / Email Plugins](for-developers/claim-builder/bitbadges-created-plugins/authentication-based-plugins.md)
+    * [Codes](for-developers/claim-builder/bitbadges-created-plugins/codes.md)
+    * [Whitelist](for-developers/claim-builder/bitbadges-created-plugins/whitelist.md)
+    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
     * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
@@ -11728,147 +11725,6 @@ type CustomBodyType = {
 This code will be validated against the list of valid codes defined in the private parameters. The code must match exactly (case-sensitive) and must not have been previously used.
 
 
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/geolocation.md
-
-# Geolocation
-
-### Plugin ID:  geolocation
-
-This plugin checks the location of a specific IP address. This should be treated as a "best effort".
-
-### Public Parameters
-
-```typescriptreact
-https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-```
-
-* **allowedCountryCodes:** String array of country codes allowed. If blank, all are allowed by default.
-* **disallowedCountryCodes**: String array of country codes allowed. If blank, none are disallowed by default.
-* **pindrop:** The latitude, longitude, and radius of the pindrop location. Radius is in coordinates, so please convert first from miles or km or whatever unit you are using.
-
-```typescript
-const { latitude, longitude, radius } = pindrop;
-```
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is not maintained for this plugin.
-
-
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/ip-restrictions.md
-
-# IP Restrictions
-
-### Plugin ID: `ip`
-
-This plugin rezstricts how often an IP address can claim.
-
-### Public Parameters
-
-* **maxUsesPerIp:** Max times a specific IP can claim
-
-### Private Parameters
-
-* **None**
-
-### State
-
-State is maintained by incrementing the uses by 1 **every** claim.
-
-```
-{
-  ipsUsed: {
-    "127.0.0.1": 10 // claimed 10 times
-  }
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows:
-
-```
-{
-  ipsUsed: {}
-}
-```
-
-**Public State**
-
-None
-
-
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/number-of-uses.md
-
-# Number of Uses
-
-**Plugin ID: `numUses`**
-
-This plugin restricts the number of times specific addresses can claim and the maximum overall amount of times users can claim.
-
-### Public Parameters
-
-#### Public Parameters
-
-* **maxUses**: The maximum number of uses allowed for the code overall.
-* **hideCurrentState**: If true, we will NOT reveal the state to users by default.
-  * If you are claim creator / authorized viewer, use the fetch private parameters flag and it will return the state.
-  * The **publicState** will just be an empty {} by default.
-  * Note that this hides it within the context of the claim, but if the claim action is public (e.g. public badge assignment, public lists), the state may still be leaked there.
-* **displayAsUnlimited:** This is a UI display option. When enabled, we label the claim as "unlimited uses" to the user. Note this does NOT actually make it unlimited behind the scenes. We still track normally. If you use this option, we recommend setting maxUses to something crazy that will never be met like > 1000000000 uses.
-  * Please use with hideCurrentState = true.
-  * This is typically used with Sign In with BitBadges claims.
-
-**Private Parameters**
-
-None
-
-### State
-
-State is maintained by incrementing the numUses by 1 **every** claim by any user. For each user, we track the claim numbers assigned to that user.
-
-```
-{
-  claimedUsers: {
-    "bb1...": [0, 1]
-  },
-  numUses: 0
-}
-```
-
-#### Default State
-
-The default state of the plugin is defined as follows. Claim numbers are zero-based.
-
-```
-{
-  claimedUsers: {},
-  usedClaimNumbers: [{ start: 0, end: 1000000000 }],
-  numUses: 0
-}
-```
-
-**Public State**
-
-State is made public as-is, plus the **usedClaimNumbers** object.
-
-Note: The **claimedUsers** object is not made public by default for scalability reasons. You need to manually set the **fetchAllClaimedUsers** flag to true in the API request to get the claimed users. If not specified, the **claimedUsers** object will be an empty object {}.
-
-```
-{
-  claimedUsers: {
-    "bb1...": [0, 1]
-  },
-  usedClaimNumbers: [{ start: 0, end: 1 }],
-  numUses: 0
-}
-```
-
-
 ## File: ./for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md
 
 # Ownership Requirements
@@ -12039,7 +11895,7 @@ ownershipTimes: UintRangeArray.FullRanges();
 For assets that support ownership times like BitBadges badges, you can specify custom times to check.
 
 
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/plugin-references.md
+## File: ./for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md
 
 # Plugin References
 
