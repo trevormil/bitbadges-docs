@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 26 21:17:32 UTC 2025
+Generated on Thu Mar 27 11:52:34 UTC 2025
 
 
 
@@ -11729,21 +11729,7 @@ This code will be validated against the list of valid codes defined in the priva
 
 # Ownership Requirements
 
-### Plugin ID: must-own-badges
-
-### Public Parameters
-
-* **ownershipRequirements**: The ownership requirements a user must satisfy. See the link below for format and documentation.
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-### Ownership Requirements
+Below we explain more about the ownership requirements field and schema. This is used in certain plugins for checking badge / list ownership.
 
 ```typescript
 const ownershipRequirements = {
