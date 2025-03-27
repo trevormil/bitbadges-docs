@@ -1,20 +1,6 @@
 # Ownership Requirements
 
-### Plugin ID: must-own-badges
-
-### Public Parameters
-
-* **ownershipRequirements**: The ownership requirements a user must satisfy. See the link below for format and documentation.
-
-### Private Parameters
-
-* None
-
-### State
-
-State is not maintained for this plugin.
-
-### Ownership Requirements
+Below we explain more about the ownership requirements field and schema. This is used in certain plugins for checking badge / list ownership.
 
 ```typescript
 const ownershipRequirements = {
