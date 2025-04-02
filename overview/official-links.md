@@ -23,15 +23,16 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 ### Integrations
 
-* [Zapier](https://zapier.com/apps/bitbadges/integrations) ([Docs](broken-reference))
-* [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en) ([Docs](ecosystem/chrome-extension.md))
-* [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/) ([Docs](ecosystem/metamask-snap.md))
+* [Zapier](https://zapier.com/apps/bitbadges/integrations)
+* [Chrome Extension](https://chromewebstore.google.com/detail/bitbadges-chrome-extensio/ocdlkggomnifibfadgaakkilojelgacj?authuser=0\&hl=en)
+* [MetaMask Snap Download](https://snaps.metamask.io/snap/npm/bitbadges-snap/)&#x20;
 
 ### API & SDK
 
 * [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
 * [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
 * [Quickstarter Demo](https://bitbadges.io/quickstart)
+* [Python API / SDK Package](https://pypi.org/project/bitbadgespy-sdk/)
 
 ```bash
 # Using npm
@@ -42,6 +43,9 @@ pnpm add bitbadgesjs-sdk
 
 # Using bun
 bun add bitbadgesjs-sdk
+
+# Using pip
+pip install bitbadgespy-sdk
 ```
 
 ### Running a Node
