@@ -68,6 +68,8 @@ await BitBadgesApi.getCollections(...);
 await BitBadgesApi.simulateTx(...);
 ```
 
+Note we also have a python auto-generated SDK wrapper for the API without any of the helper functions like the JS SDK has at [https://pypi.org/project/bitbadgespy-sdk/](https://pypi.org/project/bitbadgespy-sdk/)
+
 ## Using BitBadges JS/SDK
 
 Check out the BitBadges JS/SDK for implementing further functionality beyond just API requests / responses, such as manipulating balances, handling approvals, checking permissions, etc.

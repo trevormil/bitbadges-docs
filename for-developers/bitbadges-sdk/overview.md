@@ -10,6 +10,12 @@ Full Documentation: [https://bitbadges.github.io/bitbadgesjs/](https://bitbadges
 npm install bitbadgesjs-sdk
 ```
 
+Note: We also have a python API SDK wrapper. This only includes the API routes auto-generated and no helper functions like the SDK route.
+
+```
+pip install bitbadgespy-sdk
+```
+
 This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.
 
 ```typescript
