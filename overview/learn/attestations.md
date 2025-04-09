@@ -10,6 +10,6 @@ Attestations may come in different forms with varying properties, such as:
 * BBS+: Supports selectively disclosing only a subset of the N messages in the attestation. For example, disclose you are 21 without revealing your name.
 * URLs: Attestations can even be a link to a URL as long as the verifier can verify it
 
-<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>

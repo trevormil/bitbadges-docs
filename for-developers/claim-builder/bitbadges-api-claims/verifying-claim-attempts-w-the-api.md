@@ -36,11 +36,11 @@ Note: If you are receiving a post-success webhook, you already know the claim ha
 
 This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **More Advanced Ways**
 

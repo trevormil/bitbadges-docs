@@ -8,7 +8,7 @@ Note: This documentation is not meant to explain everything in the claim builder
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 **How do claims work? What are plugins?**
 

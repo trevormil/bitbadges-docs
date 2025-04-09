@@ -13,7 +13,7 @@ Additionally, use along with checking a claim to allow you to gate based on any 
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For developers interested in implementing these features, please refer to our detailed guide:
 

@@ -18,7 +18,7 @@ You can:
 [dynamic-stores](dynamic-stores/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Custom Webhooks / Plugins
 
@@ -32,7 +32,7 @@ Be mindful though that if you are checking criteria, you should have verificatio
 [plugins](plugins/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Auto-Completion
 

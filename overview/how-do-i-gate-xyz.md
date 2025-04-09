@@ -40,7 +40,7 @@ You can also configure your claim to auto implement utility for you with no-code
 
 Configure your claim to send a post-success webhook to a Zapier Zap. This allows you to implement rewards from over 7000+ apps in no-code. This is great for services like newsletters, custom services, and much more! If you need a more programmatic solution, you can collect this same data via [Zapier](https://zapier.com/apps/bitbadges/integrations).
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Custom Forms, Webhooks, Plugins
 
@@ -48,7 +48,7 @@ Use the Forms plugin, custom webhooks, and custom plugins to collect user inputs
 
 
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Gating a WordPress Site
 
