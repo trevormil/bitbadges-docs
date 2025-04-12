@@ -2,7 +2,7 @@
 
 Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadges and check any claim criteria, allowing you to create multi-chain websites gated for anything.
 
-Directory Link (Under Review): [https://wordpress.org/plugins/search/sign-in-with-bitbadges/](https://wordpress.org/plugins/search/sign-in-with-bitbadges/)
+Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://wordpress.org/plugins/sign-in-with-bitbadges/)
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
 
