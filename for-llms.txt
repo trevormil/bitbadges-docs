@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Apr 12 16:03:37 UTC 2025
+Generated on Wed Apr 16 21:18:50 UTC 2025
 
 
 
@@ -9126,6 +9126,11 @@ github.com/CosmWasm/wasmd v0.44.0
 ## CosmWasm - High-Level Overview
 
 This is just a high-level overview to familiarize you with some of the main concepts of CosmWASM. Please refer to their official documentation for more thorough documentation.
+
+```
+NOTE: Custom contract calls are NOT handled by our indexer by default.
+Please work with us, so we can support it on the BitBadges indexer, API, and site.
+```
 
 **Store and Instantiate**
 
