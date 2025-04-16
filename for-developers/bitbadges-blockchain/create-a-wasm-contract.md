@@ -14,6 +14,11 @@ github.com/CosmWasm/wasmd v0.44.0
 
 This is just a high-level overview to familiarize you with some of the main concepts of CosmWASM. Please refer to their official documentation for more thorough documentation.
 
+```
+NOTE: Custom contract calls are NOT handled by our indexer by default.
+Please work with us, so we can support it on the BitBadges indexer, API, and site.
+```
+
 **Store and Instantiate**
 
 The first step is to store and instantiate your contract. We walk you through this in the tutorial below.
