@@ -7,7 +7,7 @@ If you do need to extend the interface with unsupported functionality but you th
 #### CosmWASM Version
 
 ```go.mod
-github.com/CosmWasm/wasmd v0.44.0
+github.com/CosmWasm/wasmd v0.52.0
 ```
 
 ## CosmWasm - High-Level Overview
