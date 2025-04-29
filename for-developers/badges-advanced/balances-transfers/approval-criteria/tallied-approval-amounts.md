@@ -52,6 +52,7 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
         }
       ],
       "approvalId": "uniqueID",
+      "version": "1",
       
       "approvalCriteria": {
         "approvalAmounts": {

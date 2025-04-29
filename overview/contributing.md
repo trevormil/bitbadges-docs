@@ -16,16 +16,4 @@ The official BitBadges improvement proposals repository can be found at [https:/
 
 TBD
 
-**Bounties**
-
-Below are some ideas for community distribution and verification tools that need to be built, and we are willing to provide compensation for. Reach out if interested
-
-Discord Badge-Gating - Gate servers, channels, etc to only specific badge holders
-
-Discord / Twitter Bot - Bot that posts for every badge mint, transfer, etc
-
-Privacy-Preserving / ZK Verification - Given an address list or list of balances, enable a user to prove that they own the badge without revealing their usernames.
-
-
-
 Let us know if you have another idea and how we can help.

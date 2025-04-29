@@ -10,9 +10,9 @@ Although this can be used in tandem with approval amounts, either one or the oth
 
 ```typescript
 export interface PredeterminedBalances<T extends NumberType> {
-  manualBalances: ManualBalances<T>[];
-  incrementedBalances: IncrementedBalances<T>;
-  orderCalculationMethod: PredeterminedOrderCalculationMethod;
+    manualBalances: ManualBalances<T>[];
+    incrementedBalances: IncrementedBalances<T>;
+    orderCalculationMethod: PredeterminedOrderCalculationMethod;
 }
 ```
 
@@ -20,32 +20,9 @@ export interface PredeterminedBalances<T extends NumberType> {
 
 There are two ways to define the balances. Both can not be used together.
 
-* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
-* ```json
-  "manualBalances": [
-    {
-      "amount": "1",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "1"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1691978400000",
-          "end": "1723514400000"
-        }
-      ]
-    },
-    {...},
-    {...},
-  ]
-  ```
-* **Incremented Balances:** Define starting balances and then define how much to increment the IDs and times by after each transfer. This is how to implement the above example: you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges.
-* ```json
-  "incrementedBalances": {
-    "startBalances": [
+-   **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
+-   ```json
+    "manualBalances": [
       {
         "amount": "1",
         "badgeIds": [
@@ -60,12 +37,36 @@ There are two ways to define the balances. Both can not be used together.
             "end": "1723514400000"
           }
         ]
-      }
-    ],
-    "incrementBadgeIdsBy": "1",
-    "incrementOwnershipTimesBy": "0"
-  }
-  ```
+      },
+      {...},
+      {...},
+    ]
+    ```
+-   **Incremented Balances:** Define starting balances and then define how much to increment the IDs and times by after each transfer. This is how to implement the above example: you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
+-   ```json
+    "incrementedBalances": {
+      "startBalances": [
+        {
+          "amount": "1",
+          "badgeIds": [
+            {
+              "start": "1",
+              "end": "1"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": "1691978400000",
+              "end": "1723514400000"
+            }
+          ]
+        }
+      ],
+      "incrementBadgeIdsBy": "1",
+      "incrementOwnershipTimesBy": "0",
+      "approvalDurationFromNow": "0" // UNIX milliseconds
+    }
+    ```
 
 ## **Precalculating Balances**
 
@@ -77,6 +78,7 @@ To combat this, when initiating a transfer, we allow you to specify **precalcula
 </strong>    approvalId: string;
     approvalLevel: string; //"collection" | "incoming" | "outgoing"
     approverAddress: string; //"" if collection-level
+    version: string; //"1"
 }
 </code></pre>
 
@@ -102,12 +104,12 @@ This is used to reserve specific badges for specific users / claim codes. For ex
 
 ```typescript
 export interface PredeterminedOrderCalculationMethod {
-  useOverallNumTransfers: boolean;
-  usePerToAddressNumTransfers: boolean;
-  usePerFromAddressNumTransfers: boolean;
-  usePerInitiatedByAddressNumTransfers: boolean;
-  useMerkleChallengeLeafIndex: boolean;
-  challengeTrackerId: string;
+    useOverallNumTransfers: boolean;
+    usePerToAddressNumTransfers: boolean;
+    usePerFromAddressNumTransfers: boolean;
+    usePerInitiatedByAddressNumTransfers: boolean;
+    useMerkleChallengeLeafIndex: boolean;
+    challengeTrackerId: string;
 }
 ```
 

@@ -8,33 +8,6 @@ export interface MsgTransferBadges<T extends NumberType> {
     collectionId: T;
     transfers: Transfer<T>[];
 }
-
-export interface Transfer<T extends NumberType> {
-    from: string;
-    toAddresses: string[];
-    balances: Balance<T>[];
-    precalculateBalancesFromApproval?: ApprovalIdentifierDetails;
-    merkleProofs?: MerkleProof[];
-    memo?: string;
-    prioritizedApprovals?: ApprovalIdentifierDetails[];
-    onlyCheckPrioritizedApprovals?: boolean;
-}
-
-export interface ApprovalIdentifierDetails {
-    approvalId: string;
-    approvalLevel: string; //"incoming", "outgoing", or "collection"
-    approverAddress: string; //leave "" if collection
-}
-
-export interface MerklePathItem {
-    aunt: string;
-    onRight: boolean;
-}
-
-export interface MerkleProof {
-    aunts: MerklePathItem[];
-    leaf: string;
-}
 ```
 
 **To / From Addresses**
@@ -53,6 +26,8 @@ If any approval that you are targeting has a Merkle challenge, you must provide 
 
 **Prioritized Approvals**
 
-By default, we linearly scan approvals in the order they are defined on-chain. However, sometimes, you may want to prioritize one approval over the other.
+All approvals with custom approval criteria (coinTransfers, approvalCriteria) must be prioritized. If it is just an open-ended approval with no restrictions beyond sender, recipient, initiatedBy, badgeIds, ownershipTimes, transferTimes, etc, then it does not need to be prioritized.
 
-You can specify which ones to check first via **prioritizedApprovals**. If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
+By default, we linearly scan approvals in the order they are defined on-chain. However, you may also want to prioritize one approval over the other. The prioritizedApprovals field allows you to specify which ones to check first.
+
+If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.

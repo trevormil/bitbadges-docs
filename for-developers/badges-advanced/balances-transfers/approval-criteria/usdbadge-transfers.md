@@ -4,6 +4,8 @@
 
 Note: $BADGE refers to the native gas credits token of the blockchain, not a specific badge.
 
+This will be executed every time the approval is used.
+
 ```typescript
 export interface iCoinTransfer<T extends NumberType> {
     /**
@@ -14,6 +16,14 @@ export interface iCoinTransfer<T extends NumberType> {
      * The coins
      */
     coins: iCosmosCoin<T>[];
+    /**
+     * Whether or not to override the from address with the approver address.
+     */
+    overrideFromWithApproverAddress: boolean;
+    /**
+     * Whether or not to override the to address with the initiator of the transaction.
+     */
+    overrideToWithInitiator: boolean;
 }
 ```
 

@@ -58,6 +58,8 @@ export interface CollectionApproval<T extends NumberType> {
   customData?: string;
   
   approvalCriteria?: ApprovalCriteria<T>;
+
+  version: T;
 }
 ```
 
