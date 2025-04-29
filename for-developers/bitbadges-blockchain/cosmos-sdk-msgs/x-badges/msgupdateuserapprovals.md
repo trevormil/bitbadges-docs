@@ -18,6 +18,8 @@ export interface MsgUpdateUserApprovals<T extends NumberType> {
     autoApproveSelfInitiatedOutgoingTransfers?: boolean;
     updateAutoApproveSelfInitiatedIncomingTransfers?: boolean;
     autoApproveSelfInitiatedIncomingTransfers?: boolean;
+    updateAutoApproveAllIncomingTransfers?: boolean;
+    autoApproveAllIncomingTransfers?: boolean;
     updateUserPermissions?: boolean;
     userPermissions?: UserPermissions<T>;
 }

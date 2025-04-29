@@ -33,7 +33,7 @@ The collectionId will be assigned at execution time and is obtainable in the tra
 The creation or genesis transaction for a collection is unique in a couple ways.
 
 1. There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
-2. This is the only time that you can specify **balancesType** and the **defaultBalances** information (defaultOutgoingApprovals, defaultIncomingApprovals, defaultAutoApproveSelfInitiatedOutgoingTransfers, defaultAutoApproveSelfInitiatedIncomingTransfers, and defaultUserPermissions)**.**&#x20;
+2. This is the only time that you can specify **balancesType** and the **defaultBalances** information**.**&#x20;
 
 **Rest of Fields**
 

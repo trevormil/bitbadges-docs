@@ -13,6 +13,7 @@ ActionPermissions are the simplest (no criteria). Just denotes what times the ac
     ...
     "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [...],
     "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [...],
+    "canUpdateAutoApproveAllIncomingTransfers": [...],
 }
 ```
 

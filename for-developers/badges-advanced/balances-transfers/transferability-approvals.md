@@ -12,9 +12,9 @@ Collections with "Off-Chain" balances and address lists do not utilize on-chain 
 
 Approved transfers encompass three hierarchical levels: collection, incoming, and outgoing, as previously elaborated. The interfaces for these three levels share common elements, with slight variations in functionality:
 
-* Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
-* Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
-* The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
+-   Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
+-   Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
+-   The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
@@ -46,20 +46,20 @@ In the collection interface, they are represented as the following:
 
 ```typescript
 export interface CollectionApproval<T extends NumberType> {
-  toListId: string;
-  fromListId: string;
-  initiatedByListId: string;
-  transferTimes: UintRange<T>[];
-  badgeIds: UintRange<T>[];
-  ownershipTimes: UintRange<T>[];
-  approvalId: string;
+    toListId: string;
+    fromListId: string;
+    initiatedByListId: string;
+    transferTimes: UintRange<T>[];
+    badgeIds: UintRange<T>[];
+    ownershipTimes: UintRange<T>[];
+    approvalId: string;
 
-  uri?: string;
-  customData?: string;
-  
-  approvalCriteria?: ApprovalCriteria<T>;
+    uri?: string;
+    customData?: string;
 
-  version: T;
+    approvalCriteria?: ApprovalCriteria<T>;
+
+    version: T;
 }
 ```
 
@@ -80,41 +80,41 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
-* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
-* **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
+-   **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
+-   **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+-   **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
+-   **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:
 
-* ```json
-  "fromListId": "Mint", //reserved list ID for the "Mint" addres
-  "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
-  "initiatedByListId": "All",
-  "transferTimes": [
-    {
-      "start": "1691931600000",
-      "end": "1723554000000"
-    }
-  ],
-  "ownershipTimes": [
-    {
-      "start": "1",
-      "end": "18446744073709551615" //Max possible value
-    }
-  ],
-  "badgeIds": [
-    {
-      "start": "1",
-      "end": "100"
-    }
-  ],
-  ```
+-   ```json
+    "fromListId": "Mint", //reserved list ID for the "Mint" addres
+    "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
+    "initiatedByListId": "All",
+    "transferTimes": [
+      {
+        "start": "1691931600000",
+        "end": "1723554000000"
+      }
+    ],
+    "ownershipTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615" //Max possible value
+      }
+    ],
+    "badgeIds": [
+      {
+        "start": "1",
+        "end": "100"
+      }
+    ],
+    ```
 
 Let's break down the definition above.
 
-* The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
-* The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
+-   The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
+-   The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
 
 Note the approval only applies to the details defined and must match ALL details. For example, badge ID #101 is not defined by this approval even if all other criteria matches.
 
@@ -163,9 +163,9 @@ The process of matching transfers to approvals involves several steps. This is d
 2. Expand all approval tuples with range logic (AllWithMint, ...., \[IDs 1-100]) to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
 3. Expand the current transfer tuple to singular tuple values.
 4. Find all matches (for approvals, linear first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
-   1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
-   2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
-   3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
+    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
+    2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
+    3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
 5. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
 
 ### Defaults and Auto Approvals
@@ -176,13 +176,17 @@ If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automaticall
 
 If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
 
+if **autoApproveAllIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
+
 In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be turned off and leveraged for specific use cases such as using an account for an escrow.
 
 **Defaults**
 
-We allow the collection to define default values for each user, and when the user first interacts with the collection, they will start with these values. The defaults include **balances**, **outgoingApprovals**, **incomingApprovals**, **autoApproveSelfInitiatedOutgoingTransfers,** and **autoApproveSelfInitiatedIncomingTransfers.**
+We allow the collection to define default values for each user, and when the user first interacts with the collection, they will start with these values. The defaults include **balances**, **outgoingApprovals**, **incomingApprovals**, **autoApproveSelfInitiatedOutgoingTransfers,** **autoApproveAllIncomingTransfers**, and **autoApproveSelfInitiatedIncomingTransfers.**
 
 For default balances, we refer you to the balance types and creating badges sections (i.e. these are the starting balances).
+
+Note: Default approvals can NOT contain custom criteria checks. In other words, default approvals can not have side effects. They can only be a simple approval without any custom restrictions.
 
 **Default Outgoing Approvals**
 

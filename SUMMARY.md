@@ -162,7 +162,6 @@
         -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
         -   [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
         -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-        -   [Aliases](for-developers/bitbadges-sdk/common-snippets/aliases.md)
 -   [🌟 Badges - Advanced](for-developers/badges-advanced/README.md)
     -   [Overview](for-developers/badges-advanced/overview.md)
     -   [Balances / Transfers](for-developers/badges-advanced/balances-transfers/README.md)
