@@ -2,7 +2,7 @@
 
 Predetermined balances are a new way of having fine-grained control over the amounts that are approved with each transfer. In a typical tally-based system where you approve X amount to be transferred, you have no control over the combination of amounts that will add up to X. For example, if you approve x100, you can't control whether the transfers are \[x1, x1, x98] or \[x100] or another combination.
 
-Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.&#x20;
+Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.
 
 Although this can be used in tandem with approval amounts, either one or the other is usually used because they both specify amount restrictions.
 
@@ -20,9 +20,35 @@ export interface PredeterminedBalances<T extends NumberType> {
 
 There are two ways to define the balances. Both can not be used together.
 
--   **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
--   ```json
-    "manualBalances": [
+* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
+* ```json
+  "manualBalances": [
+    {
+      "amount": "1",
+      "badgeIds": [
+        {
+          "start": "1",
+          "end": "1"
+        }
+      ],
+      "ownershipTimes": [
+        {
+          "start": "1691978400000",
+          "end": "1723514400000"
+        }
+      ]
+    },
+    {...},
+    {...},
+  ]
+  ```
+* **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer.  There are different approaches here (incompatible with each other).
+  * Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
+  * Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges.
+  * Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
+* ```json
+  "incrementedBalances": {
+    "startBalances": [
       {
         "amount": "1",
         "badgeIds": [
@@ -37,36 +63,19 @@ There are two ways to define the balances. Both can not be used together.
             "end": "1723514400000"
           }
         ]
-      },
-      {...},
-      {...},
-    ]
-    ```
--   **Incremented Balances:** Define starting balances and then define how much to increment the IDs and times by after each transfer. This is how to implement the above example: you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
--   ```json
-    "incrementedBalances": {
-      "startBalances": [
-        {
-          "amount": "1",
-          "badgeIds": [
-            {
-              "start": "1",
-              "end": "1"
-            }
-          ],
-          "ownershipTimes": [
-            {
-              "start": "1691978400000",
-              "end": "1723514400000"
-            }
-          ]
-        }
-      ],
-      "incrementBadgeIdsBy": "1",
-      "incrementOwnershipTimesBy": "0",
-      "approvalDurationFromNow": "0" // UNIX milliseconds
+      }
+    ],
+    "incrementBadgeIdsBy": "1",
+    "incrementOwnershipTimesBy": "0",
+    "durationFromTimestamp": "0", // UNIX milliseconds
+    "allowOverrideTimestamp": false,
+    "recurringOwnershipTimes": {
+      "startTime": "0",
+      "intervalLength": "0",
+      "chargePeriodLength": "0"
     }
-    ```
+  }
+  ```
 
 ## **Precalculating Balances**
 
@@ -88,11 +97,11 @@ Which balances to assign for a transfer is calculated by a specified order calcu
 
 For manual balances, we want to determine which element index of the array is transferred (e.g. order number = 0 means the balances of manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
 
-There are five calculation methods to determine the order method.&#x20;
+There are five calculation methods to determine the order method.
 
 ### Defining Order by Number of Transfers
 
-We either use a running tally of the number of transfers to calculate the order number (no previous transfers = order number 0, one previous transfer = order number 1, and so on). This can be done on an overall or per to/from/initiatedBy address basis and is incremented using an approval tracker as explained in [Max Number of Transfers](predetermined-balances.md#max-number-of-transfers).&#x20;
+We either use a running tally of the number of transfers to calculate the order number (no previous transfers = order number 0, one previous transfer = order number 1, and so on). This can be done on an overall or per to/from/initiatedBy address basis and is incremented using an approval tracker as explained in [Max Number of Transfers](predetermined-balances.md#max-number-of-transfers).
 
 IMPORTANT: Note the number of transfers is tracked using the same tracker as used within **maxNumTransfers**. Trackers are increment only, immutable, and incremented on an as-needed basis. Be mindful of this. If the tracker has prior history (potentially because **maxNumTransfers** was set), the order numbers will be calculated according to the prior history of this tracker. The opposite is also true. If you are tracking transfers here for predetermined balances, the **maxNumTransfers** restrictions will be calculated according to the tracker's history. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
 
@@ -112,8 +121,6 @@ export interface PredeterminedOrderCalculationMethod {
     challengeTrackerId: string;
 }
 ```
-
-&#x20;
 
 **Overlap / Out of Bounds**
 

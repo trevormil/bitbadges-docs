@@ -61,6 +61,10 @@ If the amount set is nil value or "0", this means there is no limit (no amount r
            "perToAddressApprovalAmount": "0",
            "perInitiatedByAddressApprovalAmount": "10", //limit of x10 per initiator
            "amountTrackerId": "uniqueID",
+           "resetTimeIntervals": {
+              "startTime": "0",
+              "intervalLength": "0"
+            }
         },
         ...
       }

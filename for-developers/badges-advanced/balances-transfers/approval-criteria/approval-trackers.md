@@ -80,6 +80,7 @@ IMPORTANT: Because of the immutable nature, be careful to not revert to a previo
 export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
   numTransfers: T;
   amounts: Balance<T>[];
+  lastUpdatedAt: UnixMilliTimestamp<T>;
 }
 ```
 
@@ -107,3 +108,24 @@ We increment on an as-needed basis. Meaning, if there is no need to increment th
 **Different Tracker IDs - Amounts vs Transfers**
 
 It is possible to have different tracker IDs for the number of transfers and amounts (as seen at the top of the page). However, typically, these will be the same for simplicity.
+
+### **Resets**
+
+For both tracker types, we also allow occasional resets to zero. If it is the first update of the interval, we will reset all tracker progress. This is useful for recurring subscriptions (one transfer per month), for example.
+
+If they are left as 0, there is no reset.&#x20;
+
+Whether an update is needed or not is calculated using the lastUpdatedAt field.
+
+```typescript
+/**
+ * @category Interfaces
+ */
+export interface iResetTimeIntervals<T extends NumberType> {
+  /** The start time of the first interval. */
+  startTime: T;
+  /** The length of the interval. */
+  intervalLength: T;
+}
+
+```

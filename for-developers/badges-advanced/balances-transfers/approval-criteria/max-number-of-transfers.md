@@ -24,6 +24,10 @@ Let's say we have the ID `1-collection- -approvalId-uniqueID-initiatedBy-alice` 
     "perToAddressMaxNumTransfers": "0",
     "perInitiatedByAddressMaxNumTransfers": "1",
     "amountTrackerId": "uniqueID",
+    "resetTimeIntervals": {
+      "startTime": "0",
+      "intervalLength": "0"
+    }
 }
 </code></pre>
 

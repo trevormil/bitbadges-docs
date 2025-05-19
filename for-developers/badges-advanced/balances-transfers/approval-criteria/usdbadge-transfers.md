@@ -1,6 +1,6 @@
 # $BADGE Transfers
 
-**coinTransfers** are the $BADGE credits to be sent **every** use of the approval. There can be multiple transfers here to implement complex royalty systems, for example. Or, you can leave it blank for no $BADGE transfers.
+**coinTransfers** are the $BADGE credits to be sent **every** use of the approval. There can be multiple transfers here to implement complex royalty systems, for example. Or, you can leave it blank for no $BADGE transfers. The only allowed denom is "ubadge" which has 9 decimals. 1e9 ubadge = 1 $BADGE.
 
 Note: $BADGE refers to the native gas credits token of the blockchain, not a specific badge.
 
