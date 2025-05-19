@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon May 19 13:48:39 UTC 2025
+Generated on Mon May 19 13:53:31 UTC 2025
 
 
 
@@ -5855,9 +5855,9 @@ During creation and update transaction ([MsgCreateCollection](../../bitbadges-bl
 
 # 🤝 Transferability / Approvals
 
-First, read [Transferability ](broken-reference)for an overview of approved transfers.
+First, read [Transferability ](broken-reference/)for an overview of approved transfers.
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](broken-reference/)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
 
@@ -5867,9 +5867,9 @@ Collections with "Off-Chain" balances and address lists do not utilize on-chain 
 
 Approved transfers encompass three hierarchical levels: collection, incoming, and outgoing, as previously elaborated. The interfaces for these three levels share common elements, with slight variations in functionality:
 
--   Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
--   Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
--   The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
+* Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
+* Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
+* The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
@@ -5922,54 +5922,55 @@ Note; User incoming / outgoing approvals follow the same interface except **toLi
 
 **Approved vs Unapproved**
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer could satisfy multiple approvals on the same level.
-
-We handle approvals per level in the following manner:
+Approvals are simply a set of criteria, so it is entirely possible the same transfer could satisfy multiple approvals on the same level. We handle approvals per level in the following manner:
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. If the transfer matches to multiple approvals, we take first-match (linear scan of array) by default. However, we allow the user to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+2. We allow users to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
+   1. Any approval with side effects (coin transfers, criteria, trackers, etc) MUST be specified explicity in prioritized approvals.
+   2. Any approval without side effects (e.g. generic unlimited transferability collection approval) does not have to be specified.
+   3. When scanning approvals, we check prioritized approvals first. Then, we attempt to scan any approvals without side effects.
 
-We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection, and users will never need the added complexity of **prioritizedApprovals** or **onlyCheckPrioritizedApprovals.**
+We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection.
 
 **Who? When? What? - Main Fields**
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
--   **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
--   **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
--   **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
--   **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
+* **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
+* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
+* **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:
 
--   ```json
-    "fromListId": "Mint", //reserved list ID for the "Mint" addres
-    "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
-    "initiatedByListId": "All",
-    "transferTimes": [
-      {
-        "start": "1691931600000",
-        "end": "1723554000000"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615" //Max possible value
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "100"
-      }
-    ],
-    ```
+* ```json
+  "fromListId": "Mint", //reserved list ID for the "Mint" addres
+  "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
+  "initiatedByListId": "All",
+  "transferTimes": [
+    {
+      "start": "1691931600000",
+      "end": "1723554000000"
+    }
+  ],
+  "ownershipTimes": [
+    {
+      "start": "1",
+      "end": "18446744073709551615" //Max possible value
+    }
+  ],
+  "badgeIds": [
+    {
+      "start": "1",
+      "end": "100"
+    }
+  ],
+  ```
 
 Let's break down the definition above.
 
--   The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
--   The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
+* The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
+* The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
 
 Note the approval only applies to the details defined and must match ALL details. For example, badge ID #101 is not defined by this approval even if all other criteria matches.
 
@@ -6018,9 +6019,9 @@ The process of matching transfers to approvals involves several steps. This is d
 2. Expand all approval tuples with range logic (AllWithMint, ...., \[IDs 1-100]) to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
 3. Expand the current transfer tuple to singular tuple values.
 4. Find all matches (for approvals, linear first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
-    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
-    2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
-    3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
+   1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
+   2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
+   3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
 5. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
 
 ### Defaults and Auto Approvals
@@ -8454,7 +8455,10 @@ If any approval that you are targeting has a Merkle challenge, you must provide 
 
 All approvals with custom approval criteria (coinTransfers, approvalCriteria) must be prioritized. If it is just an open-ended approval with no restrictions beyond sender, recipient, initiatedBy, badgeIds, ownershipTimes, transferTimes, etc, then it does not need to be prioritized.
 
-By default, we linearly scan approvals in the order they are defined on-chain. However, you may also want to prioritize one approval over the other. The prioritizedApprovals field allows you to specify which ones to check first.
+Our algorithm:
+
+1. Check all prioritized approvals first in the order they were specified
+2. Check all unchecked approvals WITHOUT side-effects in the order they are defined on-chain.&#x20;
 
 If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
 
