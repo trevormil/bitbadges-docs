@@ -28,6 +28,9 @@ If any approval that you are targeting has a Merkle challenge, you must provide 
 
 All approvals with custom approval criteria (coinTransfers, approvalCriteria) must be prioritized. If it is just an open-ended approval with no restrictions beyond sender, recipient, initiatedBy, badgeIds, ownershipTimes, transferTimes, etc, then it does not need to be prioritized.
 
-By default, we linearly scan approvals in the order they are defined on-chain. However, you may also want to prioritize one approval over the other. The prioritizedApprovals field allows you to specify which ones to check first.
+Our algorithm:
+
+1. Check all prioritized approvals first in the order they were specified
+2. Check all unchecked approvals WITHOUT side-effects in the order they are defined on-chain.&#x20;
 
 If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
