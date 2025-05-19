@@ -200,6 +200,7 @@
   * [Different Time Fields](for-developers/badges-advanced/different-time-fields.md)
   * [List IDs](for-developers/badges-advanced/list-ids.md)
   * [Uint Ranges](for-developers/badges-advanced/uint-ranges.md)
+  * [Subscriptions Protocol](for-developers/badges-advanced/subscriptions-protocol.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
