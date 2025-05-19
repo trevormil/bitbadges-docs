@@ -4,9 +4,7 @@ The subscriptions protocol is a subset of the overall badge standard. We use the
 
 1. Set up a collection faucet with the durationFromTimestamp + allowOverrideTimestamp + coinTransfers to determine the price
 2. Each user sets up incoming approvals using recurringOwnershipTimes
-3. The MsgTransferBadges
-
-
+3. The MsgTransferBadges specifies overrideTimestamp to match the next recurring interval with the overriden timestamp.
 
 ```typescript
 import { AddressList, iCollectionApprovalWithDetails, iUintRange, iUserIncomingApprovalWithDetails, UintRangeArray } from 'bitbadgesjs-sdk';
