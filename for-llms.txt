@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue May 20 12:51:12 UTC 2025
+Generated on Fri Jun  6 16:56:07 UTC 2025
 
 
 
@@ -5455,6 +5455,14 @@ export interface iCosmosCoin<T extends NumberType> {
 BitBadges offers different ways to store the badge balances and owners for your collection as explained [here](broken-reference) (please read this version first, if not already). The balances type for a collection is determined by the **balancesType** field of the collection interface.
 
 The core collection details are always stored on-chain, but balances can be stored using different methods, each offering their own pros and cons.
+
+```
+NOTE: Off-chain badge balances have now been deprecated on the frontend.
+
+We made this decision because we felt they added too much complexity and could be implemented much simpler with address lists and claims.
+
+If you are interested in us reenabling this, please let us know.
+```
 
 <figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -15719,6 +15727,14 @@ Attestations may come in different forms with varying properties, such as:
 # Balances Types
 
 BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
+
+```
+NOTE: Off-chain badge balances have now been deprecated on the frontend.
+
+We made this decision because we felt they added too much complexity and could be implemented much simpler with address lists and claims.
+
+If you are interested in us reenabling this, please let us know.
+```
 
 <figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
