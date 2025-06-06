@@ -2,6 +2,14 @@
 
 BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
 
+```
+NOTE: Off-chain badge balances have now been deprecated on the frontend.
+
+We made this decision because we felt they added too much complexity and could be implemented much simpler with address lists and claims.
+
+If you are interested in us reenabling this, please let us know.
+```
+
 <figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 ## Standard (On-Chain)
