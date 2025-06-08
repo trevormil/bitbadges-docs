@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Jun  6 16:56:07 UTC 2025
+Generated on Sun Jun  8 17:08:44 UTC 2025
 
 
 
@@ -4945,13 +4945,14 @@ Edge Case: In [Predetermined Balances](max-number-of-transfers.md#predetermined-
 
 ```typescript
 export interface MerkleChallenge<T extends NumberType> {
-  root: string
-  expectedProofLength: T;
-  useCreatorAddressAsLeaf: boolean
-  maxUsesPerLeaf: T
-  uri: string
-  customData: string
-  challengeTrackerId: string
+    root: string;
+    expectedProofLength: T;
+    useCreatorAddressAsLeaf: boolean;
+    maxUsesPerLeaf: T;
+    uri: string;
+    customData: string;
+    challengeTrackerId: string;
+    leafSigner: string;
 }
 ```
 
@@ -4962,7 +4963,8 @@ export interface MerkleChallenge<T extends NumberType> {
    "maxOneUsePerLeaf": true,
    "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
    "customData": "",
-   "challengeTrackerId": "uniqueId"
+   "challengeTrackerId": "uniqueId",
+   "leafSigner": "0x"
 }
 </code></pre>
 
@@ -5017,6 +5019,21 @@ Example:
 
 See Predetermined Balances below for reserving specific leaf indices for specific badges / ownership times.
 
+**Leaf Signatures**
+
+Leaf signatures are a protection against man-in-the-middle attacks. For code-based merkle challenges, there is always a risk that the code is intercepted while the transaction is in the mempool, and the malicious actor can try to claim the badge with the intercepted code before the user can.
+
+If **leafSigner** is set, the leaf must be signed by the leaf signer. We currently only support leafSigner being an Ethereum address and signatures being ECDSA signatures.
+
+The scheme we currently use is as follows:
+signature = ETHSign(leaf + "-" + bitbadgesAddressOfInitiator)
+
+Then the user must provide the **leafSignature** in the **merkleProofs** field of the transfer transaction.
+
+Note: The bitbadgesAddressOfInitiator is the converted BitBadges address (bb1...) of the initiator of the transfer transaction. This also helps to tie a specific code to a specific BitBadges address to prevent other users from using and intercepting the same code.
+
+This is optional but strongly recommended for code-based merkle challenges.
+
 #### **Creating a Merkle Tree**
 
 We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
@@ -5038,9 +5055,13 @@ const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 For whitelists, replace with this code.
 
 ```typescript
-addresses.push(...toAddresses.map(x => convertToBitBadgesAddress(x)));
+addresses.push(...toAddresses.map((x) => convertToBitBadgesAddress(x)));
 
-const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, treeOptions)
+const addressesTree = new MerkleTree(
+    addresses.map((x) => SHA256(x)),
+    SHA256,
+    treeOptions
+);
 const addressesRoot = addressesTree.getRoot().toString('hex');
 ```
 
@@ -5052,6 +5073,8 @@ const leaf = isWhitelist ? SHA256(chain.bitbadgesAddress).toString() : SHA256(pa
 const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
+const leafSignature = '...';
+
 
 const codeProof = {
   aunts: proofObj ? proofObj.map((proof) => {
@@ -5061,6 +5084,7 @@ const codeProof = {
     }
   }) : [],
   leaf: isWhitelist ? '' : passwordCodeToSubmit,
+  leafSignature //if applicable
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {
@@ -5185,35 +5209,9 @@ export interface PredeterminedBalances<T extends NumberType> {
 
 There are two ways to define the balances. Both can not be used together.
 
-* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
-* ```json
-  "manualBalances": [
-    {
-      "amount": "1",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "1"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1691978400000",
-          "end": "1723514400000"
-        }
-      ]
-    },
-    {...},
-    {...},
-  ]
-  ```
-* **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer.  There are different approaches here (incompatible with each other).
-  * Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
-  * Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges.
-  * Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
-* ```json
-  "incrementedBalances": {
-    "startBalances": [
+-   **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
+-   ```json
+    "manualBalances": [
       {
         "amount": "1",
         "badgeIds": [
@@ -5228,25 +5226,53 @@ There are two ways to define the balances. Both can not be used together.
             "end": "1723514400000"
           }
         ]
+      },
+      {...},
+      {...},
+    ]
+    ```
+-   **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer. There are different approaches here (incompatible with each other).
+    -   Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
+    -   Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges precalculationOptions.
+    -   Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
+    -   Allowing Badge Override: If enabled, users can specify a custom badge ID in MsgTransferBadges precalculationOptions. This will override all the badge IDs in the starting balances to this specified badge ID. This is useful for collection offers. The specified badge IDs must only be a single badge ID and must be a valid badge ID in the collection.
+-   ```json
+    "incrementedBalances": {
+      "startBalances": [
+        {
+          "amount": "1",
+          "badgeIds": [
+            {
+              "start": "1",
+              "end": "1"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": "1691978400000",
+              "end": "1723514400000"
+            }
+          ]
+        }
+      ],
+      "incrementBadgeIdsBy": "1",
+      "incrementOwnershipTimesBy": "0",
+      "durationFromTimestamp": "0", // UNIX milliseconds
+      "allowOverrideTimestamp": false,
+      "allowOverrideWithAnyValidBadge": false,
+      "recurringOwnershipTimes": {
+        "startTime": "0",
+        "intervalLength": "0",
+        "chargePeriodLength": "0"
       }
-    ],
-    "incrementBadgeIdsBy": "1",
-    "incrementOwnershipTimesBy": "0",
-    "durationFromTimestamp": "0", // UNIX milliseconds
-    "allowOverrideTimestamp": false,
-    "recurringOwnershipTimes": {
-      "startTime": "0",
-      "intervalLength": "0",
-      "chargePeriodLength": "0"
     }
-  }
-  ```
+    ```
 
 ## **Precalculating Balances**
 
 Predetermined balances can quickly change, such as in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
 
-To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
+To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID. Additional override options can be specified in the **precalculationOptions** field as well.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
 </strong>    approvalId: string;
@@ -5416,6 +5442,18 @@ If in the future, you change back to "uniqueID", the starting point will be the 
 Note: $BADGE refers to the native gas credits token of the blockchain, not a specific badge.
 
 This will be executed every time the approval is used.
+
+For collection approvals that **overrideFromWithApproverAddress**, the approver address will be overridden with a special mint escrow address. This address can be used to transfer / send $BADGE via collection approvals for the Mint address. For example, quest payouts are implemented by using this address to send $BADGE from the Mint address to the initiator.
+
+```typescript
+// To generate the mint escrow address for a collection ID
+const mintEscrowAddress = generateAlias(
+    'badges',
+    getAliasDerivationKeysForCollection(doc.collectionId)
+);
+```
+
+The Mint escrow address is slightly longer than a normal address and cannot be controlled by any end-user because it has no private key. It is technically an address, so it can receive badges, $BADGE, etc. However, the only way to trigger a $BADGE transfer from the mint escrow address is via collection approvals.
 
 ```typescript
 export interface iCoinTransfer<T extends NumberType> {
@@ -7644,8 +7682,13 @@ The subscriptions protocol is a subset of the overall badge standard. We use the
 3. The MsgTransferBadges specifies overrideTimestamp to match the next recurring interval with the overriden timestamp.
 
 ```typescript
-import { AddressList, iCollectionApprovalWithDetails, iUintRange, iUserIncomingApprovalWithDetails, UintRangeArray } from 'bitbadgesjs-sdk';
-import crypto from 'crypto';
+import {
+    AddressList,
+    iCollectionApprovalWithDetails,
+    iUintRange,
+    iUserIncomingApprovalWithDetails,
+    UintRangeArray,
+} from 'bitbadgesjs-sdk';
 import { t } from 'i18next';
 import { RequiredApprovalProps } from '../../components/transfers/ApprovalSelectHelpers/utils';
 
@@ -7653,208 +7696,234 @@ export const MONTHLY_MS = 2629746000n;
 export const ANNUAL_MS = 31556952000n;
 
 export const subscriptionFaucet = ({
-  payoutAddress,
-  defaultApprovalToAdd,
-  validBadgeIds,
-  ubadgeAmount,
-  intervalDuration = MONTHLY_MS
+    payouts,
+    defaultApprovalToAdd,
+    validBadgeIds,
+    intervalDuration = MONTHLY_MS,
+    approvalId,
 }: {
-  payoutAddress: string;
-  defaultApprovalToAdd: RequiredApprovalProps;
-  validBadgeIds: iUintRange<bigint>[];
-  ubadgeAmount: bigint;
-  intervalDuration?: bigint;
+    payouts: {
+        payoutAddress: string;
+        ubadgeAmount: bigint;
+    }[];
+    defaultApprovalToAdd: RequiredApprovalProps;
+    validBadgeIds: iUintRange<bigint>[];
+    intervalDuration?: bigint;
+    approvalId: string;
 }): RequiredApprovalProps => {
-  const id = crypto.randomBytes(32).toString('hex');
-  const toSet: RequiredApprovalProps = {
-    ...defaultApprovalToAdd,
-    details: {
-      ...defaultApprovalToAdd.details,
-      name: t('Subscription_Faucet', { ns: 'common' }),
-      description: t('subscription_faucet_description', { ns: 'common' })
-    },
-    initiatedByListId: 'All',
-    initiatedByList: AddressList.AllAddresses(),
-    transferTimes: UintRangeArray.FullRanges(),
-    badgeIds: validBadgeIds,
-    ownershipTimes: UintRangeArray.FullRanges(),
-    approvalId: id,
-    approvalCriteria: {
-      ...defaultApprovalToAdd.approvalCriteria,
-      coinTransfers: [
-        {
-          to: payoutAddress,
-          overrideFromWithApproverAddress: false,
-          overrideToWithInitiator: false,
-          coins: [
-            {
-              amount: ubadgeAmount,
-              denom: 'ubadge'
-            }
-          ]
-        }
-      ],
-      predeterminedBalances: {
-        manualBalances: [],
-        orderCalculationMethod: {
-          useOverallNumTransfers: true,
-          usePerToAddressNumTransfers: false,
-          usePerFromAddressNumTransfers: false,
-          usePerInitiatedByAddressNumTransfers: false,
-          useMerkleChallengeLeafIndex: false,
-          challengeTrackerId: ''
+    const id = approvalId;
+    const toSet: RequiredApprovalProps = {
+        ...defaultApprovalToAdd,
+        details: {
+            ...defaultApprovalToAdd.details,
+            name: t('Subscription_Faucet', { ns: 'common' }),
+            description: t('subscription_faucet_description', { ns: 'common' }),
         },
-        incrementedBalances: {
-          startBalances: [{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }],
-          incrementBadgeIdsBy: 0n,
-          incrementOwnershipTimesBy: 0n,
+        initiatedByListId: 'All',
+        initiatedByList: AddressList.AllAddresses(),
+        transferTimes: UintRangeArray.FullRanges(),
+        badgeIds: validBadgeIds,
+        ownershipTimes: UintRangeArray.FullRanges(),
+        approvalId: id,
+        approvalCriteria: {
+            ...defaultApprovalToAdd.approvalCriteria,
+            coinTransfers: payouts.map((payout) => ({
+                to: payout.payoutAddress,
+                overrideFromWithApproverAddress: false,
+                overrideToWithInitiator: false,
+                coins: [
+                    {
+                        amount: payout.ubadgeAmount,
+                        denom: 'ubadge',
+                    },
+                ],
+            })),
+            predeterminedBalances: {
+                manualBalances: [],
+                orderCalculationMethod: {
+                    useOverallNumTransfers: true,
+                    usePerToAddressNumTransfers: false,
+                    usePerFromAddressNumTransfers: false,
+                    usePerInitiatedByAddressNumTransfers: false,
+                    useMerkleChallengeLeafIndex: false,
+                    challengeTrackerId: '',
+                },
+                incrementedBalances: {
+                    startBalances: [
+                        {
+                            amount: 1n,
+                            badgeIds: [{ start: 1n, end: 1n }],
+                            ownershipTimes: UintRangeArray.FullRanges(),
+                        },
+                    ],
+                    incrementBadgeIdsBy: 0n,
+                    incrementOwnershipTimesBy: 0n,
 
-          //monthly in milliseconds
-          durationFromTimestamp: intervalDuration ? intervalDuration : MONTHLY_MS,
-          allowOverrideTimestamp: true,
-          recurringOwnershipTimes: {
-            startTime: 0n,
-            intervalLength: 0n,
-            chargePeriodLength: 0n
-          }
-        }
-      },
-      maxNumTransfers: {
-        overallMaxNumTransfers: 0n,
-        perToAddressMaxNumTransfers: 0n,
-        perFromAddressMaxNumTransfers: 0n,
-        perInitiatedByAddressMaxNumTransfers: 0n,
-        amountTrackerId: id,
-        resetTimeIntervals: {
-          startTime: 0n,
-          intervalLength: 0n
-        }
-      },
-      approvalAmounts: {
-        overallApprovalAmount: 0n,
-        perFromAddressApprovalAmount: 0n,
-        perToAddressApprovalAmount: 0n,
-        perInitiatedByAddressApprovalAmount: 0n,
-        amountTrackerId: id,
-        resetTimeIntervals: {
-          startTime: 0n,
-          intervalLength: 0n
-        }
-      },
-      merkleChallenges: [],
-      requireToEqualsInitiatedBy: false,
-      requireFromEqualsInitiatedBy: false,
-      overridesFromOutgoingApprovals: true,
-      overridesToIncomingApprovals: false
-    }
-  };
+                    //monthly in milliseconds
+                    durationFromTimestamp: intervalDuration
+                        ? intervalDuration
+                        : MONTHLY_MS,
+                    allowOverrideTimestamp: true,
+                    allowOverrideWithAnyValidBadge: false,
+                    recurringOwnershipTimes: {
+                        startTime: 0n,
+                        intervalLength: 0n,
+                        chargePeriodLength: 0n,
+                    },
+                },
+            },
+            maxNumTransfers: {
+                overallMaxNumTransfers: 0n,
+                perToAddressMaxNumTransfers: 0n,
+                perFromAddressMaxNumTransfers: 0n,
+                perInitiatedByAddressMaxNumTransfers: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            approvalAmounts: {
+                overallApprovalAmount: 0n,
+                perFromAddressApprovalAmount: 0n,
+                perToAddressApprovalAmount: 0n,
+                perInitiatedByAddressApprovalAmount: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            merkleChallenges: [],
+            requireToEqualsInitiatedBy: false,
+            requireFromEqualsInitiatedBy: false,
+            overridesFromOutgoingApprovals: true,
+            overridesToIncomingApprovals: false,
+        },
+    };
 
-  return toSet;
+    return toSet;
 };
 
 export const userRecurringApproval = ({
-  subscriptionApproval,
-  firstIntervalStartTime,
-  ubadgeTipAmount,
-  transferTimes
+    subscriptionApproval,
+    firstIntervalStartTime,
+    ubadgeTipAmount,
+    transferTimes,
+    approvalId,
 }: {
-  subscriptionApproval: iCollectionApprovalWithDetails<bigint>;
-  firstIntervalStartTime: bigint;
-  ubadgeTipAmount: bigint;
-  transferTimes: UintRangeArray<bigint>;
+    subscriptionApproval: iCollectionApprovalWithDetails<bigint>;
+    firstIntervalStartTime: bigint;
+    ubadgeTipAmount: bigint;
+    transferTimes: UintRangeArray<bigint>;
+    approvalId: string;
 }) => {
-  const id = crypto.randomBytes(32).toString('hex');
+    const id = approvalId;
 
-  const badgeIds = [{ start: 1n, end: 1n }];
-  const intervalLength = BigInt(subscriptionApproval.approvalCriteria?.predeterminedBalances?.incrementedBalances.durationFromTimestamp ?? 0);
-  const chargePeriodLength = BigInt(Math.min(Number(intervalLength), 604800000));
-  const subscriptionAmount = subscriptionApproval.approvalCriteria?.coinTransfers?.[0]?.coins?.[0]?.amount ?? 0n;
+    const badgeIds = [{ start: 1n, end: 1n }];
+    const intervalLength = BigInt(
+        subscriptionApproval.approvalCriteria?.predeterminedBalances
+            ?.incrementedBalances.durationFromTimestamp ?? 0
+    );
+    const chargePeriodLength = BigInt(
+        Math.min(Number(intervalLength), 604800000)
+    );
+    let subscriptionAmount = 0n;
+    for (const coinTransfer of subscriptionApproval.approvalCriteria
+        ?.coinTransfers ?? []) {
+        subscriptionAmount += coinTransfer.coins[0].amount;
+    }
 
-  return {
-    fromList: AddressList.Reserved('Mint'),
-    fromListId: 'Mint',
-    initiatedByList: AddressList.AllAddresses(),
-    initiatedByListId: 'All',
-    transferTimes: transferTimes,
-    badgeIds: badgeIds,
-    ownershipTimes: UintRangeArray.FullRanges(),
-    approvalId: id,
-    approvalCriteria: {
-      coinTransfers: [
-        {
-          to: '',
-          overrideFromWithApproverAddress: true,
-          overrideToWithInitiator: true,
-          coins: [
-            {
-              amount: ubadgeTipAmount + subscriptionAmount,
-              denom: 'ubadge'
-            }
-          ]
-        }
-      ],
-      predeterminedBalances: {
-        manualBalances: [],
-        orderCalculationMethod: {
-          useOverallNumTransfers: true,
-          usePerToAddressNumTransfers: false,
-          usePerFromAddressNumTransfers: false,
-          usePerInitiatedByAddressNumTransfers: false,
-          useMerkleChallengeLeafIndex: false,
-          challengeTrackerId: ''
+    return {
+        fromList: AddressList.Reserved('Mint'),
+        fromListId: 'Mint',
+        initiatedByList: AddressList.AllAddresses(),
+        initiatedByListId: 'All',
+        transferTimes: transferTimes,
+        badgeIds: badgeIds,
+        ownershipTimes: UintRangeArray.FullRanges(),
+        approvalId: id,
+        approvalCriteria: {
+            coinTransfers: [
+                {
+                    to: '',
+                    overrideFromWithApproverAddress: true,
+                    overrideToWithInitiator: true,
+                    coins: [
+                        {
+                            amount: ubadgeTipAmount + subscriptionAmount,
+                            denom: 'ubadge',
+                        },
+                    ],
+                },
+            ],
+            predeterminedBalances: {
+                manualBalances: [],
+                orderCalculationMethod: {
+                    useOverallNumTransfers: true,
+                    usePerToAddressNumTransfers: false,
+                    usePerFromAddressNumTransfers: false,
+                    usePerInitiatedByAddressNumTransfers: false,
+                    useMerkleChallengeLeafIndex: false,
+                    challengeTrackerId: '',
+                },
+                incrementedBalances: {
+                    // We override the start balances to be the badge ids from the subscription approval
+                    // This is to get the correct badge IDs and amounts. Times will be overridden by the recurring approval
+                    startBalances: [
+                        {
+                            amount: 1n,
+                            badgeIds: badgeIds,
+                            ownershipTimes: UintRangeArray.FullRanges(),
+                        },
+                    ],
+                    incrementBadgeIdsBy: 0n,
+                    incrementOwnershipTimesBy: 0n,
+                    durationFromTimestamp: 0n,
+                    allowOverrideTimestamp: false,
+                    allowOverrideWithAnyValidBadge: false,
+                    recurringOwnershipTimes: {
+                        startTime: firstIntervalStartTime,
+                        intervalLength: intervalLength,
+                        //1 week in milliseconds
+                        chargePeriodLength: chargePeriodLength,
+                    },
+                },
+            },
+            maxNumTransfers: {
+                overallMaxNumTransfers: 1n,
+                perToAddressMaxNumTransfers: 0n,
+                perFromAddressMaxNumTransfers: 0n,
+                perInitiatedByAddressMaxNumTransfers: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: firstIntervalStartTime,
+                    intervalLength: intervalLength,
+                },
+            },
+            approvalAmounts: {
+                overallApprovalAmount: 0n,
+                perFromAddressApprovalAmount: 0n,
+                perToAddressApprovalAmount: 0n,
+                perInitiatedByAddressApprovalAmount: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            merkleChallenges: [],
+            requireToEqualsInitiatedBy: false,
+            requireFromEqualsInitiatedBy: false,
         },
-        incrementedBalances: {
-          // We override the start balances to be the badge ids from the subscription approval
-          // This is to get the correct badge IDs and amounts. Times will be overridden by the recurring approval
-          startBalances: [{ amount: 1n, badgeIds: badgeIds, ownershipTimes: UintRangeArray.FullRanges() }],
-          incrementBadgeIdsBy: 0n,
-          incrementOwnershipTimesBy: 0n,
-          durationFromTimestamp: 0n,
-          allowOverrideTimestamp: false,
-
-          recurringOwnershipTimes: {
-            startTime: firstIntervalStartTime,
-            intervalLength: intervalLength,
-            //1 week in milliseconds
-            chargePeriodLength: chargePeriodLength
-          }
-        }
-      },
-      maxNumTransfers: {
-        overallMaxNumTransfers: 1n,
-        perToAddressMaxNumTransfers: 0n,
-        perFromAddressMaxNumTransfers: 0n,
-        perInitiatedByAddressMaxNumTransfers: 0n,
-        amountTrackerId: id,
-        resetTimeIntervals: {
-          startTime: firstIntervalStartTime,
-          intervalLength: intervalLength
-        }
-      },
-      approvalAmounts: {
-        overallApprovalAmount: 0n,
-        perFromAddressApprovalAmount: 0n,
-        perToAddressApprovalAmount: 0n,
-        perInitiatedByAddressApprovalAmount: 0n,
-        amountTrackerId: id,
-        resetTimeIntervals: {
-          startTime: 0n,
-          intervalLength: 0n
-        }
-      },
-      merkleChallenges: [],
-      requireToEqualsInitiatedBy: false,
-      requireFromEqualsInitiatedBy: false
-    },
-    details: {
-      ...subscriptionApproval.details,
-      name: t('Recurring_Approval', { ns: 'common' }),
-      description: t('recurring_approval_description', { ns: 'common' })
-    },
-    version: 0n
-  } as iUserIncomingApprovalWithDetails<bigint>;
+        details: {
+            ...subscriptionApproval.details,
+            name: t('Recurring_Approval', { ns: 'common' }),
+            description: t('recurring_approval_description', { ns: 'common' }),
+        },
+        version: 0n,
+    } as iUserIncomingApprovalWithDetails<bigint>;
 };
-
 ```
 
 
