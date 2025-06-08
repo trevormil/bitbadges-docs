@@ -2,13 +2,14 @@
 
 ```typescript
 export interface MerkleChallenge<T extends NumberType> {
-  root: string
-  expectedProofLength: T;
-  useCreatorAddressAsLeaf: boolean
-  maxUsesPerLeaf: T
-  uri: string
-  customData: string
-  challengeTrackerId: string
+    root: string;
+    expectedProofLength: T;
+    useCreatorAddressAsLeaf: boolean;
+    maxUsesPerLeaf: T;
+    uri: string;
+    customData: string;
+    challengeTrackerId: string;
+    leafSigner: string;
 }
 ```
 
@@ -19,7 +20,8 @@ export interface MerkleChallenge<T extends NumberType> {
    "maxOneUsePerLeaf": true,
    "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
    "customData": "",
-   "challengeTrackerId": "uniqueId"
+   "challengeTrackerId": "uniqueId",
+   "leafSigner": "0x"
 }
 </code></pre>
 
@@ -74,6 +76,21 @@ Example:
 
 See Predetermined Balances below for reserving specific leaf indices for specific badges / ownership times.
 
+**Leaf Signatures**
+
+Leaf signatures are a protection against man-in-the-middle attacks. For code-based merkle challenges, there is always a risk that the code is intercepted while the transaction is in the mempool, and the malicious actor can try to claim the badge with the intercepted code before the user can.
+
+If **leafSigner** is set, the leaf must be signed by the leaf signer. We currently only support leafSigner being an Ethereum address and signatures being ECDSA signatures.
+
+The scheme we currently use is as follows:
+signature = ETHSign(leaf + "-" + bitbadgesAddressOfInitiator)
+
+Then the user must provide the **leafSignature** in the **merkleProofs** field of the transfer transaction.
+
+Note: The bitbadgesAddressOfInitiator is the converted BitBadges address (bb1...) of the initiator of the transfer transaction. This also helps to tie a specific code to a specific BitBadges address to prevent other users from using and intercepting the same code.
+
+This is optional but strongly recommended for code-based merkle challenges.
+
 #### **Creating a Merkle Tree**
 
 We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
@@ -95,9 +112,13 @@ const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
 For whitelists, replace with this code.
 
 ```typescript
-addresses.push(...toAddresses.map(x => convertToBitBadgesAddress(x)));
+addresses.push(...toAddresses.map((x) => convertToBitBadgesAddress(x)));
 
-const addressesTree = new MerkleTree(addresses.map(x => SHA256(x)), SHA256, treeOptions)
+const addressesTree = new MerkleTree(
+    addresses.map((x) => SHA256(x)),
+    SHA256,
+    treeOptions
+);
 const addressesRoot = addressesTree.getRoot().toString('hex');
 ```
 
@@ -109,6 +130,8 @@ const leaf = isWhitelist ? SHA256(chain.bitbadgesAddress).toString() : SHA256(pa
 const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
 const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
 
+const leafSignature = '...';
+
 
 const codeProof = {
   aunts: proofObj ? proofObj.map((proof) => {
@@ -118,6 +141,7 @@ const codeProof = {
     }
   }) : [],
   leaf: isWhitelist ? '' : passwordCodeToSubmit,
+  leafSignature //if applicable
 }
 
 const txCosmosMsg: MsgTransferBadges<bigint> = {

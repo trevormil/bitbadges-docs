@@ -20,35 +20,9 @@ export interface PredeterminedBalances<T extends NumberType> {
 
 There are two ways to define the balances. Both can not be used together.
 
-* **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
-* ```json
-  "manualBalances": [
-    {
-      "amount": "1",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "1"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1691978400000",
-          "end": "1723514400000"
-        }
-      ]
-    },
-    {...},
-    {...},
-  ]
-  ```
-* **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer.  There are different approaches here (incompatible with each other).
-  * Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
-  * Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges.
-  * Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
-* ```json
-  "incrementedBalances": {
-    "startBalances": [
+-   **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
+-   ```json
+    "manualBalances": [
       {
         "amount": "1",
         "badgeIds": [
@@ -63,25 +37,53 @@ There are two ways to define the balances. Both can not be used together.
             "end": "1723514400000"
           }
         ]
+      },
+      {...},
+      {...},
+    ]
+    ```
+-   **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer. There are different approaches here (incompatible with each other).
+    -   Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
+    -   Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges precalculationOptions.
+    -   Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
+    -   Allowing Badge Override: If enabled, users can specify a custom badge ID in MsgTransferBadges precalculationOptions. This will override all the badge IDs in the starting balances to this specified badge ID. This is useful for collection offers. The specified badge IDs must only be a single badge ID and must be a valid badge ID in the collection.
+-   ```json
+    "incrementedBalances": {
+      "startBalances": [
+        {
+          "amount": "1",
+          "badgeIds": [
+            {
+              "start": "1",
+              "end": "1"
+            }
+          ],
+          "ownershipTimes": [
+            {
+              "start": "1691978400000",
+              "end": "1723514400000"
+            }
+          ]
+        }
+      ],
+      "incrementBadgeIdsBy": "1",
+      "incrementOwnershipTimesBy": "0",
+      "durationFromTimestamp": "0", // UNIX milliseconds
+      "allowOverrideTimestamp": false,
+      "allowOverrideWithAnyValidBadge": false,
+      "recurringOwnershipTimes": {
+        "startTime": "0",
+        "intervalLength": "0",
+        "chargePeriodLength": "0"
       }
-    ],
-    "incrementBadgeIdsBy": "1",
-    "incrementOwnershipTimesBy": "0",
-    "durationFromTimestamp": "0", // UNIX milliseconds
-    "allowOverrideTimestamp": false,
-    "recurringOwnershipTimes": {
-      "startTime": "0",
-      "intervalLength": "0",
-      "chargePeriodLength": "0"
     }
-  }
-  ```
+    ```
 
 ## **Precalculating Balances**
 
 Predetermined balances can quickly change, such as in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
 
-To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID.
+To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID. Additional override options can be specified in the **precalculationOptions** field as well.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
 </strong>    approvalId: string;
