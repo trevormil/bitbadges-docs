@@ -12,6 +12,7 @@
   * [Attestations](overview/learn/attestations.md)
   * [Applications (Points)](overview/learn/applications-points.md)
   * [Subscriptions](overview/learn/subscriptions.md)
+  * [Protocol Fee](overview/learn/protocol-fee.md)
   * [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
     * [Manager](overview/learn/badge-concepts/manager.md)
     * [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
