@@ -2,7 +2,7 @@
 
 BitBadges plans to execute a two-phased launch:
 
-### **Phase 1: Betanet**
+### **Phase 1: Betanet (Now - TBD)**
 
 Betanet is the initial phase of BitBadges upon launch. This is a phase where we plan to ship fast, gain feedback quickly, and iron out all bugs as quickly as possible in order to build the best product for you long term.
 
@@ -15,6 +15,8 @@ Once betanet is concluded and we feel ready, we will officially deploy a mainnet
 In mainnet, we will look to decentralize further, operate under a governance model, and see out our vision as a fully decentralized and indestructible protocol. Time of this phase is TBD but most likely, this will be started when the betanet faucet runs out.
 
 We will also look to migrate to being fully open-source where possible.
+
+Upon mainnet, $BADGE and $STAKE below will into one ($STAKE becomes $BADGE).
 
 ## **Credits ($BADGE vs $STAKE)**
 
