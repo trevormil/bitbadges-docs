@@ -10,6 +10,16 @@ Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution 
 
 Outsource the heavy lifting of authentication to us, allowing you to focus on your core utility. We aim to provide maximum flexibility in the design process.
 
+```
+NOTE: The QR codes flow has been deprecated.
+
+You may still use Sign In with BitBadges and generate a QR for your user on your own.
+
+We also have the peer-to-peer verification still enabled for on-the-fly QR verification.
+
+Simply replace any QR code flow with your own and use claims, the standard SIWBB, and other tools.
+```
+
 #### OAuth Endpoints
 
 * **Authorization:** `https://bitbadges.io/siwbb/authorize?your_params`
