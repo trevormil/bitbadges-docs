@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jun  9 13:14:21 UTC 2025
+Generated on Tue Jun 10 22:48:27 UTC 2025
 
 
 
@@ -3812,6 +3812,7 @@ And much more!
       * [Predetermined Balances](for-developers/badges-advanced/balances-transfers/approval-criteria/predetermined-balances.md)
       * [Requires](for-developers/badges-advanced/balances-transfers/approval-criteria/requires.md)
       * [Merkle Challenges](for-developers/badges-advanced/balances-transfers/approval-criteria/merkle-challenges.md)
+      * [Badge Ownership](for-developers/badges-advanced/balances-transfers/approval-criteria/badge-ownership.md)
       * [Extending the Approval (Advanced)](for-developers/badges-advanced/balances-transfers/approval-criteria/linking-trackers-advanced.md)
   * [Self-Hosted Balances](for-developers/badges-advanced/self-hosted-balances/README.md)
     * [Overview](for-developers/badges-advanced/self-hosted-balances/overview.md)
@@ -4860,6 +4861,35 @@ export interface iResetTimeIntervals<T extends NumberType> {
   intervalLength: T;
 }
 
+```
+
+
+## File: ./for-developers/badges-advanced/balances-transfers/approval-criteria/badge-ownership.md
+
+# Badge Ownership
+
+Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned in order to be approved. This is checked on-chain.
+
+For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
+
+Note that alternatively, you may choose to check / enforce this off-chain as well via BitBadges claims.
+
+```typescript
+export interface MustOwnBadges<T extends NumberType> {
+  collectionId: T;
+
+  amountRange: UintRange<T>; //min/max amount expected to be owned
+  ownershipTimes: UintRange<T>[];
+  badgeIds: UintRange<T>[];
+  
+  //override ownershipTimes with the exact block millisecond at execution
+  //Ex: [{start: 12345, end: 12345}]
+  overrideWithCurrentTime: boolean;
+  
+  //if true, must meet ownership requirements for ALL badges
+  //if false, must meet ownership requirements for ONE badge
+  mustSatisfyForAllAssets: boolean; 
+}
 ```
 
 
