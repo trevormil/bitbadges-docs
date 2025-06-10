@@ -181,6 +181,7 @@
       * [Predetermined Balances](for-developers/badges-advanced/balances-transfers/approval-criteria/predetermined-balances.md)
       * [Requires](for-developers/badges-advanced/balances-transfers/approval-criteria/requires.md)
       * [Merkle Challenges](for-developers/badges-advanced/balances-transfers/approval-criteria/merkle-challenges.md)
+      * [Badge Ownership](for-developers/badges-advanced/balances-transfers/approval-criteria/badge-ownership.md)
       * [Extending the Approval (Advanced)](for-developers/badges-advanced/balances-transfers/approval-criteria/linking-trackers-advanced.md)
   * [Self-Hosted Balances](for-developers/badges-advanced/self-hosted-balances/README.md)
     * [Overview](for-developers/badges-advanced/self-hosted-balances/overview.md)
