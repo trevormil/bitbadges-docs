@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Jun 17 12:35:56 UTC 2025
+Generated on Fri Jun 20 18:12:49 UTC 2025
 
 
 
@@ -3846,6 +3846,7 @@ And much more!
     * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
   * [Create a Smart Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/run-an-ai-agent.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
@@ -9554,6 +9555,17 @@ Once you have the generated transaction, you now need to determine how you want 
 
 1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
 2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/run-an-ai-agent.md
+
+# Run an AI Agent
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-ai" %}
+
+We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
+
+This implements all of the signing functionality for a managed Ethereum address (the agent's address). You may also use this as a reference implementation.&#x20;
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
