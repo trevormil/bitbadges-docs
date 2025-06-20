@@ -4,4 +4,4 @@
 
 We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
 
-This implements all of the signing functionality for a managed Ethereum address (the agent's address). You may also use this as a reference implementation.&#x20;
+This implements all of the signing functionality for a managed Ethereum address (the agent's address). You can interact with it through a chatbot interface, or you can extend / customize for more functionality. This is a recommended place to start if you are just experimenting.
