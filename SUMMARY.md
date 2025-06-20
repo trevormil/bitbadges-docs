@@ -215,6 +215,7 @@
     * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
   * [Create a Smart Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/run-an-ai-agent.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
