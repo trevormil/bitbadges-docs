@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Jun 20 18:12:49 UTC 2025
+Generated on Fri Jun 20 18:14:56 UTC 2025
 
 
 
@@ -9565,7 +9565,7 @@ Once you have the generated transaction, you now need to determine how you want 
 
 We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
 
-This implements all of the signing functionality for a managed Ethereum address (the agent's address). You may also use this as a reference implementation.&#x20;
+This implements all of the signing functionality for a managed Ethereum address (the agent's address). You can interact with it through a chatbot interface, or you can extend / customize for more functionality. This is a recommended place to start if you are just experimenting.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
