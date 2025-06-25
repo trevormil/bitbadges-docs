@@ -82,7 +82,7 @@ Leaf signatures are a protection against man-in-the-middle attacks. For code-bas
 
 If **leafSigner** is set, the leaf must be signed by the leaf signer. We currently only support leafSigner being an Ethereum address and signatures being ECDSA signatures.
 
-The scheme we currently use is as follows:
+The scheme we currently use is as follows:\
 signature = ETHSign(leaf + "-" + bitbadgesAddressOfInitiator)
 
 Then the user must provide the **leafSignature** in the **merkleProofs** field of the transfer transaction.

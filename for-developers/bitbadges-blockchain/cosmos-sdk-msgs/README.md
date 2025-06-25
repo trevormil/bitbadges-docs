@@ -41,7 +41,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](../create-a-wasm-contract.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](broken-reference) for tutorial.
 
 **x/maps**
 
