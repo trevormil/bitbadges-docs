@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Jun 25 15:07:38 UTC 2025
+Generated on Sun Jun 29 22:44:26 UTC 2025
 
 
 
@@ -3673,6 +3673,7 @@ And much more!
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
@@ -10866,6 +10867,25 @@ If you ever end up with something like the following, this is also the proto def
 ```typescript
 import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/badges";
 ```
+
+
+## File: ./for-developers/bitbadges-x-ai.md
+
+# 🪄 BitBadges x AI
+
+Below, we provide some resources that may be helpful for developing with AI
+
+[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
+
+[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml)
+
+[Full Documentation .txt](../for-llms.txt)
+
+[BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
+
+
+
+If there is anything else we can do to make development easier, let us know!
 
 
 ## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
