@@ -42,6 +42,7 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
