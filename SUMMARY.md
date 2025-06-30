@@ -42,7 +42,10 @@
 ## ⌨️ For Developers
 
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
-* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai.md)
+* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
+  * [Overview](for-developers/bitbadges-x-ai/overview.md)
+  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
+    * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
