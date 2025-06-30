@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jun 29 22:44:26 UTC 2025
+Generated on Mon Jun 30 11:55:59 UTC 2025
 
 
 
@@ -10873,7 +10873,7 @@ import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/badges";
 
 # 🪄 BitBadges x AI
 
-Below, we provide some resources that may be helpful for developing with AI
+Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
 
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
@@ -10885,7 +10885,12 @@ Below, we provide some resources that may be helpful for developing with AI
 
 
 
-If there is anything else we can do to make development easier, let us know!
+AI is already incredibly powerful for interacting with BitBadges:
+
+* Distribute claim codes or add users to a dynamic user store to gate claims
+* Use MCP to check any criteria on your own
+* Offer any custom-built utility with AI and checking the BitBadges API
+* And much more!
 
 
 ## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
