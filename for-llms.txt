@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jun 30 12:25:44 UTC 2025
+Generated on Mon Jun 30 12:41:18 UTC 2025
 
 
 
@@ -3677,7 +3677,6 @@ And much more!
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
   * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
     * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
-    * [Page](for-developers/bitbadges-x-ai/prompts/page.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
@@ -10887,11 +10886,15 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
-[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml)
+[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
 
 [Full Documentation .txt](../../for-llms.txt)
 
 [BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
+
+[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+
+
 
 
 
@@ -10906,12 +10909,6 @@ AI is already incredibly powerful for interacting with BitBadges:
 ## File: ./for-developers/bitbadges-x-ai/prompts/README.md
 
 # Prompts
-
-
-
-## File: ./for-developers/bitbadges-x-ai/prompts/page.md
-
-# Page
 
 
 
