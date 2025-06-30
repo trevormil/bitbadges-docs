@@ -46,6 +46,7 @@
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
   * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
     * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+    * [Page](for-developers/bitbadges-x-ai/prompts/page.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)

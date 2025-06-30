@@ -156,6 +156,12 @@ const txContext = {
 
 #### Create Transaction Messages
 
+Refer to the proto definitions for all transaction types available. Standard Cosmos messages are also supported.
+
+[https://github.com/BitBadges/bitbadgeschain/tree/master/proto](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
+
+[https://bitbadges.github.io/bitbadgesjs/modules/proto.html](https://bitbadges.github.io/bitbadgesjs/modules/proto.html)
+
 ```javascript
 import { badges } from 'bitbadgesjs-sdk';
 
