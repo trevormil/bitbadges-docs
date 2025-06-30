@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jun 30 12:19:14 UTC 2025
+Generated on Mon Jun 30 12:25:44 UTC 2025
 
 
 
@@ -3677,6 +3677,7 @@ And much more!
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
   * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
     * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+    * [Page](for-developers/bitbadges-x-ai/prompts/page.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
@@ -10908,6 +10909,12 @@ AI is already incredibly powerful for interacting with BitBadges:
 
 
 
+## File: ./for-developers/bitbadges-x-ai/prompts/page.md
+
+# Page
+
+
+
 ## File: ./for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md
 
 # Signing a Transaction
@@ -11067,6 +11074,12 @@ const txContext = {
 ```
 
 #### Create Transaction Messages
+
+Refer to the proto definitions for all transaction types available. Standard Cosmos messages are also supported.
+
+[https://github.com/BitBadges/bitbadgeschain/tree/master/proto](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
+
+[https://bitbadges.github.io/bitbadgesjs/modules/proto.html](https://bitbadges.github.io/bitbadgesjs/modules/proto.html)
 
 ```javascript
 import { badges } from 'bitbadgesjs-sdk';
