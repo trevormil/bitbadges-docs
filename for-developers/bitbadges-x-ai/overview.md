@@ -10,7 +10,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 [BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
 
-[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)
 
 
 
