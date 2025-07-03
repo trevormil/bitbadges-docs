@@ -221,7 +221,7 @@ Setting up your node infrastructure correctly and with best practices is crucial
 
 ## Running a Validator
 
-As explained in the [Launch Phases](../../../overview/launch-phases.md) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+As explained in the [Launch Phases](broken-reference) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
 
 **Setup - Validator Keys**
 

@@ -4,7 +4,7 @@ The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101b
 
 The delegated part is because token holders can delegate their stake to validators and split the earned, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
 
-For the BitBadges blockchain, we use a separate denomination for staking (i.e. $BADGE credits are not used for staking). It will be the "ustake" denom behind the scenes ($STAKE). As explained in the [Launch Phases](launch-phases.md) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+For the BitBadges blockchain, we use a separate denomination for staking (i.e. $BADGE credits are not used for staking). It will be the "ustake" denom behind the scenes ($STAKE). As explained in the [Launch Phases](broken-reference) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
 
 If you want to become a validator by running a validator node, see [here](../for-developers/bitbadges-blockchain/run-a-node/).&#x20;
 
