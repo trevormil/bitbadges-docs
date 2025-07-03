@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jun 30 13:07:48 UTC 2025
+Generated on Thu Jul  3 14:35:08 UTC 2025
 
 
 
@@ -3660,7 +3660,6 @@ And much more!
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
-* [🪙 Launch Phases](overview/launch-phases.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
   * [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
   * [MetaMask Snap](overview/ecosystem/metamask-snap.md)
@@ -10142,7 +10141,7 @@ Setting up your node infrastructure correctly and with best practices is crucial
 
 ## Running a Validator
 
-As explained in the [Launch Phases](../../../overview/launch-phases.md) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+As explained in the [Launch Phases](broken-reference) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
 
 **Setup - Validator Keys**
 
@@ -15848,15 +15847,6 @@ A distinctive feature of BitBadges is the ability for issuers to **selectively d
 For data integrity and verification purposes, credentials are signed and stored off-chain in the holder's BitBadges account. Issuers have the option to anchor these credentials on-chain to commit to the data publicly and verify its issuance time, although this step is optional and not always necessary.
 
 
-## File: ./overview/launch-phases.md
-
-# 🪙 Launch Phases
-
-BitBadges plans to execute a two-phased launch:
-
-<figure><img src="../.gitbook/assets/image (227).png" alt=""><figcaption></figcaption></figure>
-
-
 ## File: ./overview/learn/README.md
 
 # 👨‍💻 Learn the Basics
@@ -16527,7 +16517,7 @@ The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101b
 
 The delegated part is because token holders can delegate their stake to validators and split the earned, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
 
-For the BitBadges blockchain, we use a separate denomination for staking (i.e. $BADGE credits are not used for staking). It will be the "ustake" denom behind the scenes ($STAKE). As explained in the [Launch Phases](launch-phases.md) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+For the BitBadges blockchain, we use a separate denomination for staking (i.e. $BADGE credits are not used for staking). It will be the "ustake" denom behind the scenes ($STAKE). As explained in the [Launch Phases](broken-reference) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
 
 If you want to become a validator by running a validator node, see [here](../for-developers/bitbadges-blockchain/run-a-node/).&#x20;
 
