@@ -211,6 +211,7 @@
   * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
   * [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
   * [Staking / Validators](overview/staking-usdbadge.md)
+  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
     * [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
     * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
