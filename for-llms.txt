@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 22:43:58 UTC 2025
+Generated on Sun Jul 13 22:45:01 UTC 2025
 
 
 
@@ -3661,7 +3661,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Offline Verification](for-developers/sign-in-with-bitbadges/verification/offline-verification.md)
     * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
   * [Blockin Docs](https://blockin.gitbook.io/blockin)
-* [🏗️ BitBadges Claims](overview/claim-builder/README.md)
+* [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)
     * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
@@ -10920,17 +10920,22 @@ BitBadges is proud to offer no-code / low-code flows for all our major services.
 
 We strongly recommend, if you have not already, to explore the claim tester and other creation options in-site. Many of your questions should be answered by the interface and is much easier to understand than a bunch of long text here in this documentation. Just go explore and experiment first.
 
-Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).&#x20;
+Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).
 
 ## Gate Any Service In 2 Steps
 
 Any service can be gated by ANY criteria simply in just 2 steps.
 
 1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
-
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
+
+## Quick Start - Badges
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 ## Quick Start - Claims
 
@@ -11240,7 +11245,7 @@ However, if your app already uses wallets, you can still use SIWBB.  The flow is
 
 ## File: ./overview/claim-builder/README.md
 
-# 🏗️ BitBadges Claims
+# 🎁 BitBadges Claims
 
 
 
@@ -12234,7 +12239,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
-This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+This section is a knowledge dump for how badges operate behind the scenes. For many use cases, you may not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
 
 ```typescript
 const balanceInfo  = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
