@@ -305,7 +305,8 @@
     * [Overview](x-badges/concepts/permissions/overview.md)
     * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
     * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
-    * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)* [Messages](x-badges/messages/README.md)
+    * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
+* [Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
@@ -315,7 +316,8 @@
   * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)* [Queries](x-badges/queries/README.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+* [Queries](x-badges/queries/README.md)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
@@ -324,4 +326,5 @@
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
+
 
