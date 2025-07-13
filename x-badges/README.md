@@ -13,10 +13,6 @@ console.log(res);
 const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 ```
 
-{% content-ref url="../bitbadges-api" %}
-[bitbadges-api](../bitbadges-api)
-{% endcontent-ref %}
-
 ## Table of Contents
 
 1. [Introduction](./introduction.md) - Overview and key concepts

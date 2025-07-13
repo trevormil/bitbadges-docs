@@ -224,6 +224,10 @@
 
 ## 🏗️ x/badges Module
 
+* [Overview](x-badges/README.md)
+* [Events](x-badges/events.md)
+* [Examples](x-badges/examples.md)
+* [State](x-badges/state.md)
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -283,9 +287,5 @@
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-* [Overview](x-badges/README.md)
-* [Events](x-badges/events.md)
-* [Examples](x-badges/examples.md)
-* [State](x-badges/state.md)
 
 
