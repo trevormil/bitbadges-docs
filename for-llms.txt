@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 18:21:54 UTC 2025
+Generated on Sun Jul 13 18:23:04 UTC 2025
 
 
 
@@ -3894,9 +3894,9 @@ And much more!
 
 ## 🏗️ x/badges Module
 
+* [Overview](x-badges/README.md)
 * [Events](x-badges/events.md)
 * [Examples](x-badges/examples.md)
-* [Overview](x-badges/README.md)
 * [State](x-badges/state.md)
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
