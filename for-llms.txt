@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 22:58:24 UTC 2025
+Generated on Sun Jul 13 23:01:06 UTC 2025
 
 
 
@@ -4425,27 +4425,15 @@ Cosmos Chain ID (Testnet) - bitbadges-2
 
 **RPCs**
 
-[http://node.bitbadges.io:26657](http://node.bitbadges.io:26657)
+[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
 
 Tendermint Node ID: 2703c1304a70186372aa726a762d60da94c29ffe
 
 See genesis.json in source code repository for genesis file. See [here](htttps://github.com/bitbadges/bitbadgeschain) for source code repository.
 
-If you are looking for the browser compatible version, you may have to use the IP address directly as the domain name does not support HTTPS but browsers auto-upgrade to HTTPS. Or, if you need an HTTPS connection, you can use the reverse proxy URL.
-
-http://134.122.12.165:26657 = http://node.bitbadges.io:26657
-
-https://node.bitbadges.io/rpc = http://node.bitbadges.io:26657
-
 **Blockchain Node REST APIs**
 
-[http://node.bitbadges.io:1317](http://node.bitbadges.io:1317)
-
-If you are looking for the browser compatible version, you may have to use the IP address directly as the domain name does not support HTTPS but browsers auto-upgrade to HTTPS. Or, if you need an HTTPS connection, you can use the reverse proxy URL.
-
-http://134.122.12.165:1317 = http://node.bitbadges.io:1317
-
-https://node.bitbadges.io/api = http://node.bitbadges.io:1317
+[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
 
 **State Snapshots (Unofficial)**
 
@@ -5095,7 +5083,7 @@ export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
 You can replace the URL below with any valid BitBadges blockchain node.
 
 ```typescript
-`http://URL:1317${generateEndpointBroadcast()}`
+`http://URL:1317${generateEndpointBroadcast()}`;
 ```
 
 Or, you can use the BitBadges API to broadcast.
@@ -5107,7 +5095,7 @@ https://api.bitbadges.io/api/v0/broadcast
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
 </strong></code></pre>
 
-This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+This will give you a response immediately. You should then use the tx_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
@@ -5147,33 +5135,37 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
+Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API_URL, not the BitBadges API. You can also view it on explorers.
 
-Use [http://node.bitbadges.io:1317](http://node.bitbadges.io:1317) or one of the aliases below for the BitBadges maintained node.
-
-http://134.122.12.165:1317
-
-https://node.bitbadges.io/api
+Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 
 ```typescript
 const txHash = res.data.tx_response.txhash;
 const code = res.data.tx_response.code;
 if (code !== undefined && code !== 0) {
-  throw new Error(`Error broadcasting transaction: Code ${code}: ${JSON.stringify(res.data.tx_response, null, 2)}`);
+    throw new Error(
+        `Error broadcasting transaction: Code ${code}: ${JSON.stringify(
+            res.data.tx_response,
+            null,
+            2
+        )}`
+    );
 }
 
 let fetched = false;
 while (!fetched) {
-  try {
-    const res = await axios.get(`${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`);
-    fetched = true;
+    try {
+        const res = await axios.get(
+            `${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`
+        );
+        fetched = true;
 
-    return res;
-  } catch (e) {
-    // wait 1 sec
-    console.log('Waiting 1 sec to fetch tx');
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
+        return res;
+    } catch (e) {
+        // wait 1 sec
+        console.log('Waiting 1 sec to fetch tx');
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
 }
 
 return res;
@@ -5731,12 +5723,12 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 **Chain IDs:** When a chain ID is required, use the following:
 
-* "bitbadges-1" for the mainnet / betanet chain ID
-* "bitbadges-2" for the testnet chain ID
+-   "bitbadges-1" for the mainnet / betanet chain ID
+-   "bitbadges-2" for the testnet chain ID
 
 **Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
 
-**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
+**BitBadges Public RPCs:** https://rpc.bitbadges.io
 
 Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
 
@@ -6913,7 +6905,7 @@ const result = await signingClient.sendTokens(
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
-const rpcUrl = "https://node.bitbadges.io/rpc";
+const rpcUrl = "https://rpc.bitbadges.io";
 const client = await SigningStargateClient.connect(rpcUrl);
 
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
@@ -6931,7 +6923,7 @@ console.log('Sequence:', account.sequence);
 
 ```javascript
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
-const restUrl = `https://node.bitbadges.io/api/cosmos/auth/v1beta1/accounts/${bitbadgesAddress}`;
+const restUrl = `https://lcd.bitbadges.io/cosmos/auth/v1beta1/accounts/${bitbadgesAddress}`;
 
 const response = await fetch(restUrl);
 const data = await response.json();
@@ -7134,7 +7126,7 @@ const result = await response.json();
 console.log('Transaction hash:', result.txhash);
 
 // Option B: Using Cosmos RPC directly
-const rpcBroadcastUrl = "https://node.bitbadges.io/rpc/broadcast_tx_sync";
+const rpcBroadcastUrl = "https://rpc.bitbadges.io/broadcast_tx_sync";
 const rpcResponse = await fetch(rpcBroadcastUrl, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
@@ -9631,7 +9623,7 @@ BitBadges supports multi-chain accounts, allowing users from Ethereum, Bitcoin, 
 
 ## File: ./for-developers/concepts/accounts-technical.md
 
-# 👥 Accounts (Technical)
+# Accounts (Technical)
 
 ## Pre-Readings
 
@@ -12150,15 +12142,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
-* Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-  * Buying $BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
+-   Some features available in production may not be accessible in testnet:
+    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+    -   Buying $BADGE credits
+    -   Push notifications
+    -   And more
+-   Some restrictions may be more relaxed
+    -   No API keys required
+    -   Faucet may be more lenient
+-   Performance also may differ from the production environment
 
 ### Links
 
@@ -12168,9 +12160,9 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
-* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
-* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
-* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
+-   RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
+-   REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
+-   Direct Node Access: `http://138.197.10.8:YOUR_PORT`
 
 ### Feedback
 
