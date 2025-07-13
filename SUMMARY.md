@@ -263,9 +263,9 @@
 
 ## 🏗️ x/badges Module
 
+* [Overview](x-badges/README.md)
 * [Events](x-badges/events.md)
 * [Examples](x-badges/examples.md)
-* [Overview](x-badges/README.md)
 * [State](x-badges/state.md)
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
