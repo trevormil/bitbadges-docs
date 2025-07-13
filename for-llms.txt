@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 17:54:34 UTC 2025
+Generated on Sun Jul 13 17:55:51 UTC 2025
 
 
 
@@ -3930,8 +3930,7 @@ And much more!
     * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
     * [Requires](x-badges/concepts/approval-criteria/requires.md)
     * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-    * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)  * [Permissions](x-badges/concepts/permissions/README.md)
     * [Action Permission](x-badges/concepts/permissions/action-permission.md)
     * [Badge IDs Action Permission](x-badges/concepts/permissions/balances-action-permission.md)
     * [Overview](x-badges/concepts/permissions/overview.md)
