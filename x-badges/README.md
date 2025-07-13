@@ -4,7 +4,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Overview](./overview.md) - Introduction and key concepts
+1. [Introduction](./introduction.md) - Overview and key concepts
 2. [Concepts](./02-concepts.md) - Core data structures and business logic
 3. [State](./state.md) - State management and storage patterns
 4. [Messages](./messages/) - Transaction messages and handlers
