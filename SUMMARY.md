@@ -1,7 +1,5 @@
 # Table of contents
-
 ## Overview
-
 * [👋 BitBadges Overview](README.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
@@ -37,9 +35,7 @@
   * [Blockin](overview/ecosystem/blockin.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
-
 * [🚴‍♂️ Getting Started](for-developers/getting-started.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
