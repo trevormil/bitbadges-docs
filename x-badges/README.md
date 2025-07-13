@@ -2,7 +2,7 @@
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
-This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+This section is a knowledge dump for how badges operate behind the scenes. For many use cases, you may not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
 
 ```typescript
 const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
