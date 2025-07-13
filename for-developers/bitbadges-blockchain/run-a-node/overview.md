@@ -8,12 +8,12 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 **Chain IDs:** When a chain ID is required, use the following:
 
-* "bitbadges-1" for the mainnet / betanet chain ID
-* "bitbadges-2" for the testnet chain ID
+-   "bitbadges-1" for the mainnet / betanet chain ID
+-   "bitbadges-2" for the testnet chain ID
 
 **Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
 
-**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
+**BitBadges Public RPCs:** https://rpc.bitbadges.io
 
 Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
 

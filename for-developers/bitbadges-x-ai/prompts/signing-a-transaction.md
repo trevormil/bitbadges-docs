@@ -92,7 +92,7 @@ const result = await signingClient.sendTokens(
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
-const rpcUrl = "https://node.bitbadges.io/rpc";
+const rpcUrl = "https://rpc.bitbadges.io";
 const client = await SigningStargateClient.connect(rpcUrl);
 
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
@@ -110,7 +110,7 @@ console.log('Sequence:', account.sequence);
 
 ```javascript
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
-const restUrl = `https://node.bitbadges.io/api/cosmos/auth/v1beta1/accounts/${bitbadgesAddress}`;
+const restUrl = `https://lcd.bitbadges.io/cosmos/auth/v1beta1/accounts/${bitbadgesAddress}`;
 
 const response = await fetch(restUrl);
 const data = await response.json();
@@ -313,7 +313,7 @@ const result = await response.json();
 console.log('Transaction hash:', result.txhash);
 
 // Option B: Using Cosmos RPC directly
-const rpcBroadcastUrl = "https://node.bitbadges.io/rpc/broadcast_tx_sync";
+const rpcBroadcastUrl = "https://rpc.bitbadges.io/broadcast_tx_sync";
 const rpcResponse = await fetch(rpcBroadcastUrl, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },

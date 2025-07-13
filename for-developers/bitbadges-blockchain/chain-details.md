@@ -10,27 +10,15 @@ Cosmos Chain ID (Testnet) - bitbadges-2
 
 **RPCs**
 
-[http://node.bitbadges.io:26657](http://node.bitbadges.io:26657)
+[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
 
 Tendermint Node ID: 2703c1304a70186372aa726a762d60da94c29ffe
 
 See genesis.json in source code repository for genesis file. See [here](htttps://github.com/bitbadges/bitbadgeschain) for source code repository.
 
-If you are looking for the browser compatible version, you may have to use the IP address directly as the domain name does not support HTTPS but browsers auto-upgrade to HTTPS. Or, if you need an HTTPS connection, you can use the reverse proxy URL.
-
-http://134.122.12.165:26657 = http://node.bitbadges.io:26657
-
-https://node.bitbadges.io/rpc = http://node.bitbadges.io:26657
-
 **Blockchain Node REST APIs**
 
-[http://node.bitbadges.io:1317](http://node.bitbadges.io:1317)
-
-If you are looking for the browser compatible version, you may have to use the IP address directly as the domain name does not support HTTPS but browsers auto-upgrade to HTTPS. Or, if you need an HTTPS connection, you can use the reverse proxy URL.
-
-http://134.122.12.165:1317 = http://node.bitbadges.io:1317
-
-https://node.bitbadges.io/api = http://node.bitbadges.io:1317
+[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
 
 **State Snapshots (Unofficial)**
 
