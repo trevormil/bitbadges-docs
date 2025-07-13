@@ -1,2 +1,0 @@
-# 🌟 Badges - Advanced
-

@@ -7,8 +7,6 @@
 > **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
 >
 > Get creative. You can gate URLs, Discords, and integrate with many of your favorite tools without a single line of code!
->
-> **Video Tutorial Series** Check out our three intro to development video tutorial courses ([Intro to BitBadges](https://www.udemy.com/course/multichain-dapps/learn/), [The BitBadges Token Standard](https://www.udemy.com/course/multichain/learn/lecture/46271653#overview), and [Developing MultiChain Applications](https://www.udemy.com/course/crosschain-dapps/learn/lecture/46271733#overview)).
 
 ## Explore First, Read Later
 
