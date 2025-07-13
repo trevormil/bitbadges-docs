@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 18:45:15 UTC 2025
+Generated on Sun Jul 13 19:04:54 UTC 2025
 
 
 
@@ -3819,13 +3819,6 @@ And much more!
         -   [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
             -   [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
         -   [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
-            -   [MsgCreateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreatecollection.md)
-            -   [MsgUpdateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdatecollection.md)
-            -   [MsgDeleteCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgdeletecollection.md)
-            -   [MsgCreateAddressLists](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md)
-            -   [MsgTransferBadges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)
-            -   [MsgUpdateUserApprovals](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md)
-            -   [MsgUniversalUpdateCollection](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md)
         -   [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
             -   [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
             -   [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
@@ -12436,7 +12429,7 @@ Each concept is documented in its own file for better organization and easier na
 -   **[Transferability & Approvals](transferability-approvals.md)** - Overview of the three-tier approval system for badge transfers
 -   **[Approval Criteria](approval-criteria/)** - Detailed approval criteria and conditions for badge transfers
 -   **[Address Lists](address-lists.md)** - Reusable collections of addresses for approval configurations
--   **[Permissions](permissions/)** - Granular control over collection management operations
+-   **[Permissions](permissions/README.md)** - Granular control over collection management operations
 -   **[Standards](standards.md)** - Generic framework for defining collection behavior and interpretation guidelines
 -   **[Time Fields](time-fields.md)** - Understanding the different time-related fields used throughout BitBadges
 -   **[Custom Data](custom-data.md)** - Generic string fields for storing arbitrary application-specific data
@@ -16551,523 +16544,234 @@ Typically, the desired functionality falls into one of the following categories:
 
 # Events
 
-This document describes the event system used by the badges module for tracking operations, state changes, and integration with external systems.
+The badges module emits events for all message operations to enable blockchain monitoring and external application integration.
 
-## Table of Contents
+## Event Categories
 
-- [Event System Overview](#event-system-overview)
-- [Standard Events](#standard-events)
-- [Indexer Events](#indexer-events)
-- [Event Attributes](#event-attributes)
-- [Event Patterns](#event-patterns)
-- [Integration Examples](#integration-examples)
+### Standard Message Events
+All message handlers emit `sdk.EventTypeMessage` events with message-specific attributes.
 
-## Event System Overview
+### Indexer Events  
+Duplicate events with type "indexer" for external application consumption.
 
-The badges module implements a dual-event system that provides both standard Cosmos SDK events for blockchain monitoring and specialized indexer events for external application integration.
+### Transfer Events
+Detailed events for transfer operations including approval usage and challenge tracking.
 
-### Event Categories
+### IBC Events
+Events for cross-chain operations with acknowledgment handling.
 
-1. **Standard Events**: Follow Cosmos SDK conventions for blockchain monitoring
-2. **Indexer Events**: Optimized for external indexing and application integration
-3. **IBC Events**: For cross-chain operation tracking
+## Standard Message Events
 
-### Event Emission Pattern
-
-```go
-// Standard pattern for all message handlers
-func (k msgServer) MessageHandler(goCtx context.Context, msg *types.Message) (*types.MessageResponse, error) {
-    ctx := sdk.UnwrapSDKContext(goCtx)
-    
-    // Execute business logic
-    result, err := k.HandleMessage(ctx, msg)
-    if err != nil {
-        return nil, err
-    }
-    
-    // Emit standard event
-    ctx.EventManager().EmitEvent(
-        sdk.NewEvent(
-            types.TypeMsgMessageName,
-            sdk.NewAttribute(types.AttributeKeyCreator, msg.Creator),
-            // ... other attributes
-        ),
-    )
-    
-    // Emit indexer event
-    ctx.EventManager().EmitEvent(
-        sdk.NewEvent(
-            "message",
-            sdk.NewAttribute("module", "badges"),
-            sdk.NewAttribute("sender", msg.Creator),
-            sdk.NewAttribute("msg_type", types.TypeMsgMessageName),
-        ),
-    )
-    
-    return &types.MessageResponse{}, nil
-}
-```
-
-## Standard Events
-
-Standard events follow Cosmos SDK conventions and are emitted for all message types.
-
-### Collection Events
+### Collection Management
 
 #### CreateCollection
-
-```go
-Event Type: "create_collection"
-Attributes:
-  - collection_id: string (collection ID)
-  - creator: string (creator address)
-  - balance_type: string (balance tracking type)
 ```
-
-**Example:**
-```json
-{
-  "type": "create_collection",
-  "attributes": [
-    {"key": "collection_id", "value": "1"},
-    {"key": "creator", "value": "bb1abc123..."},
-    {"key": "balance_type", "value": "Standard"}
-  ]
-}
+Type: "message"
+Attributes:
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "create_collection"
+  - msg: string (JSON-encoded message)
 ```
 
 #### UpdateCollection
-
-```go
-Event Type: "update_collection"
+```
+Type: "message"
 Attributes:
-  - collection_id: string (collection ID)
-  - creator: string (updater address)
-  - updated_fields: string (comma-separated list of updated fields)
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "update_collection"
+  - msg: string (JSON-encoded message)
+```
+
+#### UniversalUpdateCollection
+```
+Type: "message"
+Attributes:
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "universal_update_collection"
+  - msg: string (JSON-encoded message)
 ```
 
 #### DeleteCollection
-
-```go
-Event Type: "delete_collection"  
+```
+Type: "message"
 Attributes:
-  - collection_id: string (deleted collection ID)
-  - creator: string (deleter address)
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "delete_collection"
+  - msg: string (JSON-encoded message)
 ```
 
-### Transfer Events
+### Badge Transfers
 
 #### TransferBadges
-
-```go
-Event Type: "transfer_badges"
+```
+Type: "message"
 Attributes:
-  - collection_id: string (collection ID)
-  - creator: string (transfer initiator)
-  - num_transfers: string (number of individual transfers)
-  - total_amount: string (total badge amount transferred)
+  - module: "badges"
+  - sender: string (initiator address)
+  - action: "transfer_badges"
+  - msg: string (JSON-encoded message)
+  - transfer: string (JSON transfer details)
+  - from: string (sender address)
+  - to: string (recipient address)
+  - initiatedBy: string (initiator address)
+  - coinTransfers: string (JSON coin transfer details)
+  - approvalsUsed: string (JSON approval usage details)
+  - balances: string (JSON balance details)
 ```
 
-**Example:**
-```json
-{
-  "type": "transfer_badges",
-  "attributes": [
-    {"key": "collection_id", "value": "1"},
-    {"key": "creator", "value": "bb1abc123..."},
-    {"key": "num_transfers", "value": "3"},
-    {"key": "total_amount", "value": "150"}
-  ]
-}
-```
-
-### Approval Events
+### User Approvals
 
 #### UpdateUserApprovals
-
-```go
-Event Type: "update_user_approvals"
+```
+Type: "message"
 Attributes:
-  - collection_id: string (collection ID)
-  - creator: string (user address)
-  - updated_outgoing: string ("true"/"false")
-  - updated_incoming: string ("true"/"false")
-  - updated_auto_approve: string ("true"/"false")
+  - module: "badges"
+  - sender: string (user address)
+  - action: "update_user_approvals"
+  - msg: string (JSON-encoded message)
 ```
 
-### Address List Events
+### Address Lists
 
 #### CreateAddressLists
-
-```go
-Event Type: "create_address_lists"
+```
+Type: "message"
 Attributes:
-  - creator: string (creator address)
-  - num_lists: string (number of lists created)
-  - list_ids: string (comma-separated list IDs)
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "create_address_lists"
+  - msg: string (JSON-encoded message)
 ```
 
-### Dynamic Store Events
+### Dynamic Stores
 
 #### CreateDynamicStore
-
-```go
-Event Type: "create_dynamic_store"
+```
+Type: "message"
 Attributes:
-  - store_id: string (store ID)
-  - creator: string (creator address)
-  - default_value: string ("true"/"false")
+  - module: "badges"
+  - sender: string (creator address)
+  - action: "create_dynamic_store"
+  - store_id: string
+  - msg: string (JSON-encoded message)
 ```
 
 #### UpdateDynamicStore
-
-```go
-Event Type: "update_dynamic_store"
+```
+Type: "message"
 Attributes:
-  - store_id: string (store ID)
-  - creator: string (updater address)
-  - new_default_value: string ("true"/"false")
+  - module: "badges"
+  - sender: string (updater address)
+  - action: "update_dynamic_store"
+  - store_id: string
+  - msg: string (JSON-encoded message)
 ```
 
 #### DeleteDynamicStore
-
-```go
-Event Type: "delete_dynamic_store"
+```
+Type: "message"
 Attributes:
-  - store_id: string (store ID)
-  - creator: string (deleter address)
+  - module: "badges"
+  - sender: string (deleter address)
+  - action: "delete_dynamic_store"
+  - store_id: string
+  - msg: string (JSON-encoded message)
 ```
 
 #### SetDynamicStoreValue
-
-```go
-Event Type: "set_dynamic_store_value"
+```
+Type: "message"
 Attributes:
-  - store_id: string (store ID)
-  - creator: string (setter address)
-  - target_address: string (address being set)
+  - module: "badges"
+  - sender: string (setter address)
+  - action: "set_dynamic_store_value"
+  - store_id: string
+  - address: string (target address)
   - value: string ("true"/"false")
+  - msg: string (JSON-encoded message)
+```
+
+## Transfer Events
+
+### Approval Usage
+```
+Type: "usedApprovalDetails"
+Attributes:
+  - collectionId: string
+  - approverAddress: string
+  - approvalId: string
+  - amountTrackerId: string
+  - approvalLevel: string
+  - trackerType: string
+  - address: string
+  - amounts: string (JSON array)
+  - numTransfers: string
+  - lastUpdatedAt: string
+```
+
+### Challenge Events
+```
+Type: "challenge{approvalId}{challengeId}{leafIndex}{approverAddress}{approvalLevel}{newNumUsed}"
+Attributes:
+  - challengeTrackerId: string
+  - approvalId: string
+  - leafIndex: string
+  - approverAddress: string
+  - approvalLevel: string
+  - numUsed: string
+```
+
+### Dynamic Approval Events
+```
+Type: "approval{collectionId}{approverAddress}{approvalId}{amountsTrackerId}{approvalLevel}{trackerType}{address}"
+Attributes:
+  - amountTrackerId: string
+  - approvalId: string
+  - approverAddress: string
+  - approvalLevel: string
+  - trackerType: string
+  - approvedAddress: string
+  - amounts: string (JSON array)
+  - numTransfers: string
+  - lastUpdatedAt: string
+```
+
+## IBC Events
+
+### Packet Events
+```
+Type: "timeout" (for timeouts)
+Attributes:
+  - acknowledgement: string
+  - success: string ("true"/"false")
+  - error: string (if applicable)
 ```
 
 ## Indexer Events
 
-Indexer events provide structured data optimized for external application consumption and database indexing.
+All message handlers emit duplicate "indexer" events with identical attributes to the standard message events for external indexing purposes.
 
-### Universal Message Event
+## Missing Events
 
-All message types emit a standardized indexer event:
-
-```go
-Event Type: "message"
-Attributes:
-  - module: "badges"
-  - sender: string (message sender)
-  - msg_type: string (specific message type)
-  - msg_content: string (JSON-encoded message content)
-```
-
-**Example:**
-```json
-{
-  "type": "message",
-  "attributes": [
-    {"key": "module", "value": "badges"},
-    {"key": "sender", "value": "bb1abc123..."},
-    {"key": "msg_type", "value": "create_collection"},
-    {"key": "msg_content", "value": "{\"creator\":\"bb1abc123...\",\"balancesType\":\"Standard\",...}"}
-  ]
-}
-```
-
-### State Change Events
-
-For operations that modify significant state, additional indexer events are emitted:
-
-#### Collection State Change
-
-```go
-Event Type: "collection_state_change"
-Attributes:
-  - collection_id: string
-  - change_type: string ("created", "updated", "deleted")
-  - block_height: string
-  - block_time: string
-  - tx_hash: string
-```
-
-#### Balance Update
-
-```go
-Event Type: "balance_update"
-Attributes:
-  - collection_id: string
-  - address: string
-  - change_type: string ("increase", "decrease", "set")
-  - badge_ids: string (JSON array of affected badge ID ranges)
-  - amounts: string (JSON array of amount changes)
-```
-
-#### Approval Usage
-
-```go
-Event Type: "approval_usage"
-Attributes:
-  - collection_id: string
-  - approval_level: string ("collection", "outgoing", "incoming")
-  - approval_id: string
-  - usage_type: string ("amount", "transfer_count", "challenge")
-  - amount_used: string
-  - remaining_limit: string
-```
-
-## Event Attributes
-
-### Standard Attribute Keys
-
-Defined in `x/badges/types/events.go`:
-
-```go
-const (
-    AttributeKeyCreator           = "creator"
-    AttributeKeyCollectionId      = "collection_id"
-    AttributeKeyStoreId          = "store_id"
-    AttributeKeyAddress          = "address"
-    AttributeKeyValue            = "value"
-    AttributeKeyBalanceType      = "balance_type"
-    AttributeKeyNumTransfers     = "num_transfers"
-    AttributeKeyTotalAmount      = "total_amount"
-    AttributeKeyUpdatedFields    = "updated_fields"
-    AttributeKeyListIds          = "list_ids"
-    AttributeKeyNumLists         = "num_lists"
-    AttributeKeyDefaultValue     = "default_value"
-    AttributeKeyTargetAddress    = "target_address"
-)
-```
-
-### Attribute Value Formats
-
-#### Addresses
-- Format: BitBadges address format (`bb1...`)
-- Special values: `"Mint"`, `"Total"` for reserved addresses
-
-#### Numeric Values
-- Format: String representation of unsigned integers
-- Large numbers: String to prevent precision loss
-- Ranges: JSON array format `[{"start":"1","end":"10"}]`
-
-#### Boolean Values
-- Format: `"true"` or `"false"` (string representation)
-
-#### Complex Data
-- Format: JSON-encoded strings for structured data
-- Proper escaping for nested JSON content
+**Note**: `MsgUpdateParams` does not emit any events and should be considered for future event emission.
 
 ## Event Patterns
 
-### Event Ordering
+### Dual Emission
+Each message emits both standard `sdk.EventTypeMessage` and duplicate "indexer" events.
 
-Events are emitted in a specific order within transaction execution:
+### Dynamic Event Names
+Transfer-related events use concatenated strings for unique event type identification.
 
-1. **Pre-execution events**: Parameter validation, authorization checks
-2. **State change events**: Actual state modifications
-3. **Post-execution events**: Summary information, indexer data
+### JSON Serialization
+Complex data structures are JSON-encoded in event attributes to preserve structure.
 
-### Transaction Failure Handling
-
-Events are only persisted if the entire transaction succeeds. Failed transactions do not emit any events, ensuring consistency between events and state changes.
-
-### Event Filtering
-
-Applications can filter events by:
-- **Event type**: Focus on specific operations
-- **Module**: Filter for badges module events only
-- **Attributes**: Filter by specific attribute values
-- **Block range**: Time-based filtering
-
-### Event Aggregation
-
-Common aggregation patterns:
-- **Daily transfer volumes**: Aggregate transfer events by date
-- **Collection activity**: Track creation and update frequency
-- **User activity**: Monitor user interaction patterns
-- **Approval usage**: Track approval system utilization
-
-## Integration Examples
-
-### External Indexer
-
-```go
-// Example event processor for external indexer
-func ProcessBadgesEvent(event sdk.Event) error {
-    switch event.Type {
-    case "create_collection":
-        return indexCollectionCreation(event)
-    case "transfer_badges":
-        return indexBadgeTransfer(event)
-    case "update_user_approvals":
-        return indexApprovalUpdate(event)
-    default:
-        return nil // Ignore unknown events
-    }
-}
-
-func indexCollectionCreation(event sdk.Event) error {
-    var collectionId, creator, balanceType string
-    
-    for _, attr := range event.Attributes {
-        switch attr.Key {
-        case "collection_id":
-            collectionId = attr.Value
-        case "creator":
-            creator = attr.Value
-        case "balance_type":
-            balanceType = attr.Value
-        }
-    }
-    
-    // Store in external database
-    return database.InsertCollection(collectionId, creator, balanceType)
-}
-```
-
-### WebSocket Notifications
-
-```javascript
-// Example WebSocket client for real-time notifications
-const ws = new WebSocket('ws://localhost:26657/websocket');
-
-ws.onopen = function() {
-    // Subscribe to badges module events
-    ws.send(JSON.stringify({
-        "method": "subscribe",
-        "params": ["tm.event='Tx' AND message.module='badges'"],
-        "id": 1
-    }));
-};
-
-ws.onmessage = function(event) {
-    const data = JSON.parse(event.data);
-    if (data.result && data.result.events) {
-        processBadgesEvents(data.result.events);
-    }
-};
-
-function processBadgesEvents(events) {
-    events.forEach(event => {
-        if (event.type.includes('create_collection')) {
-            notifyNewCollection(event.attributes);
-        } else if (event.type.includes('transfer_badges')) {
-            notifyBadgeTransfer(event.attributes);
-        }
-    });
-}
-```
-
-### Analytics Dashboard
-
-```sql
--- Example SQL queries for analytics dashboard using indexed events
-
--- Daily collection creation stats
-SELECT DATE(block_time) as date, COUNT(*) as collections_created
-FROM collection_events 
-WHERE event_type = 'create_collection'
-GROUP BY DATE(block_time)
-ORDER BY date DESC;
-
--- Top collections by transfer volume
-SELECT collection_id, SUM(CAST(total_amount AS INTEGER)) as total_volume
-FROM transfer_events
-WHERE event_type = 'transfer_badges'
-GROUP BY collection_id
-ORDER BY total_volume DESC
-LIMIT 10;
-
--- User activity metrics
-SELECT creator, COUNT(*) as total_operations
-FROM badge_events
-GROUP BY creator
-ORDER BY total_operations DESC;
-```
-
-### Mobile App Integration
-
-```swift
-// Example iOS integration for mobile notifications
-class BadgesEventMonitor {
-    func startMonitoring() {
-        let eventSource = EventSource(url: "https://api.bitbadges.io/events")
-        
-        eventSource.onMessage { event in
-            if let data = event.data?.data(using: .utf8),
-               let badgeEvent = try? JSONDecoder().decode(BadgeEvent.self, from: data) {
-                self.handleBadgeEvent(badgeEvent)
-            }
-        }
-    }
-    
-    func handleBadgeEvent(_ event: BadgeEvent) {
-        switch event.type {
-        case "create_collection":
-            showNotification("New badge collection created!")
-        case "transfer_badges":
-            if event.attributes.contains(where: { $0.key == "creator" && $0.value == userAddress }) {
-                showNotification("Your badge transfer completed!")
-            }
-        default:
-            break
-        }
-    }
-}
-```
-
-### Event-Driven Automation
-
-```python
-# Example Python automation using events
-import asyncio
-import websockets
-import json
-
-class BadgesAutomation:
-    def __init__(self):
-        self.handlers = {
-            'create_collection': self.handle_new_collection,
-            'transfer_badges': self.handle_transfer,
-            'update_user_approvals': self.handle_approval_update
-        }
-    
-    async def monitor_events(self):
-        uri = "wss://rpc.bitbadges.io/websocket"
-        async with websockets.connect(uri) as websocket:
-            # Subscribe to badges events
-            subscribe_msg = {
-                "method": "subscribe",
-                "params": ["tm.event='Tx' AND message.module='badges'"],
-                "id": 1
-            }
-            await websocket.send(json.dumps(subscribe_msg))
-            
-            async for message in websocket:
-                event_data = json.loads(message)
-                await self.process_event(event_data)
-    
-    async def handle_new_collection(self, event):
-        collection_id = self.get_attribute(event, 'collection_id')
-        creator = self.get_attribute(event, 'creator')
-        
-        # Automated response: send welcome message to creator
-        await self.send_welcome_message(creator, collection_id)
-    
-    async def handle_transfer(self, event):
-        collection_id = self.get_attribute(event, 'collection_id')
-        total_amount = self.get_attribute(event, 'total_amount')
-        
-        # Automated response: update analytics dashboard
-        await self.update_transfer_analytics(collection_id, total_amount)
-```
-
-This comprehensive event system enables rich integration possibilities while maintaining performance and providing detailed operational visibility for the badges module.
+### Transaction Consistency
+Events are only persisted when transactions succeed. Failed transactions emit no events.
 
 ## File: ./x-badges/examples.md
 
@@ -17996,12 +17700,46 @@ bitbadgeschaind tx badges create-collection '[tx-json]' --from creator-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1abc123...",
   "balancesType": "Standard",
+  "defaultBalances": {
+    "balances": [],
+    "outgoingApprovals": [],
+    "incomingApprovals": [],
+    "autoApproveSelfInitiatedOutgoingTransfers": false,
+    "autoApproveSelfInitiatedIncomingTransfers": true,
+    "autoApproveAllIncomingTransfers": false,
+    "userPermissions": {
+      "canUpdateOutgoingApprovals": [],
+      "canUpdateIncomingApprovals": [],
+      "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+      "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+      "canUpdateAutoApproveAllIncomingTransfers": []
+    }
+  },
   "validBadgeIds": [{"start": "1", "end": "100"}],
-  "managerTimeline": [{"start": "1", "end": "18446744073709551615", "manager": "bb1..."}],
-  "collectionPermissions": {},
-  "collectionApprovals": []
+  "collectionPermissions": {
+    "canDeleteCollection": [],
+    "canArchiveCollection": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [],
+    "canUpdateCollectionMetadata": [],
+    "canUpdateValidBadgeIds": [],
+    "canUpdateBadgeMetadata": [],
+    "canUpdateCollectionApprovals": []
+  },
+  "managerTimeline": [],
+  "collectionMetadataTimeline": [],
+  "badgeMetadataTimeline": [],
+  "offChainBalancesMetadataTimeline": [],
+  "customDataTimeline": [],
+  "collectionApprovals": [],
+  "standardsTimeline": [],
+  "isArchivedTimeline": [],
+  "mintEscrowCoinsToTransfer": [],
+  "cosmosCoinWrapperPathsToAdd": []
 }
 ```
 
@@ -18179,19 +17917,37 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1initiator123...",
   "collectionId": "1",
   "transfers": [
     {
-      "from": "bb1...",
-      "toAddresses": ["bb1..."],
+      "from": "bb1sender123...",
+      "toAddresses": ["bb1recipient123..."],
       "balances": [
         {
-          "amount": "1",
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "ownershipTimes": [{"start": "1672531200000", "end": "18446744073709551615"}]
+          "amount": "10",
+          "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}],
+          "badgeIds": [{"start": "1", "end": "5"}]
         }
-      ]
+      ],
+      "precalculateBalancesFromApproval": {
+        "approvalId": "",
+        "approvalLevel": "",
+        "approverAddress": "",
+        "version": "0"
+      },
+      "merkleProofs": [],
+      "memo": "",
+      "prioritizedApprovals": [],
+      "onlyCheckPrioritizedCollectionApprovals": false,
+      "onlyCheckPrioritizedIncomingApprovals": false,
+      "onlyCheckPrioritizedOutgoingApprovals": false,
+      "precalculationOptions": {
+        "overrideTimestamp": "0",
+        "badgeIdsOverride": []
+      },
+      "affiliateAddress": "",
+      "numAttempts": "1"
     }
   ]
 }
@@ -18263,18 +18019,41 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1abc123...",
   "collectionId": "1",
-  "updateCollectionMetadataTimeline": true,
-  "collectionMetadataTimeline": [
-    {
-      "start": "1",
-      "end": "18446744073709551615",
-      "collectionMetadata": {
-        "name": "Updated Collection Name"
-      }
-    }
-  ]
+  "updateValidBadgeIds": true,
+  "validBadgeIds": [{"start": "1", "end": "200"}],
+  "updateCollectionPermissions": false,
+  "collectionPermissions": {
+    "canDeleteCollection": [],
+    "canArchiveCollection": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [],
+    "canUpdateCollectionMetadata": [],
+    "canUpdateValidBadgeIds": [],
+    "canUpdateBadgeMetadata": [],
+    "canUpdateCollectionApprovals": []
+  },
+  "updateManagerTimeline": false,
+  "managerTimeline": [],
+  "updateCollectionMetadataTimeline": false,
+  "collectionMetadataTimeline": [],
+  "updateBadgeMetadataTimeline": false,
+  "badgeMetadataTimeline": [],
+  "updateOffChainBalancesMetadataTimeline": false,
+  "offChainBalancesMetadataTimeline": [],
+  "updateCustomDataTimeline": false,
+  "customDataTimeline": [],
+  "updateCollectionApprovals": false,
+  "collectionApprovals": [],
+  "updateStandardsTimeline": false,
+  "standardsTimeline": [],
+  "updateIsArchivedTimeline": false,
+  "isArchivedTimeline": [],
+  "mintEscrowCoinsToTransfer": [],
+  "cosmosCoinWrapperPathsToAdd": []
 }
 ```
 
@@ -18372,19 +18151,26 @@ bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1user123...",
   "collectionId": "1",
+  "updateOutgoingApprovals": false,
+  "outgoingApprovals": [],
+  "updateIncomingApprovals": false,
+  "incomingApprovals": [],
   "updateAutoApproveSelfInitiatedOutgoingTransfers": true,
   "autoApproveSelfInitiatedOutgoingTransfers": true,
-  "updateOutgoingApprovals": true,
-  "outgoingApprovals": [
-    {
-      "approvalId": "friends-only",
-      "toList": ["1"],
-      "transferTimes": [{"start": "1", "end": "18446744073709551615"}],
-      "badgeIds": [{"start": "1", "end": "100"}]
-    }
-  ]
+  "updateAutoApproveSelfInitiatedIncomingTransfers": false,
+  "autoApproveSelfInitiatedIncomingTransfers": true,
+  "updateAutoApproveAllIncomingTransfers": false,
+  "autoApproveAllIncomingTransfers": false,
+  "updateUserPermissions": false,
+  "userPermissions": {
+    "canUpdateOutgoingApprovals": [],
+    "canUpdateIncomingApprovals": [],
+    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+    "canUpdateAutoApproveAllIncomingTransfers": []
+  }
 }
 ```
 
