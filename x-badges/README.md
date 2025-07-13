@@ -1,4 +1,4 @@
-# BitBadges Module Documentation
+# Overview
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
