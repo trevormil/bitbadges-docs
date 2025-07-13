@@ -79,7 +79,7 @@
     * [Offline Verification](for-developers/sign-in-with-bitbadges/verification/offline-verification.md)
     * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
   * [Blockin Docs](https://blockin.gitbook.io/blockin)
-* [🏗️ BitBadges Claims](overview/claim-builder/README.md)
+* [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)
     * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)

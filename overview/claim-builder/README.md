@@ -1,2 +1,2 @@
-# 🏗️ BitBadges Claims
+# 🎁 BitBadges Claims
 
