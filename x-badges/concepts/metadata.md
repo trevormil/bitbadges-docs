@@ -77,15 +77,15 @@ export interface Metadata<T extends NumberType> {
 
 ### Dynamic Badge ID Replacement
 
-* If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
-* Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
-* Enables efficient metadata generation for large collections
+-   If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
+-   Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
+-   Enables efficient metadata generation for large collections
 
 ### First-Match Badge Metadata
 
-* Badge metadata entries are evaluated in order
-* First matching entry for a badge ID is used
-* Allows specific overrides before general rules
+-   Badge metadata entries are evaluated in order
+-   First matching entry for a badge ID is used
+-   Allows specific overrides before general rules
 
 ## Permission Control
 
@@ -118,7 +118,7 @@ Metadata updates are controlled by collection permissions:
 
 ### Timeline Times vs Permission Times Within Permissions
 
-As explained in [Permissions](broken-reference), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
+As explained in [Permissions](permissions/), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
 
 ## Usage Examples
 

@@ -8,13 +8,13 @@ description: >-
 
 <figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
 
-## The Next-Generation Token Standard
+## 🚀 The Next-Generation Token Standard
 
 BitBadges offers tokenization-as-a-service and gating-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
 
 <div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
-### Why BitBadges?
+### ❓ Why BitBadges?
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
@@ -27,7 +27,7 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 -   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
 -   **Customizable Permissions** - Flexible manager controls for collections
 
-## Supporting Services
+## 🛠️ Supporting Services
 
 We also offer complementary services:
 
@@ -44,7 +44,7 @@ BitBadges can be simply thought of in two parts.
 
 **Utility:** Seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
 
-## Use Cases
+## 💡 Use Cases
 
 Create anything from subscriptions and memberships to tradable NFTs, credentials, and access tokens - all with the most advanced token standard ever built.
 
