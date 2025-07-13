@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 17:57:25 UTC 2025
+Generated on Sun Jul 13 18:04:29 UTC 2025
 
 
 
@@ -3896,7 +3896,7 @@ And much more!
 
 * [Events](x-badges/events.md)
 * [Examples](x-badges/examples.md)
-* [Overview](x-badges/overview.md)
+* [Overview](x-badges/introduction.md)
 * [BitBadges Module Documentation](x-badges/README.md)
 * [State](x-badges/state.md)
 * [Concepts](x-badges/concepts/README.md)
@@ -3915,10 +3915,11 @@ And much more!
   * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Timeline System](x-badges/concepts/timeline-system.md)
   * [Total Supply](x-badges/concepts/total-supply.md)
-  * [🤝 Transferability / Approvals](x-badges/concepts/transferability-approvals.md)
+  * [Transferability / Approvals](x-badges/concepts/transferability-approvals.md)
   * [UintRange - The Building Block](x-badges/concepts/uintrange.md)
   * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+    * [Overview](x-badges/concepts/approval-criteria/approval-system.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
     * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
@@ -3926,14 +3927,13 @@ And much more!
     * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-    * [Overview](x-badges/concepts/approval-criteria/overview.md)
     * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
     * [Requires](x-badges/concepts/approval-criteria/requires.md)
     * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
     * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)  * [Permissions](x-badges/concepts/permissions/README.md)
     * [Action Permission](x-badges/concepts/permissions/action-permission.md)
     * [Badge IDs Action Permission](x-badges/concepts/permissions/balances-action-permission.md)
-    * [Overview](x-badges/concepts/permissions/overview.md)
+    * [Overview](x-badges/concepts/permissions/permission-system.md)
     * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
     * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
     * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
@@ -16870,7 +16870,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Overview](./overview.md) - Introduction and key concepts
+1. [Introduction](./introduction.md) - Overview and key concepts
 2. [Concepts](./02-concepts.md) - Core data structures and business logic
 3. [State](./state.md) - State management and storage patterns
 4. [Messages](./messages/) - Transaction messages and handlers
@@ -17215,6 +17215,71 @@ The approval system will resolve the addresses and apply the whitelist/blacklist
 
 # Approval Criteria
 
+
+
+## File: ./x-badges/concepts/approval-criteria/approval-system.md
+
+# Overview
+
+In the transferability page, we mainly talked about how we match and check an approval. Here, we will talk about the **approvalCriteria.**
+
+These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set (everything talked about in the last page AND the **approvalCriteria**).
+
+```typescript
+export interface iApprovalCriteria<T extends NumberType> {
+    /** The $BADGE transfers to be executed upon every approval. */
+    coinTransfers?: iCoinTransfer<T>[];
+    /** The list of merkle challenges that need valid proofs to be approved. */
+    merkleChallenges?: iMerkleChallenge<T>[];
+    /** The predetermined balances for each transfer. */
+    predeterminedBalances?: iPredeterminedBalances<T>;
+    /** The maximum approved amounts for this approval. */
+    approvalAmounts?: iApprovalAmounts<T>;
+    /** The max num transfers for this approval. */
+    maxNumTransfers?: iMaxNumTransfers<T>;
+    /** Whether the to address must equal the initiatedBy address. */
+    requireToEqualsInitiatedBy?: boolean;
+    /** Whether the from address must equal the initiatedBy address. */
+    requireFromEqualsInitiatedBy?: boolean;
+    /** Whether the to address must not equal the initiatedBy address. */
+    requireToDoesNotEqualInitiatedBy?: boolean;
+    /** Whether the from address must not equal the initiatedBy address. */
+    requireFromDoesNotEqualInitiatedBy?: boolean;
+    /** Whether this approval overrides the from address's approved outgoing transfers. */
+    overridesFromOutgoingApprovals?: boolean;
+    /** Whether this approval overrides the to address's approved incoming transfers. */
+    overridesToIncomingApprovals?: boolean;
+}
+```
+
+**Extending Functionality**
+
+These are just the native options provided in the interface for convenience and consistency, but you can always implement your own approvals via custom logic with a CosmWASM smart contract.
+
+Or, you can leverage the native features for custom implementations:
+
+-   Use Merkle challenges as a commit-reveal claim code mechanism. This is what we do for BitBadges claims. Then, you can assign claim codes how you wish.&#x20;
+-   Create custom, general-purpose zero-knowledge circuits that need to be satisfied. Implement your custom logic within in the circuit (if it lends itself to this approach).
+
+#### Tracker IDs
+
+The approval interface utilizes trackers behind the scenes for certain fields which are identified by IDs (**amountTrackerId, challengeTrackerId)**. Trackers are increment only and immutable in storage and referenced by an ID consisting of **approvalId-trackerId** plus other identifying details. Because the **approvalId** is in there, this enforces that all trackers are scoped to a specific approvalId. However, since they are ID based and increment only, it is important to be careful to not use previous IDs that have state. See best practices below.
+
+**Best Practices - Creating / Updating / Deleting**
+
+A really important part in creating / editing / deleting approvals is to keep track of the trackers' state. You do not want to use a tracker with prior history when creating an approval which should start from scratch. This messes up the expected behavior of the approval. You can't just simply delete the tracker because it is increment only and immutable.
+
+To combat this, we recommend the following best practices:
+
+-   When creating an approval for the first time (which is expected to start completely from scratch), always use unique, unused IDs for **approvalId**, **amountTrackerId** and **challengeTrackerId**. If these are unique, the tracker IDs will also be unique which means they will have no prior history.
+-   When you want entirely new state (whole approval), change the **approvalId** to something unique. This makes all tracker IDs different. This is the recommended option (if applicable) because you know for certain that all trackers have been reset.
+-   When you want just an individual tracker's state to be reset, you need to change the individual tracker ID to a aunique unused vaue.
+
+#### Scoped vs Cross-Approval Logic
+
+All approvals' state is expected to be scoped, but sometimes, you may want to implement cross-approval logic (e.g. do not allow double dipping between two approvals). This, unfortunately, is out of scope for the native interface at the moment. Consider workarounds and careful design decisions.&#x20;
+
+However, if you do need more advanced functionality, you may have to go up a level and use CosmWASM or alternative solutions. If you run into this problem, let us know, and we can recommend what to do.&#x20;
 
 
 ## File: ./x-badges/concepts/approval-criteria/approval-trackers.md
@@ -17798,71 +17863,6 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   </code></pre>
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (18).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./x-badges/concepts/approval-criteria/overview.md
-
-# Overview
-
-In the transferability page, we mainly talked about how we match and check an approval. Here, we will talk about the **approvalCriteria.**
-
-These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set (everything talked about in the last page AND the **approvalCriteria**).
-
-```typescript
-export interface iApprovalCriteria<T extends NumberType> {
-    /** The $BADGE transfers to be executed upon every approval. */
-    coinTransfers?: iCoinTransfer<T>[];
-    /** The list of merkle challenges that need valid proofs to be approved. */
-    merkleChallenges?: iMerkleChallenge<T>[];
-    /** The predetermined balances for each transfer. */
-    predeterminedBalances?: iPredeterminedBalances<T>;
-    /** The maximum approved amounts for this approval. */
-    approvalAmounts?: iApprovalAmounts<T>;
-    /** The max num transfers for this approval. */
-    maxNumTransfers?: iMaxNumTransfers<T>;
-    /** Whether the to address must equal the initiatedBy address. */
-    requireToEqualsInitiatedBy?: boolean;
-    /** Whether the from address must equal the initiatedBy address. */
-    requireFromEqualsInitiatedBy?: boolean;
-    /** Whether the to address must not equal the initiatedBy address. */
-    requireToDoesNotEqualInitiatedBy?: boolean;
-    /** Whether the from address must not equal the initiatedBy address. */
-    requireFromDoesNotEqualInitiatedBy?: boolean;
-    /** Whether this approval overrides the from address's approved outgoing transfers. */
-    overridesFromOutgoingApprovals?: boolean;
-    /** Whether this approval overrides the to address's approved incoming transfers. */
-    overridesToIncomingApprovals?: boolean;
-}
-```
-
-**Extending Functionality**
-
-These are just the native options provided in the interface for convenience and consistency, but you can always implement your own approvals via custom logic with a CosmWASM smart contract.
-
-Or, you can leverage the native features for custom implementations:
-
--   Use Merkle challenges as a commit-reveal claim code mechanism. This is what we do for BitBadges claims. Then, you can assign claim codes how you wish.&#x20;
--   Create custom, general-purpose zero-knowledge circuits that need to be satisfied. Implement your custom logic within in the circuit (if it lends itself to this approach).
-
-#### Tracker IDs
-
-The approval interface utilizes trackers behind the scenes for certain fields which are identified by IDs (**amountTrackerId, challengeTrackerId)**. Trackers are increment only and immutable in storage and referenced by an ID consisting of **approvalId-trackerId** plus other identifying details. Because the **approvalId** is in there, this enforces that all trackers are scoped to a specific approvalId. However, since they are ID based and increment only, it is important to be careful to not use previous IDs that have state. See best practices below.
-
-**Best Practices - Creating / Updating / Deleting**
-
-A really important part in creating / editing / deleting approvals is to keep track of the trackers' state. You do not want to use a tracker with prior history when creating an approval which should start from scratch. This messes up the expected behavior of the approval. You can't just simply delete the tracker because it is increment only and immutable.
-
-To combat this, we recommend the following best practices:
-
--   When creating an approval for the first time (which is expected to start completely from scratch), always use unique, unused IDs for **approvalId**, **amountTrackerId** and **challengeTrackerId**. If these are unique, the tracker IDs will also be unique which means they will have no prior history.
--   When you want entirely new state (whole approval), change the **approvalId** to something unique. This makes all tracker IDs different. This is the recommended option (if applicable) because you know for certain that all trackers have been reset.
--   When you want just an individual tracker's state to be reset, you need to change the individual tracker ID to a aunique unused vaue.
-
-#### Scoped vs Cross-Approval Logic
-
-All approvals' state is expected to be scoped, but sometimes, you may want to implement cross-approval logic (e.g. do not allow double dipping between two approvals). This, unfortunately, is out of scope for the native interface at the moment. Consider workarounds and careful design decisions.&#x20;
-
-However, if you do need more advanced functionality, you may have to go up a level and use CosmWASM or alternative solutions. If you run into this problem, let us know, and we can recommend what to do.&#x20;
 
 
 ## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
@@ -19340,7 +19340,7 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 ```
 
 
-## File: ./x-badges/concepts/permissions/overview.md
+## File: ./x-badges/concepts/permissions/permission-system.md
 
 # Overview
 
@@ -20355,7 +20355,7 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## File: ./x-badges/concepts/transferability-approvals.md
 
-# 🤝 Transferability / Approvals
+# Transferability / Approvals
 
 First, read [Transferability ](broken-reference/)for an overview of approved transfers.
 
@@ -20369,9 +20369,9 @@ Collections with "Off-Chain" balances and address lists do not utilize on-chain 
 
 Approved transfers encompass three hierarchical levels: collection, incoming, and outgoing, as previously elaborated. The interfaces for these three levels share common elements, with slight variations in functionality:
 
-* Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
-* Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
-* The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
+-   Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
+-   Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
+-   The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
 
 **For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
 
@@ -20428,9 +20428,9 @@ Approvals are simply a set of criteria, so it is entirely possible the same tran
 
 1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
 2. We allow users to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
-   1. Any approval with side effects (coin transfers, criteria, trackers, etc) MUST be specified explicity in prioritized approvals.
-   2. Any approval without side effects (e.g. generic unlimited transferability collection approval) does not have to be specified.
-   3. When scanning approvals, we check prioritized approvals first. Then, we attempt to scan any approvals without side effects.
+    1. Any approval with side effects (coin transfers, criteria, trackers, etc) MUST be specified explicity in prioritized approvals.
+    2. Any approval without side effects (e.g. generic unlimited transferability collection approval) does not have to be specified.
+    3. When scanning approvals, we check prioritized approvals first. Then, we attempt to scan any approvals without side effects.
 
 We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection.
 
@@ -20438,41 +20438,41 @@ We strongly recommend designing approvals in a way where no transfer can map to 
 
 To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
 
-* **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
-* **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
-* **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
-* **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
+-   **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
+-   **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
+-   **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
+-   **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
 
 For example, we might have something like the following:
 
-* ```json
-  "fromListId": "Mint", //reserved list ID for the "Mint" addres
-  "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
-  "initiatedByListId": "All",
-  "transferTimes": [
-    {
-      "start": "1691931600000",
-      "end": "1723554000000"
-    }
-  ],
-  "ownershipTimes": [
-    {
-      "start": "1",
-      "end": "18446744073709551615" //Max possible value
-    }
-  ],
-  "badgeIds": [
-    {
-      "start": "1",
-      "end": "100"
-    }
-  ],
-  ```
+-   ```json
+    "fromListId": "Mint", //reserved list ID for the "Mint" addres
+    "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
+    "initiatedByListId": "All",
+    "transferTimes": [
+      {
+        "start": "1691931600000",
+        "end": "1723554000000"
+      }
+    ],
+    "ownershipTimes": [
+      {
+        "start": "1",
+        "end": "18446744073709551615" //Max possible value
+      }
+    ],
+    "badgeIds": [
+      {
+        "start": "1",
+        "end": "100"
+      }
+    ],
+    ```
 
 Let's break down the definition above.
 
-* The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
-* The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
+-   The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
+-   The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
 
 Note the approval only applies to the details defined and must match ALL details. For example, badge ID #101 is not defined by this approval even if all other criteria matches.
 
@@ -20521,9 +20521,9 @@ The process of matching transfers to approvals involves several steps. This is d
 2. Expand all approval tuples with range logic (AllWithMint, ...., \[IDs 1-100]) to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
 3. Expand the current transfer tuple to singular tuple values.
 4. Find all matches (for approvals, linear first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
-   1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
-   2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
-   3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
+    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
+    2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
+    3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
 5. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
 
 ### Defaults and Auto Approvals
@@ -22317,6 +22317,177 @@ Complex approval configurations for sophisticated use cases.
 
 These examples demonstrate the flexibility and power of the badges module for implementing various digital asset use cases, from simple collectibles to complex governance and incentive systems.
 
+## File: ./x-badges/introduction.md
+
+# Overview
+
+The `x/badges` module is the core module of the BitBadges blockchain, providing a comprehensive system for creating, managing, and transferring digital badges with sophisticated approval mechanisms, time-based properties, and cross-chain compatibility.
+
+## Key Features
+
+### Digital Badge Collections
+- Create unique badge collections with auto-incrementing IDs
+- Support for unlimited badge varieties within collections
+- Flexible metadata management for collections and individual badges
+- Timeline-based property evolution
+
+### Advanced Transfer System
+- Multi-level approval system (collection, sender, recipient)
+- Complex approval criteria with Merkle challenges
+- Time-based and usage-limited transfers
+- Predetermined balance distribution patterns
+
+### Timeline-Based Properties
+- Nearly all collection properties can change over time
+- Immutable timeline entries prevent historical manipulation
+- Support for future property changes at specific block times
+
+### Cross-Chain Compatibility
+- Built-in IBC support for cross-chain transfers
+- Multi-chain signature support (Ethereum, Bitcoin, Solana, Cosmos)
+- EIP712 schema integration for Ethereum wallets
+
+### Flexible Balance Types
+- **Standard**: On-chain balance tracking
+- **Off-Chain Indexed**: Centralized but verifiable
+- **Off-Chain Non-Indexed**: Fully centralized
+- **Non-Public**: Private balance information
+
+### Granular Permission System
+- Fine-grained control over collection management
+- First-match permission policy
+- Permanent permission decisions
+- Time-bound permission scopes
+
+## Architecture Overview
+
+```
+x/badges Module
+├── Collections (Badge Definitions)
+├── Balances (Ownership Tracking)
+├── Approvals (Transfer Rules)
+├── Address Lists (Reusable Address Groups)
+├── Dynamic Stores (Custom Key-Value Storage)
+└── Approval Trackers (Usage Monitoring)
+```
+
+## Core Components
+
+### Collections
+The fundamental unit representing a group of related badges. Each collection has:
+- Unique auto-incrementing ID
+- Manager (controller address)
+- Metadata and standards
+- Valid badge ID ranges
+- Balance type configuration
+- Permission settings
+- Default balances for new users
+
+### Balances
+Ownership records linking users to badge amounts for specific:
+- Badge ID ranges
+- Time ranges (when ownership is valid)
+- Amount ranges (quantity owned)
+
+### Approvals
+Three-tier approval system that all transfers must satisfy:
+1. **Collection Approvals**: Set by collection manager
+2. **Outgoing Approvals**: Set by badge sender
+3. **Incoming Approvals**: Set by badge recipient
+
+### Address Lists
+Reusable collections of addresses for approval configurations, supporting:
+- Whitelist and blacklist logic
+- Address ranges and wildcards
+- Reserved addresses ("Mint", "Total")
+
+### Dynamic Stores
+Generic key-value storage system for custom logic:
+- Store ID + Address → Boolean value
+- Creator-controlled access
+- Used for complex approval criteria
+
+## Use Cases
+
+### Educational Credentials
+- Issue certificates and diplomas as non-transferable badges
+- Time-locked access to advanced courses
+- Prerequisite verification through must-own badge challenges
+
+### Corporate Recognition
+- Employee achievement badges with approval workflows
+- Department-specific transfer permissions
+- Quarterly performance tracking with timeline properties
+
+### Gaming Assets
+- Achievement unlocks with complex criteria
+- Tradeable item collections with marketplace integration
+- Season-based properties using timeline management
+
+### Event Management
+- Ticket distribution with Merkle tree whitelists
+- VIP access badges with temporal validity
+- Transferable or non-transferable ticket types
+
+### Governance Tokens
+- Voting power representation with delegation
+- Time-locked voting rights
+- Multi-signature approval requirements
+
+## Integration Points
+
+### IBC (Inter-Blockchain Communication)
+- Native support for cross-chain badge transfers
+- Packet acknowledgment handling
+- Timeout and error recovery mechanisms
+
+### WASM Smart Contracts
+- Custom message bindings for contract integration
+- Query interfaces for contract-based applications
+- Dynamic store integration for contract state
+
+### Multi-Chain Signatures
+- Ethereum EIP712 signature support
+- Bitcoin and Solana JSON schema signatures
+- Flexible signature verification system
+
+## Security Features
+
+### Approval Validation
+- Version tracking prevents replay attacks
+- Usage counters for limited-use approvals
+- Merkle challenge verification
+
+### Permission System
+- Immutable permission decisions
+- First-match policy prevents conflicts
+- Time-bound permission scopes
+
+### State Integrity
+- Range validation prevents overlaps
+- Timeline immutability after block time
+- Comprehensive validation in message handlers
+
+## Getting Started
+
+To begin working with the badges module:
+
+1. **[Understand Core Concepts](./02-concepts.md)** - Learn about collections, balances, and approvals
+2. **[Explore State Management](./state.md)** - Understand how data is stored and retrieved
+3. **[Review Message Types](./messages/)** - Learn about available operations
+4. **[Try Examples](./examples.md)** - See common usage patterns in action
+
+## Repository Links
+
+- [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+- [Module Implementation](https://github.com/bitbadges/bitbadgeschain/tree/master/x/badges)
+- [Chain Handlers](https://github.com/bitbadges/bitbadgeschain/tree/master/chain-handlers)
+- [BitBadges Typescript SDK](https://github.com/bitbadges/bitbadgesjs)
+
+## Module Status
+
+The badges module is currently in battle-testing phase and actively maintained. 
+
 ## File: ./x-badges/messages/README.md
 
 # Messages
@@ -22859,177 +23030,6 @@ bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user
   ]
 }
 ```
-
-## File: ./x-badges/overview.md
-
-# Overview
-
-The `x/badges` module is the core module of the BitBadges blockchain, providing a comprehensive system for creating, managing, and transferring digital badges with sophisticated approval mechanisms, time-based properties, and cross-chain compatibility.
-
-## Key Features
-
-### Digital Badge Collections
-- Create unique badge collections with auto-incrementing IDs
-- Support for unlimited badge varieties within collections
-- Flexible metadata management for collections and individual badges
-- Timeline-based property evolution
-
-### Advanced Transfer System
-- Multi-level approval system (collection, sender, recipient)
-- Complex approval criteria with Merkle challenges
-- Time-based and usage-limited transfers
-- Predetermined balance distribution patterns
-
-### Timeline-Based Properties
-- Nearly all collection properties can change over time
-- Immutable timeline entries prevent historical manipulation
-- Support for future property changes at specific block times
-
-### Cross-Chain Compatibility
-- Built-in IBC support for cross-chain transfers
-- Multi-chain signature support (Ethereum, Bitcoin, Solana, Cosmos)
-- EIP712 schema integration for Ethereum wallets
-
-### Flexible Balance Types
-- **Standard**: On-chain balance tracking
-- **Off-Chain Indexed**: Centralized but verifiable
-- **Off-Chain Non-Indexed**: Fully centralized
-- **Non-Public**: Private balance information
-
-### Granular Permission System
-- Fine-grained control over collection management
-- First-match permission policy
-- Permanent permission decisions
-- Time-bound permission scopes
-
-## Architecture Overview
-
-```
-x/badges Module
-├── Collections (Badge Definitions)
-├── Balances (Ownership Tracking)
-├── Approvals (Transfer Rules)
-├── Address Lists (Reusable Address Groups)
-├── Dynamic Stores (Custom Key-Value Storage)
-└── Approval Trackers (Usage Monitoring)
-```
-
-## Core Components
-
-### Collections
-The fundamental unit representing a group of related badges. Each collection has:
-- Unique auto-incrementing ID
-- Manager (controller address)
-- Metadata and standards
-- Valid badge ID ranges
-- Balance type configuration
-- Permission settings
-- Default balances for new users
-
-### Balances
-Ownership records linking users to badge amounts for specific:
-- Badge ID ranges
-- Time ranges (when ownership is valid)
-- Amount ranges (quantity owned)
-
-### Approvals
-Three-tier approval system that all transfers must satisfy:
-1. **Collection Approvals**: Set by collection manager
-2. **Outgoing Approvals**: Set by badge sender
-3. **Incoming Approvals**: Set by badge recipient
-
-### Address Lists
-Reusable collections of addresses for approval configurations, supporting:
-- Whitelist and blacklist logic
-- Address ranges and wildcards
-- Reserved addresses ("Mint", "Total")
-
-### Dynamic Stores
-Generic key-value storage system for custom logic:
-- Store ID + Address → Boolean value
-- Creator-controlled access
-- Used for complex approval criteria
-
-## Use Cases
-
-### Educational Credentials
-- Issue certificates and diplomas as non-transferable badges
-- Time-locked access to advanced courses
-- Prerequisite verification through must-own badge challenges
-
-### Corporate Recognition
-- Employee achievement badges with approval workflows
-- Department-specific transfer permissions
-- Quarterly performance tracking with timeline properties
-
-### Gaming Assets
-- Achievement unlocks with complex criteria
-- Tradeable item collections with marketplace integration
-- Season-based properties using timeline management
-
-### Event Management
-- Ticket distribution with Merkle tree whitelists
-- VIP access badges with temporal validity
-- Transferable or non-transferable ticket types
-
-### Governance Tokens
-- Voting power representation with delegation
-- Time-locked voting rights
-- Multi-signature approval requirements
-
-## Integration Points
-
-### IBC (Inter-Blockchain Communication)
-- Native support for cross-chain badge transfers
-- Packet acknowledgment handling
-- Timeout and error recovery mechanisms
-
-### WASM Smart Contracts
-- Custom message bindings for contract integration
-- Query interfaces for contract-based applications
-- Dynamic store integration for contract state
-
-### Multi-Chain Signatures
-- Ethereum EIP712 signature support
-- Bitcoin and Solana JSON schema signatures
-- Flexible signature verification system
-
-## Security Features
-
-### Approval Validation
-- Version tracking prevents replay attacks
-- Usage counters for limited-use approvals
-- Merkle challenge verification
-
-### Permission System
-- Immutable permission decisions
-- First-match policy prevents conflicts
-- Time-bound permission scopes
-
-### State Integrity
-- Range validation prevents overlaps
-- Timeline immutability after block time
-- Comprehensive validation in message handlers
-
-## Getting Started
-
-To begin working with the badges module:
-
-1. **[Understand Core Concepts](./02-concepts.md)** - Learn about collections, balances, and approvals
-2. **[Explore State Management](./state.md)** - Understand how data is stored and retrieved
-3. **[Review Message Types](./messages/)** - Learn about available operations
-4. **[Try Examples](./examples.md)** - See common usage patterns in action
-
-## Repository Links
-
-- [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
-- [Module Implementation](https://github.com/bitbadges/bitbadgeschain/tree/master/x/badges)
-- [Chain Handlers](https://github.com/bitbadges/bitbadgeschain/tree/master/chain-handlers)
-- [BitBadges Typescript SDK](https://github.com/bitbadges/bitbadgesjs)
-
-## Module Status
-
-The badges module is currently in battle-testing phase and actively maintained. 
 
 ## File: ./x-badges/queries/README.md
 
