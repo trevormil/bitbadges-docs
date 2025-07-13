@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 22:45:48 UTC 2025
+Generated on Sun Jul 13 22:49:12 UTC 2025
 
 
 
@@ -4616,6 +4616,10 @@ message MsgAddCustomData {
 # x/badges
 
 See the x/badges documentation below the For Developers section.
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
 
 
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
