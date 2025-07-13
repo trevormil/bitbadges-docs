@@ -1,4 +1,8 @@
-# 🚴‍♂️ Getting Started
+# 🔨 Getting Started
+
+BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more!
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
@@ -20,10 +24,6 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 
 1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
 
-{% content-ref url="authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](authenticating-with-bitbadges/)
-{% endcontent-ref %}
-
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
@@ -44,10 +44,6 @@ This includes documentation everything from custom plugins to Zapier to dynamic 
 
 {% content-ref url="bitbadges-sdk/" %}
 [bitbadges-sdk](bitbadges-sdk/)
-{% endcontent-ref %}
-
-{% content-ref url="authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](authenticating-with-bitbadges/)
 {% endcontent-ref %}
 
 ```bash

@@ -23,9 +23,6 @@
         -   [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
         -   [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
         -   [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
--   [🔨 Getting Started](overview/getting-started.md)
--   [💻 How Do I Check...?](overview/how-do-i-check-xyz.md)
--   [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
 -   [🎨 Use Cases](overview/use-cases.md)
 -   [🔗 Official Links and Resources](overview/official-links.md)
 -   [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
@@ -40,7 +37,9 @@
 
 ## ⌨️ For Developers
 
--   [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+-   [🔨 Getting Started](for-developers/getting-started.md)
+-   [💻 How Do I Check...?](for-developers/how-do-i-check-xyz.md)
+-   [🔐 How Do I Gate...?](for-developers/how-do-i-gate-xyz.md)
 -   [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
     -   [Overview](for-developers/bitbadges-x-ai/overview.md)
     -   [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)

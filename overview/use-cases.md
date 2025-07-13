@@ -6,16 +6,18 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 -   **Subscriptions** - Create time-based subscription tokens with built-in expiration dates for services like streaming platforms, gym memberships, or software licenses. Easily verify subscription status through our public API.
 -   **Quests & Gamification** - Design quest systems and achievement badges for gaming, education, or community engagement. Track progress and reward completion with verifiable digital badges.
--   **Orderbooks & Trading** - Implement decentralized trading systems where badges represent orders, trades, or trading permissions. Enable cross-chain trading without complex bridge infrastructure.
--   **NFTs & Digital Collectibles** - Create advanced NFTs with time-dependent ownership, fine-grained transferability rules, and multi-chain compatibility that traditional NFT standards can't support.
+-   **Tradable NFTs** - Create unique, tradable digital assets with advanced features like time-dependent ownership and cross-chain compatibility that go beyond traditional NFT standards.
+-   **Tradable Tokens** - Issue fungible or semi-fungible tokens that can be traded across multiple blockchain ecosystems with built-in transferability controls.
+-   **Profile Pictures & Digital Identity** - Create verifiable profile pictures and digital identity tokens that prove authenticity and ownership across platforms.
+-   **Products & Merchandise** - Tokenize physical or digital products, enabling verification of authenticity, ownership tracking, and exclusive access to limited editions.
 
 ## Additional Use Cases
 
--   **Authentication / Tiered Services -** Most products' infrastructure simply consists of authentication + tiered services. These products can outsource their authentication (see [Authenticating with Badges](broken-reference)) and verify ownership through tiered services badges (family plan badge vs normal user badge, API key badge). Much cheaper, more secure, and less work!
--   **Attendance Badges -** Mint an attendance badge as a souvenir or as proof you completed an action (e.g. "I Voted" badge).
--   **Truth Badges -** Badges become the source of truth for scams, deep fakes, and more. For example, in a world of artificial intelligence, badges can be used to verify the root truth of some statement or thing.&#x20;
--   **Memberships/Subscriptions/Access Tokens** - Badges can define expiration dates, so you can offer a limited time membership for anything from a gym membership to a Spotify subscription. Proof of ownership is easily done through our public API.
--   **Premium Content** - Premium content can be offered only to badge holders.
+-   **Access Control & Gated Content** - Control access to premium content, private Discord servers, exclusive websites, or any digital service. Gate content behind badge ownership for tiered access systems.
+-   **Memberships** - Create membership badges with expiration dates for gyms, clubs, organizations, or subscription services. Easily verify membership status through our public API.
+-   **Achievements & Credentials** - Issue verifiable credentials like university diplomas, professional certifications, job qualifications, awards, and athletic accomplishments that can be verified anywhere.
+-   **Collectibles** - Create unique digital collectibles with advanced features like time-dependent ownership, fine-grained transferability rules, and multi-chain compatibility.
+-   **Proof of Anything** - Use badges as the source of truth for any claim - proof of attendance, voting records, completion of tasks, authenticity verification, or protection against deep fakes and scams.
 -   **Decentralized Verification** - Multiple verification services can give out verification badges, and you can choose which person/entity to get your verification ticks from. Or, verification can be more fine-grained and each entity / company can assign badges to their own registered employees / community.
 -   **Security and Safety -** Maybe a badge is assigned to every address who's private keys are compromised. Apps can then refuse service to such addresses.
 -   **Cross-Chain Protocols -** Implement a cross-chain follow, messaging, social media, etc protocols where every post, message, item is a badge being transferred / minted.&#x20;
