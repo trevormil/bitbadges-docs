@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 20:45:21 UTC 2025
+Generated on Sun Jul 13 20:54:24 UTC 2025
 
 
 
@@ -3529,13 +3529,13 @@ description: >-
 
 <figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
 
-## The Next-Generation Token Standard
+## 🚀 The Next-Generation Token Standard
 
 BitBadges offers tokenization-as-a-service and gating-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
 
 <div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
-### Why BitBadges?
+### ❓ Why BitBadges?
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
@@ -3548,7 +3548,7 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 -   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
 -   **Customizable Permissions** - Flexible manager controls for collections
 
-## Supporting Services
+## 🛠️ Supporting Services
 
 We also offer complementary services:
 
@@ -3565,7 +3565,7 @@ BitBadges can be simply thought of in two parts.
 
 **Utility:** Seamlessly offer gated services like websites, URLs, tiered perks, subscriptions, anything to users who meet the criteria!
 
-## Use Cases
+## 💡 Use Cases
 
 Create anything from subscriptions and memberships to tradable NFTs, credentials, and access tokens - all with the most advanced token standard ever built.
 
@@ -3861,6 +3861,75 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     -   [Params](x-badges/queries/params.md)
 -   [Events](x-badges/events.md)
 -   [State](x-badges/state.md)
+## 🏗️ Badge Standard
+
+* [Overview](x-badges/README.md)
+
+* [Concepts](x-badges/concepts/README.md)
+  * [Address Lists](x-badges/concepts/address-lists.md)
+  * [Archived Collections](x-badges/concepts/archived-collections.md)
+  * [Badge Collections](x-badges/concepts/badge-collections.md)
+  * [Balances Type](x-badges/concepts/balances-type.md)
+  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+  * [Custom Data](x-badges/concepts/custom-data.md)
+  * [Default Balances](x-badges/concepts/default-balances.md)
+  * [Manager](x-badges/concepts/manager.md)
+  * [Metadata](x-badges/concepts/metadata.md)
+  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+  * [Standards](x-badges/concepts/standards.md)
+  * [Different Time Fields](x-badges/concepts/time-fields.md)
+  * [Timeline System](x-badges/concepts/timeline-system.md)
+  * [Total Supply](x-badges/concepts/total-supply.md)
+  * [Transferability / Approvals](x-badges/concepts/transferability-approvals.md)
+  * [UintRanges](x-badges/concepts/uintrange.md)
+  * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
+  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+    * [Overview](x-badges/concepts/approval-criteria/approval-system.md)
+    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+    * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+    * [Extending the Approval (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+    * [Requires](x-badges/concepts/approval-criteria/requires.md)
+    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+    * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [Overview](x-badges/concepts/permissions/permission-system.md)
+    * [Action Permission](x-badges/concepts/permissions/action-permission.md)
+    * [Badge IDs Action Permission](x-badges/concepts/permissions/balances-action-permission.md)
+    * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
+    * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
+    * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+* [Messages](x-badges/messages/README.md)
+  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+* [Queries](x-badges/queries/README.md)
+  * [GetAddressList](x-badges/queries/get-address-list.md)
+  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+  * [GetBalance](x-badges/queries/get-balance.md)
+  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+  * [GetCollection](x-badges/queries/get-collection.md)
+  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+  * [Params](x-badges/queries/params.md)
+* [Events](x-badges/events.md)
+* [State](x-badges/state.md)
+
+
 
 
 ## File: ./for-developers/accounts.md
@@ -13390,7 +13459,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (18).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
@@ -14274,15 +14343,15 @@ Default balances are predefined balance stores that are automatically assigned t
 
 ### Genesis-Only Configuration
 
-* **Set at creation** - Default balances are defined only during collection creation
-* **Immutable after genesis** - Cannot be updated, modified, or removed after collection is created
-* **One-time setup** - This is your only opportunity to configure default user behavior
+-   **Set at creation** - Default balances are defined only during collection creation
+-   **Immutable after genesis** - Cannot be updated, modified, or removed after collection is created
+-   **One-time setup** - This is your only opportunity to configure default user behavior
 
 ### Automatic Assignment
 
-* **New user initialization** - Users who have never interacted with a collection receive default balances
-* **Seamless onboarding** - No additional setup required for new users
-* **Consistent behavior** - All new users start with the same baseline configuration
+-   **New user initialization** - Users who have never interacted with a collection receive default balances
+-   **Seamless onboarding** - No additional setup required for new users
+-   **Consistent behavior** - All new users start with the same baseline configuration
 
 ### Inheritance Behavior
 
@@ -14321,19 +14390,19 @@ Default balances follow the same `UserBalanceStore` structure:
 
 Default balances **cannot** include:
 
-* **Approval criteria** with complex conditions (merkle challenges, dynamic store challenges, etc.)
-* **Coin transfers** or native token requirements
-* **Badge ownership** requirements or other side effects
-* **Advanced conditional logic**
+-   **Approval criteria** with complex conditions (merkle challenges, dynamic store challenges, etc.)
+-   **Coin transfers** or native token requirements
+-   **Badge ownership** requirements or other side effects
+-   **Advanced conditional logic**
 
 Default balances are limited to basic approval structures without complex criteria.
 
 ## Related Concepts
 
-* [**Balance System**](balance-system.md) - How user balances work and inherit from defaults
-* [**Transferability & Approvals**](broken-reference) - User-level approval system
-* [**Permissions**](broken-reference) - User permissions for updating their own approvals
-* [**Manager**](manager.md) - Collection-level controls that can override user defaults
+-   **[Balance System](balance-system.md)** - How user balances work and inherit from defaults
+-   **[Transferability & Approvals](transferability-approvals.md)** - User-level approval system
+-   **[Permissions](permissions/)** - User permissions for updating their own approvals
+-   **[Manager](manager.md)** - Collection-level controls that can override user defaults
 
 Default balances provide a powerful way to establish baseline behavior for all users while maintaining the flexibility for users to customize their own approval settings after initialization.
 
@@ -14348,12 +14417,12 @@ The manager is the central authority for a collection, controlling all administr
 
 ### Manager Authority
 
-* **Exclusive control** - Only the current manager can perform administrative operations
-* **Timeline-based** - Manager can change over time using `managerTimeline`
-* **Administrative operations** - Updates, deletions, approval management, permission changes
-* **Permission-controlled** - Manager changes are governed by `canUpdateManager` permission
+-   **Exclusive control** - Only the current manager can perform administrative operations
+-   **Timeline-based** - Manager can change over time using `managerTimeline`
+-   **Administrative operations** - Updates, deletions, approval management, permission changes
+-   **Permission-controlled** - Manager changes are governed by `canUpdateManager` permission
 
-See [Permissions](broken-reference) for more details on how permissions work.
+See [Permissions](permissions/) for more details on how permissions work.
 
 ### Current Manager Determination
 
@@ -14417,27 +14486,27 @@ The manager role can be granted various permissions, allowing for flexible admin
 
 ### Metadata Management
 
-* **Collection Metadata Updates** - Modify collection-level metadata and URIs
-* **Badge Metadata Updates** - Update individual badge metadata (with badge-specific permissions)
-* **Timeline Management** - Schedule metadata changes over time
+-   **Collection Metadata Updates** - Modify collection-level metadata and URIs
+-   **Badge Metadata Updates** - Update individual badge metadata (with badge-specific permissions)
+-   **Timeline Management** - Schedule metadata changes over time
 
 ### Transferability Control
 
-* **Approval Settings** - Modify the collection's approval settings that determine how badges can be transferred
-* **Transfer Rules** - Update transferability conditions and restrictions
-* **Permission Updates** - Configure transferability permissions
+-   **Approval Settings** - Modify the collection's approval settings that determine how badges can be transferred
+-   **Transfer Rules** - Update transferability conditions and restrictions
+-   **Permission Updates** - Configure transferability permissions
 
 ### Off-Chain Management
 
-* **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
-* **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
+-   **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
+-   **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
 
 ### User-Level Operation Limits
 
 The manager cannot directly:
 
-* Modify user balances (must follow approval system)
-* Access user private keys or personal data
+-   Modify user balances (must follow approval system)
+-   Access user private keys or personal data
 
 ## Fine-Grained Permission Customizability
 
@@ -14447,24 +14516,28 @@ Permissions can be customized based on various factors:
 
 ### Permission Dimensions
 
-* **Badge Specificity** - Which particular badges within the collection can be affected
-* **Time Constraints** - When can certain actions be performed
-* **Value Limitations** - What specific values or ranges are allowed for updates
-* **Conditional Triggers** - Under what circumstances can certain permissions be exercised
+-   **Badge Specificity** - Which particular badges within the collection can be affected
+-   **Time Constraints** - When can certain actions be performed
+-   **Value Limitations** - What specific values or ranges are allowed for updates
+-   **Conditional Triggers** - Under what circumstances can certain permissions be exercised
 
 ### Permission States
 
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen**
-   * The permission is permanently disallowed
-   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely
+
+    - The permission is permanently disallowed
+    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely
+
 2. **Permitted + Not Frozen**
-   * The permission is currently allowed
-   * This state can be changed to either of the other two states, offering flexibility in management
+
+    - The permission is currently allowed
+    - This state can be changed to either of the other two states, offering flexibility in management
+
 3. **Permitted + Permanently Frozen**
-   * The permission is permanently allowed
-   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available
+    - The permission is permanently allowed
+    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available
 
 **Note**: There is no "Forbidden + Not Frozen" state because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 
@@ -14653,15 +14726,15 @@ export interface Metadata<T extends NumberType> {
 
 ### Dynamic Badge ID Replacement
 
-* If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
-* Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
-* Enables efficient metadata generation for large collections
+-   If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
+-   Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
+-   Enables efficient metadata generation for large collections
 
 ### First-Match Badge Metadata
 
-* Badge metadata entries are evaluated in order
-* First matching entry for a badge ID is used
-* Allows specific overrides before general rules
+-   Badge metadata entries are evaluated in order
+-   First matching entry for a badge ID is used
+-   Allows specific overrides before general rules
 
 ## Permission Control
 
@@ -14694,7 +14767,7 @@ Metadata updates are controlled by collection permissions:
 
 ### Timeline Times vs Permission Times Within Permissions
 
-As explained in [Permissions](broken-reference), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
+As explained in [Permissions](permissions/), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
 
 ## Usage Examples
 
@@ -14897,9 +14970,9 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 
 # Overview
 
-First, read [Permissions](broken-reference/) for an overview.
+First, read [Permissions](broken-reference) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference/)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -14952,7 +15025,7 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
@@ -16346,10 +16419,10 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## Related Concepts
 
-* [**Valid Badge IDs**](valid-badge-ids.md) - Defines which badge IDs can exist for informational purposes
-* [**Manager**](manager.md) - Controls the collection approvals and permissions
-* [**Transferability & Approvals**](broken-reference) - Governs transfers from Mint address
-* [**Permissions**](broken-reference) - Controls what managers can do and when they can do it
+-   **[Valid Badge IDs](valid-badge-ids.md)** - Defines which badge IDs can exist for informational purposes
+-   **[Manager](manager.md)** - Controls the collection approvals and permissions
+-   **[Transferability & Approvals](transferability-approvals.md)** - Governs transfers from Mint address
+-   **[Permissions](permissions/)** - Controls what managers can do and when they can do it
 
 
 ## File: ./x-badges/concepts/transferability-approvals.md
@@ -16904,16 +16977,16 @@ Valid Badge IDs define the range of badge IDs that exist within a collection. Th
 
 ### Badge ID Range Definition
 
-* The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
-* IDs must start at 1 and have no gaps
-* This range is separate from circulating supply
+-   The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
+-   IDs must start at 1 and have no gaps
+-   This range is separate from circulating supply
 
 ### Separation from Circulating Supply
 
-* Valid badge IDs define what _can_ exist
-* Circulating supply defines what _actually_ exists
-* Circulating supply is managed through transfers/approvals and balance allocations
-* Circulating supply should obey the valid badge IDs defined on-chain
+-   Valid badge IDs define what _can_ exist
+-   Circulating supply defines what _actually_ exists
+-   Circulating supply is managed through transfers/approvals and balance allocations
+-   Circulating supply should obey the valid badge IDs defined on-chain
 
 ## Creating Badge IDs
 
@@ -16975,14 +17048,14 @@ Updates to valid badge IDs must obey the `canUpdateValidBadgeIds` permission:
 
 Note that the `canUpdateValidBadgeIds` permission applies to the updatability of the `validBadgeIds` field.
 
-We find the first-match for (current time, badge ID) for each badge ID that is changed, and check the permission for that time. If no time matches, the permission is default enabled. See [Permissions](broken-reference) for more details.
+We find the first-match for (current time, badge ID) for each badge ID that is changed, and check the permission for that time. If no time matches, the permission is default enabled. See [Permissions](permissions/) for more details.
 
 ### Permission Best-Practices
 
 Typically, the desired functionality falls into one of the following categories:
 
-* **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
-* **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
+-   **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
+-   **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
 
 ## Examples
 
