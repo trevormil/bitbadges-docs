@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 17:42:54 UTC 2025
+Generated on Sun Jul 13 17:54:16 UTC 2025
 
 
 
@@ -3911,7 +3911,6 @@ And much more!
   * [Manager](x-badges/concepts/manager.md)
   * [Metadata](x-badges/concepts/metadata.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Concepts](x-badges/concepts/README.md)
   * [Standards](x-badges/concepts/standards.md)
   * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Timeline System](x-badges/concepts/timeline-system.md)
@@ -3919,7 +3918,7 @@ And much more!
   * [🤝 Transferability / Approvals](x-badges/concepts/transferability-approvals.md)
   * [UintRange - The Building Block](x-badges/concepts/uintrange.md)
   * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
-  * [✅ Approval Criteria](x-badges/concepts/valid-badge-ids.md/approval-criteria/README.md)
+  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
     * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
@@ -3929,15 +3928,13 @@ And much more!
     * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
     * [Overview](x-badges/concepts/approval-criteria/overview.md)
     * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-    * [✅ Approval Criteria](x-badges/concepts/approval-criteria/README.md)
     * [Requires](x-badges/concepts/approval-criteria/requires.md)
     * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
     * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-  * [Permissions](x-badges/concepts/valid-badge-ids.md/permissions/README.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
     * [Action Permission](x-badges/concepts/permissions/action-permission.md)
     * [Badge IDs Action Permission](x-badges/concepts/permissions/balances-action-permission.md)
     * [Overview](x-badges/concepts/permissions/overview.md)
-    * [Permissions](x-badges/concepts/permissions/README.md)
     * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
     * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
     * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)* [Messages](x-badges/messages/README.md)
@@ -3950,8 +3947,7 @@ And much more!
   * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-  * [Messages](x-badges/messages/README.md)* [Queries](x-badges/queries/README.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)* [Queries](x-badges/queries/README.md)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
@@ -3960,7 +3956,6 @@ And much more!
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-  * [Queries](x-badges/queries/README.md)
 
 
 
@@ -16873,13 +16868,13 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Overview](./01-overview.md) - Introduction and key concepts
+1. [Overview](./overview.md) - Introduction and key concepts
 2. [Concepts](./02-concepts.md) - Core data structures and business logic
-3. [State](./03-state.md) - State management and storage patterns
+3. [State](./state.md) - State management and storage patterns
 4. [Messages](./messages/) - Transaction messages and handlers
 5. [Queries](./queries/) - Query types and endpoints
-6. [Events](./06-events.md) - Event emissions and tracking
-7. [Examples](./11-examples.md) - Common usage patterns and code examples
+6. [Events](./events.md) - Event emissions and tracking
+7. [Examples](./examples.md) - Common usage patterns and code examples
 
 ## Message Reference
 
@@ -16929,7 +16924,7 @@ This directory contains detailed explanations of the core concepts and data stru
 
 Each concept is documented in its own file for better organization and easier navigation:
 
--   **[UintRange](uintrange.md)** - The fundamental building block for representing ranges of unsigned integers
+-   **[UintRange](uintrange.md)** - Representing ranges of unsigned integers
 -   **[Timeline System](timeline-system.md)** - How properties change over time with immutable historical records
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
 -   **[Balance System](balance-system.md)** - How badge ownership is tracked with precise control over quantities and time
@@ -17216,7 +17211,7 @@ The approval system will resolve the addresses and apply the whitelist/blacklist
 
 ## File: ./x-badges/concepts/approval-criteria/README.md
 
-# ✅ Approval Criteria
+# Approval Criteria
 
 
 
@@ -22871,35 +22866,35 @@ The `x/badges` module is the core module of the BitBadges blockchain, providing 
 
 ## Key Features
 
-### 🏆 Digital Badge Collections
+### Digital Badge Collections
 - Create unique badge collections with auto-incrementing IDs
 - Support for unlimited badge varieties within collections
 - Flexible metadata management for collections and individual badges
 - Timeline-based property evolution
 
-### 🔄 Advanced Transfer System
+### Advanced Transfer System
 - Multi-level approval system (collection, sender, recipient)
 - Complex approval criteria with Merkle challenges
 - Time-based and usage-limited transfers
 - Predetermined balance distribution patterns
 
-### ⏰ Timeline-Based Properties
+### Timeline-Based Properties
 - Nearly all collection properties can change over time
 - Immutable timeline entries prevent historical manipulation
 - Support for future property changes at specific block times
 
-### 🌉 Cross-Chain Compatibility
+### Cross-Chain Compatibility
 - Built-in IBC support for cross-chain transfers
 - Multi-chain signature support (Ethereum, Bitcoin, Solana, Cosmos)
 - EIP712 schema integration for Ethereum wallets
 
-### 📊 Flexible Balance Types
+### Flexible Balance Types
 - **Standard**: On-chain balance tracking
 - **Off-Chain Indexed**: Centralized but verifiable
 - **Off-Chain Non-Indexed**: Fully centralized
 - **Non-Public**: Private balance information
 
-### 🔐 Granular Permission System
+### Granular Permission System
 - Fine-grained control over collection management
 - First-match permission policy
 - Permanent permission decisions
@@ -22955,27 +22950,27 @@ Generic key-value storage system for custom logic:
 
 ## Use Cases
 
-### 🎓 Educational Credentials
+### Educational Credentials
 - Issue certificates and diplomas as non-transferable badges
 - Time-locked access to advanced courses
 - Prerequisite verification through must-own badge challenges
 
-### 🏢 Corporate Recognition
+### Corporate Recognition
 - Employee achievement badges with approval workflows
 - Department-specific transfer permissions
 - Quarterly performance tracking with timeline properties
 
-### 🎮 Gaming Assets
+### Gaming Assets
 - Achievement unlocks with complex criteria
 - Tradeable item collections with marketplace integration
 - Season-based properties using timeline management
 
-### 🎪 Event Management
+### Event Management
 - Ticket distribution with Merkle tree whitelists
 - VIP access badges with temporal validity
 - Transferable or non-transferable ticket types
 
-### 🏛️ Governance Tokens
+### Governance Tokens
 - Voting power representation with delegation
 - Time-locked voting rights
 - Multi-signature approval requirements
@@ -23019,9 +23014,9 @@ Generic key-value storage system for custom logic:
 To begin working with the badges module:
 
 1. **[Understand Core Concepts](./02-concepts.md)** - Learn about collections, balances, and approvals
-2. **[Explore State Management](./03-state.md)** - Understand how data is stored and retrieved
+2. **[Explore State Management](./state.md)** - Understand how data is stored and retrieved
 3. **[Review Message Types](./messages/)** - Learn about available operations
-4. **[Try Examples](./11-examples.md)** - See common usage patterns in action
+4. **[Try Examples](./examples.md)** - See common usage patterns in action
 
 ## Repository Links
 
