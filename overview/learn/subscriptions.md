@@ -4,5 +4,5 @@ Subscriptions are an abstraction over the badge / NFT interface using the time-d
 
 Subscriptions follow specific rules and are a subset of the overall badge standard. Please only update subscriptions through compatible interfaces.
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

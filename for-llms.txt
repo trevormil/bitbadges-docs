@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 19:04:54 UTC 2025
+Generated on Sun Jul 13 19:51:47 UTC 2025
 
 
 
@@ -3630,224 +3630,225 @@ And much more!
 ## File: ./SUMMARY.md
 
 # Table of contents
+
 ## Overview
--   [👋 BitBadges Overview](README.md)
--   [👨‍💻 Learn the Basics](overview/learn/README.md)
-    -   [BitBadges Claims](overview/learn/distribution.md)
-    -   [Multi-Chain Accounts](overview/learn/accounts.md)
-    -   [Sign In with BitBadges](overview/learn/verification-tools.md)
-    -   [Badges](overview/learn/badges.md)
-    -   [Address Lists](overview/learn/address-lists.md)
-    -   [Attestations](overview/learn/attestations.md)
-    -   [Applications (Points)](overview/learn/applications-points.md)
-    -   [Subscriptions](overview/learn/subscriptions.md)
-    -   [Protocol Fee](overview/learn/protocol-fee.md)
-    -   [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
-        -   [Manager](overview/learn/badge-concepts/manager.md)
-        -   [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
-        -   [Time-Dependent Ownership](overview/learn/badge-concepts/time-dependent-ownership.md)
-        -   [Transferability](overview/learn/badge-concepts/transferability.md)
-        -   [Balances Types](overview/learn/badge-concepts/balances-types.md)
-    -   [Wallets and Sign Ins](overview/learn/wallets-and-sign-ins/README.md)
-        -   [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
-        -   [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
-        -   [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
--   [🔨 Getting Started](overview/getting-started.md)
--   [💻 How Do I Check...?](overview/how-do-i-check-xyz.md)
--   [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
--   [🎨 Use Cases](overview/use-cases.md)
--   [🔗 Official Links and Resources](overview/official-links.md)
--   [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
--   [🌴 Ecosystem](overview/ecosystem/README.md)
-    -   [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
-    -   [MetaMask Snap](overview/ecosystem/metamask-snap.md)
-    -   [Browser Extensions](overview/ecosystem/chrome-extension.md)
-    -   [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
-    -   [Blockin](overview/ecosystem/blockin.md)
--   [🤝 Brand Guidelines](overview/link-sharing.md)
--   [❓ FAQ](overview/faq.md)
+
+* [👋 BitBadges Overview](README.md)
+* [👨‍💻 Learn the Basics](overview/learn/README.md)
+  * [BitBadges Claims](overview/learn/distribution.md)
+  * [Multi-Chain Accounts](overview/learn/accounts.md)
+  * [Sign In with BitBadges](overview/learn/verification-tools.md)
+  * [Badges](overview/learn/badges.md)
+  * [Address Lists](overview/learn/address-lists.md)
+  * [Attestations](overview/learn/attestations.md)
+  * [Applications (Points)](overview/learn/applications-points.md)
+  * [Subscriptions](overview/learn/subscriptions.md)
+  * [Protocol Fee](overview/learn/protocol-fee.md)
+  * [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
+    * [Manager](overview/learn/badge-concepts/manager.md)
+    * [Total Supplys](overview/learn/badge-concepts/total-supplys.md)
+    * [Time-Dependent Ownership](overview/learn/badge-concepts/time-dependent-ownership.md)
+    * [Transferability](overview/learn/badge-concepts/transferability.md)
+    * [Balances Types](overview/learn/badge-concepts/balances-types.md)
+  * [Wallets and Sign Ins](overview/learn/wallets-and-sign-ins/README.md)
+    * [Supported Wallets](overview/learn/wallets-and-sign-ins/supported-wallets.md)
+    * [Alternate Sign Ins / Mobile](overview/learn/wallets-and-sign-ins/mobile-support.md)
+    * [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
+* [🔨 Getting Started](overview/getting-started.md)
+* [💻 How Do I Check...?](overview/how-do-i-check-xyz.md)
+* [🔐 How Do I Gate...?](overview/how-do-i-gate-xyz.md)
+* [🎨 Use Cases](overview/use-cases.md)
+* [🔗 Official Links and Resources](overview/official-links.md)
+* [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
+* [🌴 Ecosystem](overview/ecosystem/README.md)
+  * [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
+  * [MetaMask Snap](overview/ecosystem/metamask-snap.md)
+  * [Browser Extensions](overview/ecosystem/chrome-extension.md)
+  * [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
+  * [Blockin](overview/ecosystem/blockin.md)
+* [🤝 Brand Guidelines](overview/link-sharing.md)
+* [❓ FAQ](overview/faq.md)
+
 ## ⌨️ For Developers
--   [🚴‍♂️ Getting Started](for-developers/getting-started.md)
--   [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
-    -   [Overview](for-developers/bitbadges-x-ai/overview.md)
-    -   [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
-        -   [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
--   [👤 Handling Addresses](for-developers/accounts.md)
--   [🧪 Testnet Mode](overview/testnet-mode.md)
--   [📚 BitBadges API](for-developers/bitbadges-api/README.md)
-    -   [Getting Started](for-developers/bitbadges-api/api.md)
-    -   [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
-    -   [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-    -   [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
-    -   [Concepts](for-developers/bitbadges-api/concepts/README.md)
-        -   [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
-        -   [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
-        -   [Designing for Compatibility](for-developers/bitbadges-api/concepts/designing-for-compatibility.md)
-        -   [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
-        -   [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
-        -   [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
--   [🖱️ Sign In with BitBadges](for-developers/authenticating-with-bitbadges/README.md)
-    -   [Overview](for-developers/sign-in-with-bitbadges/overview.md)
-    -   [Already Have Web3 Auth?](for-developers/authenticating-with-bitbadges/already-have-web3-auth.md)
-    -   [Alternative - P2P Verification](for-developers/authenticating-with-bitbadges/alternative-p2p-verification.md)
-    -   [Templates and Frameworks](for-developers/authenticating-with-bitbadges/framework-templates/README.md)
-        -   [WordPress](for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
-        -   [Auth0](for-developers/authenticating-with-bitbadges/framework-templates/auth0.md)
-        -   [ExpressJS](for-developers/authenticating-with-bitbadges/framework-templates/passportjs.md)
-        -   [Discourse](for-developers/authenticating-with-bitbadges/framework-templates/discourse.md)
-        -   [Supabase](for-developers/authenticating-with-bitbadges/framework-templates/supabase.md)
-        -   [Others](for-developers/authenticating-with-bitbadges/framework-templates/others.md)
-    -   [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-    -   [Connecting a Claim](for-developers/authenticating-with-bitbadges/connecting-a-claim.md)
-    -   [Authorization URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/README.md)
-        -   [Configuration](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/overview.md)
-        -   [Generating the URL](for-developers/authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
-    -   [Approaches](for-developers/authenticating-with-bitbadges/approaches/README.md)
-        -   [QR Codes](for-developers/authenticating-with-bitbadges/approaches/manual.md)
-        -   [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
-    -   [Verification](for-developers/authenticating-with-bitbadges/verification/README.md)
-        -   [Verification Flow](for-developers/authenticating-with-bitbadges/verification/verification-flow.md)
-        -   [Access Tokens](for-developers/authenticating-with-bitbadges/verification/api-access-tokens.md)
-        -   [Offline Verification](for-developers/authenticating-with-bitbadges/verification/offline-verification.md)
-        -   [Security Considerations](for-developers/authenticating-with-bitbadges/verification/other-security-considerations.md)
-    -   [Blockin Docs](https://blockin.gitbook.io/blockin)
--   [🏗️ BitBadges Claims](overview/claim-builder/README.md)
-    -   [Overview](for-developers/claim-builder/overview.md)
-    -   [Concepts](for-developers/claim-builder/concepts/README.md)
-        -   [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
-        -   [Completion Methods](for-developers/claim-builder/completion-methods.md)
-        -   [Gating Badge Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
-        -   [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
-        -   [Success Logic](for-developers/claim-builder/success-logic.md)
-        -   [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
-        -   [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
-        -   [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-        -   [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
-        -   [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
-        -   [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
-    -   [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
-    -   [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
-    -   [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
-    -   [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
-        -   [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
-        -   [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
-        -   [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
-    -   [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
-        -   [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
-        -   [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-    -   [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
-        -   [Overview](for-developers/claim-builder/plugins/overview.md)
-        -   [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
-        -   [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
-            -   [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
-                -   [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
-                -   [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
-                -   [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
-                -   [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-                -   [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
-                -   [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
-            -   [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
-            -   [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-        -   [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
-    -   [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
-        -   [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
-        -   [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
-        -   [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
-        -   [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
-        -   [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
-        -   [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
-            -   [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
-    -   [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
-        -   [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
-        -   [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
-        -   [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
-        -   [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
-            -   [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
-            -   [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
-            -   [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
-            -   [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
-        -   [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
-            -   [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
-        -   [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
-    -   [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
-        -   [Plugins Directory](https://bitbadges.io/plugin-directory)
-        -   [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
-        -   [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
-    -   [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
-        -   [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
-        -   [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
-            -   [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
-            -   [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
-            -   [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
-        -   [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
--   [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
-    -   [Overview](for-developers/bitbadges-sdk/overview.md)
-    -   [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
-    -   [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
-        -   [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
-        -   [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
-        -   [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
-        -   [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
-        -   [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
-        -   [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
-        -   [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
-        -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-        -   [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
-        -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
--   [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
-    -   [Overview](for-developers/bitbadges-blockchain/overview.md)
-    -   [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
-    -   [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
-    -   [Staking / Validators](overview/staking-usdbadge.md)
-    -   [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
-    -   [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
-        -   [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
-        -   [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
-        -   [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
-        -   [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
-    -   [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-        -   [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
-        -   [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
-        -   [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
-        -   [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
-        -   [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
-        -   [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
-        -   [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
-        -   [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
-        -   [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
-    -   [📩 Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
-        -   [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
-            -   [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
-        -   [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
-        -   [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
-            -   [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
-            -   [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
-            -   [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
-        -   [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
-            -   [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
-            -   [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
-            -   [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
-            -   [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
-        -   [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
-        -   [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
--   [🧠 Other Concepts](for-developers/core-concepts/README.md)
-    -   [Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
-    -   [Maps / Protocols](for-developers/core-concepts/maps.md)
-    -   [Attestations - Advanced](for-developers/core-concepts/verifiable-attestations/README.md)
-        -   [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
-        -   [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
-        -   [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
-        -   [Proofs vs Attestations](for-developers/core-concepts/verifiable-attestations/proofs-vs-attestations.md)
-        -   [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
-        -   [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
-        -   [Verification / Presentations](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
-        -   [Custom Schemes](for-developers/core-concepts/verifiable-attestations/custom-schemes/README.md)
-            -   [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
+
+* [🚴‍♂️ Getting Started](for-developers/getting-started.md)
+* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
+  * [Overview](for-developers/bitbadges-x-ai/overview.md)
+  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
+    * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+* [👤 Handling Addresses](for-developers/accounts.md)
+* [🧪 Testnet Mode](overview/testnet-mode.md)
+* [📚 BitBadges API](for-developers/bitbadges-api/README.md)
+  * [Getting Started](for-developers/bitbadges-api/api.md)
+  * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+  * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [Concepts](for-developers/bitbadges-api/concepts/README.md)
+    * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
+    * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
+    * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
+    * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
+    * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
+* [🖱️ Sign In with BitBadges](for-developers/sign-in-with-bitbadges/README.md)
+  * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+  * [Already Have Web3 Auth?](for-developers/sign-in-with-bitbadges/already-have-web3-auth.md)
+  * [Alternative - P2P Verification](for-developers/sign-in-with-bitbadges/alternative-p2p-verification.md)
+  * [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
+    * [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
+    * [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
+    * [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
+    * [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
+    * [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
+    * [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
+  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+  * [Connecting a Claim](for-developers/sign-in-with-bitbadges/connecting-a-claim.md)
+  * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
+    * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
+    * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
+  * [Approaches](for-developers/sign-in-with-bitbadges/approaches/README.md)
+    * [QR Codes](for-developers/sign-in-with-bitbadges/approaches/qr-codes.md)
+    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
+  * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
+    * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
+    * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
+    * [Offline Verification](for-developers/sign-in-with-bitbadges/verification/offline-verification.md)
+    * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
+  * [Blockin Docs](https://blockin.gitbook.io/blockin)
+* [🏗️ BitBadges Claims](overview/claim-builder/README.md)
+  * [Overview](for-developers/claim-builder/overview.md)
+  * [Concepts](for-developers/claim-builder/concepts/README.md)
+    * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
+    * [Completion Methods](for-developers/claim-builder/completion-methods.md)
+    * [Gating Badge Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
+    * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
+    * [Success Logic](for-developers/claim-builder/success-logic.md)
+    * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
+    * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
+    * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
+    * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
+    * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
+    * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
+  * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
+  * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
+  * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
+  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
+    * [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
+    * [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
+    * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
+  * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
+    * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
+    * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
+  * [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
+    * [Overview](for-developers/claim-builder/plugins/overview.md)
+    * [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
+    * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
+      * [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
+        * [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
+        * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
+        * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
+        * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
+        * [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
+        * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
+      * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
+      * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
+    * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
+  * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
+    * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
+    * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
+    * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
+    * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
+    * [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
+    * [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
+      * [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
+  * [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
+    * [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
+    * [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
+    * [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
+    * [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
+      * [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
+      * [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
+      * [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
+      * [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
+    * [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
+      * [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
+    * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
+  * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
+    * [Plugins Directory](https://bitbadges.io/plugin-directory)
+    * [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
+    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
+  * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
+    * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
+    * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
+      * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
+      * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
+      * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
+    * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
+* [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
+  * [Overview](for-developers/bitbadges-sdk/overview.md)
+  * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
+  * [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
+    * [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
+    * [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
+    * [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
+    * [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
+    * [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
+    * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
+    * [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
+    * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
+    * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+* [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
+  * [Overview](for-developers/bitbadges-blockchain/overview.md)
+  * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
+  * [REST API Docs - Node](for-developers/bitbadges-blockchain/rest-api-docs-node.md)
+  * [Staking / Validators](overview/staking-usdbadge.md)
+  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
+  * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
+    * [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
+    * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
+    * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
+    * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
+  * [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
+    * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
+    * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
+    * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
+    * [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
+    * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
+    * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
+    * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+  * [📩 Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
+    * [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
+      * [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
+    * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
+    * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
+      * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
+      * [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
+      * [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
+    * [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
+      * [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
+      * [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
+      * [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
+      * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
+    * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
+    * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
+* [🧠 Other Concepts](for-developers/core-concepts/README.md)
+  * [Accounts (Low-Level)](for-developers/core-concepts/accounts-technical.md)
+  * [Maps / Protocols](for-developers/core-concepts/maps.md)
+  * [Attestations - Advanced](for-developers/core-concepts/verifiable-attestations/README.md)
+    * [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
+    * [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
+    * [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
+    * [Proofs vs Attestations](for-developers/core-concepts/verifiable-attestations/proofs-vs-attestations.md)
+    * [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
+    * [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
+    * [Verification / Presentations](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
+    * [Custom Schemes](for-developers/core-concepts/verifiable-attestations/custom-schemes/README.md)
+      * [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
 
 ## 🏗️ x/badges Module
 
 * [Overview](x-badges/README.md)
-
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -3887,6 +3888,8 @@ And much more!
     * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
     * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
     * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
 * [Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
@@ -3908,10 +3911,7 @@ And much more!
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
 * [Events](x-badges/events.md)
-* [Examples](x-badges/examples.md)
 * [State](x-badges/state.md)
-
-
 
 
 ## File: ./for-developers/accounts.md
@@ -4067,8 +4067,8 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 For most applications, you should be fine without needing to access private user authenticated information. However if you do, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. Use the scopes to gain access to authenticated routes. Refer to the API reference to see what scopes are needed where.
 
-{% content-ref url="../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../authenticating-with-bitbadges/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## Bookmarking
@@ -4080,25 +4080,6 @@ Throughout the API, we use a bookmark technique. For the first request, you will
 
 # Concepts
 
-
-
-## File: ./for-developers/bitbadges-api/concepts/designing-for-compatibility.md
-
-# Designing for Compatibility
-
-To make your collection compatible with the BitBadges Indexer / API (and thus the official website), please make sure everything is compatible when self-hosting.
-
-#### Badge and Collection Metadata Format
-
-{% content-ref url="../../badges-advanced/metadata.md" %}
-[metadata.md](../../badges-advanced/metadata.md)
-{% endcontent-ref %}
-
-#### Off-Chain Balances Metadata
-
-{% content-ref url="../../badges-advanced/balances-transfers/balance-types.md" %}
-[balance-types.md](../../badges-advanced/balances-transfers/balance-types.md)
-{% endcontent-ref %}
 
 
 ## File: ./for-developers/bitbadges-api/concepts/limits-restrictions.md
@@ -4370,11 +4351,11 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
 
@@ -4962,7 +4943,7 @@ Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) a
 
 For testnet uploads, use testnet.bitbadges.io
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 5. Instantiate your Contract
 
@@ -5837,7 +5818,7 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (14).png" alt=""><figcaption></figcaption></figure>
 
 If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
@@ -6437,13 +6418,6 @@ In our API, JS bigints cannot be natively sent over HTTP. So, we use the followi
 
 1. Before sending to the client, stringify everything before sending over HTTP
 2. The client can use the converter functions to coonvert all types to their preferred method
-
-
-## File: ./for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md
-
-# Off-Chain Balances
-
-We refer you to [here](../../badges-advanced/self-hosted-balances/).
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/timelines.md
@@ -7183,7 +7157,7 @@ We want to note that functionality is slightly different for badges with on-chai
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create the Claim
 
@@ -7201,7 +7175,7 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
@@ -7564,7 +7538,7 @@ const claimsRes = await BitBadgesApi.getClaim({
 });
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md
@@ -7607,7 +7581,7 @@ Note: If you are receiving a post-success webhook, you already know the claim ha
 
 This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
 
@@ -7833,7 +7807,7 @@ Be mindful though that if you are checking criteria, you should have verificatio
 [plugins](plugins/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Auto-Completion
 
@@ -7873,7 +7847,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -7948,7 +7922,7 @@ For off-chain balances, we can just allocate the balances directly after claimin
 
 For on-chain badge balances, a successful claim will result in reserving the right to claim, not actually completing the claim. This is because the claim criteria is checked off-chain, and we need an on-chain transfer transaction. It is a two-step process.
 
-Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](../../badges-advanced/balances-transfers/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
+Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](broken-reference) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
 
 **When to use claims vs self-hosted balances?**
 
@@ -7984,7 +7958,7 @@ If your use case requires monetization (such as memberships or recurring payment
 
 Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Setting Up Your Account
 
@@ -7998,7 +7972,7 @@ Note: Refunds are possible (learn more below). In the event of an auto-refund, t
 
 To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Payment Capture
 
@@ -8046,7 +8020,7 @@ IMPORTANT: Don't trust, verify! You should also note that we simply provide you 
 
 You need to verify the attestations on your side. Verification is done according to the expected format. If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you can use the SDK's **verifyAttestation** function or API **verifyAttestation** route. If it is a third-party upload, see the corresponding documentation.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -8095,7 +8069,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/universal-approach-claim-codes.md
@@ -8288,8 +8262,8 @@ The easiest and most typical approach is to just do this with preconfigured plug
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
 
-{% content-ref url="../authenticating-with-bitbadges/framework-templates/wordpress.md" %}
-[wordpress.md](../authenticating-with-bitbadges/framework-templates/wordpress.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 ## **In-Site Rewards - URLs / Content**
@@ -8298,7 +8272,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -8405,7 +8379,7 @@ With user authentication, you will need your users to go through the Pipedream C
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
 
@@ -8497,7 +8471,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -8512,7 +8486,7 @@ Below, we will explain at a high level and will skip over some lower level detai
    1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
 4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
 
@@ -8702,7 +8676,7 @@ This is the approach we use for automation workflows. We remove any sign in requ
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import { axios } from "@pipedream/platform";
@@ -8897,9 +8871,9 @@ A great way to implement both criteria and utility is through AI models and agen
 
 On the reward side, simply set up a post-success claim, receive any user identifiers or inputs needed, and trigger your actions. This can be custom webhooks to any model or service of your choice (Pipedream Connect / MCP, Zapier MCP, anything!), and we also have an in-site plugin for you to use the Zapier AI Actions / MCP service!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Criteria Side**
 
@@ -9002,7 +8976,7 @@ To get your discord server ID, this can be done by right clicking on the  server
 
 # Get Discord User ID
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md
@@ -9024,7 +8998,7 @@ The best way to get started with a tutorial is to use the Claim Tester in-site, 
 
 If you need to see the resulting claim JSON (for advanced implementations), you can also see this in-site under the JSON tab of the claim details.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -9152,7 +9126,7 @@ console.log(res);
 // { bitbadgesAddress, email, claimAttemptId } 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation - Handlers
 
@@ -9229,7 +9203,7 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (7).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
@@ -9360,7 +9334,7 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 For testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md
@@ -9374,7 +9348,7 @@ BitBadges can send the request at two different times (during processing hooks a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -9574,7 +9548,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
@@ -10490,8 +10464,8 @@ Presentations are done with the proof interface which should give the verifier e
 
 These flows natively have protective measures against replay attacks, time windows for verification, and more.
 
-{% content-ref url="../../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="../../../overview/claim-builder/" %}
@@ -11044,6 +11018,36 @@ await BitBadgesAPI.getCollection(...);
 Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart). Or, see out [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example).
 
 
+## File: ./for-developers/sign-in-with-bitbadges/README.md
+
+# 🖱️ Sign In with BitBadges
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/already-have-web3-auth.md
+
+# Already Have Web3 Auth?
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/alternative-p2p-verification.md
+
+# Alternative - P2P Verification
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/approaches/README.md
+
+# Approaches
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/approaches/qr-codes.md
+
+# QR Codes
+
+
+
 ## File: ./for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md
 
 # Redirect Callback
@@ -11062,8 +11066,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="../../authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md" %}
-[generating-the-url.md](../../authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Implementation - Backend**
@@ -11089,6 +11093,30 @@ To ensure the security of the data exchange process, consider the following prac
 
 * Validate the `state` parameter according to your requirements (if applicable)
 * Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/README.md
+
+# Authorization URL
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/configuration.md
+
+# Configuration
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md
+
+# Generating the URL
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/connecting-a-claim.md
+
+# Connecting a Claim
+
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/overview.md
@@ -11125,7 +11153,7 @@ Simply replace any QR code flow with your own and use claims, the standard SIWBB
 
 <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
@@ -11189,6 +11217,78 @@ However, if your app already uses wallets, you can still use SIWBB.  The flow is
 * Use HTTPS for all redirects for security reasons
 
 
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md
+
+# Templates and Frameworks
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md
+
+# Auth0
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md
+
+# Discourse
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md
+
+# ExpressJS
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md
+
+# Others
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md
+
+# Supabase
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md
+
+# WordPress
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/README.md
+
+# Verification
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/access-tokens.md
+
+# Access Tokens
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/offline-verification.md
+
+# Offline Verification
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/security-considerations.md
+
+# Security Considerations
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/verification-flow.md
+
+# Verification Flow
+
+
+
 ## File: ./overview/claim-builder/README.md
 
 # 🏗️ BitBadges Claims
@@ -11205,7 +11305,7 @@ BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK that ai
 
 While BitBadges may lack some of the native smart contract support and interoperability features of other protocols, its self-contained design and API-like token standard can be a compelling solution for certain use cases.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Chain Architecture
 
@@ -11319,9 +11419,9 @@ Coming Soon...
 
 Easily add badges, lists, or attestations to your LinkedIn certtfications with one click!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/ecosystem/metamask-snap.md
@@ -11341,8 +11441,8 @@ BitBadges has created a MetaMask Snap extension to help guard your wallet and au
 
 # WordPress Plugin
 
-{% content-ref url="../../for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md" %}
-[wordpress.md](../../for-developers/authenticating-with-bitbadges/framework-templates/wordpress.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 
@@ -11407,15 +11507,9 @@ Personally, we believe it will always be a multi-chain world, and there will nev
 
 # 🔨 Getting Started
 
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more! The site should walk you through the entire process, and refer to the documentation where needed. Please reach out in Discord if you are having trouble, have feedback, or have feature requests.
+BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more!&#x20;
 
-Claims are the universal connectors. Gate anything with any criteria. For example:
-
-1. Create your badge and create badge-gated claims to implement badge-gated utility
-2. Award points and create points-gated claims&#x20;
-3. Or, just create standalone claims
-
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/how-do-i-check-xyz.md
@@ -11474,7 +11568,7 @@ Configure the corresponding plugin to check if the claiming user is on the list.
 
 Dynamic stores are a powerful option for gating by address, username, or email. These are standalone stores managed by you, stored by us. You control who is in the store's list via the site, Zapier Zaps, or custom API calls. It is completely flexible! You can then attach your store to your claim and check that in real-time.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Check Your Own Criteria
 
@@ -11609,7 +11703,7 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -11783,7 +11877,7 @@ It's worth noting that the manager role can extend beyond on-chain functionaliti
 
 One of the key features of the manager role in BitBadges is the ability to customize permissions at a granular level. This allows for precise control over the collection's management.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Fine-Grained Permission Settings</p></figcaption></figure>
 
 Permissions can be customized based on various factors, including:
 
@@ -12041,7 +12135,7 @@ For additional documentation, see here:
 [claim-builder](../claim-builder/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -12052,7 +12146,7 @@ For additional documentation, see here:
 
 For any badge transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of transfer or 0.1 $BADGE).
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Frontend Affiliates**
 
@@ -12067,7 +12161,7 @@ Subscriptions are an abstraction over the badge / NFT interface using the time-d
 
 Subscriptions follow specific rules and are a subset of the overall badge standard. Please only update subscriptions through compatible interfaces.
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -12088,12 +12182,12 @@ Additionally, use along with checking a claim to allow you to gate based on any 
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For developers interested in implementing these features, please refer to our detailed guide:
 
-{% content-ref url="../../for-developers/authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../../for-developers/authenticating-with-bitbadges/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 
@@ -12113,7 +12207,7 @@ In your account settings, BitBadges provides the option to approve other wallets
 
 Note: This feature is opt-in and not enabled by default.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **BitBadges Embedded Wallet**
 
@@ -12184,7 +12278,7 @@ Feel free to use BitBadges name and logo in your site as you see fit. If you hav
 
 **Square Logo**
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -12275,7 +12369,7 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -12381,6 +12475,9 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 -   [MsgCreateAddressLists](./messages/msg-create-address-lists.md) - Create reusable address lists
 -   [MsgCreateDynamicStore](./messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](./messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](./messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./messages/msg-set-dynamic-store-value.md) - Set address-specific store values
 -   [More messages...](./messages/) - See full message reference
 
 ## Query Reference
@@ -12434,269 +12531,273 @@ Each concept is documented in its own file for better organization and easier na
 -   **[Time Fields](time-fields.md)** - Understanding the different time-related fields used throughout BitBadges
 -   **[Custom Data](custom-data.md)** - Generic string fields for storing arbitrary application-specific data
 -   **[Cosmos Wrapper Paths](cosmos-wrapper-paths.md)** - 1:1 wrapping between badges and native Cosmos SDK coins for IBC compatibility
+-   **[Protocols](protocols/)** - Standardized implementation patterns for badge collections
 
 
 ## File: ./x-badges/concepts/address-lists.md
 
 # Address Lists
 
-Reusable collections of addresses for approval configurations with efficient whitelist/blacklist logic and flexible storage options.
+Address lists define collections of addresses for use in approval configurations. They support both static lists stored on-chain and dynamic reserved patterns for common access control scenarios.
+
+## Usage in Approval Configurations
+
+Address lists are referenced by ID in three approval contexts. IDs can either be reserved, shorthand IDs or user-created lists via `MsgCreateAddressLists`.
+
+### Collection Approvals
+
+```protobuf
+message CollectionApproval {
+  string fromListId = 1;        // Who can send badges
+  string toListId = 2;          // Who can receive badges
+  string initiatedByListId = 3; // Who can initiate transfers
+  // ... other fields
+}
+```
+
+### User Outgoing Approvals
+
+```protobuf
+message UserOutgoingApproval {
+  string toListId = 1;          // Who user can send to
+  string initiatedByListId = 2; // Who can initiate on user's behalf
+  // ... other fields
+}
+```
+
+### User Incoming Approvals
+
+```protobuf
+message UserIncomingApproval {
+  string fromListId = 1;        // Who can send to user
+  string initiatedByListId = 2; // Who can initiate transfers to user
+  // ... other fields
+}
+```
+
+### Usage Examples
+
+#### Universal Access
+
+```json
+{
+    "fromListId": "AllWithoutMint", // Everyone except Mint
+    "toListId": "All", // Everyone including Mint
+    "initiatedByListId": "All" // Anyone can initiate
+}
+```
+
+#### Restricted Access
+
+```json
+{
+    "fromListId": "vipMembers", // Only VIP members can send
+    "toListId": "!banned", // Everyone except banned users
+    "initiatedByListId": "AllWithoutMint"
+}
+```
+
+#### Quick Address Lists
+
+```json
+{
+    "fromListId": "bb1alice...:bb1bob...:bb1charlie...", // Direct addresses
+    "toListId": "AllWithoutMint:bb1blocked...", // Everyone except these
+    "initiatedByListId": "All"
+}
+```
 
 ## Proto Definition
 
 ```protobuf
 message AddressList {
-  string listId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-  repeated string addresses = 2;
-  bool whitelist = 3;
-  string uri = 4;
-  string customData = 5;
-  string createdBy = 6;
-  string aliasAddress = 7;
+  string listId = 1;           // Unique identifier
+  repeated string addresses = 2; // List of addresses
+  bool whitelist = 3;          // true = whitelist, false = blacklist
+  string uri = 4;              // Metadata URI
+  string customData = 5;       // Custom data
+  string createdBy = 6;        // Creator address
 }
 ```
 
-## Reserved Address List Shorthand IDs
+## Reserved Address List IDs
 
-BitBadges provides powerful built-in address lists that you can use immediately without creating custom lists:
+BitBadges provides built-in reserved list IDs that are dynamically generated without storage overhead:
 
-### Universal Lists
+### Core Reserved Lists
 
--   **`"All"`** - Includes every possible address (listId = 2^256 - 1)
+#### "Mint"
 
-    -   No storage overhead, automatically includes all addresses
-    -   Perfect for public collections or unrestricted transfers
-    -   Example: Open minting, public airdrops
+-   **Purpose**: Contains only the "Mint" address
+-   **Logic**: Whitelist (addresses: ["Mint"], whitelist: true)
+-   **Use case**: Minting operations and initial badge distribution
 
--   **`"!All"`** - Excludes every address (empty set)
-    -   Effectively blocks all transfers when used in approvals
-    -   Useful for temporarily disabling transfers
+#### "All" and "AllWithMint"
 
-### Special Address References
+-   **Purpose**: Represents all addresses including Mint
+-   **Logic**: Blacklist with empty addresses list (addresses: [], whitelist: false)
+-   **Use case**: Universal access, public collections
 
--   **`"Mint"`** - References the special mint address
-    -   Used for badge creation and initial distribution
-    -   Cannot be used as a regular address for transfers
+#### "None"
 
-### Dynamic List Inversion
+-   **Purpose**: Represents no addresses
+-   **Logic**: Whitelist with empty addresses list (addresses: [], whitelist: true)
+-   **Use case**: Blocking all access, disabled transfers
 
--   **`"!{listId}"`** - Inverts any existing list (e.g., `"!5"` inverts list 5)
-    -   Whitelist becomes blacklist, blacklist becomes whitelist
-    -   Allows reusing lists with opposite logic
-    -   Example: `"!1"` means "everyone except those in list 1"
+### Dynamic Patterns
 
-### Practical Reserved ID Examples
+#### AllWithout Pattern
 
-```json
-// Everyone can transfer freely
-{
-  "listId": "All",
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
+-   **Format**: `"AllWithout<addresses>"` where addresses are colon-separated
+-   **Example**: `"AllWithoutMint"`, `"AllWithoutMint:bb1user123"`
+-   **Logic**: Blacklist containing the specified addresses (addresses: ["Mint", "bb1user123"], whitelist: false)
+-   **Use case**: Allow everyone except specific addresses
 
-// Only VIP members (list 1), everyone else blocked
-{
-  "listId": "!1",        // Invert VIP list to block non-VIPs
-  "approvalAmounts": "0",
-  "maxNumTransfers": "0"
-}
+#### Colon-Separated Addresses
 
-// Block specific addresses (list 2), allow everyone else
-{
-  "listId": "!2",        // Invert blacklist to allow non-blocked
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
-```
+-   **Format**: `"address1:address2:address3"`
+-   **Logic**: Whitelist containing the specified addresses (addresses: ["bb1user123", "bb1user234", "bb1user345"], whitelist: true)
+-   **Use case**: Quick address lists without creating stored lists
 
-### Performance Benefits
+#### Inversion Patterns
 
--   **Zero storage cost** for `"All"` and `"!All"`
--   **Instant availability** - no need to create lists first
--   **Dynamic inversion** without storing duplicate data
--   **Gas efficiency** for common access patterns
-
-## When to Use Lists vs Badges
-
-Address lists are primarily used for **approvals and permissions** rather than representing ownership or membership. Use address lists when you need to:
-
--   Define who can transfer badges (approval configurations)
--   Set up whitelist/blacklist logic for transfers
--   Create reusable address groups for multiple collections
--   Implement complex approval criteria
-
-For representing **membership or ownership**, use badges themselves rather than address lists.
+-   **Format**: `"!listId"` or `"!(listId)"`
+-   **Effect**: Inverts the whitelist/blacklist behavior of the referenced list
+-   **Example**: `"!5"` inverts list ID 5's behavior
 
 ## Whitelist vs Blacklist Logic
 
-Address lists use an **inversion-based** system for efficient whitelist/blacklist operations:
+Address lists use a boolean `whitelist` field to determine inclusion/exclusion behavior:
 
 ### Whitelist Logic (`whitelist: true`)
 
--   **Listed addresses**: Explicitly allowed
--   **Unlisted addresses**: Implicitly forbidden
--   **Use case**: "Only these specific addresses can participate"
+```javascript
+function isAddressIncluded(address, addressList) {
+    const found = addressList.addresses.includes(address);
+    return addressList.whitelist ? found : !found;
+}
+```
+
+-   **Listed addresses**: Explicitly included
+-   **Unlisted addresses**: Explicitly excluded
+-   **Use case**: "Only these addresses are allowed"
 
 ### Blacklist Logic (`whitelist: false`)
 
--   **Listed addresses**: Explicitly forbidden
--   **Unlisted addresses**: Implicitly allowed
--   **Use case**: "Everyone can participate except these addresses"
+-   **Listed addresses**: Explicitly excluded
+-   **Unlisted addresses**: Explicitly included
+-   **Use case**: "All addresses except these are allowed"
 
-### Inversion
+### Inversion Effect
 
-The `whitelist` boolean can be **inverted** when used in approval criteria to flip the logic:
+When a list ID has the `"!"` prefix, the final whitelist boolean is inverted:
 
--   Whitelist with inversion → Blacklist behavior
--   Blacklist with inversion → Whitelist behavior
+-   Whitelist becomes blacklist behavior
+-   Blacklist becomes whitelist behavior
 
-## Storage Options
+## Usage in Approval Configurations
 
-### On-Chain Storage
+Address lists are referenced by ID in three approval contexts:
 
--   Addresses stored directly in the `addresses` field
--   Immediate availability and verification
--   Higher storage costs for large lists
--   Suitable for smaller, frequently-used lists
-
-### Off-Chain Storage
-
--   Addresses stored externally, referenced by `uri`
--   Lower on-chain storage costs
--   Requires external storage infrastructure
--   Suitable for large lists or dynamic membership
-
-**Example URI formats:**
-
--   IPFS: `ipfs://QmHash...`
--   HTTPS: `https://api.example.com/lists/123`
--   Custom protocols supported
-
-## Advanced Reserved Features
-
-### Complex Inversion Patterns
-
-You can chain and combine reserved IDs for sophisticated access control:
-
-```json
-// Multi-tier access control
-{
-    "collectionApprovals": [
-        {
-            "listId": "1", // VIP tier: full access
-            "approvalAmounts": "unlimited"
-        },
-        {
-            "listId": "!3", // Everyone except banned users
-            "approvalAmounts": "1", // Limited access for regular users
-            "maxNumTransfers": "3"
-        }
-    ]
-}
-```
-
-### Reserved ID Best Practices
-
-1. **Start with reserved IDs** - Use `"All"` and `"!listId"` before creating custom lists
-2. **Combine strategically** - Layer multiple approval tiers using inversion
-3. **Document intentions** - Clear comments when using complex inversion logic
-4. **Test thoroughly** - Verify inverted logic behaves as expected
-
-### Common Patterns
-
--   **Public with exceptions**: `"!{banned_list_id}"` for public access with blocklist
--   **Private with inclusions**: `"{whitelist_id}"` for restricted access
--   **Temporary restrictions**: `"!All"` to pause all activity
--   **Minting controls**: `"Mint"` for creation-only operations
-
-## Custom IDs for Efficiency
-
-For optimal efficiency and predictable list IDs, consider:
-
-1. **Pre-create address lists** during collection setup
-2. **Use sequential IDs** for related lists (1, 2, 3...)
-3. **Document list purposes** in metadata for clarity
-4. **Reuse lists** across multiple collections when appropriate
-
-## Practical Examples
-
-### Example 1: VIP Access List
-
-```json
-{
-    "listId": "1",
-    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
-    "whitelist": true,
-    "uri": "",
-    "customData": "VIP members with exclusive access",
-    "createdBy": "bb1manager...",
-    "aliasAddress": ""
-}
-```
-
-### Example 2: Blocked Users List
-
-```json
-{
-    "listId": "2",
-    "addresses": ["bb1spammer...", "bb1banned..."],
-    "whitelist": false,
-    "uri": "",
-    "customData": "Blocked users - cannot participate",
-    "createdBy": "bb1manager...",
-    "aliasAddress": ""
-}
-```
-
-### Example 3: Large Community (Off-Chain)
-
-```json
-{
-    "listId": "3",
-    "addresses": [],
-    "whitelist": true,
-    "uri": "ipfs://QmCommunityMembersList...",
-    "customData": "10k+ community members stored off-chain",
-    "createdBy": "bb1dao...",
-    "aliasAddress": ""
-}
-```
-
-### Example 4: Using Reserved IDs
-
-```json
-// Reference in approval configuration
-{
-  "listId": "All",        // Everyone allowed
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
-
-{
-  "listId": "!5",         // Everyone except list 5
-  "approvalAmounts": "1",
-  "maxNumTransfers": "1"
-}
-```
-
-## Usage in Approvals
-
-Address lists are referenced in approval configurations through `ApprovalIdentifierDetails`:
+### Collection Approvals
 
 ```protobuf
-message ApprovalIdentifierDetails {
-  string listId = 1;                    // Reference to address list ID
-  repeated string addresses = 2;        // Direct address specification
+message CollectionApproval {
+  string fromListId = 1;        // Who can send badges
+  string toListId = 2;          // Who can receive badges
+  string initiatedByListId = 3; // Who can initiate transfers
+  // ... other fields
 }
 ```
 
-You can either:
+### User Outgoing Approvals
 
--   **Reference a list**: Use `listId` to reference a pre-created address list
--   **Specify directly**: Use `addresses` field for one-time address specification
+```protobuf
+message UserOutgoingApproval {
+  string toListId = 1;          // Who user can send to
+  string initiatedByListId = 2; // Who can initiate on user's behalf
+  // ... other fields
+}
+```
 
-The approval system will resolve the addresses and apply the whitelist/blacklist logic accordingly.
+### User Incoming Approvals
+
+```protobuf
+message UserIncomingApproval {
+  string fromListId = 1;        // Who can send to user
+  string initiatedByListId = 2; // Who can initiate transfers to user
+  // ... other fields
+}
+```
+
+## Address List Creation
+
+### User-Created Lists
+
+Created through `MsgCreateAddressLists` with the requirements below. Once created, this list is immutable and cannot be modified.
+
+#### ID Validation Rules
+
+-   Must be alphanumeric characters only
+-   Cannot be empty or reserved keywords
+-   Cannot contain `:` or `!` characters
+-   Cannot be valid addresses themselves
+-   Cannot conflict with reserved IDs
+
+#### Address Validation
+
+-   All addresses must be valid Bech32 format
+-   No duplicate addresses allowed
+-   Special addresses like "Mint" are permitted
+
+### Example User-Created List
+
+```json
+{
+    "listId": "vipMembers",
+    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
+    "whitelist": true,
+    "uri": "https://api.example.com/vip-list",
+    "customData": "VIP members with exclusive access",
+    "createdBy": "bb1manager..."
+}
+```
+
+## Performance Characteristics
+
+Tip: Use reserved IDs for common patterns. Use user-created lists for large lists used multiple times.
+
+### Reserved Lists
+
+-   **Storage**: Zero on-chain storage
+-   **ID Length**: Dependent on the pattern used
+-   **Resolution**: Dynamic generation at runtime
+-   **Gas efficiency**: Minimal overhead for common patterns
+
+### User-Created Lists
+
+-   **Storage**: On-chain storage per list
+-   **ID Length**: Reusable short ID that can be used to reference complex lists
+-   **Resolution**: Direct store lookup
+-   **Gas cost**: Proportional to validation complexity
+
+## Address Lists vs Dynamic Stores
+
+Both address lists and dynamic stores can control who is approved for transfers, but they serve different purposes:
+
+### Address Lists
+
+-   **Purpose**: Immutable shorthand references for collections of addresses
+-   **Mutability**: Cannot be modified after creation - addresses are fixed
+-   **Storage**: Direct list of addresses stored on-chain
+-   **Use case**: Static whitelists/blacklists that don't change over time
+
+### Dynamic Stores
+
+-   **Purpose**: Mutable on-chain approval management with CRUD operations
+-   **Mutability**: Can be updated dynamically using CRUD messages (Create, Update, Delete, Set)
+-   **Storage**: Boolean values per address (true/false approval status)
+-   **Use case**: Dynamic approval systems that need real-time updates (typically contract logic)
 
 
 ## File: ./x-badges/concepts/approval-criteria/README.md
@@ -13350,7 +13451,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (19).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
@@ -14234,15 +14335,15 @@ Default balances are predefined balance stores that are automatically assigned t
 
 ### Genesis-Only Configuration
 
--   **Set at creation** - Default balances are defined only during collection creation
--   **Immutable after genesis** - Cannot be updated, modified, or removed after collection is created
--   **One-time setup** - This is your only opportunity to configure default user behavior
+* **Set at creation** - Default balances are defined only during collection creation
+* **Immutable after genesis** - Cannot be updated, modified, or removed after collection is created
+* **One-time setup** - This is your only opportunity to configure default user behavior
 
 ### Automatic Assignment
 
--   **New user initialization** - Users who have never interacted with a collection receive default balances
--   **Seamless onboarding** - No additional setup required for new users
--   **Consistent behavior** - All new users start with the same baseline configuration
+* **New user initialization** - Users who have never interacted with a collection receive default balances
+* **Seamless onboarding** - No additional setup required for new users
+* **Consistent behavior** - All new users start with the same baseline configuration
 
 ### Inheritance Behavior
 
@@ -14281,19 +14382,19 @@ Default balances follow the same `UserBalanceStore` structure:
 
 Default balances **cannot** include:
 
--   **Approval criteria** with complex conditions (merkle challenges, dynamic store challenges, etc.)
--   **Coin transfers** or native token requirements
--   **Badge ownership** requirements or other side effects
--   **Advanced conditional logic**
+* **Approval criteria** with complex conditions (merkle challenges, dynamic store challenges, etc.)
+* **Coin transfers** or native token requirements
+* **Badge ownership** requirements or other side effects
+* **Advanced conditional logic**
 
 Default balances are limited to basic approval structures without complex criteria.
 
 ## Related Concepts
 
--   **[Balance System](balance-system.md)** - How user balances work and inherit from defaults
--   **[Transferability & Approvals](transferability-approvals.md)** - User-level approval system
--   **[Permissions](permissions/)** - User permissions for updating their own approvals
--   **[Manager](manager.md)** - Collection-level controls that can override user defaults
+* [**Balance System**](balance-system.md) - How user balances work and inherit from defaults
+* [**Transferability & Approvals**](broken-reference) - User-level approval system
+* [**Permissions**](broken-reference) - User permissions for updating their own approvals
+* [**Manager**](manager.md) - Collection-level controls that can override user defaults
 
 Default balances provide a powerful way to establish baseline behavior for all users while maintaining the flexibility for users to customize their own approval settings after initialization.
 
@@ -14308,12 +14409,12 @@ The manager is the central authority for a collection, controlling all administr
 
 ### Manager Authority
 
--   **Exclusive control** - Only the current manager can perform administrative operations
--   **Timeline-based** - Manager can change over time using `managerTimeline`
--   **Administrative operations** - Updates, deletions, approval management, permission changes
--   **Permission-controlled** - Manager changes are governed by `canUpdateManager` permission
+* **Exclusive control** - Only the current manager can perform administrative operations
+* **Timeline-based** - Manager can change over time using `managerTimeline`
+* **Administrative operations** - Updates, deletions, approval management, permission changes
+* **Permission-controlled** - Manager changes are governed by `canUpdateManager` permission
 
-See [Permissions](permissions/) for more details on how permissions work.
+See [Permissions](broken-reference) for more details on how permissions work.
 
 ### Current Manager Determination
 
@@ -14377,27 +14478,27 @@ The manager role can be granted various permissions, allowing for flexible admin
 
 ### Metadata Management
 
--   **Collection Metadata Updates** - Modify collection-level metadata and URIs
--   **Badge Metadata Updates** - Update individual badge metadata (with badge-specific permissions)
--   **Timeline Management** - Schedule metadata changes over time
+* **Collection Metadata Updates** - Modify collection-level metadata and URIs
+* **Badge Metadata Updates** - Update individual badge metadata (with badge-specific permissions)
+* **Timeline Management** - Schedule metadata changes over time
 
 ### Transferability Control
 
--   **Approval Settings** - Modify the collection's approval settings that determine how badges can be transferred
--   **Transfer Rules** - Update transferability conditions and restrictions
--   **Permission Updates** - Configure transferability permissions
+* **Approval Settings** - Modify the collection's approval settings that determine how badges can be transferred
+* **Transfer Rules** - Update transferability conditions and restrictions
+* **Permission Updates** - Configure transferability permissions
 
 ### Off-Chain Management
 
--   **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
--   **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
+* **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
+* **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
 
 ### User-Level Operation Limits
 
 The manager cannot directly:
 
--   Modify user balances (must follow approval system)
--   Access user private keys or personal data
+* Modify user balances (must follow approval system)
+* Access user private keys or personal data
 
 ## Fine-Grained Permission Customizability
 
@@ -14407,28 +14508,24 @@ Permissions can be customized based on various factors:
 
 ### Permission Dimensions
 
--   **Badge Specificity** - Which particular badges within the collection can be affected
--   **Time Constraints** - When can certain actions be performed
--   **Value Limitations** - What specific values or ranges are allowed for updates
--   **Conditional Triggers** - Under what circumstances can certain permissions be exercised
+* **Badge Specificity** - Which particular badges within the collection can be affected
+* **Time Constraints** - When can certain actions be performed
+* **Value Limitations** - What specific values or ranges are allowed for updates
+* **Conditional Triggers** - Under what circumstances can certain permissions be exercised
 
 ### Permission States
 
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen**
-
-    - The permission is permanently disallowed
-    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely
-
+   * The permission is permanently disallowed
+   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely
 2. **Permitted + Not Frozen**
-
-    - The permission is currently allowed
-    - This state can be changed to either of the other two states, offering flexibility in management
-
+   * The permission is currently allowed
+   * This state can be changed to either of the other two states, offering flexibility in management
 3. **Permitted + Permanently Frozen**
-    - The permission is permanently allowed
-    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available
+   * The permission is permanently allowed
+   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available
 
 **Note**: There is no "Forbidden + Not Frozen" state because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 
@@ -14617,15 +14714,15 @@ export interface Metadata<T extends NumberType> {
 
 ### Dynamic Badge ID Replacement
 
--   If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
--   Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
--   Enables efficient metadata generation for large collections
+* If the badge metadata URI includes `"{id}"`, it's replaced with the actual badge ID
+* Example: `"...abc.com/metadata/{id}"` becomes `"...abc.com/metadata/1"` for badge ID 1
+* Enables efficient metadata generation for large collections
 
 ### First-Match Badge Metadata
 
--   Badge metadata entries are evaluated in order
--   First matching entry for a badge ID is used
--   Allows specific overrides before general rules
+* Badge metadata entries are evaluated in order
+* First matching entry for a badge ID is used
+* Allows specific overrides before general rules
 
 ## Permission Control
 
@@ -14658,7 +14755,7 @@ Metadata updates are controlled by collection permissions:
 
 ### Timeline Times vs Permission Times Within Permissions
 
-As explained in [Permissions](permissions/), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
+As explained in [Permissions](broken-reference), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
 
 ## Usage Examples
 
@@ -14861,9 +14958,9 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 
 # Overview
 
-First, read [Permissions](broken-reference) for an overview.
+First, read [Permissions](broken-reference/) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference/)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -14916,7 +15013,7 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
@@ -15565,6 +15662,382 @@ We need to handle this, which we can do by adding another permission brute forci
 ```
 
 
+## File: ./x-badges/concepts/protocols/README.md
+
+# Protocols
+
+This directory contains documentation for standardized protocols that can be implemented using BitBadges collections. These protocols define specific patterns and requirements for creating interoperable badge collections with well-defined behaviors.
+
+## Available Protocols
+
+-   **[Subscriptions Protocol](./subscriptions-protocol.md)** - Implementation pattern for subscription-based badge collections with recurring payments and time-based ownership
+
+## Protocol Overview
+
+Protocols in BitBadges are standardized implementations that:
+
+-   Define specific collection configuration patterns
+-   Establish validation rules for protocol compliance
+-   Enable interoperability between different applications
+-   Provide predictable behavior for users and developers
+
+
+## File: ./x-badges/concepts/protocols/subscriptions-protocol.md
+
+# Subscriptions Protocol
+
+The Subscriptions Protocol enables collections to implement subscription-based badge ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription badges are created, distributed, and renewed.
+
+## Protocol Overview
+
+Subscription collections allow users to pay a recurring fee + tip to maintain ownership of badges for specific time periods. The protocol ensures predictable behavior for subscription management across different applications.
+
+## Protocol Requirements
+
+### Standards Declaration
+
+Collections must include "Subscriptions" in their standards timeline:
+
+```json
+{
+    "standardsTimeline": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "standards": ["Subscriptions"]
+        }
+    ]
+}
+```
+
+### Badge ID Configuration
+
+-   **Single Badge ID**: Only one badge ID range (1-1) is permitted
+-   **Valid Badge IDs**: Must match exactly with subscription approval badge IDs
+
+### Collection Approvals
+
+Must contain at least one subscription faucet approval with the following characteristics:
+
+#### From Address
+
+-   **fromListId**: Must be "Mint" (minting operation)
+
+#### Approval Criteria Requirements
+
+##### Coin Transfers
+
+-   **Required**: At least one coin transfer specification
+-   **Single Denom**: All coin transfers must use the same denomination
+-   **No Address Override**: `overrideFromWithApproverAddress` and `overrideToWithInitiator` must be false
+
+##### Predetermined Balances
+
+Must use `incrementedBalances` with specific configuration:
+
+```json
+{
+    "predeterminedBalances": {
+        "incrementedBalances": {
+            "startBalances": [
+                {
+                    "amount": "1",
+                    "badgeIds": [{ "start": "1", "end": "1" }],
+                    "ownershipTimes": [{ "start": "0", "end": "0" }]
+                }
+            ],
+            "incrementBadgeIdsBy": "0",
+            "incrementOwnershipTimesBy": "0",
+            "durationFromTimestamp": "2592000000", // 30 days in milliseconds
+            "allowOverrideTimestamp": true,
+            "recurringOwnershipTimes": {
+                "startTime": "0",
+                "intervalLength": "0",
+                "chargePeriodLength": "0"
+            }
+        }
+    }
+}
+```
+
+**Key Requirements:**
+
+-   **Amount**: Must be exactly 1
+-   **Badge IDs**: Single badge ID (1-1)
+-   **Duration**: Must be greater than 0 (subscription period length)
+-   **Override Timestamp**: Must be true for faucet functionality
+-   **No Increments**: Badge ID and ownership time increments must be 0
+-   **No Recurring**: Recurring ownership times must be all 0
+
+##### Restrictions
+
+-   **No Merkle Challenges**: Cannot include merkle challenges
+-   **No Badge Requirements**: Cannot include mustOwnBadges requirements
+-   **No Address Restrictions**: Cannot require from/to equals initiated by
+-   **No Override Approvals**: Cannot override incoming approvals
+
+## User Subscription Management
+
+Users manage their subscriptions through incoming approvals that complement the collection's faucet approval:
+
+### User Incoming Approval Requirements
+
+#### Basic Configuration
+
+-   **fromListId**: Must be "Mint"
+-   **Badge IDs**: Must match subscription approval badge IDs exactly
+-   **Single Badge**: Only one badge ID range permitted
+
+#### Coin Transfer Configuration
+
+```json
+{
+    "coinTransfers": [
+        {
+            "coins": [
+                {
+                    "denom": "ubadge", // Must match subscription denom
+                    "amount": "100000" // Must be >= subscription amount
+                }
+            ],
+            "overrideFromWithApproverAddress": true,
+            "overrideToWithInitiator": true
+        }
+    ]
+}
+```
+
+#### Predetermined Balances for Renewals
+
+```json
+{
+    "predeterminedBalances": {
+        "incrementedBalances": {
+            "startBalances": [
+                {
+                    "amount": "1",
+                    "badgeIds": [{ "start": "1", "end": "1" }]
+                }
+            ],
+            "incrementBadgeIdsBy": "0",
+            "incrementOwnershipTimesBy": "0",
+            "durationFromTimestamp": "0",
+            "allowOverrideTimestamp": false,
+            "recurringOwnershipTimes": {
+                "startTime": "1672531200000", // Current subscription start
+                "intervalLength": "2592000000", // 30 days
+                "chargePeriodLength": "604800000" // 7 days max charge period
+            }
+        }
+    }
+}
+```
+
+#### Transfer Limits
+
+```json
+{
+    "maxNumTransfers": {
+        "overallMaxNumTransfers": "1",
+        "resetTimeIntervals": {
+            "startTime": "1672531200000",
+            "intervalLength": "2592000000" // Same as subscription interval
+        }
+    }
+}
+```
+
+## Protocol Validation Logic
+
+### Collection Validation
+
+```typescript
+function doesCollectionFollowSubscriptionProtocol(collection) {
+    // Check for "Subscriptions" standard
+    const hasSubscriptionStandard = collection.standardsTimeline.some(
+        (standard) =>
+            standard.standards.includes('Subscriptions') &&
+            isCurrentTime(standard.timelineTimes)
+    );
+
+    if (!hasSubscriptionStandard) return false;
+
+    // Find subscription faucet approvals
+    const subscriptionApprovals = collection.collectionApprovals.filter(
+        (approval) => isSubscriptionFaucetApproval(approval)
+    );
+
+    if (subscriptionApprovals.length < 1) return false;
+
+    // Validate single badge ID requirement
+    if (collection.validBadgeIds.length !== 1) return false;
+
+    // Ensure approval badge IDs match collection badge IDs
+    const allApprovalBadgeIds = subscriptionApprovals
+        .map((approval) => approval.badgeIds)
+        .flat();
+
+    return badgeIdsMatch(collection.validBadgeIds, allApprovalBadgeIds);
+}
+```
+
+### Faucet Approval Validation
+
+```typescript
+function isSubscriptionFaucetApproval(approval) {
+    // Must be from Mint
+    if (approval.fromListId !== 'Mint') return false;
+
+    // Must have coin transfers
+    if (!approval.approvalCriteria?.coinTransfers?.length) return false;
+
+    // Single denomination requirement
+    const allDenoms = approval.approvalCriteria.coinTransfers.flatMap((ct) =>
+        ct.coins.map((c) => c.denom)
+    );
+    if (new Set(allDenoms).size > 1) return false;
+
+    // No address overrides in coin transfers
+    for (const coinTransfer of approval.approvalCriteria.coinTransfers) {
+        if (
+            coinTransfer.overrideFromWithApproverAddress ||
+            coinTransfer.overrideToWithInitiator
+        ) {
+            return false;
+        }
+    }
+
+    // Validate incremented balances configuration
+    const incrementedBalances =
+        approval.approvalCriteria.predeterminedBalances?.incrementedBalances;
+    if (!incrementedBalances) return false;
+
+    return validateIncrementedBalances(incrementedBalances, approval.badgeIds);
+}
+```
+
+### User Approval Validation
+
+```typescript
+function isUserRecurringApproval(userApproval, subscriptionApproval) {
+    // Must be from Mint
+    if (userApproval.fromListId !== 'Mint') return false;
+
+    // Badge IDs must match subscription
+    if (!badgeIdsMatch(userApproval.badgeIds, subscriptionApproval.badgeIds)) {
+        return false;
+    }
+
+    // Payment amount must be >= subscription amount
+    const userAmount =
+        userApproval.approvalCriteria?.coinTransfers?.[0]?.coins?.[0]?.amount;
+    const subscriptionAmount =
+        subscriptionApproval.approvalCriteria?.coinTransfers?.[0]?.coins?.[0]
+            ?.amount;
+    if (userAmount < subscriptionAmount) return false;
+
+    // Validate coin transfer overrides
+    const coinTransfer = userApproval.approvalCriteria.coinTransfers[0];
+    if (
+        !coinTransfer.overrideFromWithApproverAddress ||
+        !coinTransfer.overrideToWithInitiator
+    ) {
+        return false;
+    }
+
+    // Validate recurring configuration
+    return validateRecurringConfiguration(userApproval, subscriptionApproval);
+}
+```
+
+## Usage Examples
+
+### Basic Subscription Collection
+
+```json
+{
+    "validBadgeIds": [{ "start": "1", "end": "1" }],
+    "standardsTimeline": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "standards": ["Subscriptions"]
+        }
+    ],
+    "collectionApprovals": [
+        {
+            "fromListId": "Mint",
+            "toListId": "All",
+            "initiatedByListId": "All",
+            "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "badgeIds": [{ "start": "1", "end": "1" }],
+            "approvalCriteria": {
+                "coinTransfers": [
+                    {
+                        "coins": [{ "denom": "ubadge", "amount": "100000" }],
+                        "overrideFromWithApproverAddress": false,
+                        "overrideToWithInitiator": false
+                    }
+                ],
+                "predeterminedBalances": {
+                    "incrementedBalances": {
+                        "startBalances": [
+                            {
+                                "amount": "1",
+                                "badgeIds": [{ "start": "1", "end": "1" }]
+                            }
+                        ],
+                        "durationFromTimestamp": "2592000000",
+                        "allowOverrideTimestamp": true
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+### User Subscription Setup
+
+```json
+{
+    "fromListId": "Mint",
+    "badgeIds": [{ "start": "1", "end": "1" }],
+    "approvalCriteria": {
+        "coinTransfers": [
+            {
+                "coins": [{ "denom": "ubadge", "amount": "100000" }],
+                "overrideFromWithApproverAddress": true,
+                "overrideToWithInitiator": true
+            }
+        ],
+        "predeterminedBalances": {
+            "incrementedBalances": {
+                "recurringOwnershipTimes": {
+                    "intervalLength": "2592000000",
+                    "chargePeriodLength": "604800000"
+                }
+            }
+        },
+        "maxNumTransfers": {
+            "overallMaxNumTransfers": "1",
+            "resetTimeIntervals": {
+                "intervalLength": "2592000000"
+            }
+        }
+    }
+}
+```
+
+## Implementation Benefits
+
+1. **Standardization**: Predictable subscription behavior across applications
+2. **Interoperability**: Common interface for subscription management
+3. **Automation**: Recurring payment and renewal mechanisms
+4. **Flexibility**: Configurable subscription periods and pricing
+5. **Validation**: Built-in compliance checking for protocol adherence
+
+The Subscriptions Protocol provides a robust foundation for implementing subscription-based badge systems while maintaining the flexibility and security of the BitBadges approval system.
+
+
 ## File: ./x-badges/concepts/standards.md
 
 # Standards
@@ -15610,7 +16083,77 @@ All collections implement the same interface on the blockchain, but standards de
 }
 ```
 
-Standards provide flexible guidance for collection behavior while maintaining blockchain simplicity.
+## BitBadges Site Standards
+
+The BitBadges site recognizes three specific standards that collections can implement to ensure compatibility with various features and integrations:
+
+### 1. Tradable Standard
+
+Collections marked with the **Tradable** standard are marked as tradable on the BitBadges site. We will track orderbook, volume, price, and other metrics for these collections. Also, the interface will be optimized for trading.
+
+-   **Requirements**:
+    -   Ensure the collection lends itself to user-to-user trading
+    -   Must be able to support bids / offers / listings / collection offers. These are standardized approvals that follow specific rules.
+
+### 2. NFT Standard
+
+Collections marked with the **NFT** standard are expected to be non-fungible tokens with supply = 1 for every badge ID.
+
+-   **Requirements**:
+    -   Each badge ID must have supply = 1 and full ownership times
+    -   No fungible badge IDs allowed
+    -   Maintains uniqueness across all badge IDs in the collection
+
+### 3. Cosmos Wrappable Standard
+
+Collections marked with the **Cosmos Wrappable** standard can be wrapped into Cosmos SDK coin denominations.
+
+-   **Requirements**:
+    -   Must have at least one wrapper path defined
+    -   Should support bidirectional wrapping/unwrapping
+    -   Refer to the [Cosmos Wrapper documentation](../cosmos-wrapper-paths.md) for detailed implementation guidelines
+
+### 4. Subscriptions Standard
+
+Collections marked with the **Subscriptions** standard are designed for recurring content delivery and subscription-based systems.
+
+-   **Requirements**:
+    -   Must support time-based ownership periods for subscription-like behavior
+    -   Must be able to handle recurring badge issuance and expiration
+    -   Should support dynamic content updates based on subscription status
+-   **Implementation**: See [Subscriptions Protocol](protocols/subscriptions-protocol.md) for detailed implementation requirements and validation logic
+
+### 5. Quests Standard
+
+Collections marked with the **Quests** standard are designed for achievement-based systems and quest completion tracking.
+
+-   **Requirements**:
+    -   Should implement quest completion tracking and reward distribution
+    -   Must support achievement-based badge issuance
+    -   Should handle quest progression and milestone tracking
+
+### Using BitBadges Standards
+
+To implement these standards on your collection, add them to your `standardsTimeline`:
+
+```json
+{
+    "standardsTimeline": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "standards": [
+                "Tradable",
+                "NFT",
+                "Cosmos Wrappable",
+                "Subscriptions",
+                "Quests"
+            ]
+        }
+    ]
+}
+```
+
+**Note**: These standards are informational and do not enforce blockchain-level validation. Applications and platforms are responsible for verifying compliance with the specified standards.
 
 
 ## File: ./x-badges/concepts/time-fields.md
@@ -15864,10 +16407,10 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## Related Concepts
 
--   **[Valid Badge IDs](valid-badge-ids.md)** - Defines which badge IDs can exist for informational purposes
--   **[Manager](manager.md)** - Controls the collection approvals and permissions
--   **[Transferability & Approvals](transferability-approvals.md)** - Governs transfers from Mint address
--   **[Permissions](permissions/)** - Controls what managers can do and when they can do it
+* [**Valid Badge IDs**](valid-badge-ids.md) - Defines which badge IDs can exist for informational purposes
+* [**Manager**](manager.md) - Controls the collection approvals and permissions
+* [**Transferability & Approvals**](broken-reference) - Governs transfers from Mint address
+* [**Permissions**](broken-reference) - Controls what managers can do and when they can do it
 
 
 ## File: ./x-badges/concepts/transferability-approvals.md
@@ -16422,16 +16965,16 @@ Valid Badge IDs define the range of badge IDs that exist within a collection. Th
 
 ### Badge ID Range Definition
 
--   The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
--   IDs must start at 1 and have no gaps
--   This range is separate from circulating supply
+* The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
+* IDs must start at 1 and have no gaps
+* This range is separate from circulating supply
 
 ### Separation from Circulating Supply
 
--   Valid badge IDs define what _can_ exist
--   Circulating supply defines what _actually_ exists
--   Circulating supply is managed through transfers/approvals and balance allocations
--   Circulating supply should obey the valid badge IDs defined on-chain
+* Valid badge IDs define what _can_ exist
+* Circulating supply defines what _actually_ exists
+* Circulating supply is managed through transfers/approvals and balance allocations
+* Circulating supply should obey the valid badge IDs defined on-chain
 
 ## Creating Badge IDs
 
@@ -16493,14 +17036,14 @@ Updates to valid badge IDs must obey the `canUpdateValidBadgeIds` permission:
 
 Note that the `canUpdateValidBadgeIds` permission applies to the updatability of the `validBadgeIds` field.
 
-We find the first-match for (current time, badge ID) for each badge ID that is changed, and check the permission for that time. If no time matches, the permission is default enabled. See [Permissions](permissions/) for more details.
+We find the first-match for (current time, badge ID) for each badge ID that is changed, and check the permission for that time. If no time matches, the permission is default enabled. See [Permissions](broken-reference) for more details.
 
 ### Permission Best-Practices
 
 Typically, the desired functionality falls into one of the following categories:
 
--   **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
--   **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
+* **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
+* **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
 
 ## Examples
 
@@ -16549,15 +17092,19 @@ The badges module emits events for all message operations to enable blockchain m
 ## Event Categories
 
 ### Standard Message Events
+
 All message handlers emit `sdk.EventTypeMessage` events with message-specific attributes.
 
-### Indexer Events  
+### Indexer Events
+
 Duplicate events with type "indexer" for external application consumption.
 
 ### Transfer Events
+
 Detailed events for transfer operations including approval usage and challenge tracking.
 
 ### IBC Events
+
 Events for cross-chain operations with acknowledgment handling.
 
 ## Standard Message Events
@@ -16565,6 +17112,7 @@ Events for cross-chain operations with acknowledgment handling.
 ### Collection Management
 
 #### CreateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -16575,6 +17123,7 @@ Attributes:
 ```
 
 #### UpdateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -16585,6 +17134,7 @@ Attributes:
 ```
 
 #### UniversalUpdateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -16595,6 +17145,7 @@ Attributes:
 ```
 
 #### DeleteCollection
+
 ```
 Type: "message"
 Attributes:
@@ -16607,6 +17158,7 @@ Attributes:
 ### Badge Transfers
 
 #### TransferBadges
+
 ```
 Type: "message"
 Attributes:
@@ -16626,6 +17178,7 @@ Attributes:
 ### User Approvals
 
 #### UpdateUserApprovals
+
 ```
 Type: "message"
 Attributes:
@@ -16638,6 +17191,7 @@ Attributes:
 ### Address Lists
 
 #### CreateAddressLists
+
 ```
 Type: "message"
 Attributes:
@@ -16650,6 +17204,7 @@ Attributes:
 ### Dynamic Stores
 
 #### CreateDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -16661,6 +17216,7 @@ Attributes:
 ```
 
 #### UpdateDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -16672,6 +17228,7 @@ Attributes:
 ```
 
 #### DeleteDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -16683,6 +17240,7 @@ Attributes:
 ```
 
 #### SetDynamicStoreValue
+
 ```
 Type: "message"
 Attributes:
@@ -16698,6 +17256,7 @@ Attributes:
 ## Transfer Events
 
 ### Approval Usage
+
 ```
 Type: "usedApprovalDetails"
 Attributes:
@@ -16714,6 +17273,7 @@ Attributes:
 ```
 
 ### Challenge Events
+
 ```
 Type: "challenge{approvalId}{challengeId}{leafIndex}{approverAddress}{approvalLevel}{newNumUsed}"
 Attributes:
@@ -16726,6 +17286,7 @@ Attributes:
 ```
 
 ### Dynamic Approval Events
+
 ```
 Type: "approval{collectionId}{approverAddress}{approvalId}{amountsTrackerId}{approvalLevel}{trackerType}{address}"
 Attributes:
@@ -16743,6 +17304,7 @@ Attributes:
 ## IBC Events
 
 ### Packet Events
+
 ```
 Type: "timeout" (for timeouts)
 Attributes:
@@ -16751,803 +17313,6 @@ Attributes:
   - error: string (if applicable)
 ```
 
-## Indexer Events
-
-All message handlers emit duplicate "indexer" events with identical attributes to the standard message events for external indexing purposes.
-
-## Missing Events
-
-**Note**: `MsgUpdateParams` does not emit any events and should be considered for future event emission.
-
-## Event Patterns
-
-### Dual Emission
-Each message emits both standard `sdk.EventTypeMessage` and duplicate "indexer" events.
-
-### Dynamic Event Names
-Transfer-related events use concatenated strings for unique event type identification.
-
-### JSON Serialization
-Complex data structures are JSON-encoded in event attributes to preserve structure.
-
-### Transaction Consistency
-Events are only persisted when transactions succeed. Failed transactions emit no events.
-
-## File: ./x-badges/examples.md
-
-# Examples
-
-This document provides practical examples and common usage patterns for the badges module, demonstrating how to implement various badge-based applications and workflows.
-
-## Table of Contents
-
-- [Basic Badge Collection](#basic-badge-collection)
-- [Certificate System](#certificate-system)
-- [Event Tickets](#event-tickets)
-- [Gaming Achievements](#gaming-achievements)
-- [Loyalty Program](#loyalty-program)
-- [DAO Membership](#dao-membership)
-- [Cross-Chain Integration](#cross-chain-integration)
-- [Advanced Approval Patterns](#advanced-approval-patterns)
-
-## Basic Badge Collection
-
-A simple collectible badge series with transferable badges.
-
-### Creating the Collection
-
-```json
-{
-  "creator": "bb1creator123...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [{"start": "1", "end": "1000"}],
-  "defaultBalances": {
-    "balances": [
-      {
-        "amount": [{"start": "0", "end": "0"}],
-        "badgeIds": [{"start": "1", "end": "1000"}],
-        "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-      }
-    ],
-    "autoApproveSelfInitiatedOutgoingTransfers": true,
-    "autoApproveSelfInitiatedIncomingTransfers": true
-  },
-  "managerTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "manager": "bb1creator123..."
-    }
-  ],
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "Cool Collectibles",
-        "description": "A series of 1000 unique collectible badges",
-        "image": "https://example.com/collection-image.png",
-        "attributes": []
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "1000"}],
-          "metadata": {
-            "name": "Collectible #{badgeId}",
-            "description": "Unique collectible badge number {badgeId}",
-            "image": "https://example.com/badge-{badgeId}.png",
-            "attributes": [
-              {"trait_type": "Rarity", "value": "Common"}
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "collectionPermissions": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "canUpdateCollectionMetadata": [
-        {
-          "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-          "permanentlyPermittedTimes": [{"start": "1", "end": "9223372036854775807"}],
-          "permanentlyForbiddenTimes": []
-        }
-      ],
-      "canCreateMoreBadges": [
-        {
-          "permanentlyPermittedTimes": [],
-          "permanentlyForbiddenTimes": [{"start": "1", "end": "9223372036854775807"}]
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "general-transfer",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["*"]},
-      "initiatedByList": {"addresses": ["*"]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "1000"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {}
-    }
-  ]
-}
-```
-
-### Minting Badges to Users
-
-```json
-{
-  "creator": "bb1creator123...",
-  "collectionId": "1",
-  "transfers": [
-    {
-      "from": "Mint",
-      "toAddresses": ["bb1user1...", "bb1user2...", "bb1user3..."],
-      "balances": [
-        {
-          "amount": [{"start": "1", "end": "1"}],
-          "badgeIds": [{"start": "1", "end": "3"}],
-          "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-        }
-      ]
-    }
-  ]
-}
-```
-
-## Certificate System
-
-Non-transferable certificates with expiration dates and prerequisite verification.
-
-### Certificate Collection Setup
-
-```json
-{
-  "creator": "bb1university...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [{"start": "1", "end": "999999"}],
-  "defaultBalances": {
-    "balances": [
-      {
-        "amount": [{"start": "0", "end": "0"}],
-        "badgeIds": [{"start": "1", "end": "999999"}],
-        "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-      }
-    ],
-    "autoApproveSelfInitiatedOutgoingTransfers": false,
-    "autoApproveSelfInitiatedIncomingTransfers": false
-  },
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "University Certificates",
-        "description": "Official academic certificates and achievements",
-        "image": "https://university.edu/certificate-seal.png"
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "1000"}],
-          "metadata": {
-            "name": "Computer Science Degree",
-            "description": "Bachelor of Science in Computer Science",
-            "image": "https://university.edu/cs-degree.png"
-          }
-        },
-        {
-          "badgeIds": [{"start": "1001", "end": "2000"}],
-          "metadata": {
-            "name": "Advanced Programming Certificate",
-            "description": "Certificate in Advanced Programming Techniques",
-            "image": "https://university.edu/programming-cert.png"
-          }
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "no-transfers",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": []},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "999999"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-    }
-  ],
-  "collectionPermissions": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "canCreateMoreBadges": [
-        {
-          "permanentlyPermittedTimes": [{"start": "1", "end": "9223372036854775807"}],
-          "permanentlyForbiddenTimes": []
-        }
-      ]
-    }
-  ]
-}
-```
-
-### Issuing Certificates with Prerequisites
-
-```json
-{
-  "creator": "bb1university...",
-  "collectionId": "2",
-  "transfers": [
-    {
-      "from": "Mint",
-      "toAddresses": ["bb1student..."],
-      "balances": [
-        {
-          "amount": [{"start": "1", "end": "1"}],
-          "badgeIds": [{"start": "1001", "end": "1001"}],
-          "ownershipTimes": [
-            {
-              "start": "1672531200000",
-              "end": "1830297600000"
-            }
-          ]
-        }
-      ],
-      "merkleProofs": {
-        "merkleProofs": [
-          {
-            "leaf": "bb1student...",
-            "proof": ["0x123...", "0x456..."],
-            "aunts": []
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-## Event Tickets
-
-Time-limited tickets with restricted transferability and attendance verification.
-
-### Event Ticket Collection
-
-```json
-{
-  "creator": "bb1eventorganizer...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [
-    {"start": "1", "end": "100"},
-    {"start": "101", "end": "150"},
-    {"start": "151", "end": "200"}
-  ],
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "TechConf 2024 Tickets",
-        "description": "Official tickets for TechConf 2024",
-        "image": "https://techconf.com/2024-logo.png"
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "100"}],
-          "metadata": {
-            "name": "General Admission",
-            "description": "General admission to TechConf 2024",
-            "attributes": [
-              {"trait_type": "Ticket Type", "value": "General"},
-              {"trait_type": "Event Date", "value": "2024-06-15"}
-            ]
-          }
-        },
-        {
-          "badgeIds": [{"start": "101", "end": "150"}],
-          "metadata": {
-            "name": "VIP Access",
-            "description": "VIP access with backstage privileges",
-            "attributes": [
-              {"trait_type": "Ticket Type", "value": "VIP"},
-              {"trait_type": "Event Date", "value": "2024-06-15"}
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "ticket-transfers",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["*"]},
-      "transferTimes": [
-        {
-          "start": "1672531200000",
-          "end": "1718409600000"
-        }
-      ],
-      "badgeIds": [{"start": "1", "end": "200"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "maxNumTransfers": [
-          {
-            "maxNumTransfers": "2",
-            "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-            "badgeIds": [{"start": "1", "end": "200"}],
-            "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-### Ticket Purchase with Dynamic Store
-
-```json
-{
-  "creator": "bb1eventorganizer...",
-  "defaultValue": false
-}
-```
-
-```json
-{
-  "creator": "bb1eventorganizer...",
-  "storeId": "1",
-  "address": "bb1purchaser...",
-  "value": true
-}
-```
-
-```json
-{
-  "creator": "bb1eventorganizer...",
-  "collectionId": "3",
-  "transfers": [
-    {
-      "from": "Mint",
-      "toAddresses": ["bb1purchaser..."],
-      "balances": [
-        {
-          "amount": [{"start": "1", "end": "1"}],
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "ownershipTimes": [
-            {
-              "start": "1672531200000",
-              "end": "1718582400000"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-## Gaming Achievements
-
-Progressive achievement system with unlockable tiers and seasonal rewards.
-
-### Gaming Achievement Collection
-
-```json
-{
-  "creator": "bb1gamedev...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [
-    {"start": "1", "end": "50"},
-    {"start": "51", "end": "100"},
-    {"start": "101", "end": "150"}
-  ],
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "Epic Quest Achievements",
-        "description": "Achievement badges for Epic Quest game",
-        "image": "https://epicquest.game/achievements-banner.png"
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "50"}],
-          "metadata": {
-            "name": "Bronze Achievement",
-            "description": "Basic level achievement",
-            "attributes": [
-              {"trait_type": "Tier", "value": "Bronze"},
-              {"trait_type": "Difficulty", "value": "Easy"}
-            ]
-          }
-        },
-        {
-          "badgeIds": [{"start": "51", "end": "100"}],
-          "metadata": {
-            "name": "Silver Achievement",
-            "description": "Intermediate level achievement",
-            "attributes": [
-              {"trait_type": "Tier", "value": "Silver"},
-              {"trait_type": "Difficulty", "value": "Medium"}
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "achievement-unlock",
-      "fromList": {"addresses": ["Mint"]},
-      "toList": {"addresses": ["*"]},
-      "initiatedByList": {"addresses": ["bb1gameserver..."]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "150"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "mustOwnBadges": [
-          {
-            "collectionId": "4",
-            "amountRange": [{"start": "1", "end": "999999"}],
-            "badgeIds": [{"start": "1", "end": "50"}],
-            "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-            "mustSatisfyForSpecificAddress": "bb1player..."
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-## Loyalty Program
-
-Points-based system with tier progression and reward redemption.
-
-### Loyalty Points Collection
-
-```json
-{
-  "creator": "bb1retailer...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [{"start": "1", "end": "1"}],
-  "defaultBalances": {
-    "balances": [
-      {
-        "amount": [{"start": "0", "end": "0"}],
-        "badgeIds": [{"start": "1", "end": "1"}],
-        "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-      }
-    ]
-  },
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "Store Loyalty Points",
-        "description": "Loyalty points for purchases and rewards",
-        "image": "https://store.com/loyalty-logo.png"
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "metadata": {
-            "name": "Loyalty Points",
-            "description": "Redeemable loyalty points",
-            "attributes": [
-              {"trait_type": "Type", "value": "Points"},
-              {"trait_type": "Redeemable", "value": "Yes"}
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "points-earn",
-      "fromList": {"addresses": ["Mint"]},
-      "toList": {"addresses": ["*"]},
-      "initiatedByList": {"addresses": ["bb1retailer..."]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "1"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-    },
-    {
-      "approvalId": "points-redeem",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["bb1retailer..."]},
-      "initiatedByList": {"addresses": ["*"]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "1"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "approvalAmounts": [
-          {
-            "approvalId": "redemption-limit",
-            "amountTrackerId": [{"start": "1", "end": "1"}],
-            "overallApprovalAmount": "1000",
-            "perFromAddressApprovalAmount": "100",
-            "perToAddressApprovalAmount": "100",
-            "perInitiatedByAddressApprovalAmount": "100"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-### Awarding Points for Purchase
-
-```json
-{
-  "creator": "bb1retailer...",
-  "collectionId": "5",
-  "transfers": [
-    {
-      "from": "Mint",
-      "toAddresses": ["bb1customer..."],
-      "balances": [
-        {
-          "amount": [{"start": "50", "end": "50"}],
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-        }
-      ],
-      "memo": "Purchase reward: Order #12345"
-    }
-  ]
-}
-```
-
-## DAO Membership
-
-Governance tokens with voting power and delegation capabilities.
-
-### DAO Membership Collection
-
-```json
-{
-  "creator": "bb1dao...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [
-    {"start": "1", "end": "1"},
-    {"start": "2", "end": "2"},
-    {"start": "3", "end": "3"}
-  ],
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "TechDAO Membership",
-        "description": "Membership and voting tokens for TechDAO",
-        "image": "https://techdao.org/logo.png"
-      }
-    }
-  ],
-  "badgeMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeMetadata": [
-        {
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "metadata": {
-            "name": "Basic Member",
-            "description": "Basic DAO membership with 1 vote per token",
-            "attributes": [
-              {"trait_type": "Voting Power", "value": "1"},
-              {"trait_type": "Member Type", "value": "Basic"}
-            ]
-          }
-        },
-        {
-          "badgeIds": [{"start": "2", "end": "2"}],
-          "metadata": {
-            "name": "Premium Member",
-            "description": "Premium DAO membership with 5 votes per token",
-            "attributes": [
-              {"trait_type": "Voting Power", "value": "5"},
-              {"trait_type": "Member Type", "value": "Premium"}
-            ]
-          }
-        },
-        {
-          "badgeIds": [{"start": "3", "end": "3"}],
-          "metadata": {
-            "name": "Founder",
-            "description": "Founder membership with 10 votes per token",
-            "attributes": [
-              {"trait_type": "Voting Power", "value": "10"},
-              {"trait_type": "Member Type", "value": "Founder"}
-            ]
-          }
-        }
-      ]
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "membership-transfer",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["*"]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "3"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "mustOwnBadges": [
-          {
-            "collectionId": "6",
-            "amountRange": [{"start": "1", "end": "999999"}],
-            "badgeIds": [{"start": "1", "end": "3"}],
-            "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-            "mustSatisfyForSpecificAddress": "to"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-## Cross-Chain Integration
-
-Cross-chain badge transfers using IBC with multi-chain signature support.
-
-### Cross-Chain Collection Setup
-
-```json
-{
-  "creator": "bb1multichain...",
-  "balancesType": "Standard",
-  "badgeIdsToAdd": [{"start": "1", "end": "10000"}],
-  "collectionMetadataTimeline": [
-    {
-      "timelineTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "collectionMetadata": {
-        "name": "Cross-Chain Collectibles",
-        "description": "Collectibles that work across multiple blockchains",
-        "image": "https://multichain.com/cross-chain-logo.png"
-      }
-    }
-  ],
-  "collectionApprovals": [
-    {
-      "approvalId": "cross-chain-transfer",
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["*"]},
-      "transferTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "badgeIds": [{"start": "1", "end": "10000"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "coinTransferRequirement": [
-          {
-            "coin": {
-              "denom": "uatom",
-              "amount": "1000"
-            },
-            "toAddress": "bb1feecollector...",
-            "fromAddress": "from"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-## Advanced Approval Patterns
-
-Complex approval configurations for sophisticated use cases.
-
-### Whitelist with Merkle Tree
-
-```json
-{
-  "creator": "bb1creator...",
-  "addressLists": [
-    {
-      "addresses": ["0x123...", "0x456...", "0x789..."],
-      "whitelist": true,
-      "uri": "https://example.com/whitelist-metadata",
-      "customData": "Early access whitelist"
-    }
-  ]
-}
-```
-
-### Collection with Merkle Challenge
-
-```json
-{
-  "collectionApprovals": [
-    {
-      "approvalId": "whitelist-mint",
-      "fromList": {"addresses": ["Mint"]},
-      "toList": {"listId": "1"},
-      "transferTimes": [{"start": "1672531200000", "end": "1675209600000"}],
-      "badgeIds": [{"start": "1", "end": "1000"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "merkleChallenge": [
-          {
-            "challengeId": "whitelist-challenge",
-            "expectedProofLength": [{"start": "3", "end": "3"}],
-            "root": "0xabcdef...",
-            "useCreatorAddressAsLeaf": true,
-            "maxUsesPerLeaf": [{"start": "1", "end": "1"}]
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-### Time-Limited Transfers with Usage Tracking
-
-```json
-{
-  "collectionApprovals": [
-    {
-      "approvalId": "limited-transfer",
-      "amountTrackerId": [{"start": "1", "end": "1"}],
-      "fromList": {"addresses": ["*"]},
-      "toList": {"addresses": ["*"]},
-      "transferTimes": [{"start": "1672531200000", "end": "1675209600000"}],
-      "badgeIds": [{"start": "1", "end": "100"}],
-      "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}],
-      "approvalCriteria": {
-        "approvalAmounts": [
-          {
-            "approvalId": "transfer-limit",
-            "amountTrackerId": [{"start": "1", "end": "1"}],
-            "overallApprovalAmount": "1000",
-            "perFromAddressApprovalAmount": "10",
-            "perToAddressApprovalAmount": "10"
-          }
-        ],
-        "maxNumTransfers": [
-          {
-            "maxNumTransfers": "100",
-            "transferTimes": [{"start": "1672531200000", "end": "1675209600000"}],
-            "badgeIds": [{"start": "1", "end": "100"}],
-            "ownershipTimes": [{"start": "1", "end": "9223372036854775807"}]
-          }
-        ]
-      }
-    }
-  ]
-}
-```
-
-These examples demonstrate the flexibility and power of the badges module for implementing various digital asset use cases, from simple collectibles to complex governance and incentive systems.
 
 ## File: ./x-badges/messages/README.md
 
@@ -17558,42 +17323,39 @@ This directory contains detailed documentation for all message types supported b
 ## Message Categories
 
 ### Collection Management
-- [MsgCreateCollection](./msg-create-collection.md) - Create new badge collection
-- [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
-- [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection
+
+-   [MsgCreateCollection](./msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
+-   [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection
 
 ### Badge Transfers
-- [MsgTransferBadges](./msg-transfer-badges.md) - Transfer badges between addresses with approval validation
+
+-   [MsgTransferBadges](./msg-transfer-badges.md) - Transfer badges between addresses with approval validation
 
 ### User Approval Management
-- [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Update user transfer approval settings
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Update user transfer approval settings
 
 ### Address List Management
-- [MsgCreateAddressLists](./msg-create-address-lists.md) - Create reusable address lists for access control
+
+-   [MsgCreateAddressLists](./msg-create-address-lists.md) - Create reusable address lists for access control
 
 ### Dynamic Store Management
-- [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create boolean flag stores for approval criteria
+
+-   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create boolean flag stores for approval criteria
+-   [MsgUpdateDynamicStore](./msg-update-dynamic-store.md) - Update dynamic store configuration
+-   [MsgDeleteDynamicStore](./msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set individual address values in dynamic store
 
 ### System Administration
-- [MsgUpdateParams](./msg-update-params.md) - Update module parameters via governance
+
+-   [MsgUpdateParams](./msg-update-params.md) - Update module parameters via governance
 
 ## Additional Message Types
 
 The following message types exist in the protocol but may be documented separately:
 
-- **MsgUniversalUpdateCollection** - Legacy unified create/update interface
-- **MsgUpdateDynamicStore** - Update dynamic store configuration
-- **MsgDeleteDynamicStore** - Delete dynamic store
-- **MsgSetDynamicStoreValue** - Set individual address values in dynamic store
-
-## Common Patterns
-
-All messages follow these common patterns:
-
-1. **Message Lifecycle**: ValidateBasic() → Context Validation → Authorization → State Changes → Events
-2. **Error Handling**: Descriptive errors with proper error types
-3. **Event Emission**: Both standard and indexer events
-4. **Gas Optimization**: Efficient operations and range-based processing
+-   **MsgUniversalUpdateCollection** - Legacy unified create/update interface
 
 
 ## File: ./x-badges/messages/msg-create-address-lists.md
@@ -18183,58 +17945,31 @@ This directory contains detailed documentation for all query types supported by 
 ## Query Categories
 
 ### Collection Queries
-- [GetCollection](./get-collection.md) - Retrieve collection data and properties
+
+-   [GetCollection](./get-collection.md) - Retrieve collection data and properties
 
 ### Balance Queries
-- [GetBalance](./get-balance.md) - Get user badge balances for a collection
+
+-   [GetBalance](./get-balance.md) - Get user badge balances for a collection
 
 ### Address List Queries
-- [GetAddressList](./get-address-list.md) - Retrieve address list information
+
+-   [GetAddressList](./get-address-list.md) - Retrieve address list information
 
 ### Approval Tracking Queries
-- [GetApprovalTracker](./get-approval-tracker.md) - Get approval usage tracking data and limits
-- [GetChallengeTracker](./get-challenge-tracker.md) - Get challenge completion tracking status
+
+-   [GetApprovalTracker](./get-approval-tracker.md) - Get approval usage tracking data and limits
+-   [GetChallengeTracker](./get-challenge-tracker.md) - Get challenge completion tracking status
 
 ### Dynamic Store Queries
-- [GetDynamicStore](./get-dynamic-store.md) - Get dynamic store configuration and metadata
-- [GetDynamicStoreValue](./get-dynamic-store-value.md) - Get boolean value for specific address in store
+
+-   [GetDynamicStore](./get-dynamic-store.md) - Get dynamic store configuration and metadata
+-   [GetDynamicStoreValue](./get-dynamic-store-value.md) - Get boolean value for specific address in store
 
 ### System Queries
-- [Params](./params.md) - Get current module parameters and configuration
 
-## Query Interface Types
+-   [Params](./params.md) - Get current module parameters and configuration
 
-The badges module provides queries through multiple interfaces:
-
-### gRPC Interface
-All queries are available via gRPC for programmatic access from clients and other modules.
-
-### REST API
-RESTful HTTP endpoints for web applications and external integrations.
-
-### CLI Commands
-Command-line interface for node operators and developers.
-
-### TypeScript Client
-Generated TypeScript client for web applications and Node.js services.
-
-## Query Patterns
-
-### Pagination Support
-Large result sets support standard Cosmos SDK pagination for efficient data retrieval.
-
-### Error Handling
-Consistent error responses with descriptive messages for debugging and user feedback.
-
-### Performance Optimization
-- Direct lookups by ID for O(1) access
-- Range-based queries with binary search
-- Efficient indexing for fast retrieval
-
-### Client Integration
-All queries support multiple client types with consistent interfaces and response formats.
-
-For implementation examples and integration patterns, see the main [Queries documentation](../05-queries.md).
 
 ## File: ./x-badges/queries/get-address-list.md
 
