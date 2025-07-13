@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 22:45:01 UTC 2025
+Generated on Sun Jul 13 22:45:48 UTC 2025
 
 
 
@@ -3624,7 +3624,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
   * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
     * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
-* [🧪 Testnet Mode](overview/testnet-mode.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [Getting Started](for-developers/bitbadges-api/api.md)
   * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
@@ -3779,6 +3778,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
       * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
     * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
     * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
+* [🧪 Testnet Mode](overview/testnet-mode.md)
 * [🧠 Other Concepts](for-developers/core-concepts/README.md)
   * [Accounts (Low-Level)](for-developers/core-concepts/accounts-low-level.md)
   * [Maps / Protocols](for-developers/core-concepts/maps.md)
