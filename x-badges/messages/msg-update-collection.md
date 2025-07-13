@@ -62,17 +62,40 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1abc123...",
   "collectionId": "1",
-  "updateCollectionMetadataTimeline": true,
-  "collectionMetadataTimeline": [
-    {
-      "start": "1",
-      "end": "18446744073709551615",
-      "collectionMetadata": {
-        "name": "Updated Collection Name"
-      }
-    }
-  ]
+  "updateValidBadgeIds": true,
+  "validBadgeIds": [{"start": "1", "end": "200"}],
+  "updateCollectionPermissions": false,
+  "collectionPermissions": {
+    "canDeleteCollection": [],
+    "canArchiveCollection": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [],
+    "canUpdateCollectionMetadata": [],
+    "canUpdateValidBadgeIds": [],
+    "canUpdateBadgeMetadata": [],
+    "canUpdateCollectionApprovals": []
+  },
+  "updateManagerTimeline": false,
+  "managerTimeline": [],
+  "updateCollectionMetadataTimeline": false,
+  "collectionMetadataTimeline": [],
+  "updateBadgeMetadataTimeline": false,
+  "badgeMetadataTimeline": [],
+  "updateOffChainBalancesMetadataTimeline": false,
+  "offChainBalancesMetadataTimeline": [],
+  "updateCustomDataTimeline": false,
+  "customDataTimeline": [],
+  "updateCollectionApprovals": false,
+  "collectionApprovals": [],
+  "updateStandardsTimeline": false,
+  "standardsTimeline": [],
+  "updateIsArchivedTimeline": false,
+  "isArchivedTimeline": [],
+  "mintEscrowCoinsToTransfer": [],
+  "cosmosCoinWrapperPathsToAdd": []
 }
 ```

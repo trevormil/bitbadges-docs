@@ -48,11 +48,45 @@ bitbadgeschaind tx badges create-collection '[tx-json]' --from creator-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1abc123...",
   "balancesType": "Standard",
+  "defaultBalances": {
+    "balances": [],
+    "outgoingApprovals": [],
+    "incomingApprovals": [],
+    "autoApproveSelfInitiatedOutgoingTransfers": false,
+    "autoApproveSelfInitiatedIncomingTransfers": true,
+    "autoApproveAllIncomingTransfers": false,
+    "userPermissions": {
+      "canUpdateOutgoingApprovals": [],
+      "canUpdateIncomingApprovals": [],
+      "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+      "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+      "canUpdateAutoApproveAllIncomingTransfers": []
+    }
+  },
   "validBadgeIds": [{"start": "1", "end": "100"}],
-  "managerTimeline": [{"start": "1", "end": "18446744073709551615", "manager": "bb1..."}],
-  "collectionPermissions": {},
-  "collectionApprovals": []
+  "collectionPermissions": {
+    "canDeleteCollection": [],
+    "canArchiveCollection": [],
+    "canUpdateOffChainBalancesMetadata": [],
+    "canUpdateStandards": [],
+    "canUpdateCustomData": [],
+    "canUpdateManager": [],
+    "canUpdateCollectionMetadata": [],
+    "canUpdateValidBadgeIds": [],
+    "canUpdateBadgeMetadata": [],
+    "canUpdateCollectionApprovals": []
+  },
+  "managerTimeline": [],
+  "collectionMetadataTimeline": [],
+  "badgeMetadataTimeline": [],
+  "offChainBalancesMetadataTimeline": [],
+  "customDataTimeline": [],
+  "collectionApprovals": [],
+  "standardsTimeline": [],
+  "isArchivedTimeline": [],
+  "mintEscrowCoinsToTransfer": [],
+  "cosmosCoinWrapperPathsToAdd": []
 }
 ```

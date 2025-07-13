@@ -28,19 +28,37 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1initiator123...",
   "collectionId": "1",
   "transfers": [
     {
-      "from": "bb1...",
-      "toAddresses": ["bb1..."],
+      "from": "bb1sender123...",
+      "toAddresses": ["bb1recipient123..."],
       "balances": [
         {
-          "amount": "1",
-          "badgeIds": [{"start": "1", "end": "1"}],
-          "ownershipTimes": [{"start": "1672531200000", "end": "18446744073709551615"}]
+          "amount": "10",
+          "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}],
+          "badgeIds": [{"start": "1", "end": "5"}]
         }
-      ]
+      ],
+      "precalculateBalancesFromApproval": {
+        "approvalId": "",
+        "approvalLevel": "",
+        "approverAddress": "",
+        "version": "0"
+      },
+      "merkleProofs": [],
+      "memo": "",
+      "prioritizedApprovals": [],
+      "onlyCheckPrioritizedCollectionApprovals": false,
+      "onlyCheckPrioritizedIncomingApprovals": false,
+      "onlyCheckPrioritizedOutgoingApprovals": false,
+      "precalculationOptions": {
+        "overrideTimestamp": "0",
+        "badgeIdsOverride": []
+      },
+      "affiliateAddress": "",
+      "numAttempts": "1"
     }
   ]
 }

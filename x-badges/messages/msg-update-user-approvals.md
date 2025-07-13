@@ -54,18 +54,25 @@ bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user
 ### JSON Example
 ```json
 {
-  "creator": "bb1...",
+  "creator": "bb1user123...",
   "collectionId": "1",
+  "updateOutgoingApprovals": false,
+  "outgoingApprovals": [],
+  "updateIncomingApprovals": false,
+  "incomingApprovals": [],
   "updateAutoApproveSelfInitiatedOutgoingTransfers": true,
   "autoApproveSelfInitiatedOutgoingTransfers": true,
-  "updateOutgoingApprovals": true,
-  "outgoingApprovals": [
-    {
-      "approvalId": "friends-only",
-      "toList": ["1"],
-      "transferTimes": [{"start": "1", "end": "18446744073709551615"}],
-      "badgeIds": [{"start": "1", "end": "100"}]
-    }
-  ]
+  "updateAutoApproveSelfInitiatedIncomingTransfers": false,
+  "autoApproveSelfInitiatedIncomingTransfers": true,
+  "updateAutoApproveAllIncomingTransfers": false,
+  "autoApproveAllIncomingTransfers": false,
+  "updateUserPermissions": false,
+  "userPermissions": {
+    "canUpdateOutgoingApprovals": [],
+    "canUpdateIncomingApprovals": [],
+    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+    "canUpdateAutoApproveAllIncomingTransfers": []
+  }
 }
 ```

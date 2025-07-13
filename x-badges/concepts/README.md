@@ -21,7 +21,7 @@ Each concept is documented in its own file for better organization and easier na
 -   **[Transferability & Approvals](transferability-approvals.md)** - Overview of the three-tier approval system for badge transfers
 -   **[Approval Criteria](approval-criteria/)** - Detailed approval criteria and conditions for badge transfers
 -   **[Address Lists](address-lists.md)** - Reusable collections of addresses for approval configurations
--   **[Permissions](permissions/)** - Granular control over collection management operations
+-   **[Permissions](permissions/README.md)** - Granular control over collection management operations
 -   **[Standards](standards.md)** - Generic framework for defining collection behavior and interpretation guidelines
 -   **[Time Fields](time-fields.md)** - Understanding the different time-related fields used throughout BitBadges
 -   **[Custom Data](custom-data.md)** - Generic string fields for storing arbitrary application-specific data
