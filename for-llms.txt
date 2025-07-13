@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 18:41:34 UTC 2025
+Generated on Sun Jul 13 18:45:15 UTC 2025
 
 
 
@@ -3794,8 +3794,6 @@ And much more!
         -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
         -   [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
         -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
--   [🌟 Badges - Advanced](for-developers/badges-advanced/README.md)
-    -   [Subscriptions Protocol](for-developers/badges-advanced/subscriptions-protocol.md)
 -   [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
     -   [Overview](for-developers/bitbadges-blockchain/overview.md)
     -   [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
@@ -3854,6 +3852,8 @@ And much more!
             -   [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
 
 ## 🏗️ x/badges Module
+
+* [Overview](x-badges/README.md)
 
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
@@ -3914,7 +3914,6 @@ And much more!
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-* [Overview](x-badges/README.md)
 * [Events](x-badges/events.md)
 * [Examples](x-badges/examples.md)
 * [State](x-badges/state.md)
@@ -4604,228 +4603,7 @@ message MsgAddCustomData {
 
 # x/badges
 
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreateaddresslists.md
-
-# MsgCreateAddressLists
-
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgcreatecollection.md
-
-# MsgCreateCollection
-
-Collections are initially created via [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) . The interface looks as follows.&#x20;
-
-```typescript
-export interface MsgCreateCollection<T extends NumberType> {
-    creator: string;
-
-    //collectionId
-
-    balancesType?: string; //"Standard" | "Off-Chain"
-
-    defaultBalances: UserBalanceStore;
-
-    badgeIdsToAdd?: UintRange<T>[];
-
-    collectionPermissions?: CollectionPermissions<T>;
-    managerTimeline?: ManagerTimeline<T>[];
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    customDataTimeline?: CustomDataTimeline<T>[];
-    collectionApprovals?: CollectionApproval<T>[];
-    standardsTimeline?: StandardsTimeline<T>[];
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-}
-```
-
-The collectionId will be assigned at execution time and is obtainable in the transaction response. Subsequent updates to the collection will be through MsgUpdateCollection.
-
-**Creation Only Properties**
-
-The creation or genesis transaction for a collection is unique in a couple ways.
-
-1. There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
-2. This is the only time that you can specify **balancesType** and the **defaultBalances** information**.**&#x20;
-
-**Rest of Fields**
-
-For the rest of the fields, we refer you to the following section.
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgdeletecollection.md
-
-# MsgDeleteCollection
-
-Deleting a collection is self-explanatory. The manager can delete the collection with [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) as long as they have the permission to do so (the **canDeleteCollection** permission).&#x20;
-
-Deleting a collection will wipe it from the blockchain entirely.
-
-```typescript
-export interface MsgDeleteCollection<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-}
-```
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md
-
-# MsgTransferBadges
-
-Transferring badges on-chain can be facilitated with [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html).
-
-```typescript
-export interface MsgTransferBadges<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-    transfers: Transfer<T>[];
-}
-```
-
-**To / From Addresses**
-
-The to and from addresses must be valid BitBadges addresses. The from address can also be "Mint".
-
-**Precalculations**
-
-If you are targeting to use an approval which uses the **predeterminedBalances** field (see [Approvals](../../../badges-advanced/balances-transfers/approval-criteria/)), then you want to calculate the balances at execution time because they are possibly dynamic and can change between submit time and execution time. For example, if badge IDs increment by 1 every transfer, at signing time, the user does not know what badges they will receive because there could be transfers in between sign time and execution time.
-
-If this is the case, you can use **precalculateBalancesFromApproval** to specify which approval to precalculate from, and the balances will be calculated at execution time to what the current predetermined values are, rather than what is defined in **balances.**
-
-**Merkle Proofs**
-
-If any approval that you are targeting has a Merkle challenge, you must provide a valid Merkle proof via the **merkleProofs.**
-
-**Prioritized Approvals**
-
-All approvals with custom approval criteria (coinTransfers, approvalCriteria) must be prioritized. If it is just an open-ended approval with no restrictions beyond sender, recipient, initiatedBy, badgeIds, ownershipTimes, transferTimes, etc, then it does not need to be prioritized.
-
-Our algorithm:
-
-1. Check all prioritized approvals first in the order they were specified
-2. Check all unchecked approvals WITHOUT side-effects in the order they are defined on-chain.&#x20;
-
-If **onlyCheckPrioritizedApprovals** is true, we will not check any approval not in the prioritized ones.
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msguniversalupdatecollection.md
-
-# MsgUniversalUpdateCollection
-
-MsgUniversalUpdateCollection is a universal message that supports both creating and updating collections. If collection ID == 0, it is a create txn. This is mainly used for legacy purposes. We recommend using MsgCreateCollection and MsgUpdateCollection instead, respectively. We refer you to their documentation for further details.
-
-```typescript
-interface MsgUniversalUpdateCollection {
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    badgeIdsToAdd?: UintRange<T>[];
-    balancesType?: string;
-    collectionApprovals?: CollectionApproval<T>[];
-    collectionId: T;
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    collectionPermissions?: CollectionPermissions<T>;
-    creator: string;
-    customDataTimeline?: CustomDataTimeline<T>[];
-    defaultBalances?: UserBalanceStore;
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-    managerTimeline?: ManagerTimeline<T>[];
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    standardsTimeline?: StandardsTimeline<T>[];
-    updateBadgeMetadataTimeline?: boolean;
-    updateCollectionApprovals?: boolean;
-    updateCollectionMetadataTimeline?: boolean;
-    updateCollectionPermissions?: boolean;
-    updateCustomDataTimeline?: boolean;
-    updateIsArchivedTimeline?: boolean;
-    updateManagerTimeline?: boolean;
-    updateOffChainBalancesMetadataTimeline?: boolean;
-    updateStandardsTimeline?: boolean;
-}
-```
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdatecollection.md
-
-# MsgUpdateCollection
-
-For updating a collection's details on-chain, you can use [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html). This is only executable by the manager, and all updates must obey the previously set permissions.
-
-Note that if you only want to update off-chain balances stored at a URI and nothing else (URI stays the same), nothing on the blockchain will change, and this can all be facilitated off-chain (doesn't require this Msg).
-
-```typescript
-export interface MsgUpdateCollection<T extends NumberType> {
-    creator: string;
-    collectionId: T; //0 for new collections (will be assigned)
-
-    //Note no defaults or balances types here because that is only for new collections
-
-    badgeIdsToAdd?: UintRange<T>[];
-
-    updateCollectionPermissions?: boolean;
-    collectionPermissions?: CollectionPermissions<T>;
-    updateManagerTimeline?: boolean;
-    managerTimeline?: ManagerTimeline<T>[];
-    updateCollectionMetadataTimeline?: boolean;
-    collectionMetadataTimeline?: CollectionMetadataTimeline<T>[];
-    updateBadgeMetadataTimeline?: boolean;
-    badgeMetadataTimeline?: BadgeMetadataTimeline<T>[];
-    updateOffChainBalancesMetadataTimeline?: boolean;
-    offChainBalancesMetadataTimeline?: OffChainBalancesMetadataTimeline<T>[];
-    updateCustomDataTimeline?: boolean;
-    customDataTimeline?: CustomDataTimeline<T>[];
-    updateCollectionApprovals?: boolean;
-    collectionApprovals?: CollectionApproval<T>[];
-    updateStandardsTimeline?: boolean;
-    standardsTimeline?: StandardsTimeline<T>[];
-    updateIsArchivedTimeline?: boolean;
-    isArchivedTimeline?: IsArchivedTimeline<T>[];
-}
-```
-
-**Update Flags**
-
-We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep the currently set value.
-
-**Permissions**
-
-**All updates must obey the previously set permissions.** By previously set, we mean the ones before the Msg was started. If you update the permissions in the current Msg, those are applied last and will not be applicable until the following transaction.
-
-**Rest of Fields**
-
-For the rest of the fields, we refer you to the following section.
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgupdateuserapprovals.md
-
-# MsgUpdateUserApprovals
-
-To update approvals, you can use [MsgUpdateUserApprovals](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html). Upon genesis, every user's approval store and permissions will be the defaults specified by the collection.&#x20;
-
-From there, they can be updated according to the permissions set (i.e. the **userPermissions** previously set). Users can only update thier own approvals.
-
-We use an update flag + new value format. If the update flag is true, we will update it to the new value. If it is false, we do not update and ignore the value in the Msg and keep what was previously set.
-
-```typescript
-export interface MsgUpdateUserApprovals<T extends NumberType> {
-    creator: string;
-    collectionId: T;
-    updateOutgoingApprovals?: boolean;
-    outgoingApprovals?: UserOutgoingApproval<T>[];
-    updateIncomingApprovals?: boolean;
-    incomingApprovals?: UserIncomingApproval<T>[];
-    updateAutoApproveSelfInitiatedOutgoingTransfers?: boolean;
-    autoApproveSelfInitiatedOutgoingTransfers?: boolean;
-    updateAutoApproveSelfInitiatedIncomingTransfers?: boolean;
-    autoApproveSelfInitiatedIncomingTransfers?: boolean;
-    updateAutoApproveAllIncomingTransfers?: boolean;
-    autoApproveAllIncomingTransfers?: boolean;
-    updateUserPermissions?: boolean;
-    userPermissions?: UserPermissions<T>;
-}
-```
+See the x/badges documentation below the For Developers section.
 
 
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
