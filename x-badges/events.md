@@ -5,15 +5,19 @@ The badges module emits events for all message operations to enable blockchain m
 ## Event Categories
 
 ### Standard Message Events
+
 All message handlers emit `sdk.EventTypeMessage` events with message-specific attributes.
 
-### Indexer Events  
+### Indexer Events
+
 Duplicate events with type "indexer" for external application consumption.
 
 ### Transfer Events
+
 Detailed events for transfer operations including approval usage and challenge tracking.
 
 ### IBC Events
+
 Events for cross-chain operations with acknowledgment handling.
 
 ## Standard Message Events
@@ -21,6 +25,7 @@ Events for cross-chain operations with acknowledgment handling.
 ### Collection Management
 
 #### CreateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -31,6 +36,7 @@ Attributes:
 ```
 
 #### UpdateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -41,6 +47,7 @@ Attributes:
 ```
 
 #### UniversalUpdateCollection
+
 ```
 Type: "message"
 Attributes:
@@ -51,6 +58,7 @@ Attributes:
 ```
 
 #### DeleteCollection
+
 ```
 Type: "message"
 Attributes:
@@ -63,6 +71,7 @@ Attributes:
 ### Badge Transfers
 
 #### TransferBadges
+
 ```
 Type: "message"
 Attributes:
@@ -82,6 +91,7 @@ Attributes:
 ### User Approvals
 
 #### UpdateUserApprovals
+
 ```
 Type: "message"
 Attributes:
@@ -94,6 +104,7 @@ Attributes:
 ### Address Lists
 
 #### CreateAddressLists
+
 ```
 Type: "message"
 Attributes:
@@ -106,6 +117,7 @@ Attributes:
 ### Dynamic Stores
 
 #### CreateDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -117,6 +129,7 @@ Attributes:
 ```
 
 #### UpdateDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -128,6 +141,7 @@ Attributes:
 ```
 
 #### DeleteDynamicStore
+
 ```
 Type: "message"
 Attributes:
@@ -139,6 +153,7 @@ Attributes:
 ```
 
 #### SetDynamicStoreValue
+
 ```
 Type: "message"
 Attributes:
@@ -154,6 +169,7 @@ Attributes:
 ## Transfer Events
 
 ### Approval Usage
+
 ```
 Type: "usedApprovalDetails"
 Attributes:
@@ -170,6 +186,7 @@ Attributes:
 ```
 
 ### Challenge Events
+
 ```
 Type: "challenge{approvalId}{challengeId}{leafIndex}{approverAddress}{approvalLevel}{newNumUsed}"
 Attributes:
@@ -182,6 +199,7 @@ Attributes:
 ```
 
 ### Dynamic Approval Events
+
 ```
 Type: "approval{collectionId}{approverAddress}{approvalId}{amountsTrackerId}{approvalLevel}{trackerType}{address}"
 Attributes:
@@ -199,6 +217,7 @@ Attributes:
 ## IBC Events
 
 ### Packet Events
+
 ```
 Type: "timeout" (for timeouts)
 Attributes:
@@ -206,25 +225,3 @@ Attributes:
   - success: string ("true"/"false")
   - error: string (if applicable)
 ```
-
-## Indexer Events
-
-All message handlers emit duplicate "indexer" events with identical attributes to the standard message events for external indexing purposes.
-
-## Missing Events
-
-**Note**: `MsgUpdateParams` does not emit any events and should be considered for future event emission.
-
-## Event Patterns
-
-### Dual Emission
-Each message emits both standard `sdk.EventTypeMessage` and duplicate "indexer" events.
-
-### Dynamic Event Names
-Transfer-related events use concatenated strings for unique event type identification.
-
-### JSON Serialization
-Complex data structures are JSON-encoded in event attributes to preserve structure.
-
-### Transaction Consistency
-Events are only persisted when transactions succeed. Failed transactions emit no events.

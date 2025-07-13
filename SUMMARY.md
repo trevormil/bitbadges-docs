@@ -51,7 +51,6 @@
     -   [Concepts](for-developers/bitbadges-api/concepts/README.md)
         -   [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
         -   [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
-        -   [Designing for Compatibility](for-developers/bitbadges-api/concepts/designing-for-compatibility.md)
         -   [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
         -   [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
         -   [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
@@ -161,7 +160,6 @@
         -   [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
         -   [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
         -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-        -   [Off-Chain Balances](for-developers/bitbadges-sdk/common-snippets/off-chain-balances.md)
         -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
 -   [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
     -   [Overview](for-developers/bitbadges-blockchain/overview.md)
@@ -256,6 +254,8 @@
     * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
     * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
     * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
 * [Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
@@ -277,7 +277,6 @@
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
 * [Events](x-badges/events.md)
-* [Examples](x-badges/examples.md)
 * [State](x-badges/state.md)
 
 

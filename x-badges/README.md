@@ -43,6 +43,9 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 -   [MsgCreateAddressLists](./messages/msg-create-address-lists.md) - Create reusable address lists
 -   [MsgCreateDynamicStore](./messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](./messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](./messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./messages/msg-set-dynamic-store-value.md) - Set address-specific store values
 -   [More messages...](./messages/) - See full message reference
 
 ## Query Reference

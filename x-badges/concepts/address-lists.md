@@ -1,259 +1,262 @@
 # Address Lists
 
-Reusable collections of addresses for approval configurations with efficient whitelist/blacklist logic and flexible storage options.
+Address lists define collections of addresses for use in approval configurations. They support both static lists stored on-chain and dynamic reserved patterns for common access control scenarios.
+
+## Usage in Approval Configurations
+
+Address lists are referenced by ID in three approval contexts. IDs can either be reserved, shorthand IDs or user-created lists via `MsgCreateAddressLists`.
+
+### Collection Approvals
+
+```protobuf
+message CollectionApproval {
+  string fromListId = 1;        // Who can send badges
+  string toListId = 2;          // Who can receive badges
+  string initiatedByListId = 3; // Who can initiate transfers
+  // ... other fields
+}
+```
+
+### User Outgoing Approvals
+
+```protobuf
+message UserOutgoingApproval {
+  string toListId = 1;          // Who user can send to
+  string initiatedByListId = 2; // Who can initiate on user's behalf
+  // ... other fields
+}
+```
+
+### User Incoming Approvals
+
+```protobuf
+message UserIncomingApproval {
+  string fromListId = 1;        // Who can send to user
+  string initiatedByListId = 2; // Who can initiate transfers to user
+  // ... other fields
+}
+```
+
+### Usage Examples
+
+#### Universal Access
+
+```json
+{
+    "fromListId": "AllWithoutMint", // Everyone except Mint
+    "toListId": "All", // Everyone including Mint
+    "initiatedByListId": "All" // Anyone can initiate
+}
+```
+
+#### Restricted Access
+
+```json
+{
+    "fromListId": "vipMembers", // Only VIP members can send
+    "toListId": "!banned", // Everyone except banned users
+    "initiatedByListId": "AllWithoutMint"
+}
+```
+
+#### Quick Address Lists
+
+```json
+{
+    "fromListId": "bb1alice...:bb1bob...:bb1charlie...", // Direct addresses
+    "toListId": "AllWithoutMint:bb1blocked...", // Everyone except these
+    "initiatedByListId": "All"
+}
+```
 
 ## Proto Definition
 
 ```protobuf
 message AddressList {
-  string listId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-  repeated string addresses = 2;
-  bool whitelist = 3;
-  string uri = 4;
-  string customData = 5;
-  string createdBy = 6;
-  string aliasAddress = 7;
+  string listId = 1;           // Unique identifier
+  repeated string addresses = 2; // List of addresses
+  bool whitelist = 3;          // true = whitelist, false = blacklist
+  string uri = 4;              // Metadata URI
+  string customData = 5;       // Custom data
+  string createdBy = 6;        // Creator address
 }
 ```
 
-## Reserved Address List Shorthand IDs
+## Reserved Address List IDs
 
-BitBadges provides powerful built-in address lists that you can use immediately without creating custom lists:
+BitBadges provides built-in reserved list IDs that are dynamically generated without storage overhead:
 
-### Universal Lists
+### Core Reserved Lists
 
--   **`"All"`** - Includes every possible address (listId = 2^256 - 1)
+#### "Mint"
 
-    -   No storage overhead, automatically includes all addresses
-    -   Perfect for public collections or unrestricted transfers
-    -   Example: Open minting, public airdrops
+-   **Purpose**: Contains only the "Mint" address
+-   **Logic**: Whitelist (addresses: ["Mint"], whitelist: true)
+-   **Use case**: Minting operations and initial badge distribution
 
--   **`"!All"`** - Excludes every address (empty set)
-    -   Effectively blocks all transfers when used in approvals
-    -   Useful for temporarily disabling transfers
+#### "All" and "AllWithMint"
 
-### Special Address References
+-   **Purpose**: Represents all addresses including Mint
+-   **Logic**: Blacklist with empty addresses list (addresses: [], whitelist: false)
+-   **Use case**: Universal access, public collections
 
--   **`"Mint"`** - References the special mint address
-    -   Used for badge creation and initial distribution
-    -   Cannot be used as a regular address for transfers
+#### "None"
 
-### Dynamic List Inversion
+-   **Purpose**: Represents no addresses
+-   **Logic**: Whitelist with empty addresses list (addresses: [], whitelist: true)
+-   **Use case**: Blocking all access, disabled transfers
 
--   **`"!{listId}"`** - Inverts any existing list (e.g., `"!5"` inverts list 5)
-    -   Whitelist becomes blacklist, blacklist becomes whitelist
-    -   Allows reusing lists with opposite logic
-    -   Example: `"!1"` means "everyone except those in list 1"
+### Dynamic Patterns
 
-### Practical Reserved ID Examples
+#### AllWithout Pattern
 
-```json
-// Everyone can transfer freely
-{
-  "listId": "All",
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
+-   **Format**: `"AllWithout<addresses>"` where addresses are colon-separated
+-   **Example**: `"AllWithoutMint"`, `"AllWithoutMint:bb1user123"`
+-   **Logic**: Blacklist containing the specified addresses (addresses: ["Mint", "bb1user123"], whitelist: false)
+-   **Use case**: Allow everyone except specific addresses
 
-// Only VIP members (list 1), everyone else blocked
-{
-  "listId": "!1",        // Invert VIP list to block non-VIPs
-  "approvalAmounts": "0",
-  "maxNumTransfers": "0"
-}
+#### Colon-Separated Addresses
 
-// Block specific addresses (list 2), allow everyone else
-{
-  "listId": "!2",        // Invert blacklist to allow non-blocked
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
-```
+-   **Format**: `"address1:address2:address3"`
+-   **Logic**: Whitelist containing the specified addresses (addresses: ["bb1user123", "bb1user234", "bb1user345"], whitelist: true)
+-   **Use case**: Quick address lists without creating stored lists
 
-### Performance Benefits
+#### Inversion Patterns
 
--   **Zero storage cost** for `"All"` and `"!All"`
--   **Instant availability** - no need to create lists first
--   **Dynamic inversion** without storing duplicate data
--   **Gas efficiency** for common access patterns
-
-## When to Use Lists vs Badges
-
-Address lists are primarily used for **approvals and permissions** rather than representing ownership or membership. Use address lists when you need to:
-
--   Define who can transfer badges (approval configurations)
--   Set up whitelist/blacklist logic for transfers
--   Create reusable address groups for multiple collections
--   Implement complex approval criteria
-
-For representing **membership or ownership**, use badges themselves rather than address lists.
+-   **Format**: `"!listId"` or `"!(listId)"`
+-   **Effect**: Inverts the whitelist/blacklist behavior of the referenced list
+-   **Example**: `"!5"` inverts list ID 5's behavior
 
 ## Whitelist vs Blacklist Logic
 
-Address lists use an **inversion-based** system for efficient whitelist/blacklist operations:
+Address lists use a boolean `whitelist` field to determine inclusion/exclusion behavior:
 
 ### Whitelist Logic (`whitelist: true`)
 
--   **Listed addresses**: Explicitly allowed
--   **Unlisted addresses**: Implicitly forbidden
--   **Use case**: "Only these specific addresses can participate"
+```javascript
+function isAddressIncluded(address, addressList) {
+    const found = addressList.addresses.includes(address);
+    return addressList.whitelist ? found : !found;
+}
+```
+
+-   **Listed addresses**: Explicitly included
+-   **Unlisted addresses**: Explicitly excluded
+-   **Use case**: "Only these addresses are allowed"
 
 ### Blacklist Logic (`whitelist: false`)
 
--   **Listed addresses**: Explicitly forbidden
--   **Unlisted addresses**: Implicitly allowed
--   **Use case**: "Everyone can participate except these addresses"
+-   **Listed addresses**: Explicitly excluded
+-   **Unlisted addresses**: Explicitly included
+-   **Use case**: "All addresses except these are allowed"
 
-### Inversion
+### Inversion Effect
 
-The `whitelist` boolean can be **inverted** when used in approval criteria to flip the logic:
+When a list ID has the `"!"` prefix, the final whitelist boolean is inverted:
 
--   Whitelist with inversion → Blacklist behavior
--   Blacklist with inversion → Whitelist behavior
+-   Whitelist becomes blacklist behavior
+-   Blacklist becomes whitelist behavior
 
-## Storage Options
+## Usage in Approval Configurations
 
-### On-Chain Storage
+Address lists are referenced by ID in three approval contexts:
 
--   Addresses stored directly in the `addresses` field
--   Immediate availability and verification
--   Higher storage costs for large lists
--   Suitable for smaller, frequently-used lists
-
-### Off-Chain Storage
-
--   Addresses stored externally, referenced by `uri`
--   Lower on-chain storage costs
--   Requires external storage infrastructure
--   Suitable for large lists or dynamic membership
-
-**Example URI formats:**
-
--   IPFS: `ipfs://QmHash...`
--   HTTPS: `https://api.example.com/lists/123`
--   Custom protocols supported
-
-## Advanced Reserved Features
-
-### Complex Inversion Patterns
-
-You can chain and combine reserved IDs for sophisticated access control:
-
-```json
-// Multi-tier access control
-{
-    "collectionApprovals": [
-        {
-            "listId": "1", // VIP tier: full access
-            "approvalAmounts": "unlimited"
-        },
-        {
-            "listId": "!3", // Everyone except banned users
-            "approvalAmounts": "1", // Limited access for regular users
-            "maxNumTransfers": "3"
-        }
-    ]
-}
-```
-
-### Reserved ID Best Practices
-
-1. **Start with reserved IDs** - Use `"All"` and `"!listId"` before creating custom lists
-2. **Combine strategically** - Layer multiple approval tiers using inversion
-3. **Document intentions** - Clear comments when using complex inversion logic
-4. **Test thoroughly** - Verify inverted logic behaves as expected
-
-### Common Patterns
-
--   **Public with exceptions**: `"!{banned_list_id}"` for public access with blocklist
--   **Private with inclusions**: `"{whitelist_id}"` for restricted access
--   **Temporary restrictions**: `"!All"` to pause all activity
--   **Minting controls**: `"Mint"` for creation-only operations
-
-## Custom IDs for Efficiency
-
-For optimal efficiency and predictable list IDs, consider:
-
-1. **Pre-create address lists** during collection setup
-2. **Use sequential IDs** for related lists (1, 2, 3...)
-3. **Document list purposes** in metadata for clarity
-4. **Reuse lists** across multiple collections when appropriate
-
-## Practical Examples
-
-### Example 1: VIP Access List
-
-```json
-{
-    "listId": "1",
-    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
-    "whitelist": true,
-    "uri": "",
-    "customData": "VIP members with exclusive access",
-    "createdBy": "bb1manager...",
-    "aliasAddress": ""
-}
-```
-
-### Example 2: Blocked Users List
-
-```json
-{
-    "listId": "2",
-    "addresses": ["bb1spammer...", "bb1banned..."],
-    "whitelist": false,
-    "uri": "",
-    "customData": "Blocked users - cannot participate",
-    "createdBy": "bb1manager...",
-    "aliasAddress": ""
-}
-```
-
-### Example 3: Large Community (Off-Chain)
-
-```json
-{
-    "listId": "3",
-    "addresses": [],
-    "whitelist": true,
-    "uri": "ipfs://QmCommunityMembersList...",
-    "customData": "10k+ community members stored off-chain",
-    "createdBy": "bb1dao...",
-    "aliasAddress": ""
-}
-```
-
-### Example 4: Using Reserved IDs
-
-```json
-// Reference in approval configuration
-{
-  "listId": "All",        // Everyone allowed
-  "approvalAmounts": "unlimited",
-  "maxNumTransfers": "unlimited"
-}
-
-{
-  "listId": "!5",         // Everyone except list 5
-  "approvalAmounts": "1",
-  "maxNumTransfers": "1"
-}
-```
-
-## Usage in Approvals
-
-Address lists are referenced in approval configurations through `ApprovalIdentifierDetails`:
+### Collection Approvals
 
 ```protobuf
-message ApprovalIdentifierDetails {
-  string listId = 1;                    // Reference to address list ID
-  repeated string addresses = 2;        // Direct address specification
+message CollectionApproval {
+  string fromListId = 1;        // Who can send badges
+  string toListId = 2;          // Who can receive badges
+  string initiatedByListId = 3; // Who can initiate transfers
+  // ... other fields
 }
 ```
 
-You can either:
+### User Outgoing Approvals
 
--   **Reference a list**: Use `listId` to reference a pre-created address list
--   **Specify directly**: Use `addresses` field for one-time address specification
+```protobuf
+message UserOutgoingApproval {
+  string toListId = 1;          // Who user can send to
+  string initiatedByListId = 2; // Who can initiate on user's behalf
+  // ... other fields
+}
+```
 
-The approval system will resolve the addresses and apply the whitelist/blacklist logic accordingly.
+### User Incoming Approvals
+
+```protobuf
+message UserIncomingApproval {
+  string fromListId = 1;        // Who can send to user
+  string initiatedByListId = 2; // Who can initiate transfers to user
+  // ... other fields
+}
+```
+
+## Address List Creation
+
+### User-Created Lists
+
+Created through `MsgCreateAddressLists` with the requirements below. Once created, this list is immutable and cannot be modified.
+
+#### ID Validation Rules
+
+-   Must be alphanumeric characters only
+-   Cannot be empty or reserved keywords
+-   Cannot contain `:` or `!` characters
+-   Cannot be valid addresses themselves
+-   Cannot conflict with reserved IDs
+
+#### Address Validation
+
+-   All addresses must be valid Bech32 format
+-   No duplicate addresses allowed
+-   Special addresses like "Mint" are permitted
+
+### Example User-Created List
+
+```json
+{
+    "listId": "vipMembers",
+    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
+    "whitelist": true,
+    "uri": "https://api.example.com/vip-list",
+    "customData": "VIP members with exclusive access",
+    "createdBy": "bb1manager..."
+}
+```
+
+## Performance Characteristics
+
+Tip: Use reserved IDs for common patterns. Use user-created lists for large lists used multiple times.
+
+### Reserved Lists
+
+-   **Storage**: Zero on-chain storage
+-   **ID Length**: Dependent on the pattern used
+-   **Resolution**: Dynamic generation at runtime
+-   **Gas efficiency**: Minimal overhead for common patterns
+
+### User-Created Lists
+
+-   **Storage**: On-chain storage per list
+-   **ID Length**: Reusable short ID that can be used to reference complex lists
+-   **Resolution**: Direct store lookup
+-   **Gas cost**: Proportional to validation complexity
+
+## Address Lists vs Dynamic Stores
+
+Both address lists and dynamic stores can control who is approved for transfers, but they serve different purposes:
+
+### Address Lists
+
+-   **Purpose**: Immutable shorthand references for collections of addresses
+-   **Mutability**: Cannot be modified after creation - addresses are fixed
+-   **Storage**: Direct list of addresses stored on-chain
+-   **Use case**: Static whitelists/blacklists that don't change over time
+
+### Dynamic Stores
+
+-   **Purpose**: Mutable on-chain approval management with CRUD operations
+-   **Mutability**: Can be updated dynamically using CRUD messages (Create, Update, Delete, Set)
+-   **Storage**: Boolean values per address (true/false approval status)
+-   **Use case**: Dynamic approval systems that need real-time updates (typically contract logic)
