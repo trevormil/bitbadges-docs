@@ -25,7 +25,6 @@
         -   [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 -   [🎨 Use Cases](overview/use-cases.md)
 -   [🔗 Official Links and Resources](overview/official-links.md)
--   [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
 -   [🌴 Ecosystem](overview/ecosystem/README.md)
     -   [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
     -   [MetaMask Snap](overview/ecosystem/metamask-snap.md)
