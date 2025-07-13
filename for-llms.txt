@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 18:37:23 UTC 2025
+Generated on Sun Jul 13 18:41:34 UTC 2025
 
 
 
@@ -3855,10 +3855,6 @@ And much more!
 
 ## 🏗️ x/badges Module
 
-* [Overview](x-badges/README.md)
-* [Events](x-badges/events.md)
-* [Examples](x-badges/examples.md)
-* [State](x-badges/state.md)
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -3918,6 +3914,10 @@ And much more!
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
+* [Overview](x-badges/README.md)
+* [Events](x-badges/events.md)
+* [Examples](x-badges/examples.md)
+* [State](x-badges/state.md)
 
 
 
@@ -12579,10 +12579,6 @@ console.log(res);
 
 const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 ```
-
-{% content-ref url="../bitbadges-api" %}
-[bitbadges-api](../bitbadges-api)
-{% endcontent-ref %}
 
 ## Table of Contents
 
