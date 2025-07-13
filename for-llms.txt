@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 20:07:54 UTC 2025
+Generated on Sun Jul 13 20:11:31 UTC 2025
 
 
 
@@ -3656,7 +3656,6 @@ And much more!
         -   [Approved Transactors](overview/learn/wallets-and-sign-ins/approved-transactors.md)
 -   [🎨 Use Cases](overview/use-cases.md)
 -   [🔗 Official Links and Resources](overview/official-links.md)
--   [⚖️ BitBadges L1 vs Others](overview/comparing-bitbadges-to-other-protocols.md)
 -   [🌴 Ecosystem](overview/ecosystem/README.md)
     -   [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
     -   [MetaMask Snap](overview/ecosystem/metamask-snap.md)
