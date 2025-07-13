@@ -4,35 +4,35 @@ The `x/badges` module is the core module of the BitBadges blockchain, providing 
 
 ## Key Features
 
-### 🏆 Digital Badge Collections
+### Digital Badge Collections
 - Create unique badge collections with auto-incrementing IDs
 - Support for unlimited badge varieties within collections
 - Flexible metadata management for collections and individual badges
 - Timeline-based property evolution
 
-### 🔄 Advanced Transfer System
+### Advanced Transfer System
 - Multi-level approval system (collection, sender, recipient)
 - Complex approval criteria with Merkle challenges
 - Time-based and usage-limited transfers
 - Predetermined balance distribution patterns
 
-### ⏰ Timeline-Based Properties
+### Timeline-Based Properties
 - Nearly all collection properties can change over time
 - Immutable timeline entries prevent historical manipulation
 - Support for future property changes at specific block times
 
-### 🌉 Cross-Chain Compatibility
+### Cross-Chain Compatibility
 - Built-in IBC support for cross-chain transfers
 - Multi-chain signature support (Ethereum, Bitcoin, Solana, Cosmos)
 - EIP712 schema integration for Ethereum wallets
 
-### 📊 Flexible Balance Types
+### Flexible Balance Types
 - **Standard**: On-chain balance tracking
 - **Off-Chain Indexed**: Centralized but verifiable
 - **Off-Chain Non-Indexed**: Fully centralized
 - **Non-Public**: Private balance information
 
-### 🔐 Granular Permission System
+### Granular Permission System
 - Fine-grained control over collection management
 - First-match permission policy
 - Permanent permission decisions
@@ -88,27 +88,27 @@ Generic key-value storage system for custom logic:
 
 ## Use Cases
 
-### 🎓 Educational Credentials
+### Educational Credentials
 - Issue certificates and diplomas as non-transferable badges
 - Time-locked access to advanced courses
 - Prerequisite verification through must-own badge challenges
 
-### 🏢 Corporate Recognition
+### Corporate Recognition
 - Employee achievement badges with approval workflows
 - Department-specific transfer permissions
 - Quarterly performance tracking with timeline properties
 
-### 🎮 Gaming Assets
+### Gaming Assets
 - Achievement unlocks with complex criteria
 - Tradeable item collections with marketplace integration
 - Season-based properties using timeline management
 
-### 🎪 Event Management
+### Event Management
 - Ticket distribution with Merkle tree whitelists
 - VIP access badges with temporal validity
 - Transferable or non-transferable ticket types
 
-### 🏛️ Governance Tokens
+### Governance Tokens
 - Voting power representation with delegation
 - Time-locked voting rights
 - Multi-signature approval requirements
@@ -152,9 +152,9 @@ Generic key-value storage system for custom logic:
 To begin working with the badges module:
 
 1. **[Understand Core Concepts](./02-concepts.md)** - Learn about collections, balances, and approvals
-2. **[Explore State Management](./03-state.md)** - Understand how data is stored and retrieved
+2. **[Explore State Management](./state.md)** - Understand how data is stored and retrieved
 3. **[Review Message Types](./messages/)** - Learn about available operations
-4. **[Try Examples](./11-examples.md)** - See common usage patterns in action
+4. **[Try Examples](./examples.md)** - See common usage patterns in action
 
 ## Repository Links
 

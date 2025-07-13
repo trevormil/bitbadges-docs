@@ -6,7 +6,7 @@ This directory contains detailed explanations of the core concepts and data stru
 
 Each concept is documented in its own file for better organization and easier navigation:
 
--   **[UintRange](uintrange.md)** - The fundamental building block for representing ranges of unsigned integers
+-   **[UintRange](uintrange.md)** - Representing ranges of unsigned integers
 -   **[Timeline System](timeline-system.md)** - How properties change over time with immutable historical records
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
 -   **[Balance System](balance-system.md)** - How badge ownership is tracked with precise control over quantities and time
