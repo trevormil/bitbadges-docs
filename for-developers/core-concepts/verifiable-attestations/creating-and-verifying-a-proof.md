@@ -13,8 +13,8 @@ Presentations are done with the proof interface which should give the verifier e
 
 These flows natively have protective measures against replay attacks, time windows for verification, and more.
 
-{% content-ref url="../../authenticating-with-bitbadges/" %}
-[authenticating-with-bitbadges](../../authenticating-with-bitbadges/)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="../../../overview/claim-builder/" %}

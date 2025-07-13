@@ -14,8 +14,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="../../authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md" %}
-[generating-the-url.md](../../authenticating-with-bitbadges/authentication-url-+-parameters/generating-the-url.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 **Implementation - Backend**

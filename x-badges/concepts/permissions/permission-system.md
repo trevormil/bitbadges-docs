@@ -1,8 +1,8 @@
 # Overview
 
-First, read [Permissions](broken-reference) for an overview.
+First, read [Permissions](broken-reference/) for an overview.
 
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference/)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
 
 ```json
 "collectionPermissions": {
@@ -55,7 +55,7 @@ We also give the option for the collection to define default user permissions. T
 
 Permissions allow you to define permitted or forbidden times to be able to execute a permission.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **States**
 
