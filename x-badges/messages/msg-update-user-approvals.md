@@ -53,6 +53,8 @@ bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user
 
 ### JSON Example
 
+For complete transaction examples, see [MsgUpdateUserApprovals Examples](../examples/txs/msgupdate-user-approvals/).
+
 ```json
 {
     "creator": "bb1user123...",
