@@ -1,5 +1,7 @@
 # Table of contents
+
 ## Overview
+
 * [👋 BitBadges Overview](README.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
@@ -31,7 +33,9 @@
   * [Blockin](overview/ecosystem/blockin.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
+
 ## ⌨️ For Developers
+
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
@@ -209,7 +213,6 @@
 ## 🏗️ Badge Standard
 
 * [📚 Overview](x-badges/README.md)
-
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -283,7 +286,7 @@
   * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
   * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
   * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-  * [Approvals](x-badges/examples/approvals/README.md)
+  * [Approvals](badge-standard/examples/approvals/README.md)
     * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
     * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
     * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
@@ -302,5 +305,3 @@
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
 * [🗃️ State](x-badges/state.md)
-
-
