@@ -35,7 +35,7 @@ bitbadgeschaind tx badges create-address-lists '[tx-json]' --from creator-key
     "creator": "bb1...",
     "addressLists": [
         {
-            "listId": "",
+            "listId": "", // Unique ID for the address list
             "addresses": ["bb1...", "bb1..."],
             "whitelist": true,
             "createdBy": "", // Leave blank - auto-generated

@@ -164,6 +164,8 @@ Users manage their subscriptions through incoming approvals that complement the 
 
 ### Collection Validation
 
+**API Documentation:** [doesCollectionFollowSubscriptionProtocol](https://bitbadges.github.io/bitbadgesjs/functions/doesCollectionFollowSubscriptionProtocol.html)
+
 ```typescript
 function doesCollectionFollowSubscriptionProtocol(collection) {
     // Check for "Subscriptions" standard
@@ -195,6 +197,8 @@ function doesCollectionFollowSubscriptionProtocol(collection) {
 ```
 
 ### Faucet Approval Validation
+
+**API Documentation:** [isSubscriptionFaucetApproval](https://bitbadges.github.io/bitbadgesjs/functions/isSubscriptionFaucetApproval.html)
 
 ```typescript
 function isSubscriptionFaucetApproval(approval) {
@@ -230,6 +234,8 @@ function isSubscriptionFaucetApproval(approval) {
 ```
 
 ### User Approval Validation
+
+**API Documentation:** [isUserRecurringApproval](https://bitbadges.github.io/bitbadgesjs/functions/isUserRecurringApproval.html)
 
 ```typescript
 function isUserRecurringApproval(userApproval, subscriptionApproval) {

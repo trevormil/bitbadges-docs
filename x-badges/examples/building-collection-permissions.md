@@ -3,12 +3,7 @@
 Collection permissions are executable by the manager. They are used to control who can perform various management actions on your badge collection and when those actions are allowed.
 
 ```typescript
-const managerTimeline = [
-    {
-        manager: 'bb1youraddress...', // Your address
-        timelineTimes: FullTimeRanges,
-    },
-];
+const manager = collection.getCurrentManager();
 ```
 
 ## Setting Your Permissions
@@ -41,7 +36,6 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canCreateMoreBadges: [],
     canUpdateBadgeMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidBadgeIds: [],
@@ -59,12 +53,12 @@ Each permission follows the same pattern:
 3. If the item is not explicity in either, then the permission is enabled for the given values, but the status can change.
 
 ```typescript
-
-
-
+const CanArchiveCollection = {
+    permanentlyPermittedTimes: [],
+    permanentlyForbiddenTimes: FullTimeRanges,
+    timelineTimes: FullTimeRanges,
+};
 ```
-
----
 
 Each permission type follows the same pattern of two categories:
 
@@ -86,13 +80,17 @@ const {
 } = permission;
 ```
 
-## Common Things To Consider
+## Main Permissions To Consider
 
-1.
+1. Should the number of badge IDs in the collection be expandable? frozen upon genesis? -> Handle with `canUpdateValidBadgeIds`
+2. What about the transferability? -> Handle with `canUpdateCollectionApprovals`
+    - Should the transferability be frozen upon genesis?
+    - Should we disallow updating transferability for only some badge IDs? some approvals? Mint? Post-Mint?
+    - This could be critical for enforcing total circulating supply. For example, if you can create more approvals from the Mint address, then you can theoretically mint however many badges you want.
 
 ## Examples
 
-We refer you to the [examples](./permissions/) for more detailed examples.
+We refer you to the [examples](../examples/permissions) or relevant concepts for more detailed examples.
 
 ## Related Concepts
 
@@ -100,7 +98,3 @@ We refer you to the [examples](./permissions/) for more detailed examples.
 -   [Manager](../concepts/manager.md)
 -   [Timeline System](../concepts/timeline-system.md)
 -   [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
-
-```
-
-```
