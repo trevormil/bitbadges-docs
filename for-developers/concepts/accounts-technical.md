@@ -1,4 +1,4 @@
-# Accounts (Technical)
+# 👥 Accounts (Technical)
 
 ## Pre-Readings
 
@@ -11,7 +11,7 @@ For accounts (standard senders of transactions) and validator operators, we supp
 
 ### **Ethereum**
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike  other Cosmos chains that use Coin type `118.`
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike other Cosmos chains that use Coin type `118.`
 
 **Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
 
@@ -33,11 +33,11 @@ BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
 
 ### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
-#### **Address Conversion**&#x20;
+#### **Address Conversion**
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToBitBadges, bitbadgesToEth } from 'bitbadgesjs-sdk';
-</strong><strong>
-</strong><strong>const bitbadgesAddress = ethToBitBadges(address);
+</strong>
+<strong>const bitbadgesAddress = ethToBitBadges(address);
 </strong>const ethAddress = bitbadgesToEth(bitbadgesAddress);
 const bitbadgesAddressFromSolana = solanaToBitBadges(address);
 //Note there is no bitbadgesToSolana or ethToSolana due to how the addresses work
@@ -45,7 +45,7 @@ const bitbadgesAddressFromSolana = solanaToBitBadges(address);
 
 Behind the scenes, the blockchain always uses the mapped BitBadges address, never a Solana or Ethereum address. The Solana / Ethereum addresses are only for visually displaying to the user.
 
-The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.&#x20;
+The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.
 
 #### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
 
@@ -59,7 +59,7 @@ Solana Example:
 * Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
 * Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
 
-Bitcoin Example&#x20;
+Bitcoin Example
 
 * Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
 * Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
