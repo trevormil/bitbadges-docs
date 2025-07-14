@@ -2,10 +2,6 @@
 
 Executes badge transfers between addresses.
 
-## Collection ID Auto-Lookup
-
-If you specify `collectionId` as `"0"`, it will automatically lookup the latest collection ID created. This can be used if you are creating a collection and do not know the official collection ID yet but want to perform a multi-message transaction.
-
 ## Proto Definition
 
 ```protobuf
@@ -197,6 +193,10 @@ Transfers fail at the first validation step that doesn't pass:
 -   [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
 -   [Collection Approvals](../concepts/approval-criteria/README.md) - Collection-level controls
 -   [User Approvals](../examples/building-user-approvals.md) - User-level settings
+
+## Collection ID Auto-Lookup
+
+If you specify `collectionId` as `"0"`, it will automatically lookup the latest collection ID created. This can be used if you are creating a collection and do not know the official collection ID yet but want to perform a multi-message transaction.
 
 ## Usage Example
 

@@ -19,12 +19,11 @@ For detailed information about each field, see the corresponding concepts docume
 | `defaultBalances`             | [Default Balances](../concepts/default-balances.md)         |
 | `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)   |
 | `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md) |
-
-| Timeline System (all fields) | [Timeline System](../concepts/timeline-system.md) |
+| Timeline System (all fields)  | [Timeline System](../concepts/timeline-system.md)           |
 
 ## Base Collection Details
 
-For most collections, your base configuration for these fields will be very similar to this.
+For most collections, your base configuration for these fields will be very similar to this. Note that this excludes collection permissions and approvals. See the [Building Collection Approvals](./building-collection-approvals.md) example and [Building Collection Permissions](./building-collection-permissions.md) example for these.
 
 ```typescript
 // Our standard time range represeting "forever"
