@@ -1,7 +1,5 @@
 # Table of contents
-
 ## Overview
-
 * [👋 BitBadges Overview](README.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
@@ -33,9 +31,7 @@
   * [Blockin](overview/ecosystem/blockin.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
-
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
@@ -212,8 +208,9 @@
 
 ## 🏗️ Badge Standard
 
-* [Overview](x-badges/README.md)
-* [Concepts](x-badges/concepts/README.md)
+* [📚 Overview](x-badges/README.md)
+
+* [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
   * [Badge Collections](x-badges/concepts/badge-collections.md)
@@ -256,7 +253,7 @@
     * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
     * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
     * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
-* [Messages](x-badges/messages/README.md)
+* [📨 Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
@@ -267,7 +264,7 @@
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [Queries](x-badges/queries/README.md)
+* [🔍 Queries](x-badges/queries/README.md)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
@@ -276,16 +273,17 @@
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-* [Examples and Snippets](x-badges/examples/README.md)
+* [💡 Examples and Snippets](x-badges/examples/README.md)
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
   * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
   * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
   * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
   * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
   * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
   * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-  * [Approvals](badge-standard/examples/approvals/README.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
     * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
     * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
     * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
@@ -300,5 +298,9 @@
     * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
       * [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-* [Events](x-badges/events.md)
-* [State](x-badges/state.md)
+    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+* [📡 Events](x-badges/events.md)
+* [🗃️ State](x-badges/state.md)
+
+
