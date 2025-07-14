@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 01:02:46 UTC 2025
+Generated on Mon Jul 14 01:12:04 UTC 2025
 
 
 
@@ -3582,7 +3582,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 # Table of contents
 ## Overview
-
 * [👋 BitBadges Overview](README.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
@@ -3608,13 +3607,12 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🌴 Ecosystem](overview/ecosystem/README.md)
   * [WordPress Plugin](overview/ecosystem/wordpress-plugin.md)
-  * [MetaMask Snap](overview/ecosystem/metamask-snap.md)
+  * [MetaMask Snap](overview/ecosystem/metamask-snap.md)  
   * [Browser Extensions](overview/ecosystem/chrome-extension.md)
   * [LinkedIn Certifications](overview/ecosystem/linkedin-certifications.md)
   * [Blockin](overview/ecosystem/blockin.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
 -   [🔨 Getting Started](for-developers/getting-started.md)
 -   [👤 Handling Addresses](for-developers/accounts.md)
@@ -17132,18 +17130,18 @@ This directory contains practical examples and building blocks for x/badges.
 
 ## Contents
 
-- `base-collection-details.md` - Standard base collection configuration template
-- `building-collection-approvals.md` - Guide to building collection-level approvals
-- `building-collection-permissions.md` - Guide to configuring collection permissions
-- `cosmos-coin-wrapper-example.md` - Example of wrapping badges as Cosmos coins
-- `mint-all-to-self-tutorial.md` - Tutorial for creating collection and minting badges to yourself
-- `approvals/` - Common approval patterns and examples
-  - `transferable-approval.md` - Basic transferable approval configuration
-  - `burnable-approval.md` - Approval allowing badges to be burned
-  - `cosmos-wrapper-approval.md` - Approval for wrapping badges as Cosmos coins
-  - `cosmos-unwrapper-approval.md` - Approval for unwrapping Cosmos coins back to badges
-  - `admin-override-approval.md` - Admin approval that overrides user-level restrictions
-- `permissions/` - Common permission patterns and examples
+-   [base-collection-details.md](base-collection-details.md) - Standard base collection configuration template
+-   [building-collection-approvals.md](building-collection-approvals.md) - Guide to building collection-level approvals
+-   [building-collection-permissions.md](building-collection-permissions.md) - Guide to configuring collection permissions
+-   [cosmos-coin-wrapper-example.md](cosmos-coin-wrapper-example.md) - Example of wrapping badges as Cosmos coins
+-   [mint-all-to-self-tutorial.md](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting badges to yourself
+-   [approvals/](approvals/) - Common approval patterns and examples
+    -   [transferable-approval.md](approvals/transferable-approval.md) - Basic transferable approval configuration
+    -   [burnable-approval.md](approvals/burnable-approval.md) - Approval allowing badges to be burned
+    -   [cosmos-wrapper-approval.md](approvals/cosmos-wrapper-approval.md) - Approval for wrapping badges as Cosmos coins
+    -   [cosmos-unwrapper-approval.md](approvals/cosmos-unwrapper-approval.md) - Approval for unwrapping Cosmos coins back to badges
+    -   [admin-override-approval.md](approvals/admin-override-approval.md) - Admin approval that overrides user-level restrictions
+-   [permissions/](permissions/) - Common permission patterns and examples
 
 
 ## File: ./x-badges/examples/approvals/admin-override-approval.md
@@ -17187,30 +17185,6 @@ const approveSelfForcefully = (address: string) => {
 };
 ```
 
-## Usage Example
-
-```typescript
-// Create admin override for collection manager
-const adminOverrideApproval = approveSelfForcefully(
-    'bb1admin1234567890abcdef...'
-);
-
-// Use in collection
-const otherApprovals = [
-    // ... other approvals
-];
-
-const collection = {
-    ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [...otherApprovals, adminOverrideApproval],
-        },
-    ],
-};
-```
-
 ## Related Concepts
 
 -   [Transferability / Approvals](../../concepts/transferability-approvals.md)
@@ -17244,26 +17218,6 @@ const burnableApproval = new CollectionApproval({
     version: 0n,
     approvalCriteria: undefined, // No additional restrictions
 });
-```
-
-## Usage in Collection
-
-To use this approval in a collection, add it to the collection's approval timeline:
-
-```typescript
-const otherApprovals = [
-    // ... other approvals
-];
-
-const collection = {
-    ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [...otherApprovals, burnableApproval],
-        },
-    ],
-};
 ```
 
 ## Related Concepts
@@ -17309,71 +17263,8 @@ export const unwrapperApproval = ({
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
-            autoDeletionOptions: {
-                afterOneUse: false,
-                afterOverallMaxNumTransfers: false,
-            },
-            requireToDoesNotEqualInitiatedBy: false,
-            requireFromDoesNotEqualInitiatedBy: false,
-            coinTransfers: [],
-            predeterminedBalances: {
-                manualBalances: [],
-                orderCalculationMethod: {
-                    useOverallNumTransfers: false,
-                    usePerToAddressNumTransfers: false,
-                    usePerFromAddressNumTransfers: false,
-                    usePerInitiatedByAddressNumTransfers: false,
-                    useMerkleChallengeLeafIndex: false,
-                    challengeTrackerId: '',
-                },
-                incrementedBalances: {
-                    startBalances: [],
-                    incrementBadgeIdsBy: 0n,
-                    incrementOwnershipTimesBy: 0n,
-                    //monthly in milliseconds
-                    durationFromTimestamp: 0n,
-                    allowOverrideTimestamp: false,
-                    allowOverrideWithAnyValidBadge: false,
-                    recurringOwnershipTimes: {
-                        startTime: 0n,
-                        intervalLength: 0n,
-                        chargePeriodLength: 0n,
-                    },
-                },
-            },
-            maxNumTransfers: {
-                overallMaxNumTransfers: 0n,
-                perToAddressMaxNumTransfers: 0n,
-                perFromAddressMaxNumTransfers: 0n,
-                perInitiatedByAddressMaxNumTransfers: 0n,
-                amountTrackerId: id,
-                resetTimeIntervals: {
-                    startTime: 0n,
-                    intervalLength: 0n,
-                },
-            },
-            approvalAmounts: {
-                overallApprovalAmount: 0n,
-                perFromAddressApprovalAmount: 0n,
-                perToAddressApprovalAmount: 0n,
-                perInitiatedByAddressApprovalAmount: 0n,
-                amountTrackerId: id,
-                resetTimeIntervals: {
-                    startTime: 0n,
-                    intervalLength: 0n,
-                },
-            },
-            merkleChallenges: [],
-            mustOwnBadges: [],
-            dynamicStoreChallenges: [],
-            requireToEqualsInitiatedBy: false,
-            requireFromEqualsInitiatedBy: false,
+            ...defaultNoRestrictionsApprovalCriteria,
             overridesFromOutgoingApprovals: true,
-            overridesToIncomingApprovals: false,
-            userRoyalties: {
-                percentage: 0n,
-                payoutAddress: '',
-            },
         },
     };
 
@@ -17425,70 +17316,8 @@ export const wrapperApproval = ({
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
-            autoDeletionOptions: {
-                afterOneUse: false,
-                afterOverallMaxNumTransfers: false,
-            },
-            requireToDoesNotEqualInitiatedBy: false,
-            requireFromDoesNotEqualInitiatedBy: false,
-            coinTransfers: [],
-            predeterminedBalances: {
-                manualBalances: [],
-                orderCalculationMethod: {
-                    useOverallNumTransfers: false,
-                    usePerToAddressNumTransfers: false,
-                    usePerFromAddressNumTransfers: false,
-                    usePerInitiatedByAddressNumTransfers: false,
-                    useMerkleChallengeLeafIndex: false,
-                    challengeTrackerId: '',
-                },
-                incrementedBalances: {
-                    startBalances: [],
-                    incrementBadgeIdsBy: 0n,
-                    incrementOwnershipTimesBy: 0n,
-                    durationFromTimestamp: 0n,
-                    allowOverrideTimestamp: false,
-                    allowOverrideWithAnyValidBadge: false,
-                    recurringOwnershipTimes: {
-                        startTime: 0n,
-                        intervalLength: 0n,
-                        chargePeriodLength: 0n,
-                    },
-                },
-            },
-            maxNumTransfers: {
-                overallMaxNumTransfers: 0n,
-                perToAddressMaxNumTransfers: 0n,
-                perFromAddressMaxNumTransfers: 0n,
-                perInitiatedByAddressMaxNumTransfers: 0n,
-                amountTrackerId: id,
-                resetTimeIntervals: {
-                    startTime: 0n,
-                    intervalLength: 0n,
-                },
-            },
-            approvalAmounts: {
-                overallApprovalAmount: 0n,
-                perFromAddressApprovalAmount: 0n,
-                perToAddressApprovalAmount: 0n,
-                perInitiatedByAddressApprovalAmount: 0n,
-                amountTrackerId: id,
-                resetTimeIntervals: {
-                    startTime: 0n,
-                    intervalLength: 0n,
-                },
-            },
-            merkleChallenges: [],
-            mustOwnBadges: [],
-            dynamicStoreChallenges: [],
-            requireToEqualsInitiatedBy: false,
-            requireFromEqualsInitiatedBy: false,
-            overridesFromOutgoingApprovals: false,
+            ...defaultNoRestrictionsApprovalCriteria,
             overridesToIncomingApprovals: true,
-            userRoyalties: {
-                percentage: 0n,
-                payoutAddress: '',
-            },
         },
     };
 
@@ -17527,26 +17356,6 @@ const transferableApproval = new CollectionApproval({
     version: 0n,
     approvalCriteria: undefined, // No additional restrictions
 });
-```
-
-## Usage in Collection
-
-To use this approval in a collection, add it to the collection's approval timeline:
-
-```typescript
-const otherApprovals = [
-    // ... other approvals
-];
-
-const collection = {
-    ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [...otherApprovals, transferableApproval],
-        },
-    ],
-};
 ```
 
 ## Related Concepts
@@ -17726,12 +17535,19 @@ It is typically recommended to split into two categories:
 
 Mix and match the approvals as you see fit. See the examples in the [approvals](./approvals/) section for a bunch of examples.
 
+-   Transferable Approval [transferable-approval.md](./approvals/transferable-approval.md)
+-   Burnable Approval [burnable-approval.md](./approvals/burnable-approval.md)
+
 ```typescript
 const mintApprovals = [
-    // Mint approvals
+    // Mint approvals with fromListId: 'Mint'
 ];
 
-const postMintApprovals = [transferableApproval, burnableApproval];
+const postMintApprovals = [
+    // Post-mint approvals with fromListId: '!Mint'
+    transferableApproval,
+    burnableApproval,
+];
 
 const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 
@@ -18009,31 +17825,32 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
-- `locked-collection.md` - Collection with permanently locked permissions
-- `temporary-permissions.md` - Time-limited management permissions
-- `badge-specific-permissions.md` - Permissions that apply to specific badge IDs
-- `community-controlled.md` - Permissions for community-managed collections
+-   [locked-collection.md](locked-collection.md) - Collection with permanently locked permissions
+-   [temporary-permissions.md](temporary-permissions.md) - Time-limited management permissions
+-   [badge-specific-permissions.md](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
+-   [community-controlled.md](community-controlled.md) - Permissions for community-managed collections
 
 ## Permission System Overview
 
 BitBadges permissions follow a timeline-based system where:
 
 1. **Permanently Permitted Times** - Permission is always allowed
-2. **Permanently Forbidden Times** - Permission is always denied  
+2. **Permanently Forbidden Times** - Permission is always denied
 3. **Default (Empty)** - Permission is soft-enabled (manager can change)
 
 ## Common Patterns
 
-- **No Manager** - Set manager to empty string to disable all management
-- **Complete Control** - Empty permission arrays for full soft-enabled control
-- **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
-- **Time-Limited** - Use specific time ranges for temporary control
+-   **No Manager** - Set manager to empty string to disable all management
+-   **Complete Control** - Empty permission arrays for full soft-enabled control
+-   **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
+-   **Time-Limited** - Use specific time ranges for temporary control
 
 ## Related Concepts
 
-- [Permission System](../../concepts/permissions/permission-system.md)
-- [Manager](../../concepts/manager.md)
-- [Timeline System](../../concepts/timeline-system.md)
+-   [Permission System](../../concepts/permissions/permission-system.md)
+-   [Manager](../../concepts/manager.md)
+-   [Timeline System](../../concepts/timeline-system.md)
+
 
 ## File: ./x-badges/messages/README.md
 
