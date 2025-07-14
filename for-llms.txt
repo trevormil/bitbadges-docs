@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 19:34:25 UTC 2025
+Generated on Mon Jul 14 23:39:11 UTC 2025
 
 
 
@@ -3808,7 +3808,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Timeline System](x-badges/concepts/timeline-system.md)
   * [Total Supply](x-badges/concepts/total-supply.md)
-  * [Transferability / Approvals](x-badges/concepts/transferability-approvals.md)
+  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
   * [UintRanges](x-badges/concepts/uintrange.md)
   * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
@@ -3824,13 +3824,15 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Requires](x-badges/concepts/approval-criteria/requires.md)
     * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
     * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-  * [Permissions](x-badges/concepts/permissions/README.md)
-    * [Overview](x-badges/concepts/permissions/permission-system.md)
-    * [Action Permission](x-badges/concepts/permissions/action-permission.md)
-    * [Badge IDs Action Permission](x-badges/concepts/permissions/balances-action-permission.md)
-    * [Timed Update Permission](x-badges/concepts/permissions/timed-update-permission.md)
-    * [Timed Update With Badge Ids Permission](x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md)
-    * [Update Approval Permission](x-badges/concepts/permissions/update-approval-permission.md)
+  * [Approval Criteria 2](x-badges/concepts/approval-criteria-2/README.md)
+
+  * [Approval Criteria 3](x-badges/concepts/approval-criteria-3/README.md)
+
+  * [Permission System](x-badges/concepts/permissions/README.md)
+    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+    * [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
   * [Protocols](x-badges/concepts/protocols/README.md)
     * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
     * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
@@ -14684,811 +14686,786 @@ This field is particularly useful when you need to fund the Mint Escrow Address 
 
 ## File: ./x-badges/concepts/permissions/README.md
 
-# Permissions
+# Permission System
 
+Permissions control who can perform actions on collections and user balances, and when those actions can be executed.
 
+Typically, user permissions are always set to allowed / empty. In advanced cases like escrows, user permissions can be set to forbidden to make certain on-chain actions impossible.
 
-## File: ./x-badges/concepts/permissions/action-permission.md
+Collection permissions are important to be set correctly: If there is no manager, the collection permission values do not matter.
 
-# Action Permission
+## Overview
 
-ActionPermissions are the simplest (no criteria). Just denotes what times the action is executable or not.
-
-<pre class="language-json"><code class="lang-json"><strong>"collectionPermissions": {
-</strong>    "canDeleteCollection": [...],
-    ...
-}
-</code></pre>
-
-```json
-"userPermissions": {
-    ...
-    "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [...],
-    "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [...],
-    "canUpdateAutoApproveAllIncomingTransfers": [...],
-}
+```
+Action Request
+    ↓
+Permission Check
+    ↓
+┌─────────────────┬─────────────────┐
+│ Collection      │ User            │
+│ Permissions     │ Permissions     │
+│ (Manager Only)  │ (User Control)  │
+└─────────────────┴─────────────────┘
+    ↓
+Permitted/Forbidden
+    ↓
+Execute/Deny
 ```
 
-```typescript
-export interface ActionPermission<T extends NumberType> {
-  permanentlyPermittedTimes: UintRange<T>[];
-  permanentlyForbiddenTimes: UintRange<T>[];
-}
-```
+## Permission Types
 
-**Examples**
+| Type           | Scope            | Purpose                          |
+| -------------- | ---------------- | -------------------------------- |
+| **Collection** | Manager only     | Control collection-level actions |
+| **User**       | Individual users | Control user-specific actions    |
 
-Below, this forbids the action from ever being executed.
+## Permission States
 
-```json
-"canDeleteCollection": [
-  {
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-  }
-]
-```
+**Note**: Once a permission is set to permanently permitted or forbidden, it cannot be changed.
 
-
-## File: ./x-badges/concepts/permissions/balances-action-permission.md
-
-# Badge IDs Action Permission
-
-The BadgeIdsAction permission denotes for what (badge ID, ownership times), can an action be executed? For example, can I create more of badge ID 1-10?
-
-This permission refers to the UPDATABILITY of the balances and has no bearing on what the circulating supplys are currently set to.
-
-```json
-"collectionPermissions": {
-    "canUpdateValidBadgeIds": [...],
-    ...
-}
-```
-
-```typescript
-export interface BadgeIdsActionPermission<T extends NumberType> {
-  badgeIds: UintRange<T>[];
-  
-  permanentlyPermittedTimes: UintRange<T>[];
-  permanentlyForbiddenTimes: UintRange<T>[];
-}
-```
-
-{% content-ref url="../balances-transfers/creating-badges.md" %}
-[Creating Badges](../balances-transfers/creating-badges.md)
-{% endcontent-ref %}
-
-```json
-"canUpdateValidBadgeIds": [
-  {
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ]
-  }
-]
-```
-
-
-## File: ./x-badges/concepts/permissions/permission-system.md
-
-# Overview
-
-First, read [Permissions](broken-reference) for an overview.
-
-Note: The [Approved Transfers](../balances-transfers/transferability-approvals.md) and [Permissions ](broken-reference)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
-
-```json
-"collectionPermissions": {
-    ...
-}
-```
-
-```json
-"userPermissions": {
-    ...
-}
-```
-
-### Collection Permissions
-
-#### Manager
-
-The collectionPermissions only apply to the current manager of the collection. In other words, the manager is the only one who is able to execute permissions. If there is no manager for a collection, no permissions can be executed.
-
-The current manager is determined by the **managerTimeline.** Transferring the manager is facilitated via the **canUpdateManager** permission.
-
-```json
-"managerTimeline": [
-  {
-    "manager": "bb1kfr2xajdvs46h0ttqadu50nhu8x4v0tc2wajnh",
-    "timelineTimes": [
-      {
-        "start": 1,
-        "end": "18446744073709551615"
-      }
-    ]
-  }
-]
-```
-
-### **User Permissions**
-
-Besides the collection permissions, there are also userPermissions that can be set. Typically, these will remain empty / unset, so that the user can always have full control over their approvals. If empty, they are permitted by default (but not frozen).
-
-However, setting user permissions can be leveraged in some cases for specific purposes.
-
-* Locking that a specific badge can never be transferred out of the account
-* Locking that a specific approval is always set and uneditable so that two mutually distrusting parties can use the address as an escrow
-
-**Defaults**
-
-We also give the option for the collection to define default user permissions. These will be used as the starting values when the balance is initially created in storage. This can be used in tandem with the other defaults. The default permissions are also not typically used, but again can be used in certain situations. For example, by default, approve all incoming transfers and lock the permission so all transfers always have incoming approvals and can never be disapproved.
-
-### **Permitted and Forbidden Times**
-
-Permissions allow you to define permitted or forbidden times to be able to execute a permission.
-
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**States**
-
-There are three states that a permission can be in at any one time:
-
-1. **Forbidden + Permanently Frozen (permanentlyForbiddenTimes):** This permission is forbidden and will always remain forbidden.
-   1. If a permission is explicitly allowed via the **permanentlyPermittedTimes, it will ALWAYS be allowed** during those permanentlyPermittedTimes (can't change it).
-2. **Permitted + Not Frozen (Unhandled):** This permission is currently permitted but can be changed to one of the other two states.
-   1. If not explicitly permitted or forbidden - NEUTRAL (not defined or unhandled), **permissions are ALLOWED by default** but can later be set to be permanently allowed or disallowed. There is no "forbidden currently but updatable" state.
-3. **Permitted + Permanently Frozen (permanentlyPermittedTimes):** This permission is forbidden and will always remain permitted
-   1. If a permission is explicitly forbidden via the **permanentlyForbiddenTimes, it will ALWAYS be disallowed** during those permanentlyForbiddenTimes.
+| State                     | Description           | Behavior               |
+| ------------------------- | --------------------- | ---------------------- |
+| **Permanently Permitted** | Action ALWAYS allowed | Can be executed        |
+| **Permanently Forbidden** | Action ALWAYS blocked | Cannot be executed     |
+| **Neutral**               | Not specified         | **Allowed by default** |
 
 There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
 
-**Examples**
+## Time Control
 
-This means the permission is permanently forbidden and frozen.
-
-```typescriptreact
-permanentlyPermittedTimes: []
-permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-```
-
-This means it is permanently allowed and frozen.
-
-```typescriptreact
-permanentlyForbiddenTimes: []
-permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-```
-
-This means it is allowed currently but neutral and can be changed to be always permitted or always forbidden in the future.
-
-```
-permanentlyForbiddenTimes: []
-permanentlyPermittedTimes: []
-```
-
-### First Match Policy
-
-All permissions are a linear array where each element may have some criteria as well as **permanentlyForbiddenTimes** or **permanentlyPermittedTimes.** It can be interpreted as if the criteria matches, the permission is permitted or forbidden according to the defined times, respectively.
-
-We do not allow times to be in both the permanentlyPermittedTimes and permanentlyForbiddenTimes array simultaneously.
-
-**Unlike approvals, we only allow taking the first match in the case criteria satisfies multiple elements in the permissions array.** All subsequent matches are ignored. This makes it so that for any time and for each criteria combination, there is a deterministic permission state (permitted, forbidden, or neutral). This means you have to carefully design your permissions because order and overlaps matter.
-
-Ex: If we have the following permission definitions in an array \[elem1, elem2]:
-
-1. ```
-   timelineTimes: [{ start: 1, end: 10 }]
-
-   permanentlyPermittedTimes: []
-   permanentlyForbiddenTimes: [{ start: 1, end: 10 }]
-   ```
-2. ```
-   timelineTimes: [{ start: 1, end: 100 }]
-
-   permanentlyForbiddenTimes: []
-   permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-   ```
-
-In this case, the timeline times 1-10 will be forbidden ONLY from times 1-10 because we take the first element that matches for that specific criteria (which is permanentlyPermittedTimes: \[], permanentlyForbiddenTimes: \[1 to 10]).
-
-Times 11-100 would be permanently permitted since the first match for those times is the second element.
-
-Similar to approved transfers, even though we allow range logic to be specified, we first expand everything maintaining order to their singular values (one value, no ranges) before checking for our first match.
-
-### Satisfying Criteria
-
-For permissions, all criteria must be satisfied for it to be a match. If you satisfy N-1 criteria, it is not a match.
-
-For example, lets say you had a permission with badge IDs and ownership times:
-
-```
-badgeIds: [{ start: 1, end: 10 }]
-ownershipTimes: [{ start 1, end: 10 }]
-
-permanentlyForbiddenTimes: []
-permanentlyPermittedTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-```
-
-This would result in the manager being able to create more of badges IDs 1-10 which can be owned from times 1-10.
-
-However, this permission **does not** specify whether they can create more of badge ID 1 at time 11 or badge ID 11 at time 1. These combinations are considered unhandled or not defined by the permission definition above.
-
-**Common Misunderstanding**
-
-A common misunderstanding is that if the permission below is appended after the above one, this would forbid badges 11+ from ever being created. However, creating badge IDs 11+ at times 11+ would still be unhandled and **allowed by default**.
-
-```
-badgeIds: [{ start: 11, end: Max }]
-ownershipTimes: [{ start 1, end: 10 }]
-
-permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-permanentlyPermittedTimes: []
-```
-
-To permanently forbid all badgeIds, you must brute force ALL other combinations such as
-
-```
-badgeIds: [{ start: 11, end: Max }]
-ownershipTimes: [{ start: 1, end: Max }] // 1-10 never gets matched to bc of first match
-//can also do start: 11
-
-permanentlyForbiddenTimes: [{ start: 1, end: GO_MAX_UINT_64 }]
-permanentlyPermittedTimes: []
-```
-
-**Brute-Forcing**
-
-A common pattern you will see is to brute force all possible combinations. For example, in the above example we brute forced all possible combinations for badge IDs 11+. No subsequent element specifying a badge ID 11+ will ever get matched to.
-
-To brute force a specific criteria (such as IDs 11+), you specify it, then for all other N - 1 criteria, you set them equal to ALL values. All values in the case of UintRanges is 1 - max Uint64. For address lists / IDs, this is all possible addresses / IDs.
-
-The following brute forces badge IDs 1-10.
-
-<pre class="language-json"><code class="lang-json"><strong>{
-</strong>  "fromListId": "All",
-  "toListId": "All",
-  "initiatedByListId": "All",
-  "badgeIds":  [{ "start": "1", "end": "10" }],
-  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All", //forbids approval "xyz" from being updated
-
-  "permanentlyPermittedTimes": [],
-  "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
-}
-</code></pre>
-
-### **Permission Categories**
-
-There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](../different-time-fields.md) for examples and explanations.
-
-{% content-ref url="action-permission.md" %}
-[Action Permission](action-permission.md)
-{% endcontent-ref %}
-
-{% content-ref url="timed-update-permission.md" %}
-[Timed Update Permission](timed-update-permission.md)
-{% endcontent-ref %}
-
-{% content-ref url="timed-update-with-badge-ids-permission.md" %}
-[Timed Update with Badge IDs Permission](timed-update-with-badge-ids-permission.md)
-{% endcontent-ref %}
-
-{% content-ref url="balances-action-permission.md" %}
-[Balances Action Permission](balances-action-permission.md)
-{% endcontent-ref %}
-
-{% content-ref url="update-approval-permission.md" %}
-[Update Approval Permission](update-approval-permission.md)
-{% endcontent-ref %}
-
-### **Examples**
-
-See [Example Msgs](../../core-concepts/broken-reference/) for further examples. Or, see the page for each permission category.
-
-```json
-"collectionPermissions": {
-    "canArchiveCollection": [],
-    "canCreateMoreBadges": [
-      {
-        "badgeIds": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "ownershipTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "permanentlyPermittedTimes": [],
-        "permanentlyForbiddenTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-      }
-    ],
-    "canDeleteCollection": [],
-    "canUpdateBadgeMetadata": [],
-    "canUpdateCollectionApprovals": [
-      {
-        "fromListId": "AllWithMint",
-        "toListId": "AllWithMint",
-        "initiatedByListId": "AllWithMint",
-        "timelineTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "transferTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "badgeIds": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "ownershipTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ],
-        "approvalId": "All",
-        "permanentlyPermittedTimes": [],
-        "permanentlyForbiddenTimes": [
-          {
-            "start": "1",
-            "end": "18446744073709551615"
-          }
-        ]
-      }
-    ],
-    "canUpdateCollectionMetadata": [],
-    "canUpdateContractAddress": [],
-    "canUpdateCustomData": [],
-    "canUpdateManager": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": []
-  }
-```
-
-
-## File: ./x-badges/concepts/permissions/timed-update-permission.md
-
-# Timed Update Permission
-
-```json
-"collectionPermissions": {
-    "canArchiveCollection": [...],
-    "canUpdateOffChainBalancesMetadata": [...],
-    "canUpdateStandards": [...],
-    "canUpdateCustomData": [...],
-    "canUpdateManager": [...],
-    "canUpdateCollectionMetadata": [...],
-    ...
-}
-```
-
-```typescript
-export interface TimedUpdatePermission<T extends NumberType> {
-  timelineTimes: UintRange<T>[];
-  
-  permanentlyPermittedTimes: UintRange<T>[];
-  permanentlyForbiddenTimes: UintRange<T>[];
-}
-```
-
-**TimedUpdatePermission**s simply denote for what **timelineTimes**, can the manager update the scheduled value? These are only applicable to normal [timeline-based fields](../timelines.md) such as the collection metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
-
-The **timelineTimes** are which timeline time values can be updated. The permitted / forbidden times are when the permission can be executed (the update can take place). Note these may not be aligned. Maybe, you want to forbid updating the timeline from Jan 2024 - Dec 2024 during 2023.
-
-**Examples**
-
-Below, this forbids updating the entire timeline because all timelineTimes are specified.
-
-```json
-"canUpdateCollectionMetadata": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-  }
-]
-```
-
-Below, this forbids ever updating the times 1000-2000 only. All other times can still be updated.
-
-```json
-"canUpdateCollectionMetadata": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1000",
-        "end": "2000"
-      }
-    ],
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-  }
-]
-```
-
-
-## File: ./x-badges/concepts/permissions/timed-update-with-badge-ids-permission.md
-
-# Timed Update With Badge Ids Permission
-
-```json
-"collectionPermissions": {
-    "canUpdateBadgeMetadata": [...],
-    ...
-}
-```
-
-```typescript
-export interface TimedUpdateWithBadgeIdsPermission<T extends NumberType> {
-  timelineTimes: UintRange<T>[];
-  badgeIds: UintRange<T>[];
-  
-  permanentlyPermittedTimes: UintRange<T>[];
-  permanentlyForbiddenTimes: UintRange<T>[];
-}
-```
-
-**TimedUpdatePermissionWithBadgeId**s simply denote for what **timelineTimes** and **badgeIds** combinations, can the manager update the scheduled value? These are only applicable to badge ID [timeline-based fields](../timelines.md) such as the badge metadata timeline. This permission refers to the UPDATABILITY of the timeline and has no bearing on what the timeline is currently set to.
-
-The **timelineTimes** are which timeline time values can be updated. The **badgeIds** are which badge IDs can be updated. For a pair such as (Mon-Fri, IDs 1-10), this means the values corresponding to the badge IDs at the timeline times can be updated or not. Both have to match. IDs 11+ are not handled at all in this case. Sunday is not handled. Updating IDs 1-10 on Sunday is not handled.
-
-**Examples**
-
-Below, this forbids updating the entire timeline because all timelineTimes and badgeIds are specified.
-
-```json
-"canUpdateBadgeMetadata": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-  }
-]
-```
-
-A commonly set value for this permission may look like the following. Let's say you have a collection with 100 badges but in the future, you can create new badges 101+. This permission allows you to freeze the metadata of the current badges but allow you to set the metadata for any new badges in the future.
-
-```json
-"canUpdateBadgeMetadata": [
-  {
-    "timelineTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "100"
-      }
-    ],
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-  }
-]
-```
-
-
-## File: ./x-badges/concepts/permissions/update-approval-permission.md
-
-# Update Approval Permission
-
-Pre-Readings: [Transferability](../balances-transfers/transferability-approvals.md) and [Approval Criteria](../balances-transfers/approval-criteria/)
-
-The ApprovalPermissions refer to the UPDATABILITY of the currently set approvals / transferability. These can be leveraged to freeze specific transferability / approvals in order to give users more confidence that they cannot be changed in the future. Note this refers to the updatability of them and has no bearing on what they are currently set to.
-
-For what transfer combinations (see [Representing Transfers](../balances-transfers/transferability-approvals.md)), can I create / delete / update approvals?&#x20;
-
-```json
-"userPermissions": {
-    "canUpdateIncomingApprovals": [...],
-    "canUpdateOutgoingApprovals": [...],
-    ...
-}
-```
-
-```json
-"collectionPermissions": {
-    "canUpdateCollectionApprovals": [...]
-    ...
-}
-```
-
-The **canUpdateIncomingApprovals** and **canUpdateOutgoingApprovals** follow the same interface as **canUpdateCollectionApprovals** minus automatically populating the user's address for to / from for incoming / outgoing, respectively. We only explain the collection approval permission to avoid repetition.
-
-```typescript
-export interface CollectionApprovalPermission<T extends NumberType> {
-  fromListId: string;
-  toListId: string;
-  initiatedByListId: string;
-  transferTimes: UintRange<T>[];
-  badgeIds: UintRange<T>[];
-  ownershipTimes: UintRange<T>[];
-  approvalId: string
-  
-  permanentlyPermittedTimes: UintRange<T>[];
-  permanentlyForbiddenTimes: UintRange<T>[];
-}
-```
-
-Ex: I can/cannot update the approvals for the transfer combinations ("All", "All", "All", 1-100, 1-10, 1-10, "All",  "All",  "All") tuple.
-
-## ID Shorthands
-
-IDs are used for locking specific approvals. This is because sometimes it may not be sufficient to just lock a specific (from, to, initiator, time, badge IDs, ownershipTimes) combination because multiple approvals could match to it.
-
-To specify IDs, you can use the "All" reserved ID to represent all IDs, or you can use other shorthand methods such as "!xyz" to denote all IDs but xyz. These shorthands are the same as reserved lists, so we refer you[ there for more info](../../core-concepts/address-lists-lists.md). Just replace the addresses with the IDs.
-
-## Break Down Logic
-
-Because of the way breakdown logic is performed, the following is allowed.
-
-Permission: Badge IDs 2-10 are locked as forbidden
-
-Before: 1-10 -> Criteria ABC
-
-After: 1 -> Criteria XYZ, 2-10 -> Criteria ABC
-
-## Expected Behavior vs Non-Updatability
-
-Approval permission updates are slightly tricky because even though an approval may be non-updatable according to the permissions set, its expected behavior may change due to how approvals are designed (i.e. using trackers).
-
-* For example, lets say we want to freeze IDs 501-1000 and have an incrementing mint of x1 of ID 1, x1 of ID 2, up to ID 1000. If we simply freeze the IDs 501-1000, the approval could still be deleted for IDs 1-500, and the increment number (tracker) will then never reach 501 because it will be out of bounds every time. Thus, expected behavior for 501-1000 changes even though it is frozen.
-
-### Definitions
-
-To explain things easier, let's start with some definitions:
-
-#### **Approval Tuple**
-
-We define an approval tuple as a set of values (**from, to, initiated by, badgeIds, transferTimes, ownershipTimes, approvalId**). The tuple for a specific approval that is currently set will consist of all values for that approval.
-
-Note that to match, all N criteria must match. If one doesn't, it isn't a match. For example, in the example below, badge ID 1 will never match to the tuple.
-
-<pre class="language-json"><code class="lang-json"><strong>{
-</strong>  "fromListId": "AllWithMint",
-  "toListId": "AllWithMint",
-  "initiatedByListId": "AllWithMint",
-  "badgeIds":  [{ "start": "2", "end": "10" }],
-  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All"
-}
-</code></pre>
-
-#### **Non-Updatable**
-
-For a given approval tuple, it is considered non-updatable according to the permissions if all possible combinations of the entire tuple are **permanently forbidden** from being updated in the permissions.&#x20;
-
-<pre class="language-json"><code class="lang-json"><strong>{
-</strong>  "fromListId": "AllWithMint",
-  "toListId": "AllWithMint",
-  "initiatedByListId": "AllWithMint",
-  "badgeIds":  [{ "start": "2", "end": "10" }],
-  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All", //forbids approval "xyz" from being updated
-  
-  "permanentlyPermittedTimes": [],
-  "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
-}
-</code></pre>
-
-Note that non-updatability is scoped to the tuple itself.
-
-**Brute Forced**
-
-Commonly, you will make some values non-updatable by specifying some criteria (e.g. IDs 2-10) and setting everything else to all possible values. For example, the permission above does this for badge IDs 2-10. We refer to this as brute forcing (i.e. above badge IDs 2-10 are brute forced but badge IDs 2-11 are not). In other words, for some criteria, all possible combinations of that criteria are COMPLETELY forbidden and non-updatable.
-
-#### **Expected Behavior**
-
-As explained above, expected behavior not only encompasses non-updatability, but it also makes sure that nothing any other approval or update can do can affect the expected behavior of this approval. This designation is especially important.
-
-### Freezing Specific Approval Tuples
-
-With the way trackers work, it is important to handle approval permissions correctly to protect against break-down attacks to ensure expected behavior.
-
-Below, we will walk through the process of making a specific approval tuple non-updatable AND keeping its expected behavior.&#x20;
-
-**Specific Approval ID**
-
-If you want to do this for a specific approval that is set, the approval tuple should consist of the specific values for that specific approval. Because the **approvalId** is unique and included in the tuple, you know there are no other approvals that overlap.
-
-Thus, you can simply brute force this tuple in the permissions and call it a day.
-
-**Tuples with Overlaps**
-
-For tuples which may span multiple approvals, the algorithm is essentially the following:
-
-1. Forbid updates for the exact tuple values you want to freeze in permissions
-2. To keep expected behavior, you need to forbid updates for all specific approvals that are currently set and overlap (even partially) with the values you are trying to freeze.
-   * Ex: If you are trying to freeze badge IDs 1-10, you should also entirely freeze the approval abc123 which is for badge IDs 1-100.
-   * Technically, this only needs to be done for approvals that are set and can affect the behavior of the tuple values, but to be safe, we recommend freezing all overlapping approvals or restructuring so they do not overlap. It is difficult to manage when part of an approval is frozen.
-
-**Example**
-
-Let's say you want to forbid ever updating the transferability for badges 1-10, and you have the following approvals currently set (for badges 1-100).
-
-```json
-"collectionApprovals": [
-    {
-      "fromListId": "Mint",
-      "toListId": "All",
-      "initiatedByListId": "All",
-      "transferTimes": [
-        {
-          "start": "1691978400000",
-          "end": "1723514400000"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "100"
-        }
-      ],
-      "approvalId": "abc",
-      "approvalCriteria": {
-        .... //uses trackers
-      }
-    }
-  ]
-```
-
-Step 1: Brute force IDs 1-10 in the permissions to be forbidden.
-
-<pre class="language-json"><code class="lang-json"><strong>{
-</strong>  "fromListId": "All",
-  "toListId": "All",
-  "initiatedByListId": "All",
-  "badgeIds":  [{ "start": "1", "end": "10" }],
-  "transferTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "ownershipTimes":  [{ "start": "1", "end": "18446744073709551615" }],
-  "approvalId": "All",
-  "permanentlyPermittedTimes": [],
-  "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
-}
-</code></pre>
-
-Step 2: Find all matching approvals. In this case, we only have one and it matches because it uses overlaps since it uses IDs 1-100.
+All permissions support time-based control via UNIX millisecond UintRanges.
 
 ```json
 {
-    "fromListId": "Mint",
-    "toListId": "All",
-    "initiatedByListId": "All",
-    "transferTimes": [
-      {
-        "start": "1691978400000",
-        "end": "1723514400000"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "100"
-      }
-    ],
-    "approvalId": "abc",
-    "approvalCriteria": {
-      ....
-    }
-  }
+    "permanentlyPermittedTimes": [{ "start": "1", "end": "1000" }],
+    "permanentlyForbiddenTimes": [
+        { "start": "1001", "end": "18446744073709551615" }
+    ]
+}
 ```
 
-In this particular case, the approval is updatable (IDs 11-100 are) and is not already frozen. Thus, expected behavior of badges 1-10 may not be guaranteed.
+## Permission Categories
 
-We need to handle this, which we can do by adding another permission brute forcing approval "abc".
+There are **five types** of permissions, each with different criteria:
+
+-   **[Action Permissions](action-permissions.md)** - Simple time-based permissions (no criteria)
+-   **[Timeline Permissions](timeline-permissions.md)** - Control timeline updates (timelineTimes)
+-   **[Timeline with Badge IDs](timeline-permissions.md)** - Control badge-specific timeline updates (timelineTimes + badgeIds)
+-   **[Badge ID Action Permissions](badge-id-permissions.md)** - Control badge-specific actions (badgeIds)
+-   **[Approval Permissions](approval-permissions.md)** - Control approval updates (transfer criteria + approvalId)
+
+### Correct Categorization
+
+Based on the proto definitions:
+
+**Action Permissions** (only time control):
+
+-   `canDeleteCollection` (collection)
+-   `canUpdateAutoApproveSelfInitiatedOutgoingTransfers` (user)
+-   `canUpdateAutoApproveSelfInitiatedIncomingTransfers` (user)
+-   `canUpdateAutoApproveAllIncomingTransfers` (user)
+
+**Timeline Permissions** (timelineTimes + time control):
+
+-   `canArchiveCollection`
+-   `canUpdateOffChainBalancesMetadata`
+-   `canUpdateStandards`
+-   `canUpdateCustomData`
+-   `canUpdateManager`
+-   `canUpdateCollectionMetadata`
+
+**Timeline with Badge IDs** (timelineTimes + badgeIds + time control):
+
+-   `canUpdateBadgeMetadata`
+
+**Badge ID Action Permissions** (badgeIds + time control):
+
+-   `canUpdateValidBadgeIds`
+
+**Approval Permissions** (transfer criteria + approvalId + time control):
+
+-   `canUpdateCollectionApprovals` (collection)
+-   `canUpdateIncomingApprovals` (user)
+-   `canUpdateOutgoingApprovals` (user)
+
+## Quick Examples
+
+### Lock Collection Deletion
+
+When can the collection be deleted?
+
+```json
+{
+    "canDeleteCollection": [
+        {
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Freeze Badge Metadata
+
+When can the badge metadata be updated? And which (badge IDs, timeline time) pairs does it apply to?
+
+```json
+{
+    "canUpdateBadgeMetadata": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "badgeIds": [{ "start": "1", "end": "100" }],
+
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+## First Match Policy
+
+Permissions are evaluated as a linear array where each element has criteria and time controls. Only the **first matching element** is applied - all subsequent matches are ignored.
+
+### Key Rules
+
+-   **First Match Only**: Only the first element that matches all criteria is used
+-   **Deterministic State**: Each criteria combination has exactly one permission state
+-   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
+-   **Order Matters**: Array order affects which permissions are applied
+
+### Example: Timeline Permissions
+
+```json
+"canUpdateCollectionMetadata": [
+    {
+        "timelineTimes": [{ "start": "1", "end": "10" }],
+        "permanentlyPermittedTimes": [],
+        "permanentlyForbiddenTimes": [{ "start": "1", "end": "10" }]
+    },
+    {
+        "timelineTimes": [{ "start": "1", "end": "100" }],
+        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
+        "permanentlyForbiddenTimes": []
+    }
+]
+```
+
+**Result:**
+
+-   Timeline times 1-10: **Forbidden** (first element matches, second element does not)
+-   Timeline times 11-100: **Permitted** (second element matches)
+
+## Satisfying Criteria
+
+All criteria in a permission element must match for it to be applied. Partial matches are ignored.
+
+### Example: Badge Metadata Permissions
+
+```json
+"canUpdateBadgeMetadata": [
+    {
+        "timelineTimes": [{ "start": "1", "end": "10" }],
+        "badgeIds": [{ "start": "1", "end": "10" }],
+        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
+        "permanentlyForbiddenTimes": []
+    }
+]
+```
+
+**This permission only covers:**
+
+-   Timeline times 1-10 AND badge IDs 1-10
+
+**It does NOT cover:**
+
+-   Timeline time 1 with badge ID 11
+-   Timeline time 11 with badge ID 1
+-   Timeline time 11 with badge ID 11
+
+These combinations are **unhandled** and **allowed by default** since they do not match the permission criteria.
+
+## Brute Force Pattern
+
+To lock specific criteria, you must specify the target and set all other criteria to maximum ranges.
+
+### Example: Lock Badge IDs 1-10
 
 ```json
 {
     "fromListId": "All",
     "toListId": "All",
     "initiatedByListId": "All",
-    "transferTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "approvalId": "abc",    
-     
+    "badgeIds": [{ "start": "1", "end": "10" }],
+    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "approvalId": "All",
     "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [{ "start": "1", "end": "18446744073709551615" }]
-  }
+    "permanentlyForbiddenTimes": [
+        { "start": "1", "end": "18446744073709551615" }
+    ]
+}
+```
+
+## Important Notes
+
+-   **First Match Policy**: Only the first matching permission is applied
+-   **Default Allow**: Unspecified permissions are allowed by default
+-   **Manager Required**: Collection permissions require a manager
+-   **User Control**: User permissions typically remain empty for full control
+-   **Brute Force**: Use maximum ranges to ensure complete coverage
+-   **Order Matters**: Array order affects permission evaluation
+
+
+## File: ./x-badges/concepts/permissions/action-permissions.md
+
+# Action Permissions
+
+Action permissions are the simplest type - they only control when an action can be executed based on time.
+
+## High-Level Logic
+
+```
+For each action request:
+    Check if current time is in permanentlyPermittedTimes
+        → If yes: ALLOW
+        → If no: Check if current time is in permanentlyForbiddenTimes
+            → If yes: DENY
+            → If no: ALLOW (neutral state)
+```
+
+**English**: "For these times, this action can be performed" or "For these times, this action is blocked"
+
+## Overview
+
+```
+Action Request
+    ↓
+Time Check
+    ↓
+┌─────────────────┬─────────────────┐
+│ Permitted Times │ Forbidden Times │
+└─────────────────┴─────────────────┘
+    ↓
+Execute Action    Deny Action
+```
+
+## Interface
+
+```typescript
+interface ActionPermission {
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+## Collection Actions
+
+| Action                | Description              | Use Case       |
+| --------------------- | ------------------------ | -------------- |
+| `canDeleteCollection` | Delete entire collection | Permanent lock |
+
+## User Actions
+
+| Action                                               | Description                     | Use Case         |
+| ---------------------------------------------------- | ------------------------------- | ---------------- |
+| `canUpdateAutoApproveSelfInitiatedOutgoingTransfers` | Auto-approve outgoing transfers | User convenience |
+| `canUpdateAutoApproveSelfInitiatedIncomingTransfers` | Auto-approve incoming transfers | User convenience |
+| `canUpdateAutoApproveAllIncomingTransfers`           | Auto-approve all incoming       | User convenience |
+
+## Examples
+
+### Lock Collection Deletion Forever
+
+```json
+{
+    "canDeleteCollection": [
+        {
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Allow Collection Deletion Only During Specific Period
+
+```json
+{
+    "canDeleteCollection": [
+        {
+            "permanentlyPermittedTimes": [
+                { "start": "1704067200000", "end": "1735689600000" }
+            ],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+### Default Behavior (No Restrictions)
+
+```json
+{
+    "canDeleteCollection": []
+}
+```
+
+
+## File: ./x-badges/concepts/permissions/approval-permissions.md
+
+# Approval Permissions
+
+Approval permissions control when transfer approvals can be updated, allowing you to freeze specific transfer rules.
+
+## High-Level Logic
+
+```
+For each approval update request:
+    Check if approval criteria match (from, to, initiatedBy, transferTimes, badgeIds, ownershipTimes, approvalId)
+        → If no match: ALLOW (neutral state)
+        → If match: Check if current time is in permanentlyPermittedTimes
+            → If yes: ALLOW
+            → If no: Check if current time is in permanentlyForbiddenTimes
+                → If yes: DENY
+                → If no: ALLOW (neutral state)
+```
+
+**English**: "For these permission execution times, the approvals matching to these criteria can be updated"
+
+## Overview
+
+```
+Approval Update
+    ↓
+Transfer Match
+    ↓
+Approval ID Match
+    ↓
+Time Permission Check
+    ↓
+Execute/Deny
+```
+
+## Interface
+
+```typescript
+interface ApprovalPermission {
+    fromListId: string;
+    toListId: string;
+    initiatedByListId: string;
+    transferTimes: UintRange[];
+    badgeIds: UintRange[];
+    ownershipTimes: UintRange[];
+    approvalId: string;
+
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+## Available Actions
+
+| Action                         | Scope      | Description                         |
+| ------------------------------ | ---------- | ----------------------------------- |
+| `canUpdateCollectionApprovals` | Collection | Control collection-level approvals  |
+| `canUpdateIncomingApprovals`   | User       | Control incoming transfer approvals |
+| `canUpdateOutgoingApprovals`   | User       | Control outgoing transfer approvals |
+
+**Note**: For user approvals, `fromListId` and `toListId` are automatically set:
+
+-   **Incoming**: `toListId` is hardcoded to the user's address
+-   **Outgoing**: `fromListId` is hardcoded to the user's address
+
+## Key Concepts
+
+### Approval Tuple
+
+An approval tuple consists of: `(from, to, initiatedBy, badgeIds, transferTimes, ownershipTimes, approvalId)`
+
+### Brute Force Pattern
+
+To lock specific criteria, specify the target and set all other criteria to maximum ranges:
+
+```json
+{
+    "fromListId": "All",
+    "toListId": "All",
+    "initiatedByListId": "All",
+    "badgeIds": [{ "start": "1", "end": "10" }],
+    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "approvalId": "All",
+    "permanentlyPermittedTimes": [],
+    "permanentlyForbiddenTimes": [
+        { "start": "1", "end": "18446744073709551615" }
+    ]
+}
+```
+
+## Examples
+
+### Lock Specific Badge Range
+
+```json
+{
+    "canUpdateCollectionApprovals": [
+        {
+            "fromListId": "All",
+            "toListId": "All",
+            "initiatedByListId": "All",
+            "badgeIds": [{ "start": "1", "end": "100" }],
+            "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "approvalId": "All",
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Lock Specific Approval ID
+
+```json
+{
+    "canUpdateCollectionApprovals": [
+        {
+            "fromListId": "All",
+            "toListId": "All",
+            "initiatedByListId": "All",
+            "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+            "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "approvalId": "specific-approval-id",
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+## Protection Strategies
+
+### 1. Specific Approval Lock
+
+Lock a specific approval by its unique ID:
+
+```json
+"approvalId": "unique-approval-id"
+```
+
+### 2. Range Lock with Overlap Protection
+
+Lock a badge range AND all overlapping approvals:
+
+```json
+// Lock badge range
+{
+    "badgeIds": [{ "start": "1", "end": "10" }],
+    "approvalId": "All"
+}
+
+// Lock overlapping approval
+{
+    "approvalId": "overlapping-approval-id"
+}
+```
+
+### 3. Complete Freeze
+
+Lock all approvals for a collection:
+
+```json
+{
+    "fromListId": "All",
+    "toListId": "All",
+    "initiatedByListId": "All",
+    "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "approvalId": "All",
+    "permanentlyPermittedTimes": [],
+    "permanentlyForbiddenTimes": [
+        { "start": "1", "end": "18446744073709551615" }
+    ]
+}
+```
+
+
+## File: ./x-badges/concepts/permissions/badge-id-permissions.md
+
+# Badge ID Action Permissions
+
+Badge ID action permissions control which badge-specific actions can be performed based on badge IDs.
+
+## High-Level Logic
+
+```
+For each badge action request:
+    Check if badge ID matches any badgeIds criteria
+        → If no match: ALLOW (neutral state)
+        → If match: Check if current time is in permanentlyPermittedTimes
+            → If yes: ALLOW
+            → If no: Check if current time is in permanentlyForbiddenTimes
+                → If yes: DENY
+                → If no: ALLOW (neutral state)
+```
+
+**English**: "For these times, these badge IDs can be updated" or "For these times, these badge IDs are locked"
+
+## Overview
+
+```
+Badge Action
+    ↓
+Badge ID Match
+    ↓
+Time Permission Check
+    ↓
+Execute/Deny
+```
+
+## Interface
+
+```typescript
+interface BadgeIdsActionPermission {
+    badgeIds: UintRange[];
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+## Available Actions
+
+| Action                   | Description            | Use Case      |
+| ------------------------ | ---------------------- | ------------- |
+| `canUpdateValidBadgeIds` | Update valid badge IDs | Configuration |
+
+## Examples
+
+### Lock All Badge ID Updates
+
+```json
+{
+    "canUpdateValidBadgeIds": [
+        {
+            "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Lock Specific Badge Range
+
+```json
+{
+    "canUpdateValidBadgeIds": [
+        {
+            "badgeIds": [{ "start": "1", "end": "100" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Allow Future Badge IDs Only
+
+```json
+{
+    "canUpdateValidBadgeIds": [
+        {
+            "badgeIds": [{ "start": "101", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+
+## File: ./x-badges/concepts/permissions/timeline-permissions.md
+
+# Timeline Permissions
+
+Timeline permissions control when timeline-based fields can be updated, such as collection metadata and badge metadata.
+
+## High-Level Logic
+
+### Basic Timeline Permissions
+
+```
+For each timeline update request:
+    Check if timeline time matches any timelineTimes criteria
+        → If no match: ALLOW (neutral state)
+        → If match: Check if current time is in permanentlyPermittedTimes
+            → If yes: ALLOW
+            → If no: Check if current time is in permanentlyForbiddenTimes
+                → If yes: DENY
+                → If no: ALLOW (neutral state)
+```
+
+### Badge-Specific Timeline Permissions
+
+```
+For each badge timeline update request:
+    Check if timeline time AND badge ID match criteria
+        → If no match: ALLOW (neutral state)
+        → If match: Check if current time is in permanentlyPermittedTimes
+            → If yes: ALLOW
+            → If no: Check if current time is in permanentlyForbiddenTimes
+                → If yes: DENY
+                → If no: ALLOW (neutral state)
+```
+
+**English**:
+
+-   **Basic**: "For these permission execution times, the (timelineTime -> timelineValue) pairs can be updated"
+-   **Badge-Specific**: "For these permission execution times, the (badgeId, timelineTime -> timelineValue) pairs can be updated"
+
+## Timeline vs Execution Times
+
+-   **Timeline Times**: Which timeline values can be updated?
+-   **Execution Times**: When the permission can be executed?
+
+These may not align. For example, you might forbid updating timeline values for Jan 2024 during 2023.
+
+## Overview
+
+```
+Timeline Update
+    ↓
+Timeline Time Match
+    ↓
+Time Permission Check
+    ↓
+Execute/Deny
+```
+
+## Types
+
+### Basic Timeline Permissions
+
+Control collection-level timeline updates:
+
+```typescript
+interface TimedUpdatePermission {
+    timelineTimes: UintRange[];
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+**Available Actions:**
+
+-   `canArchiveCollection`
+-   `canUpdateOffChainBalancesMetadata`
+-   `canUpdateStandards`
+-   `canUpdateCustomData`
+-   `canUpdateManager`
+-   `canUpdateCollectionMetadata`
+
+### Badge-Specific Timeline Permissions
+
+Control badge metadata timeline updates:
+
+```typescript
+interface TimedUpdateWithBadgeIdsPermission {
+    timelineTimes: UintRange[];
+    badgeIds: UintRange[];
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+**Available Actions:**
+
+-   `canUpdateBadgeMetadata`
+
+## Examples
+
+### Lock Collection Metadata Forever
+
+```json
+{
+    "canUpdateCollectionMetadata": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Lock Specific Timeline Period
+
+```json
+{
+    "canUpdateCollectionMetadata": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Lock Badge Metadata for Existing Badges
+
+```json
+{
+    "canUpdateBadgeMetadata": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "badgeIds": [{ "start": "1", "end": "100" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Allow Updates Only During Specific Period
+
+```json
+{
+    "canUpdateCollectionMetadata": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [
+                { "start": "1704067200000", "end": "1735689600000" }
+            ],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
 ```
 
 
@@ -16744,422 +16721,184 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## File: ./x-badges/concepts/transferability-approvals.md
 
-# Transferability / Approvals
+# Transferability & Approvals
 
-First, read [Transferability ](broken-reference/)for an overview of approved transfers.
+## Overview
 
-Note: The [Approved Transfers](transferability-approvals.md) and [Permissions ](broken-reference/)are the most powerful features of the interface, but they can also be the most confusing. Please ask for help if needed.
+Transferability in BitBadges is controlled through a hierarchical approval system with three levels:
 
-Collections with "Off-Chain" balances and address lists do not utilize on-chain transferability, so this page is not applicable to them.
+<figure><img src="../../../.gitbook/assets/image (33).png" alt="Approval hierarchy diagram"><figcaption>Approval hierarchy: Collection → User (Incoming/Outgoing)</figcaption></figure>
 
-## Approvals Overview
+### Approval Levels
 
-### Approval Levels - Collection, Incoming, Outgoing
+| Level          | Description                              | Fields                                  |
+| -------------- | ---------------------------------------- | --------------------------------------- |
+| **Collection** | Global rules for the entire collection   | All fields                              |
+| **Incoming**   | User-specific rules for receiving badges | `toList` = user's address, no overrides |
+| **Outgoing**   | User-specific rules for sending badges   | `fromList` = user's address, overrides  |
 
-Approved transfers encompass three hierarchical levels: collection, incoming, and outgoing, as previously elaborated. The interfaces for these three levels share common elements, with slight variations in functionality:
+**Key Rule**: A transfer must satisfy collection-level approvals AND (unless overridden) user-level incoming/outgoing approvals.
 
--   Incoming approvals exclude the "to" fields as they are automatically populated with the recipient's address.
--   Outgoing approvals omit the "from" fields, as they are automatically filled with the sender's address.
--   The collection level holds the capacity to override user-level (incoming / outgoing) approvals, but not vice versa.
+## Core Concepts
 
-**For a transfer to be approved, it has to satisfy the collection-level approvals, and if not overriden forcefully by the collection-level approvals, the user incoming / outgoing also have to be satisfied.**
+### ⚠️ Important Distinctions
 
-<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+-   **Approvals ≠ Escrows**: Approvals are just intentions - they don't guarantee underlying balances exist
+-   **Mint Address**: Has unlimited balances and requires special handling (override the sender approvals since the Mint address is not a user)
+-   **Default Behavior**: Unhandled transfers are **disapproved** by default
+-   **Not Auto-Deleted Unless Set**: Approvals have auto-deletion functionality, but if not set, they are not deleted
 
-### Approvals != Escrows
+### Mint Address - Special Handling Required
 
-When it comes to approved transfers, it's important to note that they are just approvals and may not necessarily correspond directly to underlying balances. Approvers must ensure that sufficient balances are available to uphold the approvals' integrity, accounting for potential revokes or freezes. This responsibility extends to the collection-level transferability as well.
+The Mint address is a special case that requires careful attention:
 
-On a similar note, if approvals become no longer valid (such as approving a badge but it was revoked via a different approval), the former approval doesn't automatically get cancelled. It is the approver's responsibility to handle them accordingly.
+-   **Unlimited Balances**: The Mint address has unlimited balances for all badge IDs and ownership times
+-   **No User Approvals**: Since it's not a real address, the Mint address cannot set its own user-level incoming/outgoing approvals
+-   **Must Override**: When transferring from the Mint address, you **must** override the outgoing approvals using `overrideFromOutgoingApprovals: true`
+-   **Exclusive fromList**: For safety, approvals from the Mint address should only include "Mint" in the `fromList` - never mix with regular addresses
 
-### Mint - Unlimited Balances
-
-For on-chain balances, the Mint address has unlimited balances. So, it is extra critical to set these approvals correctly.
-
-The Mint address does not have incoming / outgoing approvals that can be controlled. For all Mint approvals, they must forcefully override the user-level outgoing approval because it cannot be managed.
-
-### Representation
-
-In the collection interface, they are represented as the following:
-
-```json
-{
-    ...
-    "collectionApprovals": [{ ... }, ...]
-    ...
-}
-```
+### Approval Structure
 
 ```typescript
-export interface CollectionApproval<T extends NumberType> {
-    toListId: string;
-    fromListId: string;
-    initiatedByListId: string;
-    transferTimes: UintRange<T>[];
-    badgeIds: UintRange<T>[];
-    ownershipTimes: UintRange<T>[];
-    approvalId: string;
+interface CollectionApproval<T extends NumberType> {
+    // Core Fields
+    toListId: string; // Who can receive?
+    fromListId: string; // Who can send?
+    initiatedByListId: string; // Who can initiate?
+    transferTimes: UintRange<T>[]; // When can transfer happen?
+    badgeIds: UintRange<T>[]; // Which badge IDs?
+    ownershipTimes: UintRange<T>[]; // Which ownership times?
+    approvalId: string; // Unique identifier
 
-    uri?: string;
-    customData?: string;
-
-    approvalCriteria?: ApprovalCriteria<T>;
-
+    // Version control (incremented on each update)
     version: T;
+
+    // Optional Fields
+    uri?: string; // Metadata link
+    customData?: string; // Custom data
+    approvalCriteria?: ApprovalCriteria<T>; // Additional restrictions
 }
 ```
 
-Note; User incoming / outgoing approvals follow the same interface except **toList** is auto-populated with the user's address for incoming approvals and similarly the **fromList** for outgoingApprovals.
+See [Approval Criteria](approval-criteria/) for more details on the `approvalCriteria` field.
 
-**Approved vs Unapproved**
+## Approval Value vs Permission
 
-Approvals are simply a set of criteria, so it is entirely possible the same transfer could satisfy multiple approvals on the same level. We handle approvals per level in the following manner:
+While the value may seem similar to the approval update permissions, the permission corresponds to the **updatability** of the approvals (i.e. `canUpdateCollectionApprovals`). The approvals themselves correspond to if a transfer is currently approved or not.
 
-1. If the transfer is unhandled (doesn't match to any approval), it is DISAPPROVED by default.
-2. We allow users to specify **prioritizedApprovals** and **onlyCheckPrioritizedApprovals** (in [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)) when transferring, so they can only use up their desired approvals.
-    1. Any approval with side effects (coin transfers, criteria, trackers, etc) MUST be specified explicity in prioritized approvals.
-    2. Any approval without side effects (e.g. generic unlimited transferability collection approval) does not have to be specified.
-    3. When scanning approvals, we check prioritized approvals first. Then, we attempt to scan any approvals without side effects.
+## The Six Core Fields
 
-We strongly recommend designing approvals in a way where no transfer can map to multiple. This improves the simplicity and readability of your collection.
+Every approval defines **Who? When? What?** through these fields:
 
-**Who? When? What? - Main Fields**
+| Field               | Type                            | Purpose                                 | Example                                            |
+| ------------------- | ------------------------------- | --------------------------------------- | -------------------------------------------------- |
+| `toListId`          | Address List ID                 | Who can receive badges                  | `"All"`, `"Mint"`, `"bb1..."`                      |
+| `fromListId`        | Address List ID                 | Who can send badges                     | `"Mint"`, `"!Mint"`                                |
+| `initiatedByListId` | Address List ID                 | Who can initiate transfer               | `"All"`, `"bb1..."`                                |
+| `transferTimes`     | UintRange[] (UNIX Milliseconds) | When transfer can occur                 | `[{start: "1691931600000", end: "1723554000000"}]` |
+| `badgeIds`          | UintRange[] (Badge IDs)         | Which badge IDs                         | `[{start: "1", end: "100"}]`                       |
+| `ownershipTimes`    | UintRange[] (UNIX Milliseconds) | Which ownership times to be transferred | `[{start: "1", end: "18446744073709551615"}]`      |
 
-To represent transfers, six main fields are used: **`toList`**, **`fromList`**, **`initiatedByList`**, **`transferTimes`**, **`badgeIds`**, and **`ownershipTimes`**. These fields collectively define the transfer details, such as the addresses involved, timing, and badge details. This representation leverages range logic, breaking down into individual tuples for enhanced comprehension.
-
--   **toList, fromList, initiatedByList**: [AddressLists](../../core-concepts/address-lists-lists.md) specifying which addresses can send, receive, and initiate the transfer. If we use **toListId, fromListId, initiatedByListId**, these refer to the lists IDs of the respective lists. IDs can either be reserved IDs (see [AddressLists](../../core-concepts/address-lists-lists.md)) or IDs of lists created on-chain through [MsgCreateAddressLists](../../bitbadges-blockchain/cosmos-sdk-msgs/). Note that on-chain approvals cannot access off-chain lists.
--   **transferTimes**: When can the transfer takes place? A [UintRange](../../core-concepts/uint-ranges.md)\[] of times (UNIX milliseconds).
--   **badgeIds**: What badge IDs can be transferred? A [UintRange](../../core-concepts/uint-ranges.md)\[] of badge IDs.
--   **ownershipTimes**: What ownership times for the badges are being transferred? (UNIX milliseconds)
-
-For example, we might have something like the following:
-
--   ```json
-    "fromListId": "Mint", //reserved list ID for the "Mint" addres
-    "toListId": "All", //reserved list ID for all addresses (excluding "Mint")
-    "initiatedByListId": "All",
-    "transferTimes": [
-      {
-        "start": "1691931600000",
-        "end": "1723554000000"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615" //Max possible value
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "100"
-      }
-    ],
-    ```
-
-Let's break down the definition above.
-
--   The "Mint" list ID is the reserved list corresponding to the Mint address. This approval only allows transfers from the "Mint" address. The transfer can be initiated by any user (because the AddressList "All" includes all addresses) and can have any address as the recipient.
--   The ownership rights for any time of badge IDs 1-100 can be transferred from UNIX time 1691931600000 (Aug 13, 2023) to time 1723554000000 (Aug 13, 2024).
-
-Note the approval only applies to the details defined and must match ALL details. For example, badge ID #101 is not defined by this approval even if all other criteria matches.
-
-**Transferring From Mint Address**
-
-As mentioned before, we check the collection level approvals first, and if not overriden, we check the user-level incoming/outgoing approvals.
-
-The Mint address is a special case. It technically has its own approvals, but since it is not a real address, the user approvals are always empty and never usable. Thus, it is important that when you attempt transfers from the Mint address, you **override the outgoing approvals** of the Mint address (see [Overrides](approval-criteria/#overrides) on the next page for how).
-
-It is also recommended that when dealing with approvals from the "Mint" address, the approval's **fromList** is only the "Mint" address and no other address. This helps readability and simplicity and avoiding unintentionally approving users to mint, which could be very bad. See Example 2 below.
-
-Again, remember the Mint address has unlimited balances.
-
-#### Approval IDs
-
-All approvals must have a unique **approvalId** for identification per level. This is simply used for identification.
+### Example Approval
 
 ```json
 {
-    ...
-    "approvalId": "abc123",
+    "fromListId": "Mint",
+    "toListId": "All",
+    "initiatedByListId": "All",
+    "transferTimes": [{ "start": "1691931600000", "end": "1723554000000" }],
+    "badgeIds": [{ "start": "1", "end": "100" }],
+    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "approvalId": "mint-to-all"
 }
 ```
 
-**Metadata**
+**Translation**: Allow anyone to claim badges 1-100 from the Mint address between Aug 13, 2023 and Aug 13, 2024.
 
-We provide an optional **uri** and **customData** to allow you to add a link to something about your approval. See [Compatibility](../../bitbadges-api/concepts/designing-for-compatibility.md) for the expected format for the BitBadges API / Indexer.
+## Approval Matching Process
 
-This can typically be used for providing names, descriptions about your approvals. Or, we also use it to host N - 1 layers of a Merkle tree for a Merkle challenge of codes (N - 1 to be able to construct the path but not give away the value of leaves which are to be secret). Or, for whitelist trees where no leaves are secret, we can host the full tree. Learn more in the approval criteria merkle challenges section.
-
-#### Approval Criteria
-
-The **`approvalCriteria`** section corresponds to additional restrictions or challenges necessary to be satisfied for approval. It defines aspects like the quantity approved, maximum transfers, and more. There is a lot here, so we have dedicated a page to just explaining the [approval details here](approval-criteria/).
-
-For the rest of this page, you can simply think of it as the challenges or restrictions that need to be obeyed to be approved.
-
-**Breaking Down Range Logic**
-
-Even though our interface uses range logic (UintRanges, AddressLists), you can think of it as we break everything down into single-value tuples (e.g., `(bob, alice, bob, 1, 1, 1000)`) and check each singular value tuple separately. This simplifies the matching process and enhances clarity.
-
-#### Matching Transfers to Approvals
-
-The process of matching transfers to approvals involves several steps. This is done on a per-level basis.
-
-1. We start with the collection-level approvals.
-2. Expand all approval tuples with range logic (AllWithMint, ...., \[IDs 1-100]) to singular tuple values (e.g. (bob, alice, bob, badge ID #1, ....)
-3. Expand the current transfer tuple to singular tuple values.
-4. Find all matches (for approvals, linear first match by default but can be customized with **prioritizedApprovals** and **onlyCheckPrioritizedApprovals**).
-    1. If anything is unhandled on any approval level (accounting for overrides), the overall transfer is disapproved.
-    2. In the case of overflowing approvals (e.g. we are transferring x10 but have two approvals for x3 and x12), we deduct as much as possible from each one as we iterate. So using the previous example, we would end up with x3/3 of the first approval used and x7/12 of the second used.
-    3. We check the **`approvalCriteria`** for each match and ensure everything is satisfied. If not, it is not a match.
-5. For any amounts / balances that were approved but do not override incoming / outgoing approvals respectively, we go back to step 2 and check the recipient's incoming approvals and the senders' outgoing approvals for those balances.
-
-### Defaults and Auto Approvals
-
-**Auto Approvals**
-
-If **autoApproveSelfInitiatedOutgoingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's outgoing approvals when the sender is the same as the initiator.
-
-If **autoApproveSelfInitiatedIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
-
-if **autoApproveAllIncomingTransfers** is set to true, we automatically apply an unlimited approval (with no amount restrictions) to the user's incoming approvals when the recipient is the same as the initiator.
-
-In 99% of cases, the auto approvals should be true because the expected functionality is that if the user is initiating the transaction, they also approve it. However, this can be turned off and leveraged for specific use cases such as using an account for an escrow.
-
-**Defaults**
-
-We allow the collection to define default values for each user, and when the user first interacts with the collection, they will start with these values. The defaults include **balances**, **outgoingApprovals**, **incomingApprovals**, **autoApproveSelfInitiatedOutgoingTransfers,** **autoApproveAllIncomingTransfers**, and **autoApproveSelfInitiatedIncomingTransfers.**
-
-For default balances, we refer you to the balance types and creating badges sections (i.e. these are the starting balances).
-
-Note: Default approvals can NOT contain custom criteria checks. In other words, default approvals can not have side effects. They can only be a simple approval without any custom restrictions.
-
-**Default Outgoing Approvals**
-
-For outgoing approvals, the expected functionality is that everything is disapproved by default unless self initiated. Thus, the following is the typical default values.
+### Step-by-Step Flow (High-Level)
 
 ```
-"defaultOutgoingApprovals": [],
-"autoApproveSelfInitiatedOutgoingTransfers": true
+Transfer Request
+    ↓
+Check Collection Approvals
+    ↓
+Match Found? ──No──→ TRANSFER DENIED
+    ↓ Yes
+Check Approval Criteria
+    ↓
+Criteria Met? ──No──→ TRANSFER DENIED
+    ↓ Yes
+Check User Approvals (where necessary)
+    ↓
+User Approvals Met? ──No──→ TRANSFER DENIED
+    ↓ Yes
+TRANSFER APPROVED
 ```
 
-**Default Incoming Approvals - Forceful Transfers vs Opt-In Only**
+### Matching Logic
 
-However, with incoming approvals, the expected functionality is slightly different. There are a couple options. Do you want users to be able to transfer "forcefully" to an address without prior approval by default? Or, do you want users to have to self-initiate / opt-in first to receive badges?
+For optimal design, you should try to design transfers such that they only use specific approvals without the need for splitting. However, if needed, we split the transfer / approvals as fine-grained as we can to make it succeed. In other words, we deduct as much as possible from each approval as we iterate.
 
-In order to allow forceful transfers to an address without prior approval, the **incomingApprovals** must be set to something like below. Otherwise, if empty or \[], then all transfers must be initiated by or manually approved by the recipient by default (opt-in only).
+### Prioritized Approvals
 
-```json
-//"forceful" is allowed
-"defaultIncomingApprovals": [
+In MsgTransferBadges, you can specify which approvals to prioritize. This allows you to prioritize certain approvals over others.
+
+```typescript
+// In MsgTransferBadges
+{
+  prioritizedApprovals: [{
+    approvalId: "approval1",
+    approvalLevel: "collection",
+    approverAdress: "", // ""bb1" if approvalLevel is "incoming" or "outgoing",
+    version: 0,
+  }],
+  onlyCheckPrioritizedCollectionApprovals: true,
+  // If true, the transfer will be denied if no prioritized approvals match
+}
+```
+
+## Auto-Scan vs Prioritized Approvals
+
+The transfer approval system operates in two modes to balance efficiency and precision:
+
+### Auto-Scan Mode (Default)
+
+By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
+
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
+
+### Prioritized Approvals (Required for Side Effects)
+
+**CRITICAL REQUIREMENT**: Any transfer with side effects or custom approval criteria MUST always be prioritized with proper versioning set. No exceptions.
+
+#### Race Condition Protection
+
+The versioning control ensures that before submitting, the user knows the exact approval they are using:
+
+```typescript
+"prioritizedApprovals": [
     {
-      "fromListId": "AllWithMint",
-      "initiatedByListId": "AllWithMint",
-      "transferTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "approvalId": "forceful-transfers-allowed"
-    }
-  ]
-```
-
-### **Approval Value vs Permission**
-
-While the value may seem similar to the approval update permissions, the permission corresponds to the **updatability** of the approvals (i.e. **canUpdateCollectionApprovals**). The approvals themselves correspond to if a transfer is currently approved or not.
-
-**Example**
-
-Current Value - IDs 1-10 are approved
-
-Permission - IDs 1-5 cannot be updated, 6-10 can
-
-### **Example 1 - Putting It Together**
-
-Bob is transferring x10 of **ownershipTimes** 1-Max of **badgeIds** 1-2 at time T to Alice.
-
-#### Transfer Request:
-
-Transfer: `(Bob, Alice, Bob, T, [1-2], [1-Max])`
-
-#### Collection Approved Transfers:
-
-1. `(Bob, Alice, Bob, T, [1-2], [1000-2000]) -> APPROVED`
-2. `(Bob, Alice, All, T, [1-2], [1-2000]) -> APPROVED`
-3. `(Bob, Alice, All, T, [1-2], [2001-Max]) -> APPROVED`
-
-Let's say each approval has no amount restriction but does not override the user level incoming / outgoing approvals.
-
-In this scenario, let's say the default "first match" approach is used:
-
-1. The first approved transfer `(Bob, Alice, Bob, T, [1-2], [1000-2000])` matches the transfer request partially, but it only covers **ownershipTimes** from 1000 to 2000. We deduct this overlap but still have a lot remaining to be approved for (\[1-999], \[2001-Max]).
-2. The second approved transfer `(Bob, Alice, All, T, [1-2], [1-2000]),` again partially matches, and we deduct. This partial match only handles 1-999 because we handled 1000-2000 already. Note that this approval says it can be initiated by "All" instead of Bob, but Bob's address is within the "All" list.
-3. The third approved transfer `(Bob, Alice, All, T, [1-2], [1001-Max])` covers the rest. This transfer is approved on the collection level because the entire transfer was handled.
-
-If Bob was requesting badge ID 3 to be transferred as well, it would fail because badge ID 3 is unhandled by all defined approvals (and disallowed by default if unhandled).
-
-**Outgoing Approvals**
-
-Because we did not override the user level approvals, we need to check that Bob approved this transfer in his approvals.
-
-The process above would then be repeated for Bob's outgoing approvals. In this case, Bob is the initiator, so we automatically add an unlimited approval by default (see below).
-
-**Incoming Approvals**
-
-Likewise, we also need to check Alice's incoming approvals using the same process.
-
-**Satisfied?**
-
-If all levels are satisfied, the transfer is approved, and we deduct/increment the used approvals where necessary.
-
-**Extending the Example: Prioritized Approvals**
-
-Let's say that Bob only wants to use the second and third approvals from the collection level but not the first. By default, a first-match policy is applied, so it would by default use the first one as shown above.
-
-When initiating the transfer (MsgTransferBadges), Bob can set **prioritizedApprovals** to be the second and third collection approvals. These would then be checked first, followed by the first approval.
-
-If Bob additionally sets **onlyCheckPrioritizedApprovals** = true, we only check the ones specified in **prioritizedApprovals**.
-
-### Example 2 - Collection
-
-This would define a collection where badges 1-100 can be transferred from the Mint address (according to the first approval). Once transferred out of the Mint address, they can be transferred freely, thus making the collection transferable.
-
-Note how the **fromList** of each approval are non-overlapping, so any transfer will only match to one of the two approvals (if either). The first approval is restricted to transfers from the Mint address whereas the second is all EXCEPT the Mint address.
-
-```json
- "collectionApprovals": [
-    {
-      "fromListId": "Mint",
-      "toListId": "AllWithMint",
-      "initiatedByListId": "AllWithMint",
-      "transferTimes": [
-        {
-          "start": "1691931600000",
-          "end": "1723554000000"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "100"
-        }
-      ],
-      "approvalId": "claim-from-mint-address",
-      ... //other criteria (including the IMPORTANT overrideFromOutgoingApprovals = true since we are dealing with transfers from the Mint address)
-    },
-    {
-      "fromListId": "AllWithoutMint",
-      "toListId": "AllWithoutMint",
-      "initiatedByListId": "AllWithoutMint",
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "100"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "transferTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "approvalId": "transferable"
-    }
-  ],
-```
-
-### Example 3 - Outgoing Approvals
-
-This would set approve Charlie to send badges to Bob on this user's behalf.
-
-```json
-"outgoingApprovals": [
-  {
-    "toListId": "Bob",
-    "initiatedByListId": "Charlie",
-    "transferTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "approvalId": "test",
-    //see next page
-    "approvalCriteria": //define approval criteria (how much? challenges? etc here)
+        "approvalId": "abc123",
+        "approvalLevel": "collection",
+        "approverAddress": "",
+        "version": "2" // Must specify exact version
   }
 ]
 ```
 
-### Example 4 - Incoming Approvals
+See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
 
-This would set approve this user to receive any transfer from Bob.
+## Related Topics
 
-```json
-"incomingApprovals": [
-  {
-    "fromListId": "Bob",
-    "initiatedByListId": "AllWithMint",
-    "transferTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "badgeIds": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "ownershipTimes": [
-      {
-        "start": "1",
-        "end": "18446744073709551615"
-      }
-    ],
-    "approvalId": "test",
-  }
-]
-```
+-   [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
+-   [Address Lists](../address-lists.md) - Managing address groups
+-   [UintRanges](../uint-ranges.md) - Range logic implementation
+-   [Permissions](permissions/) - Controlling who can update approvals
 
 
 ## File: ./x-badges/concepts/uintrange.md
