@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 12:28:29 UTC 2025
+Generated on Mon Jul 14 12:39:39 UTC 2025
 
 
 
@@ -3862,7 +3862,10 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
   * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
   * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
   * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
   * [Approvals](badge-standard/examples/approvals/README.md)
     * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
@@ -3871,10 +3874,14 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
     * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
   * [Permission Examples](x-badges/examples/permissions/README.md)
+    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+    * [Locking Specific Badge IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
+    * [Locking Valid Badge IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
   * [Transaction Examples](x-badges/examples/txs/README.md)
     * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
       * [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-      * [Tradable NFT Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
 * [Events](x-badges/events.md)
 * [State](x-badges/state.md)
 
@@ -17653,7 +17660,10 @@ This directory contains practical examples and building blocks for x/badges.
 ## Contents
 
 -   [Base Collection Configuration](base-collection-details.md) - Standard base collection configuration template
+-   [Empty Approval Criteria](empty-approval-criteria.md) - Template for unrestricted approval criteria
+-   [Defining Circulating Supply](defining-circulating-supply.md) - How to define and lock circulating supply
 -   [Building Collection Approvals](building-collection-approvals.md) - Guide to building collection-level approvals
+-   [Building User Approvals](building-user-approvals.md) - Guide to building user-level incoming and outgoing approvals
 -   [Building Collection Permissions](building-collection-permissions.md) - Guide to configuring collection permissions
 -   [Cosmos Coin Wrapper Example](cosmos-coin-wrapper-example.md) - Example of wrapping badges as Cosmos coins
 -   [Mint All to Self Tutorial](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting badges to yourself
@@ -17701,7 +17711,7 @@ const approveSelfForcefully = (address: string) => {
         approvalId: id,
         version: 0n,
         approvalCriteria: {
-            ...defaultNoRestrictionsApprovalCriteria,
+            ...EmptyApprovalCriteria,
             overridesFromOutgoingApprovals: true,
             overridesToIncomingApprovals: true,
         },
@@ -17757,6 +17767,8 @@ const burnableApproval = new CollectionApproval({
 
 This example demonstrates how to create an approval that allows the Cosmos coin wrapper address to send badges back to users, enabling conversion from Cosmos coins back to badges (unwrapping).
 
+You pretty much: 1) figure out your address and 2) figure out a path that users can send from this address without needing the address to control its approvals.
+
 Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
@@ -17787,7 +17799,7 @@ export const unwrapperApproval = ({
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
-            ...defaultNoRestrictionsApprovalCriteria,
+            ...EmptyApprovalCriteria,
             overridesFromOutgoingApprovals: true,
         },
     };
@@ -17809,6 +17821,8 @@ export const unwrapperApproval = ({
 # Cosmos Wrapper Approval
 
 This example demonstrates how to create an approval that allows badges to be sent to a Cosmos coin wrapper address, enabling conversion to native Cosmos SDK coins.
+
+You pretty much: 1) figure out your address and 2) figure out a path that users can send to this address without needing the address to control its approvals. Oftentimes, you may not even need to forcefully override the incoming approvals because you default allow all incoming transfers which also applies to the wrapper address automatically.
 
 Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
@@ -17840,7 +17854,7 @@ export const wrapperApproval = ({
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
-            ...defaultNoRestrictionsApprovalCriteria,
+            ...EmptyApprovalCriteria,
             overridesToIncomingApprovals: true,
         },
     };
@@ -18195,6 +18209,99 @@ We refer you to the [examples](../examples/permissions) or relevant concepts for
 -   [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
 
 
+## File: ./x-badges/examples/building-user-approvals.md
+
+# Building User-Level Approvals
+
+User-level approvals allow individual users to control their badge transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
+
+We refer you to the collection-level examples and just apply the same logic to the user-level types with these differences.
+
+## Key Differences from Collection Approvals
+
+-   **Fixed Address Lists**:
+    -   Incoming approvals: `fromListId` is locked to the user's address
+    -   Outgoing approvals: `toListId` is locked to the user's address
+-   **No Override Functionality**: Cannot override other approval levels
+-   **User-Controlled**: Only the user can update their own approvals
+
+## Incoming Approvals
+
+Control what badges the user can receive:
+
+```typescript
+const userIncomingApproval = {
+    fromListId: 'user-address', // Locked to approver's address
+    toListId: 'All', // Can specify recipients
+    initiatedByListId: 'All',
+    transferTimes: [{ start: '1', end: '18446744073709551615' }],
+    badgeIds: [{ start: '1', end: '100' }],
+    ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
+    approvalId: 'user-incoming-approval',
+
+    // Use any approval criteria from collection examples
+    approvalCriteria: {
+        // See: transferable-approval.md, burnable-approval.md, etc.
+        // OR use EmptyApprovalCriteria for no restrictions
+        ...EmptyApprovalCriteria,
+    },
+};
+```
+
+## Outgoing Approvals
+
+Control what badges the user can send:
+
+```typescript
+const userOutgoingApproval = {
+    fromListId: 'All', // Can specify senders
+    toListId: 'user-address', // Locked to approver's address
+    initiatedByListId: 'All',
+    transferTimes: [{ start: '1', end: '18446744073709551615' }],
+    badgeIds: [{ start: '1', end: '100' }],
+    ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
+    approvalId: 'user-outgoing-approval',
+
+    // Use any approval criteria from collection examples
+    approvalCriteria: {
+        // See: transferable-approval.md, burnable-approval.md, etc.
+        // OR use EmptyApprovalCriteria for no restrictions
+        ...EmptyApprovalCriteria,
+    },
+};
+```
+
+## Implementation
+
+Users update their approvals via `MsgUpdateUserApprovals`:
+
+```typescript
+const updateUserApprovals = {
+    creator: 'bb1...', // Your address
+    collectionId: '1',
+    updateIncomingApprovals: true,
+    incomingApprovals: [userIncomingApproval],
+    updateOutgoingApprovals: true,
+    outgoingApprovals: [userOutgoingApproval],
+    // ...
+};
+```
+
+## Reference
+
+For approval criteria examples, see:
+
+-   [Empty Approval Criteria](./empty-approval-criteria.md) - No restrictions template
+-   [Transferable Approval](./approvals/transferable-approval.md) - Basic transfer restrictions
+-   [Burnable Approval](./approvals/burnable-approval.md) - Burn functionality
+-   [Building Collection Approvals](./building-collection-approvals.md) - Collection-level patterns
+
+For concepts, see:
+
+-   [Transferability / Approvals](../concepts/transferability-approvals.md)
+-   [Approval Criteria](../concepts/approval-criteria/README.md)
+
+
 ## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
 
 # Cosmos Coin Wrapper Tutorial
@@ -18254,6 +18361,221 @@ const collection = {
 -   [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
 -   [Approval System](../concepts/approval-criteria/approval-system.md)
 -   [Badge Collections](../concepts/badge-collections.md)
+
+
+## File: ./x-badges/examples/defining-circulating-supply.md
+
+# Defining and Locking Circulating Supply
+
+This example demonstrates how circulating supply is dynamically calculated and how to control it through mint approval management.
+
+## Overview
+
+Unlike traditional blockchains with set-and-forget supply mechanisms, BitBadges supply is **dynamically calculated** based on the ability to use mint approvals and the ability to create new ones or edit them.
+
+Thus, note that if the manager can create any new Mint approval, they can theoretically increase the supply by whatever the approval allows.
+
+## Lock Supply Forever (Fixed Cap)
+
+```typescript
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const collectionPermissions = {
+    // ... other permissions
+    canUpdateCollectionApprovals: [
+        {
+            fromListId: 'Mint', // Target all mint approvals
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Cannot update mint approvals
+        },
+    ],
+};
+```
+
+**Result**: All Mint approvals are final. Whatever currently possible is possible but final.
+
+## Controlled Supply (Managed Growth)
+
+```typescript
+const collectionPermissions = {
+    // ... other permissions
+    canUpdateCollectionApprovals: [
+        {
+            fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'initial-mint', // Only lock initial mint approval
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+**Result**: "initial-mint" approval locked, but manager can add new ones.
+
+## Dynamic Supply (Fully Flexible)
+
+```typescript
+const collectionPermissions = {
+    // ... other permissions
+    canUpdateCollectionApprovals: [], // Soft-enabled
+};
+```
+
+**Result**: Manager can always modify mint approvals and adjust supply
+
+## Lock Specific Badge IDs
+
+```typescript
+const collectionPermissions = {
+    // ... other permissions
+    canUpdateCollectionApprovals: [
+        {
+            fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: [
+                {
+                    start: '1',
+                    end: '100',
+                },
+            ],
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+**Result**: The Mint approvals for badges 1-100 are locked and final. The manager can still create new Mint approvals for other badge IDs or post-mint approvals for those badges.
+
+## Related Examples
+
+-   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Lock all mint approvals
+-   [Building Collection Approvals](./building-collection-approvals.md) - Create mint approvals
+-   [Empty Approval Criteria](./empty-approval-criteria.md) - Unlimited mint template
+
+## Related Concepts
+
+-   [Total Supply](../concepts/total-supply.md) - Supply calculation mechanics
+-   [Max Number of Transfers](../concepts/approval-criteria/max-number-of-transfers.md) - Transfer limits
+-   [Permissions System](../concepts/permissions/README.md) - Permission controls
+
+
+## File: ./x-badges/examples/empty-approval-criteria.md
+
+# Empty Approval Criteria Template
+
+When creating collection approvals with empty approval criteria, you can use this template for "no additional restrictions". We reference this for simplicity in other examples.
+
+## Template
+
+```typescript
+const EmptyApprovalCriteria = {
+    approvalCriteria: {
+        // No challenges to be completed
+        merkleChallenges: [],
+        // No specific balances to check
+        predeterminedBalances: {
+            manualBalances: [],
+            incrementedBalances: {
+                startBalances: [],
+                incrementBadgeIdsBy: '0',
+                incrementOwnershipTimesBy: '0',
+                durationFromTimestamp: '0',
+                allowOverrideTimestamp: false,
+                recurringOwnershipTimes: {
+                    startTime: '0',
+                    intervalLength: '0',
+                    chargePeriodLength: '0',
+                },
+                allowOverrideWithAnyValidBadge: false,
+            },
+            orderCalculationMethod: {
+                useOverallNumTransfers: false,
+                usePerToAddressNumTransfers: false,
+                usePerFromAddressNumTransfers: false,
+                usePerInitiatedByAddressNumTransfers: false,
+                useMerkleChallengeLeafIndex: false,
+                challengeTrackerId: '',
+            },
+        },
+        // No approval amounts to check (0 = unlimited)
+        approvalAmounts: {
+            overallApprovalAmount: '0',
+            perToAddressApprovalAmount: '0',
+            perFromAddressApprovalAmount: '0',
+            perInitiatedByAddressApprovalAmount: '0',
+            amountTrackerId:
+                'a4ab9bc5e8752842a35a79238de4f627677ceae1d8fa9de44b52416e085f7f11',
+            resetTimeIntervals: {
+                startTime: '0',
+                intervalLength: '0',
+            },
+        },
+        // No max number of transfers to check (0 = unlimited)
+        maxNumTransfers: {
+            overallMaxNumTransfers: '0',
+            perToAddressMaxNumTransfers: '0',
+            perFromAddressMaxNumTransfers: '0',
+            perInitiatedByAddressMaxNumTransfers: '0',
+            amountTrackerId:
+                'd711e23dbe57b786dfb2d86d4a6792fb8c9951a18223065ea0c07d424225a738',
+            resetTimeIntervals: {
+                startTime: '0',
+                intervalLength: '0',
+            },
+        },
+        // No coin transfers to execute
+        coinTransfers: [],
+        // No address matching requirements
+        requireToEqualsInitiatedBy: false,
+        requireFromEqualsInitiatedBy: false,
+        requireToDoesNotEqualInitiatedBy: false,
+        requireFromDoesNotEqualInitiatedBy: false,
+        // No overrides from outgoing approvals
+        overridesFromOutgoingApprovals: false,
+        // No overrides to incoming approvals
+        overridesToIncomingApprovals: false,
+        // No auto deletion options
+        autoDeletionOptions: {
+            afterOneUse: false,
+            afterOverallMaxNumTransfers: false,
+        },
+        // No user royalties
+        userRoyalties: {
+            percentage: '0',
+            payoutAddress: '',
+        },
+        // No badges to check ownership of
+        mustOwnBadges: [],
+    },
+};
+```
+
+## Related Documentation
+
+-   [Approval Criteria Overview](../concepts/approval-criteria/README.md)
+-   [Building Collection Approvals](./building-collection-approvals.md)
+-   [Transferability / Approvals](../concepts/transferability-approvals.md)
 
 
 ## File: ./x-badges/examples/mint-all-to-self-tutorial.md
@@ -18343,6 +18665,10 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
+-   [freezing-mint-transferability.md](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+-   [locking-specific-approval-id.md](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+-   [locking-specific-badge-ids.md](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
+-   [locking-valid-badge-ids.md](locking-valid-badge-ids.md) - Control valid badge ID range updates
 -   [locked-collection.md](locked-collection.md) - Collection with permanently locked permissions
 -   [temporary-permissions.md](temporary-permissions.md) - Time-limited management permissions
 -   [badge-specific-permissions.md](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
@@ -18368,6 +18694,443 @@ BitBadges permissions follow a timeline-based system where:
 -   [Permission System](../../concepts/permissions/permission-system.md)
 -   [Manager](../../concepts/manager.md)
 -   [Timeline System](../../concepts/timeline-system.md)
+
+
+## File: ./x-badges/examples/permissions/freezing-mint-transferability.md
+
+# Freezing Mint Transferability
+
+This example demonstrates how to permanently freeze minting capabilities by making mint-related collection approvals immutable.
+
+## Overview
+
+By setting `permanentlyForbiddenTimes` for mint approval updates, you can ensure that no new minting approvals can be added and existing ones cannot be modified.
+
+## Permission Configuration
+
+```typescript
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [
+        {
+            // Which approvals does this permission apply to? Approvals must match ALL criteria.
+            fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+
+            // What is status of this approval at any given time? (Unhandled = soft-enabled)
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+## Implementation
+
+```typescript
+const createCollection = {
+    // ... other collection fields
+    collectionPermissions,
+    collectionApprovals: [
+        // Include any initial mint approvals here
+        // These will be the ONLY mint approvals ever possible
+        {
+            fromListId: 'Mint',
+            toListId: 'creator-address',
+            // ... initial mint approval configuration
+        },
+    ],
+};
+```
+
+## Important Notes
+
+### ⚠️ Irreversible Action
+
+Once set to permanently forbidden, mint permissions cannot be restored. Carefully configure initial mint approvals before freezing. Ensure all mint approvals you will ever need are set.
+
+## Related Examples
+
+-   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
+-   [Building Collection Approvals](../building-collection-approvals.md) - Approval configuration
+
+## Related Concepts
+
+-   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+-   [Collection Permissions](../../concepts/permissions/permission-system.md) - Collection-level controls
+-   [Action Permissions](../../concepts/permissions/action-permission.md) - Specific action controls
+
+
+## File: ./x-badges/examples/permissions/locking-specific-approval-id.md
+
+# Locking Specific Approval ID
+
+This example demonstrates how to permanently lock a specific approval ID while keeping other approvals updatable.
+
+## Overview
+
+By targeting a specific `approvalId`, you can freeze that approval permanently while allowing updates to other approvals. The `!` operator can be used to target all approvals EXCEPT a specific ID.
+
+## Lock Specific Approval ID
+
+```typescript
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [
+        {
+            // Which approvals does this permission apply to? Approvals must match ALL criteria.
+            fromListId: 'All',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'abc123', // Only targets this specific approval ID
+
+            // What is status of this approval at any given time? (Unhandled = soft-enabled)
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Permanently locked
+        },
+    ],
+};
+```
+
+## Lock All EXCEPT Specific Approval ID
+
+```typescript
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [
+        {
+            // Which approvals does this permission apply to? Approvals must match ALL criteria.
+            fromListId: 'All',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: '!abc123', // All approvals EXCEPT abc123
+
+            // What is status of this approval at any given time? (Unhandled = soft-enabled)
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // All others permanently locked
+        },
+    ],
+};
+```
+
+## Implementation
+
+```typescript
+const createCollection = {
+    // ... other collection fields
+    collectionPermissions,
+    collectionApprovals: [
+        {
+            approvalId: 'abc123',
+            // ... this approval will be locked/unlocked based on configuration
+        },
+        {
+            approvalId: 'other-approval',
+            // ... this approval's updateability depends on configuration
+        },
+    ],
+};
+```
+
+## Related Examples
+
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+-   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
+
+## Related Concepts
+
+-   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+-   [Update Approval Permission](../../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+
+
+## File: ./x-badges/examples/permissions/locking-specific-badge-ids.md
+
+# Locking Specific Badge IDs
+
+This example demonstrates how to permanently lock approvals for specific badge IDs while keeping other badge approvals updatable.
+
+## Overview
+
+By targeting specific `badgeIds`, you can freeze approvals for those badges permanently while allowing updates to approvals for other badge IDs.
+
+## Lock Badge IDs 1-100
+
+```typescript
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [
+        {
+            // Which approvals does this permission apply to? Approvals must match ALL criteria.
+            fromListId: 'All',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: [
+                {
+                    start: '1',
+                    end: '100', // Only targets badges 1-100
+                },
+            ],
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+
+            // What is status of this approval at any given time? (Unhandled = soft-enabled)
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Permanently locked
+        },
+    ],
+};
+```
+
+## Lock All Badges EXCEPT 1-100
+
+```typescript
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [
+        {
+            // Which approvals does this permission apply to? Approvals must match ALL criteria.
+            fromListId: 'All',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: [
+                {
+                    start: '101',
+                    end: '18446744073709551615', // All badges except 1-100
+                },
+            ],
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+
+            // What is status of this approval at any given time? (Unhandled = soft-enabled)
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // All others permanently locked
+        },
+    ],
+};
+```
+
+## Implementation
+
+```typescript
+const createCollection = {
+    // ... other collection fields
+    collectionPermissions,
+    collectionApprovals: [
+        {
+            badgeIds: [{ start: '1', end: '50' }],
+            // ... this approval will be locked if it overlaps with permission criteria
+        },
+        {
+            badgeIds: [{ start: '150', end: '200' }],
+            // ... this approval's updateability depends on configuration
+        },
+    ],
+};
+```
+
+## Use Cases
+
+- **Lock Founder Badges**: Prevent modification of special badge 1-100 transfer rules
+- **Preserve Rare Items**: Keep limited edition badges (1-100) immutable
+- **Tier-Based Control**: Lock specific tiers while allowing others to evolve
+
+## Important Notes
+
+### ⚠️ Badge Range Targeting
+
+The permission only applies to approvals that overlap with the specified badge ID ranges. Approvals targeting badge IDs outside the range remain updatable.
+
+## Related Examples
+
+- [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
+- [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+
+## Related Concepts
+
+- [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+- [Timed Update With Badge IDs Permission](../../concepts/permissions/timed-update-with-badge-ids-permission.md) - Badge-specific controls
+
+## File: ./x-badges/examples/permissions/locking-valid-badge-ids.md
+
+# Locking Valid Badge IDs
+
+This example demonstrates how to control updates to the `validBadgeIds` field, either locking it permanently or allowing controlled expansion. The `validBadgeIds` field is used to control which badge IDs are considered valid for the collection.
+
+## Overview
+
+The `canUpdateValidBadgeIds` permission controls whether the valid badge ID ranges can be modified.
+
+## Lock Valid Badge IDs Forever
+
+```typescript
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [
+        {
+            // Which badge IDs does this permission apply to?
+            badgeIds: FullTimeRanges, // All badge IDs
+
+            // What is status of this permission at any given time?
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Never allowed to update
+        },
+    ],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [],
+};
+```
+
+## Lock Badge IDs 1-100, Allow Future Expansion
+
+```typescript
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateValidBadgeIds: [
+        {
+            // Which badge IDs does this permission apply to?
+            badgeIds: [
+                {
+                    start: '1',
+                    end: '100', // Only applies to badges 1-100
+                },
+            ],
+
+            // What is status of this permission at any given time?
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Badge IDs 1-100 locked forever
+        },
+        // Badge IDs 101+ remain soft-enabled (can be updated by manager)
+    ],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [],
+};
+```
+
+## Implementation
+
+```typescript
+const createCollection = {
+    // ... other collection fields
+    collectionPermissions,
+    validBadgeIds: [
+        {
+            start: '1',
+            end: '100', // Initial valid range
+        },
+    ],
+};
+```
+
+## Important Notes
+
+### ⚠️ Badge ID Targeting
+
+-   Permissions only apply to the specified badge ID ranges
+-   Unspecified ranges remain soft-enabled for manager updates
+-   Cannot reduce valid badge IDs once locked (only expansion possible for unlocked ranges)
+
+## Related Examples
+
+-   [Locking Specific Badge IDs](./locking-specific-badge-ids.md) - Lock approval updates for badge ranges
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
+
+## Related Concepts
+
+-   [Valid Badge IDs](../../concepts/valid-badge-ids.md) - Badge ID range concept
+-   [Badge IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Badge-specific permission controls
 
 
 ## File: ./x-badges/examples/txs/README.md
@@ -18693,9 +19456,9 @@ This example creates a quest badge collection with the following characteristics
 
 ## File: ./x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md
 
-# Tradable NFT Collection Example
+# Tradable Collection Example
 
-This example demonstrates creating a tradable NFT collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
+This example demonstrates creating a tradable collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
 
 ## Transaction Structure
 
