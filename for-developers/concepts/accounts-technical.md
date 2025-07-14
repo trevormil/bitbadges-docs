@@ -1,4 +1,4 @@
-# 👥 Accounts (Technical)
+# Accounts (Technical)
 
 ## Pre-Readings
 

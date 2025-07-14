@@ -1,4 +1,4 @@
-# 🔃 Create, Generate, and Sign Txs
+# Create, Generate, and Sign Txs
 
 To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
 
