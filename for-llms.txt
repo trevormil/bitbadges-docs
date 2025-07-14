@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 12:39:39 UTC 2025
+Generated on Mon Jul 14 12:53:03 UTC 2025
 
 
 
@@ -3581,9 +3581,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 ## File: ./SUMMARY.md
 
 # Table of contents
-
 ## Overview
-
 * [👋 BitBadges Overview](README.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
@@ -3615,9 +3613,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Blockin](overview/ecosystem/blockin.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
-
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
@@ -3795,6 +3791,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 ## 🏗️ Badge Standard
 
 * [Overview](x-badges/README.md)
+
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -3863,11 +3860,12 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
   * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
   * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
   * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
   * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
   * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
   * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-  * [Approvals](badge-standard/examples/approvals/README.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
     * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
     * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
     * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
@@ -3882,8 +3880,12 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
       * [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [Events](x-badges/events.md)
 * [State](x-badges/state.md)
+
+
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -12253,66 +12255,56 @@ console.log(res);
 const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 ```
 
-Also note that we recommend the best way to learn is to just experiment or browse examples first, then revisit concepts which you may have questions about later. On the BitBadges site, the transaction submission modal will always have a "Show Tx" tab where you can see the full JSON.&#x20;
-
-The easiest way to experiment is with the friendly no-code, in-site form and see what the JSON looks like via "Show Tx".
-
-{% content-ref url="examples/" %}
-[examples](examples/)
-{% endcontent-ref %}
-
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-
 ## Table of Contents
 
-1. [Introduction](introduction.md) - Overview and key concepts
-2. [Concepts](02-concepts.md) - Core data structures and business logic
-3. [State](state.md) - State management and storage patterns
-4. [Messages](messages/) - Transaction messages and handlers
-5. [Queries](queries/) - Query types and endpoints
-6. [Events](events.md) - Event emissions and tracking
-7. [Examples](examples/) - Common usage patterns and building blocks
+1. [Introduction](./introduction.md) - Overview and key concepts
+2. [Concepts](./02-concepts.md) - Core data structures and business logic
+3. [State](./state.md) - State management and storage patterns
+4. [Messages](./messages/) - Transaction messages and handlers
+5. [Queries](./queries/) - Query types and endpoints
+6. [Events](./events.md) - Event emissions and tracking
+7. [Examples](./examples/) - Common usage patterns and building blocks
 
 ## Message Reference
 
 ### Collection Management
 
-* [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
-* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
-* [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
+-   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](./messages/msg-update-collection.md) - Update existing collection
+-   [MsgDeleteCollection](./messages/msg-delete-collection.md) - Delete collection
 
 ### Badge Transfers
 
-* [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
+-   [MsgTransferBadges](./messages/msg-transfer-badges.md) - Transfer badges between addresses
 
 ### User Approvals
 
-* [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+-   [MsgUpdateUserApprovals](./messages/msg-update-user-approvals.md) - Update transfer approvals
 
 ### Address Lists & Dynamic Stores
 
-* [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
-* [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
-* [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
-* [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
-* [More messages...](messages/) - See full message reference
+-   [MsgCreateAddressLists](./messages/msg-create-address-lists.md) - Create reusable address lists
+-   [MsgCreateDynamicStore](./messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](./messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](./messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./messages/msg-set-dynamic-store-value.md) - Set address-specific store values
+-   [More messages...](./messages/) - See full message reference
 
 ## Query Reference
 
 ### Core Queries
 
-* [GetCollection](queries/get-collection.md) - Retrieve collection data
-* [GetBalance](queries/get-balance.md) - Get user badge balances
-* [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
-* [GetAddressList](queries/get-address-list.md) - Retrieve address list
-* [More queries...](queries/) - See full query reference
+-   [GetCollection](./queries/get-collection.md) - Retrieve collection data
+-   [GetBalance](./queries/get-balance.md) - Get user badge balances
+-   [GetApprovalTracker](./queries/get-approval-tracker.md) - Get approval usage data
+-   [GetAddressList](./queries/get-address-list.md) - Retrieve address list
+-   [More queries...](./queries/) - See full query reference
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
 
 ## Documentation Style
 
@@ -13269,7 +13261,7 @@ IMPORTANT: The Mint address has its own approvals store, but since it is not a r
   }
   </code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (18).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
@@ -17665,6 +17657,7 @@ This directory contains practical examples and building blocks for x/badges.
 -   [Building Collection Approvals](building-collection-approvals.md) - Guide to building collection-level approvals
 -   [Building User Approvals](building-user-approvals.md) - Guide to building user-level incoming and outgoing approvals
 -   [Building Collection Permissions](building-collection-permissions.md) - Guide to configuring collection permissions
+-   [Building User Permissions](building-user-permissions.md) - Guide to configuring user-level permissions
 -   [Cosmos Coin Wrapper Example](cosmos-coin-wrapper-example.md) - Example of wrapping badges as Cosmos coins
 -   [Mint All to Self Tutorial](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting badges to yourself
 -   [Approvals](approvals/) - Common approval patterns and examples
@@ -18300,6 +18293,97 @@ For concepts, see:
 
 -   [Transferability / Approvals](../concepts/transferability-approvals.md)
 -   [Approval Criteria](../concepts/approval-criteria/README.md)
+
+
+## File: ./x-badges/examples/building-user-permissions.md
+
+# Building User-Level Permissions
+
+User-level permissions allow individual users to control their ability to update their own approvals. Note that these are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
+
+The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](./building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
+
+## User Permission Structure
+
+```typescript
+const userPermissions = {
+    canUpdateOutgoingApprovals: [
+        {
+            // fromListId: 'user-address', // Locked to user's address
+            toListId: 'All', // Can specify recipients
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Lock forever
+        },
+    ],
+    canUpdateIncomingApprovals: [
+        {
+            fromListId: 'All', // Can specify senders
+            //  toListId: 'user-address', // Locked to user's address
+            initiatedByListId: 'All',
+            transferTimes: FullTimeRanges,
+            badgeIds: FullTimeRanges,
+            ownershipTimes: FullTimeRanges,
+            approvalId: 'All',
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Lock forever
+        },
+    ],
+    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+    canUpdateAutoApproveAllIncomingTransfers: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+## Implementation
+
+Users update their permissions via `MsgUpdateUserApprovals`:
+
+```typescript
+const updateUserApprovals = {
+    creator: 'bb1...', // User's address
+    collectionId: '1',
+    updateUserPermissions: true,
+    userPermissions,
+    // ... other approval updates
+};
+```
+
+## Related Examples
+
+For permission patterns, see:
+
+-   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
+-   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
+-   [Locking Specific Badge IDs](./permissions/locking-specific-badge-ids.md) - Badge ID targeting
+-   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
+
+For user approval configuration, see:
+
+-   [Building User Approvals](./building-user-approvals.md) - User approval setup
+
+## Related Concepts
+
+-   [Permissions System](../concepts/permissions/README.md) - Permission mechanics
+-   [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+-   [Default Balances](../concepts/default-balances.md) - User permission structure
 
 
 ## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
@@ -19142,6 +19226,7 @@ This directory contains complete transaction examples for the x/badges module.
 ## Contents
 
 -   [MsgCreateCollection](msgcreatecollection/) - Examples for creating badge collections
+-   [MsgUpdateUserApprovals](msgupdate-user-approvals/) - Examples for updating user-level approvals
 
 
 ## File: ./x-badges/examples/txs/msgcreatecollection/README.md
@@ -19778,6 +19863,150 @@ This collection follows the [Tradable Protocol](../../../concepts/protocols/trad
 -   ✅ Enables decentralized marketplace functionality
 
 
+## File: ./x-badges/examples/txs/msgupdate-user-approvals/README.md
+
+# MsgUpdateUserApprovals Examples
+
+This directory contains complete examples for updating user-level approvals using the `MsgUpdateUserApprovals` transaction.
+
+## Contents
+
+-   [updating-outgoing-approvals.md](updating-outgoing-approvals.md) - Example of updating user outgoing approvals
+
+
+## File: ./x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md
+
+# Updating Outgoing Approvals
+
+This example demonstrates how to update user outgoing approvals to control what badges a user can send and to whom.
+
+## Transaction Structure
+
+```json
+[
+    {
+        "creator": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionId": "1",
+        "updateOutgoingApprovals": true,
+        "outgoingApprovals": [
+            {
+                "toListId": "All",
+                "initiatedByListId": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+                "transferTimes": [
+                    {
+                        "start": "1",
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "badgeIds": [
+                    {
+                        "start": "1",
+                        "end": "20"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": "1",
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "uri": "",
+                "customData": "",
+                "approvalId": "87bc6dd97492b913b3d2b6c91c71b7a2bc98d41a715e49285180e8db9f4ea0bb",
+                "approvalCriteria": {
+                    "merkleChallenges": [],
+                    "predeterminedBalances": {
+                        "manualBalances": [],
+                        "incrementedBalances": {
+                            "startBalances": [],
+                            "incrementBadgeIdsBy": "0",
+                            "incrementOwnershipTimesBy": "0",
+                            "durationFromTimestamp": "0",
+                            "allowOverrideTimestamp": false,
+                            "recurringOwnershipTimes": {
+                                "startTime": "0",
+                                "intervalLength": "0",
+                                "chargePeriodLength": "0"
+                            },
+                            "allowOverrideWithAnyValidBadge": false
+                        },
+                        "orderCalculationMethod": {
+                            "useOverallNumTransfers": false,
+                            "usePerToAddressNumTransfers": false,
+                            "usePerFromAddressNumTransfers": false,
+                            "usePerInitiatedByAddressNumTransfers": false,
+                            "useMerkleChallengeLeafIndex": false,
+                            "challengeTrackerId": ""
+                        }
+                    },
+                    "approvalAmounts": {
+                        "overallApprovalAmount": "1",
+                        "perToAddressApprovalAmount": "0",
+                        "perFromAddressApprovalAmount": "0",
+                        "perInitiatedByAddressApprovalAmount": "1",
+                        "amountTrackerId": "87bc6dd97492b913b3d2b6c91c71b7a2bc98d41a715e49285180e8db9f4ea0bb",
+                        "resetTimeIntervals": {
+                            "startTime": "0",
+                            "intervalLength": "0"
+                        }
+                    },
+                    "maxNumTransfers": {
+                        "overallMaxNumTransfers": "0",
+                        "perToAddressMaxNumTransfers": "0",
+                        "perFromAddressMaxNumTransfers": "0",
+                        "perInitiatedByAddressMaxNumTransfers": "0",
+                        "amountTrackerId": "fe1ffc5f6ff98f0e41b097f33623248868d367dc36dd7f22b2717b61b9d7c91c",
+                        "resetTimeIntervals": {
+                            "startTime": "0",
+                            "intervalLength": "0"
+                        }
+                    },
+                    "coinTransfers": [],
+                    "requireToEqualsInitiatedBy": false,
+                    "requireToDoesNotEqualInitiatedBy": false,
+                    "autoDeletionOptions": {
+                        "afterOneUse": false,
+                        "afterOverallMaxNumTransfers": false
+                    },
+                    "mustOwnBadges": []
+                },
+                "version": "0"
+            }
+        ],
+
+        // All other updates are false, so values do not ma
+        "updateIncomingApprovals": false,
+        "incomingApprovals": [],
+        "updateAutoApproveSelfInitiatedOutgoingTransfers": true,
+        "autoApproveSelfInitiatedOutgoingTransfers": true,
+        "updateAutoApproveSelfInitiatedIncomingTransfers": false,
+        "autoApproveSelfInitiatedIncomingTransfers": false,
+        "updateAutoApproveAllIncomingTransfers": false,
+        "autoApproveAllIncomingTransfers": false,
+        "updateUserPermissions": false,
+        "userPermissions": {
+            "canUpdateOutgoingApprovals": [],
+            "canUpdateIncomingApprovals": [],
+            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+            "canUpdateAutoApproveAllIncomingTransfers": []
+        }
+    }
+]
+```
+
+## Related Examples
+
+-   [Building User Approvals](../../building-user-approvals.md) - User approval patterns
+-   [Empty Approval Criteria](../../empty-approval-criteria.md) - Template for unrestricted approvals
+
+## Related Concepts
+
+-   [Transferability / Approvals](../../../concepts/transferability-approvals.md) - Approval system overview
+-   [Approval Criteria](../../../concepts/approval-criteria/README.md) - Criteria configuration
+-   [Tallied Approval Amounts](../../../concepts/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
+
+
 ## File: ./x-badges/messages/README.md
 
 # Messages
@@ -19921,6 +20150,9 @@ bitbadgeschaind tx badges create-collection '[tx-json]' --from creator-key
 ```
 
 ### JSON Example
+
+For complete transaction examples, see [MsgCreateCollection Examples](../examples/txs/msgcreatecollection/).
+
 ```json
 {
   "creator": "bb1abc123...",
@@ -20372,6 +20604,8 @@ bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user
 ```
 
 ### JSON Example
+
+For complete transaction examples, see [MsgUpdateUserApprovals Examples](../examples/txs/msgupdate-user-approvals/).
 
 ```json
 {
