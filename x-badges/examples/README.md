@@ -1,4 +1,4 @@
-# Examples and Snippets
+# 💡 Examples and Snippets
 
 This directory contains practical examples and building blocks for x/badges.
 

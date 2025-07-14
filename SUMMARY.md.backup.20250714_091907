@@ -300,7 +300,7 @@
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
-* [🗃️ State](x-badges/state.md)
+* [Events](x-badges/events.md)
+* [State](x-badges/state.md)
 
 

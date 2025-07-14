@@ -4,14 +4,14 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
--   [freezing-mint-transferability.md](freezing-mint-transferability.md) - Permanently freeze minting capabilities
--   [locking-specific-approval-id.md](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
--   [locking-specific-badge-ids.md](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
--   [locking-valid-badge-ids.md](locking-valid-badge-ids.md) - Control valid badge ID range updates
--   [locked-collection.md](locked-collection.md) - Collection with permanently locked permissions
--   [temporary-permissions.md](temporary-permissions.md) - Time-limited management permissions
--   [badge-specific-permissions.md](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
--   [community-controlled.md](community-controlled.md) - Permissions for community-managed collections
+-   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+-   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+-   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
+-   [Locking Valid Badge IDs](locking-valid-badge-ids.md) - Control valid badge ID range updates
+-   [Locked Collection](locked-collection.md) - Collection with permanently locked permissions
+-   [Temporary Permissions](temporary-permissions.md) - Time-limited management permissions
+-   [Badge Specific Permissions](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
+-   [Community Controlled](community-controlled.md) - Permissions for community-managed collections
 
 ## Permission System Overview
 

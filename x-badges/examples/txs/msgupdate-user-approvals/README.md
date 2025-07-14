@@ -4,4 +4,4 @@ This directory contains complete examples for updating user-level approvals usin
 
 ## Contents
 
--   [updating-outgoing-approvals.md](updating-outgoing-approvals.md) - Example of updating user outgoing approvals
+-   [Updating Outgoing Approvals](updating-outgoing-approvals.md) - Example of updating user outgoing approvals

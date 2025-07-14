@@ -1,4 +1,4 @@
-# Messages
+# 📨 Messages
 
 This directory contains detailed documentation for all message types supported by the badges module.
 

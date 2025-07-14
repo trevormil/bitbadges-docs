@@ -208,9 +208,9 @@
 
 ## 🏗️ Badge Standard
 
-* [📚 Overview](x-badges/README.md)
+* [Overview](x-badges/README.md)
 
-* [🧠 Concepts](x-badges/concepts/README.md)
+* [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
   * [Badge Collections](x-badges/concepts/badge-collections.md)
@@ -253,7 +253,7 @@
     * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
     * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
     * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
-* [📨 Messages](x-badges/messages/README.md)
+* [Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
@@ -264,7 +264,7 @@
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [🔍 Queries](x-badges/queries/README.md)
+* [Queries](x-badges/queries/README.md)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
@@ -273,7 +273,7 @@
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-* [💡 Examples and Snippets](x-badges/examples/README.md)
+* [Examples and Snippets](x-badges/examples/README.md)
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
   * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
@@ -300,7 +300,7 @@
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
-* [🗃️ State](x-badges/state.md)
+* [Events](x-badges/events.md)
+* [State](x-badges/state.md)
 
 
