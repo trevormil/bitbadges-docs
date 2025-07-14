@@ -18,12 +18,19 @@ It is typically recommended to split into two categories:
 
 Mix and match the approvals as you see fit. See the examples in the [approvals](./approvals/) section for a bunch of examples.
 
+-   Transferable Approval [transferable-approval.md](./approvals/transferable-approval.md)
+-   Burnable Approval [burnable-approval.md](./approvals/burnable-approval.md)
+
 ```typescript
 const mintApprovals = [
-    // Mint approvals
+    // Mint approvals with fromListId: 'Mint'
 ];
 
-const postMintApprovals = [transferableApproval, burnableApproval];
+const postMintApprovals = [
+    // Post-mint approvals with fromListId: '!Mint'
+    transferableApproval,
+    burnableApproval,
+];
 
 const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 

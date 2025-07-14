@@ -24,26 +24,6 @@ const burnableApproval = new CollectionApproval({
 });
 ```
 
-## Usage in Collection
-
-To use this approval in a collection, add it to the collection's approval timeline:
-
-```typescript
-const otherApprovals = [
-    // ... other approvals
-];
-
-const collection = {
-    ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [...otherApprovals, burnableApproval],
-        },
-    ],
-};
-```
-
 ## Related Concepts
 
 -   [Transferability / Approvals](../../concepts/transferability-approvals.md)

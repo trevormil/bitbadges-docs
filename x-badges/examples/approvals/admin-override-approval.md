@@ -37,30 +37,6 @@ const approveSelfForcefully = (address: string) => {
 };
 ```
 
-## Usage Example
-
-```typescript
-// Create admin override for collection manager
-const adminOverrideApproval = approveSelfForcefully(
-    'bb1admin1234567890abcdef...'
-);
-
-// Use in collection
-const otherApprovals = [
-    // ... other approvals
-];
-
-const collection = {
-    ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [...otherApprovals, adminOverrideApproval],
-        },
-    ],
-};
-```
-
 ## Related Concepts
 
 -   [Transferability / Approvals](../../concepts/transferability-approvals.md)
