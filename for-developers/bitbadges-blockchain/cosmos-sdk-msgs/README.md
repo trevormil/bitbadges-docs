@@ -1,4 +1,4 @@
-# 📩 Cosmos SDK Msgs
+# Cosmos SDK Msgs
 
 **What are Cosmos SDK Msgs? Msgs vs Transactions?**
 
