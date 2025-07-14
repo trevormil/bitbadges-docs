@@ -4,6 +4,10 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
+-   [freezing-mint-transferability.md](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+-   [locking-specific-approval-id.md](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+-   [locking-specific-badge-ids.md](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
+-   [locking-valid-badge-ids.md](locking-valid-badge-ids.md) - Control valid badge ID range updates
 -   [locked-collection.md](locked-collection.md) - Collection with permanently locked permissions
 -   [temporary-permissions.md](temporary-permissions.md) - Time-limited management permissions
 -   [badge-specific-permissions.md](badge-specific-permissions.md) - Permissions that apply to specific badge IDs

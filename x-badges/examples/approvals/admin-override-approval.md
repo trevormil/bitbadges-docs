@@ -29,7 +29,7 @@ const approveSelfForcefully = (address: string) => {
         approvalId: id,
         version: 0n,
         approvalCriteria: {
-            ...defaultNoRestrictionsApprovalCriteria,
+            ...EmptyApprovalCriteria,
             overridesFromOutgoingApprovals: true,
             overridesToIncomingApprovals: true,
         },

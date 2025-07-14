@@ -1,6 +1,6 @@
-# Tradable NFT Collection Example
+# Tradable Collection Example
 
-This example demonstrates creating a tradable NFT collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
+This example demonstrates creating a tradable collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
 
 ## Transaction Structure
 

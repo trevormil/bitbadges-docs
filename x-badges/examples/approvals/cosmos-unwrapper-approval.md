@@ -2,6 +2,8 @@
 
 This example demonstrates how to create an approval that allows the Cosmos coin wrapper address to send badges back to users, enabling conversion from Cosmos coins back to badges (unwrapping).
 
+You pretty much: 1) figure out your address and 2) figure out a path that users can send from this address without needing the address to control its approvals.
+
 Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
@@ -32,7 +34,7 @@ export const unwrapperApproval = ({
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
-            ...defaultNoRestrictionsApprovalCriteria,
+            ...EmptyApprovalCriteria,
             overridesFromOutgoingApprovals: true,
         },
     };
