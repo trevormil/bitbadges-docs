@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 12:53:03 UTC 2025
+Generated on Mon Jul 14 13:19:28 UTC 2025
 
 
 
@@ -3790,9 +3790,9 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🏗️ Badge Standard
 
-* [Overview](x-badges/README.md)
+* [📚 Overview](x-badges/README.md)
 
-* [Concepts](x-badges/concepts/README.md)
+* [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
   * [Badge Collections](x-badges/concepts/badge-collections.md)
@@ -3835,7 +3835,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
     * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
     * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
-* [Messages](x-badges/messages/README.md)
+* [📨 Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
@@ -3846,7 +3846,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [Queries](x-badges/queries/README.md)
+* [🔍 Queries](x-badges/queries/README.md)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
@@ -3855,7 +3855,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
-* [Examples and Snippets](x-badges/examples/README.md)
+* [💡 Examples and Snippets](x-badges/examples/README.md)
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
   * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
@@ -3882,8 +3882,8 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [Events](x-badges/events.md)
-* [State](x-badges/state.md)
+* [📡 Events](x-badges/events.md)
+* [🗃️ State](x-badges/state.md)
 
 
 
@@ -12240,7 +12240,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 ## File: ./x-badges/README.md
 
-# Overview
+# 📚 Overview
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
@@ -12313,7 +12313,7 @@ This documentation follows the [Cosmos SDK module documentation standards](https
 
 ## File: ./x-badges/concepts/README.md
 
-# Concepts
+# 🧠 Concepts
 
 This directory contains detailed explanations of the core concepts and data structures that form the foundation of the BitBadges module.
 
@@ -14760,7 +14760,7 @@ export interface BadgeIdsActionPermission<T extends NumberType> {
 ```
 
 {% content-ref url="../balances-transfers/creating-badges.md" %}
-[creating-badges.md](../balances-transfers/creating-badges.md)
+[Creating Badges](../balances-transfers/creating-badges.md)
 {% endcontent-ref %}
 
 ```json
@@ -14978,23 +14978,23 @@ The following brute forces badge IDs 1-10.
 There are five categories of permissions, each with different criteria that must be matched with. If you get confused with the different time types, refer to [Different Time Types](../different-time-fields.md) for examples and explanations.
 
 {% content-ref url="action-permission.md" %}
-[action-permission.md](action-permission.md)
+[Action Permission](action-permission.md)
 {% endcontent-ref %}
 
 {% content-ref url="timed-update-permission.md" %}
-[timed-update-permission.md](timed-update-permission.md)
+[Timed Update Permission](timed-update-permission.md)
 {% endcontent-ref %}
 
 {% content-ref url="timed-update-with-badge-ids-permission.md" %}
-[timed-update-with-badge-ids-permission.md](timed-update-with-badge-ids-permission.md)
+[Timed Update with Badge IDs Permission](timed-update-with-badge-ids-permission.md)
 {% endcontent-ref %}
 
 {% content-ref url="balances-action-permission.md" %}
-[balances-action-permission.md](balances-action-permission.md)
+[Balances Action Permission](balances-action-permission.md)
 {% endcontent-ref %}
 
 {% content-ref url="update-approval-permission.md" %}
-[update-approval-permission.md](update-approval-permission.md)
+[Update Approval Permission](update-approval-permission.md)
 {% endcontent-ref %}
 
 ### **Examples**
@@ -17414,7 +17414,7 @@ Typically, the desired functionality falls into one of the following categories:
 
 ## File: ./x-badges/events.md
 
-# Events
+# 📡 Events
 
 The badges module emits events for all message operations to enable blockchain monitoring and external application integration.
 
@@ -17645,7 +17645,7 @@ Attributes:
 
 ## File: ./x-badges/examples/README.md
 
-# Examples and Snippets
+# 💡 Examples and Snippets
 
 This directory contains practical examples and building blocks for x/badges.
 
@@ -18066,8 +18066,8 @@ It is typically recommended to split into two categories:
 
 Mix and match the approvals as you see fit. See the examples in the [approvals](./approvals/) section for a bunch of examples.
 
--   Transferable Approval [transferable-approval.md](./approvals/transferable-approval.md)
--   Burnable Approval [burnable-approval.md](./approvals/burnable-approval.md)
+-   [Transferable Approval](./approvals/transferable-approval.md)
+-   [Burnable Approval](./approvals/burnable-approval.md)
 
 ```typescript
 const mintApprovals = [
@@ -18749,14 +18749,14 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
--   [freezing-mint-transferability.md](freezing-mint-transferability.md) - Permanently freeze minting capabilities
--   [locking-specific-approval-id.md](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
--   [locking-specific-badge-ids.md](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
--   [locking-valid-badge-ids.md](locking-valid-badge-ids.md) - Control valid badge ID range updates
--   [locked-collection.md](locked-collection.md) - Collection with permanently locked permissions
--   [temporary-permissions.md](temporary-permissions.md) - Time-limited management permissions
--   [badge-specific-permissions.md](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
--   [community-controlled.md](community-controlled.md) - Permissions for community-managed collections
+-   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+-   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+-   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
+-   [Locking Valid Badge IDs](locking-valid-badge-ids.md) - Control valid badge ID range updates
+-   [Locked Collection](locked-collection.md) - Collection with permanently locked permissions
+-   [Temporary Permissions](temporary-permissions.md) - Time-limited management permissions
+-   [Badge Specific Permissions](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
+-   [Community Controlled](community-controlled.md) - Permissions for community-managed collections
 
 ## Permission System Overview
 
@@ -19237,8 +19237,8 @@ This directory contains complete examples for creating badge collections using t
 
 ## Contents
 
--   [quest-badge-collection.md](quest-badge-collection.md) - Example of creating a quest badge collection with Merkle proofs
--   [tradable-nft-collection.md](tradable-nft-collection.md) - Example of creating a tradable NFT collection for marketplace trading
+-   [Quest Badge Collection](quest-badge-collection.md) - Example of creating a quest badge collection with Merkle proofs
+-   [Tradable NFT Collection](tradable-nft-collection.md) - Example of creating a tradable NFT collection for marketplace trading
 
 
 ## File: ./x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md
@@ -19871,7 +19871,7 @@ This directory contains complete examples for updating user-level approvals usin
 
 ## Contents
 
--   [updating-outgoing-approvals.md](updating-outgoing-approvals.md) - Example of updating user outgoing approvals
+-   [Updating Outgoing Approvals](updating-outgoing-approvals.md) - Example of updating user outgoing approvals
 
 
 ## File: ./x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md
@@ -20009,7 +20009,7 @@ This example demonstrates how to update user outgoing approvals to control what 
 
 ## File: ./x-badges/messages/README.md
 
-# Messages
+# 📨 Messages
 
 This directory contains detailed documentation for all message types supported by the badges module.
 
@@ -20052,7 +20052,7 @@ The following message types exist in the protocol but may be documented separate
 
 # MsgCreateAddressLists
 
-Creates reusable address lists by ID for gas optimizations.
+Creates reusable address lists by ID for gas optimizations. Note these serve no other purpose than to be an immutable shorthand ID reference to save on gas. These are permanent once created and cannot be deleted.
 
 ## Important Notes
 
@@ -20360,7 +20360,187 @@ message MsgTransferBadges {
 }
 
 message MsgTransferBadgesResponse {}
+
+message Transfer {
+  // The address of the sender of the transfer.
+  string from = 1;
+  // The addresses of the recipients of the transfer.
+  repeated string toAddresses = 2;
+  // The balances to be transferred.
+  repeated Balance balances = 3;
+  // If defined, we will use the predeterminedBalances from the specified approval to calculate the balances at execution time.
+  // We will override the balances field with the precalculated balances. Only applicable for approvals with predeterminedBalances set.
+  ApprovalIdentifierDetails precalculateBalancesFromApproval = 4;
+  // The Merkle proofs / solutions for all Merkle challenges required for the transfer.
+  repeated MerkleProof merkleProofs = 5;
+  // The memo for the transfer.
+  string memo = 6;
+  // The prioritized approvals for the transfer. By default, we scan linearly through the approvals and use the first match.
+  // This field can be used to prioritize specific approvals and scan through them first.
+  repeated ApprovalIdentifierDetails prioritizedApprovals = 7;
+  // Whether to only check prioritized approvals for the transfer.
+  // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
+  // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
+  bool onlyCheckPrioritizedCollectionApprovals = 8;
+  // Whether to only check prioritized approvals for the transfer.
+  // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
+  // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
+  bool onlyCheckPrioritizedIncomingApprovals = 9;
+  // Whether to only check prioritized approvals for the transfer.
+  // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
+  // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
+  bool onlyCheckPrioritizedOutgoingApprovals = 10;
+  // The options for precalculating the balances.
+  PrecalculationOptions precalculationOptions = 11;
+  // Affiliate address for the transfer.
+  string affiliateAddress = 12;
+  // The number of times to attempt approval validation. If 0 / not specified, we default to only one.
+  string numAttempts = 13;
+}
+
+message PrecalculationOptions {
+  // The timestamp to override with when calculating the balances.
+  string overrideTimestamp = 1;
+  // The badgeIdsOverride to use for the transfer.
+  repeated UintRange badgeIdsOverride = 2;
+}
 ```
+
+## Auto-Scan vs Prioritized Approvals
+
+The transfer approval system operates in two modes to balance efficiency and precision:
+
+### Auto-Scan Mode (Default)
+
+By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
+
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
+
+### Prioritized Approvals (Required for Side Effects)
+
+**CRITICAL REQUIREMENT**: Any transfer with side effects or custom approval criteria MUST always be prioritized with proper versioning set. No exceptions.
+
+#### Race Condition Protection
+
+The versioning control ensures that before submitting, the user knows the exact approval they are using:
+
+```typescript
+"prioritizedApprovals": [
+    {
+        "approvalId": "abc123",
+        "approvalLevel": "collection",
+        "approverAddress": "",
+        "version": "2" // Must specify exact version
+    }
+]
+```
+
+#### Example: Coin Transfer Approval
+
+```typescript
+// MUST be prioritized - has coin transfer side effects
+"prioritizedApprovals": [
+    {
+        "approvalId": "reward-approval",
+        "approvalLevel": "collection",
+        "approverAddress": "",
+        "version": "1"
+    }
+],
+"onlyCheckPrioritizedCollectionApprovals": true
+```
+
+#### Example: Auto-Scan Safe Transfer
+
+```typescript
+// Can use auto-scan - no side effects
+"prioritizedApprovals": [], // Empty - will auto-scan
+
+// Only will succeed if it finds an approval has empty approval criteria with no custom logic
+```
+
+### Control Flags
+
+-   `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
+-   `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
+-   `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
+
+**Setting these to `true` is recommended when using prioritized approvals to ensure deterministic behavior.**
+
+### Related Documentation
+
+-   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
+-   [Approval Criteria](../concepts/approval-criteria/README.md) - Understanding approval complexity
+-   [Coin Transfers](../concepts/approval-criteria/usdbadge-transfers.md) - Side effect examples
+
+## Transfer Validation Process
+
+Each transfer undergoes a systematic validation process to ensure security and proper authorization:
+
+### Validation Steps
+
+```
+PRE. CALCULATE BALANCES (if needed)
+  └── If precalculateBalancesFromApproval is specified, we will use the predeterminedBalances from the specified approval to pre-calculate the balances at execution time.
+
+1. BALANCE CHECK
+   └── Verify sender has sufficient badge balances for the transfer including ownership times
+   └── FAIL if insufficient balances
+
+2. COLLECTION APPROVAL CHECK
+   └── Scan collection-level approvals (prioritized first, then auto-scan) to find a match for the entire transfer
+   └── If match found:
+       ├── Check approval criteria (merkle proofs, amounts, timing, etc.) and constraints
+       ├── Check if it overrides sender approvals (overridesFromOutgoingApprovals)
+       ├── Check if it overrides recipient approvals (overridesToIncomingApprovals)
+       └── PROCEED with override flags set
+   └── Else:
+        └── Continue scanning
+   └── If some attempted transfer balances have no valid collection approval: FAIL
+
+3. SENDER APPROVAL CHECK (if not overridden)
+   └── Check sender's outgoing approvals for this transfer
+   └── Verify approval criteria and constraints
+   └── FAIL if no valid outgoing approval found
+
+4. RECIPIENT APPROVAL CHECK (if not overridden)
+   └── Check each recipient's incoming approvals
+   └── Verify approval criteria and constraints
+   └── FAIL if any recipient lacks valid incoming approval
+
+5. EXECUTE TRANSFER
+   └── Update badge balances
+   └── Execute any approved side effects
+   └── Emit transfer events
+   └── SUCCESS
+```
+
+### Override Behavior
+
+Collection approvals can override user-level approvals:
+
+-   **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
+-   **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
+
+This allows collection managers to enable transfers that would otherwise be blocked by user settings.
+
+### Failure Points
+
+Transfers fail at the first validation step that doesn't pass:
+
+1. **Insufficient Balances** - Sender doesn't own the badges
+2. **No Collection Approval** - No valid collection-level approval found
+3. **Blocked by Sender** - Sender's outgoing approvals reject the transfer
+4. **Blocked by Recipient** - Recipient's incoming approvals reject the transfer
+
+### Related Documentation
+
+-   [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
+-   [Collection Approvals](../concepts/approval-criteria/README.md) - Collection-level controls
+-   [User Approvals](../examples/building-user-approvals.md) - User-level settings
 
 ## Usage Example
 
@@ -20370,43 +20550,69 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
 ```
 
 ### JSON Example
+
 ```json
 {
-  "creator": "bb1initiator123...",
-  "collectionId": "1",
-  "transfers": [
-    {
-      "from": "bb1sender123...",
-      "toAddresses": ["bb1recipient123..."],
-      "balances": [
+    "creator": "bb1initiator123...",
+    "collectionId": "1",
+    "transfers": [
         {
-          "amount": "10",
-          "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}],
-          "badgeIds": [{"start": "1", "end": "5"}]
+            "from": "bb1sender123...",
+            "toAddresses": ["bb1recipient123..."],
+            // Balances to transfer (can be left blank if you are using precalculateBalancesFromApproval)
+            "balances": [
+                {
+                    "amount": "10",
+                    "ownershipTimes": [
+                        { "start": "1", "end": "18446744073709551615" }
+                    ],
+                    "badgeIds": [{ "start": "1", "end": "5" }]
+                }
+            ],
+            // Specific approval to calculate balances dynamically for (from the approvalCriteria.predeterminedBalances)
+            "precalculateBalancesFromApproval": {
+                "approvalId": "",
+                "approvalLevel": "",
+                "approverAddress": "",
+                "version": "0"
+            },
+            // Additional options dependent on what is allowed (e.g. allow timestamp override, badge ID override, etc.)
+            "precalculationOptions": {
+                "overrideTimestamp": "0",
+                "badgeIdsOverride": []
+            },
+            // Supply all merkle proofs for any merkle challenges that need to be satisfied
+            "merkleProofs": [],
+            // Memo for the transfer (can be left blank)
+            "memo": "",
+
+            // Any approval IDs that you want to prioritize for this transfer
+            // Note: All approvals with side effects must be prioritized with proper versioning
+            "prioritizedApprovals": [
+                {
+                    "approvalId": "abc123",
+                    "approvalLevel": "collection",
+                    "approverAddress": "", // blank for collection, otherwise the address of the approver
+                    "version": "0"
+                }
+            ],
+
+            // If specified, we will stop checking after the prioritized approvals list.
+            // If false, we will check prioritized first, but then continue to check the rest of the approvals in auto-scan mode
+            "onlyCheckPrioritizedCollectionApprovals": false,
+            "onlyCheckPrioritizedIncomingApprovals": false,
+            "onlyCheckPrioritizedOutgoingApprovals": false,
+
+            // Add your address if you want to claim part of the protocol fee
+            "affiliateAddress": "",
+            // Number of times to attempt this transfer (default is 1, 0 is empty and also defaults to 1)
+            // Use this if you want to try this transfer multiple times
+            "numAttempts": "1"
         }
-      ],
-      "precalculateBalancesFromApproval": {
-        "approvalId": "",
-        "approvalLevel": "",
-        "approverAddress": "",
-        "version": "0"
-      },
-      "merkleProofs": [],
-      "memo": "",
-      "prioritizedApprovals": [],
-      "onlyCheckPrioritizedCollectionApprovals": false,
-      "onlyCheckPrioritizedIncomingApprovals": false,
-      "onlyCheckPrioritizedOutgoingApprovals": false,
-      "precalculationOptions": {
-        "overrideTimestamp": "0",
-        "badgeIdsOverride": []
-      },
-      "affiliateAddress": "",
-      "numAttempts": "1"
-    }
-  ]
+    ]
 }
 ```
+
 
 ## File: ./x-badges/messages/msg-update-collection.md
 
@@ -20641,7 +20847,7 @@ For complete transaction examples, see [MsgUpdateUserApprovals Examples](../exam
 
 ## File: ./x-badges/queries/README.md
 
-# Queries
+# 🔍 Queries
 
 This directory contains detailed documentation for all query types supported by the badges module.
 
@@ -21100,7 +21306,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/params"
 
 ## File: ./x-badges/state.md
 
-# State
+# 🗃️ State
 
 This document describes how the badges module manages state storage, including key structures and data organization.
 
