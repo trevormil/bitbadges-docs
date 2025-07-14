@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Jul 13 23:07:06 UTC 2025
+Generated on Mon Jul 14 01:02:46 UTC 2025
 
 
 
@@ -3581,7 +3581,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 ## File: ./SUMMARY.md
 
 # Table of contents
-
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
@@ -3617,184 +3616,184 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 * [❓ FAQ](overview/faq.md)
 
 ## ⌨️ For Developers
-
-* [🔨 Getting Started](for-developers/getting-started.md)
-* [👤 Handling Addresses](for-developers/accounts.md)
-* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
-  * [Overview](for-developers/bitbadges-x-ai/overview.md)
-  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
-    * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
-* [📚 BitBadges API](for-developers/bitbadges-api/README.md)
-  * [Getting Started](for-developers/bitbadges-api/api.md)
-  * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
-  * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
-  * [Concepts](for-developers/bitbadges-api/concepts/README.md)
-    * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
-    * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
-    * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
-    * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
-    * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
-* [🖱️ Sign In with BitBadges](for-developers/sign-in-with-bitbadges/README.md)
-  * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
-  * [Already Have Web3 Auth?](for-developers/sign-in-with-bitbadges/already-have-web3-auth.md)
-  * [Alternative - P2P Verification](for-developers/sign-in-with-bitbadges/alternative-p2p-verification.md)
-  * [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
-    * [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
-    * [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
-    * [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
-    * [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
-    * [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
-    * [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
-  * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-  * [Connecting a Claim](for-developers/sign-in-with-bitbadges/connecting-a-claim.md)
-  * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
-    * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
-    * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
-  * [Approaches](for-developers/sign-in-with-bitbadges/approaches/README.md)
-    * [QR Codes](for-developers/sign-in-with-bitbadges/approaches/qr-codes.md)
-    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
-  * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
-    * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
-    * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
-    * [Offline Verification](for-developers/sign-in-with-bitbadges/verification/offline-verification.md)
-    * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
-  * [Blockin Docs](https://blockin.gitbook.io/blockin)
-* [🎁 BitBadges Claims](overview/claim-builder/README.md)
-  * [Overview](for-developers/claim-builder/overview.md)
-  * [Concepts](for-developers/claim-builder/concepts/README.md)
-    * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
-    * [Completion Methods](for-developers/claim-builder/completion-methods.md)
-    * [Gating Badge Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
-    * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
-    * [Success Logic](for-developers/claim-builder/success-logic.md)
-    * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
-    * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
-    * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-    * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
-    * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
-    * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
-  * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
-  * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
-  * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
-  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
-    * [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
-    * [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
-    * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
-    * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
-    * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-  * [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
-    * [Overview](for-developers/claim-builder/plugins/overview.md)
-    * [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
-    * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
-      * [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
-        * [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
-        * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
-        * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
-        * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-        * [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
-        * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
-      * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
-      * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-    * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
-  * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
-    * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
-    * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
-    * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
-    * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
-    * [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
-    * [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
-      * [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
-  * [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
-    * [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
-    * [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
-    * [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
-    * [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
-      * [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
-      * [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
-      * [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
-      * [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
-    * [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
-      * [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
-    * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
-  * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
-    * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
-    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
-  * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
-    * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
-    * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
-      * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
-      * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
-      * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
-    * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
-* [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
-  * [Overview](for-developers/bitbadges-sdk/overview.md)
-  * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
-  * [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
-    * [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
-    * [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
-    * [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
-    * [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
-    * [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
-    * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
-    * [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
-    * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-    * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-* [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
-  * [Overview](for-developers/bitbadges-blockchain/overview.md)
-  * [👥 Accounts (Technical)](for-developers/concepts/accounts-technical.md)
-  * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
-  * [Staking / Validators](overview/staking-usdbadge.md)
-  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
-  * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
-    * [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
-    * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
-    * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
-    * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
-  * [🔃 Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
-    * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
-    * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
-    * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
-    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
-    * [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
-    * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
-    * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
-    * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
-  * [📩 Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
-    * [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
-      * [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
-    * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
-    * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
-      * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
-      * [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
-      * [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
-    * [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
-      * [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
-      * [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
-      * [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
-      * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
-    * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
-    * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
-* [🧪 Testnet Mode](overview/testnet-mode.md)
-* [🧠 Other Concepts](for-developers/core-concepts/README.md)
-  * [Maps / Protocols](for-developers/core-concepts/maps.md)
-  * [Attestations - Advanced](for-developers/core-concepts/verifiable-attestations/README.md)
-    * [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
-    * [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
-    * [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
-    * [Proofs vs Attestations](for-developers/core-concepts/verifiable-attestations/proofs-vs-attestations.md)
-    * [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
-    * [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
-    * [Verification / Presentations](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
-    * [Custom Schemes](for-developers/core-concepts/verifiable-attestations/custom-schemes/README.md)
-      * [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
+-   [🔨 Getting Started](for-developers/getting-started.md)
+-   [👤 Handling Addresses](for-developers/accounts.md)
+-   [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
+    -   [Overview](for-developers/bitbadges-x-ai/overview.md)
+    -   [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
+        -   [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+-   [📚 BitBadges API](for-developers/bitbadges-api/README.md)
+    -   [Getting Started](for-developers/bitbadges-api/api.md)
+    -   [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+    -   [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+    -   [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+    -   [Concepts](for-developers/bitbadges-api/concepts/README.md)
+        -   [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
+        -   [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
+        -   [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
+        -   [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
+        -   [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
+-   [🖱️ Sign In with BitBadges](for-developers/sign-in-with-bitbadges/README.md)
+    -   [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+    -   [Already Have Web3 Auth?](for-developers/sign-in-with-bitbadges/already-have-web3-auth.md)
+    -   [Alternative - P2P Verification](for-developers/sign-in-with-bitbadges/alternative-p2p-verification.md)
+    -   [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
+        -   [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
+        -   [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
+        -   [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
+        -   [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
+        -   [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
+        -   [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
+    -   [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+    -   [Connecting a Claim](for-developers/sign-in-with-bitbadges/connecting-a-claim.md)
+    -   [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
+        -   [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
+        -   [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
+    -   [Approaches](for-developers/sign-in-with-bitbadges/approaches/README.md)
+        -   [QR Codes](for-developers/sign-in-with-bitbadges/approaches/qr-codes.md)
+        -   [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
+    -   [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
+        -   [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
+        -   [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
+        -   [Offline Verification](for-developers/sign-in-with-bitbadges/verification/offline-verification.md)
+        -   [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
+    -   [Blockin Docs](https://blockin.gitbook.io/blockin)
+-   [🎁 BitBadges Claims](overview/claim-builder/README.md)
+    -   [Overview](for-developers/claim-builder/overview.md)
+    -   [Concepts](for-developers/claim-builder/concepts/README.md)
+        -   [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
+        -   [Completion Methods](for-developers/claim-builder/completion-methods.md)
+        -   [Gating Badge Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
+        -   [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
+        -   [Success Logic](for-developers/claim-builder/success-logic.md)
+        -   [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
+        -   [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
+        -   [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
+        -   [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
+        -   [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
+        -   [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
+    -   [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
+    -   [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
+    -   [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
+    -   [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
+        -   [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
+        -   [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
+        -   [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
+    -   [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
+        -   [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
+        -   [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
+    -   [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
+        -   [Overview](for-developers/claim-builder/plugins/overview.md)
+        -   [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
+        -   [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
+            -   [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
+                -   [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
+                -   [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
+                -   [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
+                -   [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
+                -   [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
+                -   [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
+            -   [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
+            -   [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
+        -   [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
+    -   [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
+        -   [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
+        -   [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
+        -   [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
+        -   [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
+        -   [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
+        -   [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
+            -   [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
+    -   [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
+        -   [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
+        -   [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
+        -   [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
+        -   [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
+            -   [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
+            -   [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
+            -   [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
+            -   [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
+        -   [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
+            -   [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
+        -   [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
+    -   [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
+        -   [Plugins Directory](https://bitbadges.io/plugin-directory)
+        -   [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
+        -   [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
+    -   [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
+        -   [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
+        -   [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
+            -   [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
+            -   [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
+            -   [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
+        -   [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
+-   [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
+    -   [Overview](for-developers/bitbadges-sdk/overview.md)
+    -   [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
+    -   [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
+        -   [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
+        -   [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
+        -   [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
+        -   [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
+        -   [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
+        -   [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
+        -   [Badge Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
+        -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
+        -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+-   [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
+    -   [Overview](for-developers/bitbadges-blockchain/overview.md)
+    -   [Accounts (Technical)](for-developers/concepts/accounts-technical.md)
+    -   [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
+    -   [Staking / Validators](overview/staking-usdbadge.md)
+    -   [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
+    -   [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
+        -   [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
+        -   [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
+        -   [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
+        -   [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
+    -   [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+        -   [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
+        -   [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
+        -   [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
+        -   [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+        -   [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
+        -   [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
+        -   [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
+        -   [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
+        -   [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+    -   [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
+        -   [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
+            -   [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
+        -   [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges/README.md)
+        -   [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
+            -   [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
+            -   [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
+            -   [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
+        -   [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
+            -   [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
+            -   [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
+            -   [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
+            -   [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
+        -   [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
+        -   [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
+-   [🧪 Testnet Mode](overview/testnet-mode.md)
+-   [🧠 Other Concepts](for-developers/core-concepts/README.md)
+    -   [Maps / Protocols](for-developers/core-concepts/maps.md)
+    -   [Attestations - Advanced](for-developers/core-concepts/verifiable-attestations/README.md)
+        -   [Overview](for-developers/core-concepts/verifiable-attestations/overview.md)
+        -   [Creating an Attestation](for-developers/core-concepts/verifiable-attestations/creating-a-attestation.md)
+        -   [Custom Creation Links](for-developers/core-concepts/verifiable-attestations/custom-creation-links.md)
+        -   [Proofs vs Attestations](for-developers/core-concepts/verifiable-attestations/proofs-vs-attestations.md)
+        -   [Deriving a Proof](for-developers/core-concepts/verifiable-attestations/deriving-a-proof.md)
+        -   [Design Considerations](for-developers/core-concepts/verifiable-attestations/design-considerations.md)
+        -   [Verification / Presentations](for-developers/core-concepts/verifiable-attestations/creating-and-verifying-a-proof.md)
+        -   [Custom Schemes](for-developers/core-concepts/verifiable-attestations/custom-schemes/README.md)
+            -   [WITNESS Proofs](for-developers/core-concepts/verifiable-attestations/custom-schemes/witness-proofs.md)
 
 ## 🏗️ Badge Standard
 
 * [Overview](x-badges/README.md)
+
 * [Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -3856,8 +3855,23 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [Params](x-badges/queries/params.md)
+* [Badge Standard Examples](x-badges/examples/README.md)
+  * [Base Collection Details](x-badges/examples/base-collection-details.md)
+  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+  * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
+    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+  * [Permission Examples](x-badges/examples/permissions/README.md)
 * [Events](x-badges/events.md)
 * [State](x-badges/state.md)
+
+
 
 
 ## File: ./for-developers/accounts.md
@@ -12210,65 +12224,67 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
-This section is a knowledge dump for how badges operate behind the scenes. For many use cases, you may not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
 
 ```typescript
-const balanceInfo  = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
+const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
     ...options,
 });
-const metadata = await BitBadgesApi.getBadgeMetadata(1, 5);
+console.log(res);
+
+const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 ```
 
 ## Table of Contents
 
-1. [Introduction](introduction.md) - Overview and key concepts
-2. [Concepts](02-concepts.md) - Core data structures and business logic
-3. [State](state.md) - State management and storage patterns
-4. [Messages](messages/) - Transaction messages and handlers
-5. [Queries](queries/) - Query types and endpoints
-6. [Events](events.md) - Event emissions and tracking
-7. [Examples](examples.md) - Common usage patterns and code examples
+1. [Introduction](./introduction.md) - Overview and key concepts
+2. [Concepts](./02-concepts.md) - Core data structures and business logic
+3. [State](./state.md) - State management and storage patterns
+4. [Messages](./messages/) - Transaction messages and handlers
+5. [Queries](./queries/) - Query types and endpoints
+6. [Events](./events.md) - Event emissions and tracking
+7. [Examples](./examples/) - Common usage patterns and building blocks
 
 ## Message Reference
 
 ### Collection Management
 
-* [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
-* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
-* [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
+-   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](./messages/msg-update-collection.md) - Update existing collection
+-   [MsgDeleteCollection](./messages/msg-delete-collection.md) - Delete collection
 
 ### Badge Transfers
 
-* [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
+-   [MsgTransferBadges](./messages/msg-transfer-badges.md) - Transfer badges between addresses
 
 ### User Approvals
 
-* [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+-   [MsgUpdateUserApprovals](./messages/msg-update-user-approvals.md) - Update transfer approvals
 
 ### Address Lists & Dynamic Stores
 
-* [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
-* [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
-* [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
-* [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
-* [More messages...](messages/) - See full message reference
+-   [MsgCreateAddressLists](./messages/msg-create-address-lists.md) - Create reusable address lists
+-   [MsgCreateDynamicStore](./messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](./messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](./messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./messages/msg-set-dynamic-store-value.md) - Set address-specific store values
+-   [More messages...](./messages/) - See full message reference
 
 ## Query Reference
 
 ### Core Queries
 
-* [GetCollection](queries/get-collection.md) - Retrieve collection data
-* [GetBalance](queries/get-balance.md) - Get user badge balances
-* [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
-* [GetAddressList](queries/get-address-list.md) - Retrieve address list
-* [More queries...](queries/) - See full query reference
+-   [GetCollection](./queries/get-collection.md) - Retrieve collection data
+-   [GetBalance](./queries/get-balance.md) - Get user badge balances
+-   [GetApprovalTracker](./queries/get-approval-tracker.md) - Get approval usage data
+-   [GetAddressList](./queries/get-address-list.md) - Retrieve address list
+-   [More queries...](./queries/) - See full query reference
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
 
 ## Documentation Style
 
@@ -13898,6 +13914,18 @@ Cosmos Wrapper Paths enable 1:1 wrapping between BitBadges badges and native Cos
 
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
+### Auto-Generating Wrapper Addresses
+
+You can programmatically generate wrapper addresses using the `bitbadgesjs-sdk` npm package:
+
+```typescript
+import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+
+const denom = 'utoken1';
+const wrapperAddress = generateAliasAddressForDenom(denom);
+console.log('Wrapper Address:', wrapperAddress);
+```
+
 ## Proto Definition
 
 ```protobuf
@@ -14012,28 +14040,32 @@ This creates a system where:
 ## Use Cases
 
 ### IBC Transfers
-- **Cross-chain transfers** - Send wrapped badges to other Cosmos chains
-- **DeFi integration** - Use wrapped badges in Cosmos DeFi protocols
-- **Liquidity provision** - Add wrapped badges to AMM pools
+
+-   **Cross-chain transfers** - Send wrapped badges to other Cosmos chains
+-   **DeFi integration** - Use wrapped badges in Cosmos DeFi protocols
+-   **Liquidity provision** - Add wrapped badges to AMM pools
 
 ### Multi-Chain Ecosystems
-- **Ecosystem bridges** - Connect BitBadges to broader Cosmos ecosystem
-- **Shared liquidity** - Participate in cross-chain liquidity pools
-- **Governance tokens** - Use wrapped badges in governance across chains
+
+-   **Ecosystem bridges** - Connect BitBadges to broader Cosmos ecosystem
+-   **Shared liquidity** - Participate in cross-chain liquidity pools
+-   **Governance tokens** - Use wrapped badges in governance across chains
 
 ### Trading and Exchange
-- **DEX compatibility** - Trade on Cosmos-native decentralized exchanges
-- **Price discovery** - Enable market-driven price discovery
-- **Arbitrage opportunities** - Cross-chain arbitrage possibilities
+
+-   **DEX compatibility** - Trade on Cosmos-native decentralized exchanges
+-   **Price discovery** - Enable market-driven price discovery
+-   **Arbitrage opportunities** - Cross-chain arbitrage possibilities
 
 ### Featured Use Case: List on Osmosis
+
 With BitBadges' existing relayer infrastructure and IBC-compatible wrapped denominations, listing wrapped badges on Osmosis is streamlined:
 
-- **IBC Relayer Ready** - BitBadges already has relayer infrastructure set up for seamless cross-chain transfers
-- **Native IBC Compatibility** - Wrapped badges become native SDK coins that work seamlessly with IBC protocols
-- **Automatic Liquidity** - Create liquidity pools on Osmosis DEX with wrapped badge assets
-- **Streamlined Process** - The technical infrastructure eliminates common barriers to cross-chain trading
-- **Enhanced Discoverability** - Badges gain exposure to the broader Cosmos DeFi ecosystem
+-   **IBC Relayer Ready** - BitBadges already has relayer infrastructure set up for seamless cross-chain transfers
+-   **Native IBC Compatibility** - Wrapped badges become native SDK coins that work seamlessly with IBC protocols
+-   **Automatic Liquidity** - Create liquidity pools on Osmosis DEX with wrapped badge assets
+-   **Streamlined Process** - The technical infrastructure eliminates common barriers to cross-chain trading
+-   **Enhanced Discoverability** - Badges gain exposure to the broader Cosmos DeFi ecosystem
 
 ## Conversion Process
 
@@ -17091,6 +17123,917 @@ Attributes:
   - error: string (if applicable)
 ```
 
+
+## File: ./x-badges/examples/README.md
+
+# Badge Standard Examples
+
+This directory contains practical examples and building blocks for x/badges.
+
+## Contents
+
+- `base-collection-details.md` - Standard base collection configuration template
+- `building-collection-approvals.md` - Guide to building collection-level approvals
+- `building-collection-permissions.md` - Guide to configuring collection permissions
+- `cosmos-coin-wrapper-example.md` - Example of wrapping badges as Cosmos coins
+- `mint-all-to-self-tutorial.md` - Tutorial for creating collection and minting badges to yourself
+- `approvals/` - Common approval patterns and examples
+  - `transferable-approval.md` - Basic transferable approval configuration
+  - `burnable-approval.md` - Approval allowing badges to be burned
+  - `cosmos-wrapper-approval.md` - Approval for wrapping badges as Cosmos coins
+  - `cosmos-unwrapper-approval.md` - Approval for unwrapping Cosmos coins back to badges
+  - `admin-override-approval.md` - Admin approval that overrides user-level restrictions
+- `permissions/` - Common permission patterns and examples
+
+
+## File: ./x-badges/examples/approvals/admin-override-approval.md
+
+# Admin Override Approval
+
+This example demonstrates how to create an approval that allows a specific address to forcefully transfer badges, overriding all user-level approvals. This provides complete administrative control for emergency situations or management purposes.
+
+## Overview
+
+An admin override approval grants a specific address the power to:
+
+-   Transfer badges from any address to any address
+-   Override user-level incoming and outgoing approvals
+-   Bypass normal approval restrictions
+-   Maintain complete administrative control
+
+⚠️ **Warning**: This approval type grants significant power and should be used carefully with trusted addresses only.
+
+## Code Example
+
+```typescript
+const approveSelfForcefully = (address: string) => {
+    const id = 'complete-admin-control';
+
+    return {
+        fromListId: 'Mint',
+        toListId: 'All',
+        initiatedByListId: address,
+        transferTimes: UintRangeArray.FullRanges(),
+        badgeIds: UintRangeArray.FullRanges(),
+        ownershipTimes: UintRangeArray.FullRanges(),
+        approvalId: id,
+        version: 0n,
+        approvalCriteria: {
+            ...defaultNoRestrictionsApprovalCriteria,
+            overridesFromOutgoingApprovals: true,
+            overridesToIncomingApprovals: true,
+        },
+    };
+};
+```
+
+## Usage Example
+
+```typescript
+// Create admin override for collection manager
+const adminOverrideApproval = approveSelfForcefully(
+    'bb1admin1234567890abcdef...'
+);
+
+// Use in collection
+const otherApprovals = [
+    // ... other approvals
+];
+
+const collection = {
+    ...BaseCollectionDetails,
+    collectionApprovalTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionApprovals: [...otherApprovals, adminOverrideApproval],
+        },
+    ],
+};
+```
+
+## Related Concepts
+
+-   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Address Lists](../../concepts/address-lists.md)
+-   [Approval Criteria](../../concepts/approval-criteria/)
+
+
+## File: ./x-badges/examples/approvals/burnable-approval.md
+
+# Burnable Approval
+
+This example demonstrates how to create a burnable approval that allows badges to be sent to the burn address (0x0000000000000000000000000000000000000000), effectively removing them from circulation.
+
+## Overview
+
+A burnable approval enables badges to be permanently destroyed by sending them to the zero address.
+
+## Code Example
+
+```typescript
+const burnableApproval = new CollectionApproval({
+    fromListId: '!Mint', // Excludes the Mint address
+    toListId: convertToBitBadgesAddress(
+        '0x0000000000000000000000000000000000000000' //bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv
+    ),
+    initiatedByListId: 'All',
+    transferTimes: UintRangeArray.FullRanges(),
+    ownershipTimes: UintRangeArray.FullRanges(),
+    badgeIds: UintRangeArray.FullRanges(),
+    approvalId: 'burnable-approval',
+    version: 0n,
+    approvalCriteria: undefined, // No additional restrictions
+});
+```
+
+## Usage in Collection
+
+To use this approval in a collection, add it to the collection's approval timeline:
+
+```typescript
+const otherApprovals = [
+    // ... other approvals
+];
+
+const collection = {
+    ...BaseCollectionDetails,
+    collectionApprovalTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionApprovals: [...otherApprovals, burnableApproval],
+        },
+    ],
+};
+```
+
+## Related Concepts
+
+-   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Address Lists](../../concepts/address-lists.md)
+-   [Timeline System](../../concepts/timeline-system.md)
+
+
+## File: ./x-badges/examples/approvals/cosmos-unwrapper-approval.md
+
+# Cosmos Unwrapper Approval
+
+This example demonstrates how to create an approval that allows the Cosmos coin wrapper address to send badges back to users, enabling conversion from Cosmos coins back to badges (unwrapping).
+
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
+
+## Code Example
+
+```typescript
+export const unwrapperApproval = ({
+    specialAddress,
+    badgeIds,
+    ownershipTimes,
+    approvalId,
+}: {
+    specialAddress: string;
+    badgeIds: iUintRange<bigint>[];
+    ownershipTimes: iUintRange<bigint>[];
+    approvalId: string;
+}): RequiredApprovalProps => {
+    const id = approvalId;
+    const toSet: RequiredApprovalProps = {
+        version: 0n,
+        fromListId: specialAddress,
+        fromList: AddressList.getReservedAddressList(specialAddress),
+        toListId: 'All',
+        toList: AddressList.AllAddresses(),
+        initiatedByListId: 'All',
+        initiatedByList: AddressList.AllAddresses(),
+        transferTimes: UintRangeArray.FullRanges(),
+        badgeIds: badgeIds,
+        ownershipTimes: ownershipTimes,
+        approvalId: id,
+        approvalCriteria: {
+            autoDeletionOptions: {
+                afterOneUse: false,
+                afterOverallMaxNumTransfers: false,
+            },
+            requireToDoesNotEqualInitiatedBy: false,
+            requireFromDoesNotEqualInitiatedBy: false,
+            coinTransfers: [],
+            predeterminedBalances: {
+                manualBalances: [],
+                orderCalculationMethod: {
+                    useOverallNumTransfers: false,
+                    usePerToAddressNumTransfers: false,
+                    usePerFromAddressNumTransfers: false,
+                    usePerInitiatedByAddressNumTransfers: false,
+                    useMerkleChallengeLeafIndex: false,
+                    challengeTrackerId: '',
+                },
+                incrementedBalances: {
+                    startBalances: [],
+                    incrementBadgeIdsBy: 0n,
+                    incrementOwnershipTimesBy: 0n,
+                    //monthly in milliseconds
+                    durationFromTimestamp: 0n,
+                    allowOverrideTimestamp: false,
+                    allowOverrideWithAnyValidBadge: false,
+                    recurringOwnershipTimes: {
+                        startTime: 0n,
+                        intervalLength: 0n,
+                        chargePeriodLength: 0n,
+                    },
+                },
+            },
+            maxNumTransfers: {
+                overallMaxNumTransfers: 0n,
+                perToAddressMaxNumTransfers: 0n,
+                perFromAddressMaxNumTransfers: 0n,
+                perInitiatedByAddressMaxNumTransfers: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            approvalAmounts: {
+                overallApprovalAmount: 0n,
+                perFromAddressApprovalAmount: 0n,
+                perToAddressApprovalAmount: 0n,
+                perInitiatedByAddressApprovalAmount: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            merkleChallenges: [],
+            mustOwnBadges: [],
+            dynamicStoreChallenges: [],
+            requireToEqualsInitiatedBy: false,
+            requireFromEqualsInitiatedBy: false,
+            overridesFromOutgoingApprovals: true,
+            overridesToIncomingApprovals: false,
+            userRoyalties: {
+                percentage: 0n,
+                payoutAddress: '',
+            },
+        },
+    };
+
+    return toSet;
+};
+```
+
+## Related Concepts
+
+-   [Cosmos Wrapper Approval](./cosmos-wrapper-approval.md)
+-   [Cosmos Wrapper Paths](../../concepts/cosmos-wrapper-paths.md)
+-   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Address Lists](../../concepts/address-lists.md)
+
+
+## File: ./x-badges/examples/approvals/cosmos-wrapper-approval.md
+
+# Cosmos Wrapper Approval
+
+This example demonstrates how to create an approval that allows badges to be sent to a Cosmos coin wrapper address, enabling conversion to native Cosmos SDK coins.
+
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
+
+## Code Example
+
+```typescript
+export const wrapperApproval = ({
+    specialAddress,
+    badgeIds,
+    ownershipTimes,
+    approvalId,
+}: {
+    specialAddress: string;
+    badgeIds: iUintRange<bigint>[];
+    ownershipTimes: iUintRange<bigint>[];
+    approvalId: string;
+}): RequiredApprovalProps => {
+    const id = approvalId;
+    const toSet: RequiredApprovalProps = {
+        version: 0n,
+        toListId: specialAddress,
+        toList: AddressList.getReservedAddressList(specialAddress),
+        fromListId: 'AllWithoutMint',
+        fromList: AddressList.getReservedAddressList('AllWithoutMint'),
+        initiatedByListId: 'All',
+        initiatedByList: AddressList.AllAddresses(),
+        transferTimes: UintRangeArray.FullRanges(),
+        badgeIds: badgeIds,
+        ownershipTimes: ownershipTimes,
+        approvalId: id,
+        approvalCriteria: {
+            autoDeletionOptions: {
+                afterOneUse: false,
+                afterOverallMaxNumTransfers: false,
+            },
+            requireToDoesNotEqualInitiatedBy: false,
+            requireFromDoesNotEqualInitiatedBy: false,
+            coinTransfers: [],
+            predeterminedBalances: {
+                manualBalances: [],
+                orderCalculationMethod: {
+                    useOverallNumTransfers: false,
+                    usePerToAddressNumTransfers: false,
+                    usePerFromAddressNumTransfers: false,
+                    usePerInitiatedByAddressNumTransfers: false,
+                    useMerkleChallengeLeafIndex: false,
+                    challengeTrackerId: '',
+                },
+                incrementedBalances: {
+                    startBalances: [],
+                    incrementBadgeIdsBy: 0n,
+                    incrementOwnershipTimesBy: 0n,
+                    durationFromTimestamp: 0n,
+                    allowOverrideTimestamp: false,
+                    allowOverrideWithAnyValidBadge: false,
+                    recurringOwnershipTimes: {
+                        startTime: 0n,
+                        intervalLength: 0n,
+                        chargePeriodLength: 0n,
+                    },
+                },
+            },
+            maxNumTransfers: {
+                overallMaxNumTransfers: 0n,
+                perToAddressMaxNumTransfers: 0n,
+                perFromAddressMaxNumTransfers: 0n,
+                perInitiatedByAddressMaxNumTransfers: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            approvalAmounts: {
+                overallApprovalAmount: 0n,
+                perFromAddressApprovalAmount: 0n,
+                perToAddressApprovalAmount: 0n,
+                perInitiatedByAddressApprovalAmount: 0n,
+                amountTrackerId: id,
+                resetTimeIntervals: {
+                    startTime: 0n,
+                    intervalLength: 0n,
+                },
+            },
+            merkleChallenges: [],
+            mustOwnBadges: [],
+            dynamicStoreChallenges: [],
+            requireToEqualsInitiatedBy: false,
+            requireFromEqualsInitiatedBy: false,
+            overridesFromOutgoingApprovals: false,
+            overridesToIncomingApprovals: true,
+            userRoyalties: {
+                percentage: 0n,
+                payoutAddress: '',
+            },
+        },
+    };
+
+    return toSet;
+};
+```
+
+## Related Concepts
+
+-   [Cosmos Wrapper Paths](../../concepts/cosmos-wrapper-paths.md)
+-   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Address Lists](../../concepts/address-lists.md)
+
+
+## File: ./x-badges/examples/approvals/transferable-approval.md
+
+# Transferable Approval
+
+This example demonstrates how to create a basic transferable approval that allows badges to be freely transferred between any users after minting.
+
+## Overview
+
+A transferable approval enables badges to be moved between addresses without restrictions.
+
+## Code Example
+
+```typescript
+const transferableApproval = new CollectionApproval({
+    fromListId: '!Mint', // Excludes the Mint address
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: UintRangeArray.FullRanges(),
+    ownershipTimes: UintRangeArray.FullRanges(),
+    badgeIds: UintRangeArray.FullRanges(),
+    approvalId: 'transferable-approval',
+    version: 0n,
+    approvalCriteria: undefined, // No additional restrictions
+});
+```
+
+## Usage in Collection
+
+To use this approval in a collection, add it to the collection's approval timeline:
+
+```typescript
+const otherApprovals = [
+    // ... other approvals
+];
+
+const collection = {
+    ...BaseCollectionDetails,
+    collectionApprovalTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionApprovals: [...otherApprovals, transferableApproval],
+        },
+    ],
+};
+```
+
+## Related Concepts
+
+-   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Address Lists](../../concepts/address-lists.md)
+-   [Timeline System](../../concepts/timeline-system.md)
+
+
+## File: ./x-badges/examples/base-collection-details.md
+
+# Base Collection Details
+
+BitBadges collections are very expressive but also can lead to verbose configurations. We will provide additional examples in this section but also refer you to the corresponding concepts section for more details on any specific field.
+
+### Reference Links
+
+For detailed information about each field, see the corresponding concepts documentation:
+
+| Field                         | Concepts Link                                               |
+| ----------------------------- | ----------------------------------------------------------- |
+| `validBadgeIds`               | [Valid Badge IDs](../concepts/valid-badge-ids.md)           |
+| `balancesType`                | [Balances Type](../concepts/balances-type.md)               |
+| `managerTimeline`             | [Manager](../concepts/manager.md)                           |
+| `collectionMetadataTimeline`  | [Metadata](../concepts/metadata.md)                         |
+| `badgeMetadataTimeline`       | [Metadata](../concepts/metadata.md)                         |
+| `customDataTimeline`          | [Custom Data](../concepts/custom-data.md)                   |
+| `standardsTimeline`           | [Standards](../concepts/standards.md)                       |
+| `isArchivedTimeline`          | [Archived Collections](../concepts/archived-collections.md) |
+| `defaultBalances`             | [Default Balances](../concepts/default-balances.md)         |
+| `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)   |
+| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md) |
+
+| Timeline System (all fields) | [Timeline System](../concepts/timeline-system.md) |
+
+## Base Collection Details
+
+For most collections, your base configuration for these fields will be very similar to this.
+
+```typescript
+// Our standard time range represeting "forever"
+const FullTimeRanges = [
+    {
+        start: '1',
+        end: '18446744073709551615',
+    },
+];
+
+const BaseCollectionDetails = {
+    validBadgeIds: [
+        {
+            start: '1',
+            end: '100', // Set to your max ID
+        },
+    ],
+    // Off-chain are a legacy feature. You should use the following fields for standard on-chain collections.
+    balancesType: 'Standard',
+    offChainBalancesMetadataTimeline: [],
+
+    managerTimeline: [
+        {
+            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls', // Set to your address
+            timelineTimes: FullTimeRanges,
+        },
+    ],
+    collectionMetadataTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionMetadata: {
+                uri: 'ipfs://QmSTZZPgYF58gS9bM7q3nWVegUJH51WBdT91fz7q94qDwS', // Points to a valid .json metadata file
+                customData: '',
+            },
+        },
+    ],
+    badgeMetadataTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            badgeMetadata: [
+                {
+                    uri: 'ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/{id}', // Points to a valid .json metadata file (replacing {id} with the badge ID)
+                    badgeIds: [
+                        {
+                            start: '1',
+                            end: '100',
+                        },
+                    ],
+                    customData: '',
+                },
+                // You can have multiple entries. This is useful for placeholder metadata.
+                {
+                    uri: 'ipfs://QmSTZZPgYF58gS9bM7q3nWVegUJH51WBdT91fz7q94qDwS', // Placeholder metadata
+                    badgeIds: [
+                        {
+                            start: '101',
+                            end: '100000000',
+                        },
+                    ],
+                    customData: '',
+                },
+            ],
+        },
+    ],
+    customDataTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            customData: '',
+        },
+    ],
+    standardsTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            standards: ['Subscriptions'],
+        },
+    ],
+    isArchivedTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            isArchived: false,
+        },
+    ],
+
+    // Coins to send to the mint escrow address. You can also fund after the fact. This is just useful for genesis since the address is dependent on the collectionId which you don't know until after the collection is created.
+    mintEscrowCoinsToTransfer: [
+        {
+            denom: 'ubadge',
+            amount: '1',
+        },
+    ],
+
+    // If you want to add paths to wrap badges as Cosmos coins, you can do so here.
+    cosmosCoinWrapperPathsToAdd: [],
+
+    defaultBalances: {
+        // Everyone starts with empty balances and no approvals
+        balances: [],
+        incomingApprovals: [],
+        outgoingApprovals: [],
+        // Empty = Soft Enabled (i.e. enabled but can be disabled at any time by each user)
+        userPermissions: {
+            canUpdateOutgoingApprovals: [],
+            canUpdateIncomingApprovals: [],
+            canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [],
+            canUpdateAutoApproveSelfInitiatedIncomingTransfers: [],
+            canUpdateAutoApproveAllIncomingTransfers: [],
+        },
+
+        // Typically, these flags are all you need to set.
+        autoApproveSelfInitiatedIncomingTransfers: true,
+        autoApproveSelfInitiatedOutgoingTransfers: true,
+        autoApproveAllIncomingTransfers: true,
+    },
+};
+```
+
+For information on building collection approvals, see [Building Collection Approvals](./building-collection-approvals.md).
+
+
+## File: ./x-badges/examples/building-collection-approvals.md
+
+# Building Your Collection Approvals
+
+The collection-level transferability is determined by the collection-level approvals. The important thing to consider here is that any approval that allows transfers from the "Mint" address will mint balances out of thin air.
+
+## Approval Categories
+
+It is typically recommended to split into two categories:
+
+-   **Mint Approvals** (`fromListId: 'Mint'`)
+-   **Post-Mint Approvals** (`fromListId: '!Mint'`)
+
+## Important Notes
+
+1. The reserved "All" list ID includes Mint. Do not use "All" for the fromListId for post-mint approvals.
+2. To function, the "Mint" approval must forcefully override the user-level outgoing approval because it cannot be managed.
+
+## Code Example
+
+Mix and match the approvals as you see fit. See the examples in the [approvals](./approvals/) section for a bunch of examples.
+
+```typescript
+const mintApprovals = [
+    // Mint approvals
+];
+
+const postMintApprovals = [transferableApproval, burnableApproval];
+
+const collectionApprovals = [...mintApprovals, ...postMintApprovals];
+
+const collectionApprovalTimeline = [
+    {
+        timelineTimes: FullTimeRanges,
+        collectionApprovals,
+    },
+];
+```
+
+## Related Concepts
+
+-   [Transferability / Approvals](../concepts/transferability-approvals.md)
+-   [Address Lists](../concepts/address-lists.md)
+-   [Timeline System](../concepts/timeline-system.md)
+-   [Approval Examples](./approvals/)
+
+
+## File: ./x-badges/examples/building-collection-permissions.md
+
+# Building Your Collection Permissions
+
+Collection permissions are executable by the manager. They are used to control who can perform various management actions on your badge collection and when those actions are allowed.
+
+```typescript
+const managerTimeline = [
+    {
+        manager: 'bb1youraddress...', // Your address
+        timelineTimes: FullTimeRanges,
+    },
+];
+```
+
+## Setting Your Permissions
+
+You have a few options for setting your permissions.
+
+1. No Manager
+
+If you simply don't want a manager, you can set the manager to an empty string. Then, the permission values never matter.
+
+```typescript
+const managerTimeline = [
+    {
+        manager: '',
+        timelineTimes: FullTimeRanges,
+    },
+];
+```
+
+2. Complete Control - Soft Enabled
+
+Each permission is enabled by default, unless you permanently disabled it. Thus, an empty array means that the permission is enabled for all times. However, it is soft enabled, meaning that the manager can disable it at any time. This configuration offers full control with ability to disable in the future.
+
+```typescript
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateOffChainBalancesMetadata: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canCreateMoreBadges: [],
+    canUpdateBadgeMetadata: [],
+    canUpdateCollectionApprovals: [],
+    canUpdateValidBadgeIds: [],
+};
+```
+
+3. Custom Permissions
+
+Oftentimes, you want a little more control over your permissions though.
+
+Each permission follows the same pattern:
+
+1. For the times `permanentlyPermittedTimes`, the permission is always permitted for the given values.
+2. For the times `permanentlyForbiddenTimes`, the permission is always forbidden for the given values.
+3. If the item is not explicity in either, then the permission is enabled for the given values, but the status can change.
+
+```typescript
+
+
+
+```
+
+---
+
+Each permission type follows the same pattern of two categories:
+
+```typescript
+// Part 1. Enabled vs Disabled Times For The Execution Of The Permission
+const permanentlyPermittedTimes = [];
+const permanentlyForbiddenTimes = FullTimeRanges;
+
+// Part 2. For what values (if any) does this apply? This is dependent on the permission type.
+const {
+    timelineTimes,
+    badgeIds,
+    fromListId,
+    toListId,
+    initiatedByListId,
+    transferTimes,
+    ownershipTimes,
+    approvalId,
+} = permission;
+```
+
+## Common Things To Consider
+
+1.
+
+## Examples
+
+We refer you to the [examples](./permissions/) for more detailed examples.
+
+## Related Concepts
+
+-   [Permission System](../concepts/permissions/permission-system.md)
+-   [Manager](../concepts/manager.md)
+-   [Timeline System](../concepts/timeline-system.md)
+-   [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
+
+```
+
+```
+
+
+## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
+
+# Cosmos Coin Wrapper Tutorial
+
+This tutorial walks you through setting up cosmos coin wrappers to bridge BitBadges with the broader Cosmos ecosystem. Cosmos coin wrappers automatically convert badges to fungible Cosmos coins and vice versa.
+
+## Prerequisites
+
+-   Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   Basic knowledge of BitBadges collections and approvals
+
+## Step 1: Set Up Your Cosmos Denominations
+
+First, define your cosmos coin wrapper paths. For detailed information about available options, see [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md).
+
+```typescript
+const cosmosCoinWrapperPaths = [ ... ];
+```
+
+## Step 2: Generate Your Special Address
+
+When you create a collection with cosmos coin wrapper paths, the system automatically generates a special address for each wrapper. This address acts as the bridge between badges and cosmos coins. This will also be available on the BitBadges site if you want to go that route.
+
+```typescript
+import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';
+
+const denom = 'utoken1';
+const wrapperAddress = generateAliasAddressForDenom(denom);
+console.log('Wrapper Address:', wrapperAddress);
+```
+
+## Step 3: Set Up Approvals for Wrapping/Unwrapping
+
+The transfers still operate under the approval / transferability system. We will use the following examples from our examples section, but you can customize as you see fit. Note the need to override the wrapper address's approvals where necessary because the wrapper address is uncontrollable.
+
+-   [Cosmos Wrapper Approval](./approvals/cosmos-wrapper-approval.md)
+-   [Cosmos Unwrapper Approval](./approvals/cosmos-unwrapper-approval.md)
+
+```typescript
+const collection = {
+    ...BaseCollectionDetails,
+    collectionApprovalTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionApprovals: [
+                ...otherApprovals,
+                wrapperApproval,
+                unwrapperApproval,
+            ],
+        },
+    ],
+};
+```
+
+## Related Concepts
+
+-   [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   [Approval System](../concepts/approval-criteria/approval-system.md)
+-   [Badge Collections](../concepts/badge-collections.md)
+
+
+## File: ./x-badges/examples/mint-all-to-self-tutorial.md
+
+# Mint All Badges to Self - Tutorial
+
+This tutorial walks through the process of creating a collection and minting all badges to yourself in a single transaction. This is useful for creating collections where you want to control the initial distribution.
+
+## Overview
+
+This is a two-step process that can be executed as a single multi-message transaction:
+
+1. **Create Collection** with a mint approval that allows you to mint badges
+2. **Execute Transfer** using that approval to mint badges to yourself
+
+## Step 1: Create Mint Approval
+
+First, create an approval that allows you to mint badges from the "Mint" address:
+
+```typescript
+// Step 1: Set up your mint approval
+const mintApproval = {
+    fromListId: 'Mint', // From the mint address
+    toListId: 'All', // To any address
+    initiatedByListId: myAddress, // Only you can initiate
+    transferTimes: UintRangeArray.FullRanges(),
+    badgeIds: UintRangeArray.FullRanges(), // All badge IDs
+    ownershipTimes: UintRangeArray.FullRanges(),
+    approvalId: 'mint-approval',
+    version: 0n,
+    approvalCriteria: {
+        // No restrictions - you can mint unlimited amounts
+        ...defaultNoRestrictionsApprovalCriteria,
+        overridesFromOutgoingApprovals: true, // Required for mint address
+    },
+};
+
+// Step 1: Create your collection with the mint approval
+const collection = {
+    ...BaseCollectionDetails,
+    collectionApprovalTimeline: [
+        {
+            timelineTimes: FullTimeRanges,
+            collectionApprovals: [mintApproval, ...otherApprovals],
+        },
+    ],
+};
+
+// Create the collection
+```
+
+## Step 2: Execute Mint Transfer
+
+After creating the collection, use the mint approval to transfer badges to yourself:
+
+```typescript
+// Step 2: Mint badges to yourself using the approval
+const transfers = [
+    {
+        from: 'Mint', // From mint address
+        toAddresses: [myAddress], // To your address
+        balances: [
+            {
+                badgeIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: UintRangeArray.FullRanges(),
+                amount: 100n,
+            },
+        ],
+        // ... other transfer details
+    },
+];
+```
+
+## Related Concepts
+
+-   [Building Collection Approvals](./building-collection-approvals.md)
+-   [Admin Override Approval](./approvals/admin-override-approval.md)
+-   [Mint Escrow Address](../concepts/mint-escrow-address.md)
+-   [MsgTransferBadges](../messages/msg-transfer-badges.md)
+
+
+## File: ./x-badges/examples/permissions/README.md
+
+# Permission Examples
+
+This directory contains practical examples of different permission configurations for badge collections. Each example demonstrates specific patterns and use cases for controlling collection management.
+
+## Contents
+
+- `locked-collection.md` - Collection with permanently locked permissions
+- `temporary-permissions.md` - Time-limited management permissions
+- `badge-specific-permissions.md` - Permissions that apply to specific badge IDs
+- `community-controlled.md` - Permissions for community-managed collections
+
+## Permission System Overview
+
+BitBadges permissions follow a timeline-based system where:
+
+1. **Permanently Permitted Times** - Permission is always allowed
+2. **Permanently Forbidden Times** - Permission is always denied  
+3. **Default (Empty)** - Permission is soft-enabled (manager can change)
+
+## Common Patterns
+
+- **No Manager** - Set manager to empty string to disable all management
+- **Complete Control** - Empty permission arrays for full soft-enabled control
+- **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
+- **Time-Limited** - Use specific time ranges for temporary control
+
+## Related Concepts
+
+- [Permission System](../../concepts/permissions/permission-system.md)
+- [Manager](../../concepts/manager.md)
+- [Timeline System](../../concepts/timeline-system.md)
 
 ## File: ./x-badges/messages/README.md
 
