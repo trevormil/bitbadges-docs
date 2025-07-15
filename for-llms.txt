@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Jul 15 16:33:38 UTC 2025
+Generated on Tue Jul 15 20:14:30 UTC 2025
 
 
 
@@ -3844,9 +3844,17 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
   * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
   * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
   * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
   * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
   * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
   * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
@@ -20247,6 +20255,17 @@ This directory contains detailed documentation for all message types supported b
 -   [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
 -   [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection
 
+### Helper Collection Update Messages
+
+-   [MsgSetValidBadgeIds](./msg-set-valid-badge-ids.md) - Update valid badge IDs and permissions
+-   [MsgSetManager](./msg-set-manager.md) - Update manager timeline and permissions
+-   [MsgSetCollectionMetadata](./msg-set-collection-metadata.md) - Update collection metadata timeline and permissions
+-   [MsgSetBadgeMetadata](./msg-set-badge-metadata.md) - Update badge metadata timeline and permissions
+-   [MsgSetCustomData](./msg-set-custom-data.md) - Update custom data timeline and permissions
+-   [MsgSetStandards](./msg-set-standards.md) - Update standards timeline and permissions
+-   [MsgSetCollectionApprovals](./msg-set-collection-approvals.md) - Update collection approvals and permissions
+-   [MsgSetIsArchived](./msg-set-is-archived.md) - Update isArchived timeline and permissions
+
 ### Badge Transfers
 
 -   [MsgTransferBadges](./msg-transfer-badges.md) - Transfer badges between addresses with approval validation
@@ -20727,6 +20746,361 @@ The response includes the number of approvals that were successfully purged:
 -   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete a single outgoing approval
 
 
+## File: ./x-badges/messages/msg-set-badge-metadata.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetBadgeMetadata
+
+Sets the badge metadata timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on badge metadata management.
+
+## Overview
+
+This message allows you to:
+
+-   Set badge metadata timeline for the collection
+-   Configure permissions to update the badge metadata in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the badge metadata timeline according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetBadgeMetadata {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetBadgeMetadata";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New badge metadata timeline to set.
+  repeated BadgeMetadataTimeline badgeMetadataTimeline = 3;
+
+  // Permission to update badge metadata timeline
+  repeated TimedUpdateWithBadgeIdsPermission canUpdateBadgeMetadata = 4;
+}
+
+message MsgSetBadgeMetadataResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "badgeMetadataTimeline": [
+        {
+            "badgeMetadata": [
+                {
+                    "uri": "https://example.com/badge1.json",
+                    "customData": "{\"description\": \"First badge\"}",
+                    "badgeIds": [{ "start": "1", "end": "10" }]
+                }
+            ],
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateBadgeMetadata": [
+        {
+            "badgeIds": [{ "start": "1", "end": "10" }],
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-collection-approvals.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetCollectionApprovals
+
+Sets the collection approvals and update permissions for a badge collection. This is a convenience message that focuses specifically on collection approvals management.
+
+## Overview
+
+This message allows you to:
+
+-   Set collection approvals for the collection
+-   Configure permissions to update the collection approvals in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update collection approvals according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetCollectionApprovals {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetCollectionApprovals";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New collection approvals to set.
+  repeated CollectionApproval collectionApprovals = 3;
+
+  // Permission to update collection approvals
+  repeated CollectionApprovalPermission canUpdateCollectionApprovals = 4;
+}
+
+message MsgSetCollectionApprovalsResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "collectionApprovals": [
+        {
+            "fromListId": "list1",
+            "toListId": "list2",
+            "initiatedByListId": "list3",
+            "transferTimes": [{ "start": "1000", "end": "2000" }],
+            "badgeIds": [{ "start": "1", "end": "10" }],
+            "ownershipTimes": [{ "start": "1", "end": "100" }],
+            "approvalId": "approval1",
+            "approvalCriteria": {
+                "mustOwnBadges": [],
+                "merkleChallenges": [],
+                "coinTransfers": [],
+                "predeterminedBalances": null,
+                "approvalAmounts": null,
+                "autoDeletionOptions": null,
+                "maxNumTransfers": null,
+                "dynamicStoreChallenges": []
+            }
+        }
+    ],
+    "canUpdateCollectionApprovals": [
+        {
+            "fromListId": "list1",
+            "toListId": "list2",
+            "initiatedByListId": "list3",
+            "transferTimes": [{ "start": "1000", "end": "2000" }],
+            "badgeIds": [{ "start": "1", "end": "10" }],
+            "ownershipTimes": [{ "start": "1", "end": "100" }],
+            "approvalId": "approval1",
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-collection-metadata.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetCollectionMetadata
+
+Sets the collection metadata timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on collection metadata management.
+
+## Overview
+
+This message allows you to:
+
+-   Set collection metadata timeline for the collection
+-   Configure permissions to update the collection metadata in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the collection metadata timeline according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetCollectionMetadata {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetCollectionMetadata";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New collection metadata timeline to set.
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 3;
+
+  // Permission to update collection metadata timeline
+  repeated TimedUpdatePermission canUpdateCollectionMetadata = 4;
+}
+
+message MsgSetCollectionMetadataResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "collectionMetadataTimeline": [
+        {
+            "collectionMetadata": {
+                "uri": "https://example.com/collection.json",
+                "customData": "{\"description\": \"My collection\"}"
+            },
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateCollectionMetadata": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-custom-data.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetCustomData
+
+Sets the custom data timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on custom data management.
+
+## Overview
+
+This message allows you to:
+
+-   Set custom data timeline for the collection
+-   Configure permissions to update the custom data in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data timeline according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetCustomData {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetCustomData";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New custom data timeline to set.
+  repeated CustomDataTimeline customDataTimeline = 3;
+
+  // Permission to update custom data timeline
+  repeated TimedUpdatePermission canUpdateCustomData = 4;
+}
+
+message MsgSetCustomDataResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "customDataTimeline": [
+        {
+            "customData": "{\"description\": \"My custom data\", \"version\": \"1.0\"}",
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateCustomData": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
 ## File: ./x-badges/messages/msg-set-dynamic-store-value.md
 
 # MsgSetDynamicStoreValue
@@ -20810,6 +21184,168 @@ Users can only set their own incoming approvals. The operation must be performed
 -   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
 
 
+## File: ./x-badges/messages/msg-set-is-archived.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetIsArchived
+
+Sets the isArchived timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on archiving management.
+
+## Overview
+
+This message allows you to:
+
+-   Set isArchived timeline for the collection
+-   Configure permissions to archive the collection in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to archive the collection according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetIsArchived {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetIsArchived";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New isArchived timeline to set.
+  repeated IsArchivedTimeline isArchivedTimeline = 3;
+
+  // Permission to archive collection
+  repeated TimedUpdatePermission canArchiveCollection = 4;
+}
+
+message MsgSetIsArchivedResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "isArchivedTimeline": [
+        {
+            "isArchived": true,
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canArchiveCollection": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-manager.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetManager
+
+Sets the manager timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on manager management.
+
+## Overview
+
+This message allows you to:
+
+-   Set who manages the collection at different times
+-   Configure permissions to update the manager in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the manager timeline according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetManager {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetManager";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New manager timeline to set.
+  repeated ManagerTimeline managerTimeline = 3;
+
+  // Permission to update manager timeline
+  repeated TimedUpdatePermission canUpdateManager = 4;
+}
+
+message MsgSetManagerResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "managerTimeline": [
+        {
+            "manager": "bb1def456...",
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateManager": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
 ## File: ./x-badges/messages/msg-set-outgoing-approval.md
 
 # MsgSetOutgoingApproval
@@ -20855,6 +21391,166 @@ Users can only set their own outgoing approvals. The operation must be performed
 -   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
 -   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete an outgoing approval
 -   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set an incoming approval
+
+
+## File: ./x-badges/messages/msg-set-standards.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetStandards
+
+Sets the standards timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on standards management.
+
+## Overview
+
+This message allows you to:
+
+-   Set standards timeline for the collection
+-   Configure permissions to update the standards in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the standards timeline according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetStandards {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetStandards";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New standards timeline to set.
+  repeated StandardsTimeline standardsTimeline = 3;
+
+  // Permission to update standards timeline
+  repeated TimedUpdatePermission canUpdateStandards = 4;
+}
+
+message MsgSetStandardsResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "standardsTimeline": [
+        {
+            "standards": ["ERC1155", "ERC721"],
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateStandards": [
+        {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-valid-badge-ids.md
+
+**Disclaimer:**  
+This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+# MsgSetValidBadgeIds
+
+Sets the valid badge IDs and update permissions for a badge collection. This is a convenience message that focuses specifically on badge ID management.
+
+## Overview
+
+This message allows you to:
+
+-   Set which badge IDs are valid for the collection
+-   Configure permissions to update the valid badge IDs in the future
+
+## Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update valid badge IDs according to the collection's current permission settings.
+
+## Proto Definition
+
+```protobuf
+message MsgSetValidBadgeIds {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetValidBadgeIds";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New badge IDs to add to this collection
+  repeated UintRange validBadgeIds = 3;
+
+  // Permission to update valid badge IDs
+  repeated BadgeIdsActionPermission canUpdateValidBadgeIds = 4;
+}
+
+message MsgSetValidBadgeIdsResponse {
+  // ID of the badge collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "validBadgeIds": [
+        { "start": "1", "end": "100" },
+        { "start": "200", "end": "300" }
+    ],
+    "canUpdateValidBadgeIds": [
+        {
+            "badgeIds": [{ "start": "1", "end": "50" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+## Related Messages
+
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-transfer-badges.md
