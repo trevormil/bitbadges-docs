@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Jul 15 01:34:06 UTC 2025
+Generated on Tue Jul 15 16:33:38 UTC 2025
 
 
 
@@ -3841,7 +3841,12 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
   * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
   * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
   * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
   * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
@@ -12849,6 +12854,8 @@ Automatically delete approvals after specific conditions are met.
 interface AutoDeletionOptions {
     afterOneUse: boolean;
     afterOverallMaxNumTransfers: boolean;
+    allowCounterpartyPurge?: boolean;
+    allowPurgeIfExpired?: boolean;
 }
 ```
 
@@ -12858,6 +12865,8 @@ Auto-deletion options allow approvals to be automatically removed when certain c
 
 -   **`afterOneUse`**: Delete the approval after it's used once
 -   **`afterOverallMaxNumTransfers`**: Delete the approval after the overall max number of transfers threshold is met
+-   **`allowCounterpartyPurge`**: If true, allows the counterparty (the only initiator in `initiatedByList`, must be a whitelist with exactly one address) to purge the approval, even if they are not the owner. This may be used for like a rejection of the approval.
+-   **`allowPurgeIfExpired`**: If true, allows others (in addition to the approval owner) to purge expired approvals on the owner's behalf. This may be used for a cleanup-like system.
 
 ## Usage Examples
 
@@ -12889,6 +12898,34 @@ Auto-deletion options allow approvals to be automatically removed when certain c
 ```
 
 **Result**: Approval is deleted after 10 transfers are completed.
+
+### Allow Counterparty Purge
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": false,
+        "allowCounterpartyPurge": true
+    }
+}
+```
+
+**Result**: The counterparty (if they are the only initiator in a whitelist) can purge this approval, even if not the owner.
+
+### Allow Others to Purge Expired Approvals
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": false,
+        "allowPurgeIfExpired": true
+    }
+}
+```
+
+**Result**: Any user can purge this approval if it is expired (no future valid transfer times), not just the owner.
 
 
 ## File: ./x-badges/concepts/approval-criteria/badge-ownership.md
@@ -20217,6 +20254,11 @@ This directory contains detailed documentation for all message types supported b
 ### User Approval Management
 
 -   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Update user transfer approval settings
+-   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set a single incoming approval (helper)
+-   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete a single incoming approval (helper)
+-   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set a single outgoing approval (helper)
+-   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete a single outgoing approval (helper)
+-   [MsgPurgeApprovals](./msg-purge-approvals.md) - Purge expired approvals (helper)
 
 ### Address List Management
 
@@ -20493,6 +20535,198 @@ bitbadgeschaind tx badges delete-dynamic-store [store-id] --from creator-key
 ```
 
 
+## File: ./x-badges/messages/msg-delete-incoming-approval.md
+
+# MsgDeleteIncomingApproval
+
+A helper message to delete a single incoming approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+
+## Overview
+
+This message allows you to delete a single incoming approval by its ID without having to construct the full `MsgUpdateUserApprovals` message with an empty approval list.
+
+## Proto Definition
+
+```protobuf
+message MsgDeleteIncomingApproval {
+  string creator = 1; // User deleting the approval
+  string collectionId = 2; // Target collection for approval
+  string approvalId = 3; // The ID of the approval to delete
+}
+
+message MsgDeleteIncomingApprovalResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges delete-incoming-approval [collection-id] [approval-id] --from user-key
+```
+
+### Example
+
+```bash
+bitbadgeschaind tx badges delete-incoming-approval 1 "my-approval-1" --from user-key
+```
+
+## Behavior
+
+-   **Approval Lookup**: The system searches for an incoming approval with the specified `approvalId`
+-   **Deletion**: If found, the approval is removed from the user's incoming approvals list
+-   **Error Handling**: If the approval ID is not found, an error is returned
+-   **Validation**: The deletion is validated according to the collection's permissions and user's approval update permissions
+
+## Authorization & Permissions
+
+Users can only delete their own incoming approvals. The operation must be performed according to the permissions set (i.e. the `userPermissions` previously set for that user).
+
+## Related Messages
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
+-   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set an incoming approval
+-   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete an outgoing approval
+
+
+## File: ./x-badges/messages/msg-delete-outgoing-approval.md
+
+# MsgDeleteOutgoingApproval
+
+A helper message to delete a single outgoing approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+
+## Overview
+
+This message allows you to delete a single outgoing approval by its ID without having to construct the full `MsgUpdateUserApprovals` message with an empty approval list.
+
+## Proto Definition
+
+```protobuf
+message MsgDeleteOutgoingApproval {
+  string creator = 1; // User deleting the approval
+  string collectionId = 2; // Target collection for approval
+  string approvalId = 3; // The ID of the approval to delete
+}
+
+message MsgDeleteOutgoingApprovalResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges delete-outgoing-approval [collection-id] [approval-id] --from user-key
+```
+
+### Example
+
+```bash
+bitbadgeschaind tx badges delete-outgoing-approval 1 "my-approval-1" --from user-key
+```
+
+## Behavior
+
+-   **Approval Lookup**: The system searches for an outgoing approval with the specified `approvalId`
+-   **Deletion**: If found, the approval is removed from the user's outgoing approvals list
+-   **Error Handling**: If the approval ID is not found, an error is returned
+-   **Validation**: The deletion is validated according to the collection's permissions and user's approval update permissions
+
+## Authorization & Permissions
+
+Users can only delete their own outgoing approvals. The operation must be performed according to the permissions set (i.e. the `userPermissions` previously set for that user).
+
+## Related Messages
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
+-   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
+-   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete an incoming approval
+
+
+## File: ./x-badges/messages/msg-purge-approvals.md
+
+# MsgPurgeApprovals
+
+A message to purge specific approvals from approval lists. This is a targeted approach that requires specifying exactly which approvals to purge.
+
+## Overview
+
+This message allows you to purge specific approvals by their identifier.
+
+### Usage 1: Self-Purge (Creator purging their own approvals)
+
+-   **`purgeExpired` must be `true`**
+-   **`purgeCounterpartyApprovals` must be `false`**
+-   **`approvalsToPurge` must contain the specific approvals to purge**
+-   Specified approvals will be purged if they are expired (no future transfer times)
+
+### Usage 2: Other-Purge (Creator purging someone else's approvals)
+
+-   Can set either `purgeExpired` or `purgeCounterpartyApprovals` (or both)
+-   **`approvalsToPurge` must contain the specific approvals to purge**
+-   Purge permissions are determined by the approval's auto-deletion options in `approvalCriteria`:
+    -   `allowPurgeIfExpired`: Allows others to purge expired approvals
+    -   `allowCounterpartyPurge`: Allows counterparty to purge if they are the only initiator (initiatedByList must be a whitelist with exactly one address matching the counterparty)
+-   Specified approvals that match the conditions will be purged
+
+## Fields
+
+-   `creator`: The address submitting the transaction.
+-   `collectionId`: The target collection for approval cleanup.
+-   `purgeExpired`: Whether to purge expired approvals (must be true for self-purge).
+-   `approverAddress`: The address whose approvals to purge. If empty, defaults to `creator`.
+-   `purgeCounterpartyApprovals`: Whether to purge counterparty approvals (must be false for self-purge).
+-   `approvalsToPurge`: **Required** - An array of approval identifier details specifying exactly which approvals to purge. Cannot be empty.
+
+## ApprovalIdentifierDetails
+
+Each approval to purge must be specified with:
+
+```typescript
+interface ApprovalIdentifierDetails {
+    approvalId: string; // The ID of the approval
+    approvalLevel: string; // "collection", "incoming", or "outgoing"
+    approverAddress: string; // Address of the approver (empty for collection-level)
+    version: string; // Version of the approval (must match or else we will not purge)
+}
+```
+
+## Auto-Deletion Options
+
+The following flags in approval criteria control purge permissions in `approvalCriteria`:
+
+-   `allowCounterpartyPurge`: Allows the counterparty to purge the approval if they are the ONLY initiator in `initiatedByList` (must be a whitelist with exactly one address matching the counterparty).
+-   `allowPurgeIfExpired`: Allows others (besides the approval owner) to call `PurgeApprovals` on their behalf for expired approvals.
+
+## Permissions
+
+Although user approval permissions are rarely disabled, we still check these purges obey them. If the user does not have permission to purge their own approval, the purge will fail. With counterparty purges, this can be thought of purging on behalf of the user, so the user's permissions are still checked.
+
+## Example Usage
+
+```bash
+# [collectionId, purgeExpired, approverAddress, purgeCounterpartyApprovals, approvalsToPurge]
+
+bitbadgeschaind tx badges purge-approvals 1 true "" false '[{"approvalId":"my-approval","approvalLevel":"outgoing","approverAddress":"bb1...","version":"0"}]' --from user-key
+```
+
+## Response
+
+The response includes the number of approvals that were successfully purged:
+
+```json
+{
+    "numPurged": "3"
+}
+```
+
+## Related Messages
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
+-   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set an incoming approval
+-   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete a single incoming approval
+-   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set a single outgoing approval
+-   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete a single outgoing approval
+
+
 ## File: ./x-badges/messages/msg-set-dynamic-store-value.md
 
 # MsgSetDynamicStoreValue
@@ -20528,6 +20762,100 @@ bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [value] -
   "value": true
 }
 ```
+
+## File: ./x-badges/messages/msg-set-incoming-approval.md
+
+# MsgSetIncomingApproval
+
+A helper message to set a single incoming approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+
+## Overview
+
+This message allows you to set or update a single incoming approval without having to construct the full `MsgUpdateUserApprovals` message. It automatically handles version management and validation.
+
+## Proto Definition
+
+```protobuf
+message MsgSetIncomingApproval {
+  string creator = 1; // User setting the approval
+  string collectionId = 2; // Target collection for approval
+  UserIncomingApproval approval = 3; // The incoming approval to set
+}
+
+message MsgSetIncomingApprovalResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-incoming-approval [collection-id] '[approval-json]' --from user-key
+```
+
+## Behavior
+
+-   **New Approval**: If the approval ID doesn't exist, a new approval is created with version 0
+-   **Update Existing**: If the approval ID already exists, the approval is updated and the version is incremented
+-   **No Change**: If the approval content hasn't changed, the version remains the same
+-   **Validation**: The approval is validated according to the collection's permissions and user's approval update permissions
+
+## Authorization & Permissions
+
+Users can only set their own incoming approvals. The operation must be performed according to the permissions set (i.e. the `userPermissions` previously set for that user).
+
+## Related Messages
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
+-   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete an incoming approval
+-   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
+
+
+## File: ./x-badges/messages/msg-set-outgoing-approval.md
+
+# MsgSetOutgoingApproval
+
+A helper message to set a single outgoing approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+
+## Overview
+
+This message allows you to set or update a single outgoing approval without having to construct the full `MsgUpdateUserApprovals` message. It automatically handles version management and validation.
+
+## Proto Definition
+
+```protobuf
+message MsgSetOutgoingApproval {
+  string creator = 1; // User setting the approval
+  string collectionId = 2; // Target collection for approval
+  UserOutgoingApproval approval = 3; // The outgoing approval to set
+}
+
+message MsgSetOutgoingApprovalResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-outgoing-approval [collection-id] '[approval-json]' --from user-key
+```
+
+## Behavior
+
+-   **New Approval**: If the approval ID doesn't exist, a new approval is created with version 0
+-   **Update Existing**: If the approval ID already exists, the approval is updated and the version is incremented
+-   **No Change**: If the approval content hasn't changed, the version remains the same
+-   **Validation**: The approval is validated according to the collection's permissions and user's approval update permissions
+
+## Authorization & Permissions
+
+Users can only set their own outgoing approvals. The operation must be performed according to the permissions set (i.e. the `userPermissions` previously set for that user).
+
+## Related Messages
+
+-   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
+-   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete an outgoing approval
+-   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set an incoming approval
+
 
 ## File: ./x-badges/messages/msg-transfer-badges.md
 
