@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 14 23:39:11 UTC 2025
+Generated on Tue Jul 15 01:34:06 UTC 2025
 
 
 
@@ -3812,23 +3812,21 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [UintRanges](x-badges/concepts/uintrange.md)
   * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-    * [Overview](x-badges/concepts/approval-criteria/approval-system.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
     * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-    * [Extending the Approval (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
     * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
     * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
     * [Requires](x-badges/concepts/approval-criteria/requires.md)
     * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-    * [$BADGE Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-  * [Approval Criteria 2](x-badges/concepts/approval-criteria-2/README.md)
-
-  * [Approval Criteria 3](x-badges/concepts/approval-criteria-3/README.md)
-
-  * [Permission System](x-badges/concepts/permissions/README.md)
+    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [Overview](x-badges/concepts/permissions/overview.md)
     * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
     * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
     * [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
@@ -12616,15 +12614,9 @@ Both address lists and dynamic stores can control who is approved for transfers,
 
 # Approval Criteria
 
+Additional restrictions and conditions that determine whether a transfer is approved beyond the basic approval matching.
 
-
-## File: ./x-badges/concepts/approval-criteria/approval-system.md
-
-# Overview
-
-In the transferability page, we mainly talked about how we match and check an approval. Here, we will talk about the **approvalCriteria.**
-
-These are the additional options or restrictions you can set which decide whether a transfer is approved or not (e.g. how much can be transferred? how many times? etc). To be approved, it must satisfy all the options / restrictions set (everything talked about in the last page AND the **approvalCriteria**).
+## Interface
 
 ```typescript
 export interface iApprovalCriteria<T extends NumberType> {
@@ -12632,12 +12624,16 @@ export interface iApprovalCriteria<T extends NumberType> {
     coinTransfers?: iCoinTransfer<T>[];
     /** The list of merkle challenges that need valid proofs to be approved. */
     merkleChallenges?: iMerkleChallenge<T>[];
-    /** The predetermined balances for each transfer. */
+    /** The list of must own badges that need valid proofs to be approved. */
+    mustOwnBadges?: iMustOwnBadge<T>[];
+    /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
     predeterminedBalances?: iPredeterminedBalances<T>;
     /** The maximum approved amounts for this approval. */
     approvalAmounts?: iApprovalAmounts<T>;
     /** The max num transfers for this approval. */
     maxNumTransfers?: iMaxNumTransfers<T>;
+    /** Whether the approval should be deleted after one use. */
+    autoDeletionOptions?: iAutoDeletionOptions;
     /** Whether the to address must equal the initiatedBy address. */
     requireToEqualsInitiatedBy?: boolean;
     /** Whether the from address must equal the initiatedBy address. */
@@ -12650,199 +12646,268 @@ export interface iApprovalCriteria<T extends NumberType> {
     overridesFromOutgoingApprovals?: boolean;
     /** Whether this approval overrides the to address's approved incoming transfers. */
     overridesToIncomingApprovals?: boolean;
+    /** The royalties to apply to the transfer. */
+    userRoyalties?: iUserRoyalties<T>;
+    /** The list of dynamic store challenges that the initiator must pass for approval. */
+    dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
 }
 ```
 
-**Extending Functionality**
+## Core Components
 
-These are just the native options provided in the interface for convenience and consistency, but you can always implement your own approvals via custom logic with a CosmWASM smart contract.
+-   **[Approval Trackers](approval-trackers.md)** - Tracking transfer amounts and counts
+-   **[Tallied Approval Amounts](tallied-approval-amounts.md)** - Amount limits and thresholds
+-   **[Max Number of Transfers](max-number-of-transfers.md)** - Transfer count limits
+-   **[Predetermined Balances](predetermined-balances.md)** - Exact balance requirements
+-   **[Merkle Challenges](merkle-challenges.md)** - Cryptographic proof requirements
+-   **[Dynamic Store Challenges](dynamic-store-challenges.md)** - On-chain boolean checks
+-   **[Badge Ownership](badge-ownership.md)** - Required badge holdings
+-   **[$BADGE Transfers](usdbadge-transfers.md)** - Automatic token transfers
+-   **[Overrides](overrides.md)** - Bypassing user-level approvals
+-   **[Requires](requires.md)** - Address relationship restrictions
+-   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
+-   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
 
-Or, you can leverage the native features for custom implementations:
+## Key Concepts
 
--   Use Merkle challenges as a commit-reveal claim code mechanism. This is what we do for BitBadges claims. Then, you can assign claim codes how you wish.&#x20;
--   Create custom, general-purpose zero-knowledge circuits that need to be satisfied. Implement your custom logic within in the circuit (if it lends itself to this approach).
+### Tracker IDs
 
-#### Tracker IDs
+Trackers use IDs with format: `approvalId-trackerId` plus identifying details. All trackers are scoped to a specific `approvalId`.
 
-The approval interface utilizes trackers behind the scenes for certain fields which are identified by IDs (**amountTrackerId, challengeTrackerId)**. Trackers are increment only and immutable in storage and referenced by an ID consisting of **approvalId-trackerId** plus other identifying details. Because the **approvalId** is in there, this enforces that all trackers are scoped to a specific approvalId. However, since they are ID based and increment only, it is important to be careful to not use previous IDs that have state. See best practices below.
+**Important**: Trackers are increment-only and immutable. Never reuse tracker IDs with prior history.
 
-**Best Practices - Creating / Updating / Deleting**
+### Best Practices - Creating / Updating / Deleting
 
-A really important part in creating / editing / deleting approvals is to keep track of the trackers' state. You do not want to use a tracker with prior history when creating an approval which should start from scratch. This messes up the expected behavior of the approval. You can't just simply delete the tracker because it is increment only and immutable.
+Trackers are increment-only and immutable. Never reuse tracker IDs with prior history when creating approvals that should start from scratch.
 
-To combat this, we recommend the following best practices:
+### Extending Functionality
 
--   When creating an approval for the first time (which is expected to start completely from scratch), always use unique, unused IDs for **approvalId**, **amountTrackerId** and **challengeTrackerId**. If these are unique, the tracker IDs will also be unique which means they will have no prior history.
--   When you want entirely new state (whole approval), change the **approvalId** to something unique. This makes all tracker IDs different. This is the recommended option (if applicable) because you know for certain that all trackers have been reset.
--   When you want just an individual tracker's state to be reset, you need to change the individual tracker ID to a aunique unused vaue.
+For custom logic beyond native options:
 
-#### Scoped vs Cross-Approval Logic
+-   Use CosmWASM smart contracts
+-   Leverage Merkle challenges for commit-reveal mechanisms
+-   Implement custom zero-knowledge circuits
 
-All approvals' state is expected to be scoped, but sometimes, you may want to implement cross-approval logic (e.g. do not allow double dipping between two approvals). This, unfortunately, is out of scope for the native interface at the moment. Consider workarounds and careful design decisions.&#x20;
+### Cross-Approval Logic
 
-However, if you do need more advanced functionality, you may have to go up a level and use CosmWASM or alternative solutions. If you run into this problem, let us know, and we can recommend what to do.&#x20;
+Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
+
+-   Workarounds and careful design
+-   CosmWASM for advanced functionality
+-   Contact us for recommendations
 
 
 ## File: ./x-badges/concepts/approval-criteria/approval-trackers.md
 
 # Approval Trackers
 
-```typescript
-export interface iApprovalAmounts<T extends NumberType> {
-  ...
-  
-  /** The ID of the approval tracker. This is the key used to track tallies. */
-  amountTrackerId: string;
-}
-```
+Track transfer amounts and counts using increment-only tallies with thresholds.
 
-```typescript
-export interface iMaxNumTransfers<T extends NumberType> {
-  ...
-  
-  /** The ID of the approval tracker. This is the key used to track tallies. */
-  amountTrackerId: string;
-}
-```
+## How It Works
 
-## Approval Trackers
+Trackers use an incrementing tally system with thresholds:
 
-Approval or amount trackers track how many badges have been transferred and how many transfers have occurred. This is done via an incrementing tally system with a threshold.&#x20;
+1. **Setup**: Approved for x10 of badge IDs 1-10 with tracker ID "xyz"
+2. **Transfer x5**: Tracker "xyz" goes from 0/10 → 5/10
+3. **Transfer x5**: Tracker "xyz" goes to 10/10
+4. **Transfer x1**: Exceeds threshold, transfer fails
 
-Take the following approval tracker
+## Tracker Identification
 
-1. You are approved for x10 of badge IDs 1-10. For simplicity, lets say the tracker ID is "xyz".
-2. You transfer x5 of badge IDs 1-10 -> "xyz" tally goes from x0/10 -> x5/10
-3. You transfer another x5 -> "xyz" tally goes to x10/10
-4. You transfer another x1 -> exceed threshold so transfer fails and will also fail for all subsequent approvals that match to "xyz".
-5. However, if subsequent transfers match to tracker "abc", the tally starts from zero again because it is a different tracker w/o any history.
-
-### **How are approval trackers identified?**
-
-Above, we used "xyz" for simplicity, but the identifier of each approval tracker actually consists of **amountTrackerId** along with other identifying details.
-
-Note that if multiple approvals specify the same **amountTrackerId,** the SAME tracker will be incremented when DIFFERENT approvals are used. This is because the tracker identifier will be the same and thus increment the same tracker. However, all tracker IDs specify the **approvalId** which must be unique. Thus, all trackers are only ever scoped to a single aproval.
+Tracker IDs include multiple components:
 
 ```
 ID: collectionId-approvalLevel-approverAddress-approvalId-amountTrackerId-trackerType-approvedAddress
 ```
 
+### Tracker ID Details Interface
+
 ```typescript
-export interface ApprovalTrackerIdDetails<T extends NumberType> {
-  collectionId: T
-  approvalLevel: "collection" | "incoming" | "outgoing" | ""
-  approvalId: string
-  approverAddress: string
-  amountTrackerId: string
-  trackerType: "overall" | "to" | "from" | "initiatedBy" | ""
-  approvedAddress: string
+interface ApprovalTrackerIdDetails<T extends NumberType> {
+    collectionId: T;
+    approvalLevel: 'collection' | 'incoming' | 'outgoing' | '';
+    approvalId: string;
+    approverAddress: string;
+    amountTrackerId: string;
+    trackerType: 'overall' | 'to' | 'from' | 'initiatedBy' | '';
+    approvedAddress: string;
 }
 ```
 
-The **trackerType** corresponds to what type of tracker it is. For example, should we increment every time this approval is used? per unique recipient? sender? initiator?
+### Component Breakdown
 
-If "overall", this is applicable to any transfer and will increment everytime the approval is used. This creates a single universal tally. **approvedAddress** will be empty.&#x20;
-
-If "to", "from", or "initiatedBy", the **approvedAddress** is the sender, recipient, or initiator of the transfer, respectively. Note since **approvedAddress** and **trackerType** are part of the approval tracker's identifier, this creates unique individual tallies (trackers) per address.
-
-For example, these correspond to different trackers because the **approvedAddress** is different. Thus, Alice's transfers will be tracked separately from Bob's.
-
-`1-collection- -approvalId-uniqueID-initiatedBy-alice`
-
-`1-collection- -approvalId-uniqueID-initiatedBy-bob`
-
-**Handling Multiple Trackers**
-
-Trackers are ID-based, and thus, multiple trackers can be created. Take note of what makes up the ID. The collection ID, approval level, approver address, and more are all considered. If one changes or is different, the whole ID is different and will correspond to a new tracker.
-
-**Increment Only**
-
-Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused ID. This can be done simply by editing **amountTrackerId** (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
-
-IMPORTANT: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
-
-### **What is tracked?**
+-   **collectionId**: The collection this tracker belongs to
+-   **approvalLevel**: Level of approval ("collection", "incoming", "outgoing", or empty)
+-   **approvalId**: Unique identifier for the specific approval
+-   **approverAddress**: Address of the approver (empty for collection-level)
+-   **amountTrackerId**: User-defined tracker identifier specified in approvalAmounts or maxNumTransfers (see below)
+-   **trackerType**: Type of tracking ("overall", "to", "from", "initiatedBy", or empty)
+-   **approvedAddress**: Specific address being tracked (empty for "overall")
 
 ```typescript
-export interface ApprovalTrackerInfoBase<T extends NumberType> extends ApprovalTrackerIdDetails<T> {
-  numTransfers: T;
-  amounts: Balance<T>[];
-  lastUpdatedAt: UnixMilliTimestamp<T>;
+interface iApprovalAmounts<T extends NumberType> {
+    amountTrackerId: string; // Key for tracking tallies
+}
+
+interface iMaxNumTransfers<T extends NumberType> {
+    amountTrackerId: string; // Key for tracking tallies
 }
 ```
 
-Each transfer that maps to the tracker increments **numTransfers** by 1, and each badge transferred increments the **amounts** in the interface (if tracked).
+### Tracker Types
 
-Example:
+-   **"overall"**: Universal tally for any transfer (approvedAddress empty)
+-   **"to"**: Per-recipient tally (approvedAddress = recipient)
+-   **"from"**: Per-sender tally (approvedAddress = sender)
+-   **"initiatedBy"**: Per-initiator tally (approvedAddress = initiator)
 
-`ID: 1-collection- -uniqueID-initiatedBy-alice`
+## Increment Only and Immutable
+
+Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused tracker ID. This can be done simply by editing `amountTrackerId` (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
+
+**IMPORTANT**: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
+
+## As-Needed Basis
+
+Only increment when necessary (e.g., if no amount restrictions, don't track amounts). Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we do not increment for efficiency purposes. For example, if we only have requirements for numTransfers but do not need the amounts, we do not increment the amounts.
+
+### Example Tracker States
 
 ```json
 {
-    "numTransfers": 10,
-    "amounts": [{ 
-        "amount": 10n, 
-        "badgeIds": [{ start: 1n, end: 1n }], 
-        "ownershipTimes":  [{ start: 1n, end: 100000000000n }], 
-    }]
+    "fullTrackerId1": {
+        "numTransfers": 5,
+        "amounts": [
+            {
+                "amount": 50,
+                "badgeIds": [{ "start": 1, "end": 10 }],
+                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
+            }
+        ],
+        "lastUpdatedAt": 1691978400000
+    },
+    "fullTrackerId2": {
+        "numTransfers": 3,
+        "amounts": [
+            {
+                "amount": 15,
+                "badgeIds": [{ "start": 1, "end": 5 }],
+                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
+            }
+        ],
+        "lastUpdatedAt": 1691978400000
+    }
 }
 ```
 
-**As-Needed Basis**
+## Periodic Resets
 
-We increment on an as-needed basis. Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we **do not increment** for efficiency purposes. For example, if we only have requirements for **numTransfers** but do not need the **amounts**, we do not increment the amounts.
+Trackers support periodic resets to zero using time intervals.
 
-**Different Tracker IDs - Amounts vs Transfers**
-
-It is possible to have different tracker IDs for the number of transfers and amounts (as seen at the top of the page). However, typically, these will be the same for simplicity.
-
-### **Resets**
-
-For both tracker types, we also allow occasional resets to zero. If it is the first update of the interval, we will reset all tracker progress. This is useful for recurring subscriptions (one transfer per month), for example.
-
-If they are left as 0, there is no reset.&#x20;
-
-Whether an update is needed or not is calculated using the lastUpdatedAt field.
+Leave the values at 0 to disable periodic resets.
 
 ```typescript
-/**
- * @category Interfaces
- */
-export interface iResetTimeIntervals<T extends NumberType> {
-  /** The start time of the first interval. */
-  startTime: T;
-  /** The length of the interval. */
-  intervalLength: T;
+interface ResetTimeIntervals<T extends NumberType> {
+    startTime: T; // Original start time of the first interval
+    intervalLength: T; // Interval length in unix milliseconds
 }
-
 ```
+
+### How It Works
+
+-   **First Update**: If it's the first update of the interval, all tracker progress is reset to zero
+-   **Recurring**: Useful for recurring subscriptions (e.g., one transfer per month)
+-   **No Reset**: Set both values to 0 for no periodic resets
+
+### Example
+
+```json
+{
+    "approvalAmounts": {
+        "overallApprovalAmount": "100",
+        "amountTrackerId": "monthly-tracker",
+        "resetTimeIntervals": {
+            "startTime": "1691978400000", // Aug 13, 2023
+            "intervalLength": "2592000000" // 30 days in milliseconds
+        }
+    }
+}
+```
+
+This creates a monthly reset cycle starting from August 13, 2023.
+
+
+## File: ./x-badges/concepts/approval-criteria/auto-deletion-options.md
+
+# Auto-Deletion Options
+
+Automatically delete approvals after specific conditions are met.
+
+## Interface
+
+```typescript
+interface AutoDeletionOptions {
+    afterOneUse: boolean;
+    afterOverallMaxNumTransfers: boolean;
+}
+```
+
+## How It Works
+
+Auto-deletion options allow approvals to be automatically removed when certain conditions are met:
+
+-   **`afterOneUse`**: Delete the approval after it's used once
+-   **`afterOverallMaxNumTransfers`**: Delete the approval after the overall max number of transfers threshold is met
+
+## Usage Examples
+
+### Single-Use Approval
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": true,
+        "afterOverallMaxNumTransfers": false
+    }
+}
+```
+
+**Result**: Approval is deleted immediately after the first transfer.
+
+### Limited-Use Approval
+
+```json
+{
+    "maxNumTransfers": {
+        "overallMaxNumTransfers": "10"
+    },
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": true
+    }
+}
+```
+
+**Result**: Approval is deleted after 10 transfers are completed.
 
 
 ## File: ./x-badges/concepts/approval-criteria/badge-ownership.md
 
 # Badge Ownership
 
-Must own badges are another unique feature that is very powerful. This allows you to specify certain badges and amounts of badges of a collection (typically a different collection) that must be owned in order to be approved. This is checked on-chain.
+Require specific badge holdings from the initiator. Checked on-chain.
 
-For example, you may implement a badge collection where only holders of a verified badge are approved to send and receive badges. Or, you may implement what you must NOT own (own x0) a scammer badge in order to interact.
-
-Note that alternatively, you may choose to check / enforce this off-chain as well via BitBadges claims.
+## Interface
 
 ```typescript
-export interface MustOwnBadges<T extends NumberType> {
-  collectionId: T;
+interface MustOwnBadges<T extends NumberType> {
+    collectionId: T;
+    amountRange: UintRange<T>; // Min/max amount expected
+    ownershipTimes: UintRange<T>[];
+    badgeIds: UintRange<T>[];
 
-  amountRange: UintRange<T>; //min/max amount expected to be owned
-  ownershipTimes: UintRange<T>[];
-  badgeIds: UintRange<T>[];
-  
-  //override ownershipTimes with the exact block millisecond at execution
-  //Ex: [{start: 12345, end: 12345}]
-  overrideWithCurrentTime: boolean;
-  
-  //if true, must meet ownership requirements for ALL badges
-  //if false, must meet ownership requirements for ONE badge
-  mustSatisfyForAllAssets: boolean; 
+    overrideWithCurrentTime: boolean; // Use current block time. Overrides ownershipTimes with [{ start: currentTime, end: currentTime }]
+    mustSatisfyForAllAssets: boolean; // All vs one badge requirement
 }
 ```
 
@@ -12851,432 +12916,532 @@ export interface MustOwnBadges<T extends NumberType> {
 
 # Dynamic Store Challenges
 
-Dynamic Store Challenges are approval criteria that require the transfer initiator to pass boolean checks against one or more dynamic stores. The concept is simple: if a user can return `true` for all dynamic store fetches by their address (the initiator), they pass all challenges.
-
-This is a powerful feature that can be used to implement complex approval logic. This is intended to be used in conjunctions with smart contracts allowing for more complex logic to be implemented.
-
-Note: For fully off-chain alternatives, you may want to consider the merkleChallenges field to save on gas costs and avoid the need for transactions.
-
-## Proto Definition
-
-```protobuf
-// DynamicStoreChallenge defines a challenge that requires the initiator to pass a dynamic store check.
-message DynamicStoreChallenge {
-  // The ID of the dynamic store to check.
-  string storeId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-}
-```
+Require transfer initiators to pass boolean checks against dynamic stores. Typically, these are used with smart contracts.
 
 ## How It Works
 
-### Challenge Logic
+Dynamic store challenges check if the transfer initiator has a `true` value in specified dynamic stores. The system:
 
-1. **Initiator Check**: The system checks the transfer initiator's address against the specified dynamic store
-2. **Boolean Evaluation**: The dynamic store returns a boolean value for the initiator's address
-3. **Pass Requirement**: The initiator must have a `true` value in the dynamic store to pass the challenge
-4. **Multiple Challenges**: If multiple challenges exist, the initiator must pass ALL of them
+1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
+2. **Evaluates Boolean**: Returns `true` or `false` for the initiator
+3. **Requires All True**: All challenges must return `true` for approval
+4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
 
-### Challenge Evaluation
+## Interface
 
-```javascript
-function passesAllChallenges(initiatorAddress, challenges) {
-    for (const challenge of challenges) {
-        const storeValue = getDynamicStoreValue(
-            challenge.storeId,
-            initiatorAddress
-        );
-        if (!storeValue) {
-            return false; // Failed challenge
-        }
-    }
-    return true; // Passed all challenges
+```typescript
+interface DynamicStoreChallenge<T extends NumberType> {
+    storeId: string; // Dynamic store ID to check
 }
 ```
 
 ## Usage in Approval Criteria
 
-Dynamic store challenges can be used in all three approval levels:
-
-### Collection Approval Criteria
-
 ```json
 {
     "dynamicStoreChallenges": [
-        {
-            "storeId": "1"
-        },
-        {
-            "storeId": "5"
-        }
+        { "storeId": "1" }, // Member status store
+        { "storeId": "2" } // Subscription status store
     ]
 }
 ```
 
-### Outgoing Approval Criteria
+## Managing Dynamic Stores
 
-```json
-{
-    "dynamicStoreChallenges": [
-        {
-            "storeId": "3"
-        }
-    ]
-}
-```
+### Creating Stores
 
-### Incoming Approval Criteria
+Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with default boolean values.
 
-```json
-{
-    "dynamicStoreChallenges": [
-        {
-            "storeId": "2"
-        }
-    ]
-}
-```
+### Setting Values
 
-## Use Cases
+Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
 
-### Membership Verification
+### Querying Values
 
--   **VIP Access**: Store `true` for VIP members in a dynamic store
--   **Active Users**: Track active users with periodic updates
--   **Subscription Status**: Verify current subscription status
+Use [GetDynamicStoreValue](../../queries/get-dynamic-store-value.md) to check current values for addresses.
 
-### Governance and Voting
+## Alternative
 
--   **Voting Rights**: Store voting eligibility in dynamic stores
--   **Proposal Participation**: Track participation in governance proposals
--   **Staking Requirements**: Verify staking status for transfer privileges
-
-### Game Mechanics
-
--   **Achievement Unlocks**: Require specific achievements for certain transfers
--   **Level Requirements**: Check player levels or progression
--   **Quest Completion**: Verify quest completion status
-
-### Compliance and KYC
-
--   **Identity Verification**: Store KYC completion status
--   **Compliance Checks**: Verify regulatory compliance
--   **Whitelist Management**: Maintain dynamic whitelists
-
-## Example Implementation
-
-### Setup Dynamic Store Challenge
-
-```json
-{
-    "collectionApprovals": [
-        {
-            "approvalId": "member-only-transfers",
-            "fromListId": "All",
-            "toListId": "All",
-            "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "100" }],
-            "dynamicStoreChallenges": [
-                {
-                    "storeId": "1" // Member status store
-                },
-                {
-                    "storeId": "2" // Active subscription store
-                }
-            ]
-        }
-    ]
-}
-```
-
-### Managing Store Values
-
-Users and managers can update dynamic store values using the appropriate messages and queries.
-
-## Related Operations
-
-For more information on managing dynamic stores, see:
-
--   **[Create Dynamic Store](../../messages/msg-create-dynamic-store.md)** - Creating new dynamic stores
--   **[Update Dynamic Store](../../messages/msg-update-dynamic-store.md)** - Updating store properties
--   **[Delete Dynamic Store](../../messages/msg-delete-dynamic-store.md)** - Removing dynamic stores
--   **[Set Dynamic Store Value](../../messages/msg-set-dynamic-store-value.md)** - Setting address-specific values
--   **[Get Dynamic Store Value](../../queries/query-get-dynamic-store-value.md)** - Querying store values
-
-## Important Notes
-
-### Default Values
-
--   Dynamic stores have default values for uninitialized addresses
--   If an address has no explicit value, the default is used
--   Default values are set when creating the dynamic store
-
-### Performance Considerations
-
--   Dynamic store lookups are efficient on-chain operations
--   Multiple challenges are evaluated sequentially
--   Consider the gas cost of multiple store lookups
-
-### Security Implications
-
--   Store creators control who can update values
--   Values can be changed, affecting future challenge results
--   Design challenges with appropriate access controls
-
-Dynamic Store Challenges provide a flexible and powerful way to implement complex approval logic while maintaining simplicity in the core protocol design.
+For fully off-chain solutions, consider [Merkle Challenges](merkle-challenges.md) to save gas costs.
 
 
 ## File: ./x-badges/concepts/approval-criteria/linking-trackers-advanced.md
 
-# Extending the Approval (Advanced)
+# Extending Approvals (Advanced)
 
-We try to offer as much as we can in the native interface; however, in edge cases, you may run into scenarios where you need more advanced functionality, for example, cross-approval functionality or access to other blockchain data / modules.
+For edge cases requiring advanced functionality beyond native interfaces.
 
-Before trying to extend the approval, please consider workarounds and design considerations. Many approvals that you think may need extension can be altered to fit into the native interfaces by thinking out of the box.
+## When to Extend
 
-If you truly do need a more custom implementation, you will have to build your own smart contract with CosmWASM or an alternative self-implementation and call into the x/badges module. We refer you to the Tutorials section for how to do so.&#x20;
+Consider extending when you need:
 
-Please also let us know if whatever you are missing can be added natively. Our end goal is to have no one ever write a smart contract.
+-   Cross-approval functionality
+-   Access to other blockchain data/modules
+-   Custom logic not covered by native options
 
+## Before Extending
+
+1. **Consider Workarounds**: Many approvals can be adapted to fit native interfaces
+2. **Design Alternatives**: Think creatively about using existing features
+3. **Evaluate Necessity**: Ensure extension is truly required
+
+## Implementation Options
+
+### CosmWASM Smart Contracts
+
+Build custom smart contracts that call into the x/badges module.
+
+### EVM Smart Contracts (Coming Soon)
+
+Build custom EVM contracts that call into the x/badges module.
 
 
 ## File: ./x-badges/concepts/approval-criteria/max-number-of-transfers.md
 
 # Max Number of Transfers
 
-Pre-Readings (IMPORTANT): [Approval Trackers](approval-trackers.md)
+Limit the number of transfers that can occur using approval trackers.
+
+See [Approval Trackers](./approval-trackers.md) for more information on how trackers work.
+
+## Interface
 
 ```typescript
-export interface ApprovalCriteria<T extends NumberType> {
-  ...
-  maxNumTransfers?: MaxNumTransfers<T>;
-  ...
+interface ApprovalCriteria<T extends NumberType> {
+    maxNumTransfers?: MaxNumTransfers<T>;
 }
 ```
 
-Similar to approval amounts, you can also specify the maximum number of transfers that can occur on an overall or per sender/recipient/initiatedBy basis. If tracked, the corresponding approval tracker will be incremented by 1 each transfer.&#x20;
+## How It Works
 
-"0" means unlimited allowed and not tracked. "N" means max N transfers allowed.
+Similar to approval amounts, specify maximum transfers on:
 
-**Example**
+-   **Overall**: Universal limit for all transfers
+-   **Per Sender**: Limit per unique sender address
+-   **Per Recipient**: Limit per unique recipient address
+-   **Per Initiator**: Limit per unique initiator address
 
-Let's say we have the ID `1-collection- -approvalId-uniqueID-initiatedBy-alice` and the defined values below:
+"0" means unlimited and not tracked. "N" means max N transfers allowed.
 
-<pre class="language-json"><code class="lang-json">"maxNumTransfers": {
-<strong>    "overallMaxNumTransfers": "0",
-</strong>    "perFromAddressMaxNumTransfers": "0",
-    "perToAddressMaxNumTransfers": "0",
-    "perInitiatedByAddressMaxNumTransfers": "1",
-    "amountTrackerId": "uniqueID",
-    "resetTimeIntervals": {
-      "startTime": "0",
-      "intervalLength": "0"
+## Example
+
+```json
+{
+    "maxNumTransfers": {
+        "overallMaxNumTransfers": "0",
+        "perFromAddressMaxNumTransfers": "0",
+        "perToAddressMaxNumTransfers": "0",
+        "perInitiatedByAddressMaxNumTransfers": "1",
+        "amountTrackerId": "uniqueID"
     }
 }
-</code></pre>
+```
 
-The first transfer initiated by Alice would increment the approval tracker ID`1-collection- -approvalId-uniqueID-initiatedBy-alice` to 1/1 transfers used. Alice can no longer initiate another transfer.
+Alice can initiate 1 transfer, then no more. Bob can still transfer (different tracker).
 
-However, Bob can still transfer because his ID is `1-collection- -approvalId-uniqueID-initiatedBy-bob` which is a different tracker.
+```typescript
+{
+    "fullTrackerId": {
+        "numTransfers": 1,
+        "amounts": [],
+        "lastUpdatedAt": 1691978400000
+    }
+}
+```
 
-**As-Needed Basis**
+## As-Needed Basis
 
-We track on an as-needed basis, meaning if we do not have requirements that use the number of transfers, we will not increment / track.
+We track on an as-needed basis, meaning if we do not have requirements that use the number of transfers, we will not increment the tracker.
 
-Edge Case: In [Predetermined Balances](max-number-of-transfers.md#predetermined-balances), you may need the number of transfers for determining the balances to assign to each transfer (e.g. transfer #10 -> badge ID 10). In this case, we do need to track the number of transfers. This is all facilitated via the same tracker, so even if you have "0" or unlimited set for the corresponding value in **maxNumTransfers**, the tracker may be incremented behind the scenes. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
+Edge Case: In Predetermined Balances, you may need the number of transfers for determining the balances to assign to each transfer (e.g. transfer #10 -> badge ID 10). In this case, we do need to track the number of transfers. This is all facilitated via the same tracker, so even if you have "0" or unlimited set for the corresponding value in maxNumTransfers, the tracker may be incremented behind the scenes. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
 
 
 ## File: ./x-badges/concepts/approval-criteria/merkle-challenges.md
 
 # Merkle Challenges
 
+## Overview
+
+Merkle challenges provide cryptographic proof-based approval mechanisms using SHA256 Merkle trees. They enable secure, gas-efficient whitelisting and claim code systems without storing large address lists on-chain.
+
+**Key Benefits**:
+
+-   **Gas Efficiency**: Distribute gas costs among users instead of collection creators
+-   **Security**: Cryptographic proof verification prevents unauthorized access
+-   **Flexibility**: Support both whitelist trees and claim code systems
+-   **Scalability**: Handle large user bases without on-chain storage
+
+## Interface Definition
+
 ```typescript
 export interface MerkleChallenge<T extends NumberType> {
-    root: string;
-    expectedProofLength: T;
-    useCreatorAddressAsLeaf: boolean;
-    maxUsesPerLeaf: T;
-    uri: string;
-    customData: string;
-    challengeTrackerId: string;
-    leafSigner: string;
+    root: string; // SHA256 Merkle tree root hash
+    expectedProofLength: T; // Required proof length (security)
+    useCreatorAddressAsLeaf: boolean; // Use initiator address as leaf?
+    maxUsesPerLeaf: T; // Maximum uses per leaf
+    uri: string; // Metadata URI
+    customData: string; // Custom data field
+    challengeTrackerId: string; // Unique tracker identifier
+    leafSigner: string; // Optional leaf signature authority
 }
 ```
 
-<pre class="language-json"><code class="lang-json"><strong>"merkleChallenge": {
-</strong>   "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
-   "expectedProofLength": "1",
-   "useCreatorAddressAsLeaf": true,
-   "maxOneUsePerLeaf": true,
-   "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
-   "customData": "",
-   "challengeTrackerId": "uniqueId",
-   "leafSigner": "0x"
+## Basic Example
+
+```json
+{
+    "merkleChallenges": [
+        {
+            "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
+            "expectedProofLength": "1",
+            "useCreatorAddressAsLeaf": false,
+            "maxUsesPerLeaf": "1",
+            "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
+            "customData": "",
+            "challengeTrackerId": "uniqueId",
+            "leafSigner": "0x"
+        }
+    ]
 }
-</code></pre>
+```
 
-Merkle challenges allow you to define a SHA256 Merkle tree, and to be approved for each transfer, the initiator of the transfer must provide a valid Merkle path for the tree when they transfer (via **merkleProofs** in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)).
+## Challenge Types
 
-For example, you can create a Merkle tree of claim codes. Then to be able to claim badges, each claimee must provide a valid unused Merkle path from the claim code to the **root**. You distribute the secret leaves / paths in any method you prefer.
+### 1. Claim Code Challenges
 
-Or, you can create an whitelist tree where the user's addresses are the leaves, and they must specify the valid Merkle path from their address to claim. This can be used to distribute gas costs among N users rather than the collection creator defining an address list with N users on-chain and paying all gas fees.
+Create a Merkle tree of secret claim codes that users must provide to claim badges.
 
-#### Expected Proof Length
+**Use Case**: Private claim codes, invitation systems, promotional campaigns
 
-The **expectedProofLength** defines the expected length for the Merkle proofs to be provided. This avoids preimage and second preimage attacks. **All proofs must be of the same length, which means you must design your trees accordingly. THIS IS CRITICAL.**
+**Process**:
 
-**Whitelist Trees**
+1. Generate secret claim codes
+2. Build Merkle tree from hashed codes
+3. Distribute codes privately to users with leaf signatures
+4. Users provide code + Merkle proof in transfer
 
-Whitelist trees can be used to distribute gas costs among N users rather than the collection creator defining an expensive address list with N users on-chain and paying all gas fees. For small N, we recommend not using whitelist trees for user experience.
+### 2. Whitelist Challenges
 
-If defining a whitelist tree, note that the initiator must also be within the **initiatedByList** of the approval for it to make sense. Typically, **initiatedByList** will be set to "All" and then the whitelist tree restricts who can initiate.
+Create a Merkle tree of user addresses for gas-efficient whitelisting.
 
-To create a whitelist tree, you need to set **useCreatorAddressAsLeaf** to true. If **useCreatorAddressAsLeaf** is set to true, we will override the provided leaf of each Merkle proof with the BitBadges address of the initiator of the transfer transaction.
+**Use Case**: Large whitelists, community access, gas cost distribution
 
-**Max Uses per Leaf**
+**Process**:
 
-For whitelist trees (**useCreatorAddressAsLeaf** is true), **maxUsesPerLeaf** can be set to any number. "0" or null means unlimited uses. "1" means max one use per leaf and so on. When **useCreatorAddressAsLeaf** is false, this must be set to "1" to avoid replay attacks. For example, ensure that a code / proof can only be used once because once used once, the blockchain is public and anyone then knows the secret code.
+1. Collect user addresses
+2. Build Merkle tree from hashed addresses
+3. Users provide their address + Merkle proof
+4. System verifies address is in whitelist / valid proof
 
-We track this in a challenge tracker, similar to the approvals trackers previously explained. We simply track if a leaf index (leftmost leaf of expected proof length layer (aka leaf layer) = index 0, ...) has been used and only allow it to be used **maxUsesPerLeaf** many times, if constrained.
+**Gas Cost Distribution**: Instead of the collection creator paying gas to store N addresses on-chain, each user pays their own gas for proof verification.
 
-The identifier for each challenge tracker consists of **challengeTrackerId** along with other identifying details seen below. The full ID contains the **approvalId,** so you know state will always be scoped to an approval and the tracker cannot be used by any other approval.
+## Understanding useCreatorAddressAsLeaf
 
-Like approval trackers, this is increment only and non-deletable. Thus, it is critical to not use a tracker with prior history if you intend for it to start tracking from scratch. This can be achieved by using an unused **challengeTrackerId**. If updating an approval with a challenge, please consider how the challenge tracker is working behind the scenes.
+The `useCreatorAddressAsLeaf` field determines how the system handles the leaf value in Merkle proofs:
+
+### Whitelist Trees (`useCreatorAddressAsLeaf: true`)
+
+**Purpose**: Verify that the transaction initiator is in the whitelist.
+
+**How It Works**:
+
+1. **Automatic Override**: The system expects the provided leaf to be the initiator's BitBadges address ("bb1...")
+2. **Address Verification**: Checks if the initiator's address exists in the Merkle tree
+3. **No Manual Leaf**: Users don't need to provide their address as the leaf - the system handles it
+
+**Recommended Configuration**:
+
+-   Set `initiatedByList` to "All" (whitelist tree handles the restriction)
+-   Set `useCreatorAddressAsLeaf: true`
+-   Build Merkle tree from BitBadges addresses as leaves ["bb1...", "bb2...", "bb3..."]
+
+### Claim Code Trees (`useCreatorAddressAsLeaf: false`)
+
+**Purpose**: Verify that the user possesses a valid claim code.
+
+**How It Works**:
+
+1. **Manual Leaf**: User must provide the actual claim code as the leaf
+2. **Code Verification**: System verifies the provided code exists in the Merkle tree
+3. **User Responsibility**: Users must know and provide their claim code
+
+**Recommended Configuration**:
+
+-   Set `useCreatorAddressAsLeaf: false`
+-   Build Merkle tree from claim codes as leaves ["secret1", "secret2", "secret3"]
+-   Post root hash on-chain as challenge
+-   Distribute codes privately to users with leaf signatures
+
+## Security Features
+
+### Expected Proof Length
+
+**Critical Security Feature**: All proofs must have the same length to prevent preimage and second preimage attacks.
+
+```typescript
+// All proofs must match this length
+expectedProofLength: '2'; // 2-level proof required
+```
+
+**Design Requirement**: Your Merkle tree must be constructed so all leaves are at the same depth.
+
+### Max Uses Per Leaf
+
+Control how many times each leaf can be used:
+
+| Setting         | Behavior          | Use Case             |
+| --------------- | ----------------- | -------------------- |
+| `"0"` or `null` | Unlimited uses    | Public claim codes   |
+| `"1"`           | One-time use      | Single-use codes     |
+| `"5"`           | Five uses maximum | Limited distribution |
+
+**Critical Security Requirement**: For claim code challenges (`useCreatorAddressAsLeaf: false`), `maxUsesPerLeaf` must be `"1"` to prevent replay attacks.
+
+### Replay Attack Protection
+
+**⚠️ CRITICAL SECURITY RISK**: Non-address trees (claim codes) are vulnerable to front-running attacks.
+
+**The Problem**:
+
+1. User submits transaction with valid Merkle proof
+2. Proof becomes visible in mempool (public blockchain)
+3. Malicious actor sees the proof and front-runs the transaction
+4. Original user's transaction fails, attacker gets the badge
+
+**Why This Happens**:
+
+-   Merkle proofs for claim codes are reusable until consumed
+-   Once in mempool, proofs are publicly visible
+-   No built-in protection against proof reuse
+
+**The Solution**: Leaf signatures provide cryptographic protection against this attack.
+
+## Challenge Tracking
+
+### Tracker System
+
+Uses increment-only, immutable trackers to prevent double-spending:
 
 ```typescript
 {
-  collectionId: T;
-  approvalId: string;
-  approvalLevel: "collection" | "incoming" | "outgoing";
-  approverAddress?: string;
-  challengeTrackerId: string;
-  leafIndex: T;
+    collectionId: T;
+    approvalId: string;
+    approvalLevel: 'collection' | 'incoming' | 'outgoing';
+    approverAddress: string; // blank if collection-level
+    challengeTrackerId: string;
+    leafIndex: T; // Leftmost base layer leaf index = 0, rightmost = numLeaves - 1
 }
 ```
 
-**approvalLevel** corresponds to whether it is a collection-level approval, user incoming approval, or user outgoing approval. If it is user level, the **approverAddress** is the user setting the approval. **approverAddress** is blank for collection level.
+Note the fact we use leaf indices to track usage and not leaf values.
 
-Example:
+### Tracker Examples
 
-`1-collection- -approvalId-uniqueID-0` -> USED 1 TIME
+```
+1-collection- -approvalId-uniqueID-0  → USED 1 TIME
+1-collection- -approvalId-uniqueID-1  → UNUSED
+1-collection- -approvalId-uniqueID-2  → USED 3 TIMES
+```
 
-`1-collection- -approvalId-uniqueID-1` -> UNUSED
+**Important**: Trackers are scoped to specific approvals and cannot be shared between different approval configurations.
 
-**Reserving Specific Leafs**
+### Tracker Management
 
-See Predetermined Balances below for reserving specific leaf indices for specific badges / ownership times.
+-   **Increment-Only**: Once used, the number of uses cannot be decremented
+-   **Immutable**: Tracker state cannot be modified
+-   **Best Practice**: Use unique `challengeTrackerId` for fresh tracking of new approvals
 
-**Leaf Signatures**
+## Leaf Signatures
 
-Leaf signatures are a protection against man-in-the-middle attacks. For code-based merkle challenges, there is always a risk that the code is intercepted while the transaction is in the mempool, and the malicious actor can try to claim the badge with the intercepted code before the user can.
+### Protection Against Front-Running
 
-If **leafSigner** is set, the leaf must be signed by the leaf signer. We currently only support leafSigner being an Ethereum address and signatures being ECDSA signatures.
+Leaf signatures provide cryptographic protection against front-running attacks on claim code challenges.
 
-The scheme we currently use is as follows:\
-signature = ETHSign(leaf + "-" + bitbadgesAddressOfInitiator)
+**How It Works**:
 
-Then the user must provide the **leafSignature** in the **merkleProofs** field of the transfer transaction.
+```typescript
+// Signature scheme
+signature = ETHSign(leaf + '-' + bitbadgesAddressOfInitiator);
+```
 
-Note: The bitbadgesAddressOfInitiator is the converted BitBadges address (bb1...) of the initiator of the transfer transaction. This also helps to tie a specific code to a specific BitBadges address to prevent other users from using and intercepting the same code.
+**Security Mechanism**:
 
-This is optional but strongly recommended for code-based merkle challenges.
+1. **Address Binding**: Each proof is cryptographically tied to a specific BitBadges address
+2. **Replay Prevention**: Even if proof is intercepted, it cannot be used by other addresses
+3. **Mempool Safety**: Intercepted proofs in mempool are useless to attackers
 
-#### **Creating a Merkle Tree**
+### Implementation
 
-We provide the **treeOptions** field in the SDK to let you define your own build options for the tree (see [Compatibility](../../../bitbadges-api/concepts/designing-for-compatibility.md) with the BitBadges API / Indexer). You may experiment with this, but please test all Merkle paths and claims work as intended first. The only tested build options so far are what you see below with the fillDefaultHash.
+```typescript
+// Only Ethereum addresses supported currently
+leafSigner: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
+```
 
-The important part is making sure all leaves are on the same layer and have the same proof length, or else, they will fail on-chain.
+**Critical Benefits**:
+
+-   **Front-Running Protection**: Prevents attackers from stealing badges via mempool interception
+-   **Address-Specific**: Each proof is cryptographically bound to the intended recipient
+-   **Mempool Safety**: Makes intercepted proofs useless to malicious actors
+-   **Required for Claim Codes**: Strongly recommended for all non-address tree challenges
+
+**⚠️ IMPORTANT**: For claim code challenges, leaf signatures are not just recommended—they are essential for security against front-running attacks.
+
+## Merkle Tree Construction
+
+### Standard Configuration
 
 ```typescript
 import { SHA256 } from 'crypto-js';
 import MerkleTree from 'merkletreejs';
 
-const codes = [...]
-const hashedCodes = codes.map(x => SHA256(x).toString());
-const treeOptions = { fillDefaultHash: '0000000000000000000000000000000000000000000000000000000000000000' }
-const codesTree = new MerkleTree(hashedCodes, SHA256, treeOptions);
-const codesRoot = codesTree.getRoot().toString('hex');
-const expectedMerkleProofLength = codesTree.getLayerCount() - 1;
+// For claim codes
+const codes = ['secret1', 'secret2', 'secret3'];
+const hashedCodes = codes.map((x) => SHA256(x).toString());
+
+// For whitelists
+const addresses = ['bb1...', 'bb1...', 'bb1...'];
+const hashedAddresses = addresses.map((x) => SHA256(x));
+
+// Tree options (tested configuration)
+const treeOptions = {
+    fillDefaultHash:
+        '0000000000000000000000000000000000000000000000000000000000000000',
+};
+
+// Build tree
+const tree = new MerkleTree(hashedCodes, SHA256, treeOptions);
+const root = tree.getRoot().toString('hex');
+const expectedProofLength = tree.getLayerCount() - 1;
 ```
 
-For whitelists, replace with this code.
+### Critical Requirements
+
+1. **Same Layer**: All leaves must be at the same depth
+2. **Consistent Proof Length**: All proofs must have identical length
+3. **Test Thoroughly**: Verify all paths work before deployment
+4. **Use Tested Options**: Stick to the `fillDefaultHash` configuration
+
+## Transfer Integration
+
+### Providing Proofs
+
+Include Merkle proofs in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
 
 ```typescript
-addresses.push(...toAddresses.map((x) => convertToBitBadgesAddress(x)));
-
-const addressesTree = new MerkleTree(
-    addresses.map((x) => SHA256(x)),
-    SHA256,
-    treeOptions
-);
-const addressesRoot = addressesTree.getRoot().toString('hex');
-```
-
-A valid proof can then be created via where codeToSubmit is the code submitted by the user.
-
-```typescript
-const passwordCodeToSubmit = '....'
-const leaf = isWhitelist ? SHA256(chain.bitbadgesAddress).toString() : SHA256(passwordCodeToSubmit).toString();
-const proofObj = tree?.getProof(leaf, whitelistIndex !== undefined && whitelistIndex >= 0 ? whitelistIndex : undefined);
-const isValidProof = proofObj && tree && proofObj.length === tree.getLayerCount() - 1;
-
-const leafSignature = '...';
-
-
-const codeProof = {
-  aunts: proofObj ? proofObj.map((proof) => {
-    return {
-      aunt: proof.data.toString('hex'),
-      onRight: proof.position === 'right'
-    }
-  }) : [],
-  leaf: isWhitelist ? '' : passwordCodeToSubmit,
-  leafSignature //if applicable
-}
-
 const txCosmosMsg: MsgTransferBadges<bigint> = {
-  creator: chain.bitbadgesAddress,
-  collectionId: collectionId,
-  transfers: [{
-    ...
-    merkleProofs: requiresProof ? [codeProof] : [],
-    ...
-  }],
+    creator: chain.bitbadgesAddress,
+    collectionId: collectionId,
+    transfers: [
+        {
+            // ... other fields
+            merkleProofs: [
+                {
+                    aunts: proofObj.map((proof) => ({
+                        aunt: proof.data.toString('hex'),
+                        onRight: proof.position === 'right',
+                    })),
+                    leaf: isWhitelist ? '' : passwordCodeToSubmit,
+                    leafSignature: leafSignature, // if applicable
+                },
+            ],
+        },
+    ],
 };
 ```
+
+### Proof Generation
+
+```typescript
+// Generate proof for user submission
+const passwordCodeToSubmit = 'secretCode123';
+const leaf = isWhitelist
+    ? SHA256(chain.bitbadgesAddress).toString()
+    : SHA256(passwordCodeToSubmit).toString();
+
+const proofObj = tree.getProof(leaf, whitelistIndex);
+const isValidProof = proofObj && proofObj.length === tree.getLayerCount() - 1;
+
+// Create signature if needed
+const leafSignature = signLeaf(leaf + '-' + chain.bitbadgesAddress);
+```
+
+## Best Practices
+
+### Design Considerations
+
+1. **Tree Structure**: Ensure all leaves at same depth
+2. **Proof Length**: Test all proof lengths are identical
+3. **Tracker Management**: Use unique IDs for fresh tracking
+4. **Security**: **MANDATORY** - Enable leaf signatures for claim codes to prevent front-running
+5. **Testing**: Verify all paths work before mainnet
+
+### Performance Optimization
+
+1. **Small Lists**: For <100 users, consider regular address lists
+2. **Gas Distribution**: Merkle trees excel with large user bases
+3. **Proof Verification**: On-chain verification is gas-efficient
+4. **Storage**: No on-chain storage of large lists required
 
 
 ## File: ./x-badges/concepts/approval-criteria/overrides.md
 
 # Override User Level Approvals
 
-As mentioned in the transferability page, the collection-wide approvals can override the user-level approvals. This is done via **overridesFromOutgoingApprovals** or **overridesToIncomingApprovals**.
+Collection-level approvals can override user-level approvals to force transfers.
 
-If set to true, we will not check the user's incoming / outgoing approvals for the approved balances respectively. Essentially, it is **forcefully** transferred without needing user approvals. This can be leveraged to implement forcefully revoking a badge, freezing a badge, etc.
+## Interface
 
-IMPORTANT: The Mint address has its own approvals store, but since it is not a real address, they are always empty. **Thus, it is important that when you define approvals from the Mint address, you always override the outgoing approvals of the Mint address.** Or else, the approval will not work.
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    overridesFromOutgoingApprovals?: boolean;
+    overridesToIncomingApprovals?: boolean;
+}
+```
 
-* <pre class="language-json"><code class="lang-json"><strong>"fromListId": "Mint", //represents the list with the "Mint" addres
-  </strong>...
-  "approvalCriteria": {
-    "overridesFromOutgoingApprovals": true
-    ...
-  }
-  </code></pre>
+## How It Works
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (18).png" alt=""><figcaption></figcaption></figure>
+-   **`overridesFromOutgoingApprovals: true`**: Skip sender's outgoing approvals
+-   **`overridesToIncomingApprovals: true`**: Skip recipient's incoming approvals
+
+This enables forced transfers without user consent.
+
+## Use Cases
+
+-   **Force Revoke**: Remove badges from users
+-   **Freeze Badges**: Prevent transfers regardless of user settings
+-   **Emergency Actions**: Administrative control over transfers
+
+## Mint Address Requirement
+
+**CRITICAL**: Mint address approvals must always override outgoing approvals:
+
+```json
+{
+    "fromListId": "Mint",
+    "approvalCriteria": {
+        "overridesFromOutgoingApprovals": true
+    }
+}
+```
+
+The Mint address has no user-level approvals, so overrides are required for functionality.
 
 
 ## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
 
 # Predetermined Balances
 
-Predetermined balances are a new way of having fine-grained control over the amounts that are approved with each transfer. In a typical tally-based system where you approve X amount to be transferred, you have no control over the combination of amounts that will add up to X. For example, if you approve x100, you can't control whether the transfers are \[x1, x1, x98] or \[x100] or another combination.
+## Overview
 
-Predetermined balances let you explicitly define the amounts that must be transferred and the order of the transfers. For example, you can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on.
+Predetermined balances provide fine-grained control over the exact amounts and order of transfers in an approval. Unlike traditional tally-based systems where you approve a total amount (e.g., 100 badges) without controlling the specific combinations, predetermined balances let you explicitly define:
 
-Although this can be used in tandem with approval amounts, either one or the other is usually used because they both specify amount restrictions.
+-   **Exact amounts** that must be transferred
+-   **Specific order** of transfers
+-   **Precise badge IDs and ownership times** for each transfer
 
-**TLDR; The transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.**
+**Key Principle**: The transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.
+
+## Interface Definition
 
 ```typescript
 export interface PredeterminedBalances<T extends NumberType> {
@@ -13286,102 +13451,224 @@ export interface PredeterminedBalances<T extends NumberType> {
 }
 ```
 
-## **Defining Balances**
+## Balance Definition Methods
 
-There are two ways to define the balances. Both can not be used together.
+There are two mutually exclusive ways to define balances:
 
--   **Manual Balances:** Simply define an array of balances manually. Each element corresponds to a different set of balances for a unique transfer.
--   ```json
+### 1. Manual Balances
+
+Define an array of specific balance sets manually. Each element corresponds to a different transfer.
+
+```json
+{
     "manualBalances": [
-      {
-        "amount": "1",
-        "badgeIds": [
-          {
-            "start": "1",
-            "end": "1"
-          }
-        ],
-        "ownershipTimes": [
-          {
-            "start": "1691978400000",
-            "end": "1723514400000"
-          }
-        ]
-      },
-      {...},
-      {...},
-    ]
-    ```
--   **Incremented Balances:** Define starting balances and then define how much to increment or calculate the IDs and times by after each transfer. There are different approaches here (incompatible with each other).
-    -   Increments: You can enforce x1 of badge ID 1 has to be transferred before x1 of badge ID 2, and so on. This is typically used for minting badges. You can also customize the ownership times to increment by a certain amount. Or, have them dynamically overriden to be the current time + a interval length (now + 1 month, now + 1 year, etc).
-    -   Duration From Timestamp: If enabled, this will dynamically calculate the ownership times from a timestamp (default: transfer time) + a set duration of time. All ownership times will be overwritten. If the override timestamp is allowed, users can specify a custom timestamp to start from in MsgTransferBadges precalculationOptions.
-    -   Recurring Ownership Times: Recurring ownership times are similar to the above, but they define set intervals + charge periods that are approved. For example, you could approve the ownership times for the 1st to the 30th of the month which repeats indefinitely. The charge period is how long before the next interval starts, the approval can be used. For example, allow this approval to be charged up to 7 days in advance of the next interval.
-    -   Allowing Badge Override: If enabled, users can specify a custom badge ID in MsgTransferBadges precalculationOptions. This will override all the badge IDs in the starting balances to this specified badge ID. This is useful for collection offers. The specified badge IDs must only be a single badge ID and must be a valid badge ID in the collection.
--   ```json
-    "incrementedBalances": {
-      "startBalances": [
         {
-          "amount": "1",
-          "badgeIds": [
-            {
-              "start": "1",
-              "end": "1"
-            }
-          ],
-          "ownershipTimes": [
-            {
-              "start": "1691978400000",
-              "end": "1723514400000"
-            }
-          ]
+            "amount": "1",
+            "badgeIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1691978400000",
+                    "end": "1723514400000"
+                }
+            ]
+        },
+        {
+            "amount": "5",
+            "badgeIds": [
+                {
+                    "start": "2",
+                    "end": "6"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1691978400000",
+                    "end": "1723514400000"
+                }
+            ]
         }
-      ],
-      "incrementBadgeIdsBy": "1",
-      "incrementOwnershipTimesBy": "0",
-      "durationFromTimestamp": "0", // UNIX milliseconds
-      "allowOverrideTimestamp": false,
-      "allowOverrideWithAnyValidBadge": false,
-      "recurringOwnershipTimes": {
-        "startTime": "0",
-        "intervalLength": "0",
-        "chargePeriodLength": "0"
-      }
-    }
-    ```
-
-## **Precalculating Balances**
-
-Predetermined balances can quickly change, such as in between the time a transaction is broadcasted and confirmed. For example, other users' mints get processed, and thus, the badge IDs one should receive changes. This creates a problem because you can't manually specify balances because that results in race conditions and failed transfers / claims.
-
-To combat this, when initiating a transfer, we allow you to specify **precalculateBalancesFromApproval** (in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md)). Here, you define which **approvalId** you want to precalculate from, and at execution time, we calculate what the predetermined balances are and override the requested balances to transfer with them. Note this is the unique **approvalId** of the approval, not the tracker ID. Additional override options can be specified in the **precalculationOptions** field as well.
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>precalculateBalancesFromApproval: {
-</strong>    approvalId: string;
-    approvalLevel: string; //"collection" | "incoming" | "outgoing"
-    approverAddress: string; //"" if collection-level
-    version: string; //"1"
+    ]
 }
-</code></pre>
+```
 
-## **Defining Order of Transfers**
+**Use Case**: When you need complete control over each specific transfer amount and timing.
 
-Which balances to assign for a transfer is calculated by a specified order calculation method.
+### 2. Incremented Balances
 
-For manual balances, we want to determine which element index of the array is transferred (e.g. order number = 0 means the balances of manualBalances\[0] will be transferred). For incremented balances, this corresponds to how many times we should increment (e.g. order number = 5 means apply the increments to the starting balances five times).
+Define starting balances and rules for subsequent transfers. Perfect for sequential minting or time-based releases or other common patterns. Note that most options are incompatible with each other.
 
-There are five calculation methods to determine the order method.
+```json
+{
+    "incrementedBalances": {
+        "startBalances": [
+            {
+                "amount": "1",
+                "badgeIds": [
+                    {
+                        "start": "1",
+                        "end": "1"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": "1691978400000",
+                        "end": "1723514400000"
+                    }
+                ]
+            }
+        ],
+        "incrementBadgeIdsBy": "1",
+        "incrementOwnershipTimesBy": "0",
+        "durationFromTimestamp": "0",
+        "allowOverrideTimestamp": false,
+        "allowOverrideWithAnyValidBadge": false,
+        "recurringOwnershipTimes": {
+            "startTime": "0",
+            "intervalLength": "0",
+            "chargePeriodLength": "0"
+        }
+    }
+}
+```
 
-### Defining Order by Number of Transfers
+#### Increment Options
 
-We either use a running tally of the number of transfers to calculate the order number (no previous transfers = order number 0, one previous transfer = order number 1, and so on). This can be done on an overall or per to/from/initiatedBy address basis and is incremented using an approval tracker as explained in [Max Number of Transfers](predetermined-balances.md#max-number-of-transfers).
+| Field                            | Description                                          | Example                                              |
+| -------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `incrementBadgeIdsBy`            | Amount to increment badge IDs by after each transfer | `"1"` = next transfer gets badge ID 2, then 3, etc.  |
+| `incrementOwnershipTimesBy`      | Amount to increment ownership times by               | `"86400000"` = add 1 day to ownership times          |
+| `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
+| `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
+| `allowOverrideWithAnyValidBadge` | Allow any valid badge ID (one) override              | `true` = users can specify any single valid badge ID |
+| `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
-IMPORTANT: Note the number of transfers is tracked using the same tracker as used within **maxNumTransfers**. Trackers are increment only, immutable, and incremented on an as-needed basis. Be mindful of this. If the tracker has prior history (potentially because **maxNumTransfers** was set), the order numbers will be calculated according to the prior history of this tracker. The opposite is also true. If you are tracking transfers here for predetermined balances, the **maxNumTransfers** restrictions will be calculated according to the tracker's history. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
+#### Duration From Timestamp
 
-### Reserved Order
+Dynamically calculate ownership times from a timestamp plus a set duration. This overwrites all ownership times in the starting balances.
 
-We also support using the leaf index for the defined Merkle challenge proof (see [Merkle Challenges](predetermined-balances.md#merkle-challenges)) to calculate the order number (e.g. leftmost leaf on expected leaf layer will correspond to order number 0, next leaf will be order number 1, and so on). The leftmost leaf means the leftmost leaf of the **expectedProofLength** layer. The challenge we will use is the one with the corresponding **challengeTrackerId**.
+```json
+{
+    "durationFromTimestamp": "2592000000", // 30 days in milliseconds
+    "allowOverrideTimestamp": true
+}
+```
 
-This is used to reserve specific badges for specific users / claim codes. For example, reserve the badges corresponding to order number 10 (leaf number 10) for address xyz.eth.
+**Behavior**:
+
+-   **Default**: Uses transfer time as the base timestamp
+-   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferBadges` `precalculationOptions`
+-   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
+-   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
+
+#### Recurring Ownership Times
+
+Define repeating time intervals for subscriptions or periodic rewards:
+
+```json
+{
+    "recurringOwnershipTimes": {
+        "startTime": "1691978400000", // When intervals begin
+        "intervalLength": "2592000000", // 30 days in milliseconds
+        "chargePeriodLength": "604800000" // 7 days advance charging
+    }
+}
+```
+
+**Example**: Monthly subscription starting August 13, 2023, with 7-day advance charging period.
+
+## Precalculating Balances
+
+### The Race Condition Problem
+
+Predetermined balances can change rapidly between transaction broadcast and confirmation. For example:
+
+-   Other users' mints get processed
+-   Badge IDs shift due to concurrent activity
+-   Manual balance specification becomes unreliable
+
+### The Solution: Precalculation
+
+Use `precalculateBalancesFromApproval` in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
+
+```typescript
+{
+  precalculateBalancesFromApproval: {
+    approvalId: string;           // The approval to precalculate from
+    approvalLevel: string;        // "collection" | "incoming" | "outgoing"
+    approverAddress: string;      // "" if collection-level
+    version: string;              // Must specify exact version
+  },
+  precalculationOptions: {
+    // Additional override options dependent on the selections
+  }
+}
+```
+
+## Order Calculation Methods
+
+The system needs to determine which balance set to use for each transfer. This is controlled by the `orderCalculationMethod`.
+
+### How Order Numbers Work
+
+The order number determines which balances to transfer, but it works differently depending on the balance type:
+
+#### Manual Balances
+
+-   **Order number = 0**: Transfer `manualBalances[0]` (first element)
+-   **Order number = 1**: Transfer `manualBalances[1]` (second element)
+-   **Order number = 5**: Transfer `manualBalances[5]` (sixth element)
+
+**Example**: If you have 3 manual balance sets, order numbers 0, 1, and 2 will use each set once. Order number 3 would be out of bounds.
+
+#### Incremented Balances
+
+-   **Order number = 0**: Use starting balances as-is (no increments)
+-   **Order number = 1**: Apply increments once to starting balances
+-   **Order number = 5**: Apply increments five times to starting balances
+
+**Example**: Starting with badge ID 1, increment by 1:
+
+-   Order 0: Badge ID 1
+-   Order 1: Badge ID 2
+-   Order 2: Badge ID 3
+-   Order 5: Badge ID 6
+
+### Transfer-Based Order Numbers
+
+Track the number of transfers to determine order:
+
+| Method                                 | Description           | Use Case                    |
+| -------------------------------------- | --------------------- | --------------------------- |
+| `useOverallNumTransfers`               | Global transfer count | Simple sequential transfers |
+| `usePerToAddressNumTransfers`          | Per-recipient count   | User-specific limits        |
+| `usePerFromAddressNumTransfers`        | Per-sender count      | Sender-specific limits      |
+| `usePerInitiatedByAddressNumTransfers` | Per-initiator count   | Initiator-specific limits   |
+
+**Important**: Uses the same tracker as [Max Number of Transfers](max-number-of-transfers.md). Trackers are:
+
+-   Increment-only and immutable
+-   Shared between predetermined balances and max transfer limits
+-   Must be carefully managed to avoid conflicts
+
+### Merkle-Based Order Numbers
+
+Use Merkle challenge leaf indices (leftmost = 0, rightmost = numLeaves - 1) for reserved transfers:
+
+```typescript
+{
+  "useMerkleChallengeLeafIndex": true,
+  "challengeTrackerId": "uniqueId"
+}
+```
+
+**Use Case**: Reserve specific badge IDs for specific users or claim codes.
+
+## Order Calculation Interface
 
 ```typescript
 export interface PredeterminedOrderCalculationMethod {
@@ -13394,177 +13681,336 @@ export interface PredeterminedOrderCalculationMethod {
 }
 ```
 
-**Overlap / Out of Bounds**
+## Boundary Handling
 
-In the base approval interface, we specify the bounds for the approval ("Alice" can transfer the IDs 1-10 for Mon-Fri to "Bob" initiated by "Alice"). Typically, the precalculated balances should be completely within these bounds. However, the order number may eventually correspond to balances that have no overlap with these bounds or partially overlap. For example, if you approve x1 of ID 1, then x1 of ID 2 and so on up to x1 of ID 10000, eventually, the order number will be 10001 which corresponds to balances that are out of bounds.
+### Understanding Bounds
 
-If it is completely out of bounds (e.g. order number = 101 but approved badgeIds 1-100 with increments of 1), this is practically ignored. This is because if you try and transfer badge ID 101, it will never match to the current approval.
+Every approval defines bounds through its core fields (badgeIds, ownershipTimes, etc.). For example:
 
-You should try and design your approvals for no partial overlaps. But, in rare cases, this may occur (some in bounds and some out of bounds). In this case, the overall transfer balances still must be **exactly** as defined (in bounds + out of bounds); however, we only approve the in bounds ones for the current approval. The out of bounds ones must be approved by a separate approval.
+-   **Badge IDs**: 1-100
+-   **Ownership Times**: Mon-Fri only
+-   **Transfer Times**: Specific date range
+
+Predetermined balances must work within these bounds, but note that order numbers can eventually exceed them.
+
+### Boundary Scenarios
+
+#### Complete Out-of-Bounds
+
+**Scenario**: Order number corresponds to balances completely outside approval bounds.
+
+**Example**:
+
+-   Approval allows badge IDs 1-100
+-   Increment by 1 for each transfer
+-   Order number 101 would require badge ID 101 (out of bounds)
+
+**Result**: Transfer is ignored because badge ID 101 never matches the approval's badge ID range.
+
+#### Partial Overlap
+
+**Scenario**: Order number corresponds to balances that partially overlap with approval bounds.
+
+**Example**:
+
+-   Approval allows badge IDs 1-100
+-   Transfer requires badge IDs 95-105
+-   Badge IDs 95-100 are in bounds, 101-105 are out of bounds
+
+**Result**:
+
+-   Only in-bounds balances (95-100) are approved by current approval
+-   Out-of-bounds balances (101-105) must be approved by a separate approval
+-   The complete transfer (95-105) must still be exactly as defined
+
+**Important**: The transfer will fail unless all out-of-bounds balances are approved by other approvals.
 
 
 ## File: ./x-badges/concepts/approval-criteria/requires.md
 
 # Requires
 
-You also have the following options to further restrict who can transfer to who.
+Additional address relationship restrictions for transfer approval.
 
-**requireToEqualsInitiatedBy, requireToDoesNotEqualsInitiatedBy**
+## Interface
 
-**requireFromEqualsInitiatedBy, requireFromDoesNotEqualsInitiatedBy**
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    requireToEqualsInitiatedBy?: boolean;
+    requireToDoesNotEqualInitiatedBy?: boolean;
+    requireFromEqualsInitiatedBy?: boolean;
+    requireFromDoesNotEqualInitiatedBy?: boolean;
+}
+```
 
-These are pretty self-explanatory. You can enforce that we additionally check if the to or from address equals or does not equal the initiator of the transfer.&#x20;
+## How It Works
 
-Note that this is bounded to the addresses in the respective lists for to, from, and initiatedBy (i.e. **toList, fromList, initiatedByList**).
+Enforce additional checks on address relationships:
+
+-   **`requireToEqualsInitiatedBy`**: Recipient must equal initiator
+-   **`requireToDoesNotEqualInitiatedBy`**: Recipient must not equal initiator
+-   **`requireFromEqualsInitiatedBy`**: Sender must equal initiator
+-   **`requireFromDoesNotEqualInitiatedBy`**: Sender must not equal initiator
+
+## Constraints
+
+All checks are bounded by the respective address lists (`toList`, `fromList`, `initiatedByList`).
 
 
 ## File: ./x-badges/concepts/approval-criteria/tallied-approval-amounts.md
 
 # Tallied Approval Amounts
 
-Pre-Readings (IMPORTANT): [Approval Trackers](approval-trackers.md)
+Limit transfer amounts using increment-only trackers with thresholds.
+
+## Interface
 
 ```typescript
-export interface ApprovalCriteria<T extends NumberType> {
-  ...
-  approvalAmounts?: ApprovalAmounts<T>;
-  ...
+interface ApprovalCriteria<T extends NumberType> {
+    approvalAmounts?: ApprovalAmounts<T>;
 }
 ```
 
-**Approval Amounts**
+## How It Works
 
-Approval amounts (**approvalAmounts**) allow you to specify the threshold amount that can be transferred for this approval. This is similar to other interfaces (such as approvals for ERC721), except we use an increment + threshold system as opposed to a decrement + greater than 0 system. This is facilitated via the concept of [Approval Trackers](approval-trackers.md).
+Specify maximum amounts that can be transferred using four tracker types:
 
-The amounts approved are scoped to the **badgeIds** and **ownershipTimes** defined by the base approval (see transferability page). Also, note that the to addresses are bounded to the addresses in the **toList,** from addresses from the **fromList**, and initiated by addresses from the **initiatedByList**.
+-   **Overall** (`trackerType = "overall"`): Universal limit for all transfers
+-   **Per To Address** (`trackerType = "to"`): Limit per unique recipient
+-   **Per From Address** (`trackerType = "from"`): Limit per unique sender
+-   **Per Initiated By Address** (`trackerType = "initiatedBy"`): Limit per unique initiator
 
-We define four levels (**trackerType** = "overall", "to", "from", "initiatedBy") that you can specify for approval amounts as seen below. You can define multiple if desired, and to be approved, the transfer must satisfy all.
+"0" means unlimited and not tracked. "N" means max N amount allowed.
 
-* **Overall**: Overall will increment a universal, cumulative approval tracker for all transfers that match this approval, regardless of who sends, receives, or initiates them.
-* **Per To Address**: If you specify an approval amount per to address, we will create unique cumulative trackers for every unique "to" address.
-* **Per From Address**: Creates unique cumulative tallies for every unique "from" address.
-* **Per Initiated By Address**: Creates unique cumulative tallies for every unique "initiatedBy" address.
-
-If the amount set is nil value or "0", this means there is no limit (no amount restrictions).
-
-**Example**
+## Example
 
 ```json
-"collectionApprovals": [
-    {
-      "fromListId": "Bob",
-      "toListId": "AllWithMint",
-      "initiatedByListId": "AllWithMint",
-      "transferTimes": [
-        {
-          "start": "1691931600000",
-          "end": "1723554000000"
-        }
-      ],
-      "ownershipTimes": [
-        {
-          "start": "1",
-          "end": "18446744073709551615"
-        }
-      ],
-      "badgeIds": [
-        {
-          "start": "1",
-          "end": "100"
-        }
-      ],
-      "approvalId": "uniqueID",
-      "version": "1",
-      
-      "approvalCriteria": {
-        "approvalAmounts": {
-           "overallApprovalAmount": "1000", //overall limit of x1000
-           "perFromAddressApprovalAmount": "0", //no limit
-           "perToAddressApprovalAmount": "0",
-           "perInitiatedByAddressApprovalAmount": "10", //limit of x10 per initiator
-           "amountTrackerId": "uniqueID",
-           "resetTimeIntervals": {
-              "startTime": "0",
-              "intervalLength": "0"
-            }
-        },
-        ...
-      }
-      ...
+{
+    "approvalAmounts": {
+        "overallApprovalAmount": "1000",
+        "perFromAddressApprovalAmount": "0",
+        "perToAddressApprovalAmount": "0",
+        "perInitiatedByAddressApprovalAmount": "10",
+        "amountTrackerId": "uniqueID"
     }
-  
+}
 ```
 
-Let's say we have the **approvalAmounts** defined above and Alice initiates a transfer of x10 from Bob. There are two separate trackers that get incremented here.
+## Tracker Types
 
-\#1) Tracker with the following ID `1-collection- -approvalId-uniqueID-overall-` gets incremented to x10 out of 1000. Any subsequent transfers (say from Charlie) will also increment this overall universal tracker as well.
+### Overall Tracker
 
-\#2) Tracker with ID `1-collection- -approvalId-uniqueID-initiatedBy-alice`gets incremented to x10 out of 10 used. Alice has now fully used up her threshold for this tracker. This tracker is only incremented when Alice initiates the transfer. If Charlie initiates a transfer, his unique initiatedBy tracker will get incremented which is separate from Alice's.
+-   **ID**: `1-collection- -approvalId-uniqueID-overall-`
+-   **Behavior**: Increments for all transfers regardless of sender/recipient/initiator
+-   **Use Case**: Global collection limits
 
-Since there was an unlimited amount approved for the "to" and "from" trackers, we do not increment anything for those trackers (as-needed basis).
+### Per-To Address Tracker
 
-**Resets + ID Changes**
+-   **ID**: `1-collection- -approvalId-uniqueID-to-recipientAddress`
+-   **Behavior**: Separate tracker for each unique recipient
+-   **Use Case**: Limit how much each user can receive
 
-Let's say we update the **amountTrackerId** to "uniqueID2" from "uniqueID". This makes all tracker IDs different, and thus, all tallies will start from scratch.
+### Per-From Address Tracker
 
-`1-collection- -approvalId-uniqueID-initiatedBy-alice` ->
+-   **ID**: `1-collection- -approvalId-uniqueID-from-senderAddress`
+-   **Behavior**: Separate tracker for each unique sender
+-   **Use Case**: Limit how much each user can send
 
-`1-collection- -approvalId-uniqueID2-initiatedBy-alice`
+### Per-InitiatedBy Address Tracker
 
-If in the future, you change back to "uniqueID", the starting point will be the previous tally. Using the examples above, x10/10 used for Alice's initiated by tracker.
+-   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-initiatorAddress`
+-   **Behavior**: Separate tracker for each unique initiator
+-   **Use Case**: Limit how much each user can initiate
+
+## Detailed Example
+
+Using the approval amounts defined above, when Alice initiates a transfer of x10 from Bob:
+
+### Two Trackers Get Incremented
+
+**#1) Overall Tracker**
+
+-   **ID**: `1-collection- -approvalId-uniqueID-overall-`
+-   **Before**: 0/1000
+-   **After**: 10/1000
+-   **Behavior**: Any subsequent transfers (from Charlie, etc.) will also increment this universal tracker
+
+**#2) Per-Initiator Tracker**
+
+-   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-alice`
+-   **Before**: 0/10
+-   **After**: 10/10 (fully used)
+-   **Behavior**: Only incremented when Alice initiates. Charlie's transfers use a separate tracker: `1-collection- -approvalId-uniqueID-initiatedBy-charlie`
+
+### Amount Tracking with Balance Type
+
+Trackers store amounts using the balance type structure. Above, we simplified it to just the amount.
+
+```json
+{
+    "amounts": [
+        {
+            "amount": 10n,
+            "badgeIds": [{ "start": 1n, "end": 1n }],
+            "ownershipTimes": [{ "start": 1n, "end": 100000000000n }]
+        }
+    ]
+}
+```
+
+**What Gets Incremented**:
+
+-   **Amount**: The total quantity transferred
+-   **Badge IDs**: Specific badge IDs that were transferred
+-   **Ownership Times**: The ownership time ranges that were transferred
+
+### Unlimited Trackers (No Increment)
+
+Since "to" and "from" trackers are set to "0" (unlimited), no tracking occurs for these types.
+
+## Tracker Behavior
+
+-   **As-Needed**: Only increment trackers when necessary (unlimited = no tracking)
+-   **Separate Counts**: Each tracker type maintains independent tallies
+-   **Address Scoped**: Per-address trackers create unique counters per address
+-   **Balance Tracking**: Increments for specific badge IDs and ownership times transferred
+
+## Resets and ID Changes
+
+### Changing Tracker ID
+
+When you update `amountTrackerId` from "uniqueID" to "uniqueID2":
+
+```
+1-collection- -approvalId-uniqueID-initiatedBy-alice
+↓
+1-collection- -approvalId-uniqueID2-initiatedBy-alice
+```
+
+**Result**: All tracker IDs change, so all tallies start from scratch.
+
+### Reusing Old IDs
+
+If you later change back to "uniqueID", the starting point will be the previous tally:
+
+-   Alice's initiatedBy tracker: 10/10 used (not 0/10)
+
+**Important**: Never reuse tracker IDs unless you want to continue from the previous state. They are increment-only.
 
 
 ## File: ./x-badges/concepts/approval-criteria/usdbadge-transfers.md
 
-# $BADGE Transfers
+# Coin Transfers
 
-**coinTransfers** are the $BADGE credits to be sent **every** use of the approval. There can be multiple transfers here to implement complex royalty systems, for example. Or, you can leave it blank for no $BADGE transfers. The only allowed denom is "ubadge" which has 9 decimals. 1e9 ubadge = 1 $BADGE.
+Automatic token transfers executed on every approval use. Supports any Cosmos SDK denomination. These are triggered every time an approval is used.
 
-Note: $BADGE refers to the native gas credits token of the blockchain, not a specific badge.
+To get all supported denominations, use the query parameters for the badges module.
 
-This will be executed every time the approval is used.
-
-For collection approvals that **overrideFromWithApproverAddress**, the approver address will be overridden with a special mint escrow address. This address can be used to transfer / send $BADGE via collection approvals for the Mint address. For example, quest payouts are implemented by using this address to send $BADGE from the Mint address to the initiator.
+## Interface
 
 ```typescript
-// To generate the mint escrow address for a collection ID
+interface iCoinTransfer<T extends NumberType> {
+    to: string; // Recipient BitBadges address
+    coins: iCosmosCoin<T>[];
+
+    overrideFromWithApproverAddress: boolean; // By default, this is the initiator address
+    overrideToWithInitiator: boolean; // By default, this is the to address specified
+}
+
+interface iCosmosCoin<T extends NumberType> {
+    amount: T;
+    denom: string; // Any Cosmos SDK denomination (e.g., "ubadge", "uatom", "uosmo")
+}
+```
+
+## Mint Escrow Address
+
+For collection approvals with `overrideFromWithApproverAddress: true`, the approver address is a special mint escrow address.
+
+### Generation
+
+```typescript
 const mintEscrowAddress = generateAlias(
     'badges',
-    getAliasDerivationKeysForCollection(doc.collectionId)
+    getAliasDerivationKeysForCollection(collectionId)
 );
 ```
 
-The Mint escrow address is slightly longer than a normal address and cannot be controlled by any end-user because it has no private key. It is technically an address, so it can receive badges, $BADGE, etc. However, the only way to trigger a $BADGE transfer from the mint escrow address is via collection approvals.
+### Properties
+
+-   Longer than normal addresses
+-   No private key (cannot be controlled by users)
+-   Can receive Cosmos-native tokens
+-   Only collection approvals can trigger transfers from it
+
+## Example
+
+```json
+[
+    {
+        "to": "bb1...",
+        "coins": [{ "amount": "1000000000", "denom": "ubadge" }],
+        "overrideFromWithApproverAddress": false,
+        "overrideToWithInitiator": false
+    }
+]
+```
+
+
+## File: ./x-badges/concepts/approval-criteria/user-royalties.md
+
+# User Royalties
+
+Apply percentage-based royalties to transfers.
+
+## Interface
 
 ```typescript
-export interface iCoinTransfer<T extends NumberType> {
-    /**
-     * The recipient of the coin transfer. This should be a Bech32 BitBadges address.
-     */
-    to: string;
-    /**
-     * The coins
-     */
-    coins: iCosmosCoin<T>[];
-    /**
-     * Whether or not to override the from address with the approver address.
-     */
-    overrideFromWithApproverAddress: boolean;
-    /**
-     * Whether or not to override the to address with the initiator of the transaction.
-     */
-    overrideToWithInitiator: boolean;
+interface UserRoyalties {
+    percentage: string; // 1 to 10000 represents basis points (0.01% to 100%)
+    payoutAddress: string; // Address to receive the royalties
 }
 ```
 
-```typescript
-export interface iCosmosCoin<T extends NumberType> {
-    /** The amount of the coin. */
-    amount: T;
-    /** The denomination of the coin. */
-    denom: string;
+## How It Works
+
+User royalties automatically deduct a percentage from transfers and send it to a specified payout address:
+
+-   **Percentage**: Expressed in basis points (1 = 0.01%, 100 = 1%, 10000 = 100%)
+-   **Payout**: Automatically sent to the specified address on each transfer
+-   **Deduction**: Applied to the transfer amount before the transfer is processed
+
+## Usage Examples
+
+### 5% Royalty
+
+```json
+{
+    "userRoyalties": {
+        "percentage": "500", // 500 basis points = 5%
+        "payoutAddress": "bb1creator..."
+    }
 }
 ```
+
+**Result**: 5% of each transfer amount is sent to the creator's address.
+
+### 2.5% Royalty
+
+```json
+{
+    "userRoyalties": {
+        "percentage": "250", // 250 basis points = 2.5%
+        "payoutAddress": "bb1artist..."
+    }
+}
+```
+
+**Result**: 2.5% of each transfer amount is sent to the artist's address.
+
+## Edge Case: One per Transfer
+
+Currently, we only support one specific royalty percentage applied per transfer. If a transfer matches to different approvals with multiple royalties, the transfer may fail.
 
 
 ## File: ./x-badges/concepts/archived-collections.md
@@ -14686,239 +15132,7 @@ This field is particularly useful when you need to fund the Mint Escrow Address 
 
 ## File: ./x-badges/concepts/permissions/README.md
 
-# Permission System
-
-Permissions control who can perform actions on collections and user balances, and when those actions can be executed.
-
-Typically, user permissions are always set to allowed / empty. In advanced cases like escrows, user permissions can be set to forbidden to make certain on-chain actions impossible.
-
-Collection permissions are important to be set correctly: If there is no manager, the collection permission values do not matter.
-
-## Overview
-
-```
-Action Request
-    ↓
-Permission Check
-    ↓
-┌─────────────────┬─────────────────┐
-│ Collection      │ User            │
-│ Permissions     │ Permissions     │
-│ (Manager Only)  │ (User Control)  │
-└─────────────────┴─────────────────┘
-    ↓
-Permitted/Forbidden
-    ↓
-Execute/Deny
-```
-
-## Permission Types
-
-| Type           | Scope            | Purpose                          |
-| -------------- | ---------------- | -------------------------------- |
-| **Collection** | Manager only     | Control collection-level actions |
-| **User**       | Individual users | Control user-specific actions    |
-
-## Permission States
-
-**Note**: Once a permission is set to permanently permitted or forbidden, it cannot be changed.
-
-| State                     | Description           | Behavior               |
-| ------------------------- | --------------------- | ---------------------- |
-| **Permanently Permitted** | Action ALWAYS allowed | Can be executed        |
-| **Permanently Forbidden** | Action ALWAYS blocked | Cannot be executed     |
-| **Neutral**               | Not specified         | **Allowed by default** |
-
-There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
-
-## Time Control
-
-All permissions support time-based control via UNIX millisecond UintRanges.
-
-```json
-{
-    "permanentlyPermittedTimes": [{ "start": "1", "end": "1000" }],
-    "permanentlyForbiddenTimes": [
-        { "start": "1001", "end": "18446744073709551615" }
-    ]
-}
-```
-
-## Permission Categories
-
-There are **five types** of permissions, each with different criteria:
-
--   **[Action Permissions](action-permissions.md)** - Simple time-based permissions (no criteria)
--   **[Timeline Permissions](timeline-permissions.md)** - Control timeline updates (timelineTimes)
--   **[Timeline with Badge IDs](timeline-permissions.md)** - Control badge-specific timeline updates (timelineTimes + badgeIds)
--   **[Badge ID Action Permissions](badge-id-permissions.md)** - Control badge-specific actions (badgeIds)
--   **[Approval Permissions](approval-permissions.md)** - Control approval updates (transfer criteria + approvalId)
-
-### Correct Categorization
-
-Based on the proto definitions:
-
-**Action Permissions** (only time control):
-
--   `canDeleteCollection` (collection)
--   `canUpdateAutoApproveSelfInitiatedOutgoingTransfers` (user)
--   `canUpdateAutoApproveSelfInitiatedIncomingTransfers` (user)
--   `canUpdateAutoApproveAllIncomingTransfers` (user)
-
-**Timeline Permissions** (timelineTimes + time control):
-
--   `canArchiveCollection`
--   `canUpdateOffChainBalancesMetadata`
--   `canUpdateStandards`
--   `canUpdateCustomData`
--   `canUpdateManager`
--   `canUpdateCollectionMetadata`
-
-**Timeline with Badge IDs** (timelineTimes + badgeIds + time control):
-
--   `canUpdateBadgeMetadata`
-
-**Badge ID Action Permissions** (badgeIds + time control):
-
--   `canUpdateValidBadgeIds`
-
-**Approval Permissions** (transfer criteria + approvalId + time control):
-
--   `canUpdateCollectionApprovals` (collection)
--   `canUpdateIncomingApprovals` (user)
--   `canUpdateOutgoingApprovals` (user)
-
-## Quick Examples
-
-### Lock Collection Deletion
-
-When can the collection be deleted?
-
-```json
-{
-    "canDeleteCollection": [
-        {
-            "permanentlyPermittedTimes": [],
-            "permanentlyForbiddenTimes": [
-                { "start": "1", "end": "18446744073709551615" }
-            ]
-        }
-    ]
-}
-```
-
-### Freeze Badge Metadata
-
-When can the badge metadata be updated? And which (badge IDs, timeline time) pairs does it apply to?
-
-```json
-{
-    "canUpdateBadgeMetadata": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "100" }],
-
-            "permanentlyPermittedTimes": [],
-            "permanentlyForbiddenTimes": [
-                { "start": "1", "end": "18446744073709551615" }
-            ]
-        }
-    ]
-}
-```
-
-## First Match Policy
-
-Permissions are evaluated as a linear array where each element has criteria and time controls. Only the **first matching element** is applied - all subsequent matches are ignored.
-
-### Key Rules
-
--   **First Match Only**: Only the first element that matches all criteria is used
--   **Deterministic State**: Each criteria combination has exactly one permission state
--   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
--   **Order Matters**: Array order affects which permissions are applied
-
-### Example: Timeline Permissions
-
-```json
-"canUpdateCollectionMetadata": [
-    {
-        "timelineTimes": [{ "start": "1", "end": "10" }],
-        "permanentlyPermittedTimes": [],
-        "permanentlyForbiddenTimes": [{ "start": "1", "end": "10" }]
-    },
-    {
-        "timelineTimes": [{ "start": "1", "end": "100" }],
-        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
-        "permanentlyForbiddenTimes": []
-    }
-]
-```
-
-**Result:**
-
--   Timeline times 1-10: **Forbidden** (first element matches, second element does not)
--   Timeline times 11-100: **Permitted** (second element matches)
-
-## Satisfying Criteria
-
-All criteria in a permission element must match for it to be applied. Partial matches are ignored.
-
-### Example: Badge Metadata Permissions
-
-```json
-"canUpdateBadgeMetadata": [
-    {
-        "timelineTimes": [{ "start": "1", "end": "10" }],
-        "badgeIds": [{ "start": "1", "end": "10" }],
-        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
-        "permanentlyForbiddenTimes": []
-    }
-]
-```
-
-**This permission only covers:**
-
--   Timeline times 1-10 AND badge IDs 1-10
-
-**It does NOT cover:**
-
--   Timeline time 1 with badge ID 11
--   Timeline time 11 with badge ID 1
--   Timeline time 11 with badge ID 11
-
-These combinations are **unhandled** and **allowed by default** since they do not match the permission criteria.
-
-## Brute Force Pattern
-
-To lock specific criteria, you must specify the target and set all other criteria to maximum ranges.
-
-### Example: Lock Badge IDs 1-10
-
-```json
-{
-    "fromListId": "All",
-    "toListId": "All",
-    "initiatedByListId": "All",
-    "badgeIds": [{ "start": "1", "end": "10" }],
-    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
-    "approvalId": "All",
-    "permanentlyPermittedTimes": [],
-    "permanentlyForbiddenTimes": [
-        { "start": "1", "end": "18446744073709551615" }
-    ]
-}
-```
-
-## Important Notes
-
--   **First Match Policy**: Only the first matching permission is applied
--   **Default Allow**: Unspecified permissions are allowed by default
--   **Manager Required**: Collection permissions require a manager
--   **User Control**: User permissions typically remain empty for full control
--   **Brute Force**: Use maximum ranges to ensure complete coverage
--   **Order Matters**: Array order affects permission evaluation
+# Permissions
 
 
 ## File: ./x-badges/concepts/permissions/action-permissions.md
@@ -15301,6 +15515,243 @@ interface BadgeIdsActionPermission {
     ]
 }
 ```
+
+
+## File: ./x-badges/concepts/permissions/overview.md
+
+# Overview
+
+Permissions control who can perform actions on collections and user balances, and when those actions can be executed.
+
+Typically, user permissions are always set to allowed / empty. In advanced cases like escrows, user permissions can be set to forbidden to make certain on-chain actions impossible.
+
+Collection permissions are important to be set correctly: If there is no manager, the collection permission values do not matter.
+
+## Overview
+
+```
+Action Request
+    ↓
+Permission Check
+    ↓
+┌─────────────────┬─────────────────┐
+│ Collection      │ User            │
+│ Permissions     │ Permissions     │
+│ (Manager Only)  │ (User Control)  │
+└─────────────────┴─────────────────┘
+    ↓
+Permitted/Forbidden
+    ↓
+Execute/Deny
+```
+
+## Permission Types
+
+| Type           | Scope            | Purpose                          |
+| -------------- | ---------------- | -------------------------------- |
+| **Collection** | Manager only     | Control collection-level actions |
+| **User**       | Individual users | Control user-specific actions    |
+
+## Permission States
+
+**Note**: Once a permission is set to permanently permitted or forbidden, it cannot be changed.
+
+| State                     | Description           | Behavior               |
+| ------------------------- | --------------------- | ---------------------- |
+| **Permanently Permitted** | Action ALWAYS allowed | Can be executed        |
+| **Permanently Forbidden** | Action ALWAYS blocked | Cannot be executed     |
+| **Neutral**               | Not specified         | **Allowed by default** |
+
+There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted).
+
+## Time Control
+
+All permissions support time-based control via UNIX millisecond UintRanges.
+
+```json
+{
+    "permanentlyPermittedTimes": [{ "start": "1", "end": "1000" }],
+    "permanentlyForbiddenTimes": [
+        { "start": "1001", "end": "18446744073709551615" }
+    ]
+}
+```
+
+## Permission Categories
+
+There are **five types** of permissions, each with different criteria:
+
+-   **[Action Permissions](action-permissions.md)** - Simple time-based permissions (no criteria)
+-   **[Timeline Permissions](timeline-permissions.md)** - Control timeline updates (timelineTimes)
+-   **[Timeline with Badge IDs](timeline-permissions.md)** - Control badge-specific timeline updates (timelineTimes + badgeIds)
+-   **[Badge ID Action Permissions](badge-id-permissions.md)** - Control badge-specific actions (badgeIds)
+-   **[Approval Permissions](approval-permissions.md)** - Control approval updates (transfer criteria + approvalId)
+
+### Correct Categorization
+
+Based on the proto definitions:
+
+**Action Permissions** (only time control):
+
+-   `canDeleteCollection` (collection)
+-   `canUpdateAutoApproveSelfInitiatedOutgoingTransfers` (user)
+-   `canUpdateAutoApproveSelfInitiatedIncomingTransfers` (user)
+-   `canUpdateAutoApproveAllIncomingTransfers` (user)
+
+**Timeline Permissions** (timelineTimes + time control):
+
+-   `canArchiveCollection`
+-   `canUpdateOffChainBalancesMetadata`
+-   `canUpdateStandards`
+-   `canUpdateCustomData`
+-   `canUpdateManager`
+-   `canUpdateCollectionMetadata`
+
+**Timeline with Badge IDs** (timelineTimes + badgeIds + time control):
+
+-   `canUpdateBadgeMetadata`
+
+**Badge ID Action Permissions** (badgeIds + time control):
+
+-   `canUpdateValidBadgeIds`
+
+**Approval Permissions** (transfer criteria + approvalId + time control):
+
+-   `canUpdateCollectionApprovals` (collection)
+-   `canUpdateIncomingApprovals` (user)
+-   `canUpdateOutgoingApprovals` (user)
+
+## Quick Examples
+
+### Lock Collection Deletion
+
+When can the collection be deleted?
+
+```json
+{
+    "canDeleteCollection": [
+        {
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Freeze Badge Metadata
+
+When can the badge metadata be updated? And which (badge IDs, timeline time) pairs does it apply to?
+
+```json
+{
+    "canUpdateBadgeMetadata": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "badgeIds": [{ "start": "1", "end": "100" }],
+
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+## First Match Policy
+
+Permissions are evaluated as a linear array where each element has criteria and time controls. Only the **first matching element** is applied - all subsequent matches are ignored.
+
+### Key Rules
+
+-   **First Match Only**: Only the first element that matches all criteria is used
+-   **Deterministic State**: Each criteria combination has exactly one permission state
+-   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
+-   **Order Matters**: Array order affects which permissions are applied
+
+### Example: Timeline Permissions
+
+```json
+"canUpdateCollectionMetadata": [
+    {
+        "timelineTimes": [{ "start": "1", "end": "10" }],
+        "permanentlyPermittedTimes": [],
+        "permanentlyForbiddenTimes": [{ "start": "1", "end": "10" }]
+    },
+    {
+        "timelineTimes": [{ "start": "1", "end": "100" }],
+        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
+        "permanentlyForbiddenTimes": []
+    }
+]
+```
+
+**Result:**
+
+-   Timeline times 1-10: **Forbidden** (first element matches, second element does not)
+-   Timeline times 11-100: **Permitted** (second element matches)
+
+## Satisfying Criteria
+
+All criteria in a permission element must match for it to be applied. Partial matches are ignored.
+
+### Example: Badge Metadata Permissions
+
+```json
+"canUpdateBadgeMetadata": [
+    {
+        "timelineTimes": [{ "start": "1", "end": "10" }],
+        "badgeIds": [{ "start": "1", "end": "10" }],
+        "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
+        "permanentlyForbiddenTimes": []
+    }
+]
+```
+
+**This permission only covers:**
+
+-   Timeline times 1-10 AND badge IDs 1-10
+
+**It does NOT cover:**
+
+-   Timeline time 1 with badge ID 11
+-   Timeline time 11 with badge ID 1
+-   Timeline time 11 with badge ID 11
+
+These combinations are **unhandled** and **allowed by default** since they do not match the permission criteria.
+
+## Brute Force Pattern
+
+To lock specific criteria, you must specify the target and set all other criteria to maximum ranges.
+
+### Example: Lock Badge IDs 1-10
+
+```json
+{
+    "fromListId": "All",
+    "toListId": "All",
+    "initiatedByListId": "All",
+    "badgeIds": [{ "start": "1", "end": "10" }],
+    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+    "approvalId": "All",
+    "permanentlyPermittedTimes": [],
+    "permanentlyForbiddenTimes": [
+        { "start": "1", "end": "18446744073709551615" }
+    ]
+}
+```
+
+## Important Notes
+
+-   **First Match Policy**: Only the first matching permission is applied
+-   **Default Allow**: Unspecified permissions are allowed by default
+-   **Manager Required**: Collection permissions require a manager
+-   **User Control**: User permissions typically remain empty for full control
+-   **Brute Force**: Use maximum ranges to ensure complete coverage
+-   **Order Matters**: Array order affects permission evaluation
 
 
 ## File: ./x-badges/concepts/permissions/timeline-permissions.md
