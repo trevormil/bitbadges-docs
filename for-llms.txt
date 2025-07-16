@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Jul 16 22:53:36 UTC 2025
+Generated on Wed Jul 16 22:57:40 UTC 2025
 
 
 
@@ -3581,9 +3581,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 ## File: ./SUMMARY.md
 
 # Table of contents
-
 ## Overview
-
 -   [👋 BitBadges Overview](README.md)
 -   [👨‍💻 Learn the Basics](overview/learn/README.md)
     -   [BitBadges Claims](overview/learn/distribution.md)
@@ -3609,9 +3607,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 -   [🔗 Official Links and Resources](overview/official-links.md)
 -   [🤝 Brand Guidelines](overview/link-sharing.md)
 -   [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
-
 -   [🔨 Getting Started](for-developers/getting-started.md)
 -   [👤 Handling Addresses](for-developers/accounts.md)
 -   [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
@@ -3788,113 +3784,115 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🏗️ Badge Standard
 
--   [📚 Overview](x-badges/README.md)
+* [📚 Overview](x-badges/README.md)
 
--   [🧠 Concepts](x-badges/concepts/README.md)
-    -   [Address Lists](x-badges/concepts/address-lists.md)
-    -   [Archived Collections](x-badges/concepts/archived-collections.md)
-    -   [Badge Collections](x-badges/concepts/badge-collections.md)
-    -   [Balances Type](x-badges/concepts/balances-type.md)
-    -   [Balance System](x-badges/concepts/balance-system.md)
-    -   [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
-    -   [Custom Data](x-badges/concepts/custom-data.md)
-    -   [Default Balances](x-badges/concepts/default-balances.md)
-    -   [Manager](x-badges/concepts/manager.md)
-    -   [Metadata](x-badges/concepts/metadata.md)
-    -   [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-    -   [Standards](x-badges/concepts/standards.md)
-    -   [Different Time Fields](x-badges/concepts/time-fields.md)
-    -   [Timeline System](x-badges/concepts/timeline-system.md)
-    -   [Total Supply](x-badges/concepts/total-supply.md)
-    -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
-    -   [UintRanges](x-badges/concepts/uintrange.md)
-    -   [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
-    -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-        -   [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
-        -   [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
-        -   [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
-        -   [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-        -   [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
-        -   [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
-        -   [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
-        -   [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-        -   [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-        -   [Requires](x-badges/concepts/approval-criteria/requires.md)
-        -   [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-        -   [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-        -   [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
-    -   [Permissions](x-badges/concepts/permissions/README.md)
-        -   [Overview](x-badges/concepts/permissions/overview.md)
-        -   [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
-        -   [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
-        -   [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
-        -   [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
-    -   [Protocols](x-badges/concepts/protocols/README.md)
-        -   [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
-        -   [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
-        -   [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
--   [📨 Messages](x-badges/messages/README.md)
-    -   [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
-    -   [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
-    -   [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-    -   [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
-    -   [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
-    -   [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
-    -   [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-    -   [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-    -   [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
-    -   [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
-    -   [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
-    -   [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
-    -   [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
-    -   [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
-    -   [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
-    -   [MsgSetManager](x-badges/messages/msg-set-manager.md)
-    -   [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
-    -   [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-    -   [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
-    -   [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
-    -   [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
-    -   [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-    -   [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
--   [🔍 Queries](x-badges/queries/README.md)
-    -   [GetAddressList](x-badges/queries/get-address-list.md)
-    -   [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
-    -   [GetBalance](x-badges/queries/get-balance.md)
-    -   [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
-    -   [GetCollection](x-badges/queries/get-collection.md)
-    -   [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
-    -   [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
-    -   [Params](x-badges/queries/params.md)
--   [💡 Examples and Snippets](x-badges/examples/README.md)
-    -   [Base Collection Details](x-badges/examples/base-collection-details.md)
-    -   [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
-    -   [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
-    -   [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
-    -   [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
-    -   [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
-    -   [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
-    -   [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
-    -   [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-    -   [Approvals](x-badges/examples/approvals/README.md)
-        -   [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
-        -   [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
-        -   [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
-        -   [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
-        -   [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
-    -   [Permission Examples](x-badges/examples/permissions/README.md)
-        -   [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
-        -   [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-        -   [Locking Specific Badge IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
-        -   [Locking Valid Badge IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
-    -   [Transaction Examples](x-badges/examples/txs/README.md)
-        -   [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
-            -   [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-            -   [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-        -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
-            -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
--   [📡 Events](x-badges/events.md)
--   [🗃️ State](x-badges/state.md)
+* [🧠 Concepts](x-badges/concepts/README.md)
+  * [Address Lists](x-badges/concepts/address-lists.md)
+  * [Archived Collections](x-badges/concepts/archived-collections.md)
+  * [Badge Collections](x-badges/concepts/badge-collections.md)
+  * [Balances Type](x-badges/concepts/balances-type.md)
+  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+  * [Custom Data](x-badges/concepts/custom-data.md)
+  * [Default Balances](x-badges/concepts/default-balances.md)
+  * [Manager](x-badges/concepts/manager.md)
+  * [Metadata](x-badges/concepts/metadata.md)
+  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+  * [Standards](x-badges/concepts/standards.md)
+  * [Different Time Fields](x-badges/concepts/time-fields.md)
+  * [Timeline System](x-badges/concepts/timeline-system.md)
+  * [Total Supply](x-badges/concepts/total-supply.md)
+  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+  * [UintRanges](x-badges/concepts/uintrange.md)
+  * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
+  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
+    * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+    * [Requires](x-badges/concepts/approval-criteria/requires.md)
+    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [Overview](x-badges/concepts/permissions/overview.md)
+    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+    * [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+    * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
+* [📨 Messages](x-badges/messages/README.md)
+  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
+  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
+  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
+  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+* [🔍 Queries](x-badges/queries/README.md)
+  * [GetAddressList](x-badges/queries/get-address-list.md)
+  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+  * [GetBalance](x-badges/queries/get-balance.md)
+  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+  * [GetCollection](x-badges/queries/get-collection.md)
+  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+  * [Params](x-badges/queries/params.md)
+* [💡 Examples and Snippets](x-badges/examples/README.md)
+  * [Base Collection Details](x-badges/examples/base-collection-details.md)
+  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
+  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
+  * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
+    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+  * [Permission Examples](x-badges/examples/permissions/README.md)
+    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+    * [Locking Specific Badge IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
+    * [Locking Valid Badge IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
+  * [Transaction Examples](x-badges/examples/txs/README.md)
+    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
+      * [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
+      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+* [📡 Events](x-badges/events.md)
+* [🗃️ State](x-badges/state.md)
+
+
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -14149,15 +14147,15 @@ The Balance system in BitBadges is designed to represent ownership of badges acr
 
 ```typescript
 export interface Balance<T extends NumberType> {
-  amount: T;
-  badgeIds: UintRange<T>[];
-  ownershipTimes: UintRange<T>[];
+    amount: T;
+    badgeIds: UintRange<T>[];
+    ownershipTimes: UintRange<T>[];
 }
 ```
 
-- `amount`: The quantity of badges owned
-- `badgeIds`: An array of ID ranges representing the badges owned
-- `ownershipTimes`: An array of time ranges during which the badges are owned
+-   `amount`: The quantity of badges owned
+-   `badgeIds`: An array of ID ranges representing the badges owned
+-   `ownershipTimes`: An array of time ranges during which the badges are owned
 
 ## Interpreting Balances
 
@@ -14167,11 +14165,11 @@ When interpreting balances, it's crucial to understand that multiple ranges of b
 
 ```javascript
 for (balance of balances) {
-  for (badgeIdRange of balance.badgeIds) {
-    for (ownershipTimeRange of balance.ownershipTimes) {
-      // User owns x(balance.amount) of (badgeIdRange) for the times (ownershipTimeRange)
+    for (badgeIdRange of balance.badgeIds) {
+        for (ownershipTimeRange of balance.ownershipTimes) {
+            // User owns x(balance.amount) of (badgeIdRange) for the times (ownershipTimeRange)
+        }
     }
-  }
 }
 ```
 
@@ -14181,9 +14179,15 @@ Consider the following balance:
 
 ```json
 {
-  "amount": 1,
-  "badgeIds": [{ "start": 1, "end": 10 }, { "start": 20, "end": 30 }],
-  "ownershipTimes": [{ "start": 20, "end": 50 }, { "start": 100, "end": 200 }]
+    "amount": 1,
+    "badgeIds": [
+        { "start": 1, "end": 10 },
+        { "start": 20, "end": 30 }
+    ],
+    "ownershipTimes": [
+        { "start": 20, "end": 50 },
+        { "start": 100, "end": 200 }
+    ]
 }
 ```
 
@@ -14200,16 +14204,19 @@ When subtracting balances, you may need to represent the result as multiple Bala
 
 ```json
 [
-  {
-    "amount": 1,
-    "badgeIds": [{ "start": 1, "end": 10 }, { "start": 20, "end": 30 }],
-    "ownershipTimes": [{ "start": 100, "end": 200 }]
-  },
-  {
-    "amount": 1,
-    "badgeIds": [{ "start": 20, "end": 30 }],
-    "ownershipTimes": [{ "start": 20, "end": 50 }]
-  }
+    {
+        "amount": 1,
+        "badgeIds": [
+            { "start": 1, "end": 10 },
+            { "start": 20, "end": 30 }
+        ],
+        "ownershipTimes": [{ "start": 100, "end": 200 }]
+    },
+    {
+        "amount": 1,
+        "badgeIds": [{ "start": 20, "end": 30 }],
+        "ownershipTimes": [{ "start": 20, "end": 50 }]
+    }
 ]
 ```
 
@@ -14219,9 +14226,12 @@ When duplicate badge IDs are specified in balances, they are combined and their 
 
 ```json
 {
-  "amount": 1,
-  "badgeIds": [{ "start": 1, "end": 10 }, { "start": 1, "end": 10 }],
-  "ownershipTimes": [{ "start": 100, "end": 200 }]
+    "amount": 1,
+    "badgeIds": [
+        { "start": 1, "end": 10 },
+        { "start": 1, "end": 10 }
+    ],
+    "ownershipTimes": [{ "start": 100, "end": 200 }]
 }
 ```
 
@@ -14229,9 +14239,9 @@ This is equivalent to and will be treated as:
 
 ```json
 {
-  "amount": 2,
-  "badgeIds": [{ "start": 1, "end": 10 }],
-  "ownershipTimes": [{ "start": 100, "end": 200 }]
+    "amount": 2,
+    "badgeIds": [{ "start": 1, "end": 10 }],
+    "ownershipTimes": [{ "start": 100, "end": 200 }]
 }
 ```
 
@@ -14243,7 +14253,6 @@ This is equivalent to and will be treated as:
 4. **Time-Aware Operations**: Always consider the time dimension when performing operations on balances, as ownership can vary over time
 5. **Range Calculations**: Familiarize yourself with range operations, as they are crucial for correctly manipulating and interpreting balances
 
-By understanding these concepts and following these practices, you can effectively work with the BitBadges balance system, enabling complex ownership structures and time-based badge management.
 
 ## File: ./x-badges/concepts/balances-type.md
 
@@ -14798,34 +14807,6 @@ During collection creation:
 }
 ```
 
-### Scheduled Management Transfer
-
-```json
-{
-    "updateManagerTimeline": true,
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "1704067199000" }
-            ],
-            "manager": "bb1bob..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1704067200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1charlie..."
-        }
-    ]
-}
-```
-
-This creates a management succession plan: Alice → Bob → Charlie.
-
 ### Decentralized Management Transition
 
 ```json
@@ -14981,43 +14962,6 @@ Metadata updates are controlled by collection permissions:
 ### Timeline Times vs Permission Times Within Permissions
 
 As explained in [Permissions](permissions/), the `timelineTimes` field is used to define the timeline times that can be updated or not. The `permanentlyPermittedTimes` and `permanentlyForbiddenTimes` fields are used to define the times when the permission is enabled or disabled.
-
-## Usage Examples
-
-### Static Collection Metadata
-
-```json
-{
-    "collectionMetadataTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "collectionMetadata": {
-                "uri": "https://example.com/collection-metadata.json",
-                "customData": ""
-            }
-        }
-    ]
-}
-```
-
-### Dynamic Badge Metadata with ID Replacement
-
-```json
-{
-    "badgeMetadataTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeMetadata": [
-                {
-                    "uri": "https://api.example.com/badges/{id}",
-                    "badgeIds": [{ "start": "1", "end": "1000" }],
-                    "customData": ""
-                }
-            ]
-        }
-    ]
-}
-```
 
 
 ## File: ./x-badges/concepts/mint-escrow-address.md
@@ -16774,22 +16718,9 @@ All collections implement the same interface on the blockchain, but standards de
 -   **Multiple standards allowed** - As long as they are compatible
 -   **Application responsibility** - Queriers must verify compliance
 
-## Example Usage
-
-```json
-{
-    "standardsTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "standards": ["soulbound", "event-attendance", "minimal-metadata"]
-        }
-    ]
-}
-```
-
 ## BitBadges Site Standards
 
-The BitBadges site recognizes three specific standards that collections can implement to ensure compatibility with various features and integrations:
+The BitBadges site recognizes specific standards that collections can implement to ensure compatibility with various features and integrations:
 
 ### 1. Tradable Standard
 
@@ -16875,24 +16806,29 @@ Time fields use UintRange format with valid values from 1 to 1844674407370955161
 ## Time Field Types
 
 ### 1. permanentlyPermittedTimes
-- **Purpose**: Defines the times when a permission will always be executable (permanent)
-- **Usage**: Setting allowed periods for specific actions
+
+-   **Purpose**: Defines the times when a permission will always be executable (permanent)
+-   **Usage**: Setting allowed periods for specific actions
 
 ### 2. permanentlyForbiddenTimes
-- **Purpose**: Defines the times when a permission will always be forbidden (permanent)
-- **Usage**: Setting restricted periods for specific actions
+
+-   **Purpose**: Defines the times when a permission will always be forbidden (permanent)
+-   **Usage**: Setting restricted periods for specific actions
 
 ### 3. timelineTimes
-- **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
-- **Usage**: Scheduling changes to collection or badge properties over time
+
+-   **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
+-   **Usage**: Scheduling changes to collection or badge properties over time
 
 ### 4. transferTimes
-- **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
-- **Usage**: Setting periods when badges can be transferred between addresses
+
+-   **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
+-   **Usage**: Setting periods when badges can be transferred between addresses
 
 ### 5. ownershipTimes
-- **Purpose**: Specifies the times that a user owns a badge
-- **Usage**: Defining the duration of badge ownership for users
+
+-   **Purpose**: Specifies the times that a user owns a badge
+-   **Usage**: Defining the duration of badge ownership for users
 
 ## Important Note
 
@@ -16904,19 +16840,21 @@ The `timelineTimes` in permissions correspond to the updatability of the timelin
 
 Scenario: Users participate in a US presidential election by casting votes through badge transfers.
 
-- T1: Conclusion of voting
-- T2: Start of presidential term  
-- T3: End of presidential term
+-   T1: Conclusion of voting
+-   T2: Start of presidential term
+-   T3: End of presidential term
 
 Setup:
-- `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
-- `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
+
+-   `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+-   `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
 
 ### Example 2: Managing Collection Archival
 
 Scenario: A collection can be optionally archived by the manager from T1 to T2, but is non-archivable at all other times.
 
 Before archiving:
+
 ```
 Permission:
 permanentlyPermittedTimes: [{ start: T1, end: T2 }]
@@ -16928,25 +16866,11 @@ isArchived: false for [{ start: 1, end: MAX_TIME }]
 ```
 
 After archiving for all times:
+
 ```
 Permission: (unchanged)
 permanentlyPermittedTimes: [{ start: T1, end: T2 }]
 permanentlyForbiddenTimes: [everything but T1 to T2]
-timelineTimes: [{ start: 1, end: MAX_TIME }]
-
-Archived Timeline:
-isArchived: true for [{ start: 1, end: MAX_TIME }]
-```
-
-### Example 3: Permanently Locking Permissions
-
-Scenario: Continuing from Example 2, the manager wants to permanently lock the permission.
-
-Final state:
-```
-Permission:
-permanentlyPermittedTimes: []
-permanentlyForbiddenTimes: [{ start: 1, end: MAX_TIME }]
 timelineTimes: [{ start: 1, end: MAX_TIME }]
 
 Archived Timeline:
@@ -16960,10 +16884,9 @@ isArchived: true for [{ start: 1, end: MAX_TIME }]
 3. **Timeline Planning**: When using `timelineTimes`, plan your collection's lifecycle in advance to minimize the need for frequent updates
 4. **Transfer Windows**: Use `transferTimes` to create specific windows for badge transfers, which can be useful for time-limited events or phased distributions
 5. **Ownership Tracking**: Leverage `ownershipTimes` to create badges with time-bound ownership, useful for temporary privileges or rotating responsibilities
-6. **Permission Locking**: Be cautious when permanently locking permissions (as in Example 3), as this action is irreversible and may limit future flexibility
+6. **Permission Locking**: Be cautious when permanently locking permissions, as this action is irreversible and may limit future flexibility
 7. **Time Synchronization**: Ensure all systems interacting with your BitBadges collection are properly time-synchronized to avoid discrepancies in time-based operations
 
-By understanding and effectively using these time fields, you can create sophisticated and dynamic badge systems in BitBadges, enabling complex scenarios from voting systems to time-bound privileges and beyond.
 
 ## File: ./x-badges/concepts/timeline-system.md
 
@@ -17063,27 +16986,6 @@ In this example:
 -   From time 1 to March 31, 2023, the collection metadata URI is 'ipfs://abc123'
 -   From April 1, 2023 onwards, the collection metadata URI is 'ipfs://xyz456'
 -   The change happens automatically without additional transactions
-
-### Manager Timeline
-
-```json
-{
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1bob..."
-        }
-    ]
-}
-```
-
-This setup transfers management from Alice to Bob on January 1, 2023.
 
 ## Key Principles
 
@@ -17387,19 +17289,6 @@ const multipleBadges: UintRange[] = [
 ];
 ```
 
-### Time Range Examples
-
-```typescript
-// Transfer time range (UNIX milliseconds)
-const transferTimes: UintRange[] = [
-    { start: '1630000000000', end: '1640000000000' },
-    // This represents 2021-08-26 to 2021-12-20
-];
-
-// Permanent validity
-const permanent: UintRange[] = [{ start: '1', end: '18446744073709551615' }];
-```
-
 ### Go Code Examples
 
 ```go
@@ -17510,36 +17399,6 @@ Typically, the desired functionality falls into one of the following categories:
 
 -   **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
 -   **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
-
-## Examples
-
-### Basic Badge Creation
-
-```json
-// Create badges 1-50
-{
-    "validBadgeIds": [
-        {
-            "start": "1",
-            "end": "50"
-        }
-    ]
-}
-```
-
-### Expanding Badge Range
-
-```json
-// Later add badges 51-100 (must be sequential)
-{
-    "validBadgeIds": [
-        {
-            "start": "1",
-            "end": "100"
-        }
-    ]
-}
-```
 
 ## Best Practices
 
@@ -18200,7 +18059,7 @@ It is typically recommended to split into two categories:
 
 ## Code Example
 
-Mix and match the approvals as you see fit. See the examples in the [approvals](./approvals/) section for a bunch of examples.
+Mix and match the approvals as you see fit. See the examples in the Approvals folder for a bunch of examples.
 
 -   [Transferable Approval](./approvals/transferable-approval.md)
 -   [Burnable Approval](./approvals/burnable-approval.md)
