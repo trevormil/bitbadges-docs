@@ -86,36 +86,6 @@ Typically, the desired functionality falls into one of the following categories:
 -   **Set and Lock All**: Set the valid badge IDs upon genesis and lock everything from further updates
 -   **Set and Lock All Current, Allow Expansion**: Set the valid badge IDs upon genesis and lock the current ones from being updated, but allow expansion in the future.
 
-## Examples
-
-### Basic Badge Creation
-
-```json
-// Create badges 1-50
-{
-    "validBadgeIds": [
-        {
-            "start": "1",
-            "end": "50"
-        }
-    ]
-}
-```
-
-### Expanding Badge Range
-
-```json
-// Later add badges 51-100 (must be sequential)
-{
-    "validBadgeIds": [
-        {
-            "start": "1",
-            "end": "100"
-        }
-    ]
-}
-```
-
 ## Best Practices
 
 1. **Plan ahead**: Consider future expansion when setting initial badge ID ranges

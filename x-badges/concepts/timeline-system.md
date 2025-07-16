@@ -95,27 +95,6 @@ In this example:
 -   From April 1, 2023 onwards, the collection metadata URI is 'ipfs://xyz456'
 -   The change happens automatically without additional transactions
 
-### Manager Timeline
-
-```json
-{
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1bob..."
-        }
-    ]
-}
-```
-
-This setup transfers management from Alice to Bob on January 1, 2023.
-
 ## Key Principles
 
 1. **Automatic Updates**: Values change automatically based on current time

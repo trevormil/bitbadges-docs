@@ -174,34 +174,6 @@ During collection creation:
 }
 ```
 
-### Scheduled Management Transfer
-
-```json
-{
-    "updateManagerTimeline": true,
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "1704067199000" }
-            ],
-            "manager": "bb1bob..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1704067200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1charlie..."
-        }
-    ]
-}
-```
-
-This creates a management succession plan: Alice → Bob → Charlie.
-
 ### Decentralized Management Transition
 
 ```json

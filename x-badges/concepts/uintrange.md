@@ -84,19 +84,6 @@ const multipleBadges: UintRange[] = [
 ];
 ```
 
-### Time Range Examples
-
-```typescript
-// Transfer time range (UNIX milliseconds)
-const transferTimes: UintRange[] = [
-    { start: '1630000000000', end: '1640000000000' },
-    // This represents 2021-08-26 to 2021-12-20
-];
-
-// Permanent validity
-const permanent: UintRange[] = [{ start: '1', end: '18446744073709551615' }];
-```
-
 ### Go Code Examples
 
 ```go

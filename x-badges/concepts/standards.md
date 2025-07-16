@@ -28,22 +28,9 @@ All collections implement the same interface on the blockchain, but standards de
 -   **Multiple standards allowed** - As long as they are compatible
 -   **Application responsibility** - Queriers must verify compliance
 
-## Example Usage
-
-```json
-{
-    "standardsTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "standards": ["soulbound", "event-attendance", "minimal-metadata"]
-        }
-    ]
-}
-```
-
 ## BitBadges Site Standards
 
-The BitBadges site recognizes three specific standards that collections can implement to ensure compatibility with various features and integrations:
+The BitBadges site recognizes specific standards that collections can implement to ensure compatibility with various features and integrations:
 
 ### 1. Tradable Standard
 
