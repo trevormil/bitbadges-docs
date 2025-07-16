@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Jul 16 23:06:10 UTC 2025
+Generated on Wed Jul 16 23:11:33 UTC 2025
 
 
 
@@ -14478,6 +14478,14 @@ Cosmos Wrapper Paths provide seamless interoperability between BitBadges and the
 # Custom Data
 
 Custom data fields are generic string fields that allow you to store any arbitrary value within BitBadges structures. These fields provide flexibility for storing application-specific information. They are not used for any specific purpose via the BitBadges site and are more for future customization and extensibility.
+
+## Overview
+
+Custom data fields appear throughout BitBadges as generic string storage:
+
+-   **`customData`** - Simple string field in various structures
+-   **`customDataTimeline`** - Timeline-based custom data that can change over time
+-   **Custom fields in messages** - Additional data in transaction messages
 
 ## Usage
 
