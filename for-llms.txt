@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Jul 16 23:57:20 UTC 2025
+Generated on Wed Jul 16 23:59:16 UTC 2025
 
 
 
@@ -18678,7 +18678,7 @@ This transfer creates badge ID 1 from collection 20 and sends it to the creator 
 -   **Amount**: 1
 -   **From**: Mint (new badge creation)
 -   **To**: Creator address
--   **Approval**: Collection-level approval
+-   **Approval**: Collection-level approval (assumes user-level approvals successfully auto-scan)
 
 ## JSON Structure
 
@@ -18856,6 +18856,8 @@ This example demonstrates "prioritized non-auto-scan" behavior where:
 -   Only the specified approval is checked (no automatic scanning of other approvals)
 -   The system doesn't automatically look for other valid approvals
 -   Transfer is limited to what the specified approval allows
+-   Can use approvals with side effects and custom criteria like merkle challenges
+-   Shows proper versioning of approvals
 
 ## Usage
 
