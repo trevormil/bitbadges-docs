@@ -296,6 +296,8 @@
     * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
     * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
     * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
+    * [Simple Badge Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
   * [Permission Examples](x-badges/examples/permissions/README.md)
     * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
     * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
