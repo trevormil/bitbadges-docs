@@ -11,10 +11,6 @@ message UintRange {
 }
 ```
 
-## Overview
-
-The `UintRange` represents an **inclusive** range of numbers from a start value to an end value. Both the start and end values are included in the range.
-
 ## Usage Patterns
 
 UintRanges are used to represent:

@@ -2,15 +2,6 @@
 
 Standards are informational tags that provide guidance on how to interpret and implement collection features. The collection interface is very feature-rich, and oftentimes you may need certain features to be implemented in a certain way, avoid certain features, etc. That is what standards are for.
 
-## Purpose
-
-All collections implement the same interface on the blockchain, but standards define:
-
--   How specific fields should be interpreted
--   Which features should be used or avoided
--   Expected metadata formats
--   Implementation guidelines for applications
-
 ## Timeline Implementation
 
 ```json

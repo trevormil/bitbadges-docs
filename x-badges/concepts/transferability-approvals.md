@@ -16,25 +16,7 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 **Key Rule**: A transfer must satisfy collection-level approvals AND (unless overridden) user-level incoming/outgoing approvals.
 
-## Core Concepts
-
-### ⚠️ Important Distinctions
-
--   **Approvals ≠ Escrows**: Approvals are just intentions - they don't guarantee underlying balances exist
--   **Mint Address**: Has unlimited balances and requires special handling (override the sender approvals since the Mint address is not a user)
--   **Default Behavior**: Unhandled transfers are **disapproved** by default
--   **Not Auto-Deleted Unless Set**: Approvals have auto-deletion functionality, but if not set, they are not deleted
-
-### Mint Address - Special Handling Required
-
-The Mint address is a special case that requires careful attention:
-
--   **Unlimited Balances**: The Mint address has unlimited balances for all badge IDs and ownership times
--   **No User Approvals**: Since it's not a real address, the Mint address cannot set its own user-level incoming/outgoing approvals
--   **Must Override**: When transferring from the Mint address, you **must** override the outgoing approvals using `overrideFromOutgoingApprovals: true`
--   **Exclusive fromList**: For safety, approvals from the Mint address should only include "Mint" in the `fromList` - never mix with regular addresses
-
-### Approval Structure
+## Approval Structure
 
 ```typescript
 interface CollectionApproval<T extends NumberType> {

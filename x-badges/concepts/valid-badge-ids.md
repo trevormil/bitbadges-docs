@@ -2,21 +2,6 @@
 
 Valid Badge IDs define the range of badge IDs that exist within a collection. This is mainly informational but also may be used to enforce certain rules within the collection.
 
-## Key Concepts
-
-### Badge ID Range Definition
-
--   The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
--   IDs must start at 1 and have no gaps
--   This range is separate from circulating supply
-
-### Separation from Circulating Supply
-
--   Valid badge IDs define what _can_ exist
--   Circulating supply defines what _actually_ exists
--   Circulating supply is managed through transfers/approvals and balance allocations
--   Circulating supply should obey the valid badge IDs defined on-chain
-
 ## Creating Badge IDs
 
 ### During Collection Creation
