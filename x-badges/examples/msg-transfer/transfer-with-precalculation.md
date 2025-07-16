@@ -84,6 +84,8 @@ This example demonstrates "prioritized non-auto-scan" behavior where:
 -   Only the specified approval is checked (no automatic scanning of other approvals)
 -   The system doesn't automatically look for other valid approvals
 -   Transfer is limited to what the specified approval allows
+-   Can use approvals with side effects and custom criteria like merkle challenges
+-   Shows proper versioning of approvals
 
 ## Usage
 

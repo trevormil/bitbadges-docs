@@ -13,7 +13,7 @@ This transfer creates badge ID 1 from collection 20 and sends it to the creator 
 -   **Amount**: 1
 -   **From**: Mint (new badge creation)
 -   **To**: Creator address
--   **Approval**: Collection-level approval
+-   **Approval**: Collection-level approval (assumes user-level approvals successfully auto-scan)
 
 ## JSON Structure
 
