@@ -6,7 +6,7 @@ Cosmos Wrapper Paths enable 1:1 wrapping between BitBadges badges and native Cos
 
 ### Auto-Generating Wrapper Addresses
 
-You can programmatically generate wrapper addresses using the `bitbadgesjs-sdk` npm package:
+You can programmatically generate wrapper addresses using the `bitbadgesjs-sdk` npm package. Note that the address is generated based on the denom set. It is just the custom denom, not the full `badges:collectionId:denom` format.
 
 ```typescript
 import { generateAliasAddressForDenom } from 'bitbadgesjs-sdk';

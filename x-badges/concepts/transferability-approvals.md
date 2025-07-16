@@ -8,11 +8,11 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 ### Approval Levels
 
-| Level          | Description                              | Fields                                  |
-| -------------- | ---------------------------------------- | --------------------------------------- |
-| **Collection** | Global rules for the entire collection   | All fields                              |
-| **Incoming**   | User-specific rules for receiving badges | `toList` = user's address, no overrides |
-| **Outgoing**   | User-specific rules for sending badges   | `fromList` = user's address, overrides  |
+| Level          | Description                              | Fields                                    |
+| -------------- | ---------------------------------------- | ----------------------------------------- |
+| **Collection** | Global rules for the entire collection   | All fields                                |
+| **Incoming**   | User-specific rules for receiving badges | `toList` = user's address, no overrides   |
+| **Outgoing**   | User-specific rules for sending badges   | `fromList` = user's address, no overrides |
 
 **Key Rule**: A transfer must satisfy collection-level approvals AND (unless overridden) user-level incoming/outgoing approvals.
 
@@ -126,7 +126,7 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
--   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
 -   **Behavior**: Automatically finds and uses the first matching approval
 -   **Use case**: Simple transfers without custom logic or side effects
 -   **No versioning required**: The system handles approval selection automatically
