@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Jul 16 22:57:40 UTC 2025
+Generated on Wed Jul 16 23:06:10 UTC 2025
 
 
 
@@ -3890,7 +3890,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
-* [🗃️ State](x-badges/state.md)
 
 
 
@@ -12265,10 +12264,6 @@ This documentation follows the [Cosmos SDK module documentation standards](https
 
 This directory contains detailed explanations of the core concepts and data structures that form the foundation of the BitBadges module.
 
-## Overview
-
-Each concept is documented in its own file for better organization and easier navigation:
-
 -   **[UintRange](uintrange.md)** - Representing ranges of unsigned integers
 -   **[Timeline System](timeline-system.md)** - How properties change over time with immutable historical records
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
@@ -13964,23 +13959,6 @@ Currently, we only support one specific royalty percentage applied per transfer.
 
 Collections can be archived to temporarily or permanently disable all transactions while keeping the collection data verifiable and public on-chain.
 
-## Key Concepts
-
-### Archive State
-
--   Controlled by the `isArchivedTimeline` field
--   When archived, all transactions fail until unarchived
--   Collection remains readable and verifiable on-chain
--   Does not delete the collection, only makes it read-only
-
-### Timeline-Based Archiving
-
-Collections can be archived for specific time periods:
-
--   **Temporary archiving** - Archive for maintenance or security
--   **Permanent archiving** - Sunset collections while preserving data
--   **Scheduled archiving** - Pre-planned archive periods
-
 ## Implementation
 
 ### isArchivedTimeline Structure
@@ -14321,21 +14299,6 @@ The circulating supply is controlled by:
 
 Cosmos Wrapper Paths enable 1:1 wrapping between BitBadges badges and native Cosmos SDK coin asset types, making badges IBC-compatible. These paths automatically mint and burn badges when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
 
-## Key Concepts
-
-### Automatic Conversion
-
--   **1:1 wrapping** - One native coin unit is wrapped and unwrapped for the set conversion rate
--   **Automatic minting/burning** - Transfers to/from wrapper addresses trigger automatic conversion
--   **IBC compatibility** - Wrapped assets become native SDK coins that work with IBC
--   **Bidirectional** - Can wrap badges to coins and unwrap coins back to badges based on the conversion rate
-
-### Generated Wrapper Address
-
--   **Non-controllable** - Generated addresses have no known private keys
--   **Collection-specific** - Each wrapper path has its own unique address dependent on the denom
--   **Automatic processing** - Transfers to this address trigger wrapping/unwrapping
-
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
 ### Auto-Generating Wrapper Addresses
@@ -14516,14 +14479,6 @@ Cosmos Wrapper Paths provide seamless interoperability between BitBadges and the
 
 Custom data fields are generic string fields that allow you to store any arbitrary value within BitBadges structures. These fields provide flexibility for storing application-specific information. They are not used for any specific purpose via the BitBadges site and are more for future customization and extensibility.
 
-## Overview
-
-Custom data fields appear throughout BitBadges as generic string storage:
-
--   **`customData`** - Simple string field in various structures
--   **`customDataTimeline`** - Timeline-based custom data that can change over time
--   **Custom fields in messages** - Additional data in transaction messages
-
 ## Usage
 
 ### Simple Custom Data
@@ -14560,32 +14515,6 @@ Custom data fields appear in:
 # Default Balances
 
 Default balances are predefined balance stores that are automatically assigned to new users (uninitialized balance stores) when they first interact with a collection. These defaults are set during collection creation and cannot be updated after genesis.
-
-## Key Concepts
-
-### Genesis-Only Configuration
-
--   **Set at creation** - Default balances are defined only during collection creation
--   **Immutable after genesis** - Cannot be updated, modified, or removed after collection is created
--   **One-time setup** - This is your only opportunity to configure default user behavior
-
-### Automatic Assignment
-
--   **New user initialization** - Users who have never interacted with a collection receive default balances
--   **Seamless onboarding** - No additional setup required for new users
--   **Consistent behavior** - All new users start with the same baseline configuration
-
-### Inheritance Behavior
-
-```javascript
-function getUserBalanceStore(collectionId, userAddress) {
-    const userStore = getUserExplicitBalanceStore(collectionId, userAddress);
-    if (userStore.exists) {
-        return userStore; // User has explicit balances
-    }
-    return getDefaultBalances(collectionId); // User inherits defaults
-}
-```
 
 ## Structure
 
@@ -14634,32 +14563,6 @@ Default balances provide a powerful way to establish baseline behavior for all u
 # Manager
 
 The manager is the central authority for a collection, controlling all administrative operations and having exclusive rights to perform updates, deletions, and other management tasks.
-
-## Key Concepts
-
-### Manager Authority
-
--   **Exclusive control** - Only the current manager can perform administrative operations
--   **Timeline-based** - Manager can change over time using `managerTimeline`
--   **Administrative operations** - Updates, deletions, approval management, permission changes
--   **Permission-controlled** - Manager changes are governed by `canUpdateManager` permission
-
-See [Permissions](permissions/) for more details on how permissions work.
-
-### Current Manager Determination
-
-The current manager is determined by finding the manager entry in `managerTimeline` that includes the current time:
-
-```javascript
-function getCurrentManager(managerTimeline, currentTime) {
-    for (const entry of managerTimeline) {
-        if (timeInRange(currentTime, entry.timelineTimes)) {
-            return entry.manager;
-        }
-    }
-    return null; // No manager defined for current time
-}
-```
 
 ## Manager Timeline
 
@@ -14969,19 +14872,6 @@ As explained in [Permissions](permissions/), the `timelineTimes` field is used t
 # Mint Escrow Address
 
 The Mint Escrow Address (_mintEscrowAddress_) is a special reserved address generated from the collection ID that holds Cosmos native funds on behalf of the "Mint" address for a specific collection. This address has no known private key and is not controlled by anyone. The only way to get funds out is via collection approvals from the Mint address.
-
-## Key Concepts
-
-### Address Generation
-
--   **Collection-specific** - Uniquely generated from each collection ID
--   **No private key** - Not controlled by any individual or entity
--   **Reserved address** - Cannot be used as a regular user address
--   **Longer format** - May be longer than normal BitBadges addresses
-
-### Relationship to Mint Address
-
--   **Mint representation** - The "Mint" address is typically represented as `"Mint"` but when Cosmos-native funds are involved, we use the mintEscrowAddress instead
 
 ## Functionality
 
@@ -16692,15 +16582,6 @@ For a complete implementation example, see the [Tradable NFT Collection Example]
 
 Standards are informational tags that provide guidance on how to interpret and implement collection features. The collection interface is very feature-rich, and oftentimes you may need certain features to be implemented in a certain way, avoid certain features, etc. That is what standards are for.
 
-## Purpose
-
-All collections implement the same interface on the blockchain, but standards define:
-
--   How specific fields should be interpreted
--   Which features should be used or avoided
--   Expected metadata formats
--   Implementation guidelines for applications
-
 ## Timeline Implementation
 
 ```json
@@ -16894,24 +16775,6 @@ isArchived: true for [{ start: 1, end: MAX_TIME }]
 
 BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
 
-## Key Concepts
-
-### Time Representation
-
--   Times are represented as UNIX time (milliseconds since the epoch)
--   Epoch: Midnight at the beginning of January 1, 1970, UTC
--   Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64)
-
-### Value Assignment
-
--   Values are assigned to specific time ranges
--   No overlapping time ranges are allowed for a single field
--   Current value determined by finding the timeline entry that includes current time
-
-### Default Behavior
-
--   If no value is set for the current time, the field assumes an empty/null/default value
-
 ## Structure
 
 Timeline-based fields extend the `TimelineItem` interface:
@@ -17039,25 +16902,7 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 **Key Rule**: A transfer must satisfy collection-level approvals AND (unless overridden) user-level incoming/outgoing approvals.
 
-## Core Concepts
-
-### ⚠️ Important Distinctions
-
--   **Approvals ≠ Escrows**: Approvals are just intentions - they don't guarantee underlying balances exist
--   **Mint Address**: Has unlimited balances and requires special handling (override the sender approvals since the Mint address is not a user)
--   **Default Behavior**: Unhandled transfers are **disapproved** by default
--   **Not Auto-Deleted Unless Set**: Approvals have auto-deletion functionality, but if not set, they are not deleted
-
-### Mint Address - Special Handling Required
-
-The Mint address is a special case that requires careful attention:
-
--   **Unlimited Balances**: The Mint address has unlimited balances for all badge IDs and ownership times
--   **No User Approvals**: Since it's not a real address, the Mint address cannot set its own user-level incoming/outgoing approvals
--   **Must Override**: When transferring from the Mint address, you **must** override the outgoing approvals using `overrideFromOutgoingApprovals: true`
--   **Exclusive fromList**: For safety, approvals from the Mint address should only include "Mint" in the `fromList` - never mix with regular addresses
-
-### Approval Structure
+## Approval Structure
 
 ```typescript
 interface CollectionApproval<T extends NumberType> {
@@ -17216,10 +17061,6 @@ message UintRange {
 }
 ```
 
-## Overview
-
-The `UintRange` represents an **inclusive** range of numbers from a start value to an end value. Both the start and end values are included in the range.
-
 ## Usage Patterns
 
 UintRanges are used to represent:
@@ -17315,21 +17156,6 @@ singleBadge := UintRange{Start: NewUint(5), End: NewUint(5)}
 # Valid Badge IDs
 
 Valid Badge IDs define the range of badge IDs that exist within a collection. This is mainly informational but also may be used to enforce certain rules within the collection.
-
-## Key Concepts
-
-### Badge ID Range Definition
-
--   The range of valid badge IDs (e.g., 1-100) must be defined on-chain in the core collection details
--   IDs must start at 1 and have no gaps
--   This range is separate from circulating supply
-
-### Separation from Circulating Supply
-
--   Valid badge IDs define what _can_ exist
--   Circulating supply defines what _actually_ exists
--   Circulating supply is managed through transfers/approvals and balance allocations
--   Circulating supply should obey the valid badge IDs defined on-chain
 
 ## Creating Badge IDs
 
@@ -22276,112 +22102,6 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/params"
   }
 }
 ```
-
-
-## File: ./x-badges/state.md
-
-# 🗃️ State
-
-This document describes how the badges module manages state storage, including key structures and data organization.
-
-## Table of Contents
-
--   [State Store Overview](#state-store-overview)
--   [Key Generation](#key-generation)
--   [Data Structures](#data-structures)
-
-## State Store Overview
-
-The badges module uses the Cosmos SDK's KVStore with a prefix-based key structure to organize different types of data efficiently. All data is stored in a single store with logical separation through key prefixes.
-
-### Store Architecture
-
-```
-KVStore (badges)
-├── Collections [0x01]
-├── User Balances [0x02]
-├── Next Collection ID [0x03]
-├── Challenge Trackers [0x04]
-├── Address Lists [0x06]
-├── Approval Trackers [0x07]
-├── Next Address List ID [0x0A]
-├── Dynamic Stores [0x0D]
-├── Next Dynamic Store ID [0x0E]
-└── Dynamic Store Values [0x0F]
-```
-
-## Key Generation
-
-The badges module uses deterministic key generation with prefixes and delimiters to ensure unique storage keys.
-
-### Key Prefixes
-
-```go
-var (
-    CollectionKey           = []byte{0x01}
-    UserBalanceKey          = []byte{0x02}
-    NextCollectionIdKey     = []byte{0x03}
-    UsedClaimChallengeKey   = []byte{0x04}
-    AddressListKey          = []byte{0x06}
-    ApprovalTrackerKey      = []byte{0x07}
-    NextAddressListIdKey    = []byte{0x0A}
-    DynamicStoreKey         = []byte{0x0D}
-    NextDynamicStoreIdKey   = []byte{0x0E}
-    DynamicStoreValueKey    = []byte{0x0F}
-
-    BalanceKeyDelimiter = "-"
-)
-```
-
-## Data Structures
-
-### Collections
-
--   **Key**: `0x01 + collectionId`
--   **Value**: `BadgeCollection` protobuf message
--   **Description**: Complete collection metadata, permissions, and configuration
-
-### User Balances
-
--   **Key**: `0x02 + collectionId + "-" + address`
--   **Value**: `UserBalanceStore` protobuf message
--   **Description**: User's badge balances and approval settings for a collection
-
-### Address Lists
-
--   **Key**: `0x06 + listId`
--   **Value**: `AddressList` protobuf message
--   **Description**: Reusable address lists for access control and approvals
-
-### Approval Trackers
-
--   **Key**: `0x07 + collectionId + "-" + addressForApproval + "-" + approvalId + "-" + amountTrackerId + "-" + level + "-" + trackerType + "-" + address`
--   **Value**: `ApprovalTracker` protobuf message
--   **Description**: Tracks usage of approvals for transfer limits and restrictions
-
-### Challenge Trackers
-
--   **Key**: `0x04 + collectionId + "-" + addressForChallenge + "-" + approvalLevel + "-" + approvalId + "-" + challengeId + "-" + leafIndex`
--   **Value**: Usage count (uint64)
--   **Description**: Tracks merkle proof leaf usage to prevent replay attacks
-
-### Dynamic Stores
-
--   **Key**: `0x0D + storeId`
--   **Value**: `DynamicStore` protobuf message
--   **Description**: Dynamic store configuration and metadata
-
-### Dynamic Store Values
-
--   **Key**: `0x0F + storeId + address`
--   **Value**: Boolean value
--   **Description**: Address-specific boolean values within dynamic stores
-
-### Counter Keys
-
--   **Next Collection ID**: `0x03` → Current collection counter
--   **Next Address List ID**: `0x0A` → Current address list counter
--   **Next Dynamic Store ID**: `0x0E` → Current dynamic store counter
 
 
 ## File: ./.github/workflows/for--llms.yml
