@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Jul 19 14:32:10 UTC 2025
+Generated on Sat Jul 19 14:33:35 UTC 2025
 
 
 
@@ -3590,7 +3590,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Sign In with BitBadges](overview/learn/verification-tools.md)
   * [Badges](overview/learn/badges.md)
   * [Address Lists](overview/learn/address-lists.md)
-  * [Attestations](overview/learn/attestations.md)
   * [Applications (Points)](overview/learn/applications-points.md)
   * [Subscriptions](overview/learn/subscriptions.md)
   * [Additional Badge Concepts](overview/learn/badge-concepts/README.md)
@@ -3666,7 +3665,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
     * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
     * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
-    * [Receiving Attestations](for-developers/claim-builder/concepts/receiving-attestations.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
   * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
@@ -8060,27 +8058,6 @@ This process is often immediate (<1 second), but the time ultimately goes at the
     * We do our best on our end to mitigate and prevent such cases before they happen
 
 
-## File: ./for-developers/claim-builder/concepts/receiving-attestations.md
-
-# Receiving Attestations
-
-Within the user inputs for both pre-built and custom plugins, we support accepting the "Attestation" type. This allows you to securely receive user selected attestations they have saved or uploaded which may be private via webhooks or plugins. This is only possible with standard in-site claims because the user has to be signed in and select it manually.
-
-You will receive the attestation in the payload of your request via the **key** you configure. The builder should give you a preview.
-
-{% content-ref url="../plugins/creating-a-custom-plugin/alternatives.md" %}
-[alternatives.md](../plugins/creating-a-custom-plugin/alternatives.md)
-{% endcontent-ref %}
-
-IMPORTANT: Don't trust, verify! You should also note that we simply provide you with the attestation. Treat BitBadges as the middleman. All custom checks like the content of the messages, issuer is correct, etc.
-
-You need to verify the attestations on your side. Verification is done according to the expected format. If you need to check BitBadges core ones (scheme == 'bbs' || scheme == 'standard'), you can use the SDK's **verifyAttestation** function or API **verifyAttestation** route. If it is a third-party upload, see the corresponding documentation.
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
 
 # Signed In vs Select Address
@@ -10813,25 +10790,6 @@ Address lists are a streamlined alternative to badges. Instead of dealing with t
 Applications allow you to create gamified points, quests, and tiers for your users. Behind the scenes, these just use claims with assigned weights for points, for example. Points can then be used as criteria for other gated utility, like a points-gated airdrop.
 
 <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./overview/learn/attestations.md
-
-# Attestations
-
-Attestations are private by default credentials (e.g. signature of a specific claim like "Bob earned this diploma"). They enable individuals to prove claims about themselves (such as qualifications, achievements, or attributes) in a secure, tamper-evident, and privacy-preserving manner to any verifier.
-
-These can be stored in your BItBadges account (or sent to the recipients) and selectively disclosed to whoever needs to verify them through claims or Sign In with BitBadges. Attestations are off-chain by default, but you can always anchor or prove existence of the attestation on-chain.
-
-Attestations may come in different forms with varying properties, such as:
-
-* Standard Signatures: Sign messages with your connected wallet address
-* BBS+: Supports selectively disclosing only a subset of the N messages in the attestation. For example, disclose you are 21 without revealing your name.
-* URLs: Attestations can even be a link to a URL as long as the verifier can verify it
-
-<figure><img src="../../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/learn/badge-concepts/README.md
