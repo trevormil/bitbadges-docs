@@ -84,17 +84,17 @@ const {
 
 1. Should the number of badge IDs in the collection be expandable? frozen upon genesis? -> Handle with `canUpdateValidBadgeIds`
 2. What about the transferability? -> Handle with `canUpdateCollectionApprovals`
-    - Should the transferability be frozen upon genesis?
-    - Should we disallow updating transferability for only some badge IDs? some approvals? Mint? Post-Mint?
-    - This could be critical for enforcing total circulating supply. For example, if you can create more approvals from the Mint address, then you can theoretically mint however many badges you want.
+   * Should the transferability be frozen upon genesis?
+   * Should we disallow updating transferability for only some badge IDs? some approvals? Mint? Post-Mint?
+   * This could be critical for enforcing total circulating supply. For example, if you can create more approvals from the Mint address, then you can theoretically mint however many badges you want.
 
 ## Examples
 
-We refer you to the [examples](../examples/permissions) or relevant concepts for more detailed examples.
+We refer you to the [examples](permissions/) or relevant concepts for more detailed examples.
 
 ## Related Concepts
 
--   [Permission System](../concepts/permissions/permission-system.md)
--   [Manager](../concepts/manager.md)
--   [Timeline System](../concepts/timeline-system.md)
--   [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
+* [Permission System](broken-reference)
+* [Manager](../concepts/manager.md)
+* [Timeline System](../concepts/timeline-system.md)
+* [Timed Update Permission](broken-reference)

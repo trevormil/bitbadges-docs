@@ -26,7 +26,7 @@ Date: UNIX millisecond timestamp
 
 URL: Stringified URL
 
-Attestations (for user inputs): [User inputted attestation proofs](../../../../core-concepts/verifiable-attestations/) array.
+Attestations (for user inputs): [User inputted attestation proofs](broken-reference) array.
 
 ### Identifying the Claiming User
 

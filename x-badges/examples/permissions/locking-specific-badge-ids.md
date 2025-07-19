@@ -108,9 +108,9 @@ const createCollection = {
 
 ## Use Cases
 
-- **Lock Founder Badges**: Prevent modification of special badge 1-100 transfer rules
-- **Preserve Rare Items**: Keep limited edition badges (1-100) immutable
-- **Tier-Based Control**: Lock specific tiers while allowing others to evolve
+* **Lock Founder Badges**: Prevent modification of special badge 1-100 transfer rules
+* **Preserve Rare Items**: Keep limited edition badges (1-100) immutable
+* **Tier-Based Control**: Lock specific tiers while allowing others to evolve
 
 ## Important Notes
 
@@ -120,10 +120,10 @@ The permission only applies to approvals that overlap with the specified badge I
 
 ## Related Examples
 
-- [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
-- [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+* [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock by approval ID
+* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock all mint approvals
 
 ## Related Concepts
 
-- [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
-- [Timed Update With Badge IDs Permission](../../concepts/permissions/timed-update-with-badge-ids-permission.md) - Badge-specific controls
+* [Permissions System](../../concepts/permissions/) - Permission mechanics
+* [Timed Update With Badge IDs Permission](broken-reference) - Badge-specific controls
