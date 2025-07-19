@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Jul 19 14:16:23 UTC 2025
+Generated on Sat Jul 19 14:32:10 UTC 2025
 
 
 
@@ -3553,9 +3553,8 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 We also offer complementary services:
 
 -   **Sign In with BitBadges** - Universal, outsource multi-chain authentication
--   **Claims System** - Check criteria and deliver rewards in no-code from 7000+ apps and integrations
+-   **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
 -   **Address Lists** - Manage users across multiple blockchains
--   **Attestations** - Privacy-preserving credential verification
 
 ## 🔍 How BitBadges Works
 
@@ -9473,8 +9472,6 @@ Date: UNIX millisecond timestamp
 
 URL: Stringified URL
 
-Attestations (for user inputs): [User inputted attestation proofs](broken-reference) array.
-
 ### Identifying the Claiming User
 
 You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc).  Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
@@ -10282,7 +10279,7 @@ const txn = createTransactionPayload(txContext, msgs);
 
 # 🔨 Getting Started
 
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, attestations, claims, address lists, explore listings, applications, and more!
+BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, claims, address lists, explore listings, applications, and more!
 
 <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -10458,7 +10455,6 @@ To ensure the security of the data exchange process, consider the following prac
 Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and can be configured to handle the following all in one flow:
 
 * Multi-chain authentication
-* Verification of attestation signatures
 * Badge ownership verification
 * Integration with 7000+ supported apps and plugins
 * BitBadges API scope authorizations
@@ -10481,7 +10477,7 @@ Simply replace any QR code flow with your own and use claims, the standard SIWBB
 * **Token:** `https://api.bitbadges.io/api/v0/siwbb/token`
 * **Revoke:** `https://api.bitbadges.io/api/v0/siwbb/token/revoke`&#x20;
 
-[**Demo**](https://bitbadges.io/siwbb/authorize?expectAttestations=true\&client_id=example-client-id\&redirect_uri=https://example.com&)
+[**Demo**](https://bitbadges.io/siwbb/authorize?client_id=example-client-id\&redirect_uri=https://example.com&)
 
 <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
@@ -10493,7 +10489,7 @@ Simply replace any QR code flow with your own and use claims, the standard SIWBB
 
 1. **Authentication- BitBadges Side**
    * User accesses BitBadges URL (direct or popup)
-   * Proves address ownership and other criteria (badges, attestations, etc.)
+   * Proves address ownership and other criteria (badges, etc.)
    * Receives authorization code from BitBadges (QR or behind the scenes via redirect)
 2. **Integration- Your App Side**
    * Receive authentication response
@@ -11264,7 +11260,6 @@ Additionally, use along with checking a claim to allow you to gate based on any 
 
 * Payment-gated website
 * Badge-gated event
-* Attestation-gated digital services
 * Any combination of gated access!
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
