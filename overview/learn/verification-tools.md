@@ -8,7 +8,6 @@ Additionally, use along with checking a claim to allow you to gate based on any 
 
 * Payment-gated website
 * Badge-gated event
-* Attestation-gated digital services
 * Any combination of gated access!
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!

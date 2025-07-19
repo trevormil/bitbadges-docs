@@ -32,9 +32,8 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 We also offer complementary services:
 
 -   **Sign In with BitBadges** - Universal, outsource multi-chain authentication
--   **Claims System** - Check criteria and deliver rewards in no-code from 7000+ apps and integrations
+-   **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
 -   **Address Lists** - Manage users across multiple blockchains
--   **Attestations** - Privacy-preserving credential verification
 
 ## 🔍 How BitBadges Works
 

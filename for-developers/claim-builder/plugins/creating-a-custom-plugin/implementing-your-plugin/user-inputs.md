@@ -26,8 +26,6 @@ Date: UNIX millisecond timestamp
 
 URL: Stringified URL
 
-Attestations (for user inputs): [User inputted attestation proofs](broken-reference) array.
-
 ### Identifying the Claiming User
 
 You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc).  Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
