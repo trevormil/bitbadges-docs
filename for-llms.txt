@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jul 21 12:29:00 UTC 2025
+Generated on Mon Jul 21 12:39:37 UTC 2025
 
 
 
@@ -3895,7 +3895,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 # 👤 Handling Addresses
 
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](broken-reference) will give you more in-depth explanations.
+This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](concepts/accounts-technical.md) will give you more in-depth explanations.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -3982,9 +3982,8 @@ Note: Numbers are stringified in responses to avoid precision loss. You will hav
 
 ## References
 
-* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
-* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
-* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+-   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+-   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
 
 In this documentation, we often use the SDK format for explanation purposes. Please convert the corresponding function name to vanilla HTTP if you are not using the SDK from the documentation above.
 
@@ -4044,8 +4043,8 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 For most applications, you should be fine without needing to access private user authenticated information. However if you do, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. Use the scopes to gain access to authenticated routes. Refer to the API reference to see what scopes are needed where.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../sign-in-with-bitbadges/" %}
+[Sign In with BitBadges](../sign-in-with-bitbadges/)
 {% endcontent-ref %}
 
 ## Bookmarking
@@ -4509,9 +4508,9 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
-* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
-* CLI: Run your own node and interact with the command line
-* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
+-   [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+-   CLI: Run your own node and interact with the command line
+-   Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
 **What is the creator field?**
 
@@ -4523,29 +4522,29 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/badges**
 
-* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
-* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
-  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
-* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
-* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
-* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
-* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
+-   [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+-   [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+-   [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+    -   Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
+-   [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
+-   [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+-   [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+-   [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts from Ethereum wallets for EIP712. See [here](broken-reference) for tutorial.
+-   [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
 
 **x/maps**
 
-* MsgCreateMap - Creates a map, uniquely identifed by an ID
-* MsgUpdateMap - Updates an existing map.
-* MsgDeleteMap - Deletes a map
-* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+-   MsgCreateMap - Creates a map, uniquely identifed by an ID
+-   MsgUpdateMap - Updates an existing map.
+-   MsgDeleteMap - Deletes a map
+-   MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
 
 **x/anchor**
 
-* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
+-   MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
 
 **Other Cosmos SDK Modules**
 
@@ -4634,10 +4633,6 @@ message MsgAddCustomData {
 # x/badges
 
 See the x/badges documentation below the For Developers section.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
@@ -4735,26 +4730,26 @@ All values are stringified for comaptibility, but it will check they are in prop
 
 ```typescript
 export interface iMsgSetValue {
-  creator: string;
-  mapId: string;
-  key: string;
-  value: string;
-  options: iSetOptions;
+    creator: string;
+    mapId: string;
+    key: string;
+    value: string;
+    options: iSetOptions;
 }
 
 export interface iSetOptions {
-  useMostRecentCollectionId: boolean;
+    useMostRecentCollectionId: boolean;
 }
 ```
 
 **Combining with MsgCreateCollection or MsgUpdateCollection**
 
-The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](broken-reference) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
+The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
 
 ```typescript
 const msgs: MessageGenerated[] = [];
-msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateCollections
-msgs.push(...bootstrapSetProtocols().map(x => createProtoMsg(x))); //MsgSetCollectionForProtocol
+msgs.push(...bootstrapCollections().map((x) => createProtoMsg(x))); //MsgCreateCollections
+msgs.push(...bootstrapSetProtocols().map((x) => createProtoMsg(x))); //MsgSetCollectionForProtocol
 
 //Note how MsgCreateAddressLists is first in the array
 const txn = createTransactionPayload(txContext, msgs);
@@ -4794,8 +4789,6 @@ export interface iMsgUpdateMap<T extends NumberType> {
 
 # MsgExecuteContractCompat
 
-
-
 ```typescript
 /**
  * MsgExecuteContractCompat defines a ExecuteContractCompat message.
@@ -4807,14 +4800,14 @@ export interface iMsgUpdateMap<T extends NumberType> {
  * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
  */
 export interface MsgExecuteContractCompat {
-  sender: string
-  contract: string
-  msg: string
-  funds: string
+    sender: string;
+    contract: string;
+    msg: string;
+    funds: string;
 }
 ```
 
-MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](broken-reference) tutorial for more information.
+MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
 
 
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md
@@ -4830,7 +4823,7 @@ export interface MsgInstantiateContractCompat {
 }
 ```
 
-MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](broken-reference) tutorial for more information.
+MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
 
 
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md
@@ -4839,12 +4832,12 @@ MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract 
 
 ```typescript
 export interface MsgStoreCodeCompat {
-  sender: string
-  hexWasmByteCode: string
+    sender: string;
+    hexWasmByteCode: string;
 }
 ```
 
-MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](broken-reference) tutorial for more information.
+MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
@@ -5633,7 +5626,7 @@ Generating the fee can be tricky. It should be reasonable for the current gas pr
 
 **Sender Details**
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../../create-and-broadcast-txs/broken-reference/). You can also query a node directly.
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
 
 This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
 
@@ -5856,9 +5849,9 @@ Please reach out if you have problems. -->
 
 # Run a Mainnet Node
 
-## DAEMON\_HOME
+## DAEMON_HOME
 
-Your DAEMON\_HOME is the folder that will contain everything about the blockchain state, configuration, genesis, etc. Ensure that this folder persists across upgrades and changes. This is especially important if you plan to run the node using a container approach (Docker, Kubernetes, etc).
+Your DAEMON_HOME is the folder that will contain everything about the blockchain state, configuration, genesis, etc. Ensure that this folder persists across upgrades and changes. This is especially important if you plan to run the node using a container approach (Docker, Kubernetes, etc).
 
 ## Fetch / Build Binaries
 
@@ -5873,8 +5866,6 @@ wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/
 Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (15).png" alt=""><figcaption></figcaption></figure>
-
-If this is your first time downloading, you will need to also download the Wasm VM runtime library as well. This is the libwasmvm.x86\_64.so file and should be placed into /usr/lib. If not, you will get "error while loading shared libraries: libwasmvm.x86\_64.so: cannot open shared object file: No such file or directory".
 
 Example
 
@@ -5907,9 +5898,9 @@ Upgrades will be announced in the Discord and are facilitated with the x/upgrade
 [cosmovisor.md](cosmovisor.md)
 {% endcontent-ref %}
 
-## RUN\_COMMAND
+## RUN_COMMAND
 
-Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN\_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN\_COMMAND
+Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN_COMMAND
 
 **Cosmovisor**
 
@@ -5956,7 +5947,7 @@ You can configure your config.toml to use the Cosmos SDK state sync feature to q
 
 **From Snapshots**
 
-You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain. See [Chain Details](../chain-details.md) for providers.
+You can get the necessary files from an existing snapshot, add them to your DAEMON_HOME, and start the chain. See [Chain Details](../chain-details.md) for providers.
 
 For [https://snapshots.whenmoonwhenlambo.money/bitbadges-1](https://snapshots.whenmoonwhenlambo.money/bitbadges-1), use this command. Replace /cosmos/.bitbadgeschain with your home directoyry.
 
@@ -6001,7 +5992,7 @@ You can get blocks 1-711315 via running it below or via a snapshot (recommended)
 cd DAEMON_HOME/config
 rm genesis.json
 curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis.json
-RUN_COMMAND start 
+RUN_COMMAND start
 ```
 
 If you want to migrate and join together the blockstores / transaction indexes so they are all in one place:
@@ -6022,15 +6013,15 @@ Note: Replace the genesis files with the corresponding testnet ones if you are p
 
 ## Configuration
 
-To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
+To initialize a new chain, run the following (depending on your build method). CHAIN_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
 
 ```
 RUN_COMMAND init <moniker> --chain-id CHAIN_ID
 ```
 
-You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges-1 for mainnet).
+You'll need to replace `<moniker>` with a custom username for your node and the CHAIN_ID for the chain you want (bitbadges-1 for mainnet).
 
-Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON\_HOME.
+Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON_HOME.
 
 If you are getting directories do not exist error, you may have to do the following first. These will be overwritten when the init command is executed, but it is just to get the errors out of there.
 
@@ -6040,7 +6031,7 @@ mkdir data
 mkdir wasm
 </code></pre>
 
-Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
+Inside the DAEMON_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
 
 Tweak these as desired. Some important ones are highlighted below.
 
@@ -6070,14 +6061,14 @@ RUN_COMMAND start
 
 Setting up your node infrastructure correctly and with best practices is crucial to ensure security. There are many options for this, so below we just give some general guidelines.
 
-* DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
-* Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
-* Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
-* Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
+-   DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
+-   Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
+-   Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
+-   Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
 
 ## Running a Validator
 
-As explained in the [Launch Phases](broken-reference) docs, reach out to us in Discord if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+As explained in the launch phases docs, reach out to us in [Discord](https://discord.com/invite/TJMaEd9bar) if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
 
 **Setup - Validator Keys**
 
@@ -7976,7 +7967,7 @@ For off-chain balances, we can just allocate the balances directly after claimin
 
 For on-chain badge balances, a successful claim will result in reserving the right to claim, not actually completing the claim. This is because the claim criteria is checked off-chain, and we need an on-chain transfer transaction. It is a two-step process.
 
-Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](broken-reference) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
+Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](../../../x-badges/concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
 
 **When to use claims vs self-hosted balances?**
 
@@ -8294,10 +8285,6 @@ The easiest and most typical approach is to just do this with preconfigured plug
 ## **Integrations**
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ## **In-Site Rewards - URLs / Content**
 
@@ -10285,8 +10272,8 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 
 ## Quick Start - Badges
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../x-badges/" %}
+[x-badges](../x-badges/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims
@@ -10320,8 +10307,6 @@ const api = new BitBadgesAPI({
 
 await BitBadgesAPI.getCollection(...);
 ```
-
-Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart). Or, see out [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example).
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/README.md
@@ -10372,8 +10357,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../authorization-url/" %}
+[Authorization URL](../authorization-url/)
 {% endcontent-ref %}
 
 **Implementation - Backend**
@@ -10853,7 +10838,7 @@ Balances' updatable nature allows for the implementation of custom logic for wha
 
 For example, you can dynamically revoke and assign based on if users pay their subscription fees for a month all without ever interacting with the blockchain (since the URL won't change).
 
-See [here](../../how-it-works/broken-reference/). Or, find a tool or tutorial for your use case on the [Ecosystem ](broken-reference)page!
+See [here](time-dependent-ownership.md). Or, find a tool or tutorial for your use case on the [Ecosystem](../../ecosystem/) page!
 
 #### Advantages Over Standard Solutions
 
@@ -11192,9 +11177,9 @@ Gate your digital services with an industry standard OAuth 2..0 multi-chain auth
 
 Additionally, use along with checking a claim to allow you to gate based on any criteria you want:
 
-* Payment-gated website
-* Badge-gated event
-* Any combination of gated access!
+-   Payment-gated website
+-   Badge-gated event
+-   Any combination of gated access!
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
 
@@ -11202,8 +11187,8 @@ We also are compatible with many frameworks and tools like Discourse, WordPress,
 
 For developers interested in implementing these features, please refer to our detailed guide:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../../for-developers/sign-in-with-bitbadges/" %}
+[Sign In with BitBadges](../../for-developers/sign-in-with-bitbadges/)
 {% endcontent-ref %}
 
 
@@ -11333,7 +11318,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 -   [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
 -   [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
--   [Quickstarter Demo](https://bitbadges.io/quickstart)
 -   [Python API / SDK Package](https://pypi.org/project/bitbadgespy-sdk/)
 
 ```bash
@@ -11378,7 +11362,7 @@ pip install bitbadgespy-sdk
 
 ### WordPress Plugin
 
--   [WordPress Plugin](broken-reference)
+-   WordPress Plugin (Coming Soon)
 
 Learn more about the team at [https://bitbadges.io/about](https://bitbadges.io/about).
 
@@ -11500,54 +11484,52 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 ## Table of Contents
 
-1. [Introduction](introduction.md) - Overview and key concepts
-2. [Concepts](02-concepts.md) - Core data structures and business logic
-3. [State](broken-reference) - State management and storage patterns
-4. [Messages](messages/) - Transaction messages and handlers
-5. [Queries](queries/) - Query types and endpoints
-6. [Events](events.md) - Event emissions and tracking
-7. [Examples](examples/) - Common usage patterns and building blocks
+1. [Concepts](02-concepts.md) - Core data structures and business logic
+2. [Messages](messages/) - Transaction messages and handlers
+3. [Queries](queries/) - Query types and endpoints
+4. [Events](events.md) - Event emissions and tracking
+5. [Examples](examples/) - Common usage patterns and building blocks
 
 ## Message Reference
 
 ### Collection Management
 
-* [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
-* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
-* [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
+-   [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
+-   [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
 
 ### Badge Transfers
 
-* [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
+-   [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
 
 ### User Approvals
 
-* [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+-   [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
 
 ### Address Lists & Dynamic Stores
 
-* [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
-* [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
-* [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
-* [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
-* [More messages...](messages/) - See full message reference
+-   [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
+-   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
+-   [More messages...](messages/) - See full message reference
 
 ## Query Reference
 
 ### Core Queries
 
-* [GetCollection](queries/get-collection.md) - Retrieve collection data
-* [GetBalance](queries/get-balance.md) - Get user badge balances
-* [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
-* [GetAddressList](queries/get-address-list.md) - Retrieve address list
-* [More queries...](queries/) - See full query reference
+-   [GetCollection](queries/get-collection.md) - Retrieve collection data
+-   [GetBalance](queries/get-balance.md) - Get user badge balances
+-   [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
+-   [GetAddressList](queries/get-address-list.md) - Retrieve address list
+-   [More queries...](queries/) - See full query reference
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
 
 ## Documentation Style
 
@@ -17397,10 +17379,10 @@ We refer you to the [examples](permissions/) or relevant concepts for more detai
 
 ## Related Concepts
 
-* [Permission System](broken-reference)
+* [Permission System](../concepts/permissions/)
 * [Manager](../concepts/manager.md)
 * [Timeline System](../concepts/timeline-system.md)
-* [Timed Update Permission](broken-reference)
+* [Timed Update Permission](../concepts/permissions/timeline-permissions.md)
 
 
 ## File: ./x-badges/examples/building-user-approvals.md
@@ -17583,7 +17565,7 @@ For user approval configuration, see:
 ## Related Concepts
 
 * [Permissions System](../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](broken-reference) - Approval-specific controls
+* [Update Approval Permission](../concepts/permissions/approval-permissions.md) - Approval-specific controls
 * [Default Balances](../concepts/default-balances.md) - User permission structure
 
 
@@ -17644,7 +17626,7 @@ const collection = {
 ## Related Concepts
 
 * [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* [Approval System](broken-reference)
+* [Approval System](../concepts/approval-criteria/)
 * [Badge Collections](../concepts/badge-collections.md)
 
 
@@ -18205,7 +18187,6 @@ BitBadges permissions follow a timeline-based system where:
 
 ## Related Concepts
 
-* [Permission System](broken-reference)
 * [Manager](../../concepts/manager.md)
 * [Timeline System](../../concepts/timeline-system.md)
 
@@ -18291,8 +18272,8 @@ Once set to permanently forbidden, mint permissions cannot be restored. Carefull
 ## Related Concepts
 
 * [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Collection Permissions](broken-reference) - Collection-level controls
-* [Action Permissions](broken-reference) - Specific action controls
+* [Collection Permissions](../../concepts/permissions/) - Collection-level controls
+* [Action Permissions](../../concepts/permissions/action-permissions.md) - Specific action controls
 
 
 ## File: ./x-badges/examples/permissions/locking-specific-approval-id.md
@@ -18403,7 +18384,7 @@ const createCollection = {
 ## Related Concepts
 
 * [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](broken-reference) - Approval-specific controls
+* [Update Approval Permission](../../concepts/permissions/approval-permissions.md) - Approval-specific controls
 
 
 ## File: ./x-badges/examples/permissions/locking-specific-badge-ids.md
@@ -18536,7 +18517,7 @@ The permission only applies to approvals that overlap with the specified badge I
 ## Related Concepts
 
 * [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Timed Update With Badge IDs Permission](broken-reference) - Badge-specific controls
+* [Timed Update With Badge IDs Permission](../../concepts/permissions/timeline-permissions.md) - Badge-specific controls
 
 
 ## File: ./x-badges/examples/permissions/locking-valid-badge-ids.md
@@ -18633,19 +18614,19 @@ const createCollection = {
 
 ### ⚠️ Badge ID Targeting
 
-* Permissions only apply to the specified badge ID ranges
-* Unspecified ranges remain soft-enabled for manager updates
-* Cannot reduce valid badge IDs once locked (only expansion possible for unlocked ranges)
+-   Permissions only apply to the specified badge ID ranges
+-   Unspecified ranges remain soft-enabled for manager updates
+-   Cannot reduce valid badge IDs once locked (only expansion possible for unlocked ranges)
 
 ## Related Examples
 
-* [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approval updates for badge ranges
-* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
+-   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approval updates for badge ranges
+-   [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
-* [Valid Badge IDs](../../concepts/valid-badge-ids.md) - Badge ID range concept
-* [Badge IDs Action Permission](broken-reference) - Badge-specific permission controls
+-   [Valid Badge IDs](../../concepts/valid-badge-ids.md) - Badge ID range concept
+-   [Badge IDs Action Permission](../../concepts/permissions/badge-id-permissions.md) - Badge-specific permission controls
 
 
 ## File: ./x-badges/examples/txs/README.md
