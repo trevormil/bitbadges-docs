@@ -39,5 +39,5 @@ At your redirect URI, you will need to set up a handler to handle the code / sta
 
 To ensure the security of the data exchange process, consider the following practices:
 
-* Validate the `state` parameter according to your requirements (if applicable)
-* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+-   Validate the `state` parameter according to your requirements (if applicable)
+-   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
