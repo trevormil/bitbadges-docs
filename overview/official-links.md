@@ -75,6 +75,6 @@ pip install bitbadgespy-sdk
 
 ### WordPress Plugin
 
--   WordPress Plugin (Coming Soon)
+-   [WordPress Plugin](../for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
 
 Learn more about the team at [https://bitbadges.io/about](https://bitbadges.io/about).
