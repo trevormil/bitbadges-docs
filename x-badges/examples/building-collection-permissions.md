@@ -94,7 +94,7 @@ We refer you to the [examples](permissions/) or relevant concepts for more detai
 
 ## Related Concepts
 
-* [Permission System](broken-reference)
+* [Permission System](../concepts/permissions/)
 * [Manager](../concepts/manager.md)
 * [Timeline System](../concepts/timeline-system.md)
-* [Timed Update Permission](broken-reference)
+* [Timed Update Permission](../concepts/permissions/timeline-permissions.md)

@@ -61,7 +61,7 @@ Generating the fee can be tricky. It should be reasonable for the current gas pr
 
 **Sender Details**
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [Users](../../create-and-broadcast-txs/broken-reference/). You can also query a node directly.
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
 
 This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
 

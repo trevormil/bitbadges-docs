@@ -20,9 +20,8 @@ Note: Numbers are stringified in responses to avoid precision loss. You will hav
 
 ## References
 
-* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
-* [Postman](https://www.postman.com/bitbadges/workspace/bitbadges-api/collection/11647629-5bc57e3c-1818-4446-988e-23a9442cc0df?action=share\&creator=11647629)
-* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+-   [Main](https://bitbadges.stoplight.io/docs/bitbadges)
+-   [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
 
 In this documentation, we often use the SDK format for explanation purposes. Please convert the corresponding function name to vanilla HTTP if you are not using the SDK from the documentation above.
 
@@ -82,8 +81,8 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 For most applications, you should be fine without needing to access private user authenticated information. However if you do, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. Use the scopes to gain access to authenticated routes. Refer to the API reference to see what scopes are needed where.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../sign-in-with-bitbadges/" %}
+[Sign In with BitBadges](../sign-in-with-bitbadges/)
 {% endcontent-ref %}
 
 ## Bookmarking

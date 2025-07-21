@@ -15,54 +15,52 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 ## Table of Contents
 
-1. [Introduction](introduction.md) - Overview and key concepts
-2. [Concepts](02-concepts.md) - Core data structures and business logic
-3. [State](broken-reference) - State management and storage patterns
-4. [Messages](messages/) - Transaction messages and handlers
-5. [Queries](queries/) - Query types and endpoints
-6. [Events](events.md) - Event emissions and tracking
-7. [Examples](examples/) - Common usage patterns and building blocks
+1. [Concepts](02-concepts.md) - Core data structures and business logic
+2. [Messages](messages/) - Transaction messages and handlers
+3. [Queries](queries/) - Query types and endpoints
+4. [Events](events.md) - Event emissions and tracking
+5. [Examples](examples/) - Common usage patterns and building blocks
 
 ## Message Reference
 
 ### Collection Management
 
-* [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
-* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
-* [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
+-   [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
+-   [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
 
 ### Badge Transfers
 
-* [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
+-   [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
 
 ### User Approvals
 
-* [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+-   [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
 
 ### Address Lists & Dynamic Stores
 
-* [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
-* [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
-* [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
-* [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
-* [More messages...](messages/) - See full message reference
+-   [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
+-   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
+-   [More messages...](messages/) - See full message reference
 
 ## Query Reference
 
 ### Core Queries
 
-* [GetCollection](queries/get-collection.md) - Retrieve collection data
-* [GetBalance](queries/get-balance.md) - Get user badge balances
-* [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
-* [GetAddressList](queries/get-address-list.md) - Retrieve address list
-* [More queries...](queries/) - See full query reference
+-   [GetCollection](queries/get-collection.md) - Retrieve collection data
+-   [GetBalance](queries/get-balance.md) - Get user badge balances
+-   [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
+-   [GetAddressList](queries/get-address-list.md) - Retrieve address list
+-   [More queries...](queries/) - See full query reference
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
 
 ## Documentation Style
 

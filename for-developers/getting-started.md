@@ -29,8 +29,8 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 
 ## Quick Start - Badges
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../x-badges/" %}
+[x-badges](../x-badges/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims
@@ -64,5 +64,3 @@ const api = new BitBadgesAPI({
 
 await BitBadgesAPI.getCollection(...);
 ```
-
-Try our interactive quickstart demo: [BitBadges Quickstart](https://bitbadges.io/quickstart). If that is what you need, clone it: [BitBadges Quickstart Repository](https://github.com/BitBadges/bitbadges-quickstart). Or, see out [Auth.js/Next.js Template](https://github.com/BitBadges/bitbadges-authjs-example).

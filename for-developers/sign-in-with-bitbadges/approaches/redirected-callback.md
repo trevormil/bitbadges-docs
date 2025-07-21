@@ -14,8 +14,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../authorization-url/" %}
+[Authorization URL](../authorization-url/)
 {% endcontent-ref %}
 
 **Implementation - Backend**

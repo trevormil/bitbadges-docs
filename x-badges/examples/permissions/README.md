@@ -30,6 +30,5 @@ BitBadges permissions follow a timeline-based system where:
 
 ## Related Concepts
 
-* [Permission System](broken-reference)
 * [Manager](../../concepts/manager.md)
 * [Timeline System](../../concepts/timeline-system.md)

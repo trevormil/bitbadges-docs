@@ -83,5 +83,5 @@ For user approval configuration, see:
 ## Related Concepts
 
 * [Permissions System](../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](broken-reference) - Approval-specific controls
+* [Update Approval Permission](../concepts/permissions/approval-permissions.md) - Approval-specific controls
 * [Default Balances](../concepts/default-balances.md) - User permission structure

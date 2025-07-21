@@ -53,5 +53,5 @@ const collection = {
 ## Related Concepts
 
 * [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* [Approval System](broken-reference)
+* [Approval System](../concepts/approval-criteria/)
 * [Badge Collections](../concepts/badge-collections.md)

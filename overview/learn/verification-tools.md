@@ -6,9 +6,9 @@ Gate your digital services with an industry standard OAuth 2..0 multi-chain auth
 
 Additionally, use along with checking a claim to allow you to gate based on any criteria you want:
 
-* Payment-gated website
-* Badge-gated event
-* Any combination of gated access!
+-   Payment-gated website
+-   Badge-gated event
+-   Any combination of gated access!
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!
 
@@ -16,6 +16,6 @@ We also are compatible with many frameworks and tools like Discourse, WordPress,
 
 For developers interested in implementing these features, please refer to our detailed guide:
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
+{% content-ref url="../../for-developers/sign-in-with-bitbadges/" %}
+[Sign In with BitBadges](../../for-developers/sign-in-with-bitbadges/)
 {% endcontent-ref %}

@@ -12,10 +12,6 @@ The easiest and most typical approach is to just do this with preconfigured plug
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
 
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
 ## **In-Site Rewards - URLs / Content**
 
 When creating rewards on the claim builder page, you can also link gated content / URLs to only be visible to users upon successfully claiming.

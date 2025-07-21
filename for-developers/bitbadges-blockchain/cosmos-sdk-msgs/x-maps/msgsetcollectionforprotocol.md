@@ -6,26 +6,26 @@ All values are stringified for comaptibility, but it will check they are in prop
 
 ```typescript
 export interface iMsgSetValue {
-  creator: string;
-  mapId: string;
-  key: string;
-  value: string;
-  options: iSetOptions;
+    creator: string;
+    mapId: string;
+    key: string;
+    value: string;
+    options: iSetOptions;
 }
 
 export interface iSetOptions {
-  useMostRecentCollectionId: boolean;
+    useMostRecentCollectionId: boolean;
 }
 ```
 
 **Combining with MsgCreateCollection or MsgUpdateCollection**
 
-The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](broken-reference) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
+The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
 
 ```typescript
 const msgs: MessageGenerated[] = [];
-msgs.push(...bootstrapCollections().map(x => createProtoMsg(x))) //MsgCreateCollections
-msgs.push(...bootstrapSetProtocols().map(x => createProtoMsg(x))); //MsgSetCollectionForProtocol
+msgs.push(...bootstrapCollections().map((x) => createProtoMsg(x))); //MsgCreateCollections
+msgs.push(...bootstrapSetProtocols().map((x) => createProtoMsg(x))); //MsgSetCollectionForProtocol
 
 //Note how MsgCreateAddressLists is first in the array
 const txn = createTransactionPayload(txContext, msgs);

@@ -1,7 +1,5 @@
 # MsgExecuteContractCompat
 
-
-
 ```typescript
 /**
  * MsgExecuteContractCompat defines a ExecuteContractCompat message.
@@ -13,11 +11,11 @@
  * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
  */
 export interface MsgExecuteContractCompat {
-  sender: string
-  contract: string
-  msg: string
-  funds: string
+    sender: string;
+    contract: string;
+    msg: string;
+    funds: string;
 }
 ```
 
-MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](broken-reference) tutorial for more information.
+MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.

@@ -31,7 +31,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 -   [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
 -   [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
--   [Quickstarter Demo](https://bitbadges.io/quickstart)
 -   [Python API / SDK Package](https://pypi.org/project/bitbadgespy-sdk/)
 
 ```bash
@@ -76,6 +75,6 @@ pip install bitbadgespy-sdk
 
 ### WordPress Plugin
 
--   [WordPress Plugin](broken-reference)
+-   WordPress Plugin (Coming Soon)
 
 Learn more about the team at [https://bitbadges.io/about](https://bitbadges.io/about).

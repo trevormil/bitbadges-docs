@@ -1,6 +1,6 @@
 # 👤 Handling Addresses
 
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](broken-reference) will give you more in-depth explanations.
+This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](concepts/accounts-technical.md) will give you more in-depth explanations.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

@@ -104,4 +104,4 @@ const createCollection = {
 ## Related Concepts
 
 * [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](broken-reference) - Approval-specific controls
+* [Update Approval Permission](../../concepts/permissions/approval-permissions.md) - Approval-specific controls

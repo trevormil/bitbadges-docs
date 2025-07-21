@@ -126,4 +126,4 @@ The permission only applies to approvals that overlap with the specified badge I
 ## Related Concepts
 
 * [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Timed Update With Badge IDs Permission](broken-reference) - Badge-specific controls
+* [Timed Update With Badge IDs Permission](../../concepts/permissions/timeline-permissions.md) - Badge-specific controls
