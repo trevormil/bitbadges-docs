@@ -6,4 +6,4 @@ For any badge transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of t
 
 **Frontend Affiliates**
 
-If you are building a custom frontend or tool on top of BitBadges that triggers badge transfer transactions, you can use the affiliate address option in the transfer transaction to claim the protocol fee for yourself!
+If you are building a custom frontend or tool on top of BitBadges that triggers badge transfer transactions, you can use the affiliate address option in the transfer transaction to claim an affiliate fee for yourself!
