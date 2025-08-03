@@ -10,10 +10,6 @@ By default, certain routes are available publicly in a rate limited manner with 
 
 <figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
-## Quickstarter
-
-See the [quickstart repo](https://github.com/BitBadges/bitbadges-quickstart) for a fully configured example repository with fetching collections, accounts, and more with the API!
-
 ## Number Types
 
 Note: Numbers are stringified in responses to avoid precision loss. You will have to convert them. The SDK does this for you if you use it.
