@@ -23,6 +23,10 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 6. [Events](./events.md) - Event emissions and tracking
 7. [Examples](./examples/) - Common usage patterns and building blocks
 
+## Tokens vs Badges
+
+We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
+
 ## Message Reference
 
 ### Collection Management
