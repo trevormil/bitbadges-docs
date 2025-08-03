@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Aug  3 12:53:56 UTC 2025
+Generated on Sun Aug  3 14:32:36 UTC 2025
 
 
 
@@ -4119,9 +4119,9 @@ const firstRequest = {
 ```
 
 2. **Response Structure**: Each paginated response includes:
-   * The requested data
-   * A `bookmark` string for the next page
-   * A `hasMore` boolean indicating if more data exists
+    - The requested data
+    - A `bookmark` string for the next page
+    - A `hasMore` boolean indicating if more data exists
 
 ```typescript
 {
@@ -4153,7 +4153,7 @@ const nextRequest = {
 ## Understanding the Views Object
 
 ```
-Note: This is planning to be deprecated in favor of more confined view routes. 
+Note: This is planning to be deprecated in favor of more confined view routes.
 Please use those instead. They are much less confusing.
 ```
 
@@ -4198,19 +4198,19 @@ Different interfaces support different view types. See the corresponding documen
 
 #### Collections Interface
 
-* `owners`: List of badge owners
-* `activity`: Transfer activity
-* `approvalTrackers`: Approval tracking documents
+-   `owners`: List of owners
+-   `activity`: Transfer activity
+-   `approvalTrackers`: Approval tracking documents
 
 See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/CollectionViewKey.html)
 
 #### Account Interface
 
-* `transferActivity`: User's transfer history
-* `badgesCollected`: Badges owned by the user
-* `createdBadges`: Collections created by the user
-* `managingBadges`: Collections being managed
-* `allLists`: Address lists the user is on
+-   `transferActivity`: User's transfer history
+-   `badgesCollected`: Badges owned by the user
+-   `createdBadges`: Collections created by the user
+-   `managingBadges`: Collections being managed
+-   `allLists`: Address lists the user is on
 
 See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
 
@@ -4863,16 +4863,16 @@ github.com/CosmWasm/wasmd v0.52.0
 **Permissioned Uploads**
 
 ```
-BitBadges implements CosmWASM in a permissioned manner. 
+BitBadges implements CosmWASM in a permissioned manner.
 ```
 
 Instantiating and officially deploying a contract does require a review process and governance approval. Reach out for more information.
 
 Requirements:
 
-* No avoidance of the protocol fee. Any badge transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
-* We encourage audits and a peer review process before officailly deploying.
-* You must also showcase a working testnet implementation as well (testnet is permissionless)
+-   No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+-   We encourage audits and a peer review process before officailly deploying.
+-   You must also showcase a working testnet implementation as well (testnet is permissionless)
 
 Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
 
@@ -4880,20 +4880,20 @@ Generally speaking, even though this is a permissioned implementation, we want t
 
 ```rust
 const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', 
+    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d',
     contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', 
+        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e',
     msg: '{"myCustomMsg1": {"collectionId": "1"}}',
     funds: '1ubadge',
 };
 ```
 
-* Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
-* 3-Step Process: Upload / Store Code, Instantiate, Execute
-  * Instantiating requires governance proposal (see below)
-* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
-* The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
+-   Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
+-   3-Step Process: Upload / Store Code, Instantiate, Execute
+    -   Instantiating requires governance proposal (see below)
+-   Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
+    -   When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+-   The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
 
 ```rust
 //contract.rs
@@ -4935,7 +4935,7 @@ This repository exports all the custom bindings via `packages/bitbadges-cosmwasm
 
 2. Create your contract
 
-You will be dealing with the `contracts` folder.  This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
+You will be dealing with the `contracts` folder. This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
 
 Tools at your disposal:
 
@@ -4982,7 +4982,7 @@ pub fn execute(
 
 3. Build and Optimize
 
-You may have to edit the script for you file names and paths. Consider also using an optimizer like   [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
+You may have to edit the script for you file names and paths. Consider also using an optimizer like [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
 
 ```bash
 cargo build
@@ -5015,7 +5015,7 @@ If you want to instantiate it with funds. the **funds** property will be in the 
 A notification should pop up with your contract's address. Store this somewhere.
 
 ```
-Note: This is only applicable to testnet. 
+Note: This is only applicable to testnet.
 
 For mainnet, instantiation requires a governance proposal. Reach out to us to start this process.
 ```
@@ -5026,21 +5026,21 @@ Once deployed, you need to to let your users interact with it. Use our custom x/
 
 Couple common misunderstandings:
 
-* Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
-*   Note camelCase vs snake\_case. Contracts typically auto-format with camelCase via&#x20;
+-   Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
+-   Note camelCase vs snake_case. Contracts typically auto-format with camelCase via&#x20;
 
     ```rust
     #[serde(rename_all = "camelCase")]
     ```
-* Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
+
+-   Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
 
 **Examples**
 
 ```typescript
 const msgExecuteContract: MsgExecuteContractCompat = {
     sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', //enter sender adress here
-    contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
+    contract: 'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
     msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
     funds: '1badge',
 };
@@ -6260,8 +6260,6 @@ These functions provide a robust toolkit for managing badge metadata. Whether yo
 
 Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Balances
 
-
-
 ### Tutorial: Using the TypeScript SDK for Balance Operations
 
 **1. Define the Balance**
@@ -6283,9 +6281,9 @@ To add a balance to an array of existing balances:
 
 ```typescript
 const balanceToAdd = {
-  amount: 3n,
-  badgeIds: [{ start: 6n, end: 8n }],
-  ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }]
+    amount: 3n,
+    badgeIds: [{ start: 6n, end: 8n }],
+    ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }],
 };
 userBalance.addBalances([balanceToAdd]);
 ```
@@ -6298,16 +6296,16 @@ To subtract a balance from an array of existing balances:
 
 ```typescript
 const balanceToRemove = {
-  amount: 2n,
-  badgeIds: [{ start: 2n, end: 3n }],
-  ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }]
+    amount: 2n,
+    badgeIds: [{ start: 2n, end: 3n }],
+    ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }],
 };
-userBalance.subtractBalances([balanceToRemove], false) //second param is to allow underflow (negatives)
+userBalance.subtractBalances([balanceToRemove], false); //second param is to allow underflow (negatives)
 ```
 
 **Conclusion**
 
-This SDK provides a clear and structured way to manage and operate on badge balances. With the `addBalance` and `subtractBalance` functions, you can effortlessly update and maintain badge balances in your application.\
+This SDK provides a clear and structured way to manage and operate on balances. With the `addBalance` and `subtractBalance` functions, you can effortlessly update and maintain balances in your application.\
 \
 Given the new functions you've shared, I'll provide a tutorial snippet for each of them.
 
@@ -6319,8 +6317,11 @@ If you need to retrieve the balance for a specific badge ID and a specific owner
 
 ```typescript
 const badgeIdToLookup = 3n;
-const timeToLookup = 1628784400000n;  // example timestamp using BigInt
-const specificBalance = balances.getBalanceForIdAndTime(badgeIdToLookup, timeToLookup);
+const timeToLookup = 1628784400000n; // example timestamp using BigInt
+const specificBalance = balances.getBalanceForIdAndTime(
+    badgeIdToLookup,
+    timeToLookup
+);
 
 console.log(specificBalance); // This will show the balance for the specified badge ID and time, if found.
 ```
@@ -6331,14 +6332,14 @@ To get all balances associated with a specific badge ID:
 
 ```typescript
 const badgeIdToLookup = 4n;
-const badgeBalances = balances.getBalancesForId(badgeIdToLookup);
+const balances = balances.getBalancesForId(badgeIdToLookup);
 
-console.log(badgeBalances); // This will display all the balances for the given badge ID.
+console.log(balances); // This will display all the balances for the given badge ID.
 ```
 
 **3. Get Balances for a Specific Time**
 
-If you need to retrieve all badge balances for a specific ownership time:
+If you need to retrieve all balances for a specific ownership time:
 
 ```typescript
 const timeToLookup = 1628784400000n;
@@ -6357,22 +6358,25 @@ If you need to retrieve balances for a range of badge IDs and a range of ownersh
 // Define the range of badge IDs and times you want to look up
 const idRangesToLookup = [
     { start: 1n, end: 3n },
-    { start: 5n, end: 7n }
+    { start: 5n, end: 7n },
 ];
 
 const timeRangesToLookup = [
-    { start: 1628770800000n, end: 1628857200000n },  // example timestamp range using BigInt
-    { start: 1628943600000n, end: 1629030000000n }   // another timestamp range
+    { start: 1628770800000n, end: 1628857200000n }, // example timestamp range using BigInt
+    { start: 1628943600000n, end: 1629030000000n }, // another timestamp range
 ];
 
 // Retrieve the balances
-const specificBalances = balances.getBalancesForIds(idRangesToLookup, timeRangesToLookup);
+const specificBalances = balances.getBalancesForIds(
+    idRangesToLookup,
+    timeRangesToLookup
+);
 console.log(specificBalances); // This will show the balances that fall within the specified badge ID ranges and time ranges.
 ```
 
 **Conclusion**
 
-The provided functions in this SDK make it easy to retrieve specific badge balances based on different criteria, such as badge ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.
+The provided functions in this SDK make it easy to retrieve specific balances based on different criteria, such as badge ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md
@@ -6514,34 +6518,40 @@ And so on for all other timelines.
 
 # Transfers
 
-The `TransferWithIncrements` type provides a convenient method for handling batch transfers, especially when you need to distribute badges sequentially or when badges have varying ownership times. By combining this with the `getBalancesAfterTransfers` function, you can effortlessly manage and update badge balances in your application.
+The `TransferWithIncrements` type provides a convenient method for handling batch transfers, especially when you need to distribute badges sequentially or when badges have varying ownership times. By combining this with the `getBalancesAfterTransfers` function, you can effortlessly manage and update balances in your application.
 
 ```typescript
-import { BalanceArray, TransferWithIncrements, getAllBadgeIdsToBeTransferred, getAllBalancesToBeTransferred } from '../packages/bitbadgesjs-sdk'
+import {
+    BalanceArray,
+    TransferWithIncrements,
+    getAllBadgeIdsToBeTransferred,
+    getAllBalancesToBeTransferred,
+} from '../packages/bitbadgesjs-sdk';
 
 const startingBalances = BalanceArray.From([
-  {
-    amount: 100n,
-    badgeIds: [{ start: 1n, end: 100n }],
-    ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }],
-  },
-])
+    {
+        amount: 100n,
+        badgeIds: [{ start: 1n, end: 100n }],
+        ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }],
+    },
+]);
 
 const batchTransfer = new TransferWithIncrements<bigint>({
-  from: 'Mint', // replace with your address
+    from: 'Mint', // replace with your address
 
-  balances: startingBalances,
+    balances: startingBalances,
 
-  toAddresses: [], // this will be empty because we're using `toAddressesLength`
-  toAddressesLength: 100n,
+    toAddresses: [], // this will be empty because we're using `toAddressesLength`
+    toAddressesLength: 100n,
 
-  incrementBadgeIdsBy: 1n,
-  incrementOwnershipTimesBy: 86400000n, // assuming this is 1 day in milliseconds in BigInt form
-})
+    incrementBadgeIdsBy: 1n,
+    incrementOwnershipTimesBy: 86400000n, // assuming this is 1 day in milliseconds in BigInt form
+});
 
-
-const allBadgeIds = getAllBadgeIdsToBeTransferred([batchTransfer]) // returns [{ start: 1n, end: 100n }]
-const allBalancesToBeTransferred = getAllBalancesToBeTransferred([batchTransfer]) // returns [{ amount: 100n, badgeIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
+const allBadgeIds = getAllBadgeIdsToBeTransferred([batchTransfer]); // returns [{ start: 1n, end: 100n }]
+const allBalancesToBeTransferred = getAllBalancesToBeTransferred([
+    batchTransfer,
+]); // returns [{ amount: 100n, badgeIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
 ```
 
 
@@ -8148,7 +8158,7 @@ console.log('Mnemonic:', ethWallet.mnemonic.phrase);
 ```javascript
 import { ethers } from 'ethers';
 
-const mnemonic = "your twelve word mnemonic phrase here";
+const mnemonic = 'your twelve word mnemonic phrase here';
 const ethWallet = ethers.Wallet.fromMnemonic(mnemonic);
 ```
 
@@ -8157,7 +8167,7 @@ const ethWallet = ethers.Wallet.fromMnemonic(mnemonic);
 ```javascript
 import { ethers } from 'ethers';
 
-const privateKey = "0x..."; // Your private key
+const privateKey = '0x...'; // Your private key
 const ethWallet = new ethers.Wallet(privateKey);
 ```
 
@@ -8173,30 +8183,33 @@ import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
 // If you have a funded mnemonic account
-const fromMnemonic = "your funded account mnemonic";
+const fromMnemonic = 'your funded account mnemonic';
 const wallet = await DirectSecp256k1HdWallet.fromMnemonic(fromMnemonic);
 const [firstAccount] = await wallet.getAccounts();
 
 // Connect to BitBadges RPC
-const rpcUrl = "https://rpc.bitbadges.io"; // or your preferred RPC
-const signingClient = await SigningStargateClient.connectWithSigner(rpcUrl, wallet);
+const rpcUrl = 'https://rpc.bitbadges.io'; // or your preferred RPC
+const signingClient = await SigningStargateClient.connectWithSigner(
+    rpcUrl,
+    wallet
+);
 
 // Transfer tokens to your new wallet
 const amount = {
-  denom: 'ubadge', // BitBadges native token
-  amount: '1000000' // Amount in micro-units
+    denom: 'ubadge', // BitBadges native token
+    amount: '1000000', // Amount in micro-units
 };
 
 const fee = {
-  amount: [{ denom: 'ubadge', amount: '5000' }],
-  gas: '200000'
+    amount: [{ denom: 'ubadge', amount: '5000' }],
+    gas: '200000',
 };
 
 const result = await signingClient.sendTokens(
-  firstAccount.address,
-  convertToBitBadgesAddress(ethWallet.address),
-  [amount],
-  fee
+    firstAccount.address,
+    convertToBitBadgesAddress(ethWallet.address),
+    [amount],
+    fee
 );
 ```
 
@@ -8208,14 +8221,14 @@ const result = await signingClient.sendTokens(
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
-const rpcUrl = "https://rpc.bitbadges.io";
+const rpcUrl = 'https://rpc.bitbadges.io';
 const client = await SigningStargateClient.connect(rpcUrl);
 
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
 const account = await client.getAccount(bitbadgesAddress);
 
 if (!account) {
-  throw new Error('Account not found - ensure it has been funded');
+    throw new Error('Account not found - ensure it has been funded');
 }
 
 console.log('Account Number:', account.accountNumber);
@@ -8248,25 +8261,29 @@ const base64PubKey = '';
 #### Create Transaction Context
 
 ```javascript
-import { createTransactionPayload, convertToBitBadgesAddress, Numberify } from 'bitbadgesjs-sdk';
+import {
+    createTransactionPayload,
+    convertToBitBadgesAddress,
+    Numberify,
+} from 'bitbadgesjs-sdk';
 
 const sender = {
-  address: ethWallet.address, // Ethereum address - not BitBadges address
-  sequence: sequence,
-  accountNumber: Numberify(accountNumber),
-  pubkey: base64PubKey,
-  publicKey: base64PubKey
+    address: ethWallet.address, // Ethereum address - not BitBadges address
+    sequence: sequence,
+    accountNumber: Numberify(accountNumber),
+    pubkey: base64PubKey,
+    publicKey: base64PubKey,
 };
 
 const txContext = {
-  testnet: false,
-  sender,
-  memo: 'My BitBadges transaction',
-  fee: {
-    denom: 'ubadge',
-    amount: '5000',
-    gas: '200000'
-  }
+    testnet: false,
+    sender,
+    memo: 'My BitBadges transaction',
+    fee: {
+        denom: 'ubadge',
+        amount: '5000',
+        gas: '200000',
+    },
 };
 ```
 
@@ -8281,44 +8298,48 @@ Refer to the proto definitions for all transaction types available. Standard Cos
 ```javascript
 import { badges } from 'bitbadgesjs-sdk';
 
-// Example: Create a badge collection
+// Example: Create a collection
 const createCollectionMsg = new badges.MsgUniversalUpdateCollection({
-  creator: convertToBitBadgesAddress(ethWallet.address),
-  collectionId: '0', // 0 for new collection
-  badgesToCreate: [
-    {
-      amount: '100',
-      badgeIds: [{ start: '1', end: '100' }]
-    }
-  ],
-  managerTimeline: [
-    {
-      manager: convertToBitBadgesAddress(ethWallet.address),
-      timelineTimes: [{ start: '1', end: Number.MAX_SAFE_INTEGER.toString() }]
-    }
-  ],
-  updateManagerTimeline: true,
-  updateBadgeMetadataTimeline: true,
-  updateCollectionMetadataTimeline: true
+    creator: convertToBitBadgesAddress(ethWallet.address),
+    collectionId: '0', // 0 for new collection
+    badgesToCreate: [
+        {
+            amount: '100',
+            badgeIds: [{ start: '1', end: '100' }],
+        },
+    ],
+    managerTimeline: [
+        {
+            manager: convertToBitBadgesAddress(ethWallet.address),
+            timelineTimes: [
+                { start: '1', end: Number.MAX_SAFE_INTEGER.toString() },
+            ],
+        },
+    ],
+    updateManagerTimeline: true,
+    updateBadgeMetadataTimeline: true,
+    updateCollectionMetadataTimeline: true,
 });
 
 // Example: Transfer badges
 const transferMsg = new badges.MsgTransferBadges({
-  creator: convertToBitBadgesAddress(ethWallet.address),
-  collectionId: '1',
-  transfers: [
-    {
-      from: convertToBitBadgesAddress(ethWallet.address),
-      toAddresses: ['bb1recipient...'],
-      balances: [
+    creator: convertToBitBadgesAddress(ethWallet.address),
+    collectionId: '1',
+    transfers: [
         {
-          amount: '1',
-          badgeIds: [{ start: '1', end: '1' }],
-          ownershipTimes: [{ start: '1', end: '18446744073709551615' }]
-        }
-      ]
-    }
-  ]
+            from: convertToBitBadgesAddress(ethWallet.address),
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    badgeIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+        },
+    ],
 });
 
 const messages = [createCollectionMsg]; // Add your messages here
@@ -8330,7 +8351,7 @@ const messages = [createCollectionMsg]; // Add your messages here
 const txPayload = createTransactionPayload(txContext, messages);
 
 if (!txPayload.txnString) {
-  throw new Error('Failed to generate transaction payload');
+    throw new Error('Failed to generate transaction payload');
 }
 
 console.log('Transaction to sign:', txPayload.txnString);
@@ -8347,27 +8368,28 @@ const simulationBroadcastBody = createTxBroadcastBody(txContext, messages, '');
 #### Option A: Using BitBadges API Simulation Endpoint
 
 ```javascript
-const simulateUrl = "https://api.bitbadges.io/api/v0/simulate";
+const simulateUrl = 'https://api.bitbadges.io/api/v0/simulate';
 
 const simulationResponse = await fetch(simulateUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    tx_bytes: simulationBroadcastBody.tx_bytes,
-    // Some APIs accept the full broadcast body for simulation
-    ...simulationBroadcastBody
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        tx_bytes: simulationBroadcastBody.tx_bytes,
+        // Some APIs accept the full broadcast body for simulation
+        ...simulationBroadcastBody,
+    }),
 });
 
 const simulationResult = await simulationResponse.json();
 
 if (simulationResult.error) {
-  throw new Error(`Simulation failed: ${simulationResult.error}`);
+    throw new Error(`Simulation failed: ${simulationResult.error}`);
 }
 
 // Extract gas used from simulation
 const gasUsed = simulationResult.gas_info?.gas_used || simulationResult.gasUsed;
-const gasWanted = simulationResult.gas_info?.gas_wanted || simulationResult.gasWanted;
+const gasWanted =
+    simulationResult.gas_info?.gas_wanted || simulationResult.gasWanted;
 
 console.log('Simulation successful!');
 console.log('Gas used:', gasUsed);
@@ -8377,20 +8399,20 @@ console.log('Gas wanted:', gasWanted);
 #### Option B: Using Cosmos REST API Simulation
 
 ```javascript
-const restSimulateUrl = "https://rest.bitbadges.io/cosmos/tx/v1beta1/simulate";
+const restSimulateUrl = 'https://rest.bitbadges.io/cosmos/tx/v1beta1/simulate';
 
 const restSimulationResponse = await fetch(restSimulateUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    tx_bytes: simulationBroadcastBody.tx_bytes
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        tx_bytes: simulationBroadcastBody.tx_bytes,
+    }),
 });
 
 const restSimulationResult = await restSimulationResponse.json();
 
 if (restSimulationResult.code && restSimulationResult.code !== 0) {
-  throw new Error(`Simulation failed: ${restSimulationResult.raw_log}`);
+    throw new Error(`Simulation failed: ${restSimulationResult.raw_log}`);
 }
 
 const gasInfo = restSimulationResult.gas_info;
@@ -8418,29 +8440,29 @@ const broadcastBody = createTxBroadcastBody(txContext, messages, signature);
 
 ```javascript
 // Option A: Using BitBadges API
-const broadcastUrl = "https://api.bitbadges.io/api/v0/broadcast";
+const broadcastUrl = 'https://api.bitbadges.io/api/v0/broadcast';
 const response = await fetch(broadcastUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(broadcastBody)
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(broadcastBody),
 });
 
 const result = await response.json();
 console.log('Transaction hash:', result.txhash);
 
 // Option B: Using Cosmos RPC directly
-const rpcBroadcastUrl = "https://rpc.bitbadges.io/broadcast_tx_sync";
+const rpcBroadcastUrl = 'https://rpc.bitbadges.io/broadcast_tx_sync';
 const rpcResponse = await fetch(rpcBroadcastUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    jsonrpc: '2.0',
-    id: 1,
-    method: 'broadcast_tx_sync',
-    params: {
-      tx: broadcastBody.tx_bytes
-    }
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'broadcast_tx_sync',
+        params: {
+            tx: broadcastBody.tx_bytes,
+        },
+    }),
 });
 ```
 
@@ -8454,10 +8476,10 @@ const rpcResponse = await fetch(rpcBroadcastUrl, {
 
 ### Common Issues
 
-* **Account not found**: Ensure the account has been funded at least once
-* **Sequence mismatch**: Query the latest sequence before each transaction
-* **Insufficient gas**: Increase gas limit for complex transactions
-* **Invalid signature**: Ensure the public key extraction and signing process is correct
+-   **Account not found**: Ensure the account has been funded at least once
+-   **Sequence mismatch**: Query the latest sequence before each transaction
+-   **Insufficient gas**: Increase gas limit for complex transactions
+-   **Invalid signature**: Ensure the public key extraction and signing process is correct
 
 
 ## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
@@ -9242,17 +9264,17 @@ Only one plugin is allowed to assign claim numbers which is determined by the **
 
 # Gating Badge Distribution
 
-One utility offered with claims is to gate badge distribution as the reward via the Create -> Badges flow. This uses a special clai type.
+One utility offered with claims is to gate token distribution as the reward via the Create -> Badges flow. This uses a special clai type.
 
 For off-chain balances, we can just allocate the balances directly after claiming.
 
-For on-chain badge balances, a successful claim will result in reserving the right to claim, not actually completing the claim. This is because the claim criteria is checked off-chain, and we need an on-chain transfer transaction. It is a two-step process.
+For on-chain balances, a successful claim will result in reserving the right to claim, not actually completing the claim. This is because the claim criteria is checked off-chain, and we need an on-chain transfer transaction. It is a two-step process.
 
 Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](../../../x-badges/concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
 
 **When to use claims vs self-hosted balances?**
 
-For claims that gate badge distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.
+For claims that gate token distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.
 
 However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
 
@@ -9354,10 +9376,10 @@ If you are planning to auto complete claims behind the scenes via the API or via
 
 Claims, at their core, are just criteria checks, but there are two ways we can check this criteria. The first is standard claims which require a "complete claim" process or action:
 
-* Criteria is checked at completion time
-* Claim numbers are assigned
-* Can maintain statefulness
-* Ledger of users who have claimed
+-   Criteria is checked at completion time
+-   Claim numbers are assigned
+-   Can maintain statefulness
+-   Ledger of users who have claimed
 
 <figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -9365,14 +9387,14 @@ The second is on-demand (sometimes described as non-indexed). These are a specia
 
 The critieria is not indexed anywhere but rather calculated on-demand.
 
-* No indexing
-* No claim numbers
-* No verifiable list of users who have claimed
-* Limited in feature set because you need to be able to check criteria at any time, so you cannot use authenticated sessions or other apporaches
-* Calculated in real-time
-* No success webhooks
+-   No indexing
+-   No claim numbers
+-   No verifiable list of users who have claimed
+-   Limited in feature set because you need to be able to check criteria at any time, so you cannot use authenticated sessions or other apporaches
+-   Calculated in real-time
+-   No success webhooks
 
-For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is badge ownership as shown below.
+For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is token ownership as shown below.
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -10327,9 +10349,9 @@ Note: Certain plugins may become unavailable due to design decisions. For exampl
 
 While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!
 
-* Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
-* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
-* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+-   Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
+-   Can your users be identified by email? Addresses? Use those plugins or dynamic stores
+-   Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
 
 There may also be plenty of ways for you to implement the same thing with varying tradeoffs. Select the best for your use case.
 
@@ -10341,14 +10363,14 @@ Claims are created and managed in the developer portal.
 
 Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
-* Gate URLs / Content to those who claim with the Rewards tab
-* Use the Discord Role Assigner plugin to create gated channels
-* Use Stripe Payments to create payment-gated claims
-* And much more
+-   Gate URLs / Content to those who claim with the Rewards tab
+-   Use the Discord Role Assigner plugin to create gated channels
+-   Use Stripe Payments to create payment-gated claims
+-   And much more
 
 **Can claims connect to other BitBadges services?**
 
-Claims are the universal connector. You can not only check criteria from any BitBadges service (badge ownership, >100 points) but also use claims on the reward side (gate mints, award points).
+Claims are the universal connector. You can not only check criteria from any BitBadges service (token ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
 <figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
 
@@ -10583,8 +10605,8 @@ Claims are processed in an asynchronous manner. For processing hooks, your plugi
 
 Best practices:
 
-* If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
-* Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
+-   If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
+-   Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
 
 This is not really applicable to post-success hooks.
 
@@ -10594,23 +10616,23 @@ An important aspect to consider is how you will handle state (if applicable). Th
 
 You have a couple options:
 
-* Use the preset response patterns to customize how BitBadges controls state for your plugin on our end. This is eventually consistent meaning that you return an intent from your handler, and we update only upon successful claim (and in the success path).
-  * A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
-* Manage state on your end, but be mindful of the way BitBadges processes claims.
+-   Use the preset response patterns to customize how BitBadges controls state for your plugin on our end. This is eventually consistent meaning that you return an intent from your handler, and we update only upon successful claim (and in the success path).
+    -   A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
+-   Manage state on your end, but be mindful of the way BitBadges processes claims.
 
 ### Reusing for On-Demand Claims
 
 To be used with on-demand claims, the plugin must meet specific requirements and have specific properties:
 
-* Stateless - No per-attempt state
-* No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
-* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
+-   Stateless - No per-attempt state
+-   No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
+-   Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
 
 Typically, these are only possible with crypto-native plugins. For example,
 
-* Check >1 ETH in account from address
-* Check POAP ownership
-* Check badge ownership
+-   Check >1 ETH in account from address
+-   Check POAP ownership
+-   Check token ownership
 
 Parameters are okay because they are hardcoded and not changed (e.g. set min ETH to 1).
 
@@ -11404,20 +11426,20 @@ export interface iMap<T extends NumberType> {
 
 All maps are identified by a **mapId.** The following **mapId** values are reserved:
 
-* Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
-* Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
+-   Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
+-   Any numeric ID is reserved for the corresponding collection with a matching ID. This can only be created by the collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core collection interface.
 
 **Use Cases**
 
-* Alternative permissions - Store other permissions related to a collection in these maps on-chain
-* Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
-* Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
+-   Alternative permissions - Store other permissions related to a collection in these maps on-chain
+-   Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
+-   Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
 
 **Manager**
 
 The manager is similar to the badges interface. They are granted admin privileges to update certain things about the map.This is handled by **managerTImeline** and the **canUpdateManager** permission.
 
-Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the badge collection specified will be used instead of the **managerTimeline** field.
+Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the collection specified will be used instead of the **managerTimeline** field.
 
 **Genesis Conditions**
 
@@ -11427,10 +11449,10 @@ Protocols may have expected genesis conditions or additional checks to be correc
 
 There are really four different map types.
 
-* Manager only means only the manager can update values
-* Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
-* Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
-* First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
+-   Manager only means only the manager can update values
+-   Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
+-   Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
+-   First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
 
 ```typescript
 export interface iMapUpdateCriteria<T extends NumberType> {
@@ -11553,7 +11575,7 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
-Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
+Claims are the universal connectors. Claim criteria can be anything from a payment to token ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
 ## Quick Start - Badges
 
@@ -11746,9 +11768,9 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
--  Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
--  Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like badge ownership checks, payments, anything
--  You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
+-   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
+-   Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
+-   You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
 
 ## Parameter Interface
 
@@ -11857,11 +11879,11 @@ export const generateBitBadgesAuthUrl = (params: CodeGenQueryParams) => {
 
 Sign In with BitBadges becomes super powerful when you connect a BitBadges claim because you can natively check any criteria and authenticate in one flow:
 
-* Check badge ownership
-* Check social sign-ins from any supported social
-* Receive privately held attestations securely
-* Connect to 7000+ app integration plugins
-* And much more all within the same flow.
+-   Check token ownership
+-   Check social sign-ins from any supported social
+-   Receive privately held attestations securely
+-   Connect to 7000+ app integration plugins
+-   And much more all within the same flow.
 
 Treat claims as not a part of the core SIWBB process. Do it all in one flow but verify it separately. 1) Authenticate the user 2) Verify the authenticated address meets claim criteria.
 
@@ -12690,10 +12712,10 @@ Applications allow you to create gamified points, quests, and tiers for your use
 
 # Balances Types
 
-BitBadges offers different ways to store the badge balances and owners for your collection, each with their own pros and cons.
+BitBadges offers different ways to store the balances and owners for your collection, each with their own pros and cons.
 
 ```
-NOTE: Off-chain badge balances have now been deprecated on the frontend.
+NOTE: Off-chain balances have now been deprecated on the frontend.
 
 We made this decision because we felt they added too much complexity and could be implemented much simpler with address lists and claims.
 
@@ -12724,29 +12746,29 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 
 #### Benefits
 
-* **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
-* **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
-* **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
-* **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
-* **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
+-   **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
+-   **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
+-   **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
+-   **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
+-   **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
 
-* **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-  since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
-* **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
-* **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
-  * Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
-  * Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
+-   **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
+    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
+-   **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
+-   **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
+    -   Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
+    -   Loss of Historical Data: Logs of past balances may be lost forever if all parties discard / lose the data and can not be reproduced. However, this could also be a good thing as seen in the benefits.
 
 ### Indexed vs Non-Indexed
 
 Off-chain balances can either be indexed or non-indexed. Note we use on-demand and non-indexed interchangeably. The differences are as follows:
 
-* Indexed balances have a total verifiable supply. Non-indexed does not.
-* At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
-* For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
-* Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
+-   Indexed balances have a total verifiable supply. Non-indexed does not.
+-   At any time, for indexed balances, all owners and their balances are known. With non-indexed, this is not tracked, and we fetch on-demand from the source every time.
+-   For indexed balances, a ledger of activity is tracked. For non-indexed, there is no ledger kept. You can only view the current balances at any given time.
+-   Indexed balances have a limit of unique owners (set by the indexer) for scalability reasons, whereas non-indexed has no such limit.
 
 ### Suitability of Off-Chain Balances
 
@@ -12771,10 +12793,10 @@ See [here](time-dependent-ownership.md). Or, find a tool or tutorial for your us
 
 Compared to traditional client-server solutions, off-chain balances offer numerous advantages, including:
 
-* **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
-* **Seamless Integration**: Integration with the complete suite of BitBadges tools.
-* **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
-* **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
+-   **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
+-   **Seamless Integration**: Integration with the complete suite of BitBadges tools.
+-   **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
+-   **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
 
 In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
 
@@ -12783,7 +12805,7 @@ In conclusion, off-chain balances present an intriguing avenue to enhance scalab
 
 # Manager
 
-Each badge collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.
+Each collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.
 
 <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -12810,10 +12832,10 @@ One of the key features of the manager role in BitBadges is the ability to custo
 
 Permissions can be customized based on various factors, including:
 
-* **Badge Specificity:** Which particular badges within the collection can be affected?
-* **Time Constraints:** When can certain actions be performed?
-* **Value Limitations:** What specific values or ranges are allowed for updates?
-* **Conditional Triggers:** Under what circumstances can certain permissions be exercised?
+-   **Badge Specificity:** Which particular badges within the collection can be affected?
+-   **Time Constraints:** When can certain actions be performed?
+-   **Value Limitations:** What specific values or ranges are allowed for updates?
+-   **Conditional Triggers:** Under what circumstances can certain permissions be exercised?
 
 This level of customization allows collection creators to implement complex management strategies tailored to their specific needs.
 
@@ -12822,14 +12844,14 @@ This level of customization allows collection creators to implement complex mana
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen:**
-   * The permission is permanently disallowed.
-   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely.
+    - The permission is permanently disallowed.
+    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely.
 2. **Permitted + Not Frozen:**
-   * The permission is currently allowed.
-   * This state can be changed to either of the other two states, offering flexibility in management.
+    - The permission is currently allowed.
+    - This state can be changed to either of the other two states, offering flexibility in management.
 3. **Permitted + Permanently Frozen:**
-   * The permission is permanently allowed.
-   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available.
+    - The permission is permanently allowed.
+    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available.
 
 It's important to note that there is no "Forbidden + Not Frozen" state. This is because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 
@@ -12840,13 +12862,13 @@ This system of states allows for both flexibility and security in managing colle
 
 # Protocol Fee
 
-For any badge transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of transfer or 0.1 $BADGE).
+For any token transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of transfer or 0.1 $BADGE).
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Frontend Affiliates**
 
-If you are building a custom frontend or tool on top of BitBadges that triggers badge transfer transactions, you can use the affiliate address option in the transfer transaction to claim an affiliate fee for yourself!
+If you are building a custom frontend or tool on top of BitBadges that triggers token transfer transactions, you can use the affiliate address option in the transfer transaction to claim an affiliate fee for yourself!
 
 
 ## File: ./overview/learn/badge-concepts/standards.md
@@ -12917,20 +12939,20 @@ To elucidate the functioning of this ownership system, let's delve into practica
 
 **Example 1**: Bob's Transfer to Alice
 
-* Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
-* Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
+-   Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
+-   Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
 
 **Example 2**: Bob's Partial Transfer to Alice
 
-* Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
-* Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
+-   Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
+-   Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
 
 **Example 3**: Complex Transfer Scenario
 
-* Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
-* Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
+-   Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
+-   Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
 
-Incorporating time-based ownership into the conventional badge ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
+Incorporating time-based ownership into the conventional token ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
 
 
 ## File: ./overview/learn/badge-concepts/total-supplys.md
@@ -12972,7 +12994,7 @@ We define three levels of approved transfers: collection-wide, incoming, and out
 
 ### **Collection Approvals**
 
-The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.**  This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
+The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
 
 For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify claims that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
 
@@ -12999,11 +13021,11 @@ Let's delve into a transfer scenario to understand the process of approval valid
 #### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for the times January to March&#x20;
 
 1. **Collection-Level Approval Check**:
-   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
+    - The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
 2. **Incoming Approval Check**:
-   * If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific badge collection in question.
+    - If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific collection in question.
 3. **Outgoing Approval Check**:
-   * Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
+    - Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
 
 This layered approach to approval ensures a thorough examination of the transfer's legitimacy and compliance with various levels of permissions. The hierarchical structure prevents unauthorized transfers and enhances transparency in the transfer process.
 
@@ -13011,21 +13033,21 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations:
 
-* Who can transfer to who? And who can initiate the transaction?
-* When can the transfer take place?
-* Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
-* Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
-* Max amount transferred? Max per sender? Max per recipient? Max per initiator?
-* Predetermined transfers?
-  * Transfer A must take place before Transfer B before Transfer C
-* Incremented transfers?&#x20;
-  * Start with specific badges and ownership times and increment them every transaction.
-  * Ex: Transfer x1 of Badge ID 1, then x1 of Badge ID 2, and so on...
-* Must own (or not own) specific badges to be approved
-  * Ex: Must own a membership to transfer or must now own a scammer badge to transfer
-* Require sender to be the initiator? Require sender to not be the initiator?
-* Require recipient to be the initiator? Require recipient to not be the initiator?
-* And more!
+-   Who can transfer to who? And who can initiate the transaction?
+-   When can the transfer take place?
+-   Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
+-   Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
+-   Max amount transferred? Max per sender? Max per recipient? Max per initiator?
+-   Predetermined transfers?
+    -   Transfer A must take place before Transfer B before Transfer C
+-   Incremented transfers?&#x20;
+    -   Start with specific badges and ownership times and increment them every transaction.
+    -   Ex: Transfer x1 of Badge ID 1, then x1 of Badge ID 2, and so on...
+-   Must own (or not own) specific badges to be approved
+    -   Ex: Must own a membership to transfer or must now own a scammer badge to transfer
+-   Require sender to be the initiator? Require sender to not be the initiator?
+-   Require recipient to be the initiator? Require recipient to not be the initiator?
+-   And more!
 
 The best way to see all that is possible is to view the badge creation process.
 
@@ -13051,7 +13073,7 @@ Badges offer many never-seen-before-features and ways of implementation like tim
 
 # BitBadges Claims
 
-Claims are the backbone (or connectors) of pretty much all aspects of BitBadges. Create criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to badge distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.
+Claims are the backbone (or connectors) of pretty much all aspects of BitBadges. Create criteria checks from 7000+ applications, plugins, and services to gate anything from content to websites to token distribution and more. Claims offer flexible implementation methods from no-code, in-site plugins to custom webhooks to a no-code Zapier integration connecting you to 7000+ apps and more.
 
 1. Meet criteria - Owns badge? Is in Discord server? Provided secret attendance code?
 2. Receive reward - Access to services? Receive badges?
@@ -13064,10 +13086,10 @@ Claims can be simply thought of as:
 
 Claims have super flexible implementation as well. For example:
 
-* Check criteria on-demand vs have users claim in-site vs auto-complete on behalf of users?
-* Add any plugin you want from 7000+ no-code integrations
-* Custom webhooks to connect to any service on either end
-* No-code Zapier / Pipedream automation workflows on either criteria or rewards side
+-   Check criteria on-demand vs have users claim in-site vs auto-complete on behalf of users?
+-   Add any plugin you want from 7000+ no-code integrations
+-   Custom webhooks to connect to any service on either end
+-   No-code Zapier / Pipedream automation workflows on either criteria or rewards side
 
 The best way we recommend to deep dive into what all is possible is just to experiment with the claim tester in the developer portal: [https://bitbadges.io/developer](https://bitbadges.io/developer). Or, explore the site.
 
@@ -13374,7 +13396,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 ## Additional Use Cases
 
--   **Access Control & Gated Content** - Control access to premium content, private Discord servers, exclusive websites, or any digital service. Gate content behind badge ownership for tiered access systems.
+-   **Access Control & Gated Content** - Control access to premium content, private Discord servers, exclusive websites, or any digital service. Gate content behind token ownership for tiered access systems.
 -   **Memberships** - Create membership badges with expiration dates for gyms, clubs, organizations, or subscription services. Easily verify membership status through our public API.
 -   **Achievements & Credentials** - Issue verifiable credentials like university diplomas, professional certifications, job qualifications, awards, and athletic accomplishments that can be verified anywhere.
 -   **Collectibles** - Create unique digital collectibles with advanced features like time-dependent ownership, fine-grained transferability rules, and multi-chain compatibility.
@@ -13398,10 +13420,10 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
-This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch balances and metadata from the API without worrying about the underlying details.
 
 ```typescript
-const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
+const res = await BitBadgesApi.getBalanceByAddress(collectionId, address, {
     ...options,
 });
 console.log(res);
@@ -13427,7 +13449,7 @@ We use the terms tokens and badges interchangeably. For example, "badgeIds" refe
 
 ### Collection Management
 
--   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new badge collection
+-   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new collection
 -   [MsgUpdateCollection](./messages/msg-update-collection.md) - Update existing collection
 -   [MsgUniversalUpdateCollection](./messages/msg-universal-update-collection.md) - Universal create/update interface with invariants support
 -   [MsgDeleteCollection](./messages/msg-delete-collection.md) - Delete collection
@@ -13456,7 +13478,7 @@ We use the terms tokens and badges interchangeably. For example, "badgeIds" refe
 ### Core Queries
 
 -   [GetCollection](./queries/get-collection.md) - Retrieve collection data
--   [GetBalance](./queries/get-balance.md) - Get user badge balances
+-   [GetBalance](./queries/get-balance.md) - Get user balances
 -   [GetApprovalTracker](./queries/get-approval-tracker.md) - Get approval usage data
 -   [GetAddressList](./queries/get-address-list.md) - Retrieve address list
 -   [More queries...](./queries/) - See full query reference
@@ -13481,8 +13503,8 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[UintRange](uintrange.md)** - Representing ranges of unsigned integers
 -   **[Timeline System](timeline-system.md)** - How properties change over time with immutable historical records
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
--   **[Balance System](balance-system.md)** - How badge ownership is tracked with precise control over quantities and time
--   **[Balances Type](balances-type.md)** - How badge ownership and transfers are managed within collections
+-   **[Balance System](balance-system.md)** - How token ownership is tracked with precise control over quantities and time
+-   **[Balances Type](balances-type.md)** - How token ownership and transfers are managed within collections
 -   **[Off-Chain Balances](off-chain-balances.md)** - Legacy off-chain balance types (deprecated - use Standard balances)
 -   **[Default Balances](default-balances.md)** - Predefined balance stores assigned to new users upon genesis creation
 -   **[Valid Badge IDs](valid-badge-ids.md)** - Defining the range of badge identifiers that can exist within a collection
@@ -13491,8 +13513,8 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[Archived Collections](archived-collections.md)** - Temporarily or permanently disabling collection transactions
 -   **[Metadata](metadata.md)** - Rich, dynamic content for collections and badges with timeline support
 -   **[Manager](manager.md)** - Central authority for collection administration with timeline-based control
--   **[Transferability & Approvals](transferability-approvals.md)** - Overview of the three-tier approval system for badge transfers
--   **[Approval Criteria](approval-criteria/)** - Detailed approval criteria and conditions for badge transfers
+-   **[Transferability & Approvals](transferability-approvals.md)** - Overview of the three-tier approval system for token transfers
+-   **[Approval Criteria](approval-criteria/)** - Detailed approval criteria and conditions for token transfers
 -   **[Address Lists](address-lists.md)** - Reusable collections of addresses for approval configurations
 -   **[Permissions](permissions/README.md)** - Granular control over collection management operations
 -   **[Standards](standards.md)** - Generic framework for defining collection behavior and interpretation guidelines
@@ -13599,7 +13621,7 @@ BitBadges provides built-in reserved list IDs that are dynamically generated wit
 
 -   **Purpose**: Contains only the "Mint" address
 -   **Logic**: Whitelist (addresses: ["Mint"], whitelist: true)
--   **Use case**: Minting operations and initial badge distribution
+-   **Use case**: Minting operations and initial token distribution
 
 #### "All" and "AllWithMint"
 
@@ -14053,7 +14075,7 @@ Auto-deletion options allow approvals to be automatically removed when certain c
 
 # Badge Ownership
 
-Require specific badge holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain badge balances to ensure users own required badges before allowing transfers.
+Require specific badge holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain balances to ensure users own required badges before allowing transfers.
 
 ## Overview
 
@@ -14061,7 +14083,7 @@ Badge ownership requirements enable gating mechanisms where users must possess s
 
 **Key Benefits**:
 
--   **Access Control**: Gate transfers based on badge ownership
+-   **Access Control**: Gate transfers based on token ownership
 -   **Collection Dependencies**: Create relationships between different badge collections
 -   **On-Chain Verification**: Automatic balance checking without external data
 -   **Flexible Requirements**: Support for amount ranges, time-based ownership, and multiple badge types
@@ -15481,7 +15503,7 @@ Use [MsgUpdateCollection](../../messages/msg-update-collection.md) to update the
 
 # Badge Collections
 
-A badge collection is the primary entity that defines a group of related badges with shared properties and rules. We refer you to other pages for more details on the different concepts that make up a collection.
+A collection is the primary entity that defines a group of related badges with shared properties and rules. We refer you to other pages for more details on the different concepts that make up a collection.
 
 Note: This is what is stored on-chain in storage for a collection. You may typically interact with similar concepts but moreso in Messages and Queries format.
 
@@ -15529,13 +15551,13 @@ message BadgeCollection {
   // The default store of a balance for a user, upon genesis.
   UserBalanceStore defaultBalances = 13;
 
-  // The user or entity who created the badge collection.
+  // The user or entity who created the collection.
   string createdBy = 14;
 
   // The valid badge IDs for this collection.
   repeated UintRange validBadgeIds = 15;
 
-  // The generated address of the badge collection. Also used to escrow Mint balances.
+  // The generated address of the collection. Also used to escrow Mint balances.
   string mintEscrowAddress = 16;
 
   // The IBC wrapper (sdk.coin) paths for the collection.
@@ -15669,7 +15691,7 @@ This is equivalent to and will be treated as:
 
 # Balances Type
 
-The balances type determines how badge ownership and transfers are managed within a collection. This is permanent upon genesis and cannot be changed.
+The balances type determines how token ownership and transfers are managed within a collection. This is permanent upon genesis and cannot be changed.
 
 > **Important**: Always use `"Standard"` for new collections. Other balance types are supported behind the scenes for legacy purposes only, but "Standard" should always be used for on-chain balances.
 
@@ -15741,7 +15763,7 @@ Invariants are collection-level properties that are set during genesis (collecti
 ```protobuf
 message CollectionInvariants {
   // If true, all ownership times must be full ranges [{ start: 1, end: GoMaxUInt64 }].
-  // This prevents time-based restrictions on badge ownership.
+  // This prevents time-based restrictions on token ownership.
   bool noCustomOwnershipTimes = 1;
 }
 ```
@@ -15829,7 +15851,7 @@ The `noCustomOwnershipTimes` invariant is validated at several points:
 
 1. **Collection Creation**: When creating a new collection
 2. **Collection Updates**: When updating collection approvals
-3. **Transfer Execution**: When processing badge transfers
+3. **Transfer Execution**: When processing token transfers
 4. **Approval Updates**: When updating user or collection approvals
 
 ## Error Messages
@@ -17586,7 +17608,7 @@ For a complete implementation example, see the [Quest Badge Collection Example](
 
 # Subscriptions Protocol
 
-The Subscriptions Protocol enables collections to implement subscription-based badge ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription badges are created, distributed, and renewed.
+The Subscriptions Protocol enables collections to implement subscription-based token ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription badges are created, distributed, and renewed.
 
 ## Protocol Overview
 
@@ -17971,7 +17993,7 @@ The Tradable Protocol creates a decentralized marketplace where users can:
 
 #### 1. Listing Approvals (Outgoing)
 
-Listings allow badge owners to sell their badges for coins.
+Listings allow owners to sell their badges for coins.
 
 **Requirements:**
 
@@ -18341,7 +18363,7 @@ Time fields use UintRange format with valid values from 1 to 1844674407370955161
 ### 5. ownershipTimes
 
 -   **Purpose**: Specifies the times that a user owns a badge
--   **Usage**: Defining the duration of badge ownership for users
+-   **Usage**: Defining the duration of token ownership for users
 
 ## Important Note
 
@@ -18351,7 +18373,7 @@ The `timelineTimes` in permissions correspond to the updatability of the timelin
 
 ### Example 1: Presidential Election Badges
 
-Scenario: Users participate in a US presidential election by casting votes through badge transfers.
+Scenario: Users participate in a US presidential election by casting votes through token transfers.
 
 -   T1: Conclusion of voting
 -   T2: Start of presidential term
@@ -18395,7 +18417,7 @@ isArchived: true for [{ start: 1, end: MAX_TIME }]
 1. **Clear Timelines**: Always define clear and non-overlapping time ranges for each field to avoid confusion and conflicts
 2. **Permission Management**: Carefully consider the implications of setting `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`, as these can significantly impact the flexibility of your collection
 3. **Timeline Planning**: When using `timelineTimes`, plan your collection's lifecycle in advance to minimize the need for frequent updates
-4. **Transfer Windows**: Use `transferTimes` to create specific windows for badge transfers, which can be useful for time-limited events or phased distributions
+4. **Transfer Windows**: Use `transferTimes` to create specific windows for token transfers, which can be useful for time-limited events or phased distributions
 5. **Ownership Tracking**: Leverage `ownershipTimes` to create badges with time-bound ownership, useful for temporary privileges or rotating responsibilities
 6. **Permission Locking**: Be cautious when permanently locking permissions, as this action is irreversible and may limit future flexibility
 7. **Time Synchronization**: Ensure all systems interacting with your BitBadges collection are properly time-synchronized to avoid discrepancies in time-based operations
@@ -19586,7 +19608,7 @@ const collectionApprovalTimeline = [
 
 # Building Your Collection Permissions
 
-Collection permissions are executable by the manager. They are used to control who can perform various management actions on your badge collection and when those actions are allowed.
+Collection permissions are executable by the manager. They are used to control who can perform various management actions on your collection and when those actions are allowed.
 
 ```typescript
 const manager = collection.getCurrentManager();
@@ -19690,7 +19712,7 @@ We refer you to the [examples](../examples/permissions) or relevant concepts for
 
 # Building User-Level Approvals
 
-User-level approvals allow individual users to control their badge transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
+User-level approvals allow individual users to control their token transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
 
 We refer you to the collection-level examples and just apply the same logic to the user-level types with these differences.
 
@@ -20235,7 +20257,7 @@ const transfers = [
 
 # Message Transfer Examples
 
-This section contains practical examples of badge transfer messages for the BitBadges protocol.
+This section contains practical examples of token transfer messages for the BitBadges protocol.
 
 ## Examples
 
@@ -20247,7 +20269,7 @@ This section contains practical examples of badge transfer messages for the BitB
 
 # Simple Badge Transfer
 
-This example demonstrates a basic badge transfer from the mint to a specific address.
+This example demonstrates a basic token transfer from the mint to a specific address.
 
 ## Overview
 
@@ -20356,7 +20378,7 @@ This example can be used as a template for basic badge minting operations where 
 
 # Transfer with Precalculation
 
-This example demonstrates a badge transfer that uses precalculation from approval criteria instead of manually specifying balances.
+This example demonstrates a token transfer that uses precalculation from approval criteria instead of manually specifying balances.
 
 ## Overview
 
@@ -20461,7 +20483,9 @@ This example is useful when:
 | Approval Scanning     | Auto-scan enabled    | Only specified approval   |
 | Flexibility           | Fixed amounts        | Dynamic based on criteria |
 | Control               | Direct specification | Approval-driven           |
-****
+
+---
+
 
 ## File: ./x-badges/examples/permissions/README.md
 
@@ -20959,7 +20983,7 @@ This directory contains complete examples for creating badge collections using t
 
 ## Contents
 
--   [Quest Badge Collection](quest-badge-collection.md) - Example of creating a quest badge collection with Merkle proofs
+-   [Quest Badge Collection](quest-badge-collection.md) - Example of creating a quest collection with Merkle proofs
 -   [Tradable NFT Collection](tradable-nft-collection.md) - Example of creating a tradable NFT collection for marketplace trading
 
 
@@ -21220,7 +21244,7 @@ This example demonstrates creating a quest collection.
 
 ### Quest Badge Collection
 
-This example creates a quest badge collection with the following characteristics:
+This example creates a quest collection with the following characteristics:
 
 -   **Single Badge**: Only badge ID 1 is valid (`validBadgeIds: [{"start": "1", "end": "1"}]`)
 -   **Quest Standard**: Uses the "Quests" standard for quest-related functionality
@@ -21743,7 +21767,7 @@ This directory contains detailed documentation for all message types supported b
 
 ### Collection Management
 
--   [MsgCreateCollection](./msg-create-collection.md) - Create new badge collection
+-   [MsgCreateCollection](./msg-create-collection.md) - Create new collection
 -   [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
 -   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Universal create/update interface with invariants support
 -   [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection
@@ -21848,7 +21872,7 @@ bitbadgeschaind tx badges create-address-lists '[tx-json]' --from creator-key
 
 # MsgCreateCollection
 
-Creates a new badge collection.
+Creates a new collection.
 
 The collectionId will be assigned at execution time and is obtainable in the transaction response. Subsequent updates to the collection will be through MsgUpdateCollection.
 
@@ -22038,7 +22062,7 @@ The `setToZeroOnUnderflow` field controls what happens when decrementing would r
 
 # MsgDeleteCollection
 
-Deletes a badge collection.
+Deletes a collection.
 
 ## Authorization
 
@@ -22110,7 +22134,7 @@ bitbadgeschaind tx badges delete-dynamic-store [store-id] --from creator-key
 
 # MsgDeleteIncomingApproval
 
-A helper message to delete a single incoming approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+A helper message to delete a single incoming approval for token transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
 
 ## Overview
 
@@ -22163,7 +22187,7 @@ Users can only delete their own incoming approvals. The operation must be perfor
 
 # MsgDeleteOutgoingApproval
 
-A helper message to delete a single outgoing approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+A helper message to delete a single outgoing approval for token transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies deleting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
 
 ## Overview
 
@@ -22349,7 +22373,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetBadgeMetadata
 
-Sets the badge metadata timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on badge metadata management.
+Sets the badge metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on badge metadata management.
 
 ## Overview
 
@@ -22383,7 +22407,7 @@ message MsgSetBadgeMetadata {
 }
 
 message MsgSetBadgeMetadataResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22437,7 +22461,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetCollectionApprovals
 
-Sets the collection approvals and update permissions for a badge collection. This is a convenience message that focuses specifically on collection approvals management.
+Sets the collection approvals and update permissions for a collection. This is a convenience message that focuses specifically on collection approvals management.
 
 ## Overview
 
@@ -22471,7 +22495,7 @@ message MsgSetCollectionApprovals {
 }
 
 message MsgSetCollectionApprovalsResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22540,7 +22564,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetCollectionMetadata
 
-Sets the collection metadata timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on collection metadata management.
+Sets the collection metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on collection metadata management.
 
 ## Overview
 
@@ -22574,7 +22598,7 @@ message MsgSetCollectionMetadata {
 }
 
 message MsgSetCollectionMetadataResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22624,7 +22648,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetCustomData
 
-Sets the custom data timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on custom data management.
+Sets the custom data timeline and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
 
 ## Overview
 
@@ -22658,7 +22682,7 @@ message MsgSetCustomData {
 }
 
 message MsgSetCustomDataResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22738,7 +22762,7 @@ bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [value] -
 
 # MsgSetIncomingApproval
 
-A helper message to set a single incoming approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+A helper message to set a single incoming approval for token transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual incoming approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
 
 ## Overview
 
@@ -22788,7 +22812,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetIsArchived
 
-Sets the isArchived timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on archiving management.
+Sets the isArchived timeline and update permissions for a collection. This is a convenience message that focuses specifically on archiving management.
 
 ## Overview
 
@@ -22822,7 +22846,7 @@ message MsgSetIsArchived {
 }
 
 message MsgSetIsArchivedResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22869,7 +22893,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetManager
 
-Sets the manager timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on manager management.
+Sets the manager timeline and update permissions for a collection. This is a convenience message that focuses specifically on manager management.
 
 ## Overview
 
@@ -22903,7 +22927,7 @@ message MsgSetManager {
 }
 
 message MsgSetManagerResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -22947,7 +22971,7 @@ bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
 
 # MsgSetOutgoingApproval
 
-A helper message to set a single outgoing approval for badge transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
+A helper message to set a single outgoing approval for token transfers. This is a developer-friendly wrapper around `MsgUpdateUserApprovals` that simplifies setting individual outgoing approvals. For more information, we refer to the [MsgUpdateUserApprovals](./msg-update-user-approvals.md) documentation.
 
 ## Overview
 
@@ -22997,7 +23021,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetStandards
 
-Sets the standards timeline and update permissions for a badge collection. This is a convenience message that focuses specifically on standards management.
+Sets the standards timeline and update permissions for a collection. This is a convenience message that focuses specifically on standards management.
 
 ## Overview
 
@@ -23031,7 +23055,7 @@ message MsgSetStandards {
 }
 
 message MsgSetStandardsResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -23078,7 +23102,7 @@ This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-
 
 # MsgSetValidBadgeIds
 
-Sets the valid badge IDs and update permissions for a badge collection. This is a convenience message that focuses specifically on badge ID management.
+Sets the valid badge IDs and update permissions for a collection. This is a convenience message that focuses specifically on badge ID management.
 
 ## Overview
 
@@ -23112,7 +23136,7 @@ message MsgSetValidBadgeIds {
 }
 
 message MsgSetValidBadgeIdsResponse {
-  // ID of the badge collection.
+  // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
@@ -23154,7 +23178,7 @@ bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
 
 # MsgTransferBadges
 
-Executes badge transfers between addresses.
+Executes token transfers between addresses.
 
 ## Proto Definition
 
@@ -23295,7 +23319,7 @@ PRE. CALCULATE BALANCES (if needed)
   └── If precalculateBalancesFromApproval is specified, we will use the predeterminedBalances from the specified approval to pre-calculate the balances at execution time.
 
 1. BALANCE CHECK
-   └── Verify sender has sufficient badge balances for the transfer including ownership times
+   └── Verify sender has sufficient balances for the transfer including ownership times
    └── FAIL if insufficient balances
 
 2. COLLECTION APPROVAL CHECK
@@ -23320,7 +23344,7 @@ PRE. CALCULATE BALANCES (if needed)
    └── FAIL if any recipient lacks valid incoming approval
 
 5. EXECUTE TRANSFER
-   └── Update badge balances
+   └── Update balances
    └── Execute any approved side effects
    └── Emit transfer events
    └── SUCCESS
@@ -23348,8 +23372,8 @@ Transfers fail at the first validation step that doesn't pass:
 
 ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
-- **`nonce`**: The unique identifier that was signed
-- **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+-   **`nonce`**: The unique identifier that was signed
+-   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 
@@ -23647,7 +23671,7 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 
 # MsgUpdateCollection
 
-Updates an existing badge collection's properties.
+Updates an existing collection's properties.
 
 ## Update Flag Pattern
 
@@ -23793,7 +23817,7 @@ bitbadgeschaind tx badges update-dynamic-store [store-id] [default-value] --from
 
 # MsgUpdateUserApprovals
 
-Updates a user's approval settings for badge transfers.
+Updates a user's approval settings for token transfers.
 
 ## Collection ID Auto-Lookup
 
@@ -23894,7 +23918,7 @@ This directory contains detailed documentation for all query types supported by 
 
 ### Balance Queries
 
--   [GetBalance](./get-balance.md) - Get user badge balances for a collection
+-   [GetBalance](./get-balance.md) - Get user balances for a collection
 
 ### Address List Queries
 
@@ -24030,7 +24054,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_approvals_tra
 
 # GetBalance
 
-Retrieves badge balances for a specific address in a collection.
+Retrieves balances for a specific address in a collection.
 
 ## Proto Definition
 
@@ -24145,7 +24169,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_challenge_tra
 
 # GetCollection
 
-Retrieves complete information about a badge collection.
+Retrieves complete information about a collection.
 
 ## Proto Definition
 
