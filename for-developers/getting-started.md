@@ -18,6 +18,10 @@ We strongly recommend, if you have not already, to explore the claim tester and 
 
 Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).
 
+## Tokens vs Badges
+
+We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
+
 ## Gate Any Service In 2 Steps
 
 Any service can be gated by ANY criteria simply in just 2 steps.
