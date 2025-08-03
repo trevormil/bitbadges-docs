@@ -9,7 +9,7 @@ Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitb
 Here's how you create a balance using the provided `Balance` interface:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance = BalanceArray.From([{
-</strong>  "amount": 5n, // example badge amount using the BigInt type
+</strong>  "amount": 5n, // example amount using the BigInt type
   "badgeIds": [{ start: 1n, end: 5n }],
   "ownershipTimes": [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
 }])

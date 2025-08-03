@@ -45,7 +45,7 @@ The BitBadges documentation is organized into several main sections:
 
 #### 3. Badge Standard Section
 
--   **Concepts**: Core badge concepts like collections, balances, metadata, approvals, permissions
+-   **Concepts**: Core concepts like collections, balances, metadata, approvals, permissions
 -   **Messages**: All blockchain message types (MsgCreateCollection, MsgTransferBadges, etc.)
 -   **Queries**: Blockchain query methods
 -   **Examples**: Practical examples and tutorials
@@ -59,7 +59,7 @@ When answering questions, prioritize these core documentation files:
 2. **Getting Started**: `for-developers/getting-started.md` - Developer onboarding
 3. **SDK Overview**: `for-developers/bitbadges-sdk/overview.md` - SDK capabilities
 4. **API Reference**: `for-developers/bitbadges-api/api.md` - API documentation
-5. **Badge Concepts**: `x-badges/concepts/README.md` - Core badge concepts
+5. **Badge Concepts**: `x-badges/concepts/README.md` - Core concepts
 6. **Common Snippets**: `for-developers/bitbadges-sdk/common-snippets/README.md` - Code examples
 
 ### Documentation Parsing Instructions
@@ -98,7 +98,7 @@ The BitBadges documentation is available online at https://docs.bitbadges.io
 
 ### Example Usage
 
-For questions about badge creation:
+For questions about collection creation:
 
 -   Reference: `x-badges/messages/msg-create-collection.md`
 -   Cross-reference: `x-badges/examples/txs/msgcreatecollection/`
