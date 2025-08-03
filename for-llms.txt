@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Aug  3 12:44:16 UTC 2025
+Generated on Sun Aug  3 12:45:55 UTC 2025
 
 
 
@@ -3580,9 +3580,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 ## File: ./SUMMARY.md
 
 # Table of contents
-
 ## Overview
-
 -   [👋 BitBadges Overview](README.md)
 -   [👨‍💻 Learn the Basics](overview/learn/README.md)
     -   [BitBadges Claims](overview/learn/distribution.md)
@@ -3607,9 +3605,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 -   [🔗 Official Links and Resources](overview/official-links.md)
 -   [🤝 Brand Guidelines](overview/link-sharing.md)
 -   [❓ FAQ](overview/faq.md)
-
 ## ⌨️ For Developers
-
 -   [🔨 Getting Started](for-developers/getting-started.md)
 -   [🪙 Grants Program](for-developers/grants-program.md)
 -   [👤 Handling Addresses](for-developers/accounts.md)
@@ -3779,114 +3775,124 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 ## 🏗️ Badge Standard
 
--   [📚 Overview](x-badges/README.md)
--   [🧠 Concepts](x-badges/concepts/README.md)
-    -   [Address Lists](x-badges/concepts/address-lists.md)
-    -   [Archived Collections](x-badges/concepts/archived-collections.md)
-    -   [Badge Collections](x-badges/concepts/badge-collections.md)
-    -   [Balances Type](x-badges/concepts/balances-type.md)
-    -   [Balance System](x-badges/concepts/balance-system.md)
-    -   [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
-    -   [Custom Data](x-badges/concepts/custom-data.md)
-    -   [Default Balances](x-badges/concepts/default-balances.md)
-    -   [Manager](x-badges/concepts/manager.md)
-    -   [Metadata](x-badges/concepts/metadata.md)
-    -   [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-    -   [Standards](x-badges/concepts/standards.md)
-    -   [Different Time Fields](x-badges/concepts/time-fields.md)
-    -   [Timeline System](x-badges/concepts/timeline-system.md)
-    -   [Total Supply](x-badges/concepts/total-supply.md)
-    -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
-    -   [UintRanges](x-badges/concepts/uintrange.md)
-    -   [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
-    -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-        -   [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
-        -   [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
-        -   [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
-        -   [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-        -   [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
-        -   [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
-        -   [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
-        -   [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-        -   [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-        -   [Requires](x-badges/concepts/approval-criteria/requires.md)
-        -   [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-        -   [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-        -   [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
-    -   [Permissions](x-badges/concepts/permissions/README.md)
-        -   [Overview](x-badges/concepts/permissions/overview.md)
-        -   [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
-        -   [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
-        -   [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
-        -   [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
-    -   [Protocols](x-badges/concepts/protocols/README.md)
-        -   [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
-        -   [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
-        -   [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
--   [📨 Messages](x-badges/messages/README.md)
-    -   [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
-    -   [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
-    -   [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-    -   [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
-    -   [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
-    -   [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
-    -   [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-    -   [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-    -   [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
-    -   [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
-    -   [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
-    -   [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
-    -   [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
-    -   [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
-    -   [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
-    -   [MsgSetManager](x-badges/messages/msg-set-manager.md)
-    -   [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
-    -   [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-    -   [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
-    -   [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
-    -   [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
-    -   [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-    -   [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
--   [🔍 Queries](x-badges/queries/README.md)
-    -   [GetAddressList](x-badges/queries/get-address-list.md)
-    -   [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
-    -   [GetBalance](x-badges/queries/get-balance.md)
-    -   [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
-    -   [GetCollection](x-badges/queries/get-collection.md)
-    -   [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
-    -   [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
-    -   [Params](x-badges/queries/params.md)
--   [💡 Examples and Snippets](x-badges/examples/README.md)
-    -   [Base Collection Details](x-badges/examples/base-collection-details.md)
-    -   [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
-    -   [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
-    -   [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
-    -   [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
-    -   [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
-    -   [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
-    -   [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
-    -   [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-    -   [Approvals](badge-standard/examples/approvals/README.md)
-        -   [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
-        -   [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
-        -   [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
-        -   [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
-        -   [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
-    -   [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
-        -   [Simple Badge Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
-        -   [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
-    -   [Permission Examples](x-badges/examples/permissions/README.md)
-        -   [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
-        -   [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-        -   [Locking Specific Badge IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
-        -   [Locking Valid Badge IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
-    -   [Transaction Examples](x-badges/examples/txs/README.md)
-        -   [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
-            -   [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-            -   [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-        -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
-            -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
--   [📡 Events](x-badges/events.md)
+* [📚 Overview](x-badges/README.md)
+
+* [🧠 Concepts](x-badges/concepts/README.md)
+  * [Address Lists](x-badges/concepts/address-lists.md)
+  * [Archived Collections](x-badges/concepts/archived-collections.md)
+  * [Badge Collections](x-badges/concepts/badge-collections.md)
+  * [Balances Type](x-badges/concepts/balances-type.md)
+  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Collection Invariants](x-badges/concepts/collection-invariants.md)
+  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+  * [Custom Data](x-badges/concepts/custom-data.md)
+  * [Default Balances](x-badges/concepts/default-balances.md)
+  * [Manager](x-badges/concepts/manager.md)
+  * [Metadata](x-badges/concepts/metadata.md)
+  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+  * [Off-Chain Balances](x-badges/concepts/off-chain-balances.md)
+  * [Standards](x-badges/concepts/standards.md)
+  * [Different Time Fields](x-badges/concepts/time-fields.md)
+  * [Timeline System](x-badges/concepts/timeline-system.md)
+  * [Total Supply](x-badges/concepts/total-supply.md)
+  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+  * [UintRanges](x-badges/concepts/uintrange.md)
+  * [Valid Badge IDs](x-badges/concepts/valid-badge-ids.md)
+  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
+    * [Badge Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+    * [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
+    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+    * [Requires](x-badges/concepts/approval-criteria/requires.md)
+    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [Overview](x-badges/concepts/permissions/overview.md)
+    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+    * [Badge ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+    * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
+* [📨 Messages](x-badges/messages/README.md)
+  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+  * [MsgDecrementStoreValue](x-badges/messages/msg-decrement-store-value.md)
+  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+  * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
+  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
+  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
+  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
+  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+  * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
+  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+* [🔍 Queries](x-badges/queries/README.md)
+  * [GetAddressList](x-badges/queries/get-address-list.md)
+  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+  * [GetBalance](x-badges/queries/get-balance.md)
+  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+  * [GetCollection](x-badges/queries/get-collection.md)
+  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+  * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
+  * [Params](x-badges/queries/params.md)
+* [💡 Examples and Snippets](x-badges/examples/README.md)
+  * [Base Collection Details](x-badges/examples/base-collection-details.md)
+  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
+  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
+  * [Mint All Badges to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
+    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
+    * [Simple Badge Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
+    * [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
+  * [Permission Examples](x-badges/examples/permissions/README.md)
+    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+    * [Locking Specific Badge IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
+    * [Locking Valid Badge IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
+  * [Transaction Examples](x-badges/examples/txs/README.md)
+    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
+      * [Quest Badge Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
+      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+* [📡 Events](x-badges/events.md)
+
+
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -13415,11 +13421,13 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 ## Table of Contents
 
-1. [Concepts](02-concepts.md) - Core data structures and business logic
-2. [Messages](messages/) - Transaction messages and handlers
-3. [Queries](queries/) - Query types and endpoints
-4. [Events](events.md) - Event emissions and tracking
-5. [Examples](examples/) - Common usage patterns and building blocks
+1. [Introduction](./introduction.md) - Overview and key concepts
+2. [Concepts](./02-concepts.md) - Core data structures and business logic
+3. [State](./state.md) - State management and storage patterns
+4. [Messages](./messages/) - Transaction messages and handlers
+5. [Queries](./queries/) - Query types and endpoints
+6. [Events](./events.md) - Event emissions and tracking
+7. [Examples](./examples/) - Common usage patterns and building blocks
 
 ## Tokens vs Badges
 
@@ -13429,42 +13437,45 @@ We use the terms tokens and badges interchangeably. For example, "badgeIds" refe
 
 ### Collection Management
 
-* [MsgCreateCollection](messages/msg-create-collection.md) - Create new badge collection
-* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
-* [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
+-   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new badge collection
+-   [MsgUpdateCollection](./messages/msg-update-collection.md) - Update existing collection
+-   [MsgUniversalUpdateCollection](./messages/msg-universal-update-collection.md) - Universal create/update interface with invariants support
+-   [MsgDeleteCollection](./messages/msg-delete-collection.md) - Delete collection
 
 ### Badge Transfers
 
-* [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer badges between addresses
+-   [MsgTransferBadges](./messages/msg-transfer-badges.md) - Transfer badges between addresses
 
 ### User Approvals
 
-* [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+-   [MsgUpdateUserApprovals](./messages/msg-update-user-approvals.md) - Update transfer approvals
 
 ### Address Lists & Dynamic Stores
 
-* [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
-* [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
-* [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
-* [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
-* [More messages...](messages/) - See full message reference
+-   [MsgCreateAddressLists](./messages/msg-create-address-lists.md) - Create reusable address lists
+-   [MsgCreateDynamicStore](./messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgUpdateDynamicStore](./messages/msg-update-dynamic-store.md) - Update dynamic store properties
+-   [MsgDeleteDynamicStore](./messages/msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](./messages/msg-set-dynamic-store-value.md) - Set address-specific store values
+-   [MsgIncrementStoreValue](./messages/msg-increment-store-value.md) - Increase values for addresses
+-   [MsgDecrementStoreValue](./messages/msg-decrement-store-value.md) - Decrease values for addresses
+-   [More messages...](./messages/) - See full message reference
 
 ## Query Reference
 
 ### Core Queries
 
-* [GetCollection](queries/get-collection.md) - Retrieve collection data
-* [GetBalance](queries/get-balance.md) - Get user badge balances
-* [GetApprovalTracker](queries/get-approval-tracker.md) - Get approval usage data
-* [GetAddressList](queries/get-address-list.md) - Retrieve address list
-* [More queries...](queries/) - See full query reference
+-   [GetCollection](./queries/get-collection.md) - Retrieve collection data
+-   [GetBalance](./queries/get-balance.md) - Get user badge balances
+-   [GetApprovalTracker](./queries/get-approval-tracker.md) - Get approval usage data
+-   [GetAddressList](./queries/get-address-list.md) - Retrieve address list
+-   [More queries...](./queries/) - See full query reference
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
 
 ## Documentation Style
 
@@ -13482,6 +13493,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
 -   **[Balance System](balance-system.md)** - How badge ownership is tracked with precise control over quantities and time
 -   **[Balances Type](balances-type.md)** - How badge ownership and transfers are managed within collections
+-   **[Off-Chain Balances](off-chain-balances.md)** - Legacy off-chain balance types (deprecated - use Standard balances)
 -   **[Default Balances](default-balances.md)** - Predefined balance stores assigned to new users upon genesis creation
 -   **[Valid Badge IDs](valid-badge-ids.md)** - Defining the range of badge identifiers that can exist within a collection
 -   **[Total Supply](total-supply.md)** - Maximum number of badges that can exist for each badge ID
@@ -13497,6 +13509,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[Time Fields](time-fields.md)** - Understanding the different time-related fields used throughout BitBadges
 -   **[Custom Data](custom-data.md)** - Generic string fields for storing arbitrary application-specific data
 -   **[Cosmos Wrapper Paths](cosmos-wrapper-paths.md)** - 1:1 wrapping between badges and native Cosmos SDK coins for IBC compatibility
+-   **[Collection Invariants](collection-invariants.md)** - Immutable rules that enforce fundamental constraints on collection behavior
 -   **[Protocols](protocols/)** - Standardized implementation patterns for badge collections
 
 
@@ -13771,6 +13784,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     userRoyalties?: iUserRoyalties<T>;
     /** The list of dynamic store challenges that the initiator must pass for approval. */
     dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
+    /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
+    ethSignatureChallenges?: iETHSignatureChallenge<T>[];
 }
 ```
 
@@ -13781,7 +13796,8 @@ export interface iApprovalCriteria<T extends NumberType> {
 -   **[Max Number of Transfers](max-number-of-transfers.md)** - Transfer count limits
 -   **[Predetermined Balances](predetermined-balances.md)** - Exact balance requirements
 -   **[Merkle Challenges](merkle-challenges.md)** - Cryptographic proof requirements
--   **[Dynamic Store Challenges](dynamic-store-challenges.md)** - On-chain boolean checks
+-   **[Dynamic Store Challenges](dynamic-store-challenges.md)** - On-chain numeric checks
+-   **[ETH Signature Challenges](eth-signature-challenges.md)** - Ethereum signature requirements
 -   **[Badge Ownership](badge-ownership.md)** - Required badge holdings
 -   **[$BADGE Transfers](usdbadge-transfers.md)** - Automatic token transfers
 -   **[Overrides](overrides.md)** - Bypassing user-level approvals
@@ -14139,18 +14155,18 @@ Require users to own specific badges to access premium features or exclusive tra
 
 # Dynamic Store Challenges
 
-Require transfer initiators to pass boolean checks against dynamic stores. Typically, these are used with smart contracts.
+Require transfer initiators to pass checks against dynamic stores. Typically, these are used with smart contracts.
 
-Dynamic stores are simply standalone (address -> approved) stores. They are controlled by whoever creates them. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
+Dynamic stores are simply standalone (address -> number) stores where the number is the amount of uses an initiator has left. They are controlled by whoever creates them. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
 
 ## How It Works
 
-Dynamic store challenges check if the transfer initiator has a `true` value in specified dynamic stores. The system:
+Dynamic store challenges check if the transfer initiator has a value greater than 0 in specified dynamic stores. The system:
 
 1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
-2. **Evaluates Boolean**: Returns `true` or `false` for the initiator
-3. **Requires All True**: All challenges must return `true` for approval
-4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
+2. **Evaluates Number**: Returns the numeric value for the initiator
+3. **Requires All > 0**: All challenges must return a value greater than 0 for approval
+4. **Fails if Any ≤ 0**: If any challenge returns 0 or less, transfer is denied
 
 ## Interface
 
@@ -14165,8 +14181,8 @@ interface DynamicStoreChallenge<T extends NumberType> {
 ```json
 {
     "dynamicStoreChallenges": [
-        { "storeId": "1" }, // Member status store
-        { "storeId": "2" } // Subscription status store
+        { "storeId": "1" }, // Member points store (must have > 0 points)
+        { "storeId": "2" } // Subscription level store (must have > 0 level)
     ]
 }
 ```
@@ -14175,19 +14191,149 @@ interface DynamicStoreChallenge<T extends NumberType> {
 
 ### Creating Stores
 
-Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with default boolean values.
+Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with default numeric values.
 
 ### Setting Values
 
-Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
+Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set numeric values for specific addresses.
+
+### Incrementing Values
+
+Use [MsgIncrementStoreValue](../../messages/msg-increment-store-value.md) to increase values for specific addresses.
+
+### Decrementing Values
+
+Use [MsgDecrementStoreValue](../../messages/msg-decrement-store-value.md) to decrease values for specific addresses.
 
 ### Querying Values
 
 Use [GetDynamicStoreValue](../../queries/get-dynamic-store-value.md) to check current values for addresses.
 
-## Alternative
+## Alternatives
 
-For fully off-chain solutions, consider [Merkle Challenges](merkle-challenges.md) to save gas costs.
+For fully off-chain solutions, consider:
+
+-   [Merkle Challenges](merkle-challenges.md) to save gas costs
+-   [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization
+
+
+## File: ./x-badges/concepts/approval-criteria/eth-signature-challenges.md
+
+# ETH Signature Challenges
+
+ETH Signature Challenges are a type of approval criteria that require users to provide valid Ethereum signatures from a predetermined signer to complete transfers. The signer approves the address by signing a message that contains the address and a nonce. This feature allows for secure, on-chain verification of off-chain authorization without the complexity of Merkle trees.
+
+## Overview
+
+ETH Signature Challenges work by requiring users to provide Ethereum signatures that prove they have authorization from specific Ethereum addresses. Each signature can only be used once, preventing replay attacks and ensuring the security of the approval system.
+
+## How It Works
+
+### Signature Scheme
+
+The signature scheme follows the pattern:
+
+```
+ETHSign(nonce + "-" + creatorAddress)
+```
+
+Where:
+
+-   `nonce`: A unique identifier provided by the user
+-   `creatorAddress`: The address of the collection creator
+-   `-`: A literal dash character separating the two values
+
+### Challenge Structure
+
+Each ETH Signature Challenge contains:
+
+-   `signer`: The Ethereum address that must sign the challenge
+-   `challengeTrackerId`: Unique identifier for tracking used signatures
+-   `uri`: Optional metadata URI
+-   `customData`: Optional custom data
+
+### Proof Structure
+
+Users provide ETH Signature Proofs containing:
+
+-   `nonce`: The nonce that was signed
+-   `signature`: The Ethereum signature of the nonce
+
+## Key Features
+
+### One-Time Use Signatures
+
+Each signature can only be used once per challenge tracker. This prevents:
+
+-   Replay attacks
+-   Double-spending of approvals
+-   Unauthorized reuse of signatures
+
+### Multiple Signers
+
+You can require signatures from multiple Ethereum addresses in a single approval:
+
+```json
+{
+    "ethSignatureChallenges": [
+        {
+            "signer": "0x1234567890123456789012345678901234567890",
+            "challengeTrackerId": "challenge1"
+        },
+        {
+            "signer": "0x0987654321098765432109876543210987654321",
+            "challengeTrackerId": "challenge2"
+        }
+    ]
+}
+```
+
+## Implementation Details
+
+### Signature Verification
+
+The system verifies signatures by:
+
+1. Reconstructing the signed message: `nonce + "-" + creatorAddress`
+2. Recovering the signer address from the signature
+3. Comparing the recovered address with the expected `signer` address
+4. Checking that the signature hasn't been used before
+
+### Storage
+
+Used signatures are tracked in the blockchain state using:
+
+-   **Key**: `ETHSignatureTrackerKey` with challenge tracker ID
+-   **Value**: Number of times the signature has been used (increment-only per tracker ID)
+
+## Quick Reference
+
+### Interface Definitions
+
+```typescript
+interface ETHSignatureChallenge {
+    signer: string; // Ethereum address that must sign
+    challengeTrackerId: string; // Unique ID for tracking used signatures
+    uri?: string; // Optional metadata URI
+    customData?: string; // Optional custom data
+}
+
+interface ETHSignatureProof {
+    nonce: string; // The nonce that was signed
+    signature: string; // Ethereum signature
+}
+```
+
+## Error Handling
+
+Common error scenarios:
+
+-   **Invalid Signature**: Signature doesn't match the expected signer
+-   **Already Used**: Signature has been used before
+-   **Missing Proof**: Required ETH signature proof not provided
+-   **Invalid Nonce**: Nonce format or content is invalid
+
+The system provides clear error messages to help users understand and resolve issues.
 
 
 ## File: ./x-badges/concepts/approval-criteria/linking-trackers-advanced.md
@@ -14589,6 +14735,12 @@ const isValidProof = proofObj && proofObj.length === tree.getLayerCount() - 1;
 // Create signature if needed
 const leafSignature = signLeaf(leaf + '-' + chain.bitbadgesAddress);
 ```
+
+## Comparison with ETH Signature Challenges
+
+Merkle challenges and ETH signature challenges are very similar. The main difference is that Merkle challenges must also check that the signed message was pre-committed to in the tree, whereas ETH signature challenges only need to check that the signature is valid and not used before.
+
+For more information, see [ETH Signature Challenges](eth-signature-challenges.md).
 
 ## Best Practices
 
@@ -15398,6 +15550,10 @@ message BadgeCollection {
 
   // The IBC wrapper (sdk.coin) paths for the collection.
   repeated CosmosCoinWrapperPath cosmosCoinWrapperPaths = 17;
+
+  // Collection-level invariants that cannot be broken.
+  // These are set upon genesis and cannot be modified.
+  CollectionInvariants invariants = 18;
 }
 ```
 
@@ -15578,6 +15734,128 @@ The circulating supply is controlled by:
 -   **Collection approvals** - Manager-controlled transfer rules
 -   **User approvals** - Individual transfer permissions
 -   **Collection permissions** - Controls approval updatability
+
+
+## File: ./x-badges/concepts/collection-invariants.md
+
+# Collection Invariants
+
+Collection invariants are immutable rules that are set upon collection creation and cannot be broken or modified afterward. These invariants enforce fundamental constraints on how the collection operates, ensuring consistency and preventing certain types of restrictions.
+
+## Overview
+
+Invariants are collection-level properties that are set during genesis (collection creation) and remain fixed for the lifetime of the collection. Unlike permissions or other configurable settings, invariants cannot be updated or removed once established.
+
+## Proto Definition
+
+```protobuf
+message CollectionInvariants {
+  // If true, all ownership times must be full ranges [{ start: 1, end: GoMaxUInt64 }].
+  // This prevents time-based restrictions on badge ownership.
+  bool noCustomOwnershipTimes = 1;
+}
+```
+
+## Available Invariants
+
+### noCustomOwnershipTimes
+
+When enabled, this invariant enforces that all ownership times throughout the collection must represent full ranges from the beginning of time (1) to the maximum possible time (18446744073709551615).
+
+#### What it affects:
+
+1. **Collection Approvals**: All collection-level approvals must have ownership times that are full ranges
+2. **User Approvals**: All user-level approvals (incoming/outgoing) must have ownership times that are full ranges
+3. **Transfer Balances**: All transfer operations must involve balances with full ownership time ranges
+
+#### Validation Logic:
+
+The invariant checks that ownership times are exactly:
+
+```json
+[{ "start": "1", "end": "18446744073709551615" }]
+```
+
+Any other ownership time configuration will cause validation to fail.
+
+#### Use Cases:
+
+-   **Preventing Time-Based Restrictions**: Ensures badges cannot have time-limited ownership periods
+-   **Simplifying Ownership Model**: Eliminates complexity around time-based approval restrictions
+-   **Compliance Requirements**: Some applications may require permanent, unrestricted ownership
+
+#### Example:
+
+```json
+// ✅ Valid - Full ownership time range
+{
+  "ownershipTimes": [
+    {
+      "start": "1",
+      "end": "18446744073709551615"
+    }
+  ]
+}
+
+// ❌ Invalid - Restricted time range
+{
+  "ownershipTimes": [
+    {
+      "start": "1000",
+      "end": "2000"
+    }
+  ]
+}
+
+// ❌ Invalid - Multiple ranges
+{
+  "ownershipTimes": [
+    {
+      "start": "1",
+      "end": "1000"
+    },
+    {
+      "start": "2000",
+      "end": "3000"
+    }
+  ]
+}
+```
+
+## Setting Invariants
+
+Invariants can only be set during collection creation via `MsgCreateCollection` or `MsgUniversalUpdateCollection` (when creating a new collection with CollectionId = 0).
+
+```protobuf
+message MsgCreateCollection {
+  // ... other fields ...
+  CollectionInvariants invariants = 18;
+}
+```
+
+## Validation Points
+
+The `noCustomOwnershipTimes` invariant is validated at several points:
+
+1. **Collection Creation**: When creating a new collection
+2. **Collection Updates**: When updating collection approvals
+3. **Transfer Execution**: When processing badge transfers
+4. **Approval Updates**: When updating user or collection approvals
+
+## Error Messages
+
+When the invariant is violated, you'll receive error messages like:
+
+```
+noCustomOwnershipTimes invariant is enabled: ownership times must be full range [{ start: 1, end: 18446744073709551615 }]
+```
+
+## Related Concepts
+
+-   [Badge Collections](./badge-collections.md)
+-   [Transferability Approvals](./transferability-approvals.md)
+-   [Time Fields](./time-fields.md)
+-   [UintRange](./uintrange.md)
 
 
 ## File: ./x-badges/concepts/cosmos-wrapper-paths.md
@@ -15836,7 +16114,7 @@ Default balances follow the same `UserBalanceStore` structure:
 
 Default balances **cannot** include:
 
--   **Approval criteria** with complex conditions (merkle challenges, dynamic store challenges, etc.)
+-   **Approval criteria** with complex conditions (merkle challenges, ETH signature challenges, dynamic store challenges, etc.)
 -   **Coin transfers** or native token requirements
 -   **Badge ownership** requirements or other side effects
 -   **Advanced conditional logic**
@@ -16206,6 +16484,73 @@ The `MsgCreateCollection` interface includes a `mintEscrowCoinsToTransfer` field
 ```
 
 This field is particularly useful when you need to fund the Mint Escrow Address but don't know the collection ID beforehand, since the escrow address is derived from the collection ID itself. Thus, it can be done all in one transaction.
+
+
+## File: ./x-badges/concepts/off-chain-balances.md
+
+# Off-Chain Balances
+
+> **⚠️ DEPRECATED**: Off-chain balance types have been deprecated and are no longer recommended for new collections. Always use `"Standard"` balance type for new collections.
+
+## Overview
+
+Off-chain balances were a legacy feature that allowed badge collections to store balance information and handle transferability outside of the blockchain. This approach has been deprecated in favor of off-chain only claims, address lists, and other off-chain features.
+
+## Deprecated Balance Types
+
+### Off-Chain - Indexed
+
+```json
+"balancesType": "Off-Chain - Indexed"
+```
+
+This balance type was used for collections where all balances were stored off-chain in a single JSON file that was fetched by the client.
+
+### Off-Chain - Non-Indexed
+
+```json
+"balancesType": "Off-Chain - Non-Indexed"
+```
+
+This balance type was used for collections where balance information was stored off-chain in a dynamic on-demand manner (e.g. /balances/{address} endpoint).
+
+## Deprecated Metadata Structure
+
+Collections using off-chain balance types previously used the `offChainBalancesMetadataTimeline` field to store metadata about where and how to fetch balance information:
+
+```json
+{
+    "offChainBalancesMetadataTimeline": [
+        {
+            "offChainBalancesMetadata": {
+                "uri": "https://example.com/balances",
+                "customData": ""
+            },
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": 1000
+                }
+            ]
+        }
+    ]
+}
+```
+
+This field has been deprecated and should not be used for new collections.
+
+## Migration to Standard Balances
+
+### For New Collections
+
+Always use the "Standard" balance type for new collections:
+
+```json
+{
+    "balancesType": "Standard",
+    "offChainBalancesMetadataTimeline": []
+}
+```
 
 
 ## File: ./x-badges/concepts/permissions/README.md
@@ -18697,7 +19042,36 @@ Attributes:
   - action: "set_dynamic_store_value"
   - store_id: string
   - address: string (target address)
-  - value: string ("true"/"false")
+  - value: string (numeric value)
+  - msg: string (JSON-encoded message)
+```
+
+#### IncrementStoreValue
+
+```
+Type: "message"
+Attributes:
+  - module: "badges"
+  - sender: string (incrementer address)
+  - action: "increment_store_value"
+  - store_id: string
+  - address: string (target address)
+  - amount: string (increment amount)
+  - msg: string (JSON-encoded message)
+```
+
+#### DecrementStoreValue
+
+```
+Type: "message"
+Attributes:
+  - module: "badges"
+  - sender: string (decrementer address)
+  - action: "decrement_store_value"
+  - store_id: string
+  - address: string (target address)
+  - amount: string (decrement amount)
+  - set_to_zero_on_underflow: string ("true"/"false")
   - msg: string (JSON-encoded message)
 ```
 
@@ -18779,12 +19153,14 @@ This directory contains practical examples and building blocks for x/badges.
 -   [Building User Permissions](building-user-permissions.md) - Guide to configuring user-level permissions
 -   [Cosmos Coin Wrapper Example](cosmos-coin-wrapper-example.md) - Example of wrapping badges as Cosmos coins
 -   [Mint All to Self Tutorial](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting badges to yourself
+
 -   [Approvals](approvals/) - Common approval patterns and examples
     -   [Transferable Approval](approvals/transferable-approval.md) - Basic transferable approval configuration
     -   [Burnable Approval](approvals/burnable-approval.md) - Approval allowing badges to be burned
     -   [Cosmos Wrapper Approval](approvals/cosmos-wrapper-approval.md) - Approval for wrapping badges as Cosmos coins
     -   [Cosmos Unwrapper Approval](approvals/cosmos-unwrapper-approval.md) - Approval for unwrapping Cosmos coins back to badges
     -   [Admin Override Approval](approvals/admin-override-approval.md) - Admin approval that overrides user-level restrictions
+
 -   [Permissions](permissions/) - Common permission patterns and examples
 -   [Transactions](txs/) - Full transaction examples
     -   [MsgCreateCollection](txs/msgcreatecollection/) - Complete transaction examples for creating collections
@@ -19304,20 +19680,20 @@ const {
 
 1. Should the number of badge IDs in the collection be expandable? frozen upon genesis? -> Handle with `canUpdateValidBadgeIds`
 2. What about the transferability? -> Handle with `canUpdateCollectionApprovals`
-   * Should the transferability be frozen upon genesis?
-   * Should we disallow updating transferability for only some badge IDs? some approvals? Mint? Post-Mint?
-   * This could be critical for enforcing total circulating supply. For example, if you can create more approvals from the Mint address, then you can theoretically mint however many badges you want.
+    - Should the transferability be frozen upon genesis?
+    - Should we disallow updating transferability for only some badge IDs? some approvals? Mint? Post-Mint?
+    - This could be critical for enforcing total circulating supply. For example, if you can create more approvals from the Mint address, then you can theoretically mint however many badges you want.
 
 ## Examples
 
-We refer you to the [examples](permissions/) or relevant concepts for more detailed examples.
+We refer you to the [examples](../examples/permissions) or relevant concepts for more detailed examples.
 
 ## Related Concepts
 
-* [Permission System](../concepts/permissions/)
-* [Manager](../concepts/manager.md)
-* [Timeline System](../concepts/timeline-system.md)
-* [Timed Update Permission](../concepts/permissions/timeline-permissions.md)
+-   [Permission System](../concepts/permissions/permission-system.md)
+-   [Manager](../concepts/manager.md)
+-   [Timeline System](../concepts/timeline-system.md)
+-   [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
 
 
 ## File: ./x-badges/examples/building-user-approvals.md
@@ -19419,7 +19795,7 @@ For concepts, see:
 
 User-level permissions allow individual users to control their ability to update their own approvals. Note that these are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
 
-The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
+The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](./building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
 
 ## User Permission Structure
 
@@ -19488,20 +19864,20 @@ const updateUserApprovals = {
 
 For permission patterns, see:
 
-* [Freezing Mint Transferability](permissions/freezing-mint-transferability.md) - Collection permission example
-* [Locking Specific Approval ID](permissions/locking-specific-approval-id.md) - Approval ID targeting
-* [Locking Specific Badge IDs](permissions/locking-specific-badge-ids.md) - Badge ID targeting
-* [Building Collection Permissions](building-collection-permissions.md) - Collection-level patterns
+-   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
+-   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
+-   [Locking Specific Badge IDs](./permissions/locking-specific-badge-ids.md) - Badge ID targeting
+-   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
 
 For user approval configuration, see:
 
-* [Building User Approvals](building-user-approvals.md) - User approval setup
+-   [Building User Approvals](./building-user-approvals.md) - User approval setup
 
 ## Related Concepts
 
-* [Permissions System](../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](../concepts/permissions/approval-permissions.md) - Approval-specific controls
-* [Default Balances](../concepts/default-balances.md) - User permission structure
+-   [Permissions System](../concepts/permissions/README.md) - Permission mechanics
+-   [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+-   [Default Balances](../concepts/default-balances.md) - User permission structure
 
 
 ## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
@@ -19512,8 +19888,8 @@ This tutorial walks you through setting up cosmos coin wrappers to bridge BitBad
 
 ## Prerequisites
 
-* Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* Basic knowledge of BitBadges collections and approvals
+-   Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   Basic knowledge of BitBadges collections and approvals
 
 ## Step 1: Set Up Your Cosmos Denominations
 
@@ -19539,8 +19915,8 @@ console.log('Wrapper Address:', wrapperAddress);
 
 The transfers still operate under the approval / transferability system. We will use the following examples from our examples section, but you can customize as you see fit. Note the need to override the wrapper address's approvals where necessary because the wrapper address is uncontrollable.
 
-* [Cosmos Wrapper Approval](approvals/cosmos-wrapper-approval.md)
-* [Cosmos Unwrapper Approval](approvals/cosmos-unwrapper-approval.md)
+-   [Cosmos Wrapper Approval](./approvals/cosmos-wrapper-approval.md)
+-   [Cosmos Unwrapper Approval](./approvals/cosmos-unwrapper-approval.md)
 
 ```typescript
 const collection = {
@@ -19560,9 +19936,9 @@ const collection = {
 
 ## Related Concepts
 
-* [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* [Approval System](../concepts/approval-criteria/)
-* [Badge Collections](../concepts/badge-collections.md)
+-   [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   [Approval System](../concepts/approval-criteria/approval-system.md)
+-   [Badge Collections](../concepts/badge-collections.md)
 
 
 ## File: ./x-badges/examples/defining-circulating-supply.md
@@ -19748,6 +20124,12 @@ const EmptyApprovalCriteria = {
         },
         // No coin transfers to execute
         coinTransfers: [],
+
+        // No ETH signature challenges to be completed
+        ethSignatureChallenges: [],
+        // No dynamic store challenges to be completed
+        dynamicStoreChallenges: [],
+
         // No address matching requirements
         requireToEqualsInitiatedBy: false,
         requireFromEqualsInitiatedBy: false,
@@ -19925,6 +20307,7 @@ This transfer creates badge ID 1 from collection 20 and sends it to the creator 
                     "version": "0"
                 },
                 "merkleProofs": [],
+                "ethSignatureProofs": [],
                 "memo": "",
                 "prioritizedApprovals": [
                     {
@@ -19970,6 +20353,7 @@ This transfer creates badge ID 1 from collection 20 and sends it to the creator 
 ### Additional Settings
 
 -   `"merkleProofs": []` - No merkle proofs required for this simple transfer
+-   `"ethSignatureProofs": []` - No ETH signature proofs required for this simple transfer
 -   `"memo": ""` - No memo attached
 -   `"numAttempts": "1"` - Single transfer attempt
 
@@ -20015,6 +20399,7 @@ This transfer creates badges from collection 20 and sends them to the creator ad
                     "version": "0"
                 },
                 "merkleProofs": [],
+                "ethSignatureProofs": [],
                 "memo": "",
                 "prioritizedApprovals": [
                     {
@@ -20066,7 +20451,7 @@ This example demonstrates "prioritized non-auto-scan" behavior where:
 -   Only the specified approval is checked (no automatic scanning of other approvals)
 -   The system doesn't automatically look for other valid approvals
 -   Transfer is limited to what the specified approval allows
--   Can use approvals with side effects and custom criteria like merkle challenges
+-   Can use approvals with side effects and custom criteria like merkle challenges and ETH signature challenges
 -   Shows proper versioning of approvals
 
 ## Usage
@@ -20086,7 +20471,7 @@ This example is useful when:
 | Approval Scanning     | Auto-scan enabled    | Only specified approval   |
 | Flexibility           | Fixed amounts        | Dynamic based on criteria |
 | Control               | Direct specification | Approval-driven           |
-
+****
 
 ## File: ./x-badges/examples/permissions/README.md
 
@@ -20096,14 +20481,14 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
-* [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
-* [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
-* [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
-* [Locking Valid Badge IDs](locking-valid-badge-ids.md) - Control valid badge ID range updates
-* [Locked Collection](locked-collection.md) - Collection with permanently locked permissions
-* [Temporary Permissions](temporary-permissions.md) - Time-limited management permissions
-* [Badge Specific Permissions](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
-* [Community Controlled](community-controlled.md) - Permissions for community-managed collections
+-   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+-   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+-   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approvals for specific badge ID ranges
+-   [Locking Valid Badge IDs](locking-valid-badge-ids.md) - Control valid badge ID range updates
+-   [Locked Collection](locked-collection.md) - Collection with permanently locked permissions
+-   [Temporary Permissions](temporary-permissions.md) - Time-limited management permissions
+-   [Badge Specific Permissions](badge-specific-permissions.md) - Permissions that apply to specific badge IDs
+-   [Community Controlled](community-controlled.md) - Permissions for community-managed collections
 
 ## Permission System Overview
 
@@ -20115,15 +20500,16 @@ BitBadges permissions follow a timeline-based system where:
 
 ## Common Patterns
 
-* **No Manager** - Set manager to empty string to disable all management
-* **Complete Control** - Empty permission arrays for full soft-enabled control
-* **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
-* **Time-Limited** - Use specific time ranges for temporary control
+-   **No Manager** - Set manager to empty string to disable all management
+-   **Complete Control** - Empty permission arrays for full soft-enabled control
+-   **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
+-   **Time-Limited** - Use specific time ranges for temporary control
 
 ## Related Concepts
 
-* [Manager](../../concepts/manager.md)
-* [Timeline System](../../concepts/timeline-system.md)
+-   [Permission System](../../concepts/permissions/permission-system.md)
+-   [Manager](../../concepts/manager.md)
+-   [Timeline System](../../concepts/timeline-system.md)
 
 
 ## File: ./x-badges/examples/permissions/freezing-mint-transferability.md
@@ -20201,14 +20587,14 @@ Once set to permanently forbidden, mint permissions cannot be restored. Carefull
 
 ## Related Examples
 
-* [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
-* [Building Collection Approvals](../building-collection-approvals.md) - Approval configuration
+-   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
+-   [Building Collection Approvals](../building-collection-approvals.md) - Approval configuration
 
 ## Related Concepts
 
-* [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Collection Permissions](../../concepts/permissions/) - Collection-level controls
-* [Action Permissions](../../concepts/permissions/action-permissions.md) - Specific action controls
+-   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+-   [Collection Permissions](../../concepts/permissions/permission-system.md) - Collection-level controls
+-   [Action Permissions](../../concepts/permissions/action-permission.md) - Specific action controls
 
 
 ## File: ./x-badges/examples/permissions/locking-specific-approval-id.md
@@ -20313,13 +20699,13 @@ const createCollection = {
 
 ## Related Examples
 
-* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock all mint approvals
-* [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+-   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
 
 ## Related Concepts
 
-* [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](../../concepts/permissions/approval-permissions.md) - Approval-specific controls
+-   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+-   [Update Approval Permission](../../concepts/permissions/update-approval-permission.md) - Approval-specific controls
 
 
 ## File: ./x-badges/examples/permissions/locking-specific-badge-ids.md
@@ -20434,9 +20820,9 @@ const createCollection = {
 
 ## Use Cases
 
-* **Lock Founder Badges**: Prevent modification of special badge 1-100 transfer rules
-* **Preserve Rare Items**: Keep limited edition badges (1-100) immutable
-* **Tier-Based Control**: Lock specific tiers while allowing others to evolve
+- **Lock Founder Badges**: Prevent modification of special badge 1-100 transfer rules
+- **Preserve Rare Items**: Keep limited edition badges (1-100) immutable
+- **Tier-Based Control**: Lock specific tiers while allowing others to evolve
 
 ## Important Notes
 
@@ -20446,14 +20832,13 @@ The permission only applies to approvals that overlap with the specified badge I
 
 ## Related Examples
 
-* [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock by approval ID
-* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock all mint approvals
+- [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
+- [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
 
 ## Related Concepts
 
-* [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Timed Update With Badge IDs Permission](../../concepts/permissions/timeline-permissions.md) - Badge-specific controls
-
+- [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+- [Timed Update With Badge IDs Permission](../../concepts/permissions/timed-update-with-badge-ids-permission.md) - Badge-specific controls
 
 ## File: ./x-badges/examples/permissions/locking-valid-badge-ids.md
 
@@ -20555,13 +20940,13 @@ const createCollection = {
 
 ## Related Examples
 
--   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approval updates for badge ranges
--   [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
+-   [Locking Specific Badge IDs](./locking-specific-badge-ids.md) - Lock approval updates for badge ranges
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
 -   [Valid Badge IDs](../../concepts/valid-badge-ids.md) - Badge ID range concept
--   [Badge IDs Action Permission](../../concepts/permissions/badge-id-permissions.md) - Badge-specific permission controls
+-   [Badge IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Badge-specific permission controls
 
 
 ## File: ./x-badges/examples/txs/README.md
@@ -20723,6 +21108,7 @@ This example demonstrates creating a quest collection.
                             "leafSigner": "0xa612B14Ff99DAe9FBC9613bF4553781086c5F887"
                         }
                     ],
+                    "ethSignatureChallenges": [],
                     "predeterminedBalances": {
                         "manualBalances": [],
                         "incrementedBalances": {
@@ -21020,6 +21406,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "approvalId": "a4ab9bc5e8752842a35a79238de4f627677ceae1d8fa9de44b52416e085f7f11",
                 "approvalCriteria": {
                     "merkleChallenges": [],
+                    "ethSignatureChallenges": [],
                     "predeterminedBalances": {
                         "manualBalances": [],
                         "incrementedBalances": {
@@ -21112,6 +21499,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "approvalId": "transferable-approval",
                 "approvalCriteria": {
                     "merkleChallenges": [],
+                    "ethSignatureChallenges": [],
                     "predeterminedBalances": {
                         "manualBalances": [],
                         "incrementedBalances": {
@@ -21262,6 +21650,7 @@ This example demonstrates how to update user outgoing approvals to control what 
                 "approvalId": "87bc6dd97492b913b3d2b6c91c71b7a2bc98d41a715e49285180e8db9f4ea0bb",
                 "approvalCriteria": {
                     "merkleChallenges": [],
+                    "ethSignatureChallenges": [],
                     "predeterminedBalances": {
                         "manualBalances": [],
                         "incrementedBalances": {
@@ -21366,6 +21755,7 @@ This directory contains detailed documentation for all message types supported b
 
 -   [MsgCreateCollection](./msg-create-collection.md) - Create new badge collection
 -   [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
+-   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Universal create/update interface with invariants support
 -   [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection
 
 ### Helper Collection Update Messages
@@ -21398,16 +21788,17 @@ This directory contains detailed documentation for all message types supported b
 
 ### Dynamic Store Management
 
--   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create boolean flag stores for approval criteria
+-   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create numeric stores for approval criteria
 -   [MsgUpdateDynamicStore](./msg-update-dynamic-store.md) - Update dynamic store configuration
 -   [MsgDeleteDynamicStore](./msg-delete-dynamic-store.md) - Delete dynamic store
 -   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set individual address values in dynamic store
+-   [MsgIncrementStoreValue](./msg-increment-store-value.md) - Increase values for addresses
+-   [MsgDecrementStoreValue](./msg-decrement-store-value.md) - Decrease values for addresses
 
 ## Additional Message Types
 
 The following message types exist in the protocol but may be documented separately:
 
--   **MsgUniversalUpdateCollection** - Legacy unified create/update interface
 -   **MsgUpdateParams** - Update module parameters via governance
 
 
@@ -21498,6 +21889,7 @@ message MsgCreateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 14;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 16;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 17;
+  CollectionInvariants invariants = 18;
 }
 
 message MsgCreateCollectionResponse {
@@ -21518,61 +21910,65 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 ```json
 {
-  "creator": "bb1abc123...",
-  "balancesType": "Standard",
-  "defaultBalances": {
-    "balances": [],
-    "outgoingApprovals": [],
-    "incomingApprovals": [],
-    "autoApproveSelfInitiatedOutgoingTransfers": false,
-    "autoApproveSelfInitiatedIncomingTransfers": true,
-    "autoApproveAllIncomingTransfers": false,
-    "userPermissions": {
-      "canUpdateOutgoingApprovals": [],
-      "canUpdateIncomingApprovals": [],
-      "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
-      "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
-      "canUpdateAutoApproveAllIncomingTransfers": []
+    "creator": "bb1abc123...",
+    "balancesType": "Standard",
+    "defaultBalances": {
+        "balances": [],
+        "outgoingApprovals": [],
+        "incomingApprovals": [],
+        "autoApproveSelfInitiatedOutgoingTransfers": false,
+        "autoApproveSelfInitiatedIncomingTransfers": true,
+        "autoApproveAllIncomingTransfers": false,
+        "userPermissions": {
+            "canUpdateOutgoingApprovals": [],
+            "canUpdateIncomingApprovals": [],
+            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+            "canUpdateAutoApproveAllIncomingTransfers": []
+        }
+    },
+    "validBadgeIds": [{ "start": "1", "end": "100" }],
+    "collectionPermissions": {
+        "canDeleteCollection": [],
+        "canArchiveCollection": [],
+        "canUpdateOffChainBalancesMetadata": [],
+        "canUpdateStandards": [],
+        "canUpdateCustomData": [],
+        "canUpdateManager": [],
+        "canUpdateCollectionMetadata": [],
+        "canUpdateValidBadgeIds": [],
+        "canUpdateBadgeMetadata": [],
+        "canUpdateCollectionApprovals": []
+    },
+    "managerTimeline": [],
+    "collectionMetadataTimeline": [],
+    "badgeMetadataTimeline": [],
+    "offChainBalancesMetadataTimeline": [],
+    "customDataTimeline": [],
+    "collectionApprovals": [],
+    "standardsTimeline": [],
+    "isArchivedTimeline": [],
+    "mintEscrowCoinsToTransfer": [],
+    "cosmosCoinWrapperPathsToAdd": [],
+    "invariants": {
+        "noCustomOwnershipTimes": false
     }
-  },
-  "validBadgeIds": [{"start": "1", "end": "100"}],
-  "collectionPermissions": {
-    "canDeleteCollection": [],
-    "canArchiveCollection": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": [],
-    "canUpdateCustomData": [],
-    "canUpdateManager": [],
-    "canUpdateCollectionMetadata": [],
-    "canUpdateValidBadgeIds": [],
-    "canUpdateBadgeMetadata": [],
-    "canUpdateCollectionApprovals": []
-  },
-  "managerTimeline": [],
-  "collectionMetadataTimeline": [],
-  "badgeMetadataTimeline": [],
-  "offChainBalancesMetadataTimeline": [],
-  "customDataTimeline": [],
-  "collectionApprovals": [],
-  "standardsTimeline": [],
-  "isArchivedTimeline": [],
-  "mintEscrowCoinsToTransfer": [],
-  "cosmosCoinWrapperPathsToAdd": []
 }
 ```
+
 
 ## File: ./x-badges/messages/msg-create-dynamic-store.md
 
 # MsgCreateDynamicStore
 
-Creates a new dynamic store for boolean key-value storage.
+Creates a new dynamic store for numeric key-value storage.
 
 ## Proto Definition
 
 ```protobuf
 message MsgCreateDynamicStore {
   string creator = 1; // Address creating the dynamic store
-  bool defaultValue = 2; // Default value for uninitialized addresses
+  string defaultValue = 2; // Default numeric value for uninitialized addresses
 }
 
 message MsgCreateDynamicStoreResponse {
@@ -21591,9 +21987,62 @@ bitbadgeschaind tx badges create-dynamic-store [default-value] --from creator-ke
 ```json
 {
   "creator": "bb1...",
-  "defaultValue": false
+  "defaultValue": "0"
 }
 ```
+
+## File: ./x-badges/messages/msg-decrement-store-value.md
+
+# MsgDecrementStoreValue
+
+Decrements a numeric value for a specific address in a dynamic store.
+
+## Proto Definition
+
+```protobuf
+message MsgDecrementStoreValue {
+  string creator = 1; // Address decrementing the value (must be store creator)
+  string storeId = 2; // ID of the dynamic store
+  string address = 3; // Address to decrement the value for
+  string amount = 4; // Amount to decrement by
+  bool setToZeroOnUnderflow = 5; // Whether to set to 0 if result would be negative
+}
+
+message MsgDecrementStoreValueResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges decrement-store-value [store-id] [address] [amount] [set-to-zero-on-underflow] --from creator-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "address": "bb1...",
+    "amount": "5",
+    "setToZeroOnUnderflow": false
+}
+```
+
+## Underflow Behavior
+
+The `setToZeroOnUnderflow` field controls what happens when decrementing would result in a negative value:
+
+-   **`true`**: The value is set to 0 instead of going negative
+-   **`false`**: The operation fails with an error if it would result in a negative value
+
+## Related Messages
+
+-   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set absolute values
+-   [MsgIncrementStoreValue](./msg-increment-store-value.md) - Increase values
+-   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create new stores
+
 
 ## File: ./x-badges/messages/msg-delete-collection.md
 
@@ -21771,6 +22220,50 @@ Users can only delete their own outgoing approvals. The operation must be perfor
 -   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
 -   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
 -   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete an incoming approval
+
+
+## File: ./x-badges/messages/msg-increment-store-value.md
+
+# MsgIncrementStoreValue
+
+Increments a numeric value for a specific address in a dynamic store.
+
+## Proto Definition
+
+```protobuf
+message MsgIncrementStoreValue {
+  string creator = 1; // Address incrementing the value (must be store creator)
+  string storeId = 2; // ID of the dynamic store
+  string address = 3; // Address to increment the value for
+  string amount = 4; // Amount to increment by
+}
+
+message MsgIncrementStoreValueResponse {}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges increment-store-value [store-id] [address] [amount] --from creator-key
+```
+
+### JSON Example
+
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "address": "bb1...",
+    "amount": "10"
+}
+```
+
+## Related Messages
+
+-   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set absolute values
+-   [MsgDecrementStoreValue](./msg-decrement-store-value.md) - Decrease values
+-   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create new stores
 
 
 ## File: ./x-badges/messages/msg-purge-approvals.md
@@ -22018,6 +22511,7 @@ bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-ke
             "approvalCriteria": {
                 "mustOwnBadges": [],
                 "merkleChallenges": [],
+                "ethSignatureChallenges": [],
                 "coinTransfers": [],
                 "predeterminedBalances": null,
                 "approvalAmounts": null,
@@ -22218,7 +22712,7 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 
 # MsgSetDynamicStoreValue
 
-Sets a boolean value for a specific address in a dynamic store.
+Sets a numeric value for a specific address in a dynamic store.
 
 ## Proto Definition
 
@@ -22227,7 +22721,7 @@ message MsgSetDynamicStoreValue {
   string creator = 1; // Address setting the value (must be store creator)
   string storeId = 2; // ID of the dynamic store
   string address = 3; // Address to set the value for
-  bool value = 4; // Boolean value to set (true/false)
+  string value = 4; // Numeric value to set
 }
 
 message MsgSetDynamicStoreValueResponse {}
@@ -22246,7 +22740,7 @@ bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [value] -
   "creator": "bb1...",
   "storeId": "1",
   "address": "bb1...",
-  "value": true
+  "value": "100"
 }
 ```
 
@@ -22695,29 +23189,31 @@ message Transfer {
   ApprovalIdentifierDetails precalculateBalancesFromApproval = 4;
   // The Merkle proofs / solutions for all Merkle challenges required for the transfer.
   repeated MerkleProof merkleProofs = 5;
+  // The ETH signature proofs / solutions for all ETH signature challenges required for the transfer.
+  repeated ETHSignatureProof ethSignatureProofs = 6;
   // The memo for the transfer.
-  string memo = 6;
+  string memo = 7;
   // The prioritized approvals for the transfer. By default, we scan linearly through the approvals and use the first match.
   // This field can be used to prioritize specific approvals and scan through them first.
-  repeated ApprovalIdentifierDetails prioritizedApprovals = 7;
+  repeated ApprovalIdentifierDetails prioritizedApprovals = 8;
   // Whether to only check prioritized approvals for the transfer.
   // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
   // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
-  bool onlyCheckPrioritizedCollectionApprovals = 8;
+  bool onlyCheckPrioritizedCollectionApprovals = 9;
   // Whether to only check prioritized approvals for the transfer.
   // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
   // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
-  bool onlyCheckPrioritizedIncomingApprovals = 9;
+  bool onlyCheckPrioritizedIncomingApprovals = 10;
   // Whether to only check prioritized approvals for the transfer.
   // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
   // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
-  bool onlyCheckPrioritizedOutgoingApprovals = 10;
+  bool onlyCheckPrioritizedOutgoingApprovals = 11;
   // The options for precalculating the balances.
-  PrecalculationOptions precalculationOptions = 11;
+  PrecalculationOptions precalculationOptions = 12;
   // Affiliate address for the transfer.
-  string affiliateAddress = 12;
+  string affiliateAddress = 13;
   // The number of times to attempt approval validation. If 0 / not specified, we default to only one.
-  string numAttempts = 13;
+  string numAttempts = 14;
 }
 
 message PrecalculationOptions {
@@ -22858,11 +23354,21 @@ Transfers fail at the first validation step that doesn't pass:
 3. **Blocked by Sender** - Sender's outgoing approvals reject the transfer
 4. **Blocked by Recipient** - Recipient's incoming approvals reject the transfer
 
+### ETH Signature Proofs
+
+ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md). Each proof contains:
+
+- **`nonce`**: The unique identifier that was signed
+- **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+
+**Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
+
 ### Related Documentation
 
 -   [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
 -   [Collection Approvals](../concepts/approval-criteria/README.md) - Collection-level controls
 -   [User Approvals](../examples/building-user-approvals.md) - User-level settings
+-   [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
 
 ## Collection ID Auto-Lookup
 
@@ -22909,6 +23415,13 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
             },
             // Supply all merkle proofs for any merkle challenges that need to be satisfied
             "merkleProofs": [],
+            // Supply all ETH signature proofs for any ETH signature challenges that need to be satisfied
+            "ethSignatureProofs": [
+                {
+                    "nonce": "unique-nonce-001",
+                    "signature": "0x..."
+                }
+            ],
             // Memo for the transfer (can be left blank)
             "memo": "",
 
@@ -22940,6 +23453,206 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
 ```
 
 
+## File: ./x-badges/messages/msg-universal-update-collection.md
+
+# MsgUniversalUpdateCollection
+
+A universal message that can be used to either create a new collection or update an existing one. This message combines the functionality of both `MsgCreateCollection` and `MsgUpdateCollection` into a single interface.
+
+## Dual Purpose
+
+-   **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
+-   **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
+
+## Update Flag Pattern
+
+This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidBadgeIds`, `updateCollectionPermissions`).
+
+-   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
+-   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
+
+## Authorization & Permissions
+
+-   **For Collection Creation**: Can be executed by any address
+-   **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
+
+## Proto Definition
+
+```protobuf
+message MsgUniversalUpdateCollection {
+  string creator = 1; // Address creating/updating collection
+  string collectionId = 2; // "0" for new collection, existing ID for updates
+
+  // Creation-only fields (only used when collectionId = "0")
+  string balancesType = 3; // "Standard", "Off-Chain - Indexed", etc.
+  UserBalanceStore defaultBalances = 4;
+
+  // Updateable fields (used for both creation and updates)
+  repeated UintRange validBadgeIds = 5;
+  bool updateCollectionPermissions = 6;
+  CollectionPermissions collectionPermissions = 7;
+  bool updateManagerTimeline = 8;
+  repeated ManagerTimeline managerTimeline = 9;
+  bool updateCollectionMetadataTimeline = 10;
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 11;
+  bool updateBadgeMetadataTimeline = 12;
+  repeated BadgeMetadataTimeline badgeMetadataTimeline = 13;
+  bool updateOffChainBalancesMetadataTimeline = 14;
+  repeated OffChainBalancesMetadataTimeline offChainBalancesMetadataTimeline = 15;
+  bool updateCustomDataTimeline = 16;
+  repeated CustomDataTimeline customDataTimeline = 17;
+  bool updateCollectionApprovals = 18;
+  repeated CollectionApproval collectionApprovals = 19;
+  bool updateStandardsTimeline = 20;
+  repeated StandardsTimeline standardsTimeline = 21;
+  bool updateIsArchivedTimeline = 22;
+  repeated IsArchivedTimeline isArchivedTimeline = 23;
+
+  // Transfer fields
+  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 24;
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 25;
+
+  // Invariants (creation-only)
+  CollectionInvariants invariants = 26;
+}
+
+message MsgUniversalUpdateCollectionResponse {
+  string collectionId = 1; // ID of created/updated collection
+}
+```
+
+## Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator-key
+```
+
+### JSON Example - Creating a New Collection
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "0",
+    "balancesType": "Standard",
+    "defaultBalances": {
+        "balances": [],
+        "outgoingApprovals": [],
+        "incomingApprovals": [],
+        "autoApproveSelfInitiatedOutgoingTransfers": false,
+        "autoApproveSelfInitiatedIncomingTransfers": true,
+        "autoApproveAllIncomingTransfers": false,
+        "userPermissions": {
+            "canUpdateOutgoingApprovals": [],
+            "canUpdateIncomingApprovals": [],
+            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+            "canUpdateAutoApproveAllIncomingTransfers": []
+        }
+    },
+    "validBadgeIds": [{ "start": "1", "end": "100" }],
+    "updateCollectionPermissions": true,
+    "collectionPermissions": {
+        "canDeleteCollection": [],
+        "canArchiveCollection": [],
+        "canUpdateOffChainBalancesMetadata": [],
+        "canUpdateStandards": [],
+        "canUpdateCustomData": [],
+        "canUpdateManager": [],
+        "canUpdateCollectionMetadata": [],
+        "canUpdateValidBadgeIds": [],
+        "canUpdateBadgeMetadata": [],
+        "canUpdateCollectionApprovals": []
+    },
+    "updateManagerTimeline": true,
+    "managerTimeline": [],
+    "updateCollectionMetadataTimeline": true,
+    "collectionMetadataTimeline": [],
+    "updateBadgeMetadataTimeline": true,
+    "badgeMetadataTimeline": [],
+    "updateOffChainBalancesMetadataTimeline": true,
+    "offChainBalancesMetadataTimeline": [],
+    "updateCustomDataTimeline": true,
+    "customDataTimeline": [],
+    "updateCollectionApprovals": true,
+    "collectionApprovals": [],
+    "updateStandardsTimeline": true,
+    "standardsTimeline": [],
+    "updateIsArchivedTimeline": true,
+    "isArchivedTimeline": [],
+    "mintEscrowCoinsToTransfer": [],
+    "cosmosCoinWrapperPathsToAdd": [],
+    "invariants": {
+        "noCustomOwnershipTimes": false
+    }
+}
+```
+
+### JSON Example - Updating an Existing Collection
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "updateValidBadgeIds": true,
+    "validBadgeIds": [{ "start": "1", "end": "200" }],
+    "updateCollectionPermissions": false,
+    "collectionPermissions": {},
+    "updateManagerTimeline": false,
+    "managerTimeline": [],
+    "updateCollectionMetadataTimeline": false,
+    "collectionMetadataTimeline": [],
+    "updateBadgeMetadataTimeline": false,
+    "badgeMetadataTimeline": [],
+    "updateOffChainBalancesMetadataTimeline": false,
+    "offChainBalancesMetadataTimeline": [],
+    "updateCustomDataTimeline": false,
+    "customDataTimeline": [],
+    "updateCollectionApprovals": false,
+    "collectionApprovals": [],
+    "updateStandardsTimeline": false,
+    "standardsTimeline": [],
+    "updateIsArchivedTimeline": false,
+    "isArchivedTimeline": [],
+    "mintEscrowCoinsToTransfer": [],
+    "cosmosCoinWrapperPathsToAdd": [],
+    "invariants": {}
+}
+```
+
+## Key Differences from Other Messages
+
+### vs MsgCreateCollection
+
+-   More flexible update flag pattern
+-   Can be used for both creation and updates
+-   Includes invariants support
+
+### vs MsgUpdateCollection
+
+-   Can create new collections when collectionId = "0"
+-   Includes creation-only fields like `balancesType` and `defaultBalances`
+-   Includes invariants support
+
+## Invariants Support
+
+When creating a new collection (collectionId = "0"), you can set collection invariants using the `invariants` field. Invariants cannot be modified after collection creation.
+
+```json
+{
+    "invariants": {
+        "noCustomOwnershipTimes": true
+    }
+}
+```
+
+## Related Messages
+
+-   [MsgCreateCollection](./msg-create-collection.md)
+-   [MsgUpdateCollection](./msg-update-collection.md)
+-   [Collection Invariants](../concepts/collection-invariants.md)
+
+
 ## File: ./x-badges/messages/msg-update-collection.md
 
 # MsgUpdateCollection
@@ -22948,16 +23661,16 @@ Updates an existing badge collection's properties.
 
 ## Update Flag Pattern
 
-This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidBadgeIds`, `updateCollectionPermissions`). 
+This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidBadgeIds`, `updateCollectionPermissions`).
 
-- **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
-- **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
+-   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
+-   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
 
 This allows you to update only specific fields without affecting others, and you can safely leave unused value fields empty or with placeholder data.
 
 ## Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. All updates must obey the previously set permissions - meaning the permission settings that were in effect *before* this message was started.
+Updates can only be performed by the **current manager** of the collection. All updates must obey the previously set permissions - meaning the permission settings that were in effect _before_ this message was started.
 
 **Important**: If you update the permissions in the current message, those new permissions are applied last and will not be applicable until the following transaction. This prevents circumventing permission restrictions within the same transaction.
 
@@ -22989,6 +23702,7 @@ message MsgUpdateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 28;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 29;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 30;
+  CollectionInvariants invariants = 31;
 }
 
 message MsgUpdateCollectionResponse {
@@ -23004,45 +23718,50 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 ```
 
 ### JSON Example
+
 ```json
 {
-  "creator": "bb1abc123...",
-  "collectionId": "1",
-  "updateValidBadgeIds": true,
-  "validBadgeIds": [{"start": "1", "end": "200"}],
-  "updateCollectionPermissions": false,
-  "collectionPermissions": {
-    "canDeleteCollection": [],
-    "canArchiveCollection": [],
-    "canUpdateOffChainBalancesMetadata": [],
-    "canUpdateStandards": [],
-    "canUpdateCustomData": [],
-    "canUpdateManager": [],
-    "canUpdateCollectionMetadata": [],
-    "canUpdateValidBadgeIds": [],
-    "canUpdateBadgeMetadata": [],
-    "canUpdateCollectionApprovals": []
-  },
-  "updateManagerTimeline": false,
-  "managerTimeline": [],
-  "updateCollectionMetadataTimeline": false,
-  "collectionMetadataTimeline": [],
-  "updateBadgeMetadataTimeline": false,
-  "badgeMetadataTimeline": [],
-  "updateOffChainBalancesMetadataTimeline": false,
-  "offChainBalancesMetadataTimeline": [],
-  "updateCustomDataTimeline": false,
-  "customDataTimeline": [],
-  "updateCollectionApprovals": false,
-  "collectionApprovals": [],
-  "updateStandardsTimeline": false,
-  "standardsTimeline": [],
-  "updateIsArchivedTimeline": false,
-  "isArchivedTimeline": [],
-  "mintEscrowCoinsToTransfer": [],
-  "cosmosCoinWrapperPathsToAdd": []
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "updateValidBadgeIds": true,
+    "validBadgeIds": [{ "start": "1", "end": "200" }],
+    "updateCollectionPermissions": false,
+    "collectionPermissions": {
+        "canDeleteCollection": [],
+        "canArchiveCollection": [],
+        "canUpdateOffChainBalancesMetadata": [],
+        "canUpdateStandards": [],
+        "canUpdateCustomData": [],
+        "canUpdateManager": [],
+        "canUpdateCollectionMetadata": [],
+        "canUpdateValidBadgeIds": [],
+        "canUpdateBadgeMetadata": [],
+        "canUpdateCollectionApprovals": []
+    },
+    "updateManagerTimeline": false,
+    "managerTimeline": [],
+    "updateCollectionMetadataTimeline": false,
+    "collectionMetadataTimeline": [],
+    "updateBadgeMetadataTimeline": false,
+    "badgeMetadataTimeline": [],
+    "updateOffChainBalancesMetadataTimeline": false,
+    "offChainBalancesMetadataTimeline": [],
+    "updateCustomDataTimeline": false,
+    "customDataTimeline": [],
+    "updateCollectionApprovals": false,
+    "collectionApprovals": [],
+    "updateStandardsTimeline": false,
+    "standardsTimeline": [],
+    "updateIsArchivedTimeline": false,
+    "isArchivedTimeline": [],
+    "mintEscrowCoinsToTransfer": [],
+    "cosmosCoinWrapperPathsToAdd": [],
+    "invariants": {
+        "noCustomOwnershipTimes": false
+    }
 }
 ```
+
 
 ## File: ./x-badges/messages/msg-update-dynamic-store.md
 
@@ -23195,11 +23914,12 @@ This directory contains detailed documentation for all query types supported by 
 
 -   [GetApprovalTracker](./get-approval-tracker.md) - Get approval usage tracking data and limits
 -   [GetChallengeTracker](./get-challenge-tracker.md) - Get challenge completion tracking status
+-   [GetETHSignatureTracker](./get-eth-signature-tracker.md) - Get ETH signature challenge usage tracking status
 
 ### Dynamic Store Queries
 
 -   [GetDynamicStore](./get-dynamic-store.md) - Get dynamic store configuration and metadata
--   [GetDynamicStoreValue](./get-dynamic-store-value.md) - Get boolean value for specific address in store
+-   [GetDynamicStoreValue](./get-dynamic-store-value.md) - Get numeric value for specific address in store
 
 ### System Queries
 
@@ -23495,7 +24215,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_collection/1"
 
 # GetDynamicStoreValue
 
-Retrieves the boolean value for a specific address in a dynamic store.
+Retrieves the numeric value for a specific address in a dynamic store. This is the number of uses an address has left for a dynamic store.
 
 ## Proto Definition
 
@@ -23512,7 +24232,7 @@ message QueryGetDynamicStoreValueResponse {
 message DynamicStoreValue {
   string storeId = 1; // The dynamic store ID
   string address = 2; // The address this value applies to
-  bool value = 3; // The boolean value (true/false)
+  string value = 3; // The numeric value
 }
 ```
 
@@ -23533,7 +24253,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
     "value": {
         "storeId": "1",
         "address": "bb1...",
-        "value": true
+        "value": "100"
     }
 }
 ```
@@ -23588,6 +24308,54 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
 }
 ```
 
+
+## File: ./x-badges/queries/get-eth-signature-tracker.md
+
+# GetETHSignatureTracker
+
+Retrieves the number of times a given signature has been used for a specific ETH signature challenge tracker.
+
+## Proto Definition
+
+```protobuf
+message QueryGetETHSignatureTrackerRequest {
+  string collectionId = 1;
+  string approvalLevel = 2; // "collection", "incoming", or "outgoing"
+  string approverAddress = 3; // Leave blank if approvalLevel is "collection"
+  string approvalId = 4;
+  string challengeTrackerId = 5;
+  string signature = 6;
+}
+
+message QueryGetETHSignatureTrackerResponse {
+  string numUsed = 1; // Number of times this signature has been used
+}
+```
+
+## Usage Example
+
+```bash
+# CLI query
+bitbadgeschaind query badges get-num-used-for-eth-signature-challenge [collectionId] [approvalLevel] [approverAddress] [approvalId] [challengeTrackerId] [signature]
+
+# REST API
+# Note for blank values, use "" so you may have // in the query
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature_tracker/1/collection//approval-123/challenge-1/0x1234567890abcdef..."
+```
+
+### Response Example
+
+```json
+{
+    "numUsed": "1"
+}
+```
+
+## Notes
+
+- Each signature can only be used once per challenge tracker
+- If a signature has never been used, the response will be "0"
+- The signature parameter should be the full Ethereum signature (0x-prefixed hex string) 
 
 ## File: ./x-badges/queries/params.md
 
