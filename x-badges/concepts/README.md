@@ -7,6 +7,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[Badge Collections](badge-collections.md)** - The primary entity that defines groups of related badges
 -   **[Balance System](balance-system.md)** - How badge ownership is tracked with precise control over quantities and time
 -   **[Balances Type](balances-type.md)** - How badge ownership and transfers are managed within collections
+-   **[Off-Chain Balances](off-chain-balances.md)** - Legacy off-chain balance types (deprecated - use Standard balances)
 -   **[Default Balances](default-balances.md)** - Predefined balance stores assigned to new users upon genesis creation
 -   **[Valid Badge IDs](valid-badge-ids.md)** - Defining the range of badge identifiers that can exist within a collection
 -   **[Total Supply](total-supply.md)** - Maximum number of badges that can exist for each badge ID
@@ -22,4 +23,5 @@ This directory contains detailed explanations of the core concepts and data stru
 -   **[Time Fields](time-fields.md)** - Understanding the different time-related fields used throughout BitBadges
 -   **[Custom Data](custom-data.md)** - Generic string fields for storing arbitrary application-specific data
 -   **[Cosmos Wrapper Paths](cosmos-wrapper-paths.md)** - 1:1 wrapping between badges and native Cosmos SDK coins for IBC compatibility
+-   **[Collection Invariants](collection-invariants.md)** - Immutable rules that enforce fundamental constraints on collection behavior
 -   **[Protocols](protocols/)** - Standardized implementation patterns for badge collections

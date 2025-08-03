@@ -4,8 +4,8 @@ This tutorial walks you through setting up cosmos coin wrappers to bridge BitBad
 
 ## Prerequisites
 
-* Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* Basic knowledge of BitBadges collections and approvals
+-   Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   Basic knowledge of BitBadges collections and approvals
 
 ## Step 1: Set Up Your Cosmos Denominations
 
@@ -31,8 +31,8 @@ console.log('Wrapper Address:', wrapperAddress);
 
 The transfers still operate under the approval / transferability system. We will use the following examples from our examples section, but you can customize as you see fit. Note the need to override the wrapper address's approvals where necessary because the wrapper address is uncontrollable.
 
-* [Cosmos Wrapper Approval](approvals/cosmos-wrapper-approval.md)
-* [Cosmos Unwrapper Approval](approvals/cosmos-unwrapper-approval.md)
+-   [Cosmos Wrapper Approval](./approvals/cosmos-wrapper-approval.md)
+-   [Cosmos Unwrapper Approval](./approvals/cosmos-unwrapper-approval.md)
 
 ```typescript
 const collection = {
@@ -52,6 +52,6 @@ const collection = {
 
 ## Related Concepts
 
-* [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* [Approval System](../concepts/approval-criteria/)
-* [Badge Collections](../concepts/badge-collections.md)
+-   [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+-   [Approval System](../concepts/approval-criteria/approval-system.md)
+-   [Badge Collections](../concepts/badge-collections.md)

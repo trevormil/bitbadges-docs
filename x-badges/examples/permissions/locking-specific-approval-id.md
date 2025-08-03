@@ -98,10 +98,10 @@ const createCollection = {
 
 ## Related Examples
 
-* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock all mint approvals
-* [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+-   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
 
 ## Related Concepts
 
-* [Permissions System](../../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](../../concepts/permissions/approval-permissions.md) - Approval-specific controls
+-   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
+-   [Update Approval Permission](../../concepts/permissions/update-approval-permission.md) - Approval-specific controls

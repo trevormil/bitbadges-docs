@@ -96,10 +96,10 @@ const createCollection = {
 
 ## Related Examples
 
--   [Locking Specific Badge IDs](locking-specific-badge-ids.md) - Lock approval updates for badge ranges
--   [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
+-   [Locking Specific Badge IDs](./locking-specific-badge-ids.md) - Lock approval updates for badge ranges
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
 -   [Valid Badge IDs](../../concepts/valid-badge-ids.md) - Badge ID range concept
--   [Badge IDs Action Permission](../../concepts/permissions/badge-id-permissions.md) - Badge-specific permission controls
+-   [Badge IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Badge-specific permission controls
