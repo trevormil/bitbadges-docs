@@ -1,6 +1,6 @@
 # Message Transfer Examples
 
-This section contains practical examples of badge transfer messages for the BitBadges protocol.
+This section contains practical examples of token transfer messages for the BitBadges protocol.
 
 ## Examples
 

@@ -1,6 +1,6 @@
 # Transfer with Precalculation
 
-This example demonstrates a badge transfer that uses precalculation from approval criteria instead of manually specifying balances.
+This example demonstrates a token transfer that uses precalculation from approval criteria instead of manually specifying balances.
 
 ## Overview
 
@@ -105,4 +105,5 @@ This example is useful when:
 | Approval Scanning     | Auto-scan enabled    | Only specified approval   |
 | Flexibility           | Fixed amounts        | Dynamic based on criteria |
 | Control               | Direct specification | Approval-driven           |
-****
+
+---

@@ -1,6 +1,6 @@
 # Balances Type
 
-The balances type determines how badge ownership and transfers are managed within a collection. This is permanent upon genesis and cannot be changed.
+The balances type determines how token ownership and transfers are managed within a collection. This is permanent upon genesis and cannot be changed.
 
 > **Important**: Always use `"Standard"` for new collections. Other balance types are supported behind the scenes for legacy purposes only, but "Standard" should always be used for on-chain balances.
 

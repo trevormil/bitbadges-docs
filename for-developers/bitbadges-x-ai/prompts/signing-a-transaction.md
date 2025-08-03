@@ -32,7 +32,7 @@ console.log('Mnemonic:', ethWallet.mnemonic.phrase);
 ```javascript
 import { ethers } from 'ethers';
 
-const mnemonic = "your twelve word mnemonic phrase here";
+const mnemonic = 'your twelve word mnemonic phrase here';
 const ethWallet = ethers.Wallet.fromMnemonic(mnemonic);
 ```
 
@@ -41,7 +41,7 @@ const ethWallet = ethers.Wallet.fromMnemonic(mnemonic);
 ```javascript
 import { ethers } from 'ethers';
 
-const privateKey = "0x..."; // Your private key
+const privateKey = '0x...'; // Your private key
 const ethWallet = new ethers.Wallet(privateKey);
 ```
 
@@ -57,30 +57,33 @@ import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
 // If you have a funded mnemonic account
-const fromMnemonic = "your funded account mnemonic";
+const fromMnemonic = 'your funded account mnemonic';
 const wallet = await DirectSecp256k1HdWallet.fromMnemonic(fromMnemonic);
 const [firstAccount] = await wallet.getAccounts();
 
 // Connect to BitBadges RPC
-const rpcUrl = "https://rpc.bitbadges.io"; // or your preferred RPC
-const signingClient = await SigningStargateClient.connectWithSigner(rpcUrl, wallet);
+const rpcUrl = 'https://rpc.bitbadges.io'; // or your preferred RPC
+const signingClient = await SigningStargateClient.connectWithSigner(
+    rpcUrl,
+    wallet
+);
 
 // Transfer tokens to your new wallet
 const amount = {
-  denom: 'ubadge', // BitBadges native token
-  amount: '1000000' // Amount in micro-units
+    denom: 'ubadge', // BitBadges native token
+    amount: '1000000', // Amount in micro-units
 };
 
 const fee = {
-  amount: [{ denom: 'ubadge', amount: '5000' }],
-  gas: '200000'
+    amount: [{ denom: 'ubadge', amount: '5000' }],
+    gas: '200000',
 };
 
 const result = await signingClient.sendTokens(
-  firstAccount.address,
-  convertToBitBadgesAddress(ethWallet.address),
-  [amount],
-  fee
+    firstAccount.address,
+    convertToBitBadgesAddress(ethWallet.address),
+    [amount],
+    fee
 );
 ```
 
@@ -92,14 +95,14 @@ const result = await signingClient.sendTokens(
 import { SigningStargateClient } from '@cosmjs/stargate';
 import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
 
-const rpcUrl = "https://rpc.bitbadges.io";
+const rpcUrl = 'https://rpc.bitbadges.io';
 const client = await SigningStargateClient.connect(rpcUrl);
 
 const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
 const account = await client.getAccount(bitbadgesAddress);
 
 if (!account) {
-  throw new Error('Account not found - ensure it has been funded');
+    throw new Error('Account not found - ensure it has been funded');
 }
 
 console.log('Account Number:', account.accountNumber);
@@ -132,25 +135,29 @@ const base64PubKey = '';
 #### Create Transaction Context
 
 ```javascript
-import { createTransactionPayload, convertToBitBadgesAddress, Numberify } from 'bitbadgesjs-sdk';
+import {
+    createTransactionPayload,
+    convertToBitBadgesAddress,
+    Numberify,
+} from 'bitbadgesjs-sdk';
 
 const sender = {
-  address: ethWallet.address, // Ethereum address - not BitBadges address
-  sequence: sequence,
-  accountNumber: Numberify(accountNumber),
-  pubkey: base64PubKey,
-  publicKey: base64PubKey
+    address: ethWallet.address, // Ethereum address - not BitBadges address
+    sequence: sequence,
+    accountNumber: Numberify(accountNumber),
+    pubkey: base64PubKey,
+    publicKey: base64PubKey,
 };
 
 const txContext = {
-  testnet: false,
-  sender,
-  memo: 'My BitBadges transaction',
-  fee: {
-    denom: 'ubadge',
-    amount: '5000',
-    gas: '200000'
-  }
+    testnet: false,
+    sender,
+    memo: 'My BitBadges transaction',
+    fee: {
+        denom: 'ubadge',
+        amount: '5000',
+        gas: '200000',
+    },
 };
 ```
 
@@ -165,44 +172,48 @@ Refer to the proto definitions for all transaction types available. Standard Cos
 ```javascript
 import { badges } from 'bitbadgesjs-sdk';
 
-// Example: Create a badge collection
+// Example: Create a collection
 const createCollectionMsg = new badges.MsgUniversalUpdateCollection({
-  creator: convertToBitBadgesAddress(ethWallet.address),
-  collectionId: '0', // 0 for new collection
-  badgesToCreate: [
-    {
-      amount: '100',
-      badgeIds: [{ start: '1', end: '100' }]
-    }
-  ],
-  managerTimeline: [
-    {
-      manager: convertToBitBadgesAddress(ethWallet.address),
-      timelineTimes: [{ start: '1', end: Number.MAX_SAFE_INTEGER.toString() }]
-    }
-  ],
-  updateManagerTimeline: true,
-  updateBadgeMetadataTimeline: true,
-  updateCollectionMetadataTimeline: true
+    creator: convertToBitBadgesAddress(ethWallet.address),
+    collectionId: '0', // 0 for new collection
+    badgesToCreate: [
+        {
+            amount: '100',
+            badgeIds: [{ start: '1', end: '100' }],
+        },
+    ],
+    managerTimeline: [
+        {
+            manager: convertToBitBadgesAddress(ethWallet.address),
+            timelineTimes: [
+                { start: '1', end: Number.MAX_SAFE_INTEGER.toString() },
+            ],
+        },
+    ],
+    updateManagerTimeline: true,
+    updateBadgeMetadataTimeline: true,
+    updateCollectionMetadataTimeline: true,
 });
 
 // Example: Transfer badges
 const transferMsg = new badges.MsgTransferBadges({
-  creator: convertToBitBadgesAddress(ethWallet.address),
-  collectionId: '1',
-  transfers: [
-    {
-      from: convertToBitBadgesAddress(ethWallet.address),
-      toAddresses: ['bb1recipient...'],
-      balances: [
+    creator: convertToBitBadgesAddress(ethWallet.address),
+    collectionId: '1',
+    transfers: [
         {
-          amount: '1',
-          badgeIds: [{ start: '1', end: '1' }],
-          ownershipTimes: [{ start: '1', end: '18446744073709551615' }]
-        }
-      ]
-    }
-  ]
+            from: convertToBitBadgesAddress(ethWallet.address),
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    badgeIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+        },
+    ],
 });
 
 const messages = [createCollectionMsg]; // Add your messages here
@@ -214,7 +225,7 @@ const messages = [createCollectionMsg]; // Add your messages here
 const txPayload = createTransactionPayload(txContext, messages);
 
 if (!txPayload.txnString) {
-  throw new Error('Failed to generate transaction payload');
+    throw new Error('Failed to generate transaction payload');
 }
 
 console.log('Transaction to sign:', txPayload.txnString);
@@ -231,27 +242,28 @@ const simulationBroadcastBody = createTxBroadcastBody(txContext, messages, '');
 #### Option A: Using BitBadges API Simulation Endpoint
 
 ```javascript
-const simulateUrl = "https://api.bitbadges.io/api/v0/simulate";
+const simulateUrl = 'https://api.bitbadges.io/api/v0/simulate';
 
 const simulationResponse = await fetch(simulateUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    tx_bytes: simulationBroadcastBody.tx_bytes,
-    // Some APIs accept the full broadcast body for simulation
-    ...simulationBroadcastBody
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        tx_bytes: simulationBroadcastBody.tx_bytes,
+        // Some APIs accept the full broadcast body for simulation
+        ...simulationBroadcastBody,
+    }),
 });
 
 const simulationResult = await simulationResponse.json();
 
 if (simulationResult.error) {
-  throw new Error(`Simulation failed: ${simulationResult.error}`);
+    throw new Error(`Simulation failed: ${simulationResult.error}`);
 }
 
 // Extract gas used from simulation
 const gasUsed = simulationResult.gas_info?.gas_used || simulationResult.gasUsed;
-const gasWanted = simulationResult.gas_info?.gas_wanted || simulationResult.gasWanted;
+const gasWanted =
+    simulationResult.gas_info?.gas_wanted || simulationResult.gasWanted;
 
 console.log('Simulation successful!');
 console.log('Gas used:', gasUsed);
@@ -261,20 +273,20 @@ console.log('Gas wanted:', gasWanted);
 #### Option B: Using Cosmos REST API Simulation
 
 ```javascript
-const restSimulateUrl = "https://rest.bitbadges.io/cosmos/tx/v1beta1/simulate";
+const restSimulateUrl = 'https://rest.bitbadges.io/cosmos/tx/v1beta1/simulate';
 
 const restSimulationResponse = await fetch(restSimulateUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    tx_bytes: simulationBroadcastBody.tx_bytes
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        tx_bytes: simulationBroadcastBody.tx_bytes,
+    }),
 });
 
 const restSimulationResult = await restSimulationResponse.json();
 
 if (restSimulationResult.code && restSimulationResult.code !== 0) {
-  throw new Error(`Simulation failed: ${restSimulationResult.raw_log}`);
+    throw new Error(`Simulation failed: ${restSimulationResult.raw_log}`);
 }
 
 const gasInfo = restSimulationResult.gas_info;
@@ -302,29 +314,29 @@ const broadcastBody = createTxBroadcastBody(txContext, messages, signature);
 
 ```javascript
 // Option A: Using BitBadges API
-const broadcastUrl = "https://api.bitbadges.io/api/v0/broadcast";
+const broadcastUrl = 'https://api.bitbadges.io/api/v0/broadcast';
 const response = await fetch(broadcastUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(broadcastBody)
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(broadcastBody),
 });
 
 const result = await response.json();
 console.log('Transaction hash:', result.txhash);
 
 // Option B: Using Cosmos RPC directly
-const rpcBroadcastUrl = "https://rpc.bitbadges.io/broadcast_tx_sync";
+const rpcBroadcastUrl = 'https://rpc.bitbadges.io/broadcast_tx_sync';
 const rpcResponse = await fetch(rpcBroadcastUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    jsonrpc: '2.0',
-    id: 1,
-    method: 'broadcast_tx_sync',
-    params: {
-      tx: broadcastBody.tx_bytes
-    }
-  })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'broadcast_tx_sync',
+        params: {
+            tx: broadcastBody.tx_bytes,
+        },
+    }),
 });
 ```
 
@@ -338,7 +350,7 @@ const rpcResponse = await fetch(rpcBroadcastUrl, {
 
 ### Common Issues
 
-* **Account not found**: Ensure the account has been funded at least once
-* **Sequence mismatch**: Query the latest sequence before each transaction
-* **Insufficient gas**: Increase gas limit for complex transactions
-* **Invalid signature**: Ensure the public key extraction and signing process is correct
+-   **Account not found**: Ensure the account has been funded at least once
+-   **Sequence mismatch**: Query the latest sequence before each transaction
+-   **Insufficient gas**: Increase gas limit for complex transactions
+-   **Invalid signature**: Ensure the public key extraction and signing process is correct

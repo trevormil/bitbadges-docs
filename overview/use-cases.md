@@ -13,7 +13,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 ## Additional Use Cases
 
--   **Access Control & Gated Content** - Control access to premium content, private Discord servers, exclusive websites, or any digital service. Gate content behind badge ownership for tiered access systems.
+-   **Access Control & Gated Content** - Control access to premium content, private Discord servers, exclusive websites, or any digital service. Gate content behind token ownership for tiered access systems.
 -   **Memberships** - Create membership badges with expiration dates for gyms, clubs, organizations, or subscription services. Easily verify membership status through our public API.
 -   **Achievements & Credentials** - Issue verifiable credentials like university diplomas, professional certifications, job qualifications, awards, and athletic accomplishments that can be verified anywhere.
 -   **Collectibles** - Create unique digital collectibles with advanced features like time-dependent ownership, fine-grained transferability rules, and multi-chain compatibility.

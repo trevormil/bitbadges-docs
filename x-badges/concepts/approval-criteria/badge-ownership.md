@@ -1,6 +1,6 @@
 # Badge Ownership
 
-Require specific badge holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain badge balances to ensure users own required badges before allowing transfers.
+Require specific badge holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain balances to ensure users own required badges before allowing transfers.
 
 ## Overview
 
@@ -8,7 +8,7 @@ Badge ownership requirements enable gating mechanisms where users must possess s
 
 **Key Benefits**:
 
--   **Access Control**: Gate transfers based on badge ownership
+-   **Access Control**: Gate transfers based on token ownership
 -   **Collection Dependencies**: Create relationships between different badge collections
 -   **On-Chain Verification**: Automatic balance checking without external data
 -   **Flexible Requirements**: Support for amount ranges, time-based ownership, and multiple badge types

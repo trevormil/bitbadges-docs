@@ -1,6 +1,6 @@
 # MsgTransferBadges
 
-Executes badge transfers between addresses.
+Executes token transfers between addresses.
 
 ## Proto Definition
 
@@ -141,7 +141,7 @@ PRE. CALCULATE BALANCES (if needed)
   └── If precalculateBalancesFromApproval is specified, we will use the predeterminedBalances from the specified approval to pre-calculate the balances at execution time.
 
 1. BALANCE CHECK
-   └── Verify sender has sufficient badge balances for the transfer including ownership times
+   └── Verify sender has sufficient balances for the transfer including ownership times
    └── FAIL if insufficient balances
 
 2. COLLECTION APPROVAL CHECK
@@ -166,7 +166,7 @@ PRE. CALCULATE BALANCES (if needed)
    └── FAIL if any recipient lacks valid incoming approval
 
 5. EXECUTE TRANSFER
-   └── Update badge balances
+   └── Update balances
    └── Execute any approved side effects
    └── Emit transfer events
    └── SUCCESS
@@ -194,8 +194,8 @@ Transfers fail at the first validation step that doesn't pass:
 
 ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
-- **`nonce`**: The unique identifier that was signed
-- **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+-   **`nonce`**: The unique identifier that was signed
+-   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 

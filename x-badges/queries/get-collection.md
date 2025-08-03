@@ -1,6 +1,6 @@
 # GetCollection
 
-Retrieves complete information about a badge collection.
+Retrieves complete information about a collection.
 
 ## Proto Definition
 

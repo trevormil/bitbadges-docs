@@ -92,7 +92,7 @@ BitBadges provides built-in reserved list IDs that are dynamically generated wit
 
 -   **Purpose**: Contains only the "Mint" address
 -   **Logic**: Whitelist (addresses: ["Mint"], whitelist: true)
--   **Use case**: Minting operations and initial badge distribution
+-   **Use case**: Minting operations and initial token distribution
 
 #### "All" and "AllWithMint"
 

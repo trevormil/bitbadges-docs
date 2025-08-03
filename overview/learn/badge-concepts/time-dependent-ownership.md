@@ -42,17 +42,17 @@ To elucidate the functioning of this ownership system, let's delve into practica
 
 **Example 1**: Bob's Transfer to Alice
 
-* Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
-* Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
+-   Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
+-   Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
 
 **Example 2**: Bob's Partial Transfer to Alice
 
-* Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
-* Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
+-   Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
+-   Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
 
 **Example 3**: Complex Transfer Scenario
 
-* Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
-* Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
+-   Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
+-   Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
 
-Incorporating time-based ownership into the conventional badge ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
+Incorporating time-based ownership into the conventional token ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.

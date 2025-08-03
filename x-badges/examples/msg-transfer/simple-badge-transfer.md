@@ -1,6 +1,6 @@
 # Simple Badge Transfer
 
-This example demonstrates a basic badge transfer from the mint to a specific address.
+This example demonstrates a basic token transfer from the mint to a specific address.
 
 ## Overview
 

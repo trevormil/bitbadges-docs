@@ -13,16 +13,16 @@ github.com/CosmWasm/wasmd v0.52.0
 **Permissioned Uploads**
 
 ```
-BitBadges implements CosmWASM in a permissioned manner. 
+BitBadges implements CosmWASM in a permissioned manner.
 ```
 
 Instantiating and officially deploying a contract does require a review process and governance approval. Reach out for more information.
 
 Requirements:
 
-* No avoidance of the protocol fee. Any badge transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
-* We encourage audits and a peer review process before officailly deploying.
-* You must also showcase a working testnet implementation as well (testnet is permissionless)
+-   No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+-   We encourage audits and a peer review process before officailly deploying.
+-   You must also showcase a working testnet implementation as well (testnet is permissionless)
 
 Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
 
@@ -30,20 +30,20 @@ Generally speaking, even though this is a permissioned implementation, we want t
 
 ```rust
 const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', 
+    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d',
     contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', 
+        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e',
     msg: '{"myCustomMsg1": {"collectionId": "1"}}',
     funds: '1ubadge',
 };
 ```
 
-* Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
-* 3-Step Process: Upload / Store Code, Instantiate, Execute
-  * Instantiating requires governance proposal (see below)
-* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
-* The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
+-   Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
+-   3-Step Process: Upload / Store Code, Instantiate, Execute
+    -   Instantiating requires governance proposal (see below)
+-   Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
+    -   When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+-   The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
 
 ```rust
 //contract.rs
@@ -85,7 +85,7 @@ This repository exports all the custom bindings via `packages/bitbadges-cosmwasm
 
 2. Create your contract
 
-You will be dealing with the `contracts` folder.  This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
+You will be dealing with the `contracts` folder. This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
 
 Tools at your disposal:
 
@@ -132,7 +132,7 @@ pub fn execute(
 
 3. Build and Optimize
 
-You may have to edit the script for you file names and paths. Consider also using an optimizer like   [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
+You may have to edit the script for you file names and paths. Consider also using an optimizer like [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
 
 ```bash
 cargo build
@@ -165,7 +165,7 @@ If you want to instantiate it with funds. the **funds** property will be in the 
 A notification should pop up with your contract's address. Store this somewhere.
 
 ```
-Note: This is only applicable to testnet. 
+Note: This is only applicable to testnet.
 
 For mainnet, instantiation requires a governance proposal. Reach out to us to start this process.
 ```
@@ -176,21 +176,21 @@ Once deployed, you need to to let your users interact with it. Use our custom x/
 
 Couple common misunderstandings:
 
-* Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
-*   Note camelCase vs snake\_case. Contracts typically auto-format with camelCase via&#x20;
+-   Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
+-   Note camelCase vs snake_case. Contracts typically auto-format with camelCase via&#x20;
 
     ```rust
     #[serde(rename_all = "camelCase")]
     ```
-* Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
+
+-   Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
 
 **Examples**
 
 ```typescript
 const msgExecuteContract: MsgExecuteContractCompat = {
     sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', //enter sender adress here
-    contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
+    contract: 'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
     msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
     funds: '1badge',
 };

@@ -1,6 +1,6 @@
 # MsgCreateCollection
 
-Creates a new badge collection.
+Creates a new collection.
 
 The collectionId will be assigned at execution time and is obtainable in the transaction response. Subsequent updates to the collection will be through MsgUpdateCollection.
 

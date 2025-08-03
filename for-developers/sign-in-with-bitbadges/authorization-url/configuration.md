@@ -6,9 +6,9 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
--  Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
--  Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like badge ownership checks, payments, anything
--  You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
+-   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
+-   Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
+-   You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
 
 ## Parameter Interface
 

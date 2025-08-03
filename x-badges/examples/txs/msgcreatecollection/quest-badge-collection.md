@@ -253,7 +253,7 @@ This example demonstrates creating a quest collection.
 
 ### Quest Badge Collection
 
-This example creates a quest badge collection with the following characteristics:
+This example creates a quest collection with the following characteristics:
 
 -   **Single Badge**: Only badge ID 1 is valid (`validBadgeIds: [{"start": "1", "end": "1"}]`)
 -   **Quest Standard**: Uses the "Quests" standard for quest-related functionality

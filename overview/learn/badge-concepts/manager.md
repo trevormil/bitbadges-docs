@@ -1,6 +1,6 @@
 # Manager
 
-Each badge collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.
+Each collection has a manager, which can execute admin permissions such as updating metadata, transferability, etc.
 
 <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
@@ -27,10 +27,10 @@ One of the key features of the manager role in BitBadges is the ability to custo
 
 Permissions can be customized based on various factors, including:
 
-* **Badge Specificity:** Which particular badges within the collection can be affected?
-* **Time Constraints:** When can certain actions be performed?
-* **Value Limitations:** What specific values or ranges are allowed for updates?
-* **Conditional Triggers:** Under what circumstances can certain permissions be exercised?
+-   **Badge Specificity:** Which particular badges within the collection can be affected?
+-   **Time Constraints:** When can certain actions be performed?
+-   **Value Limitations:** What specific values or ranges are allowed for updates?
+-   **Conditional Triggers:** Under what circumstances can certain permissions be exercised?
 
 This level of customization allows collection creators to implement complex management strategies tailored to their specific needs.
 
@@ -39,14 +39,14 @@ This level of customization allows collection creators to implement complex mana
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen:**
-   * The permission is permanently disallowed.
-   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely.
+    - The permission is permanently disallowed.
+    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely.
 2. **Permitted + Not Frozen:**
-   * The permission is currently allowed.
-   * This state can be changed to either of the other two states, offering flexibility in management.
+    - The permission is currently allowed.
+    - This state can be changed to either of the other two states, offering flexibility in management.
 3. **Permitted + Permanently Frozen:**
-   * The permission is permanently allowed.
-   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available.
+    - The permission is permanently allowed.
+    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available.
 
 It's important to note that there is no "Forbidden + Not Frozen" state. This is because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 

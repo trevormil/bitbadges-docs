@@ -23,7 +23,7 @@ The Tradable Protocol creates a decentralized marketplace where users can:
 
 #### 1. Listing Approvals (Outgoing)
 
-Listings allow badge owners to sell their badges for coins.
+Listings allow owners to sell their badges for coins.
 
 **Requirements:**
 

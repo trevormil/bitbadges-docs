@@ -24,7 +24,7 @@ We define three levels of approved transfers: collection-wide, incoming, and out
 
 ### **Collection Approvals**
 
-The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.**  This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
+The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
 
 For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify claims that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
 
@@ -51,11 +51,11 @@ Let's delve into a transfer scenario to understand the process of approval valid
 #### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for the times January to March&#x20;
 
 1. **Collection-Level Approval Check**:
-   * The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
+    - The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
 2. **Incoming Approval Check**:
-   * If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific badge collection in question.
+    - If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific collection in question.
 3. **Outgoing Approval Check**:
-   * Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
+    - Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
 
 This layered approach to approval ensures a thorough examination of the transfer's legitimacy and compliance with various levels of permissions. The hierarchical structure prevents unauthorized transfers and enhances transparency in the transfer process.
 
@@ -63,21 +63,21 @@ This layered approach to approval ensures a thorough examination of the transfer
 
 At each level, we offer the following functionality for defining approved transfers. Mix and match any combinations:
 
-* Who can transfer to who? And who can initiate the transaction?
-* When can the transfer take place?
-* Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
-* Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
-* Max amount transferred? Max per sender? Max per recipient? Max per initiator?
-* Predetermined transfers?
-  * Transfer A must take place before Transfer B before Transfer C
-* Incremented transfers?&#x20;
-  * Start with specific badges and ownership times and increment them every transaction.
-  * Ex: Transfer x1 of Badge ID 1, then x1 of Badge ID 2, and so on...
-* Must own (or not own) specific badges to be approved
-  * Ex: Must own a membership to transfer or must now own a scammer badge to transfer
-* Require sender to be the initiator? Require sender to not be the initiator?
-* Require recipient to be the initiator? Require recipient to not be the initiator?
-* And more!
+-   Who can transfer to who? And who can initiate the transaction?
+-   When can the transfer take place?
+-   Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
+-   Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
+-   Max amount transferred? Max per sender? Max per recipient? Max per initiator?
+-   Predetermined transfers?
+    -   Transfer A must take place before Transfer B before Transfer C
+-   Incremented transfers?&#x20;
+    -   Start with specific badges and ownership times and increment them every transaction.
+    -   Ex: Transfer x1 of Badge ID 1, then x1 of Badge ID 2, and so on...
+-   Must own (or not own) specific badges to be approved
+    -   Ex: Must own a membership to transfer or must now own a scammer badge to transfer
+-   Require sender to be the initiator? Require sender to not be the initiator?
+-   Require recipient to be the initiator? Require recipient to not be the initiator?
+-   And more!
 
 The best way to see all that is possible is to view the badge creation process.
 

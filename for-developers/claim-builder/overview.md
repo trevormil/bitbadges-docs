@@ -20,9 +20,9 @@ Note: Certain plugins may become unavailable due to design decisions. For exampl
 
 While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!
 
-* Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
-* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
-* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+-   Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
+-   Can your users be identified by email? Addresses? Use those plugins or dynamic stores
+-   Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
 
 There may also be plenty of ways for you to implement the same thing with varying tradeoffs. Select the best for your use case.
 
@@ -34,13 +34,13 @@ Claims are created and managed in the developer portal.
 
 Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
-* Gate URLs / Content to those who claim with the Rewards tab
-* Use the Discord Role Assigner plugin to create gated channels
-* Use Stripe Payments to create payment-gated claims
-* And much more
+-   Gate URLs / Content to those who claim with the Rewards tab
+-   Use the Discord Role Assigner plugin to create gated channels
+-   Use Stripe Payments to create payment-gated claims
+-   And much more
 
 **Can claims connect to other BitBadges services?**
 
-Claims are the universal connector. You can not only check criteria from any BitBadges service (badge ownership, >100 points) but also use claims on the reward side (gate mints, award points).
+Claims are the universal connector. You can not only check criteria from any BitBadges service (token ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
 <figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>

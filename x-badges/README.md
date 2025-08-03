@@ -2,10 +2,10 @@
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
 
-This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch badge balances and metadata from the API without worrying about the underlying details.
+This section is a knowledge dump for how badges operate behind the scenes. For most use cases, you will not care about any of this as it will be handled for you via the site. And if you are self-implementing a badge-gated service, you can just fetch balances and metadata from the API without worrying about the underlying details.
 
 ```typescript
-const res = await BitBadgesApi.getBadgeBalanceByAddress(collectionId, address, {
+const res = await BitBadgesApi.getBalanceByAddress(collectionId, address, {
     ...options,
 });
 console.log(res);
@@ -31,7 +31,7 @@ We use the terms tokens and badges interchangeably. For example, "badgeIds" refe
 
 ### Collection Management
 
--   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new badge collection
+-   [MsgCreateCollection](./messages/msg-create-collection.md) - Create new collection
 -   [MsgUpdateCollection](./messages/msg-update-collection.md) - Update existing collection
 -   [MsgUniversalUpdateCollection](./messages/msg-universal-update-collection.md) - Universal create/update interface with invariants support
 -   [MsgDeleteCollection](./messages/msg-delete-collection.md) - Delete collection
@@ -60,7 +60,7 @@ We use the terms tokens and badges interchangeably. For example, "badgeIds" refe
 ### Core Queries
 
 -   [GetCollection](./queries/get-collection.md) - Retrieve collection data
--   [GetBalance](./queries/get-balance.md) - Get user badge balances
+-   [GetBalance](./queries/get-balance.md) - Get user balances
 -   [GetApprovalTracker](./queries/get-approval-tracker.md) - Get approval usage data
 -   [GetAddressList](./queries/get-address-list.md) - Retrieve address list
 -   [More queries...](./queries/) - See full query reference

@@ -1,6 +1,6 @@
 # Building Your Collection Permissions
 
-Collection permissions are executable by the manager. They are used to control who can perform various management actions on your badge collection and when those actions are allowed.
+Collection permissions are executable by the manager. They are used to control who can perform various management actions on your collection and when those actions are allowed.
 
 ```typescript
 const manager = collection.getCurrentManager();

@@ -29,7 +29,7 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 1. **Authenticate** - We recommend Sign In with BitBadges but it could be any approach
 2. **Verify Claim Success** - Check the user satisfies a BitBadges claim (via post-success hooks, API, many ways!)
 
-Claims are the universal connectors. Claim criteria can be anything from a payment to badge ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
+Claims are the universal connectors. Claim criteria can be anything from a payment to token ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
 ## Quick Start - Badges
 

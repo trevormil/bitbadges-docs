@@ -1,6 +1,6 @@
 # Subscriptions Protocol
 
-The Subscriptions Protocol enables collections to implement subscription-based badge ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription badges are created, distributed, and renewed.
+The Subscriptions Protocol enables collections to implement subscription-based token ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription badges are created, distributed, and renewed.
 
 ## Protocol Overview
 

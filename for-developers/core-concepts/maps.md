@@ -36,20 +36,20 @@ export interface iMap<T extends NumberType> {
 
 All maps are identified by a **mapId.** The following **mapId** values are reserved:
 
-* Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
-* Any numeric ID is reserved for the corresponding badge collection with a matching ID. This can only be created by the badge collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core badge collection interface.
+-   Any valid Bech32 BitBadges address - These are reserved for maps that can only be created by that specific address. This can be a place to store important values custom to you (that address).
+-   Any numeric ID is reserved for the corresponding collection with a matching ID. This can only be created by the collection manager. This can be used to store core details that belong on-chain for the collection not handled by the core collection interface.
 
 **Use Cases**
 
-* Alternative permissions - Store other permissions related to a collection in these maps on-chain
-* Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
-* Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
+-   Alternative permissions - Store other permissions related to a collection in these maps on-chain
+-   Router for important information - For example, lets say thte collection has credentials attached to it. This can point to where the credentials can be found or important info needed to verify them.
+-   Protocols - On the next page, we expand on the concept of protocols which allow users to specify what collection they want to use for a certain protocol (e.g. use my collection 10 for the Follow Protocol).
 
 **Manager**
 
 The manager is similar to the badges interface. They are granted admin privileges to update certain things about the map.This is handled by **managerTImeline** and the **canUpdateManager** permission.
 
-Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the badge collection specified will be used instead of the **managerTimeline** field.
+Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the collection specified will be used instead of the **managerTimeline** field.
 
 **Genesis Conditions**
 
@@ -59,10 +59,10 @@ Protocols may have expected genesis conditions or additional checks to be correc
 
 There are really four different map types.
 
-* Manager only means only the manager can update values
-* Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
-* Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
-* First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
+-   Manager only means only the manager can update values
+-   Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
+-   Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
+-   First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
 
 ```typescript
 export interface iMapUpdateCriteria<T extends NumberType> {

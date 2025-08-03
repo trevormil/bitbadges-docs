@@ -1,6 +1,6 @@
 # Building User-Level Approvals
 
-User-level approvals allow individual users to control their badge transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
+User-level approvals allow individual users to control their token transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
 
 We refer you to the collection-level examples and just apply the same logic to the user-level types with these differences.
 

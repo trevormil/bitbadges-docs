@@ -6,7 +6,7 @@ This directory contains detailed documentation for all message types supported b
 
 ### Collection Management
 
--   [MsgCreateCollection](./msg-create-collection.md) - Create new badge collection
+-   [MsgCreateCollection](./msg-create-collection.md) - Create new collection
 -   [MsgUpdateCollection](./msg-update-collection.md) - Update existing collection properties
 -   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Universal create/update interface with invariants support
 -   [MsgDeleteCollection](./msg-delete-collection.md) - Archive/delete collection

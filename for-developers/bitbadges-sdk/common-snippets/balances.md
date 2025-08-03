@@ -2,8 +2,6 @@
 
 Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Balances
 
-
-
 ### Tutorial: Using the TypeScript SDK for Balance Operations
 
 **1. Define the Balance**
@@ -25,9 +23,9 @@ To add a balance to an array of existing balances:
 
 ```typescript
 const balanceToAdd = {
-  amount: 3n,
-  badgeIds: [{ start: 6n, end: 8n }],
-  ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }]
+    amount: 3n,
+    badgeIds: [{ start: 6n, end: 8n }],
+    ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }],
 };
 userBalance.addBalances([balanceToAdd]);
 ```
@@ -40,16 +38,16 @@ To subtract a balance from an array of existing balances:
 
 ```typescript
 const balanceToRemove = {
-  amount: 2n,
-  badgeIds: [{ start: 2n, end: 3n }],
-  ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }]
+    amount: 2n,
+    badgeIds: [{ start: 2n, end: 3n }],
+    ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }],
 };
-userBalance.subtractBalances([balanceToRemove], false) //second param is to allow underflow (negatives)
+userBalance.subtractBalances([balanceToRemove], false); //second param is to allow underflow (negatives)
 ```
 
 **Conclusion**
 
-This SDK provides a clear and structured way to manage and operate on badge balances. With the `addBalance` and `subtractBalance` functions, you can effortlessly update and maintain badge balances in your application.\
+This SDK provides a clear and structured way to manage and operate on balances. With the `addBalance` and `subtractBalance` functions, you can effortlessly update and maintain balances in your application.\
 \
 Given the new functions you've shared, I'll provide a tutorial snippet for each of them.
 
@@ -61,8 +59,11 @@ If you need to retrieve the balance for a specific badge ID and a specific owner
 
 ```typescript
 const badgeIdToLookup = 3n;
-const timeToLookup = 1628784400000n;  // example timestamp using BigInt
-const specificBalance = balances.getBalanceForIdAndTime(badgeIdToLookup, timeToLookup);
+const timeToLookup = 1628784400000n; // example timestamp using BigInt
+const specificBalance = balances.getBalanceForIdAndTime(
+    badgeIdToLookup,
+    timeToLookup
+);
 
 console.log(specificBalance); // This will show the balance for the specified badge ID and time, if found.
 ```
@@ -73,14 +74,14 @@ To get all balances associated with a specific badge ID:
 
 ```typescript
 const badgeIdToLookup = 4n;
-const badgeBalances = balances.getBalancesForId(badgeIdToLookup);
+const balances = balances.getBalancesForId(badgeIdToLookup);
 
-console.log(badgeBalances); // This will display all the balances for the given badge ID.
+console.log(balances); // This will display all the balances for the given badge ID.
 ```
 
 **3. Get Balances for a Specific Time**
 
-If you need to retrieve all badge balances for a specific ownership time:
+If you need to retrieve all balances for a specific ownership time:
 
 ```typescript
 const timeToLookup = 1628784400000n;
@@ -99,19 +100,22 @@ If you need to retrieve balances for a range of badge IDs and a range of ownersh
 // Define the range of badge IDs and times you want to look up
 const idRangesToLookup = [
     { start: 1n, end: 3n },
-    { start: 5n, end: 7n }
+    { start: 5n, end: 7n },
 ];
 
 const timeRangesToLookup = [
-    { start: 1628770800000n, end: 1628857200000n },  // example timestamp range using BigInt
-    { start: 1628943600000n, end: 1629030000000n }   // another timestamp range
+    { start: 1628770800000n, end: 1628857200000n }, // example timestamp range using BigInt
+    { start: 1628943600000n, end: 1629030000000n }, // another timestamp range
 ];
 
 // Retrieve the balances
-const specificBalances = balances.getBalancesForIds(idRangesToLookup, timeRangesToLookup);
+const specificBalances = balances.getBalancesForIds(
+    idRangesToLookup,
+    timeRangesToLookup
+);
 console.log(specificBalances); // This will show the balances that fall within the specified badge ID ranges and time ranges.
 ```
 
 **Conclusion**
 
-The provided functions in this SDK make it easy to retrieve specific badge balances based on different criteria, such as badge ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.
+The provided functions in this SDK make it easy to retrieve specific balances based on different criteria, such as badge ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.
