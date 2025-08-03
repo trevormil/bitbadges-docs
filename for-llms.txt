@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Aug  3 12:37:30 UTC 2025
+Generated on Sun Aug  3 12:44:16 UTC 2025
 
 
 
@@ -3521,8 +3521,8 @@ ___
 
 ---
 description: >-
-    Here, you will find documentation about BitBadges, how it works, how to
-    interact, and how to contribute!
+  Here, you will find documentation about BitBadges, how it works, how to
+  interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
@@ -3539,22 +3539,22 @@ BitBadges offers tokenization-as-a-service and gating-as-a-service. We are build
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
--   **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
--   **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
--   **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
--   **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
--   **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
--   **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
--   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
--   **Customizable Permissions** - Flexible manager controls for collections
+* **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
+* **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
+* **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
+* **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
+* **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
+* **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
+* **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
+* **Customizable Permissions** - Flexible manager controls for collections
 
 ## 🛠️ Supporting Services
 
 We also offer complementary services:
 
--   **Sign In with BitBadges** - Universal, outsource multi-chain authentication
--   **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
--   **Address Lists** - Manage users across multiple blockchains
+* **Sign In with BitBadges** - Universal, outsource multi-chain authentication
+* **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
+* **Address Lists** - Manage users across multiple blockchains
 
 ## 🔍 How BitBadges Works
 
@@ -3568,13 +3568,13 @@ BitBadges can be simply thought of in two parts.
 
 Create anything from subscriptions and memberships to tradable NFTs, credentials, and access tokens - all with the most advanced token standard ever built.
 
-Tokens (badges) are simply something that you can own digitally and prove ownership of it. You probably already use and own many digital tokens: verification checkmarks, a movie streaming subscription, concert tickets, etc. These tokens can be used for many use cases, each potentially offering you different utility and value. Some may have real-world use cases (e.g. entry to a concert), while some may be purely digital (e.g. verification checkmark). Some may signify something about your reputation (certifications), while some may just be collected for fun.
-
-When combined with blockchain technology, badges become even more secure and more powerful, due to the unique properties of the blockchain (verifiable, decentralized, tamper-proof, and so on). However, the existing infrastructure and technology is not nearly good enough to realize the vast potential of digital blockchain tokens (not scalable, lacks consistency, and is limited to a single blockchain ecosystem at a time).
-
 ## 🤔 Motive for building BitBadges?
 
 The answer is simple. We believe in the potential of blockchains and a multi-chain world, but this potential cannot be realized with the current infrastructure and technology in place today.
+
+## 🤖 Tokens vs Badges?
+
+BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to badges throughout this documentation. This means tokens.
 
 
 ## File: ./SUMMARY.md
