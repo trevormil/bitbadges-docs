@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Aug  5 01:19:53 UTC 2025
+Generated on Tue Aug  5 01:20:40 UTC 2025
 
 
 
@@ -3584,6 +3584,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
+* [📜 What is BitBadges?](overview/what-is-bitbadges.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
   * [Multi-Chain Accounts](overview/learn/accounts.md)
@@ -3607,7 +3608,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-* [What Is BitBadges?](overview/what-is-bitbadges.md)
 
 ## ⌨️ For Developers
 
@@ -13418,7 +13418,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 ## File: ./overview/what-is-bitbadges.md
 
-# What Is BitBadges?
+# 📜 What is BitBadges?
 
 BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
 
