@@ -3,6 +3,7 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
+* [📜 What is BitBadges?](overview/what-is-bitbadges.md)
 * [👨‍💻 Learn the Basics](overview/learn/README.md)
   * [BitBadges Claims](overview/learn/distribution.md)
   * [Multi-Chain Accounts](overview/learn/accounts.md)
@@ -26,7 +27,6 @@
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
 * [❓ FAQ](overview/faq.md)
-* [What Is BitBadges?](overview/what-is-bitbadges.md)
 
 ## ⌨️ For Developers
 

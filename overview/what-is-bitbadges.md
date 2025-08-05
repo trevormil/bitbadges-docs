@@ -1,4 +1,4 @@
-# What Is BitBadges?
+# 📜 What is BitBadges?
 
 BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
 
