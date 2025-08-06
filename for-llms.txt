@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Aug  6 15:39:21 UTC 2025
+Generated on Wed Aug  6 17:18:17 UTC 2025
 
 
 
@@ -9166,11 +9166,7 @@ You could also initiate the completion of claims on behalf of users with the API
 
 # Claim Links (URLs)
 
-If users claim in-site, simply direct them to the claim page, such as the following:
-
-[https://bitbadges.io/claims/ad831a95b20ab0aeaa1695ae8ada7bb6](https://bitbadges.io/claims/ad831a95b20ab0aeaa1695ae8ada7bb6)
-
-Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
+If users claim in-site, simply direct them to the claim page. Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
 
 #### Auto-filled Details (Advanced / Experimental)
 
