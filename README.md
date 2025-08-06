@@ -6,8 +6,6 @@ description: >-
 
 # 👋 BitBadges Overview
 
-<figure><img src=".gitbook/assets/bitbadgeslogo.png" alt="" width="188"><figcaption></figcaption></figure>
-
 ## 🚀 The Next-Generation Token Standard
 
 BitBadges offers tokenization-as-a-service and gating-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
