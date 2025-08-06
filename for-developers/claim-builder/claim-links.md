@@ -1,10 +1,6 @@
 # Claim Links (URLs)
 
-If users claim in-site, simply direct them to the claim page, such as the following:
-
-[https://bitbadges.io/claims/ad831a95b20ab0aeaa1695ae8ada7bb6](https://bitbadges.io/claims/ad831a95b20ab0aeaa1695ae8ada7bb6)
-
-Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
+If users claim in-site, simply direct them to the claim page. Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
 
 #### Auto-filled Details (Advanced / Experimental)
 
