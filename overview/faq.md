@@ -1,9 +1,5 @@
 # ❓ FAQ
 
-### **Badge vs $BADGE?**
-
-Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas denomination used for paying transaction fees. All transactions on the BitBadges blockchain require $BADGE to be paid as a fee. This is not to be confused with tokens / collections.
-
 ### **Are smart contracts needed?**
 
 No! All tokens are no-code with tons of functionality out of the box. If you need something custom, you can create a WASM or EVM (coming soon) contract to add custom functionality not already implemented.

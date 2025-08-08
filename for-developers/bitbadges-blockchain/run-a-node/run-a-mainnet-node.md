@@ -265,6 +265,6 @@ RUN_COMMAND tx staking create-validator /path/to/validator.json \
   --from=mykey
 ```
 
-This should be signed with your normal key pair for signing transactions. Ensure you have enough $BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
+This should be signed with your normal key pair for signing transactions. Ensure you have enough BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
 You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.

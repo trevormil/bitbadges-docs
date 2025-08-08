@@ -15,7 +15,7 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 -   Some features available in production may not be accessible in testnet:
     -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-    -   Buying $BADGE credits
+    -   Buying BADGE credits
     -   Push notifications
     -   And more
 -   Some restrictions may be more relaxed

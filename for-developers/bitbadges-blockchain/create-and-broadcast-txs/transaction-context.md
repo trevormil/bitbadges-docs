@@ -13,31 +13,31 @@ If you plan to use option 2, see below.
 
 The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
 
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
+Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
 
 //TODO: Fetch the account details (see below)
 
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
 const txContext = {
-  testnet: false,
-  sender: {
-    //Must be in native format ('0xabc..' vs 'bc1...' etc)
-    address: account.address,
-    sequence: account.sequence,
-    accountNumber: account.accountNumber,
-    //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
-    publicKey: account.publicKey
-  }, 
-  //TODO: adjust accordingly
-  fee: {
-    amount: `0`,
-    denom: 'ubadge',
-    gas: `400000`
-  },
-  memo: ''
+    testnet: false,
+    sender: {
+        //Must be in native format ('0xabc..' vs 'bc1...' etc)
+        address: account.address,
+        sequence: account.sequence,
+        accountNumber: account.accountNumber,
+        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        publicKey: account.publicKey,
+    },
+    //TODO: adjust accordingly
+    fee: {
+        amount: `0`,
+        denom: 'ubadge',
+        gas: `400000`,
+    },
+    memo: '',
 };
 ```
 
@@ -49,10 +49,10 @@ Note: It will also be returned with the account details from the BitBadges API (
 
 ```typescript
 const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1')
+    const account = await window?.keplr?.getKey('bitbadges-1');
     if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64')
-}
+    return Buffer.from(account.pubKey).toString('base64');
+};
 ```
 
 **Fee**

@@ -16,7 +16,7 @@ If you are interested in us reenabling this, please let us know.
 
 Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer tokens to each other by transacting with the blockchain. The total supply is controlled by on-chain transfers, approvals, and permissions.
 
-This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including $BADGE).
+This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including BADGE).
 
 ## Non-Public
 
@@ -26,7 +26,7 @@ We do give the option to make balances non-public. This can either mean you want
 
 Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).
 
-Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending $BADGE along with an approval). Everything must occur off-chain.
+Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending BADGE along with an approval). Everything must occur off-chain.
 
 #### Configurable URL and Permanent Storage
 
@@ -43,7 +43,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 #### Drawbacks
 
 -   **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
+    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ BADGE) is not supported. Everything is implemented off-chain in a custom manner.
 -   **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 -   **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
     -   Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.

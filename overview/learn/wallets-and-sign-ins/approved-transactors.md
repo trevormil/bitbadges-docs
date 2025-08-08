@@ -18,6 +18,6 @@ To sign transactions:
 
 1. You must be signed in with permission to use the embedded wallet (the Embedded Wallet scope). You can configure alternate sign in methods (socials or other addresses) via the Sign In Methods tab. Ensure the Embedded Wallet scope is enabled.
 2. The desired transaction message types must be approved in the account settings before transacting.
-3. The wallet must have sufficient $BADGE credits.
+3. The wallet must have sufficient BADGE credits.
 
 Note this is opt-in and can be revoked at any time. This is provided as a way to trade off centralization / trust for enhanced user experience but is completely optional. Also note that the BitBadges embedded wallet is not the only option. We provide the functionality for you to approve any wallet.

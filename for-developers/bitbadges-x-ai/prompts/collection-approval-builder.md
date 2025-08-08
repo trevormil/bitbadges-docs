@@ -140,11 +140,11 @@ Ask the user about the three core address list requirements:
 
 **Question 4.2** (if Yes): What type of token should be transferred?
 
--   Options: "$BADGE (ubadge)" (standard BitBadges token)
+-   Options: "BADGE (ubadge)" (standard BitBadges token)
 
 **Question 4.3** (if Yes): How much should be transferred?
 
--   Options: Specify amount in smallest unit (e.g., "1000000000" for 1 $BADGE)
+-   Options: Specify amount in smallest unit (e.g., "1000000000" for 1 BADGE)
 
 **Question 4.4** (if Yes): Who should receive the tokens?
 
@@ -180,7 +180,7 @@ Ask the user about the three core address list requirements:
 
 **Example Configurations**:
 
-**Simple Transfer**: Transfer 1 $BADGE to a specific address
+**Simple Transfer**: Transfer 1 BADGE to a specific address
 
 ```json
 {
@@ -191,7 +191,7 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-**Initiator Pays**: Transfer 0.5 $BADGE from the initiator to a specific address
+**Initiator Pays**: Transfer 0.5 BADGE from the initiator to a specific address
 
 ```json
 {
@@ -202,7 +202,7 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-**Collection Pays**: Transfer 2 $BADGE from collection funds to the initiator
+**Collection Pays**: Transfer 2 BADGE from collection funds to the initiator
 
 ```json
 {
