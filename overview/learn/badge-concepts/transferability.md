@@ -1,16 +1,16 @@
 # Transferability
 
-The transferability defines the rules for transferring badges within the collection. Note this does not apply to address lists or any off-chain balances type ([see here](balances-types.md)), only standard on-chain balances.
+The transferability defines the rules for transferring tokens within the collection. Note this does not apply to address lists or any off-chain balances type ([see here](balances-types.md)), only standard on-chain balances.
 
 ### **Transferable vs Non-Transferable**
 
-At its simplest, a collection can be thought of as transferable (badges can be transferred freely from one owner to another) or non-transferable (once a badge is owned, it is tied to that owner and never transferable).
+At its simplest, a collection can be thought of as transferable (tokens can be transferred freely from one owner to another) or non-transferable (once a token is owned, it is tied to that owner and never transferable).
 
 ### Problem
 
 However, only specifying simply "transferable" vs "non-transferable" is very naive and not suitable for many use cases.&#x20;
 
-For example, what if you need to be able to revoke? Freeze one's ability to transfer? Restrict who can transfer to who? Restrict when users can transfer? Restrict how many times a transfer can occur? Restrict the total amount of badges transferred? Or a combination of all of these?
+For example, what if you need to be able to revoke? Freeze one's ability to transfer? Restrict who can transfer to who? Restrict when users can transfer? Restrict how many times a transfer can occur? Restrict the total amount of tokens transferred? Or a combination of all of these?
 
 We abstract everything to a clearly defined interface that accounts for all these factors on three different levels.
 
@@ -26,9 +26,9 @@ We define three levels of approved transfers: collection-wide, incoming, and out
 
 The collection-wide approved transfers defines all possible combinations of transfers that are allowed to take place. **All transfers must be explicitly approved on the collection level.** This is established upon creation and updated by the manager (according to the permissions set). This also is the only way to approve "transfers" from the "Mint" address as the "Mint" address has no user level approvals.
 
-For example, the manager could define all badges to be transferable, non-transferable, revokable by the manager. Or, they can specify claims that must be passed in order to transfer (e.g. you must own this badge to interact with this collection or you must not own a scammer badge to interact with this collection). See all possibilities below.
+For example, the manager could define all tokens to be transferable, non-transferable, revokable by the manager. Or, they can specify claims that must be passed in order to transfer (e.g. you must own this token to interact with this collection or you must not own a scammer token to interact with this collection). See all possibilities below.
 
-The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking badges or forcefully freezing badges. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.** This is what is used in the case of approving mints.
+The collection-wide approved transfers are unique because there is a forceful option which allows you to override and ignore the other two levels of approvals (incoming and outgoing). This is used for forcefully revoking tokens or forcefully freezing tokens. **If it does not override the incoming and outgoing levels of approvals, the transfer must also be approved on those levels as well.** This is what is used in the case of approving mints.
 
 ### **Outgoing Approvals**
 
@@ -48,12 +48,12 @@ Typically, this is left open-ended to allow all incoming transfers, but this can
 
 Let's delve into a transfer scenario to understand the process of approval validation:
 
-#### Scenario: Bob transfers x5 of Badge IDs 1-10 to Alice for the times January to March&#x20;
+#### Scenario: Bob transfers x5 of Token IDs 1-10 to Alice for the times January to March&#x20;
 
 1. **Collection-Level Approval Check**:
-    - The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Badge ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
+    - The initial step involves verifying if the transfer adheres to collection-level rules. For instance, if Token ID 1 is found to be non-transferable overall via the collection, the transfer attempt would be deemed unsuccessful.
 2. **Incoming Approval Check**:
-    - If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her badges and whether she has opted in to the specific collection in question.
+    - If the transfer passes the collection-level check, the subsequent step involves assessing Alice's incoming approvals. This evaluation considers whether Alice has blocked Bob from sending her tokens and whether she has opted in to the specific collection in question.
 3. **Outgoing Approval Check**:
     - Upon Alice's incoming approval, the process moves on to Bob's approvals. It's necessary to ascertain whether Bob has provided his consent for the transfer to proceed. This step is particularly significant if the transfer was initiated by a party other than Bob himself.
 
@@ -65,24 +65,24 @@ At each level, we offer the following functionality for defining approved transf
 
 -   Who can transfer to who? And who can initiate the transaction?
 -   When can the transfer take place?
--   Which badges can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
+-   Which tokens can be sent? For how long ([see ownership times](time-dependent-ownership.md))? What amount?
 -   Max number of overall transfers? Max per sender? Max per recipient? Max per initiator?
 -   Max amount transferred? Max per sender? Max per recipient? Max per initiator?
 -   Predetermined transfers?
     -   Transfer A must take place before Transfer B before Transfer C
 -   Incremented transfers?&#x20;
-    -   Start with specific badges and ownership times and increment them every transaction.
-    -   Ex: Transfer x1 of Badge ID 1, then x1 of Badge ID 2, and so on...
--   Must own (or not own) specific badges to be approved
-    -   Ex: Must own a membership to transfer or must now own a scammer badge to transfer
+    -   Start with specific tokens and ownership times and increment them every transaction.
+    -   Ex: Transfer x1 of Token ID 1, then x1 of Token ID 2, and so on...
+-   Must own (or not own) specific tokens to be approved
+    -   Ex: Must own a membership to transfer or must now own a scammer token to transfer
 -   Require sender to be the initiator? Require sender to not be the initiator?
 -   Require recipient to be the initiator? Require recipient to not be the initiator?
 -   And more!
 
-The best way to see all that is possible is to view the badge creation process.
+The best way to see all that is possible is to view the token creation process.
 
 ### **Updatability**
 
 We also support fine-grained updatability for all combinations of the above functionality through the manager permissions.
 
-For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable. One can even combine combinations, such as locking an approval for a specific badge for a specific time for specific users.
+For example, the manager can permanently lock all combinations on a collection-level to make the transferability non-updatable. Or, they can lock it for a certain amount of time. Or, they can keep it updatable. One can even combine combinations, such as locking an approval for a specific token for a specific time for specific users.

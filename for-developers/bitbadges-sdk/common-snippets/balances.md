@@ -51,11 +51,11 @@ This SDK provides a clear and structured way to manage and operate on balances. 
 \
 Given the new functions you've shared, I'll provide a tutorial snippet for each of them.
 
-### Tutorial: Retrieving Balances Based on Badge ID and Time
+### Tutorial: Retrieving Balances Based on Token ID and Time
 
 **1. Get Balance for a Specific ID and Time**
 
-If you need to retrieve the balance for a specific badge ID and a specific ownership time, you can use the `getBalanceForIdAndTime` function:
+If you need to retrieve the balance for a specific token ID and a specific ownership time, you can use the `getBalanceForIdAndTime` function:
 
 ```typescript
 const badgeIdToLookup = 3n;
@@ -65,18 +65,18 @@ const specificBalance = balances.getBalanceForIdAndTime(
     timeToLookup
 );
 
-console.log(specificBalance); // This will show the balance for the specified badge ID and time, if found.
+console.log(specificBalance); // This will show the balance for the specified token ID and time, if found.
 ```
 
-**2. Get Balances for a Specific Badge ID**
+**2. Get Balances for a Specific Token ID**
 
-To get all balances associated with a specific badge ID:
+To get all balances associated with a specific token ID:
 
 ```typescript
 const badgeIdToLookup = 4n;
 const balances = balances.getBalancesForId(badgeIdToLookup);
 
-console.log(balances); // This will display all the balances for the given badge ID.
+console.log(balances); // This will display all the balances for the given token ID.
 ```
 
 **3. Get Balances for a Specific Time**
@@ -90,14 +90,14 @@ const timeSpecificBalances = balances.getBalancesForTime(timeToLookup);
 console.log(timeSpecificBalances); // This will show all the balances that have the specified ownership time.
 ```
 
-Alright, given the new function `getBalancesForIds` which retrieves balances for a range of badge IDs and a range of times, let's create a tutorial snippet for it:
+Alright, given the new function `getBalancesForIds` which retrieves balances for a range of token IDs and a range of times, let's create a tutorial snippet for it:
 
-4. **Get Balances for Specific Ranges of Badge IDs and Times**
+4. **Get Balances for Specific Ranges of Token IDs and Times**
 
-If you need to retrieve balances for a range of badge IDs and a range of ownership times, you can utilize the `getBalancesForIds` function:
+If you need to retrieve balances for a range of token IDs and a range of ownership times, you can utilize the `getBalancesForIds` function:
 
 ```typescript
-// Define the range of badge IDs and times you want to look up
+// Define the range of token IDs and times you want to look up
 const idRangesToLookup = [
     { start: 1n, end: 3n },
     { start: 5n, end: 7n },
@@ -113,9 +113,9 @@ const specificBalances = balances.getBalancesForIds(
     idRangesToLookup,
     timeRangesToLookup
 );
-console.log(specificBalances); // This will show the balances that fall within the specified badge ID ranges and time ranges.
+console.log(specificBalances); // This will show the balances that fall within the specified token ID ranges and time ranges.
 ```
 
 **Conclusion**
 
-The provided functions in this SDK make it easy to retrieve specific balances based on different criteria, such as badge ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.
+The provided functions in this SDK make it easy to retrieve specific balances based on different criteria, such as token ID and ownership time. Utilize these functions to access and display relevant data as per your application's requirements.

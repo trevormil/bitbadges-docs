@@ -195,7 +195,7 @@ const createCollectionMsg = new badges.MsgUniversalUpdateCollection({
     updateCollectionMetadataTimeline: true,
 });
 
-// Example: Transfer badges
+// Example: Transfer tokens
 const transferMsg = new badges.MsgTransferBadges({
     creator: convertToBitBadgesAddress(ethWallet.address),
     collectionId: '1',

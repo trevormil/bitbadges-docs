@@ -1,6 +1,6 @@
 # 🔨 Getting Started
 
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating badges, claims, address lists, explore listings, applications, and more!
+BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
 
 <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 

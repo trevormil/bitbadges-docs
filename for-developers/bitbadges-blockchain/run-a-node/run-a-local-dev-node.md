@@ -2,18 +2,18 @@
 
 Running a local development node follows pretty much the same instructions as the mainnet ones except the following.
 
-* Chain ID should be something non-conflicting (i.e. not bitbadges-1 or -2)
-* No need for seed nodes or peers (since you are running a single node local chain)
-* Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
-  * If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.
-* You can also start with an existing genesis / snapshot if you would like.
-* You may have to setup a validator to be able to start producing blocks
+-   Chain ID should be something non-conflicting (i.e. not bitbadges-1 or -2)
+-   No need for seed nodes or peers (since you are running a single node local chain)
+-   Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
+    -   If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.
+-   You can also start with an existing genesis / snapshot if you would like.
+-   You may have to setup a validator to be able to start producing blocks
 
 Please reach out in the dev Discord if you are stuck or need help!
 
 **Ignite CLI**
 
-Throughout BitBadges' development phase, we used Ignite CLI to help scaffold, build,  and serve our chain. This is also a great option for bootstrapping a local development node. Visit their documentation for more information. You will need to download the bitbadgeschain  source code to use Ignite CLI and use Ignite on the source folder.
+Throughout BitBadges' development phase, we used Ignite CLI to help scaffold, build, and serve our chain. This is also a great option for bootstrapping a local development node. Visit their documentation for more information. You will need to download the bitbadgeschain source code to use Ignite CLI and use Ignite on the source folder.
 
 **Setting Up a Validator**
 
@@ -21,9 +21,9 @@ See [**https://docs.cosmos.network/v0.45/run-node/run-node.html**](https://docs.
 
 **Funding Your Address**
 
-With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON\_HOME/config/genesis.json -> app\_state.bank.balances path as seen below.
+With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON_HOME/config/genesis.json -> app_state.bank.balances path as seen below.
 
-You can use any converted BitBadges address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI.  To get one or view your existing ones, run&#x20;
+You can use any converted BitBadges address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI. To get one or view your existing ones, run&#x20;
 
 ```
 cosmovisor run keys ...

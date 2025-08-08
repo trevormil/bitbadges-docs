@@ -3,7 +3,7 @@
 Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and can be configured to handle the following all in one flow:
 
 -   Multi-chain authentication
--   Badge ownership verification
+-   Token ownership verification
 -   Integration with 7000+ supported apps and plugins
 -   BitBadges API scope authorizations
 
@@ -37,7 +37,7 @@ Simply replace any QR code flow with your own and use claims, the standard SIWBB
 
 1. **Authentication- BitBadges Side**
     - User accesses BitBadges URL (direct or popup)
-    - Proves address ownership and other criteria (badges, etc.)
+    - Proves address ownership and other criteria (tokens, etc.)
     - Receives authorization code from BitBadges (QR or behind the scenes via redirect)
 2. **Integration- Your App Side**
     - Receive authentication response

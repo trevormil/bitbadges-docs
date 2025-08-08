@@ -10,7 +10,7 @@ Each transaction must consist of one or Msgs to be executed. Transactions also c
 
 The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
 
-The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to badges are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
+The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to tokens are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
 
 **How to broadcast transactions with Msgs?**
 
@@ -34,7 +34,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 -   [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
 -   [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
     -   Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
--   [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer badges between users, if approvals allow.
+-   [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
 -   [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 -   [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
 -   [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).

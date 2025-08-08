@@ -1,6 +1,6 @@
-# Gating Badge Distribution
+# Gating Token Distribution
 
-One utility offered with claims is to gate token distribution as the reward via the Create -> Badges flow. This uses a special clai type.
+One utility offered with claims is to gate token distribution as the reward via the Create -> Tokens flow. This uses a special clai type.
 
 For off-chain balances, we can just allocate the balances directly after claiming.
 
@@ -10,8 +10,8 @@ Behind the scenes, we reserve the unique claim code for the user. The on-chain t
 
 **When to use claims vs self-hosted balances?**
 
-For claims that gate token distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer badges or perform another claim action.
+For claims that gate token distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer tokens or perform another claim action.
 
-However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping badges to your users. This removes the middle action step required to complete the process.
+However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping tokens to your users. This removes the middle action step required to complete the process.
 
 <figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>

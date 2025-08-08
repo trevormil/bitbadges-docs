@@ -1,6 +1,6 @@
 # Claim Links (URLs)
 
-If users claim in-site, simply direct them to the claim page. Or if it is tied with an application, address list, or badge, direct them to the corresponding page there.
+If users claim in-site, simply direct them to the claim page. Or if it is tied with an application, address list, or token, direct them to the corresponding page there.
 
 #### Auto-filled Details (Advanced / Experimental)
 

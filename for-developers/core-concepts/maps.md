@@ -47,7 +47,7 @@ All maps are identified by a **mapId.** The following **mapId** values are reser
 
 **Manager**
 
-The manager is similar to the badges interface. They are granted admin privileges to update certain things about the map.This is handled by **managerTImeline** and the **canUpdateManager** permission.
+The manager is similar to the tokens interface. They are granted admin privileges to update certain things about the map.This is handled by **managerTImeline** and the **canUpdateManager** permission.
 
 Maps also have the option to **inheritManagerTimelineFrom** a specific collection. This emans that the manager of the collection specified will be used instead of the **managerTimeline** field.
 
@@ -60,7 +60,7 @@ Protocols may have expected genesis conditions or additional checks to be correc
 There are really four different map types.
 
 -   Manager only means only the manager can update values
--   Collection ID means map key smust be numeric and only owners of badge ID N from the collection ID specified can update key = N.
+-   Collection ID means map key smust be numeric and only owners of token ID N from the collection ID specified can update key = N.
 -   Creator only means keys are address-based. You can only update the value for your address. This uses mapped BitBadges addresses.
 -   First come, first serve means that map slots are open but once claimed, they can not be overwritten unless unset by the user who claimed the slot.
 
@@ -96,7 +96,7 @@ export interface iMapPermissions<T extends NumberType> {
 
 **Map Metadata**
 
-Map metadata follows the same interfaces as badges and address lists.
+Map metadata follows the same interfaces as tokens and address lists.
 
 ```typescript
 export interface iMapMetadataTimeline<T extends NumberType> {

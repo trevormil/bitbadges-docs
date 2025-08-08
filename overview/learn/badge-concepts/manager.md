@@ -13,8 +13,8 @@ The manager role can be granted various permissions, allowing for flexible admin
 3. **Core Collection Updates:** This includes modifying essential details such as metadata URLs, contract addresses, and the collection's standard.
 4. **Off-chain Balance Management:** For collections using off-chain balance storage, managers can update these balances.
 5. **Manager Role Transfer:** The ability to pass the manager role to another address.
-6. **Badge Creation:** Managers can be given permission to mint additional badges within the collection.
-7. **Transferability Updates:** This involves modifying the collection's approval settings, which determine how badges can be transferred. (For more details, see [transferability](transferability.md))
+6. **Token Creation:** Managers can be given permission to mint additional tokens within the collection.
+7. **Transferability Updates:** This involves modifying the collection's approval settings, which determine how tokens can be transferred. (For more details, see [transferability](transferability.md))
 8. **Custom Permissions:** Depending on the collection's setup, there may be additional, collection-specific permissions available to the manager.
 
 It's worth noting that the manager role can extend beyond on-chain functionalities. Various tools and platforms can offer custom off-chain utilities exclusive to the manager, further expanding the role's capabilities and responsibilities.
@@ -27,7 +27,7 @@ One of the key features of the manager role in BitBadges is the ability to custo
 
 Permissions can be customized based on various factors, including:
 
--   **Badge Specificity:** Which particular badges within the collection can be affected?
+-   **Token Specificity:** Which particular tokens within the collection can be affected?
 -   **Time Constraints:** When can certain actions be performed?
 -   **Value Limitations:** What specific values or ranges are allowed for updates?
 -   **Conditional Triggers:** Under what circumstances can certain permissions be exercised?

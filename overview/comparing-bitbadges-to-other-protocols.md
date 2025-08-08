@@ -24,7 +24,7 @@ For example, when building an application, you may use BitBadges for authenticat
 
 BitBadges is not interoperable in the traditional sense, as it is a self-contained L1 blockchain. BitBadges does not "pull" or "connect" data from other chains. All relevant data is stored on the BitBadges chain, simplifying application development.
 
-However, it supports users and wallets from any chain, allowing for easy multi-chain token transfers and multi-chain application development (e.g. Ethereum users can transfer badges to Solana users to Bitcoin users). For example, Bitcoin users can sign BitBadges transactions with their Bitcoin wallets.
+However, it supports users and wallets from any chain, allowing for easy multi-chain token transfers and multi-chain application development (e.g. Ethereum users can transfer tokens to Solana users to Bitcoin users). For example, Bitcoin users can sign BitBadges transactions with their Bitcoin wallets.
 
 ### Token Standard
 

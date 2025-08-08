@@ -14,7 +14,7 @@ If you are interested in us reenabling this, please let us know.
 
 ## Standard (On-Chain)
 
-Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer badges to each other by transacting with the blockchain. The total supply is controlled by on-chain transfers, approvals, and permissions.
+Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer tokens to each other by transacting with the blockchain. The total supply is controlled by on-chain transfers, approvals, and permissions.
 
 This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including $BADGE).
 
@@ -37,7 +37,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 -   **Significant Resource Reduction**: The architecture's off-chain nature results in a substantial reduction of resources used by your collection—potentially up to over 99%. This is primarily due to the absence of on-chain transfer transactions and balances. Only the collection needs to be created / updated on-chain, and future balance updates do not require blockchain transactions.
 -   **Non-Blockchain Data and Tools**: Balances can be customized using non-blockchain tools and data. While on-chain balances are restricted to on-chain data (smart contracts, etc.), off-chain balances can be customized with other data. For example, you can give badges to those who have paid subscriptions through a non-blockchain service (Google Pay, etc).
 -   **No-Cost Updates:** If the balances URL (stored on-chain) remains the same, balances can be updated by simply editing what is returned from the server. This means balances can be updated without interacting with the blockchain and paying transaction fees.
--   **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Badges are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
+-   **Enhanced User Experience**: Users are relieved from the need to interact directly with the blockchain and incur gas fees. This streamlined user experience enhances accessibility and usability. Tokens are automatically populated into a user's portfolio without the user ever executing a blockchain transaction.
 -   **Discardability:** Because balances are indexed off-chain, past transfer activity that is no longer relevant and needed can be permanently discarded rather than permanently stored on the blockchain and bloating it.
 
 #### Drawbacks
@@ -62,8 +62,8 @@ Off-chain balances can either be indexed or non-indexed. Note we use on-demand a
 
 Consider adopting off-chain balances if your collection aligns with the following criteria:
 
-1. **Non-Transferable / Soulbound**: If your collection's badges are intrinsically tied to specific users and are not intended for transfer, off-chain balances could be advantageous, especially if you make the balances frozen and immutable.
-2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over badge allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
+1. **Non-Transferable / Soulbound**: If your collection's tokens are intrinsically tied to specific users and are not intended for transfer, off-chain balances could be advantageous, especially if you make the balances frozen and immutable.
+2. **Centralized Allocation Control**: In cases where a single entity should maintain complete control over token allocation (concert tickets, diplomas, etc), the off-chain approach can be particularly beneficial.
 
 This is because there is little added benefit to using a blockchain if such criteria is met. Sure, the blockchain might have better availability and verifiability than an off-chain solution (although, we have been using off-chain solutions for 20+ years successfully). However, other than that, the blockchain really provides little benefit, and fees can be expensive.
 
@@ -81,9 +81,9 @@ See [here](time-dependent-ownership.md). Or, find a tool or tutorial for your us
 
 Compared to traditional client-server solutions, off-chain balances offer numerous advantages, including:
 
--   **Simplified Badge Management**: Outsourcing badge creation, maintenance, and verification reduces your workload.
+-   **Simplified Token Management**: Outsourcing token creation, maintenance, and verification reduces your workload.
 -   **Seamless Integration**: Integration with the complete suite of BitBadges tools.
 -   **Enhanced Security and Availability**: While balances are off-chain, the collection's core creation and foundation remain on the blockchain where it benefits from security, immutability, and availability.
 -   **Unified Digital Identity Building**: Users can consolidate their digital identity to their single address, eliminating fragmentation across various websites.
 
-In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and badge management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.
+In conclusion, off-chain balances present an intriguing avenue to enhance scalability, user experience, and token management. While there are considerations and trade-offs, the decision to adopt this approach hinges on your collection's specific goals and priorities. For additional resources and guidance, consult the Ecosystem page to identify suitable tools and tutorials for your use case.

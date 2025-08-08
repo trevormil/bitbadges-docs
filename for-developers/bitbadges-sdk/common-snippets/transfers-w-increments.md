@@ -1,6 +1,6 @@
 # Transfers
 
-The `TransferWithIncrements` type provides a convenient method for handling batch transfers, especially when you need to distribute badges sequentially or when badges have varying ownership times. By combining this with the `getBalancesAfterTransfers` function, you can effortlessly manage and update balances in your application.
+The `TransferWithIncrements` type provides a convenient method for handling batch transfers, especially when you need to distribute tokens sequentially or when tokens have varying ownership times. By combining this with the `getBalancesAfterTransfers` function, you can effortlessly manage and update balances in your application.
 
 ```typescript
 import {

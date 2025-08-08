@@ -1,6 +1,6 @@
 # Ownership Requirements
 
-Below we explain more about the ownership requirements field and schema. This is used in certain plugins for checking badge / list ownership.
+Below we explain more about the ownership requirements field and schema. This is used in certain plugins for checking token / list ownership.
 
 ```typescript
 const ownershipRequirements = {
@@ -37,7 +37,7 @@ const popupParams = {
 
 #### **Asset Ownership Requirements**
 
-The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a badge.
+The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a token.
 
 ```typescript
 assetOwnershipRequirements: {
@@ -70,7 +70,7 @@ assetOwnershipRequirements: {
 
 **Options**
 
-As an alternative to $or, we also support specifying **options.numMatchesForVerification** which sets a threshold for how many assets in the current group the criteria needs to pass for. For example, below requires 1 / 1000 badges to be owned out of the IDs 1-1000.
+As an alternative to $or, we also support specifying **options.numMatchesForVerification** which sets a threshold for how many assets in the current group the criteria needs to pass for. For example, below requires 1 / 1000 tokens to be owned out of the IDs 1-1000.
 
 ```typescript
 assetOwnershipRequirements: {
@@ -87,9 +87,9 @@ assetOwnershipRequirements: {
 }
 ```
 
-**BitBadges Badge Collections**
+**BitBadges Token Collections**
 
-For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to be numeric, and all assetIds to be UintRanges. Querying a user owns a badge at a specific time is also supported via ownership times.
+For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to be numeric, and all assetIds to be UintRanges. Querying a user owns a token at a specific time is also supported via ownership times.
 
 ```typescript
 {
@@ -149,4 +149,4 @@ The default when ownership times is empty or missing is to verify at the current
 ownershipTimes: UintRangeArray.FullRanges();
 ```
 
-For assets that support ownership times like BitBadges badges, you can specify custom times to check.
+For assets that support ownership times like BitBadges tokens, you can specify custom times to check.

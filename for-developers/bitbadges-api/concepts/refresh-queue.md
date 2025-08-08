@@ -12,7 +12,7 @@ See [Restrictions / Limits](limits-restrictions.md). We implement an exponential
 
 **Off-Chain Balances**
 
-Note that for off-chain balances, we also throw an error if the fetched balances exceed the total supply of badges defined on-chain (i.e. you are trying to allocate more badges than you should).
+Note that for off-chain balances, we also throw an error if the fetched balances exceed the total supply of tokens defined on-chain (i.e. you are trying to allocate more tokens than you should).
 
 **Checking Status**
 

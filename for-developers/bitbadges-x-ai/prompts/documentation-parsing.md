@@ -27,8 +27,8 @@ The BitBadges documentation is organized into several main sections:
 
 #### 1. Overview Section
 
--   **Learn the Basics**: Core concepts like claims, multi-chain accounts, badges, address lists, applications (points), subscriptions
--   **Badge Concepts**: Manager, total supply, time-dependent ownership, transferability, balance types, protocol fees
+-   **Learn the Basics**: Core concepts like claims, multi-chain accounts, tokens, address lists, applications (points), subscriptions
+-   **Token Concepts**: Manager, total supply, time-dependent ownership, transferability, balance types, protocol fees
 -   **Wallets and Sign Ins**: Supported wallets, mobile support, approved transactors
 -   **Use Cases**: Real-world applications and examples
 -   **FAQ**: Common questions and answers
@@ -59,7 +59,7 @@ When answering questions, prioritize these core documentation files:
 2. **Getting Started**: `for-developers/getting-started.md` - Developer onboarding
 3. **SDK Overview**: `for-developers/bitbadges-sdk/overview.md` - SDK capabilities
 4. **API Reference**: `for-developers/bitbadges-api/api.md` - API documentation
-5. **Badge Concepts**: `x-badges/concepts/README.md` - Core concepts
+5. **Token Concepts**: `x-badges/concepts/README.md` - Core concepts
 6. **Common Snippets**: `for-developers/bitbadges-sdk/common-snippets/README.md` - Code examples
 
 ### Documentation Parsing Instructions

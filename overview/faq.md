@@ -2,11 +2,11 @@
 
 ### **Badge vs $BADGE?**
 
-Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas denomination used for paying transaction fees. All transactions on the BitBadges blockchain require $BADGE to be paid as a fee. This is not to be confused with badges / badge collections.
+Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas denomination used for paying transaction fees. All transactions on the BitBadges blockchain require $BADGE to be paid as a fee. This is not to be confused with tokens / collections.
 
 ### **Are smart contracts needed?**
 
-No! All badges are no-code with tons of functionality out of the box. If you need something custom, you can create a WASM or EVM (coming soon) contract to add custom functionality not already implemented.
+No! All tokens are no-code with tons of functionality out of the box. If you need something custom, you can create a WASM or EVM (coming soon) contract to add custom functionality not already implemented.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
@@ -24,7 +24,7 @@ We do this for multiple reasons:
 
 Yes, this may sacrifice a little customizability, but we allow you to extend the interface and implement any custom logic required with smart contracts, if necessary. We believe the pros vastly (security, scalability, and ease of use) vastly outweigh the cons.
 
-### **Are badges ERC-721 or ERC-20 compatible?**
+### **Are tokens ERC-721 or ERC-20 compatible?**
 
 While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture.
 
@@ -38,7 +38,7 @@ BitBadges is a unique L1 blockchain that simplifies multi-chain experiences. Unl
 
 ### **How does cross-chain interoperability work?**
 
-BitBadges doesn't "pull" data from other chains - all relevant data is stored on the BitBadges chain, simplifying development. However, it supports users and wallets from any chain, allowing multi-chain transfers (e.g., Bitcoin users can transfer badges to Solana users).
+BitBadges doesn't "pull" data from other chains - all relevant data is stored on the BitBadges chain, simplifying development. However, it supports users and wallets from any chain, allowing multi-chain transfers (e.g., Bitcoin users can transfer tokens to Solana users).
 
 ### **Does BitBadges support smart contracts?**
 

@@ -1,2 +1,2 @@
-# Badge Concepts
+# Token Concepts
 

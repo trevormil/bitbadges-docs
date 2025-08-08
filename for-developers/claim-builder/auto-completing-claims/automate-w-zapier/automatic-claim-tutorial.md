@@ -2,14 +2,14 @@
 
 ### Overview
 
-The other option is to trigger claims automatically with Zapier. You will configure the Zap to automatically complete the claim for the user upon a custom trigger. For example, upon purchasing an item, auto-send them a purchased item badge.
+The other option is to trigger claims automatically with Zapier. You will configure the Zap to automatically complete the claim for the user upon a custom trigger. For example, upon purchasing an item, auto-send them a purchased item token.
 
 To do this, you **MUST** get the users' crypto addresses somehow before the action is executed. This can be beforehand or somehow obtained during the duration of the Zap. We leave this up to you. If you cannot obtain users' addresses, this approach will not work.
 
-We want to note that functionality is slightly different for badges with on-chain balances as opposed to off-chain badges or address lists.
+We want to note that functionality is slightly different for tokens with on-chain balances as opposed to off-chain tokens or address lists.
 
 * On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
-* Off-Chain and Other Claims: For badges with off-chain balances or other claim types, there is no reservation process. The claims are automatically completed. For off-chain badge claims, this means the badges will be auto-distributed. For address lists, this means the address will be automatically appended to the list.
+* Off-Chain and Other Claims: For tokens with off-chain balances or other claim types, there is no reservation process. The claims are automatically completed. For off-chain token claims, this means the tokens will be auto-distributed. For address lists, this means the address will be automatically appended to the list.
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 

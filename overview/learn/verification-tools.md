@@ -7,7 +7,7 @@ Gate your digital services with an industry standard OAuth 2..0 multi-chain auth
 Additionally, use along with checking a claim to allow you to gate based on any criteria you want:
 
 -   Payment-gated website
--   Badge-gated event
+-   Token-gated event
 -   Any combination of gated access!
 
 We also are compatible with many frameworks and tools like Discourse, WordPress, Auth0, and more!

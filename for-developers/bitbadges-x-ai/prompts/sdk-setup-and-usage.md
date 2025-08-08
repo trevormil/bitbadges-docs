@@ -159,7 +159,7 @@ const balance = await api.getBalance({
     - Balance management
     - Transfer operations
     - Address lists
-    - Badge metadata
+    - Token metadata
     - Approvals and transferability
     - Timeline operations
 

@@ -21,7 +21,7 @@ Couple ways:
 
 <figure><img src="../../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
 
-When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action  (claim a badge, distribute a code, add to dynamic store).
+When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action  (claim a token, distribute a code, add to dynamic store).
 
 <figure><img src="../../../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 

@@ -12,7 +12,7 @@ Users can claim directly on the corresponding page directly in the BitBadges sit
 
 You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 7000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
-For example, make a purchase on Shopify -> get allocated a badge or complete a course on Udemy -> get a completion badge. The "airdrop" is a claim completion.
+For example, make a purchase on Shopify -> get allocated a token or complete a course on Udemy -> get a completion token. The "airdrop" is a claim completion.
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 

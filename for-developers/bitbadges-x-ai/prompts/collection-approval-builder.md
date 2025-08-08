@@ -53,7 +53,7 @@ First, generate a unique approval ID using UUID v4 or a descriptive identifier:
 
 Ask the user about the three core address list requirements:
 
-**Question 1.1**: Who should be able to **send** badges in this approval?
+**Question 1.1**: Who should be able to **send** tokens in this approval?
 
 -   Options: "Mint" (for minting only), "!Mint" (everyone except Mint), "AllWithoutMint" (everyone except Mint), specific addresses (excluding Mint), or custom list ID (excluding Mint)
 
@@ -64,7 +64,7 @@ Ask the user about the three core address list requirements:
 -   Specific addresses - for particular users (excluding Mint)
 -   Custom list ID - for user-created lists (excluding Mint)
 
-**Question 1.2**: Who should be able to **receive** badges in this approval?
+**Question 1.2**: Who should be able to **receive** tokens in this approval?
 
 -   Options: "All" (everyone), "AllWithoutMint" (everyone except Mint), specific addresses, or custom list ID
 
@@ -101,9 +101,9 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-### Step 3: Overall Scope - Badge IDs and Ownership Times
+### Step 3: Overall Scope - Token IDs and Ownership Times
 
-**Question 3.1**: Which badge IDs should this approval cover? (This defines the overall scope - specific amounts and limits will be set later)
+**Question 3.1**: Which token IDs should this approval cover? (This defines the overall scope - specific amounts and limits will be set later)
 
 -   Options: "All" (full range), specific ranges, or individual IDs
 
@@ -289,8 +289,8 @@ Ask the user about the three core address list requirements:
 
 **Note**: Steps 5 and 7 are typically **NOT used together**. Choose either:
 
--   **Step 5**: Amount thresholds (can't exceed limits) - "You can transfer up to X badges"
--   **Step 7**: Predetermined balances (exact amounts) - "You must transfer exactly X badges"
+-   **Step 5**: Amount thresholds (can't exceed limits) - "You can transfer up to X tokens"
+-   **Step 7**: Predetermined balances (exact amounts) - "You must transfer exactly X tokens"
 
 **Question 7.2** (if Yes): How do you want to define the balances?
 
@@ -302,7 +302,7 @@ Ask the user about the three core address list requirements:
 
 **Question 7.4** (if Incremented): What type of increment pattern do you want?
 
--   Options: "Sequential badge IDs", "Time-based increments", "Recurring intervals", "Custom increments"
+-   Options: "Sequential token IDs", "Time-based increments", "Recurring intervals", "Custom increments"
 
 **Question 7.5** (if Incremented): How should the order be calculated?
 
@@ -389,7 +389,7 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-**Sequential Badge IDs**: Each transfer gets the next badge ID
+**Sequential Token IDs**: Each transfer gets the next token ID
 
 ```json
 {
@@ -456,7 +456,7 @@ Ask the user about the three core address list requirements:
 -   **Exact Match Required**: Transfers must match predetermined balances EXACTLY
 -   **Order Numbers**: Use transfer count to determine which balance set to use
 -   **Precalculation**: Use `precalculateBalancesFromApproval` to handle race conditions
--   **Boundary Handling**: Balances must work within approval's badge ID and time bounds
+-   **Boundary Handling**: Balances must work within approval's token ID and time bounds
 
 ### Step 8: Address Relationship Requirements
 

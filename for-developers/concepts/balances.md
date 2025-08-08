@@ -12,7 +12,7 @@ export interface Balance<T extends NumberType> {
 
 **Interpreting Balances**
 
-When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of badge IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations.&#x20;
+When interpreting balances, there are certain rules to keep in mind. If we have multiple ranges of token IDs and ownership times defined within a single Balance structure, it means that we own all possible combinations.&#x20;
 
 ```
 for (balance of balances) {
@@ -60,7 +60,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 
 **Duplicates**
 
-If you specify duplicate badge IDs in balances such as:
+If you specify duplicate token IDs in balances such as:
 
 ```
 { 

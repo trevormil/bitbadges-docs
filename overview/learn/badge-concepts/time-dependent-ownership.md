@@ -1,14 +1,14 @@
 # Time-Dependent Ownership
 
-Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Badge IDs 1-199). BitBadges introduces a third part: ownership times.
+Typically, you may think of a balance in two parts: what you own and the amount you own (x10 of Token IDs 1-199). BitBadges introduces a third part: ownership times.
 
-For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from March-December.
+For example, Bob owns x10 of Token IDs 1-100 from January to March but x5 from March-December.
 
 ### Balance Components
 
-1. **Badge IDs**: This refers to which badges in your possession.
-2. **Badge Quantity / Amount**: This refers to how much of each badge you own.
-3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific badge quantities.
+1. **Token IDs**: This refers to which tokens in your possession.
+2. **Token Quantity / Amount**: This refers to how much of each token you own.
+3. **Ownership Times**: A time-based framework that governs the periods during which you possess specific token quantities.
 
 <figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -16,7 +16,7 @@ For example, Bob owns x10 of Badge IDs 1-100 from January to March but x5 from M
 
 Consider Bob's ownership structure as an illustrative example:
 
-Bob initially owns x10 of Badge IDs 1-100 from January to March. Subsequently, his ownership transitions to x5 of Badge IDs 1-100 from March to December.
+Bob initially owns x10 of Token IDs 1-100 from January to March. Subsequently, his ownership transitions to x5 of Token IDs 1-100 from March to December.
 
 ### Advantages of the Ownership System
 
@@ -32,27 +32,27 @@ Numerous projects feature stock or token unlock schedules that primarily rely on
 
 #### Lending Mechanism
 
-The ownership times concept facilitates badge lending for specified durations without the need for escrow services. Users can temporarily transfer their badges while retaining the ability to reclaim them after the designated timeframe.
+The ownership times concept facilitates token lending for specified durations without the need for escrow services. Users can temporarily transfer their tokens while retaining the ability to reclaim them after the designated timeframe.
 
 ### Usage Examples
 
 To elucidate the functioning of this ownership system, let's delve into practical scenarios.
 
-**Starting Balance**: Bob owns x10 of Badge IDs 1-100 from January to March.
+**Starting Balance**: Bob owns x10 of Token IDs 1-100 from January to March.
 
 **Example 1**: Bob's Transfer to Alice
 
--   Bob transfers x10 of Badge IDs 1-100 from January to February to Alice.
--   Result: Bob's ownership persists as x10 of Badge IDs 1-100 from February to March, while Alice becomes the owner of x10 of Badge IDs 1-100 from January to February.
+-   Bob transfers x10 of Token IDs 1-100 from January to February to Alice.
+-   Result: Bob's ownership persists as x10 of Token IDs 1-100 from February to March, while Alice becomes the owner of x10 of Token IDs 1-100 from January to February.
 
 **Example 2**: Bob's Partial Transfer to Alice
 
--   Bob transfers x5 of Badge IDs 1-100 from January to March to Alice.
--   Result: Both Bob and Alice now possess x5 of Badge IDs 1-100 during the January to March period.
+-   Bob transfers x5 of Token IDs 1-100 from January to March to Alice.
+-   Result: Both Bob and Alice now possess x5 of Token IDs 1-100 during the January to March period.
 
 **Example 3**: Complex Transfer Scenario
 
--   Bob transfers x10 of Badge IDs 1-50 from January to February to Alice.
--   Result: Bob retains ownership of x10 of Badge IDs 1-50 from February to March, and additionally, x10 of Badge IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Badge IDs 1-50 from January to February.
+-   Bob transfers x10 of Token IDs 1-50 from January to February to Alice.
+-   Result: Bob retains ownership of x10 of Token IDs 1-50 from February to March, and additionally, x10 of Token IDs 50-100 from January to March. Meanwhile, Alice owns x10 of Token IDs 1-50 from January to February.
 
 Incorporating time-based ownership into the conventional token ownership paradigm introduces enhanced flexibility, security, and functionality, enabling various usage scenarios that would otherwise be challenging to achieve.
