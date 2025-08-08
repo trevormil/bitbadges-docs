@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Aug  8 19:14:06 UTC 2025
+Generated on Fri Aug  8 19:15:44 UTC 2025
 
 
 
@@ -4575,7 +4575,7 @@ Cosmos Chain ID (Mainnet) - bitbadges-1
 
 Cosmos Chain ID (Testnet) - bitbadges-2
 
-[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 $BADGE = 1 \* 10^9 ubadge)
+[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
 
 ### Official Links
 
@@ -4688,7 +4688,7 @@ We refer you to Cosmos SDK documentation for other Cosmos native Msgs.
 
 # MsgSend
 
-MsgSend is the Msg to send $BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
+MsgSend is the Msg to send BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
 
 ```typescript
 /**
@@ -4700,11 +4700,10 @@ MsgSend is the Msg to send $BADGE. It is a core Cosmos SDK msg (i.e. not written
  * @property {CosmosCoin[]} amount - The amount of coins to send.
  */
 export interface MsgSend<T extends NumberType> {
-  fromAddress: string
-  toAddress: string
-  amount: CosmosCoin<T>[]
+    fromAddress: string;
+    toAddress: string;
+    amount: CosmosCoin<T>[];
 }
-
 
 /**
  * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
@@ -4714,22 +4713,21 @@ export interface MsgSend<T extends NumberType> {
  * @property {string} denom - The denomination of the coin.
  */
 export interface CosmosCoin<T extends NumberType> {
-  amount: T,
-  denom: string,
+    amount: T;
+    denom: string;
 }
-
 ```
 
 ```json
 {
-  "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
-  "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
-  "amount": [
-    {
-      "denom": "ubadge",
-      "amount": "1"
-    }
-  ]
+    "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
+    "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
+    "amount": [
+        {
+            "denom": "ubadge",
+            "amount": "1"
+        }
+    ]
 }
 ```
 
@@ -5704,31 +5702,31 @@ If you plan to use option 2, see below.
 
 The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
 
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive $BADGE somehow (this is also a pre-requisite to pay for any fees).
+Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk'
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
 
 //TODO: Fetch the account details (see below)
 
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
 const txContext = {
-  testnet: false,
-  sender: {
-    //Must be in native format ('0xabc..' vs 'bc1...' etc)
-    address: account.address,
-    sequence: account.sequence,
-    accountNumber: account.accountNumber,
-    //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
-    publicKey: account.publicKey
-  }, 
-  //TODO: adjust accordingly
-  fee: {
-    amount: `0`,
-    denom: 'ubadge',
-    gas: `400000`
-  },
-  memo: ''
+    testnet: false,
+    sender: {
+        //Must be in native format ('0xabc..' vs 'bc1...' etc)
+        address: account.address,
+        sequence: account.sequence,
+        accountNumber: account.accountNumber,
+        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        publicKey: account.publicKey,
+    },
+    //TODO: adjust accordingly
+    fee: {
+        amount: `0`,
+        denom: 'ubadge',
+        gas: `400000`,
+    },
+    memo: '',
 };
 ```
 
@@ -5740,10 +5738,10 @@ Note: It will also be returned with the account details from the BitBadges API (
 
 ```typescript
 const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1')
+    const account = await window?.keplr?.getKey('bitbadges-1');
     if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64')
-}
+    return Buffer.from(account.pubKey).toString('base64');
+};
 ```
 
 **Fee**
@@ -6240,7 +6238,7 @@ RUN_COMMAND tx staking create-validator /path/to/validator.json \
   --from=mykey
 ```
 
-This should be signed with your normal key pair for signing transactions. Ensure you have enough $BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
+This should be signed with your normal key pair for signing transactions. Ensure you have enough BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
 
 You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
 
@@ -7177,11 +7175,11 @@ Ask the user about the three core address list requirements:
 
 **Question 4.2** (if Yes): What type of token should be transferred?
 
--   Options: "$BADGE (ubadge)" (standard BitBadges token)
+-   Options: "BADGE (ubadge)" (standard BitBadges token)
 
 **Question 4.3** (if Yes): How much should be transferred?
 
--   Options: Specify amount in smallest unit (e.g., "1000000000" for 1 $BADGE)
+-   Options: Specify amount in smallest unit (e.g., "1000000000" for 1 BADGE)
 
 **Question 4.4** (if Yes): Who should receive the tokens?
 
@@ -7217,7 +7215,7 @@ Ask the user about the three core address list requirements:
 
 **Example Configurations**:
 
-**Simple Transfer**: Transfer 1 $BADGE to a specific address
+**Simple Transfer**: Transfer 1 BADGE to a specific address
 
 ```json
 {
@@ -7228,7 +7226,7 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-**Initiator Pays**: Transfer 0.5 $BADGE from the initiator to a specific address
+**Initiator Pays**: Transfer 0.5 BADGE from the initiator to a specific address
 
 ```json
 {
@@ -7239,7 +7237,7 @@ Ask the user about the three core address list requirements:
 }
 ```
 
-**Collection Pays**: Transfer 2 $BADGE from collection funds to the initiator
+**Collection Pays**: Transfer 2 BADGE from collection funds to the initiator
 
 ```json
 {
@@ -9418,7 +9416,7 @@ Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) ver
 
 # Payment Checking
 
-If your use case requires monetization (such as memberships or recurring payments), we host an in-site Stripe plugin for you to use. While $BADGE is the native credits of the blockchain and we do offer accepting $BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We recommend to accept payments using existing processors like Stripe.&#x20;
+If your use case requires monetization (such as memberships or recurring payments), we host an in-site Stripe plugin for you to use. While BADGE is the native credits of the blockchain and we do offer accepting BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We recommend to accept payments using existing processors like Stripe.&#x20;
 
 Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
 
@@ -9449,23 +9447,23 @@ Since claims and Stripe are two separate services, we can either capture payment
 3. We capture the payment here.
 4. The claim is added to a queue
 5. At the queue's final processing time, we rerun the claim's internal logic (state handling) to ensure it still passes and there are no race conditions. We reuse any external logic from Step 1.
-   1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
+    1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
 
 This process is often immediate (<1 second), but the time ultimately goes at the speed of the queue.
 
 #### Capture Before Claim
 
-* **What happens**: The payment is captured immediately before the final processing of the claim but after confirming a full simulation.
-* **Advantage**: Guarantees payment for successful claims. 100% of users who complete the claim have guaranteed payment went through.
-* **Risk**: In the rare case of the sanity check of failing after Step 1) full simulation succeeded, we automatically issue refunds to the customer. Stripe fees are NOT returned, you make up the difference in the refund to each customer (poor user experience as well - 2 charges on statements plus additional processing).
-* **Proper Design:** This can always be mitigated with proper claim design. **T**he golden rule is design your claims such that a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
-  * When might the refund case occur?
-    * **Max Uses Exceeded:** 1000 users submit at exact same time with only 1 claim use left. All 1000 get added to the queue. We have to refund 999 of them.
-    * **Claim Codes:** If you give out a one-time use code to two users and they both submit at the same time and both make it into the queue, we will have to refund one.
-  * Note though, these cases are rare but need to be accounted for
-    * It only applies to internal state race conditions, not external fetches
-    * Even just a second or two between claim submissions typically would invalidate the initial simulation (Step 1) leading to it never being placed in the queue and payment never being captured.
-    * We do our best on our end to mitigate and prevent such cases before they happen
+-   **What happens**: The payment is captured immediately before the final processing of the claim but after confirming a full simulation.
+-   **Advantage**: Guarantees payment for successful claims. 100% of users who complete the claim have guaranteed payment went through.
+-   **Risk**: In the rare case of the sanity check of failing after Step 1) full simulation succeeded, we automatically issue refunds to the customer. Stripe fees are NOT returned, you make up the difference in the refund to each customer (poor user experience as well - 2 charges on statements plus additional processing).
+-   **Proper Design:** This can always be mitigated with proper claim design. **T**he golden rule is design your claims such that a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
+    -   When might the refund case occur?
+        -   **Max Uses Exceeded:** 1000 users submit at exact same time with only 1 claim use left. All 1000 get added to the queue. We have to refund 999 of them.
+        -   **Claim Codes:** If you give out a one-time use code to two users and they both submit at the same time and both make it into the queue, we will have to refund one.
+    -   Note though, these cases are rare but need to be accounted for
+        -   It only applies to internal state race conditions, not external fetches
+        -   Even just a second or two between claim submissions typically would invalidate the initial simulation (Step 1) leading to it never being placed in the queue and payment never being captured.
+        -   We do our best on our end to mitigate and prevent such cases before they happen
 
 
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
@@ -9510,7 +9508,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 -   Calculated in real-time
 -   No success webhooks
 
-For example, checking a minimum balance of $BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is token ownership as shown below.
+For example, checking a minimum balance of BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is token ownership as shown below.
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -11163,7 +11161,7 @@ This page will give you an overview of BitBadges accounts. It should be enough i
 
 #### **How is BitBadges able to support addresses from different blockchains?**
 
-To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos bech32 address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent $BADGE for the first time.&#x20;
+To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos bech32 address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent BADGE for the first time.&#x20;
 
 As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the BitBadges address bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv and will be assigned an account ID number upon interaction with the BitBadges blockchain. It would also map to an equivalent Bitcoin address as well.
 
@@ -11173,20 +11171,20 @@ As an example, the Ethereum null address 0x0000000000000000000000000000000000000
 
 Ethereum Example:
 
-* Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
+-   Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
+-   Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
 
 Solana Example:
 
-* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
+-   Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+-   Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
 
 Bitcoin Example&#x20;
 
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
+-   Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+-   Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
 
-#### Why can I convert Solana address to a  BitBadges / Eth / BTC address but not the other way around?
+#### Why can I convert Solana address to a BitBadges / Eth / BTC address but not the other way around?
 
 You may notice that you cannot go from a BitBadges / Eth address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an Eth / BitBadges address), you cannot deduce the preimage without prior knowledge of it.
 
@@ -11207,7 +11205,7 @@ const bitbadgesAddressFromSolana = solanaToBitBadges(address);
 #### **How do I query details for an address?**
 
 1. You can use the [BitBadges API](../bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
-2. You an also query a BitBadges blockchain node directly, either through the CLI or  [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html).&#x20;
+2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html).&#x20;
 
 
 ## File: ./for-developers/concepts/address-mappings-lists.md
@@ -11463,7 +11461,7 @@ Cosmos Chain ID (Mainnet) - bitbadges-1
 
 Cosmos Chain ID (Testnet) - bitbadges-2
 
-[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 $BADGE = 1 \* 10^9 ubadge)
+[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
 
 
 ## File: ./for-developers/concepts/uint-ranges.md
@@ -11668,7 +11666,7 @@ BitBadges is proud to offer no-code / low-code flows for all our major services.
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
-> **Need $BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
+> **Need BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
 >
 > **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
 >
@@ -12720,10 +12718,6 @@ Let us know if you have another idea and how we can help.
 
 # ❓ FAQ
 
-### **Badge vs $BADGE?**
-
-Whenever we say **$BADGE**, we are referring to the BitBadges blockchain gas denomination used for paying transaction fees. All transactions on the BitBadges blockchain require $BADGE to be paid as a fee. This is not to be confused with tokens / collections.
-
 ### **Are smart contracts needed?**
 
 No! All tokens are no-code with tons of functionality out of the box. If you need something custom, you can create a WASM or EVM (coming soon) contract to add custom functionality not already implemented.
@@ -12844,7 +12838,7 @@ If you are interested in us reenabling this, please let us know.
 
 Standard balances are what you may be familiar with. All balances are stored on the blockchain, and users can transfer tokens to each other by transacting with the blockchain. The total supply is controlled by on-chain transfers, approvals, and permissions.
 
-This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including $BADGE).
+This is the least scalable because it uses the most blockchain resources, but it is the most decentralized. Everything is facilitated on the blockchain and can access blockchain data with no trust involved (including BADGE).
 
 ## Non-Public
 
@@ -12854,7 +12848,7 @@ We do give the option to make balances non-public. This can either mean you want
 
 Unlike conventional on-chain balances, off-chain balances leverage an alternative approach to balance storage. Core collection details are still stored on the blockchain, but balances are stored off-chain, on a typical server or through a file storage solution like IPFS. The current balance allocations are dynamically fetched from the URL designated for storage (URL is stored on-chain).
 
-Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending $BADGE along with an approval). Everything must occur off-chain.
+Transfers and approvals are not handled by the blockchain. Transfers may be implemented off-chain. This enables access to non blockchain native data, but it also means that blockchain data and logic can not be executed in a trustless manner (e.g. sending BADGE along with an approval). Everything must occur off-chain.
 
 #### Configurable URL and Permanent Storage
 
@@ -12871,7 +12865,7 @@ The URL fetching mechanism is customizable. URLs are stored on-chain and can be 
 #### Drawbacks
 
 -   **Scalability vs. Functionality Trade-off**: While off-chain balances offer scalability and user-centric benefits, they entail trade-offs in terms of functionality and decentralization. Mainly,\
-    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ $BADGE) is not supported. Everything is implemented off-chain in a custom manner.
+    since there are no on-chain transfers, certain on-chain functionality (such as approvals, customizable transferability, transfers w/ BADGE) is not supported. Everything is implemented off-chain in a custom manner.
 -   **Centralized Trust Factor**: The URL-driven approach introduces a centralized trust element, as the blockchain has no control over the data returned by the URL or the assignment of the balances. This can be mitigated if certain criteria is met (immutable and using permanent storage like IPFS).
 -   **Off-Chain Balance Indexing:** Because balance updates are facilitated and indexed off-chain, there is no on-chain verifiable ledger of transfer transactions. Off-chain indexing does not sacrifice any functionality, but the accuracy and availability may not be on par with on-chain indexing.
     -   Timestamping: There is no decentralized, verifiable log of EXACTLY when each balance update occurs because they occur on a hosted server. Indexers will attempt to fetch and catch each update as fast as possible, if applicable, but there is bound to be delay.
@@ -12978,7 +12972,7 @@ This system of states allows for both flexibility and security in managing colle
 
 # Protocol Fee
 
-For any token transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of transfer or 0.1 $BADGE).
+For any token transfer on-chain, BitBadges takes a protocol fee of Max(0.5% of transfer or 0.1 BADGE).
 
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -13224,12 +13218,11 @@ For additional documentation, see here:
 
 # Subscriptions
 
-Subscriptions are an abstraction over the token / NFT interface using the time-dependent balances feature. Each subscription is a time-dependent NFT owned by the user for a specific period of time. We enable recurring support through a tip system for bots to fulfill each charge period's requests. For example, if a subscription is 10 $BADGE credits / month, the user may pay 11, and the bot profits the 1 for fulfillment.&#x20;
+Subscriptions are an abstraction over the token / NFT interface using the time-dependent balances feature. Each subscription is a time-dependent NFT owned by the user for a specific period of time. We enable recurring support through a tip system for bots to fulfill each charge period's requests. For example, if a subscription is 10 BADGE credits / month, the user may pay 11, and the bot profits the 1 for fulfillment.&#x20;
 
 Subscriptions follow specific rules and are a subset of the overall token standard. Please only update subscriptions through compatible interfaces.
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 
 
 ## File: ./overview/learn/verification-tools.md
@@ -13285,7 +13278,7 @@ To sign transactions:
 
 1. You must be signed in with permission to use the embedded wallet (the Embedded Wallet scope). You can configure alternate sign in methods (socials or other addresses) via the Sign In Methods tab. Ensure the Embedded Wallet scope is enabled.
 2. The desired transaction message types must be approved in the account settings before transacting.
-3. The wallet must have sufficient $BADGE credits.
+3. The wallet must have sufficient BADGE credits.
 
 Note this is opt-in and can be revoked at any time. This is provided as a way to trade off centralization / trust for enhanced user experience but is completely optional. Also note that the BitBadges embedded wallet is not the only option. We provide the functionality for you to approve any wallet.
 
@@ -13470,7 +13463,7 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 -   Some features available in production may not be accessible in testnet:
     -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-    -   Buying $BADGE credits
+    -   Buying BADGE credits
     -   Push notifications
     -   And more
 -   Some restrictions may be more relaxed
