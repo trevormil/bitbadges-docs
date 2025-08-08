@@ -105,9 +105,9 @@ See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/Col
 #### Account Interface
 
 -   `transferActivity`: User's transfer history
--   `badgesCollected`: Tokens owned by the user
--   `createdBadges`: Collections created by the user
--   `managingBadges`: Collections being managed
+-   `tokensCollected`: Tokens owned by the user
+-   `createdTokens`: Collections created by the user
+-   `managingTokens`: Collections being managed
 -   `allLists`: Address lists the user is on
 
 See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
