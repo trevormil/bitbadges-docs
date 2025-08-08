@@ -133,7 +133,7 @@
 -   [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
 -   [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
 -   [doesChainMatchName](modules.md#doeschainmatchname)
--   [filterBadgeActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
+-   [filterTokenActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
 -   [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
 -   [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
 -   [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
@@ -1264,9 +1264,9 @@
 
 ---
 
-### filterBadgeActivityForBadgeId
+### filterTokenActivityForBadgeId
 
-▸ **filterBadgeActivityForBadgeId**(`badgeId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
+▸ **filterTokenActivityForBadgeId**(`badgeId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
 
 #### Parameters
 
