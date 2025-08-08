@@ -31,7 +31,7 @@ Any service can be gated by ANY criteria simply in just 2 steps.
 
 Claims are the universal connectors. Claim criteria can be anything from a payment to token ownership to Discord servers. Implement it any way you want (including custom logic) at [https://bitbadges.io/create](https://bitbadges.io/create)!
 
-## Quick Start - Badges
+## Quick Start - Tokens
 
 {% content-ref url="../x-badges/" %}
 [x-badges](../x-badges/)

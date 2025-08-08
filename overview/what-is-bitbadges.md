@@ -131,7 +131,7 @@ Seamlessly define all the following on-chain for EVERY approval. Define the exac
 -   Recurring?
 -   Non-Transferable?
 -   Incrementing Token IDs?
--   Owns Other Badges?
+-   Owns Other Tokens?
 -   And plenty more...
 
 **Off-Chain Approval Criteria: 7000+ Web2 Integrations**:
