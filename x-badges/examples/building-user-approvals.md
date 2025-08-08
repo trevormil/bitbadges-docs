@@ -14,7 +14,7 @@ We refer you to the collection-level examples and just apply the same logic to t
 
 ## Incoming Approvals
 
-Control what badges the user can receive:
+Control what tokens the user can receive:
 
 ```typescript
 const userIncomingApproval = {
@@ -37,7 +37,7 @@ const userIncomingApproval = {
 
 ## Outgoing Approvals
 
-Control what badges the user can send:
+Control what tokens the user can send:
 
 ```typescript
 const userOutgoingApproval = {

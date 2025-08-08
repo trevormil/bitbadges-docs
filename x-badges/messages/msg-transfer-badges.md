@@ -7,7 +7,7 @@ Executes token transfers between addresses.
 ```protobuf
 message MsgTransferBadges {
   string creator = 1; // Address initiating the transfer
-  string collectionId = 2; // Collection containing badges to transfer
+  string collectionId = 2; // Collection containing tokens to transfer
   repeated Transfer transfers = 3; // Transfer operations (must pass approvals)
 }
 
@@ -55,7 +55,7 @@ message Transfer {
 message PrecalculationOptions {
   // The timestamp to override with when calculating the balances.
   string overrideTimestamp = 1;
-  // The badgeIdsOverride to use for the transfer.
+  // The IDs to override with when calculating the balances.
   repeated UintRange badgeIdsOverride = 2;
 }
 ```
@@ -185,7 +185,7 @@ This allows collection managers to enable transfers that would otherwise be bloc
 
 Transfers fail at the first validation step that doesn't pass:
 
-1. **Insufficient Balances** - Sender doesn't own the badges
+1. **Insufficient Balances** - Sender doesn't own the tokens
 2. **No Collection Approval** - No valid collection-level approval found
 3. **Blocked by Sender** - Sender's outgoing approvals reject the transfer
 4. **Blocked by Recipient** - Recipient's incoming approvals reject the transfer
@@ -244,7 +244,7 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
                 "approverAddress": "",
                 "version": "0"
             },
-            // Additional options dependent on what is allowed (e.g. allow timestamp override, badge ID override, etc.)
+            // Additional options dependent on what is allowed (e.g. allow timestamp override, token ID override, etc.)
             "precalculationOptions": {
                 "overrideTimestamp": "0",
                 "badgeIdsOverride": []

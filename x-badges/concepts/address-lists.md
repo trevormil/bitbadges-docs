@@ -10,8 +10,8 @@ Address lists are referenced by ID in three approval contexts. IDs can either be
 
 ```protobuf
 message CollectionApproval {
-  string fromListId = 1;        // Who can send badges
-  string toListId = 2;          // Who can receive badges
+  string fromListId = 1;        // Who can send tokens
+  string toListId = 2;          // Who can receive tokens
   string initiatedByListId = 3; // Who can initiate transfers
   // ... other fields
 }

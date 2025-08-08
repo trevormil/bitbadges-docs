@@ -112,7 +112,7 @@ noCustomOwnershipTimes invariant is enabled: ownership times must be full range 
 
 ## Related Concepts
 
--   [Badge Collections](./badge-collections.md)
+-   [Collections](./badge-collections.md)
 -   [Transferability Approvals](./transferability-approvals.md)
 -   [Time Fields](./time-fields.md)
 -   [UintRange](./uintrange.md)
