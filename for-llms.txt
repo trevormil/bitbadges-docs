@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Aug  8 21:23:23 UTC 2025
+Generated on Sat Aug  9 13:21:32 UTC 2025
 
 
 
@@ -4035,8 +4035,6 @@ await BitBadgesApi.getCollections(...);
 await BitBadgesApi.simulateTx(...);
 ```
 
-Note we also have a python auto-generated SDK wrapper for the API without any of the helper functions like the JS SDK has at [https://pypi.org/project/bitbadgespy-sdk/](https://pypi.org/project/bitbadgespy-sdk/)
-
 ## Using BitBadges JS/SDK
 
 Check out the BitBadges JS/SDK for implementing further functionality beyond just API requests / responses, such as manipulating balances, handling approvals, checking permissions, etc.
@@ -6675,12 +6673,6 @@ Full Documentation: [https://bitbadges.github.io/bitbadgesjs/](https://bitbadges
 
 ```
 npm install bitbadgesjs-sdk
-```
-
-Note: We also have a python API SDK wrapper. This only includes the API routes auto-generated and no helper functions like the SDK route.
-
-```
-pip install bitbadgespy-sdk
 ```
 
 This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.
@@ -13256,7 +13248,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 -   [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
 -   [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
--   [Python API / SDK Package](https://pypi.org/project/bitbadgespy-sdk/)
 
 ```bash
 # Using npm
@@ -13267,9 +13258,6 @@ pnpm add bitbadgesjs-sdk
 
 # Using bun
 bun add bitbadgesjs-sdk
-
-# Using pip
-pip install bitbadgespy-sdk
 ```
 
 ### Running a Node
