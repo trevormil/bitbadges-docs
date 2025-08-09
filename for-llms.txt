@@ -14095,7 +14095,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     /** The list of merkle challenges that need valid proofs to be approved. */
     merkleChallenges?: iMerkleChallenge<T>[];
     /** The list of must own tokens that need valid proofs to be approved. */
-    mustOwnBadges?: iMustOwnBadge<T>[];
+    mustOwnBadges?: iMustOwnToken<T>[];
     /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
     predeterminedBalances?: iPredeterminedBalances<T>;
     /** The maximum approved amounts for this approval. */
@@ -14415,7 +14415,7 @@ Token ownership requirements enable gating mechanisms where users must possess s
 ## Interface
 
 ```typescript
-interface MustOwnBadges<T extends NumberType> {
+interface MustOwnTokens<T extends NumberType> {
     collectionId: T;
     amountRange: UintRange<T>; // Min/max amount expected
     ownershipTimes: UintRange<T>[];

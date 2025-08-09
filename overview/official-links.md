@@ -31,7 +31,6 @@ Below is a list of official links for socials and other platforms. Our preferred
 
 -   [NPM API / SDK Package](https://www.npmjs.com/package/bitbadgesjs-sdk) ([Docs](../for-developers/bitbadges-sdk/))
 -   [API Documentation](https://bitbadges.stoplight.io/docs/bitbadges) ([Docs](../for-developers/bitbadges-api/))
--   [Python API / SDK Package](https://pypi.org/project/bitbadgespy-sdk/)
 
 ```bash
 # Using npm
@@ -42,9 +41,6 @@ pnpm add bitbadgesjs-sdk
 
 # Using bun
 bun add bitbadgesjs-sdk
-
-# Using pip
-pip install bitbadgespy-sdk
 ```
 
 ### Running a Node

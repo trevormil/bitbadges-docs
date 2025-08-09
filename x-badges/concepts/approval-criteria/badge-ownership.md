@@ -16,7 +16,7 @@ Token ownership requirements enable gating mechanisms where users must possess s
 ## Interface
 
 ```typescript
-interface MustOwnBadges<T extends NumberType> {
+interface MustOwnTokens<T extends NumberType> {
     collectionId: T;
     amountRange: UintRange<T>; // Min/max amount expected
     ownershipTimes: UintRange<T>[];
