@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Aug  9 13:21:32 UTC 2025
+Generated on Sun Aug 10 18:10:22 UTC 2025
 
 
 
@@ -3572,7 +3572,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🤖 Tokens vs Badges?
 
-BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to tokens throughout this documentation. This means tokens.
+BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to badges throughout this documentation. This means tokens.
 
 
 ## File: ./SUMMARY.md
