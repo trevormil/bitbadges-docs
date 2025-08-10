@@ -51,4 +51,4 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🤖 Tokens vs Badges?
 
-BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to tokens throughout this documentation. This means tokens.
+BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to badges throughout this documentation. This means tokens.
