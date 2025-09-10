@@ -1,3 +1,7 @@
+# Gitbook Documentation Compilation
+Generated on Wed Sep 10 18:44:18 UTC 2025
+
+
 
 ## File: ./.gitbook/assets/README (1).md
 
@@ -3889,126 +3893,134 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
         -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
             -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 -   [📡 Events](x-badges/events.md)
+
 ## 🏗️ Token Standard
 
-* [📚 Overview](x-badges/README.md)
+-   [📚 Overview](x-badges/README.md)
 
-* [🧠 Concepts](x-badges/concepts/README.md)
-  * [Address Lists](x-badges/concepts/address-lists.md)
-  * [Archived Collections](x-badges/concepts/archived-collections.md)
-  * [Collections](x-badges/concepts/badge-collections.md)
-  * [Balances Type](x-badges/concepts/balances-type.md)
-  * [Balance System](x-badges/concepts/balance-system.md)
-  * [Collection Invariants](x-badges/concepts/collection-invariants.md)
-  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
-  * [Custom Data](x-badges/concepts/custom-data.md)
-  * [Default Balances](x-badges/concepts/default-balances.md)
-  * [Manager](x-badges/concepts/manager.md)
-  * [Metadata](x-badges/concepts/metadata.md)
-  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Off-Chain Balances](x-badges/concepts/off-chain-balances.md)
-  * [Standards](x-badges/concepts/standards.md)
-  * [Different Time Fields](x-badges/concepts/time-fields.md)
-  * [Timeline System](x-badges/concepts/timeline-system.md)
-  * [Total Supply](x-badges/concepts/total-supply.md)
-  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
-  * [UintRanges](x-badges/concepts/uintrange.md)
-  * [Valid Token IDs](x-badges/concepts/valid-badge-ids.md)
-  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
-    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
-    * [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
-    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-    * [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
-    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
-    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
-    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-    * [Requires](x-badges/concepts/approval-criteria/requires.md)
-    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
-  * [Permissions](x-badges/concepts/permissions/README.md)
-    * [Overview](x-badges/concepts/permissions/overview.md)
-    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
-    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
-    * [Token ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
-    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
-  * [Protocols](x-badges/concepts/protocols/README.md)
-    * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
-    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
-    * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
-* [📨 Messages](x-badges/messages/README.md)
-  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
-  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
-  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-  * [MsgDecrementStoreValue](x-badges/messages/msg-decrement-store-value.md)
-  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
-  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
-  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
-  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-  * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
-  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
-  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
-  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
-  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
-  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
-  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
-  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
-  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
-  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
-  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
-  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
-  * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
-  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
-  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [🔍 Queries](x-badges/queries/README.md)
-  * [GetAddressList](x-badges/queries/get-address-list.md)
-  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
-  * [GetBalance](x-badges/queries/get-balance.md)
-  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
-  * [GetCollection](x-badges/queries/get-collection.md)
-  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
-  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
-  * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
-  * [Params](x-badges/queries/params.md)
-* [💡 Examples and Snippets](x-badges/examples/README.md)
-  * [Base Collection Details](x-badges/examples/base-collection-details.md)
-  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
-  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
-  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
-  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
-  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
-  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
-  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
-  * [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-  * [Approvals](x-badges/examples/approvals/README.md)
-    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
-    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
-    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
-    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
-    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
-  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
-    * [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
-    * [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
-  * [Permission Examples](x-badges/examples/permissions/README.md)
-    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
-    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
-    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
-  * [Transaction Examples](x-badges/examples/txs/README.md)
-    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
-      * [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
-      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
+-   [🧠 Concepts](x-badges/concepts/README.md)
+    -   [Address Lists](x-badges/concepts/address-lists.md)
+    -   [Archived Collections](x-badges/concepts/archived-collections.md)
+    -   [Collections](x-badges/concepts/badge-collections.md)
+    -   [Balances Type](x-badges/concepts/balances-type.md)
+    -   [Balance System](x-badges/concepts/balance-system.md)
+    -   [Collection Invariants](x-badges/concepts/collection-invariants.md)
+    -   [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+    -   [Custom Data](x-badges/concepts/custom-data.md)
+    -   [Default Balances](x-badges/concepts/default-balances.md)
+    -   [Manager](x-badges/concepts/manager.md)
+    -   [Metadata](x-badges/concepts/metadata.md)
+    -   [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+    -   [Off-Chain Balances](x-badges/concepts/off-chain-balances.md)
+    -   [Standards](x-badges/concepts/standards.md)
+    -   [Different Time Fields](x-badges/concepts/time-fields.md)
+    -   [Timeline System](x-badges/concepts/timeline-system.md)
+    -   [Total Supply](x-badges/concepts/total-supply.md)
+    -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+    -   [UintRanges](x-badges/concepts/uintrange.md)
+    -   [Valid Token IDs](x-badges/concepts/valid-badge-ids.md)
+    -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+        -   [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+        -   [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
+        -   [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+        -   [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+        -   [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
+        -   [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+        -   [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+        -   [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+        -   [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+        -   [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+        -   [Requires](x-badges/concepts/approval-criteria/requires.md)
+        -   [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+        -   [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+        -   [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+    -   [Permissions](x-badges/concepts/permissions/README.md)
+        -   [Overview](x-badges/concepts/permissions/overview.md)
+        -   [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+        -   [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+        -   [Token ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+        -   [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
+    -   [Protocols](x-badges/concepts/protocols/README.md)
+        -   [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
+        -   [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+        -   [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
+-   [📨 Messages](x-badges/messages/README.md)
+    -   [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+    -   [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+    -   [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+    -   [MsgDecrementStoreValue](x-badges/messages/msg-decrement-store-value.md)
+    -   [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+    -   [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+    -   [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+    -   [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+    -   [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
+    -   [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+    -   [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+    -   [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+    -   [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+    -   [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
+    -   [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+    -   [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+    -   [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+    -   [MsgSetManager](x-badges/messages/msg-set-manager.md)
+    -   [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+    -   [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+    -   [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
+    -   [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+    -   [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
+    -   [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+    -   [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+    -   [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+-   [🔍 Queries](x-badges/queries/README.md)
+    -   [GetAddressList](x-badges/queries/get-address-list.md)
+    -   [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+    -   [GetBalance](x-badges/queries/get-balance.md)
+    -   [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+    -   [GetCollection](x-badges/queries/get-collection.md)
+    -   [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+    -   [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+    -   [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
+    -   [Params](x-badges/queries/params.md)
+-   [💡 Examples and Snippets](x-badges/examples/README.md)
+    -   [Base Collection Details](x-badges/examples/base-collection-details.md)
+    -   [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+    -   [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+    -   [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+    -   [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
+    -   [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+    -   [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+    -   [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
+    -   [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+    -   [Approvals](x-badges/examples/approvals/README.md)
+        -   [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+        -   [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+        -   [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+        -   [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+        -   [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+    -   [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
+        -   [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
+        -   [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
+    -   [Permission Examples](x-badges/examples/permissions/README.md)
+        -   [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+        -   [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+        -   [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
+        -   [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
+    -   [Transaction Examples](x-badges/examples/txs/README.md)
+        -   [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
+            -   [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
+            -   [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+        -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+            -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+-   [📡 Events](x-badges/events.md)
 
+-   [📚 Overview](x-gamm/README.md)
 
+-   [Messages](x-gamm/messages/README.md)
+    -   [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
+    -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
+    -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
+    -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+-   [Introduction](x-gamm/introduction.md)
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -24955,6 +24967,497 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/params"
   }
 }
 ```
+
+
+## File: ./x-gamm/README.md
+
+# 📚 Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/gamm` module.
+
+This module was forked from Osmosis's `x/gamm` module with several key modifications to support BitBadges tokens and enhance compatibility.
+
+## Key Differences from Osmosis
+
+### 1. Interface Revamps
+
+-   Removed `smoothWeightChangeParams` and other unused parameters
+-   Updated certain type definitions for better compatibility with our codebase
+-   Streamlined interfaces for improved performance
+-   Remove unneeded logic like stableswap pools and governance proposal handling
+-   Removed future pool governor functionality
+-   Removed pool creation fee requirements
+
+### 2. Badge Token Integration
+
+The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
+
+-   **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to convert badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
+-   **1:1 Minting**: Behind the scenes, mints/burns 1:1 at the conversion rate into an `x/bank` denomination before / after each transfer to/from a pool
+-   **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
+-   **Automatic Conversion**: Handles badge token transfers to/from pools automatically
+
+#### Conversion Example
+
+Here's how the badge token conversion works:
+
+**Badge Token**: `badges:21:utoken`
+
+-   Collection ID: `21`
+-   Base Denom: `utoken`
+-   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
+
+**Conversion Process**:
+
+```
+1 badges:21:utoken = [{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+
+2 badges:21:utoken = [{ amount: 2n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+```
+
+**Visual Flow**:
+
+```
+User wants to add 5 badges:21:utoken to a pool in liquidity
+    ↓
+System reads cosmosCoinWrapperPaths for collection 21
+    ↓
+Finds path with denom "utoken" and balances array (using the wrapper path's balances array)
+    ↓
+Transfers the x/badges balances to the pool address with conversions applied
+    ↓
+Pool receives the x/badges balances and mints the corresponding badges:21:utoken balances which are native x/bank denominations
+    ↓
+The user now has the equivalent of badges:21:utoken balances in the pool (all else in x/gamm is kept the same as standard in Osmosis)
+```
+
+For the reverse, when a pool wants to send tokens to the user, it will burn the native x/bank denominations and transfer the x/badges balances back to the user address.
+
+## Table of Contents
+
+1. [Introduction](./introduction.md) - Overview and key concepts
+2. [Messages](./messages/) - Transaction messages and handlers
+
+## Message Reference
+
+### Core Operations
+
+-   [MsgCreateBalancerPool](./messages/msg-create-balancer-pool.md) - Create new balancer pool
+-   [MsgJoinPool](./messages/msg-join-pool.md) - Join existing pool with liquidity
+-   [MsgSwapExactAmountIn](./messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+-   [MsgExitPool](./messages/msg-exit-pool.md) - Exit pool and receive tokens
+
+## Query Reference
+
+For all GAMM queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
+
+The LCD provides comprehensive query endpoints for:
+
+-   Pool information and statistics
+-   Trading data and spot prices
+-   Module parameters
+-   And more
+
+All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
+
+## Quick Links
+
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/gamm)
+
+## Documentation Style
+
+This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
+
+
+## File: ./x-gamm/introduction.md
+
+# Introduction
+
+The `x/gamm` module implements the Generalized Automated Market Maker (GAMM) functionality for the BitBadges blockchain. This module was forked from Osmosis's `x/gamm` module and provides the core infrastructure for decentralized exchange (DEX) operations, including liquidity pool creation, token swaps, and yield farming.
+
+## Fork from Osmosis
+
+This module maintains compatibility with Osmosis's GAMM functionality while adding specialized support for BitBadges tokens. The key modifications include:
+
+-   **Interface Simplification**: Removed unused parameters and streamlined type definitions
+-   **Badge Token Support**: Integrated native badge token handling with automatic conversion
+-   **Enhanced Compatibility**: Ensures seamless operation with existing DeFi infrastructure
+
+## Key Concepts
+
+### Automated Market Maker (AMM)
+
+An AMM is a decentralized exchange protocol that uses mathematical formulas to determine token prices and facilitate trades without the need for traditional orderbooks.
+
+### Liquidity Pools
+
+Liquidity pools are smart contracts that hold pairs of tokens and allow users to trade between them. Each pool has:
+
+-   **Pool Assets**: The tokens held in the pool
+-   **Pool Shares**: LP tokens representing ownership of the pool
+-   **Swap Fee**: Fee charged on each trade
+-   **Exit Fee**: Fee charged when exiting the pool
+
+### Pool Types
+
+The GAMM module currently supports:
+
+-   **Balancer Pools**: Standard AMM pools with configurable weights
+
+
+## File: ./x-gamm/messages/README.md
+
+# Messages
+
+This directory contains documentation for the core transaction messages supported by the `x/gamm` module.
+
+## Core Operations
+
+### Pool Management
+
+-   [MsgCreateBalancerPool](./msg-create-balancer-pool.md) - Create new balancer pool with initial liquidity
+-   [MsgJoinPool](./msg-join-pool.md) - Join existing pool with liquidity
+-   [MsgExitPool](./msg-exit-pool.md) - Exit pool and receive underlying tokens
+
+### Trading
+
+-   [MsgSwapExactAmountIn](./msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+
+## Core Message List
+
+The GAMM module supports 4 core transaction messages:
+
+1. **MsgCreateBalancerPool** - Create new balancer pool
+2. **MsgJoinPool** - Join pool with proportional tokens
+3. **MsgSwapExactAmountIn** - Swap exact input for minimum output
+4. **MsgExitPool** - Exit pool and receive underlying tokens
+
+
+## File: ./x-gamm/messages/msg-create-balancer-pool.md
+
+# MsgCreateBalancerPool
+
+Creates a new balancer pool.
+
+The poolId will be assigned at execution time and is obtainable in the transaction response. The pool creator must provide initial liquidity and set pool parameters.
+
+## Pool Creation Properties
+
+The creation transaction for a balancer pool is unique in several ways:
+
+-   Initial liquidity must be provided by the creator
+-   Pool parameters like swap fee and exit fee are set
+-   Token weights are configured for the pool assets
+-   A dedicated module account is created for the pool
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgCreatePool
+message MsgCreateBalancerPool {
+  option (amino.name) = "gamm/create-balancer-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+
+  gamm.poolmodels.balancer.PoolParams pool_params = 2
+      [ (gogoproto.moretags) = "yaml:\"pool_params\"" ];
+
+  repeated gamm.poolmodels.balancer.PoolAsset pool_assets = 3
+      [ (gogoproto.nullable) = false ];
+}
+
+// Returns the poolID
+message MsgCreateBalancerPoolResponse {
+  uint64 pool_id = 1 [ (gogoproto.customname) = "PoolID" ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_params": {
+        "swap_fee": "0.003", // Note: Depending on serialization format this may be something like "300000000" for compatibility with sdk.Int format
+        "exit_fee": "0.000"
+    },
+    "pool_assets": [
+        {
+            "token": {
+                "denom": "ubadge",
+                "amount": "1000000"
+            },
+            "weight": "50"
+        },
+        {
+            "token": {
+                "denom": "badges:21:utoken",
+                "amount": "5000000"
+            },
+            "weight": "50"
+        }
+    ]
+}
+```
+
+
+## File: ./x-gamm/messages/msg-exit-pool.md
+
+# MsgExitPool
+
+Exits an existing pool by burning LP tokens and receiving underlying tokens.
+
+Users can exit a pool by burning their LP tokens. In return, they receive the underlying pool tokens proportional to their share.
+
+## Exit Pool Properties
+
+When exiting a pool:
+
+-   LP tokens are burned from the user
+-   Underlying tokens are returned proportionally
+-   Pool liquidity decreases
+-   Exit fees may be applied
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgExitPool
+message MsgExitPool {
+  option (amino.name) = "gamm/exit-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
+  string share_in_amount = 3 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"share_in_amount\"",
+    (gogoproto.nullable) = false
+  ];
+
+  repeated cosmos.base.v1beta1.Coin token_out_mins = 4 [
+    (gogoproto.moretags) = "yaml:\"token_out_min_amounts\"",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message MsgExitPoolResponse {
+  repeated cosmos.base.v1beta1.Coin token_out = 1 [
+    (gogoproto.moretags) = "yaml:\"token_out\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_id": "1",
+    "share_in_amount": "100000",
+    "token_out_mins": [
+        {
+            "denom": "uatom",
+            "amount": "10000"
+        },
+        {
+            "denom": "uosmo",
+            "amount": "50000"
+        }
+    ]
+}
+```
+
+## Token Proportions
+
+The tokens received will be in the same proportion as the current pool composition. The user cannot specify which tokens to receive.
+
+## Slippage Protection
+
+The `token_out_mins` field provides slippage protection by setting minimum amounts for each token that must be received from the exit operation.
+
+## Exit Fees
+
+Some pools may charge exit fees, which are deducted from the tokens returned to the user.
+
+## LP Token Burning
+
+Upon successful exit, LP tokens are burned from the user's address, reducing their ownership stake in the pool.
+
+
+## File: ./x-gamm/messages/msg-join-pool.md
+
+# MsgJoinPool
+
+Joins an existing pool by providing liquidity. Users can join a pool by providing tokens proportional to the current pool composition. In return, they receive LP tokens representing their share of the pool.
+
+## Join Pool Properties
+
+When joining a pool:
+
+-   Tokens must be provided in the correct proportions
+-   LP tokens are minted to the user
+-   Pool liquidity increases
+-   User becomes eligible for trading fees
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgJoinPool
+// This is really MsgJoinPoolNoSwap
+message MsgJoinPool {
+  option (amino.name) = "gamm/join-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
+  string share_out_amount = 3 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"pool_amount_out\"",
+    (gogoproto.nullable) = false
+  ];
+  repeated cosmos.base.v1beta1.Coin token_in_maxs = 4 [
+    (gogoproto.moretags) = "yaml:\"token_in_max_amounts\"",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message MsgJoinPoolResponse {
+  string share_out_amount = 1 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"share_out_amount\"",
+    (gogoproto.nullable) = false
+  ];
+  repeated cosmos.base.v1beta1.Coin token_in = 2 [
+    (gogoproto.moretags) = "yaml:\"token_out\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_id": "1",
+    "share_out_amount": "1000000",
+    "token_in_maxs": [
+        {
+            "denom": "uatom",
+            "amount": "100000"
+        },
+        {
+            "denom": "uosmo",
+            "amount": "500000"
+        }
+    ]
+}
+```
+
+## Token Proportions
+
+The tokens provided must be in the same proportion as the current pool composition. If not, the transaction will fail or tokens will be returned.
+
+## Slippage Protection
+
+The `token_in_maxs` field provides slippage protection by setting maximum amounts for each token that can be used in the join operation.
+
+## LP Token Minting
+
+Upon successful join, LP tokens are minted to the user's address. These tokens represent ownership of the pool and can be used for:
+
+-   Earning trading fees
+-   Governance participation
+-   Staking in yield farming programs
+
+
+## File: ./x-gamm/messages/msg-swap-exact-amount-in.md
+
+# MsgSwapExactAmountIn
+
+Swaps an exact amount of tokens in for a minimum amount of tokens out.
+
+This message allows users to swap a specific amount of input tokens for output tokens, with slippage protection through the minimum output amount.
+
+## Swap Properties
+
+When executing a swap:
+
+-   Exact input amount is specified
+-   Minimum output amount provides slippage protection
+-   Swap fee is deducted from the input
+-   Price impact is calculated based on pool liquidity
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgSwapExactAmountIn
+message MsgSwapExactAmountIn {
+  option (amino.name) = "gamm/swap-exact-amount-in";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  repeated poolmanager.v1beta1.SwapAmountInRoute routes = 2
+      [ (gogoproto.nullable) = false ];
+  cosmos.base.v1beta1.Coin token_in = 3 [
+    (gogoproto.moretags) = "yaml:\"token_in\"",
+    (gogoproto.nullable) = false
+  ];
+  string token_out_min_amount = 4 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"token_out_min_amount\"",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message MsgSwapExactAmountInResponse {
+  string token_out_amount = 1 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"token_out_amount\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "routes": [
+        {
+            "pool_id": "1",
+            "token_out_denom": "uosmo"
+        }
+    ],
+    "token_in": {
+        "denom": "uatom",
+        "amount": "1000000"
+    },
+    "token_out_min_amount": "5000000"
+}
+```
+
+## Multi-Hop Swaps
+
+The `routes` field allows for multi-hop swaps through multiple pools. The swap will execute through each pool in sequence.
+
+## Slippage Protection
+
+The `token_out_min_amount` field ensures that the user receives at least the specified amount of output tokens, protecting against price slippage.
+
+## Swap Fees
+
+Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
 
 
 ## File: ./.github/workflows/for--llms.yml
