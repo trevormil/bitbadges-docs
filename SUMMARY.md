@@ -320,9 +320,8 @@
 
 -   [📚 Overview](x-gamm/README.md)
 
--   [Messages](x-gamm/messages/README.md)
+-   [📨 Messages](x-gamm/messages/README.md)
     -   [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
     -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
     -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
     -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
--   [Introduction](x-gamm/introduction.md)
