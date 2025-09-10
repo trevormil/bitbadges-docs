@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Sep 10 18:49:56 UTC 2025
+Generated on Wed Sep 10 18:51:20 UTC 2025
 
 
 
@@ -3899,12 +3899,11 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 -   [📚 Overview](x-gamm/README.md)
 
--   [Messages](x-gamm/messages/README.md)
+-   [📨 Messages](x-gamm/messages/README.md)
     -   [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
     -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
     -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
     -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
--   [Introduction](x-gamm/introduction.md)
 
 
 ## File: ./badge-standard/examples/approvals/README.md
