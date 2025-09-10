@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Aug 19 13:50:29 UTC 2025
+Generated on Wed Sep 10 18:38:14 UTC 2025
 
 
 
@@ -3893,6 +3893,126 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
         -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
             -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 -   [📡 Events](x-badges/events.md)
+## 🏗️ Token Standard
+
+* [📚 Overview](x-badges/README.md)
+
+* [🧠 Concepts](x-badges/concepts/README.md)
+  * [Address Lists](x-badges/concepts/address-lists.md)
+  * [Archived Collections](x-badges/concepts/archived-collections.md)
+  * [Collections](x-badges/concepts/badge-collections.md)
+  * [Balances Type](x-badges/concepts/balances-type.md)
+  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Collection Invariants](x-badges/concepts/collection-invariants.md)
+  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+  * [Custom Data](x-badges/concepts/custom-data.md)
+  * [Default Balances](x-badges/concepts/default-balances.md)
+  * [Manager](x-badges/concepts/manager.md)
+  * [Metadata](x-badges/concepts/metadata.md)
+  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+  * [Off-Chain Balances](x-badges/concepts/off-chain-balances.md)
+  * [Standards](x-badges/concepts/standards.md)
+  * [Different Time Fields](x-badges/concepts/time-fields.md)
+  * [Timeline System](x-badges/concepts/timeline-system.md)
+  * [Total Supply](x-badges/concepts/total-supply.md)
+  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+  * [UintRanges](x-badges/concepts/uintrange.md)
+  * [Valid Token IDs](x-badges/concepts/valid-badge-ids.md)
+  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
+    * [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+    * [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
+    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+    * [Requires](x-badges/concepts/approval-criteria/requires.md)
+    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+  * [Permissions](x-badges/concepts/permissions/README.md)
+    * [Overview](x-badges/concepts/permissions/overview.md)
+    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+    * [Token ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
+  * [Protocols](x-badges/concepts/protocols/README.md)
+    * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
+    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+    * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
+* [📨 Messages](x-badges/messages/README.md)
+  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+  * [MsgDecrementStoreValue](x-badges/messages/msg-decrement-store-value.md)
+  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+  * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
+  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
+  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
+  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
+  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+  * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
+  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+* [🔍 Queries](x-badges/queries/README.md)
+  * [GetAddressList](x-badges/queries/get-address-list.md)
+  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+  * [GetBalance](x-badges/queries/get-balance.md)
+  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+  * [GetCollection](x-badges/queries/get-collection.md)
+  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+  * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
+  * [Params](x-badges/queries/params.md)
+* [💡 Examples and Snippets](x-badges/examples/README.md)
+  * [Base Collection Details](x-badges/examples/base-collection-details.md)
+  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
+  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
+  * [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+  * [Approvals](x-badges/examples/approvals/README.md)
+    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
+    * [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
+    * [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
+  * [Permission Examples](x-badges/examples/permissions/README.md)
+    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
+    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
+  * [Transaction Examples](x-badges/examples/txs/README.md)
+    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
+      * [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
+      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+* [📡 Events](x-badges/events.md)
+
+
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -13967,7 +14087,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     /** The list of merkle challenges that need valid proofs to be approved. */
     merkleChallenges?: iMerkleChallenge<T>[];
     /** The list of must own tokens that need valid proofs to be approved. */
-    mustOwnBadges?: iMustOwnToken<T>[];
+    mustOwnBadges?: iMustOwnBadge<T>[];
     /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
     predeterminedBalances?: iPredeterminedBalances<T>;
     /** The maximum approved amounts for this approval. */
@@ -14291,10 +14411,11 @@ interface MustOwnTokens<T extends NumberType> {
     collectionId: T;
     amountRange: UintRange<T>; // Min/max amount expected
     ownershipTimes: UintRange<T>[];
-    badgeIds: UintRange<T>[];
+    tokenIds: UintRange<T>[];
 
     overrideWithCurrentTime: boolean; // Use current block time. Overrides ownershipTimes with [{ start: currentTime, end: currentTime }]
-    mustSatisfyForAllAssets: boolean; // All vs one token requirement
+    mustSatisfyForAllAssets: boolean; // All vs one requirement
+    ownershipCheckParty: string; // Which party to check ownership for: "initiator", "sender", "recipient" (default: "initiator" if empty)
 }
 ```
 
@@ -14339,6 +14460,17 @@ interface MustOwnTokens<T extends NumberType> {
 -   **True**: User must own ALL specified token combinations
 -   **False**: User must own AT LEAST ONE of the specified token combinations
 
+### ownershipCheckParty
+
+-   **Type**: `string`
+-   **Description**: Specifies which party of the transfer to check ownership for
+-   **Options**:
+    -   `"initiator"` (default): Check ownership for the address that initiated the transfer
+    -   `"sender"`: Check ownership for the address sending the badges
+    -   `"recipient"`: Check ownership for the address receiving the badges
+-   **Default**: `"initiator"` (if empty or not specified)
+-   **Example**: `"sender"` to require the sender to own specific badges before allowing the transfer
+
 ## Example
 
 Require users to own specific tokens to access premium features or exclusive transfers.
@@ -14352,7 +14484,55 @@ Require users to own specific tokens to access premium features or exclusive tra
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "badgeIds": [{ "start": "1", "end": "1" }],
             "overrideWithCurrentTime": false,
-            "mustSatisfyForAllAssets": true
+            "mustSatisfyForAllAssets": true,
+            "ownershipCheckParty": "initiator"
+        }
+    ]
+}
+```
+
+### Party-Specific Examples
+
+#### Check Initiator Ownership (Default)
+
+```json
+{
+    "mustOwnBadges": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "badgeIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "initiator"
+        }
+    ]
+}
+```
+
+#### Check Sender Ownership
+
+```json
+{
+    "mustOwnBadges": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "badgeIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "sender"
+        }
+    ]
+}
+```
+
+#### Check Recipient Ownership
+
+```json
+{
+    "mustOwnBadges": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "badgeIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "recipient"
         }
     ]
 }
@@ -15961,6 +16141,10 @@ message CollectionInvariants {
   // If true, all ownership times must be full ranges [{ start: 1, end: GoMaxUInt64 }].
   // This prevents time-based restrictions on token ownership.
   bool noCustomOwnershipTimes = 1;
+
+  // Maximum supply per token ID. If set, no balance can exceed this amount.
+  // This prevents any single token ID from having more than the specified supply.
+  string maxSupplyPerId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
 
@@ -16030,6 +16214,83 @@ Any other ownership time configuration will cause validation to fail.
 }
 ```
 
+### maxSupplyPerId
+
+When set to a non-zero value, this invariant enforces that no balance amount can exceed the specified maximum supply per token ID. This prevents supply inflation and ensures that the total supply of any individual token ID remains within the defined limits.
+
+#### What it affects:
+
+1. **Total Address Balances**: When setting balances for the "Total" address (which represents the total supply across all users), no individual balance amount can exceed the maximum
+2. **Supply Control**: Prevents any single token ID from having more than the specified supply amount
+3. **Collection Integrity**: Ensures the collection maintains its intended supply constraints
+
+#### Validation Logic:
+
+The invariant checks that when setting "Total" address balances, all balance amounts must be less than or equal to the specified `maxSupplyPerId`:
+
+```go
+if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
+    return error("maxSupplyPerId invariant violation")
+}
+```
+
+#### Use Cases:
+
+-   **Supply Caps**: Enforce maximum supply limits for individual token IDs
+-   **Anti-Inflation**: Prevent supply manipulation through balance operations
+-   **Compliance**: Meet regulatory requirements for maximum token supply
+-   **Economic Control**: Maintain scarcity and value of specific token IDs
+
+#### Example:
+
+```json
+// ✅ Valid - Balance amount within limit
+{
+  "invariants": {
+    "maxSupplyPerId": "1000"
+  },
+  "balances": [
+    {
+      "amount": "500",
+      "badgeIds": [{ "start": "1", "end": "1" }]
+    }
+  ]
+}
+
+// ❌ Invalid - Balance amount exceeds limit
+{
+  "invariants": {
+    "maxSupplyPerId": "1000"
+  },
+  "balances": [
+    {
+      "amount": "1500",  // Exceeds maxSupplyPerId of 1000
+      "badgeIds": [{ "start": "1", "end": "1" }]
+    }
+  ]
+}
+
+// ✅ Valid - Non-Total address not affected
+{
+  "invariants": {
+    "maxSupplyPerId": "1000"
+  },
+  "balances": [
+    {
+      "amount": "2000",  // Allowed for non-Total addresses
+      "badgeIds": [{ "start": "1", "end": "1" }]
+    }
+  ]
+}
+```
+
+#### Important Notes:
+
+-   **Only affects "Total" address**: The invariant only applies when setting balances for the "Total" address
+-   **Zero value ignored**: If `maxSupplyPerId` is set to 0, the invariant is not enforced
+-   **Immutable**: Once set during collection creation, this value cannot be changed
+-   **Per-token ID basis**: The limit applies to each individual token ID, not the total collection supply
+
 ## Setting Invariants
 
 Invariants can only be set during collection creation via `MsgCreateCollection` or `MsgUniversalUpdateCollection` (when creating a new collection with CollectionId = 0).
@@ -16043,19 +16304,34 @@ message MsgCreateCollection {
 
 ## Validation Points
 
-The `noCustomOwnershipTimes` invariant is validated at several points:
+The invariants are validated at several points:
+
+### noCustomOwnershipTimes
 
 1. **Collection Creation**: When creating a new collection
 2. **Collection Updates**: When updating collection approvals
 3. **Transfer Execution**: When processing token transfers
 4. **Approval Updates**: When updating user or collection approvals
 
+### maxSupplyPerId
+
+1. **Balance Storage**: When setting user balances in the store (specifically for "Total" address)
+2. **Supply Validation**: Before any balance amount is stored that would exceed the maximum
+
 ## Error Messages
 
-When the invariant is violated, you'll receive error messages like:
+When invariants are violated, you'll receive error messages like:
+
+### noCustomOwnershipTimes
 
 ```
 noCustomOwnershipTimes invariant is enabled: ownership times must be full range [{ start: 1, end: 18446744073709551615 }]
+```
+
+### maxSupplyPerId
+
+```
+maxSupplyPerId invariant violation: balance amount 1500 exceeds maximum supply per ID 1000
 ```
 
 ## Related Concepts
@@ -16094,6 +16370,7 @@ message CosmosCoinWrapperPathAddObject {
   repeated Balance balances = 2;
   string symbol = 3;
   repeated DenomUnit denomUnits = 4;
+  bool allowOverrideWithAnyValidToken = 5;
 }
 
 message DenomUnit {
@@ -16108,6 +16385,7 @@ message DenomUnit {
 ### Denom
 
 -   **Base denomination** - The fundamental unit name for the wrapped coin. For the full Cosmos denomination, it will be "badges:collectionId:denom"
+-   **{id} placeholder support** - You can use `{id}` in the denom to dynamically replace it with the actual badge ID during transfers if allowOverrideWithAnyValidToken is true
 
 ### Symbol
 
@@ -16138,6 +16416,75 @@ Multiple denomination units allow for different display formats:
 -   **Only one default** - Only one unit can be marked as default display. If none are marked as default, the base level with 0 decimals is shown by default.
 -   **User experience** - Determines what users see first
 
+### Allow Override With Any Valid Token
+
+-   **Dynamic badge ID handling** - When `true`, allows the wrapper to accept any SINGLE valid badge ID from the collection's `validBadgeIds` range
+-   **Override conversion balances** - Temporarily overrides the `balances` field's badge ID ranges with the actual token ID being transferred
+-   **Validation required** - The transferred token ID must be within the collection's valid badge ID range
+-   **Use case** - Useful when you want a single wrapper path to handle multiple badge IDs dynamically
+
+#### Example with {id} Placeholder
+
+```json
+{
+    "denom": "utoken{id}",
+    "symbol": "TOKEN:{id}",
+    "balances": [
+        {
+            "amount": "1",
+            "badgeIds": [{ "start": "1", "end": "1" }],
+            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
+        }
+    ],
+    "denomUnits": [
+        {
+            "decimals": "6",
+            "symbol": "TOKEN",
+            "isDefaultDisplay": true
+        }
+    ],
+    "allowOverrideWithAnyValidToken": true
+}
+```
+
+When transferring badge ID 5, the final denomination becomes `utoken5`.
+
+### Allow Override With Any Valid Token
+
+This feature provides flexibility in handling different badge IDs within a single wrapper path.
+
+#### How It Works
+
+1. **Validation Check** - Verifies the transferred token ID is within the collection's `validBadgeIds` range
+2. **Dynamic Override** - Temporarily replaces the wrapper's badge ID ranges with the actual token ID being transferred
+3. **Conversion** - Uses the overridden badge ID for the conversion calculation
+
+#### Example with Override Enabled
+
+```json
+{
+    "denom": "utoken",
+    "symbol": "TOKEN",
+    "balances": [
+        {
+            "amount": "1",
+            "badgeIds": [{ "start": "1", "end": "1" }], // These technically don't matter since we can override the badge IDs during conversion
+            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
+        }
+    ],
+    "denomUnits": [
+        {
+            "decimals": "6",
+            "symbol": "TOKEN",
+            "isDefaultDisplay": true
+        }
+    ],
+    "allowOverrideWithAnyValidToken": true
+}
+```
+
+This wrapper can now handle any badge ID from 1-100 (assuming the collection's `validBadgeIds` includes that range), dynamically overriding the badge ID during conversion.
+
 ## Usage Examples
 
 ### Basic Wrapper Path
@@ -16159,7 +16506,8 @@ Multiple denomination units allow for different display formats:
             "symbol": "TOKEN1",
             "isDefaultDisplay": true
         }
-    ]
+    ],
+    "allowOverrideWithAnyValidToken": false
 }
 ```
 
@@ -16187,7 +16535,8 @@ Multiple denomination units allow for different display formats:
             "symbol": "TOKEN",
             "isDefaultDisplay": true
         }
-    ]
+    ],
+    "allowOverrideWithAnyValidToken": false
 }
 ```
 
@@ -16232,16 +16581,18 @@ With BitBadges' existing relayer infrastructure and IBC-compatible wrapped denom
 ### Token to Coin (Wrapping)
 
 1. User transfers tokens to the wrapper address
-2. System burns the tokens from user's balance
-3. System mints equivalent native coins
-4. Coins are credited to the user's account
+2. System processes the denom (replaces {id} if present, validates override if enabled)
+3. System burns the tokens from user's balance
+4. System mints equivalent native coins
+5. Coins are credited to the user's account
 
 ### Coin to Token (Unwrapping)
 
 1. User transfers coins to the wrapper address
-2. System burns the native coins
-3. System mints equivalent tokens
-4. Tokens are credited to the user's balance
+2. System processes the denom (replaces {id} if present, validates override if enabled)
+3. System burns the native coins
+4. System mints equivalent tokens
+5. Tokens are credited to the user's balance
 
 Cosmos Wrapper Paths provide seamless interoperability between BitBadges and the broader Cosmos ecosystem while maintaining the unique properties of both token and coin systems.
 
@@ -20119,6 +20470,10 @@ const wrapperAddress = generateAliasAddressForDenom(denom);
 console.log('Wrapper Address:', wrapperAddress);
 ```
 
+### Dynamic Address Generation for {id} Placeholders
+
+The {id} is actually kept for the hash preimage, so we always have one address per wrapper path regardless of the badge ID.
+
 ## Step 3: Set Up Approvals for Wrapping/Unwrapping
 
 The transfers still operate under the approval / transferability system. We will use the following examples from our examples section, but you can customize as you see fit. Note the need to override the wrapper address's approvals where necessary because the wrapper address is uncontrollable.
@@ -22155,7 +22510,8 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
-        "noCustomOwnershipTimes": false
+        "noCustomOwnershipTimes": false,
+        "maxSupplyPerId": "0"
     }
 }
 ```
@@ -23787,7 +24143,8 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
-        "noCustomOwnershipTimes": false
+        "noCustomOwnershipTimes": false,
+        "maxSupplyPerId": "0"
     }
 }
 ```
@@ -23845,7 +24202,8 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 ```json
 {
     "invariants": {
-        "noCustomOwnershipTimes": true
+        "noCustomOwnershipTimes": true,
+        "maxSupplyPerId": "0"
     }
 }
 ```
@@ -23961,7 +24319,8 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
-        "noCustomOwnershipTimes": false
+        "noCustomOwnershipTimes": false,
+        "maxSupplyPerId": "0"
     }
 }
 ```
