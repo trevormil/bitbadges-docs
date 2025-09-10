@@ -11,7 +11,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     /** The list of merkle challenges that need valid proofs to be approved. */
     merkleChallenges?: iMerkleChallenge<T>[];
     /** The list of must own tokens that need valid proofs to be approved. */
-    mustOwnBadges?: iMustOwnToken<T>[];
+    mustOwnBadges?: iMustOwnBadge<T>[];
     /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
     predeterminedBalances?: iPredeterminedBalances<T>;
     /** The maximum approved amounts for this approval. */
