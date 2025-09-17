@@ -1,22 +1,24 @@
-**Disclaimer:**  
-This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
-
 # MsgSetCustomData
+
+**Disclaimer:**\
+This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+## MsgSetCustomData
 
 Sets the custom data timeline and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
 
-## Overview
+### Overview
 
 This message allows you to:
 
--   Set custom data timeline for the collection
--   Configure permissions to update the custom data in the future
+* Set custom data timeline for the collection
+* Configure permissions to update the custom data in the future
 
-## Authorization & Permissions
+### Authorization & Permissions
 
 Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data timeline according to the collection's current permission settings.
 
-## Proto Definition
+### Proto Definition
 
 ```protobuf
 message MsgSetCustomData {
@@ -42,14 +44,14 @@ message MsgSetCustomDataResponse {
 }
 ```
 
-## Usage Example
+### Usage Example
 
 ```bash
 # CLI command
 bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 ```
 
-### JSON Example
+#### JSON Example
 
 ```json
 {
@@ -71,7 +73,7 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 }
 ```
 
-## Related Messages
+### Related Messages
 
--   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
--   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+* [MsgUpdateCollection](broken-reference) - Legacy update message

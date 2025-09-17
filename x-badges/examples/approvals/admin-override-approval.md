@@ -6,10 +6,10 @@ This example demonstrates how to create an approval that allows a specific addre
 
 An admin override approval grants a specific address the power to:
 
--   Transfer tokens from any address to any address
--   Override user-level incoming and outgoing approvals
--   Bypass normal approval restrictions
--   Maintain complete administrative control
+* Transfer tokens from any address to any address
+* Override user-level incoming and outgoing approvals
+* Bypass normal approval restrictions
+* Maintain complete administrative control
 
 ⚠️ **Warning**: This approval type grants significant power and should be used carefully with trusted addresses only.
 
@@ -39,6 +39,6 @@ const approveSelfForcefully = (address: string) => {
 
 ## Related Concepts
 
--   [Transferability / Approvals](../../concepts/transferability-approvals.md)
--   [Address Lists](../../concepts/address-lists.md)
--   [Approval Criteria](../../concepts/approval-criteria/)
+* [Transferability / Approvals](../../concepts/transferability-approvals.md)
+* [Address Lists](../../concepts/address-lists.md)
+* [Approval Criteria](broken-reference)

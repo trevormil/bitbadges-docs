@@ -120,11 +120,11 @@ This example demonstrates how to update user outgoing approvals to control what 
 
 ## Related Examples
 
--   [Building User Approvals](../../building-user-approvals.md) - User approval patterns
--   [Empty Approval Criteria](../../empty-approval-criteria.md) - Template for unrestricted approvals
+* [Building User Approvals](../../building-user-approvals.md) - User approval patterns
+* [Empty Approval Criteria](../../empty-approval-criteria.md) - Template for unrestricted approvals
 
 ## Related Concepts
 
--   [Transferability / Approvals](../../../concepts/transferability-approvals.md) - Approval system overview
--   [Approval Criteria](../../../concepts/approval-criteria/README.md) - Criteria configuration
--   [Tallied Approval Amounts](../../../concepts/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
+* [Transferability / Approvals](../../../concepts/transferability-approvals.md) - Approval system overview
+* [Approval Criteria](broken-reference) - Criteria configuration
+* [Tallied Approval Amounts](../../../concepts/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
