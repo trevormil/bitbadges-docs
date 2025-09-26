@@ -195,8 +195,6 @@
     * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
     * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
 * [🧪 Testnet Mode](overview/testnet-mode.md)
-* [🧠 Other Concepts](for-developers/core-concepts/README.md)
-  * [Maps / Protocols](for-developers/core-concepts/maps.md)
 
 ## 🏗️ Token Standard
 
