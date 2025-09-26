@@ -27,9 +27,9 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 
 ### Collection Management
 
-* [MsgCreateCollection](broken-reference) - Create new collection
-* [MsgUpdateCollection](broken-reference) - Update existing collection
-* [MsgUniversalUpdateCollection](broken-reference) - Universal create/update interface with invariants support
+* [MsgCreateCollection](messages/msg-create-collection.md) - Create new collection
+* [MsgUpdateCollection](messages/msg-update-collection.md) - Update existing collection
+* [MsgUniversalUpdateCollection](messages/msg-universal-update-collection.md) - Universal create/update interface with invariants support
 * [MsgDeleteCollection](messages/msg-delete-collection.md) - Delete collection
 
 ### Token Transfers

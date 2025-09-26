@@ -16,12 +16,12 @@ This directory contains detailed explanations of the core concepts and data stru
 * [**Metadata**](metadata.md) - Rich, dynamic content for collections and tokens with timeline support
 * [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
 * [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
-* [**Approval Criteria**](broken-reference) - Detailed approval criteria and conditions for token transfers
+* [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
 * [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 * [**Permissions**](permissions/) - Granular control over collection management operations
 * [**Standards**](standards.md) - Generic framework for defining collection behavior and interpretation guidelines
 * [**Time Fields**](time-fields.md) - Understanding the different time-related fields used throughout BitBadges
 * [**Custom Data**](custom-data.md) - Generic string fields for storing arbitrary application-specific data
-* [**Cosmos Wrapper Paths**](broken-reference) - 1:1 wrapping between tokens and native Cosmos SDK coins for IBC compatibility
-* [**Collection Invariants**](broken-reference) - Immutable rules that enforce fundamental constraints on collection behavior
+* [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - 1:1 wrapping between tokens and native Cosmos SDK coins for IBC compatibility
+* [**Collection Invariants**](collection-invariants.md) - Immutable rules that enforce fundamental constraints on collection behavior
 * [**Protocols**](protocols/) - Standardized implementation patterns for collections
