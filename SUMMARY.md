@@ -34,7 +34,7 @@
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [🪙 Grants Program](for-developers/grants-program.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
-  * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
+* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
   * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
     * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
