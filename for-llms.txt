@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Oct  4 13:09:34 UTC 2025
+Generated on Sat Oct  4 13:15:28 UTC 2025
 
 
 
@@ -12905,10 +12905,9 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 * A full ready-made tokenization suite with our feature set can really accelerate teams building in Cosmos
 * "Kill multiple birds with one stone" - We envision that many use cases can actually be abstracted as tokens behind the scenes even if not directly a tokenization use case. For example, simple payments from a store can be abstracted as an NFT purchase + use the NFT as a tokenized, verifiable receipt.
 
-4. **ATOM Utility**: ATOM is to be featured as a primary currency in the BitBadges app. This will help drive the adoption of ATOM, including with utility not currently available to ATOM like ATOM subscriptions, ATOM quests, and more.
-5. **Cosmos Hub Routing**: The Cosmos Hub itself also experiences a lot of second-hand usage from BitBadges succeeding. If BitBadges can carry out its vision of being the universal tokenization standard for Cosmos and beyond with IBC, the Hub (as the primary router for IBC) will get plenty of usage via BitBadges.
-6. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
-7. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
+4. **IBC Currencies + Routing**: Our token standard is built to support any IBC currency and be IBC interopoerable where needed. Through this, the entire Cosmos ecosystem will benefit from increased usage of our standard.
+5. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
+6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
 
 
 ## File: ./token-standard/examples/approvals/README.md
