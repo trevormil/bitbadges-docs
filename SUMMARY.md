@@ -196,7 +196,6 @@
   * [Manager](x-badges/concepts/manager.md)
   * [Metadata](x-badges/concepts/metadata.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Off-Chain Balances](x-badges/concepts/off-chain-balances.md)
   * [Standards](x-badges/concepts/standards.md)
   * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Timeline System](x-badges/concepts/timeline-system.md)

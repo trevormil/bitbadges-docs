@@ -7,7 +7,7 @@ This directory contains detailed explanations of the core concepts and data stru
 * [**Collections**](badge-collections.md) - The primary entity that defines groups of related tokens
 * [**Balance System**](balance-system.md) - How token ownership is tracked with precise control over quantities and time
 * [**Balances Type**](balances-type.md) - How token ownership and transfers are managed within collections
-* [**Off-Chain Balances**](off-chain-balances.md) - Legacy off-chain balance types (deprecated - use Standard balances)
+* [**Off-Chain Balances**](broken-reference) - Legacy off-chain balance types (deprecated - use Standard balances)
 * [**Default Balances**](default-balances.md) - Predefined balance stores assigned to new users upon genesis creation
 * [**Valid Token IDs**](valid-badge-ids.md) - Defining the range of token identifiers that can exist within a collection
 * [**Total Supply**](total-supply.md) - Maximum number of tokens that can exist for each token ID
