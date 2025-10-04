@@ -151,6 +151,7 @@
     * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
     * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
+  * [BitBadges Explorer](https://explorer.bitbadges.io/)
 * [🖱️ Sign In with BitBadges](for-developers/sign-in-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Already Have Web3 Auth?](for-developers/sign-in-with-bitbadges/already-have-web3-auth.md)
