@@ -3,7 +3,6 @@
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [📜 What is BitBadges?](overview/what-is-bitbadges.md)
 * [🪙 BADGE](overview/badge.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
@@ -181,6 +180,7 @@
 ## 🏗️ Token Standard
 
 * [📚 Overview](x-badges/README.md)
+* [📜 BitBadges Standard A-Z](token-standard/what-is-bitbadges.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
 * [💻 Multi-Chain Accounts](overview/learn/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
