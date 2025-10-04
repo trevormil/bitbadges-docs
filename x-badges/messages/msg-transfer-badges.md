@@ -68,10 +68,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
--   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
--   **Behavior**: Automatically finds and uses the first matching approval
--   **Use case**: Simple transfers without custom logic or side effects
--   **No versioning required**: The system handles approval selection automatically
+* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+* **Behavior**: Automatically finds and uses the first matching approval
+* **Use case**: Simple transfers without custom logic or side effects
+* **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -118,17 +118,17 @@ The versioning control ensures that before submitting, the user knows the exact 
 
 ### Control Flags
 
--   `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
--   `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
--   `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
+* `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
+* `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
+* `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
 
 **Setting these to `true` is recommended when using prioritized approvals to ensure deterministic behavior.**
 
 ### Related Documentation
 
--   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
--   [Approval Criteria](../concepts/approval-criteria/README.md) - Understanding approval complexity
--   [Coin Transfers](../concepts/approval-criteria/usdbadge-transfers.md) - Side effect examples
+* [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
+* [Approval Criteria](broken-reference) - Understanding approval complexity
+* [Coin Transfers](../concepts/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
 
@@ -176,8 +176,8 @@ PRE. CALCULATE BALANCES (if needed)
 
 Collection approvals can override user-level approvals:
 
--   **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
--   **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
+* **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
+* **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
 
 This allows collection managers to enable transfers that would otherwise be blocked by user settings.
 
@@ -194,17 +194,17 @@ Transfers fail at the first validation step that doesn't pass:
 
 ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
--   **`nonce`**: The unique identifier that was signed
--   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+* **`nonce`**: The unique identifier that was signed
+* **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 
 ### Related Documentation
 
--   [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
--   [Collection Approvals](../concepts/approval-criteria/README.md) - Collection-level controls
--   [User Approvals](../examples/building-user-approvals.md) - User-level settings
--   [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+* [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
+* [Collection Approvals](broken-reference) - Collection-level controls
+* [User Approvals](../examples/building-user-approvals.md) - User-level settings
+* [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
 
 ## Collection ID Auto-Lookup
 

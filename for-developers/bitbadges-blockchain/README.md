@@ -1,2 +1,2 @@
-# ⛓ BitBadges Blockchain
+# ⛓️ BitBadges Blockchain
 

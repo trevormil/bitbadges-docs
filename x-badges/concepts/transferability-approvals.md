@@ -4,7 +4,7 @@
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels:
 
-<figure><img src="../../../.gitbook/assets/image (33).png" alt="Approval hierarchy diagram"><figcaption>Approval hierarchy: Collection → User (Incoming/Outgoing)</figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (33).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
 
 ### Approval Levels
 
@@ -39,7 +39,7 @@ interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-See [Approval Criteria](approval-criteria/) for more details on the `approvalCriteria` field.
+See [Approval Criteria](broken-reference) for more details on the `approvalCriteria` field.
 
 ## Approval Value vs Permission
 
@@ -49,14 +49,14 @@ While the value may seem similar to the approval update permissions, the permiss
 
 Every approval defines **Who? When? What?** through these fields:
 
-| Field               | Type                            | Purpose                                 | Example                                            |
-| ------------------- | ------------------------------- | --------------------------------------- | -------------------------------------------------- |
-| `toListId`          | Address List ID                 | Who can receive tokens                  | `"All"`, `"Mint"`, `"bb1..."`                      |
-| `fromListId`        | Address List ID                 | Who can send tokens                     | `"Mint"`, `"!Mint"`                                |
-| `initiatedByListId` | Address List ID                 | Who can initiate transfer               | `"All"`, `"bb1..."`                                |
-| `transferTimes`     | UintRange[] (UNIX Milliseconds) | When transfer can occur                 | `[{start: "1691931600000", end: "1723554000000"}]` |
-| `badgeIds`          | UintRange[] (Token IDs)         | Which token IDs                         | `[{start: "1", end: "100"}]`                       |
-| `ownershipTimes`    | UintRange[] (UNIX Milliseconds) | Which ownership times to be transferred | `[{start: "1", end: "18446744073709551615"}]`      |
+| Field               | Type                             | Purpose                                 | Example                                            |
+| ------------------- | -------------------------------- | --------------------------------------- | -------------------------------------------------- |
+| `toListId`          | Address List ID                  | Who can receive tokens                  | `"All"`, `"Mint"`, `"bb1..."`                      |
+| `fromListId`        | Address List ID                  | Who can send tokens                     | `"Mint"`, `"!Mint"`                                |
+| `initiatedByListId` | Address List ID                  | Who can initiate transfer               | `"All"`, `"bb1..."`                                |
+| `transferTimes`     | UintRange\[] (UNIX Milliseconds) | When transfer can occur                 | `[{start: "1691931600000", end: "1723554000000"}]` |
+| `badgeIds`          | UintRange\[] (Token IDs)         | Which token IDs                         | `[{start: "1", end: "100"}]`                       |
+| `ownershipTimes`    | UintRange\[] (UNIX Milliseconds) | Which ownership times to be transferred | `[{start: "1", end: "18446744073709551615"}]`      |
 
 ### Example Approval
 
@@ -126,10 +126,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
--   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
--   **Behavior**: Automatically finds and uses the first matching approval
--   **Use case**: Simple transfers without custom logic or side effects
--   **No versioning required**: The system handles approval selection automatically
+* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
+* **Behavior**: Automatically finds and uses the first matching approval
+* **Use case**: Simple transfers without custom logic or side effects
+* **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -154,7 +154,7 @@ See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgt
 
 ## Related Topics
 
--   [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
--   [Address Lists](../address-lists.md) - Managing address groups
--   [UintRanges](../uint-ranges.md) - Range logic implementation
--   [Permissions](permissions/) - Controlling who can update approvals
+* [Approval Criteria](broken-reference) - Additional restrictions and challenges
+* [Address Lists](../address-lists.md) - Managing address groups
+* [UintRanges](../uint-ranges.md) - Range logic implementation
+* [Permissions](permissions/) - Controlling who can update approvals

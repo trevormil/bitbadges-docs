@@ -1,4 +1,4 @@
-# Run an AI Agent
+# Ex: Run an AI Agent
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-ai" %}
 

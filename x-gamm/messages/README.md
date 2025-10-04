@@ -1,4 +1,4 @@
-# Messages
+# 📨 Messages
 
 This directory contains documentation for the core transaction messages supported by the `x/gamm` module.
 
@@ -6,13 +6,13 @@ This directory contains documentation for the core transaction messages supporte
 
 ### Pool Management
 
--   [MsgCreateBalancerPool](./msg-create-balancer-pool.md) - Create new balancer pool with initial liquidity
--   [MsgJoinPool](./msg-join-pool.md) - Join existing pool with liquidity
--   [MsgExitPool](./msg-exit-pool.md) - Exit pool and receive underlying tokens
+* [MsgCreateBalancerPool](msg-create-balancer-pool.md) - Create new balancer pool with initial liquidity
+* [MsgJoinPool](msg-join-pool.md) - Join existing pool with liquidity
+* [MsgExitPool](msg-exit-pool.md) - Exit pool and receive underlying tokens
 
 ### Trading
 
--   [MsgSwapExactAmountIn](./msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+* [MsgSwapExactAmountIn](msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
 
 ## Core Message List
 

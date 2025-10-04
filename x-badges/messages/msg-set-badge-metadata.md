@@ -1,22 +1,24 @@
-**Disclaimer:**  
-This message is a streamlined alternative to [MsgUpdateCollection](./msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
-
 # MsgSetBadgeMetadata
+
+**Disclaimer:**\
+This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+## MsgSetBadgeMetadata
 
 Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
 
-## Overview
+### Overview
 
 This message allows you to:
 
--   Set token metadata timeline for the collection
--   Configure permissions to update the token metadata in the future
+* Set token metadata timeline for the collection
+* Configure permissions to update the token metadata in the future
 
-## Authorization & Permissions
+### Authorization & Permissions
 
 Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata timeline according to the collection's current permission settings.
 
-## Proto Definition
+### Proto Definition
 
 ```protobuf
 message MsgSetBadgeMetadata {
@@ -42,14 +44,14 @@ message MsgSetBadgeMetadataResponse {
 }
 ```
 
-## Usage Example
+### Usage Example
 
 ```bash
 # CLI command
 bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 ```
 
-### JSON Example
+#### JSON Example
 
 ```json
 {
@@ -78,7 +80,7 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 }
 ```
 
-## Related Messages
+### Related Messages
 
--   [MsgUniversalUpdateCollection](./msg-universal-update-collection.md) - Full collection update with all fields
--   [MsgUpdateCollection](./msg-update-collection.md) - Legacy update message
+* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+* [MsgUpdateCollection](broken-reference) - Legacy update message

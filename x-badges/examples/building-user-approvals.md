@@ -1,16 +1,16 @@
 # Building User-Level Approvals
 
-User-level approvals allow individual users to control their token transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](./building-collection-approvals.md) with key restrictions.
+User-level approvals allow individual users to control their token transfers through incoming and outgoing approvals. These work similarly to [collection-level approvals](building-collection-approvals.md) with key restrictions.
 
 We refer you to the collection-level examples and just apply the same logic to the user-level types with these differences.
 
 ## Key Differences from Collection Approvals
 
--   **Fixed Address Lists**:
-    -   Incoming approvals: `fromListId` is locked to the user's address
-    -   Outgoing approvals: `toListId` is locked to the user's address
--   **No Override Functionality**: Cannot override other approval levels
--   **User-Controlled**: Only the user can update their own approvals
+* **Fixed Address Lists**:
+  * Incoming approvals: `fromListId` is locked to the user's address
+  * Outgoing approvals: `toListId` is locked to the user's address
+* **No Override Functionality**: Cannot override other approval levels
+* **User-Controlled**: Only the user can update their own approvals
 
 ## Incoming Approvals
 
@@ -78,12 +78,12 @@ const updateUserApprovals = {
 
 For approval criteria examples, see:
 
--   [Empty Approval Criteria](./empty-approval-criteria.md) - No restrictions template
--   [Transferable Approval](./approvals/transferable-approval.md) - Basic transfer restrictions
--   [Burnable Approval](./approvals/burnable-approval.md) - Burn functionality
--   [Building Collection Approvals](./building-collection-approvals.md) - Collection-level patterns
+* [Empty Approval Criteria](empty-approval-criteria.md) - No restrictions template
+* [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
+* [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
+* [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
 
 For concepts, see:
 
--   [Transferability / Approvals](../concepts/transferability-approvals.md)
--   [Approval Criteria](../concepts/approval-criteria/README.md)
+* [Transferability / Approvals](../concepts/transferability-approvals.md)
+* [Approval Criteria](broken-reference)

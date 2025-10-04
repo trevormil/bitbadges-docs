@@ -16,9 +16,9 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
--   [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
--   CLI: Run your own node and interact with the command line
--   Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
+* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+* CLI: Run your own node and interact with the command line
+* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
 **What is the creator field?**
 
@@ -30,29 +30,29 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/badges**
 
--   [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
--   [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
--   [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
-    -   Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
--   [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
--   [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
--   [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
--   [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
+* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
+* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
+* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
 
 **x/wasmx**
 
--   [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
 
 **x/maps**
 
--   MsgCreateMap - Creates a map, uniquely identifed by an ID
--   MsgUpdateMap - Updates an existing map.
--   MsgDeleteMap - Deletes a map
--   MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+* MsgCreateMap - Creates a map, uniquely identifed by an ID
+* MsgUpdateMap - Updates an existing map.
+* MsgDeleteMap - Deletes a map
+* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
 
 **x/anchor**
 
--   MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
+* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
 
 **Other Cosmos SDK Modules**
 

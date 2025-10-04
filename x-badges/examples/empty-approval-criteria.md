@@ -95,6 +95,6 @@ const EmptyApprovalCriteria = {
 
 ## Related Documentation
 
--   [Approval Criteria Overview](../concepts/approval-criteria/README.md)
--   [Building Collection Approvals](./building-collection-approvals.md)
--   [Transferability / Approvals](../concepts/transferability-approvals.md)
+* [Approval Criteria Overview](broken-reference)
+* [Building Collection Approvals](building-collection-approvals.md)
+* [Transferability / Approvals](../concepts/transferability-approvals.md)
