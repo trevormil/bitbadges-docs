@@ -11,7 +11,7 @@ This directory contains practical examples and building blocks for x/badges.
 * [Building User Approvals](building-user-approvals.md) - Guide to building user-level incoming and outgoing approvals
 * [Building Collection Permissions](building-collection-permissions.md) - Guide to configuring collection permissions
 * [Building User Permissions](building-user-permissions.md) - Guide to configuring user-level permissions
-* [Cosmos Coin Wrapper Example](broken-reference) - Example of wrapping tokens as Cosmos coins
+* [Cosmos Coin Wrapper Example](cosmos-coin-wrapper-example.md) - Example of wrapping tokens as Cosmos coins
 * [Mint All to Self Tutorial](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting tokens to yourself
 * [Approvals](approvals/) - Common approval patterns and examples
   * [Transferable Approval](approvals/transferable-approval.md) - Basic transferable approval configuration
