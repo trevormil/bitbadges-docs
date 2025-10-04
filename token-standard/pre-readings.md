@@ -8,7 +8,7 @@ Before diving deep into the behind the scenes of our token standard, we encourag
 
 2\) For a full A-Z description of what BitBadges is, read this:
 
-{% content-ref url="what-is-bitbadges.md" %}
-[what-is-bitbadges.md](what-is-bitbadges.md)
+{% content-ref url="../overview/what-is-bitbadges.md" %}
+[what-is-bitbadges.md](../overview/what-is-bitbadges.md)
 {% endcontent-ref %}
 

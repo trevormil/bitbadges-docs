@@ -1,4 +1,4 @@
-# 📜 What is BitBadges?
+# 🪄 BitBadges Standard A-Z
 
 BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
 
@@ -83,9 +83,9 @@ We are the first and only token standard to support time-dependent accounting. T
 
 This enables use cases like:
 
--   Auto-expiring / renewing subscription tokens
--   Token unlocks
--   Token vesting
+* Auto-expiring / renewing subscription tokens
+* Token unlocks
+* Token vesting
 
 All without needing future transactions to update the balances.
 
@@ -117,35 +117,35 @@ Approvals are no longer a simple incremented counter that cannot exceed a thresh
 
 Seamlessly define all the following on-chain for EVERY approval. Define the exact rules and stipulations, enabling complex and powerful transferability rules on the three levels (collection, sender, recipient). All in a standardized manner.
 
--   Who Can Transfer?
--   Who Can Receive?
--   Who Can Initiate?
--   Transfer Times?
--   Predetermined or Tallied Amounts?
--   How Many Transfers?
--   Revokable?
--   Freezable?
--   BADGE or other IBC transfers?
--   Royalties?
--   Ownership Times?
--   Recurring?
--   Non-Transferable?
--   Incrementing Token IDs?
--   Owns Other Tokens?
--   And plenty more...
+* Who Can Transfer?
+* Who Can Receive?
+* Who Can Initiate?
+* Transfer Times?
+* Predetermined or Tallied Amounts?
+* How Many Transfers?
+* Revokable?
+* Freezable?
+* BADGE or other IBC transfers?
+* Royalties?
+* Ownership Times?
+* Recurring?
+* Non-Transferable?
+* Incrementing Token IDs?
+* Owns Other Tokens?
+* And plenty more...
 
 **Off-Chain Approval Criteria: 7000+ Web2 Integrations**:
 
 Additionally, BitBadges has an oracle-like system that allows letting a centralized service approve users dynamically by checking off-chain criteria and giving them signed codes to redeem on-chain. BitBadges runs its own criteria checking service that connects to 7000+ Web2 integrations in no-code through in-site plugins. This enables powerful use cases like:
 
--   Gating mints by Discord membership
--   Gating mints by X followers
--   Gating mints by email
--   Gating mints by checking your private off-chain data
--   Gating mints through claim codes or passwords
--   Gating approvals by AI agents
--   Building your own custom endpoints to check your own criteria
--   And anything else you can think of. We make it easy for anyone to add their own integration, custom plugin, or build their own criteria checking service. All the heavy on-chain hybrid work is done for you. You focus on your application-specific logic.
+* Gating mints by Discord membership
+* Gating mints by X followers
+* Gating mints by email
+* Gating mints by checking your private off-chain data
+* Gating mints through claim codes or passwords
+* Gating approvals by AI agents
+* Building your own custom endpoints to check your own criteria
+* And anything else you can think of. We make it easy for anyone to add their own integration, custom plugin, or build their own criteria checking service. All the heavy on-chain hybrid work is done for you. You focus on your application-specific logic.
 
 This is a huge tool for Web2 adoption and onboarding users to on-chain tokenization.
 
@@ -155,14 +155,14 @@ While BitBadges runs its own criteria checking service, anyone can spin up their
 
 Each token collection can have a manager that can execute administrative actions for full control over whatever is needed. This is a great tool to allow for more complex use cases where centralized control is needed with predefined checks and balances enforced on-chain, like regulatory compliance.
 
--   Updating the token metadata
--   Updating transferability
--   Archiving the collection
--   Deleting the collection
--   Adding more tokens to the collection
--   Pausing transfers
--   Volume throttling
--   And more...
+* Updating the token metadata
+* Updating transferability
+* Archiving the collection
+* Deleting the collection
+* Adding more tokens to the collection
+* Pausing transfers
+* Volume throttling
+* And more...
 
 #### Smart Contract Extendibility
 
@@ -176,13 +176,13 @@ As seen above, we are incredibly feature-rich and can be used for any use case y
 
 Some examples:
 
--   **NFTs**: Traditional NFT marketplace with custom transferability and purchasable via any IBC denomination
--   **Fungible Tokens**: Traditional fungible tokens with custom transferability and approvals purchasable and tradable via any IBC denomination
--   **Quests**: IBC-denomination backed quests that payout users in any IBC-enabled denomination for completing any sort of task or challenge from 7000+ integrations or any on/off-chain criteria you can think of.
--   **Subscriptions**: No-code, recurring subscriptions that are paid with any IBC denomination. We use a bot-tipping system to handle the recurring payments automatically for you.
--   **Stocks**: Tokenized stocks with custom vesting periods, dividends, and more.
--   **Real-World Assets**: Tokenized real-world assets with custom transferability and approvals purchasable and tradable via any IBC denomination
--   **Regulatory Compliance**: Seamlessly compliant with any complex regulatory compliance requirements without any additional work.
+* **NFTs**: Traditional NFT marketplace with custom transferability and purchasable via any IBC denomination
+* **Fungible Tokens**: Traditional fungible tokens with custom transferability and approvals purchasable and tradable via any IBC denomination
+* **Quests**: IBC-denomination backed quests that payout users in any IBC-enabled denomination for completing any sort of task or challenge from 7000+ integrations or any on/off-chain criteria you can think of.
+* **Subscriptions**: No-code, recurring subscriptions that are paid with any IBC denomination. We use a bot-tipping system to handle the recurring payments automatically for you.
+* **Stocks**: Tokenized stocks with custom vesting periods, dividends, and more.
+* **Real-World Assets**: Tokenized real-world assets with custom transferability and approvals purchasable and tradable via any IBC denomination
+* **Regulatory Compliance**: Seamlessly compliant with any complex regulatory compliance requirements without any additional work.
 
 Or any use case you can think of.
 
@@ -200,14 +200,14 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 2. **Cosmos-Native**: BitBadges is Cosmos through and through. It is a native Cosmos project (native modules, full IBC compatibility, CosmWASM, etc). A win for BitBadges is a win for all of Cosmos.
 3. **Missing Parts of the Stack**: BitBadges believes it completes a lot of the missing parts of the Cosmos stack:
 
--   IBC-compatible tokenization launchpad
--   Subscription layer
--   Quests / points layer
--   7000+ seamless Web2 x Cosmos integrations
--   Core Cosmos tokenization module as a primitive for chains to use (the official x/nft experiment is now deprecated)
--   Onboard the 95% middle of the line tokenization use cases with complex requirements beyond mint, transfer, and burn
--   A full ready-made tokenization suite with our feature set can really accelerate teams building in Cosmos
--   "Kill multiple birds with one stone" - We envision that many use cases can actually be abstracted as tokens behind the scenes even if not directly a tokenization use case. For example, simple payments from a store can be abstracted as an NFT purchase + use the NFT as a tokenized, verifiable receipt.
+* IBC-compatible tokenization launchpad
+* Subscription layer
+* Quests / points layer
+* 7000+ seamless Web2 x Cosmos integrations
+* Core Cosmos tokenization module as a primitive for chains to use (the official x/nft experiment is now deprecated)
+* Onboard the 95% middle of the line tokenization use cases with complex requirements beyond mint, transfer, and burn
+* A full ready-made tokenization suite with our feature set can really accelerate teams building in Cosmos
+* "Kill multiple birds with one stone" - We envision that many use cases can actually be abstracted as tokens behind the scenes even if not directly a tokenization use case. For example, simple payments from a store can be abstracted as an NFT purchase + use the NFT as a tokenized, verifiable receipt.
 
 4. **ATOM Utility**: ATOM is to be featured as a primary currency in the BitBadges app. This will help drive the adoption of ATOM, including with utility not currently available to ATOM like ATOM subscriptions, ATOM quests, and more.
 5. **Cosmos Hub Routing**: The Cosmos Hub itself also experiences a lot of second-hand usage from BitBadges succeeding. If BitBadges can carry out its vision of being the universal tokenization standard for Cosmos and beyond with IBC, the Hub (as the primary router for IBC) will get plenty of usage via BitBadges.
