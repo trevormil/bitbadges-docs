@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Oct  4 12:17:17 UTC 2025
+Generated on Sat Oct  4 12:21:01 UTC 2025
 
 
 
@@ -12961,6 +12961,17 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 5. [Queries](queries/) - Query types and endpoints
 6. [Events](events.md) - Event emissions and tracking
 7. [Examples](examples/) - Common usage patterns and building blocks
+
+## Main Features
+
+* No code, no smart contracts - All implemented as a Cosmos module
+* 1000x transferability customization for whatever requirements you may need
+* Three transferability levels enforced for as much or as little customization as needed (collection-level, sender, recipient approvals)
+* Deploy once, support ETH, COSMOS, BTC, SOL users with same token
+* Supports any IBC currency
+* IBC interoperable through wrapping to x/bank IBC denoms
+* Transferability is checked EVERY transfer on-chain, enforcing compliance seamlessly at the protocol level
+* Extendible with smart contract frameworks
 
 ## Message Reference
 
