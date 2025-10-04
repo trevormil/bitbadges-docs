@@ -4,7 +4,7 @@ The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101b
 
 The delegated part is because token holders can delegate their stake to validators and split the earned, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
 
-Reach out to us in Discord if you plan to run a validating node and need funds. To run a validator node, see [here](../for-developers/bitbadges-blockchain/run-a-node/).&#x20;
+Reach out to us in Discord if you plan to run a validating node and need funds. To run a validator node, see [here](run-a-node/).&#x20;
 
 BitBadges is also a delegated PoS chain, so you can delegate to an existing validator. This validator will split the amount earned from securing the network with you (they may charge a commission). Visit [https://bitbadges.io/stake](https://bitbadges.io/stake).&#x20;
 

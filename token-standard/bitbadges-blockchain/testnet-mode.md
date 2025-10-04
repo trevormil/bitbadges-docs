@@ -1,11 +1,11 @@
-# 🧪 Testnet Mode
+# Testnet Mode
 
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
 
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -13,15 +13,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
--   Some features available in production may not be accessible in testnet:
-    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-    -   Buying BADGE credits
-    -   Push notifications
-    -   And more
--   Some restrictions may be more relaxed
-    -   No API keys required
-    -   Faucet may be more lenient
--   Performance also may differ from the production environment
+* Some features available in production may not be accessible in testnet:
+  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+  * Buying BADGE credits
+  * Push notifications
+  * And more
+* Some restrictions may be more relaxed
+  * No API keys required
+  * Faucet may be more lenient
+* Performance also may differ from the production environment
 
 ### Links
 
@@ -31,9 +31,9 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
--   RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
--   REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
--   Direct Node Access: `http://138.197.10.8:YOUR_PORT`
+* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
+* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
+* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
 
 ### Feedback
 

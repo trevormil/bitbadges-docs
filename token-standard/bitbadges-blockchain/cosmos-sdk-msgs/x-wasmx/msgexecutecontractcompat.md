@@ -18,4 +18,4 @@ export interface MsgExecuteContractCompat {
 }
 ```
 
-MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
+MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-a-wasm-contract.md) tutorial for more information.

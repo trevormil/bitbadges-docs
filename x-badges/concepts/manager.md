@@ -2,6 +2,8 @@
 
 The manager is the central authority for a collection, controlling all administrative operations and having exclusive rights to perform updates, deletions, and other management tasks.
 
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 ## Manager Timeline
 
 ### Structure
@@ -49,27 +51,27 @@ The manager role can be granted various permissions, allowing for flexible admin
 
 ### Metadata Management
 
--   **Collection Metadata Updates** - Modify collection-level metadata and URIs
--   **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
--   **Timeline Management** - Schedule metadata changes over time
+* **Collection Metadata Updates** - Modify collection-level metadata and URIs
+* **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
+* **Timeline Management** - Schedule metadata changes over time
 
 ### Transferability Control
 
--   **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
--   **Transfer Rules** - Update transferability conditions and restrictions
--   **Permission Updates** - Configure transferability permissions
+* **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
+* **Transfer Rules** - Update transferability conditions and restrictions
+* **Permission Updates** - Configure transferability permissions
 
 ### Off-Chain Management
 
--   **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
--   **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
+* **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
+* **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
 
 ### User-Level Operation Limits
 
 The manager cannot directly:
 
--   Modify user balances (must follow approval system)
--   Access user private keys or personal data
+* Modify user balances (must follow approval system)
+* Access user private keys or personal data
 
 ## Fine-Grained Permission Customizability
 
@@ -79,28 +81,24 @@ Permissions can be customized based on various factors:
 
 ### Permission Dimensions
 
--   **Token Specificity** - Which particular tokens within the collection can be affected
--   **Time Constraints** - When can certain actions be performed
--   **Value Limitations** - What specific values or ranges are allowed for updates
--   **Conditional Triggers** - Under what circumstances can certain permissions be exercised
+* **Token Specificity** - Which particular tokens within the collection can be affected
+* **Time Constraints** - When can certain actions be performed
+* **Value Limitations** - What specific values or ranges are allowed for updates
+* **Conditional Triggers** - Under what circumstances can certain permissions be exercised
 
 ### Permission States
 
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen**
-
-    - The permission is permanently disallowed
-    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely
-
+   * The permission is permanently disallowed
+   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely
 2. **Permitted + Not Frozen**
-
-    - The permission is currently allowed
-    - This state can be changed to either of the other two states, offering flexibility in management
-
+   * The permission is currently allowed
+   * This state can be changed to either of the other two states, offering flexibility in management
 3. **Permitted + Permanently Frozen**
-    - The permission is permanently allowed
-    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available
+   * The permission is permanently allowed
+   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available
 
 **Note**: There is no "Forbidden + Not Frozen" state because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 

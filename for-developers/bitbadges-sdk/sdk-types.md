@@ -65,7 +65,7 @@ balances.addBalances([{ ... }]); //adds balances in-place
 
 ### **Proto Types**
 
-The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../bitbadges-blockchain/create-and-broadcast-txs/))).&#x20;
+The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../../token-standard/bitbadges-blockchain/create-and-broadcast-txs/))).&#x20;
 
 Some might have duplicates between the two types.
 
