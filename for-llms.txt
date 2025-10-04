@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Oct  4 12:03:11 UTC 2025
+Generated on Sat Oct  4 12:04:18 UTC 2025
 
 
 
@@ -3693,6 +3693,43 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+* [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
+  * [Overview](for-developers/bitbadges-blockchain/overview.md)
+  * [Accounts (Technical)](for-developers/bitbadges-blockchain/accounts-technical.md)
+  * [Chain Details](for-developers/bitbadges-blockchain/chain-details.md)
+  * [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
+  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
+  * [Run a Node](for-developers/bitbadges-blockchain/run-a-node/README.md)
+    * [Overview](for-developers/bitbadges-blockchain/run-a-node/overview.md)
+    * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
+    * [Run a Local Dev Node](for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
+    * [Cosmovisor](for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md)
+  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
+    * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
+    * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
+    * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
+    * [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
+    * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
+    * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
+    * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+  * [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
+    * [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
+      * [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
+    * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
+    * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
+      * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
+      * [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
+      * [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
+    * [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
+      * [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
+      * [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
+      * [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
+      * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
+    * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
+    * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
+  * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
 * [🖱️ Sign In with BitBadges](for-developers/sign-in-with-bitbadges/README.md)
   * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
   * [Already Have Web3 Auth?](for-developers/sign-in-with-bitbadges/already-have-web3-auth.md)
@@ -3838,43 +3875,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
-* [⛓️ BitBadges Blockchain](token-standard/bitbadges-blockchain/README.md)
-  * [Overview](token-standard/bitbadges-blockchain/overview.md)
-  * [Accounts (Technical)](token-standard/bitbadges-blockchain/accounts-technical.md)
-  * [Chain Details](token-standard/bitbadges-blockchain/chain-details.md)
-  * [Staking / Validators](token-standard/bitbadges-blockchain/staking-usdbadge.md)
-  * [Create a WASM Contract](token-standard/bitbadges-blockchain/create-a-wasm-contract.md)
-  * [Run a Node](token-standard/bitbadges-blockchain/run-a-node/README.md)
-    * [Overview](token-standard/bitbadges-blockchain/run-a-node/overview.md)
-    * [Run a Mainnet Node](token-standard/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md)
-    * [Run a Local Dev Node](token-standard/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md)
-    * [Cosmovisor](token-standard/bitbadges-blockchain/run-a-node/cosmovisor.md)
-  * [Create, Generate, and Sign Txs](token-standard/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [Ex: Run an AI Agent](token-standard/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
-    * [Transaction Context](token-standard/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
-    * [Generate Msg Contents](token-standard/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
-    * [Signing - Cosmos](token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
-    * [Signing - Ethereum](token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
-    * [Signing - Solana](token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
-    * [Signing - Bitcoin](token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
-    * [Broadcast to a Node](token-standard/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
-    * [Sign + Broadcast - bitbadges.io](token-standard/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
-  * [Cosmos SDK Msgs](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
-    * [x/anchor](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
-      * [MsgAddCustomData](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
-    * [x/badges](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
-    * [x/wasmx](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
-      * [MsgStoreCodeCompat](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
-      * [MsgInstantiateContractCompat](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
-      * [MsgExecuteContractCompat](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
-    * [x/maps](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
-      * [MsgCreateMap](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
-      * [MsgUpdateMap](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
-      * [MsgDeleteMap](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
-      * [MsgSetValue](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
-    * [MsgSend](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
-    * [Cosmos Native Msgs](token-standard/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
-  * [Testnet Mode](token-standard/bitbadges-blockchain/testnet-mode.md)
 
 ## x/gamm
 
@@ -3896,7 +3896,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 # 👤 Handling Addresses
 
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](../token-standard/bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
+This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -4339,48 +4339,83 @@ Below are the supported customization options. Some may be applicable. Some may 
 5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
 
 
+## File: ./for-developers/bitbadges-blockchain/README.md
+
+# ⛓️ BitBadges Blockchain
+
+
+
 ## File: ./for-developers/bitbadges-blockchain/accounts-technical.md
 
-# Accounts (Low-Level)
+# Accounts (Technical)
 
 ## Pre-Readings
 
 * [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
 * [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
 
-### Accounts[​](https://docs.injective.network/learn/basic-concepts/accounts#injective-accounts) <a href="#injective-accounts" id="injective-accounts"></a>
+### Accounts and Validator Operators
 
-For accounts (standard senders of transactions) , we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos). These are mapped behind the scenes through mapping addresses to an equivalent BitBadges address and being signature compatible (able to verify signatures of the native signature schemes).
-
-### Signing Transactions <a href="#injective-accounts" id="injective-accounts"></a>
-
-For non-Cosmos signatures, we map everything to a SHA256 content hash to get a string such as:
-
-```
-This is a BitBadges transaction with the content hash: b0d2944e1e367cc394d0e305f94eccf543983265a32b5cb71800da7d6df57679
-```
-
-We then verify the signatures of the transaction string as a personal message signature via the respective signature algorithm (e.g. ECDSA for Ethereum).
-
-### **Cosmos**
-
-Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
+For accounts (standard senders of transactions) and validator operators, we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
 
 ### **Ethereum**
 
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys.
+BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike other Cosmos chains that use Coin type `118.`
+
+**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
 
 ### **Solana**
 
 BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
 
+**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
+
+### **Cosmos**
+
+Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
+
 ### Bitcoin
 
-BitBadges supports Bitcoin P2WPKH addresses and BIP322 signature verification.
+BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
 
-### **Public Key Types**
+**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
 
-For standard Cosmos accounts and Bitcoin accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
+### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
+
+#### **Address Conversion**
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToBitBadges, bitbadgesToEth } from 'bitbadgesjs-sdk';
+</strong>
+<strong>const bitbadgesAddress = ethToBitBadges(address);
+</strong>const ethAddress = bitbadgesToEth(bitbadgesAddress);
+const bitbadgesAddressFromSolana = solanaToBitBadges(address);
+//Note there is no bitbadgesToSolana or ethToSolana due to how the addresses work
+</code></pre>
+
+Behind the scenes, the blockchain always uses the mapped BitBadges address, never a Solana or Ethereum address. The Solana / Ethereum addresses are only for visually displaying to the user.
+
+The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.
+
+#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
+
+Ethereum Example:
+
+* Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
+* Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
+
+Solana Example:
+
+* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
+
+Bitcoin Example
+
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
+
+#### **Public Key Types**
+
+For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
 
 For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
 
@@ -4428,6 +4463,1738 @@ const type = '/ethereum.PubKey'
 #### Acknowledgements
 
 Credit to [https://docs.injective.network/learn/basic-concepts/accounts](https://docs.injective.network/learn/basic-concepts/accounts) and [https://docs.evmos.org/protocol/concepts/accounts](https://docs.evmos.org/protocol/concepts/accounts).
+
+
+## File: ./for-developers/bitbadges-blockchain/chain-details.md
+
+# Chain Details
+
+Cosmos Chain ID (Mainnet) - bitbadges-1
+
+Cosmos Chain ID (Testnet) - bitbadges-2
+
+[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
+
+### Official Links
+
+**RPCs**
+
+[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
+
+Tendermint Node ID: 2703c1304a70186372aa726a762d60da94c29ffe
+
+See genesis.json in source code repository for genesis file. See [here](htttps://github.com/bitbadges/bitbadgeschain) for source code repository.
+
+**Blockchain Node REST APIs**
+
+[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
+
+**State Snapshots (Unofficial)**
+
+[https://snapshots.whenmoonwhenlambo.money/](https://snapshots.whenmoonwhenlambo.money/)
+
+**BitBadges API / Indexer**
+
+[https://api.bitbadges.io](https://api.bitbadges.io)
+
+**Explorer**
+
+[https://explorer.bitbadges.io](https://explorer.bitbadges.io)
+
+**Web App**
+
+{% embed url="https://bitbadges.io" %}
+
+**Testnet**
+
+Node ID: 745b694aeef8c2e831ed6ec65060230a91f17914
+
+Hosted At: http://138.197.10.8:(1317 | 26657)
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md
+
+# Cosmos SDK Msgs
+
+**What are Cosmos SDK Msgs? Msgs vs Transactions?**
+
+In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.
+
+Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
+
+**What Msgs does the BitBadges blockchain implement?**
+
+The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
+
+The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to tokens are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
+
+**How to broadcast transactions with Msgs?**
+
+You can generate and submit your transactions (Msgs) via:
+
+* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+* CLI: Run your own node and interact with the command line
+* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
+
+**What is the creator field?**
+
+The **creator** field for each message should be the transaction signer's BitBadges address.
+
+## Msg Definitions
+
+Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.
+
+**x/badges**
+
+* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
+* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
+* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
+
+**x/wasmx**
+
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
+
+**x/maps**
+
+* MsgCreateMap - Creates a map, uniquely identifed by an ID
+* MsgUpdateMap - Updates an existing map.
+* MsgDeleteMap - Deletes a map
+* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+
+**x/anchor**
+
+* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
+
+**Other Cosmos SDK Modules**
+
+For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/classes/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md
+
+# Cosmos Native Msgs
+
+We refer you to Cosmos SDK documentation for other Cosmos native Msgs.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md
+
+# MsgSend
+
+MsgSend is the Msg to send BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
+
+```typescript
+/**
+ * MsgSend represents a message to send coins from one account to another.
+ *
+ * @typedef {Object} MsgSend
+ * @property {string} fromAddress - The sender of the transaction.
+ * @property {string} toAddress - The recipient of the transaction.
+ * @property {CosmosCoin[]} amount - The amount of coins to send.
+ */
+export interface MsgSend<T extends NumberType> {
+    fromAddress: string;
+    toAddress: string;
+    amount: CosmosCoin<T>[];
+}
+
+/**
+ * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
+ *
+ * @typedef {Object} CosmosCoin
+ * @property {NumberType} amount - The amount of the coin.
+ * @property {string} denom - The denomination of the coin.
+ */
+export interface CosmosCoin<T extends NumberType> {
+    amount: T;
+    denom: string;
+}
+```
+
+```json
+{
+    "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
+    "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
+    "amount": [
+        {
+            "denom": "ubadge",
+            "amount": "1"
+        }
+    ]
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md
+
+# x/anchor
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md
+
+# MsgAddCustomData
+
+MsgAddCustomData is a part of the x/anchor module which allows you to anchor any custom data to the blockchain. The blcokchain will store with an incrementing location ID along with the timestamp. This can be used to prove knowledge of something at a specific time by anchoring it to the chain.
+
+```protobuf
+message MsgAddCustomData {
+  string creator = 1;
+  string data    = 2;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md
+
+# x/badges
+
+See the x/badges documentation below the For Developers section.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
+
+# x/maps
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md
+
+# MsgCreateMap
+
+MsgCreateMap creates a map on-chain. We refer you to here for more information on each individual field.
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
+
+```typescript
+export interface iMsgCreateMap<T extends NumberType> {
+  creator: string;
+  mapId: string;
+
+  inheritManagerTimelineFrom: T;
+  managerTimeline: iManagerTimeline<T>[];
+
+  updateCriteria: iMapUpdateCriteria<T>;
+  valueOptions: iValueOptions;
+  defaultValue: string;
+
+  metadataTimeline: iMapMetadataTimeline<T>[];
+
+  permissions: iMapPermissions<T>;
+}
+```
+
+```typescript
+export interface iValueOptions {
+  noDuplicates: boolean;
+  permanentOnceSet: boolean;
+  expectUint: boolean;
+  expectBoolean: boolean;
+  expectAddress: boolean;
+  expectUri: boolean;
+}
+```
+
+```typescript
+export interface iMapPermissions<T extends NumberType> {
+  canUpdateMetadata: iTimedUpdatePermission<T>[];
+  canUpdateManager: iTimedUpdatePermission<T>[];
+  canDeleteMap: iActionPermission<T>[];
+}
+```
+
+```typescript
+export interface iMapMetadataTimeline<T extends NumberType> {
+  timelineTimes: iUintRange<T>[];
+  metadata: iCollectionMetadata;
+}
+```
+
+```typescript
+export interface iMapUpdateCriteria<T extends NumberType> {
+  managerOnly: boolean;
+  collectionId: T;
+  creatorOnly: boolean;
+  firstComeFirstServe: boolean;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md
+
+# MsgDeleteMap
+
+MsgDeleteProtocol deletes the map with the given name.
+
+<pre class="language-typescript"><code class="lang-typescript"><a data-footnote-ref href="#user-content-fn-1">export</a> interface MsgDeleteMap {
+  creator: string,
+  mapId: string,
+}
+</code></pre>
+
+[^1]: 
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md
+
+# MsgSetValue
+
+MsgSetValue sets the specific key-value pair for the mapId. For example, set my BitBadges Follow Protocol collection to collection ID 12.
+
+All values are stringified for comaptibility, but it will check they are in proper format within the Msg logic. You can set **options.useMostRecentCollectionId** to auto-fetch the latest collection ID. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
+
+```typescript
+export interface iMsgSetValue {
+    creator: string;
+    mapId: string;
+    key: string;
+    value: string;
+    options: iSetOptions;
+}
+
+export interface iSetOptions {
+    useMostRecentCollectionId: boolean;
+}
+```
+
+**Combining with MsgCreateCollection or MsgUpdateCollection**
+
+The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
+
+```typescript
+const msgs: MessageGenerated[] = [];
+msgs.push(...bootstrapCollections().map((x) => createProtoMsg(x))); //MsgCreateCollections
+msgs.push(...bootstrapSetProtocols().map((x) => createProtoMsg(x))); //MsgSetCollectionForProtocol
+
+//Note how MsgCreateAddressLists is first in the array
+const txn = createTransactionPayload(txContext, msgs);
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md
+
+# MsgUpdateMap
+
+MsgUpdateMap updates the map with the matching ID. Similar to the x/badges Msgs, we use an update flag + value interface. If update flag = true, we update with the corresponding value. Else, we ignore it.
+
+```typescript
+export interface iMsgUpdateMap<T extends NumberType> {
+  creator: string;
+  mapId: string;
+
+  updateManagerTimeline: boolean;
+  managerTimeline: iManagerTimeline<T>[];
+
+  updateMetadataTimeline: boolean;
+  metadataTimeline: iMapMetadataTimeline<T>[];
+
+  updatePermissions: boolean;
+  permissions: iMapPermissions<T>;
+}
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md
+
+# x/wasmx
+
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md
+
+# MsgExecuteContractCompat
+
+```typescript
+/**
+ * MsgExecuteContractCompat defines a ExecuteContractCompat message.
+ *
+ * @typedef {Object} MsgExecuteContractCompat
+ * @property {string} sender - The sender of the transaction.
+ * @property {string} contract - The contract address to execute.
+ * @property {string} msg - The message to pass to the contract. Must be a valid JSON string.
+ * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
+ */
+export interface MsgExecuteContractCompat {
+    sender: string;
+    contract: string;
+    msg: string;
+    funds: string;
+}
+```
+
+MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md
+
+# MsgInstantiateContractCompat
+
+```typescript
+export interface MsgInstantiateContractCompat {
+  sender: string
+  codeId: string
+  label: string
+  funds: string
+}
+```
+
+MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
+
+
+## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md
+
+# MsgStoreCodeCompat
+
+```typescript
+export interface MsgStoreCodeCompat {
+    sender: string;
+    hexWasmByteCode: string;
+}
+```
+
+MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../create-a-wasm-contract.md) tutorial for more information.
+
+
+## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
+
+# Create a WASM Contract
+
+BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively!
+
+We refer you to official CosmWASM and Rust documentation for more information. This tutorial will only focus on BItBadges specific information.
+
+{% embed url="https://cosmwasm.cosmos.network/" %}
+
+```go.mod
+github.com/CosmWasm/wasmd v0.52.0
+```
+
+**Permissioned Uploads**
+
+```
+BitBadges implements CosmWASM in a permissioned manner.
+```
+
+Instantiating and officially deploying a contract does require a review process and governance approval. Reach out for more information.
+
+Requirements:
+
+* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+* We encourage audits and a peer review process before officailly deploying.
+* You must also showcase a working testnet implementation as well (testnet is permissionless)
+
+Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
+
+**High-Level Development Overview**
+
+```rust
+const msgExecuteContract: MsgExecuteContractCompat = {
+    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d',
+    contract:
+        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e',
+    msg: '{"myCustomMsg1": {"collectionId": "1"}}',
+    funds: '1ubadge',
+};
+```
+
+* Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
+* 3-Step Process: Upload / Store Code, Instantiate, Execute
+  * Instantiating requires governance proposal (see below)
+* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
+  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+* The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
+
+```rust
+//contract.rs
+use bitbadges_cosmwasm::{
+  transfer_badges_msg
+};
+
+#[entry_point]
+pub fn execute(
+    _deps: DepsMut,
+    _env: Env,
+    _info: MessageInfo,
+    msg: ExecuteMsg,
+) -> Result<Response<BitBadgesMsg>, StdError> {
+    match msg {
+        ExecuteMsg::CustomMsg1 { collection_id, transfers } => {
+          let msg = transfer_badges_msg(collection_id, transfers);
+          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
+        }
+        ExecuteMsg::CustomMsg2 { collection_id, transfers } => {
+          let msg = transfer_badges_msg(collection_id, transfers);
+          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
+        }
+        // Add other messages here as needed
+    }
+}
+```
+
+### **Create a Contract Tutorial**
+
+1. Clone the BitBadges Cosmwasm repository
+
+```
+git clone https://github.com/BitBadges/bitbadges-cosmwasm-bindings.git
+cd bitbadges-cosmwasm-bindings
+```
+
+This repository exports all the custom bindings via `packages/bitbadges-cosmwasm`. You should typically NOT edit the exported types. These are already pregenerated exactly as defined on-chain for you to use.
+
+2. Create your contract
+
+You will be dealing with the `contracts` folder. This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
+
+Tools at your disposal:
+
+```rust
+// All BitBadges type bindings
+use bitbadges_cosmwasm::{
+  Transfer, Balance, ....
+};
+```
+
+<pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
+// This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
+use bitbadges_cosmwasm::{
+  transfer_badges_msg, delete_collection_msg, BitBadgesMsg
+}
+
+<strong>pub fn execute_my_msg(
+</strong>    collection_id: String,
+    transfers: Vec&#x3C;Transfer>,
+) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
+    let msg = transfer_badges_msg(
+        collection_id,
+        transfers,
+    );
+
+    Ok(Response::new().add_message(msg))
+}
+
+#[entry_point]
+pub fn execute(
+    _deps: DepsMut,
+    _env: Env,
+    _info: MessageInfo,
+    msg: ExecuteMsg,
+) -> Result&#x3C;Response&#x3C;BitBadgesMsg>, StdError> {
+    match msg {
+        ExecuteMsg::MyCustomMsg { collection_id, transfers } => {
+          execute_my_msg(collection_id, transfers)
+        }
+        // Add other messages here as needed
+    }
+}
+</code></pre>
+
+3. Build and Optimize
+
+You may have to edit the script for you file names and paths. Consider also using an optimizer like [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
+
+```bash
+cargo build
+source ./build.sh # outputs a .wasm
+gzip youcontractname.wasm # outputs a .wasm.gz
+```
+
+```bash
+# build.sh
+RUSTFLAGS='-C link-arg=-s' cargo wasm
+cp ../../target/wasm32-unknown-unknown/release/YOUR_CONTRACT_NAME.wasm .
+```
+
+4. Uploading Your Contract
+
+Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction.
+
+For testnet uploads, use testnet.bitbadges.io
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+5. Instantiate your Contract
+
+A notification from Step 4 should pop up with your code ID, assuming the transaction was successful.
+
+Refresh the page or clear all Msgs and start a new transaction. Now, select MsgInstantiateContractCompat. Set a label (name for your contract) and enter the code ID from step 3. Submit the transaction.
+
+If you want to instantiate it with funds. the **funds** property will be in the format "1badge".
+
+A notification should pop up with your contract's address. Store this somewhere.
+
+```
+Note: This is only applicable to testnet.
+
+For mainnet, instantiation requires a governance proposal. Reach out to us to start this process.
+```
+
+6. Interact with the Contract
+
+Once deployed, you need to to let your users interact with it. Use our custom x/wasmx MsgExecuteContractCompat to do so. This is a wrapper around the core x/wasm MsgExecuteContract with support for BitBadges signing. This is the same as broadcasting any other transaction, so we refer you to Creating, Signing, and Broadcasting Txs for a tutorial.
+
+Couple common misunderstandings:
+
+* Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
+*   Note camelCase vs snake\_case. Contracts typically auto-format with camelCase via
+
+    ```rust
+    #[serde(rename_all = "camelCase")]
+    ```
+* Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
+
+**Examples**
+
+```typescript
+const msgExecuteContract: MsgExecuteContractCompat = {
+    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', //enter sender adress here
+    contract: 'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
+    msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
+    funds: '1badge',
+};
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md
+
+# Create, Generate, and Sign Txs
+
+To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
+
+We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
+
+You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
+
+# Broadcast to a Node
+
+**Pre-Req:** You have the body variable with a valid signature (see prior pages).
+
+### **Simulating**
+
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.
+
+To do this, you can use
+
+```
+https://api.bitbadges.io/api/v0/simulate
+```
+
+**or**
+
+```typescript
+http://URL:1317/cosmos/tx/v1beta1/simulate
+```
+
+This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
+
+Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
+
+Once simulated, replace the expected gas you want in the transaction context.
+
+```typescript
+export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
+    gas_info: {
+        gas_used: string;
+        gas_wanted: string;
+    };
+    result: {
+        data: string;
+        log: string;
+        events: {
+            type: string;
+            attributes: {
+                key: string;
+                value: string;
+                index: boolean;
+            }[];
+        }[];
+        msg_responses: any[];
+    };
+}
+```
+
+### **Broadcasting**
+
+You can replace the URL below with any valid BitBadges blockchain node.
+
+```typescript
+`http://URL:1317${generateEndpointBroadcast()}`;
+```
+
+Or, you can use the BitBadges API to broadcast.
+
+```typescript
+https://api.bitbadges.io/api/v0/broadcast
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
+</strong></code></pre>
+
+This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+
+```typescript
+export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
+    tx_response: {
+        code: number;
+        codespace: string;
+        data: string;
+        events: {
+            type: string;
+            attributes: {
+                key: string;
+                value: string;
+                index: boolean;
+            }[];
+        }[];
+        gas_wanted: string;
+        gas_used: string;
+        height: string;
+        info: string;
+        logs: {
+            events: {
+                type: string;
+                attributes: {
+                    key: string;
+                    value: string;
+                    index: boolean;
+                }[];
+            }[];
+        }[];
+        raw_log: string;
+        timestamp: string;
+        tx: object | null;
+        txhash: string;
+    };
+}
+```
+
+### Polling
+
+Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
+
+Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
+
+```typescript
+const txHash = res.data.tx_response.txhash;
+const code = res.data.tx_response.code;
+if (code !== undefined && code !== 0) {
+    throw new Error(
+        `Error broadcasting transaction: Code ${code}: ${JSON.stringify(
+            res.data.tx_response,
+            null,
+            2
+        )}`
+    );
+}
+
+let fetched = false;
+while (!fetched) {
+    try {
+        const res = await axios.get(
+            `${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`
+        );
+        fetched = true;
+
+        return res;
+    } catch (e) {
+        // wait 1 sec
+        console.log('Waiting 1 sec to fetch tx');
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+    }
+}
+
+return res;
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md
+
+# Ex: Run an AI Agent
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-ai" %}
+
+We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
+
+This implements all of the signing functionality for a managed Ethereum address (the agent's address). You can interact with it through a chatbot interface, or you can extend / customize for more functionality. This is a recommended place to start if you are just experimenting.
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md
+
+# Generate Msg Contents
+
+The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.
+
+If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
+
+### **Building the Msgs**
+
+You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
+
+See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
+
+```typescript
+import { proto } from 'bitbadgesjs-sdk';
+
+//proto.cosmos.module for standard Cosmos
+//proto.badges for BitBadges x/badges
+//proto.wasmx for BitBadges x/wasmx
+//proto.protocols for BitBadges x/protocols
+const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
+
+const protoMsgs = [
+    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
+    //Add more here (executed in order)
+];
+```
+
+### Building the Transaction
+
+```typescript
+const txContext = { ... } //See prior page
+
+const txnPayload = createTransactionPayload(txContext, protoMsgs);
+```
+
+The outputted payload will be in the following format.
+
+For Cosmos, you will use signDIrect.
+
+For Ethereum/Solana/Bitcoin, you will use txnString.
+
+If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
+
+```typescript
+export interface TransactionPayload {
+    legacyAmino: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    signDirect: {
+        body: TxBody;
+        authInfo: AuthInfo;
+        signBytes: string;
+    };
+    txnString: string;
+    txnJson: Record<string, any>;
+}
+```
+
+### Next Steps
+
+Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
+
+1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
+2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
+
+# Sign + Broadcast - bitbadges.io
+
+**Option 1: Copy / Paste**
+
+To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+
+**Option 2: Redirect**
+
+Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
+
+```typescript
+export interface TxInfo {
+  type: string, //'MsgCreateCollection'
+  msg: object, //JSON stringified message
+}
+```
+
+This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
+
+If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
+
+```typescript
+import { proto } from 'bitbadgesjs-sdk';
+
+const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
+const msgCreateProtocol = new MsgCreateProtocol({
+  "name": "Test",
+  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
+  "customData": "Test",
+  "isFrozen": false,
+  "creator": chain.bitbadgesAddress
+})
+const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
+const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+
+setLoading(true);
+// You can further customize the child window as needed
+openedWindow?.focus();
+
+//set listener for when the child window closes
+const timer = setInterval(() => {
+  if (openedWindow?.closed) {
+    clearInterval(timer);
+    setLoading(false);
+  }
+}, 1000);
+```
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
+</strong><strong>if (window.opener) {
+</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
+    window.close();
+}
+</code></pre>
+
+```typescript
+//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+const FRONTEND_URL = 'https://bitbadges.io';
+const handleChildWindowMessage = async (event: MessageEvent) => {
+
+  if (event.origin === FRONTEND_URL) {
+
+    if (!event.source) {
+      throw new Error('Event source is null');
+    }
+
+    const txHash = event.data.txHash;
+    if (!txHash) {
+      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
+      return
+    }
+
+
+    setLoading(false);
+  }
+};
+
+// Add a listener to handle messages from the child window
+useEffect(() => {
+  window.addEventListener('message', handleChildWindowMessage);
+
+  // Cleanup the listener when the component unmounts
+  return () => {
+    window.removeEventListener('message', handleChildWindowMessage);
+  };
+}, []);
+```
+
+<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
+
+# Signing - Bitcoin
+
+**Signing with Bitcoin - Phantom Wallet**
+
+Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
+
+```typescript
+const getProvider = () => {
+  if ('phantom' in window) {
+    const phantomWindow = window as any;
+    const provider = phantomWindow.phantom?.bitcoin;
+    if (provider?.isPhantom) {
+      return provider;
+    }
+
+    window.open('https://phantom.app/', '_blank');
+  }
+};
+
+function bytesToBase64(bytes: Uint8Array) {
+  const binString = String.fromCodePoint(...bytes);
+  return btoa(binString);
+}
+
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+    const bitcoinProvider = getProvider();
+
+    let sig = '';
+    if (!simulate) {
+      const message = payload.txnString;
+      const encodedMessage = new TextEncoder().encode(message);
+      const signedMessage = await bitcoinProvider.signMessage(address, encodedMessage);
+
+      const base64Sig = bytesToBase64(signedMessage.signature);
+      sig = Buffer.from(base64Sig, 'base64').toString('hex');
+    }
+
+    const txBody = createTxBroadcastBody(context, messages, sig);
+    return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
+
+# Signing - Cosmos
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+#### Signing with Keplr
+
+```ts
+const signTxn = async (
+    context: TxContext,
+    payload: TransactionPayload,
+    protoMsgs: any[],
+    simulate: boolean
+) => {
+    if (!account) {
+        throw new Error('Account does not exist');
+    }
+    const { sender } = context;
+    await window.keplr?.enable(chainId);
+
+    let signatures = [new Uint8Array(Buffer.from('0x', 'hex'))];
+    if (!simulate) {
+        const signResponse = await window?.keplr?.signDirect(
+            chainId,
+            sender.address,
+            {
+                bodyBytes: payload.signDirect.body.toBinary(),
+                authInfoBytes: payload.signDirect.authInfo.toBinary(),
+                chainId: chainId,
+                accountNumber: new Long(sender.accountNumber),
+            },
+            {
+                preferNoSetFee: true,
+            }
+        );
+
+        if (!signResponse) {
+            throw new Error('No signature returned from Keplr');
+        }
+
+        signatures = [
+            new Uint8Array(
+                Buffer.from(signResponse.signature.signature, 'base64')
+            ),
+        ];
+    }
+
+    const hexSig = Buffer.from(signatures[0]).toString('hex');
+
+    const txBody = createTxBroadcastBody(context, protoMsgs, hexSig);
+    return txBody;
+};
+```
+
+### Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
+
+# Signing - Ethereum
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
+
+```typescript
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+  const sig = simulate
+    ? ''
+    : await signMessageAsync({
+        message: payload.txnString
+      });
+ 
+  const txBody = createTxBroadcastBody(context, messages, sig);
+  return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md
+
+# Signing - Solana
+
+Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
+
+**Signing with Solana - Phantom Wallet**
+
+
+
+Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
+
+```typescript
+const getProvider = () => {
+    if ('phantom' in window) {
+        const phantomWindow = window as any;
+        const provider = phantomWindow.phantom?.solana;
+        if (provider?.isPhantom) {
+            return provider;
+        }
+
+        window.open('https://phantom.app/', '_blank');
+    }
+};
+
+const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+  if (!account) throw new Error('Account not found.');
+
+  let sig = '';
+  if (!simulate) {
+    //Phantom has a weird error where messages must be < ~1000 bytes
+    //If we are within limit, we can have user sign the JSON
+    //Else, we hash the JSON and have user sign the hash
+    const encodedMessage = new TextEncoder().encode(payload.txnString);
+
+    const signedMessage = await getProvider().request({
+      method: 'signMessage',
+      params: {
+        message: encodedMessage,
+        display: 'utf8'
+      }
+    });
+    sig = signedMessage.signature.toString('hex');
+  }
+
+  //We need to pass in solAddress manually here
+  const txBody = createTxBroadcastBody(context, messages, sig, address);
+  return txBody;
+};
+```
+
+## Output
+
+This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
+
+
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
+
+# Transaction Context
+
+You have two options for generating, signing, and brodcasting messages.
+
+1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
+2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
+
+If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
+
+If you plan to use option 2, see below.
+
+### Generating Transaction Context
+
+The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
+
+Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
+
+```typescript
+import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
+
+//TODO: Fetch the account details (see below)
+
+//Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
+const txContext = {
+    testnet: false,
+    sender: {
+        //Must be in native format ('0xabc..' vs 'bc1...' etc)
+        address: account.address,
+        sequence: account.sequence,
+        accountNumber: account.accountNumber,
+        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        publicKey: account.publicKey,
+    },
+    //TODO: adjust accordingly
+    fee: {
+        amount: `0`,
+        denom: 'ubadge',
+        gas: `400000`,
+    },
+    memo: '',
+};
+```
+
+**Get Public Key - Cosmos**
+
+For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
+
+Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
+
+```typescript
+const getPublicKey = async () => {
+    const account = await window?.keplr?.getKey('bitbadges-1');
+    if (!account) return '';
+    return Buffer.from(account.pubKey).toString('base64');
+};
+```
+
+**Fee**
+
+Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
+
+**Sender Details**
+
+To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
+
+This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
+
+<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+
+## File: ./for-developers/bitbadges-blockchain/overview.md
+
+# Overview
+
+BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main). The blockchain is able to attain instant transaction finality using Tendermint and natively supports users from multiple Layer 1 blockchains (Ethereum, Bitcoin, Cosmos, Solana) via IBC and account lists.
+
+The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). The blockchain supports the Inter-Blockchain Communication Protocol (IBC) and CosmWASM.
+
+
+## File: ./for-developers/bitbadges-blockchain/run-a-node/README.md
+
+# Run a Node
+
+In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step thoroughly and include examples to ensure a smooth setup.
+
+The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
+
+**Becoming a Betanet Validator:** If you aspire to become a betanet validator, reach out to us to receive a tokens for staking.
+
+**Chain IDs:** When a chain ID is required, use the following:
+
+* "bitbadges-1" for the mainnet chain ID
+* "bitbadges-2" for the testnet chain ID
+
+**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs mainnet) will have different genesis JSONs.
+
+**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
+
+Node ID (mainnet): 2703c1304a70186372aa726a762d60da94c29ffe
+
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-dwontime using Cosmovisor.
+
+**Discord:** Communications and announcements for node operators is facilitated via our Discord.
+
+
+## File: ./for-developers/bitbadges-blockchain/run-a-node/cosmovisor.md
+
+# Cosmovisor
+
+**Installing Cosmovisor**
+
+The first step is to download Cosmovisor as an executable using [their documentation](https://docs.cosmos.network/v0.50/build/tooling/cosmovisor). Below is the Dockerized way we do it.
+
+```dockerfile
+FROM --platform=linux golang:1.21 AS builder
+
+ENV COSMOS_VERSION=v0.47.5
+RUN apt-get update && apt-get install -y git curl
+RUN apt-get install -y make wget
+
+WORKDIR /root
+RUN git clone --depth 1 --branch ${COSMOS_VERSION} https://github.com/cosmos/cosmos-sdk.git
+
+WORKDIR /root/cosmos-sdk/tools/cosmovisor
+
+RUN make cosmovisor
+```
+
+**Environment Variables**
+
+You will then need to set the following environment variables. The DAEMON\_HOME will be the home of your config files.&#x20;
+
+<pre class="language-docker"><code class="lang-docker"><strong>DAEMON_HOME=/root/.bitbadgeschain
+</strong>DAEMON_NAME=bitbadgeschaind
+</code></pre>
+
+**Initializing Executables**
+
+Then, run the following to setup your Cosmovisor directory. The executable should be named bitbadgeschaind (if not, please rename).
+
+```bash
+cosmosvisor init ./bitbadgeschaind
+```
+
+This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.
+
+IMPORTANT: Depending on your sync method (explained later), you will need to download all relevant executables. If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time. See Adding Upgrades below. You must repeat this process for all such executables.
+
+**Adding Upgrades**
+
+For a given upgrade, it will have a new binary and a \<upgrade-name>. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
+
+Depending on your version of cosmovisor, you may be able to run the following. Again, make sure the binary name is bitbadgeschaind.
+
+```
+cosmovisor add-upgrade ...
+```
+
+Or, to manually upgrade, do the following.
+
+1. Download the new binary and name it bitbadgeschaind. Do this in a separate folder to not interfere with anything currently running.
+2. Create the DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
+3. Copy the new upgrade executable to the folder (keeping its name as bitbadgeschaind).
+
+```dockerfile
+# upgrade name = abc123
+RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/
+RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
+RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
+```
+
+
+## File: ./for-developers/bitbadges-blockchain/run-a-node/overview.md
+
+# Overview
+
+In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step and include examples to ensure a smooth setup.
+
+The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
+
+**Becoming a Validator:** If you aspire to become a validator, reach out to us to receive a tokens for staking.
+
+**Chain IDs:** When a chain ID is required, use the following:
+
+* "bitbadges-1" for the mainnet / betanet chain ID
+* "bitbadges-2" for the testnet chain ID
+
+**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
+
+**BitBadges Public RPCs:** https://rpc.bitbadges.io
+
+Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
+
+**State Snapshots:** See [Chain Details](../chain-details.md)
+
+**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-downtime using Cosmovisor.
+
+**Discord:** Communications and announcements for node operators is facilitated via our Discord.
+
+
+## File: ./for-developers/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md
+
+# Run a Local Dev Node
+
+Running a local development node follows pretty much the same instructions as the mainnet ones except the following.
+
+* Chain ID should be something non-conflicting (i.e. not bitbadges-1 or -2)
+* No need for seed nodes or peers (since you are running a single node local chain)
+* Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
+  * If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.
+* You can also start with an existing genesis / snapshot if you would like.
+* You may have to setup a validator to be able to start producing blocks
+
+Please reach out in the dev Discord if you are stuck or need help!
+
+**Ignite CLI**
+
+Throughout BitBadges' development phase, we used Ignite CLI to help scaffold, build, and serve our chain. This is also a great option for bootstrapping a local development node. Visit their documentation for more information. You will need to download the bitbadgeschain source code to use Ignite CLI and use Ignite on the source folder.
+
+**Setting Up a Validator**
+
+See [**https://docs.cosmos.network/v0.45/run-node/run-node.html**](https://docs.cosmos.network/v0.45/run-node/run-node.html) for more information if you need to setup a local validator to start your chain. Replace simd with your run command.
+
+**Funding Your Address**
+
+With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON\_HOME/config/genesis.json -> app\_state.bank.balances path as seen below.
+
+You can use any converted BitBadges address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI. To get one or view your existing ones, run
+
+```
+cosmovisor run keys ...
+```
+
+```json
+...
+  "bank": {
+      ...
+      "balances": [
+        {
+          "address": "bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv",
+          "coins": [
+            {
+              "denom": "ubadge",
+              "amount": "1"
+            }
+          ]
+        },
+...
+```
+
+**Interacting with the Chain**
+
+Cosmos SDK has an in-depth CLI for interacting with the chain and getting details about it. To see all commands or get help, simply run any command with --help (or an invalid command will auto print the help messages).
+
+The main ones you will be using are **tx** and **query** to sign transactions and query state, respectively\*\*.\*\*
+
+For example,
+
+```bash
+# --from keystorename is to sign the tx
+cosmovisor run tx badges transfer-badges ... --from keystorename
+```
+
+```
+cosmovisor run query badges get-balance ...
+```
+
+We refer you to the CLI docs or other Cosmos SDK documentation for more information. The best way to get started is to simply just try stuff in the CLI, in our opinion.
+
+**Ports**
+
+http://localhost:1317 will be the node's REST API port for queries. Navigate to it in a browser to see.
+
+http://localhost:26657 will be the Tendermint RPC. You can also navigate here in the browser.
+
+
+## File: ./for-developers/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md
+
+# Run a Mainnet Node
+
+## DAEMON\_HOME
+
+Your DAEMON\_HOME is the folder that will contain everything about the blockchain state, configuration, genesis, etc. Ensure that this folder persists across upgrades and changes. This is especially important if you plan to run the node using a container approach (Docker, Kubernetes, etc).
+
+## Fetch / Build Binaries
+
+### Download
+
+Download the executable directly from GitHub. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.
+
+```
+wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
+```
+
+Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (16).png" alt=""><figcaption></figcaption></figure>
+
+Example
+
+<pre><code>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
+<strong>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/libwasmvm.x86_64.so
+</strong><strong>mv libwasmvm.x86_64.so /usr/lib/
+</strong></code></pre>
+
+### **Build from Source**
+
+We refer you to the README of the blockchain code repository.
+
+### **Docker**
+
+Running with Docker may be the easiest option, but it also is not compatible with automatic upgrades through Cosmovisor (see section below). This means you will sacrifice availability (which is especially important for validators who are slashed when down).
+
+```bash
+docker pull bitbadges/bitbadgeschain:latest
+```
+
+## Handling Upgrades - Cosmovisor
+
+BitBadges handles binary upgrades using Cosmovisor, a tool for automating upgrades with zero downtime. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html). It is expected all validators are using Cosmovisor.
+
+Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
+
+### **Installation / Setup**
+
+{% content-ref url="cosmovisor.md" %}
+[cosmovisor.md](cosmovisor.md)
+{% endcontent-ref %}
+
+## RUN\_COMMAND
+
+Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN\_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN\_COMMAND
+
+**Cosmovisor**
+
+```bash
+# The "run" is important. Ex:
+# cosmovisor run init -> Blockchain initialixation
+# cosmosvisor init -> Cosmosvisor folder initialization
+cosmovisor run ....
+```
+
+**Plain Executable**
+
+```
+./bitbadgeschaind ....
+```
+
+**Docker**
+
+<pre class="language-bash"><code class="lang-bash"><strong># Replace DAEMON_HOME
+</strong><strong>docker run -it \
+</strong>    -p 26656:26656 \
+    -p 26657:26657 \
+    -p 26660:26660 \
+    -p 6060:6060 \
+    -p 9090:9090 \
+    -p 1317:1317 \
+<strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
+</strong>    bitbadges/bitbadgeschain:latest ... 
+</code></pre>
+
+## Initialization / Syncing
+
+In order to catch up to the current consensus, you will need to get your node synced. This can be done from genesis (time consuming but no trust needed) or from a recent snapshot of the state (much faster but requires slight trust assumptions).
+
+### **From Snapshosts (Recommended)**
+
+If you do not want to reconstruct the entire history of the chain from genesis, you can start from a checkpoint. This can potentially save you days of syncing but requires you to trust an existing node.
+
+{% embed url="https://explorer.bitbadges.io/BitBadges%20Mainnet/statesync" %}
+
+**State Sync**
+
+You can configure your config.toml to use the Cosmos SDK state sync feature to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
+
+**From Snapshots**
+
+You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain. See [Chain Details](../chain-details.md) for providers.
+
+For [https://snapshots.whenmoonwhenlambo.money/bitbadges-1](https://snapshots.whenmoonwhenlambo.money/bitbadges-1), use this command. Replace /cosmos/.bitbadgeschain with your home directoyry.
+
+```
+lz4 -c -d bitbadges-1-snapshot-latest.tar.lz4 | tar -x -C /cosmos/.bitbadgeschain
+```
+
+### **From Block Sync**
+
+Syncing from genesis or via block sync means that you start with the blank genesis state and verify all transactions from the start block to the current block (time consuming). This is not recommended unless you need to run a full archive node.
+
+**Chain Binaries**
+
+The chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis). See Cosmovisor section.
+
+**Chain Forks**
+
+```
+NOTE: We had a hard fork after block 711315
+```
+
+Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork. You will need to manually handle this.
+
+For handling this, you can either:
+
+1. Start with block 711316 genesis or later (recommended). Everything will work as intended.
+
+<pre><code>cd DAEMON_HOME/config
+<strong>rm genesis.json
+</strong>curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis-711316.json
+RUN_COMMAND comet unsafe-reset-all
+RUN_COMMAND start
+</code></pre>
+
+2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.
+
+See ./scripts/handle-fork-711315.sh in the btibadgeschain GitHub repository for a full script. Or, do the following below:
+
+You can get blocks 1-711315 via running it below or via a snapshot (recommended).
+
+```
+cd DAEMON_HOME/config
+rm genesis.json
+curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis.json
+RUN_COMMAND start
+```
+
+If you want to migrate and join together the blockstores / transaction indexes so they are all in one place:
+
+<pre class="language-bash"><code class="lang-bash"># Backup the /data folder for blocks 1-711315 somewhere for later use
+# Get the chain up and running for 711316+ (see above). Sync a few blocks. Stop the chain. 
+
+<strong>git clone https://github.com/bitbadges/bitbadgeschain
+</strong><strong># Edit migrate.go to use your intended source / target DB paths
+</strong><strong># Run migrate.go which copies all blockstores / transaction data and sets base height back to 1
+</strong><strong># Note: If you need more than just block data (cs.wal, state.db, or evidence.dd), this is left  up to you. 
+</strong>go run scripts/migrate.go -source /path/to/snapshot/data -target /path/to/target/data
+</code></pre>
+
+**Testnet Genesis**
+
+Note: Replace the genesis files with the corresponding testnet ones if you are planning to run a testnet node
+
+## Configuration
+
+To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
+
+```
+RUN_COMMAND init <moniker> --chain-id CHAIN_ID
+```
+
+You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges-1 for mainnet).
+
+Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON\_HOME.
+
+If you are getting directories do not exist error, you may have to do the following first. These will be overwritten when the init command is executed, but it is just to get the errors out of there.
+
+<pre><code><strong>cd DAEMON_HOME
+</strong>mkdir config
+mkdir data
+mkdir wasm
+</code></pre>
+
+Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
+
+Tweak these as desired. Some important ones are highlighted below.
+
+**Setting Seed Nodes**
+
+In order to pull data from other nodes, you need to have seed nodes or peers to pull from. You may use 2703c1304a70186372aa726a762d60da94c29ffe@node.bitbadges.io:26656 for our official node ID. To establish connections with trusted nodes, edit `config.toml`. For instance:
+
+```toml
+seeds = "2703c1304a70186372aa726a762d60da94c29ffe@node.bitbadges.io:26656"
+```
+
+These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
+
+**Listen Addresses / Firewalls**
+
+Ensure that the listen address settings are correct, using your IP address or domain name if configured. Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
+
+## Running the Node
+
+Once you have the node all configured, run the following to start the chain. You should see blocks being synced if configured correctly.
+
+```
+RUN_COMMAND start
+```
+
+**Other Considerations**
+
+Setting up your node infrastructure correctly and with best practices is crucial to ensure security. There are many options for this, so below we just give some general guidelines.
+
+* DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
+* Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
+* Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
+* Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
+
+## Running a Validator
+
+As explained in the launch phases docs, reach out to us in [Discord](https://discord.com/invite/TJMaEd9bar) if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
+
+**Setup - Validator Keys**
+
+Follow the instructions in the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring) and/or the [Cosmos Tutorials](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to set up your validator keys. Replace `simd` with `bitbadgeschaind` or `myproject` with `bitbadgeschain`.
+
+A validator handles [two](https://hub.cosmos.network/main/validators/validator-faq.html#what-are-the-different-types-of-keys) perhaps three, different keys. Most likely keys 2 and 3 [are the same](https://github.com/cosmos/cosmos-sdk/blob/v0.46.1/proto/cosmos/staking/v1beta1/tx.proto#L45-L47). Each has a different purpose:
+
+1. The **Tendermint consensus key** is used to sign blocks on an ongoing basis. It is of the key type `ed25519`, which the KMS can keep. When Bech-encoded, the address is prefixed with `bbvalcons` and the public key is prefixed with `bbvalconspub`.
+2. The **validator operator application key** is used to create transactions that create or modify validator parameters. It is of type `secp256k1`, or whichever type the application supports. When Bech-encoded, the address is prefixed with `bbvaloper`.
+3. The [**delegator application key** ](https://hub.cosmos.network/main/validators/validator-faq.html#are-validators-required-to-self-delegate-atom)is used to handle the stake that gives the validator more weight. When Bech-encoded, the address is prefixed with `bb` and the public key is prefixed with `bbpub`.
+
+**Consensus Key**
+
+The consensus key is HOT, meaning it is needed on the validator node to sign blocks. It is strongly recommended that this is set up with a signing service and key management system.
+
+By default, when you ran the **init** command, it creates a key for you in `..../config/priv_validator_key.json.`
+
+This is convenient if you are starting a testnet, for which the security requirements are low. However, for a more valuable network, you should not store it directly in the node's filesystem. It should be stored in a more secure manner, such as with a signing service or key management system.
+
+**Operator / Delegator Key**
+
+The application / operator key should be COLD and NOT be stored on the validator node. This is just your standard public/private key pair used to sign transactions.
+
+This can be generated (if you don't already have one) by running the following command.
+
+```
+bitbadgeschaind keys --keyring-backend file --keyring-dir /root/.bitbadgeschain/keys
+add <name>
+```
+
+Adjust the command accordingly. **Note you should run this and store it on your local desktop, not the validating node.**
+
+### Joining the Validator Set
+
+If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set). Run with --help for more details. Replace bitbadgeschaind tx with your run command (dependent on your build method). This is the same command as how you started the node (but replace start with tx).
+
+```shell
+RUN_COMMAND tx staking create-validator /path/to/validator.json \
+  --chain-id="name_of_chain_id" \
+  --gas="auto" \
+  --gas-adjustment="1.2" \
+  --gas-prices="0.025ubadge" \
+  --from=mykey
+```
+
+This should be signed with your normal key pair for signing transactions. Ensure you have enough BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
+
+You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
+
+
+## File: ./for-developers/bitbadges-blockchain/staking-usdbadge.md
+
+# Staking / Validators
+
+The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101blockchains.com/proof-of-stake-vs-delegated-proof-of-stake/). Delegated Proof of Stake (DPoS) is a blockchain consensus mechanism where token holders elect a small group of trusted members (validators) to validate transactions and maintain the network. These validators stake their own stake and earn additional stake from maintaining the network.&#x20;
+
+The delegated part is because token holders can delegate their stake to validators and split the earned, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
+
+Reach out to us in Discord if you plan to run a validating node and need funds. To run a validator node, see [here](run-a-node/).&#x20;
+
+BitBadges is also a delegated PoS chain, so you can delegate to an existing validator. This validator will split the amount earned from securing the network with you (they may charge a commission). Visit [https://bitbadges.io/stake](https://bitbadges.io/stake).&#x20;
+
+Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
+
+## **Governance**
+
+Initially, we do not plan to use a governance structure to allow us to ship fast and build a great prduct. Over time as we shift to becoming more decentralized, we will allow stakeholders to propose and vote on governance proposals, weighted via their amount. This will be via the [Cosmos SDK governance module](https://docs.cosmos.network/main/modules/gov). These governance proposals will allow holders to decide on the future of BitBadges.
+
+
+## File: ./for-developers/bitbadges-blockchain/testnet-mode.md
+
+# Testnet Mode
+
+Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
+
+<pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
+</strong></code></pre>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+### Important Notes
+
+You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything). Consider this before determining whether testnet mode is the correct option for you.
+
+### Differences
+
+* Some features available in production may not be accessible in testnet:
+  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+  * Buying BADGE credits
+  * Push notifications
+  * And more
+* Some restrictions may be more relaxed
+  * No API keys required
+  * Faucet may be more lenient
+* Performance also may differ from the production environment
+
+### Links
+
+Frontend: [https://testnet.bitbadges.io](https://testnet.bitbadges.io)
+
+Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (append the normal routes to this base URL)
+
+Testnet Node:
+
+* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
+* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
+* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
+
+### Feedback
+
+If there is anything we can do to make development easier, let us know.
 
 
 ## File: ./for-developers/bitbadges-sdk/README.md
@@ -4991,7 +6758,7 @@ const bitbadgesAddress = convertToBitBadgesAddress(address);
 const ethAddress = bitbadgesToEth(bitbadgesAddress);
 ```
 
-It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../../token-standard/bitbadges-blockchain/create-and-broadcast-txs/) for how to use.
+It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../bitbadges-blockchain/create-and-broadcast-txs/) for how to use.
 
 ```typescript
 const nodeUrl = ...
@@ -5083,7 +6850,7 @@ balances.addBalances([{ ... }]); //adds balances in-place
 
 ### **Proto Types**
 
-The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../../token-standard/bitbadges-blockchain/create-and-broadcast-txs/))).&#x20;
+The blockchain behind the scenes uses the Protocol Buffer type language. Within the SDK, we auto-generate all these proto types for you, but these are typically not the ones you should use in development (only when broadcasting transactions (see [here](../bitbadges-blockchain/create-and-broadcast-txs/))).&#x20;
 
 Some might have duplicates between the two types.
 
@@ -11144,1871 +12911,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 7. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
 
 
-## File: ./token-standard/bitbadges-blockchain/README.md
-
-# ⛓ BitBadges Blockchain
-
-
-
-## File: ./token-standard/bitbadges-blockchain/accounts-technical.md
-
-# Accounts (Technical)
-
-## Pre-Readings
-
-* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
-* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
-
-### Accounts and Validator Operators
-
-For accounts (standard senders of transactions) and validator operators, we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
-
-### **Ethereum**
-
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike other Cosmos chains that use Coin type `118.`
-
-**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
-
-### **Solana**
-
-BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
-
-**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
-
-### **Cosmos**
-
-Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
-
-### Bitcoin
-
-BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
-
-**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
-
-### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-#### **Address Conversion**
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToBitBadges, bitbadgesToEth } from 'bitbadgesjs-sdk';
-</strong>
-<strong>const bitbadgesAddress = ethToBitBadges(address);
-</strong>const ethAddress = bitbadgesToEth(bitbadgesAddress);
-const bitbadgesAddressFromSolana = solanaToBitBadges(address);
-//Note there is no bitbadgesToSolana or ethToSolana due to how the addresses work
-</code></pre>
-
-Behind the scenes, the blockchain always uses the mapped BitBadges address, never a Solana or Ethereum address. The Solana / Ethereum addresses are only for visually displaying to the user.
-
-The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.
-
-#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-Ethereum Example:
-
-* Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-
-Solana Example:
-
-* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
-
-Bitcoin Example
-
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
-
-#### **Public Key Types**
-
-For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
-
-For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
-
-For standard Ethereum accounts, the public key will have the `"@type": "/ethereum.PubKey"`.
-
-`{"@type":"/ethereum.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
-
-### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
-
-Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
-
-```typescript
-import { Wallet } from 'ethers'
-import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
-
-const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'bb'
-const isPrivateKey: boolean = true /* just for the example */
-
-const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
-const ethereumAddress = wallet.address
-const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const bitbadgesAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
-```
-
-Let's see an example code snipped on how to derive a public key from a private key:
-
-```typescript
-import secp256k1 from 'secp256k1'
-
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
-const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
-
-const buf1 = Buffer.from([10])
-const buf2 = Buffer.from([publicKeyByte.length])
-const buf3 = Buffer.from(publicKeyByte)
-
-const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethereum.PubKey'
-```
-
-#### Acknowledgements
-
-Credit to [https://docs.injective.network/learn/basic-concepts/accounts](https://docs.injective.network/learn/basic-concepts/accounts) and [https://docs.evmos.org/protocol/concepts/accounts](https://docs.evmos.org/protocol/concepts/accounts).
-
-
-## File: ./token-standard/bitbadges-blockchain/chain-details.md
-
-# Chain Details
-
-Cosmos Chain ID (Mainnet) - bitbadges-1
-
-Cosmos Chain ID (Testnet) - bitbadges-2
-
-[Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
-
-### Official Links
-
-**RPCs**
-
-[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
-
-Tendermint Node ID: 2703c1304a70186372aa726a762d60da94c29ffe
-
-See genesis.json in source code repository for genesis file. See [here](htttps://github.com/bitbadges/bitbadgeschain) for source code repository.
-
-**Blockchain Node REST APIs**
-
-[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
-
-**State Snapshots (Unofficial)**
-
-[https://snapshots.whenmoonwhenlambo.money/](https://snapshots.whenmoonwhenlambo.money/)
-
-**BitBadges API / Indexer**
-
-[https://api.bitbadges.io](https://api.bitbadges.io)
-
-**Explorer**
-
-[https://explorer.bitbadges.io](https://explorer.bitbadges.io)
-
-**Web App**
-
-{% embed url="https://bitbadges.io" %}
-
-**Testnet**
-
-Node ID: 745b694aeef8c2e831ed6ec65060230a91f17914
-
-Hosted At: http://138.197.10.8:(1317 | 26657)
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/README.md
-
-# Cosmos SDK Msgs
-
-**What are Cosmos SDK Msgs? Msgs vs Transactions?**
-
-In Cosmos SDK, Msgs are messages that represent actions to be executed on the blockchain, such as sending tokens.
-
-Each transaction must consist of one or Msgs to be executed. Transactions also consist of other accompanying details such as the signature info.
-
-**What Msgs does the BitBadges blockchain implement?**
-
-The BitBadges blockchain utilizes various pre-written modules from the Cosmos SDK (auth, authz, genutil, bank, capability, staking, distr, gov, params, crisis, slashing, feegrant, group, wasm, ibc, upgrade, evidence, transfer, ica, vesting). The documentation for the pre-written modules can be found [here](https://docs.cosmos.network/main/modules).
-
-The x/badges module is the core functionality of BitBadges written by us, and within this module, all the Msg types that correspond to tokens are defined. We also use an x/wasmx module which helps to create compatible smart contracts (forked from Injective). The x/maps allows storing data in a structured format with many customization options for the map. The x/anchor alllows for storing unstructured data.
-
-**How to broadcast transactions with Msgs?**
-
-You can generate and submit your transactions (Msgs) via:
-
-* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
-* CLI: Run your own node and interact with the command line
-* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
-
-**What is the creator field?**
-
-The **creator** field for each message should be the transaction signer's BitBadges address.
-
-## Msg Definitions
-
-Below, we link the documentation for the Msgs from our x/badges and x/wasmx module.
-
-**x/badges**
-
-* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
-* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
-  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
-* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
-* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
-* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
-* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
-
-**x/wasmx**
-
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../../../for-developers/bitbadges-blockchain/concepts/accounts-technical.md) for tutorial.
-
-**x/maps**
-
-* MsgCreateMap - Creates a map, uniquely identifed by an ID
-* MsgUpdateMap - Updates an existing map.
-* MsgDeleteMap - Deletes a map
-* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
-
-**x/anchor**
-
-* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
-
-**Other Cosmos SDK Modules**
-
-For other standard Cosmos SDK messages, you can check out the bitbadges SDK documentation (such as [MsgSend](https://bitbadges.github.io/bitbadgesjs/classes/MsgSend.html) here). Or, check the official Cosmos documentation as these were written by them!
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md
-
-# Cosmos Native Msgs
-
-We refer you to Cosmos SDK documentation for other Cosmos native Msgs.
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md
-
-# MsgSend
-
-MsgSend is the Msg to send BADGE. It is a core Cosmos SDK msg (i.e. not written by BitBadges), o we refer you to their documentation for more information.
-
-```typescript
-/**
- * MsgSend represents a message to send coins from one account to another.
- *
- * @typedef {Object} MsgSend
- * @property {string} fromAddress - The sender of the transaction.
- * @property {string} toAddress - The recipient of the transaction.
- * @property {CosmosCoin[]} amount - The amount of coins to send.
- */
-export interface MsgSend<T extends NumberType> {
-    fromAddress: string;
-    toAddress: string;
-    amount: CosmosCoin<T>[];
-}
-
-/**
- * Type for Cosmos SDK Coin information with support for bigint amounts (e.g. { amount: 1000000, denom: 'ubadge' }).
- *
- * @typedef {Object} CosmosCoin
- * @property {NumberType} amount - The amount of the coin.
- * @property {string} denom - The denomination of the coin.
- */
-export interface CosmosCoin<T extends NumberType> {
-    amount: T;
-    denom: string;
-}
-```
-
-```json
-{
-    "fromAddress": "bb1pa6p7nsqg57yqv23khnu5dumfhycr459jjnzsg",
-    "toAddress": "bb1uy4my3dwzwv9drgq06pt433z742l9vrlsm053p",
-    "amount": [
-        {
-            "denom": "ubadge",
-            "amount": "1"
-        }
-    ]
-}
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md
-
-# x/anchor
-
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md
-
-# MsgAddCustomData
-
-MsgAddCustomData is a part of the x/anchor module which allows you to anchor any custom data to the blockchain. The blcokchain will store with an incrementing location ID along with the timestamp. This can be used to prove knowledge of something at a specific time by anchoring it to the chain.
-
-```protobuf
-message MsgAddCustomData {
-  string creator = 1;
-  string data    = 2;
-}
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md
-
-# x/badges
-
-See the x/badges documentation below the For Developers section.
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md
-
-# x/maps
-
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md
-
-# MsgCreateMap
-
-MsgCreateMap creates a map on-chain. We refer you to here for more information on each individual field.
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
-
-```typescript
-export interface iMsgCreateMap<T extends NumberType> {
-  creator: string;
-  mapId: string;
-
-  inheritManagerTimelineFrom: T;
-  managerTimeline: iManagerTimeline<T>[];
-
-  updateCriteria: iMapUpdateCriteria<T>;
-  valueOptions: iValueOptions;
-  defaultValue: string;
-
-  metadataTimeline: iMapMetadataTimeline<T>[];
-
-  permissions: iMapPermissions<T>;
-}
-```
-
-```typescript
-export interface iValueOptions {
-  noDuplicates: boolean;
-  permanentOnceSet: boolean;
-  expectUint: boolean;
-  expectBoolean: boolean;
-  expectAddress: boolean;
-  expectUri: boolean;
-}
-```
-
-```typescript
-export interface iMapPermissions<T extends NumberType> {
-  canUpdateMetadata: iTimedUpdatePermission<T>[];
-  canUpdateManager: iTimedUpdatePermission<T>[];
-  canDeleteMap: iActionPermission<T>[];
-}
-```
-
-```typescript
-export interface iMapMetadataTimeline<T extends NumberType> {
-  timelineTimes: iUintRange<T>[];
-  metadata: iCollectionMetadata;
-}
-```
-
-```typescript
-export interface iMapUpdateCriteria<T extends NumberType> {
-  managerOnly: boolean;
-  collectionId: T;
-  creatorOnly: boolean;
-  firstComeFirstServe: boolean;
-}
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md
-
-# MsgDeleteMap
-
-MsgDeleteProtocol deletes the map with the given name.
-
-<pre class="language-typescript"><code class="lang-typescript"><a data-footnote-ref href="#user-content-fn-1">export</a> interface MsgDeleteMap {
-  creator: string,
-  mapId: string,
-}
-</code></pre>
-
-[^1]: 
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md
-
-# MsgSetValue
-
-MsgSetValue sets the specific key-value pair for the mapId. For example, set my BitBadges Follow Protocol collection to collection ID 12.
-
-All values are stringified for comaptibility, but it will check they are in proper format within the Msg logic. You can set **options.useMostRecentCollectionId** to auto-fetch the latest collection ID. This can be leveraged in multi-msg transactions where you want to create a collection and set the ID to the just created collection. Typically, you do not know the collection ID until after the collection is created which is why this feature is useful. See below
-
-```typescript
-export interface iMsgSetValue {
-    creator: string;
-    mapId: string;
-    key: string;
-    value: string;
-    options: iSetOptions;
-}
-
-export interface iSetOptions {
-    useMostRecentCollectionId: boolean;
-}
-```
-
-**Combining with MsgCreateCollection or MsgUpdateCollection**
-
-The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
-
-```typescript
-const msgs: MessageGenerated[] = [];
-msgs.push(...bootstrapCollections().map((x) => createProtoMsg(x))); //MsgCreateCollections
-msgs.push(...bootstrapSetProtocols().map((x) => createProtoMsg(x))); //MsgSetCollectionForProtocol
-
-//Note how MsgCreateAddressLists is first in the array
-const txn = createTransactionPayload(txContext, msgs);
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md
-
-# MsgUpdateMap
-
-MsgUpdateMap updates the map with the matching ID. Similar to the x/badges Msgs, we use an update flag + value interface. If update flag = true, we update with the corresponding value. Else, we ignore it.
-
-```typescript
-export interface iMsgUpdateMap<T extends NumberType> {
-  creator: string;
-  mapId: string;
-
-  updateManagerTimeline: boolean;
-  managerTimeline: iManagerTimeline<T>[];
-
-  updateMetadataTimeline: boolean;
-  metadataTimeline: iMapMetadataTimeline<T>[];
-
-  updatePermissions: boolean;
-  permissions: iMapPermissions<T>;
-}
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md
-
-# x/wasmx
-
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md
-
-# MsgExecuteContractCompat
-
-```typescript
-/**
- * MsgExecuteContractCompat defines a ExecuteContractCompat message.
- *
- * @typedef {Object} MsgExecuteContractCompat
- * @property {string} sender - The sender of the transaction.
- * @property {string} contract - The contract address to execute.
- * @property {string} msg - The message to pass to the contract. Must be a valid JSON string.
- * @property {string} funds - The funds to send to the contract. Must be a valid JSON string.
- */
-export interface MsgExecuteContractCompat {
-    sender: string;
-    contract: string;
-    msg: string;
-    funds: string;
-}
-```
-
-MsgExecuteContractCompat is a wrapper for CosmWASM's MsgExecuteContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md
-
-# MsgInstantiateContractCompat
-
-```typescript
-export interface MsgInstantiateContractCompat {
-  sender: string
-  codeId: string
-  label: string
-  funds: string
-}
-```
-
-MsgInstantiateContractCompat is a wrapper for CosmWASM's MsgInstantiateContract that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./token-standard/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md
-
-# MsgStoreCodeCompat
-
-```typescript
-export interface MsgStoreCodeCompat {
-    sender: string;
-    hexWasmByteCode: string;
-}
-```
-
-MsgStoreCompat is a wrapper for CosmWASM's MsgStoreCode that is compatible with all signing methods for BitBadges users. See [Create a Smart Contract](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-a-wasm-contract.md) tutorial for more information.
-
-
-## File: ./token-standard/bitbadges-blockchain/create-a-wasm-contract.md
-
-# Create a WASM Contract
-
-BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively!
-
-We refer you to official CosmWASM and Rust documentation for more information. This tutorial will only focus on BItBadges specific information.
-
-{% embed url="https://cosmwasm.cosmos.network/" %}
-
-```go.mod
-github.com/CosmWasm/wasmd v0.52.0
-```
-
-**Permissioned Uploads**
-
-```
-BitBadges implements CosmWASM in a permissioned manner.
-```
-
-Instantiating and officially deploying a contract does require a review process and governance approval. Reach out for more information.
-
-Requirements:
-
--   No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
--   We encourage audits and a peer review process before officailly deploying.
--   You must also showcase a working testnet implementation as well (testnet is permissionless)
-
-Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
-
-**High-Level Development Overview**
-
-```rust
-const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d',
-    contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e',
-    msg: '{"myCustomMsg1": {"collectionId": "1"}}',
-    funds: '1ubadge',
-};
-```
-
--   Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
--   3-Step Process: Upload / Store Code, Instantiate, Execute
-    -   Instantiating requires governance proposal (see below)
--   Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-    -   When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
--   The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
-
-```rust
-//contract.rs
-use bitbadges_cosmwasm::{
-  transfer_badges_msg
-};
-
-#[entry_point]
-pub fn execute(
-    _deps: DepsMut,
-    _env: Env,
-    _info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result<Response<BitBadgesMsg>, StdError> {
-    match msg {
-        ExecuteMsg::CustomMsg1 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
-          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
-        }
-        ExecuteMsg::CustomMsg2 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
-          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
-        }
-        // Add other messages here as needed
-    }
-}
-```
-
-### **Create a Contract Tutorial**
-
-1. Clone the BitBadges Cosmwasm repository
-
-```
-git clone https://github.com/BitBadges/bitbadges-cosmwasm-bindings.git
-cd bitbadges-cosmwasm-bindings
-```
-
-This repository exports all the custom bindings via `packages/bitbadges-cosmwasm`. You should typically NOT edit the exported types. These are already pregenerated exactly as defined on-chain for you to use.
-
-2. Create your contract
-
-You will be dealing with the `contracts` folder. This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
-
-Tools at your disposal:
-
-```rust
-// All BitBadges type bindings
-use bitbadges_cosmwasm::{
-  Transfer, Balance, ....
-};
-```
-
-<pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
-// This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
-use bitbadges_cosmwasm::{
-  transfer_badges_msg, delete_collection_msg, BitBadgesMsg
-}
-<strong>
-</strong><strong>pub fn execute_my_msg(
-</strong>    collection_id: String,
-    transfers: Vec&#x3C;Transfer>,
-) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
-    let msg = transfer_badges_msg(
-        collection_id,
-        transfers,
-    );
-
-    Ok(Response::new().add_message(msg))
-}
-
-#[entry_point]
-pub fn execute(
-    _deps: DepsMut,
-    _env: Env,
-    _info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result&#x3C;Response&#x3C;BitBadgesMsg>, StdError> {
-    match msg {
-        ExecuteMsg::MyCustomMsg { collection_id, transfers } => {
-          execute_my_msg(collection_id, transfers)
-        }
-        // Add other messages here as needed
-    }
-}
-</code></pre>
-
-3. Build and Optimize
-
-You may have to edit the script for you file names and paths. Consider also using an optimizer like [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
-
-```bash
-cargo build
-source ./build.sh # outputs a .wasm
-gzip youcontractname.wasm # outputs a .wasm.gz
-```
-
-```bash
-# build.sh
-RUSTFLAGS='-C link-arg=-s' cargo wasm
-cp ../../target/wasm32-unknown-unknown/release/YOUR_CONTRACT_NAME.wasm .
-```
-
-4. Uploading Your Contract
-
-Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction. &#x20;
-
-For testnet uploads, use testnet.bitbadges.io
-
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
-
-5. Instantiate your Contract
-
-A notification from Step 4 should pop up with your code ID, assuming the transaction was successful.
-
-Refresh the page or clear all Msgs and start a new transaction. Now, select MsgInstantiateContractCompat. Set a label (name for your contract) and enter the code ID from step 3. Submit the transaction.
-
-If you want to instantiate it with funds. the **funds** property will be in the format "1badge".
-
-A notification should pop up with your contract's address. Store this somewhere.
-
-```
-Note: This is only applicable to testnet.
-
-For mainnet, instantiation requires a governance proposal. Reach out to us to start this process.
-```
-
-6. Interact with the Contract
-
-Once deployed, you need to to let your users interact with it. Use our custom x/wasmx MsgExecuteContractCompat to do so. This is a wrapper around the core x/wasm MsgExecuteContract with support for BitBadges signing. This is the same as broadcasting any other transaction, so we refer you to Creating, Signing, and Broadcasting Txs for a tutorial.
-
-Couple common misunderstandings:
-
--   Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
--   Note camelCase vs snake_case. Contracts typically auto-format with camelCase via&#x20;
-
-    ```rust
-    #[serde(rename_all = "camelCase")]
-    ```
-
--   Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
-
-**Examples**
-
-```typescript
-const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', //enter sender adress here
-    contract: 'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
-    msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
-    funds: '1badge',
-};
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/README.md
-
-# Create, Generate, and Sign Txs
-
-To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
-
-We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../../for-developers/bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
-
-You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
-
-# Broadcast to a Node
-
-**Pre-Req:** You have the body variable with a valid signature (see prior pages).
-
-### **Simulating**
-
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.&#x20;
-
-To do this, you can use&#x20;
-
-```
-https://api.bitbadges.io/api/v0/simulate
-```
-
-**or**
-
-```typescript
-http://URL:1317/cosmos/tx/v1beta1/simulate
-```
-
-This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
-
-Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
-
-Once simulated, replace the expected gas you want in the transaction context.
-
-```typescript
-export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
-    gas_info: {
-        gas_used: string;
-        gas_wanted: string;
-    };
-    result: {
-        data: string;
-        log: string;
-        events: {
-            type: string;
-            attributes: {
-                key: string;
-                value: string;
-                index: boolean;
-            }[];
-        }[];
-        msg_responses: any[];
-    };
-}
-```
-
-### **Broadcasting**
-
-You can replace the URL below with any valid BitBadges blockchain node.
-
-```typescript
-`http://URL:1317${generateEndpointBroadcast()}`;
-```
-
-Or, you can use the BitBadges API to broadcast.
-
-```typescript
-https://api.bitbadges.io/api/v0/broadcast
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
-</strong></code></pre>
-
-This will give you a response immediately. You should then use the tx_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
-
-```typescript
-export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
-    tx_response: {
-        code: number;
-        codespace: string;
-        data: string;
-        events: {
-            type: string;
-            attributes: {
-                key: string;
-                value: string;
-                index: boolean;
-            }[];
-        }[];
-        gas_wanted: string;
-        gas_used: string;
-        height: string;
-        info: string;
-        logs: {
-            events: {
-                type: string;
-                attributes: {
-                    key: string;
-                    value: string;
-                    index: boolean;
-                }[];
-            }[];
-        }[];
-        raw_log: string;
-        timestamp: string;
-        tx: object | null;
-        txhash: string;
-    };
-}
-```
-
-### Polling
-
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API_URL, not the BitBadges API. You can also view it on explorers.
-
-Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
-
-```typescript
-const txHash = res.data.tx_response.txhash;
-const code = res.data.tx_response.code;
-if (code !== undefined && code !== 0) {
-    throw new Error(
-        `Error broadcasting transaction: Code ${code}: ${JSON.stringify(
-            res.data.tx_response,
-            null,
-            2
-        )}`
-    );
-}
-
-let fetched = false;
-while (!fetched) {
-    try {
-        const res = await axios.get(
-            `${process.env.API_URL}/cosmos/tx/v1beta1/txs/${txHash}`
-        );
-        fetched = true;
-
-        return res;
-    } catch (e) {
-        // wait 1 sec
-        console.log('Waiting 1 sec to fetch tx');
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-    }
-}
-
-return res;
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md
-
-# Run an AI Agent
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-ai" %}
-
-We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
-
-This implements all of the signing functionality for a managed Ethereum address (the agent's address). You can interact with it through a chatbot interface, or you can extend / customize for more functionality. This is a recommended place to start if you are just experimenting.
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md
-
-# Generate Msg Contents
-
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.&#x20;
-
-If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
-
-### **Building the Msgs**
-
-You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
-
-See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-//proto.cosmos.module for standard Cosmos
-//proto.badges for BitBadges x/badges
-//proto.wasmx for BitBadges x/wasmx
-//proto.protocols for BitBadges x/protocols
-const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
-
-const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
-    //Add more here (executed in order)
-];
-```
-
-### Building the Transaction
-
-```typescript
-const txContext = { ... } //See prior page
-
-const txnPayload = createTransactionPayload(txContext, protoMsgs);
-```
-
-The outputted payload will be in the following format.
-
-For Cosmos, you will use signDIrect.
-
-For Ethereum/Solana/Bitcoin, you will use txnString.
-
-If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
-
-```typescript
-export interface TransactionPayload {
-    legacyAmino: {
-        body: TxBody;
-        authInfo: AuthInfo;
-        signBytes: string;
-    };
-    signDirect: {
-        body: TxBody;
-        authInfo: AuthInfo;
-        signBytes: string;
-    };
-    txnString: string;
-    txnJson: Record<string, any>;
-}
-```
-
-### Next Steps
-
-Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
-
-# Sign + Broadcast - bitbadges.io
-
-**Option 1: Copy / Paste**
-
-To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
-
-**Option 2: Redirect**
-
-Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
-
-```typescript
-export interface TxInfo {
-  type: string, //'MsgCreateCollection'
-  msg: object, //JSON stringified message
-}
-```
-
-This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
-
-If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
-const msgCreateProtocol = new MsgCreateProtocol({
-  "name": "Test",
-  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
-  "customData": "Test",
-  "isFrozen": false,
-  "creator": chain.bitbadgesAddress
-})
-const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
-const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-
-setLoading(true);
-// You can further customize the child window as needed
-openedWindow?.focus();
-
-//set listener for when the child window closes
-const timer = setInterval(() => {
-  if (openedWindow?.closed) {
-    clearInterval(timer);
-    setLoading(false);
-  }
-}, 1000);
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
-</strong><strong>if (window.opener) {
-</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
-    window.close();
-}
-</code></pre>
-
-```typescript
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-const FRONTEND_URL = 'https://bitbadges.io';
-const handleChildWindowMessage = async (event: MessageEvent) => {
-
-  if (event.origin === FRONTEND_URL) {
-
-    if (!event.source) {
-      throw new Error('Event source is null');
-    }
-
-    const txHash = event.data.txHash;
-    if (!txHash) {
-      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
-      return
-    }
-
-
-    setLoading(false);
-  }
-};
-
-// Add a listener to handle messages from the child window
-useEffect(() => {
-  window.addEventListener('message', handleChildWindowMessage);
-
-  // Cleanup the listener when the component unmounts
-  return () => {
-    window.removeEventListener('message', handleChildWindowMessage);
-  };
-}, []);
-```
-
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
-
-# Signing - Bitcoin
-
-**Signing with Bitcoin - Phantom Wallet**
-
-Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
-
-```typescript
-const getProvider = () => {
-  if ('phantom' in window) {
-    const phantomWindow = window as any;
-    const provider = phantomWindow.phantom?.bitcoin;
-    if (provider?.isPhantom) {
-      return provider;
-    }
-
-    window.open('https://phantom.app/', '_blank');
-  }
-};
-
-function bytesToBase64(bytes: Uint8Array) {
-  const binString = String.fromCodePoint(...bytes);
-  return btoa(binString);
-}
-
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-    const bitcoinProvider = getProvider();
-
-    let sig = '';
-    if (!simulate) {
-      const message = payload.txnString;
-      const encodedMessage = new TextEncoder().encode(message);
-      const signedMessage = await bitcoinProvider.signMessage(address, encodedMessage);
-
-      const base64Sig = bytesToBase64(signedMessage.signature);
-      sig = Buffer.from(base64Sig, 'base64').toString('hex');
-    }
-
-    const txBody = createTxBroadcastBody(context, messages, sig);
-    return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
-
-# Signing - Cosmos
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-#### Signing with Keplr
-
-```ts
-const signTxn = async (
-    context: TxContext,
-    payload: TransactionPayload,
-    protoMsgs: any[],
-    simulate: boolean
-) => {
-    if (!account) {
-        throw new Error('Account does not exist');
-    }
-    const { sender } = context;
-    await window.keplr?.enable(chainId);
-
-    let signatures = [new Uint8Array(Buffer.from('0x', 'hex'))];
-    if (!simulate) {
-        const signResponse = await window?.keplr?.signDirect(
-            chainId,
-            sender.address,
-            {
-                bodyBytes: payload.signDirect.body.toBinary(),
-                authInfoBytes: payload.signDirect.authInfo.toBinary(),
-                chainId: chainId,
-                accountNumber: new Long(sender.accountNumber),
-            },
-            {
-                preferNoSetFee: true,
-            }
-        );
-
-        if (!signResponse) {
-            throw new Error('No signature returned from Keplr');
-        }
-
-        signatures = [
-            new Uint8Array(
-                Buffer.from(signResponse.signature.signature, 'base64')
-            ),
-        ];
-    }
-
-    const hexSig = Buffer.from(signatures[0]).toString('hex');
-
-    const txBody = createTxBroadcastBody(context, protoMsgs, hexSig);
-    return txBody;
-};
-```
-
-### Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
-
-# Signing - Ethereum
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
-
-```typescript
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  const sig = simulate
-    ? ''
-    : await signMessageAsync({
-        message: payload.txnString
-      });
- 
-  const txBody = createTxBroadcastBody(context, messages, sig);
-  return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md
-
-# Signing - Solana
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-**Signing with Solana - Phantom Wallet**
-
-
-
-Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
-
-```typescript
-const getProvider = () => {
-    if ('phantom' in window) {
-        const phantomWindow = window as any;
-        const provider = phantomWindow.phantom?.solana;
-        if (provider?.isPhantom) {
-            return provider;
-        }
-
-        window.open('https://phantom.app/', '_blank');
-    }
-};
-
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  if (!account) throw new Error('Account not found.');
-
-  let sig = '';
-  if (!simulate) {
-    //Phantom has a weird error where messages must be < ~1000 bytes
-    //If we are within limit, we can have user sign the JSON
-    //Else, we hash the JSON and have user sign the hash
-    const encodedMessage = new TextEncoder().encode(payload.txnString);
-
-    const signedMessage = await getProvider().request({
-      method: 'signMessage',
-      params: {
-        message: encodedMessage,
-        display: 'utf8'
-      }
-    });
-    sig = signedMessage.signature.toString('hex');
-  }
-
-  //We need to pass in solAddress manually here
-  const txBody = createTxBroadcastBody(context, messages, sig, address);
-  return txBody;
-};
-```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
-
-## File: ./token-standard/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
-
-# Transaction Context
-
-You have two options for generating, signing, and brodcasting messages.
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
-
-If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
-
-If you plan to use option 2, see below.
-
-### Generating Transaction Context
-
-The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
-
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
-
-```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
-
-//TODO: Fetch the account details (see below)
-
-//Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
-const txContext = {
-    testnet: false,
-    sender: {
-        //Must be in native format ('0xabc..' vs 'bc1...' etc)
-        address: account.address,
-        sequence: account.sequence,
-        accountNumber: account.accountNumber,
-        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
-        publicKey: account.publicKey,
-    },
-    //TODO: adjust accordingly
-    fee: {
-        amount: `0`,
-        denom: 'ubadge',
-        gas: `400000`,
-    },
-    memo: '',
-};
-```
-
-**Get Public Key - Cosmos**
-
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
-
-Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
-
-```typescript
-const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1');
-    if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64');
-};
-```
-
-**Fee**
-
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
-
-**Sender Details**
-
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../../for-developers/bitbadges-api/). You can also query a node directly.
-
-This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
-
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./token-standard/bitbadges-blockchain/overview.md
-
-# Overview
-
-BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main). The blockchain is able to attain instant transaction finality using Tendermint and natively supports users from multiple Layer 1 blockchains (Ethereum, Bitcoin, Cosmos, Solana) via IBC and account lists.
-
-The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). The blockchain supports the Inter-Blockchain Communication Protocol (IBC) and CosmWASM.
-
-
-## File: ./token-standard/bitbadges-blockchain/run-a-node/README.md
-
-# Run a Node
-
-In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step thoroughly and include examples to ensure a smooth setup.&#x20;
-
-The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
-
-**Becoming a Betanet Validator:** If you aspire to become a betanet validator, reach out to us to receive a tokens for staking.
-
-**Chain IDs:** When a chain ID is required, use the following:
-
--   "bitbadges-1" for the mainnet chain ID
--   "bitbadges-2" for the testnet chain ID
-
-**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs mainnet) will have different genesis JSONs.
-
-**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
-
-Node ID (mainnet): 2703c1304a70186372aa726a762d60da94c29ffe
-
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-dwontime using Cosmovisor.
-
-**Discord:** Communications and announcements for node operators is facilitated via our Discord.
-
-
-## File: ./token-standard/bitbadges-blockchain/run-a-node/cosmovisor.md
-
-# Cosmovisor
-
-**Installing Cosmovisor**
-
-The first step is to download Cosmovisor as an executable using [their documentation](https://docs.cosmos.network/v0.50/build/tooling/cosmovisor). Below is the Dockerized way we do it.
-
-```dockerfile
-FROM --platform=linux golang:1.21 AS builder
-
-ENV COSMOS_VERSION=v0.47.5
-RUN apt-get update && apt-get install -y git curl
-RUN apt-get install -y make wget
-
-WORKDIR /root
-RUN git clone --depth 1 --branch ${COSMOS_VERSION} https://github.com/cosmos/cosmos-sdk.git
-
-WORKDIR /root/cosmos-sdk/tools/cosmovisor
-
-RUN make cosmovisor
-```
-
-**Environment Variables**
-
-You will then need to set the following environment variables. The DAEMON\_HOME will be the home of your config files.&#x20;
-
-<pre class="language-docker"><code class="lang-docker"><strong>DAEMON_HOME=/root/.bitbadgeschain
-</strong>DAEMON_NAME=bitbadgeschaind
-</code></pre>
-
-**Initializing Executables**
-
-Then, run the following to setup your Cosmovisor directory. The executable should be named bitbadgeschaind (if not, please rename).
-
-```bash
-cosmosvisor init ./bitbadgeschaind
-```
-
-This will create the necessary folders and copy the executable into the DAEMON\_HOME/cosmovisor/genesis/bin.
-
-IMPORTANT: Depending on your sync method (explained later), you will need to download all relevant executables. If you are syncing from genesis, you will need all executables to be able to sync to the current state. If you are syncing from a later time, you will only need the binaries used after that time. See Adding Upgrades below. You must repeat this process for all such executables.
-
-**Adding Upgrades**
-
-For a given upgrade, it will have a new binary and a \<upgrade-name>. \<upgrade-name> is the name used in the x/upgrade module when proposing a new software upgrade.
-
-Depending on your version of cosmovisor, you may be able to run the following. Again, make sure the binary name is bitbadgeschaind.
-
-```
-cosmovisor add-upgrade ...
-```
-
-Or, to manually upgrade, do the following.
-
-1. Download the new binary and name it bitbadgeschaind. Do this in a separate folder to not interfere with anything currently running.
-2. Create the DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name> and DAEMON\_HOME/cosmovisor/upgrades/\<upgrade-name>/bin directory.
-3. Copy the new upgrade executable to the folder (keeping its name as bitbadgeschaind).
-
-```dockerfile
-# upgrade name = abc123
-RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/
-RUN mkdir ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin
-RUN cp /path_to_executable ${DAEMON_HOME}/cosmovisor/upgrades/abc123/bin/bitbadgeschaind
-```
-
-
-## File: ./token-standard/bitbadges-blockchain/run-a-node/overview.md
-
-# Overview
-
-In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step and include examples to ensure a smooth setup.
-
-The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
-
-**Becoming a Validator:** If you aspire to become a validator, reach out to us to receive a tokens for staking.
-
-**Chain IDs:** When a chain ID is required, use the following:
-
--   "bitbadges-1" for the mainnet / betanet chain ID
--   "bitbadges-2" for the testnet chain ID
-
-**Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs betanet vs mainnet) will have different genesis JSONs.
-
-**BitBadges Public RPCs:** https://rpc.bitbadges.io
-
-Node ID (betanet): 3958a0e660599d8146e7f2a6da8d4df83561b0fc
-
-**State Snapshots:** See [Chain Details](../chain-details.md)
-
-**Handling Upgrades:** BitBadges uses the x/upgrade module from Cosmos SDK for upgrades and expects upgrades to be handled with zero-downtime using Cosmovisor.
-
-**Discord:** Communications and announcements for node operators is facilitated via our Discord.
-
-
-## File: ./token-standard/bitbadges-blockchain/run-a-node/run-a-local-dev-node.md
-
-# Run a Local Dev Node
-
-Running a local development node follows pretty much the same instructions as the mainnet ones except the following.
-
--   Chain ID should be something non-conflicting (i.e. not bitbadges-1 or -2)
--   No need for seed nodes or peers (since you are running a single node local chain)
--   Assuming you want to start a new chain with the latest binary, you will not have any upgrades to handle. Genesis -> Current Block will always be the current, latest binary.
-    -   If you are using Docker, you should be using the latest binary image instead of the mainnet node one. The mainnet node one has all binaries built.
--   You can also start with an existing genesis / snapshot if you would like.
--   You may have to setup a validator to be able to start producing blocks
-
-Please reach out in the dev Discord if you are stuck or need help!
-
-**Ignite CLI**
-
-Throughout BitBadges' development phase, we used Ignite CLI to help scaffold, build, and serve our chain. This is also a great option for bootstrapping a local development node. Visit their documentation for more information. You will need to download the bitbadgeschain source code to use Ignite CLI and use Ignite on the source folder.
-
-**Setting Up a Validator**
-
-See [**https://docs.cosmos.network/v0.45/run-node/run-node.html**](https://docs.cosmos.network/v0.45/run-node/run-node.html) for more information if you need to setup a local validator to start your chain. Replace simd with your run command.
-
-**Funding Your Address**
-
-With a local development chain started from scratch, you probably want to have an address that is seeded with some starting balances. You can fund your address by editing the DAEMON_HOME/config/genesis.json -> app_state.bank.balances path as seen below.
-
-You can use any converted BitBadges address (e.g. an Ethereum address converted), but we recommend using an address you can sign with via the CLI. To get one or view your existing ones, run&#x20;
-
-```
-cosmovisor run keys ...
-```
-
-```json
-...
-  "bank": {
-      ...
-      "balances": [
-        {
-          "address": "bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv",
-          "coins": [
-            {
-              "denom": "ubadge",
-              "amount": "1"
-            }
-          ]
-        },
-...
-```
-
-**Interacting with the Chain**
-
-Cosmos SDK has an in-depth CLI for interacting with the chain and getting details about it. To see all commands or get help, simply run any command with --help (or an invalid command will auto print the help messages). &#x20;
-
-The main ones you will be using are **tx** and **query** to sign transactions and query state, respectively**.**&#x20;
-
-For example,
-
-```bash
-# --from keystorename is to sign the tx
-cosmovisor run tx badges transfer-badges ... --from keystorename
-```
-
-```
-cosmovisor run query badges get-balance ...
-```
-
-We refer you to the CLI docs or other Cosmos SDK documentation for more information. The best way to get started is to simply just try stuff in the CLI, in our opinion.
-
-**Ports**
-
-http://localhost:1317 will be the node's REST API port for queries. Navigate to it in a browser to see.
-
-http://localhost:26657 will be the Tendermint RPC. You can also navigate here in the browser.
-
-<!-- **Running the Full-Stack**
-
-To run the indexer and frontend along with a local development chain, we refer you to the documentation for those. Make sure that the URLs are configured properly (i.e. pointing to localhost and not the main deployed one).&#x20;
-
-Please reach out if you have problems. -->
-
-
-## File: ./token-standard/bitbadges-blockchain/run-a-node/run-a-mainnet-node.md
-
-# Run a Mainnet Node
-
-## DAEMON\_HOME
-
-Your DAEMON\_HOME is the folder that will contain everything about the blockchain state, configuration, genesis, etc. Ensure that this folder persists across upgrades and changes. This is especially important if you plan to run the node using a container approach (Docker, Kubernetes, etc).
-
-## Fetch / Build Binaries
-
-### Download
-
-Download the executable directly from GitHub. For the latest releases, check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases). Choose the correct executable for your machine and operating system.
-
-```
-wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
-```
-
-Example: [https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet](https://github.com/BitBadges/bitbadgeschain/releases/tag/v1.0-betanet)
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (16).png" alt=""><figcaption></figcaption></figure>
-
-Example
-
-<pre><code>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/bitbadgeschain-linux-amd64
-<strong>wget https://github.com/BitBadges/bitbadgeschain/releases/download/v1.0-betanet/libwasmvm.x86_64.so
-</strong><strong>mv libwasmvm.x86_64.so /usr/lib/
-</strong></code></pre>
-
-### **Build from Source**
-
-We refer you to the README of the blockchain code repository.
-
-### **Docker**
-
-Running with Docker may be the easiest option, but it also is not compatible with automatic upgrades through Cosmovisor (see section below). This means you will sacrifice availability (which is especially important for validators who are slashed when down).
-
-```bash
-docker pull bitbadges/bitbadgeschain:latest
-```
-
-## Handling Upgrades - Cosmovisor
-
-BitBadges handles binary upgrades using Cosmovisor, a tool for automating upgrades with zero downtime. You can find detailed information in the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html) and the [Cosmovisor documentation](https://docs.cosmos.network/main/tooling/cosmovisor.html). It is expected all validators are using Cosmovisor.
-
-Upgrades will be announced in the Discord and are facilitated with the x/upgrades module behind the scenes. You, as the node operator, will have until the upgrade time to successfully handle the upgrade. If not completed by upgrade time, your node will halt at the upgrade height. If your node is a validator, it will be slashed.
-
-### **Installation / Setup**
-
-{% content-ref url="cosmovisor.md" %}
-[cosmovisor.md](cosmovisor.md)
-{% endcontent-ref %}
-
-## RUN\_COMMAND
-
-Depending on your setup method, you may have different commands to run the binary. Throughout the rest of this documentation, we use RUN\_COMMAND to avoid repeating ourselves. Please replace your command wherever you see RUN\_COMMAND
-
-**Cosmovisor**
-
-```bash
-# The "run" is important. Ex:
-# cosmovisor run init -> Blockchain initialixation
-# cosmosvisor init -> Cosmosvisor folder initialization
-cosmovisor run ....
-```
-
-**Plain Executable**
-
-```
-./bitbadgeschaind ....
-```
-
-**Docker**
-
-<pre class="language-bash"><code class="lang-bash"><strong># Replace DAEMON_HOME
-</strong><strong>docker run -it \
-</strong>    -p 26656:26656 \
-    -p 26657:26657 \
-    -p 26660:26660 \
-    -p 6060:6060 \
-    -p 9090:9090 \
-    -p 1317:1317 \
-<strong>    --mount type=bind,source="$DAEMON_HOME",target=/root/.bitbadgeschain \
-</strong>    bitbadges/bitbadgeschain:latest ... 
-</code></pre>
-
-## Initialization / Syncing
-
-In order to catch up to the current consensus, you will need to get your node synced. This can be done from genesis (time consuming but no trust needed) or from a recent snapshot of the state (much faster but requires slight trust assumptions).
-
-### **From Snapshosts (Recommended)**
-
-If you do not want to reconstruct the entire history of the chain from genesis, you can start from a checkpoint. This can potentially save you days of syncing but requires you to trust an existing node.
-
-{% embed url="https://explorer.bitbadges.io/BitBadges%20Mainnet/statesync" %}
-
-**State Sync**
-
-You can configure your config.toml to use the Cosmos SDK state sync feature to quickly sync from a trusted node. Feel free to use the official RPC node to do this. We refer you to here [https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html](https://docs.tendermint.com/v0.34/tendermint-core/state-sync.html) or you can reference other Cosmos SDK state sync documentation.
-
-**From Snapshots**
-
-You can get the necessary files from an existing snapshot, add them to your DAEMON\_HOME, and start the chain. See [Chain Details](../chain-details.md) for providers.
-
-For [https://snapshots.whenmoonwhenlambo.money/bitbadges-1](https://snapshots.whenmoonwhenlambo.money/bitbadges-1), use this command. Replace /cosmos/.bitbadgeschain with your home directoyry.
-
-```
-lz4 -c -d bitbadges-1-snapshot-latest.tar.lz4 | tar -x -C /cosmos/.bitbadgeschain
-```
-
-### **From Block Sync**
-
-Syncing from genesis or via block sync means that you start with the blank genesis state and verify all transactions from the start block to the current block (time consuming). This is not recommended unless you need to run a full archive node.
-
-**Chain Binaries**
-
-The chain binary may be upgraded over time. To continue syncing, you will always need the relevant binary for the current block. This means you must handle ALL chain upgrades (since you are syncing from genesis). See Cosmovisor section.
-
-**Chain Forks**
-
-```
-NOTE: We had a hard fork after block 711315
-```
-
-Normal Comet BFT block sync will not work from block 711315 -> 711316 due to this fork. You will need to manually handle this.
-
-For handling this, you can either:
-
-1. Start with block 711316 genesis or later (recommended). Everything will work as intended.
-
-<pre><code>cd DAEMON_HOME/config
-<strong>rm genesis.json
-</strong>curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis-711316.json
-RUN_COMMAND comet unsafe-reset-all
-RUN_COMMAND start
-</code></pre>
-
-2. Or if you really need blocks 1-711315 for a full archive node (maybe like an explorer). Please reach out if you are planning to use this approach as we can help you through this process.
-
-See ./scripts/handle-fork-711315.sh in the btibadgeschain GitHub repository for a full script. Or, do the following below:
-
-You can get blocks 1-711315 via running it below or via a snapshot (recommended).
-
-```
-cd DAEMON_HOME/config
-rm genesis.json
-curl -o genesis.json https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/genesis.json
-RUN_COMMAND start
-```
-
-If you want to migrate and join together the blockstores / transaction indexes so they are all in one place:
-
-<pre class="language-bash"><code class="lang-bash"># Backup the /data folder for blocks 1-711315 somewhere for later use
-# Get the chain up and running for 711316+ (see above). Sync a few blocks. Stop the chain. 
-
-<strong>git clone https://github.com/bitbadges/bitbadgeschain
-</strong><strong># Edit migrate.go to use your intended source / target DB paths
-</strong><strong># Run migrate.go which copies all blockstores / transaction data and sets base height back to 1
-</strong><strong># Note: If you need more than just block data (cs.wal, state.db, or evidence.dd), this is left  up to you. 
-</strong>go run scripts/migrate.go -source /path/to/snapshot/data -target /path/to/target/data
-</code></pre>
-
-**Testnet Genesis**
-
-Note: Replace the genesis files with the corresponding testnet ones if you are planning to run a testnet node
-
-## Configuration
-
-To initialize a new chain, run the following (depending on your build method). CHAIN\_ID will be "bitbadges-1" for mainnet. Initialization should only be performed once.
-
-```
-RUN_COMMAND init <moniker> --chain-id CHAIN_ID
-```
-
-You'll need to replace `<moniker>` with a custom username for your node and the CHAIN\_ID for the chain you want (bitbadges-1 for mainnet).
-
-Take note of where your configuration files live. We expect it to be in /root/.bitbadgeschain but if it isn't, you will need to make sure it is correct with --home flags. We call this DAEMON\_HOME.
-
-If you are getting directories do not exist error, you may have to do the following first. These will be overwritten when the init command is executed, but it is just to get the errors out of there.
-
-<pre><code><strong>cd DAEMON_HOME
-</strong>mkdir config
-mkdir data
-mkdir wasm
-</code></pre>
-
-Inside the DAEMON\_HOME/config folder, you'll find two files: `config.toml` and `app.toml`. Both files contain extensive comments to help you customize your node settings. You can also run `RUN_COMMAND start --help` for explanations.
-
-Tweak these as desired. Some important ones are highlighted below.
-
-**Setting Seed Nodes**
-
-In order to pull data from other nodes, you need to have seed nodes or peers to pull from. You may use 2703c1304a70186372aa726a762d60da94c29ffe@node.bitbadges.io:26656 for our official node ID. To establish connections with trusted nodes, edit `config.toml`. For instance:
-
-```toml
-seeds = "2703c1304a70186372aa726a762d60da94c29ffe@node.bitbadges.io:26656"
-```
-
-These entries follow the format `nodeId@listenaddress:port`. Additionally, you can set up seed nodes by specifying them in the `seeds` field. Or, private peers at `private_peer_ids.`
-
-**Listen Addresses / Firewalls**
-
-Ensure that the listen address settings are correct, using your IP address or domain name if configured. Also, make sure that your firewall exposes the necessary ports (22, 1317, 9090, 26656, 26657, 26660). See here for more information and other best practices running a node in production: [https://docs.cosmos.network/main/user/run-node/run-production#go](https://docs.cosmos.network/main/user/run-node/run-production#go).
-
-## Running the Node
-
-Once you have the node all configured, run the following to start the chain. You should see blocks being synced if configured correctly.
-
-```
-RUN_COMMAND start
-```
-
-**Other Considerations**
-
-Setting up your node infrastructure correctly and with best practices is crucial to ensure security. There are many options for this, so below we just give some general guidelines.
-
-* DDoS Mitigation: Being part of a network with a known IP address can expose you to DDoS attacks. Learn how to mitigate these risks [here](https://tutorials.cosmos.network/tutorials/9-path-to-prod/5-network.html#ddos). Consider using sentry nodes and proxies.
-* Key Management: Implement best practices for key management, including key management systems such as [TMKMS](https://hub.cosmos.network/main/validators/kms/kms.html). This is especially important for validators.
-* Redundancy: Plan for infrastructure failures such as power outages to ensure the continuous operation of your validator. Consider setting up your software as a service to avoid relaunching it manually every time. Refer to the [Cosmos documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html#as-a-service) for guidance on configuring your node as a service.
-* Consider also running your node + Cosmovisor as a service, so it relaunches automatically. See [https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/6-run.html) and [https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html](https://tutorials.cosmos.network/tutorials/9-path-to-prod/7-migration.html)
-
-## Running a Validator
-
-As explained in the launch phases docs, reach out to us in [Discord](https://discord.com/invite/TJMaEd9bar) if you plan to run a validating node and need $STAKE. This is free and only requires a quick application process.
-
-**Setup - Validator Keys**
-
-Follow the instructions in the [Cosmos documentation](https://docs.cosmos.network/main/run-node/keyring) and/or the [Cosmos Tutorials](https://tutorials.cosmos.network/tutorials/9-path-to-prod/3-keys.html) to set up your validator keys. Replace `simd` with `bitbadgeschaind` or `myproject` with `bitbadgeschain`.
-
-A validator handles [two](https://hub.cosmos.network/main/validators/validator-faq.html#what-are-the-different-types-of-keys) perhaps three, different keys. Most likely keys 2 and 3 [are the same](https://github.com/cosmos/cosmos-sdk/blob/v0.46.1/proto/cosmos/staking/v1beta1/tx.proto#L45-L47). Each has a different purpose:
-
-1. The **Tendermint consensus key** is used to sign blocks on an ongoing basis. It is of the key type `ed25519`, which the KMS can keep. When Bech-encoded, the address is prefixed with `bbvalcons` and the public key is prefixed with `bbvalconspub`.
-2. The **validator operator application key** is used to create transactions that create or modify validator parameters. It is of type `secp256k1`, or whichever type the application supports. When Bech-encoded, the address is prefixed with `bbvaloper`.
-3. The [**delegator application key** ](https://hub.cosmos.network/main/validators/validator-faq.html#are-validators-required-to-self-delegate-atom)is used to handle the stake that gives the validator more weight. When Bech-encoded, the address is prefixed with `bb` and the public key is prefixed with `bbpub`.
-
-**Consensus Key**
-
-The consensus key is HOT, meaning it is needed on the validator node to sign blocks. It is strongly recommended that this is set up with a signing service and key management system.
-
-By default, when you ran the **init** command, it creates a key for you in `..../config/priv_validator_key.json.`
-
-This is convenient if you are starting a testnet, for which the security requirements are low. However, for a more valuable network, you should not store it directly in the node's filesystem. It should be stored in a more secure manner, such as with a signing service or key management system.
-
-**Operator / Delegator Key**
-
-The application / operator key should be COLD and NOT be stored on the validator node. This is just your standard public/private key pair used to sign transactions.
-
-This can be generated (if you don't already have one) by running the following command.
-
-```
-bitbadgeschaind keys --keyring-backend file --keyring-dir /root/.bitbadgeschain/keys
-add <name>
-```
-
-Adjust the command accordingly. **Note you should run this and store it on your local desktop, not the validating node.**
-
-### Joining the Validator Set
-
-If you intend to run a validator node, execute the following command adjusted accordingly to join the set of validators (assuming you're not part of the initial genesis set). Run with --help for more details. Replace bitbadgeschaind tx with your run command (dependent on your build method). This is the same command as how you started the node (but replace start with tx).
-
-```shell
-RUN_COMMAND tx staking create-validator /path/to/validator.json \
-  --chain-id="name_of_chain_id" \
-  --gas="auto" \
-  --gas-adjustment="1.2" \
-  --gas-prices="0.025ubadge" \
-  --from=mykey
-```
-
-This should be signed with your normal key pair for signing transactions. Ensure you have enough BADGE credits to cover gas and your stake. The `validator.json` file should contain relevant information about your validator, including the consensus public key, moniker, website, security contact, details, commission rates, and min-self-delegation.
-
-You can obtain the public validator consensus public key using the`bitbadgeschaind tendermint show-validator` command.
-
-
-## File: ./token-standard/bitbadges-blockchain/staking-usdbadge.md
-
-# Staking / Validators
-
-The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101blockchains.com/proof-of-stake-vs-delegated-proof-of-stake/). Delegated Proof of Stake (DPoS) is a blockchain consensus mechanism where token holders elect a small group of trusted members (validators) to validate transactions and maintain the network. These validators stake their own stake and earn additional stake from maintaining the network.&#x20;
-
-The delegated part is because token holders can delegate their stake to validators and split the earned, according to their delegation and commission charged by the validator. This enables token holders to contribute to the security of the network without running their own validator.
-
-Reach out to us in Discord if you plan to run a validating node and need funds. To run a validator node, see [here](run-a-node/).&#x20;
-
-BitBadges is also a delegated PoS chain, so you can delegate to an existing validator. This validator will split the amount earned from securing the network with you (they may charge a commission). Visit [https://bitbadges.io/stake](https://bitbadges.io/stake).&#x20;
-
-Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module.&#x20;
-
-## **Governance**
-
-Initially, we do not plan to use a governance structure to allow us to ship fast and build a great prduct. Over time as we shift to becoming more decentralized, we will allow stakeholders to propose and vote on governance proposals, weighted via their amount. This will be via the [Cosmos SDK governance module](https://docs.cosmos.network/main/modules/gov). These governance proposals will allow holders to decide on the future of BitBadges.
-
-
-## File: ./token-standard/bitbadges-blockchain/testnet-mode.md
-
-# Testnet Mode
-
-Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
-
-<pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
-</strong></code></pre>
-
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Important Notes
-
-You should treat testnet as an entirely SEPARATE service. NOTHING will carry over from normal mode (not even profiles, badges, settings, anything). Consider this before determining whether testnet mode is the correct option for you.
-
-### Differences
-
-* Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-  * Buying BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
-
-### Links
-
-Frontend: [https://testnet.bitbadges.io](https://testnet.bitbadges.io)
-
-Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (append the normal routes to this base URL)
-
-Testnet Node:
-
-* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
-* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
-* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
-
-### Feedback
-
-If there is anything we can do to make development easier, let us know.
-
-
 ## File: ./token-standard/examples/approvals/README.md
 
 # Approvals
@@ -13022,6 +12924,8 @@ If there is anything we can do to make development easier, let us know.
 Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
 
 1\) Explore the landing page and explore page in our site to get an idea of what is possible!
+
+<figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
 
 2\) For a full A-Z description of what BitBadges is, read this:
 
