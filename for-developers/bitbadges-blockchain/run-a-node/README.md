@@ -1,6 +1,6 @@
 # Run a Node
 
-In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step thoroughly and include examples to ensure a smooth setup.&#x20;
+In this guide, we will provide detailed instructions for setting up and running a BitBadges blockchain node. This should not be used as a universal guide, as there are many methods and best practices that you can use. However, we will cover each step thoroughly and include examples to ensure a smooth setup.
 
 The BitBadges blockchain is built using the Cosmos SDK, so if you have prior experience running a Cosmos SDK blockchain node, you will find this process quite familiar. If you encounter any issues during the setup process, you can also refer to other Cosmos SDK node documentation, such as "[Cosmos SDK - Running a Node](https://docs.cosmos.network/main/user/run-node/run-node)" or "[Cosmos Tutorials - Run in Production documentation](https://tutorials.cosmos.network/tutorials/9-path-to-prod/1-overview.html)." These resources provide additional in-depth information and examples. Make sure that you replace everything with the corresponding BitBadges details where necessary.
 
@@ -8,12 +8,12 @@ The BitBadges blockchain is built using the Cosmos SDK, so if you have prior exp
 
 **Chain IDs:** When a chain ID is required, use the following:
 
--   "bitbadges-1" for the mainnet chain ID
--   "bitbadges-2" for the testnet chain ID
+* "bitbadges-1" for the mainnet chain ID
+* "bitbadges-2" for the testnet chain ID
 
 **Genesis JSON:** See [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain). Note different versions (testnets vs mainnet) will have different genesis JSONs.
 
-**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)&#x20;
+**BitBadges Public RPCs:** https://node.bitbadges.io/rpc (alias of http://node.bitbadges.io:26657)
 
 Node ID (mainnet): 2703c1304a70186372aa726a762d60da94c29ffe
 

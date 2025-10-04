@@ -20,7 +20,7 @@ export interface iSetOptions {
 
 **Combining with MsgCreateCollection or MsgUpdateCollection**
 
-The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../../../../for-developers/bitbadges-blockchain/cosmos-sdk-msgs/create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
+The two Msgs can be easily combined in the same transaction (as Cosmos transactions support multiple Msgs). See [here](../create-and-broadcast-txs/generate-msg-contents.md) for an example of how to do it with the SDK. Just make sure MsgCreateCollection is executed first and precedes when it is actually used.
 
 ```typescript
 const msgs: MessageGenerated[] = [];

@@ -20,9 +20,9 @@ Instantiating and officially deploying a contract does require a review process 
 
 Requirements:
 
--   No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
--   We encourage audits and a peer review process before officailly deploying.
--   You must also showcase a working testnet implementation as well (testnet is permissionless)
+* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+* We encourage audits and a peer review process before officailly deploying.
+* You must also showcase a working testnet implementation as well (testnet is permissionless)
 
 Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
 
@@ -38,12 +38,12 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 };
 ```
 
--   Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
--   3-Step Process: Upload / Store Code, Instantiate, Execute
-    -   Instantiating requires governance proposal (see below)
--   Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-    -   When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
--   The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
+* Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
+* 3-Step Process: Upload / Store Code, Instantiate, Execute
+  * Instantiating requires governance proposal (see below)
+* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
+  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+* The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
 
 ```rust
 //contract.rs
@@ -101,8 +101,8 @@ use bitbadges_cosmwasm::{
 use bitbadges_cosmwasm::{
   transfer_badges_msg, delete_collection_msg, BitBadgesMsg
 }
-<strong>
-</strong><strong>pub fn execute_my_msg(
+
+<strong>pub fn execute_my_msg(
 </strong>    collection_id: String,
     transfers: Vec&#x3C;Transfer>,
 ) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
@@ -148,7 +148,7 @@ cp ../../target/wasm32-unknown-unknown/release/YOUR_CONTRACT_NAME.wasm .
 
 4. Uploading Your Contract
 
-Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction. &#x20;
+Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction.
 
 For testnet uploads, use testnet.bitbadges.io
 
@@ -176,14 +176,13 @@ Once deployed, you need to to let your users interact with it. Use our custom x/
 
 Couple common misunderstandings:
 
--   Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
--   Note camelCase vs snake_case. Contracts typically auto-format with camelCase via&#x20;
+* Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
+*   Note camelCase vs snake\_case. Contracts typically auto-format with camelCase via
 
     ```rust
     #[serde(rename_all = "camelCase")]
     ```
-
--   Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
+* Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
 
 **Examples**
 

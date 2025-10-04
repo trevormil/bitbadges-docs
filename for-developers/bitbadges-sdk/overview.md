@@ -17,7 +17,7 @@ const bitbadgesAddress = convertToBitBadgesAddress(address);
 const ethAddress = bitbadgesToEth(bitbadgesAddress);
 ```
 
-It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../../token-standard/bitbadges-blockchain/create-and-broadcast-txs/) for how to use.
+It also exports functions for broadcasting transactions and interacting with the blockchain. See [Broadcasting Txs](../bitbadges-blockchain/create-and-broadcast-txs/) for how to use.
 
 ```typescript
 const nodeUrl = ...

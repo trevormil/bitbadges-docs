@@ -1,6 +1,6 @@
 # Generate Msg Contents
 
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.&#x20;
+The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.
 
 If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
 

@@ -41,7 +41,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../../../for-developers/bitbadges-blockchain/concepts/accounts-technical.md) for tutorial.
+* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
 
 **x/maps**
 

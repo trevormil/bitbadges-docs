@@ -4,9 +4,9 @@
 
 ### **Simulating**
 
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.&#x20;
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.
 
-To do this, you can use&#x20;
+To do this, you can use
 
 ```
 https://api.bitbadges.io/api/v0/simulate
@@ -63,7 +63,7 @@ https://api.bitbadges.io/api/v0/broadcast
 <pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
 </strong></code></pre>
 
-This will give you a response immediately. You should then use the tx_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
@@ -103,7 +103,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API_URL, not the BitBadges API. You can also view it on explorers.
+Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
 
 Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 
