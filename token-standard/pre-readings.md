@@ -2,7 +2,7 @@
 
 Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
 
-1\) Explore the landing page and explore page in our site to get an idea of what is possible!
+1\) Explore the landing and explore page in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible!
 
 <figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
 
