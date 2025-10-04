@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Oct  4 12:24:49 UTC 2025
+Generated on Sat Oct  4 12:25:49 UTC 2025
 
 
 
@@ -3582,7 +3582,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 ## Overview
 
 * [👋 BitBadges Overview](README.md)
-* [📜 What is BitBadges?](overview/what-is-bitbadges.md)
 * [🪙 BADGE](overview/badge.md)
 * [🎨 Use Cases](overview/use-cases.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
@@ -3760,6 +3759,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 ## 🏗️ Token Standard
 
 * [📚 Overview](x-badges/README.md)
+* [📜 BitBadges Standard A-Z](token-standard/what-is-bitbadges.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
 * [💻 Multi-Chain Accounts](overview/learn/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
@@ -12693,7 +12693,31 @@ Because you can check criteria for anything, there are infinitely many possible 
 -   Literally anything!
 
 
-## File: ./overview/what-is-bitbadges.md
+## File: ./token-standard/examples/approvals/README.md
+
+# Approvals
+
+
+
+## File: ./token-standard/pre-readings.md
+
+# 📔 Pre-Readings
+
+Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
+
+1\) Explore the landing and explore page in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible!
+
+<figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
+
+2\) For a full A-Z description of what BitBadges is, read this:
+
+{% content-ref url="what-is-bitbadges.md" %}
+[what-is-bitbadges.md](what-is-bitbadges.md)
+{% endcontent-ref %}
+
+
+
+## File: ./token-standard/what-is-bitbadges.md
 
 # 📜 What is BitBadges?
 
@@ -12910,30 +12934,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 5. **Cosmos Hub Routing**: The Cosmos Hub itself also experiences a lot of second-hand usage from BitBadges succeeding. If BitBadges can carry out its vision of being the universal tokenization standard for Cosmos and beyond with IBC, the Hub (as the primary router for IBC) will get plenty of usage via BitBadges.
 6. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
 7. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
-
-
-## File: ./token-standard/examples/approvals/README.md
-
-# Approvals
-
-
-
-## File: ./token-standard/pre-readings.md
-
-# 📔 Pre-Readings
-
-Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
-
-1\) Explore the landing and explore page in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible!
-
-<figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
-
-2\) For a full A-Z description of what BitBadges is, read this:
-
-{% content-ref url="../overview/what-is-bitbadges.md" %}
-[what-is-bitbadges.md](../overview/what-is-bitbadges.md)
-{% endcontent-ref %}
-
 
 
 ## File: ./x-badges/README.md
