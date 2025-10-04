@@ -28,6 +28,7 @@ const res = await BitBadgesApi.getBadgeMetadata(1, 5);
 * No code, no smart contracts - All implemented as a Cosmos module
 * 1000x transferability customization for whatever requirements you may need
 * Three transferability levels enforced for as much or as little customization as needed (collection-level, sender, recipient approvals)
+* Seamless compatibility for checking off-chain criteria like in the BitBadges site where you can gate mints by 7000+ no-code plugins
 * Deploy once, support ETH, COSMOS, BTC, SOL users with same token
 * Supports any IBC currency
 * IBC interoperable through wrapping to x/bank IBC denoms
