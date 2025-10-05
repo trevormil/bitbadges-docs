@@ -24,16 +24,14 @@ The circulating supply is not a static number but rather the total amount of tok
 
 **Collection Approvals**
 
-Collection approvals (minting and post-minting) define the overall rules for the collection. All transfers must always obey a collection approval. You will set these in the next steps.
-
-This gives you overarching control about the transferability of the collection. Examples: freezability, non-transferable, revoking, etc.
+Collection approvals (minting and post-minting) define the overall rules for the collection. All transfers must always obey a collection approval. This gives you overarching control about the transferability of the collection. Examples: freezability, non-transferable, revoking, etc.
 
 **User-Level Approvals**
 
 The sender / receiver can also set user-level approvals that must be satisfied by default to gate who can send on their behalf or send to them.
 
+These can be skipped / forcefully overriden by the collection-level approvals (for implementing forceful functionality like freezing, etc).&#x20;
+
 **What is checked on each transfer?**
 
-Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden. Overriding user-level approvals can be used to implement forceful functionality such as revoking.
-
-\
+Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.&#x20;
