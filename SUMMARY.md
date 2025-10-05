@@ -25,6 +25,7 @@
   * [Getting Started](for-developers/bitbadges-api/api.md)
   * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Blockchain Node API](for-developers/bitbadges-api/blockchain-node-api.md)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
