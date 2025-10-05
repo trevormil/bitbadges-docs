@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Oct  4 13:16:26 UTC 2025
+Generated on Sun Oct  5 11:56:27 UTC 2025
 
 
 
@@ -3604,6 +3604,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Getting Started](for-developers/bitbadges-api/api.md)
   * [Full Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Blockchain Node API](for-developers/bitbadges-api/blockchain-node-api.md)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
@@ -4045,6 +4046,19 @@ For most applications, you should be fine without needing to access private user
 ## Bookmarking
 
 Throughout the API, we use a bookmark technique. For the first request, you will not need to specify a bookmark (e.g. ""), and it will fetch the first page. Within the response, it will return a **bookmark** and **hasMore**. **hasMore** defines whether there are more pages to be fetched. To fetch the next page, you will specify the returned bookmark from the previous request to the next request. This process can be repeated until all are loaded.
+
+
+## File: ./for-developers/bitbadges-api/blockchain-node-api.md
+
+# Blockchain Node API
+
+Blockchain Node API - [https://lcd.bitbadges.io/](https://lcd.bitbadges.io/)\
+\
+Each blockchain node also has its own REST API that you can interact with via the endpoint above.&#x20;
+
+Note this is different from the "BitBadges API". There is plenty of overlap, but our API indexes the blockchain, includes all off-chain items like claims, and more, If all you need is a simple getter for current blockchain state, then consider just running a node directly or using the blockchain's REST API.
+
+<figure><img src="../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-api/concepts/README.md
