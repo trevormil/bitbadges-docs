@@ -245,6 +245,7 @@
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
 * [🔍 Queries](x-badges/queries/README.md)
+  * [Node API](https://lcd.bitbadges.io/)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
