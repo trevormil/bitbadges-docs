@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 13:01:09 UTC 2025
+Generated on Tue Oct  7 13:03:44 UTC 2025
 
 
 
@@ -3591,7 +3591,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 ## ⌨️ For Developers
 
 * [🔨 Getting Started](for-developers/getting-started.md)
-* [🪙 Grants Program](for-developers/grants-program.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
@@ -3885,7 +3884,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
-* [❓ FAQ](token-standard/faq.md)
+* [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
@@ -4067,7 +4066,7 @@ Blockchain Node API - [https://lcd.bitbadges.io/](https://lcd.bitbadges.io/)\
 \
 Each blockchain node also has its own REST API that you can interact with via the endpoint above. If all you need is a simple getter for current blockchain state, then consider just running a node directly or using the blockchain's REST API.
 
-Note this is different from the "BitBadges API". There is plenty of overlap, but our API additionally indexes the blockchain, includes all off-chain items like claims, floor prices, and more.&#x20;
+Note there is plenty of overlap, but this is different from the "BitBadges API".
 
 <figure><img src="../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
 
@@ -11409,7 +11408,7 @@ BitBadges is proud to offer no-code / low-code flows for all our major services.
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
-> **Need BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
+> **Need BADGE?** Contact us on Discord - get subsidized credits for developers during chaosnet!
 >
 > **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
 >
@@ -11471,35 +11470,6 @@ const api = new BitBadgesAPI({
 
 await BitBadgesAPI.getCollection(...);
 ```
-
-
-## File: ./for-developers/grants-program.md
-
-# 🪙 Grants Program
-
-The **BitBadges Grants Program** is a community-driven initiative funded by the Cosmos chain's community pool. Our goal is to support developers, creators, and projects that align with the mission of BitBadges: enabling powerful on-chain identity, access, and tokenization.
-
-Whether you're building a dApp, tooling, integrations, educational resources, or research — we want to hear from you.
-
-### 💰 Funding Source
-
-All grants are distributed from the chain's **Cosmos community pool**, governed by on-chain proposals and community consensus.
-
-### 🚀 Who Should Apply?
-
-* Developers building open-source tools or infrastructure for BitBadges
-* Creators or projects integrating with the BitBadges protocol
-* Researchers exploring use cases, security, or standards
-* Community contributors growing awareness or adoption
-* Anyone!
-
-### 📝 How to Apply
-
-Getting started is simple:
-
-1. **Join our** [**Discord**](https://discord.com/invite/TJMaEd9bar)
-2. Ping @trevormil&#x20;
-3. We'll guide you through the process of submitting a proposal
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/README.md
@@ -12492,6 +12462,51 @@ TBD
 Let us know if you have another idea and how we can help.
 
 
+## File: ./overview/faq.md
+
+# ❓ FAQ
+
+### **Are smart contracts needed?**
+
+No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts.
+
+### **Is BitBadges an L1 blockchain or an L2?**
+
+BitBadges is its own Layer-1 blockchain built with Cosmos SDK.
+
+### **Why the registry architecture over unique smart contracts for every collection?**
+
+Typical NFTs and digital tokens (ERC721, ERC20) all require their own unique smart contracts to be implemented which follow their respective interface. However, BitBadges is not built like this. BitBadges uses a single registry and the same code is reused for all collections. This is a much more secure and scalable solution.
+
+We do this for multiple reasons:
+
+1. Security: The same code is being reused and over time, it will become more battle-tested and more secure. This is as opposed to unique smart contracts that can often have vulnerabilities, as seen with the large amount of hacks occurring in the Ethereum ecosystem.
+2. Scalability: Since duplicate code doesn't need to be deployed, this solution is much more scalable.
+3. Consistency: This provides a much cleaner and more consistent interface for querying, indexing, and maintenance.
+
+### **Are tokens ERC-721 or ERC-20 compatible?**
+
+While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture. However, they are a superset of these standards (offer all the features these standards + 1000x more).
+
+Cosmos modules (like our token standard) can be called from EVM environments using the Cosmos EVM module + precompiles. This also could allow you to offer seamless compatibility with all your favorite interfaces.
+
+### **How does BitBadges compare to other interoperability protocols?**
+
+BitBadges is a unique L1 blockchain that simplifies multi-chain experiences. Unlike other interoperability protocols, all tokens are stored on the BitBadges chain, simplifying development. And, we support any user from any chain. No need to worry about bridging tokens or managing multiple tokens.&#x20;
+
+BitBadges doesn't "pull" data from other chains - all relevant data is stored on the BitBadges chain, simplifying development. However, it supports users and wallets from any chain, allowing multi-chain transfers (e.g., Bitcoin users can transfer tokens to Solana users).
+
+Note that we support Cosmos / IBC wrapping for true interoperability where you may need.
+
+### **How does Cosmos / IBC wrapping work?**
+
+While our token standard and all state is scoped to the module, we allow you to define "wrapper paths" to convert freely to / from x/bank (IBC) denominations. Once wrapped, you could get all the benefits of IBC + the Cosmos ecosystem with interoperability and more.
+
+### **Does BitBadges support extending with smart contracts?**
+
+Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM and CosmWASM environments.
+
+
 ## File: ./overview/learn/accounts.md
 
 # 💻 Multi-Chain Accounts
@@ -12862,51 +12877,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 
 # Approvals
 
-
-
-## File: ./token-standard/faq.md
-
-# ❓ FAQ
-
-### **Are smart contracts needed?**
-
-No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts.
-
-### **Is BitBadges an L1 blockchain or an L2?**
-
-BitBadges is its own Layer-1 blockchain built with Cosmos SDK.
-
-### **Why the registry architecture over unique smart contracts for every collection?**
-
-Typical NFTs and digital tokens (ERC721, ERC20) all require their own unique smart contracts to be implemented which follow their respective interface. However, BitBadges is not built like this. BitBadges uses a single registry and the same code is reused for all collections. This is a much more secure and scalable solution.
-
-We do this for multiple reasons:
-
-1. Security: The same code is being reused and over time, it will become more battle-tested and more secure. This is as opposed to unique smart contracts that can often have vulnerabilities, as seen with the large amount of hacks occurring in the Ethereum ecosystem.
-2. Scalability: Since duplicate code doesn't need to be deployed, this solution is much more scalable.
-3. Consistency: This provides a much cleaner and more consistent interface for querying, indexing, and maintenance.
-
-### **Are tokens ERC-721 or ERC-20 compatible?**
-
-While our token standard takes inspiration from existing standards like ERC-721, our token standard has its own properties and architecture. However, they are a superset of these standards (offer all the features these standards + 1000x more).
-
-Cosmos modules (like our token standard) can be called from EVM environments using the Cosmos EVM module + precompiles. This also could allow you to offer seamless compatibility with all your favorite interfaces.
-
-### **How does BitBadges compare to other interoperability protocols?**
-
-BitBadges is a unique L1 blockchain that simplifies multi-chain experiences. Unlike other interoperability protocols, all tokens are stored on the BitBadges chain, simplifying development. And, we support any user from any chain. No need to worry about bridging tokens or managing multiple tokens.&#x20;
-
-BitBadges doesn't "pull" data from other chains - all relevant data is stored on the BitBadges chain, simplifying development. However, it supports users and wallets from any chain, allowing multi-chain transfers (e.g., Bitcoin users can transfer tokens to Solana users).
-
-Note that we support Cosmos / IBC wrapping for true interoperability where you may need.
-
-### **How does Cosmos / IBC wrapping work?**
-
-While our token standard and all state is scoped to the module, we allow you to define "wrapper paths" to convert freely to / from x/bank (IBC) denominations. Once wrapped, you could get all the benefits of IBC + the Cosmos ecosystem with interoperability and more.
-
-### **Does BitBadges support extending with smart contracts?**
-
-Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM and CosmWASM environments.
 
 
 ## File: ./token-standard/pre-readings.md
