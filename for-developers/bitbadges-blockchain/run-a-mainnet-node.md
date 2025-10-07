@@ -13,14 +13,11 @@ Our main communication method is via Discord:
 * \#validators channel is a great resource for help. Ping @trevormil to give you the Validator role.
 * \#announcements and #chain-upgrades are where we announce the latest plans to upgrade. We use the x/upgrade module from Cosmos SDK. We recommend Cosmovisor for handling upgrades.
 
-**Guides**
+**Guides + Setup w/ Snapshots**
 
 * [https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview](https://docs.provewithryd.xyz/mainnet/bitbadges/network-overview)
 * [https://nodestake.org/bitbadges](https://nodestake.org/bitbadges)
-
-**Snapshots**
-
-* [https://nodestake.org/bitbadges](https://nodestake.org/bitbadges)
+* Note that most validators have their own guides. Choose whichever one works best for you.
 
 **Releases / Instructions**
 
