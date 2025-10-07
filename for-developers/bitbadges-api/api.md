@@ -75,8 +75,8 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 For most applications, you should be fine without needing to access private user authenticated information. However if you do, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. Use the scopes to gain access to authenticated routes. Refer to the API reference to see what scopes are needed where.
 
-{% content-ref url="sign-in-with-bitbadges/" %}
-[sign-in-with-bitbadges](sign-in-with-bitbadges/)
+{% content-ref url="../sign-in-with-bitbadges/" %}
+[sign-in-with-bitbadges](../sign-in-with-bitbadges/)
 {% endcontent-ref %}
 
 ## Bookmarking

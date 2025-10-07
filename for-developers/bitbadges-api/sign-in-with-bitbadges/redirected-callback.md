@@ -14,8 +14,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="../authorization-url/" %}
-[Authorization URL](../authorization-url/)
+{% content-ref url="../../sign-in-with-bitbadges/authorization-url/" %}
+[authorization-url](../../sign-in-with-bitbadges/authorization-url/)
 {% endcontent-ref %}
 
 **Implementation - Backend**
@@ -39,5 +39,5 @@ At your redirect URI, you will need to set up a handler to handle the code / sta
 
 To ensure the security of the data exchange process, consider the following practices:
 
--   Validate the `state` parameter according to your requirements (if applicable)
--   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
+* Validate the `state` parameter according to your requirements (if applicable)
+* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.

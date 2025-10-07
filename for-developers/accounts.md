@@ -22,7 +22,7 @@ Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
 ### For Developers - Handling Addresses
 
-It should be enough information for most, but for more low-level interaction, [this page](../for-developers/bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
+It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -55,7 +55,7 @@ You may notice that you cannot go from a BitBadges / ETH / BTC address directly 
 
 #### **How to convert?**
 
-The mapped addresses can be converted behind the scenes using the converter functions from [BitBadges SDK](../for-developers/bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
+The mapped addresses can be converted behind the scenes using the converter functions from [BitBadges SDK](bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToBitBadgesAddress, mustConvertToBtcAddress } from 'bitbadgesjs-sdk';
 </strong>
@@ -75,5 +75,5 @@ Signature compatibility means that we can verify transaction signatures from any
 
 #### **How do I query details for an address?**
 
-1. You can use the [BitBadges API](../for-developers/bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
+1. You can use the [BitBadges API](bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
 2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API](https://docs.cosmos.network/v0.46/run-node/interact-node.html)

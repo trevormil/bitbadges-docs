@@ -6,7 +6,7 @@ Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
 
-<figure><img src="../../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 This plugin allows users to gate their WordPress site with BitBadges – claims, payments, NFT badges, and more!
 
