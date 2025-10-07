@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 13:20:25 UTC 2025
+Generated on Tue Oct  7 13:21:37 UTC 2025
 
 
 
@@ -3616,7 +3616,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
       * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
       * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
-    * [Redirect Callback](for-developers/bitbadges-api/sign-in-with-bitbadges/redirected-callback.md)
+    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
     * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
       * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
       * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
@@ -4352,53 +4352,6 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-indexer/blob/master/environment.d.ts" %}
 
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/redirected-callback.md
-
-# Redirect Callback
-
-The standard OAuth callback approach is used for immediate authentication. To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes immediately.
-
-**How do callbacks work?**
-
-A high-level overview is:
-
-1. Users navigate to the custom SIWBB URL for your authentication request.
-2. The user will be walked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI via the query parameters `code` and `state`.
-3. The redirect URI can then fetch the details from the API using the transmitted code with knowledge of the configured app's client secret.
-
-**Generating the URL**
-
-The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
-
-{% content-ref url="../../sign-in-with-bitbadges/authorization-url/" %}
-[authorization-url](../../sign-in-with-bitbadges/authorization-url/)
-{% endcontent-ref %}
-
-**Implementation - Backend**
-
-```typescript
-// GET /api/callback?code=...&state=...
-const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-    //Parse the code and state from the query parameters
-    const code = req.query.code;
-    const state = req.query.state as string;
-
-    //TODO: Fetch authentication details (see Verification page)
-    //      const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code, ... });
-    //TODO: Any application specific requirements
-
-    //Learn more in the verification steps
-};
-```
-
-At your redirect URI, you will need to set up a handler to handle the code / state that is passed. The code and state will be passed in via the HTTP query parameters. This follows typical OAuth2 flow. We refer you to OAuth tutorials for more details.
-
-To ensure the security of the data exchange process, consider the following practices:
-
-* Validate the `state` parameter according to your requirements (if applicable)
-* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
 
 
 ## File: ./for-developers/bitbadges-api/upgrading-an-api-key-tier.md
@@ -11453,20 +11406,6 @@ We strongly recommend, if you have not already, to explore the claim tester and 
 
 Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).
 
-## Developing with AI
-
-Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
-
-[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
-
-[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
-
-[Full Documentation .txt](../for-llms.txt)
-
-[BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
-
-[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)
-
 ## Tokens vs Badges
 
 We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
@@ -11487,8 +11426,6 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 {% endcontent-ref %}
 
 ## Quick Start - Claims
-
-This includes documentation everything from custom plugins to Zapier to dynamic stores and mroe
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
@@ -11512,18 +11449,78 @@ npm i bitbadgesjs-sdk
 import { BitBadgesAPI } from 'bitbadgesjs-sdk';
 
 const api = new BitBadgesAPI({
-  ...YOUR_CONFIG_AND_API_KEY
+  ...
 });
 
 await BitBadgesAPI.getCollection(...);
 ```
 
+## Developing with AI
+
+Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
+
+[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
+
+[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+
+[Full Documentation .txt](../for-llms.txt)
+
+[BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
+
+[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/README.md
 
 # Sign In with BitBadges (OAuth)
 
+
+
+## File: ./for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md
+
+# Redirect Callback
+
+The standard OAuth callback approach is used for immediate authentication. To enable callbacks, the parameters must have a redirect URI set that matches your app's configured one. With the callback, the user will never even see the code. Everything is handled behind the scenes immediately.
+
+**How do callbacks work?**
+
+A high-level overview is:
+
+1. Users navigate to the custom SIWBB URL for your authentication request.
+2. The user will be walked through the authentication process. Upon completion, an authorization code is transmitted to the redirect URI via the query parameters `code` and `state`.
+3. The redirect URI can then fetch the details from the API using the transmitted code with knowledge of the configured app's client secret.
+
+**Generating the URL**
+
+The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
+
+{% content-ref url="../authorization-url/" %}
+[authorization-url](../authorization-url/)
+{% endcontent-ref %}
+
+**Implementation - Backend**
+
+```typescript
+// GET /api/callback?code=...&state=...
+const callbackHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+    //Parse the code and state from the query parameters
+    const code = req.query.code;
+    const state = req.query.state as string;
+
+    //TODO: Fetch authentication details (see Verification page)
+    //      const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code, ... });
+    //TODO: Any application specific requirements
+
+    //Learn more in the verification steps
+};
+```
+
+At your redirect URI, you will need to set up a handler to handle the code / state that is passed. The code and state will be passed in via the HTTP query parameters. This follows typical OAuth2 flow. We refer you to OAuth tutorials for more details.
+
+To ensure the security of the data exchange process, consider the following practices:
+
+* Validate the `state` parameter according to your requirements (if applicable)
+* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
 
 
 ## File: ./for-developers/sign-in-with-bitbadges/authorization-url/README.md
