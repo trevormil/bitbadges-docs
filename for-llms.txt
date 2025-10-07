@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 14:00:53 UTC 2025
+Generated on Tue Oct  7 14:10:54 UTC 2025
 
 
 
@@ -3825,6 +3825,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
 * [🔍 Queries](x-badges/queries/README.md)
+  * [Node API](https://lcd.bitbadges.io/)
   * [GetAddressList](x-badges/queries/get-address-list.md)
   * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
   * [GetBalance](x-badges/queries/get-balance.md)
