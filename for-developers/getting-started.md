@@ -6,7 +6,7 @@ BitBadges is proud to offer no-code / low-code flows for all our major services.
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
-> **Need BADGE credits?** Contact us on Discord - we offer subsidized credits for developers during beta!
+> **Need BADGE?** Contact us on Discord - get subsidized credits for developers during chaosnet!
 >
 > **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
 >

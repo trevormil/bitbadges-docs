@@ -11,7 +11,6 @@
 ## ⌨️ For Developers
 
 * [🔨 Getting Started](for-developers/getting-started.md)
-* [🪙 Grants Program](for-developers/grants-program.md)
 * [👤 Handling Addresses](for-developers/accounts.md)
 * [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
   * [Overview](for-developers/bitbadges-x-ai/overview.md)
@@ -305,7 +304,7 @@
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
-* [❓ FAQ](token-standard/faq.md)
+* [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
