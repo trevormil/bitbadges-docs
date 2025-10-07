@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 14:11:35 UTC 2025
+Generated on Tue Oct  7 14:12:19 UTC 2025
 
 
 
@@ -3750,7 +3750,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
-* [🪄 BitBadges Standard A-Z](overview/what-is-bitbadges.md)
+* [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
