@@ -9,7 +9,7 @@ This example:
 * Uses the Next.js x Supabase template
 * Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
 
-<figure><img src="../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
 
 Anything else is left as an exercise for you.
 
@@ -24,6 +24,3 @@ Note: Supabase is flexible. You may choose to implement it via Express, Auth0, o
 1. Setup Supabase as explained via their documentation
 2. Add your BitBadges API key, client ID, and client secret to your .env
 3. Execute the SQL in supabase/migrations folder to setup the tables. This can be done via the SQL Editor in the dashboard.
-
-
-

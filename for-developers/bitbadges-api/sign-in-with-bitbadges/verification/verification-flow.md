@@ -65,18 +65,18 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
 
 Note this is not the only way of implementing sessions. You may implement custom approaches on your own like checking IDs, stamping hands, using claim numbers, etc.
 
-{% content-ref url="api-access-tokens.md" %}
-[api-access-tokens.md](api-access-tokens.md)
+{% content-ref url="../../../sign-in-with-bitbadges/verification/api-access-tokens.md" %}
+[api-access-tokens.md](../../../sign-in-with-bitbadges/verification/api-access-tokens.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Verifying Other "Attached" Criteria**
 
 For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
 
-{% content-ref url="../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
-[verifying-claim-attempts-w-the-api.md](../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
+{% content-ref url="../../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
+[verifying-claim-attempts-w-the-api.md](../../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
 As for attestations, we refer you to the following documentation. Treat BitBadges as the middleman, and verify everything server-side on your end. You will receive an attestationPresentations array directly from the response if the query URL requested attestations.
@@ -85,8 +85,8 @@ As for attestations, we refer you to the following documentation. Treat BitBadge
 const { ..., attestationPresentations } = res;
 ```
 
-{% content-ref url="../../claim-builder/concepts/receiving-attestations.md" %}
-[receiving-attestations.md](../../claim-builder/concepts/receiving-attestations.md)
+{% content-ref url="../../../claim-builder/concepts/receiving-attestations.md" %}
+[receiving-attestations.md](../../../claim-builder/concepts/receiving-attestations.md)
 {% endcontent-ref %}
 
 ```typescript
