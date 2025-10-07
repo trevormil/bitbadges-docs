@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 13:16:45 UTC 2025
+Generated on Tue Oct  7 13:20:25 UTC 2025
 
 
 
@@ -3603,27 +3603,24 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
     * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
     * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
-  * [Sign In with BitBadges](for-developers/bitbadges-api/sign-in-with-bitbadges/README.md)
-    * [Overview](for-developers/bitbadges-api/sign-in-with-bitbadges/overview.md)
-    * [Templates and Frameworks](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/README.md)
-      * [WordPress](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
-      * [Auth0](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
-      * [ExpressJS](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
-      * [Discourse](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
-      * [Supabase](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
-      * [Others](for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/others.md)
-    * [Setting Up an App](for-developers/bitbadges-api/sign-in-with-bitbadges/setting-up-an-app.md)
-    * [Authorization URL](for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/README.md)
-      * [Configuration](for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/configuration.md)
-      * [Generating the URL](for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
-    * [Approaches](for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/README.md)
-      * [QR Codes](for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/qr-codes.md)
-      * [Redirect Callback](for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/redirected-callback.md)
-    * [Verification](for-developers/bitbadges-api/sign-in-with-bitbadges/verification/README.md)
-      * [Verification Flow](for-developers/bitbadges-api/sign-in-with-bitbadges/verification/verification-flow.md)
-      * [Access Tokens](for-developers/bitbadges-api/sign-in-with-bitbadges/verification/access-tokens.md)
-      * [Offline Verification](for-developers/bitbadges-api/sign-in-with-bitbadges/verification/offline-verification.md)
-      * [Security Considerations](for-developers/bitbadges-api/sign-in-with-bitbadges/verification/security-considerations.md)
+  * [Sign In with BitBadges (OAuth)](for-developers/sign-in-with-bitbadges/README.md)
+    * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+    * [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
+      * [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
+      * [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
+      * [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
+      * [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
+      * [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
+      * [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
+    * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+    * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
+      * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
+      * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
+    * [Redirect Callback](for-developers/bitbadges-api/sign-in-with-bitbadges/redirected-callback.md)
+    * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
+      * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
+      * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
+      * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
     * [Blockin Docs](https://blockin.gitbook.io/blockin)
 * [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
   * [Overview](for-developers/bitbadges-sdk/overview.md)
@@ -3756,7 +3753,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
 * [🪄 BitBadges Standard A-Z](overview/what-is-bitbadges.md)
-* [👤 Multi-Chain Accounts](token-standard/accounts.md)
+* [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -3898,6 +3895,89 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 
 
+## File: ./for-developers/accounts.md
+
+# 👤 Multi-Chain Accounts
+
+### **How is BitBadges able to support addresses from different blockchains?**
+
+To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos).
+
+Signature compatibility means that users from any of the above blockchain ecosystems are able to sign BitBadges transactions, and we simply verify the signatures on our blockchain.
+
+BitBadges is compatible with the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from or is interoperable with any other blockchain. Everything is confined to the BitBadges blockchain.
+
+<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+
+### **Why do I see multiple equivalent addresses?**
+
+All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
+
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+### **Which chains / wallets are supported?**
+
+Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
+
+### For Developers - Handling Addresses
+
+It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
+
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+**Mapping to a Common Address (bitbadgesAddress)**
+
+To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.
+
+We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed. You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.**
+
+The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.
+
+Ethereum Example:
+
+* Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
+* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
+
+Solana Example:
+
+* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+* Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
+
+Bitcoin Example
+
+* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+* Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
+
+#### Why can I convert Solana address to a BitBadges / ETH / BTC address but not the other way around?
+
+You may notice that you cannot go from a BitBadges / ETH / BTC address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / BitBadges address), you cannot deduce the preimage without prior knowledge of it.
+
+#### **How to convert?**
+
+The mapped addresses can be converted behind the scenes using the converter functions from [BitBadges SDK](bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToBitBadgesAddress, mustConvertToBtcAddress } from 'bitbadgesjs-sdk';
+</strong>
+<strong>const bitbadgesAddress = convertToBitBadgesAddress(btcAddress);
+</strong>const ethAddress = convertToEthAddress(bitbadgesAddress);
+const bitbadgesAddressFromSolana = convertToBitBadgesAddress(solAddress);
+const btcAddress = mustConvertToBtcAddress(address);
+
+// Note there is no convertToSolanaAddress due to how the addresses work. See above
+</code></pre>
+
+**What is signature compatibility?**
+
+To enable interoperability between different blockchains, BitBadges is signature compatible with all of the supported chains (Bitcoin, Ethereum, Solana, and Cosmos).
+
+Signature compatibility means that we can verify transaction signatures from any wallet of any supported ecosystem. BitBadges is its own blockchain and does not pull any data from any other blockchain. Everything is confined to the BitBadges blockchain.
+
+#### **How do I query details for an address?**
+
+1. You can use the [BitBadges API](bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
+2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API](https://docs.cosmos.network/v0.46/run-node/interact-node.html)
+
+
 ## File: ./for-developers/bitbadges-api/README.md
 
 # 📚 Indexer / API
@@ -3983,8 +4063,8 @@ Check out the BitBadges JS/SDK for implementing further functionality beyond jus
 
 For most applications, you should be fine without needing to access private user authenticated information. However if you do, check out Sign In with BitBadges. This follows a standard OAuth 2.0 flow. Use the scopes to gain access to authenticated routes. Refer to the API reference to see what scopes are needed where.
 
-{% content-ref url="sign-in-with-bitbadges/" %}
-[sign-in-with-bitbadges](sign-in-with-bitbadges/)
+{% content-ref url="../sign-in-with-bitbadges/" %}
+[sign-in-with-bitbadges](../sign-in-with-bitbadges/)
 {% endcontent-ref %}
 
 ## Bookmarking
@@ -4274,34 +4354,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 
 
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/README.md
-
-# Sign In with BitBadges
-
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/README.md
-
-# Approaches
-
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/qr-codes.md
-
-# QR Codes
-
-## QR Codes
-
-If you do not specify a redirect URL, we will generate a QR code from the authorization code and prompt the user to store it in their BitBadges account under the "Authentication Codes" tab or export it to a more portable format like email, Apple Wallet, etc. The QR code flow is used for delayed authentication scenarios, most often in-person events. This can be exported to any portable format you wish so that users do not have to have wallets handy at authentication time. The text value of the code is the 32-byte code that you will exchange in the verification process.
-
-**Generating URL**
-
-The most important part of this step is to not include a **redirectUri** in the parameters. This lets us know that you want to store the details in the users' account as a QR, rather than being transmitted to the redirect URI. See the [Generating the URL](../../../sign-in-with-bitbadges/authentication-url-+-parameters/generating-the-url.md) section for more details.
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (4).png" alt="" width="539"><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/approaches/redirected-callback.md
+## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/redirected-callback.md
 
 # Redirect Callback
 
@@ -4319,8 +4372,8 @@ A high-level overview is:
 
 The important part here is to correctly specify a valid **redirectUri** letting us know that you expect to receive the details immeditately.
 
-{% content-ref url="../authorization-url/" %}
-[Authorization URL](../authorization-url/)
+{% content-ref url="../../sign-in-with-bitbadges/authorization-url/" %}
+[authorization-url](../../sign-in-with-bitbadges/authorization-url/)
 {% endcontent-ref %}
 
 **Implementation - Backend**
@@ -4344,744 +4397,8 @@ At your redirect URI, you will need to set up a handler to handle the code / sta
 
 To ensure the security of the data exchange process, consider the following practices:
 
--   Validate the `state` parameter according to your requirements (if applicable)
--   Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/README.md
-
-# Authorization URL
-
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/configuration.md
-
-# Configuration
-
-BitBadges authentication uses an OAuth URL with custom parameters: `https://bitbadges.io/siwbb/authorize?client_id=...`.
-
-Users will visit this URL to authenticate and receive an authorization code. This code will be passed behind the scenes for digital flows via the redirect or it will be the actual QR code for in-person / delayed flows.
-
-By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
-
--   Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
--   Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
--   You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
-
-## Parameter Interface
-
-```typescript
-interface CodeGenQueryParams {
-    client_id: string; // Required: Your app's client ID
-    redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
-    state?: string; // Optional: Additional data passed to redirect
-    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readAddressLists')
-
-    // Claim UI Options (optional)
-    claimId?: string; // ID of required claim
-    hideIfAlreadyClaimed?: boolean; // Hide if already claimed
-    expectVerifySuccess?: boolean;
-
-    // Expect attestation presentations
-    expectAttestations?: boolean;
-}
-```
-
-## Key Features
-
-### 1. App Configuration
-
--   Create OAuth apps at [bitbadges.io/developer](https://bitbadges.io/developer)
--   `client_id` is mandatory (obtained from app registration)
--   `redirect_uri` required for instant auth, optional for delayed auth
--   If `redirect_uri` is blank, QR code is generated and stored in user's account
--   See OAuth tutorials for more details
-
-### 2. Scopes
-
--   This is only needed for authorized BitBadges API access. By default, you will verify address ownership with no scopes.
--   Format: `scope: 'completeClaims,readAddressLists'`
--   View all available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
-
-### 3. Claims
-
--   Specify required claim to be satisfied with `claimId`
--   Create the claim in the developer portal. See claim docs for more details.
--   Claims are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
-
-### 4. Attestations
-
--   Receive attestations from the user directly via the sign-in process. This is a more direct alternative rather than needing to set up a custom plugin in a claim.
--   Note, like claims, these are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.&#x20;
--   While we do our best to maintain well-formedness, treat BitBadges as the middleman. Verify all on your end.
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/authorization-url/generating-the-url.md
-
-# Generating the URL
-
-The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it.
-
-For instance:
-
-```vbnet
-https://bitbadges.io/siwbb/authorize?client_id=...
-```
-
-This URL structure adheres to the following interface:
-
-* **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
-* **Parameters**: Custom parameters specific to your implementation.
-
-You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
-
-**Snippets**
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
-</strong>
-const popupParams: CodeGenQueryParams {
-    ...
-} // See Authentication URL page
-
-<strong>const authUrl = generateBitBadgesAuthUrl(popupParams);
-</strong></code></pre>
-
-```ts
-export const generateBitBadgesAuthUrl = (params: CodeGenQueryParams) => {
-    let url = `https://bitbadges.io/siwbb/authorize?`;
-    for (const [key, value] of Object.entries(params)) {
-        if (value) {
-            if (typeof value === 'object') {
-                const valueString = JSON.stringify(value);
-                const encodedValue = encodeURIComponent(valueString);
-                url = url.concat(`${key}=${encodedValue}&`);
-            } else {
-                url = url.concat(`${key}=${value}&`);
-            }
-        }
-    }
-    return url;
-};
-```
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/overview.md
-
-# Overview
-
-Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and can be configured to handle the following all in one flow:
-
-* Multi-chain authentication
-* Token ownership verification
-* Integration with 7000+ supported apps and plugins
-* BitBadges API scope authorizations
-
-#### Use Alternatives If Possible
-
-NOTE: This is mainly intended for OAuth authorization for the BitBadges API. If you don't need this, then we recommend you use other Web3 services out there for Web3 authentication now like WalletConnect, MagicAuth, etc.&#x20;
-
-Combining authentication + criteria checks (claim successes, token ownership) is a powerful combination with the BitBadges API. Simply 1) authenticate and 2) check criteria using our API.
-
-```typescript
-// Pre-req: Create claim in BitBadges site
-// 1. Authenticate your user (using your existing setup)
-// 2. Verify claim success
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
-```
-
-#### OAuth Endpoints
-
-* **Authorization:** `https://bitbadges.io/siwbb/authorize?your_params`
-* **Token:** `https://api.bitbadges.io/api/v0/siwbb/token`
-* **Revoke:** `https://api.bitbadges.io/api/v0/siwbb/token/revoke`
-
-[**Demo**](https://bitbadges.io/siwbb/authorize?client_id=example-client-id\&redirect_uri=https://example.com&)
-
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-## Implementation Flow
-
-1. **Authentication- BitBadges Side**
-   * User accesses BitBadges URL (direct or popup)
-   * Proves address ownership and other criteria (tokens, etc.)
-   * Receives authorization code from BitBadges (QR or behind the scenes via redirect)
-2. **Integration- Your App Side**
-   * Receive authentication response
-   * Check criteria on your end
-   * Implements security measures (prevent replay attacks, etc.)
-   * Focus on your core utility
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/setting-up-an-app.md
-
-# Setting Up an App
-
-### App Registration
-
-* Register at [https://btibadges.io/developer](https://btibadges.io/developer) -> OAuth Apps
-* Take note of your client ID / secret
-
-### Key Components
-
-#### 1. Client ID
-
-* Unique identifier for your app
-* Assigned upon registration
-
-#### 2. Client Secret
-
-* Cryptographic key for API authentication
-* Keep confidential; never expose in client-side code. Treat like a password.
-* Required to fetch user authentication details
-
-#### 3. Redirect URIs
-
-* Endpoints where users are redirected after authentication
-* Must be pre-registered and use HTTPS
-* Not needed for delayed/QR code authentication. Only for immediate digital redirects.
-
-### Security Notes
-
-* Treat client secret as securely as a password
-* Ensure exact match between registered and used redirect URIs (if applicable)
-* Use HTTPS for all redirects for security reasons
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/README.md
-
-# Templates and Frameworks
-
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/auth0.md
-
-# Auth0
-
-### **Social Connection Integration**
-
-When adding a Social Connection, you will see BitBadges as a preconfigured option. This has everything setup for you. You will simply need to specify your client ID and client secret. You will also have to configure your redirect URI to match your Auth0 application's domain. This typically ends with /callback (for example, [https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback](https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback)).
-
-### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Custom
-
-You can also customize the connection further by creating a custom connection. This allows you to add parameters beyond the standard flow. You callback will be the same as above.
-
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Authorization URL:** https://bitbadges.io/siwbb/authorize
-
-**Token URL:** https://api.bitbadges.io/api/v0/siwbb/token
-
-**Scopes:** None (All you typically need is the user crypto address) - Although, you can add as needed
-
-**Fields:** Get your API key, client ID, and client secret at https://bitbadgesio/developer.
-
-**Fetch Profile Script**:
-
-```javascript
-function fetchUserProfile(accessToken, ctx, cb) {
-    request.post(
-        {
-            url: 'https://api.bitbadges.io/api/v0/auth/status',
-            headers: {
-                'Content-Type': 'application/json',
-                // TODO: Replace
-                'x-api-key': 'ENTER_API_KEY_HERE',
-                Authorization: 'Bearer ' + accessToken,
-            },
-        },
-        (err, resp, body) => {
-            if (err) {
-                return cb(err);
-            }
-            if (resp.statusCode !== 200) {
-                return cb(new Error(body));
-            }
-            let bodyParsed;
-            try {
-                bodyParsed = JSON.parse(body);
-            } catch (jsonError) {
-                return cb(
-                    new Error('Failed JSON parsing for user profile response.')
-                );
-            }
-
-            const account = bodyParsed;
-
-            const profile = {
-                address: account.address,
-                chain: account.chain,
-                id: account.bitbadgesAddress,
-                name: account.address,
-            };
-            return cb(null, profile);
-        }
-    );
-}
-```
-
-**Custom Headers:**
-
-Make sure you enter your API key in the custom headers an d replace it in the fetch script.
-
-```
-{
-    "x-api-key": "YOUR_API_KEY"
-}
-```
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/discourse.md
-
-# Discourse
-
-For Discourse, we do not have a dedicated plugin, but SIWBB is OAuth2 compatible and integrated with other providers. So, you can reuse existing plugins as needed.
-
-**Auth0 Plugin**
-
-Set up SIWBB with Auth0 here:
-
-{% content-ref url="auth0.md" %}
-[auth0.md](auth0.md)
-{% endcontent-ref %}
-
-Then, integrate with Discourse here:
-
-{% embed url="https://meta.discourse.org/t/configure-sign-up-and-log-in-with-auth0-using-the-oauth2-basic-plugin/64633" %}
-
-**OAuth2 Plugin**
-
-{% embed url="https://meta.discourse.org/t/discourse-oauth2-basic/33879" %}
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md
-
-# PassportJS
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-passportjs-example/blob/main/index.ts" %}
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/others.md
-
-# Others
-
-Many of your favorite frameworks already support Auth0, and you can simply use Sign In with BitBadges through that.
-
-* Auth.js (Next Auth) - [https://authjs.dev/getting-started/providers/auth0](https://authjs.dev/getting-started/providers/auth0)
-* Amazon Cognito - [https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services](https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services)
-* Supabase - [https://supabase.com/partners/integrations/auth0](https://supabase.com/partners/integrations/auth0)
-
-If you have any suggestions for unsupported integrations as well, let us know! And again, note that you are not locked into Sign In with BitBadges. You can use any Web3 authentication provider and then check BitBadges claim successes to gate anything.
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/supabase.md
-
-# Supabase
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-supabase-demo" %}
-
-This repository is a basic example for getting started with Supabase and Sign in with BitBadges. It is meant to be a starting point and is not production ready.
-
-This example:
-
-* Uses the Next.js x Supabase template
-* Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
-
-<figure><img src="../../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
-
-Anything else is left as an exercise for you.
-
-* Gating the entire site rather than using traditional authentication
-* Gating specific pages / implementing your utility
-* Linking claims
-
-Note: Supabase is flexible. You may choose to implement it via Express, Auth0, or another way as well. This is just a reference to help you get started.
-
-**Setup**
-
-1. Setup Supabase as explained via their documentation
-2. Add your BitBadges API key, client ID, and client secret to your .env
-3. Execute the SQL in supabase/migrations folder to setup the tables. This can be done via the SQL Editor in the dashboard.
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md
-
-# WordPress
-
-Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadges and check any claim criteria, allowing you to create multi-chain websites gated for anything.
-
-Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://wordpress.org/plugins/sign-in-with-bitbadges/)
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
-
-<figure><img src="../../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
-
-This plugin allows users to gate their WordPress site with BitBadges – claims, payments, NFT badges, and more!
-
-\== Description ==
-
-This plugin allows users to gate their site with BitBadges - claims, payments, NFT badges, and more!
-
-**Important Note:** This plugin ONLY handles authentication with BitBadges - it does not restrict access to your site by itself. For restricting access, we recommend using this plugin in conjunction with:
-
-* [Force Login](https://wordpress.org/plugins/wp-force-login/) - Forces users to log in to view your site
-* [Restrict Content](https://wordpress.org/plugins/restrict-content/) - Restrict content to logged-in users
-* [Members](https://wordpress.org/plugins/members/) - Advanced user roles and permissions
-* Or other plugins that restrict access to your site
-
-\== Installation ==
-
-1. Download the plugin files and upload them to your `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > BitBadges SIWBB to configure the plugin
-
-\== Configuration ==
-
-1. Create a new application (OAuth App) in the [BitBadges Developer Portal](https://bitbadges.io/developer)
-2. Set your redirect URI to: `https://your-wordpress-site.com/wp-login.php?action=bitbadges-callback`
-3. Copy your Client ID and Client Secret
-4. Go to your WordPress admin panel > Settings > BitBadges SIWBB
-5. Enter your Client ID and Client Secret
-6. (Optional) Configure a claim ID to gate access and other additional settings
-7. Save the settings
-
-\== Features ==
-
-* Adds a "Sign in with BitBadges" button to the WordPress login form
-* Creates WordPress users automatically when they first sign in with BitBadges
-* Secure OAuth 2.0 implementation with state verification
-* Simple admin interface for configuration
-* Optional exclusive BitBadges authentication mode (disable normal WordPress login)
-* Claim-gated access support
-* Emergency admin access URL for exclusive mode
-* Customizable claim visibility on authorization page
-
-\== Security ==
-
-* CSRF protection using state parameter
-* Secure storage of client credentials
-* WordPress nonce verification
-* Input sanitization
-* Proper error handling
-* Secure admin access fallback
-* Claim verification
-
-\== User Experience ==
-
-* Clean, centered login button design
-* Shortened wallet addresses for better readability
-* Clear separation between traditional and BitBadges login
-* Visible claim requirements before authentication
-* Seamless first-time user setup
-
-\== Requirements ==
-
-* WordPress 5.0 or higher
-* PHP 7.0 or higher
-* HTTPS enabled on your site (required for secure OAuth)
-
-\== Support ==
-
-For support or feature requests, please visit the [BitBadges website](https://bitbadges.io) or create an issue in the GitHub repository.
-
-\== License ==
-
-This plugin is licensed under the GPL v2 or later.\
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-
-\== Changelog ==
-
-\= 1.0.0 =
-
-* Initial release with basic OAuth functionality
-* Added exclusive authentication mode
-* Added claim-gating support
-* Added emergency admin access
-* Improved user display names
-* Enhanced UI/UX for login button
-* Added claim visibility options
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/verification/README.md
-
-# Verification
-
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/verification/access-tokens.md
-
-# Access Tokens
-
-With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
-
-If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.
-
-<figure><img src="../../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
-
-If you are using the SDK, you can instead do this which handles the header setting:
-
-```typescript
-BitBadgesApi.setAccessToken(token);
-BitBadgesApi.unsetAccessToken();
-```
-
-Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. Note that they may also become invalid as the user revokes access to them as well.
-
-**Health Checks**
-
-To check that you are signed in, use the following route. This will return signedIn: false if not authenticated, access token is expired, or authorization has been revoked.
-
-Note: This can even be used when no scopes are requested.
-
-```typescript
-// POST /api/v0/auth/status {}
-const res = await BitBadgesApi.checkIfSignedIn({})
-// 200 { signedIn: boolean, scopes: [...], ... }
-console.log(res.signedIn)
-```
-
-**Refreshing**
-
-```typescript
-const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
-    refresh_token
-    grant_type: 'refresh_token',
-    client_secret: '...',
-    client_id: '...',
-    redirect_uri: '...' //only needed if redirected
-});
-
-const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
-```
-
-Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Revoking Access**
-
-Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections -> Authorizations tab in-site. This can be done by either the user or the app.
-
-```typescript
-// POST https://api.bitbadges.io/api/v0/siwbb/token/revoke
-await BitBadgesApi.revokeOauthAuthorization({ token });
-```
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/verification/offline-verification.md
-
-# Offline Verification
-
-If you need to pre-fetch all (code, request) pairs before verification time (e.g. you are verifying in an offline setting), you can fetch all codes created via BitBadges for your client ID with the API.&#x20; This just returns the authorization codes, and you still need to exchange them (which is a one-time only process).
-
-```typescript
-const res = await BitBadgesApi.getSIWBBRequestsForDeveloperApp({
-    clientId,
-    bookmark: '',
-});
-console.log(res);
-```
-
-```typescript
-await BitBadgesApi.verifySIWBBRequest({ ... });
-await BitBadgesApi.exchangeSIWBBAuthorizationCode({ code: blockinChallenge._docId, options: { ... }});
-```
-
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/verification/security-considerations.md
-
-# Security Considerations
-
-This flow is OAuth 2.0 compatible, so we refer you to the official spec and other OAuth 2.0 resources for security considerations with the protocol itself (replay attacks, man in the middle, etc). 
-
-You may also be prone to flash criteria checks, such as flash ownership checks. For example, Bob signs in, transfers a token to Alice, and Alice signs in with the same token. Both are authenticated with the same token which may not be desired. This can apply to any criteria not just tokens. Ensure your claim criteria, attestations, etc protect against such cases.
-
-## File: ./for-developers/bitbadges-api/sign-in-with-bitbadges/verification/verification-flow.md
-
-# Verification Flow
-
-From the prior pages, you should now have the authorization **code** (32 byte hex) for the user. This is either the QR code value for in-person or the redirect code you receive in your handler for the standard digital flow.
-
-```typescript
-// 32 byte hex string
-async function myHandler(req: NextApiRequest, res: NextApiResponse) {
-    const code = req.query.code as string;
-}
-```
-
-You can now exchange the code and valid app configuration details. Be sure to keep the client secret secret. The response will contain all authentication details, including a **verificationResponse**.
-
-**Exchanging the Code**
-
-The next step is to exchange the code for authentication details. This is done via the exchange endpoint. This follows typical OAuth2 flow. You can also specify options to check the issued at time of code generation. Typically for in-person, you may need to disable the issued at time check of 10 minutes.
-
-[API Reference](https://bitbadges.stoplight.io/docs/bitbadges) -> Exchange SIWBB Code
-
-```typescript
-// 32 byte hex string
-async function myHandler(req: NextApiRequest, res: NextApiResponse) {
-    const code = req.query.code as string;
-
-    const options = {
-        issuedAtTimeWindowMs: 1000 * 60 * 10, // 10 minutes (set to 0 to disable)
-    };
-
-    // POST https://api.bitbadges.io/api/v0/siwbb/token
-    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
-        code,
-        options,
-        grant_type: 'authorization_code',
-        client_secret: '...',
-        client_id: '...',
-        redirect_uri: '...', //only needed for digital immediate flow
-    });
-
-    const { address, chain, verificationResponse } = res;
-    if (!verificationResponse.success) {
-        console.log(verificationResponse.errorMessage);
-        throw new Error('Not authenticated');
-    }
-    
-    //Verify claims or anything else you need to do here
-}
-```
-
-**Access Tokens / Session Management**
-
-We return access tokens and refresh tokens for you to perform session management. The expiration times can help you implement sessions for your users, and you can health check the user hasn't revoked through the API. Code exchanges can only be performed once per unique code which is checked on our end.
-
-```typescript
-// 32 byte hex string
-async function myHandler(req: NextApiRequest, res: NextApiResponse) {
-    const code = req.query.code as string;
-
-    // POST https://api.bitbadges.io/api/v0/siwbb/token
-    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ ... });
-
-    const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
-    // TODO: You can use these tokens for session management and authorized API access
-}
-```
-
-Note this is not the only way of implementing sessions. You may implement custom approaches on your own like checking IDs, stamping hands, using claim numbers, etc.
-
-{% content-ref url="../../../sign-in-with-bitbadges/verification/api-access-tokens.md" %}
-[api-access-tokens.md](../../../sign-in-with-bitbadges/verification/api-access-tokens.md)
-{% endcontent-ref %}
-
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Verifying Other "Attached" Criteria**
-
-For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
-
-{% content-ref url="../../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md" %}
-[verifying-claim-attempts-w-the-api.md](../../../claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
-{% endcontent-ref %}
-
-As for attestations, we refer you to the following documentation. Treat BitBadges as the middleman, and verify everything server-side on your end. You will receive an attestationPresentations array directly from the response if the query URL requested attestations.
-
-```typescript
-const { ..., attestationPresentations } = res;
-```
-
-{% content-ref url="../../../claim-builder/concepts/receiving-attestations.md" %}
-[receiving-attestations.md](../../../claim-builder/concepts/receiving-attestations.md)
-{% endcontent-ref %}
-
-```typescript
-async function myHandler(req: NextApiRequest, res: NextApiResponse) {
-    const code = req.query.code as string;
-
-    // Exchange code from above
-
-    const { address, chain, verificationResponse } = res;
-
-    // ...
-
-    // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
-    // const claimAttemptsByAddress = await BitBadgesApi.getClaimAttempts(claimId, { address });
-    // const ownershipRequirementsRes = await BitBadgesApi.verifyOwnershipRequirements(...);
-    // const addressListsRes = await BitBadgesApi.getAddressLists(...);
-}
-```
-
-**Putting It Together**
-
-```typescript
-import { BitBadgesApi } from 'bitbadgesjs-sdk';
-
-// 32 byte hex string
-async function myHandler(req: NextApiRequest, res: NextApiResponse) {
-    const code = req.query.code as string;
-
-    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
-        code,
-        options,
-        grant_type: 'authorization_code',
-        client_secret: '...',
-        client_id: '...',
-        redirect_uri: '...', //only needed if immediate
-    });
-
-    const { address, chain, verificationResponse } = res;
-    if (!verificationResponse.success) {
-        console.log(verificationResponse.errorMessage);
-        throw new Error('Not authenticated');
-    }
-
-    const {
-        access_token,
-        access_token_expires_at,
-        refresh_token,
-        refresh_token_expires_at,
-    } = res;
-    // TODO: You can use these tokens for session management and authorized API access
-
-    // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
-    // const claimsRes = await BitBadgesApi.getClaims({ ... });
-
-    //TODO: Handle other checks and logic here
-    // - Prevent replay attacks by checking timestamps or nonces
-    // - Need to cache anything for later use?
-    // - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
-    // - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
-    // - Verify claim criteria
-
-    //TODO: If receiving attestations, are the contents valid?
-    //For example:
-    // - Verify the contents of the attestation messages are correct
-    // - Verify the creator is who you expect
-    // - Verify the metadata is correct
-    // - Verify the on-chain anchors / update history are correct
-    // - Verify the update history is correct
-}
-```
-
-## **IMPORTANT: What is verified natively vs not?**
-
-Does check :white\_check\_mark:
-
-* Proof of address ownership via their authenticated BitBadges account
-* Anything specified in the verify challenge options
-* Issued at time of code generation is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
-* One exchange per authorization code -> access / refresh token
-
-Does not check natively :x:
-
-* Additional app-specific criteria needed for signing in (claims, ownership requirements, attestations)
-* Does not natively prevent against flash ownership attacks, replay attacks, or man-in-the-middle attacks other than what OAuth2 protects against
+* Validate the `state` parameter according to your requirements (if applicable)
+* Use HTTPS to protect the data in transit, ensuring that all communications between your server and the client are encrypted.
 
 
 ## File: ./for-developers/bitbadges-api/upgrading-an-api-key-tier.md
@@ -12203,6 +11520,712 @@ await BitBadgesAPI.getCollection(...);
 
 
 
+## File: ./for-developers/sign-in-with-bitbadges/README.md
+
+# Sign In with BitBadges (OAuth)
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/README.md
+
+# Authorization URL
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/configuration.md
+
+# Configuration
+
+BitBadges authentication uses an OAuth URL with custom parameters: `https://bitbadges.io/siwbb/authorize?client_id=...`.
+
+Users will visit this URL to authenticate and receive an authorization code. This code will be passed behind the scenes for digital flows via the redirect or it will be the actual QR code for in-person / delayed flows.
+
+By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
+
+* Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
+* Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
+* You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
+
+## Parameter Interface
+
+```typescript
+interface CodeGenQueryParams {
+    client_id: string; // Required: Your app's client ID
+    redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
+    state?: string; // Optional: Additional data passed to redirect
+    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readAddressLists')
+
+    // Claim UI Options (optional)
+    claimId?: string; // ID of required claim
+    hideIfAlreadyClaimed?: boolean; // Hide if already claimed
+    expectVerifySuccess?: boolean;
+
+    // Expect attestation presentations
+    expectAttestations?: boolean;
+}
+```
+
+## Key Features
+
+### 1. App Configuration
+
+* Create OAuth apps at [bitbadges.io/developer](https://bitbadges.io/developer)
+* `client_id` is mandatory (obtained from app registration)
+* `redirect_uri` required for instant auth, optional for delayed auth
+* If `redirect_uri` is blank, QR code is generated and stored in user's account
+* See OAuth tutorials for more details
+
+### 2. Scopes
+
+* This is only needed for authorized BitBadges API access. By default, you will verify address ownership with no scopes.
+* Format: `scope: 'completeClaims,readAddressLists'`
+* View all available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
+
+### 3. Claims
+
+* Specify required claim to be satisfied with `claimId`
+* Create the claim in the developer portal. See claim docs for more details.
+* Claims are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
+
+### 4. Attestations
+
+* Receive attestations from the user directly via the sign-in process. This is a more direct alternative rather than needing to set up a custom plugin in a claim.
+* Note, like claims, these are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
+* While we do our best to maintain well-formedness, treat BitBadges as the middleman. Verify all on your end.
+
+
+## File: ./for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md
+
+# Generating the URL
+
+The base URL is [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize), with parameters appended to it.
+
+For instance:
+
+```vbnet
+https://bitbadges.io/siwbb/authorize?client_id=...
+```
+
+This URL structure adheres to the following interface:
+
+* **Base URL**: [https://bitbadges.io/siwbb/authorize](https://bitbadges.io/siwbb/authorize)
+* **Parameters**: Custom parameters specific to your implementation.
+
+You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
+
+**Snippets**
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { generateBitBadgesAuthUrl, CodeGenQueryParams } from 'bitbadgesjs-sdk';
+</strong>
+const popupParams: CodeGenQueryParams {
+    ...
+} // See Authentication URL page
+
+<strong>const authUrl = generateBitBadgesAuthUrl(popupParams);
+</strong></code></pre>
+
+```ts
+export const generateBitBadgesAuthUrl = (params: CodeGenQueryParams) => {
+    let url = `https://bitbadges.io/siwbb/authorize?`;
+    for (const [key, value] of Object.entries(params)) {
+        if (value) {
+            if (typeof value === 'object') {
+                const valueString = JSON.stringify(value);
+                const encodedValue = encodeURIComponent(valueString);
+                url = url.concat(`${key}=${encodedValue}&`);
+            } else {
+                url = url.concat(`${key}=${value}&`);
+            }
+        }
+    }
+    return url;
+};
+```
+
+
+## File: ./for-developers/sign-in-with-bitbadges/overview.md
+
+# Overview
+
+Sign In with BitBadges (SIWBB) is a unified multi-chain authentication solution that works across all blockchain ecosystems. It replaces traditional "Sign In with X" buttons and can be configured to handle the following all in one flow:
+
+* Multi-chain authentication
+* Token ownership verification
+* Integration with 7000+ supported apps and plugins
+* BitBadges API scope authorizations
+
+#### Use Alternatives If Possible
+
+NOTE: This is mainly intended for OAuth authorization for the BitBadges API. If you don't need this, then we recommend you use other Web3 services out there for Web3 authentication now like WalletConnect, MagicAuth, etc.&#x20;
+
+Combining authentication + criteria checks (claim successes, token ownership) is a powerful combination with the BitBadges API. Simply 1) authenticate and 2) check criteria using our API.
+
+```typescript
+// Pre-req: Create claim in BitBadges site
+// 1. Authenticate your user (using your existing setup)
+// 2. Verify claim success
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+```
+
+#### OAuth Endpoints
+
+* **Authorization:** `https://bitbadges.io/siwbb/authorize?your_params`
+* **Token:** `https://api.bitbadges.io/api/v0/siwbb/token`
+* **Revoke:** `https://api.bitbadges.io/api/v0/siwbb/token/revoke`
+
+[**Demo**](https://bitbadges.io/siwbb/authorize?client_id=example-client-id\&redirect_uri=https://example.com&)
+
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+## Implementation Flow
+
+1. **Authentication- BitBadges Side**
+   * User accesses BitBadges URL (direct or popup)
+   * Proves address ownership and other criteria (tokens, etc.)
+   * Receives authorization code from BitBadges (QR or behind the scenes via redirect)
+2. **Integration- Your App Side**
+   * Receive authentication response
+   * Check criteria on your end
+   * Implements security measures (prevent replay attacks, etc.)
+   * Focus on your core utility
+
+
+## File: ./for-developers/sign-in-with-bitbadges/setting-up-an-app.md
+
+# Setting Up an App
+
+### App Registration
+
+* Register at [https://btibadges.io/developer](https://btibadges.io/developer) -> OAuth Apps
+* Take note of your client ID / secret
+
+### Key Components
+
+#### 1. Client ID
+
+* Unique identifier for your app
+* Assigned upon registration
+
+#### 2. Client Secret
+
+* Cryptographic key for API authentication
+* Keep confidential; never expose in client-side code. Treat like a password.
+* Required to fetch user authentication details
+
+#### 3. Redirect URIs
+
+* Endpoints where users are redirected after authentication
+* Must be pre-registered and use HTTPS
+* Not needed for delayed/QR code authentication. Only for immediate digital redirects.
+
+### Security Notes
+
+* Treat client secret as securely as a password
+* Ensure exact match between registered and used redirect URIs (if applicable)
+* Use HTTPS for all redirects for security reasons
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md
+
+# Templates and Frameworks
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md
+
+# Auth0
+
+### **Social Connection Integration**
+
+When adding a Social Connection, you will see BitBadges as a preconfigured option. This has everything setup for you. You will simply need to specify your client ID and client secret. You will also have to configure your redirect URI to match your Auth0 application's domain. This typically ends with /callback (for example, [https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback](https://dev-pgv803tz4ztg35oi.us.auth0.com/login/callback)).
+
+### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+### Custom
+
+You can also customize the connection further by creating a custom connection. This allows you to add parameters beyond the standard flow. You callback will be the same as above.
+
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+**Authorization URL:** https://bitbadges.io/siwbb/authorize
+
+**Token URL:** https://api.bitbadges.io/api/v0/siwbb/token
+
+**Scopes:** None (All you typically need is the user crypto address) - Although, you can add as needed
+
+**Fields:** Get your API key, client ID, and client secret at https://bitbadgesio/developer.
+
+**Fetch Profile Script**:
+
+```javascript
+function fetchUserProfile(accessToken, ctx, cb) {
+    request.post(
+        {
+            url: 'https://api.bitbadges.io/api/v0/auth/status',
+            headers: {
+                'Content-Type': 'application/json',
+                // TODO: Replace
+                'x-api-key': 'ENTER_API_KEY_HERE',
+                Authorization: 'Bearer ' + accessToken,
+            },
+        },
+        (err, resp, body) => {
+            if (err) {
+                return cb(err);
+            }
+            if (resp.statusCode !== 200) {
+                return cb(new Error(body));
+            }
+            let bodyParsed;
+            try {
+                bodyParsed = JSON.parse(body);
+            } catch (jsonError) {
+                return cb(
+                    new Error('Failed JSON parsing for user profile response.')
+                );
+            }
+
+            const account = bodyParsed;
+
+            const profile = {
+                address: account.address,
+                chain: account.chain,
+                id: account.bitbadgesAddress,
+                name: account.address,
+            };
+            return cb(null, profile);
+        }
+    );
+}
+```
+
+**Custom Headers:**
+
+Make sure you enter your API key in the custom headers an d replace it in the fetch script.
+
+```
+{
+    "x-api-key": "YOUR_API_KEY"
+}
+```
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md
+
+# Discourse
+
+For Discourse, we do not have a dedicated plugin, but SIWBB is OAuth2 compatible and integrated with other providers. So, you can reuse existing plugins as needed.
+
+**Auth0 Plugin**
+
+Set up SIWBB with Auth0 here:
+
+{% content-ref url="auth0.md" %}
+[auth0.md](auth0.md)
+{% endcontent-ref %}
+
+Then, integrate with Discourse here:
+
+{% embed url="https://meta.discourse.org/t/configure-sign-up-and-log-in-with-auth0-using-the-oauth2-basic-plugin/64633" %}
+
+**OAuth2 Plugin**
+
+{% embed url="https://meta.discourse.org/t/discourse-oauth2-basic/33879" %}
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md
+
+# ExpressJS
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-passportjs-example/blob/main/index.ts" %}
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md
+
+# Others
+
+Many of your favorite frameworks already support Auth0, and you can simply use Sign In with BitBadges through that.
+
+* Auth.js (Next Auth) - [https://authjs.dev/getting-started/providers/auth0](https://authjs.dev/getting-started/providers/auth0)
+* Amazon Cognito - [https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services](https://auth0.com/docs/customize/integrations/aws/amazon-cognito#configure-amazon-web-services)
+* Supabase - [https://supabase.com/partners/integrations/auth0](https://supabase.com/partners/integrations/auth0)
+
+If you have any suggestions for unsupported integrations as well, let us know! And again, note that you are not locked into Sign In with BitBadges. You can use any Web3 authentication provider and then check BitBadges claim successes to gate anything.
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md
+
+# Supabase
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-supabase-demo" %}
+
+This repository is a basic example for getting started with Supabase and Sign in with BitBadges. It is meant to be a starting point and is not production ready.
+
+This example:
+
+* Uses the Next.js x Supabase template
+* Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
+
+<figure><img src="../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
+
+Anything else is left as an exercise for you.
+
+* Gating the entire site rather than using traditional authentication
+* Gating specific pages / implementing your utility
+* Linking claims
+
+Note: Supabase is flexible. You may choose to implement it via Express, Auth0, or another way as well. This is just a reference to help you get started.
+
+**Setup**
+
+1. Setup Supabase as explained via their documentation
+2. Add your BitBadges API key, client ID, and client secret to your .env
+3. Execute the SQL in supabase/migrations folder to setup the tables. This can be done via the SQL Editor in the dashboard.
+
+
+## File: ./for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md
+
+# WordPress
+
+Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadges and check any claim criteria, allowing you to create multi-chain websites gated for anything.
+
+Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://wordpress.org/plugins/sign-in-with-bitbadges/)
+
+{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
+
+<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+This plugin allows users to gate their WordPress site with BitBadges – claims, payments, NFT badges, and more!
+
+\== Description ==
+
+This plugin allows users to gate their site with BitBadges - claims, payments, NFT badges, and more!
+
+**Important Note:** This plugin ONLY handles authentication with BitBadges - it does not restrict access to your site by itself. For restricting access, we recommend using this plugin in conjunction with:
+
+* [Force Login](https://wordpress.org/plugins/wp-force-login/) - Forces users to log in to view your site
+* [Restrict Content](https://wordpress.org/plugins/restrict-content/) - Restrict content to logged-in users
+* [Members](https://wordpress.org/plugins/members/) - Advanced user roles and permissions
+* Or other plugins that restrict access to your site
+
+\== Installation ==
+
+1. Download the plugin files and upload them to your `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Go to Settings > BitBadges SIWBB to configure the plugin
+
+\== Configuration ==
+
+1. Create a new application (OAuth App) in the [BitBadges Developer Portal](https://bitbadges.io/developer)
+2. Set your redirect URI to: `https://your-wordpress-site.com/wp-login.php?action=bitbadges-callback`
+3. Copy your Client ID and Client Secret
+4. Go to your WordPress admin panel > Settings > BitBadges SIWBB
+5. Enter your Client ID and Client Secret
+6. (Optional) Configure a claim ID to gate access and other additional settings
+7. Save the settings
+
+\== Features ==
+
+* Adds a "Sign in with BitBadges" button to the WordPress login form
+* Creates WordPress users automatically when they first sign in with BitBadges
+* Secure OAuth 2.0 implementation with state verification
+* Simple admin interface for configuration
+* Optional exclusive BitBadges authentication mode (disable normal WordPress login)
+* Claim-gated access support
+* Emergency admin access URL for exclusive mode
+* Customizable claim visibility on authorization page
+
+\== Security ==
+
+* CSRF protection using state parameter
+* Secure storage of client credentials
+* WordPress nonce verification
+* Input sanitization
+* Proper error handling
+* Secure admin access fallback
+* Claim verification
+
+\== User Experience ==
+
+* Clean, centered login button design
+* Shortened wallet addresses for better readability
+* Clear separation between traditional and BitBadges login
+* Visible claim requirements before authentication
+* Seamless first-time user setup
+
+\== Requirements ==
+
+* WordPress 5.0 or higher
+* PHP 7.0 or higher
+* HTTPS enabled on your site (required for secure OAuth)
+
+\== Support ==
+
+For support or feature requests, please visit the [BitBadges website](https://bitbadges.io) or create an issue in the GitHub repository.
+
+\== License ==
+
+This plugin is licensed under the GPL v2 or later.\
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+\== Changelog ==
+
+\= 1.0.0 =
+
+* Initial release with basic OAuth functionality
+* Added exclusive authentication mode
+* Added claim-gating support
+* Added emergency admin access
+* Improved user display names
+* Enhanced UI/UX for login button
+* Added claim visibility options
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/README.md
+
+# Verification
+
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/access-tokens.md
+
+# Access Tokens
+
+With access tokens, you can start sending requests to authenticated endpoints with your access token specified in the Authorization header as "Bearer YOUR\_ACCESS\_TOKEN".
+
+If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.
+
+<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+
+If you are using the SDK, you can instead do this which handles the header setting:
+
+```typescript
+BitBadgesApi.setAccessToken(token);
+BitBadgesApi.unsetAccessToken();
+```
+
+Access tokens by default expire in 1 day, and refresh tokens expire in 60 days. Note that they may also become invalid as the user revokes access to them as well.
+
+**Health Checks**
+
+To check that you are signed in, use the following route. This will return signedIn: false if not authenticated, access token is expired, or authorization has been revoked.
+
+Note: This can even be used when no scopes are requested.
+
+```typescript
+// POST /api/v0/auth/status {}
+const res = await BitBadgesApi.checkIfSignedIn({})
+// 200 { signedIn: boolean, scopes: [...], ... }
+console.log(res.signedIn)
+```
+
+**Refreshing**
+
+```typescript
+const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
+    refresh_token
+    grant_type: 'refresh_token',
+    client_secret: '...',
+    client_id: '...',
+    redirect_uri: '...' //only needed if redirected
+});
+
+const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
+```
+
+Using the refresh token obtained previously, you can exchange for a new access token and refresh token (with expiration reset) on a rolling basis. This step can be repeated indefinitely.
+
+**Revoking Access**
+
+Once you are done with the access token, you should revoke your access to it via the following. This can also be done by the user via the Connections -> Authorizations tab in-site. This can be done by either the user or the app.
+
+```typescript
+// POST https://api.bitbadges.io/api/v0/siwbb/token/revoke
+await BitBadgesApi.revokeOauthAuthorization({ token });
+```
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/security-considerations.md
+
+# Security Considerations
+
+This flow is OAuth 2.0 compatible, so we refer you to the official spec and other OAuth 2.0 resources for security considerations with the protocol itself (replay attacks, man in the middle, etc).
+
+You may also be prone to flash criteria checks, such as flash ownership checks. For example, Bob signs in, transfers a token to Alice, and Alice signs in with the same token. Both are authenticated with the same token which may not be desired. This can apply to any criteria not just tokens. Ensure your claim criteria, attestations, etc protect against such cases.
+
+
+## File: ./for-developers/sign-in-with-bitbadges/verification/verification-flow.md
+
+# Verification Flow
+
+From the prior pages, you should now have the authorization **code** (32 byte hex) for the user.&#x20;
+
+```typescript
+// 32 byte hex string
+async function myHandler(req: NextApiRequest, res: NextApiResponse) {
+    const code = req.query.code as string;
+}
+```
+
+You can now exchange the code and valid app configuration details. Be sure to keep the client secret secret. The response will contain all authentication details, including a **verificationResponse**.
+
+**Exchanging the Code**
+
+The next step is to exchange the code for authentication details. This is done via the exchange endpoint. This follows typical OAuth2 flow. You can also specify options to check the issued at time of code generation. Typically for in-person, you may need to disable the issued at time check of 10 minutes.
+
+[API Reference](https://bitbadges.stoplight.io/docs/bitbadges) -> Exchange SIWBB Code
+
+```typescript
+// 32 byte hex string
+async function myHandler(req: NextApiRequest, res: NextApiResponse) {
+    const code = req.query.code as string;
+
+    const options = {
+        issuedAtTimeWindowMs: 1000 * 60 * 10, // 10 minutes (set to 0 to disable)
+    };
+
+    // POST https://api.bitbadges.io/api/v0/siwbb/token
+    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
+        code,
+        options,
+        grant_type: 'authorization_code',
+        client_secret: '...',
+        client_id: '...',
+        redirect_uri: '...', //only needed for digital immediate flow
+    });
+
+    const { address, chain, verificationResponse } = res;
+    if (!verificationResponse.success) {
+        console.log(verificationResponse.errorMessage);
+        throw new Error('Not authenticated');
+    }
+    
+    //Verify claims or anything else you need to do here
+}
+```
+
+**Access Tokens / Session Management**
+
+We return access tokens and refresh tokens for you to perform session management. The expiration times can help you implement sessions for your users, and you can health check the user hasn't revoked through the API. Code exchanges can only be performed once per unique code which is checked on our end.
+
+```typescript
+// 32 byte hex string
+async function myHandler(req: NextApiRequest, res: NextApiResponse) {
+    const code = req.query.code as string;
+
+    // POST https://api.bitbadges.io/api/v0/siwbb/token
+    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({ ... });
+
+    const { access_token, access_token_expires_at, refresh_token, refresh_token_expires_at } = res;
+    // TODO: You can use these tokens for session management and authorized API access
+}
+```
+
+Note this is not the only way of implementing sessions. You may implement custom approaches on your own like checking IDs, stamping hands, using claim numbers, etc.
+
+{% content-ref url="api-access-tokens.md" %}
+[api-access-tokens.md](api-access-tokens.md)
+{% endcontent-ref %}
+
+**Verifying Other "Attached" Criteria**
+
+For any other criteria like claim verification or attestations, you must check this additionally server-side. Do not trust that if you added `claimId` in the URL params that it is automatically verified.
+
+```typescript
+async function myHandler(req: NextApiRequest, res: NextApiResponse) {
+    const code = req.query.code as string;
+
+    // Exchange code from above
+
+    const { address, chain, verificationResponse } = res;
+
+    // ...
+
+    // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
+    // const claimAttemptsByAddress = await BitBadgesApi.getClaimAttempts(claimId, { address });
+    // const ownershipRequirementsRes = await BitBadgesApi.verifyOwnershipRequirements(...);
+    // const addressListsRes = await BitBadgesApi.getAddressLists(...);
+}
+```
+
+**Putting It Together**
+
+```typescript
+import { BitBadgesApi } from 'bitbadgesjs-sdk';
+
+// 32 byte hex string
+async function myHandler(req: NextApiRequest, res: NextApiResponse) {
+    const code = req.query.code as string;
+
+    const res = await BitBadgesApi.exchangeSIWBBAuthorizationCode({
+        code,
+        options,
+        grant_type: 'authorization_code',
+        client_secret: '...',
+        client_id: '...',
+        redirect_uri: '...', //only needed if immediate
+    });
+
+    const { address, chain, verificationResponse } = res;
+    if (!verificationResponse.success) {
+        console.log(verificationResponse.errorMessage);
+        throw new Error('Not authenticated');
+    }
+
+    const {
+        access_token,
+        access_token_expires_at,
+        refresh_token,
+        refresh_token_expires_at,
+    } = res;
+    // TODO: You can use these tokens for session management and authorized API access
+
+    // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
+    // const claimsRes = await BitBadgesApi.getClaims({ ... });
+
+    //TODO: Handle other checks and logic here
+    // - Prevent replay attacks by checking timestamps or nonces
+    // - Need to cache anything for later use?
+    // - If verifying with assets, is the asset transferable and prone to flash ownership attacks (e.g. one use per asset, etc)?
+    // - Other criteria needed for signing in? (e.g. whitelist / blacklist of addresses signing in)
+    // - Verify claim criteria
+
+    //TODO: If receiving attestations, are the contents valid?
+    //For example:
+    // - Verify the contents of the attestation messages are correct
+    // - Verify the creator is who you expect
+    // - Verify the metadata is correct
+    // - Verify the on-chain anchors / update history are correct
+    // - Verify the update history is correct
+}
+```
+
+## **IMPORTANT: What is verified natively vs not?**
+
+Does check :white\_check\_mark:
+
+* Proof of address ownership via their authenticated BitBadges account
+* Anything specified in the verify challenge options
+* Issued at time of code generation is not too long ago if **options.isssuedAtTimeWindowMs** is specified. Defaults to 10 minutes.
+* One exchange per authorization code -> access / refresh token
+
+Does not check natively :x:
+
+* Additional app-specific criteria needed for signing in (claims, ownership requirements, attestations)
+* Does not natively prevent against flash ownership attacks, replay attacks, or man-in-the-middle attacks other than what OAuth2 protects against
+
+
+
 ## File: ./overview/badge.md
 
 # 🪙 BADGE
@@ -12690,89 +12713,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 4. **IBC Currencies + Routing**: Our token standard is built to support any IBC currency and be IBC interopoerable where needed. Through this, the entire Cosmos ecosystem will benefit from increased usage of our standard.
 5. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
 6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
-
-
-## File: ./token-standard/accounts.md
-
-# 👤 Multi-Chain Accounts
-
-### **How is BitBadges able to support addresses from different blockchains?**
-
-To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos).
-
-Signature compatibility means that users from any of the above blockchain ecosystems are able to sign BitBadges transactions, and we simply verify the signatures on our blockchain.
-
-BitBadges is compatible with the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from or is interoperable with any other blockchain. Everything is confined to the BitBadges blockchain.
-
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
-
-### **Why do I see multiple equivalent addresses?**
-
-All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
-
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### **Which chains / wallets are supported?**
-
-Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
-
-### For Developers - Handling Addresses
-
-It should be enough information for most, but for more low-level interaction, [this page](../for-developers/bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
-
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Mapping to a Common Address (bitbadgesAddress)**
-
-To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.
-
-We try to be as accommodating of native addresses as possible, but there are many places where universal standardization is needed. You will often come across places in development where you need to specify a **bitbadgesAddress.** This is expected to be the mapped address and not the native address (thus, you will need to map first). The typical naming convention we use is **bitbadgesAddress** vs **address.**
-
-The mappings should ONLY happen behind the scenes. On the user facing side, you should always display the user's native address.
-
-Ethereum Example:
-
-* Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
-* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
-
-Solana Example:
-
-* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
-
-Bitcoin Example
-
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
-
-#### Why can I convert Solana address to a BitBadges / ETH / BTC address but not the other way around?
-
-You may notice that you cannot go from a BitBadges / ETH / BTC address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an ETH / BitBadges address), you cannot deduce the preimage without prior knowledge of it.
-
-#### **How to convert?**
-
-The mapped addresses can be converted behind the scenes using the converter functions from [BitBadges SDK](../for-developers/bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { convertToEthAddress, convertToBitBadgesAddress, mustConvertToBtcAddress } from 'bitbadgesjs-sdk';
-</strong>
-<strong>const bitbadgesAddress = convertToBitBadgesAddress(btcAddress);
-</strong>const ethAddress = convertToEthAddress(bitbadgesAddress);
-const bitbadgesAddressFromSolana = convertToBitBadgesAddress(solAddress);
-const btcAddress = mustConvertToBtcAddress(address);
-
-// Note there is no convertToSolanaAddress due to how the addresses work. See above
-</code></pre>
-
-**What is signature compatibility?**
-
-To enable interoperability between different blockchains, BitBadges is signature compatible with all of the supported chains (Bitcoin, Ethereum, Solana, and Cosmos).
-
-Signature compatibility means that we can verify transaction signatures from any wallet of any supported ecosystem. BitBadges is its own blockchain and does not pull any data from any other blockchain. Everything is confined to the BitBadges blockchain.
-
-#### **How do I query details for an address?**
-
-1. You can use the [BitBadges API](../for-developers/bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
-2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API](https://docs.cosmos.network/v0.46/run-node/interact-node.html)
 
 
 ## File: ./token-standard/examples/approvals/README.md
