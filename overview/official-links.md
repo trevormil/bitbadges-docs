@@ -41,13 +41,3 @@ pnpm add bitbadgesjs-sdk
 bun add bitbadgesjs-sdk
 ```
 
-### Running a Node
-
-* [Run a Node](https://docs.bitbadges.io/for-developers/bitbadges-blockchain/run-a-node)
-
-## 🌴 Ecosystem & Integrations
-
-### Blockin
-
-* [Blockin](https://app.gitbook.com/o/7VSYQvtb1QtdWFsEGoUn/s/AwjdYgEsUkK9cCca5DiU/)
-

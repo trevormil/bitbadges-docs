@@ -7,7 +7,6 @@
 * [🪙 BADGE](overview/badge.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
-* [❓ FAQ](overview/faq.md)
 
 ## ⌨️ For Developers
 
@@ -306,6 +305,7 @@
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
+* [❓ FAQ](token-standard/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
