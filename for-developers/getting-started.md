@@ -18,20 +18,6 @@ We strongly recommend, if you have not already, to explore the claim tester and 
 
 Most of your setup and management (and oftentimes all) will be done directly in-site via the developer portal or Create tab. Get started at [https://bitbadges.io/create](https://bitbadges.io/create).
 
-## Developing with AI
-
-Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
-
-[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
-
-[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
-
-[Full Documentation .txt](../for-llms.txt)
-
-[BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
-
-[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)
-
 ## Tokens vs Badges
 
 We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
@@ -52,8 +38,6 @@ Claims are the universal connectors. Claim criteria can be anything from a payme
 {% endcontent-ref %}
 
 ## Quick Start - Claims
-
-This includes documentation everything from custom plugins to Zapier to dynamic stores and mroe
 
 {% content-ref url="../overview/claim-builder/" %}
 [claim-builder](../overview/claim-builder/)
@@ -77,9 +61,22 @@ npm i bitbadgesjs-sdk
 import { BitBadgesAPI } from 'bitbadgesjs-sdk';
 
 const api = new BitBadgesAPI({
-  ...YOUR_CONFIG_AND_API_KEY
+  ...
 });
 
 await BitBadgesAPI.getCollection(...);
 ```
 
+## Developing with AI
+
+Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
+
+[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
+
+[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+
+[Full Documentation .txt](../for-llms.txt)
+
+[BitBadges AI Chatbot Starter](https://github.com/BitBadges/bitbadges-ai)
+
+[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)

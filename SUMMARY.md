@@ -36,7 +36,7 @@
     * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
       * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
       * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
-    * [Redirect Callback](for-developers/bitbadges-api/sign-in-with-bitbadges/redirected-callback.md)
+    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
     * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
       * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
       * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
