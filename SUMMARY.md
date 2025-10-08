@@ -296,7 +296,7 @@
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
 * [❓ FAQ](overview/faq.md)
-* [⛓️ Add To Your Chain?](token-standard/add-to-your-chain.md)
+* [⛓️ Integrate The Standard?](token-standard/integrate-the-standard.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
