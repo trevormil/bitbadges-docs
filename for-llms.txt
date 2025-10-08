@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Oct  7 14:14:50 UTC 2025
+Generated on Wed Oct  8 10:45:13 UTC 2025
 
 
 
@@ -3876,6 +3876,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
 * [❓ FAQ](overview/faq.md)
+* [⛓️ Add To Your Chain?](token-standard/add-to-your-chain.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
@@ -12295,6 +12296,13 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 4. **IBC Currencies + Routing**: Our token standard is built to support any IBC currency and be IBC interopoerable where needed. Through this, the entire Cosmos ecosystem will benefit from increased usage of our standard.
 5. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
 6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
+
+
+## File: ./token-standard/add-to-your-chain.md
+
+# ⛓️ Add To Your Chain?
+
+If you want the token standard to your own chain, reach out! We are open to exploring licensing and other agreements!
 
 
 ## File: ./token-standard/examples/approvals/README.md
