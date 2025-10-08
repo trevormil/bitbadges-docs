@@ -4,13 +4,11 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Introduction](introduction.md) - Overview and key concepts
-2. [Concepts](concepts/) - Core data structures and business logic
-3. [State](state.md) - State management and storage patterns
-4. [Messages](messages/) - Transaction messages and handlers
-5. [Queries](queries/) - Query types and endpoints
-6. [Events](events.md) - Event emissions and tracking
-7. [Examples](examples/) - Common usage patterns and building blocks
+1. [Concepts](concepts/) - Core data structures and business logic
+2. [Messages](messages/) - Transaction messages and handlers
+3. [Queries](queries/) - Query types and endpoints
+4. [Events](events.md) - Event emissions and tracking
+5. [Examples](examples/) - Common usage patterns and building blocks
 
 ## Main Features
 
