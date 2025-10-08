@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Oct  8 10:45:13 UTC 2025
+Generated on Wed Oct  8 10:55:43 UTC 2025
 
 
 
@@ -3876,7 +3876,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [📡 Events](x-badges/events.md)
 * [❓ FAQ](overview/faq.md)
-* [⛓️ Add To Your Chain?](token-standard/add-to-your-chain.md)
+* [⛓️ Integrate The Standard?](token-standard/integrate-the-standard.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## x/gamm
@@ -12298,17 +12298,19 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
 
 
-## File: ./token-standard/add-to-your-chain.md
-
-# ⛓️ Add To Your Chain?
-
-If you want the token standard to your own chain, reach out! We are open to exploring licensing and other agreements!
-
-
 ## File: ./token-standard/examples/approvals/README.md
 
 # Approvals
 
+
+
+## File: ./token-standard/integrate-the-standard.md
+
+# ⛓️ Integrate The Standard?
+
+**Building a frontend?** Check out the affiliate fee implementation to claim 50% of the protocol fee to keep your integration sustainable!
+
+**Want to add it to your Cosmos chain?** If you want the token standard to your own chain, reach out! We are open to exploring licensing and other agreements!
 
 
 ## File: ./token-standard/pre-readings.md
