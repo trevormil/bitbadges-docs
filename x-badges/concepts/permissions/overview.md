@@ -80,7 +80,6 @@ Based on the proto definitions:
 **Timeline Permissions** (timelineTimes + time control):
 
 -   `canArchiveCollection`
--   `canUpdateOffChainBalancesMetadata`
 -   `canUpdateStandards`
 -   `canUpdateCustomData`
 -   `canUpdateManager`

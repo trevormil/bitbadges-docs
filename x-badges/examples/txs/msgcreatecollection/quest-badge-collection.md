@@ -9,7 +9,6 @@ This example demonstrates creating a quest collection.
     {
         "creator": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
         "collectionId": "0",
-        "balancesType": "Standard",
         "defaultBalances": {
             "balances": [],
             "outgoingApprovals": [],
@@ -34,7 +33,6 @@ This example demonstrates creating a quest collection.
         "collectionPermissions": {
             "canDeleteCollection": [],
             "canArchiveCollection": [],
-            "canUpdateOffChainBalancesMetadata": [],
             "canUpdateStandards": [],
             "canUpdateCustomData": [],
             "canUpdateManager": [],
@@ -90,7 +88,6 @@ This example demonstrates creating a quest collection.
                 ]
             }
         ],
-        "offChainBalancesMetadataTimeline": [],
         "customDataTimeline": [],
         "collectionApprovals": [
             {

@@ -25,27 +25,25 @@ message MsgUpdateCollection {
   string collectionId = 2; // ID of collection to update
   bool updateValidBadgeIds = 3;
   repeated UintRange validBadgeIds = 4;
-  bool updateCollectionPermissions = 7;
-  CollectionPermissions collectionPermissions = 8;
-  bool updateManagerTimeline = 9;
-  repeated ManagerTimeline managerTimeline = 10;
-  bool updateCollectionMetadataTimeline = 11;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 12;
-  bool updateBadgeMetadataTimeline = 13;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 14;
-  bool updateOffChainBalancesMetadataTimeline = 15;
-  repeated OffChainBalancesMetadataTimeline offChainBalancesMetadataTimeline = 16;
-  bool updateCustomDataTimeline = 17;
-  repeated CustomDataTimeline customDataTimeline = 18;
-  bool updateCollectionApprovals = 21;
-  repeated CollectionApproval collectionApprovals = 22;
-  bool updateStandardsTimeline = 23;
-  repeated StandardsTimeline standardsTimeline = 24;
-  bool updateIsArchivedTimeline = 27;
-  repeated IsArchivedTimeline isArchivedTimeline = 28;
-  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 29;
-  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 30;
-  CollectionInvariants invariants = 31;
+  bool updateCollectionPermissions = 5;
+  CollectionPermissions collectionPermissions = 6;
+  bool updateManagerTimeline = 7;
+  repeated ManagerTimeline managerTimeline = 8;
+  bool updateCollectionMetadataTimeline = 9;
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
+  bool updateBadgeMetadataTimeline = 11;
+  repeated BadgeMetadataTimeline badgeMetadataTimeline = 12;
+  bool updateCustomDataTimeline = 13;
+  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateCollectionApprovals = 15;
+  repeated CollectionApproval collectionApprovals = 16;
+  bool updateStandardsTimeline = 17;
+  repeated StandardsTimeline standardsTimeline = 18;
+  bool updateIsArchivedTimeline = 19;
+  repeated IsArchivedTimeline isArchivedTimeline = 20;
+  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
+  CollectionInvariants invariants = 23;
 }
 
 message MsgUpdateCollectionResponse {
@@ -72,7 +70,6 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "collectionPermissions": {
         "canDeleteCollection": [],
         "canArchiveCollection": [],
-        "canUpdateOffChainBalancesMetadata": [],
         "canUpdateStandards": [],
         "canUpdateCustomData": [],
         "canUpdateManager": [],
@@ -87,8 +84,6 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "collectionMetadataTimeline": [],
     "updateBadgeMetadataTimeline": false,
     "badgeMetadataTimeline": [],
-    "updateOffChainBalancesMetadataTimeline": false,
-    "offChainBalancesMetadataTimeline": [],
     "updateCustomDataTimeline": false,
     "customDataTimeline": [],
     "updateCollectionApprovals": false,

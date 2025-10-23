@@ -9,7 +9,6 @@ For detailed information about each field, see the corresponding concepts docume
 | Field                         | Concepts Link                                               |
 | ----------------------------- | ----------------------------------------------------------- |
 | `validBadgeIds`               | [Valid Token IDs](../concepts/valid-badge-ids.md)           |
-| `balancesType`                | [Balances Type](../concepts/balances-type.md)               |
 | `managerTimeline`             | [Manager](../concepts/manager.md)                           |
 | `collectionMetadataTimeline`  | [Metadata](../concepts/metadata.md)                         |
 | `badgeMetadataTimeline`       | [Metadata](../concepts/metadata.md)                         |
@@ -41,10 +40,6 @@ const BaseCollectionDetails = {
             end: '100', // Set to your max ID
         },
     ],
-    // Off-chain are a legacy feature. You should use the following fields for standard on-chain collections.
-    balancesType: 'Standard',
-    offChainBalancesMetadataTimeline: [],
-
     managerTimeline: [
         {
             manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls', // Set to your address

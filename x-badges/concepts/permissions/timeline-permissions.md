@@ -71,7 +71,6 @@ interface TimedUpdatePermission {
 **Available Actions:**
 
 -   `canArchiveCollection`
--   `canUpdateOffChainBalancesMetadata`
 -   `canUpdateStandards`
 -   `canUpdateCustomData`
 -   `canUpdateManager`

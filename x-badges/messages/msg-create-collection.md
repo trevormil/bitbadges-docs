@@ -10,28 +10,26 @@ The creation or genesis transaction for a collection is unique in a couple ways.
 
 There are no permissions previously set, so there are no restrictions for what can be set vs not. Subsequent updates to the collection must follow any previously set permissions.
 
-This is the only time that you can specify `balancesType` and the `defaultBalances` information.
+This is the only time that you can specify the `defaultBalances` information.
 
 ## Proto Definition
 
 ```protobuf
 message MsgCreateCollection {
   string creator = 1; // Address creating the collection
-  string balancesType = 2; // "Standard", "Off-Chain - Indexed", etc.
-  UserBalanceStore defaultBalances = 4;
-  repeated UintRange validBadgeIds = 5; // Token ID ranges to include
-  CollectionPermissions collectionPermissions = 6;
-  repeated ManagerTimeline managerTimeline = 7;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 8;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 9;
-  repeated OffChainBalancesMetadataTimeline offChainBalancesMetadataTimeline = 10;
-  repeated CustomDataTimeline customDataTimeline = 11;
-  repeated CollectionApproval collectionApprovals = 12;
-  repeated StandardsTimeline standardsTimeline = 13;
-  repeated IsArchivedTimeline isArchivedTimeline = 14;
-  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 16;
-  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 17;
-  CollectionInvariants invariants = 18;
+  UserBalanceStore defaultBalances = 2;
+  repeated UintRange validBadgeIds  = 3; // Token ID ranges to include
+  CollectionPermissions collectionPermissions = 4;
+  repeated ManagerTimeline managerTimeline = 5;
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 6;
+  repeated BadgeMetadataTimeline badgeMetadataTimeline = 7;
+  repeated CustomDataTimeline customDataTimeline = 8;
+  repeated CollectionApproval collectionApprovals = 9;
+  repeated StandardsTimeline standardsTimeline = 10;
+  repeated IsArchivedTimeline isArchivedTimeline = 11;
+  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 12;
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 13;
+  CollectionInvariants invariants = 14;
 }
 
 message MsgCreateCollectionResponse {
@@ -53,7 +51,6 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 ```json
 {
     "creator": "bb1abc123...",
-    "balancesType": "Standard",
     "defaultBalances": {
         "balances": [],
         "outgoingApprovals": [],
@@ -73,7 +70,6 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "collectionPermissions": {
         "canDeleteCollection": [],
         "canArchiveCollection": [],
-        "canUpdateOffChainBalancesMetadata": [],
         "canUpdateStandards": [],
         "canUpdateCustomData": [],
         "canUpdateManager": [],
@@ -85,7 +81,6 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "managerTimeline": [],
     "collectionMetadataTimeline": [],
     "badgeMetadataTimeline": [],
-    "offChainBalancesMetadataTimeline": [],
     "customDataTimeline": [],
     "collectionApprovals": [],
     "standardsTimeline": [],

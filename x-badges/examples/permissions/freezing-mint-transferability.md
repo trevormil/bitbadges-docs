@@ -19,7 +19,6 @@ const FullTimeRanges = [
 const collectionPermissions = {
     canDeleteCollection: [],
     canArchiveCollection: [],
-    canUpdateOffChainBalancesMetadata: [],
     canUpdateStandards: [],
     canUpdateCustomData: [],
     canUpdateManager: [],

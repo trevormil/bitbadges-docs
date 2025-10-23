@@ -31,7 +31,6 @@ Each permission is enabled by default, unless you permanently disabled it. Thus,
 const collectionPermissions = {
     canDeleteCollection: [],
     canArchiveCollection: [],
-    canUpdateOffChainBalancesMetadata: [],
     canUpdateStandards: [],
     canUpdateCustomData: [],
     canUpdateManager: [],

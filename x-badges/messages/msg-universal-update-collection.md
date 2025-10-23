@@ -27,36 +27,33 @@ message MsgUniversalUpdateCollection {
   string collectionId = 2; // "0" for new collection, existing ID for updates
 
   // Creation-only fields (only used when collectionId = "0")
-  string balancesType = 3; // "Standard", "Off-Chain - Indexed", etc.
-  UserBalanceStore defaultBalances = 4;
+  UserBalanceStore defaultBalances = 3;
 
   // Updateable fields (used for both creation and updates)
-  repeated UintRange validBadgeIds = 5;
-  bool updateCollectionPermissions = 6;
-  CollectionPermissions collectionPermissions = 7;
-  bool updateManagerTimeline = 8;
-  repeated ManagerTimeline managerTimeline = 9;
-  bool updateCollectionMetadataTimeline = 10;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 11;
-  bool updateBadgeMetadataTimeline = 12;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 13;
-  bool updateOffChainBalancesMetadataTimeline = 14;
-  repeated OffChainBalancesMetadataTimeline offChainBalancesMetadataTimeline = 15;
-  bool updateCustomDataTimeline = 16;
-  repeated CustomDataTimeline customDataTimeline = 17;
-  bool updateCollectionApprovals = 18;
-  repeated CollectionApproval collectionApprovals = 19;
-  bool updateStandardsTimeline = 20;
-  repeated StandardsTimeline standardsTimeline = 21;
-  bool updateIsArchivedTimeline = 22;
-  repeated IsArchivedTimeline isArchivedTimeline = 23;
+  repeated UintRange validBadgeIds = 4;
+  bool updateCollectionPermissions = 5;
+  CollectionPermissions collectionPermissions = 6;
+  bool updateManagerTimeline = 7;
+  repeated ManagerTimeline managerTimeline = 8;
+  bool updateCollectionMetadataTimeline = 9;
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
+  bool updateBadgeMetadataTimeline = 11;
+  repeated BadgeMetadataTimeline badgeMetadataTimeline = 12;
+  bool updateCustomDataTimeline = 13;
+  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateCollectionApprovals = 15;
+  repeated CollectionApproval collectionApprovals = 16;
+  bool updateStandardsTimeline = 17;
+  repeated StandardsTimeline standardsTimeline = 18;
+  bool updateIsArchivedTimeline = 19;
+  repeated IsArchivedTimeline isArchivedTimeline = 20;
 
   // Transfer fields
-  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 24;
-  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 25;
+  repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
 
   // Invariants (creation-only)
-  CollectionInvariants invariants = 26;
+  CollectionInvariants invariants = 23;
 }
 
 message MsgUniversalUpdateCollectionResponse {
@@ -77,7 +74,6 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 {
     "creator": "bb1abc123...",
     "collectionId": "0",
-    "balancesType": "Standard",
     "defaultBalances": {
         "balances": [],
         "outgoingApprovals": [],
@@ -98,7 +94,6 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "collectionPermissions": {
         "canDeleteCollection": [],
         "canArchiveCollection": [],
-        "canUpdateOffChainBalancesMetadata": [],
         "canUpdateStandards": [],
         "canUpdateCustomData": [],
         "canUpdateManager": [],
@@ -113,8 +108,6 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "collectionMetadataTimeline": [],
     "updateBadgeMetadataTimeline": true,
     "badgeMetadataTimeline": [],
-    "updateOffChainBalancesMetadataTimeline": true,
-    "offChainBalancesMetadataTimeline": [],
     "updateCustomDataTimeline": true,
     "customDataTimeline": [],
     "updateCollectionApprovals": true,
@@ -148,8 +141,6 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "collectionMetadataTimeline": [],
     "updateBadgeMetadataTimeline": false,
     "badgeMetadataTimeline": [],
-    "updateOffChainBalancesMetadataTimeline": false,
-    "offChainBalancesMetadataTimeline": [],
     "updateCustomDataTimeline": false,
     "customDataTimeline": [],
     "updateCollectionApprovals": false,
@@ -175,7 +166,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 ### vs MsgUpdateCollection
 
 -   Can create new collections when collectionId = "0"
--   Includes creation-only fields like `balancesType` and `defaultBalances`
+    -   Includes creation-only fields like `defaultBalances`
 -   Includes invariants support
 
 ## Invariants Support

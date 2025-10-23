@@ -39,7 +39,6 @@ The collection interface includes the following timeline-based fields:
 -   `managerTimeline: ManagerTimeline<T>[]`
 -   `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
 -   `badgeMetadataTimeline: BadgeMetadataTimeline<T>[]`
--   `offChainBalancesMetadataTimeline: OffChainBalancesMetadataTimeline<T>[]`
 -   `customDataTimeline: CustomDataTimeline<T>[]`
 -   `standardsTimeline: StandardsTimeline<T>[]`
 -   `isArchivedTimeline: IsArchivedTimeline<T>[]`
