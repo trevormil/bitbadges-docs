@@ -12,7 +12,7 @@ BitBadges offers tokenization-as-a-service and gating-as-a-service. We are build
 
 <div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
 
-### ❓ Why BitBadges?
+## ❓ Why BitBadges?
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
