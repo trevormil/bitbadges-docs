@@ -8,7 +8,6 @@ By default, Sign In with BitBadges will handle multi-chain authentication for th
 
 * Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
 * Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
-* You can also `expectAttestations` to have the user provide you with attestations from their account that you want to receive (to be verified on your end)
 
 ## Parameter Interface
 
@@ -50,9 +49,3 @@ interface CodeGenQueryParams {
 * Specify required claim to be satisfied with `claimId`
 * Create the claim in the developer portal. See claim docs for more details.
 * Claims are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
-
-### 4. Attestations
-
-* Receive attestations from the user directly via the sign-in process. This is a more direct alternative rather than needing to set up a custom plugin in a claim.
-* Note, like claims, these are not a part of the core authentication process. You need to verify them separately server-side to ensure the user has met the criteria.
-* While we do our best to maintain well-formedness, treat BitBadges as the middleman. Verify all on your end.

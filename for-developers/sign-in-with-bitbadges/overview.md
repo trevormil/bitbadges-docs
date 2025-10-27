@@ -28,8 +28,6 @@ const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
 
 [**Demo**](https://bitbadges.io/siwbb/authorize?client_id=example-client-id\&redirect_uri=https://example.com&)
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 ## Implementation Flow
 
 1. **Authentication- BitBadges Side**
