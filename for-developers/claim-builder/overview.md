@@ -1,8 +1,6 @@
 # Overview
 
-```
-Note: This documentation is not meant to explain everything in the claim builder interface. It is to provide developer documentation for more advanced use cases.
-```
+> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims.
 
 **What are claims?**
 
