@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Oct 27 16:43:19 UTC 2025
+Generated on Mon Oct 27 16:53:36 UTC 2025
 
 
 
@@ -3674,14 +3674,12 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Concepts](for-developers/claim-builder/concepts/README.md)
     * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
     * [Completion Methods](for-developers/claim-builder/completion-methods.md)
-    * [Gating Token Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
+    * [Gating On-Chain Approvals](for-developers/claim-builder/concepts/gating-badge-distribution.md)
     * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
     * [Success Logic](for-developers/claim-builder/success-logic.md)
-    * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
     * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
-    * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
   * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
@@ -3728,7 +3726,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
   * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
     * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
     * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
@@ -3742,7 +3739,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
     * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
     * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
-    * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+    *
 
 ## 🏗️ Token Standard
 
@@ -8683,22 +8680,6 @@ ownershipTimes: UintRangeArray.FullRanges();
 For assets that support ownership times like BitBadges tokens, you can specify custom times to check.
 
 
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md
-
-# Plugin Documentation
-
-Head over to the the BitBadges site link below with the plugin ID you are interested in.
-
-```
-https://bitbadges.io/plugins/{pluginId} (e.g. "password")
-```
-
-This will give you documentation on the configuration of each plugin, including state management, parameter schemas, user input schemas and more.
-
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-
-
-
 ## File: ./for-developers/claim-builder/checking-custom-criteria.md
 
 # Checking Custom Criteria
@@ -8740,25 +8721,6 @@ Be mindful though that if you are checking criteria, you should have verificatio
 ## Auto-Completion
 
 You could also initiate the completion of claims on behalf of users with the API or via Zapier. This is advanced and a custom plugin / webhook is oftnetimes a better alternative.
-
-
-## File: ./for-developers/claim-builder/claim-links.md
-
-# Claim Links (URLs)
-
-If users claim in-site, simply direct them to the claim page. Or if it is tied with an application, address list, or token, direct them to the corresponding page there.
-
-#### Auto-filled Details (Advanced / Experimental)
-
-The following details can be auto-filled for the user if specified in the query parameters.
-
-* `code`: The unique code for the Codes plugin (assumes only one code plugin)
-* `password`: A password for the Passwords plugin (assumes only one password plugin)
-* `claimId`: The unique identifier for the claim. This lets us know which one to highlight.
-* `customBody`: The preconfigured JSON encoded claim body for the user. See the API for more information. Note that you will have to URL encode it.
-* `approvalLevel`: "collection" | "incoming" | "outgoing". We scan for the claimId (collection level first) but for on-chain collections, you may have claims for user level approvals as well. This is used in the case of duplicate claimIds on different levels.
-
-https://bitbadges.io/collections/1?code=ABC123\&password=securepass\&claimId=98765\&customBody={"exampleInstanceId":%20"abc123"}
 
 
 ## File: ./for-developers/claim-builder/completion-methods.md
@@ -8838,23 +8800,13 @@ Only one plugin is allowed to assign claim numbers which is determined by the **
 
 ## File: ./for-developers/claim-builder/concepts/gating-badge-distribution.md
 
-# Gating Token Distribution
+# Gating On-Chain Approvals
 
-One utility offered with claims is to gate token distribution as the reward via the Create -> Tokens flow. This uses a special clai type.
+In the BitBadges site, we allow using claims to gate approvals, such as mints. For example, gate mints to those who have joined a Discord (checked via a claim).
 
-For off-chain balances, we can just allocate the balances directly after claiming.
+It is important to note the hybrid apporach here. Claims are checked off-chain. BitBadges becomes the centralized oracle distributing unique claim codes to be used on-chain eventually. Thus, think of claims gating approvals as gating the "right to initiate the transfer" rather than automatically initiating it. It is a two-step process.
 
-For on-chain balances, a successful claim will result in reserving the right to claim, not actually completing the claim. This is because the claim criteria is checked off-chain, and we need an on-chain transfer transaction. It is a two-step process.
-
-Behind the scenes, we reserve the unique claim code for the user. The on-chain transaction will eventually specify that claim code in the eventual transfer transaction. On-chain, these are the leaves of [Merkle challenge](../../../x-badges/concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if enabled.
-
-**When to use claims vs self-hosted balances?**
-
-For claims that gate token distribution, you may want to evaluate the tradeoff of claims vs self-hosted balances. Claims are handled on a trigger basis. When something occurs or the user attempts to claim, a claim can be completed and transfer tokens or perform another claim action.
-
-However, note claims may not be the right choice for you, especially if you already have all the data you need already. If you already have the data, you may consider self-hosting the balances / airdropping tokens to your users. This removes the middle action step required to complete the process.
-
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+On-chain, these are the leaves of [Merkle challenge](../../../x-badges/concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if en
 
 
 ## File: ./for-developers/claim-builder/concepts/identify-by-socials-emails.md
@@ -8872,60 +8824,6 @@ Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) ver
 {% endcontent-ref %}
 
 <figure><img src="../../../.gitbook/assets/image (225).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/concepts/monetizing-apps-badges.md
-
-# Payment Checking
-
-If your use case requires monetization (such as memberships or recurring payments), we host an in-site Stripe plugin for you to use. While BADGE is the native credits of the blockchain and we do offer accepting BADGE fees per on-chain approval use, we do not recommend using it for payment purposes. We recommend to accept payments using existing processors like Stripe.
-
-Note: This is provided for convenience and is not the only solution. You can choose to self-implement payments however you want. Ex: Self-host and gate by emails who have paid.
-
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Setting Up Your Account
-
-To setup a Stripe Connect account, go to the connected accounts section of the Developer Portal ([https://bitbadges.io/developer](https://bitbadges.io/developer)).
-
-### Creating a Claim
-
-Once setup, you can then get started creating claims with the Stripe Payment plugin. Users will be prompted to complete the checkout process before claiming.
-
-Note: Refunds are possible (learn more below). In the event of an auto-refund, the Stripe fees are not returned, and you make up the difference.
-
-To mitigate refunds, the golden rule for designing payment-gated claims that avoids any refund logic is that a a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B. In other words, assume that if the queue is backed up for 100 days, that should not alter whether a claim succeeds or fails.
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Payment Capture
-
-Since claims and Stripe are two separate services, we can either capture payments immediately before or after the claim has been completed. For our design, we capture claims before to guarantee payment before the claim.
-
-#### How Claims Work Behind the Scenes (The Basic Process)
-
-1. The claim is fully completed / simulated to see if it will succeed (both external and internal logic). This also includes a ready to capture payment check to ensure the user has completed checkout and we are ready.
-2. If all claim checks pass, the claim is queued. We cache any external logic.
-3. We capture the payment here.
-4. The claim is added to a queue
-5. At the queue's final processing time, we rerun the claim's internal logic (state handling) to ensure it still passes and there are no race conditions. We reuse any external logic from Step 1.
-   1. If the sanity check fails, we have to issue a refund to the customer at this point. This is rare but can happen with poor claim design.
-
-This process is often immediate (<1 second), but the time ultimately goes at the speed of the queue.
-
-#### Capture Before Claim
-
-* **What happens**: The payment is captured immediately before the final processing of the claim but after confirming a full simulation.
-* **Advantage**: Guarantees payment for successful claims. 100% of users who complete the claim have guaranteed payment went through.
-* **Risk**: In the rare case of the sanity check of failing after Step 1) full simulation succeeded, we automatically issue refunds to the customer. Stripe fees are NOT returned, you make up the difference in the refund to each customer (poor user experience as well - 2 charges on statements plus additional processing).
-* **Proper Design:** This can always be mitigated with proper claim design. **T**he golden rule is design your claims such that a specific claim attempt from a user will either always succeed or always fail. It should never be able to succeed at time A but not at time B.
-  * When might the refund case occur?
-    * **Max Uses Exceeded:** 1000 users submit at exact same time with only 1 claim use left. All 1000 get added to the queue. We have to refund 999 of them.
-    * **Claim Codes:** If you give out a one-time use code to two users and they both submit at the same time and both make it into the queue, we will have to refund one.
-  * Note though, these cases are rare but need to be accounted for
-    * It only applies to internal state race conditions, not external fetches
-    * Even just a second or two between claim submissions typically would invalidate the initial simulation (Step 1) leading to it never being placed in the queue and payment never being captured.
-    * We do our best on our end to mitigate and prevent such cases before they happen
 
 
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
@@ -9905,44 +9803,38 @@ If you need to see the resulting claim JSON (for advanced implementations), you 
 
 # Overview
 
-> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims.
-
-**What are claims?**
+> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with MCP, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
 <figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
-**How do claims work? What are plugins?**
+### **How do claims work? What are plugins?**
 
 Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
 
-Note: Certain plugins may become unavailable due to design decisions. For example, claim codes make no sense for on-demand claims since there is no "complete claim" action.
-
-**Get Creative**
+### **Get Creative**
 
 While we do offer a ton of functionality directly in-site, your desired functionality may not be directly supported. Before considering custom implementations, get creative!
 
--   Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
--   Can your users be identified by email? Addresses? Use those plugins or dynamic stores
--   Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+* Can you implement everything with a token and then check token ownership?
+* Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
+* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
+* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
 
-There may also be plenty of ways for you to implement the same thing with varying tradeoffs. Select the best for your use case.
-
-**How to create / manage claims?**
+### **How to create / manage claims?**
 
 Claims are created and managed in the developer portal.
 
-**What is possible in-site?**
+### **What is possible in-site?**
 
 Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
--   Gate URLs / Content to those who claim with the Rewards tab
--   Use the Discord Role Assigner plugin to create gated channels
--   Use Stripe Payments to create payment-gated claims
--   And much more
+* Gate URLs / Content to those who claim with the Rewards tab
+* Use the Discord Role Assigner plugin to create gated channels
+* And much more
 
-**Can claims connect to other BitBadges services?**
+### **Can claims connect to other BitBadges services?**
 
 Claims are the universal connector. You can not only check criteria from any BitBadges service (token ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
