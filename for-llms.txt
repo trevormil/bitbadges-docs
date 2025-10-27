@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Oct 27 16:32:43 UTC 2025
+Generated on Mon Oct 27 16:36:38 UTC 2025
 
 
 
@@ -3634,6 +3634,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [BitBadges Explorer](https://explorer.bitbadges.io/)
@@ -3645,7 +3646,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [Ex: Run an AI Agent](for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md)
+    * [AI Prompt: Signing Txs](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
@@ -3655,8 +3656,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
   * [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
-    * [x/anchor](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md)
-      * [MsgAddCustomData](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md)
     * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
     * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
       * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
@@ -4588,26 +4587,6 @@ export interface CosmosCoin<T extends NumberType> {
 ```
 
 
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/README.md
-
-# x/anchor
-
-
-
-## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-anchor/msgaddcustomdata.md
-
-# MsgAddCustomData
-
-MsgAddCustomData is a part of the x/anchor module which allows you to anchor any custom data to the blockchain. The blcokchain will store with an incrementing location ID along with the timestamp. This can be used to prove knowledge of something at a specific time by anchoring it to the chain.
-
-```protobuf
-message MsgAddCustomData {
-  string creator = 1;
-  string data    = 2;
-}
-```
-
-
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md
 
 # x/badges
@@ -5177,17 +5156,6 @@ while (!fetched) {
 
 return res;
 ```
-
-
-## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/ex-run-an-ai-agent.md
-
-# Ex: Run an AI Agent
-
-{% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-ai" %}
-
-We have a boilerplate / quickstarter for you to run an autonomous AI agent here. Please read the README for all details.
-
-This implements all of the signing functionality for a managed Ethereum address (the agent's address). You can interact with it through a chatbot interface, or you can extend / customize for more functionality. This is a recommended place to start if you are just experimenting.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md
