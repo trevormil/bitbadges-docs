@@ -94,14 +94,12 @@
   * [Concepts](for-developers/claim-builder/concepts/README.md)
     * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
     * [Completion Methods](for-developers/claim-builder/completion-methods.md)
-    * [Gating Token Distribution](for-developers/claim-builder/concepts/gating-badge-distribution.md)
+    * [Gating On-Chain Approvals](for-developers/claim-builder/concepts/gating-badge-distribution.md)
     * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
     * [Success Logic](for-developers/claim-builder/success-logic.md)
-    * [Claim Links (URLs)](for-developers/claim-builder/claim-links.md)
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
     * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
-    * [Payment Checking](for-developers/claim-builder/concepts/monetizing-apps-badges.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
   * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
@@ -148,7 +146,6 @@
     * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
   * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
     * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Plugin Documentation](for-developers/claim-builder/bitbadges-created-plugins/plugin-documentation.md)
     * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
@@ -162,7 +159,7 @@
     * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
     * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
     * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
-    * [Signing a Transaction](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
+    *
 
 ## 🏗️ Token Standard
 
