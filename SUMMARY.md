@@ -22,7 +22,6 @@
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
     * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
     * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
-    * [Use via Pipedream](for-developers/bitbadges-api/concepts/use-via-pipedream.md)
   * [Sign In with BitBadges (OAuth)](for-developers/sign-in-with-bitbadges/README.md)
     * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
     * [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)

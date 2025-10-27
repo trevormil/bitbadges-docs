@@ -10,10 +10,6 @@ Refreshes are triggered automatically when certain things occur on-chain, such a
 
 See [Restrictions / Limits](limits-restrictions.md). We implement an exponential retry system.
 
-**Off-Chain Balances**
-
-Note that for off-chain balances, we also throw an error if the fetched balances exceed the total supply of tokens defined on-chain (i.e. you are trying to allocate more tokens than you should).
-
 **Checking Status**
 
 If you are having issues, you can check the BitBadges collection page on site -> Actions -> Refresh for statuses. Or, if you need a programmatic solution, you can use following route to see its status and see if it has any error docs.
@@ -21,4 +17,3 @@ If you are having issues, you can check the BitBadges collection page on site ->
 ```typescript
 await BitBadgesApi.getRefreshStatus()
 ```
-
