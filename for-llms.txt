@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Oct 27 17:00:30 UTC 2025
+Generated on Mon Oct 27 17:00:52 UTC 2025
 
 
 
@@ -12127,7 +12127,7 @@ The Mint address has unlimited balances. Any 'Mint' creates a token out of thin 
 
 The circulating supply is not a static number but rather the total amount of tokens transferred from the Mint address. Set approvals accordingly and set managerial permissions accordingly to limit the updatability of the approvals.
 
-**Collection Approvals**
+**Collection Approvals (Transferability)**
 
 Collection approvals (minting and post-minting) define the overall rules for the collection. All transfers must always obey a collection approval. This gives you overarching control about the transferability of the collection. Examples: freezability, non-transferable, revoking, etc.
 
@@ -12305,7 +12305,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Standards**](standards.md) - Generic framework for defining collection behavior and interpretation guidelines
 -   [**Time Fields**](time-fields.md) - Understanding the different time-related fields used throughout BitBadges
 -   [**Custom Data**](custom-data.md) - Generic string fields for storing arbitrary application-specific data
--   [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - 1:1 wrapping between tokens and native Cosmos SDK coins for IBC compatibility
+-   [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - Wrapping between tokens and native Cosmos SDK coins for IBC compatibility
 -   [**Collection Invariants**](collection-invariants.md) - Immutable rules that enforce fundamental constraints on collection behavior
 -   [**Protocols**](protocols/) - Standardized implementation patterns for collections
 
@@ -14748,7 +14748,7 @@ maxSupplyPerId invariant violation: balance amount 1500 exceeds maximum supply p
 
 # Cosmos Wrapper Paths
 
-Cosmos Wrapper Paths enable 1:1 wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
+Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
 
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
@@ -23355,21 +23355,21 @@ This module was forked from Osmosis's `x/gamm` module with several key modificat
 
 ### 1. Interface Revamps
 
-* Removed `smoothWeightChangeParams` and other unused parameters
-* Updated certain type definitions for better compatibility with our codebase
-* Streamlined interfaces for improved performance
-* Remove unneeded logic like stableswap pools and governance proposal handling
-* Removed future pool governor functionality
-* Removed pool creation fee requirements
+-   Removed `smoothWeightChangeParams` and other unused parameters
+-   Updated certain type definitions for better compatibility with our codebase
+-   Streamlined interfaces for improved performance
+-   Remove unneeded logic like stableswap pools and governance proposal handling
+-   Removed future pool governor functionality
+-   Removed pool creation fee requirements
 
 ### 2. Badge Token Integration
 
 The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
 
-* **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to convert badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
-* **1:1 Minting**: Behind the scenes, mints/burns 1:1 at the conversion rate into an `x/bank` denomination before / after each transfer to/from a pool
-* **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
-* **Automatic Conversion**: Handles badge token transfers to/from pools automatically
+-   **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to convert badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
+-   **Mint/Burns**: Behind the scenes, mints/burns at the conversion rate into an `x/bank` denomination before / after each transfer to/from a pool
+-   **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
+-   **Automatic Conversion**: Handles badge token transfers to/from pools automatically
 
 #### Conversion Example
 
@@ -23377,9 +23377,9 @@ Here's how the badge token conversion works:
 
 **Badge Token**: `badgeslp:21:utoken`
 
-* Collection ID: `21`
-* Base Denom: `utoken`
-* Wrapper Path Balances Conversion Rate: `[{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
+-   Collection ID: `21`
+-   Base Denom: `utoken`
+-   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
 
 **Conversion Process**:
 
@@ -23416,10 +23416,10 @@ For the reverse, when a pool wants to send tokens to the user, it will burn the 
 
 ### Core Operations
 
-* [MsgCreateBalancerPool](messages/msg-create-balancer-pool.md) - Create new balancer pool
-* [MsgJoinPool](messages/msg-join-pool.md) - Join existing pool with liquidity
-* [MsgSwapExactAmountIn](messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
-* [MsgExitPool](messages/msg-exit-pool.md) - Exit pool and receive tokens
+-   [MsgCreateBalancerPool](messages/msg-create-balancer-pool.md) - Create new balancer pool
+-   [MsgJoinPool](messages/msg-join-pool.md) - Join existing pool with liquidity
+-   [MsgSwapExactAmountIn](messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+-   [MsgExitPool](messages/msg-exit-pool.md) - Exit pool and receive tokens
 
 ## Query Reference
 
@@ -23427,18 +23427,18 @@ For all GAMM queries, please refer to the [BitBadges LCD API](https://lcd.bitbad
 
 The LCD provides comprehensive query endpoints for:
 
-* Pool information and statistics
-* Trading data and spot prices
-* Module parameters
-* And more
+-   Pool information and statistics
+-   Trading data and spot prices
+-   Module parameters
+-   And more
 
 All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
 
 ## Quick Links
 
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/gamm)
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/gamm)
 
 ## Documentation Style
 
