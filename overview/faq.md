@@ -2,7 +2,7 @@
 
 ### **Are smart contracts needed?**
 
-No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts.
+No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts. It is all a Cosmos SDK module reused for any token type.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
