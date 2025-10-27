@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Oct 27 16:53:36 UTC 2025
+Generated on Mon Oct 27 17:00:30 UTC 2025
 
 
 
@@ -3739,7 +3739,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
     * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
     * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
-    *
 
 ## 🏗️ Token Standard
 
@@ -11715,7 +11714,7 @@ Let us know if you have another idea and how we can help.
 
 ### **Are smart contracts needed?**
 
-No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts.
+No! All tokens are no-code with tons of functionality out of the box. One universal standard that can support any use case with no code, no smart contracts. It is all a Cosmos SDK module reused for any token type.
 
 ### **Is BitBadges an L1 blockchain or an L2?**
 
@@ -12108,11 +12107,11 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 
 Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
 
-1\) Explore the landing and explore page in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible!
+1\) Explore the landing and explore page ([https://bitbadges.io](https://bitbadges.io\)/)) in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible!
 
 <figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
 
-2\) For a full A-Z description of what BitBadges is, read this:
+2\) For a full A-Z description of what BitBadges is and why we built it, read this:
 
 {% content-ref url="../overview/what-is-bitbadges.md" %}
 [what-is-bitbadges.md](../overview/what-is-bitbadges.md)
