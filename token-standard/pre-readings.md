@@ -22,7 +22,7 @@ The Mint address has unlimited balances. Any 'Mint' creates a token out of thin 
 
 The circulating supply is not a static number but rather the total amount of tokens transferred from the Mint address. Set approvals accordingly and set managerial permissions accordingly to limit the updatability of the approvals.
 
-**Collection Approvals**
+**Collection Approvals (Transferability)**
 
 Collection approvals (minting and post-minting) define the overall rules for the collection. All transfers must always obey a collection approval. This gives you overarching control about the transferability of the collection. Examples: freezability, non-transferable, revoking, etc.
 

@@ -1,6 +1,6 @@
 # Cosmos Wrapper Paths
 
-Cosmos Wrapper Paths enable 1:1 wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
+Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
 
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
