@@ -159,7 +159,6 @@
     * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
     * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
     * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
-    *
 
 ## 🏗️ Token Standard
 
