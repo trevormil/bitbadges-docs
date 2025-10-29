@@ -13,7 +13,7 @@
 * [🔨 Getting Started](for-developers/getting-started.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [Getting Started](for-developers/bitbadges-api/api.md)
-  * [BitBadges API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+  * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
