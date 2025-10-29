@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Oct 29 14:54:07 UTC 2025
+Generated on Wed Oct 29 14:57:38 UTC 2025
 
 
 
@@ -17566,7 +17566,7 @@ See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgt
 
 ## Related Topics
 
-* [Approval Criteria](broken-reference) - Additional restrictions and challenges
+* [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
 * [Address Lists](../address-lists.md) - Managing address groups
 * [UintRanges](../uint-ranges.md) - Range logic implementation
 * [Permissions](permissions/) - Controlling who can update approvals
