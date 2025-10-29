@@ -1,4 +1,4 @@
-# 🪄 BitBadges Standard A-Z
+# 🪄 The BitBadges Standard
 
 BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
 
@@ -193,22 +193,3 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 1. **Tokenization**: Tokenization is the most powerful primitive that crypto offers, and the roadmaps of all major teams in crypto involve tokenization in one form or another: tokenizing real-world assets, stocks, subscriptions, etc. With our universal approach and innovation, we are able to support all of these and more to help Cosmos succeed no matter the requirements or use cases or current trends.
 2. **Cosmos and Beyond**: By being a Cosmos module with IBC compatibility, we are not only well-positioned to be the tokenization standard for all of Cosmos but also any ecosystem.
 3. **AI-Friendly Standard**: AI agents do best with standardization. Existing standards are way too simple. Generic smart contracts are not standardized. Enter the BitBadges token standard. Complex enough for any use case but standardized enough for AI agents to understand at scale.
-
-### Benefits to Cosmos
-
-1. **Exclusivity and Value-Add**: A 1000x tokenization standard that is exclusive to Cosmos and 100x better than anything offered on EVM or other ecosystems is a huge value-add for Cosmos. The harsh reality is that Cosmos products need to go above and beyond to compete. If you offer true innovation not found elsewhere (for example, IBC), this attracts teams, institutions, and developers, and Cosmos will be successful. If you offer no innovation beyond what is available on EVM, developers will just launch on EVM.
-2. **Cosmos-Native**: BitBadges is Cosmos through and through. It is a native Cosmos project (native modules, full IBC compatibility, CosmWASM, etc). A win for BitBadges is a win for all of Cosmos.
-3. **Missing Parts of the Stack**: BitBadges believes it completes a lot of the missing parts of the Cosmos stack:
-
-* IBC-compatible tokenization launchpad
-* Subscription layer
-* Quests / points layer
-* 7000+ seamless Web2 x Cosmos integrations
-* Core Cosmos tokenization module as a primitive for chains to use (the official x/nft experiment is now deprecated)
-* Onboard the 95% middle of the line tokenization use cases with complex requirements beyond mint, transfer, and burn
-* A full ready-made tokenization suite with our feature set can really accelerate teams building in Cosmos
-* "Kill multiple birds with one stone" - We envision that many use cases can actually be abstracted as tokens behind the scenes even if not directly a tokenization use case. For example, simple payments from a store can be abstracted as an NFT purchase + use the NFT as a tokenized, verifiable receipt.
-
-4. **IBC Currencies + Routing**: Our token standard is built to support any IBC currency and be IBC interopoerable where needed. Through this, the entire Cosmos ecosystem will benefit from increased usage of our standard.
-5. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
-6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.

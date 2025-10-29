@@ -165,6 +165,7 @@
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
 * [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
+* [🥸 Where To Start?](token-standard/where-to-start.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
