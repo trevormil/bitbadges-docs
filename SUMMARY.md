@@ -300,3 +300,17 @@
   * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
   * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
   * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+
+## API Spec
+
+* ```yaml
+  type: builtin:openapi
+  props:
+    models: true
+    downloadLink: true
+  dependencies:
+    spec:
+      ref:
+        kind: openapi
+        spec: blockin-api
+  ```
