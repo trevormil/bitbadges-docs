@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Oct 29 14:21:23 UTC 2025
+Generated on Wed Oct 29 14:45:55 UTC 2025
 
 
 
@@ -3745,6 +3745,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
 * [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
+* [🥸 Where To Start?](token-standard/where-to-start.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
@@ -3894,7 +3895,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 ### **How is BitBadges able to support addresses from different blockchains?**
 
-To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos).
+To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos). In other words, we support any wallet type.
 
 Signature compatibility means that users from any of the above blockchain ecosystems are able to sign BitBadges transactions, and we simply verify the signatures on our blockchain.
 
@@ -11870,7 +11871,7 @@ Because you can check criteria for anything, there are infinitely many possible 
 
 ## File: ./overview/what-is-bitbadges.md
 
-# 🪄 BitBadges Standard A-Z
+# 🪄 The BitBadges Standard
 
 BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
 
@@ -12066,25 +12067,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 2. **Cosmos and Beyond**: By being a Cosmos module with IBC compatibility, we are not only well-positioned to be the tokenization standard for all of Cosmos but also any ecosystem.
 3. **AI-Friendly Standard**: AI agents do best with standardization. Existing standards are way too simple. Generic smart contracts are not standardized. Enter the BitBadges token standard. Complex enough for any use case but standardized enough for AI agents to understand at scale.
 
-### Benefits to Cosmos
-
-1. **Exclusivity and Value-Add**: A 1000x tokenization standard that is exclusive to Cosmos and 100x better than anything offered on EVM or other ecosystems is a huge value-add for Cosmos. The harsh reality is that Cosmos products need to go above and beyond to compete. If you offer true innovation not found elsewhere (for example, IBC), this attracts teams, institutions, and developers, and Cosmos will be successful. If you offer no innovation beyond what is available on EVM, developers will just launch on EVM.
-2. **Cosmos-Native**: BitBadges is Cosmos through and through. It is a native Cosmos project (native modules, full IBC compatibility, CosmWASM, etc). A win for BitBadges is a win for all of Cosmos.
-3. **Missing Parts of the Stack**: BitBadges believes it completes a lot of the missing parts of the Cosmos stack:
-
-* IBC-compatible tokenization launchpad
-* Subscription layer
-* Quests / points layer
-* 7000+ seamless Web2 x Cosmos integrations
-* Core Cosmos tokenization module as a primitive for chains to use (the official x/nft experiment is now deprecated)
-* Onboard the 95% middle of the line tokenization use cases with complex requirements beyond mint, transfer, and burn
-* A full ready-made tokenization suite with our feature set can really accelerate teams building in Cosmos
-* "Kill multiple birds with one stone" - We envision that many use cases can actually be abstracted as tokens behind the scenes even if not directly a tokenization use case. For example, simple payments from a store can be abstracted as an NFT purchase + use the NFT as a tokenized, verifiable receipt.
-
-4. **IBC Currencies + Routing**: Our token standard is built to support any IBC currency and be IBC interopoerable where needed. Through this, the entire Cosmos ecosystem will benefit from increased usage of our standard.
-5. **Ahead of the Curve**: Tokenization is a huge part of the upcoming 5 years, especially for institutional adoption. BitBadges is uniquely positioned for what is to come. We have "skated to where the puck is going to be".
-6. **First-Mover Advantage**: One of the biggest value-adds BitBadges can offer to Cosmos is the first-mover advantage. We spent the last 2 years and plenty of time building this out. Other ecosystems will have to start from scratch. Cosmos now has a ready-made solution and can capitalize on the market opportunities while other ecosystems are catching up. Not to mention, everything we built is very difficult to replicate with a smart contract-based approach.
-
 
 ## File: ./token-standard/examples/approvals/README.md
 
@@ -12202,6 +12184,12 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 # Transfers
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadgeschain/blob/master/proto/badges/transfers.proto" %}
+
+
+## File: ./token-standard/where-to-start.md
+
+# 🥸 Where To Start?
+
 
 
 ## File: ./x-badges/README.md
