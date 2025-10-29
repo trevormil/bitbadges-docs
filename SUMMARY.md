@@ -170,7 +170,7 @@
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
   * [Collections](x-badges/concepts/badge-collections.md)
-  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Balances](x-badges/concepts/balance-system.md)
   * [Collection Invariants](x-badges/concepts/collection-invariants.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Custom Data](x-badges/concepts/custom-data.md)
