@@ -44,6 +44,10 @@ This is done by sending to / from a special wrapper address that is auto-generat
 [cosmos-wrapper-paths.md](../x-badges/concepts/cosmos-wrapper-paths.md)
 {% endcontent-ref %}
 
+### **How does permissioned IBC wrapping work?**
+
+Like explained in the previous answer, wrapping is simply sending to / from a special address which auto mints / burns at the set conversion rate. Thus, you can control your token's transferability to / from this address however you want.
+
 ### **How does BitBadges L1 compare to other interoperability protocols?**
 
 BitBadges doesn't "pull" data from other chains - all relevant data is stored on the BitBadges chain, simplifying development. However, it supports users and wallets from any chain, allowing multi-chain transfers (e.g., Bitcoin users can transfer tokens to Solana users).
