@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Oct 29 14:52:09 UTC 2025
+Generated on Wed Oct 29 14:54:07 UTC 2025
 
 
 
@@ -3750,7 +3750,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Address Lists](x-badges/concepts/address-lists.md)
   * [Archived Collections](x-badges/concepts/archived-collections.md)
   * [Collections](x-badges/concepts/badge-collections.md)
-  * [Balance System](x-badges/concepts/balance-system.md)
+  * [Balances](x-badges/concepts/balance-system.md)
   * [Collection Invariants](x-badges/concepts/collection-invariants.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Custom Data](x-badges/concepts/custom-data.md)
