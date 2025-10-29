@@ -154,7 +154,7 @@ See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgt
 
 ## Related Topics
 
-* [Approval Criteria](broken-reference) - Additional restrictions and challenges
+* [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
 * [Address Lists](../address-lists.md) - Managing address groups
 * [UintRanges](../uint-ranges.md) - Range logic implementation
 * [Permissions](permissions/) - Controlling who can update approvals
