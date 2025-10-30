@@ -6,6 +6,8 @@ Before diving deep into the behind the scenes of our token standard, we encourag
 
 <figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
+
 2\) For a full A-Z description of what BitBadges is and why we built it, read this:
 
 {% content-ref url="../overview/what-is-bitbadges.md" %}
