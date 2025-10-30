@@ -164,6 +164,7 @@
 
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
+* [👩‍🏫 0 to 1 Tutorial Series](token-standard/0-to-1-tutorial-series.md)
 * [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
@@ -304,10 +305,10 @@
 ## API Spec
 
 * ```yaml
-  type: builtin:openapi
   props:
     models: true
     downloadLink: true
+  type: builtin:openapi
   dependencies:
     spec:
       ref:
