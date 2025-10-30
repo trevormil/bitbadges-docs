@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Oct 30 15:47:40 UTC 2025
+Generated on Thu Oct 30 15:48:30 UTC 2025
 
 
 
@@ -3744,11 +3744,11 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
 
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
-* [👩‍🏫 0 to 1 Tutorial Series](token-standard/0-to-1-tutorial-series/README.md)
-  * [Core Concepts](token-standard/0-to-1-tutorial-series/core-concepts.md)
-  * [1. Create a Collection](token-standard/0-to-1-tutorial-series/1.-create-a-collection.md)
-  * [2. Set Approvals](token-standard/0-to-1-tutorial-series/2.-set-approvals.md)
-  * [3. Transfer Tokens](token-standard/0-to-1-tutorial-series/3.-transfer-tokens.md)
+* [👩‍🏫 Learn](token-standard/learn/README.md)
+  * [Core Concepts](token-standard/learn/core-concepts.md)
+  * [1. Create a Collection](token-standard/learn/1.-create-a-collection.md)
+  * [2. Set Approvals](token-standard/learn/2.-set-approvals.md)
+  * [3. Transfer Tokens](token-standard/learn/3.-transfer-tokens.md)
 * [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
@@ -12104,36 +12104,6 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 3. **AI-Friendly Standard**: AI agents do best with standardization. Existing standards are way too simple. Generic smart contracts are not standardized. Enter the BitBadges token standard. Complex enough for any use case but standardized enough for AI agents to understand at scale.
 
 
-## File: ./token-standard/0-to-1-tutorial-series/1.-create-a-collection.md
-
-# 1. Create a Collection
-
-
-
-## File: ./token-standard/0-to-1-tutorial-series/2.-set-approvals.md
-
-# 2. Set Approvals
-
-
-
-## File: ./token-standard/0-to-1-tutorial-series/3.-transfer-tokens.md
-
-# 3. Transfer Tokens
-
-
-
-## File: ./token-standard/0-to-1-tutorial-series/README.md
-
-# 👩‍🏫 0 to 1 Tutorial Series
-
-
-
-## File: ./token-standard/0-to-1-tutorial-series/core-concepts.md
-
-# Core Concepts
-
-
-
 ## File: ./token-standard/examples/approvals/README.md
 
 # Approvals
@@ -12147,6 +12117,36 @@ BitBadges is a unique project that is well-positioned to help Cosmos succeed for
 **Building a frontend?** Check out the affiliate fee implementation to claim 50% of the protocol fee to keep your integration sustainable!
 
 **Want to add it to your Cosmos chain?** If you want the token standard to your own chain, reach out! We are open to exploring licensing and other agreements!
+
+
+## File: ./token-standard/learn/1.-create-a-collection.md
+
+# 1. Create a Collection
+
+
+
+## File: ./token-standard/learn/2.-set-approvals.md
+
+# 2. Set Approvals
+
+
+
+## File: ./token-standard/learn/3.-transfer-tokens.md
+
+# 3. Transfer Tokens
+
+
+
+## File: ./token-standard/learn/README.md
+
+# 👩‍🏫 Learn
+
+
+
+## File: ./token-standard/learn/core-concepts.md
+
+# Core Concepts
+
 
 
 ## File: ./token-standard/pre-readings.md
