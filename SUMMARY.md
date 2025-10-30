@@ -164,11 +164,6 @@
 
 * [📚 Overview](x-badges/README.md)
 * [📔 Pre-Readings](token-standard/pre-readings.md)
-* [👩‍🏫 Learn](token-standard/learn/README.md)
-  * [Core Concepts](token-standard/learn/core-concepts.md)
-  * [1. Create a Collection](token-standard/learn/1.-create-a-collection.md)
-  * [2. Set Approvals](token-standard/learn/2.-set-approvals.md)
-  * [3. Transfer Tokens](token-standard/learn/3.-transfer-tokens.md)
 * [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
