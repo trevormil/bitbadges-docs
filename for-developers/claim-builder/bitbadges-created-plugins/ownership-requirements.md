@@ -101,20 +101,6 @@ For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to 
 }
 ```
 
-**BitBadges Address Lists**
-
-For BitBadges address lists, they are supported with the collection ID = 'BitBadges Lists'. The assetIds will be the string list ID. A user will be considered to own x1 if they are on the list and x0 if they are not on the list. Note that with blacklists, they are flipped. Not being on a blacklist equals x1 owned.
-
-```typescript
-{
-    chain: 'BitBadges',
-    collectionId: 'BitBadges Lists',
-    assetIds: ["listId"],
-    ownershipTimes: UintRangeArray.FullRanges(),
-    mustOwnAmounts: { start: 1n, end: 1n }
-}
-```
-
 **Ethereum / Polygon / Solana NFTs (Beta)**
 
 We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure. Use at your own risk.

@@ -58,7 +58,6 @@ const BitBadgesApi = new BitBadgesAPI({
 //See https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html for documentation
 //Some might require authentication. Some might be CORS only from the official site.
 await BitBadgesApi.getAccounts(...);
-await BitBadgesApi.getAddressLists(...);
 await BitBadgesApi.getCollections(...);
 await BitBadgesApi.simulateTx(...);
 ```

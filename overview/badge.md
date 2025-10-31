@@ -14,18 +14,16 @@ For current distributions, supply, and more, we refer you to our explorer: [http
 
 Relevant addresses for undistributed BADGE (currently \~50M) are:
 
-* bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
-* bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
-
-
+-   bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
+-   bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
 
 BADGE is listed on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
 
 Excluding block rewards, the initial circulating supply of BADGE is 100M. We plan to distribute BADGE throughout chaosnet via the following methods:
 
-* \~20M already in the community pool
-* \~20M to bootstrap initial validators
-* \~20M core team
-* \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
+-   \~20M already in the community pool
+-   \~20M to bootstrap initial validators
+-   \~20M core team
+-   \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
 
 <figure><img src="../.gitbook/assets/image (229).png" alt=""><figcaption></figcaption></figure>

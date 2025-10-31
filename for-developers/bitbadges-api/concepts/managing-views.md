@@ -55,7 +55,7 @@ Note: This is planning to be deprecated in favor of more confined view routes.
 Please use those instead. They are much less confusing.
 ```
 
-The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesAddressList, BitBadgesUserInfo, etc). It follows this structure:
+The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesUserInfo, etc). It follows this structure:
 
 ```typescript
 views: {
@@ -108,7 +108,6 @@ See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/Col
 -   `tokensCollected`: Tokens owned by the user
 -   `createdTokens`: Collections created by the user
 -   `managingTokens`: Collections being managed
--   `allLists`: Address lists the user is on
 
 See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
 

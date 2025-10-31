@@ -86,7 +86,6 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
     // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
     // const claimAttemptsByAddress = await BitBadgesApi.getClaimAttempts(claimId, { address });
     // const ownershipRequirementsRes = await BitBadgesApi.verifyOwnershipRequirements(...);
-    // const addressListsRes = await BitBadgesApi.getAddressLists(...);
 }
 ```
 

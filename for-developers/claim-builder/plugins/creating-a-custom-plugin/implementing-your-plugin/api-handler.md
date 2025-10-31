@@ -69,8 +69,6 @@ This preset expects a { claimNumber } in the response. The claim number is the c
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
 
-Another important decision you will have to consider is whether to reuse your plugin for address lists because claim numbers do not matter for address list plugins. So basically, your plugin will function like the stateless preset for address list claims, if selected.
-
 ### **Success Hook Responses**
 
 For success hooks (\_attemptStatus=success), we also expect a 200 OK within 10 seconds. If you need to do asynchronous processing, return 200 OK early and process as you desire.
