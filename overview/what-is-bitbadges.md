@@ -167,29 +167,3 @@ Each token collection can have a manager that can execute administrative actions
 #### Smart Contract Extendibility
 
 While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
-
-### Featured Use Cases
-
-At the end of the day, we are a tokenization standard, so we can be used for absolutely anything you want to tokenize. Our goal is to be the IBC-compatible tokenization launchpad for all of Cosmos.
-
-As seen above, we are incredibly feature-rich and can be used for any use case you can think of. We especially excel at the more complex use cases beyond simple mint, transfer, sell.
-
-Some examples:
-
-* **NFTs**: Traditional NFT marketplace with custom transferability and purchasable via any IBC denomination
-* **Fungible Tokens**: Traditional fungible tokens with custom transferability and approvals purchasable and tradable via any IBC denomination
-* **Quests**: IBC-denomination backed quests that payout users in any IBC-enabled denomination for completing any sort of task or challenge from 7000+ integrations or any on/off-chain criteria you can think of.
-* **Subscriptions**: No-code, recurring subscriptions that are paid with any IBC denomination. We use a bot-tipping system to handle the recurring payments automatically for you.
-* **Stocks**: Tokenized stocks with custom vesting periods, dividends, and more.
-* **Real-World Assets**: Tokenized real-world assets with custom transferability and approvals purchasable and tradable via any IBC denomination
-* **Regulatory Compliance**: Seamlessly compliant with any complex regulatory compliance requirements without any additional work.
-
-Or any use case you can think of.
-
-### Uniquely Positioned For The Future
-
-BitBadges is a unique project that is well-positioned to help Cosmos succeed for everything to come in the next 5 years and beyond.
-
-1. **Tokenization**: Tokenization is the most powerful primitive that crypto offers, and the roadmaps of all major teams in crypto involve tokenization in one form or another: tokenizing real-world assets, stocks, subscriptions, etc. With our universal approach and innovation, we are able to support all of these and more to help Cosmos succeed no matter the requirements or use cases or current trends.
-2. **Cosmos and Beyond**: By being a Cosmos module with IBC compatibility, we are not only well-positioned to be the tokenization standard for all of Cosmos but also any ecosystem.
-3. **AI-Friendly Standard**: AI agents do best with standardization. Existing standards are way too simple. Generic smart contracts are not standardized. Enter the BitBadges token standard. Complex enough for any use case but standardized enough for AI agents to understand at scale.

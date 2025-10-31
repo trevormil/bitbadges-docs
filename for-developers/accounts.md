@@ -20,7 +20,7 @@ All addresses map to an equivalent one in a different ecosystem (see the image b
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
-### For Developers - Handling Addresses
+### Handling Addresses in Development
 
 It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
