@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Oct 30 16:22:55 UTC 2025
+Generated on Fri Oct 31 14:19:00 UTC 2025
 
 
 
@@ -4039,7 +4039,6 @@ const BitBadgesApi = new BitBadgesAPI({
 //See https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html for documentation
 //Some might require authentication. Some might be CORS only from the official site.
 await BitBadgesApi.getAccounts(...);
-await BitBadgesApi.getAddressLists(...);
 await BitBadgesApi.getCollections(...);
 await BitBadgesApi.simulateTx(...);
 ```
@@ -4164,7 +4163,7 @@ Note: This is planning to be deprecated in favor of more confined view routes.
 Please use those instead. They are much less confusing.
 ```
 
-The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesAddressList, BitBadgesUserInfo, etc). It follows this structure:
+The views object is a central concept in the BitBadges API, used to manage paginated data across different interfaces (BitBadgesCollection, BitBadgesUserInfo, etc). It follows this structure:
 
 ```typescript
 views: {
@@ -4217,7 +4216,6 @@ See all at [CollectionViewKey](https://bitbadges.github.io/bitbadgesjs/types/Col
 -   `tokensCollected`: Tokens owned by the user
 -   `createdTokens`: Collections created by the user
 -   `managingTokens`: Collections being managed
--   `allLists`: Address lists the user is on
 
 See all at [AccountViewKey](https://bitbadges.github.io/bitbadgesjs/types/AccountViewKey.html)
 
@@ -8074,10 +8072,10 @@ The other option is to trigger claims automatically with Zapier. You will config
 
 To do this, you **MUST** get the users' crypto addresses somehow before the action is executed. This can be beforehand or somehow obtained during the duration of the Zap. We leave this up to you. If you cannot obtain users' addresses, this approach will not work.
 
-We want to note that functionality is slightly different for tokens with on-chain balances as opposed to off-chain tokens or address lists.
+We want to note that functionality is slightly different for tokens with on-chain balances as opposed to off-chain claims.
 
-* On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
-* Off-Chain and Other Claims: For tokens with off-chain balances or other claim types, there is no reservation process. The claims are automatically completed. For off-chain token claims, this means the tokens will be auto-distributed. For address lists, this means the address will be automatically appended to the list.
+-   On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
+-   Off-Chain Claims: For off-chain claim types, there is no reservation process. The claims are automatically completed. 
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
@@ -8625,20 +8623,6 @@ For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to 
   assetIds: [{ start: 1n, end: 1000n }],
   ownershipTimes: UintRangeArray.FullRanges(),
   mustOwnAmounts: { start: 0n, end: 0n }
-}
-```
-
-**BitBadges Address Lists**
-
-For BitBadges address lists, they are supported with the collection ID = 'BitBadges Lists'. The assetIds will be the string list ID. A user will be considered to own x1 if they are on the list and x0 if they are not on the list. Note that with blacklists, they are flipped. Not being on a blacklist equals x1 owned.
-
-```typescript
-{
-    chain: 'BitBadges',
-    collectionId: 'BitBadges Lists',
-    assetIds: ["listId"],
-    ownershipTimes: UintRangeArray.FullRanges(),
-    mustOwnAmounts: { start: 1n, end: 1n }
 }
 ```
 
@@ -10005,8 +9989,6 @@ This preset expects a { claimNumber } in the response. The claim number is the c
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
 
-Another important decision you will have to consider is whether to reuse your plugin for address lists because claim numbers do not matter for address list plugins. So basically, your plugin will function like the stateless preset for address list claims, if selected.
-
 ### **Success Hook Responses**
 
 For success hooks (\_attemptStatus=success), we also expect a 200 OK within 10 seconds. If you need to do asynchronous processing, return 200 OK early and process as you desire.
@@ -10926,7 +10908,7 @@ Users will visit this URL to authenticate and receive an authorization code. Thi
 
 By default, Sign In with BitBadges will handle multi-chain authentication for the user (in other words, checking address ownership). You can additionally:
 
-* Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readAddressLists')
+* Specify the `scope` to request additional BitBadges API permissions for the user (e.g. 'completeClaims,readClaimAlerts')
 * Specify a `claimId` to display a specific claim to the user (for display purposes, you will need to verify the claim successes on your end). Claims open up any criteria like token ownership checks, payments, anything
 
 ## Parameter Interface
@@ -10936,7 +10918,7 @@ interface CodeGenQueryParams {
     client_id: string; // Required: Your app's client ID
     redirect_uri?: string; // Required for instant auth. Not needed for QR code auth.
     state?: string; // Optional: Additional data passed to redirect
-    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readAddressLists')
+    scope?: string; // Optional: Comma-separated BitBadges API permission scopes (e.g. 'completeClaims,readClaimAlerts')
 
     // Claim UI Options (optional)
     claimId?: string; // ID of required claim
@@ -10961,7 +10943,7 @@ interface CodeGenQueryParams {
 ### 2. Scopes
 
 * This is only needed for authorized BitBadges API access. By default, you will verify address ownership with no scopes.
-* Format: `scope: 'completeClaims,readAddressLists'`
+* Format: `scope: 'completeClaims,readClaimAlerts'`
 * View all available scopes at [bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen)
 
 ### 3. Claims
@@ -11529,7 +11511,6 @@ async function myHandler(req: NextApiRequest, res: NextApiResponse) {
     // After verifying the address, you can now check other criteria with knowledge that the user is the owner of the address
     // const claimAttemptsByAddress = await BitBadgesApi.getClaimAttempts(claimId, { address });
     // const ownershipRequirementsRes = await BitBadgesApi.verifyOwnershipRequirements(...);
-    // const addressListsRes = await BitBadgesApi.getAddressLists(...);
 }
 ```
 
@@ -11619,19 +11600,17 @@ For current distributions, supply, and more, we refer you to our explorer: [http
 
 Relevant addresses for undistributed BADGE (currently \~50M) are:
 
-* bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
-* bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
-
-
+-   bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
+-   bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
 
 BADGE is listed on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
 
 Excluding block rewards, the initial circulating supply of BADGE is 100M. We plan to distribute BADGE throughout chaosnet via the following methods:
 
-* \~20M already in the community pool
-* \~20M to bootstrap initial validators
-* \~20M core team
-* \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
+-   \~20M already in the community pool
+-   \~20M to bootstrap initial validators
+-   \~20M core team
+-   \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
 
 <figure><img src="../.gitbook/assets/image (229).png" alt=""><figcaption></figcaption></figure>
 
