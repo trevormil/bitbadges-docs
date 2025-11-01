@@ -149,6 +149,7 @@
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
