@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Oct 31 21:35:25 UTC 2025
+Generated on Sat Nov  1 17:08:40 UTC 2025
 
 
 
@@ -3729,6 +3729,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
@@ -4335,6 +4336,13 @@ Below are the supported customization options. Some may be applicable. Some may 
 <figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
+
+
+## File: ./for-developers/bitbadges-api/want-to-run-an-indexer.md
+
+# Want to run an indexer?
+
+If interested in running an indexer, please reach out! We are happy to share the code from ours.
 
 
 ## File: ./for-developers/bitbadges-blockchain/README.md
