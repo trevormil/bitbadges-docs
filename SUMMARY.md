@@ -148,6 +148,7 @@
   * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Handling Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
