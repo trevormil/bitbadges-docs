@@ -9,10 +9,13 @@ import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
 //proto.badges for BitBadges x/badges
-const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
+const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
+const MsgCreateCollection = proto.badges.MsgCreateCollection;
+const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
+const MsgTransferBadges = proto.badges.MsgTransferBadges;
 
 const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
+    new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
     //Add more here (executed in order)
 ];
 ```
