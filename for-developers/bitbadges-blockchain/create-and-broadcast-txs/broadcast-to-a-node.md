@@ -82,9 +82,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash from above, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
-
-Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
+Once you have the tx hash from above, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 
 ```typescript
 const txHash = res.data.tx_response.txhash;
@@ -117,3 +115,5 @@ while (!fetched) {
 
 return res;
 ```
+
+There are also other polling methods: websockets + parsing txs as they come through, the Cosmos SDK provides various endpoints / approaches, redirecting to explorers.
