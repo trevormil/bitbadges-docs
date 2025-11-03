@@ -1,28 +1,15 @@
 # Broadcast to a Node
 
-**Pre-Req:** You have the body variable with a valid signature (see prior pages).
-
 ### **Simulating**
 
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.
-
-To do this, you can use
-
-```
-https://api.bitbadges.io/api/v0/simulate
-```
-
-**or**
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values. You can leave all signature fields empty because simulations do not check any signatures. In our signing examples (previous pages), simply set simulate = true.
 
 ```typescript
-http://URL:1317/cosmos/tx/v1beta1/simulate
+// https://api.bitbadges.io/api/v0/simulate
+const res = await BitBadgesApi.simulateTx(txBody); //Returned from signing steps
 ```
 
-This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
-
-Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
-
-Once simulated, replace the expected gas you want in the transaction context.
+This will return the gas used and success statuses on a dry run of the transaction.
 
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
@@ -51,19 +38,11 @@ export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
 You can replace the URL below with any valid BitBadges blockchain node.
 
 ```typescript
-`http://URL:1317${generateEndpointBroadcast()}`;
+// https://api.bitbadges.io/api/v0/broadcast
+const res = await BitBadgesApi.broadcastTx(txBody); //Returned from signing steps
 ```
 
-Or, you can use the BitBadges API to broadcast.
-
-```typescript
-https://api.bitbadges.io/api/v0/broadcast
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
-</strong></code></pre>
-
-This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+The response code should be 0 for a successful transaction.
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
@@ -103,7 +82,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
+Once you have the tx hash from above, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
 
 Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 

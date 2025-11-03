@@ -38,4 +38,4 @@ These can be skipped / forcefully overriden by the collection-level approvals (f
 
 Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>

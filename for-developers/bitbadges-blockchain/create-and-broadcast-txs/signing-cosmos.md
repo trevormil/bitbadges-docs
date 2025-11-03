@@ -1,7 +1,5 @@
 # Signing - Cosmos
 
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
 #### Signing with Keplr
 
 ```ts
@@ -11,9 +9,6 @@ const signTxn = async (
     protoMsgs: any[],
     simulate: boolean
 ) => {
-    if (!account) {
-        throw new Error('Account does not exist');
-    }
     const { sender } = context;
     await window.keplr?.enable(chainId);
 
@@ -50,7 +45,3 @@ const signTxn = async (
     return txBody;
 };
 ```
-
-### Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
