@@ -22,12 +22,13 @@ const protoMsgs = [
 
 ### Building the Transaction
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
-</strong><strong>
-</strong><strong>const txContext: TxContext = { ... } //See prior page
-</strong>
+```typescript
+import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
+
+const txContext: TxContext = { ... } //See prior page
+
 const txnPayload = createTransactionPayload(txContext, protoMsgs);
-</code></pre>
+```
 
 The outputted payload will be in the following format.
 
