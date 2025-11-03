@@ -1,7 +1,9 @@
 # Create, Generate, and Sign Txs
 
-To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
+There are multiple ways you can create, generate, and sign transactions.&#x20;
 
-We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
+* CLI: Directly interact with the blockchain node's CLI in a terminal
+* Directly via Cosmos SDK practices like Keplr signing
+* Via our SDK
 
-You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
+We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node and supports all wallet types (not just Cosmos-based).
