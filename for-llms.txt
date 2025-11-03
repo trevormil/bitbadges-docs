@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Nov  1 17:08:40 UTC 2025
+Generated on Mon Nov  3 18:06:01 UTC 2025
 
 
 
@@ -3779,7 +3779,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [AI Prompt: Signing Txs](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
@@ -3788,6 +3787,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
     * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+    * [AI Prompt: Signing Txs](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
   * [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
     * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
     * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
@@ -3907,7 +3907,7 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -4321,7 +4321,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
@@ -5020,29 +5020,16 @@ You can also run the BitBadges blockchain software and interact with its CLI, bu
 
 # Broadcast to a Node
 
-**Pre-Req:** You have the body variable with a valid signature (see prior pages).
-
 ### **Simulating**
 
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.
-
-To do this, you can use
-
-```
-https://api.bitbadges.io/api/v0/simulate
-```
-
-**or**
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values. You can leave all signature fields empty because simulations do not check any signatures. In our signing examples (previous pages), simply set simulate = true.
 
 ```typescript
-http://URL:1317/cosmos/tx/v1beta1/simulate
+// https://api.bitbadges.io/api/v0/simulate
+const res = await BitBadgesApi.simulateTx(txBody); //Returned from signing steps
 ```
 
-This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
-
-Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
-
-Once simulated, replace the expected gas you want in the transaction context.
+This will return the gas used and success statuses on a dry run of the transaction.
 
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
@@ -5071,19 +5058,11 @@ export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
 You can replace the URL below with any valid BitBadges blockchain node.
 
 ```typescript
-`http://URL:1317${generateEndpointBroadcast()}`;
+// https://api.bitbadges.io/api/v0/broadcast
+const res = await BitBadgesApi.broadcastTx(txBody); //Returned from signing steps
 ```
 
-Or, you can use the BitBadges API to broadcast.
-
-```typescript
-https://api.bitbadges.io/api/v0/broadcast
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
-</strong></code></pre>
-
-This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+The response code should be 0 for a successful transaction.
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
@@ -5123,7 +5102,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
+Once you have the tx hash from above, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
 
 Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 
@@ -5164,23 +5143,15 @@ return res;
 
 # Generate Msg Contents
 
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.
-
-If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
-
 ### **Building the Msgs**
 
-You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
-
-See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
+You can build out the transaction from the exported Proto type definitions from our SDK. This allows you to create transactions with multiple Msg types in one tx. See [here](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
 import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
 //proto.badges for BitBadges x/badges
-//proto.wasmx for BitBadges x/wasmx
-//proto.protocols for BitBadges x/protocols
 const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
 
 const protoMsgs = [
@@ -5191,19 +5162,14 @@ const protoMsgs = [
 
 ### Building the Transaction
 
-```typescript
-const txContext = { ... } //See prior page
-
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
+</strong><strong>
+</strong><strong>const txContext: TxContext = { ... } //See prior page
+</strong>
 const txnPayload = createTransactionPayload(txContext, protoMsgs);
-```
+</code></pre>
 
 The outputted payload will be in the following format.
-
-For Cosmos, you will use signDIrect.
-
-For Ethereum/Solana/Bitcoin, you will use txnString.
-
-If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
 
 ```typescript
 export interface TransactionPayload {
@@ -5222,105 +5188,16 @@ export interface TransactionPayload {
 }
 ```
 
-### Next Steps
-
-Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
 
 # Sign + Broadcast - bitbadges.io
 
-**Option 1: Copy / Paste**
+For development, you may just want an interface to handle all of this for you. See if [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) fits your needs. You can simply copy / paste the transaction context, and our interface will handle all the signing / behind the scenes.
 
-To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+This is to be used as a developer tool and not a user-facing solution.&#x20;
 
-**Option 2: Redirect**
-
-Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
-
-```typescript
-export interface TxInfo {
-  type: string, //'MsgCreateCollection'
-  msg: object, //JSON stringified message
-}
-```
-
-This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
-
-If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
-const msgCreateProtocol = new MsgCreateProtocol({
-  "name": "Test",
-  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
-  "customData": "Test",
-  "isFrozen": false,
-  "creator": chain.bitbadgesAddress
-})
-const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
-const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-
-setLoading(true);
-// You can further customize the child window as needed
-openedWindow?.focus();
-
-//set listener for when the child window closes
-const timer = setInterval(() => {
-  if (openedWindow?.closed) {
-    clearInterval(timer);
-    setLoading(false);
-  }
-}, 1000);
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
-</strong><strong>if (window.opener) {
-</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
-    window.close();
-}
-</code></pre>
-
-```typescript
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-const FRONTEND_URL = 'https://bitbadges.io';
-const handleChildWindowMessage = async (event: MessageEvent) => {
-
-  if (event.origin === FRONTEND_URL) {
-
-    if (!event.source) {
-      throw new Error('Event source is null');
-    }
-
-    const txHash = event.data.txHash;
-    if (!txHash) {
-      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
-      return
-    }
-
-
-    setLoading(false);
-  }
-};
-
-// Add a listener to handle messages from the child window
-useEffect(() => {
-  window.addEventListener('message', handleChildWindowMessage);
-
-  // Cleanup the listener when the component unmounts
-  return () => {
-    window.removeEventListener('message', handleChildWindowMessage);
-  };
-}, []);
-```
-
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
@@ -5328,8 +5205,6 @@ useEffect(() => {
 # Signing - Bitcoin
 
 **Signing with Bitcoin - Phantom Wallet**
-
-Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
 
 ```typescript
 const getProvider = () => {
@@ -5349,7 +5224,7 @@ function bytesToBase64(bytes: Uint8Array) {
   return btoa(binString);
 }
 
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+const signTxn = async (context: TxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
     const bitcoinProvider = getProvider();
 
     let sig = '';
@@ -5367,16 +5242,10 @@ const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, 
 };
 ```
 
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
 
 # Signing - Cosmos
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
 
 #### Signing with Keplr
 
@@ -5387,9 +5256,6 @@ const signTxn = async (
     protoMsgs: any[],
     simulate: boolean
 ) => {
-    if (!account) {
-        throw new Error('Account does not exist');
-    }
     const { sender } = context;
     await window.keplr?.enable(chainId);
 
@@ -5427,48 +5293,29 @@ const signTxn = async (
 };
 ```
 
-### Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
 
 # Signing - Ethereum
 
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
+You can simply sign the **payload.txnString** with a personal\_sign.&#x20;
 
 ```typescript
+// Example: wagmi setup with signMessageAsync
+
 const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  const sig = simulate
-    ? ''
-    : await signMessageAsync({
-        message: payload.txnString
-      });
+  const sig = simulate ? '' : await signMessageAsync({  message: payload.txnString });
  
-  const txBody = createTxBroadcastBody(context, messages, sig);
-  return txBody;
+  return  createTxBroadcastBody(context, messages, sig);
 };
 ```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md
 
 # Signing - Solana
 
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
 **Signing with Solana - Phantom Wallet**
-
-
-
-Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
 
 ```typescript
 const getProvider = () => {
@@ -5483,14 +5330,9 @@ const getProvider = () => {
     }
 };
 
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  if (!account) throw new Error('Account not found.');
-
-  let sig = '';
+const signTxn = async (context: TxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+   let sig = '';
   if (!simulate) {
-    //Phantom has a weird error where messages must be < ~1000 bytes
-    //If we are within limit, we can have user sign the JSON
-    //Else, we hash the JSON and have user sign the hash
     const encodedMessage = new TextEncoder().encode(payload.txnString);
 
     const signedMessage = await getProvider().request({
@@ -5503,41 +5345,42 @@ const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, 
     sig = signedMessage.signature.toString('hex');
   }
 
-  //We need to pass in solAddress manually here
+  //Note: We need to pass in the solAddress manually here
   const txBody = createTxBroadcastBody(context, messages, sig, address);
   return txBody;
 };
 ```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
 
 # Transaction Context
 
-You have two options for generating, signing, and brodcasting messages.
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
-
-If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
-
-If you plan to use option 2, see below.
-
-### Generating Transaction Context
-
-The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
-
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
+For the signer, you will need their address, sequence, and account number. This can be done via our API like below or you can query directly via a blockchain node.
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
+// https://api.bitbadges.io/api/v0/user?address=0x
+const res = await BitBadgesApi.getAccount({ address: '...' });
+const account = res.account;
+const { accountNumber, sequence, publicKey } = account; 
+if (Number(accountNumber) <= 0) {
+  // TODO: They are unregistered. Send them dust to register.
+}
+```
 
-//TODO: Fetch the account details (see below)
+If you are signing with a Cosmos-based wallet, you will need the public key as well. All others (ETH, SOL, BTC) do not require this. This may be available in the account response if the user has already interacted with BitBadges, but if this is first time, you can fetch it like below.
 
+```typescript
+const getPublicKey = async () => {
+    const account = await window?.keplr?.getKey('bitbadges-1');
+    if (!account) return '';
+    return Buffer.from(account.pubKey).toString('base64');
+};
+```
+
+Then,  generate the context.
+
+```typescript
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
 const txContext = {
     testnet: false,
@@ -5546,7 +5389,7 @@ const txContext = {
         address: account.address,
         sequence: account.sequence,
         accountNumber: account.accountNumber,
-        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        //Public key is only needed for Cosmos native signatures. Leave "" if not.
         publicKey: account.publicKey,
     },
     //TODO: adjust accordingly
@@ -5559,31 +5402,16 @@ const txContext = {
 };
 ```
 
-**Get Public Key - Cosmos**
+**Fee Generation**
 
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
+Oftentimes, transactions will not require fees depending on network congestion.
 
-Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
+We leave this up to you to implement. You can get the gas used from simulating the transaction (see later in this tutorial). For our frontend, we currently use a base gas price of 0.025 per unit.
 
 ```typescript
-const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1');
-    if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64');
-};
+const baseGasPrice = 0.025; 
+const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 ```
-
-**Fee**
-
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
-
-**Sender Details**
-
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
-
-This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
-
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/overview.md
@@ -5733,7 +5561,7 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -8511,7 +8339,7 @@ Note: If you are receiving a post-success webhook, you already know the claim ha
 
 This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
 
@@ -8724,7 +8552,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -8861,7 +8689,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is token ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/universal-approach-claim-codes.md
@@ -9060,7 +8888,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -9259,7 +9087,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -9659,7 +9487,7 @@ A great way to implement both criteria and utility is through AI models and agen
 
 On the reward side, simply set up a post-success claim, receive any user identifiers or inputs needed, and trigger your actions. This can be custom webhooks to any model or service of your choice (Pipedream Connect / MCP, Zapier MCP, anything!), and we also have an in-site plugin for you to use the Zapier AI Actions / MCP service!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -9906,7 +9734,7 @@ console.log(res);
 // { bitbadgesAddress, email, claimAttemptId } 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation - Handlers
 
@@ -9983,7 +9811,7 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
@@ -10126,7 +9954,7 @@ BitBadges can send the request at two different times (during processing hooks a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -10324,7 +10152,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
@@ -10767,7 +10595,7 @@ const txn = createTransactionPayload(txContext, msgs);
 
 BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
@@ -10980,7 +10808,7 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
@@ -11110,11 +10938,11 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
@@ -12103,7 +11931,7 @@ These can be skipped / forcefully overriden by the collection-level approvals (f
 
 Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./token-standard/type-definitions/README.md
@@ -15062,7 +14890,7 @@ Default balances provide a powerful way to establish baseline behavior for all u
 
 The manager is the central authority for a collection, controlling all administrative operations and having exclusive rights to perform updates, deletions, and other management tasks.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Manager Timeline
 
