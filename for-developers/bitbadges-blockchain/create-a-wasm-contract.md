@@ -152,7 +152,7 @@ Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) a
 
 For testnet uploads, use testnet.bitbadges.io
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 5. Instantiate your Contract
 

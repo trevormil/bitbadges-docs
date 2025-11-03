@@ -6,7 +6,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -14,7 +14,7 @@ You can can extend BitBadges Claims with our custom Zapier integration that allo
 
 For example, make a purchase on Shopify -> get allocated a token or complete a course on Udemy -> get a completion token. The "airdrop" is a claim completion.
 
-<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (260).png" alt=""><figcaption></figcaption></figure>
 
 Note: Zapier can also be used to automate other parts of the claim, like specific plugins or implementing post-claim rewards.
 
@@ -45,7 +45,7 @@ The typical approach (used for Zapier and other examples) is to disable all user
 
 Because the authentication check is disabled, you can specify any claiming address. However, note that this disables the authentication check for everyone. You must gate the claim in other ways (like the password).
 
-<figure><img src="../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (360).png" alt=""><figcaption></figcaption></figure>
 
 **OAuth - Complete Claim Scope**
 

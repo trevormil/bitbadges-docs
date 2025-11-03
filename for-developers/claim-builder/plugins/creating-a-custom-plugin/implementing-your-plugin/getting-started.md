@@ -4,4 +4,4 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 For testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>

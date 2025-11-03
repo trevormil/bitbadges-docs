@@ -4,7 +4,7 @@
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels:
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (206).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
 
 ### Approval Levels
 

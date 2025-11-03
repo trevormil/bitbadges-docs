@@ -13,4 +13,4 @@ Each plugin can configure the expected schema of parameters inputted by the clai
 
 Parameters will be passed to your backend handler in the payload.
 
-<figure><img src="../../../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (336).png" alt=""><figcaption></figcaption></figure>

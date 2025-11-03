@@ -10,4 +10,4 @@ Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) ver
 [alternatives.md](../plugins/creating-a-custom-plugin/alternatives.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (225).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (225) (1).png" alt=""><figcaption></figcaption></figure>

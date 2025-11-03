@@ -4,9 +4,9 @@ Before diving deep into the behind the scenes of our token standard, we encourag
 
 1\) Explore the landing and explore page ([https://bitbadges.io](https://bitbadges.io\)/)) in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible! At the end of the create flow, you can click on the Show Tx button to see what the JSON transaction looks like behind the scenes.
 
-<figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
 
 2\) For a full A-Z description of what BitBadges is and why we built it, read this:
 

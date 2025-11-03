@@ -4,7 +4,7 @@
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
 ### **How do claims work? What are plugins?**
 
@@ -35,4 +35,4 @@ Most of the time, you can directly do everything without a line of code. Get cre
 
 Claims are the universal connector. You can not only check criteria from any BitBadges service (token ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
-<figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (394).png" alt=""><figcaption></figcaption></figure>

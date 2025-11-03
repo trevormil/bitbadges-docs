@@ -49,4 +49,4 @@ Your frontend URL or connect URL can be configured in the tutorial / user input 
 
 Or, alternatives including adding custom instructions or developing a configuration tool.
 
-<figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (384).png" alt=""><figcaption></figcaption></figure>

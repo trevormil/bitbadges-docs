@@ -17,7 +17,7 @@ Please create custom plugins for better UX.
 
 Prompt the user to add the copy / paste the stringified JSON to the Configuration Tools tab on the claim builder.
 
-<figure><img src="../../../.gitbook/assets/image (214).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (387).png" alt=""><figcaption></figcaption></figure>
 
 ```json
 {"pluginId":"codes","version": "0", "publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}

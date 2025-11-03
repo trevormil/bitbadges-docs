@@ -8,13 +8,13 @@ Signature compatibility means that users from any of the above blockchain ecosys
 
 BitBadges is compatible with the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from or is interoperable with any other blockchain. Everything is confined to the BitBadges blockchain.
 
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
 
 ### **Why do I see multiple equivalent addresses?**
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -24,7 +24,7 @@ Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
 It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 

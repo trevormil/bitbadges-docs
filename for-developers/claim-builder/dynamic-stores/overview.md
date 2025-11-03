@@ -27,6 +27,7 @@ Once your store is created, you can add users / data to it. Note that we add via
 **Attach to a Claim**
 
 The interface should walk you through the process of attaching it to a claim:
+
 1. Directly in claim builder, you should see your stores in the templates section
 2. In the stores tab, click Create Claim for a one-click create a claim which is auto-configured
 3. Add the corresponding plugin (email for email stores) and add the store in the parameters select
@@ -54,11 +55,11 @@ When creating your store, you will get a store ID and secret. These are to be pr
 
 **4. Not Address Dependent**
 
-* All accounting for claims and other BitBadges services is done primarily with crypto addresses. For example, to complete a claim, you need to specify a claiming address. However, many apps and services do not have such a link from user ID on the app -> crypto address.&#x20;
-  * This approach allows you to not need to worry about addresses and only the app identifiers / emails. BitBadges handles the rest.&#x20;
+* All accounting for claims and other BitBadges services is done primarily with crypto addresses. For example, to complete a claim, you need to specify a claiming address. However, many apps and services do not have such a link from user ID on the app -> crypto address.
+  * This approach allows you to not need to worry about addresses and only the app identifiers / emails. BitBadges handles the rest.
 
-<figure><img src="../../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (395).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (341).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (223).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (396).png" alt=""><figcaption></figcaption></figure>
