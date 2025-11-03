@@ -207,7 +207,6 @@
     * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
     * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
-    * [AI Prompt: Signing Txs](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
   * [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
     * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
     * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)

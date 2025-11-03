@@ -1,10 +1,10 @@
 # Auto-Complete Claims w/ BitBadges API
 
-Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.&#x20;
+Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.
 
 Typically, we recommend making a custom webhook / plugin over this. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
 
-<figure><img src="../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Auto-Completion
 

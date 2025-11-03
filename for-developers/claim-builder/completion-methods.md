@@ -6,7 +6,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (84) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -14,7 +14,7 @@ You can can extend BitBadges Claims with our custom Zapier integration that allo
 
 For example, make a purchase on Shopify -> get allocated a token or complete a course on Udemy -> get a completion token. The "airdrop" is a claim completion.
 
-<figure><img src="../../.gitbook/assets/image (260).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
 
 Note: Zapier can also be used to automate other parts of the claim, like specific plugins or implementing post-claim rewards.
 

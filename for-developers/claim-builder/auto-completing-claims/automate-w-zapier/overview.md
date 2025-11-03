@@ -19,11 +19,11 @@ Couple ways:
 * Dynamic stores can be implemented with automatic updates of the list
 * Claim infomration like codes can be automatically distributed to users
 
-<figure><img src="../../../../.gitbook/assets/image (370).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (369).png" alt=""><figcaption></figcaption></figure>
 
 When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action (claim a token, distribute a code, add to dynamic store).
 
-<figure><img src="../../../../.gitbook/assets/image (262).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Error Handling**
 

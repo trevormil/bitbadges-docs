@@ -22,7 +22,7 @@ const getPublicKey = async () => {
 };
 ```
 
-Then,  generate the context.
+Then, generate the context.
 
 ```typescript
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
@@ -55,4 +55,18 @@ We leave this up to you to implement. You can get the gas used from simulating t
 ```typescript
 const baseGasPrice = 0.025; 
 const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
+```
+
+**Local Wallet Generation**
+
+If you simply want to create and fund a wallet for local scripts, go ahead. BitBadges is compatible with any wallet, as long as you can sign the transactions. For example, use ethers to generate a wallet, get the address, then fund it.&#x20;
+
+```typescript
+import { ethers } from 'ethers';
+
+// Create a random wallet
+const ethWallet = ethers.Wallet.createRandom();
+console.log('Address:', ethWallet.address);
+console.log('Private Key:', ethWallet.privateKey);
+console.log('Mnemonic:', ethWallet.mnemonic.phrase);
 ```

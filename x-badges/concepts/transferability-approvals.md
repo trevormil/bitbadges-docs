@@ -4,7 +4,7 @@
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels:
 
-<figure><img src="../../.gitbook/assets/image (206).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (166) (1).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
 
 ### Approval Levels
 
@@ -39,7 +39,7 @@ interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-See [Approval Criteria](broken-reference) for more details on the `approvalCriteria` field.
+See [Approval Criteria](broken-reference/) for more details on the `approvalCriteria` field.
 
 ## Approval Value vs Permission
 

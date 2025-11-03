@@ -7,7 +7,7 @@ Claims, at their core, are just criteria checks, but there are two ways we can c
 * Can maintain statefulness
 * Ledger of users who have claimed
 
-<figure><img src="../../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (77) (1).png" alt=""><figcaption></figcaption></figure>
 
 The second is on-demand (sometimes described as non-indexed). These are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.
 

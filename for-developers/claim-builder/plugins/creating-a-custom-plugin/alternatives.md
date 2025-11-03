@@ -2,7 +2,7 @@
 
 Configure prebuilt webhook plugins in the claim builder without needing to create an entirely new custom plugin. Just enter the endpoint and configure what you want to receive.If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site (serverless).
 
-<figure><img src="../../../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
 
@@ -15,7 +15,7 @@ Configure prebuilt webhook plugins in the claim builder without needing to creat
   * For non-critical logic, consider returning 200 early and asynchronously process.
   * Stateless
 
-### Forms Plugin  - Serverless
+### Forms Plugin - Serverless
 
 The forms plugin is a serverless alternative. This is titled "Collect User Inputs" in the site.
 
@@ -30,7 +30,7 @@ console.log(res);
 // { bitbadgesAddress, email, claimAttemptId } 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation - Handlers
 

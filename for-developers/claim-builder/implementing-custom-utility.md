@@ -42,10 +42,10 @@ For example, new claim -> add to Mailchimp list or add to Google Sheets.
 
 ## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
 
-<figure><img src="../../.gitbook/assets/image (390).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
 
 Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
 
-<figure><img src="../../.gitbook/assets/image (391).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
