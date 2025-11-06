@@ -5753,7 +5753,6 @@ Testnet Node:
 
 * RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
 * REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
-* Direct Node Access: `http://138.197.10.8:YOUR_PORT`
 
 ### Feedback
 
