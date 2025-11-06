@@ -9,7 +9,7 @@ This example:
 * Uses the Next.js x Supabase template
 * Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
 
-<figure><img src="../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (398).png" alt=""><figcaption></figcaption></figure>
 
 Anything else is left as an exercise for you.
 

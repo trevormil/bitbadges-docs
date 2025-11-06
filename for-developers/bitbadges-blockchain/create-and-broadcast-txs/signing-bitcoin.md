@@ -2,8 +2,6 @@
 
 **Signing with Bitcoin - Phantom Wallet**
 
-Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
-
 ```typescript
 const getProvider = () => {
   if ('phantom' in window) {
@@ -22,7 +20,7 @@ function bytesToBase64(bytes: Uint8Array) {
   return btoa(binString);
 }
 
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+const signTxn = async (context: TxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
     const bitcoinProvider = getProvider();
 
     let sig = '';
@@ -39,7 +37,3 @@ const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, 
     return txBody;
 };
 ```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)

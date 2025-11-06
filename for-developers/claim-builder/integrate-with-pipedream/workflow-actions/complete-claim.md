@@ -1,6 +1,6 @@
 # Complete Claim
 
-To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed. &#x20;
+To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed.
 
 The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}. You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
 
@@ -10,7 +10,7 @@ This is the approach we use for automation workflows. We remove any sign in requ
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (55) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import { axios } from "@pipedream/platform";

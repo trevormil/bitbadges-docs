@@ -1,25 +1,30 @@
 # Transaction Context
 
-You have two options for generating, signing, and brodcasting messages.
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
-
-If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
-
-If you plan to use option 2, see below.
-
-### Generating Transaction Context
-
-The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
-
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
+For the signer, you will need their address, sequence, and account number. This can be done via our API like below or you can query directly via a blockchain node.
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
+// https://api.bitbadges.io/api/v0/user?address=0x
+const res = await BitBadgesApi.getAccount({ address: '...' });
+const account = res.account;
+const { accountNumber, sequence, publicKey } = account; 
+if (Number(accountNumber) <= 0) {
+  // TODO: They are unregistered. Send them dust to register.
+}
+```
 
-//TODO: Fetch the account details (see below)
+If you are signing with a Cosmos-based wallet, you will need the public key as well. All others (ETH, SOL, BTC) do not require this. This may be available in the account response if the user has already interacted with BitBadges, but if this is first time, you can fetch it like below.
 
+```typescript
+const getPublicKey = async () => {
+    const account = await window?.keplr?.getKey('bitbadges-1');
+    if (!account) return '';
+    return Buffer.from(account.pubKey).toString('base64');
+};
+```
+
+Then, generate the context.
+
+```typescript
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
 const txContext = {
     testnet: false,
@@ -28,7 +33,7 @@ const txContext = {
         address: account.address,
         sequence: account.sequence,
         accountNumber: account.accountNumber,
-        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        //Public key is only needed for Cosmos native signatures. Leave "" if not.
         publicKey: account.publicKey,
     },
     //TODO: adjust accordingly
@@ -41,28 +46,27 @@ const txContext = {
 };
 ```
 
-**Get Public Key - Cosmos**
+**Fee Generation**
 
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
+Oftentimes, transactions will not require fees depending on network congestion.
 
-Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
+We leave this up to you to implement. You can get the gas used from simulating the transaction (see later in this tutorial). For our frontend, we currently use a base gas price of 0.025 per unit.
 
 ```typescript
-const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1');
-    if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64');
-};
+const baseGasPrice = 0.025; 
+const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 ```
 
-**Fee**
+**Local Wallet Generation**
 
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
+If you simply want to create and fund a wallet for local scripts, go ahead. BitBadges is compatible with any wallet, as long as you can sign the transactions. For example, use ethers to generate a wallet, get the address, then fund it.&#x20;
 
-**Sender Details**
+```typescript
+import { ethers } from 'ethers';
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
-
-This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
-
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+// Create a random wallet
+const ethWallet = ethers.Wallet.createRandom();
+console.log('Address:', ethWallet.address);
+console.log('Private Key:', ethWallet.privateKey);
+console.log('Mnemonic:', ethWallet.mnemonic.phrase);
+```

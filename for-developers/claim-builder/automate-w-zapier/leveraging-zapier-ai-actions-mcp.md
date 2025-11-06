@@ -6,4 +6,4 @@ Leverage Zapier AI actions to build cool use cases with BitBadges x AI. This is 
 [leveraging-ai.md](../leveraging-ai.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>

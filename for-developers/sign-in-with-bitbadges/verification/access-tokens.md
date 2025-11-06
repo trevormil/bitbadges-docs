@@ -4,7 +4,7 @@ With access tokens, you can start sending requests to authenticated endpoints wi
 
 If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.
 
-<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
 
 If you are using the SDK, you can instead do this which handles the header setting:
 

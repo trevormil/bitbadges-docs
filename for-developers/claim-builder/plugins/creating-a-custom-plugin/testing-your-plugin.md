@@ -24,10 +24,10 @@ curl -X POST https://yourhandler.com  -H 'Content-Type: application/json' -d '{
 
 In the creation / update interface, there will be a Send Test Request button which will send a formatted request from your browser. This uses mocked data, and should only be used for testing purposes.
 
-<figure><img src="../../../../.gitbook/assets/image (147).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (320).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Tester**
 
 The easiest way to test your plugin integration with BitBadges is with the Claim Tester tab in the developer portal. This is the only place you will be able to test unfinalized versions of your plugin.
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>

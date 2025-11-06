@@ -1,1768 +1,11 @@
 # Gitbook Documentation Compilation
-Generated on Fri Oct 31 14:19:00 UTC 2025
+Generated on Mon Nov  3 18:20:24 UTC 2025
 
-
-
-## File: ./.gitbook/assets/README (1).md
-
-BitBadges / [Exports](modules.md)
 
 
 ## File: ./.gitbook/assets/README.md
 
 BitBadges / [Exports](modules.md)
-
-
-## File: ./.gitbook/assets/modules (1).md
-
-[BitBadges](README.md) / Exports
-
-# BitBadges
-
-## Table of contents
-
-### Enumerations
-
--   [DistributionMethod](enums/DistributionMethod.md)
--   [MetadataAddMethod](enums/MetadataAddMethod.md)
--   [SupportedChain](enums/SupportedChain.md)
--   [TransactionStatus](enums/TransactionStatus.md)
-
-### Interfaces
-
--   [AccountDocs](interfaces/AccountDocs.md)
--   [AccountDocument](interfaces/AccountDocument.md)
--   [AccountMap](interfaces/AccountMap.md)
--   [AccountResponse](interfaces/AccountResponse.md)
--   [ActivityItem](interfaces/ActivityItem.md)
--   [Addresses](interfaces/Addresses.md)
--   [AnnouncementActivityItem](interfaces/AnnouncementActivityItem.md)
--   [Approval](interfaces/Approval.md)
--   [BadgeMetadata](interfaces/BadgeMetadata.md)
--   [BadgeMetadataMap](interfaces/BadgeMetadataMap.md)
--   [BadgeSupplyAndAmount](interfaces/BadgeSupplyAndAmount.md)
--   [BadgeUri](interfaces/BadgeUri.md)
--   [Balance](interfaces/Balance.md)
--   [BalanceObject](interfaces/BalanceObject.md)
--   [BalancesMap](interfaces/BalancesMap.md)
--   [BitBadgeCollection](interfaces/BitBadgeCollection.md)
--   [BitBadgeMintObject](interfaces/BitBadgeMintObject.md)
--   [BitBadgesUserInfo](interfaces/BitBadgesUserInfo.md)
--   [ClaimItem](interfaces/ClaimItem.md)
--   [ClaimItemWithTrees](interfaces/ClaimItemWithTrees.md)
--   [Claims](interfaces/Claims.md)
--   [CollectionDocs](interfaces/CollectionDocs.md)
--   [CollectionMap](interfaces/CollectionMap.md)
--   [CosmosAccountInformation](interfaces/CosmosAccountInformation.md)
--   [DbStatus](interfaces/DbStatus.md)
--   [Docs](interfaces/Docs.md)
--   [GetAccountResponse](interfaces/GetAccountResponse.md)
--   [GetBalanceResponse](interfaces/GetBalanceResponse.md)
--   [GetBalanceResponse](interfaces/GetBalanceResponse.md)
--   [GetCollectionResponse](interfaces/GetCollectionResponse.md)
--   [GetOwnersResponse](interfaces/GetOwnersResponse.md)
--   [GetPortfolioResponse](interfaces/GetPortfolioResponse.md)
--   [IdRange](interfaces/IdRange.md)
--   [IndexerStatus](interfaces/IndexerStatus.md)
--   [LatestBlockStatus](interfaces/LatestBlockStatus.md)
--   [MetadataDocs](interfaces/MetadataDocs.md)
--   [MetadataDocument](interfaces/MetadataDocument.md)
--   [PaginationInfo](interfaces/PaginationInfo.md)
--   [PasswordDocument](interfaces/PasswordDocument.md)
--   [PendingTransfer](interfaces/PendingTransfer.md)
--   [Proof](interfaces/Proof.md)
--   [SearchResponse](interfaces/SearchResponse.md)
--   [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
--   [SubassetSupply](interfaces/SubassetSupply.md)
--   [TransferActivityItem](interfaces/TransferActivityItem.md)
--   [TransferList](interfaces/TransferList.md)
--   [TransferListWithUnregisteredUsers](interfaces/TransferListWithUnregisteredUsers.md)
--   [Transfers](interfaces/Transfers.md)
--   [TransfersExtended](interfaces/TransfersExtended.md)
--   [UserBalance](interfaces/UserBalance.md)
-
-### Type Aliases
-
--   [Permissions](modules.md#permissions)
-
-### Variables
-
--   [AllAddressesTransferList](modules.md#alladdressestransferlist)
--   [CHAIN_DETAILS](modules.md#chain_details)
--   [CanCreateMoreBadgesDigit](modules.md#cancreatemorebadgesdigit)
--   [CanDeleteDigit](modules.md#candeletedigit)
--   [CanManagerBeTransferredDigit](modules.md#canmanagerbetransferreddigit)
--   [CanUpdateBytesDigit](modules.md#canupdatebytesdigit)
--   [CanUpdateDisallowedDigit](modules.md#canupdatedisalloweddigit)
--   [CanUpdateUrisDigit](modules.md#canupdateurisdigit)
--   [DefaultPlaceholderMetadata](modules.md#defaultplaceholdermetadata)
--   [ErrorMetadata](modules.md#errormetadata)
--   [GO_MAX_UINT_64](modules.md#go_max_uint_64)
--   [MAX_DATE_TIMESTAMP](modules.md#max_date_timestamp)
--   [METADATA_PAGE_LIMIT](modules.md#metadata_page_limit)
--   [MINT_ACCOUNT](modules.md#mint_account)
--   [NUM_PERMISSIONS](modules.md#num_permissions)
-
-### Functions
-
--   [AddBalancesForIdRanges](modules.md#addbalancesforidranges)
--   [DeleteBalanceForIdRanges](modules.md#deletebalanceforidranges)
--   [GetAccountByNumberRoute](modules.md#getaccountbynumberroute)
--   [GetAccountRoute](modules.md#getaccountroute)
--   [GetAccountsRoute](modules.md#getaccountsroute)
--   [GetBalanceRoute](modules.md#getbalanceroute)
--   [GetBalanceInfoToInsertToStorage](modules.md#getbalanceinfotoinserttostorage)
--   [GetBalanceRoute](modules.md#getbalanceroute)
--   [GetBalancesForIdRanges](modules.md#getbalancesforidranges)
--   [GetCollectionRoute](modules.md#getcollectionroute)
--   [GetCollectionsRoute](modules.md#getcollectionsroute)
--   [GetIdRangeToInsert](modules.md#getidrangetoinsert)
--   [GetIdRangesToInsertToStorage](modules.md#getidrangestoinserttostorage)
--   [GetIdRangesWithOmitEmptyCaseHandled](modules.md#getidrangeswithomitemptycasehandled)
--   [GetIdxSpanForRange](modules.md#getidxspanforrange)
--   [GetIdxToInsertForNewId](modules.md#getidxtoinsertfornewid)
--   [GetMetadataRoute](modules.md#getmetadataroute)
--   [GetOwnersRoute](modules.md#getownersroute)
--   [GetPermissionNumberValue](modules.md#getpermissionnumbervalue)
--   [GetPermissions](modules.md#getpermissions)
--   [GetPortfolioRoute](modules.md#getportfolioroute)
--   [GetSearchRoute](modules.md#getsearchroute)
--   [GetStatusRoute](modules.md#getstatusroute)
--   [InsertRangeToIdRanges](modules.md#insertrangetoidranges)
--   [MergePrevOrNextIfPossible](modules.md#mergeprevornextifpossible)
--   [NormalizeIdRange](modules.md#normalizeidrange)
--   [RemoveIdsFromIdRange](modules.md#removeidsfromidrange)
--   [SafeAdd](modules.md#safeadd)
--   [SafeSubtract](modules.md#safesubtract)
--   [SearchBalances](modules.md#searchbalances)
--   [SearchIdRangesForId](modules.md#searchidrangesforid)
--   [SetBalanceForIdRanges](modules.md#setbalanceforidranges)
--   [SortIdRangesAndMergeIfNecessary](modules.md#sortidrangesandmergeifnecessary)
--   [SubtractBalancesForIdRanges](modules.md#subtractbalancesforidranges)
--   [UpdateBalancesForIdRanges](modules.md#updatebalancesforidranges)
--   [UpdatePermissions](modules.md#updatepermissions)
--   [ValidatePermissions](modules.md#validatepermissions)
--   [ValidatePermissionsUpdate](modules.md#validatepermissionsupdate)
--   [checkIfApproved](modules.md#checkifapproved)
--   [checkIfApprovedInTransferList](modules.md#checkifapprovedintransferlist)
--   [checkIfIdRangesOverlap](modules.md#checkifidrangesoverlap)
--   [convertToBitBadgesUserInfo](modules.md#converttobitbadgesuserinfo)
--   [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
--   [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
--   [doesChainMatchName](modules.md#doeschainmatchname)
--   [filterTokenActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
--   [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
--   [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
--   [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
--   [getBalanceAfterTransfers](modules.md#getbalanceaftertransfers)
--   [getBlankBalance](modules.md#getblankbalance)
--   [getChainForAddress](modules.md#getchainforaddress)
--   [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
--   [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
--   [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
--   [getMaxBatchId](modules.md#getmaxbatchid)
--   [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
--   [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
--   [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
--   [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
--   [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
--   [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
--   [isAddressValid](modules.md#isaddressvalid)
--   [isTransferListFull](modules.md#istransferlistfull)
--   [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
--   [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
--   [updateMetadataMap](modules.md#updatemetadatamap)
--   [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
-
-## Type Aliases
-
-### Permissions
-
-Ƭ **Permissions**: `Object`
-
-#### Type declaration
-
-| Name                      | Type      |
-| :------------------------ | :-------- |
-| `CanCreateMoreBadges`     | `boolean` |
-| `CanDelete`               | `boolean` |
-| `CanManagerBeTransferred` | `boolean` |
-| `CanUpdateBytes`          | `boolean` |
-| `CanUpdateDisallowed`     | `boolean` |
-| `CanUpdateUris`           | `boolean` |
-
-#### Defined in
-
-[permissions.ts:3](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L3)
-
-## Variables
-
-### AllAddressesTransferList
-
-• `Const` **AllAddressesTransferList**: [`TransferList`](interfaces/TransferList.md)
-
-#### Defined in
-
-[badges.ts:109](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L109)
-
----
-
-### CHAIN_DETAILS
-
-• `Const` **CHAIN_DETAILS**: `Object`
-
-#### Type declaration
-
-| Name            | Type     |
-| :-------------- | :------- |
-| `chainId`       | `number` |
-| `cosmosChainId` | `string` |
-
-#### Defined in
-
-[constants.ts:9](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L9)
-
----
-
-### CanCreateMoreBadgesDigit
-
-• `Const` **CanCreateMoreBadgesDigit**: `2`
-
-#### Defined in
-
-[permissions.ts:16](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L16)
-
----
-
-### CanDeleteDigit
-
-• `Const` **CanDeleteDigit**: `6`
-
-#### Defined in
-
-[permissions.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L12)
-
----
-
-### CanManagerBeTransferredDigit
-
-• `Const` **CanManagerBeTransferredDigit**: `4`
-
-#### Defined in
-
-[permissions.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L14)
-
----
-
-### CanUpdateBytesDigit
-
-• `Const` **CanUpdateBytesDigit**: `5`
-
-#### Defined in
-
-[permissions.ts:13](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L13)
-
----
-
-### CanUpdateDisallowedDigit
-
-• `Const` **CanUpdateDisallowedDigit**: `1`
-
-#### Defined in
-
-[permissions.ts:17](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L17)
-
----
-
-### CanUpdateUrisDigit
-
-• `Const` **CanUpdateUrisDigit**: `3`
-
-#### Defined in
-
-[permissions.ts:15](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L15)
-
----
-
-### DefaultPlaceholderMetadata
-
-• `Const` **DefaultPlaceholderMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
-
-#### Defined in
-
-[constants.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L14)
-
----
-
-### ErrorMetadata
-
-• `Const` **ErrorMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
-
-#### Defined in
-
-[constants.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L20)
-
----
-
-### GO_MAX_UINT_64
-
-• `Const` **GO_MAX_UINT_64**: `1000000000000000`
-
-#### Defined in
-
-[constants.ts:7](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L7)
-
----
-
-### MAX_DATE_TIMESTAMP
-
-• `Const` **MAX_DATE_TIMESTAMP**: `number`
-
-#### Defined in
-
-[constants.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L5)
-
----
-
-### METADATA_PAGE_LIMIT
-
-• `Const` **METADATA_PAGE_LIMIT**: `100`
-
-#### Defined in
-
-[constants.ts:3](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/constants.ts#L3)
-
----
-
-### MINT_ACCOUNT
-
-• `Const` **MINT_ACCOUNT**: [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)
-
-#### Defined in
-
-[chains.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L5)
-
----
-
-### NUM_PERMISSIONS
-
-• `Const` **NUM_PERMISSIONS**: `6`
-
-#### Defined in
-
-[permissions.ts:1](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L1)
-
-## Functions
-
-### AddBalancesForIdRanges
-
-▸ **AddBalancesForIdRanges**(`userBalanceInfo`, `ranges`, `balanceToAdd`): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Parameters
-
-| Name              | Type                                       |
-| :---------------- | :----------------------------------------- |
-| `userBalanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
-| `ranges`          | [`IdRange`](interfaces/IdRange.md)[]       |
-| `balanceToAdd`    | `number`                                   |
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances-gpt.ts:116](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L116)
-
----
-
-### DeleteBalanceForIdRanges
-
-▸ **DeleteBalanceForIdRanges**(`ranges`, `balanceObjects`): [`Balance`](interfaces/Balance.md)[]
-
-#### Parameters
-
-| Name             | Type                                 |
-| :--------------- | :----------------------------------- |
-| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
-| `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-[`Balance`](interfaces/Balance.md)[]
-
-#### Defined in
-
-[balances-gpt.ts:142](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L142)
-
----
-
-### GetAccountByNumberRoute
-
-▸ **GetAccountByNumberRoute**(`id`): `string`
-
-#### Parameters
-
-| Name | Type     |
-| :--- | :------- |
-| `id` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:8](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L8)
-
----
-
-### GetAccountRoute
-
-▸ **GetAccountRoute**(`bech32address`): `string`
-
-#### Parameters
-
-| Name            | Type     |
-| :-------------- | :------- |
-| `bech32address` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:4](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L4)
-
----
-
-### GetAccountsRoute
-
-▸ **GetAccountsRoute**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L12)
-
----
-
-### GetBalanceRoute
-
-▸ **GetBalanceRoute**(`collectionId`, `accountNumber`): `string`
-
-#### Parameters
-
-| Name            | Type     |
-| :-------------- | :------- |
-| `collectionId`  | `number` |
-| `accountNumber` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:28](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L28)
-
----
-
-### GetBalanceInfoToInsertToStorage
-
-▸ **GetBalanceInfoToInsertToStorage**(`balanceInfo`): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Parameters
-
-| Name          | Type                                       |
-| :------------ | :----------------------------------------- |
-| `balanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances-gpt.ts:254](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L254)
-
----
-
-### GetBalanceRoute
-
-▸ **GetBalanceRoute**(`bech32address`): `string`
-
-#### Parameters
-
-| Name            | Type     |
-| :-------------- | :------- |
-| `bech32address` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:16](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L16)
-
----
-
-### GetBalancesForIdRanges
-
-▸ **GetBalancesForIdRanges**(`badgeIds`, `currentUserBalances`): [`Balance`](interfaces/Balance.md)[]
-
-#### Parameters
-
-| Name                  | Type                                 |
-| :-------------------- | :----------------------------------- |
-| `badgeIds`            | [`IdRange`](interfaces/IdRange.md)[] |
-| `currentUserBalances` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-[`Balance`](interfaces/Balance.md)[]
-
-#### Defined in
-
-[balances-gpt.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L36)
-
----
-
-### GetCollectionRoute
-
-▸ **GetCollectionRoute**(`collectionId`): `string`
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `collectionId` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L20)
-
----
-
-### GetCollectionsRoute
-
-▸ **GetCollectionsRoute**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:24](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L24)
-
----
-
-### GetIdRangeToInsert
-
-▸ **GetIdRangeToInsert**(`start`, `end`): `Object`
-
-#### Parameters
-
-| Name    | Type     |
-| :------ | :------- |
-| `start` | `number` |
-| `end`   | `number` |
-
-#### Returns
-
-`Object`
-
-| Name    | Type     |
-| :------ | :------- |
-| `end`   | `number` |
-| `start` | `number` |
-
-#### Defined in
-
-[idRanges.ts:152](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L152)
-
----
-
-### GetIdRangesToInsertToStorage
-
-▸ **GetIdRangesToInsertToStorage**(`idRanges`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name       | Type                                 |
-| :--------- | :----------------------------------- |
-| `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:31](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L31)
-
----
-
-### GetIdRangesWithOmitEmptyCaseHandled
-
-▸ **GetIdRangesWithOmitEmptyCaseHandled**(`ids`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name  | Type                                 |
-| :---- | :----------------------------------- |
-| `ids` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:144](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L144)
-
----
-
-### GetIdxSpanForRange
-
-▸ **GetIdxSpanForRange**(`targetRange`, `targetIdRanges`): [[`IdRange`](interfaces/IdRange.md), `boolean`]
-
-#### Parameters
-
-| Name             | Type                                 |
-| :--------------- | :----------------------------------- |
-| `targetRange`    | [`IdRange`](interfaces/IdRange.md)   |
-| `targetIdRanges` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[[`IdRange`](interfaces/IdRange.md), `boolean`]
-
-#### Defined in
-
-[idRanges.ts:111](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L111)
-
----
-
-### GetIdxToInsertForNewId
-
-▸ **GetIdxToInsertForNewId**(`id`, `targetIds`): `number`
-
-#### Parameters
-
-| Name        | Type                                 |
-| :---------- | :----------------------------------- |
-| `id`        | `number`                             |
-| `targetIds` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[idRanges.ts:176](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L176)
-
----
-
-### GetMetadataRoute
-
-▸ **GetMetadataRoute**(`collectionId`): `string`
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `collectionId` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:40](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L40)
-
----
-
-### GetOwnersRoute
-
-▸ **GetOwnersRoute**(`collectionId`, `badgeId`): `string`
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `collectionId` | `number` |
-| `badgeId`      | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:32](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L32)
-
----
-
-### GetPermissionNumberValue
-
-▸ **GetPermissionNumberValue**(`permissions`): `number`
-
-#### Parameters
-
-| Name          | Type                                    |
-| :------------ | :-------------------------------------- |
-| `permissions` | [`Permissions`](modules.md#permissions) |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[permissions.ts:19](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L19)
-
----
-
-### GetPermissions
-
-▸ **GetPermissions**(`permissions`): [`Permissions`](modules.md#permissions)
-
-#### Parameters
-
-| Name          | Type     |
-| :------------ | :------- |
-| `permissions` | `number` |
-
-#### Returns
-
-[`Permissions`](modules.md#permissions)
-
-#### Defined in
-
-[permissions.ts:118](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L118)
-
----
-
-### GetPortfolioRoute
-
-▸ **GetPortfolioRoute**(`accountNumber`): `string`
-
-#### Parameters
-
-| Name            | Type     |
-| :-------------- | :------- |
-| `accountNumber` | `number` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L36)
-
----
-
-### GetSearchRoute
-
-▸ **GetSearchRoute**(`query`): `string`
-
-#### Parameters
-
-| Name    | Type     |
-| :------ | :------- |
-| `query` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:44](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L44)
-
----
-
-### GetStatusRoute
-
-▸ **GetStatusRoute**(): `string`
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[routes.ts:48](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/routes.ts#L48)
-
----
-
-### InsertRangeToIdRanges
-
-▸ **InsertRangeToIdRanges**(`rangeToAdd`, `targetIds`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name         | Type                                 |
-| :----------- | :----------------------------------- |
-| `rangeToAdd` | [`IdRange`](interfaces/IdRange.md)   |
-| `targetIds`  | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:274](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L274)
-
----
-
-### MergePrevOrNextIfPossible
-
-▸ **MergePrevOrNextIfPossible**(`targetIds`, `insertedAtIdx`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name            | Type                                 |
-| :-------------- | :----------------------------------- |
-| `targetIds`     | [`IdRange`](interfaces/IdRange.md)[] |
-| `insertedAtIdx` | `number`                             |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:218](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L218)
-
----
-
-### NormalizeIdRange
-
-▸ **NormalizeIdRange**(`rangeToNormalize`): `Object`
-
-#### Parameters
-
-| Name               | Type                               |
-| :----------------- | :--------------------------------- |
-| `rangeToNormalize` | [`IdRange`](interfaces/IdRange.md) |
-
-#### Returns
-
-`Object`
-
-| Name    | Type     |
-| :------ | :------- |
-| `end`   | `number` |
-| `start` | `number` |
-
-#### Defined in
-
-[idRanges.ts:164](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L164)
-
----
-
-### RemoveIdsFromIdRange
-
-▸ **RemoveIdsFromIdRange**(`rangeToRemove`, `rangeObject`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name            | Type                               |
-| :-------------- | :--------------------------------- |
-| `rangeToRemove` | [`IdRange`](interfaces/IdRange.md) |
-| `rangeObject`   | [`IdRange`](interfaces/IdRange.md) |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:47](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L47)
-
----
-
-### SafeAdd
-
-▸ **SafeAdd**(`left`, `right`): `number`
-
-#### Parameters
-
-| Name    | Type     |
-| :------ | :------- |
-| `left`  | `number` |
-| `right` | `number` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[balances-gpt.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L5)
-
----
-
-### SafeSubtract
-
-▸ **SafeSubtract**(`left`, `right`): `number`
-
-#### Parameters
-
-| Name    | Type     |
-| :------ | :------- |
-| `left`  | `number` |
-| `right` | `number` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[balances-gpt.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L14)
-
----
-
-### SearchBalances
-
-▸ **SearchBalances**(`targetAmount`, `balanceObjects`): (`number` \| `boolean`)[]
-
-#### Parameters
-
-| Name             | Type                                 |
-| :--------------- | :----------------------------------- |
-| `targetAmount`   | `number`                             |
-| `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-(`number` \| `boolean`)[]
-
-#### Defined in
-
-[balances-gpt.ts:224](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L224)
-
----
-
-### SearchIdRangesForId
-
-▸ **SearchIdRangesForId**(`id`, `idRanges`): [`number`, `boolean`]
-
-#### Parameters
-
-| Name       | Type                                 |
-| :--------- | :----------------------------------- |
-| `id`       | `number`                             |
-| `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[`number`, `boolean`]
-
-#### Defined in
-
-[idRanges.ts:92](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L92)
-
----
-
-### SetBalanceForIdRanges
-
-▸ **SetBalanceForIdRanges**(`ranges`, `amount`, `balanceObjects`): [`Balance`](interfaces/Balance.md)[]
-
-#### Parameters
-
-| Name             | Type                                 |
-| :--------------- | :----------------------------------- |
-| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
-| `amount`         | `number`                             |
-| `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-[`Balance`](interfaces/Balance.md)[]
-
-#### Defined in
-
-[balances-gpt.ts:183](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L183)
-
----
-
-### SortIdRangesAndMergeIfNecessary
-
-▸ **SortIdRangesAndMergeIfNecessary**(`idRanges`): [`IdRange`](interfaces/IdRange.md)[]
-
-#### Parameters
-
-| Name       | Type                                 |
-| :--------- | :----------------------------------- |
-| `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-[`IdRange`](interfaces/IdRange.md)[]
-
-#### Defined in
-
-[idRanges.ts:3](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L3)
-
----
-
-### SubtractBalancesForIdRanges
-
-▸ **SubtractBalancesForIdRanges**(`userBalanceInfo`, `ranges`, `balanceToRemove`): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Parameters
-
-| Name              | Type                                       |
-| :---------------- | :----------------------------------------- |
-| `userBalanceInfo` | [`UserBalance`](interfaces/UserBalance.md) |
-| `ranges`          | [`IdRange`](interfaces/IdRange.md)[]       |
-| `balanceToRemove` | `number`                                   |
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances-gpt.ts:129](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L129)
-
----
-
-### UpdateBalancesForIdRanges
-
-▸ **UpdateBalancesForIdRanges**(`ranges`, `newAmount`, `balanceObjects`): [`Balance`](interfaces/Balance.md)[]
-
-#### Parameters
-
-| Name             | Type                                 |
-| :--------------- | :----------------------------------- |
-| `ranges`         | [`IdRange`](interfaces/IdRange.md)[] |
-| `newAmount`      | `number`                             |
-| `balanceObjects` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-[`Balance`](interfaces/Balance.md)[]
-
-#### Defined in
-
-[balances-gpt.ts:22](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances-gpt.ts#L22)
-
----
-
-### UpdatePermissions
-
-▸ **UpdatePermissions**(`currPermissions`, `permissionDigit`, `value`): `number`
-
-#### Parameters
-
-| Name              | Type      |
-| :---------------- | :-------- |
-| `currPermissions` | `number`  |
-| `permissionDigit` | `number`  |
-| `value`           | `boolean` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[permissions.ts:97](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L97)
-
----
-
-### ValidatePermissions
-
-▸ **ValidatePermissions**(`permissions`): `void`
-
-#### Parameters
-
-| Name          | Type     |
-| :------------ | :------- |
-| `permissions` | `number` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[permissions.ts:53](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L53)
-
----
-
-### ValidatePermissionsUpdate
-
-▸ **ValidatePermissionsUpdate**(`oldPermissions`, `newPermissions`): `void`
-
-#### Parameters
-
-| Name             | Type     |
-| :--------------- | :------- |
-| `oldPermissions` | `number` |
-| `newPermissions` | `number` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[permissions.ts:60](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/permissions.ts#L60)
-
----
-
-### checkIfApproved
-
-▸ **checkIfApproved**(`userBalance`, `accountNumber`, `balancesToCheck`): `boolean`
-
-#### Parameters
-
-| Name              | Type                                       |
-| :---------------- | :----------------------------------------- |
-| `userBalance`     | [`UserBalance`](interfaces/UserBalance.md) |
-| `accountNumber`   | `number`                                   |
-| `balancesToCheck` | [`Balance`](interfaces/Balance.md)[]       |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[badges.ts:311](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L311)
-
----
-
-### checkIfApprovedInTransferList
-
-▸ **checkIfApprovedInTransferList**(`addresses`, `connectedUser`, `managerAccountNumber`): `boolean`
-
-#### Parameters
-
-| Name                   | Type                                                   |
-| :--------------------- | :----------------------------------------------------- |
-| `addresses`            | [`Addresses`](interfaces/Addresses.md)                 |
-| `connectedUser`        | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md) |
-| `managerAccountNumber` | `number`                                               |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[badges.ts:130](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L130)
-
----
-
-### checkIfIdRangesOverlap
-
-▸ **checkIfIdRangesOverlap**(`idRanges`): `boolean`
-
-#### Parameters
-
-| Name       | Type                                 |
-| :--------- | :----------------------------------- |
-| `idRanges` | [`IdRange`](interfaces/IdRange.md)[] |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[idRanges.ts:301](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/idRanges.ts#L301)
-
----
-
-### convertToBitBadgesUserInfo
-
-▸ **convertToBitBadgesUserInfo**(`accountInfo`): [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)
-
-#### Parameters
-
-| Name          | Type                                               |
-| :------------ | :------------------------------------------------- |
-| `accountInfo` | [`AccountResponse`](interfaces/AccountResponse.md) |
-
-#### Returns
-
-[`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)
-
-#### Defined in
-
-[users.ts:4](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/users.ts#L4)
-
----
-
-### convertToBitBadgesAddress
-
-▸ **convertToBitBadgesAddress**(`address`): `string`
-
-#### Parameters
-
-| Name      | Type     |
-| :-------- | :------- |
-| `address` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[chains.ts:12](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L12)
-
----
-
-### createCollectionFromMsgNewCollection
-
-▸ **createCollectionFromMsgNewCollection**(`msgNewCollection`, `collectionMetadata`, `individualBadgeMetadata`, `connectedUser`, `claimItems`, `existingCollection?`): [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
-
-#### Parameters
-
-| Name                      | Type                                                       |
-| :------------------------ | :--------------------------------------------------------- |
-| `msgNewCollection`        | `MessageMsgNewCollection`                                  |
-| `collectionMetadata`      | [`BadgeMetadata`](interfaces/BadgeMetadata.md)             |
-| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)       |
-| `connectedUser`           | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)     |
-| `claimItems`              | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
-| `existingCollection?`     | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)   |
-
-#### Returns
-
-[`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
-
-#### Defined in
-
-[badges.ts:29](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L29)
-
----
-
-### doesChainMatchName
-
-▸ **doesChainMatchName**(`chain`, `name?`): `boolean`
-
-#### Parameters
-
-| Name    | Type                                        |
-| :------ | :------------------------------------------ |
-| `chain` | [`SupportedChain`](enums/SupportedChain.md) |
-| `name?` | `string`                                    |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[chains.ts:87](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L87)
-
----
-
-### filterTokenActivityForBadgeId
-
-▸ **filterTokenActivityForBadgeId**(`badgeId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
-
-#### Parameters
-
-| Name       | Type                                                           |
-| :--------- | :------------------------------------------------------------- |
-| `badgeId`  | `number`                                                       |
-| `activity` | [`TransferActivityItem`](interfaces/TransferActivityItem.md)[] |
-
-#### Returns
-
-[`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
-
-#### Defined in
-
-[badges.ts:10](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L10)
-
----
-
-### getAbbreviatedAddress
-
-▸ **getAbbreviatedAddress**(`address`): `string`
-
-#### Parameters
-
-| Name      | Type     |
-| :-------- | :------- |
-| `address` | `string` |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-[chains.ts:46](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L46)
-
----
-
-### getBadgeIdsToDisplayForPageNumber
-
-▸ **getBadgeIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
-
-#### Parameters
-
-| Name          | Type                                                                                                                            | Default value |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------ | :------------ |
-| `collections` | { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[] | `[]`          |
-| `startIdxNum` | `number`                                                                                                                        | `undefined`   |
-| `pageSize`    | `number`                                                                                                                        | `undefined`   |
-
-#### Returns
-
-{ `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
-
-#### Defined in
-
-[badges.ts:197](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L197)
-
----
-
-### getBalanceAfterTransfer
-
-▸ **getBalanceAfterTransfer**(`balance`, `startSubbadgeId`, `endSubbadgeId`, `amountToTransfer`, `numRecipients`): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Parameters
-
-| Name               | Type                                       |
-| :----------------- | :----------------------------------------- |
-| `balance`          | [`UserBalance`](interfaces/UserBalance.md) |
-| `startSubbadgeId`  | `number`                                   |
-| `endSubbadgeId`    | `number`                                   |
-| `amountToTransfer` | `number`                                   |
-| `numRecipients`    | `number`                                   |
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances.ts:14](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L14)
-
----
-
-### getBalanceAfterTransfers
-
-▸ **getBalanceAfterTransfers**(`balance`, `transfers`): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Parameters
-
-| Name        | Type                                                     |
-| :---------- | :------------------------------------------------------- |
-| `balance`   | [`UserBalance`](interfaces/UserBalance.md)               |
-| `transfers` | [`TransfersExtended`](interfaces/TransfersExtended.md)[] |
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances.ts:21](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L21)
-
----
-
-### getBlankBalance
-
-▸ **getBlankBalance**(): [`UserBalance`](interfaces/UserBalance.md)
-
-#### Returns
-
-[`UserBalance`](interfaces/UserBalance.md)
-
-#### Defined in
-
-[balances.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L5)
-
----
-
-### getChainForAddress
-
-▸ **getChainForAddress**(`address`): `SupportedChain`
-
-#### Parameters
-
-| Name      | Type     |
-| :-------- | :------- |
-| `address` | `string` |
-
-#### Returns
-
-`SupportedChain`
-
-#### Defined in
-
-[chains.ts:26](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L26)
-
----
-
-### getClaimsFromClaimItems
-
-▸ **getClaimsFromClaimItems**(`balance`, `claimItems`): `Object`
-
-#### Parameters
-
-| Name         | Type                                                       |
-| :----------- | :--------------------------------------------------------- |
-| `balance`    | [`UserBalance`](interfaces/UserBalance.md)                 |
-| `claimItems` | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
-
-#### Returns
-
-`Object`
-
-| Name                   | Type                               |
-| :--------------------- | :--------------------------------- |
-| `claims`               | [`Claims`](interfaces/Claims.md)[] |
-| `undistributedBalance` | `any`                              |
-
-#### Defined in
-
-[claims.ts:63](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/claims.ts#L63)
-
----
-
-### getIdRangesForAllBadgeIdsInCollection
-
-▸ **getIdRangesForAllBadgeIdsInCollection**(`collection`): `any`
-
-#### Parameters
-
-| Name         | Type                                                     |
-| :----------- | :------------------------------------------------------- |
-| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
-
-#### Returns
-
-`any`
-
-#### Defined in
-
-[badges.ts:20](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L20)
-
----
-
-### getMatchingAddressesFromTransferList
-
-▸ **getMatchingAddressesFromTransferList**(`list`, `toAddresses`, `chain`, `managerAccountNumber`): `any`[]
-
-#### Parameters
-
-| Name                   | Type                                                     |
-| :--------------------- | :------------------------------------------------------- |
-| `list`                 | [`TransferList`](interfaces/TransferList.md)[]           |
-| `toAddresses`          | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
-| `chain`                | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)   |
-| `managerAccountNumber` | `number`                                                 |
-
-#### Returns
-
-`any`[]
-
-#### Defined in
-
-[badges.ts:153](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L153)
-
----
-
-### getMaxBatchId
-
-▸ **getMaxBatchId**(`collection`): `number`
-
-#### Parameters
-
-| Name         | Type                                                     |
-| :----------- | :------------------------------------------------------- |
-| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[badges.ts:245](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L245)
-
----
-
-### getMetadataForBadgeId
-
-▸ **getMetadataForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
-
-#### Parameters
-
-| Name          | Type                                                 |
-| :------------ | :--------------------------------------------------- |
-| `badgeId`     | `number`                                             |
-| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-
-#### Returns
-
-`undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
-
-#### Defined in
-
-[badges.ts:183](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L183)
-
----
-
-### getMetadataMapObjForBadgeId
-
-▸ **getMetadataMapObjForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
-
-#### Parameters
-
-| Name          | Type                                                 |
-| :------------ | :--------------------------------------------------- |
-| `badgeId`     | `number`                                             |
-| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-
-#### Returns
-
-`undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
-
-#### Defined in
-
-[badges.ts:170](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L170)
-
----
-
-### getNonTransferableDisallowedTransfers
-
-▸ **getNonTransferableDisallowedTransfers**(): `any`[]
-
-#### Returns
-
-`any`[]
-
-#### Defined in
-
-[badges.ts:105](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L105)
-
----
-
-### getSupplyByBadgeId
-
-▸ **getSupplyByBadgeId**(`badgeId`, `balances`): `number`
-
-#### Parameters
-
-| Name       | Type                                 |
-| :--------- | :----------------------------------- |
-| `badgeId`  | `number`                             |
-| `balances` | [`Balance`](interfaces/Balance.md)[] |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[balances.ts:48](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/balances.ts#L48)
-
----
-
-### getTransferListForSelectOptions
-
-▸ **getTransferListForSelectOptions**(`isFromList`, `unregistered`, `users`, `all`, `none`, `everyoneExcept`): `undefined` \| [`TransferListWithUnregisteredUsers`](interfaces/TransferListWithUnregisteredUsers.md)
-
-#### Parameters
-
-| Name             | Type                                                     |
-| :--------------- | :------------------------------------------------------- |
-| `isFromList`     | `boolean`                                                |
-| `unregistered`   | `string`[]                                               |
-| `users`          | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)[] |
-| `all`            | `boolean`                                                |
-| `none`           | `boolean`                                                |
-| `everyoneExcept` | `boolean`                                                |
-
-#### Returns
-
-`undefined` \| [`TransferListWithUnregisteredUsers`](interfaces/TransferListWithUnregisteredUsers.md)
-
-#### Defined in
-
-[transferLists.ts:36](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L36)
-
----
-
-### getTransfersFromClaimItems
-
-▸ **getTransfersFromClaimItems**(`claimItems`, `accounts`): [`TransfersExtended`](interfaces/TransfersExtended.md)[]
-
-#### Parameters
-
-| Name         | Type                                     |
-| :----------- | :--------------------------------------- |
-| `claimItems` | [`ClaimItem`](interfaces/ClaimItem.md)[] |
-| `accounts`   | [`AccountMap`](interfaces/AccountMap.md) |
-
-#### Returns
-
-[`TransfersExtended`](interfaces/TransfersExtended.md)[]
-
-#### Defined in
-
-[claims.ts:6](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/claims.ts#L6)
-
----
-
-### isAddressValid
-
-▸ **isAddressValid**(`address`, `chain?`): `boolean`
-
-#### Parameters
-
-| Name      | Type     |
-| :-------- | :------- |
-| `address` | `string` |
-| `chain?`  | `string` |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[chains.ts:55](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/chains.ts#L55)
-
----
-
-### isTransferListFull
-
-▸ **isTransferListFull**(`transfersList`): `boolean`
-
-#### Parameters
-
-| Name            | Type                                           |
-| :-------------- | :--------------------------------------------- |
-| `transfersList` | [`TransferList`](interfaces/TransferList.md)[] |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[transferLists.ts:27](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L27)
-
----
-
-### populateFieldsOfOtherBadges
-
-▸ **populateFieldsOfOtherBadges**(`individualBadgeMetadata`, `badgeIds`, `key`, `value`, `metadataToSet?`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
-
-#### Parameters
-
-| Name                      | Type                                                 |
-| :------------------------ | :--------------------------------------------------- |
-| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `badgeIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
-| `key`                     | `string`                                             |
-| `value`                   | `any`                                                |
-| `metadataToSet?`          | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
-
-#### Returns
-
-[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
-
-#### Defined in
-
-[metadata.ts:61](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/metadata.ts#L61)
-
----
-
-### updateMetadataForBadgeIdsFromIndexerIfAbsent
-
-▸ **updateMetadataForBadgeIdsFromIndexerIfAbsent**(`badgeIdsToDisplay`, `collection`): `number`[]
-
-#### Parameters
-
-| Name                | Type                                                     |
-| :------------------ | :------------------------------------------------------- |
-| `badgeIdsToDisplay` | `number`[]                                               |
-| `collection`        | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
-
-#### Returns
-
-`number`[]
-
-#### Defined in
-
-[badges.ts:264](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/badges.ts#L264)
-
----
-
-### updateMetadataMap
-
-▸ **updateMetadataMap**(`currMetadataMap`, `metadata`, `badgeIds`, `uri`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
-
-#### Parameters
-
-| Name              | Type                                                 |
-| :---------------- | :--------------------------------------------------- |
-| `currMetadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `metadata`        | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
-| `badgeIds`        | [`IdRange`](interfaces/IdRange.md)                   |
-| `uri`             | `string`                                             |
-
-#### Returns
-
-[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
-
-#### Defined in
-
-[metadata.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/metadata.ts#L5)
-
----
-
-### updateTransferListAccountNums
-
-▸ **updateTransferListAccountNums**(`accountNumber`, `remove`, `transferListAddresses`): [`Addresses`](interfaces/Addresses.md)
-
-#### Parameters
-
-| Name                    | Type                                   |
-| :---------------------- | :------------------------------------- |
-| `accountNumber`         | `number`                               |
-| `remove`                | `boolean`                              |
-| `transferListAddresses` | [`Addresses`](interfaces/Addresses.md) |
-
-#### Returns
-
-[`Addresses`](interfaces/Addresses.md)
-
-#### Defined in
-
-[transferLists.ts:5](https://github.com/trevormil/bitbadges-sdk/blob/80ff4be/src/transferLists.ts#L5)
 
 
 ## File: ./.gitbook/assets/modules.md
@@ -3540,7 +1783,7 @@ description: >-
 
 BitBadges offers tokenization-as-a-service and gating-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more. All implemented as a Cosmos module.
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure></div>
+<div data-full-width="false"><figure><img src=".gitbook/assets/image (181) (1).png" alt=""><figcaption></figcaption></figure></div>
 
 ## ❓ Why BitBadges?
 
@@ -3728,7 +1971,9 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+  * [Handling Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+  * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
     * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
     * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
@@ -3778,7 +2023,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [AI Prompt: Signing Txs](for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
@@ -3900,23 +2144,23 @@ Signature compatibility means that users from any of the above blockchain ecosys
 
 BitBadges is compatible with the wallets of each ecosystem. However, BitBadges is its own blockchain and does not pull any data from or is interoperable with any other blockchain. Everything is confined to the BitBadges blockchain.
 
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
 
 ### **Why do I see multiple equivalent addresses?**
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (88) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
-### For Developers - Handling Addresses
+### Handling Addresses in Development
 
 It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (88) (2).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
@@ -3989,7 +2233,7 @@ By default, select routes are available publicly in a rate limited manner with n
 2. Start sending requests to the base URL of [https://api.bitbadges.io/](https://api.bitbadges.io/) with the HTTP header x-api-key. All routes require an API key.
 3. For higher tiers / paid plans, visit [https://bitbadges.io/pricing](https://bitbadges.io/pricing). To actually upgrade, see the Upgrading an API Key Tier demo.
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
 ## Number Types
 
@@ -4320,21 +2564,28 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (97) (2).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (98) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (99) (2).png" alt=""><figcaption></figcaption></figure>
 
 4. Lastly, complete the form, selecting your newly created API key. Enter your email, enter promo code (if applicable), and complete the rest of the form.
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (101) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Once that form is submitted, you're ready to start building! See the [BitBadges API documentation](https://docs.bitbadges.io) for more information on how to use the BitBadges API. The new tier may take 5-10 minutes to register, so please allow some time for the changes to take effect.
+
+
+## File: ./for-developers/bitbadges-api/want-to-run-an-indexer.md
+
+# Want to run an indexer?
+
+If interested in running an indexer, please reach out! We are happy to share the code from ours.
 
 
 ## File: ./for-developers/bitbadges-blockchain/README.md
@@ -4953,7 +3204,7 @@ Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) a
 
 For testnet uploads, use testnet.bitbadges.io
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 5. Instantiate your Contract
 
@@ -5001,40 +3252,29 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 
 # Create, Generate, and Sign Txs
 
-To learn more about broadcasting transactions with Cosmos SDK, you can visit [https://docs.cosmos.network/v0.46/run-node/txs.html](https://docs.cosmos.network/v0.46/run-node/txs.html).
+There are multiple ways you can create, generate, and sign transactions.&#x20;
 
-We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.&#x20;
+* CLI: Directly interact with the blockchain node's CLI in a terminal
+* Directly via Cosmos SDK practices like Keplr signing
+* Via our SDK
 
-You can also run the BitBadges blockchain software and interact with its CLI, but this is more complicated and only supports Cosmos signatures.
+We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node and supports all wallet types (not just Cosmos-based).
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
 
 # Broadcast to a Node
 
-**Pre-Req:** You have the body variable with a valid signature (see prior pages).
-
 ### **Simulating**
 
-A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values.
-
-To do this, you can use
-
-```
-https://api.bitbadges.io/api/v0/simulate
-```
-
-**or**
+A good practice to have is to simulate the transaction before you actually broadcast and update the **fee** from the transaction context with up to date values. You can leave all signature fields empty because simulations do not check any signatures. In our signing examples (previous pages), simply set simulate = true.
 
 ```typescript
-http://URL:1317/cosmos/tx/v1beta1/simulate
+// https://api.bitbadges.io/api/v0/simulate
+const res = await BitBadgesApi.simulateTx(txBody); //Returned from signing steps
 ```
 
-This will return the gas used on a dry run of the transaction and any errors if it finds any. You can leave all signature fields empty because simulations do not check any signatures.
-
-Note this tutorial is slightly out of order for clarity, the simulation step should typically be done before the user signs, so they only have to sign the final Msg with the up to date gas.
-
-Once simulated, replace the expected gas you want in the transaction context.
+This will return the gas used and success statuses on a dry run of the transaction.
 
 ```typescript
 export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
@@ -5063,19 +3303,11 @@ export interface SimulateTxRouteSuccessResponse<T extends NumberType> {
 You can replace the URL below with any valid BitBadges blockchain node.
 
 ```typescript
-`http://URL:1317${generateEndpointBroadcast()}`;
+// https://api.bitbadges.io/api/v0/broadcast
+const res = await BitBadgesApi.broadcastTx(txBody); //Returned from signing steps
 ```
 
-Or, you can use the BitBadges API to broadcast.
-
-```typescript
-https://api.bitbadges.io/api/v0/broadcast
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>await BitBadgesApi.broadcastTx(body);
-</strong></code></pre>
-
-This will give you a response immediately. You should then use the tx\_response.txhash to view it on an explorer, query the blockchain directly, see if it had errors, and so on. The response code should be 0 for a successful transaction. We refer you to Cosmos docs for more information about each indivdual item.
+The response code should be 0 for a successful transaction.
 
 ```typescript
 export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
@@ -5115,9 +3347,7 @@ export interface BroadcastTxRouteSuccessResponse<T extends NumberType> {
 
 ### Polling
 
-Once you have the tx hash, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. You can also view it on explorers.
-
-Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
+Once you have the tx hash from above, you can poll a node until the transaction is confirmed like below. Note this is a blockchain REST API\_URL, not the BitBadges API. Use [https://lcd.bitbadges.io](https://lcd.bitbadges.io) for the BitBadges maintained node.
 
 ```typescript
 const txHash = res.data.tx_response.txhash;
@@ -5151,32 +3381,29 @@ while (!fetched) {
 return res;
 ```
 
+There are also other polling methods: websockets + parsing txs as they come through, the Cosmos SDK provides various endpoints / approaches, redirecting to explorers.
+
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md
 
 # Generate Msg Contents
 
-The first step is to know what Msg type you are trying to submit and build out the contents of the Msgs in the transaction.
-
-If you plan to use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast), the transaction building is already handled for you behind the scenes. The only applicable section below is Building the Msgs. This site is also a good reference if you want to explore the different types of messages.
-
 ### **Building the Msgs**
 
-You can build out the transaction from the exported Proto type definitions. This allows you to create transactions with multiple Msg types in one tx. It also supports all Msgs for the BitBadges blockchain (even standard Cosmos SDK ones). Note that certain NumberTypes may need to be stringified before creating a proto object.
-
-See [https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
+You can build out the transaction from the exported Proto type definitions from our SDK. This allows you to create transactions with multiple Msg types in one tx. See [here](https://github.com/BitBadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/proto) for all proto Msg definitions.
 
 ```typescript
 import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
 //proto.badges for BitBadges x/badges
-//proto.wasmx for BitBadges x/wasmx
-//proto.protocols for BitBadges x/protocols
-const ProtoMsgDeleteCollection = proto.badges.MsgDeleteCollection;
+const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
+const MsgCreateCollection = proto.badges.MsgCreateCollection;
+const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
+const MsgTransferBadges = proto.badges.MsgTransferBadges;
 
 const protoMsgs = [
-    new ProtoMsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
+    new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
     //Add more here (executed in order)
 ];
 ```
@@ -5184,18 +3411,14 @@ const protoMsgs = [
 ### Building the Transaction
 
 ```typescript
-const txContext = { ... } //See prior page
+import { TxContext, createTransactionPayload } from 'bitbadgesjs-sdk';
+
+const txContext: TxContext = { ... } //See prior page
 
 const txnPayload = createTransactionPayload(txContext, protoMsgs);
 ```
 
 The outputted payload will be in the following format.
-
-For Cosmos, you will use signDIrect.
-
-For Ethereum/Solana/Bitcoin, you will use txnString.
-
-If you stringify txnJSON and SHA256 it, you will get the content hash from the txnString.
 
 ```typescript
 export interface TransactionPayload {
@@ -5214,105 +3437,16 @@ export interface TransactionPayload {
 }
 ```
 
-### Next Steps
-
-Once you have the generated transaction, you now need to determine how you want to sign and broadcast your transaction. You have two options:
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your Msgs into. You can get the JSON string for each message with protoMsg.toJsonString(). Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs. Navigate to [Sign + Broadcast - bitbadges.io](sign-+-broadcast-bitbadges.io.md) if this is your desired option.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically. Navigate to the corresponding Signing page if this is your desired option ([Signing - Cosmos](signing-cosmos.md), [Signing - Ethereum](signing-ethereum.md), [Signing - Solana](signing-solana.md), [Signing - Bitcoin](signing-bitcoin.md)).
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
 
 # Sign + Broadcast - bitbadges.io
 
-**Option 1: Copy / Paste**
+For development, you may just want an interface to handle all of this for you. See if [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) fits your needs. You can simply copy / paste the transaction context, and our interface will handle all the signing / behind the scenes.
 
-To broadcast a Msg using this [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) user interface, all you have to do is to copy and paste the Msg contents into the text box. You should have the **txn** object from prior pages in this tutorial. Or, you can start with the samples provided and customize from there.
+This is to be used as a developer tool and not a user-facing solution.&#x20;
 
-**Option 2: Redirect**
-
-Or, if you are wanting to redirect to this page, you can pass in the stringified URL **txsInfo** query param, which will be auto-populated. It is expected to be a JSON stringified TxInfo\[].
-
-```typescript
-export interface TxInfo {
-  type: string, //'MsgCreateCollection'
-  msg: object, //JSON stringified message
-}
-```
-
-This transaction builder ONLY deals with the Msg contents and not anything about the transaction context (handled by the site behind the scenes). The interface will provide you with default examples. Make sure all properties align and no extra properties like account\_number, sequence, etc are pasted. These are handled behind the scenes.
-
-If you open via a popup, such as below, it will pass back the txHash via a window callback and auto-close upon success.
-
-```typescript
-import { proto } from 'bitbadgesjs-sdk';
-
-const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
-const msgCreateProtocol = new MsgCreateProtocol({
-  "name": "Test",
-  "uri": "https://www.youtube.com/watch?v=5qap5aO4i9A",
-  "customData": "Test",
-  "isFrozen": false,
-  "creator": chain.bitbadgesAddress
-})
-const url = 'https://bitbadges.io/dev/broadcast?txsInfo=[{ "type": "MsgCreateProtocol", "msg": ' + msgCreateProtocol.toJsonString() + ' }]';
-const openedWindow = window.open(url, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
-
-setLoading(true);
-// You can further customize the child window as needed
-openedWindow?.focus();
-
-//set listener for when the child window closes
-const timer = setInterval(() => {
-  if (openedWindow?.closed) {
-    clearInterval(timer);
-    setLoading(false);
-  }
-}, 1000);
-```
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>// bitbadges.io code
-</strong><strong>if (window.opener) {
-</strong>    window.opener.postMessage({ type: 'txSuccess', txHash: txHash }, '*');
-    window.close();
-}
-</code></pre>
-
-```typescript
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
-const FRONTEND_URL = 'https://bitbadges.io';
-const handleChildWindowMessage = async (event: MessageEvent) => {
-
-  if (event.origin === FRONTEND_URL) {
-
-    if (!event.source) {
-      throw new Error('Event source is null');
-    }
-
-    const txHash = event.data.txHash;
-    if (!txHash) {
-      //To avoid the listening to self events if we are actually on bitbadges.io and just an overall quality check
-      return
-    }
-
-
-    setLoading(false);
-  }
-};
-
-// Add a listener to handle messages from the child window
-useEffect(() => {
-  window.addEventListener('message', handleChildWindowMessage);
-
-  // Cleanup the listener when the component unmounts
-  return () => {
-    window.removeEventListener('message', handleChildWindowMessage);
-  };
-}, []);
-```
-
-<figure><img src="../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
@@ -5320,8 +3454,6 @@ useEffect(() => {
 # Signing - Bitcoin
 
 **Signing with Bitcoin - Phantom Wallet**
-
-Using the payload / context obtained from previous steps. We use the **jsonToSign** field and sign it as a personal signMessage using phantom wallet.
 
 ```typescript
 const getProvider = () => {
@@ -5341,7 +3473,7 @@ function bytesToBase64(bytes: Uint8Array) {
   return btoa(binString);
 }
 
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+const signTxn = async (context: TxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
     const bitcoinProvider = getProvider();
 
     let sig = '';
@@ -5359,16 +3491,10 @@ const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, 
 };
 ```
 
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
 
 # Signing - Cosmos
-
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
 
 #### Signing with Keplr
 
@@ -5379,9 +3505,6 @@ const signTxn = async (
     protoMsgs: any[],
     simulate: boolean
 ) => {
-    if (!account) {
-        throw new Error('Account does not exist');
-    }
     const { sender } = context;
     await window.keplr?.enable(chainId);
 
@@ -5419,48 +3542,29 @@ const signTxn = async (
 };
 ```
 
-### Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
-
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
 
 # Signing - Ethereum
 
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
-You can simply sign the **payload.txnString** with a personal\_sign. below, we use wasgmi's signMessageAsync but you can replace this with any wallet's implementation of personal\_sign.
+You can simply sign the **payload.txnString** with a personal\_sign.&#x20;
 
 ```typescript
+// Example: wagmi setup with signMessageAsync
+
 const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  const sig = simulate
-    ? ''
-    : await signMessageAsync({
-        message: payload.txnString
-      });
+  const sig = simulate ? '' : await signMessageAsync({  message: payload.txnString });
  
-  const txBody = createTxBroadcastBody(context, messages, sig);
-  return txBody;
+  return  createTxBroadcastBody(context, messages, sig);
 };
 ```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md
 
 # Signing - Solana
 
-Pre-Requisite: You have generated the transaction context, payload, and Msgs (see prior pages).
-
 **Signing with Solana - Phantom Wallet**
-
-
-
-Phantom / Solana do not allow message signatures > \~1000 bytes. To workaround this, we allow signing the SHA256 hash of the JSON in cases where payload.jsonToSign.length > 1000.
 
 ```typescript
 const getProvider = () => {
@@ -5475,14 +3579,9 @@ const getProvider = () => {
     }
 };
 
-const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
-  if (!account) throw new Error('Account not found.');
-
-  let sig = '';
+const signTxn = async (context: TxContext, payload: TransactionPayload, messages: any[], simulate: boolean) => {
+   let sig = '';
   if (!simulate) {
-    //Phantom has a weird error where messages must be < ~1000 bytes
-    //If we are within limit, we can have user sign the JSON
-    //Else, we hash the JSON and have user sign the hash
     const encodedMessage = new TextEncoder().encode(payload.txnString);
 
     const signedMessage = await getProvider().request({
@@ -5495,41 +3594,42 @@ const signTxn = async (context: ExternalTxContext, payload: TransactionPayload, 
     sig = signedMessage.signature.toString('hex');
   }
 
-  //We need to pass in solAddress manually here
+  //Note: We need to pass in the solAddress manually here
   const txBody = createTxBroadcastBody(context, messages, sig, address);
   return txBody;
 };
 ```
-
-## Output
-
-This will leave you with a variable which is to be submitted to a running blockchain node. See [Broadcast to a Node.](broadcast-to-a-node.md)
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
 
 # Transaction Context
 
-You have two options for generating, signing, and brodcasting messages.
-
-1. Use [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) - This is a visual UI that you can simply copy and paste your transaction Msg contents into or provide them in the URL parameters. Generating all additional transaction details, gas, fees, and signing is all outsourced to the user interface. This is the recommended option if you do not require programmatically submitting TXs.
-2. Generate, sign, and broadcast directly to a running blockchain node. This is more technical and has more steps but can be done programmatically.
-
-If you plan to use Option 1, you may proceed to the next page because generating the transaction context is already handled via the user interface.
-
-If you plan to use option 2, see below.
-
-### Generating Transaction Context
-
-The first step is to fetch and identify the transaction context and the account details for who is going to sign. You will need the following information below.
-
-Pre-Reqs: For a user who has not yet interacted with the blockchain, the fetched public key will be null and accountNumber will be -1. To get an account number, they need to receive BADGE somehow (this is also a pre-requisite to pay for any fees).
+For the signer, you will need their address, sequence, and account number. This can be done via our API like below or you can query directly via a blockchain node.
 
 ```typescript
-import { createTxMsgSend, SupportedChain } from 'bitbadgesjs-sdk';
+// https://api.bitbadges.io/api/v0/user?address=0x
+const res = await BitBadgesApi.getAccount({ address: '...' });
+const account = res.account;
+const { accountNumber, sequence, publicKey } = account; 
+if (Number(accountNumber) <= 0) {
+  // TODO: They are unregistered. Send them dust to register.
+}
+```
 
-//TODO: Fetch the account details (see below)
+If you are signing with a Cosmos-based wallet, you will need the public key as well. All others (ETH, SOL, BTC) do not require this. This may be available in the account response if the user has already interacted with BitBadges, but if this is first time, you can fetch it like below.
 
+```typescript
+const getPublicKey = async () => {
+    const account = await window?.keplr?.getKey('bitbadges-1');
+    if (!account) return '';
+    return Buffer.from(account.pubKey).toString('base64');
+};
+```
+
+Then, generate the context.
+
+```typescript
 //Pre-Reqs: Ensure users are registered (i.e. have a valid account number) or else this will fail
 const txContext = {
     testnet: false,
@@ -5538,7 +3638,7 @@ const txContext = {
         address: account.address,
         sequence: account.sequence,
         accountNumber: account.accountNumber,
-        //Public key is only needed for Cosmos native signatures (see below). '' if non-Cosmos
+        //Public key is only needed for Cosmos native signatures. Leave "" if not.
         publicKey: account.publicKey,
     },
     //TODO: adjust accordingly
@@ -5551,31 +3651,30 @@ const txContext = {
 };
 ```
 
-**Get Public Key - Cosmos**
+**Fee Generation**
 
-For Keplr / Cosmos, you will need to specify the public key in the txContext. You can simply use getKey() then convert to base64.
+Oftentimes, transactions will not require fees depending on network congestion.
 
-Note: It will also be returned with the account details from the BitBadges API (if the user has interacted with the chain before via a signature).
+We leave this up to you to implement. You can get the gas used from simulating the transaction (see later in this tutorial). For our frontend, we currently use a base gas price of 0.025 per unit.
 
 ```typescript
-const getPublicKey = async () => {
-    const account = await window?.keplr?.getKey('bitbadges-1');
-    if (!account) return '';
-    return Buffer.from(account.pubKey).toString('base64');
-};
+const baseGasPrice = 0.025; 
+const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 ```
 
-**Fee**
+**Local Wallet Generation**
 
-Generating the fee can be tricky. It should be reasonable for the current gas prices but also not too expensive. To get the **gas**, we recommend simulating the transaction right before broadcasting to see how much gas it uses on a dry run. We will walk you through how to do this in the broadcast tutorial. You can also fetch the estimated gas prices via the BitBadgesApi.getStatus() route.
+If you simply want to create and fund a wallet for local scripts, go ahead. BitBadges is compatible with any wallet, as long as you can sign the transactions. For example, use ethers to generate a wallet, get the address, then fund it.&#x20;
 
-**Sender Details**
+```typescript
+import { ethers } from 'ethers';
 
-To fetch a user's account details, the easiest way is to use the routes from the BitBadges API in [API Documentation](../../bitbadges-api/). You can also query a node directly.
-
-This will return the user's BitBadges address, account ID, sequence (nonce), and public key. If the user has previously interacted with the blockchain, all this information will already be populated.
-
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+// Create a random wallet
+const ethWallet = ethers.Wallet.createRandom();
+console.log('Address:', ethWallet.address);
+console.log('Private Key:', ethWallet.privateKey);
+console.log('Mnemonic:', ethWallet.mnemonic.phrase);
+```
 
 
 ## File: ./for-developers/bitbadges-blockchain/overview.md
@@ -5725,7 +3824,7 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (129) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -6426,24 +4525,24 @@ This directory contains boilerplate prompts for AI agents to effectively work wi
 
 A comprehensive guide for AI agents to parse and understand the BitBadges documentation structure. This prompt provides:
 
--   Complete documentation structure overview
--   Key files to reference for different topics
--   Instructions for cross-referencing related concepts
--   Response format guidelines
--   Examples of how to use documentation effectively
+* Complete documentation structure overview
+* Key files to reference for different topics
+* Instructions for cross-referencing related concepts
+* Response format guidelines
+* Examples of how to use documentation effectively
 
 ### [SDK Setup and Usage Guide](sdk-setup-and-usage.md)
 
 A detailed guide for AI agents to help users with BitBadges SDK integration. This prompt covers:
 
--   SDK installation and setup
--   Core SDK components (types, arrays, proto types)
--   Common patterns and best practices
--   API integration examples
--   Troubleshooting common issues
--   Framework-specific integration examples
+* SDK installation and setup
+* Core SDK components (types, arrays, proto types)
+* Common patterns and best practices
+* API integration examples
+* Troubleshooting common issues
+* Framework-specific integration examples
 
-### [Signing a Transaction](signing-a-transaction.md)
+### [Signing a Transaction](broken-reference)
 
 A comprehensive guide for creating, funding, and signing transactions for the BitBadges blockchain using Ethereum-compatible wallets and the BitBadges SDK.
 
@@ -6451,12 +4550,12 @@ A comprehensive guide for creating, funding, and signing transactions for the Bi
 
 A comprehensive step-by-step guide for building BitBadges collection approval JSON templates. This prompt provides:
 
--   13-step approval building process
--   Reserved address list ID explanations
--   Detailed questions for each approval component
--   Complete JSON templates and examples
--   Common approval patterns (Mint, Transferable, Burnable)
--   Important validation and best practices
+* 13-step approval building process
+* Reserved address list ID explanations
+* Detailed questions for each approval component
+* Complete JSON templates and examples
+* Common approval patterns (Mint, Transferable, Burnable)
+* Important validation and best practices
 
 ## Usage Instructions
 
@@ -6472,18 +4571,18 @@ These prompts are designed to be used as system prompts or context for AI agents
 
 These prompts can be customized based on specific use cases:
 
--   **Documentation Focus**: Use the documentation parsing prompt for questions about BitBadges concepts and features
--   **Development Focus**: Use the SDK setup prompt for implementation and coding questions
--   **Transaction Focus**: Use the signing prompt for blockchain interaction questions
+* **Documentation Focus**: Use the documentation parsing prompt for questions about BitBadges concepts and features
+* **Development Focus**: Use the SDK setup prompt for implementation and coding questions
+* **Transaction Focus**: Use the signing prompt for blockchain interaction questions
 
 ## Integration
 
 These prompts work well with:
 
--   **ChatGPT**: Use as system prompts for specialized BitBadges assistance
--   **Claude**: Provide context for BitBadges development questions
--   **Custom AI Agents**: Build specialized BitBadges AI assistants
--   **Documentation Bots**: Create automated documentation helpers
+* **ChatGPT**: Use as system prompts for specialized BitBadges assistance
+* **Claude**: Provide context for BitBadges development questions
+* **Custom AI Agents**: Build specialized BitBadges AI assistants
+* **Documentation Bots**: Create automated documentation helpers
 
 
 ## File: ./for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md
@@ -7695,366 +5794,6 @@ try {
 Remember: The BitBadges SDK is designed to be comprehensive and type-safe. Always refer to the official documentation and use the provided types for the best development experience.
 
 
-## File: ./for-developers/bitbadges-x-ai/prompts/signing-a-transaction.md
-
-# Signing a Transaction
-
-## BitBadges Transaction Signing and Generation Guide
-
-This guide explains how to create, fund, and sign transactions for the BitBadges blockchain using Ethereum-compatible wallets and the BitBadges SDK.
-
-### Prerequisites
-
-```bash
-npm install @cosmjs/crypto @cosmjs/proto-signing @cosmjs/stargate
-npm install bitbadgesjs-sdk ethers
-```
-
-### Step 1: Create ETH Wallet
-
-There are several ways to create an Ethereum wallet for BitBadges transactions:
-
-#### Option A: Create Random Wallet
-
-```javascript
-import { ethers } from 'ethers';
-
-// Create a random wallet
-const ethWallet = ethers.Wallet.createRandom();
-console.log('Address:', ethWallet.address);
-console.log('Private Key:', ethWallet.privateKey);
-console.log('Mnemonic:', ethWallet.mnemonic.phrase);
-```
-
-#### Option B: From Existing Mnemonic
-
-```javascript
-import { ethers } from 'ethers';
-
-const mnemonic = 'your twelve word mnemonic phrase here';
-const ethWallet = ethers.Wallet.fromMnemonic(mnemonic);
-```
-
-#### Option C: From Private Key
-
-```javascript
-import { ethers } from 'ethers';
-
-const privateKey = '0x...'; // Your private key
-const ethWallet = new ethers.Wallet(privateKey);
-```
-
-### Step 2: Fund the Wallet
-
-#### Option A: Using Cosmos SDK Direct Transfer (Requires Funded Account)
-
-The easiest way to do this is through the BitBadges website. If you want to do it programmatically, you can do so via the snippet below.
-
-```javascript
-import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
-import { SigningStargateClient } from '@cosmjs/stargate';
-import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
-
-// If you have a funded mnemonic account
-const fromMnemonic = 'your funded account mnemonic';
-const wallet = await DirectSecp256k1HdWallet.fromMnemonic(fromMnemonic);
-const [firstAccount] = await wallet.getAccounts();
-
-// Connect to BitBadges RPC
-const rpcUrl = 'https://rpc.bitbadges.io'; // or your preferred RPC
-const signingClient = await SigningStargateClient.connectWithSigner(
-    rpcUrl,
-    wallet
-);
-
-// Transfer tokens to your new wallet
-const amount = {
-    denom: 'ubadge', // BitBadges native token
-    amount: '1000000', // Amount in micro-units
-};
-
-const fee = {
-    amount: [{ denom: 'ubadge', amount: '5000' }],
-    gas: '200000',
-};
-
-const result = await signingClient.sendTokens(
-    firstAccount.address,
-    convertToBitBadgesAddress(ethWallet.address),
-    [amount],
-    fee
-);
-```
-
-### Step 3: Get Current Account Number and Sequence
-
-#### Option A: Using Cosmos RPC Query
-
-```javascript
-import { SigningStargateClient } from '@cosmjs/stargate';
-import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
-
-const rpcUrl = 'https://rpc.bitbadges.io';
-const client = await SigningStargateClient.connect(rpcUrl);
-
-const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
-const account = await client.getAccount(bitbadgesAddress);
-
-if (!account) {
-    throw new Error('Account not found - ensure it has been funded');
-}
-
-console.log('Account Number:', account.accountNumber);
-console.log('Sequence:', account.sequence);
-```
-
-#### Option B: Direct REST API Query
-
-```javascript
-const bitbadgesAddress = convertToBitBadgesAddress(ethWallet.address);
-const restUrl = `https://lcd.bitbadges.io/cosmos/auth/v1beta1/accounts/${bitbadgesAddress}`;
-
-const response = await fetch(restUrl);
-const data = await response.json();
-
-const accountNumber = data.account.account_number;
-const sequence = data.account.sequence;
-```
-
-### Step 4: Generate Transaction Payload
-
-#### Get Public Key First
-
-For Ethereum signatures, this is automatically detected via the SDK, so you do not need to pre-generate.
-
-```javascript
-const base64PubKey = '';
-```
-
-#### Create Transaction Context
-
-```javascript
-import {
-    createTransactionPayload,
-    convertToBitBadgesAddress,
-    Numberify,
-} from 'bitbadgesjs-sdk';
-
-const sender = {
-    address: ethWallet.address, // Ethereum address - not BitBadges address
-    sequence: sequence,
-    accountNumber: Numberify(accountNumber),
-    pubkey: base64PubKey,
-    publicKey: base64PubKey,
-};
-
-const txContext = {
-    testnet: false,
-    sender,
-    memo: 'My BitBadges transaction',
-    fee: {
-        denom: 'ubadge',
-        amount: '5000',
-        gas: '200000',
-    },
-};
-```
-
-#### Create Transaction Messages
-
-Refer to the proto definitions for all transaction types available. Standard Cosmos messages are also supported.
-
-[https://github.com/BitBadges/bitbadgeschain/tree/master/proto](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
-
-[https://bitbadges.github.io/bitbadgesjs/modules/proto.html](https://bitbadges.github.io/bitbadgesjs/modules/proto.html)
-
-```javascript
-import { badges } from 'bitbadgesjs-sdk';
-
-// Example: Create a collection
-const createCollectionMsg = new badges.MsgUniversalUpdateCollection({
-    creator: convertToBitBadgesAddress(ethWallet.address),
-    collectionId: '0', // 0 for new collection
-    badgesToCreate: [
-        {
-            amount: '100',
-            badgeIds: [{ start: '1', end: '100' }],
-        },
-    ],
-    managerTimeline: [
-        {
-            manager: convertToBitBadgesAddress(ethWallet.address),
-            timelineTimes: [
-                { start: '1', end: Number.MAX_SAFE_INTEGER.toString() },
-            ],
-        },
-    ],
-    updateManagerTimeline: true,
-    updateBadgeMetadataTimeline: true,
-    updateCollectionMetadataTimeline: true,
-});
-
-// Example: Transfer tokens
-const transferMsg = new badges.MsgTransferBadges({
-    creator: convertToBitBadgesAddress(ethWallet.address),
-    collectionId: '1',
-    transfers: [
-        {
-            from: convertToBitBadgesAddress(ethWallet.address),
-            toAddresses: ['bb1recipient...'],
-            balances: [
-                {
-                    amount: '1',
-                    badgeIds: [{ start: '1', end: '1' }],
-                    ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
-                    ],
-                },
-            ],
-        },
-    ],
-});
-
-const messages = [createCollectionMsg]; // Add your messages here
-```
-
-#### Generate Transaction Payload
-
-```javascript
-const txPayload = createTransactionPayload(txContext, messages);
-
-if (!txPayload.txnString) {
-    throw new Error('Failed to generate transaction payload');
-}
-
-console.log('Transaction to sign:', txPayload.txnString);
-```
-
-### Step 5: Simulate Transaction
-
-```typescript
-import { createTxBroadcastBody } from 'bitbadgesjs-sdk';
-
-const simulationBroadcastBody = createTxBroadcastBody(txContext, messages, '');
-```
-
-#### Option A: Using BitBadges API Simulation Endpoint
-
-```javascript
-const simulateUrl = 'https://api.bitbadges.io/api/v0/simulate';
-
-const simulationResponse = await fetch(simulateUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        tx_bytes: simulationBroadcastBody.tx_bytes,
-        // Some APIs accept the full broadcast body for simulation
-        ...simulationBroadcastBody,
-    }),
-});
-
-const simulationResult = await simulationResponse.json();
-
-if (simulationResult.error) {
-    throw new Error(`Simulation failed: ${simulationResult.error}`);
-}
-
-// Extract gas used from simulation
-const gasUsed = simulationResult.gas_info?.gas_used || simulationResult.gasUsed;
-const gasWanted =
-    simulationResult.gas_info?.gas_wanted || simulationResult.gasWanted;
-
-console.log('Simulation successful!');
-console.log('Gas used:', gasUsed);
-console.log('Gas wanted:', gasWanted);
-```
-
-#### Option B: Using Cosmos REST API Simulation
-
-```javascript
-const restSimulateUrl = 'https://rest.bitbadges.io/cosmos/tx/v1beta1/simulate';
-
-const restSimulationResponse = await fetch(restSimulateUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        tx_bytes: simulationBroadcastBody.tx_bytes,
-    }),
-});
-
-const restSimulationResult = await restSimulationResponse.json();
-
-if (restSimulationResult.code && restSimulationResult.code !== 0) {
-    throw new Error(`Simulation failed: ${restSimulationResult.raw_log}`);
-}
-
-const gasInfo = restSimulationResult.gas_info;
-console.log('Gas used:', gasInfo.gas_used);
-console.log('Gas wanted:', gasInfo.gas_wanted);
-```
-
-### Step 6: Sign and Broadcast Transaction
-
-Note: Before signing and broadcasting, you will want to fix errors from the simulation and most likely adjust gas usage dynamically.
-
-#### Sign the Transaction
-
-```javascript
-import { createTxBroadcastBody } from 'bitbadgesjs-sdk';
-
-// Sign the transaction string with your Ethereum wallet
-const signature = await ethWallet.signMessage(txPayload.txnString);
-
-// Create the broadcast body
-const broadcastBody = createTxBroadcastBody(txContext, messages, signature);
-```
-
-#### Broadcast the Transaction
-
-```javascript
-// Option A: Using BitBadges API
-const broadcastUrl = 'https://api.bitbadges.io/api/v0/broadcast';
-const response = await fetch(broadcastUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(broadcastBody),
-});
-
-const result = await response.json();
-console.log('Transaction hash:', result.txhash);
-
-// Option B: Using Cosmos RPC directly
-const rpcBroadcastUrl = 'https://rpc.bitbadges.io/broadcast_tx_sync';
-const rpcResponse = await fetch(rpcBroadcastUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        jsonrpc: '2.0',
-        id: 1,
-        method: 'broadcast_tx_sync',
-        params: {
-            tx: broadcastBody.tx_bytes,
-        },
-    }),
-});
-```
-
-### Important Notes
-
-1. **Testnet vs Mainnet**: Ensure you're using the correct RPC URLs and chain IDs
-2. **Gas Estimation**: Always estimate gas properly for complex transactions
-3. **Sequence Management**: Increment sequence for each transaction from the same account
-4. **Error Handling**: Always implement proper error handling for network calls
-5. **Security**: Never expose private keys or mnemonics in production code
-
-### Common Issues
-
--   **Account not found**: Ensure the account has been funded at least once
--   **Sequence mismatch**: Query the latest sequence before each transaction
--   **Insufficient gas**: Increase gas limit for complex transactions
--   **Invalid signature**: Ensure the public key extraction and signing process is correct
-
-
 ## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
 
 # Integrate with Zapier
@@ -8073,12 +5812,12 @@ To do this, you **MUST** get the users' crypto addresses somehow before the acti
 
 We want to note that functionality is slightly different for tokens with on-chain balances as opposed to off-chain claims.
 
--   On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
--   Off-Chain Claims: For off-chain claim types, there is no reservation process. The claims are automatically completed. 
+* On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
+* Off-Chain Claims: For off-chain claim types, there is no reservation process. The claims are automatically completed.
 
 You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (146) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create the Claim
 
@@ -8086,7 +5825,7 @@ The first step is to create the claim via the Bitbadges site; however, note that
 
 Note: Many in-site plugins may become incompatible due to the user not completing in-site. However, you gain access to any custom trigger from 7000+ apps on Zapier.
 
-<figure><img src="../../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (368).png" alt=""><figcaption></figcaption></figure>
 
 ## Tutorial
 
@@ -8096,11 +5835,11 @@ Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/).
 
 Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
 
 Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
 
-<figure><img src="../../../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (280).png" alt=""><figcaption></figcaption></figure>
 
 You can get the claim information from the form when you are creating the claim.
 
@@ -8129,7 +5868,7 @@ Zapier is an online automation tool that connects your favorite apps, such as Gm
 
 See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
 
-<figure><img src="../../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (245).png" alt=""><figcaption></figcaption></figure>
 
 **How does Zapier x BitBadges work?**
 
@@ -8140,11 +5879,11 @@ Couple ways:
 * Dynamic stores can be implemented with automatic updates of the list
 * Claim infomration like codes can be automatically distributed to users
 
-<figure><img src="../../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (369).png" alt=""><figcaption></figcaption></figure>
 
-When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action  (claim a token, distribute a code, add to dynamic store).
+When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action (claim a token, distribute a code, add to dynamic store).
 
-<figure><img src="../../../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Error Handling**
 
@@ -8154,7 +5893,7 @@ Similarly, if you are triggering a Zap during a claim's execution, there is no g
 
 ## Triggers
 
-The custom trigger step is left up to you to implement from any of the 7000+ app integrations.&#x20;
+The custom trigger step is left up to you to implement from any of the 7000+ app integrations.
 
 ## **Actions**
 
@@ -8173,14 +5912,13 @@ With the claim or action step of the automated flow, you have a couple options d
 
 # Automate Any Part of the Process
 
-You can also get creative and customize other parts of the claim too, like the distribution of secret information like codes.&#x20;
+You can also get creative and customize other parts of the claim too, like the distribution of secret information like codes.
 
-<figure><img src="../../../../.gitbook/assets/image (196).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (369).png" alt=""><figcaption></figcaption></figure>
 
 You can send the claim code, for example, via the Email by Zapier Plugin or Gmail plugin, and once the user receives the email, they can log on to the BitBadges site and select their address to receive the tokens for when claiming.
 
-<figure><img src="../../../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md
@@ -8191,7 +5929,7 @@ You can send the claim code, for example, via the Email by Zapier Plugin or Gmai
 
 The easiest way is to simply create a Zap using the Google Forms and BitBadges integrations. See the link below for a full tutorial.
 
-<figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (318).png" alt=""><figcaption></figcaption></figure>
 
 {% content-ref url="./" %}
 [.](./)
@@ -8219,7 +5957,7 @@ This guide will walk you through setting up a Google Form to generate unique cla
 * In your Google Form, click on the three dots in the upper right corner.
 * Select Script editor.
 
-<figure><img src="../../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
 
 #### 3. Add the Script
 
@@ -8265,7 +6003,7 @@ function setCustomConfirmation(form, code) {
 * Select Batch.
 * Copy the seed code.
 
-<figure><img src="../../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (312).png" alt=""><figcaption></figcaption></figure>
 
 #### 4. Set Up the Trigger
 
@@ -8277,9 +6015,9 @@ function setCustomConfirmation(form, code) {
   * Select event source: From form
   * Select event type: On form submit
 
-<figure><img src="../../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (313).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (137).png" alt="" width="554"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (310).png" alt="" width="554"><figcaption></figcaption></figure>
 
 #### 5. Save and Close
 
@@ -8308,7 +6046,7 @@ We refer you [here](../dynamic-stores/adding-data.md) for more information.&#x20
 
 Zaps to add users to a dynamic store may be the most common use case for the BitBadges Zapier integration, notably because they can operate without crypto addresses in favor of emails. You can simply just use the Zap to parse email or user ID or username -> add to the store and let BitBadges handle the rest of the crypto-native stuff.
 
-<figure><img src="../../../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (348).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md
@@ -8321,7 +6059,7 @@ Leverage Zapier AI actions to build cool use cases with BitBadges x AI. This is 
 [leveraging-ai.md](../leveraging-ai.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/automate-w-zapier/post-success-zaps.md
@@ -8341,19 +6079,19 @@ For this tutorial, we will showcase Option 1 (recommended):
 
 1. Setup your Zap (in the Zapier interface) with Webhooks by Zapier and catch a POST request
 
-<figure><img src="../../../.gitbook/assets/image (204).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (377).png" alt=""><figcaption></figcaption></figure>
 
 2. Configure your Post-Success Zapier Webhook plugin in the BitBadges site. Add the webhook URL it gives you from Step 1. For Zapier, the validation secret is not as important, but you can additionally add a step to check it within the Zap. The JSON preview it shows you will give you all the available fields you can use.
 
-<figure><img src="../../../.gitbook/assets/image (207).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (380).png" alt=""><figcaption></figcaption></figure>
 
 3. Use the Send Test Request in the BitBadges site to complete the test / simulation step in your Zap.
 
-<figure><img src="../../../.gitbook/assets/image (205).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (378).png" alt=""><figcaption></figcaption></figure>
 
 4. Configure your action with any app and dynamically replace values where needed. For example, if your action is an outbound send email, you will need to parse the email from the webhook and automatically populate the recipient address for the email.
 
-<figure><img src="../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (379).png" alt=""><figcaption></figcaption></figure>
 
 5. Setup the rest of your Zap, create the claim, and you are good to go!
 
@@ -8368,11 +6106,11 @@ For this tutorial, we will showcase Option 1 (recommended):
 
 # Auto-Complete Claims w/ BitBadges API
 
-Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.&#x20;
+Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.
 
 Typically, we recommend making a custom webhook / plugin over this. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Auto-Completion
 
@@ -8390,7 +6128,7 @@ console.log(res); // { success: true }
 
 When creating on the BitBadges site, go to the API Code tab, and you should see code snippets customized to your claim.
 
-<figure><img src="../../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (292).png" alt=""><figcaption></figcaption></figure>
 
 Couple notes with auto-completing claims:
 
@@ -8459,7 +6197,7 @@ const claimsRes = await BitBadgesApi.getClaim({
 });
 ```
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (74) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md
@@ -8502,11 +6240,11 @@ Note: If you are receiving a post-success webhook, you already know the claim ha
 
 This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
 
 Use one of the plugins pictured below or a custom plugin to do so when setting up your claim.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 **More Advanced Ways**
 
@@ -8684,7 +6422,7 @@ You can:
 [dynamic-stores](dynamic-stores/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Custom Webhooks / Plugins
 
@@ -8698,7 +6436,7 @@ Be mindful though that if you are checking criteria, you should have verificatio
 [plugins](plugins/)
 {% endcontent-ref %}
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
 ## Auto-Completion
 
@@ -8715,7 +6453,7 @@ With BitBadges claims, you will have a couple ways of completing claims. Note on
 
 Users can claim directly on the corresponding page directly in the BitBadges site. We envision this is to be used for almost all cases. Custom logic can be implemented through custom plugins or webhooks or other means.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (84) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Auto-Claim by Zapier**
 
@@ -8723,7 +6461,7 @@ You can can extend BitBadges Claims with our custom Zapier integration that allo
 
 For example, make a purchase on Shopify -> get allocated a token or complete a course on Udemy -> get a completion token. The "airdrop" is a claim completion.
 
-<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
 
 Note: Zapier can also be used to automate other parts of the claim, like specific plugins or implementing post-claim rewards.
 
@@ -8754,7 +6492,7 @@ The typical approach (used for Zapier and other examples) is to disable all user
 
 Because the authentication check is disabled, you can specify any claiming address. However, note that this disables the authentication check for everyone. You must gate the claim in other ways (like the password).
 
-<figure><img src="../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (360).png" alt=""><figcaption></figcaption></figure>
 
 **OAuth - Complete Claim Scope**
 
@@ -8771,13 +6509,13 @@ Or, you could also be authorized to complete claims on behalf of the user via th
 
 # Claim Numbers
 
-By default, we use an incrementing claim number system for standard claims. For example, claim #1, then claim #2, etc.&#x20;
+By default, we use an incrementing claim number system for standard claims. For example, claim #1, then claim #2, etc.
 
 However, certain implementations may custom assign claim numbers, which can be used to implement custom logic, such as distributing specific tokens.
 
 Only one plugin is allowed to assign claim numbers which is determined by the **assignMethod** of the claim. If the assignMethod === a plugin's unique instance ID, we allow it to assign claim numbers.
 
-<figure><img src="../../../.gitbook/assets/image (186).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (359).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/gating-badge-distribution.md
@@ -8799,13 +6537,13 @@ Do you identify your users by emails or a supported social username?
 
 Select one of the webhook plugins (or forms for serverless) when setting up your claim. This will set you up to be able to track and maintain a map of (attempt ID / address) -> user socials or emails, enabling you to continue identifying your users how you already do!
 
-Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) verify the claim. In this instance, step 1 would be authenticating the user email / social on your end if needed.&#x20;
+Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) verify the claim. In this instance, step 1 would be authenticating the user email / social on your end if needed.
 
 {% content-ref url="../plugins/creating-a-custom-plugin/alternatives.md" %}
 [alternatives.md](../plugins/creating-a-custom-plugin/alternatives.md)
 {% endcontent-ref %}
 
-<figure><img src="../../../.gitbook/assets/image (225).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
@@ -8814,7 +6552,7 @@ Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) ver
 
 To require the user to be signed in, select the Signed In to BitBadges plugin. If not selected, we allow any address to be manually entered without address verification or sign in requirements. However, disabling "Signed In with BitBadges" allows any user to claim on another's behalf. Make sure this is intended and all other criteria properly gates the claim.
 
-By not including a sign-in requirement, this makes the user experience better (no signatures). This is also helpful on mobile or other places where users may not have access to their wallets. However, this can be mitigated with approved sign-ins or other approaches like embedded wallets, but those require prior setup. 
+By not including a sign-in requirement, this makes the user experience better (no signatures). This is also helpful on mobile or other places where users may not have access to their wallets. However, this can be mitigated with approved sign-ins or other approaches like embedded wallets, but those require prior setup.
 
 **Auto-Completing Claims**
 
@@ -8823,7 +6561,7 @@ If you are planning to auto complete claims behind the scenes via the API or via
 1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have the Complete Claims ("completeClaims") scope.
 2. Disable + Gate In Another Way - For example, our Zapier flow does not check user sign in but gates with a password that only Zapier knows.
 
-<figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (371).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/standard-vs-on-demand.md
@@ -8837,7 +6575,7 @@ Claims, at their core, are just criteria checks, but there are two ways we can c
 * Can maintain statefulness
 * Ledger of users who have claimed
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (77) (1).png" alt=""><figcaption></figcaption></figure>
 
 The second is on-demand (sometimes described as non-indexed). These are a special type of claim that has unique properties. Notably, they are autonomous, self-contained, can be fetched on-demand, stateless, does not require any user inputs, sessions, and can function with just a user address / creator parameters.
 
@@ -8852,7 +6590,7 @@ The critieria is not indexed anywhere but rather calculated on-demand.
 
 For example, checking a minimum balance of BADGE is safe to use on-demand because we always know a user's balance at any given time wihtout user interaction and just their address. Another common on-demand check is token ownership as shown below.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/concepts/universal-approach-claim-codes.md
@@ -8934,7 +6672,7 @@ await BitBadgesApi.performBatchStoreAction(...)
 
 If you want to use the BitBadges API to send hooks / POST requests to, you can do so manually. We refer you to the interface in the developer portal for getting the exact route / body you might need.
 
-<figure><img src="../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (346).png" alt=""><figcaption></figcaption></figure>
 
 **Method 3: Zapier**
 
@@ -8947,9 +6685,9 @@ Typically, you will want to field map data from your trigger (e.g. Eventbrite at
 
 You may notice that we have a few different identifier fields (email, address, id, username). Leave the ones you don't need blank. Which field you populate should correspond to the store type you have created.
 
-<figure><img src="../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (349).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (347).png" alt=""><figcaption></figcaption></figure>
 
 You can also use the Zapier approach to check criteria as well. For example,
 
@@ -8992,6 +6730,7 @@ Once your store is created, you can add users / data to it. Note that we add via
 **Attach to a Claim**
 
 The interface should walk you through the process of attaching it to a claim:
+
 1. Directly in claim builder, you should see your stores in the templates section
 2. In the stores tab, click Create Claim for a one-click create a claim which is auto-configured
 3. Add the corresponding plugin (email for email stores) and add the store in the parameters select
@@ -9019,14 +6758,14 @@ When creating your store, you will get a store ID and secret. These are to be pr
 
 **4. Not Address Dependent**
 
-* All accounting for claims and other BitBadges services is done primarily with crypto addresses. For example, to complete a claim, you need to specify a claiming address. However, many apps and services do not have such a link from user ID on the app -> crypto address.&#x20;
-  * This approach allows you to not need to worry about addresses and only the app identifiers / emails. BitBadges handles the rest.&#x20;
+* All accounting for claims and other BitBadges services is done primarily with crypto addresses. For example, to complete a claim, you need to specify a claiming address. However, many apps and services do not have such a link from user ID on the app -> crypto address.
+  * This approach allows you to not need to worry about addresses and only the app identifiers / emails. BitBadges handles the rest.
 
-<figure><img src="../../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (395).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (341).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (223).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (396).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/implementing-custom-utility.md
@@ -9039,7 +6778,7 @@ Need to perform some additional action upon the user claiming successfully?
 
 The easiest and most typical approach is to just do this with preconfigured plugins. No code required. Many use cases are already implemented for you and will auto execute for you if configured. For example, the Send BitBadges Notification plugin or Assign Discord Role.
 
-<figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (362).png" alt=""><figcaption></figcaption></figure>
 
 ## **Integrations**
 
@@ -9051,7 +6790,7 @@ When creating rewards on the claim builder page, you can also link gated content
 
 You may want additional authentication depending on your tolerance level. You can even consider this in-site URL to initially be a Sign In with BitBadges URL here with eventual redirect support to your destination URL. Authentication becomes streamlined this way.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Use the BitBadges API
 
@@ -9067,7 +6806,7 @@ If you want to automate this process, consider using Zapier to auto-execute logi
 
 For example, new claim -> add to Mailchimp list or add to Google Sheets.
 
-<figure><img src="../../.gitbook/assets/image (219).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (392).png" alt=""><figcaption></figcaption></figure>
 
 {% content-ref url="automate-w-zapier/post-success-zaps.md" %}
 [post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
@@ -9075,13 +6814,13 @@ For example, new claim -> add to Mailchimp list or add to Google Sheets.
 
 ## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
 
-<figure><img src="../../.gitbook/assets/image (217).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
 
 Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
 
-<figure><img src="../../.gitbook/assets/image (218).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/integrate-with-pipedream/README.md
@@ -9143,7 +6882,7 @@ Your frontend URL or connect URL can be configured in the tutorial / user input 
 
 Or, alternatives including adding custom instructions or developing a configuration tool.
 
-<figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (384).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md
@@ -9158,7 +6897,7 @@ With user authentication, you will need your users to go through the Pipedream C
 
 See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (50) (1).png" alt=""><figcaption></figcaption></figure>
 
 We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
 
@@ -9250,7 +6989,7 @@ https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={a
 
 Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
 For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
 
@@ -9265,11 +7004,11 @@ Below, we will explain at a high level and will skip over some lower level detai
    1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
 4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (52) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
 
 6. The workflow setup is now complete. The workflow will be triggered upon the HTTP request. It will then use the provided `external_user_id`and execute the claim criteria checks from your configured apps and finally, it will complete a BitBadges claim or add to a dynamic store as the final action properly gating the claim.
 
@@ -9385,7 +7124,7 @@ export default defineComponent({
  ...
 ```
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -9445,7 +7184,7 @@ export default defineComponent({
 
 # Complete Claim
 
-To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed. &#x20;
+To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed.
 
 The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}. You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
 
@@ -9455,7 +7194,7 @@ This is the approach we use for automation workflows. We remove any sign in requ
 62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (55) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import { axios } from "@pipedream/platform";
@@ -9635,9 +7374,9 @@ export default defineComponent({
 
 For polling claim attempts, we recommend that you jsut set up a custom success webhook with the HTTP trigger on Pipedream. This can be directly configured into your workflow by just adding the POST endpoint URL it gives you.
 
-<figure><img src="../../../../.gitbook/assets/image (212).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (385).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (213).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (386).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/leveraging-ai.md
@@ -9650,9 +7389,9 @@ A great way to implement both criteria and utility is through AI models and agen
 
 On the reward side, simply set up a post-success claim, receive any user identifiers or inputs needed, and trigger your actions. This can be custom webhooks to any model or service of your choice (Pipedream Connect / MCP, Zapier MCP, anything!), and we also have an in-site plugin for you to use the Zapier AI Actions / MCP service!
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>
 
 **Criteria Side**
 
@@ -9664,7 +7403,7 @@ On the criteria side, this is recommended to follow the dynamic stores approach.
 
 This is left open-ended. You could leverage Zapier AI Actions / MCP and the BitBadges integration to do this automatically.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 import fetch from 'node-fetch';
@@ -9748,14 +7487,14 @@ This guide will walk you through the process of adding the BitBadges bot (@bitba
 
 To get your discord server ID, this can be done by right clicking on the  server -> Copy Server ID,
 
-<figure><img src="../../../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md
 
 # Get Discord User ID
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md
@@ -9777,8 +7516,7 @@ The best way to get started with a tutorial is to use the Claim Tester in-site, 
 
 If you need to see the resulting claim JSON (for advanced implementations), you can also see this in-site under the JSON tab of the claim details.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../../.gitbook/assets/image (63) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/overview.md
@@ -9789,7 +7527,7 @@ If you need to see the resulting claim JSON (for advanced implementations), you 
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **How do claims work? What are plugins?**
 
@@ -9820,7 +7558,7 @@ Most of the time, you can directly do everything without a line of code. Get cre
 
 Claims are the universal connector. You can not only check criteria from any BitBadges service (token ownership, >100 points) but also use claims on the reward side (gate mints, award points).
 
-<figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (393).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/README.md
@@ -9850,7 +7588,7 @@ Please create custom plugins for better UX.
 
 Prompt the user to add the copy / paste the stringified JSON to the Configuration Tools tab on the claim builder.
 
-<figure><img src="../../../.gitbook/assets/image (214).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (387).png" alt=""><figcaption></figcaption></figure>
 
 ```json
 {"pluginId":"codes","version": "0", "publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
@@ -9869,7 +7607,7 @@ Prompt the user to add the copy / paste the stringified JSON to the Configuratio
 
 Configure prebuilt webhook plugins in the claim builder without needing to create an entirely new custom plugin. Just enter the endpoint and configure what you want to receive.If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site (serverless).
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
 
@@ -9882,7 +7620,7 @@ Configure prebuilt webhook plugins in the claim builder without needing to creat
   * For non-critical logic, consider returning 200 early and asynchronously process.
   * Stateless
 
-### Forms Plugin  - Serverless
+### Forms Plugin - Serverless
 
 The forms plugin is a serverless alternative. This is titled "Collect User Inputs" in the site.
 
@@ -9897,7 +7635,7 @@ console.log(res);
 // { bitbadgesAddress, email, claimAttemptId } 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation - Handlers
 
@@ -9974,13 +7712,13 @@ Note: Ensure the returned JSON object keys do not contain any "." characters bec
 
 The stateless preset is simple. If we receive the 200, the plugin is successful. Nothing else is checked via the response. Everything is handled on your end (if you have state).
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Token Preset**
 
 This preset expects a { claimToken} in the response. The claim token is a one-time use only claim code. Issuing claim tokens is left up to you.
 
-<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (141) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Numbers Preset**
 
@@ -10051,8 +7789,8 @@ Claims are processed in an asynchronous manner. For processing hooks, your plugi
 
 Best practices:
 
--   If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
--   Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
+* If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
+* Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
 
 This is not really applicable to post-success hooks.
 
@@ -10062,23 +7800,23 @@ An important aspect to consider is how you will handle state (if applicable). Th
 
 You have a couple options:
 
--   Use the preset response patterns to customize how BitBadges controls state for your plugin on our end. This is eventually consistent meaning that you return an intent from your handler, and we update only upon successful claim (and in the success path).
-    -   A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
--   Manage state on your end, but be mindful of the way BitBadges processes claims.
+* Use the preset response patterns to customize how BitBadges controls state for your plugin on our end. This is eventually consistent meaning that you return an intent from your handler, and we update only upon successful claim (and in the success path).
+  * A typical flow is to associate certain state with unique claim tokens and let BitBadges handle the claim tokens being marked as USED vs UNUSED.
+* Manage state on your end, but be mindful of the way BitBadges processes claims.
 
 ### Reusing for On-Demand Claims
 
 To be used with on-demand claims, the plugin must meet specific requirements and have specific properties:
 
--   Stateless - No per-attempt state
--   No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
--   Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
+* Stateless - No per-attempt state
+* No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
+* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
 
 Typically, these are only possible with crypto-native plugins. For example,
 
--   Check >1 ETH in account from address
--   Check POAP ownership
--   Check token ownership
+* Check >1 ETH in account from address
+* Check POAP ownership
+* Check token ownership
 
 Parameters are okay because they are hardcoded and not changed (e.g. set min ETH to 1).
 
@@ -10092,7 +7830,7 @@ Consider a workaround such as storing any information yourself, mapping it to a 
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more).
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md
@@ -10103,7 +7841,7 @@ To create, publish, and maintain your plugin, go to [https://bitbadges.io/develo
 
 For testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (104) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md
@@ -10117,7 +7855,7 @@ BitBadges can send the request at two different times (during processing hooks a
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Simulations
 
@@ -10153,7 +7891,8 @@ Each plugin can configure the expected schema of parameters inputted by the clai
 
 Parameters will be passed to your backend handler in the payload.
 
-<figure><img src="../../../../../.gitbook/assets/image (163).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (336).png" alt=""><figcaption></figcaption></figure>
+
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md
 
@@ -10163,15 +7902,15 @@ Parameters will be passed to your backend handler in the payload.
 
 If your plugin requires inputs from the claiming user or claim creator, you can do this in the BitBadges site (recommended) or via a window.postMessage from a custom frontend / tool. All inputs will be passed along to your handler via the payload. If none are provided, we assume there is nothing needed to be passed.
 
-<figure><img src="../../../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (338).png" alt=""><figcaption></figcaption></figure>
 
-Note to be compatible with Zapier (and possibly API auto-claiming) or on-demand claims, user inputs are typically not allowed (because the user is not manually initiating anything).&#x20;
+Note to be compatible with Zapier (and possibly API auto-claiming) or on-demand claims, user inputs are typically not allowed (because the user is not manually initiating anything).
 
 **Option 1: Completely In-Site**
 
 When creating the plugin, configure the expected schemas. We will prompt the users / creators to enter such information in-site via a form. All outsourced to BitBadges.
 
-<figure><img src="../../../../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>
 
 **Option 2: Custom Frontend**
 
@@ -10187,13 +7926,13 @@ URL: Stringified URL
 
 ### Identifying the Claiming User
 
-You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc).  Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
+You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc). Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
 
 We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). The only one that may not be verified in some cases is the claiming address. This depends on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, check the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
 
-<figure><img src="../../../../../.gitbook/assets/image (215).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (388).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../../.gitbook/assets/image (216).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (389).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md
@@ -10234,13 +7973,14 @@ curl -X POST https://yourhandler.com  -H 'Content-Type: application/json' -d '{
 
 In the creation / update interface, there will be a Send Test Request button which will send a formatted request from your browser. This uses mocked data, and should only be used for testing purposes.
 
-<figure><img src="../../../../.gitbook/assets/image (147).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (320).png" alt=""><figcaption></figcaption></figure>
 
 **Claim Tester**
 
 The easiest way to test your plugin integration with BitBadges is with the Claim Tester tab in the developer portal. This is the only place you will be able to test unfinalized versions of your plugin.
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
+
 
 ## File: ./for-developers/claim-builder/plugins/overview.md
 
@@ -10253,7 +7993,7 @@ Plugins / webhooks are simply HTTP requests.
    1. Check the pluginSecret to verify BitBadges as the origin of the request if this is important
 3. Return the expected response that was configured (e.g. 200 OK)
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```typescript
 const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -10303,7 +8043,7 @@ We also allow users to simulate (dry run) their claim attempts. Plugins are expe
 * Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 
@@ -10315,7 +8055,7 @@ The golden rule here is that a successful response from your plugin DOES NOT mea
 
 Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Plugin IDs vs Instance IDs**
 
@@ -10330,7 +8070,7 @@ Instance IDs are a unique identifier for a specific plugin in your claim. This i
 
 Certain claims may make use of the **satsifyMethod** property to implement dynamic logic. This option is currently only available behind the scenes. Frontend defaults to all are required (satisfyMethod = undefined). By default, all plugins must pass without any custom success logic specified.
 
-<figure><img src="../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (361).png" alt=""><figcaption></figcaption></figure>
 
 This works in the following ways:
 
@@ -10758,7 +8498,7 @@ const txn = createTransactionPayload(txContext, msgs);
 
 BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (3).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
@@ -10971,9 +8711,9 @@ This URL structure adheres to the following interface:
 
 You can use [https://bitbadges.io/auth/linkgen](https://bitbadges.io/auth/linkgen) or the code below to generate the URL or click Create SIWBB URL directly from your app in the developer portal (recommended).
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (86) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (357).png" alt=""><figcaption></figcaption></figure>
 
 **Snippets**
 
@@ -11101,17 +8841,17 @@ When adding a Social Connection, you will see BitBadges as a preconfigured optio
 
 ### [https://marketplace.auth0.com/integrations/bitbadges](https://marketplace.auth0.com/integrations/bitbadges)
 
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/image (299).png" alt=""><figcaption></figcaption></figure>
+
 <figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Custom
 
 You can also customize the connection further by creating a custom connection. This allows you to add parameters beyond the standard flow. You callback will be the same as above.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (136) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Authorization URL:** https://bitbadges.io/siwbb/authorize
 
@@ -11232,7 +8972,7 @@ This example:
 * Uses the Next.js x Supabase template
 * Uses traditional Supabase authentication and once signed in, you can additionally Sign In with BitBadges. This effectively creates a username <-> address mapping that you can use.
 
-<figure><img src="../../../.gitbook/assets/image (226).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (398).png" alt=""><figcaption></figcaption></figure>
 
 Anything else is left as an exercise for you.
 
@@ -11259,7 +8999,7 @@ Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://
 
 {% @github-files/github-code-block url="https://github.com/BitBadges/bitbadges-wp-plugin" %}
 
-<figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
 
 This plugin allows users to gate their WordPress site with BitBadges – claims, payments, NFT badges, and more!
 
@@ -11361,7 +9101,7 @@ With access tokens, you can start sending requests to authenticated endpoints wi
 
 If you did not request any specific scopes, you will still have access to the health check endpoint to ensure the user has not revoked authorization.
 
-<figure><img src="../../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
 
 If you are using the SDK, you can instead do this which handles the header setting:
 
@@ -11585,9 +9325,9 @@ Does not check natively :x:
 
 # 🪙 BADGE
 
-BADGE is the native gas token for our blockchain. Please read our policies (including our [BADGE disclosure](https://bitbadges.io/credits-disclosure)) on our site for full disclaimers and information.&#x20;
+BADGE is the native gas token for our blockchain. Please read our policies (including our [BADGE disclosure](https://bitbadges.io/credits-disclosure)) on our site for full disclaimers and information.
 
-<figure><img src="../.gitbook/assets/image (230).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (402).png" alt=""><figcaption></figcaption></figure>
 
 BADGE has 3 primary purposes:
 
@@ -11599,19 +9339,19 @@ For current distributions, supply, and more, we refer you to our explorer: [http
 
 Relevant addresses for undistributed BADGE (currently \~50M) are:
 
--   bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
--   bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
+* bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
+* bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
 
 BADGE is listed on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
 
 Excluding block rewards, the initial circulating supply of BADGE is 100M. We plan to distribute BADGE throughout chaosnet via the following methods:
 
--   \~20M already in the community pool
--   \~20M to bootstrap initial validators
--   \~20M core team
--   \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
+* \~20M already in the community pool
+* \~20M to bootstrap initial validators
+* \~20M core team
+* \~40M airdropped through incentivized programs, campaigns, and more. Stay tuned for more details.
 
-<figure><img src="../.gitbook/assets/image (229).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (401).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./overview/claim-builder/README.md
@@ -11777,7 +9517,7 @@ standards: ["non-fungible", "attendance-event", "No User Ownership"]
 
 Feel free to use BitBadges name and logo in your site as you see fit. If you have any questions or concerns about usage, please let us know. We are also happy to provide any other logos, images, or information you may need.
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (61) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/badge_logo.png" alt=""><figcaption></figcaption></figure>
 
@@ -12036,32 +9776,6 @@ Each token collection can have a manager that can execute administrative actions
 
 While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
 
-### Featured Use Cases
-
-At the end of the day, we are a tokenization standard, so we can be used for absolutely anything you want to tokenize. Our goal is to be the IBC-compatible tokenization launchpad for all of Cosmos.
-
-As seen above, we are incredibly feature-rich and can be used for any use case you can think of. We especially excel at the more complex use cases beyond simple mint, transfer, sell.
-
-Some examples:
-
-* **NFTs**: Traditional NFT marketplace with custom transferability and purchasable via any IBC denomination
-* **Fungible Tokens**: Traditional fungible tokens with custom transferability and approvals purchasable and tradable via any IBC denomination
-* **Quests**: IBC-denomination backed quests that payout users in any IBC-enabled denomination for completing any sort of task or challenge from 7000+ integrations or any on/off-chain criteria you can think of.
-* **Subscriptions**: No-code, recurring subscriptions that are paid with any IBC denomination. We use a bot-tipping system to handle the recurring payments automatically for you.
-* **Stocks**: Tokenized stocks with custom vesting periods, dividends, and more.
-* **Real-World Assets**: Tokenized real-world assets with custom transferability and approvals purchasable and tradable via any IBC denomination
-* **Regulatory Compliance**: Seamlessly compliant with any complex regulatory compliance requirements without any additional work.
-
-Or any use case you can think of.
-
-### Uniquely Positioned For The Future
-
-BitBadges is a unique project that is well-positioned to help Cosmos succeed for everything to come in the next 5 years and beyond.
-
-1. **Tokenization**: Tokenization is the most powerful primitive that crypto offers, and the roadmaps of all major teams in crypto involve tokenization in one form or another: tokenizing real-world assets, stocks, subscriptions, etc. With our universal approach and innovation, we are able to support all of these and more to help Cosmos succeed no matter the requirements or use cases or current trends.
-2. **Cosmos and Beyond**: By being a Cosmos module with IBC compatibility, we are not only well-positioned to be the tokenization standard for all of Cosmos but also any ecosystem.
-3. **AI-Friendly Standard**: AI agents do best with standardization. Existing standards are way too simple. Generic smart contracts are not standardized. Enter the BitBadges token standard. Complex enough for any use case but standardized enough for AI agents to understand at scale.
-
 
 ## File: ./token-standard/examples/approvals/README.md
 
@@ -12086,9 +9800,9 @@ Before diving deep into the behind the scenes of our token standard, we encourag
 
 1\) Explore the landing and explore page ([https://bitbadges.io](https://bitbadges.io\)/)) in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible! At the end of the create flow, you can click on the Show Tx button to see what the JSON transaction looks like behind the scenes.
 
-<figure><img src="../.gitbook/assets/image (231).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
 
 2\) For a full A-Z description of what BitBadges is and why we built it, read this:
 
@@ -12120,7 +9834,7 @@ These can be skipped / forcefully overriden by the collection-level approvals (f
 
 Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./token-standard/type-definitions/README.md
@@ -15079,7 +12793,7 @@ Default balances provide a powerful way to establish baseline behavior for all u
 
 The manager is the central authority for a collection, controlling all administrative operations and having exclusive rights to perform updates, deletions, and other management tasks.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Manager Timeline
 
@@ -17402,7 +15116,7 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels:
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (166) (1).png" alt="Approval hierarchy diagram"><figcaption><p>Approval hierarchy: Collection → User (Incoming/Outgoing)</p></figcaption></figure>
 
 ### Approval Levels
 
@@ -17437,7 +15151,7 @@ interface CollectionApproval<T extends NumberType> {
 }
 ```
 
-See [Approval Criteria](broken-reference) for more details on the `approvalCriteria` field.
+See [Approval Criteria](broken-reference/) for more details on the `approvalCriteria` field.
 
 ## Approval Value vs Permission
 
