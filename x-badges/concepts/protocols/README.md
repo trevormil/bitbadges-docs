@@ -10,7 +10,7 @@ This directory contains documentation for standardized protocols that can be imp
 
 ## Protocol Overview
 
-Protocols in BitBadges are standardized implementations that:
+Protocols in BitTokens are standardized implementations that:
 
 -   Define specific collection configuration patterns
 -   Establish validation rules for protocol compliance

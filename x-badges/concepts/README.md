@@ -7,7 +7,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Collections**](badge-collections.md) - The primary entity that defines groups of related tokens
 -   [**Balance System**](balance-system.md) - How token ownership is tracked with precise control over quantities and time
 -   [**Default Balances**](default-balances.md) - Predefined balance stores assigned to new users upon genesis creation
--   [**Valid Token IDs**](valid-badge-ids.md) - Defining the range of token identifiers that can exist within a collection
+-   [**Valid Token IDs**](valid-token-ids.md) - Defining the range of token identifiers that can exist within a collection
 -   [**Total Supply**](total-supply.md) - Maximum number of tokens that can exist for each token ID
 -   [**Mint Escrow Address**](mint-escrow-address.md) - Reserved address for holding native funds on behalf of the Mint address
 -   [**Archived Collections**](archived-collections.md) - Temporarily or permanently disabling collection transactions

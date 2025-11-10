@@ -6,14 +6,14 @@ The `TransferWithIncrements` type provides a convenient method for handling batc
 import {
     BalanceArray,
     TransferWithIncrements,
-    getAllBadgeIdsToBeTransferred,
+    getAllTokenIdsToBeTransferred,
     getAllBalancesToBeTransferred,
 } from '../packages/bitbadgesjs-sdk';
 
 const startingBalances = BalanceArray.From([
     {
         amount: 100n,
-        badgeIds: [{ start: 1n, end: 100n }],
+        tokenIds: [{ start: 1n, end: 100n }],
         ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }],
     },
 ]);
@@ -26,12 +26,12 @@ const batchTransfer = new TransferWithIncrements<bigint>({
     toAddresses: [], // this will be empty because we're using `toAddressesLength`
     toAddressesLength: 100n,
 
-    incrementBadgeIdsBy: 1n,
+    incrementTokenIdsBy: 1n,
     incrementOwnershipTimesBy: 86400000n, // assuming this is 1 day in milliseconds in BigInt form
 });
 
-const allBadgeIds = getAllBadgeIdsToBeTransferred([batchTransfer]); // returns [{ start: 1n, end: 100n }]
+const allTokenIds = getAllTokenIdsToBeTransferred([batchTransfer]); // returns [{ start: 1n, end: 100n }]
 const allBalancesToBeTransferred = getAllBalancesToBeTransferred([
     batchTransfer,
-]); // returns [{ amount: 100n, badgeIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
+]); // returns [{ amount: 100n, tokenIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
 ```

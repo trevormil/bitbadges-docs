@@ -6,8 +6,8 @@ This directory contains practical examples of different permission configuration
 
 -   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
 -   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
--   [Locking Specific Token IDs](locking-specific-badge-ids.md) - Lock approvals for specific token ID ranges
--   [Locking Valid Token IDs](locking-valid-badge-ids.md) - Control valid token ID range updates
+-   [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approvals for specific token ID ranges
+-   [Locking Valid Token IDs](locking-valid-token-ids.md) - Control valid token ID range updates
 
 ## Permission System Overview
 

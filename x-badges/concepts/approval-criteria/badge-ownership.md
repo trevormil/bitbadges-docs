@@ -49,7 +49,7 @@ interface MustOwnTokens<T extends NumberType> {
 -   **Description**: Time ranges when the user must have owned the tokens (UNIX milliseconds)
 -   **Example**: `[{ start: "1691931600000", end: "1723554000000" }]` for Aug 13, 2023 - Aug 13, 2024
 
-### badgeIds
+### tokenIds
 
 -   **Type**: `UintRange<T>[]`
 -   **Description**: Specific token IDs that must be owned
@@ -75,10 +75,10 @@ interface MustOwnTokens<T extends NumberType> {
 -   **Description**: Specifies which party of the transfer to check ownership for
 -   **Options**:
     -   `"initiator"` (default): Check ownership for the address that initiated the transfer
-    -   `"sender"`: Check ownership for the address sending the badges
-    -   `"recipient"`: Check ownership for the address receiving the badges
+    -   `"sender"`: Check ownership for the address sending the tokens
+    -   `"recipient"`: Check ownership for the address receiving the tokens
 -   **Default**: `"initiator"` (if empty or not specified)
--   **Example**: `"sender"` to require the sender to own specific badges before allowing the transfer
+-   **Example**: `"sender"` to require the sender to own specific tokens before allowing the transfer
 
 ## Example
 
@@ -86,12 +86,12 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "overrideWithCurrentTime": false,
             "mustSatisfyForAllAssets": true,
             "ownershipCheckParty": "initiator"
@@ -106,11 +106,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "initiator"
         }
     ]
@@ -121,11 +121,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "sender"
         }
     ]
@@ -136,11 +136,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "recipient"
         }
     ]

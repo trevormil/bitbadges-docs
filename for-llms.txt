@@ -33,14 +33,14 @@ BitBadges / [Exports](modules.md)
 -   [Addresses](interfaces/Addresses.md)
 -   [AnnouncementActivityItem](interfaces/AnnouncementActivityItem.md)
 -   [Approval](interfaces/Approval.md)
--   [BadgeMetadata](interfaces/BadgeMetadata.md)
--   [BadgeMetadataMap](interfaces/BadgeMetadataMap.md)
+-   [TokenMetadata](interfaces/TokenMetadata.md)
+-   [TokenMetadataMap](interfaces/TokenMetadataMap.md)
 -   [BadgeSupplyAndAmount](interfaces/BadgeSupplyAndAmount.md)
 -   [BadgeUri](interfaces/BadgeUri.md)
 -   [Balance](interfaces/Balance.md)
 -   [BalanceObject](interfaces/BalanceObject.md)
 -   [BalancesMap](interfaces/BalancesMap.md)
--   [BitBadgeCollection](interfaces/BitBadgeCollection.md)
+-   [BitTokenCollection](interfaces/BitTokenCollection.md)
 -   [BitBadgeMintObject](interfaces/BitBadgeMintObject.md)
 -   [BitBadgesUserInfo](interfaces/BitBadgesUserInfo.md)
 -   [ClaimItem](interfaces/ClaimItem.md)
@@ -67,7 +67,7 @@ BitBadges / [Exports](modules.md)
 -   [PendingTransfer](interfaces/PendingTransfer.md)
 -   [Proof](interfaces/Proof.md)
 -   [SearchResponse](interfaces/SearchResponse.md)
--   [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
+-   [StoredTokenCollection](interfaces/StoredTokenCollection.md)
 -   [SubassetSupply](interfaces/SubassetSupply.md)
 -   [TransferActivityItem](interfaces/TransferActivityItem.md)
 -   [TransferList](interfaces/TransferList.md)
@@ -145,27 +145,27 @@ BitBadges / [Exports](modules.md)
 -   [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
 -   [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
 -   [doesChainMatchName](modules.md#doeschainmatchname)
--   [filterTokenActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
+-   [filterTokenActivityForTokenId](modules.md#filterbadgeactivityforbadgeid)
 -   [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
--   [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
+-   [getTokenIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
 -   [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
 -   [getBalanceAfterTransfers](modules.md#getbalanceaftertransfers)
 -   [getBlankBalance](modules.md#getblankbalance)
 -   [getChainForAddress](modules.md#getchainforaddress)
 -   [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
--   [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
+-   [getIdRangesForAllTokenIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
 -   [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
 -   [getMaxBatchId](modules.md#getmaxbatchid)
--   [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
--   [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
+-   [getMetadataForTokenId](modules.md#getmetadataforbadgeid)
+-   [getMetadataMapObjForTokenId](modules.md#getmetadatamapobjforbadgeid)
 -   [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
--   [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
+-   [getSupplyByTokenId](modules.md#getsupplybybadgeid)
 -   [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
 -   [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
 -   [isAddressValid](modules.md#isaddressvalid)
 -   [isTransferListFull](modules.md#istransferlistfull)
 -   [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
--   [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
+-   [updateMetadataForTokenIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
 -   [updateMetadataMap](modules.md#updatemetadatamap)
 -   [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
 
@@ -281,7 +281,7 @@ BitBadges / [Exports](modules.md)
 
 ### DefaultPlaceholderMetadata
 
-• `Const` **DefaultPlaceholderMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
+• `Const` **DefaultPlaceholderMetadata**: [`TokenMetadata`](interfaces/TokenMetadata.md)
 
 #### Defined in
 
@@ -291,7 +291,7 @@ BitBadges / [Exports](modules.md)
 
 ### ErrorMetadata
 
-• `Const` **ErrorMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
+• `Const` **ErrorMetadata**: [`TokenMetadata`](interfaces/TokenMetadata.md)
 
 #### Defined in
 
@@ -509,13 +509,13 @@ BitBadges / [Exports](modules.md)
 
 ### GetBalancesForIdRanges
 
-▸ **GetBalancesForIdRanges**(`badgeIds`, `currentUserBalances`): [`Balance`](interfaces/Balance.md)[]
+▸ **GetBalancesForIdRanges**(`tokenIds`, `currentUserBalances`): [`Balance`](interfaces/Balance.md)[]
 
 #### Parameters
 
 | Name                  | Type                                 |
 | :-------------------- | :----------------------------------- |
-| `badgeIds`            | [`IdRange`](interfaces/IdRange.md)[] |
+| `tokenIds`            | [`IdRange`](interfaces/IdRange.md)[] |
 | `currentUserBalances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -692,14 +692,14 @@ BitBadges / [Exports](modules.md)
 
 ### GetOwnersRoute
 
-▸ **GetOwnersRoute**(`collectionId`, `badgeId`): `string`
+▸ **GetOwnersRoute**(`collectionId`, `tokenId`): `string`
 
 #### Parameters
 
 | Name           | Type     |
 | :------------- | :------- |
 | `collectionId` | `number` |
-| `badgeId`      | `number` |
+| `tokenId`      | `number` |
 
 #### Returns
 
@@ -1232,22 +1232,22 @@ BitBadges / [Exports](modules.md)
 
 ### createCollectionFromMsgNewCollection
 
-▸ **createCollectionFromMsgNewCollection**(`msgNewCollection`, `collectionMetadata`, `individualBadgeMetadata`, `connectedUser`, `claimItems`, `existingCollection?`): [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
+▸ **createCollectionFromMsgNewCollection**(`msgNewCollection`, `collectionMetadata`, `individualTokenMetadata`, `connectedUser`, `claimItems`, `existingCollection?`): [`BitTokenCollection`](interfaces/BitTokenCollection.md)
 
 #### Parameters
 
 | Name                      | Type                                                       |
 | :------------------------ | :--------------------------------------------------------- |
 | `msgNewCollection`        | `MessageMsgNewCollection`                                  |
-| `collectionMetadata`      | [`BadgeMetadata`](interfaces/BadgeMetadata.md)             |
-| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)       |
+| `collectionMetadata`      | [`TokenMetadata`](interfaces/TokenMetadata.md)             |
+| `individualTokenMetadata` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)       |
 | `connectedUser`           | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)     |
 | `claimItems`              | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
-| `existingCollection?`     | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)   |
+| `existingCollection?`     | [`BitTokenCollection`](interfaces/BitTokenCollection.md)   |
 
 #### Returns
 
-[`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
+[`BitTokenCollection`](interfaces/BitTokenCollection.md)
 
 #### Defined in
 
@@ -1276,15 +1276,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### filterTokenActivityForBadgeId
+### filterTokenActivityForTokenId
 
-▸ **filterTokenActivityForBadgeId**(`badgeId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
+▸ **filterTokenActivityForTokenId**(`tokenId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
 
 #### Parameters
 
 | Name       | Type                                                           |
 | :--------- | :------------------------------------------------------------- |
-| `badgeId`  | `number`                                                       |
+| `tokenId`  | `number`                                                       |
 | `activity` | [`TransferActivityItem`](interfaces/TransferActivityItem.md)[] |
 
 #### Returns
@@ -1317,21 +1317,21 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getBadgeIdsToDisplayForPageNumber
+### getTokenIdsToDisplayForPageNumber
 
-▸ **getBadgeIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
+▸ **getTokenIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `tokenIds`: `number`[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[]
 
 #### Parameters
 
 | Name          | Type                                                                                                                            | Default value |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------ | :------------ |
-| `collections` | { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[] | `[]`          |
+| `collections` | { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[] | `[]`          |
 | `startIdxNum` | `number`                                                                                                                        | `undefined`   |
 | `pageSize`    | `number`                                                                                                                        | `undefined`   |
 
 #### Returns
 
-{ `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
+{ `tokenIds`: `number`[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[]
 
 #### Defined in
 
@@ -1341,15 +1341,15 @@ BitBadges / [Exports](modules.md)
 
 ### getBalanceAfterTransfer
 
-▸ **getBalanceAfterTransfer**(`balance`, `startSubbadgeId`, `endSubbadgeId`, `amountToTransfer`, `numRecipients`): [`UserBalance`](interfaces/UserBalance.md)
+▸ **getBalanceAfterTransfer**(`balance`, `startSubtokenId`, `endSubtokenId`, `amountToTransfer`, `numRecipients`): [`UserBalance`](interfaces/UserBalance.md)
 
 #### Parameters
 
 | Name               | Type                                       |
 | :----------------- | :----------------------------------------- |
 | `balance`          | [`UserBalance`](interfaces/UserBalance.md) |
-| `startSubbadgeId`  | `number`                                   |
-| `endSubbadgeId`    | `number`                                   |
+| `startSubtokenId`  | `number`                                   |
+| `endSubtokenId`    | `number`                                   |
 | `amountToTransfer` | `number`                                   |
 | `numRecipients`    | `number`                                   |
 
@@ -1444,15 +1444,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getIdRangesForAllBadgeIdsInCollection
+### getIdRangesForAllTokenIdsInCollection
 
-▸ **getIdRangesForAllBadgeIdsInCollection**(`collection`): `any`
+▸ **getIdRangesForAllTokenIdsInCollection**(`collection`): `any`
 
 #### Parameters
 
 | Name         | Type                                                     |
 | :----------- | :------------------------------------------------------- |
-| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
+| `collection` | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
 
 #### Returns
 
@@ -1495,7 +1495,7 @@ BitBadges / [Exports](modules.md)
 
 | Name         | Type                                                     |
 | :----------- | :------------------------------------------------------- |
-| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
+| `collection` | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
 
 #### Returns
 
@@ -1507,20 +1507,20 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getMetadataForBadgeId
+### getMetadataForTokenId
 
-▸ **getMetadataForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
+▸ **getMetadataForTokenId**(`tokenId`, `metadataMap`): `undefined` \| [`TokenMetadata`](interfaces/TokenMetadata.md)
 
 #### Parameters
 
 | Name          | Type                                                 |
 | :------------ | :--------------------------------------------------- |
-| `badgeId`     | `number`                                             |
-| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
+| `tokenId`     | `number`                                             |
+| `metadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
 
 #### Returns
 
-`undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
+`undefined` \| [`TokenMetadata`](interfaces/TokenMetadata.md)
 
 #### Defined in
 
@@ -1528,20 +1528,20 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getMetadataMapObjForBadgeId
+### getMetadataMapObjForTokenId
 
-▸ **getMetadataMapObjForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
+▸ **getMetadataMapObjForTokenId**(`tokenId`, `metadataMap`): `undefined` \| { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`TokenMetadata`](interfaces/TokenMetadata.md) ; `uri`: `string` }
 
 #### Parameters
 
 | Name          | Type                                                 |
 | :------------ | :--------------------------------------------------- |
-| `badgeId`     | `number`                                             |
-| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
+| `tokenId`     | `number`                                             |
+| `metadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
 
 #### Returns
 
-`undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
+`undefined` \| { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`TokenMetadata`](interfaces/TokenMetadata.md) ; `uri`: `string` }
 
 #### Defined in
 
@@ -1563,15 +1563,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getSupplyByBadgeId
+### getSupplyByTokenId
 
-▸ **getSupplyByBadgeId**(`badgeId`, `balances`): `number`
+▸ **getSupplyByTokenId**(`tokenId`, `balances`): `number`
 
 #### Parameters
 
 | Name       | Type                                 |
 | :--------- | :----------------------------------- |
-| `badgeId`  | `number`                             |
+| `tokenId`  | `number`                             |
 | `balances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -1673,21 +1673,21 @@ BitBadges / [Exports](modules.md)
 
 ### populateFieldsOfOtherBadges
 
-▸ **populateFieldsOfOtherBadges**(`individualBadgeMetadata`, `badgeIds`, `key`, `value`, `metadataToSet?`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
+▸ **populateFieldsOfOtherBadges**(`individualTokenMetadata`, `tokenIds`, `key`, `value`, `metadataToSet?`): [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
 
 #### Parameters
 
 | Name                      | Type                                                 |
 | :------------------------ | :--------------------------------------------------- |
-| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `badgeIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
+| `individualTokenMetadata` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
+| `tokenIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
 | `key`                     | `string`                                             |
 | `value`                   | `any`                                                |
-| `metadataToSet?`          | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
+| `metadataToSet?`          | [`TokenMetadata`](interfaces/TokenMetadata.md)       |
 
 #### Returns
 
-[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
+[`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
 
 #### Defined in
 
@@ -1695,16 +1695,16 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### updateMetadataForBadgeIdsFromIndexerIfAbsent
+### updateMetadataForTokenIdsFromIndexerIfAbsent
 
-▸ **updateMetadataForBadgeIdsFromIndexerIfAbsent**(`badgeIdsToDisplay`, `collection`): `number`[]
+▸ **updateMetadataForTokenIdsFromIndexerIfAbsent**(`tokenIdsToDisplay`, `collection`): `number`[]
 
 #### Parameters
 
 | Name                | Type                                                     |
 | :------------------ | :------------------------------------------------------- |
-| `badgeIdsToDisplay` | `number`[]                                               |
-| `collection`        | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
+| `tokenIdsToDisplay` | `number`[]                                               |
+| `collection`        | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
 
 #### Returns
 
@@ -1718,20 +1718,20 @@ BitBadges / [Exports](modules.md)
 
 ### updateMetadataMap
 
-▸ **updateMetadataMap**(`currMetadataMap`, `metadata`, `badgeIds`, `uri`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
+▸ **updateMetadataMap**(`currMetadataMap`, `metadata`, `tokenIds`, `uri`): [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
 
 #### Parameters
 
 | Name              | Type                                                 |
 | :---------------- | :--------------------------------------------------- |
-| `currMetadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
-| `metadata`        | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
-| `badgeIds`        | [`IdRange`](interfaces/IdRange.md)                   |
+| `currMetadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
+| `metadata`        | [`TokenMetadata`](interfaces/TokenMetadata.md)       |
+| `tokenIds`        | [`IdRange`](interfaces/IdRange.md)                   |
 | `uri`             | `string`                                             |
 
 #### Returns
 
-[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
+[`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
 
 #### Defined in
 
@@ -1816,7 +1816,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🤖 Tokens vs Badges?
 
-BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to badges throughout this documentation. This means tokens.
+BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to tokens throughout this documentation. This means tokens.
 
 
 ## File: ./SUMMARY.md
@@ -1855,7 +1855,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Total Supply](x-badges/concepts/total-supply.md)
   * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
   * [UintRanges](x-badges/concepts/uintrange.md)
-  * [Valid Token IDs](x-badges/concepts/valid-badge-ids.md)
+  * [Valid Token IDs](x-badges/concepts/valid-token-ids.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
     * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
@@ -1892,7 +1892,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
   * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
   * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-  * [MsgSetBadgeMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetTokenMetadata](x-badges/messages/msg-set-badge-metadata.md)
   * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
   * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
   * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
@@ -1902,8 +1902,8 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [MsgSetManager](x-badges/messages/msg-set-manager.md)
   * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
   * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-  * [MsgSetValidBadgeIds](x-badges/messages/msg-set-valid-badge-ids.md)
-  * [MsgTransferBadges](x-badges/messages/msg-transfer-badges.md)
+  * [MsgSetValidTokenIds](x-badges/messages/msg-set-valid-token-ids.md)
+  * [MsgTransferTokens](x-badges/messages/msg-transfer-tokens.md)
   * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
   * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
@@ -1950,8 +1950,8 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Permission Examples](x-badges/examples/permissions/README.md)
     * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
     * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-badge-ids.md)
-    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-badge-ids.md)
+    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-token-ids.md)
+    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-token-ids.md)
   * [Transaction Examples](x-badges/examples/txs/README.md)
     * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
       * [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
@@ -2752,7 +2752,7 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 * [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
 * [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
   * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
-* [MsgTransferBadges](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferBadges.html) - Transfer tokens between users, if approvals allow.
+* [MsgTransferTokens](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferTokens.html) - Transfer tokens between users, if approvals allow.
 * [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
 * [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
 * [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
@@ -3072,7 +3072,7 @@ Instantiating and officially deploying a contract does require a review process 
 
 Requirements:
 
-* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferTokens, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
 * We encourage audits and a peer review process before officailly deploying.
 * You must also showcase a working testnet implementation as well (testnet is permissionless)
 
@@ -3100,7 +3100,7 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 ```rust
 //contract.rs
 use bitbadges_cosmwasm::{
-  transfer_badges_msg
+  transfer_tokens_msg
 };
 
 #[entry_point]
@@ -3112,11 +3112,11 @@ pub fn execute(
 ) -> Result<Response<BitBadgesMsg>, StdError> {
     match msg {
         ExecuteMsg::CustomMsg1 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
+          let msg = transfer_tokens_msg(collection_id, transfers);
           Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
         }
         ExecuteMsg::CustomMsg2 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
+          let msg = transfer_tokens_msg(collection_id, transfers);
           Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
         }
         // Add other messages here as needed
@@ -3151,14 +3151,14 @@ use bitbadges_cosmwasm::{
 <pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
 // This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
 use bitbadges_cosmwasm::{
-  transfer_badges_msg, delete_collection_msg, BitBadgesMsg
+  transfer_tokens_msg, delete_collection_msg, BitBadgesMsg
 }
 
 <strong>pub fn execute_my_msg(
 </strong>    collection_id: String,
     transfers: Vec&#x3C;Transfer>,
 ) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
-    let msg = transfer_badges_msg(
+    let msg = transfer_tokens_msg(
         collection_id,
         transfers,
     );
@@ -3400,7 +3400,7 @@ import { proto } from 'bitbadgesjs-sdk';
 const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
 const MsgCreateCollection = proto.badges.MsgCreateCollection;
 const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
-const MsgTransferBadges = proto.badges.MsgTransferBadges;
+const MsgTransferTokens = proto.badges.MsgTransferTokens;
 
 const protoMsgs = [
     new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
@@ -3833,7 +3833,7 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 ### Differences
 
 * Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+  * Off-chain balances managed by BitTokens are not hosted externally (via CDN)
   * Buying BADGE credits
   * Push notifications
   * And more
@@ -3923,22 +3923,22 @@ const All = AddressList.AllAddresses();
 
 #### Tutorial: Managing Token Metadata in TypeScript
 
-**1. Introduction to `BadgeMetadataDetails`**
+**1. Introduction to `TokenMetadataDetails`**
 
-The `BadgeMetadataDetails` type captures comprehensive details about the metadata of a token. It contains fields such as token IDs (ranges), associated metadata, a URI, and custom data. This is what is used via the **cachedBadgeMetadata** field from collection responses.
+The `TokenMetadataDetails` type captures comprehensive details about the metadata of a token. It contains fields such as token IDs (ranges), associated metadata, a URI, and custom data. This is what is used via the **cachedTokenMetadata** field from collection responses.
 
 **2. Removing Metadata for Specific Token IDs**
 
 To delete metadata associated with specific token IDs:
 
 ```typescript
-const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
+const currentMetadata: TokenMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const badgeIdsToRemove = UintRangeArray.From([
+const tokenIdsToRemove = UintRangeArray.From([
   { start: 5n, end: 10n }
 ];
 
-const updatedMetadata = removeBadgeMetadata(currentMetadata, badgeIdsToRemove);
+const updatedMetadata = removeTokenMetadata(currentMetadata, tokenIdsToRemove);
 console.log(updatedMetadata); // This will show metadata without the removed token IDs.
 ```
 
@@ -3947,16 +3947,16 @@ console.log(updatedMetadata); // This will show metadata without the removed tok
 If you wish to update specific token metadata in the token metadata details:
 
 ```typescript
-const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
+const currentMetadata: TokenMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const metadataToUpdate: BadgeMetadataDetails<bigint> = new BadgeMetadataDetails<bigint>({
-  badgeIds: [{ start: 7n, end: 7n }],
+const metadataToUpdate: TokenMetadataDetails<bigint> = new TokenMetadataDetails<bigint>({
+  tokenIds: [{ start: 7n, end: 7n }],
   metadata: { /* your metadata details here */ },
   uri: "http://new-metadata-url.com", //Or 'Placeholder' or something else
   customData: "Some custom information",
 });
 
-const newMetadataArray = updateBadgeMetadata(currentMetadata, metadataToUpdate);
+const newMetadataArray = updateTokenMetadata(currentMetadata, metadataToUpdate);
 console.log(newMetadataArray); // This will show the array with the updated metadata.
 ```
 
@@ -3965,10 +3965,10 @@ console.log(newMetadataArray); // This will show the array with the updated meta
 To retrieve metadata details for a particular token ID:
 
 ```typescript
-const badgeIdToFetch = 12n;
+const tokenIdToFetch = 12n;
 
-const badgeMetadataDetails = getMetadataDetailsForBadgeId(badgeIdToFetch, currentMetadata);
-console.log(badgeMetadataDetails); // This will display the metadata details for the specified token ID.
+const tokenMetadataDetails = getMetadataDetailsForTokenId(tokenIdToFetch, currentMetadata);
+console.log(tokenMetadataDetails); // This will display the metadata details for the specified token ID.
 ```
 
 **5. Fetch Only the Metadata for a Specific Token ID**
@@ -3976,10 +3976,10 @@ console.log(badgeMetadataDetails); // This will display the metadata details for
 To only retrieve the metadata (without the surrounding details) for a particular token ID:
 
 ```typescript
-const badgeIdToFetch = 15n;
+const tokenIdToFetch = 15n;
 
-const badgeMetadata = getMetadataForBadgeId(badgeIdToFetch, currentMetadata);
-console.log(badgeMetadata); // This will show only the metadata for the given token ID.
+const tokenMetadata = getMetadataForTokenId(tokenIdToFetch, currentMetadata);
+console.log(tokenMetadata); // This will show only the metadata for the given token ID.
 ```
 
 **Conclusion**
@@ -4001,7 +4001,7 @@ Here's how you create a balance using the provided `Balance` interface:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance = BalanceArray.From([{
 </strong>  "amount": 5n, // example amount using the BigInt type
-  "badgeIds": [{ start: 1n, end: 5n }],
+  "tokenIds": [{ start: 1n, end: 5n }],
   "ownershipTimes": [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
 }])
 </code></pre>
@@ -4015,7 +4015,7 @@ To add a balance to an array of existing balances:
 ```typescript
 const balanceToAdd = {
     amount: 3n,
-    badgeIds: [{ start: 6n, end: 8n }],
+    tokenIds: [{ start: 6n, end: 8n }],
     ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }],
 };
 userBalance.addBalances([balanceToAdd]);
@@ -4030,7 +4030,7 @@ To subtract a balance from an array of existing balances:
 ```typescript
 const balanceToRemove = {
     amount: 2n,
-    badgeIds: [{ start: 2n, end: 3n }],
+    tokenIds: [{ start: 2n, end: 3n }],
     ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }],
 };
 userBalance.subtractBalances([balanceToRemove], false); //second param is to allow underflow (negatives)
@@ -4049,10 +4049,10 @@ Given the new functions you've shared, I'll provide a tutorial snippet for each 
 If you need to retrieve the balance for a specific token ID and a specific ownership time, you can use the `getBalanceForIdAndTime` function:
 
 ```typescript
-const badgeIdToLookup = 3n;
+const tokenIdToLookup = 3n;
 const timeToLookup = 1628784400000n; // example timestamp using BigInt
 const specificBalance = balances.getBalanceForIdAndTime(
-    badgeIdToLookup,
+    tokenIdToLookup,
     timeToLookup
 );
 
@@ -4064,8 +4064,8 @@ console.log(specificBalance); // This will show the balance for the specified to
 To get all balances associated with a specific token ID:
 
 ```typescript
-const badgeIdToLookup = 4n;
-const balances = balances.getBalancesForId(badgeIdToLookup);
+const tokenIdToLookup = 4n;
+const balances = balances.getBalancesForId(tokenIdToLookup);
 
 console.log(balances); // This will display all the balances for the given token ID.
 ```
@@ -4171,10 +4171,10 @@ Types that you will find in the SDK that are number-based will all be genericall
 
 It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision. Also, note that for almost all SDK functions, we only take bigints.
 
-For example, the following will represent a BadgeMetadata type where all numbers are stringified (i.e. "100" or "123").
+For example, the following will represent a TokenMetadata type where all numbers are stringified (i.e. "100" or "123").
 
 ```typescript
-const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
+const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
 ```
 
 **Converting Between NumberTypes**
@@ -4182,10 +4182,10 @@ const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... 
 To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-sdk";
+import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType, convertTokenMetadata } from "bitbadgesjs-sdk";
 
-const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
-const bigIntifiedMetadata = stringifiedBadgeMetadata.convert(BigIntify);
+const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
+const bigIntifiedMetadata = stringifiedTokenMetadata.convert(BigIntify);
 ```
 
 We export the following types and converter functions for your convenience.
@@ -4257,14 +4257,14 @@ The `TransferWithIncrements` type provides a convenient method for handling batc
 import {
     BalanceArray,
     TransferWithIncrements,
-    getAllBadgeIdsToBeTransferred,
+    getAllTokenIdsToBeTransferred,
     getAllBalancesToBeTransferred,
 } from '../packages/bitbadgesjs-sdk';
 
 const startingBalances = BalanceArray.From([
     {
         amount: 100n,
-        badgeIds: [{ start: 1n, end: 100n }],
+        tokenIds: [{ start: 1n, end: 100n }],
         ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }],
     },
 ]);
@@ -4277,14 +4277,14 @@ const batchTransfer = new TransferWithIncrements<bigint>({
     toAddresses: [], // this will be empty because we're using `toAddressesLength`
     toAddressesLength: 100n,
 
-    incrementBadgeIdsBy: 1n,
+    incrementTokenIdsBy: 1n,
     incrementOwnershipTimesBy: 86400000n, // assuming this is 1 day in milliseconds in BigInt form
 });
 
-const allBadgeIds = getAllBadgeIdsToBeTransferred([batchTransfer]); // returns [{ start: 1n, end: 100n }]
+const allTokenIds = getAllTokenIdsToBeTransferred([batchTransfer]); // returns [{ start: 1n, end: 100n }]
 const allBalancesToBeTransferred = getAllBalancesToBeTransferred([
     batchTransfer,
-]); // returns [{ amount: 100n, badgeIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
+]); // returns [{ amount: 100n, tokenIds: [{ start: 1n, end: 100n }], ownershipTimes: [{ start: 1628770800000n, end: 1628857200000n }] }
 ```
 
 
@@ -4445,7 +4445,7 @@ import { Balance, Numberify }
 
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }]
 })
 const convertedBalance = balance.convert(Numberify); //1, 100 instead of 1n, 100n
@@ -4458,7 +4458,7 @@ The second is a JavaScript interface. This is the same as the class version minu
 ```typescript
 export interface iBalance<T extends NumberType> {
     amount: T;
-    badgeIds: iUintRange<T>[];
+    tokenIds: iUintRange<T>[];
     ownershipTimes: iUintRange<T>[];
 }
 ```
@@ -4706,7 +4706,7 @@ Ask the user about the three core address list requirements:
 
 ```json
 {
-    "badgeIds": [
+    "tokenIds": [
         {
             "start": "1",
             "end": "18446744073709551615"
@@ -4906,7 +4906,7 @@ Ask the user about the three core address list requirements:
             "manualBalances": [
                 {
                     "amount": "1",
-                    "badgeIds": [{ "start": "1", "end": "1" }],
+                    "tokenIds": [{ "start": "1", "end": "1" }],
                     "ownershipTimes": [
                         { "start": "1691978400000", "end": "1723514400000" }
                     ]
@@ -4916,17 +4916,17 @@ Ask the user about the three core address list requirements:
                 "startBalances": [
                     {
                         "amount": "1",
-                        "badgeIds": [{ "start": "1", "end": "1" }],
+                        "tokenIds": [{ "start": "1", "end": "1" }],
                         "ownershipTimes": [
                             { "start": "1691978400000", "end": "1723514400000" }
                         ]
                     }
                 ],
-                "incrementBadgeIdsBy": "1",
+                "incrementTokenIdsBy": "1",
                 "incrementOwnershipTimesBy": "0",
                 "durationFromTimestamp": "0",
                 "allowOverrideTimestamp": false,
-                "allowOverrideWithAnyValidBadge": false,
+                "allowOverrideWithAnyValidToken": false,
                 "recurringOwnershipTimes": {
                     "startTime": "0",
                     "intervalLength": "0",
@@ -4955,21 +4955,21 @@ Ask the user about the three core address list requirements:
     "manualBalances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
         },
         {
             "amount": "5",
-            "badgeIds": [{ "start": "2", "end": "6" }],
+            "tokenIds": [{ "start": "2", "end": "6" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
         },
         {
             "amount": "10",
-            "badgeIds": [{ "start": "7", "end": "16" }],
+            "tokenIds": [{ "start": "7", "end": "16" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
@@ -4986,13 +4986,13 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
             }
         ],
-        "incrementBadgeIdsBy": "1"
+        "incrementTokenIdsBy": "1"
     }
 }
 ```
@@ -5005,7 +5005,7 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
@@ -5025,7 +5025,7 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
@@ -5264,7 +5264,7 @@ After collecting all user responses, generate the complete JSON:
             "end": "18446744073709551615"
         }
     ],
-    "badgeIds": [
+    "tokenIds": [
         {
             "start": "1",
             "end": "18446744073709551615"
@@ -5282,16 +5282,16 @@ After collecting all user responses, generate the complete JSON:
     "approvalCriteria": {
         "coinTransfers": [],
         "merkleChallenges": [],
-        "mustOwnBadges": [],
+        "mustOwnTokens": [],
         "predeterminedBalances": {
             "manualBalances": [],
             "incrementedBalances": {
                 "startBalances": [],
-                "incrementBadgeIdsBy": "0",
+                "incrementTokenIdsBy": "0",
                 "incrementOwnershipTimesBy": "0",
                 "durationFromTimestamp": "0",
                 "allowOverrideTimestamp": false,
-                "allowOverrideWithAnyValidBadge": false,
+                "allowOverrideWithAnyValidToken": false,
                 "recurringOwnershipTimes": {
                     "startTime": "0",
                     "intervalLength": "0",
@@ -5452,10 +5452,10 @@ The BitBadges documentation is organized into several main sections:
 -   **BitBadges JS/SDK**: TypeScript libraries for frontend development
 -   **BitBadges Blockchain**: Technical blockchain details, node operation, transaction creation
 
-#### 3. Badge Standard Section
+#### 3. Token Standard Section
 
 -   **Concepts**: Core concepts like collections, balances, metadata, approvals, permissions
--   **Messages**: All blockchain message types (MsgCreateCollection, MsgTransferBadges, etc.)
+-   **Messages**: All blockchain message types (MsgCreateCollection, MsgTransferTokens, etc.)
 -   **Queries**: Blockchain query methods
 -   **Examples**: Practical examples and tutorials
 -   **Events**: Blockchain events
@@ -5583,7 +5583,7 @@ import { Balance, Numberify } from 'bitbadgesjs-sdk';
 
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }],
 });
 
@@ -5598,7 +5598,7 @@ import { iBalance } from 'bitbadgesjs-sdk';
 
 const balance: iBalance<bigint> = {
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }],
 };
 ```
@@ -5626,7 +5626,7 @@ For blockchain transactions:
 import { proto } from 'bitbadgesjs-sdk';
 
 const MsgCreateCollection = proto.badges.MsgCreateCollection;
-const MsgTransferBadges = proto.badges.MsgTransferBadges;
+const MsgTransferTokens = proto.badges.MsgTransferTokens;
 ```
 
 ### Common SDK Patterns
@@ -5652,7 +5652,7 @@ import { Balance, UintRange } from 'bitbadgesjs-sdk';
 // Create a balance
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [new UintRange<bigint>({ start: 1n, end: 100n })],
+    tokenIds: [new UintRange<bigint>({ start: 1n, end: 100n })],
     ownershipTimes: [new UintRange<bigint>({ start: 1n, end: 100n })],
 });
 
@@ -5684,7 +5684,7 @@ const collection = await api.getCollection({
 const balance = await api.getBalance({
     collectionId: '123',
     address: 'bitbadges1...',
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
 });
 ```
 
@@ -7850,7 +7850,7 @@ For testing purposes, you can setup using Pipedream's request bin ([https://pipe
 
 ### Timing of Hooks
 
-BitBadges can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
+BitTokens can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
 
 * Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
 * Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
@@ -8329,7 +8329,7 @@ For an overview, first read [Balances / Transfers](../../overview/how-it-works/t
 ```typescript
 export interface Balance<T extends NumberType> {
   amount: T;
-  badgeIds: UintRange<T>[]
+  tokenIds: UintRange<T>[]
   ownershipTimes: UintRange<T>[]
 }
 ```
@@ -8340,9 +8340,9 @@ When interpreting balances, there are certain rules to keep in mind. If we have 
 
 ```
 for (balance of balances) {
-    for (badgeIdRange of balance.badgeIds) {
+    for (tokenIdRange of balance.tokenIds) {
         for (ownershipTimeRange of balanace.ownershipTimes) {
-            //User owns x(balance.amount) of (badgeIdRange) for the times (ownershipTimeRange)
+            //User owns x(balance.amount) of (tokenIdRange) for the times (ownershipTimeRange)
         }
     }
 }
@@ -8352,7 +8352,7 @@ For example, lets say we have a balance of&#x20;
 
 <pre class="language-json"><code class="lang-json"><strong>{ 
 </strong>    amount: 1, 
-    badgeIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
+    tokenIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
     ownershipTimes: [{start: 20, end: 50}, {start: 100, end: 200}] 
 }
 </code></pre>
@@ -8369,7 +8369,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 ```
 { 
     amount: 1, 
-    badgeIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
+    tokenIds: [{ start: 1, end: 10}, {start: 20, end: 30}], 
     ownershipTimes: [{start: 100, end: 200}] 
 }
 ```
@@ -8377,7 +8377,7 @@ If we wanted to subtract the first set of balances (x1 of IDs 1-10 from times 20
 ```
 { 
     amount: 1, 
-    badgeIds: [{start: 20, end: 30}], 
+    tokenIds: [{start: 20, end: 30}], 
     ownershipTimes: [{start: 20, end: 50}}] 
 }
 ```
@@ -8389,7 +8389,7 @@ If you specify duplicate token IDs in balances such as:
 ```
 { 
     amount: 1, 
-    badgeIds: [{ start: 1, end: 10}, {start: 1, end: 10}], 
+    tokenIds: [{ start: 1, end: 10}, {start: 1, end: 10}], 
     ownershipTimes: [{start: 100, end: 200}] 
 }
 ```
@@ -8399,7 +8399,7 @@ This is equivalent and will be treated as:
 ```
 { 
     amount: 2, 
-    badgeIds: [{ start: 1, end: 10}], 
+    tokenIds: [{ start: 1, end: 10}], 
     ownershipTimes: [{start: 100, end: 200}] 
 }
 ```
@@ -8428,7 +8428,7 @@ Cosmos Chain ID (Testnet) - bitbadges-2
 
 A core type behind the scenes in BitBadges is the [UintRange](https://bitbadges.github.io/bitbadgesjs/interfaces/iUintRange.html) type, which simply defines a range of numbers from some start value to some end value, inclusive. This allows us to apply powerful range logic.
 
-These are typically used for representing token IDs and time ranges. For example, transferring tokens will require an UintRange\<number>\[] of badgeIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the token IDs 1-10 and 20-50.
+These are typically used for representing token IDs and time ranges. For example, transferring tokens will require an UintRange\<number>\[] of tokenIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the token IDs 1-10 and 20-50.
 
 **Restricted Values**
 
@@ -8516,7 +8516,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Tokens vs Badges
 
-We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
+We use the terms tokens and badges interchangeably. For example, "tokenIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
 
 ## Gate Any Service In 2 Steps
 
@@ -9938,7 +9938,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ### Token Transfers
 
--   [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer tokens between addresses
+-   [MsgTransferTokens](messages/msg-transfer-tokens.md) - Transfer tokens between addresses
 
 ### User Approvals
 
@@ -9987,7 +9987,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Collections**](badge-collections.md) - The primary entity that defines groups of related tokens
 -   [**Balance System**](balance-system.md) - How token ownership is tracked with precise control over quantities and time
 -   [**Default Balances**](default-balances.md) - Predefined balance stores assigned to new users upon genesis creation
--   [**Valid Token IDs**](valid-badge-ids.md) - Defining the range of token identifiers that can exist within a collection
+-   [**Valid Token IDs**](valid-token-ids.md) - Defining the range of token identifiers that can exist within a collection
 -   [**Total Supply**](total-supply.md) - Maximum number of tokens that can exist for each token ID
 -   [**Mint Escrow Address**](mint-escrow-address.md) - Reserved address for holding native funds on behalf of the Mint address
 -   [**Archived Collections**](archived-collections.md) - Temporarily or permanently disabling collection transactions
@@ -10251,7 +10251,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     /** The list of merkle challenges that need valid proofs to be approved. */
     merkleChallenges?: iMerkleChallenge<T>[];
     /** The list of must own tokens that need valid proofs to be approved. */
-    mustOwnBadges?: iMustOwnBadge<T>[];
+    mustOwnTokens?: iMustOwnToken<T>[];
     /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
     predeterminedBalances?: iPredeterminedBalances<T>;
     /** The maximum approved amounts for this approval. */
@@ -10408,7 +10408,7 @@ Only increment when necessary (e.g., if no amount restrictions, don't track amou
         "amounts": [
             {
                 "amount": 50,
-                "badgeIds": [{ "start": 1, "end": 10 }],
+                "tokenIds": [{ "start": 1, "end": 10 }],
                 "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
             }
         ],
@@ -10419,7 +10419,7 @@ Only increment when necessary (e.g., if no amount restrictions, don't track amou
         "amounts": [
             {
                 "amount": 15,
-                "badgeIds": [{ "start": 1, "end": 5 }],
+                "tokenIds": [{ "start": 1, "end": 5 }],
                 "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
             }
         ],
@@ -10604,7 +10604,7 @@ interface MustOwnTokens<T extends NumberType> {
 -   **Description**: Time ranges when the user must have owned the tokens (UNIX milliseconds)
 -   **Example**: `[{ start: "1691931600000", end: "1723554000000" }]` for Aug 13, 2023 - Aug 13, 2024
 
-### badgeIds
+### tokenIds
 
 -   **Type**: `UintRange<T>[]`
 -   **Description**: Specific token IDs that must be owned
@@ -10630,10 +10630,10 @@ interface MustOwnTokens<T extends NumberType> {
 -   **Description**: Specifies which party of the transfer to check ownership for
 -   **Options**:
     -   `"initiator"` (default): Check ownership for the address that initiated the transfer
-    -   `"sender"`: Check ownership for the address sending the badges
-    -   `"recipient"`: Check ownership for the address receiving the badges
+    -   `"sender"`: Check ownership for the address sending the tokens
+    -   `"recipient"`: Check ownership for the address receiving the tokens
 -   **Default**: `"initiator"` (if empty or not specified)
--   **Example**: `"sender"` to require the sender to own specific badges before allowing the transfer
+-   **Example**: `"sender"` to require the sender to own specific tokens before allowing the transfer
 
 ## Example
 
@@ -10641,12 +10641,12 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "overrideWithCurrentTime": false,
             "mustSatisfyForAllAssets": true,
             "ownershipCheckParty": "initiator"
@@ -10661,11 +10661,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "initiator"
         }
     ]
@@ -10676,11 +10676,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "sender"
         }
     ]
@@ -10691,11 +10691,11 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 ```json
 {
-    "mustOwnBadges": [
+    "mustOwnTokens": [
         {
             "collectionId": "1",
             "amountRange": { "start": "1", "end": "1" },
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipCheckParty": "recipient"
         }
     ]
@@ -11248,10 +11248,10 @@ const expectedProofLength = tree.getLayerCount() - 1;
 
 ### Providing Proofs
 
-Include Merkle proofs in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
+Include Merkle proofs in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
 
 ```typescript
-const txCosmosMsg: MsgTransferBadges<bigint> = {
+const txCosmosMsg: MsgTransferTokens<bigint> = {
     creator: chain.bitbadgesAddress,
     collectionId: collectionId,
     transfers: [
@@ -11393,7 +11393,7 @@ Define an array of specific balance sets manually. Each element corresponds to a
     "manualBalances": [
         {
             "amount": "1",
-            "badgeIds": [
+            "tokenIds": [
                 {
                     "start": "1",
                     "end": "1"
@@ -11408,7 +11408,7 @@ Define an array of specific balance sets manually. Each element corresponds to a
         },
         {
             "amount": "5",
-            "badgeIds": [
+            "tokenIds": [
                 {
                     "start": "2",
                     "end": "6"
@@ -11437,7 +11437,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "1"
@@ -11451,11 +11451,11 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
                 ]
             }
         ],
-        "incrementBadgeIdsBy": "1",
+        "incrementTokenIdsBy": "1",
         "incrementOwnershipTimesBy": "0",
         "durationFromTimestamp": "0",
         "allowOverrideTimestamp": false,
-        "allowOverrideWithAnyValidBadge": false,
+        "allowOverrideWithAnyValidToken": false,
         "recurringOwnershipTimes": {
             "startTime": "0",
             "intervalLength": "0",
@@ -11469,11 +11469,11 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
 
 | Field                            | Description                                          | Example                                              |
 | -------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `incrementBadgeIdsBy`            | Amount to increment token IDs by after each transfer | `"1"` = next transfer gets token ID 2, then 3, etc.  |
+| `incrementTokenIdsBy`            | Amount to increment token IDs by after each transfer | `"1"` = next transfer gets token ID 2, then 3, etc.  |
 | `incrementOwnershipTimesBy`      | Amount to increment ownership times by               | `"86400000"` = add 1 day to ownership times          |
 | `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
 | `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
-| `allowOverrideWithAnyValidBadge` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
+| `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
 | `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
 #### Duration From Timestamp
@@ -11490,7 +11490,7 @@ Dynamically calculate ownership times from a timestamp plus a set duration. This
 **Behavior**:
 
 -   **Default**: Uses transfer time as the base timestamp
--   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferBadges` `precalculationOptions`
+-   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferTokens` `precalculationOptions`
 -   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
 -   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
 
@@ -11522,7 +11522,7 @@ Predetermined balances can change rapidly between transaction broadcast and conf
 
 ### The Solution: Precalculation
 
-Use `precalculateBalancesFromApproval` in [MsgTransferBadges](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
+Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
 
 ```typescript
 {
@@ -11614,7 +11614,7 @@ export interface PredeterminedOrderCalculationMethod {
 
 ### Understanding Bounds
 
-Every approval defines bounds through its core fields (badgeIds, ownershipTimes, etc.). For example:
+Every approval defines bounds through its core fields (tokenIds, ownershipTimes, etc.). For example:
 
 -   **Token IDs**: 1-100
 -   **Ownership Times**: Mon-Fri only
@@ -11780,7 +11780,7 @@ Trackers store amounts using the balance type structure. Above, we simplified it
     "amounts": [
         {
             "amount": 10n,
-            "badgeIds": [{ "start": 1n, "end": 1n }],
+            "tokenIds": [{ "start": 1n, "end": 1n }],
             "ownershipTimes": [{ "start": 1n, "end": 100000000000n }]
         }
     ]
@@ -11833,7 +11833,7 @@ If you later change back to "uniqueID", the starting point will be the previous 
 
 Automatic token transfers executed on every approval use. Supports any Cosmos SDK denomination. These are triggered every time an approval is used.
 
-To get all supported denominations, use the query parameters for the badges module.
+To get all supported denominations, use the query parameters for the tokens module.
 
 ## Interface
 
@@ -12050,7 +12050,7 @@ Note: This is what is stored on-chain in storage for a collection. You may typic
 ## Proto Definition
 
 ```protobuf
-message BadgeCollection {
+message TokenCollection {
   // The unique identifier for this collection. This is assigned by the blockchain. First collection has ID 1.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
@@ -12058,7 +12058,7 @@ message BadgeCollection {
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 2;
 
   // The metadata for each token in the collection, also subject to changes over time.
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 3;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
 
   // An arbitrary field that can store any data, subject to changes over time.
   repeated CustomDataTimeline customDataTimeline = 4;
@@ -12089,7 +12089,7 @@ message BadgeCollection {
   string createdBy = 11;
 
   // The valid token IDs for this collection.
-  repeated UintRange validBadgeIds = 12;
+  repeated UintRange validTokenIds = 12;
 
   // The generated address of the collection. Also used to escrow Mint balances.
   string mintEscrowAddress = 13;
@@ -12115,13 +12115,13 @@ The Balance system in BitBadges is designed to represent ownership of tokens acr
 ```typescript
 export interface Balance<T extends NumberType> {
     amount: T;
-    badgeIds: UintRange<T>[];
+    tokenIds: UintRange<T>[];
     ownershipTimes: UintRange<T>[];
 }
 ```
 
 -   `amount`: The quantity of tokens owned
--   `badgeIds`: An array of ID ranges representing the tokens owned
+-   `tokenIds`: An array of ID ranges representing the tokens owned
 -   `ownershipTimes`: An array of time ranges during which the tokens are owned
 
 ## Interpreting Balances
@@ -12132,9 +12132,9 @@ When interpreting balances, it's crucial to understand that multiple ranges of t
 
 ```javascript
 for (balance of balances) {
-    for (badgeIdRange of balance.badgeIds) {
+    for (tokenIdRange of balance.tokenIds) {
         for (ownershipTimeRange of balance.ownershipTimes) {
-            // User owns x(balance.amount) of (badgeIdRange) for the times (ownershipTimeRange)
+            // User owns x(balance.amount) of (tokenIdRange) for the times (ownershipTimeRange)
         }
     }
 }
@@ -12147,7 +12147,7 @@ Consider the following balance:
 ```json
 {
     "amount": 1,
-    "badgeIds": [
+    "tokenIds": [
         { "start": 1, "end": 10 },
         { "start": 20, "end": 30 }
     ],
@@ -12173,7 +12173,7 @@ When subtracting balances, you may need to represent the result as multiple Bala
 [
     {
         "amount": 1,
-        "badgeIds": [
+        "tokenIds": [
             { "start": 1, "end": 10 },
             { "start": 20, "end": 30 }
         ],
@@ -12181,7 +12181,7 @@ When subtracting balances, you may need to represent the result as multiple Bala
     },
     {
         "amount": 1,
-        "badgeIds": [{ "start": 20, "end": 30 }],
+        "tokenIds": [{ "start": 20, "end": 30 }],
         "ownershipTimes": [{ "start": 20, "end": 50 }]
     }
 ]
@@ -12194,7 +12194,7 @@ When duplicate token IDs are specified in balances, they are combined and their 
 ```json
 {
     "amount": 1,
-    "badgeIds": [
+    "tokenIds": [
         { "start": 1, "end": 10 },
         { "start": 1, "end": 10 }
     ],
@@ -12207,7 +12207,7 @@ This is equivalent to and will be treated as:
 ```json
 {
     "amount": 2,
-    "badgeIds": [{ "start": 1, "end": 10 }],
+    "tokenIds": [{ "start": 1, "end": 10 }],
     "ownershipTimes": [{ "start": 100, "end": 200 }]
 }
 ```
@@ -12349,7 +12349,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "500",
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }
@@ -12362,7 +12362,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "1500",  // Exceeds maxSupplyPerId of 1000
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }
@@ -12375,7 +12375,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "2000",  // Allowed for non-Total addresses
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }
@@ -12443,7 +12443,7 @@ maxSupplyPerId invariant violation: balance amount 1500 exceeds maximum supply p
 
 # Cosmos Wrapper Paths
 
-Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
+Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the tokens module, so you can set up customizable logic for how these transfers are handled.
 
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
@@ -12482,7 +12482,7 @@ message DenomUnit {
 ### Denom
 
 -   **Base denomination** - The fundamental unit name for the wrapped coin. For the full Cosmos denomination, it will be "badges:collectionId:denom"
--   **{id} placeholder support** - You can use `{id}` in the denom to dynamically replace it with the actual badge ID during transfers if allowOverrideWithAnyValidToken is true
+-   **{id} placeholder support** - You can use `{id}` in the denom to dynamically replace it with the actual token ID during transfers if allowOverrideWithAnyValidToken is true
 
 ### Symbol
 
@@ -12515,10 +12515,10 @@ Multiple denomination units allow for different display formats:
 
 ### Allow Override With Any Valid Token
 
--   **Dynamic badge ID handling** - When `true`, allows the wrapper to accept any SINGLE valid badge ID from the collection's `validBadgeIds` range
--   **Override conversion balances** - Temporarily overrides the `balances` field's badge ID ranges with the actual token ID being transferred
--   **Validation required** - The transferred token ID must be within the collection's valid badge ID range
--   **Use case** - Useful when you want a single wrapper path to handle multiple badge IDs dynamically
+-   **Dynamic token ID handling** - When `true`, allows the wrapper to accept any SINGLE valid token ID from the collection's `validTokenIds` range
+-   **Override conversion balances** - Temporarily overrides the `balances` field's token ID ranges with the actual token ID being transferred
+-   **Validation required** - The transferred token ID must be within the collection's valid token ID range
+-   **Use case** - Useful when you want a single wrapper path to handle multiple token IDs dynamically
 
 #### Example with {id} Placeholder
 
@@ -12529,7 +12529,7 @@ Multiple denomination units allow for different display formats:
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -12544,17 +12544,17 @@ Multiple denomination units allow for different display formats:
 }
 ```
 
-When transferring badge ID 5, the final denomination becomes `utoken5`.
+When transferring token ID 5, the final denomination becomes `utoken5`.
 
 ### Allow Override With Any Valid Token
 
-This feature provides flexibility in handling different badge IDs within a single wrapper path.
+This feature provides flexibility in handling different token IDs within a single wrapper path.
 
 #### How It Works
 
-1. **Validation Check** - Verifies the transferred token ID is within the collection's `validBadgeIds` range
-2. **Dynamic Override** - Temporarily replaces the wrapper's badge ID ranges with the actual token ID being transferred
-3. **Conversion** - Uses the overridden badge ID for the conversion calculation
+1. **Validation Check** - Verifies the transferred token ID is within the collection's `validTokenIds` range
+2. **Dynamic Override** - Temporarily replaces the wrapper's token ID ranges with the actual token ID being transferred
+3. **Conversion** - Uses the overridden token ID for the conversion calculation
 
 #### Example with Override Enabled
 
@@ -12565,7 +12565,7 @@ This feature provides flexibility in handling different badge IDs within a singl
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }], // These technically don't matter since we can override the badge IDs during conversion
+            "tokenIds": [{ "start": "1", "end": "1" }], // These technically don't matter since we can override the token IDs during conversion
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -12580,7 +12580,7 @@ This feature provides flexibility in handling different badge IDs within a singl
 }
 ```
 
-This wrapper can now handle any badge ID from 1-100 (assuming the collection's `validBadgeIds` includes that range), dynamically overriding the badge ID during conversion.
+This wrapper can now handle any token ID from 1-100 (assuming the collection's `validTokenIds` includes that range), dynamically overriding the token ID during conversion.
 
 ## Usage Examples
 
@@ -12593,7 +12593,7 @@ This wrapper can now handle any badge ID from 1-100 (assuming the collection's `
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -12617,7 +12617,7 @@ This wrapper can now handle any badge ID from 1-100 (assuming the collection's `
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -13000,10 +13000,10 @@ The `collectionMetadataTimeline` defines metadata for the entire collection over
 
 ### Token Metadata Timeline
 
-The `badgeMetadataTimeline` defines metadata for individual tokens over time. The order of `badgeMetadata` entries matters, as it uses a **first-match approach** via linear scan for specific token IDs. BitBadges uses the `{id}` placeholder in the token metadata URI to replace with the actual token ID.
+The `tokenMetadataTimeline` defines metadata for individual tokens over time. The order of `tokenMetadata` entries matters, as it uses a **first-match approach** via linear scan for specific token IDs. BitBadges uses the `{id}` placeholder in the token metadata URI to replace with the actual token ID.
 
 ```json
-"badgeMetadataTimeline": [
+"tokenMetadataTimeline": [
   {
     "timelineTimes": [
       {
@@ -13011,10 +13011,10 @@ The `badgeMetadataTimeline` defines metadata for individual tokens over time. Th
         "end": "18446744073709551615"
       }
     ],
-    "badgeMetadata": [
+    "tokenMetadata": [
       {
         "uri": "ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}",
-        "badgeIds": [
+        "tokenIds": [
           {
             "start": "1",
             "end": "10000000000000"
@@ -13079,9 +13079,9 @@ Metadata updates are controlled by collection permissions:
 ### Token Metadata Permission
 
 ```json
-"canUpdateBadgeMetadata": [
+"canUpdateTokenMetadata": [
   {
-    "badgeIds": [{"start": "1", "end": "100"}],
+    "tokenIds": [{"start": "1", "end": "100"}],
     "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyPermittedTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyForbiddenTimes": []
@@ -13252,7 +13252,7 @@ Approval permissions control when transfer approvals can be updated, allowing yo
 
 ```
 For each approval update request:
-    Check if approval criteria match (from, to, initiatedBy, transferTimes, badgeIds, ownershipTimes, approvalId)
+    Check if approval criteria match (from, to, initiatedBy, transferTimes, tokenIds, ownershipTimes, approvalId)
         → If no match: ALLOW (neutral state)
         → If match: Check if current time is in permanentlyPermittedTimes
             → If yes: ALLOW
@@ -13285,7 +13285,7 @@ interface ApprovalPermission {
     toListId: string;
     initiatedByListId: string;
     transferTimes: UintRange[];
-    badgeIds: UintRange[];
+    tokenIds: UintRange[];
     ownershipTimes: UintRange[];
     approvalId: string;
 
@@ -13311,7 +13311,7 @@ interface ApprovalPermission {
 
 ### Approval Tuple
 
-An approval tuple consists of: `(from, to, initiatedBy, badgeIds, transferTimes, ownershipTimes, approvalId)`
+An approval tuple consists of: `(from, to, initiatedBy, tokenIds, transferTimes, ownershipTimes, approvalId)`
 
 ### Brute Force Pattern
 
@@ -13322,7 +13322,7 @@ To lock specific criteria, specify the target and set all other criteria to maxi
     "fromListId": "All",
     "toListId": "All",
     "initiatedByListId": "All",
-    "badgeIds": [{ "start": "1", "end": "10" }],
+    "tokenIds": [{ "start": "1", "end": "10" }],
     "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "approvalId": "All",
@@ -13344,7 +13344,7 @@ To lock specific criteria, specify the target and set all other criteria to maxi
             "fromListId": "All",
             "toListId": "All",
             "initiatedByListId": "All",
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
             "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "approvalId": "All",
@@ -13366,7 +13366,7 @@ To lock specific criteria, specify the target and set all other criteria to maxi
             "fromListId": "All",
             "toListId": "All",
             "initiatedByListId": "All",
-            "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+            "tokenIds": [{ "start": "1", "end": "18446744073709551615" }],
             "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "approvalId": "specific-approval-id",
@@ -13396,7 +13396,7 @@ Lock a token range AND all overlapping approvals:
 ```json
 // Lock token range
 {
-    "badgeIds": [{ "start": "1", "end": "10" }],
+    "tokenIds": [{ "start": "1", "end": "10" }],
     "approvalId": "All"
 }
 
@@ -13415,7 +13415,7 @@ Lock all approvals for a collection:
     "fromListId": "All",
     "toListId": "All",
     "initiatedByListId": "All",
-    "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+    "tokenIds": [{ "start": "1", "end": "18446744073709551615" }],
     "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "approvalId": "All",
@@ -13437,7 +13437,7 @@ Token ID action permissions control which token-specific actions can be performe
 
 ```
 For each token action request:
-    Check if token ID matches any badgeIds criteria
+    Check if token ID matches any tokenIds criteria
         → If no match: ALLOW (neutral state)
         → If match: Check if current time is in permanentlyPermittedTimes
             → If yes: ALLOW
@@ -13463,8 +13463,8 @@ Execute/Deny
 ## Interface
 
 ```typescript
-interface BadgeIdsActionPermission {
-    badgeIds: UintRange[];
+interface TokenIdsActionPermission {
+    tokenIds: UintRange[];
     permanentlyPermittedTimes: UintRange[];
     permanentlyForbiddenTimes: UintRange[];
 }
@@ -13474,7 +13474,7 @@ interface BadgeIdsActionPermission {
 
 | Action                   | Description            | Use Case      |
 | ------------------------ | ---------------------- | ------------- |
-| `canUpdateValidBadgeIds` | Update valid token IDs | Configuration |
+| `canUpdateValidTokenIds` | Update valid token IDs | Configuration |
 
 ## Examples
 
@@ -13482,9 +13482,9 @@ interface BadgeIdsActionPermission {
 
 ```json
 {
-    "canUpdateValidBadgeIds": [
+    "canUpdateValidTokenIds": [
         {
-            "badgeIds": [{ "start": "1", "end": "18446744073709551615" }],
+            "tokenIds": [{ "start": "1", "end": "18446744073709551615" }],
             "permanentlyPermittedTimes": [],
             "permanentlyForbiddenTimes": [
                 { "start": "1", "end": "18446744073709551615" }
@@ -13498,9 +13498,9 @@ interface BadgeIdsActionPermission {
 
 ```json
 {
-    "canUpdateValidBadgeIds": [
+    "canUpdateValidTokenIds": [
         {
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
             "permanentlyPermittedTimes": [],
             "permanentlyForbiddenTimes": [
                 { "start": "1", "end": "18446744073709551615" }
@@ -13514,9 +13514,9 @@ interface BadgeIdsActionPermission {
 
 ```json
 {
-    "canUpdateValidBadgeIds": [
+    "canUpdateValidTokenIds": [
         {
-            "badgeIds": [{ "start": "101", "end": "18446744073709551615" }],
+            "tokenIds": [{ "start": "101", "end": "18446744073709551615" }],
             "permanentlyPermittedTimes": [
                 { "start": "1", "end": "18446744073709551615" }
             ],
@@ -13593,8 +13593,8 @@ There are **five types** of permissions, each with different criteria:
 
 -   **[Action Permissions](action-permissions.md)** - Simple time-based permissions (no criteria)
 -   **[Timeline Permissions](timeline-permissions.md)** - Control timeline updates (timelineTimes)
--   **[Timeline with Token IDs](timeline-permissions.md)** - Control token-specific timeline updates (timelineTimes + badgeIds)
--   **[Token ID Action Permissions](badge-id-permissions.md)** - Control token-specific actions (badgeIds)
+-   **[Timeline with Token IDs](timeline-permissions.md)** - Control token-specific timeline updates (timelineTimes + tokenIds)
+-   **[Token ID Action Permissions](badge-id-permissions.md)** - Control token-specific actions (tokenIds)
 -   **[Approval Permissions](approval-permissions.md)** - Control approval updates (transfer criteria + approvalId)
 
 ### Correct Categorization
@@ -13616,13 +13616,13 @@ Based on the proto definitions:
 -   `canUpdateManager`
 -   `canUpdateCollectionMetadata`
 
-**Timeline with Token IDs** (timelineTimes + badgeIds + time control):
+**Timeline with Token IDs** (timelineTimes + tokenIds + time control):
 
--   `canUpdateBadgeMetadata`
+-   `canUpdateTokenMetadata`
 
-**Token ID Action Permissions** (badgeIds + time control):
+**Token ID Action Permissions** (tokenIds + time control):
 
--   `canUpdateValidBadgeIds`
+-   `canUpdateValidTokenIds`
 
 **Approval Permissions** (transfer criteria + approvalId + time control):
 
@@ -13655,10 +13655,10 @@ When can the token metadata be updated? And which (token IDs, timeline time) pai
 
 ```json
 {
-    "canUpdateBadgeMetadata": [
+    "canUpdateTokenMetadata": [
         {
             "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
 
             "permanentlyPermittedTimes": [],
             "permanentlyForbiddenTimes": [
@@ -13709,10 +13709,10 @@ All criteria in a permission element must match for it to be applied. Partial ma
 ### Example: Token Metadata Permissions
 
 ```json
-"canUpdateBadgeMetadata": [
+"canUpdateTokenMetadata": [
     {
         "timelineTimes": [{ "start": "1", "end": "10" }],
-        "badgeIds": [{ "start": "1", "end": "10" }],
+        "tokenIds": [{ "start": "1", "end": "10" }],
         "permanentlyPermittedTimes": [{ "start": "1", "end": "18446744073709551615" }],
         "permanentlyForbiddenTimes": []
     }
@@ -13742,7 +13742,7 @@ To lock specific criteria, you must specify the target and set all other criteri
     "fromListId": "All",
     "toListId": "All",
     "initiatedByListId": "All",
-    "badgeIds": [{ "start": "1", "end": "10" }],
+    "tokenIds": [{ "start": "1", "end": "10" }],
     "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "approvalId": "All",
@@ -13800,7 +13800,7 @@ For each token timeline update request:
 **English**:
 
 -   **Basic**: "For these permission execution times, the (timelineTime -> timelineValue) pairs can be updated"
--   **Token-Specific**: "For these permission execution times, the (badgeId, timelineTime -> timelineValue) pairs can be updated"
+-   **Token-Specific**: "For these permission execution times, the (tokenId, timelineTime -> timelineValue) pairs can be updated"
 
 ## Timeline vs Execution Times
 
@@ -13848,9 +13848,9 @@ interface TimedUpdatePermission {
 Control token metadata timeline updates:
 
 ```typescript
-interface TimedUpdateWithBadgeIdsPermission {
+interface TimedUpdateWithTokenIdsPermission {
     timelineTimes: UintRange[];
-    badgeIds: UintRange[];
+    tokenIds: UintRange[];
     permanentlyPermittedTimes: UintRange[];
     permanentlyForbiddenTimes: UintRange[];
 }
@@ -13858,7 +13858,7 @@ interface TimedUpdateWithBadgeIdsPermission {
 
 **Available Actions:**
 
--   `canUpdateBadgeMetadata`
+-   `canUpdateTokenMetadata`
 
 ## Examples
 
@@ -13898,10 +13898,10 @@ interface TimedUpdateWithBadgeIdsPermission {
 
 ```json
 {
-    "canUpdateBadgeMetadata": [
+    "canUpdateTokenMetadata": [
         {
             "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
             "permanentlyPermittedTimes": [],
             "permanentlyForbiddenTimes": [
                 { "start": "1", "end": "18446744073709551615" }
@@ -13942,7 +13942,7 @@ This directory contains documentation for standardized protocols that can be imp
 
 ## Protocol Overview
 
-Protocols in BitBadges are standardized implementations that:
+Protocols in BitTokens are standardized implementations that:
 
 -   Define specific collection configuration patterns
 -   Establish validation rules for protocol compliance
@@ -13977,13 +13977,13 @@ The Quest Protocol is a standardized way to create quest-based collections that 
 -   **Max Transfers**: Must have `overallMaxNumTransfers` > 0
 -   **Predetermined Balances**: Must have:
     -   Exactly one `startBalance` with amount 1 for token ID 1
-    -   `incrementBadgeIdsBy`: 0 (no token ID incrementing)
+    -   `incrementTokenIdsBy`: 0 (no token ID incrementing)
     -   `incrementOwnershipTimesBy`: 0 (no time incrementing)
     -   `durationFromTimestamp`: 0 (no time-based duration)
     -   `allowOverrideTimestamp`: false (no timestamp overrides)
     -   All `recurringOwnershipTimes` fields set to 0 (no recurring)
 -   **Additional Constraints**:
-    -   `mustOwnBadges`: empty (no prerequisite tokens)
+    -   `mustOwnTokens`: empty (no prerequisite tokens)
     -   `requireToEqualsInitiatedBy`: false (no address matching required)
 
 ## Validation Functions
@@ -14022,14 +14022,14 @@ export const doesCollectionFollowQuestProtocol = (
     }
 
     // Assert valid token IDs are only 1n-1n
-    const badgeIds = UintRangeArray.From(collection.validBadgeIds)
+    const tokenIds = UintRangeArray.From(collection.validTokenIds)
         .sortAndMerge()
         .convert(BigInt);
-    if (badgeIds.length !== 1 || badgeIds.size() !== 1n) {
+    if (tokenIds.length !== 1 || tokenIds.size() !== 1n) {
         return false;
     }
 
-    if (badgeIds[0].start !== 1n || badgeIds[0].end !== 1n) {
+    if (tokenIds[0].start !== 1n || tokenIds[0].end !== 1n) {
         return false;
     }
 
@@ -14067,7 +14067,7 @@ export const isQuestApproval = (approval: iCollectionApproval<bigint>) => {
     }
 
     // Must not require owning other tokens
-    if (approvalCriteria.mustOwnBadges?.length) {
+    if (approvalCriteria.mustOwnTokens?.length) {
         return false;
     }
 
@@ -14117,16 +14117,16 @@ export const isQuestApproval = (approval: iCollectionApproval<bigint>) => {
         return false;
     }
 
-    const allBadgeIds = UintRangeArray.From(
-        incrementedBalances.startBalances[0].badgeIds
+    const allTokenIds = UintRangeArray.From(
+        incrementedBalances.startBalances[0].tokenIds
     )
         .sortAndMerge()
         .convert(BigInt);
-    if (allBadgeIds.length !== 1 || allBadgeIds.size() !== 1n) {
+    if (allTokenIds.length !== 1 || allTokenIds.size() !== 1n) {
         return false;
     }
 
-    if (allBadgeIds[0].start !== 1n || allBadgeIds[0].end !== 1n) {
+    if (allTokenIds[0].start !== 1n || allTokenIds[0].end !== 1n) {
         return false;
     }
 
@@ -14135,7 +14135,7 @@ export const isQuestApproval = (approval: iCollectionApproval<bigint>) => {
         return false;
     }
 
-    if (incrementedBalances.incrementBadgeIdsBy !== 0n) {
+    if (incrementedBalances.incrementTokenIdsBy !== 0n) {
         return false;
     }
 
@@ -14236,11 +14236,11 @@ Must use `incrementedBalances` with specific configuration:
             "startBalances": [
                 {
                     "amount": "1",
-                    "badgeIds": [{ "start": "1", "end": "1" }],
+                    "tokenIds": [{ "start": "1", "end": "1" }],
                     "ownershipTimes": [{ "start": "0", "end": "0" }]
                 }
             ],
-            "incrementBadgeIdsBy": "0",
+            "incrementTokenIdsBy": "0",
             "incrementOwnershipTimesBy": "0",
             "durationFromTimestamp": "2592000000", // 30 days in milliseconds
             "allowOverrideTimestamp": true,
@@ -14266,7 +14266,7 @@ Must use `incrementedBalances` with specific configuration:
 ##### Restrictions
 
 -   **No Merkle Challenges**: Cannot include merkle challenges
--   **No Token Requirements**: Cannot include mustOwnBadges requirements
+-   **No Token Requirements**: Cannot include mustOwnTokens requirements
 -   **No Address Restrictions**: Cannot require from/to equals initiated by
 -   **No Override Approvals**: Cannot override incoming approvals
 
@@ -14310,10 +14310,10 @@ Users manage their subscriptions through incoming approvals that complement the 
             "startBalances": [
                 {
                     "amount": "1",
-                    "badgeIds": [{ "start": "1", "end": "1" }]
+                    "tokenIds": [{ "start": "1", "end": "1" }]
                 }
             ],
-            "incrementBadgeIdsBy": "0",
+            "incrementTokenIdsBy": "0",
             "incrementOwnershipTimesBy": "0",
             "durationFromTimestamp": "0",
             "allowOverrideTimestamp": false,
@@ -14366,14 +14366,14 @@ function doesCollectionFollowSubscriptionProtocol(collection) {
     if (subscriptionApprovals.length < 1) return false;
 
     // Validate single token ID requirement
-    if (collection.validBadgeIds.length !== 1) return false;
+    if (collection.validTokenIds.length !== 1) return false;
 
     // Ensure approval token IDs match collection token IDs
-    const allApprovalBadgeIds = subscriptionApprovals
-        .map((approval) => approval.badgeIds)
+    const allApprovalTokenIds = subscriptionApprovals
+        .map((approval) => approval.tokenIds)
         .flat();
 
-    return badgeIdsMatch(collection.validBadgeIds, allApprovalBadgeIds);
+    return tokenIdsMatch(collection.validTokenIds, allApprovalTokenIds);
 }
 ```
 
@@ -14410,7 +14410,7 @@ function isSubscriptionFaucetApproval(approval) {
         approval.approvalCriteria.predeterminedBalances?.incrementedBalances;
     if (!incrementedBalances) return false;
 
-    return validateIncrementedBalances(incrementedBalances, approval.badgeIds);
+    return validateIncrementedBalances(incrementedBalances, approval.tokenIds);
 }
 ```
 
@@ -14424,7 +14424,7 @@ function isUserRecurringApproval(userApproval, subscriptionApproval) {
     if (userApproval.fromListId !== 'Mint') return false;
 
     // Token IDs must match subscription
-    if (!badgeIdsMatch(userApproval.badgeIds, subscriptionApproval.badgeIds)) {
+    if (!tokenIdsMatch(userApproval.tokenIds, subscriptionApproval.tokenIds)) {
         return false;
     }
 
@@ -14456,7 +14456,7 @@ function isUserRecurringApproval(userApproval, subscriptionApproval) {
 
 ```json
 {
-    "validBadgeIds": [{ "start": "1", "end": "1" }],
+    "validTokenIds": [{ "start": "1", "end": "1" }],
     "standardsTimeline": [
         {
             "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
@@ -14469,7 +14469,7 @@ function isUserRecurringApproval(userApproval, subscriptionApproval) {
             "toListId": "All",
             "initiatedByListId": "All",
             "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "approvalCriteria": {
                 "coinTransfers": [
                     {
@@ -14483,7 +14483,7 @@ function isUserRecurringApproval(userApproval, subscriptionApproval) {
                         "startBalances": [
                             {
                                 "amount": "1",
-                                "badgeIds": [{ "start": "1", "end": "1" }]
+                                "tokenIds": [{ "start": "1", "end": "1" }]
                             }
                         ],
                         "durationFromTimestamp": "2592000000",
@@ -14501,7 +14501,7 @@ function isUserRecurringApproval(userApproval, subscriptionApproval) {
 ```json
 {
     "fromListId": "Mint",
-    "badgeIds": [{ "start": "1", "end": "1" }],
+    "tokenIds": [{ "start": "1", "end": "1" }],
     "approvalCriteria": {
         "coinTransfers": [
             {
@@ -14574,7 +14574,7 @@ Listings allow owners to sell their tokens for coins.
 -   Exactly one coin transfer with one coin denomination
 -   Coin recipient must be the token owner (`to` equals `fromListId`)
 -   No address overrides (`overrideFromWithApproverAddress` and `overrideToWithInitiator` must be false)
--   Specific token IDs (no `allowOverrideWithAnyValidBadge`)
+-   Specific token IDs (no `allowOverrideWithAnyValidToken`)
 -   Full ownership times
 -   No Merkle challenges or prerequisite tokens
 -   `overallMaxNumTransfers` > 0
@@ -14590,7 +14590,7 @@ Bids allow users to offer coins to purchase tokens from others.
 -   Exactly one coin transfer with one coin denomination
 -   Coins come from bidder (`overrideFromWithApproverAddress` must be true)
 -   Coins go to token owner (`overrideToWithInitiator` must be true)
--   Specific token IDs (no `allowOverrideWithAnyValidBadge` unless collection bid)
+-   Specific token IDs (no `allowOverrideWithAnyValidToken` unless collection bid)
 -   Full ownership times
 -   No Merkle challenges or prerequisite tokens
 -   `overallMaxNumTransfers` > 0
@@ -14601,7 +14601,7 @@ Collection bids allow users to bid on any token within a collection.
 
 **Additional Requirements:**
 
--   Must have `allowOverrideWithAnyValidBadge` set to true
+-   Must have `allowOverrideWithAnyValidToken` set to true
 -   All other bid requirements apply
 
 ## Validation Functions
@@ -14692,20 +14692,20 @@ export const isBidOrListingApproval = (
 
     // Collection bids can accept any valid ID
     if (options?.isCollectionBid) {
-        if (!incrementedBalances.allowOverrideWithAnyValidBadge) {
+        if (!incrementedBalances.allowOverrideWithAnyValidToken) {
             return false;
         }
     } else {
-        const allBadgeIds = UintRangeArray.From(
-            incrementedBalances.startBalances[0].badgeIds
+        const allTokenIds = UintRangeArray.From(
+            incrementedBalances.startBalances[0].tokenIds
         )
             .sortAndMerge()
             .convert(BigInt);
-        if (allBadgeIds.length !== 1 || allBadgeIds.size() !== 1n) {
+        if (allTokenIds.length !== 1 || allTokenIds.size() !== 1n) {
             return false;
         }
 
-        if (incrementedBalances.allowOverrideWithAnyValidBadge) {
+        if (incrementedBalances.allowOverrideWithAnyValidToken) {
             return false;
         }
     }
@@ -14728,7 +14728,7 @@ export const isBidOrListingApproval = (
         return false;
     }
 
-    if (incrementedBalances.incrementBadgeIdsBy !== 0n) {
+    if (incrementedBalances.incrementTokenIdsBy !== 0n) {
         return false;
     }
 
@@ -14772,7 +14772,7 @@ export const isBidOrListingApproval = (
         return false;
     }
 
-    if (approvalCriteria.mustOwnBadges?.length) {
+    if (approvalCriteria.mustOwnTokens?.length) {
         return false;
     }
 
@@ -14907,7 +14907,7 @@ BitBadges uses various time-related fields to manage permissions, timelines, tra
 
 ## Time Representation
 
-All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
+All times in BitTokens are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
 
 Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
 
@@ -15025,10 +15025,10 @@ message CollectionMetadataTimeline {
   CollectionMetadata collectionMetadata = 2;
 }
 
-message BadgeMetadataTimeline {
+message TokenMetadataTimeline {
   repeated UintRange timelineTimes = 1;
-  repeated UintRange badgeIds = 2;
-  BadgeMetadata badgeMetadata = 3;
+  repeated UintRange tokenIds = 2;
+  TokenMetadata tokenMetadata = 3;
 }
 ```
 
@@ -15038,7 +15038,7 @@ The collection interface includes the following timeline-based fields:
 
 -   `managerTimeline: ManagerTimeline<T>[]`
 -   `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
--   `badgeMetadataTimeline: BadgeMetadataTimeline<T>[]`
+-   `tokenMetadataTimeline: TokenMetadataTimeline<T>[]`
 -   `customDataTimeline: CustomDataTimeline<T>[]`
 -   `standardsTimeline: StandardsTimeline<T>[]`
 -   `isArchivedTimeline: IsArchivedTimeline<T>[]`
@@ -15102,7 +15102,7 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## Related Concepts
 
--   **[Valid Token IDs](valid-badge-ids.md)** - Defines which token IDs can exist for informational purposes
+-   **[Valid Token IDs](valid-token-ids.md)** - Defines which token IDs can exist for informational purposes
 -   **[Manager](manager.md)** - Controls the collection approvals and permissions
 -   **[Transferability & Approvals](transferability-approvals.md)** - Governs transfers from Mint address
 -   **[Permissions](permissions/)** - Controls what managers can do and when they can do it
@@ -15137,7 +15137,7 @@ interface CollectionApproval<T extends NumberType> {
     fromListId: string; // Who can send?
     initiatedByListId: string; // Who can initiate?
     transferTimes: UintRange<T>[]; // When can transfer happen?
-    badgeIds: UintRange<T>[]; // Which token IDs?
+    tokenIds: UintRange<T>[]; // Which token IDs?
     ownershipTimes: UintRange<T>[]; // Which ownership times?
     approvalId: string; // Unique identifier
 
@@ -15167,7 +15167,7 @@ Every approval defines **Who? When? What?** through these fields:
 | `fromListId`        | Address List ID                  | Who can send tokens                     | `"Mint"`, `"!Mint"`                                |
 | `initiatedByListId` | Address List ID                  | Who can initiate transfer               | `"All"`, `"bb1..."`                                |
 | `transferTimes`     | UintRange\[] (UNIX Milliseconds) | When transfer can occur                 | `[{start: "1691931600000", end: "1723554000000"}]` |
-| `badgeIds`          | UintRange\[] (Token IDs)         | Which token IDs                         | `[{start: "1", end: "100"}]`                       |
+| `tokenIds`          | UintRange\[] (Token IDs)         | Which token IDs                         | `[{start: "1", end: "100"}]`                       |
 | `ownershipTimes`    | UintRange\[] (UNIX Milliseconds) | Which ownership times to be transferred | `[{start: "1", end: "18446744073709551615"}]`      |
 
 ### Example Approval
@@ -15178,7 +15178,7 @@ Every approval defines **Who? When? What?** through these fields:
     "toListId": "All",
     "initiatedByListId": "All",
     "transferTimes": [{ "start": "1691931600000", "end": "1723554000000" }],
-    "badgeIds": [{ "start": "1", "end": "100" }],
+    "tokenIds": [{ "start": "1", "end": "100" }],
     "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
     "approvalId": "mint-to-all"
 }
@@ -15214,10 +15214,10 @@ For optimal design, you should try to design transfers such that they only use s
 
 ### Prioritized Approvals
 
-In MsgTransferBadges, you can specify which approvals to prioritize. This allows you to prioritize certain approvals over others.
+In MsgTransferTokens, you can specify which approvals to prioritize. This allows you to prioritize certain approvals over others.
 
 ```typescript
-// In MsgTransferBadges
+// In MsgTransferTokens
 {
   prioritizedApprovals: [{
     approvalId: "approval1",
@@ -15262,7 +15262,7 @@ The versioning control ensures that before submitting, the user knows the exact 
 ]
 ```
 
-See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
+See [MsgTransferTokens](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
 
 ## Related Topics
 
@@ -15276,7 +15276,7 @@ See [MsgTransferBadges](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgt
 
 # UintRanges
 
-The `UintRange` is the fundamental data structure used throughout the badges module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
+The `UintRange` is the fundamental data structure used throughout the tokens module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
 
 ## Proto Definition
 
@@ -15360,7 +15360,7 @@ const multipleBadges: UintRange[] = [
 
 ```go
 // Token IDs 1-10
-badgeIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
+tokenIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
 
 // Unlimited amount
 unlimitedAmount := UintRange{Start: NewUint(1), End: MaxUint}
@@ -15377,7 +15377,7 @@ singleBadge := UintRange{Start: NewUint(5), End: NewUint(5)}
 -   **Scalability**: Handles large ranges without performance degradation
 
 
-## File: ./x-badges/concepts/valid-badge-ids.md
+## File: ./x-badges/concepts/valid-token-ids.md
 
 # Valid Token IDs
 
@@ -15387,19 +15387,19 @@ Valid Token IDs define the range of token IDs that exist within a collection. Th
 
 ### During Collection Creation
 
-Use the `validBadgeIds` field in [MsgCreateCollection](../../messages/msg-create-collection.md):
+Use the `validTokenIds` field in [MsgCreateCollection](../../messages/msg-create-collection.md):
 
 ```json
 {
     "creator": "bb1...",
-    "validBadgeIds": [
+    "validTokenIds": [
         {
             "start": "1",
             "end": "100"
         }
     ],
     "collectionPermissions": {
-        "canUpdateValidBadgeIds": [
+        "canUpdateValidTokenIds": [
             // { ... }
         ]
     }
@@ -15408,13 +15408,13 @@ Use the `validBadgeIds` field in [MsgCreateCollection](../../messages/msg-create
 
 ### During Collection Updates
 
-Use the `validBadgeIds` field in [MsgUpdateCollection](../../messages/msg-update-collection.md):
+Use the `validTokenIds` field in [MsgUpdateCollection](../../messages/msg-update-collection.md):
 
 ```json
 {
     "creator": "bb1...",
     "collectionId": "1",
-    "validBadgeIds": [
+    "validTokenIds": [
         {
             "start": "101",
             "end": "200"
@@ -15425,14 +15425,14 @@ Use the `validBadgeIds` field in [MsgUpdateCollection](../../messages/msg-update
 
 ## Permission Control
 
-Updates to valid token IDs must obey the `canUpdateValidBadgeIds` permission:
+Updates to valid token IDs must obey the `canUpdateValidTokenIds` permission:
 
 ### Permission Structure
 
 ```json
-"canUpdateValidBadgeIds": [
+"canUpdateValidTokenIds": [
   {
-    "badgeIds": [{"start": "1", "end": "1000"}],
+    "tokenIds": [{"start": "1", "end": "1000"}],
     "permanentlyPermittedTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyForbiddenTimes": []
   }
@@ -15441,7 +15441,7 @@ Updates to valid token IDs must obey the `canUpdateValidBadgeIds` permission:
 
 ### Permission Behaviors
 
-Note that the `canUpdateValidBadgeIds` permission applies to the updatability of the `validBadgeIds` field.
+Note that the `canUpdateValidTokenIds` permission applies to the updatability of the `validTokenIds` field.
 
 We find the first-match for (current time, token ID) for each token ID that is changed, and check the permission for that time. If no time matches, the permission is default enabled. See [Permissions](permissions/) for more details.
 
@@ -15456,7 +15456,7 @@ Typically, the desired functionality falls into one of the following categories:
 
 1. **Plan ahead**: Consider future expansion when setting initial token ID ranges
 2. **Sequential additions**: Always add token IDs sequentially to maintain the no-gaps requirement
-3. **Permission management**: Carefully configure `canUpdateValidBadgeIds` permissions based on collection lifecycle
+3. **Permission management**: Carefully configure `canUpdateValidTokenIds` permissions based on collection lifecycle
 4. **Documentation**: Clearly document the intended use of different token ID ranges
 
 
@@ -15464,7 +15464,7 @@ Typically, the desired functionality falls into one of the following categories:
 
 # 📡 Events
 
-The badges module emits events for all message operations to enable blockchain monitoring and external application integration.
+The tokens module emits events for all message operations to enable blockchain monitoring and external application integration.
 
 ## Event Categories
 
@@ -15534,14 +15534,14 @@ Attributes:
 
 ### Token Transfers
 
-#### TransferBadges
+#### TransferTokens
 
 ```
 Type: "message"
 Attributes:
   - module: "badges"
   - sender: string (initiator address)
-  - action: "transfer_badges"
+  - action: "transfer_tokens"
   - msg: string (JSON-encoded message)
   - transfer: string (JSON transfer details)
   - from: string (sender address)
@@ -15776,7 +15776,7 @@ const approveSelfForcefully = (address: string) => {
         toListId: 'All',
         initiatedByListId: address,
         transferTimes: UintRangeArray.FullRanges(),
-        badgeIds: UintRangeArray.FullRanges(),
+        tokenIds: UintRangeArray.FullRanges(),
         ownershipTimes: UintRangeArray.FullRanges(),
         approvalId: id,
         version: 0n,
@@ -15817,7 +15817,7 @@ const burnableApproval = new CollectionApproval({
     initiatedByListId: 'All',
     transferTimes: UintRangeArray.FullRanges(),
     ownershipTimes: UintRangeArray.FullRanges(),
-    badgeIds: UintRangeArray.FullRanges(),
+    tokenIds: UintRangeArray.FullRanges(),
     approvalId: 'burnable-approval',
     version: 0n,
     approvalCriteria: undefined, // No additional restrictions
@@ -15846,12 +15846,12 @@ Full example: [Cosmos Coin Wrapper Example](broken-reference)
 ```typescript
 export const unwrapperApproval = ({
     specialAddress,
-    badgeIds,
+    tokenIds,
     ownershipTimes,
     approvalId,
 }: {
     specialAddress: string;
-    badgeIds: iUintRange<bigint>[];
+    tokenIds: iUintRange<bigint>[];
     ownershipTimes: iUintRange<bigint>[];
     approvalId: string;
 }): RequiredApprovalProps => {
@@ -15865,7 +15865,7 @@ export const unwrapperApproval = ({
         initiatedByListId: 'All',
         initiatedByList: AddressList.AllAddresses(),
         transferTimes: UintRangeArray.FullRanges(),
-        badgeIds: badgeIds,
+        tokenIds: tokenIds,
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
@@ -15901,12 +15901,12 @@ Full example: [Cosmos Coin Wrapper Example](broken-reference)
 ```typescript
 export const wrapperApproval = ({
     specialAddress,
-    badgeIds,
+    tokenIds,
     ownershipTimes,
     approvalId,
 }: {
     specialAddress: string;
-    badgeIds: iUintRange<bigint>[];
+    tokenIds: iUintRange<bigint>[];
     ownershipTimes: iUintRange<bigint>[];
     approvalId: string;
 }): RequiredApprovalProps => {
@@ -15920,7 +15920,7 @@ export const wrapperApproval = ({
         initiatedByListId: 'All',
         initiatedByList: AddressList.AllAddresses(),
         transferTimes: UintRangeArray.FullRanges(),
-        badgeIds: badgeIds,
+        tokenIds: tokenIds,
         ownershipTimes: ownershipTimes,
         approvalId: id,
         approvalCriteria: {
@@ -15959,7 +15959,7 @@ const transferableApproval = new CollectionApproval({
     initiatedByListId: 'All',
     transferTimes: UintRangeArray.FullRanges(),
     ownershipTimes: UintRangeArray.FullRanges(),
-    badgeIds: UintRangeArray.FullRanges(),
+    tokenIds: UintRangeArray.FullRanges(),
     approvalId: 'transferable-approval',
     version: 0n,
     approvalCriteria: undefined, // No additional restrictions
@@ -15985,10 +15985,10 @@ For detailed information about each field, see the corresponding concepts docume
 
 | Field                         | Concepts Link                                               |
 | ----------------------------- | ----------------------------------------------------------- |
-| `validBadgeIds`               | [Valid Token IDs](../concepts/valid-badge-ids.md)           |
+| `validTokenIds`               | [Valid Token IDs](../concepts/valid-token-ids.md)           |
 | `managerTimeline`             | [Manager](../concepts/manager.md)                           |
 | `collectionMetadataTimeline`  | [Metadata](../concepts/metadata.md)                         |
-| `badgeMetadataTimeline`       | [Metadata](../concepts/metadata.md)                         |
+| `tokenMetadataTimeline`       | [Metadata](../concepts/metadata.md)                         |
 | `customDataTimeline`          | [Custom Data](../concepts/custom-data.md)                   |
 | `standardsTimeline`           | [Standards](../concepts/standards.md)                       |
 | `isArchivedTimeline`          | [Archived Collections](../concepts/archived-collections.md) |
@@ -16011,7 +16011,7 @@ const FullTimeRanges = [
 ];
 
 const BaseCollectionDetails = {
-    validBadgeIds: [
+    validTokenIds: [
         {
             start: '1',
             end: '100', // Set to your max ID
@@ -16032,13 +16032,13 @@ const BaseCollectionDetails = {
             },
         },
     ],
-    badgeMetadataTimeline: [
+    tokenMetadataTimeline: [
         {
             timelineTimes: FullTimeRanges,
-            badgeMetadata: [
+            tokenMetadata: [
                 {
                     uri: 'ipfs://QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/{id}', // Points to a valid .json metadata file (replacing {id} with the token ID)
-                    badgeIds: [
+                    tokenIds: [
                         {
                             start: '1',
                             end: '100',
@@ -16049,7 +16049,7 @@ const BaseCollectionDetails = {
                 // You can have multiple entries. This is useful for placeholder metadata.
                 {
                     uri: 'ipfs://QmSTZZPgYF58gS9bM7q3nWVegUJH51WBdT91fz7q94qDwS', // Placeholder metadata
-                    badgeIds: [
+                    tokenIds: [
                         {
                             start: '101',
                             end: '100000000',
@@ -16208,9 +16208,9 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
-    canUpdateValidBadgeIds: [],
+    canUpdateValidTokenIds: [],
 };
 ```
 
@@ -16242,7 +16242,7 @@ const permanentlyForbiddenTimes = FullTimeRanges;
 // Part 2. For what values (if any) does this apply? This is dependent on the permission type.
 const {
     timelineTimes,
-    badgeIds,
+    tokenIds,
     fromListId,
     toListId,
     initiatedByListId,
@@ -16254,7 +16254,7 @@ const {
 
 ## Main Permissions To Consider
 
-1. Should the number of token IDs in the collection be expandable? frozen upon genesis? -> Handle with `canUpdateValidBadgeIds`
+1. Should the number of token IDs in the collection be expandable? frozen upon genesis? -> Handle with `canUpdateValidTokenIds`
 2. What about the transferability? -> Handle with `canUpdateCollectionApprovals`
     - Should the transferability be frozen upon genesis?
     - Should we disallow updating transferability for only some token IDs? some approvals? Mint? Post-Mint?
@@ -16298,7 +16298,7 @@ const userIncomingApproval = {
     toListId: 'All', // Can specify recipients
     initiatedByListId: 'All',
     transferTimes: [{ start: '1', end: '18446744073709551615' }],
-    badgeIds: [{ start: '1', end: '100' }],
+    tokenIds: [{ start: '1', end: '100' }],
     ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
     approvalId: 'user-incoming-approval',
 
@@ -16321,7 +16321,7 @@ const userOutgoingApproval = {
     toListId: 'user-address', // Locked to approver's address
     initiatedByListId: 'All',
     transferTimes: [{ start: '1', end: '18446744073709551615' }],
-    badgeIds: [{ start: '1', end: '100' }],
+    tokenIds: [{ start: '1', end: '100' }],
     ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
     approvalId: 'user-outgoing-approval',
 
@@ -16383,7 +16383,7 @@ const userPermissions = {
             toListId: 'All', // Can specify recipients
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
             permanentlyPermittedTimes: [],
@@ -16396,7 +16396,7 @@ const userPermissions = {
             //  toListId: 'user-address', // Locked to user's address
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
             permanentlyPermittedTimes: [],
@@ -16442,7 +16442,7 @@ For permission patterns, see:
 
 -   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
 -   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
--   [Locking Specific Token IDs](./permissions/locking-specific-badge-ids.md) - Token ID targeting
+-   [Locking Specific Token IDs](./permissions/locking-specific-token-ids.md) - Token ID targeting
 -   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
 
 For user approval configuration, see:
@@ -16489,7 +16489,7 @@ console.log('Wrapper Address:', wrapperAddress);
 
 ### Dynamic Address Generation for {id} Placeholders
 
-The {id} is actually kept for the hash preimage, so we always have one address per wrapper path regardless of the badge ID.
+The {id} is actually kept for the hash preimage, so we always have one address per wrapper path regardless of the token ID.
 
 ## Step 3: Set Up Approvals for Wrapping/Unwrapping
 
@@ -16551,7 +16551,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
             permanentlyPermittedTimes: [],
@@ -16574,7 +16574,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'initial-mint', // Only lock initial mint approval
             permanentlyPermittedTimes: [],
@@ -16608,7 +16608,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '1',
                     end: '100',
@@ -16656,7 +16656,7 @@ const EmptyApprovalCriteria = {
             manualBalances: [],
             incrementedBalances: {
                 startBalances: [],
-                incrementBadgeIdsBy: '0',
+                incrementTokenIdsBy: '0',
                 incrementOwnershipTimesBy: '0',
                 durationFromTimestamp: '0',
                 allowOverrideTimestamp: false,
@@ -16665,7 +16665,7 @@ const EmptyApprovalCriteria = {
                     intervalLength: '0',
                     chargePeriodLength: '0',
                 },
-                allowOverrideWithAnyValidBadge: false,
+                allowOverrideWithAnyValidToken: false,
             },
             orderCalculationMethod: {
                 useOverallNumTransfers: false,
@@ -16730,7 +16730,7 @@ const EmptyApprovalCriteria = {
             payoutAddress: '',
         },
         // No tokens to check ownership of
-        mustOwnBadges: [],
+        mustOwnTokens: [],
     },
 };
 ```
@@ -16766,7 +16766,7 @@ const mintApproval = {
     toListId: 'All', // To any address
     initiatedByListId: myAddress, // Only you can initiate
     transferTimes: UintRangeArray.FullRanges(),
-    badgeIds: UintRangeArray.FullRanges(), // All token IDs
+    tokenIds: UintRangeArray.FullRanges(), // All token IDs
     ownershipTimes: UintRangeArray.FullRanges(),
     approvalId: 'mint-approval',
     version: 0n,
@@ -16803,7 +16803,7 @@ const transfers = [
         toAddresses: [myAddress], // To your address
         balances: [
             {
-                badgeIds: [{ start: 1n, end: 100n }],
+                tokenIds: [{ start: 1n, end: 100n }],
                 ownershipTimes: UintRangeArray.FullRanges(),
                 amount: 100n,
             },
@@ -16818,7 +16818,7 @@ const transfers = [
 -   [Building Collection Approvals](./building-collection-approvals.md)
 -   [Admin Override Approval](./approvals/admin-override-approval.md)
 -   [Mint Escrow Address](../concepts/mint-escrow-address.md)
--   [MsgTransferBadges](../messages/msg-transfer-badges.md)
+-   [MsgTransferTokens](../messages/msg-transfer-tokens.md)
 
 
 ## File: ./x-badges/examples/msg-transfer/README.md
@@ -16872,7 +16872,7 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
                                 "end": "18446744073709551615"
                             }
                         ],
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "1",
                                 "end": "1"
@@ -16922,7 +16922,7 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
 
 -   `"amount": "1"` - Transfer 1 token
 -   `"ownershipTimes"` - Full ownership time range (1 to max uint64)
--   `"badgeIds"` - Specific token ID range (1 to 1)
+-   `"tokenIds"` - Specific token ID range (1 to 1)
 
 ### Approval Configuration
 
@@ -16994,7 +16994,7 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                 "onlyCheckPrioritizedOutgoingApprovals": false,
                 "precalculationOptions": {
                     "overrideTimestamp": "0",
-                    "badgeIdsOverride": []
+                    "tokenIdsOverride": []
                 },
                 "affiliateAddress": "",
                 "numAttempts": "1"
@@ -17022,7 +17022,7 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
 ### Precalculation Options
 
 -   `"overrideTimestamp": "0"` - Use current timestamp for calculations
--   `"badgeIdsOverride": []` - No token ID overrides, use approval criteria
+-   `"tokenIdsOverride": []` - No token ID overrides, use approval criteria
 
 ### Non-Auto-Scan Behavior
 
@@ -17063,8 +17063,8 @@ This directory contains practical examples of different permission configuration
 
 -   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
 -   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
--   [Locking Specific Token IDs](locking-specific-badge-ids.md) - Lock approvals for specific token ID ranges
--   [Locking Valid Token IDs](locking-valid-badge-ids.md) - Control valid token ID range updates
+-   [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approvals for specific token ID ranges
+-   [Locking Valid Token IDs](locking-valid-token-ids.md) - Control valid token ID range updates
 
 ## Permission System Overview
 
@@ -17115,8 +17115,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -17124,7 +17124,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
 
@@ -17199,8 +17199,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -17208,7 +17208,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'abc123', // Only targets this specific approval ID
 
@@ -17230,8 +17230,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -17239,7 +17239,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: '!abc123', // All approvals EXCEPT abc123
 
@@ -17281,7 +17281,7 @@ const createCollection = {
 -   [Update Approval Permission](../../concepts/permissions/update-approval-permission.md) - Approval-specific controls
 
 
-## File: ./x-badges/examples/permissions/locking-specific-badge-ids.md
+## File: ./x-badges/examples/permissions/locking-specific-token-ids.md
 
 # Locking Specific Token IDs
 
@@ -17289,7 +17289,7 @@ This example demonstrates how to permanently lock approvals for specific token I
 
 ## Overview
 
-By targeting specific `badgeIds`, you can freeze approvals for those tokens permanently while allowing updates to approvals for other token IDs.
+By targeting specific `tokenIds`, you can freeze approvals for those tokens permanently while allowing updates to approvals for other token IDs.
 
 ## Lock Token IDs 1-100
 
@@ -17308,8 +17308,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -17317,7 +17317,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '1',
                     end: '100', // Only targets tokens 1-100
@@ -17344,8 +17344,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -17353,7 +17353,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '101',
                     end: '18446744073709551615', // All tokens except 1-100
@@ -17378,11 +17378,11 @@ const createCollection = {
     collectionPermissions,
     collectionApprovals: [
         {
-            badgeIds: [{ start: '1', end: '50' }],
+            tokenIds: [{ start: '1', end: '50' }],
             // ... this approval will be locked if it overlaps with permission criteria
         },
         {
-            badgeIds: [{ start: '150', end: '200' }],
+            tokenIds: [{ start: '150', end: '200' }],
             // ... this approval's updateability depends on configuration
         },
     ],
@@ -17409,17 +17409,17 @@ The permission only applies to approvals that overlap with the specified token I
 ## Related Concepts
 
 - [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
-- [Timed Update With Token IDs Permission](../../concepts/permissions/timed-update-with-badge-ids-permission.md) - Token-specific controls
+- [Timed Update With Token IDs Permission](../../concepts/permissions/timed-update-with-token-ids-permission.md) - Token-specific controls
 
-## File: ./x-badges/examples/permissions/locking-valid-badge-ids.md
+## File: ./x-badges/examples/permissions/locking-valid-token-ids.md
 
 # Locking Valid Token IDs
 
-This example demonstrates how to control updates to the `validBadgeIds` field, either locking it permanently or allowing controlled expansion. The `validBadgeIds` field is used to control which token IDs are considered valid for the collection.
+This example demonstrates how to control updates to the `validTokenIds` field, either locking it permanently or allowing controlled expansion. The `validTokenIds` field is used to control which token IDs are considered valid for the collection.
 
 ## Overview
 
-The `canUpdateValidBadgeIds` permission controls whether the valid token ID ranges can be modified.
+The `canUpdateValidTokenIds` permission controls whether the valid token ID ranges can be modified.
 
 ## Lock Valid Token IDs Forever
 
@@ -17438,17 +17438,17 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [
+    canUpdateValidTokenIds: [
         {
             // Which token IDs does this permission apply to?
-            badgeIds: FullTimeRanges, // All token IDs
+            tokenIds: FullTimeRanges, // All token IDs
 
             // What is status of this permission at any given time?
             permanentlyPermittedTimes: [],
             permanentlyForbiddenTimes: FullTimeRanges, // Never allowed to update
         },
     ],
-    canUpdateBadgeMetadata: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
 };
 ```
@@ -17463,10 +17463,10 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [
+    canUpdateValidTokenIds: [
         {
             // Which token IDs does this permission apply to?
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '1',
                     end: '100', // Only applies to tokens 1-100
@@ -17479,7 +17479,7 @@ const collectionPermissions = {
         },
         // Token IDs 101+ remain soft-enabled (can be updated by manager)
     ],
-    canUpdateBadgeMetadata: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
 };
 ```
@@ -17490,7 +17490,7 @@ const collectionPermissions = {
 const createCollection = {
     // ... other collection fields
     collectionPermissions,
-    validBadgeIds: [
+    validTokenIds: [
         {
             start: '1',
             end: '100', // Initial valid range
@@ -17509,12 +17509,12 @@ const createCollection = {
 
 ## Related Examples
 
--   [Locking Specific Token IDs](./locking-specific-badge-ids.md) - Lock approval updates for token ranges
+-   [Locking Specific Token IDs](./locking-specific-token-ids.md) - Lock approval updates for token ranges
 -   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
--   [Valid Token IDs](../../concepts/valid-badge-ids.md) - Token ID range concept
+-   [Valid Token IDs](../../concepts/valid-token-ids.md) - Token ID range concept
 -   [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
 
 
@@ -17570,7 +17570,7 @@ This example demonstrates creating a quest collection.
                 "canUpdateAutoApproveAllIncomingTransfers": []
             }
         },
-        "validBadgeIds": [
+        "validTokenIds": [
             {
                 "start": "1",
                 "end": "1"
@@ -17583,8 +17583,8 @@ This example demonstrates creating a quest collection.
             "canUpdateCustomData": [],
             "canUpdateManager": [],
             "canUpdateCollectionMetadata": [],
-            "canUpdateValidBadgeIds": [],
-            "canUpdateBadgeMetadata": [],
+            "canUpdateValidTokenIds": [],
+            "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
         "managerTimeline": [
@@ -17612,13 +17612,13 @@ This example demonstrates creating a quest collection.
                 ]
             }
         ],
-        "badgeMetadataTimeline": [
+        "tokenMetadataTimeline": [
             {
-                "badgeMetadata": [
+                "tokenMetadata": [
                     {
                         "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
                         "customData": "",
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "1",
                                 "end": "18446744073709551615"
@@ -17646,7 +17646,7 @@ This example demonstrates creating a quest collection.
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "1"
@@ -17687,7 +17687,7 @@ This example demonstrates creating a quest collection.
                                             "end": "18446744073709551615"
                                         }
                                     ],
-                                    "badgeIds": [
+                                    "tokenIds": [
                                         {
                                             "start": "1",
                                             "end": "1"
@@ -17695,7 +17695,7 @@ This example demonstrates creating a quest collection.
                                     ]
                                 }
                             ],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -17704,7 +17704,7 @@ This example demonstrates creating a quest collection.
                                 "intervalLength": "0",
                                 "chargePeriodLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": true,
@@ -17764,7 +17764,7 @@ This example demonstrates creating a quest collection.
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             }
@@ -17798,7 +17798,7 @@ This example demonstrates creating a quest collection.
 
 This example creates a quest collection with the following characteristics:
 
--   **Single Token**: Only token ID 1 is valid (`validBadgeIds: [{"start": "1", "end": "1"}]`)
+-   **Single Token**: Only token ID 1 is valid (`validTokenIds: [{"start": "1", "end": "1"}]`)
 -   **Quest Standard**: Uses the "Quests" standard for quest-related functionality
 -   **Merkle Proof Verification**: Requires users to provide valid Merkle proofs (BitBadges claims) to claim tokens
 -   **Coin Rewards**: Transfers 5000000000 ubadge coins to successful claimants and properly handles the Mint escrow coins
@@ -17866,7 +17866,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "canUpdateAutoApproveAllIncomingTransfers": []
             }
         },
-        "validBadgeIds": [
+        "validTokenIds": [
             {
                 "start": "1",
                 "end": "100"
@@ -17879,8 +17879,8 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateCustomData": [],
             "canUpdateManager": [],
             "canUpdateCollectionMetadata": [],
-            "canUpdateValidBadgeIds": [],
-            "canUpdateBadgeMetadata": [],
+            "canUpdateValidTokenIds": [],
+            "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
         "managerTimeline": [
@@ -17908,13 +17908,13 @@ This example demonstrates creating a tradable collection that supports orderbook
                 ]
             }
         ],
-        "badgeMetadataTimeline": [
+        "tokenMetadataTimeline": [
             {
-                "badgeMetadata": [
+                "tokenMetadata": [
                     {
                         "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
                         "customData": "",
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "101",
                                 "end": "18446744073709551615"
@@ -17924,7 +17924,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                     {
                         "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
                         "customData": "",
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "1",
                                 "end": "100"
@@ -17952,7 +17952,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "100"
@@ -17974,7 +17974,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "manualBalances": [],
                         "incrementedBalances": {
                             "startBalances": [],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -17983,7 +17983,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                                 "intervalLength": "0",
                                 "chargePeriodLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": false,
@@ -18031,7 +18031,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             },
@@ -18045,7 +18045,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "18446744073709551615"
@@ -18067,7 +18067,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "manualBalances": [],
                         "incrementedBalances": {
                             "startBalances": [],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -18075,7 +18075,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                                 "startTime": "0",
                                 "intervalLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": false,
@@ -18123,7 +18123,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             }
@@ -18196,7 +18196,7 @@ This example demonstrates how to update user outgoing approvals to control what 
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "20"
@@ -18218,7 +18218,7 @@ This example demonstrates how to update user outgoing approvals to control what 
                         "manualBalances": [],
                         "incrementedBalances": {
                             "startBalances": [],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -18227,7 +18227,7 @@ This example demonstrates how to update user outgoing approvals to control what 
                                 "intervalLength": "0",
                                 "chargePeriodLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": false,
@@ -18267,7 +18267,7 @@ This example demonstrates how to update user outgoing approvals to control what 
                         "afterOneUse": false,
                         "afterOverallMaxNumTransfers": false
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             }
@@ -18310,7 +18310,7 @@ This example demonstrates how to update user outgoing approvals to control what 
 
 # 📨 Messages
 
-This directory contains detailed documentation for all message types supported by the badges module.
+This directory contains detailed documentation for all message types supported by the tokens module.
 
 ## Message Categories
 
@@ -18323,10 +18323,10 @@ This directory contains detailed documentation for all message types supported b
 
 ### Helper Collection Update Messages
 
-* [MsgSetValidBadgeIds](msg-set-valid-badge-ids.md) - Update valid token IDs and permissions
+* [MsgSetValidTokenIds](msg-set-valid-token-ids.md) - Update valid token IDs and permissions
 * [MsgSetManager](msg-set-manager.md) - Update manager timeline and permissions
 * [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata timeline and permissions
-* [MsgSetBadgeMetadata](msg-set-badge-metadata.md) - Update token metadata timeline and permissions
+* [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata timeline and permissions
 * [MsgSetCustomData](msg-set-custom-data.md) - Update custom data timeline and permissions
 * [MsgSetStandards](msg-set-standards.md) - Update standards timeline and permissions
 * [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
@@ -18334,7 +18334,7 @@ This directory contains detailed documentation for all message types supported b
 
 ### Token Transfers
 
-* [MsgTransferBadges](msg-transfer-badges.md) - Transfer tokens between addresses with approval validation
+* [MsgTransferTokens](msg-transfer-tokens.md) - Transfer tokens between addresses with approval validation
 
 ### User Approval Management
 
@@ -18439,11 +18439,11 @@ This is the only time that you can specify the `defaultBalances` information.
 message MsgCreateCollection {
   string creator = 1; // Address creating the collection
   UserBalanceStore defaultBalances = 2;
-  repeated UintRange validBadgeIds  = 3; // Token ID ranges to include
+  repeated UintRange validTokenIds  = 3; // Token ID ranges to include
   CollectionPermissions collectionPermissions = 4;
   repeated ManagerTimeline managerTimeline = 5;
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 6;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 7;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 7;
   repeated CustomDataTimeline customDataTimeline = 8;
   repeated CollectionApproval collectionApprovals = 9;
   repeated StandardsTimeline standardsTimeline = 10;
@@ -18487,7 +18487,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
             "canUpdateAutoApproveAllIncomingTransfers": []
         }
     },
-    "validBadgeIds": [{ "start": "1", "end": "100" }],
+    "validTokenIds": [{ "start": "1", "end": "100" }],
     "collectionPermissions": {
         "canDeleteCollection": [],
         "canArchiveCollection": [],
@@ -18495,13 +18495,13 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canUpdateCustomData": [],
         "canUpdateManager": [],
         "canUpdateCollectionMetadata": [],
-        "canUpdateValidBadgeIds": [],
-        "canUpdateBadgeMetadata": [],
+        "canUpdateValidTokenIds": [],
+        "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
     "managerTimeline": [],
     "collectionMetadataTimeline": [],
-    "badgeMetadataTimeline": [],
+    "tokenMetadataTimeline": [],
     "customDataTimeline": [],
     "collectionApprovals": [],
     "standardsTimeline": [],
@@ -18913,12 +18913,12 @@ The response includes the number of approvals that were successfully purged:
 
 ## File: ./x-badges/messages/msg-set-badge-metadata.md
 
-# MsgSetBadgeMetadata
+# MsgSetTokenMetadata
 
 **Disclaimer:**\
 This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
-## MsgSetBadgeMetadata
+## MsgSetTokenMetadata
 
 Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
 
@@ -18936,9 +18936,9 @@ Updates can only be performed by the **current manager** of the collection. The 
 ### Proto Definition
 
 ```protobuf
-message MsgSetBadgeMetadata {
+message MsgSetTokenMetadata {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetBadgeMetadata";
+  option (amino.name) = "badges/SetTokenMetadata";
 
   // Address of the creator.
   string creator = 1;
@@ -18947,13 +18947,13 @@ message MsgSetBadgeMetadata {
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
   // New token metadata timeline to set.
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 3;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
 
   // Permission to update token metadata timeline
-  repeated TimedUpdateWithBadgeIdsPermission canUpdateBadgeMetadata = 4;
+  repeated TimedUpdateWithTokenIdsPermission canUpdateTokenMetadata = 4;
 }
 
-message MsgSetBadgeMetadataResponse {
+message MsgSetTokenMetadataResponse {
   // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
@@ -18972,21 +18972,21 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "badgeMetadataTimeline": [
+    "tokenMetadataTimeline": [
         {
-            "badgeMetadata": [
+            "tokenMetadata": [
                 {
                     "uri": "https://example.com/badge1.json",
                     "customData": "{\"description\": \"First token\"}",
-                    "badgeIds": [{ "start": "1", "end": "10" }]
+                    "tokenIds": [{ "start": "1", "end": "10" }]
                 }
             ],
             "timelineTimes": [{ "start": "1000", "end": "2000" }]
         }
     ],
-    "canUpdateBadgeMetadata": [
+    "canUpdateTokenMetadata": [
         {
-            "badgeIds": [{ "start": "1", "end": "10" }],
+            "tokenIds": [{ "start": "1", "end": "10" }],
             "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
@@ -19068,11 +19068,11 @@ bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-ke
             "toListId": "list2",
             "initiatedByListId": "list3",
             "transferTimes": [{ "start": "1000", "end": "2000" }],
-            "badgeIds": [{ "start": "1", "end": "10" }],
+            "tokenIds": [{ "start": "1", "end": "10" }],
             "ownershipTimes": [{ "start": "1", "end": "100" }],
             "approvalId": "approval1",
             "approvalCriteria": {
-                "mustOwnBadges": [],
+                "mustOwnTokens": [],
                 "merkleChallenges": [],
                 "ethSignatureChallenges": [],
                 "coinTransfers": [],
@@ -19090,7 +19090,7 @@ bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-ke
             "toListId": "list2",
             "initiatedByListId": "list3",
             "transferTimes": [{ "start": "1000", "end": "2000" }],
-            "badgeIds": [{ "start": "1", "end": "10" }],
+            "tokenIds": [{ "start": "1", "end": "10" }],
             "ownershipTimes": [{ "start": "1", "end": "100" }],
             "approvalId": "approval1",
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
@@ -19654,14 +19654,14 @@ bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
 * [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-valid-badge-ids.md
+## File: ./x-badges/messages/msg-set-valid-token-ids.md
 
-# MsgSetValidBadgeIds
+# MsgSetValidTokenIds
 
 **Disclaimer:**\
 This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
-## MsgSetValidBadgeIds
+## MsgSetValidTokenIds
 
 Sets the valid token IDs and update permissions for a collection. This is a convenience message that focuses specifically on token ID management.
 
@@ -19679,9 +19679,9 @@ Updates can only be performed by the **current manager** of the collection. The 
 ### Proto Definition
 
 ```protobuf
-message MsgSetValidBadgeIds {
+message MsgSetValidTokenIds {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetValidBadgeIds";
+  option (amino.name) = "badges/SetValidTokenIds";
 
   // Address of the creator.
   string creator = 1;
@@ -19690,13 +19690,13 @@ message MsgSetValidBadgeIds {
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
   // New token IDs to add to this collection
-  repeated UintRange validBadgeIds = 3;
+  repeated UintRange validTokenIds = 3;
 
   // Permission to update valid token IDs
-  repeated BadgeIdsActionPermission canUpdateValidBadgeIds = 4;
+  repeated TokenIdsActionPermission canUpdateValidTokenIds = 4;
 }
 
-message MsgSetValidBadgeIdsResponse {
+message MsgSetValidTokenIdsResponse {
   // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
@@ -19706,7 +19706,7 @@ message MsgSetValidBadgeIdsResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
+bitbadgeschaind tx badges set-valid-token-ids '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -19715,13 +19715,13 @@ bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "validBadgeIds": [
+    "validTokenIds": [
         { "start": "1", "end": "100" },
         { "start": "200", "end": "300" }
     ],
-    "canUpdateValidBadgeIds": [
+    "canUpdateValidTokenIds": [
         {
-            "badgeIds": [{ "start": "1", "end": "50" }],
+            "tokenIds": [{ "start": "1", "end": "50" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -19735,22 +19735,22 @@ bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
 * [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-transfer-badges.md
+## File: ./x-badges/messages/msg-transfer-tokens.md
 
-# MsgTransferBadges
+# MsgTransferTokens
 
 Executes token transfers between addresses.
 
 ## Proto Definition
 
 ```protobuf
-message MsgTransferBadges {
+message MsgTransferTokens {
   string creator = 1; // Address initiating the transfer
   string collectionId = 2; // Collection containing tokens to transfer
   repeated Transfer transfers = 3; // Transfer operations (must pass approvals)
 }
 
-message MsgTransferBadgesResponse {}
+message MsgTransferTokensResponse {}
 
 message Transfer {
   // The address of the sender of the transfer.
@@ -19795,7 +19795,7 @@ message PrecalculationOptions {
   // The timestamp to override with when calculating the balances.
   string overrideTimestamp = 1;
   // The IDs to override with when calculating the balances.
-  repeated UintRange badgeIdsOverride = 2;
+  repeated UintRange tokenIdsOverride = 2;
 }
 ```
 
@@ -19953,7 +19953,7 @@ If you specify `collectionId` as `"0"`, it will automatically lookup the latest 
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
+bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
 ```
 
 ### JSON Example
@@ -19973,7 +19973,7 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
                     "ownershipTimes": [
                         { "start": "1", "end": "18446744073709551615" }
                     ],
-                    "badgeIds": [{ "start": "1", "end": "5" }]
+                    "tokenIds": [{ "start": "1", "end": "5" }]
                 }
             ],
             // Specific approval to calculate balances dynamically for (from the approvalCriteria.predeterminedBalances)
@@ -19986,7 +19986,7 @@ bitbadgeschaind tx badges transfer-badges '[tx-json]' --from sender-key
             // Additional options dependent on what is allowed (e.g. allow timestamp override, token ID override, etc.)
             "precalculationOptions": {
                 "overrideTimestamp": "0",
-                "badgeIdsOverride": []
+                "tokenIdsOverride": []
             },
             // Supply all merkle proofs for any merkle challenges that need to be satisfied
             "merkleProofs": [],
@@ -20041,7 +20041,7 @@ A universal message that can be used to either create a new collection or update
 
 ## Update Flag Pattern
 
-This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidBadgeIds`, `updateCollectionPermissions`).
+This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidTokenIds`, `updateCollectionPermissions`).
 
 -   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
 -   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
@@ -20062,15 +20062,15 @@ message MsgUniversalUpdateCollection {
   UserBalanceStore defaultBalances = 3;
 
   // Updateable fields (used for both creation and updates)
-  repeated UintRange validBadgeIds = 4;
+  repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
   bool updateManagerTimeline = 7;
   repeated ManagerTimeline managerTimeline = 8;
   bool updateCollectionMetadataTimeline = 9;
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateBadgeMetadataTimeline = 11;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 12;
+  bool updateTokenMetadataTimeline = 11;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
   bool updateCustomDataTimeline = 13;
   repeated CustomDataTimeline customDataTimeline = 14;
   bool updateCollectionApprovals = 15;
@@ -20121,7 +20121,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
             "canUpdateAutoApproveAllIncomingTransfers": []
         }
     },
-    "validBadgeIds": [{ "start": "1", "end": "100" }],
+    "validTokenIds": [{ "start": "1", "end": "100" }],
     "updateCollectionPermissions": true,
     "collectionPermissions": {
         "canDeleteCollection": [],
@@ -20130,16 +20130,16 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
         "canUpdateCustomData": [],
         "canUpdateManager": [],
         "canUpdateCollectionMetadata": [],
-        "canUpdateValidBadgeIds": [],
-        "canUpdateBadgeMetadata": [],
+        "canUpdateValidTokenIds": [],
+        "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
     "updateManagerTimeline": true,
     "managerTimeline": [],
     "updateCollectionMetadataTimeline": true,
     "collectionMetadataTimeline": [],
-    "updateBadgeMetadataTimeline": true,
-    "badgeMetadataTimeline": [],
+    "updateTokenMetadataTimeline": true,
+    "tokenMetadataTimeline": [],
     "updateCustomDataTimeline": true,
     "customDataTimeline": [],
     "updateCollectionApprovals": true,
@@ -20163,16 +20163,16 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "updateValidBadgeIds": true,
-    "validBadgeIds": [{ "start": "1", "end": "200" }],
+    "updateValidTokenIds": true,
+    "validTokenIds": [{ "start": "1", "end": "200" }],
     "updateCollectionPermissions": false,
     "collectionPermissions": {},
     "updateManagerTimeline": false,
     "managerTimeline": [],
     "updateCollectionMetadataTimeline": false,
     "collectionMetadataTimeline": [],
-    "updateBadgeMetadataTimeline": false,
-    "badgeMetadataTimeline": [],
+    "updateTokenMetadataTimeline": false,
+    "tokenMetadataTimeline": [],
     "updateCustomDataTimeline": false,
     "customDataTimeline": [],
     "updateCollectionApprovals": false,
@@ -20229,7 +20229,7 @@ Updates an existing collection's properties.
 
 ## Update Flag Pattern
 
-This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidBadgeIds`, `updateCollectionPermissions`).
+This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidTokenIds`, `updateCollectionPermissions`).
 
 -   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
 -   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
@@ -20248,16 +20248,16 @@ Updates can only be performed by the **current manager** of the collection. All 
 message MsgUpdateCollection {
   string creator = 1; // Address updating collection (must be manager)
   string collectionId = 2; // ID of collection to update
-  bool updateValidBadgeIds = 3;
-  repeated UintRange validBadgeIds = 4;
+  bool updateValidTokenIds = 3;
+  repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
   bool updateManagerTimeline = 7;
   repeated ManagerTimeline managerTimeline = 8;
   bool updateCollectionMetadataTimeline = 9;
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateBadgeMetadataTimeline = 11;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 12;
+  bool updateTokenMetadataTimeline = 11;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
   bool updateCustomDataTimeline = 13;
   repeated CustomDataTimeline customDataTimeline = 14;
   bool updateCollectionApprovals = 15;
@@ -20289,8 +20289,8 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "updateValidBadgeIds": true,
-    "validBadgeIds": [{ "start": "1", "end": "200" }],
+    "updateValidTokenIds": true,
+    "validTokenIds": [{ "start": "1", "end": "200" }],
     "updateCollectionPermissions": false,
     "collectionPermissions": {
         "canDeleteCollection": [],
@@ -20299,16 +20299,16 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
         "canUpdateCustomData": [],
         "canUpdateManager": [],
         "canUpdateCollectionMetadata": [],
-        "canUpdateValidBadgeIds": [],
-        "canUpdateBadgeMetadata": [],
+        "canUpdateValidTokenIds": [],
+        "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
     "updateManagerTimeline": false,
     "managerTimeline": [],
     "updateCollectionMetadataTimeline": false,
     "collectionMetadataTimeline": [],
-    "updateBadgeMetadataTimeline": false,
-    "badgeMetadataTimeline": [],
+    "updateTokenMetadataTimeline": false,
+    "tokenMetadataTimeline": [],
     "updateCustomDataTimeline": false,
     "customDataTimeline": [],
     "updateCollectionApprovals": false,
@@ -20458,7 +20458,7 @@ For complete transaction examples, see [MsgUpdateUserApprovals Examples](../exam
 
 # 🔍 Queries
 
-This directory contains detailed documentation for all query types supported by the badges module.
+This directory contains detailed documentation for all query types supported by the tokens module.
 
 ## Query Categories
 
@@ -20469,7 +20469,7 @@ This directory contains detailed documentation for all query types supported by 
 ### Balance Queries
 
 -   [GetBalance](./get-balance.md) - Get user balances for a collection
--   [GetWrappableBalances](./get-wrappable-balances.md) - Get maximum amount of badges that can be wrapped into cosmos coins
+-   [GetWrappableBalances](./get-wrappable-balances.md) - Get maximum amount of tokens that can be wrapped into cosmos coins
 
 ### Address List Queries
 
@@ -20592,7 +20592,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_approvals_tra
     "amounts": [
       {
         "amount": "100",
-        "badgeIds": [{"start": "1", "end": "10"}],
+        "tokenIds": [{"start": "1", "end": "10"}],
         "ownershipTimes": [{"start": "1672531200000", "end": "18446744073709551615"}]
       }
     ],
@@ -20650,7 +20650,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_balance/1/bb1
         "balances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1672531200000", "end": "18446744073709551615" }
                 ]
@@ -20730,13 +20730,13 @@ message QueryGetCollectionRequest {
 }
 
 message QueryGetCollectionResponse {
-  BadgeCollection collection = 1;
+  TokenCollection collection = 1;
 }
 
-message BadgeCollection {
+message TokenCollection {
   string collectionId = 1; // Unique identifier for this collection
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 2; // Collection metadata over time
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 3; // Token metadata over time
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3; // Token metadata over time
   repeated CustomDataTimeline customDataTimeline = 4; // Arbitrary custom data over time
   repeated ManagerTimeline managerTimeline = 5; // Manager address over time
   CollectionPermissions collectionPermissions = 6; // Collection permissions
@@ -20745,7 +20745,7 @@ message BadgeCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 9; // Archive status over time
   UserBalanceStore defaultBalances = 10; // Default balance store for users
   string createdBy = 11; // Creator of the collection
-  repeated UintRange validBadgeIds = 12; // Valid token ID ranges
+  repeated UintRange validTokenIds = 12; // Valid token ID ranges
   string mintEscrowAddress = 13; // Generated escrow address for the collection
 }
 
@@ -20924,7 +20924,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature
 
 # GetWrappableBalances
 
-Retrieves the maximum amount of badges that can be wrapped into cosmos coins for a specific denom and user address.
+Retrieves the maximum amount of tokens that can be wrapped into cosmos coins for a specific denom and user address.
 
 ## Proto Definition
 
@@ -20941,11 +20941,11 @@ message QueryGetWrappableBalancesResponse {
 
 ## Description
 
-This query calculates the maximum amount of badges that a user can wrap into cosmos coins for a given denom. It:
+This query calculates the maximum amount of tokens that a user can wrap into cosmos coins for a given denom. It:
 
 1. **Parses the denom**: Extracts the collection ID from the denom format `badges:COLL_ID:*` or `badgeslp:COLL_ID:*`
 2. **Finds the wrapper path**: Locates the corresponding cosmos coin wrapper path for the denom
-3. **Calculates maximum wrappable amount**: Determines the largest amount the user can wrap based on their current badge balances
+3. **Calculates maximum wrappable amount**: Determines the largest amount the user can wrap based on their current balances
 
 The query supports both static denoms and dynamic `{id}` placeholder denoms. For dynamic denoms, it extracts numeric characters from the base denom to replace the `{id}` placeholder.
 
@@ -20958,7 +20958,7 @@ bitbadgeschaind query badges get-wrappable-balances [denom] [address]
 # Example with static denom
 bitbadgeschaind query badges get-wrappable-balances "badges:1:mytoken" "bb1..."
 
-# Example with dynamic denom (where 123 is the badge ID)
+# Example with dynamic denom (where 123 is the token ID)
 bitbadgeschaind query badges get-wrappable-balances "badgeslp:1:token123" "bb1..."
 ```
 
@@ -20982,7 +20982,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_bal
 -   **Invalid denom format**: Denom must start with "badges:" or "badgeslp:" and follow the format `badges:COLL_ID:*` or `badgeslp:COLL_ID:*`
 -   **Collection not found**: The specified collection ID doesn't exist
 -   **Wrapper path not found**: No cosmos coin wrapper path matches the given denom
--   **No balances**: User has no balances for the required badge IDs and ownership times
+-   **No balances**: User has no balances for the required token IDs and ownership times
 
 ## Use Cases
 
@@ -20993,7 +20993,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_bal
 
 ## Related Queries
 
--   [GetBalance](./get-balance.md) - Get user's current badge balances
+-   [GetBalance](./get-balance.md) - Get user's current balances
 -   [GetCollection](./get-collection.md) - Get collection details including wrapper paths
 
 
@@ -21074,14 +21074,14 @@ Here's how the badge token conversion works:
 
 -   Collection ID: `21`
 -   Base Denom: `utoken`
--   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
+-   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
 
 **Conversion Process**:
 
 ```
-1 badgeslp:21:utoken = [{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+1 tokenslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 
-2 badgeslp:21:utoken = [{ amount: 2n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
 
 **Visual Flow**:
@@ -21097,7 +21097,7 @@ Transfers the x/badges balances to the pool address with conversions applied
     ↓
 Pool receives the x/badges balances and mints the corresponding badgeslp:21:utoken balances which are native x/bank denominations
     ↓
-The user now has the equivalent of badgeslp:21:utoken balances in the pool (all else in x/gamm is kept the same as standard in Osmosis)
+The user now has the equivalent of tokenslp:21:utoken balances in the pool (all else in x/gamm is kept the same as standard in Osmosis)
 ```
 
 For the reverse, when a pool wants to send tokens to the user, it will burn the native x/bank denominations and transfer the x/badges balances back to the user address.

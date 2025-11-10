@@ -20,7 +20,7 @@ Instantiating and officially deploying a contract does require a review process 
 
 Requirements:
 
-* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferBadges, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
+* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferTokens, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
 * We encourage audits and a peer review process before officailly deploying.
 * You must also showcase a working testnet implementation as well (testnet is permissionless)
 
@@ -48,7 +48,7 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 ```rust
 //contract.rs
 use bitbadges_cosmwasm::{
-  transfer_badges_msg
+  transfer_tokens_msg
 };
 
 #[entry_point]
@@ -60,11 +60,11 @@ pub fn execute(
 ) -> Result<Response<BitBadgesMsg>, StdError> {
     match msg {
         ExecuteMsg::CustomMsg1 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
+          let msg = transfer_tokens_msg(collection_id, transfers);
           Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
         }
         ExecuteMsg::CustomMsg2 { collection_id, transfers } => {
-          let msg = transfer_badges_msg(collection_id, transfers);
+          let msg = transfer_tokens_msg(collection_id, transfers);
           Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
         }
         // Add other messages here as needed
@@ -99,14 +99,14 @@ use bitbadges_cosmwasm::{
 <pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
 // This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
 use bitbadges_cosmwasm::{
-  transfer_badges_msg, delete_collection_msg, BitBadgesMsg
+  transfer_tokens_msg, delete_collection_msg, BitBadgesMsg
 }
 
 <strong>pub fn execute_my_msg(
 </strong>    collection_id: String,
     transfers: Vec&#x3C;Transfer>,
 ) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
-    let msg = transfer_badges_msg(
+    let msg = transfer_tokens_msg(
         collection_id,
         transfers,
     );

@@ -12,7 +12,7 @@ import { proto } from 'bitbadgesjs-sdk';
 const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
 const MsgCreateCollection = proto.badges.MsgCreateCollection;
 const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
-const MsgTransferBadges = proto.badges.MsgTransferBadges;
+const MsgTransferTokens = proto.badges.MsgTransferTokens;
 
 const protoMsgs = [
     new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),

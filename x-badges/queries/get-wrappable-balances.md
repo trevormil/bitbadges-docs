@@ -1,6 +1,6 @@
 # GetWrappableBalances
 
-Retrieves the maximum amount of badges that can be wrapped into cosmos coins for a specific denom and user address.
+Retrieves the maximum amount of tokens that can be wrapped into cosmos coins for a specific denom and user address.
 
 ## Proto Definition
 
@@ -17,11 +17,11 @@ message QueryGetWrappableBalancesResponse {
 
 ## Description
 
-This query calculates the maximum amount of badges that a user can wrap into cosmos coins for a given denom. It:
+This query calculates the maximum amount of tokens that a user can wrap into cosmos coins for a given denom. It:
 
 1. **Parses the denom**: Extracts the collection ID from the denom format `badges:COLL_ID:*` or `badgeslp:COLL_ID:*`
 2. **Finds the wrapper path**: Locates the corresponding cosmos coin wrapper path for the denom
-3. **Calculates maximum wrappable amount**: Determines the largest amount the user can wrap based on their current badge balances
+3. **Calculates maximum wrappable amount**: Determines the largest amount the user can wrap based on their current balances
 
 The query supports both static denoms and dynamic `{id}` placeholder denoms. For dynamic denoms, it extracts numeric characters from the base denom to replace the `{id}` placeholder.
 
@@ -34,7 +34,7 @@ bitbadgeschaind query badges get-wrappable-balances [denom] [address]
 # Example with static denom
 bitbadgeschaind query badges get-wrappable-balances "badges:1:mytoken" "bb1..."
 
-# Example with dynamic denom (where 123 is the badge ID)
+# Example with dynamic denom (where 123 is the token ID)
 bitbadgeschaind query badges get-wrappable-balances "badgeslp:1:token123" "bb1..."
 ```
 
@@ -58,7 +58,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_bal
 -   **Invalid denom format**: Denom must start with "badges:" or "badgeslp:" and follow the format `badges:COLL_ID:*` or `badgeslp:COLL_ID:*`
 -   **Collection not found**: The specified collection ID doesn't exist
 -   **Wrapper path not found**: No cosmos coin wrapper path matches the given denom
--   **No balances**: User has no balances for the required badge IDs and ownership times
+-   **No balances**: User has no balances for the required token IDs and ownership times
 
 ## Use Cases
 
@@ -69,5 +69,5 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_bal
 
 ## Related Queries
 
--   [GetBalance](./get-balance.md) - Get user's current badge balances
+-   [GetBalance](./get-balance.md) - Get user's current balances
 -   [GetCollection](./get-collection.md) - Get collection details including wrapper paths

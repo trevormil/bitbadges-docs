@@ -124,7 +124,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "500",
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }
@@ -137,7 +137,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "1500",  // Exceeds maxSupplyPerId of 1000
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }
@@ -150,7 +150,7 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
   "balances": [
     {
       "amount": "2000",  // Allowed for non-Total addresses
-      "badgeIds": [{ "start": "1", "end": "1" }]
+      "tokenIds": [{ "start": "1", "end": "1" }]
     }
   ]
 }

@@ -14,7 +14,7 @@ const userPermissions = {
             toListId: 'All', // Can specify recipients
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
             permanentlyPermittedTimes: [],
@@ -27,7 +27,7 @@ const userPermissions = {
             //  toListId: 'user-address', // Locked to user's address
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'All',
             permanentlyPermittedTimes: [],
@@ -73,7 +73,7 @@ For permission patterns, see:
 
 -   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
 -   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
--   [Locking Specific Token IDs](./permissions/locking-specific-badge-ids.md) - Token ID targeting
+-   [Locking Specific Token IDs](./permissions/locking-specific-token-ids.md) - Token ID targeting
 -   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
 
 For user approval configuration, see:

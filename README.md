@@ -1,7 +1,7 @@
 ---
 description: >-
-  Here, you will find documentation about BitBadges, how it works, how to
-  interact, and how to contribute!
+    Here, you will find documentation about BitBadges, how it works, how to
+    interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
@@ -16,22 +16,22 @@ BitBadges offers tokenization-as-a-service and gating-as-a-service. We are build
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
-* **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
-* **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
-* **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
-* **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
-* **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
-* **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
-* **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
-* **Customizable Permissions** - Flexible manager controls for collections
+-   **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
+-   **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
+-   **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
+-   **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
+-   **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
+-   **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
+-   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
+-   **Customizable Permissions** - Flexible manager controls for collections
 
 ## 🛠️ Supporting Services
 
 We also offer complementary services:
 
-* **Sign In with BitBadges** - Universal, outsource multi-chain authentication
-* **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
-* **Address Lists** - Manage users across multiple blockchains
+-   **Sign In with BitBadges** - Universal, outsource multi-chain authentication
+-   **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
+-   **Address Lists** - Manage users across multiple blockchains
 
 ## 🔍 How BitBadges Works
 

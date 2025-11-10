@@ -23,8 +23,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -32,7 +32,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: 'abc123', // Only targets this specific approval ID
 
@@ -54,8 +54,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -63,7 +63,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: FullTimeRanges,
+            tokenIds: FullTimeRanges,
             ownershipTimes: FullTimeRanges,
             approvalId: '!abc123', // All approvals EXCEPT abc123
 

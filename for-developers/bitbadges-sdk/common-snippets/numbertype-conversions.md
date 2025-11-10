@@ -12,10 +12,10 @@ Types that you will find in the SDK that are number-based will all be genericall
 
 It is recommended that you use bigint and/or stringified because these can represent all possible numbers and do not lose precision. Also, note that for almost all SDK functions, we only take bigints.
 
-For example, the following will represent a BadgeMetadata type where all numbers are stringified (i.e. "100" or "123").
+For example, the following will represent a TokenMetadata type where all numbers are stringified (i.e. "100" or "123").
 
 ```typescript
-const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
+const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
 ```
 
 **Converting Between NumberTypes**
@@ -23,10 +23,10 @@ const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... 
 To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, BadgeMetadata, JSPrimitiveNumberType, NumberType, convertBadgeMetadata } from "bitbadgesjs-sdk";
+import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType, convertTokenMetadata } from "bitbadgesjs-sdk";
 
-const stringifiedMetadata: BadgeMetadata<string> = new BadgeMetadata({ uri: ... });
-const bigIntifiedMetadata = stringifiedBadgeMetadata.convert(BigIntify);
+const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
+const bigIntifiedMetadata = stringifiedTokenMetadata.convert(BigIntify);
 ```
 
 We export the following types and converter functions for your convenience.

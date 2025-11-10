@@ -4,7 +4,7 @@ The total circulating supply is not a fixed value but rather dynamically determi
 
 ## Related Concepts
 
--   **[Valid Token IDs](valid-badge-ids.md)** - Defines which token IDs can exist for informational purposes
+-   **[Valid Token IDs](valid-token-ids.md)** - Defines which token IDs can exist for informational purposes
 -   **[Manager](manager.md)** - Controls the collection approvals and permissions
 -   **[Transferability & Approvals](transferability-approvals.md)** - Governs transfers from Mint address
 -   **[Permissions](permissions/)** - Controls what managers can do and when they can do it

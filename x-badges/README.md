@@ -35,7 +35,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ### Token Transfers
 
--   [MsgTransferBadges](messages/msg-transfer-badges.md) - Transfer tokens between addresses
+-   [MsgTransferTokens](messages/msg-transfer-tokens.md) - Transfer tokens between addresses
 
 ### User Approvals
 

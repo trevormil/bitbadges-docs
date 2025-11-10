@@ -24,7 +24,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "canUpdateAutoApproveAllIncomingTransfers": []
             }
         },
-        "validBadgeIds": [
+        "validTokenIds": [
             {
                 "start": "1",
                 "end": "100"
@@ -37,8 +37,8 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateCustomData": [],
             "canUpdateManager": [],
             "canUpdateCollectionMetadata": [],
-            "canUpdateValidBadgeIds": [],
-            "canUpdateBadgeMetadata": [],
+            "canUpdateValidTokenIds": [],
+            "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
         "managerTimeline": [
@@ -66,13 +66,13 @@ This example demonstrates creating a tradable collection that supports orderbook
                 ]
             }
         ],
-        "badgeMetadataTimeline": [
+        "tokenMetadataTimeline": [
             {
-                "badgeMetadata": [
+                "tokenMetadata": [
                     {
                         "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
                         "customData": "",
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "101",
                                 "end": "18446744073709551615"
@@ -82,7 +82,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                     {
                         "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
                         "customData": "",
-                        "badgeIds": [
+                        "tokenIds": [
                             {
                                 "start": "1",
                                 "end": "100"
@@ -110,7 +110,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "100"
@@ -132,7 +132,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "manualBalances": [],
                         "incrementedBalances": {
                             "startBalances": [],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -141,7 +141,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                                 "intervalLength": "0",
                                 "chargePeriodLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": false,
@@ -189,7 +189,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             },
@@ -203,7 +203,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "end": "18446744073709551615"
                     }
                 ],
-                "badgeIds": [
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "18446744073709551615"
@@ -225,7 +225,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "manualBalances": [],
                         "incrementedBalances": {
                             "startBalances": [],
-                            "incrementBadgeIdsBy": "0",
+                            "incrementTokenIdsBy": "0",
                             "incrementOwnershipTimesBy": "0",
                             "durationFromTimestamp": "0",
                             "allowOverrideTimestamp": false,
@@ -233,7 +233,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                                 "startTime": "0",
                                 "intervalLength": "0"
                             },
-                            "allowOverrideWithAnyValidBadge": false
+                            "allowOverrideWithAnyValidToken": false
                         },
                         "orderCalculationMethod": {
                             "useOverallNumTransfers": false,
@@ -281,7 +281,7 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnBadges": []
+                    "mustOwnTokens": []
                 },
                 "version": "0"
             }

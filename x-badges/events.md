@@ -1,6 +1,6 @@
 # 📡 Events
 
-The badges module emits events for all message operations to enable blockchain monitoring and external application integration.
+The tokens module emits events for all message operations to enable blockchain monitoring and external application integration.
 
 ## Event Categories
 
@@ -70,14 +70,14 @@ Attributes:
 
 ### Token Transfers
 
-#### TransferBadges
+#### TransferTokens
 
 ```
 Type: "message"
 Attributes:
   - module: "badges"
   - sender: string (initiator address)
-  - action: "transfer_badges"
+  - action: "transfer_tokens"
   - msg: string (JSON-encoded message)
   - transfer: string (JSON transfer details)
   - from: string (sender address)

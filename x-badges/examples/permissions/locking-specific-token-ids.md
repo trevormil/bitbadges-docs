@@ -4,7 +4,7 @@ This example demonstrates how to permanently lock approvals for specific token I
 
 ## Overview
 
-By targeting specific `badgeIds`, you can freeze approvals for those tokens permanently while allowing updates to approvals for other token IDs.
+By targeting specific `tokenIds`, you can freeze approvals for those tokens permanently while allowing updates to approvals for other token IDs.
 
 ## Lock Token IDs 1-100
 
@@ -23,8 +23,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -32,7 +32,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '1',
                     end: '100', // Only targets tokens 1-100
@@ -59,8 +59,8 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [],
-    canUpdateBadgeMetadata: [],
+    canUpdateValidTokenIds: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [
         {
             // Which approvals does this permission apply to? Approvals must match ALL criteria.
@@ -68,7 +68,7 @@ const collectionPermissions = {
             toListId: 'All',
             initiatedByListId: 'All',
             transferTimes: FullTimeRanges,
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '101',
                     end: '18446744073709551615', // All tokens except 1-100
@@ -93,11 +93,11 @@ const createCollection = {
     collectionPermissions,
     collectionApprovals: [
         {
-            badgeIds: [{ start: '1', end: '50' }],
+            tokenIds: [{ start: '1', end: '50' }],
             // ... this approval will be locked if it overlaps with permission criteria
         },
         {
-            badgeIds: [{ start: '150', end: '200' }],
+            tokenIds: [{ start: '150', end: '200' }],
             // ... this approval's updateability depends on configuration
         },
     ],
@@ -106,9 +106,9 @@ const createCollection = {
 
 ## Use Cases
 
-- **Lock Founder Tokens**: Prevent modification of special token 1-100 transfer rules
-- **Preserve Rare Items**: Keep limited edition tokens (1-100) immutable
-- **Tier-Based Control**: Lock specific tiers while allowing others to evolve
+-   **Lock Founder Tokens**: Prevent modification of special token 1-100 transfer rules
+-   **Preserve Rare Items**: Keep limited edition tokens (1-100) immutable
+-   **Tier-Based Control**: Lock specific tiers while allowing others to evolve
 
 ## Important Notes
 
@@ -118,10 +118,5 @@ The permission only applies to approvals that overlap with the specified token I
 
 ## Related Examples
 
-- [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
-- [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
-
-## Related Concepts
-
-- [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
-- [Timed Update With Token IDs Permission](../../concepts/permissions/timed-update-with-badge-ids-permission.md) - Token-specific controls
+-   [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals

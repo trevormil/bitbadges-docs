@@ -20,7 +20,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Tokens vs Badges
 
-We use the terms tokens and badges interchangeably. For example, "badgeIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
+We use the terms tokens and badges interchangeably. For example, "tokenIds" refers to token IDs. In the past, our niche was primarily earned badges, and we are slowly trying to rollout rebrands to full tokens. However, the core interface is still named "badges" behind the scenes.
 
 ## Gate Any Service In 2 Steps
 

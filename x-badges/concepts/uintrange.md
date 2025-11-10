@@ -1,6 +1,6 @@
 # UintRanges
 
-The `UintRange` is the fundamental data structure used throughout the badges module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
+The `UintRange` is the fundamental data structure used throughout the tokens module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
 
 ## Proto Definition
 
@@ -84,7 +84,7 @@ const multipleBadges: UintRange[] = [
 
 ```go
 // Token IDs 1-10
-badgeIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
+tokenIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
 
 // Unlimited amount
 unlimitedAmount := UintRange{Start: NewUint(1), End: MaxUint}

@@ -1,6 +1,6 @@
 # 🔍 Queries
 
-This directory contains detailed documentation for all query types supported by the badges module.
+This directory contains detailed documentation for all query types supported by the tokens module.
 
 ## Query Categories
 
@@ -11,7 +11,7 @@ This directory contains detailed documentation for all query types supported by 
 ### Balance Queries
 
 -   [GetBalance](./get-balance.md) - Get user balances for a collection
--   [GetWrappableBalances](./get-wrappable-balances.md) - Get maximum amount of badges that can be wrapped into cosmos coins
+-   [GetWrappableBalances](./get-wrappable-balances.md) - Get maximum amount of tokens that can be wrapped into cosmos coins
 
 ### Address List Queries
 

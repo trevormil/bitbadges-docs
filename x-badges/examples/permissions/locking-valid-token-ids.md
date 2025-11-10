@@ -1,10 +1,10 @@
 # Locking Valid Token IDs
 
-This example demonstrates how to control updates to the `validBadgeIds` field, either locking it permanently or allowing controlled expansion. The `validBadgeIds` field is used to control which token IDs are considered valid for the collection.
+This example demonstrates how to control updates to the `validTokenIds` field, either locking it permanently or allowing controlled expansion. The `validTokenIds` field is used to control which token IDs are considered valid for the collection.
 
 ## Overview
 
-The `canUpdateValidBadgeIds` permission controls whether the valid token ID ranges can be modified.
+The `canUpdateValidTokenIds` permission controls whether the valid token ID ranges can be modified.
 
 ## Lock Valid Token IDs Forever
 
@@ -23,17 +23,17 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [
+    canUpdateValidTokenIds: [
         {
             // Which token IDs does this permission apply to?
-            badgeIds: FullTimeRanges, // All token IDs
+            tokenIds: FullTimeRanges, // All token IDs
 
             // What is status of this permission at any given time?
             permanentlyPermittedTimes: [],
             permanentlyForbiddenTimes: FullTimeRanges, // Never allowed to update
         },
     ],
-    canUpdateBadgeMetadata: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
 };
 ```
@@ -48,10 +48,10 @@ const collectionPermissions = {
     canUpdateCustomData: [],
     canUpdateManager: [],
     canUpdateCollectionMetadata: [],
-    canUpdateValidBadgeIds: [
+    canUpdateValidTokenIds: [
         {
             // Which token IDs does this permission apply to?
-            badgeIds: [
+            tokenIds: [
                 {
                     start: '1',
                     end: '100', // Only applies to tokens 1-100
@@ -64,7 +64,7 @@ const collectionPermissions = {
         },
         // Token IDs 101+ remain soft-enabled (can be updated by manager)
     ],
-    canUpdateBadgeMetadata: [],
+    canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
 };
 ```
@@ -75,7 +75,7 @@ const collectionPermissions = {
 const createCollection = {
     // ... other collection fields
     collectionPermissions,
-    validBadgeIds: [
+    validTokenIds: [
         {
             start: '1',
             end: '100', // Initial valid range
@@ -94,10 +94,10 @@ const createCollection = {
 
 ## Related Examples
 
--   [Locking Specific Token IDs](./locking-specific-badge-ids.md) - Lock approval updates for token ranges
+-   [Locking Specific Token IDs](./locking-specific-token-ids.md) - Lock approval updates for token ranges
 -   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
--   [Valid Token IDs](../../concepts/valid-badge-ids.md) - Token ID range concept
+-   [Valid Token IDs](../../concepts/valid-token-ids.md) - Token ID range concept
 -   [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls

@@ -10,7 +10,7 @@ Here's how you create a balance using the provided `Balance` interface:
 
 <pre class="language-typescript"><code class="lang-typescript"><strong>const userBalance = BalanceArray.From([{
 </strong>  "amount": 5n, // example amount using the BigInt type
-  "badgeIds": [{ start: 1n, end: 5n }],
+  "tokenIds": [{ start: 1n, end: 5n }],
   "ownershipTimes": [{ start: 1628770800000n, end: 1628857200000n }] // example timestamps using BigInt
 }])
 </code></pre>
@@ -24,7 +24,7 @@ To add a balance to an array of existing balances:
 ```typescript
 const balanceToAdd = {
     amount: 3n,
-    badgeIds: [{ start: 6n, end: 8n }],
+    tokenIds: [{ start: 6n, end: 8n }],
     ownershipTimes: [{ start: 1628860800000n, end: 1628947200000n }],
 };
 userBalance.addBalances([balanceToAdd]);
@@ -39,7 +39,7 @@ To subtract a balance from an array of existing balances:
 ```typescript
 const balanceToRemove = {
     amount: 2n,
-    badgeIds: [{ start: 2n, end: 3n }],
+    tokenIds: [{ start: 2n, end: 3n }],
     ownershipTimes: [{ start: 1628784400000n, end: 1628870800000n }],
 };
 userBalance.subtractBalances([balanceToRemove], false); //second param is to allow underflow (negatives)
@@ -58,10 +58,10 @@ Given the new functions you've shared, I'll provide a tutorial snippet for each 
 If you need to retrieve the balance for a specific token ID and a specific ownership time, you can use the `getBalanceForIdAndTime` function:
 
 ```typescript
-const badgeIdToLookup = 3n;
+const tokenIdToLookup = 3n;
 const timeToLookup = 1628784400000n; // example timestamp using BigInt
 const specificBalance = balances.getBalanceForIdAndTime(
-    badgeIdToLookup,
+    tokenIdToLookup,
     timeToLookup
 );
 
@@ -73,8 +73,8 @@ console.log(specificBalance); // This will show the balance for the specified to
 To get all balances associated with a specific token ID:
 
 ```typescript
-const badgeIdToLookup = 4n;
-const balances = balances.getBalancesForId(badgeIdToLookup);
+const tokenIdToLookup = 4n;
+const balances = balances.getBalancesForId(tokenIdToLookup);
 
 console.log(balances); // This will display all the balances for the given token ID.
 ```

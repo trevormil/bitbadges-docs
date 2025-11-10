@@ -2,7 +2,7 @@
 
 Automatic token transfers executed on every approval use. Supports any Cosmos SDK denomination. These are triggered every time an approval is used.
 
-To get all supported denominations, use the query parameters for the badges module.
+To get all supported denominations, use the query parameters for the tokens module.
 
 ## Interface
 

@@ -7,7 +7,7 @@ Note: This is what is stored on-chain in storage for a collection. You may typic
 ## Proto Definition
 
 ```protobuf
-message BadgeCollection {
+message TokenCollection {
   // The unique identifier for this collection. This is assigned by the blockchain. First collection has ID 1.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
@@ -15,7 +15,7 @@ message BadgeCollection {
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 2;
 
   // The metadata for each token in the collection, also subject to changes over time.
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 3;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
 
   // An arbitrary field that can store any data, subject to changes over time.
   repeated CustomDataTimeline customDataTimeline = 4;
@@ -46,7 +46,7 @@ message BadgeCollection {
   string createdBy = 11;
 
   // The valid token IDs for this collection.
-  repeated UintRange validBadgeIds = 12;
+  repeated UintRange validTokenIds = 12;
 
   // The generated address of the collection. Also used to escrow Mint balances.
   string mintEscrowAddress = 13;

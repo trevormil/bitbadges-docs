@@ -32,14 +32,14 @@ Here's how the badge token conversion works:
 
 -   Collection ID: `21`
 -   Base Denom: `utoken`
--   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
+-   Wrapper Path Balances Conversion Rate: `[{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
 
 **Conversion Process**:
 
 ```
-1 badgeslp:21:utoken = [{ amount: 1n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+1 tokenslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 
-2 badgeslp:21:utoken = [{ amount: 2n, badgeIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
 
 **Visual Flow**:
@@ -55,7 +55,7 @@ Transfers the x/badges balances to the pool address with conversions applied
     ↓
 Pool receives the x/badges balances and mints the corresponding badgeslp:21:utoken balances which are native x/bank denominations
     ↓
-The user now has the equivalent of badgeslp:21:utoken balances in the pool (all else in x/gamm is kept the same as standard in Osmosis)
+The user now has the equivalent of tokenslp:21:utoken balances in the pool (all else in x/gamm is kept the same as standard in Osmosis)
 ```
 
 For the reverse, when a pool wants to send tokens to the user, it will burn the native x/bank denominations and transfer the x/badges balances back to the user address.

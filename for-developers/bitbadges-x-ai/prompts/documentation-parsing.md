@@ -43,10 +43,10 @@ The BitBadges documentation is organized into several main sections:
 -   **BitBadges JS/SDK**: TypeScript libraries for frontend development
 -   **BitBadges Blockchain**: Technical blockchain details, node operation, transaction creation
 
-#### 3. Badge Standard Section
+#### 3. Token Standard Section
 
 -   **Concepts**: Core concepts like collections, balances, metadata, approvals, permissions
--   **Messages**: All blockchain message types (MsgCreateCollection, MsgTransferBadges, etc.)
+-   **Messages**: All blockchain message types (MsgCreateCollection, MsgTransferTokens, etc.)
 -   **Queries**: Blockchain query methods
 -   **Examples**: Practical examples and tutorials
 -   **Events**: Blockchain events

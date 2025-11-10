@@ -2,22 +2,22 @@
 
 #### Tutorial: Managing Token Metadata in TypeScript
 
-**1. Introduction to `BadgeMetadataDetails`**
+**1. Introduction to `TokenMetadataDetails`**
 
-The `BadgeMetadataDetails` type captures comprehensive details about the metadata of a token. It contains fields such as token IDs (ranges), associated metadata, a URI, and custom data. This is what is used via the **cachedBadgeMetadata** field from collection responses.
+The `TokenMetadataDetails` type captures comprehensive details about the metadata of a token. It contains fields such as token IDs (ranges), associated metadata, a URI, and custom data. This is what is used via the **cachedTokenMetadata** field from collection responses.
 
 **2. Removing Metadata for Specific Token IDs**
 
 To delete metadata associated with specific token IDs:
 
 ```typescript
-const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
+const currentMetadata: TokenMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const badgeIdsToRemove = UintRangeArray.From([
+const tokenIdsToRemove = UintRangeArray.From([
   { start: 5n, end: 10n }
 ];
 
-const updatedMetadata = removeBadgeMetadata(currentMetadata, badgeIdsToRemove);
+const updatedMetadata = removeTokenMetadata(currentMetadata, tokenIdsToRemove);
 console.log(updatedMetadata); // This will show metadata without the removed token IDs.
 ```
 
@@ -26,16 +26,16 @@ console.log(updatedMetadata); // This will show metadata without the removed tok
 If you wish to update specific token metadata in the token metadata details:
 
 ```typescript
-const currentMetadata: BadgeMetadataDetails<bigint>[] = [...]; // your current metadata array
+const currentMetadata: TokenMetadataDetails<bigint>[] = [...]; // your current metadata array
 
-const metadataToUpdate: BadgeMetadataDetails<bigint> = new BadgeMetadataDetails<bigint>({
-  badgeIds: [{ start: 7n, end: 7n }],
+const metadataToUpdate: TokenMetadataDetails<bigint> = new TokenMetadataDetails<bigint>({
+  tokenIds: [{ start: 7n, end: 7n }],
   metadata: { /* your metadata details here */ },
   uri: "http://new-metadata-url.com", //Or 'Placeholder' or something else
   customData: "Some custom information",
 });
 
-const newMetadataArray = updateBadgeMetadata(currentMetadata, metadataToUpdate);
+const newMetadataArray = updateTokenMetadata(currentMetadata, metadataToUpdate);
 console.log(newMetadataArray); // This will show the array with the updated metadata.
 ```
 
@@ -44,10 +44,10 @@ console.log(newMetadataArray); // This will show the array with the updated meta
 To retrieve metadata details for a particular token ID:
 
 ```typescript
-const badgeIdToFetch = 12n;
+const tokenIdToFetch = 12n;
 
-const badgeMetadataDetails = getMetadataDetailsForBadgeId(badgeIdToFetch, currentMetadata);
-console.log(badgeMetadataDetails); // This will display the metadata details for the specified token ID.
+const tokenMetadataDetails = getMetadataDetailsForTokenId(tokenIdToFetch, currentMetadata);
+console.log(tokenMetadataDetails); // This will display the metadata details for the specified token ID.
 ```
 
 **5. Fetch Only the Metadata for a Specific Token ID**
@@ -55,10 +55,10 @@ console.log(badgeMetadataDetails); // This will display the metadata details for
 To only retrieve the metadata (without the surrounding details) for a particular token ID:
 
 ```typescript
-const badgeIdToFetch = 15n;
+const tokenIdToFetch = 15n;
 
-const badgeMetadata = getMetadataForBadgeId(badgeIdToFetch, currentMetadata);
-console.log(badgeMetadata); // This will show only the metadata for the given token ID.
+const tokenMetadata = getMetadataForTokenId(tokenIdToFetch, currentMetadata);
+console.log(tokenMetadata); // This will show only the metadata for the given token ID.
 ```
 
 **Conclusion**

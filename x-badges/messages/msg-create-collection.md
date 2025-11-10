@@ -18,11 +18,11 @@ This is the only time that you can specify the `defaultBalances` information.
 message MsgCreateCollection {
   string creator = 1; // Address creating the collection
   UserBalanceStore defaultBalances = 2;
-  repeated UintRange validBadgeIds  = 3; // Token ID ranges to include
+  repeated UintRange validTokenIds  = 3; // Token ID ranges to include
   CollectionPermissions collectionPermissions = 4;
   repeated ManagerTimeline managerTimeline = 5;
   repeated CollectionMetadataTimeline collectionMetadataTimeline = 6;
-  repeated BadgeMetadataTimeline badgeMetadataTimeline = 7;
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 7;
   repeated CustomDataTimeline customDataTimeline = 8;
   repeated CollectionApproval collectionApprovals = 9;
   repeated StandardsTimeline standardsTimeline = 10;
@@ -66,7 +66,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
             "canUpdateAutoApproveAllIncomingTransfers": []
         }
     },
-    "validBadgeIds": [{ "start": "1", "end": "100" }],
+    "validTokenIds": [{ "start": "1", "end": "100" }],
     "collectionPermissions": {
         "canDeleteCollection": [],
         "canArchiveCollection": [],
@@ -74,13 +74,13 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canUpdateCustomData": [],
         "canUpdateManager": [],
         "canUpdateCollectionMetadata": [],
-        "canUpdateValidBadgeIds": [],
-        "canUpdateBadgeMetadata": [],
+        "canUpdateValidTokenIds": [],
+        "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
     "managerTimeline": [],
     "collectionMetadataTimeline": [],
-    "badgeMetadataTimeline": [],
+    "tokenMetadataTimeline": [],
     "customDataTimeline": [],
     "collectionApprovals": [],
     "standardsTimeline": [],

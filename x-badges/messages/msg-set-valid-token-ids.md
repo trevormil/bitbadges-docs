@@ -1,9 +1,9 @@
-# MsgSetValidBadgeIds
+# MsgSetValidTokenIds
 
 **Disclaimer:**\
 This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
-## MsgSetValidBadgeIds
+## MsgSetValidTokenIds
 
 Sets the valid token IDs and update permissions for a collection. This is a convenience message that focuses specifically on token ID management.
 
@@ -21,9 +21,9 @@ Updates can only be performed by the **current manager** of the collection. The 
 ### Proto Definition
 
 ```protobuf
-message MsgSetValidBadgeIds {
+message MsgSetValidTokenIds {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetValidBadgeIds";
+  option (amino.name) = "badges/SetValidTokenIds";
 
   // Address of the creator.
   string creator = 1;
@@ -32,13 +32,13 @@ message MsgSetValidBadgeIds {
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
   // New token IDs to add to this collection
-  repeated UintRange validBadgeIds = 3;
+  repeated UintRange validTokenIds = 3;
 
   // Permission to update valid token IDs
-  repeated BadgeIdsActionPermission canUpdateValidBadgeIds = 4;
+  repeated TokenIdsActionPermission canUpdateValidTokenIds = 4;
 }
 
-message MsgSetValidBadgeIdsResponse {
+message MsgSetValidTokenIdsResponse {
   // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
@@ -48,7 +48,7 @@ message MsgSetValidBadgeIdsResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
+bitbadgeschaind tx badges set-valid-token-ids '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -57,13 +57,13 @@ bitbadgeschaind tx badges set-valid-badge-ids '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "validBadgeIds": [
+    "validTokenIds": [
         { "start": "1", "end": "100" },
         { "start": "200", "end": "300" }
     ],
-    "canUpdateValidBadgeIds": [
+    "canUpdateValidTokenIds": [
         {
-            "badgeIds": [{ "start": "1", "end": "50" }],
+            "tokenIds": [{ "start": "1", "end": "50" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }

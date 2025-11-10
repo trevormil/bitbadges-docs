@@ -29,7 +29,7 @@ console.log('Wrapper Address:', wrapperAddress);
 
 ### Dynamic Address Generation for {id} Placeholders
 
-The {id} is actually kept for the hash preimage, so we always have one address per wrapper path regardless of the badge ID.
+The {id} is actually kept for the hash preimage, so we always have one address per wrapper path regardless of the token ID.
 
 ## Step 3: Set Up Approvals for Wrapping/Unwrapping
 

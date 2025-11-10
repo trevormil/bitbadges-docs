@@ -1,6 +1,6 @@
 # Cosmos Wrapper Paths
 
-Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the badges module, so you can set up customizable logic for how these transfers are handled.
+Cosmos Wrapper Paths enable wrapping between BitBadges tokens and native Cosmos SDK coin asset types, making tokens IBC-compatible. These paths automatically mint and burn tokens when transferring to/from specific wrapper addresses. These transfers to/from are handled within the tokens module, so you can set up customizable logic for how these transfers are handled.
 
 > **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
 
@@ -39,7 +39,7 @@ message DenomUnit {
 ### Denom
 
 -   **Base denomination** - The fundamental unit name for the wrapped coin. For the full Cosmos denomination, it will be "badges:collectionId:denom"
--   **{id} placeholder support** - You can use `{id}` in the denom to dynamically replace it with the actual badge ID during transfers if allowOverrideWithAnyValidToken is true
+-   **{id} placeholder support** - You can use `{id}` in the denom to dynamically replace it with the actual token ID during transfers if allowOverrideWithAnyValidToken is true
 
 ### Symbol
 
@@ -72,10 +72,10 @@ Multiple denomination units allow for different display formats:
 
 ### Allow Override With Any Valid Token
 
--   **Dynamic badge ID handling** - When `true`, allows the wrapper to accept any SINGLE valid badge ID from the collection's `validBadgeIds` range
--   **Override conversion balances** - Temporarily overrides the `balances` field's badge ID ranges with the actual token ID being transferred
--   **Validation required** - The transferred token ID must be within the collection's valid badge ID range
--   **Use case** - Useful when you want a single wrapper path to handle multiple badge IDs dynamically
+-   **Dynamic token ID handling** - When `true`, allows the wrapper to accept any SINGLE valid token ID from the collection's `validTokenIds` range
+-   **Override conversion balances** - Temporarily overrides the `balances` field's token ID ranges with the actual token ID being transferred
+-   **Validation required** - The transferred token ID must be within the collection's valid token ID range
+-   **Use case** - Useful when you want a single wrapper path to handle multiple token IDs dynamically
 
 #### Example with {id} Placeholder
 
@@ -86,7 +86,7 @@ Multiple denomination units allow for different display formats:
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -101,17 +101,17 @@ Multiple denomination units allow for different display formats:
 }
 ```
 
-When transferring badge ID 5, the final denomination becomes `utoken5`.
+When transferring token ID 5, the final denomination becomes `utoken5`.
 
 ### Allow Override With Any Valid Token
 
-This feature provides flexibility in handling different badge IDs within a single wrapper path.
+This feature provides flexibility in handling different token IDs within a single wrapper path.
 
 #### How It Works
 
-1. **Validation Check** - Verifies the transferred token ID is within the collection's `validBadgeIds` range
-2. **Dynamic Override** - Temporarily replaces the wrapper's badge ID ranges with the actual token ID being transferred
-3. **Conversion** - Uses the overridden badge ID for the conversion calculation
+1. **Validation Check** - Verifies the transferred token ID is within the collection's `validTokenIds` range
+2. **Dynamic Override** - Temporarily replaces the wrapper's token ID ranges with the actual token ID being transferred
+3. **Conversion** - Uses the overridden token ID for the conversion calculation
 
 #### Example with Override Enabled
 
@@ -122,7 +122,7 @@ This feature provides flexibility in handling different badge IDs within a singl
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }], // These technically don't matter since we can override the badge IDs during conversion
+            "tokenIds": [{ "start": "1", "end": "1" }], // These technically don't matter since we can override the token IDs during conversion
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -137,7 +137,7 @@ This feature provides flexibility in handling different badge IDs within a singl
 }
 ```
 
-This wrapper can now handle any badge ID from 1-100 (assuming the collection's `validBadgeIds` includes that range), dynamically overriding the badge ID during conversion.
+This wrapper can now handle any token ID from 1-100 (assuming the collection's `validTokenIds` includes that range), dynamically overriding the token ID during conversion.
 
 ## Usage Examples
 
@@ -150,7 +150,7 @@ This wrapper can now handle any badge ID from 1-100 (assuming the collection's `
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],
@@ -174,7 +174,7 @@ This wrapper can now handle any badge ID from 1-100 (assuming the collection's `
     "balances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "100" }],
+            "tokenIds": [{ "start": "1", "end": "100" }],
             "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
         }
     ],

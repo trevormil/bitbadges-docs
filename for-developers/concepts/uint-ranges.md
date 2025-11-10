@@ -8,7 +8,7 @@
 
 A core type behind the scenes in BitBadges is the [UintRange](https://bitbadges.github.io/bitbadgesjs/interfaces/iUintRange.html) type, which simply defines a range of numbers from some start value to some end value, inclusive. This allows us to apply powerful range logic.
 
-These are typically used for representing token IDs and time ranges. For example, transferring tokens will require an UintRange\<number>\[] of badgeIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the token IDs 1-10 and 20-50.
+These are typically used for representing token IDs and time ranges. For example, transferring tokens will require an UintRange\<number>\[] of tokenIds to be specified. If you say to transfer \[{ start: 1, end: 10}, {start: 20, end: 50}], it will transfer the token IDs 1-10 and 20-50.
 
 **Restricted Values**
 

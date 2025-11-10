@@ -117,7 +117,7 @@ Ask the user about the three core address list requirements:
 
 ```json
 {
-    "badgeIds": [
+    "tokenIds": [
         {
             "start": "1",
             "end": "18446744073709551615"
@@ -317,7 +317,7 @@ Ask the user about the three core address list requirements:
             "manualBalances": [
                 {
                     "amount": "1",
-                    "badgeIds": [{ "start": "1", "end": "1" }],
+                    "tokenIds": [{ "start": "1", "end": "1" }],
                     "ownershipTimes": [
                         { "start": "1691978400000", "end": "1723514400000" }
                     ]
@@ -327,17 +327,17 @@ Ask the user about the three core address list requirements:
                 "startBalances": [
                     {
                         "amount": "1",
-                        "badgeIds": [{ "start": "1", "end": "1" }],
+                        "tokenIds": [{ "start": "1", "end": "1" }],
                         "ownershipTimes": [
                             { "start": "1691978400000", "end": "1723514400000" }
                         ]
                     }
                 ],
-                "incrementBadgeIdsBy": "1",
+                "incrementTokenIdsBy": "1",
                 "incrementOwnershipTimesBy": "0",
                 "durationFromTimestamp": "0",
                 "allowOverrideTimestamp": false,
-                "allowOverrideWithAnyValidBadge": false,
+                "allowOverrideWithAnyValidToken": false,
                 "recurringOwnershipTimes": {
                     "startTime": "0",
                     "intervalLength": "0",
@@ -366,21 +366,21 @@ Ask the user about the three core address list requirements:
     "manualBalances": [
         {
             "amount": "1",
-            "badgeIds": [{ "start": "1", "end": "1" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
         },
         {
             "amount": "5",
-            "badgeIds": [{ "start": "2", "end": "6" }],
+            "tokenIds": [{ "start": "2", "end": "6" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
         },
         {
             "amount": "10",
-            "badgeIds": [{ "start": "7", "end": "16" }],
+            "tokenIds": [{ "start": "7", "end": "16" }],
             "ownershipTimes": [
                 { "start": "1691978400000", "end": "1723514400000" }
             ]
@@ -397,13 +397,13 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
             }
         ],
-        "incrementBadgeIdsBy": "1"
+        "incrementTokenIdsBy": "1"
     }
 }
 ```
@@ -416,7 +416,7 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
@@ -436,7 +436,7 @@ Ask the user about the three core address list requirements:
         "startBalances": [
             {
                 "amount": "1",
-                "badgeIds": [{ "start": "1", "end": "1" }],
+                "tokenIds": [{ "start": "1", "end": "1" }],
                 "ownershipTimes": [
                     { "start": "1691978400000", "end": "1723514400000" }
                 ]
@@ -675,7 +675,7 @@ After collecting all user responses, generate the complete JSON:
             "end": "18446744073709551615"
         }
     ],
-    "badgeIds": [
+    "tokenIds": [
         {
             "start": "1",
             "end": "18446744073709551615"
@@ -693,16 +693,16 @@ After collecting all user responses, generate the complete JSON:
     "approvalCriteria": {
         "coinTransfers": [],
         "merkleChallenges": [],
-        "mustOwnBadges": [],
+        "mustOwnTokens": [],
         "predeterminedBalances": {
             "manualBalances": [],
             "incrementedBalances": {
                 "startBalances": [],
-                "incrementBadgeIdsBy": "0",
+                "incrementTokenIdsBy": "0",
                 "incrementOwnershipTimesBy": "0",
                 "durationFromTimestamp": "0",
                 "allowOverrideTimestamp": false,
-                "allowOverrideWithAnyValidBadge": false,
+                "allowOverrideWithAnyValidToken": false,
                 "recurringOwnershipTimes": {
                     "startTime": "0",
                     "intervalLength": "0",

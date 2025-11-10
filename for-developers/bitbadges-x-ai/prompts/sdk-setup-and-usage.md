@@ -33,7 +33,7 @@ import { Balance, Numberify } from 'bitbadgesjs-sdk';
 
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }],
 });
 
@@ -48,7 +48,7 @@ import { iBalance } from 'bitbadgesjs-sdk';
 
 const balance: iBalance<bigint> = {
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }],
 };
 ```
@@ -76,7 +76,7 @@ For blockchain transactions:
 import { proto } from 'bitbadgesjs-sdk';
 
 const MsgCreateCollection = proto.badges.MsgCreateCollection;
-const MsgTransferBadges = proto.badges.MsgTransferBadges;
+const MsgTransferTokens = proto.badges.MsgTransferTokens;
 ```
 
 ### Common SDK Patterns
@@ -102,7 +102,7 @@ import { Balance, UintRange } from 'bitbadgesjs-sdk';
 // Create a balance
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [new UintRange<bigint>({ start: 1n, end: 100n })],
+    tokenIds: [new UintRange<bigint>({ start: 1n, end: 100n })],
     ownershipTimes: [new UintRange<bigint>({ start: 1n, end: 100n })],
 });
 
@@ -134,7 +134,7 @@ const collection = await api.getCollection({
 const balance = await api.getBalance({
     collectionId: '123',
     address: 'bitbadges1...',
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
 });
 ```
 

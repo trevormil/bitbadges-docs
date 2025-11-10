@@ -26,7 +26,7 @@ import { Balance, Numberify }
 
 const balance = new Balance<bigint>({
     amount: 1n,
-    badgeIds: [{ start: 1n, end: 100n }],
+    tokenIds: [{ start: 1n, end: 100n }],
     ownershipTimes: [{ start: 1n, end: 100n }]
 })
 const convertedBalance = balance.convert(Numberify); //1, 100 instead of 1n, 100n
@@ -39,7 +39,7 @@ The second is a JavaScript interface. This is the same as the class version minu
 ```typescript
 export interface iBalance<T extends NumberType> {
     amount: T;
-    badgeIds: iUintRange<T>[];
+    tokenIds: iUintRange<T>[];
     ownershipTimes: iUintRange<T>[];
 }
 ```
