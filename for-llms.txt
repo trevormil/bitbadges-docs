@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Nov 10 15:42:03 UTC 2025
+Generated on Mon Nov 10 15:45:06 UTC 2025
 
 
 
@@ -2011,7 +2011,6 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-  *
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [BitBadges Explorer](https://explorer.bitbadges.io/)
@@ -18479,7 +18478,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 ```json
 {
-    "creator": "bb1...",
+    "creator": "bb1...", 
     "defaultBalances": {
         "balances": [],
         "outgoingApprovals": [],
