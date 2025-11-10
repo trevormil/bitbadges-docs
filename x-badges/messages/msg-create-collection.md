@@ -50,7 +50,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 ```json
 {
-    "creator": "bb1...",
+    "creator": "bb1...", 
     "defaultBalances": {
         "balances": [],
         "outgoingApprovals": [],

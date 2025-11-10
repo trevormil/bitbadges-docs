@@ -188,7 +188,6 @@
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-  *
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [BitBadges Explorer](https://explorer.bitbadges.io/)
