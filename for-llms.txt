@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Nov  6 20:41:56 UTC 2025
+Generated on Mon Nov 10 15:06:58 UTC 2025
 
 
 
@@ -33,14 +33,14 @@ BitBadges / [Exports](modules.md)
 -   [Addresses](interfaces/Addresses.md)
 -   [AnnouncementActivityItem](interfaces/AnnouncementActivityItem.md)
 -   [Approval](interfaces/Approval.md)
--   [TokenMetadata](interfaces/TokenMetadata.md)
--   [TokenMetadataMap](interfaces/TokenMetadataMap.md)
+-   [BadgeMetadata](interfaces/BadgeMetadata.md)
+-   [BadgeMetadataMap](interfaces/BadgeMetadataMap.md)
 -   [BadgeSupplyAndAmount](interfaces/BadgeSupplyAndAmount.md)
 -   [BadgeUri](interfaces/BadgeUri.md)
 -   [Balance](interfaces/Balance.md)
 -   [BalanceObject](interfaces/BalanceObject.md)
 -   [BalancesMap](interfaces/BalancesMap.md)
--   [BitTokenCollection](interfaces/BitTokenCollection.md)
+-   [BitBadgeCollection](interfaces/BitBadgeCollection.md)
 -   [BitBadgeMintObject](interfaces/BitBadgeMintObject.md)
 -   [BitBadgesUserInfo](interfaces/BitBadgesUserInfo.md)
 -   [ClaimItem](interfaces/ClaimItem.md)
@@ -67,7 +67,7 @@ BitBadges / [Exports](modules.md)
 -   [PendingTransfer](interfaces/PendingTransfer.md)
 -   [Proof](interfaces/Proof.md)
 -   [SearchResponse](interfaces/SearchResponse.md)
--   [StoredTokenCollection](interfaces/StoredTokenCollection.md)
+-   [StoredBadgeCollection](interfaces/StoredBadgeCollection.md)
 -   [SubassetSupply](interfaces/SubassetSupply.md)
 -   [TransferActivityItem](interfaces/TransferActivityItem.md)
 -   [TransferList](interfaces/TransferList.md)
@@ -145,27 +145,27 @@ BitBadges / [Exports](modules.md)
 -   [convertToBitBadgesAddress](modules.md#converttocosmosaddress)
 -   [createCollectionFromMsgNewCollection](modules.md#createcollectionfrommsgnewcollection)
 -   [doesChainMatchName](modules.md#doeschainmatchname)
--   [filterTokenActivityForTokenId](modules.md#filterbadgeactivityforbadgeid)
+-   [filterTokenActivityForBadgeId](modules.md#filterbadgeactivityforbadgeid)
 -   [getAbbreviatedAddress](modules.md#getabbreviatedaddress)
--   [getTokenIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
+-   [getBadgeIdsToDisplayForPageNumber](modules.md#getbadgeidstodisplayforpagenumber)
 -   [getBalanceAfterTransfer](modules.md#getbalanceaftertransfer)
 -   [getBalanceAfterTransfers](modules.md#getbalanceaftertransfers)
 -   [getBlankBalance](modules.md#getblankbalance)
 -   [getChainForAddress](modules.md#getchainforaddress)
 -   [getClaimsFromClaimItems](modules.md#getclaimsfromclaimitems)
--   [getIdRangesForAllTokenIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
+-   [getIdRangesForAllBadgeIdsInCollection](modules.md#getidrangesforallbadgeidsincollection)
 -   [getMatchingAddressesFromTransferList](modules.md#getmatchingaddressesfromtransferlist)
 -   [getMaxBatchId](modules.md#getmaxbatchid)
--   [getMetadataForTokenId](modules.md#getmetadataforbadgeid)
--   [getMetadataMapObjForTokenId](modules.md#getmetadatamapobjforbadgeid)
+-   [getMetadataForBadgeId](modules.md#getmetadataforbadgeid)
+-   [getMetadataMapObjForBadgeId](modules.md#getmetadatamapobjforbadgeid)
 -   [getNonTransferableDisallowedTransfers](modules.md#getnontransferabledisallowedtransfers)
--   [getSupplyByTokenId](modules.md#getsupplybybadgeid)
+-   [getSupplyByBadgeId](modules.md#getsupplybybadgeid)
 -   [getTransferListForSelectOptions](modules.md#gettransferlistforselectoptions)
 -   [getTransfersFromClaimItems](modules.md#gettransfersfromclaimitems)
 -   [isAddressValid](modules.md#isaddressvalid)
 -   [isTransferListFull](modules.md#istransferlistfull)
 -   [populateFieldsOfOtherBadges](modules.md#populatefieldsofotherbadges)
--   [updateMetadataForTokenIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
+-   [updateMetadataForBadgeIdsFromIndexerIfAbsent](modules.md#updatemetadataforbadgeidsfromindexerifabsent)
 -   [updateMetadataMap](modules.md#updatemetadatamap)
 -   [updateTransferListAccountNums](modules.md#updatetransferlistaccountnums)
 
@@ -281,7 +281,7 @@ BitBadges / [Exports](modules.md)
 
 ### DefaultPlaceholderMetadata
 
-• `Const` **DefaultPlaceholderMetadata**: [`TokenMetadata`](interfaces/TokenMetadata.md)
+• `Const` **DefaultPlaceholderMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
 
 #### Defined in
 
@@ -291,7 +291,7 @@ BitBadges / [Exports](modules.md)
 
 ### ErrorMetadata
 
-• `Const` **ErrorMetadata**: [`TokenMetadata`](interfaces/TokenMetadata.md)
+• `Const` **ErrorMetadata**: [`BadgeMetadata`](interfaces/BadgeMetadata.md)
 
 #### Defined in
 
@@ -509,13 +509,13 @@ BitBadges / [Exports](modules.md)
 
 ### GetBalancesForIdRanges
 
-▸ **GetBalancesForIdRanges**(`tokenIds`, `currentUserBalances`): [`Balance`](interfaces/Balance.md)[]
+▸ **GetBalancesForIdRanges**(`badgeIds`, `currentUserBalances`): [`Balance`](interfaces/Balance.md)[]
 
 #### Parameters
 
 | Name                  | Type                                 |
 | :-------------------- | :----------------------------------- |
-| `tokenIds`            | [`IdRange`](interfaces/IdRange.md)[] |
+| `badgeIds`            | [`IdRange`](interfaces/IdRange.md)[] |
 | `currentUserBalances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -692,14 +692,14 @@ BitBadges / [Exports](modules.md)
 
 ### GetOwnersRoute
 
-▸ **GetOwnersRoute**(`collectionId`, `tokenId`): `string`
+▸ **GetOwnersRoute**(`collectionId`, `badgeId`): `string`
 
 #### Parameters
 
 | Name           | Type     |
 | :------------- | :------- |
 | `collectionId` | `number` |
-| `tokenId`      | `number` |
+| `badgeId`      | `number` |
 
 #### Returns
 
@@ -1232,22 +1232,22 @@ BitBadges / [Exports](modules.md)
 
 ### createCollectionFromMsgNewCollection
 
-▸ **createCollectionFromMsgNewCollection**(`msgNewCollection`, `collectionMetadata`, `individualTokenMetadata`, `connectedUser`, `claimItems`, `existingCollection?`): [`BitTokenCollection`](interfaces/BitTokenCollection.md)
+▸ **createCollectionFromMsgNewCollection**(`msgNewCollection`, `collectionMetadata`, `individualBadgeMetadata`, `connectedUser`, `claimItems`, `existingCollection?`): [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
 
 #### Parameters
 
 | Name                      | Type                                                       |
 | :------------------------ | :--------------------------------------------------------- |
 | `msgNewCollection`        | `MessageMsgNewCollection`                                  |
-| `collectionMetadata`      | [`TokenMetadata`](interfaces/TokenMetadata.md)             |
-| `individualTokenMetadata` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)       |
+| `collectionMetadata`      | [`BadgeMetadata`](interfaces/BadgeMetadata.md)             |
+| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)       |
 | `connectedUser`           | [`BitBadgesUserInfo`](interfaces/BitBadgesUserInfo.md)     |
 | `claimItems`              | [`ClaimItemWithTrees`](interfaces/ClaimItemWithTrees.md)[] |
-| `existingCollection?`     | [`BitTokenCollection`](interfaces/BitTokenCollection.md)   |
+| `existingCollection?`     | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md)   |
 
 #### Returns
 
-[`BitTokenCollection`](interfaces/BitTokenCollection.md)
+[`BitBadgeCollection`](interfaces/BitBadgeCollection.md)
 
 #### Defined in
 
@@ -1276,15 +1276,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### filterTokenActivityForTokenId
+### filterTokenActivityForBadgeId
 
-▸ **filterTokenActivityForTokenId**(`tokenId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
+▸ **filterTokenActivityForBadgeId**(`badgeId`, `activity`): [`TransferActivityItem`](interfaces/TransferActivityItem.md)[]
 
 #### Parameters
 
 | Name       | Type                                                           |
 | :--------- | :------------------------------------------------------------- |
-| `tokenId`  | `number`                                                       |
+| `badgeId`  | `number`                                                       |
 | `activity` | [`TransferActivityItem`](interfaces/TransferActivityItem.md)[] |
 
 #### Returns
@@ -1317,21 +1317,21 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getTokenIdsToDisplayForPageNumber
+### getBadgeIdsToDisplayForPageNumber
 
-▸ **getTokenIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `tokenIds`: `number`[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[]
+▸ **getBadgeIdsToDisplayForPageNumber**(`collections?`, `startIdxNum`, `pageSize`): { `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
 
 #### Parameters
 
 | Name          | Type                                                                                                                            | Default value |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------ | :------------ |
-| `collections` | { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[] | `[]`          |
+| `collections` | { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[] | `[]`          |
 | `startIdxNum` | `number`                                                                                                                        | `undefined`   |
 | `pageSize`    | `number`                                                                                                                        | `undefined`   |
 
 #### Returns
 
-{ `tokenIds`: `number`[] ; `collection`: [`BitTokenCollection`](interfaces/BitTokenCollection.md) }[]
+{ `badgeIds`: `number`[] ; `collection`: [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) }[]
 
 #### Defined in
 
@@ -1341,15 +1341,15 @@ BitBadges / [Exports](modules.md)
 
 ### getBalanceAfterTransfer
 
-▸ **getBalanceAfterTransfer**(`balance`, `startSubtokenId`, `endSubtokenId`, `amountToTransfer`, `numRecipients`): [`UserBalance`](interfaces/UserBalance.md)
+▸ **getBalanceAfterTransfer**(`balance`, `startSubbadgeId`, `endSubbadgeId`, `amountToTransfer`, `numRecipients`): [`UserBalance`](interfaces/UserBalance.md)
 
 #### Parameters
 
 | Name               | Type                                       |
 | :----------------- | :----------------------------------------- |
 | `balance`          | [`UserBalance`](interfaces/UserBalance.md) |
-| `startSubtokenId`  | `number`                                   |
-| `endSubtokenId`    | `number`                                   |
+| `startSubbadgeId`  | `number`                                   |
+| `endSubbadgeId`    | `number`                                   |
 | `amountToTransfer` | `number`                                   |
 | `numRecipients`    | `number`                                   |
 
@@ -1444,15 +1444,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getIdRangesForAllTokenIdsInCollection
+### getIdRangesForAllBadgeIdsInCollection
 
-▸ **getIdRangesForAllTokenIdsInCollection**(`collection`): `any`
+▸ **getIdRangesForAllBadgeIdsInCollection**(`collection`): `any`
 
 #### Parameters
 
 | Name         | Type                                                     |
 | :----------- | :------------------------------------------------------- |
-| `collection` | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
+| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
 
@@ -1495,7 +1495,7 @@ BitBadges / [Exports](modules.md)
 
 | Name         | Type                                                     |
 | :----------- | :------------------------------------------------------- |
-| `collection` | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
+| `collection` | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
 
@@ -1507,20 +1507,20 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getMetadataForTokenId
+### getMetadataForBadgeId
 
-▸ **getMetadataForTokenId**(`tokenId`, `metadataMap`): `undefined` \| [`TokenMetadata`](interfaces/TokenMetadata.md)
+▸ **getMetadataForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
 
 #### Parameters
 
 | Name          | Type                                                 |
 | :------------ | :--------------------------------------------------- |
-| `tokenId`     | `number`                                             |
-| `metadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
+| `badgeId`     | `number`                                             |
+| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
 
 #### Returns
 
-`undefined` \| [`TokenMetadata`](interfaces/TokenMetadata.md)
+`undefined` \| [`BadgeMetadata`](interfaces/BadgeMetadata.md)
 
 #### Defined in
 
@@ -1528,20 +1528,20 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getMetadataMapObjForTokenId
+### getMetadataMapObjForBadgeId
 
-▸ **getMetadataMapObjForTokenId**(`tokenId`, `metadataMap`): `undefined` \| { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`TokenMetadata`](interfaces/TokenMetadata.md) ; `uri`: `string` }
+▸ **getMetadataMapObjForBadgeId**(`badgeId`, `metadataMap`): `undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
 
 #### Parameters
 
 | Name          | Type                                                 |
 | :------------ | :--------------------------------------------------- |
-| `tokenId`     | `number`                                             |
-| `metadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
+| `badgeId`     | `number`                                             |
+| `metadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
 
 #### Returns
 
-`undefined` \| { `tokenIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`TokenMetadata`](interfaces/TokenMetadata.md) ; `uri`: `string` }
+`undefined` \| { `badgeIds`: [`IdRange`](interfaces/IdRange.md)[] ; `metadata`: [`BadgeMetadata`](interfaces/BadgeMetadata.md) ; `uri`: `string` }
 
 #### Defined in
 
@@ -1563,15 +1563,15 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### getSupplyByTokenId
+### getSupplyByBadgeId
 
-▸ **getSupplyByTokenId**(`tokenId`, `balances`): `number`
+▸ **getSupplyByBadgeId**(`badgeId`, `balances`): `number`
 
 #### Parameters
 
 | Name       | Type                                 |
 | :--------- | :----------------------------------- |
-| `tokenId`  | `number`                             |
+| `badgeId`  | `number`                             |
 | `balances` | [`Balance`](interfaces/Balance.md)[] |
 
 #### Returns
@@ -1673,21 +1673,21 @@ BitBadges / [Exports](modules.md)
 
 ### populateFieldsOfOtherBadges
 
-▸ **populateFieldsOfOtherBadges**(`individualTokenMetadata`, `tokenIds`, `key`, `value`, `metadataToSet?`): [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
+▸ **populateFieldsOfOtherBadges**(`individualBadgeMetadata`, `badgeIds`, `key`, `value`, `metadataToSet?`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
 
 #### Parameters
 
 | Name                      | Type                                                 |
 | :------------------------ | :--------------------------------------------------- |
-| `individualTokenMetadata` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
-| `tokenIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
+| `individualBadgeMetadata` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
+| `badgeIds`                | [`IdRange`](interfaces/IdRange.md)[]                 |
 | `key`                     | `string`                                             |
 | `value`                   | `any`                                                |
-| `metadataToSet?`          | [`TokenMetadata`](interfaces/TokenMetadata.md)       |
+| `metadataToSet?`          | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
 
 #### Returns
 
-[`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
+[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
 
 #### Defined in
 
@@ -1695,16 +1695,16 @@ BitBadges / [Exports](modules.md)
 
 ---
 
-### updateMetadataForTokenIdsFromIndexerIfAbsent
+### updateMetadataForBadgeIdsFromIndexerIfAbsent
 
-▸ **updateMetadataForTokenIdsFromIndexerIfAbsent**(`tokenIdsToDisplay`, `collection`): `number`[]
+▸ **updateMetadataForBadgeIdsFromIndexerIfAbsent**(`badgeIdsToDisplay`, `collection`): `number`[]
 
 #### Parameters
 
 | Name                | Type                                                     |
 | :------------------ | :------------------------------------------------------- |
-| `tokenIdsToDisplay` | `number`[]                                               |
-| `collection`        | [`BitTokenCollection`](interfaces/BitTokenCollection.md) |
+| `badgeIdsToDisplay` | `number`[]                                               |
+| `collection`        | [`BitBadgeCollection`](interfaces/BitBadgeCollection.md) |
 
 #### Returns
 
@@ -1718,20 +1718,20 @@ BitBadges / [Exports](modules.md)
 
 ### updateMetadataMap
 
-▸ **updateMetadataMap**(`currMetadataMap`, `metadata`, `tokenIds`, `uri`): [`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
+▸ **updateMetadataMap**(`currMetadataMap`, `metadata`, `badgeIds`, `uri`): [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
 
 #### Parameters
 
 | Name              | Type                                                 |
 | :---------------- | :--------------------------------------------------- |
-| `currMetadataMap` | [`TokenMetadataMap`](interfaces/TokenMetadataMap.md) |
-| `metadata`        | [`TokenMetadata`](interfaces/TokenMetadata.md)       |
-| `tokenIds`        | [`IdRange`](interfaces/IdRange.md)                   |
+| `currMetadataMap` | [`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md) |
+| `metadata`        | [`BadgeMetadata`](interfaces/BadgeMetadata.md)       |
+| `badgeIds`        | [`IdRange`](interfaces/IdRange.md)                   |
 | `uri`             | `string`                                             |
 
 #### Returns
 
-[`TokenMetadataMap`](interfaces/TokenMetadataMap.md)
+[`BadgeMetadataMap`](interfaces/BadgeMetadataMap.md)
 
 #### Defined in
 
@@ -1773,8 +1773,8 @@ title: Untitled
 
 ---
 description: >-
-  Here, you will find documentation about BitBadges, how it works, how to
-  interact, and how to contribute!
+    Here, you will find documentation about BitBadges, how it works, how to
+    interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
@@ -1789,22 +1789,22 @@ BitBadges offers tokenization-as-a-service and gating-as-a-service. We are build
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
-* **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
-* **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
-* **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
-* **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
-* **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
-* **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
-* **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
-* **Customizable Permissions** - Flexible manager controls for collections
+-   **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems.
+-   **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials
+-   **Advanced Transferability** - Fine-grained controls over who can transfer what, when, and how on any level
+-   **No Code by Default, No Smart Contracts Required** - Everything works out-of-the-box with no code
+-   **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
+-   **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
+-   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts
+-   **Customizable Permissions** - Flexible manager controls for collections
 
 ## 🛠️ Supporting Services
 
 We also offer complementary services:
 
-* **Sign In with BitBadges** - Universal, outsource multi-chain authentication
-* **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
-* **Address Lists** - Manage users across multiple blockchains
+-   **Sign In with BitBadges** - Universal, outsource multi-chain authentication
+-   **Claims** - Check criteria and deliver rewards in no-code off-chain from 7000+ apps and integrations
+-   **Address Lists** - Manage users across multiple blockchains
 
 ## 🔍 How BitBadges Works
 
@@ -1816,7 +1816,7 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## 🤖 Tokens vs Badges?
 
-BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to tokens throughout this documentation. This means tokens.
+BitBadges uses the terms tokens and badges interchangeably. You will often see us refer to badges throughout this documentation. This means tokens.
 
 
 ## File: ./SUMMARY.md
@@ -13427,106 +13427,6 @@ Lock all approvals for a collection:
 ```
 
 
-## File: ./x-badges/concepts/permissions/badge-id-permissions.md
-
-# Token ID Action Permissions
-
-Token ID action permissions control which token-specific actions can be performed based on token IDs.
-
-## High-Level Logic
-
-```
-For each token action request:
-    Check if token ID matches any tokenIds criteria
-        → If no match: ALLOW (neutral state)
-        → If match: Check if current time is in permanentlyPermittedTimes
-            → If yes: ALLOW
-            → If no: Check if current time is in permanentlyForbiddenTimes
-                → If yes: DENY
-                → If no: ALLOW (neutral state)
-```
-
-**English**: "For these times, these token IDs can be updated" or "For these times, these token IDs are locked"
-
-## Overview
-
-```
-Token Action
-    ↓
-Token ID Match
-    ↓
-Time Permission Check
-    ↓
-Execute/Deny
-```
-
-## Interface
-
-```typescript
-interface TokenIdsActionPermission {
-    tokenIds: UintRange[];
-    permanentlyPermittedTimes: UintRange[];
-    permanentlyForbiddenTimes: UintRange[];
-}
-```
-
-## Available Actions
-
-| Action                   | Description            | Use Case      |
-| ------------------------ | ---------------------- | ------------- |
-| `canUpdateValidTokenIds` | Update valid token IDs | Configuration |
-
-## Examples
-
-### Lock All Token ID Updates
-
-```json
-{
-    "canUpdateValidTokenIds": [
-        {
-            "tokenIds": [{ "start": "1", "end": "18446744073709551615" }],
-            "permanentlyPermittedTimes": [],
-            "permanentlyForbiddenTimes": [
-                { "start": "1", "end": "18446744073709551615" }
-            ]
-        }
-    ]
-}
-```
-
-### Lock Specific ID Range
-
-```json
-{
-    "canUpdateValidTokenIds": [
-        {
-            "tokenIds": [{ "start": "1", "end": "100" }],
-            "permanentlyPermittedTimes": [],
-            "permanentlyForbiddenTimes": [
-                { "start": "1", "end": "18446744073709551615" }
-            ]
-        }
-    ]
-}
-```
-
-### Allow Future Token IDs Only
-
-```json
-{
-    "canUpdateValidTokenIds": [
-        {
-            "tokenIds": [{ "start": "101", "end": "18446744073709551615" }],
-            "permanentlyPermittedTimes": [
-                { "start": "1", "end": "18446744073709551615" }
-            ],
-            "permanentlyForbiddenTimes": []
-        }
-    ]
-}
-```
-
-
 ## File: ./x-badges/concepts/permissions/overview.md
 
 # Overview
@@ -13920,6 +13820,106 @@ interface TimedUpdateWithTokenIdsPermission {
             "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
             "permanentlyPermittedTimes": [
                 { "start": "1704067200000", "end": "1735689600000" }
+            ],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+
+## File: ./x-badges/concepts/permissions/token-id-permissions.md
+
+# Token ID Action Permissions
+
+Token ID action permissions control which token-specific actions can be performed based on token IDs.
+
+## High-Level Logic
+
+```
+For each token action request:
+    Check if token ID matches any tokenIds criteria
+        → If no match: ALLOW (neutral state)
+        → If match: Check if current time is in permanentlyPermittedTimes
+            → If yes: ALLOW
+            → If no: Check if current time is in permanentlyForbiddenTimes
+                → If yes: DENY
+                → If no: ALLOW (neutral state)
+```
+
+**English**: "For these times, these token IDs can be updated" or "For these times, these token IDs are locked"
+
+## Overview
+
+```
+Token Action
+    ↓
+Token ID Match
+    ↓
+Time Permission Check
+    ↓
+Execute/Deny
+```
+
+## Interface
+
+```typescript
+interface TokenIdsActionPermission {
+    tokenIds: UintRange[];
+    permanentlyPermittedTimes: UintRange[];
+    permanentlyForbiddenTimes: UintRange[];
+}
+```
+
+## Available Actions
+
+| Action                   | Description            | Use Case      |
+| ------------------------ | ---------------------- | ------------- |
+| `canUpdateValidTokenIds` | Update valid token IDs | Configuration |
+
+## Examples
+
+### Lock All Token ID Updates
+
+```json
+{
+    "canUpdateValidTokenIds": [
+        {
+            "tokenIds": [{ "start": "1", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Lock Specific ID Range
+
+```json
+{
+    "canUpdateValidTokenIds": [
+        {
+            "tokenIds": [{ "start": "1", "end": "100" }],
+            "permanentlyPermittedTimes": [],
+            "permanentlyForbiddenTimes": [
+                { "start": "1", "end": "18446744073709551615" }
+            ]
+        }
+    ]
+}
+```
+
+### Allow Future Token IDs Only
+
+```json
+{
+    "canUpdateValidTokenIds": [
+        {
+            "tokenIds": [{ "start": "101", "end": "18446744073709551615" }],
+            "permanentlyPermittedTimes": [
+                { "start": "1", "end": "18446744073709551615" }
             ],
             "permanentlyForbiddenTimes": []
         }
@@ -17391,9 +17391,9 @@ const createCollection = {
 
 ## Use Cases
 
-- **Lock Founder Tokens**: Prevent modification of special token 1-100 transfer rules
-- **Preserve Rare Items**: Keep limited edition tokens (1-100) immutable
-- **Tier-Based Control**: Lock specific tiers while allowing others to evolve
+-   **Lock Founder Tokens**: Prevent modification of special token 1-100 transfer rules
+-   **Preserve Rare Items**: Keep limited edition tokens (1-100) immutable
+-   **Tier-Based Control**: Lock specific tiers while allowing others to evolve
 
 ## Important Notes
 
@@ -17403,13 +17403,9 @@ The permission only applies to approvals that overlap with the specified token I
 
 ## Related Examples
 
-- [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
-- [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
+-   [Locking Specific Approval ID](./locking-specific-approval-id.md) - Lock by approval ID
+-   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
 
-## Related Concepts
-
-- [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
-- [Timed Update With Token IDs Permission](../../concepts/permissions/timed-update-with-token-ids-permission.md) - Token-specific controls
 
 ## File: ./x-badges/examples/permissions/locking-valid-token-ids.md
 
@@ -18911,96 +18907,6 @@ The response includes the number of approvals that were successfully purged:
 -   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete a single outgoing approval
 
 
-## File: ./x-badges/messages/msg-set-badge-metadata.md
-
-# MsgSetTokenMetadata
-
-**Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
-
-## MsgSetTokenMetadata
-
-Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
-
-### Overview
-
-This message allows you to:
-
-* Set token metadata timeline for the collection
-* Configure permissions to update the token metadata in the future
-
-### Authorization & Permissions
-
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata timeline according to the collection's current permission settings.
-
-### Proto Definition
-
-```protobuf
-message MsgSetTokenMetadata {
-  option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetTokenMetadata";
-
-  // Address of the creator.
-  string creator = 1;
-
-  // ID of the collection.
-  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-
-  // New token metadata timeline to set.
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
-
-  // Permission to update token metadata timeline
-  repeated TimedUpdateWithTokenIdsPermission canUpdateTokenMetadata = 4;
-}
-
-message MsgSetTokenMetadataResponse {
-  // ID of the collection.
-  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-}
-```
-
-### Usage Example
-
-```bash
-# CLI command
-bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
-```
-
-#### JSON Example
-
-```json
-{
-    "creator": "bb1abc123...",
-    "collectionId": "1",
-    "tokenMetadataTimeline": [
-        {
-            "tokenMetadata": [
-                {
-                    "uri": "https://example.com/badge1.json",
-                    "customData": "{\"description\": \"First token\"}",
-                    "tokenIds": [{ "start": "1", "end": "10" }]
-                }
-            ],
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
-        }
-    ],
-    "canUpdateTokenMetadata": [
-        {
-            "tokenIds": [{ "start": "1", "end": "10" }],
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
-            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
-            "permanentlyForbiddenTimes": []
-        }
-    ]
-}
-```
-
-### Related Messages
-
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
-
-
 ## File: ./x-badges/messages/msg-set-collection-approvals.md
 
 # MsgSetCollectionApprovals
@@ -19640,6 +19546,96 @@ bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
     ],
     "canUpdateStandards": [
         {
+            "timelineTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
+            "permanentlyForbiddenTimes": []
+        }
+    ]
+}
+```
+
+### Related Messages
+
+* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+* [MsgUpdateCollection](broken-reference) - Legacy update message
+
+
+## File: ./x-badges/messages/msg-set-token-metadata.md
+
+# MsgSetTokenMetadata
+
+**Disclaimer:**\
+This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+
+## MsgSetTokenMetadata
+
+Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
+
+### Overview
+
+This message allows you to:
+
+* Set token metadata timeline for the collection
+* Configure permissions to update the token metadata in the future
+
+### Authorization & Permissions
+
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata timeline according to the collection's current permission settings.
+
+### Proto Definition
+
+```protobuf
+message MsgSetTokenMetadata {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/SetTokenMetadata";
+
+  // Address of the creator.
+  string creator = 1;
+
+  // ID of the collection.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // New token metadata timeline to set.
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
+
+  // Permission to update token metadata timeline
+  repeated TimedUpdateWithTokenIdsPermission canUpdateTokenMetadata = 4;
+}
+
+message MsgSetTokenMetadataResponse {
+  // ID of the collection.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+### Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
+```
+
+#### JSON Example
+
+```json
+{
+    "creator": "bb1abc123...",
+    "collectionId": "1",
+    "tokenMetadataTimeline": [
+        {
+            "tokenMetadata": [
+                {
+                    "uri": "https://example.com/badge1.json",
+                    "customData": "{\"description\": \"First token\"}",
+                    "tokenIds": [{ "start": "1", "end": "10" }]
+                }
+            ],
+            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+        }
+    ],
+    "canUpdateTokenMetadata": [
+        {
+            "tokenIds": [{ "start": "1", "end": "10" }],
             "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
