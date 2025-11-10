@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Nov 10 15:06:58 UTC 2025
+Generated on Mon Nov 10 15:40:37 UTC 2025
 
 
 
@@ -1875,7 +1875,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Overview](x-badges/concepts/permissions/overview.md)
     * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
     * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
-    * [Token ID Action Permissions](x-badges/concepts/permissions/badge-id-permissions.md)
+    * [Token ID Action Permissions](token-standard/concepts/permissions/token-id-action-permissions.md)
     * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
   * [Protocols](x-badges/concepts/protocols/README.md)
     * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
@@ -1892,7 +1892,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
   * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
   * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-  * [MsgSetTokenMetadata](x-badges/messages/msg-set-badge-metadata.md)
+  * [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
   * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
   * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
   * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
@@ -1971,7 +1971,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
   * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
   * [Blockchain API Reference](https://lcd.bitbadges.io/)
   * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-  * [Handling Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
   * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
   * [Concepts](for-developers/bitbadges-api/concepts/README.md)
@@ -2011,7 +2011,7 @@ BitBadges uses the terms tokens and badges interchangeably. You will often see u
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+  *
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [BitBadges Explorer](https://explorer.bitbadges.io/)
@@ -2150,7 +2150,7 @@ BitBadges is compatible with the wallets of each ecosystem. However, BitBadges i
 
 All addresses map to an equivalent one in a different ecosystem (see the image below). You may be used to seeing your address as an Ethereum address, but behind the scenes, your mapped BitBadges address may be used for record keeping.
 
-<figure><img src="../.gitbook/assets/image (88) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (88) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Which chains / wallets are supported?**
 
@@ -2160,7 +2160,7 @@ Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
 It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
 
-<figure><img src="../.gitbook/assets/image (88) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (88) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
@@ -2564,7 +2564,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 1. Sign in and create your API key in the [developer portal -> API Keys tab](https://bitbadges.io/developer).
 
-<figure><img src="../../.gitbook/assets/image (97) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (97) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Once you've created it and copied it somewhere safe, select "Update Tier".
 
@@ -2572,7 +2572,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 3. This will take you to the billing page. Select your desired tier. Note that if you have a coupon code, it will typically only apply to a specific tier.
 
-<figure><img src="../../.gitbook/assets/image (99) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (99) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Lastly, complete the form, selecting your newly created API key. Enter your email, enter promo code (if applicable), and complete the rest of the form.
 
@@ -3824,7 +3824,7 @@ Testnet mode provides a separate environment for testing purposes. Simply turn o
 <pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
 </strong></code></pre>
 
-<figure><img src="../../.gitbook/assets/image (129) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (129) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Important Notes
 
@@ -3832,15 +3832,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
--   Some features available in production may not be accessible in testnet:
-    -   Off-chain balances managed by BitTokens are not hosted externally (via CDN)
-    -   Buying BADGE credits
-    -   Push notifications
-    -   And more
--   Some restrictions may be more relaxed
-    -   No API keys required
-    -   Faucet may be more lenient
--   Performance also may differ from the production environment
+* Some features available in production may not be accessible in testnet:
+  * Off-chain balances managed by BitTokens are not hosted externally (via CDN)
+  * Buying BADGE credits
+  * Push notifications
+  * And more
+* Some restrictions may be more relaxed
+  * No API keys required
+  * Faucet may be more lenient
+* Performance also may differ from the production environment
 
 ### Links
 
@@ -3850,8 +3850,8 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
--   RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
--   REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+* RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
+* REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
 
 ### Feedback
 
@@ -7391,7 +7391,7 @@ On the reward side, simply set up a post-success claim, receive any user identif
 
 <figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Criteria Side**
 
@@ -7830,7 +7830,7 @@ Consider a workaround such as storing any information yourself, mapping it to a 
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more).
 
-<figure><img src="../../../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (120) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md
@@ -8043,7 +8043,7 @@ We also allow users to simulate (dry run) their claim attempts. Plugins are expe
 * Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-<figure><img src="../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (120) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 
@@ -8498,7 +8498,7 @@ const txn = createTransactionPayload(txContext, msgs);
 
 BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
 
-<figure><img src="../.gitbook/assets/image (4) (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
@@ -9777,6 +9777,12 @@ Each token collection can have a manager that can execute administrative actions
 While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
 
 
+## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
+
+# Token ID Action Permissions
+
+
+
 ## File: ./token-standard/examples/approvals/README.md
 
 # Approvals
@@ -9790,6 +9796,12 @@ While our approach is no-code by default, we do support CosmWASM for any custom 
 **Building a frontend?** Check out the affiliate fee implementation to claim 50% of the protocol fee to keep your integration sustainable!
 
 **Want to add it to your Cosmos chain?** If you want the token standard to your own chain, reach out! We are open to exploring licensing and other agreements!
+
+
+## File: ./token-standard/messages/msgsettokenmetadata.md
+
+# MsgSetTokenMetadata
+
 
 
 ## File: ./token-standard/pre-readings.md
