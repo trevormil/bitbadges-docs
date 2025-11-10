@@ -57,7 +57,7 @@ We also allow users to simulate (dry run) their claim attempts. Plugins are expe
 * Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
 * User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
 
-<figure><img src="../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (120) (1).png" alt=""><figcaption></figcaption></figure>
 
 **State Management**
 

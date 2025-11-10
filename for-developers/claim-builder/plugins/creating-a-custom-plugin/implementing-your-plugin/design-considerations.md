@@ -53,4 +53,4 @@ Consider a workaround such as storing any information yourself, mapping it to a 
 
 This approach follows the same flow as OAuth authorization codes, except with a custom claim code. You should follow all the same best practices (expiring tokens, PKCE for preventing authorization code interception attacks, and more).
 
-<figure><img src="../../../../../.gitbook/assets/image (120) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (120) (1).png" alt=""><figcaption></figcaption></figure>
