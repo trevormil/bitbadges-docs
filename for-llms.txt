@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Nov  3 18:20:24 UTC 2025
+Generated on Thu Nov  6 20:41:56 UTC 2025
 
 
 
@@ -3832,15 +3832,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
-* Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitTokens are not hosted externally (via CDN)
-  * Buying BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
+-   Some features available in production may not be accessible in testnet:
+    -   Off-chain balances managed by BitTokens are not hosted externally (via CDN)
+    -   Buying BADGE credits
+    -   Push notifications
+    -   And more
+-   Some restrictions may be more relaxed
+    -   No API keys required
+    -   Faucet may be more lenient
+-   Performance also may differ from the production environment
 
 ### Links
 
@@ -3850,8 +3850,8 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
-* RPC: [https://testnet.node.bitbadges.io/rpc](https://testnet.node.bitbadges.io/rpc)
-* REST: [https://testnet.bitbadges.io/api](https://testnet.bitbadges.io/api)
+-   RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
+-   REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
 
 ### Feedback
 
