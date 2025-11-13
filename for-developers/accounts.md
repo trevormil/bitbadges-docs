@@ -1,5 +1,9 @@
 # 👤 Multi-Chain Accounts
 
+```
+NOTE: This feature is planned to be deprecated soon in favor of only supporting wallets natively supported by the Cosmos SDK.
+```
+
 ### **How is BitBadges able to support addresses from different blockchains?**
 
 To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos). In other words, we support any wallet type.
