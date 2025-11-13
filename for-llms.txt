@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Nov 13 12:02:13 UTC 2025
+Generated on Thu Nov 13 13:26:23 UTC 2025
 
 
 
@@ -2130,10 +2130,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 ## File: ./for-developers/accounts.md
 
 # 👤 Multi-Chain Accounts
-
-```
-NOTE: This feature is planned to be deprecated soon in favor of only supporting wallets natively supported by the Cosmos SDK.
-```
 
 ### **How is BitBadges able to support addresses from different blockchains?**
 
