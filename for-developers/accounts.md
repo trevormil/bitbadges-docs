@@ -38,12 +38,6 @@ All addresses map to an equivalent one in a different ecosystem (see the image b
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
 
-### Handling Addresses in Development
-
-It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
-
-<figure><img src="../.gitbook/assets/image (88) (1).png" alt=""><figcaption></figcaption></figure>
-
 **Mapping to a Common Address (bitbadgesAddress)**
 
 To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos (aka BitBadges) bech32 address. We use the mapped **bitbadgesAddress** as the universal base address whenever needed.

@@ -195,7 +195,6 @@
     -   [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
     -   [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
     -   [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
-    -   [Accounts (Technical)](for-developers/bitbadges-blockchain/accounts-technical.md)
     -   [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
     -   [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
     -   [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
