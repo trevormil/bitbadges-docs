@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Nov 13 13:33:43 UTC 2025
+Generated on Thu Nov 13 13:50:42 UTC 2025
 
 
 
@@ -2014,7 +2014,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     -   [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
     -   [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
     -   [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
-    -   [Accounts (Technical)](for-developers/bitbadges-blockchain/accounts-technical.md)
     -   [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
     -   [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
     -   [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
@@ -2168,12 +2167,6 @@ All addresses map to an equivalent one in a different ecosystem (see the image b
 ### **Which chains / wallets are supported?**
 
 Currently, we support Ethereum, Cosmos, Solana, Bitcoin.
-
-### Handling Addresses in Development
-
-It should be enough information for most, but for more low-level interaction, [this page](bitbadges-blockchain/accounts-technical.md) will give you more in-depth explanations.
-
-<figure><img src="../.gitbook/assets/image (88) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Mapping to a Common Address (bitbadgesAddress)**
 
@@ -2607,126 +2600,6 @@ If interested in running an indexer, please reach out! We are happy to share the
 
 
 
-## File: ./for-developers/bitbadges-blockchain/accounts-technical.md
-
-# Accounts (Technical)
-
-## Pre-Readings
-
-* [Cosmos SDK Accounts](https://docs.cosmos.network/main/basics/accounts)
-* [Ethereum Accounts](https://ethereum.org/en/whitepaper/#ethereum-accounts)
-
-### Accounts and Validator Operators
-
-For accounts (standard senders of transactions) and validator operators, we support users from four L1 blockchain ecosystems currently (Ethereum, Bitcoin, Solana, and Cosmos).
-
-### **Ethereum**
-
-BitBadges allows Ethereum addresses to use Ethereum's ECDSA secp256k1 curve for keys. The public key for these accounts will be a custom type (forked from [Ethermint](https://github.com/cosmos/ethermint)). This satisfies the [EIP84](https://github.com/ethereum/EIPs/issues/84) for full [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) paths. The root HD path for BitBadges Ethereum-based accounts is `m/44'/60'/0'/0`. BitBadges uses the Coin type `60` to support Ethereum type accounts, unlike other Cosmos chains that use Coin type `118.`
-
-**Signing Method:** All transactions should be signed with EIP712. EIP712 transactions can be generated via the BitBadges SDK.
-
-### **Solana**
-
-BitBadges also extends the SDK's functionality to support Solana signatures signing with a ed25519 key. Addresses are expected to be in the native Base58 format.
-
-**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
-
-### **Cosmos**
-
-Normal Cosmos accounts are also supported with all the Cosmos SDK's native functionality. We refer you to their documentation for further information.
-
-### Bitcoin
-
-BitBadges supports Bitcoin P2WPKH addresses and BIP322 message verification.
-
-**Signing Method:** Transactions will be signed in JSON stringified format with all keys alphabetically sorted. JSON messages can also be generated via the SDK.
-
-### Addresses and Public Keys[​](https://docs.injective.network/learn/basic-concepts/accounts#addresses-and-public-keys) <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-#### **Address Conversion**
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToBitBadges, bitbadgesToEth } from 'bitbadgesjs-sdk';
-</strong>
-<strong>const bitbadgesAddress = ethToBitBadges(address);
-</strong>const ethAddress = bitbadgesToEth(bitbadgesAddress);
-const bitbadgesAddressFromSolana = solanaToBitBadges(address);
-//Note there is no bitbadgesToSolana or ethToSolana due to how the addresses work
-</code></pre>
-
-Behind the scenes, the blockchain always uses the mapped BitBadges address, never a Solana or Ethereum address. The Solana / Ethereum addresses are only for visually displaying to the user.
-
-The Bech32 format is the default format for Cosmos-SDK queries and transactions through CLI and REST clients.
-
-#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-Ethereum Example:
-
-* Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
-* Address ([EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-
-Solana Example:
-
-* Address (Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
-
-Bitcoin Example
-
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
-
-#### **Public Key Types**
-
-For standard Cosmos accounts, the public key will have the `"@type": "/cosmos.crypto.secp256k1.PubKey"`.
-
-For Solana accounts, the public key will have the `"@type": "/cosmos.crypto.ed25519.PubKey"`.
-
-For standard Ethereum accounts, the public key will have the `"@type": "/ethereum.PubKey"`.
-
-`{"@type":"/ethereum.PubKey","key":"AsV5oddeB+hkByIJo/4lZiVUgXTzNfBPKC73cZ4K1YD2"}`
-
-### Deriving BitBadges Ethereum Account from a private key/mnemonic[​](https://docs.injective.network/learn/basic-concepts/accounts#deriving-injective-account-from-a-private-keymnemonic) <a href="#deriving-injective-account-from-a-private-keymnemonic" id="deriving-injective-account-from-a-private-keymnemonic"></a>
-
-Below you will see an example code snippet on how to derive a BitBadges Account from a private key and/or a mnemonic phase:
-
-```typescript
-import { Wallet } from 'ethers'
-import { Address as EthereumUtilsAddress } from 'ethereumjs-util'
-
-const mnemonic = "indoor dish desk flag debris potato excuse depart ticket judge file exit"
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const defaultDerivationPath = "m/44'/60'/0'/0/0"
-const defaultBech32Prefix = 'bb'
-const isPrivateKey: boolean = true /* just for the example */
-
-const wallet = isPrivateKey ? Wallet.fromMnemonic(mnemonic, defaultDerivationPath) : new Wallet(privateKey)
-const ethereumAddress = wallet.address
-const addressBuffer = EthereumUtilsAddress.fromString(ethereumAddress.toString()).toBuffer()
-const bitbadgesAddress = bech32.encode(defaultBech32Prefix, bech32.toWords(addressBuffer))
-```
-
-Let's see an example code snipped on how to derive a public key from a private key:
-
-```typescript
-import secp256k1 from 'secp256k1'
-
-const privateKey = "afdfd9c3d2095ef696594f6cedcae59e72dcd697e2a7521b1578140422a4f890"
-const privateKeyHex = Buffer.from(privateKey.toString(), 'hex')
-const publicKeyByte = secp256k1.publicKeyCreate(privateKeyHex)
-
-const buf1 = Buffer.from([10])
-const buf2 = Buffer.from([publicKeyByte.length])
-const buf3 = Buffer.from(publicKeyByte)
-
-const publicKey = Buffer.concat([buf1, buf2, buf3]).toString('base64')
-const type = '/ethereum.PubKey'
-```
-
-#### Acknowledgements
-
-Credit to [https://docs.injective.network/learn/basic-concepts/accounts](https://docs.injective.network/learn/basic-concepts/accounts) and [https://docs.evmos.org/protocol/concepts/accounts](https://docs.evmos.org/protocol/concepts/accounts).
-
-
 ## File: ./for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md
 
 # Cosmos SDK Msgs
@@ -2747,9 +2620,9 @@ The x/badges module is the core functionality of BitBadges written by us, and wi
 
 You can generate and submit your transactions (Msgs) via:
 
-* [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
-* CLI: Run your own node and interact with the command line
-* Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
+-   [BitBadges SDK](../create-and-broadcast-txs/): Generate and broadcast transactions to a running node with TypeScript. See [tutorials](../create-and-broadcast-txs/). This is the recommended option.
+-   CLI: Run your own node and interact with the command line
+-   Other: [https://docs.cosmos.network/main/user/run-node/txs#using-rest](https://docs.cosmos.network/main/user/run-node/txs#using-rest)
 
 **What is the creator field?**
 
@@ -2761,29 +2634,29 @@ Below, we link the documentation for the Msgs from our x/badges and x/wasmx modu
 
 **x/badges**
 
-* [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
-* [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
-* [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
-  * Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
-* [MsgTransferTokens](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferTokens.html) - Transfer tokens between users, if approvals allow.
-* [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
-* [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
-* [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
+-   [MsgCreateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateCollection.html) - Creates a new collection. For creation transactions, everything is considered "free" (no permission restrictions). For following update transactions, everything must follow the permissions set.
+-   [MsgUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateCollection.html) - Updates the details of a collection. Must be manager of the corresponding collection to execute and all updates must follow the permissions set.
+-   [MsgUniversalUpdateCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgUniversalUpdateCollection.html) - This is a universal all-in-one message that supports everything from both MsgCreateCollection and MsgUpdateCollection. If collectionId == 0, we treat it as a create transaction. If collectionId > 0, we update the corresponding collection.
+    -   Mainly used for legacy purposes. To avoid confusion, we recommend using MsgCreate or MsgUpdate because those will be typed correctly for your use case.
+-   [MsgTransferTokens](https://bitbadges.github.io/bitbadgesjs/classes/MsgTransferTokens.html) - Transfer tokens between users, if approvals allow.
+-   [MsgUpdateUserApprov](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html)[als](https://bitbadges.github.io/bitbadgesjs/classes/MsgUpdateUserApprovals.html) - Set incoming / outgoing approvals for a collection, in addition to permissions which define the updatability of the approvals.
+-   [MsgDeleteCollection](https://bitbadges.github.io/bitbadgesjs/classes/MsgDeleteCollection.html) - Deletes the collection, if permissions allow. Must be manager.
+-   [MsgCreateAddressLists](https://bitbadges.github.io/bitbadgesjs/classes/MsgCreateAddressLists.html) - Creates address list(s).
 
 **x/wasmx**
 
-* [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing. See [here](../concepts/accounts-technical.md) for tutorial.
+-   [MsgExecuteContractCompat](https://bitbadges.github.io/bitbadgesjs/classes/MsgExecuteContractCompat.html) - Helper Msg to support executing contracts with support for BitBadges special transaction signing
 
 **x/maps**
 
-* MsgCreateMap - Creates a map, uniquely identifed by an ID
-* MsgUpdateMap - Updates an existing map.
-* MsgDeleteMap - Deletes a map
-* MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
+-   MsgCreateMap - Creates a map, uniquely identifed by an ID
+-   MsgUpdateMap - Updates an existing map.
+-   MsgDeleteMap - Deletes a map
+-   MsgSetValue - Allows a user to specify a (key, value) pair if permissions allow.
 
 **x/anchor**
 
-* MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
+-   MsgAddCustomData - Add custom data to the blockchain. No structure to the data at all (just a string). Will return a location for where to find your data.
 
 **Other Cosmos SDK Modules**
 
@@ -8121,61 +7994,6 @@ This section covers core BitBadges concepts that developers need to understand w
 ## Account System
 
 BitBadges supports multi-chain accounts, allowing users from Ethereum, Bitcoin, Solana, and Cosmos to interact with the same tokens and services using their native wallets and signing methods.
-
-
-## File: ./for-developers/concepts/accounts.md
-
-# 👤 Accounts
-
-This page will give you an overview of BitBadges accounts. It should be enough information for most, but for more low-level interaction, [the next page](accounts-technical.md) will give you more in-depth explanations.&#x20;
-
-#### **How is BitBadges able to support addresses from different blockchains?**
-
-To enable interoperability between different blockchains, each individual L1 blockchain will have its native addresses mapped to an equivalent Cosmos bech32 address and an account ID number. An account ID number will be assigned to the address when it interacts with the BitBadges blockchain or is sent BADGE for the first time.&#x20;
-
-As an example, the Ethereum null address 0x0000000000000000000000000000000000000000 maps to the BitBadges address bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv and will be assigned an account ID number upon interaction with the BitBadges blockchain. It would also map to an equivalent Bitcoin address as well.
-
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-
-#### **Representation** <a href="#addresses-and-public-keys" id="addresses-and-public-keys"></a>
-
-Ethereum Example:
-
--   Address (Bech32): `bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku`
--   Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): `0xAF79152AC5dF276D9A8e1E2E22822f9713474902`
-
-Solana Example:
-
--   Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
--   Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
-
-Bitcoin Example&#x20;
-
--   Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
--   Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
-
-#### Why can I convert Solana address to a BitBadges / Eth / BTC address but not the other way around?
-
-You may notice that you cannot go from a BitBadges / Eth address directly to a Solana address but you can the other way around. This is because conversion from a Solana address requires a hash, so if you just have the postimage of the hash (an Eth / BitBadges address), you cannot deduce the preimage without prior knowledge of it.
-
-#### **Which address should I use (native or mapped one)? How to convert?**
-
-For user experience, you should always display the user's native address on a frontend. However, the BitBadges blockchain **only** uses the mapped BitBadges addresses behind the scenes, never a native address. This can be converted behind the scenes using the converter functions from [BitBadges SDK](../bitbadges-sdk/) (address-converter). This can be done with any validly formatted address.
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { ethToBitBadges, bitbadgesToEth, convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
-</strong><strong>
-</strong><strong>
-</strong><strong>const bitbadgesAddress1 = convertToBitBadgesAddress(address);
-</strong><strong>const bitbadgesAddress = ethToBitBadges(address);
-</strong>const ethAddress = bitbadgesToEth(bitbadgesAddress);
-const bitbadgesAddressFromSolana = solanaToBitBadges(address);
-//Note there is no bitbadgesToSolana or ethToSolana due to how the addresses work
-</code></pre>
-
-#### **How do I query details for an address?**
-
-1. You can use the [BitBadges API](../bitbadges-api/api.md) to get information about an address (recommended option). This is the recommended options because we have indexed all the data already for you.
-2. You an also query a BitBadges blockchain node directly, either through the CLI or [REST API ](https://docs.cosmos.network/v0.46/run-node/interact-node.html).&#x20;
 
 
 ## File: ./for-developers/concepts/address-mappings-lists.md
