@@ -1,5 +1,9 @@
 # Signing - Solana
 
+```
+⚠️ WARNING: This signing method is only intended for highly custom applications. For most use cases, we recommend only using Cosmos SDK-native wallets instead.
+```
+
 **Signing with Solana - Phantom Wallet**
 
 ```typescript

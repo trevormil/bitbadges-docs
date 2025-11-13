@@ -1,5 +1,23 @@
 # 👤 Multi-Chain Accounts
 
+```
+NOTE: This feature is planned to be deprecated soon in favor of only supporting wallets natively supported by the Cosmos SDK. The multi-chain account functionality will remain available on the backend for developers building custom applications, but support for this feature will be discontinued on the official BitBadges site.
+```
+
+### ⚠️ **Important Warning for Custom Applications**
+
+If you are building custom applications that utilize multi-chain account functionality, **exercise extreme caution** when introducing logic that interacts with other chains for non-Cosmos based wallets. Other blockchains do **not** support the same address mapping scheme that BitBadges uses for non-Cosmos assets.
+
+**Critical considerations:**
+
+-   The address mapping scheme used by BitBadges is specific to the BitBadges blockchain
+-   Other chains (Ethereum, Solana, Bitcoin, etc.) do not recognize or support these mappings
+-   Attempting to use BitBadges address mappings on other chains can result in **stuck or lost user funds**
+-   Always use native addresses when interacting with other blockchains directly
+-   Only use the mapped BitBadges addresses within the BitBadges ecosystem
+
+**Best practice:** Keep all address mapping logic isolated to BitBadges-specific operations. When bridging or interacting with external chains, always convert back to native addresses first.
+
 ### **How is BitBadges able to support addresses from different blockchains?**
 
 To enable interoperability between different blockchains, BitBadges is signature compatible with all of its supported chains (Bitcoin, Ethereum, Solana, and Cosmos). In other words, we support any wallet type.
@@ -36,18 +54,18 @@ The mappings should ONLY happen behind the scenes. On the user facing side, you 
 
 Ethereum Example:
 
-* Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
-* Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
+-   Mapped BitBadges Address (Bech32): bb14au322k9munkmx5wrchz9q30juf5wjgz2cfqku
+-   Address (Native - [EIP55](https://eips.ethereum.org/EIPS/eip-55) Ethereum Hex): 0xAF79152AC5dF276D9A8e1E2E22822f9713474902
 
 Solana Example:
 
-* Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
-* Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
+-   Address (Native - Base58): 6H2af68Yyg6j7N4XeQKmkZFocYQgv6yYoU3Xk491efa5
+-   Mapped BitBadges Address (Bech32): bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl
 
 Bitcoin Example
 
-* Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
-* Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
+-   Address (Native - P2WPKH): bc1q9s7rynm5pwhluhecsmlku8rn5yej5wdgj0gv3e
+-   Mapped BitBadges Address (Bech32): bb19s7rynm5pwhluhecsmlku8rn5yej5wdg8g75f9
 
 #### Why can I convert Solana address to a BitBadges / ETH / BTC address but not the other way around?
 
