@@ -24,6 +24,21 @@ This enables forced transfers without user consent.
 -   **Freeze Tokens**: Prevent transfers regardless of user settings
 -   **Emergency Actions**: Administrative control over transfers
 
+## Mint Address Requirement
+
+**CRITICAL**: Mint address approvals must always override outgoing approvals:
+
+```json
+{
+    "fromListId": "Mint",
+    "approvalCriteria": {
+        "overridesFromOutgoingApprovals": true
+    }
+}
+```
+
+The Mint address has no user-level approvals, so overrides are required for functionality.
+
 ## Dangerous Configuration Warning
 
 ⚠️ **Dangerous Configuration Detected**
@@ -49,17 +64,30 @@ Forceful transfers can break protocols that rely on escrow or alternate state. E
 3. **Consider Alternatives**
     - Do you really need revocation capabilities? If not, consider using safer approaches like whitelists, ownership checks, or other freezing methods instead of revoking to avoid these risks entirely.
 
-## Mint Address Requirement
+## Reserved Addresses Protection
 
-**CRITICAL**: Mint address approvals must always override outgoing approvals:
+BitBadges reserves certain addresses that cannot be forcefully overridden as a sanity check. This protection is **not a replacement for due diligence** but serves as an additional safety measure to prevent accidental or malicious transfers from critical protocol addresses.
 
-```json
-{
-    "fromListId": "Mint",
-    "approvalCriteria": {
-        "overridesFromOutgoingApprovals": true
-    }
-}
-```
+### Protected Address Types
 
-The Mint address has no user-level approvals, so overrides are required for functionality.
+The following addresses are protected from forceful overrides:
+
+1. **Liquidity Pool Addresses**
+
+    - Every liquidity pool address is protected to prevent desyncing balances and enabling exploits
+
+2. **Cosmos Coin Wrapper Path Addresses**
+
+    - Every cosmos coin wrapper path address is protected to maintain wrapper functionality integrity
+
+3. **Governance-Configured Addresses**
+    - Any addresses explicitly set by governance as protected addresses
+
+### Important Notes
+
+-   This protection is a **sanity check**, not a comprehensive security measure
+-   You should still perform thorough due diligence when designing approvals and initializing forceful transfers
+-   The protection applies to forceful transfers (when `overridesFromOutgoingApprovals: true` is used)
+-   This does not apply to transfers to / from these addresses that actually check their user-level approvals.
+-   We bypass these protections if the initiatedBy === from address (the initiator is the protected address)
+-   Normal transfers (with user consent) are not affected by this protection
