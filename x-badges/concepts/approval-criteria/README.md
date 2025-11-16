@@ -38,6 +38,12 @@ export interface iApprovalCriteria<T extends NumberType> {
     dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
     /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
     ethSignatureChallenges?: iETHSignatureChallenge<T>[];
+    /** Address checks for sender */
+    senderChecks?: iAddressChecks;
+    /** Address checks for recipient */
+    recipientChecks?: iAddressChecks;
+    /** Address checks for initiator */
+    initiatorChecks?: iAddressChecks;
 }
 ```
 
@@ -54,6 +60,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 -   **[Cosmos Coin Transfers](usdbadge-transfers.md)** - Payments per approval (BADGE or other sdk.Coin)
 -   **[Overrides](overrides.md)** - Bypassing user-level approvals
 -   **[Requires](requires.md)** - Address relationship restrictions
+-   **[Address Checks](address-checks.md)** - Address type restrictions (WASM contracts, liquidity pools)
 -   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
 -   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
 

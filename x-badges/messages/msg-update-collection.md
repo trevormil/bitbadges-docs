@@ -96,7 +96,10 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
-        "maxSupplyPerId": "0"
+        "maxSupplyPerId": "0",
+        "cosmosCoinBackedPath": undefined,
+        "noForcefulPostMintTransfers": false,
+        "disablePoolCreation": false
     }
 }
 ```

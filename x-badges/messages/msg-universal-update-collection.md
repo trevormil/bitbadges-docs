@@ -120,7 +120,10 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
-        "maxSupplyPerId": "0"
+        "maxSupplyPerId": "0",
+        "cosmosCoinBackedPath": undefined,
+        "noForcefulPostMintTransfers": false,
+        "disablePoolCreation": false
     }
 }
 ```
@@ -177,7 +180,10 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 {
     "invariants": {
         "noCustomOwnershipTimes": true,
-        "maxSupplyPerId": "0"
+        "maxSupplyPerId": "0",
+        "cosmosCoinBackedPath": undefined,
+        "noForcefulPostMintTransfers": false,
+        "disablePoolCreation": false
     }
 }
 ```

@@ -16,6 +16,18 @@ const wrapperAddress = generateAliasAddressForDenom(denom);
 console.log('Wrapper Address:', wrapperAddress);
 ```
 
+## Transferability Requirements
+
+Even though wrapper addresses are special addresses, they are still subject to the same transferability requirements as any other address. This means that you can user-gate, rate-limit, or anything else you can do with an address and its transferability.
+
+This allows you to build complex wrapping / unwrapping logic. For example:
+
+-   $2500 per day withdrawal limit
+-   Must KYC on way out
+-   Or any other logic you can think of
+
+Behind the scenes, think of this address as an external contract that updates its approvals dynamically. So, wraps/unwraps are technically treated as initiated by the user but approved by the address itself.
+
 ## Proto Definition
 
 ```protobuf

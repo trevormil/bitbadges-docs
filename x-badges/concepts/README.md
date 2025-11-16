@@ -21,5 +21,6 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Time Fields**](time-fields.md) - Understanding the different time-related fields used throughout BitBadges
 -   [**Custom Data**](custom-data.md) - Generic string fields for storing arbitrary application-specific data
 -   [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - Wrapping between tokens and native Cosmos SDK coins for IBC compatibility
+-   [**IBC Backed Paths**](ibc-backed-paths.md) - IBC-backed Cosmos SDK coin paths for collection minting
 -   [**Collection Invariants**](collection-invariants.md) - Immutable rules that enforce fundamental constraints on collection behavior
 -   [**Protocols**](protocols/) - Standardized implementation patterns for collections

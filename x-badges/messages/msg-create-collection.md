@@ -50,7 +50,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 ```json
 {
-    "creator": "bb1...", 
+    "creator": "bb1...",
     "defaultBalances": {
         "balances": [],
         "outgoingApprovals": [],
@@ -89,7 +89,10 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
-        "maxSupplyPerId": "0"
+        "maxSupplyPerId": "0",
+        "cosmosCoinBackedPath": undefined,
+        "noForcefulPostMintTransfers": false,
+        "disablePoolCreation": false
     }
 }
 ```

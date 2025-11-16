@@ -89,12 +89,31 @@ const EmptyApprovalCriteria = {
         },
         // No tokens to check ownership of
         mustOwnTokens: [],
+        // No address checks
+        senderChecks: {
+            mustBeWasmContract: false,
+            mustNotBeWasmContract: false,
+            mustBeLiquidityPool: false,
+            mustNotBeLiquidityPool: false,
+        },
+        recipientChecks: {
+            mustBeWasmContract: false,
+            mustNotBeWasmContract: false,
+            mustBeLiquidityPool: false,
+            mustNotBeLiquidityPool: false,
+        },
+        initiatorChecks: {
+            mustBeWasmContract: false,
+            mustNotBeWasmContract: false,
+            mustBeLiquidityPool: false,
+            mustNotBeLiquidityPool: false,
+        },
     },
 };
 ```
 
 ## Related Documentation
 
-* [Approval Criteria Overview](broken-reference)
-* [Building Collection Approvals](building-collection-approvals.md)
-* [Transferability / Approvals](../concepts/transferability-approvals.md)
+-   [Approval Criteria Overview](broken-reference)
+-   [Building Collection Approvals](building-collection-approvals.md)
+-   [Transferability / Approvals](../concepts/transferability-approvals.md)

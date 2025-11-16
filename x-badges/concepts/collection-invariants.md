@@ -17,6 +17,18 @@ message CollectionInvariants {
   // Maximum supply per token ID. If set, no balance can exceed this amount.
   // This prevents any single token ID from having more than the specified supply.
   string maxSupplyPerId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // The IBC backed (sdk.coin) path for the collection. Only one path is allowed.
+  CosmosCoinBackedPath cosmosCoinBackedPath = 3;
+
+  // If true, disallows any collection approvals that have overridesFromOutgoingApprovals
+  // or overridesToIncomingApprovals set to true.
+  // This prevents forceful post-mint transfers that bypass user-level approvals.
+  bool noForcefulPostMintTransfers = 4;
+
+  // If true, disallows pool creation with this collection's assets.
+  // When true, any attempt to create a pool with badges assets from this collection will fail.
+  bool disablePoolCreation = 5;
 }
 ```
 
@@ -163,6 +175,26 @@ if balance.Amount.GT(collection.Invariants.MaxSupplyPerId) {
 -   **Immutable**: Once set during collection creation, this value cannot be changed
 -   **Per-token ID basis**: The limit applies to each individual token ID, not the total collection supply
 
+### cosmosCoinBackedPath
+
+The IBC backed (sdk.coin) path for the collection. This invariant allows only one IBC backed path per collection, ensuring a single source of truth for the collection's IBC-backed minting.
+
+For more details, see [IBC Backed Paths](./ibc-backed-paths.md).
+
+### noForcefulPostMintTransfers
+
+When enabled, this invariant prevents collection-level approvals from using override flags that would bypass user-level approvals for post-mint transfers.
+
+#### What it affects:
+
+1. **Collection Approvals**: Disallows `overridesFromOutgoingApprovals` and `overridesToIncomingApprovals` flags in collection approvals
+2. **User Control**: Ensures user-level approvals cannot be bypassed by collection-level settings
+3. **Transfer Security**: Prevents forceful transfers that ignore user consent
+
+### disablePoolCreation
+
+When enabled, this invariant prevents the creation of liquidity pools using assets from this collection in our gamm module.
+
 ## Setting Invariants
 
 Invariants can only be set during collection creation via `MsgCreateCollection` or `MsgUniversalUpdateCollection` (when creating a new collection with CollectionId = 0).
@@ -190,6 +222,20 @@ The invariants are validated at several points:
 1. **Balance Storage**: When setting user balances in the store (specifically for "Total" address)
 2. **Supply Validation**: Before any balance amount is stored that would exceed the maximum
 
+### cosmosCoinBackedPath
+
+1. **Collection Creation**: When creating a new collection with an IBC backed path
+2. **Path Validation**: Ensures only one path exists and is properly configured
+
+### noForcefulPostMintTransfers
+
+1. **Collection Approval Updates**: When setting or updating collection approvals
+2. **Transfer Execution**: When processing transfers that would use override flags
+
+### disablePoolCreation
+
+1. **Pool Creation**: When attempting to create a liquidity pool with collection assets
+
 ## Error Messages
 
 When invariants are violated, you'll receive error messages like:
@@ -206,9 +252,22 @@ noCustomOwnershipTimes invariant is enabled: ownership times must be full range 
 maxSupplyPerId invariant violation: balance amount 1500 exceeds maximum supply per ID 1000
 ```
 
+### noForcefulPostMintTransfers
+
+```
+noForcefulPostMintTransfers invariant violation: collection approval cannot use override flags
+```
+
+### disablePoolCreation
+
+```
+disablePoolCreation invariant violation: pool creation with this collection's assets is not allowed
+```
+
 ## Related Concepts
 
 -   [Collections](./badge-collections.md)
 -   [Transferability Approvals](./transferability-approvals.md)
 -   [Time Fields](./time-fields.md)
 -   [UintRange](./uintrange.md)
+-   [IBC Backed Paths](./ibc-backed-paths.md)
