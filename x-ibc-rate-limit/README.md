@@ -6,10 +6,10 @@ The IBC Rate Limit module provides rate limiting functionality for Inter-Blockch
 
 ## Key Features
 
--   **Control Supply Shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
--   **Limit Unique Senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
--   **Enforce Per-Address Limits**: Set limits on the number of transfers and total amount per address within a timeframe
--   **Multiple Timeframes**: Support for block-based, hour-based, and day-based rate limits
+* **Control Supply Shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
+* **Limit Unique Senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
+* **Enforce Per-Address Limits**: Set limits on the number of transfers and total amount per address within a timeframe
+* **Multiple Timeframes**: Support for block-based, hour-based, and day-based rate limits
 
 ## Architecture
 
@@ -22,32 +22,4 @@ The module operates as an IBC middleware that intercepts IBC transfer packets be
 ## Table of Contents
 
 1. [Introduction](overview.md) - Overview and key concepts
-2. [Messages](messages/) - Transaction messages and handlers
 
-## Message Reference
-
-### Configuration
-
--   [MsgUpdateParams](messages/msg-update-params.md) - Update module parameters
-
-## Query Reference
-
-For all IBC Rate Limit queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
-
-The LCD provides comprehensive query endpoints for:
-
--   Rate limit configurations
--   Flow tracking data
--   Module parameters
--   And more
-
-All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
-
-## Quick Links
-
--   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
--   [BitBadges Documentation](https://docs.bitbadges.io)
-
-## Documentation Style
-
-This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.

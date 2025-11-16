@@ -2,14 +2,14 @@
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/custom-ibc-hooks` module.
 
-The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction.
+The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction (e.g. Skip:Go compatibility or other IBC aggregators).
 
 ## Key Features
 
--   **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
--   **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
--   **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
--   **Atomic Execution**: All operations are executed atomically - either all succeed or all fail
+* **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
+* **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
+* **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
+* **Atomic Execution**: All operations are executed atomically - either all succeed or all fail
 
 ## Architecture
 
@@ -24,12 +24,3 @@ The module operates as an IBC middleware hook that:
 ## Table of Contents
 
 1. [Introduction](overview.md) - Overview and key concepts
-
-## Quick Links
-
--   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
--   [BitBadges Documentation](https://docs.bitbadges.io)
-
-## Documentation Style
-
-This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.

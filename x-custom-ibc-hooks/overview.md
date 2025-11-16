@@ -1,50 +1,55 @@
-# Custom IBC Hooks
-
-## Overview
-
-The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction.
-
-## Purpose
-
-The module enables:
-- **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
-- **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
-- **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
+# 📖 Introduction
 
 ## Architecture
 
 The module operates as an IBC middleware hook that:
+
 1. Intercepts incoming IBC transfer packets
 2. Parses hook data from the transfer memo
 3. Executes the IBC transfer first (to receive the tokens)
 4. Executes the custom hook actions (swap, transfer, etc.)
 5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
 
+```
+Warning: Native x/badges assets cannot be IBC transferred. Only x/bank assets can be.
+```
+
 ## Key Concepts
 
 ### Hook Data Format
 
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation.
+Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (no affiliates and some other features may nto be supproted).
 
 ### Swap and Action
 
 The primary hook type is `swap_and_action`, which:
+
 1. Executes a swap operation using the received tokens
 2. Performs a post-swap action (local transfer or IBC transfer)
 
 ### Intermediate Sender Address
 
 The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
-- Receive the IBC transfer tokens
-- Execute the swap operation
-- Send tokens to the final destination
+
+* Receive the IBC transfer tokens
+* Execute the swap operation
+* Send tokens to the final destination
+
+Use here for generation if needed
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+</strong>
+// deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
+export function deriveIntermediateSender(channel: string, originalSender: string, bech32Prefix: string)
+</code></pre>
 
 ### Atomic Execution
 
 All operations are executed atomically:
-- If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
-- If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
-- State changes are only committed if all operations succeed
+
+* If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
+* If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
+* State changes are only committed if all operations succeed
 
 ## Hook Data Structure
 
@@ -111,18 +116,10 @@ type PostSwapAction struct {
 2. **Exactly one action**: Either `ibc_transfer` or `transfer` must be specified, but not both
 3. **Swap required**: If `post_swap_action` is defined, a swap must also be defined
 4. **Single-hop swaps**: Only single-operation swaps are currently supported
-5. **Denom matching**: The swap's `denom_in` must match the received token denomination
+5. **Denom matching**: The swap's `denom_in` must match the received token denomination and the amount will automatically be the received amount
 6. **Channel validation**: For IBC transfers, the source channel must exist
 7. **Address validation**: All addresses must be valid Bech32 addresses
 8. **Capability validation**: Channel capabilities must exist for IBC transfers
-
-## Supported Operations
-
-### Swap Operations
-
-- **Pool-based swaps**: Swaps through GAMM pools
-- **Single-hop only**: Multi-hop swaps are not currently supported
-- **Exact input**: Swaps use exact input amount with minimum output protection
 
 ### Post-Swap Actions
 
@@ -133,7 +130,7 @@ Transfers the swapped tokens to a local address:
 ```json
 {
   "transfer": {
-    "to_address": "cosmos1..."
+    "to_address": "bb1..."
   }
 }
 ```
@@ -147,38 +144,13 @@ Sends the swapped tokens to another chain via IBC:
   "ibc_transfer": {
     "ibc_info": {
       "source_channel": "channel-0",
-      "receiver": "cosmos1...",
+      "receiver": "bb1...", 
       "memo": "...",
-      "recover_address": "cosmos1..."
+      "recover_address": "bb1..."
     }
   }
 }
 ```
-
-**Important**: The `recover_address` is used as an intermediate address. Tokens are first sent to this address, then IBC transferred out. This is required for proper token handling.
-
-## Integration
-
-The module integrates with:
-- **IBC Transfer Module**: Receives and processes IBC transfer packets
-- **GAMM Module**: Executes swap operations through liquidity pools
-- **Bank Module**: Performs local token transfers
-- **IBC Hooks Framework**: Uses the IBC hooks infrastructure for packet interception
-
-## Error Handling
-
-If any step fails:
-1. An error acknowledgement is returned
-2. The IBC transfer is rolled back
-3. No state changes are committed
-4. The error is logged for debugging
-
-Common errors include:
-- Invalid memo format
-- Swap failure (slippage, insufficient liquidity, etc.)
-- Invalid addresses
-- Missing channel capabilities
-- Attempting to IBC transfer BitBadges denominations (not allowed)
 
 ## Limitations
 
@@ -196,25 +168,25 @@ Common errors include:
   "swap_and_action": {
     "user_swap": {
       "swap_exact_asset_in": {
-        "swap_venue_name": "gamm",
+        "swap_venue_name": "bitbadges-poolmanager",
         "operations": [
           {
             "pool": "1",
-            "denom_in": "uatom",
-            "denom_out": "uosmo"
+            "denom_in": "ubadge",
+            "denom_out": "ibc/ABC..."
           }
         ]
       }
     },
     "min_asset": {
       "native": {
-        "denom": "uosmo",
+        "denom": "ibc/ABC...",
         "amount": "1000000"
       }
     },
     "post_swap_action": {
       "transfer": {
-        "to_address": "cosmos1abc123..."
+        "to_address": "bb1..."
       }
     }
   }
@@ -228,19 +200,19 @@ Common errors include:
   "swap_and_action": {
     "user_swap": {
       "swap_exact_asset_in": {
-        "swap_venue_name": "gamm",
+        "swap_venue_name": "bitbadges-poolmanager",
         "operations": [
           {
             "pool": "1",
-            "denom_in": "uatom",
-            "denom_out": "uosmo"
+            "denom_in": "ubadge",
+            "denom_out": "ibc/ABC..."
           }
         ]
       }
     },
     "min_asset": {
       "native": {
-        "denom": "uosmo",
+        "denom": "ibc/ABC...",
         "amount": "1000000"
       }
     },
@@ -257,13 +229,3 @@ Common errors include:
   }
 }
 ```
-
-## Security Considerations
-
-1. **Atomic execution**: All operations are atomic - either all succeed or all fail
-2. **Slippage protection**: Minimum output amounts protect against excessive slippage
-3. **Address validation**: All addresses are validated before execution
-4. **Channel validation**: IBC channels are verified to exist before use
-5. **Capability checks**: Channel capabilities are verified before IBC transfers
-6. **Error rollback**: Failed hooks roll back the entire IBC transfer
-
