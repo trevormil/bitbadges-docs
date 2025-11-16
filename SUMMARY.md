@@ -299,6 +299,7 @@
   * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
   * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
   * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+  * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
 
 ## x/custom-ibc-hooks
 
