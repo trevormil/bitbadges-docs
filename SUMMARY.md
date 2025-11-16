@@ -299,3 +299,26 @@
     -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
     -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
     -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+
+## x/custom-ibc-hooks
+
+-   [📚 Overview](x-custom-ibc-hooks/README.md)
+-   [📖 Introduction](x-custom-ibc-hooks/overview.md)
+
+## x/ibc-rate-limit
+
+-   [📚 Overview](x-ibc-rate-limit/README.md)
+-   [📖 Introduction](x-ibc-rate-limit/overview.md)
+-   [📨 Messages](x-ibc-rate-limit/messages/README.md)
+    -   [MsgUpdateParams](x-ibc-rate-limit/messages/msg-update-params.md)
+
+## x/managersplitter
+
+-   [📚 Overview](x-managersplitter/README.md)
+-   [📖 Introduction](x-managersplitter/overview.md)
+-   [📨 Messages](x-managersplitter/messages/README.md)
+    -   [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
+    -   [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
+    -   [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
+    -   [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+    -   [MsgUpdateParams](x-managersplitter/messages/msg-update-params.md)

@@ -39,7 +39,7 @@ Here's how the badge token conversion works:
 **Conversion Process**:
 
 ```
-1 tokenslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+1 badgeslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 
 2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
