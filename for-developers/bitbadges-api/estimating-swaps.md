@@ -1,6 +1,6 @@
 # Estimating Swaps
 
-The swap estimation endpoint allows you to estimate the output amount and required messages for a token swap before executing it.
+The swap estimation endpoint allows you to estimate the output amount and required messages for a token swap before executing it. Routing includes both native swaps (our gamm module) and routing through Skip:Go across IBC chains like Osmosis.
 
 ## Endpoint
 
@@ -41,6 +41,7 @@ We attempt to mirror Skip:Go support as much as possible. And, we plan to eventu
 -   **No Affiliates**: Affiliate functionality is not supported
 -   **Limited Skip Support**: Skip doesn't support our routing yet, so their API, engines, explorers, and client might not support the full feature set
 -   **Message Format**: The `skipGoMsgs` returned attempt to follow the format from the [Skip API](https://docs.skip.build/go/api-reference/prod/fungible/post-v2fungiblemsgs)
+-   **Cosmos Only**: This route will only recommend Cosmos swaps. For other chains outside of Cosmos liek ETH and SOL, these are not supported yet.
 
 ## Example
 
