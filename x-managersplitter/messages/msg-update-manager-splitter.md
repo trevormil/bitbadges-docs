@@ -25,12 +25,15 @@ message MsgUpdateManagerSplitter {
 ## Fields
 
 ### `admin` (string, required)
+
 The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
 
 ### `address` (string, required)
+
 The address of the manager splitter to update. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
 
 ### `permissions` (ManagerSplitterPermissions, required)
+
 The new permissions configuration to set. This completely replaces the existing permissions structure.
 
 ## ManagerSplitterPermissions Structure
@@ -60,7 +63,8 @@ message PermissionCriteria {
 }
 ```
 
-### `approvedAddresses` (string[], optional)
+### `approvedAddresses` (string\[], optional)
+
 A list of Bech32 addresses that are approved to execute this permission. If empty or not provided, only the admin can execute this permission.
 
 ## Response
@@ -71,58 +75,21 @@ message MsgUpdateManagerSplitterResponse {}
 
 An empty response indicates successful update.
 
-## Validation
-
-The message is validated to ensure:
-1. The `admin` address is a valid Bech32 address
-2. The `address` is a valid Bech32 address
-3. The manager splitter exists
-4. The `admin` matches the manager splitter's stored admin address
-
-## Authorization
-
-Only the admin address can update the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
-
-## State Changes
-
-The manager splitter's permissions are completely replaced with the new permissions structure. This means:
-- Permissions not included in the update will be removed
-- Existing permissions will be overwritten with the new values
-- The admin address and manager splitter address remain unchanged
-
 ## Usage Example
 
 ```json
 {
-  "admin": "cosmos1abc123...",
-  "address": "cosmos1managersplitter...",
+  "admin": "bb1abc123...",
+  "address": "bb1managersplitter...",
   "permissions": {
     "canUpdateCollectionMetadata": {
-      "approvedAddresses": [
-        "cosmos1def456...",
-        "cosmos1new789..."
-      ]
+      "approvedAddresses": [...]
     },
     "canUpdateTokenMetadata": {
       "approvedAddresses": [
-        "cosmos1def456..."
+        "bb1..."
       ]
     }
   }
 }
 ```
-
-In this example:
-- The manager splitter's permissions are updated
-- `cosmos1def456...` and `cosmos1new789...` can now update collection metadata
-- Only `cosmos1def456...` can update token metadata
-- All other permissions are removed (not set in the update)
-
-## Important Notes
-
-1. **Complete Replacement**: The permissions structure is completely replaced, not merged
-2. **Admin Only**: Only the admin can update the manager splitter
-3. **Admin Immutable**: The admin address cannot be changed via this message
-4. **Address Immutable**: The manager splitter address cannot be changed
-5. **Removal of Permissions**: Permissions not included in the update are effectively removed
-

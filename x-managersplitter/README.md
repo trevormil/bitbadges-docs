@@ -4,6 +4,8 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
 
+For example, you may want to delegate an approved address to delete the collection on your behalf but none of the other permissions.
+
 ## Key Features
 
 * **Permission Delegation**: Split collection management permissions among multiple addresses
@@ -33,5 +35,3 @@ The module creates **Manager Splitter** entities that:
 * [MsgUpdateManagerSplitter](messages/msg-update-manager-splitter.md) - Update manager splitter permissions
 * [MsgDeleteManagerSplitter](messages/msg-delete-manager-splitter.md) - Delete a manager splitter
 * [MsgExecuteUniversalUpdateCollection](messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
-* [MsgUpdateParams](messages/msg-update-params.md) - Update module parameters
-

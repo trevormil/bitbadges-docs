@@ -4,17 +4,15 @@
 
 The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
 
-
-
-Key Concepts
-
 ### Manager Splitter Entity
 
 A Manager Splitter is a permissioned proxy that:
 
-* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager
+* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/badges.
 * **Admin**: A permanent admin address with full control over the splitter and all permissions
 * **Permissions**: A mapping of collection permission types to execution criteria
+
+Then, any token collection updates must be handled through this module and through the proxied address.
 
 ### Permission System
 
@@ -47,22 +45,6 @@ The admin address:
 * Can create, update, and delete the manager splitter
 * Cannot be changed after creation
 
-## Integration with Badges Module
-
-The module integrates with the Badges module by:
-
-1. Creating a manager splitter with a module-derived address
-2. Setting that address as a collection's manager
-3. Allowing approved addresses to execute `UniversalUpdateCollection` messages through the manager splitter with fine-grained permission checks
-4. The badges module sees the manager splitter address as the manager, not the executor
-
-## State Management
-
-The module stores:
-
-* **Manager Splitters**: The complete manager splitter entities (address, admin, permissions)
-* **Next ID**: The next available manager splitter ID for address derivation
-
 ## Use Cases
 
 1. **Multi-sig Management**: Multiple addresses can manage different aspects of a collection
@@ -91,4 +73,4 @@ This is an alternative to standard single manager approach. You can also explore
 
 * x/group - Cosmos SDK module for multisigs / DAOs and voting
 * DAO tooling
-* Custom contracts
+* Custom WASM or EVM contracts

@@ -91,69 +91,18 @@ The executor must be:
 
 If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
 
-## Execution Flow
-
-1. **Permission Check**: The module checks if the executor has permission for all required actions
-2. **Message Preparation**: The `UniversalUpdateCollection` message is prepared with the manager splitter address as the creator
-3. **Badges Module Execution**: The message is forwarded to the Badges module's `UniversalUpdateCollection` handler
-4. **Response**: The collection ID is returned
-
-## Important Notes
-
-### Manager Splitter as Manager
-
-The manager splitter address is used as the `creator` field in the `UniversalUpdateCollection` message. This means:
-
-* The Badges module sees the manager splitter address as the manager
-* The collection's manager must be set to the manager splitter address
-* The executor address is not visible to the Badges module
-
-### Admin Override
-
-The admin address always has full permissions and can execute any `UniversalUpdateCollection` message through the manager splitter, regardless of the permission settings.
-
-### Atomic Execution
-
-Permission checks and message execution are atomic:
-
-* If permissions are denied, the transaction fails before any state changes
-* If the Badges module execution fails, the entire transaction is rolled back
-
 ## Usage Example
 
 ```json
 {
-  "executor": "cosmos1def456...",
-  "managerSplitterAddress": "cosmos1managersplitter...",
+  "executor": "bb1...",
+  "managerSplitterAddress": "bb1managersplitter...",
   "universalUpdateCollectionMsg": {
-    "creator": "cosmos1managersplitter...",
+    "creator": "bb1managersplitter...",
     "collectionId": "1",
+    ...
     "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": {
-      "timelineTimes": [
-        {
-          "timelineTime": "2024-01-01T00:00:00Z",
-          "collectionMetadata": {
-            "name": "Updated Collection Name"
-          }
-        }
-      ]
-    }
+    "collectionMetadataTimeline": [...]
   }
 }
 ```
-
-In this example:
-
-* `cosmos1def456...` is executing the update
-* The manager splitter address is `cosmos1managersplitter...`
-* The update modifies collection metadata
-* The executor must have `canUpdateCollectionMetadata` permission (or be the admin)
-
-## Error Cases
-
-1. **Invalid Executor**: Executor address is not valid Bech32
-2. **Manager Splitter Not Found**: The manager splitter address doesn't exist
-3. **Permission Denied**: Executor doesn't have required permissions
-4. **Invalid Message**: The `UniversalUpdateCollection` message is invalid
-5. **Badges Module Error**: The Badges module execution fails

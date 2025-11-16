@@ -319,4 +319,3 @@
   * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
   * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
   * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
-  * [MsgUpdateParams](x-managersplitter/messages/msg-update-params.md)

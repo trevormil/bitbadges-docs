@@ -14,10 +14,6 @@ This directory contains documentation for the core transaction messages supporte
 
 * [MsgExecuteUniversalUpdateCollection](msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
 
-### Configuration
-
-* [MsgUpdateParams](msg-update-params.md) - Update module parameters
-
 ## Core Message List
 
 The Manager Splitter module supports 5 core transaction messages:
@@ -26,5 +22,3 @@ The Manager Splitter module supports 5 core transaction messages:
 2. **MsgUpdateManagerSplitter** - Update manager splitter permissions
 3. **MsgDeleteManagerSplitter** - Delete manager splitter
 4. **MsgExecuteUniversalUpdateCollection** - Execute collection updates
-5. **MsgUpdateParams** - Update module parameters
-
