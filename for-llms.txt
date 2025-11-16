@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Nov 16 14:11:17 UTC 2025
+Generated on Sun Nov 16 14:19:38 UTC 2025
 
 
 
@@ -2138,7 +2138,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
   * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
   * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
-  * [MsgUpdateParams](x-managersplitter/messages/msg-update-params.md)
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -21776,6 +21775,8 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
 
+For example, you may want to delegate an approved address to delete the collection on your behalf but none of the other permissions.
+
 ## Key Features
 
 * **Permission Delegation**: Split collection management permissions among multiple addresses
@@ -21805,8 +21806,6 @@ The module creates **Manager Splitter** entities that:
 * [MsgUpdateManagerSplitter](messages/msg-update-manager-splitter.md) - Update manager splitter permissions
 * [MsgDeleteManagerSplitter](messages/msg-delete-manager-splitter.md) - Delete a manager splitter
 * [MsgExecuteUniversalUpdateCollection](messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
-* [MsgUpdateParams](messages/msg-update-params.md) - Update module parameters
-
 
 
 ## File: ./x-managersplitter/messages/README.md
@@ -21827,10 +21826,6 @@ This directory contains documentation for the core transaction messages supporte
 
 * [MsgExecuteUniversalUpdateCollection](msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
 
-### Configuration
-
-* [MsgUpdateParams](msg-update-params.md) - Update module parameters
-
 ## Core Message List
 
 The Manager Splitter module supports 5 core transaction messages:
@@ -21839,8 +21834,6 @@ The Manager Splitter module supports 5 core transaction messages:
 2. **MsgUpdateManagerSplitter** - Update manager splitter permissions
 3. **MsgDeleteManagerSplitter** - Delete manager splitter
 4. **MsgExecuteUniversalUpdateCollection** - Execute collection updates
-5. **MsgUpdateParams** - Update module parameters
-
 
 
 ## File: ./x-managersplitter/messages/msg-create-manager-splitter.md
@@ -21869,15 +21862,18 @@ message MsgCreateManagerSplitter {
 ## Fields
 
 ### `admin` (string, required)
+
 The address that will be the permanent admin of the manager splitter. This address:
-- Has full control over the manager splitter
-- Can always execute all permissions
-- Can update and delete the manager splitter
-- Cannot be changed after creation
+
+* Has full control over the manager splitter
+* Can always execute all permissions
+* Can update and delete the manager splitter
+* Cannot be changed after creation
 
 Must be a valid Bech32 address.
 
 ### `permissions` (ManagerSplitterPermissions, optional)
+
 The permissions configuration for the manager splitter. Each permission maps to `PermissionCriteria` that specifies which addresses can execute that permission.
 
 If `nil` or not provided, an empty permissions structure is created (all permissions denied except for admin).
@@ -21909,7 +21905,8 @@ message PermissionCriteria {
 }
 ```
 
-### `approvedAddresses` (string[], optional)
+### `approvedAddresses` (string\[], optional)
+
 A list of Bech32 addresses that are approved to execute this permission. If empty, only the admin can execute this permission.
 
 ## Response
@@ -21922,40 +21919,42 @@ message MsgCreateManagerSplitterResponse {
 ```
 
 ### `address` (string)
+
 The module-derived address of the created manager splitter. This address:
-- Is deterministic based on the manager splitter ID
-- Can be used as a collection manager address
-- Is derived using `ModuleAddress(ModuleName, ID_bytes)`
+
+* Is deterministic based on the manager splitter ID
+* Can be used as a collection manager address
+* Is derived using `ModuleAddress(ModuleName, ID_bytes)`
 
 ## Validation
 
 The message is validated to ensure:
+
 1. The `admin` address is a valid Bech32 address
 2. The manager splitter address doesn't already exist (shouldn't happen, but checked for safety)
 
 ## State Changes
 
 1. A new Manager Splitter entity is created with:
-   - A module-derived address (based on next available ID)
-   - The specified admin address
-   - The specified permissions (or empty if not provided)
+   * A module-derived address (based on next available ID)
+   * The specified admin address
+   * The specified permissions (or empty if not provided)
 2. The next manager splitter ID is incremented
 
 ## Usage Example
 
 ```json
 {
-  "admin": "cosmos1abc123...",
+  "admin": "bb1...",
   "permissions": {
     "canUpdateCollectionMetadata": {
       "approvedAddresses": [
-        "cosmos1def456...",
-        "cosmos1ghi789..."
+        "bb1abc..."
       ]
     },
     "canUpdateTokenMetadata": {
       "approvedAddresses": [
-        "cosmos1def456..."
+        "bb1def456..."
       ]
     },
     "canUpdateValidTokenIds": {
@@ -21964,30 +21963,6 @@ The message is validated to ensure:
   }
 }
 ```
-
-In this example:
-- `cosmos1abc123...` is the admin with full control
-- `cosmos1def456...` and `cosmos1ghi789...` can update collection metadata
-- Only `cosmos1def456...` can update token metadata
-- Only the admin can update valid token IDs (empty approved addresses list)
-- All other permissions are denied (not set)
-
-## Address Derivation
-
-The manager splitter address is derived as:
-```
-address = ModuleAddress("managersplitter", ID_bytes)
-```
-
-Where `ID` is a sequential integer starting from 1. The address is deterministic and can be calculated if you know the ID.
-
-## Important Notes
-
-1. **Permanent Admin**: The admin address cannot be changed after creation
-2. **Module Address**: The manager splitter address is a module address, not a regular account
-3. **Empty Permissions**: If permissions are not provided, an empty structure is created (all permissions denied except admin)
-4. **ID Increment**: The manager splitter ID is automatically incremented after creation
-
 
 
 ## File: ./x-managersplitter/messages/msg-delete-manager-splitter.md
@@ -22016,9 +21991,11 @@ message MsgDeleteManagerSplitter {
 ## Fields
 
 ### `admin` (string, required)
+
 The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
 
 ### `address` (string, required)
+
 The address of the manager splitter to delete. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
 
 ## Response
@@ -22029,39 +22006,9 @@ message MsgDeleteManagerSplitterResponse {}
 
 An empty response indicates successful deletion.
 
-## Validation
-
-The message is validated to ensure:
-1. The `admin` address is a valid Bech32 address
-2. The `address` is a valid Bech32 address
-3. The manager splitter exists
-4. The `admin` matches the manager splitter's stored admin address
-
 ## Authorization
 
 Only the admin address can delete the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
-
-## State Changes
-
-The manager splitter entity is completely removed from state. This means:
-- The manager splitter record is deleted
-- All permission configurations are removed
-- The manager splitter address can no longer be used as a collection manager (unless it was already set)
-
-## Important Considerations
-
-### Collections Using the Manager Splitter
-
-If a badge collection has the manager splitter address set as its manager:
-- The manager splitter address will still be valid in the badges module
-- However, no one will be able to execute actions through the manager splitter (since it no longer exists)
-- The collection's manager would need to be updated to a different address
-
-### Irreversible Action
-
-Deletion is permanent and cannot be undone. If you need to recreate a manager splitter:
-- It will receive a new ID and address
-- You would need to update any collections using the old address
 
 ## Usage Example
 
@@ -22071,14 +22018,6 @@ Deletion is permanent and cannot be undone. If you need to recreate a manager sp
   "address": "cosmos1managersplitter..."
 }
 ```
-
-## Important Notes
-
-1. **Admin Only**: Only the admin can delete the manager splitter
-2. **Permanent**: Deletion is permanent and cannot be undone
-3. **Collections Impact**: Collections using the manager splitter address will need their manager updated
-4. **No Validation**: The module does not check if any collections are using the manager splitter before deletion
-
 
 
 ## File: ./x-managersplitter/messages/msg-execute-universal-update-collection.md
@@ -22176,72 +22115,21 @@ The executor must be:
 
 If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
 
-## Execution Flow
-
-1. **Permission Check**: The module checks if the executor has permission for all required actions
-2. **Message Preparation**: The `UniversalUpdateCollection` message is prepared with the manager splitter address as the creator
-3. **Badges Module Execution**: The message is forwarded to the Badges module's `UniversalUpdateCollection` handler
-4. **Response**: The collection ID is returned
-
-## Important Notes
-
-### Manager Splitter as Manager
-
-The manager splitter address is used as the `creator` field in the `UniversalUpdateCollection` message. This means:
-
-* The Badges module sees the manager splitter address as the manager
-* The collection's manager must be set to the manager splitter address
-* The executor address is not visible to the Badges module
-
-### Admin Override
-
-The admin address always has full permissions and can execute any `UniversalUpdateCollection` message through the manager splitter, regardless of the permission settings.
-
-### Atomic Execution
-
-Permission checks and message execution are atomic:
-
-* If permissions are denied, the transaction fails before any state changes
-* If the Badges module execution fails, the entire transaction is rolled back
-
 ## Usage Example
 
 ```json
 {
-  "executor": "cosmos1def456...",
-  "managerSplitterAddress": "cosmos1managersplitter...",
+  "executor": "bb1...",
+  "managerSplitterAddress": "bb1managersplitter...",
   "universalUpdateCollectionMsg": {
-    "creator": "cosmos1managersplitter...",
+    "creator": "bb1managersplitter...",
     "collectionId": "1",
+    ...
     "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": {
-      "timelineTimes": [
-        {
-          "timelineTime": "2024-01-01T00:00:00Z",
-          "collectionMetadata": {
-            "name": "Updated Collection Name"
-          }
-        }
-      ]
-    }
+    "collectionMetadataTimeline": [...]
   }
 }
 ```
-
-In this example:
-
-* `cosmos1def456...` is executing the update
-* The manager splitter address is `cosmos1managersplitter...`
-* The update modifies collection metadata
-* The executor must have `canUpdateCollectionMetadata` permission (or be the admin)
-
-## Error Cases
-
-1. **Invalid Executor**: Executor address is not valid Bech32
-2. **Manager Splitter Not Found**: The manager splitter address doesn't exist
-3. **Permission Denied**: Executor doesn't have required permissions
-4. **Invalid Message**: The `UniversalUpdateCollection` message is invalid
-5. **Badges Module Error**: The Badges module execution fails
 
 
 ## File: ./x-managersplitter/messages/msg-update-manager-splitter.md
@@ -22273,12 +22161,15 @@ message MsgUpdateManagerSplitter {
 ## Fields
 
 ### `admin` (string, required)
+
 The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
 
 ### `address` (string, required)
+
 The address of the manager splitter to update. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
 
 ### `permissions` (ManagerSplitterPermissions, required)
+
 The new permissions configuration to set. This completely replaces the existing permissions structure.
 
 ## ManagerSplitterPermissions Structure
@@ -22308,7 +22199,8 @@ message PermissionCriteria {
 }
 ```
 
-### `approvedAddresses` (string[], optional)
+### `approvedAddresses` (string\[], optional)
+
 A list of Bech32 addresses that are approved to execute this permission. If empty or not provided, only the admin can execute this permission.
 
 ## Response
@@ -22319,118 +22211,24 @@ message MsgUpdateManagerSplitterResponse {}
 
 An empty response indicates successful update.
 
-## Validation
-
-The message is validated to ensure:
-1. The `admin` address is a valid Bech32 address
-2. The `address` is a valid Bech32 address
-3. The manager splitter exists
-4. The `admin` matches the manager splitter's stored admin address
-
-## Authorization
-
-Only the admin address can update the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
-
-## State Changes
-
-The manager splitter's permissions are completely replaced with the new permissions structure. This means:
-- Permissions not included in the update will be removed
-- Existing permissions will be overwritten with the new values
-- The admin address and manager splitter address remain unchanged
-
 ## Usage Example
 
 ```json
 {
-  "admin": "cosmos1abc123...",
-  "address": "cosmos1managersplitter...",
+  "admin": "bb1abc123...",
+  "address": "bb1managersplitter...",
   "permissions": {
     "canUpdateCollectionMetadata": {
-      "approvedAddresses": [
-        "cosmos1def456...",
-        "cosmos1new789..."
-      ]
+      "approvedAddresses": [...]
     },
     "canUpdateTokenMetadata": {
       "approvedAddresses": [
-        "cosmos1def456..."
+        "bb1..."
       ]
     }
   }
 }
 ```
-
-In this example:
-- The manager splitter's permissions are updated
-- `cosmos1def456...` and `cosmos1new789...` can now update collection metadata
-- Only `cosmos1def456...` can update token metadata
-- All other permissions are removed (not set in the update)
-
-## Important Notes
-
-1. **Complete Replacement**: The permissions structure is completely replaced, not merged
-2. **Admin Only**: Only the admin can update the manager splitter
-3. **Admin Immutable**: The admin address cannot be changed via this message
-4. **Address Immutable**: The manager splitter address cannot be changed
-5. **Removal of Permissions**: Permissions not included in the update are effectively removed
-
-
-
-## File: ./x-managersplitter/messages/msg-update-params.md
-
-# MsgUpdateParams
-
-## Overview
-
-`MsgUpdateParams` is the governance message used to update the Manager Splitter module's parameters.
-
-## Message Structure
-
-```protobuf
-message MsgUpdateParams {
-  option (cosmos.msg.v1.signer) = "authority";
-  option (amino.name) = "managersplitter/MsgUpdateParams";
-
-  // authority is the address that controls the module (defaults to x/gov unless overwritten).
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // params defines the module parameters to update.
-  //
-  // NOTE: All parameters must be supplied.
-  Params params = 2 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
-}
-```
-
-## Fields
-
-### `authority` (string, required)
-The address authorized to update the module parameters. This must match the module's configured authority address (defaults to the governance module account).
-
-### `params` (Params, required)
-The complete set of module parameters to set. All parameters must be supplied - partial updates are not supported.
-
-## Validation
-
-The message is validated to ensure:
-1. The `authority` address matches the module's configured authority
-2. All parameters are valid
-3. All required fields are provided
-
-## Response
-
-```protobuf
-message MsgUpdateParamsResponse {}
-```
-
-An empty response indicates successful parameter update.
-
-## Governance
-
-This message is typically submitted as a governance proposal, allowing the community to vote on parameter changes. The authority address must sign the transaction.
-
 
 
 ## File: ./x-managersplitter/overview.md
@@ -22441,17 +22239,15 @@ This message is typically submitted as a governance proposal, allowing the commu
 
 The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
 
-
-
-Key Concepts
-
 ### Manager Splitter Entity
 
 A Manager Splitter is a permissioned proxy that:
 
-* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager
+* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/badges.
 * **Admin**: A permanent admin address with full control over the splitter and all permissions
 * **Permissions**: A mapping of collection permission types to execution criteria
+
+Then, any token collection updates must be handled through this module and through the proxied address.
 
 ### Permission System
 
@@ -22484,22 +22280,6 @@ The admin address:
 * Can create, update, and delete the manager splitter
 * Cannot be changed after creation
 
-## Integration with Badges Module
-
-The module integrates with the Badges module by:
-
-1. Creating a manager splitter with a module-derived address
-2. Setting that address as a collection's manager
-3. Allowing approved addresses to execute `UniversalUpdateCollection` messages through the manager splitter with fine-grained permission checks
-4. The badges module sees the manager splitter address as the manager, not the executor
-
-## State Management
-
-The module stores:
-
-* **Manager Splitters**: The complete manager splitter entities (address, admin, permissions)
-* **Next ID**: The next available manager splitter ID for address derivation
-
 ## Use Cases
 
 1. **Multi-sig Management**: Multiple addresses can manage different aspects of a collection
@@ -22528,7 +22308,7 @@ This is an alternative to standard single manager approach. You can also explore
 
 * x/group - Cosmos SDK module for multisigs / DAOs and voting
 * DAO tooling
-* Custom contracts
+* Custom WASM or EVM contracts
 
 
 ## File: ./.github/workflows/for--llms.yml
