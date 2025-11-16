@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Nov 16 13:44:59 UTC 2025
+Generated on Sun Nov 16 13:48:05 UTC 2025
 
 
 
@@ -2118,6 +2118,29 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
     -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
     -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+
+## x/custom-ibc-hooks
+
+-   [📚 Overview](x-custom-ibc-hooks/README.md)
+-   [📖 Introduction](x-custom-ibc-hooks/overview.md)
+
+## x/ibc-rate-limit
+
+-   [📚 Overview](x-ibc-rate-limit/README.md)
+-   [📖 Introduction](x-ibc-rate-limit/overview.md)
+-   [📨 Messages](x-ibc-rate-limit/messages/README.md)
+    -   [MsgUpdateParams](x-ibc-rate-limit/messages/msg-update-params.md)
+
+## x/managersplitter
+
+-   [📚 Overview](x-managersplitter/README.md)
+-   [📖 Introduction](x-managersplitter/overview.md)
+-   [📨 Messages](x-managersplitter/messages/README.md)
+    -   [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
+    -   [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
+    -   [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
+    -   [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+    -   [MsgUpdateParams](x-managersplitter/messages/msg-update-params.md)
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -20935,6 +20958,318 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/params"
 ```
 
 
+## File: ./x-custom-ibc-hooks/README.md
+
+# 📚 Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/custom-ibc-hooks` module.
+
+The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction.
+
+## Key Features
+
+-   **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
+-   **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
+-   **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
+-   **Atomic Execution**: All operations are executed atomically - either all succeed or all fail
+
+## Architecture
+
+The module operates as an IBC middleware hook that:
+
+1. Intercepts incoming IBC transfer packets
+2. Parses hook data from the transfer memo
+3. Executes the IBC transfer first (to receive the tokens)
+4. Executes the custom hook actions (swap, transfer, etc.)
+5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+
+## Quick Links
+
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+
+## Documentation Style
+
+This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
+
+
+## File: ./x-custom-ibc-hooks/overview.md
+
+# Custom IBC Hooks
+
+## Overview
+
+The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction.
+
+## Purpose
+
+The module enables:
+- **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
+- **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
+- **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
+
+## Architecture
+
+The module operates as an IBC middleware hook that:
+1. Intercepts incoming IBC transfer packets
+2. Parses hook data from the transfer memo
+3. Executes the IBC transfer first (to receive the tokens)
+4. Executes the custom hook actions (swap, transfer, etc.)
+5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
+
+## Key Concepts
+
+### Hook Data Format
+
+Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation.
+
+### Swap and Action
+
+The primary hook type is `swap_and_action`, which:
+1. Executes a swap operation using the received tokens
+2. Performs a post-swap action (local transfer or IBC transfer)
+
+### Intermediate Sender Address
+
+The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
+- Receive the IBC transfer tokens
+- Execute the swap operation
+- Send tokens to the final destination
+
+### Atomic Execution
+
+All operations are executed atomically:
+- If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
+- If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
+- State changes are only committed if all operations succeed
+
+## Hook Data Structure
+
+### HookData
+
+```go
+type HookData struct {
+    SwapAndAction *SwapAndAction `json:"swap_and_action,omitempty"`
+}
+```
+
+### SwapAndAction
+
+```go
+type SwapAndAction struct {
+    UserSwap         *UserSwap       `json:"user_swap,omitempty"`
+    MinAsset         *MinAsset       `json:"min_asset,omitempty"`
+    TimeoutTimestamp *uint64         `json:"timeout_timestamp,omitempty"`
+    PostSwapAction   *PostSwapAction `json:"post_swap_action,omitempty"`
+}
+```
+
+### UserSwap
+
+```go
+type UserSwap struct {
+    SwapExactAssetIn *SwapExactAssetIn `json:"swap_exact_asset_in,omitempty"`
+}
+```
+
+### SwapExactAssetIn
+
+```go
+type SwapExactAssetIn struct {
+    SwapVenueName string      `json:"swap_venue_name,omitempty"`
+    Operations    []Operation `json:"operations"`
+}
+```
+
+### Operation
+
+```go
+type Operation struct {
+    Pool     string `json:"pool"`     // Pool ID as string
+    DenomIn  string `json:"denom_in"`
+    DenomOut string `json:"denom_out"`
+}
+```
+
+### PostSwapAction
+
+```go
+type PostSwapAction struct {
+    IBCTransfer *IBCTransferInfo `json:"ibc_transfer,omitempty"`
+    Transfer    *TransferInfo    `json:"transfer,omitempty"`
+}
+```
+
+**Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
+
+## Validation Rules
+
+1. **Post-swap action is required**: The `post_swap_action` field must be present
+2. **Exactly one action**: Either `ibc_transfer` or `transfer` must be specified, but not both
+3. **Swap required**: If `post_swap_action` is defined, a swap must also be defined
+4. **Single-hop swaps**: Only single-operation swaps are currently supported
+5. **Denom matching**: The swap's `denom_in` must match the received token denomination
+6. **Channel validation**: For IBC transfers, the source channel must exist
+7. **Address validation**: All addresses must be valid Bech32 addresses
+8. **Capability validation**: Channel capabilities must exist for IBC transfers
+
+## Supported Operations
+
+### Swap Operations
+
+- **Pool-based swaps**: Swaps through GAMM pools
+- **Single-hop only**: Multi-hop swaps are not currently supported
+- **Exact input**: Swaps use exact input amount with minimum output protection
+
+### Post-Swap Actions
+
+#### Local Transfer
+
+Transfers the swapped tokens to a local address:
+
+```json
+{
+  "transfer": {
+    "to_address": "cosmos1..."
+  }
+}
+```
+
+#### IBC Transfer
+
+Sends the swapped tokens to another chain via IBC:
+
+```json
+{
+  "ibc_transfer": {
+    "ibc_info": {
+      "source_channel": "channel-0",
+      "receiver": "cosmos1...",
+      "memo": "...",
+      "recover_address": "cosmos1..."
+    }
+  }
+}
+```
+
+**Important**: The `recover_address` is used as an intermediate address. Tokens are first sent to this address, then IBC transferred out. This is required for proper token handling.
+
+## Integration
+
+The module integrates with:
+- **IBC Transfer Module**: Receives and processes IBC transfer packets
+- **GAMM Module**: Executes swap operations through liquidity pools
+- **Bank Module**: Performs local token transfers
+- **IBC Hooks Framework**: Uses the IBC hooks infrastructure for packet interception
+
+## Error Handling
+
+If any step fails:
+1. An error acknowledgement is returned
+2. The IBC transfer is rolled back
+3. No state changes are committed
+4. The error is logged for debugging
+
+Common errors include:
+- Invalid memo format
+- Swap failure (slippage, insufficient liquidity, etc.)
+- Invalid addresses
+- Missing channel capabilities
+- Attempting to IBC transfer BitBadges denominations (not allowed)
+
+## Limitations
+
+1. **Single-hop swaps only**: Multi-hop swaps are not supported
+2. **GAMM pools only**: Only GAMM pool swaps are supported
+3. **No BitBadges IBC transfers**: BitBadges denominations cannot be IBC transferred
+4. **Required swap**: A swap is required if using post-swap actions (use packet-forward-middleware for transfers without swaps)
+
+## Usage Example
+
+### Swap and Local Transfer
+
+```json
+{
+  "swap_and_action": {
+    "user_swap": {
+      "swap_exact_asset_in": {
+        "swap_venue_name": "gamm",
+        "operations": [
+          {
+            "pool": "1",
+            "denom_in": "uatom",
+            "denom_out": "uosmo"
+          }
+        ]
+      }
+    },
+    "min_asset": {
+      "native": {
+        "denom": "uosmo",
+        "amount": "1000000"
+      }
+    },
+    "post_swap_action": {
+      "transfer": {
+        "to_address": "cosmos1abc123..."
+      }
+    }
+  }
+}
+```
+
+### Swap and IBC Transfer
+
+```json
+{
+  "swap_and_action": {
+    "user_swap": {
+      "swap_exact_asset_in": {
+        "swap_venue_name": "gamm",
+        "operations": [
+          {
+            "pool": "1",
+            "denom_in": "uatom",
+            "denom_out": "uosmo"
+          }
+        ]
+      }
+    },
+    "min_asset": {
+      "native": {
+        "denom": "uosmo",
+        "amount": "1000000"
+      }
+    },
+    "timeout_timestamp": 1234567890000000000,
+    "post_swap_action": {
+      "ibc_transfer": {
+        "ibc_info": {
+          "source_channel": "channel-0",
+          "receiver": "cosmos1xyz789...",
+          "recover_address": "cosmos1intermediate..."
+        }
+      }
+    }
+  }
+}
+```
+
+## Security Considerations
+
+1. **Atomic execution**: All operations are atomic - either all succeed or all fail
+2. **Slippage protection**: Minimum output amounts protect against excessive slippage
+3. **Address validation**: All addresses are validated before execution
+4. **Channel validation**: IBC channels are verified to exist before use
+5. **Capability checks**: Channel capabilities are verified before IBC transfers
+6. **Error rollback**: Failed hooks roll back the entire IBC transfer
+
+
+
 ## File: ./x-gamm/README.md
 
 # 📚 Overview
@@ -20978,7 +21313,7 @@ Here's how the badge token conversion works:
 **Conversion Process**:
 
 ```
-1 tokenslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+1 badgeslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 
 2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
@@ -21408,6 +21743,1144 @@ The `token_out_min_amount` field ensures that the user receives at least the spe
 ## Swap Fees
 
 Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
+
+
+## File: ./x-ibc-rate-limit/README.md
+
+# 📚 Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/ibc-rate-limit` module.
+
+The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
+
+## Key Features
+
+-   **Control Supply Shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
+-   **Limit Unique Senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
+-   **Enforce Per-Address Limits**: Set limits on the number of transfers and total amount per address within a timeframe
+-   **Multiple Timeframes**: Support for block-based, hour-based, and day-based rate limits
+
+## Architecture
+
+The module operates as an IBC middleware that intercepts IBC transfer packets before they are processed. It uses hooks to:
+
+1. Check rate limits before processing incoming packets (`OnRecvPacketOverride`)
+2. Check rate limits before sending packets (`SendPacketOverride`)
+3. Track transfer statistics after successful transfers
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+2. [Messages](messages/) - Transaction messages and handlers
+
+## Message Reference
+
+### Configuration
+
+-   [MsgUpdateParams](messages/msg-update-params.md) - Update module parameters
+
+## Query Reference
+
+For all IBC Rate Limit queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
+
+The LCD provides comprehensive query endpoints for:
+
+-   Rate limit configurations
+-   Flow tracking data
+-   Module parameters
+-   And more
+
+All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
+
+## Quick Links
+
+-   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+-   [BitBadges Documentation](https://docs.bitbadges.io)
+
+## Documentation Style
+
+This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
+
+
+## File: ./x-ibc-rate-limit/messages/README.md
+
+# 📨 Messages
+
+This directory contains documentation for the core transaction messages supported by the `x/ibc-rate-limit` module.
+
+## Core Operations
+
+### Configuration
+
+* [MsgUpdateParams](msg-update-params.md) - Update module parameters including rate limit configurations
+
+## Core Message List
+
+The IBC Rate Limit module supports 1 core transaction message:
+
+1. **MsgUpdateParams** - Update module parameters and rate limit configurations
+
+
+
+## File: ./x-ibc-rate-limit/messages/msg-update-params.md
+
+# MsgUpdateParams
+
+## Overview
+
+`MsgUpdateParams` is the governance message used to update the IBC Rate Limit module's parameters. This includes all rate limit configurations for channels and denominations.
+
+## Message Structure
+
+```protobuf
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "ibcratelimit/MsgUpdateParams";
+
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+```
+
+## Fields
+
+### `authority` (string, required)
+The address authorized to update the module parameters. This must match the module's configured authority address (defaults to the governance module account).
+
+### `params` (Params, required)
+The complete set of module parameters to set. All parameters must be supplied - partial updates are not supported.
+
+The `Params` structure contains:
+- `rate_limits`: An array of `RateLimitConfig` objects, each defining rate limits for a specific channel and denomination combination
+
+## RateLimitConfig Structure
+
+Each rate limit configuration specifies:
+
+```protobuf
+message RateLimitConfig {
+  // channel_id is the IBC channel ID this rate limit applies to
+  // If empty, applies to all channels
+  string channel_id = 1;
+
+  // denom is the denomination this rate limit applies to
+  // Must be specified (empty denoms are not allowed)
+  string denom = 2;
+
+  // supply_shift_limits defines multiple timeframe limits for supply shift
+  repeated TimeframeLimit supply_shift_limits = 5;
+
+  // unique_sender_limits defines limits on unique senders per channel
+  repeated UniqueSenderLimit unique_sender_limits = 6;
+
+  // address_limits defines per-address transfer limits
+  repeated AddressLimit address_limits = 7;
+}
+```
+
+### Configuration Matching
+
+Configurations are checked in order, and the **first matching config** is used. A config matches if:
+- The `channel_id` matches the transfer's channel (or is empty to match all channels)
+- The `denom` matches the transfer's denomination
+
+If no config matches, the transfer is allowed (no rate limit applied).
+
+## TimeframeLimit Structure
+
+Defines limits on supply shift (net flow):
+
+```protobuf
+message TimeframeLimit {
+  // max_amount is the maximum absolute amount of supply change allowed
+  // If set to 0, this limit is disabled
+  string max_amount = 1 [(gogoproto.customtype) = "cosmossdk.io/math.Int"];
+
+  // timeframe_type defines the type of timeframe (block, hour, day)
+  TimeframeType timeframe_type = 2;
+
+  // timeframe_duration is the duration of the timeframe
+  int64 timeframe_duration = 3;
+}
+```
+
+## UniqueSenderLimit Structure
+
+Defines limits on the number of unique sender addresses:
+
+```protobuf
+message UniqueSenderLimit {
+  // max_unique_senders is the maximum number of unique senders allowed
+  // If set to 0, this limit is disabled
+  int64 max_unique_senders = 1;
+
+  // timeframe_type defines the type of timeframe
+  TimeframeType timeframe_type = 2;
+
+  // timeframe_duration is the duration of the timeframe
+  int64 timeframe_duration = 3;
+}
+```
+
+## AddressLimit Structure
+
+Defines per-address transfer limits:
+
+```protobuf
+message AddressLimit {
+  // max_transfers is the maximum number of transfers allowed per address
+  // If set to 0, transfer count limit is disabled
+  int64 max_transfers = 1;
+
+  // max_amount is the maximum total amount allowed per address
+  // If set to 0, amount limit is disabled
+  string max_amount = 2 [(gogoproto.customtype) = "cosmossdk.io/math.Int"];
+
+  // timeframe_type defines the type of timeframe
+  TimeframeType timeframe_type = 3;
+
+  // timeframe_duration is the duration of the timeframe
+  int64 timeframe_duration = 4;
+}
+```
+
+## TimeframeType Enum
+
+```protobuf
+enum TimeframeType {
+  TIMEFRAME_TYPE_UNSPECIFIED = 0;
+  TIMEFRAME_TYPE_BLOCK = 1;  // Duration in blocks
+  TIMEFRAME_TYPE_HOUR = 2;  // Duration in hours (converted to blocks)
+  TIMEFRAME_TYPE_DAY = 3;   // Duration in days (converted to blocks)
+}
+```
+
+## Validation
+
+The message is validated to ensure:
+1. The `authority` address matches the module's configured authority
+2. All parameters are valid (checked via `params.Validate()`)
+3. All required fields are provided
+
+## Response
+
+```protobuf
+message MsgUpdateParamsResponse {}
+```
+
+An empty response indicates successful parameter update.
+
+## Usage Example
+
+```json
+{
+  "authority": "cosmos10d07y265gmmuvt4z0w9aw880jnsr700j6zn9kn",
+  "params": {
+    "rate_limits": [
+      {
+        "channel_id": "channel-0",
+        "denom": "uatom",
+        "supply_shift_limits": [
+          {
+            "max_amount": "1000000000",
+            "timeframe_type": "TIMEFRAME_TYPE_DAY",
+            "timeframe_duration": 1
+          }
+        ],
+        "unique_sender_limits": [],
+        "address_limits": []
+      }
+    ]
+  }
+}
+```
+
+## Governance
+
+This message is typically submitted as a governance proposal, allowing the community to vote on rate limit changes. The authority address must sign the transaction.
+
+
+
+## File: ./x-ibc-rate-limit/overview.md
+
+# IBC Rate Limit Module
+
+## Overview
+
+The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
+
+## Purpose
+
+The module serves as a security mechanism to:
+- **Control supply shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
+- **Limit unique senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
+- **Enforce per-address limits**: Set limits on the number of transfers and total amount per address within a timeframe
+
+## Architecture
+
+The module operates as an IBC middleware that intercepts IBC transfer packets before they are processed. It uses hooks to:
+1. Check rate limits before processing incoming packets (`OnRecvPacketOverride`)
+2. Check rate limits before sending packets (`SendPacketOverride`)
+3. Track transfer statistics after successful transfers
+
+## Key Concepts
+
+### Rate Limit Configuration
+
+Rate limits are configured per channel and denomination through the module's parameters. Each configuration can specify:
+
+- **Channel ID**: The IBC channel to apply the limit to (empty string applies to all channels)
+- **Denomination**: The token denomination to limit (must be specified)
+- **Supply Shift Limits**: Limits on the absolute value of net flow (inflows - outflows)
+- **Unique Sender Limits**: Limits on the number of unique sender addresses
+- **Address Limits**: Per-address limits on transfer count and total amount
+
+### Timeframes
+
+The module supports three types of timeframes:
+
+- **BLOCK**: Duration measured in blocks
+- **HOUR**: Duration measured in hours (converted to blocks using block time)
+- **DAY**: Duration measured in days (converted to blocks using block time)
+
+Multiple timeframe limits can be configured for the same channel/denom combination, and all limits are checked. If any limit would be exceeded, the transfer is rejected.
+
+### Flow Tracking
+
+The module tracks:
+- **Net Flow**: The difference between inflows and outflows for each channel/denom/timeframe combination
+- **Unique Senders**: The set of unique sender addresses for each channel/timeframe combination
+- **Address Transfer Data**: Transfer count and total amount per address/channel/denom/timeframe combination
+
+### Window Management
+
+Time windows are automatically reset when they expire. The module uses a fixed window approach where:
+- Windows expire when `currentHeight >= WindowStart + WindowDuration`
+- When a window expires, the tracking data is reset to zero
+- New windows start at the current block height
+
+## Integration
+
+The module integrates with the IBC stack through:
+- **IBC Hooks**: Implements `OnRecvPacketOverrideHooks` and `SendPacketOverrideHooks` interfaces
+- **Combined Hooks**: Works alongside custom IBC hooks, with rate limit checks taking precedence
+- **ICS4 Wrapper**: Intercepts packet sends through the ICS4Wrapper interface
+
+## Authority
+
+The module's parameters can be updated by the authority address, which defaults to the governance module account. This allows governance to adjust rate limits as needed.
+
+## State Management
+
+The module stores:
+- **Parameters**: Rate limit configurations
+- **Channel Flow**: Net flow state for each channel/denom/timeframe
+- **Flow Windows**: Time window state for flow tracking
+- **Unique Senders**: Set of unique sender addresses per channel/timeframe
+- **Address Transfer Data**: Per-address transfer statistics
+
+## Error Handling
+
+When a rate limit is exceeded:
+- The IBC packet is rejected with an error acknowledgement
+- The transfer is not processed
+- No state changes are made
+- The error is logged for monitoring
+
+
+
+## File: ./x-managersplitter/README.md
+
+# 📚 Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/managersplitter` module.
+
+The Manager Splitter module provides a permissioned proxy system for managing badge collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
+
+## Key Features
+
+- **Permission Delegation**: Split collection management permissions among multiple addresses
+- **Granular Control**: Define which addresses can perform which actions on a collection
+- **Admin Override**: Maintain a permanent admin address with full control
+- **Secure Execution**: Execute badge collection updates through the manager splitter with permission checks
+
+## Architecture
+
+The module creates **Manager Splitter** entities that:
+1. Have a module-derived address that acts as the collection manager
+2. Define permissions for each collection management action
+3. Allow approved addresses to execute actions on behalf of the manager splitter
+4. Maintain an admin address with permanent full control
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+2. [Messages](messages/) - Transaction messages and handlers
+
+## Message Reference
+
+### Core Operations
+
+* [MsgCreateManagerSplitter](messages/msg-create-manager-splitter.md) - Create a new manager splitter
+* [MsgUpdateManagerSplitter](messages/msg-update-manager-splitter.md) - Update manager splitter permissions
+* [MsgDeleteManagerSplitter](messages/msg-delete-manager-splitter.md) - Delete a manager splitter
+* [MsgExecuteUniversalUpdateCollection](messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
+* [MsgUpdateParams](messages/msg-update-params.md) - Update module parameters
+
+## Query Reference
+
+For all Manager Splitter queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
+
+The LCD provides comprehensive query endpoints for:
+* Manager splitter information
+* Permission configurations
+* Module parameters
+* And more
+
+All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
+
+## Quick Links
+
+* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+* [BitBadges Documentation](https://docs.bitbadges.io)
+
+## Documentation Style
+
+This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
+
+
+
+## File: ./x-managersplitter/messages/README.md
+
+# 📨 Messages
+
+This directory contains documentation for the core transaction messages supported by the `x/managersplitter` module.
+
+## Core Operations
+
+### Manager Splitter Management
+
+* [MsgCreateManagerSplitter](msg-create-manager-splitter.md) - Create a new manager splitter with permissions
+* [MsgUpdateManagerSplitter](msg-update-manager-splitter.md) - Update manager splitter permissions
+* [MsgDeleteManagerSplitter](msg-delete-manager-splitter.md) - Delete a manager splitter
+
+### Execution
+
+* [MsgExecuteUniversalUpdateCollection](msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
+
+### Configuration
+
+* [MsgUpdateParams](msg-update-params.md) - Update module parameters
+
+## Core Message List
+
+The Manager Splitter module supports 5 core transaction messages:
+
+1. **MsgCreateManagerSplitter** - Create new manager splitter
+2. **MsgUpdateManagerSplitter** - Update manager splitter permissions
+3. **MsgDeleteManagerSplitter** - Delete manager splitter
+4. **MsgExecuteUniversalUpdateCollection** - Execute collection updates
+5. **MsgUpdateParams** - Update module parameters
+
+
+
+## File: ./x-managersplitter/messages/msg-create-manager-splitter.md
+
+# MsgCreateManagerSplitter
+
+## Overview
+
+`MsgCreateManagerSplitter` creates a new Manager Splitter entity with specified permissions. The manager splitter receives a module-derived address that can be used as a collection manager.
+
+## Message Structure
+
+```protobuf
+message MsgCreateManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/CreateManagerSplitter";
+
+  // Admin address creating the entity.
+  string admin = 1;
+
+  // Permissions mapping each CollectionPermission field to execution criteria.
+  ManagerSplitterPermissions permissions = 2;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+The address that will be the permanent admin of the manager splitter. This address:
+- Has full control over the manager splitter
+- Can always execute all permissions
+- Can update and delete the manager splitter
+- Cannot be changed after creation
+
+Must be a valid Bech32 address.
+
+### `permissions` (ManagerSplitterPermissions, optional)
+The permissions configuration for the manager splitter. Each permission maps to `PermissionCriteria` that specifies which addresses can execute that permission.
+
+If `nil` or not provided, an empty permissions structure is created (all permissions denied except for admin).
+
+## ManagerSplitterPermissions Structure
+
+```protobuf
+message ManagerSplitterPermissions {
+  PermissionCriteria canDeleteCollection = 1;
+  PermissionCriteria canArchiveCollection = 2;
+  PermissionCriteria canUpdateStandards = 3;
+  PermissionCriteria canUpdateCustomData = 4;
+  PermissionCriteria canUpdateManager = 5;
+  PermissionCriteria canUpdateCollectionMetadata = 6;
+  PermissionCriteria canUpdateValidTokenIds = 7;
+  PermissionCriteria canUpdateTokenMetadata = 8;
+  PermissionCriteria canUpdateCollectionApprovals = 9;
+}
+```
+
+Each field is optional. If a permission is not set, it is denied by default (except for the admin).
+
+## PermissionCriteria Structure
+
+```protobuf
+message PermissionCriteria {
+  // List of approved addresses that can execute this permission.
+  repeated string approvedAddresses = 1;
+}
+```
+
+### `approvedAddresses` (string[], optional)
+A list of Bech32 addresses that are approved to execute this permission. If empty, only the admin can execute this permission.
+
+## Response
+
+```protobuf
+message MsgCreateManagerSplitterResponse {
+  // The address of the created manager splitter.
+  string address = 1;
+}
+```
+
+### `address` (string)
+The module-derived address of the created manager splitter. This address:
+- Is deterministic based on the manager splitter ID
+- Can be used as a collection manager address
+- Is derived using `ModuleAddress(ModuleName, ID_bytes)`
+
+## Validation
+
+The message is validated to ensure:
+1. The `admin` address is a valid Bech32 address
+2. The manager splitter address doesn't already exist (shouldn't happen, but checked for safety)
+
+## State Changes
+
+1. A new Manager Splitter entity is created with:
+   - A module-derived address (based on next available ID)
+   - The specified admin address
+   - The specified permissions (or empty if not provided)
+2. The next manager splitter ID is incremented
+
+## Usage Example
+
+```json
+{
+  "admin": "cosmos1abc123...",
+  "permissions": {
+    "canUpdateCollectionMetadata": {
+      "approvedAddresses": [
+        "cosmos1def456...",
+        "cosmos1ghi789..."
+      ]
+    },
+    "canUpdateTokenMetadata": {
+      "approvedAddresses": [
+        "cosmos1def456..."
+      ]
+    },
+    "canUpdateValidTokenIds": {
+      "approvedAddresses": []
+    }
+  }
+}
+```
+
+In this example:
+- `cosmos1abc123...` is the admin with full control
+- `cosmos1def456...` and `cosmos1ghi789...` can update collection metadata
+- Only `cosmos1def456...` can update token metadata
+- Only the admin can update valid token IDs (empty approved addresses list)
+- All other permissions are denied (not set)
+
+## Address Derivation
+
+The manager splitter address is derived as:
+```
+address = ModuleAddress("managersplitter", ID_bytes)
+```
+
+Where `ID` is a sequential integer starting from 1. The address is deterministic and can be calculated if you know the ID.
+
+## Important Notes
+
+1. **Permanent Admin**: The admin address cannot be changed after creation
+2. **Module Address**: The manager splitter address is a module address, not a regular account
+3. **Empty Permissions**: If permissions are not provided, an empty structure is created (all permissions denied except admin)
+4. **ID Increment**: The manager splitter ID is automatically incremented after creation
+
+
+
+## File: ./x-managersplitter/messages/msg-delete-manager-splitter.md
+
+# MsgDeleteManagerSplitter
+
+## Overview
+
+`MsgDeleteManagerSplitter` deletes an existing Manager Splitter entity. Only the admin address can delete the manager splitter.
+
+## Message Structure
+
+```protobuf
+message MsgDeleteManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/DeleteManagerSplitter";
+
+  // Admin address deleting the entity.
+  string admin = 1;
+
+  // Address of the manager splitter to delete.
+  string address = 2;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
+
+### `address` (string, required)
+The address of the manager splitter to delete. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+## Response
+
+```protobuf
+message MsgDeleteManagerSplitterResponse {}
+```
+
+An empty response indicates successful deletion.
+
+## Validation
+
+The message is validated to ensure:
+1. The `admin` address is a valid Bech32 address
+2. The `address` is a valid Bech32 address
+3. The manager splitter exists
+4. The `admin` matches the manager splitter's stored admin address
+
+## Authorization
+
+Only the admin address can delete the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
+
+## State Changes
+
+The manager splitter entity is completely removed from state. This means:
+- The manager splitter record is deleted
+- All permission configurations are removed
+- The manager splitter address can no longer be used as a collection manager (unless it was already set)
+
+## Important Considerations
+
+### Collections Using the Manager Splitter
+
+If a badge collection has the manager splitter address set as its manager:
+- The manager splitter address will still be valid in the badges module
+- However, no one will be able to execute actions through the manager splitter (since it no longer exists)
+- The collection's manager would need to be updated to a different address
+
+### Irreversible Action
+
+Deletion is permanent and cannot be undone. If you need to recreate a manager splitter:
+- It will receive a new ID and address
+- You would need to update any collections using the old address
+
+## Usage Example
+
+```json
+{
+  "admin": "cosmos1abc123...",
+  "address": "cosmos1managersplitter..."
+}
+```
+
+## Important Notes
+
+1. **Admin Only**: Only the admin can delete the manager splitter
+2. **Permanent**: Deletion is permanent and cannot be undone
+3. **Collections Impact**: Collections using the manager splitter address will need their manager updated
+4. **No Validation**: The module does not check if any collections are using the manager splitter before deletion
+
+
+
+## File: ./x-managersplitter/messages/msg-execute-universal-update-collection.md
+
+# MsgExecuteUniversalUpdateCollection
+
+## Overview
+
+`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the Badges module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
+
+## Message Structure
+
+```protobuf
+message MsgExecuteUniversalUpdateCollection {
+  option (cosmos.msg.v1.signer) = "executor";
+  option (amino.name) = "managersplitter/ExecuteUniversalUpdateCollection";
+
+  // Address executing the message (must be approved or admin).
+  string executor = 1;
+
+  // Address of the manager splitter to execute through.
+  string managerSplitterAddress = 2;
+
+  // The UniversalUpdateCollection message to execute.
+  badges.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
+}
+```
+
+## Fields
+
+### `executor` (string, required)
+The address that is executing the message. This address must be:
+- The admin of the manager splitter, OR
+- An approved address for all permissions required by the `UniversalUpdateCollection` message
+
+Must be a valid Bech32 address.
+
+### `managerSplitterAddress` (string, required)
+The address of the manager splitter to execute through. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+### `universalUpdateCollectionMsg` (badges.MsgUniversalUpdateCollection, required)
+The `UniversalUpdateCollection` message from the Badges module to execute. This message will be executed with the manager splitter address as the creator/manager.
+
+## Permission Checking
+
+The module checks permissions based on which fields are being updated in the `UniversalUpdateCollection` message:
+
+- **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
+- **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
+- **UpdateManagerTimeline**: Requires `canUpdateManager` permission
+- **UpdateCollectionMetadataTimeline**: Requires `canUpdateCollectionMetadata` permission
+- **UpdateTokenMetadataTimeline**: Requires `canUpdateTokenMetadata` permission
+- **UpdateCustomDataTimeline**: Requires `canUpdateCustomData` permission
+- **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
+- **UpdateStandardsTimeline**: Requires `canUpdateStandards` permission
+- **UpdateIsArchivedTimeline**: Requires `canArchiveCollection` permission
+
+**Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
+
+## Response
+
+```protobuf
+message MsgExecuteUniversalUpdateCollectionResponse {
+  // ID of the collection that was updated.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+### `collectionId` (Uint)
+The ID of the collection that was updated, returned from the Badges module's `UniversalUpdateCollection` execution.
+
+## Validation
+
+The message is validated to ensure:
+1. The `executor` address is a valid Bech32 address
+2. The `managerSplitterAddress` is a valid Bech32 address
+3. The manager splitter exists
+4. The executor has permission to execute all required actions
+5. The `universalUpdateCollectionMsg` is valid
+
+## Authorization
+
+The executor must be:
+- The admin of the manager splitter (has full permissions), OR
+- An approved address for all permissions required by the update
+
+If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
+
+## Execution Flow
+
+1. **Permission Check**: The module checks if the executor has permission for all required actions
+2. **Message Preparation**: The `UniversalUpdateCollection` message is prepared with the manager splitter address as the creator
+3. **Badges Module Execution**: The message is forwarded to the Badges module's `UniversalUpdateCollection` handler
+4. **Response**: The collection ID is returned
+
+## Important Notes
+
+### Manager Splitter as Manager
+
+The manager splitter address is used as the `creator` field in the `UniversalUpdateCollection` message. This means:
+- The Badges module sees the manager splitter address as the manager
+- The collection's manager must be set to the manager splitter address
+- The executor address is not visible to the Badges module
+
+### Admin Override
+
+The admin address always has full permissions and can execute any `UniversalUpdateCollection` message through the manager splitter, regardless of the permission settings.
+
+### Atomic Execution
+
+Permission checks and message execution are atomic:
+- If permissions are denied, the transaction fails before any state changes
+- If the Badges module execution fails, the entire transaction is rolled back
+
+## Usage Example
+
+```json
+{
+  "executor": "cosmos1def456...",
+  "managerSplitterAddress": "cosmos1managersplitter...",
+  "universalUpdateCollectionMsg": {
+    "creator": "cosmos1managersplitter...",
+    "collectionId": "1",
+    "updateCollectionMetadataTimeline": true,
+    "collectionMetadataTimeline": {
+      "timelineTimes": [
+        {
+          "timelineTime": "2024-01-01T00:00:00Z",
+          "collectionMetadata": {
+            "name": "Updated Collection Name"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+In this example:
+- `cosmos1def456...` is executing the update
+- The manager splitter address is `cosmos1managersplitter...`
+- The update modifies collection metadata
+- The executor must have `canUpdateCollectionMetadata` permission (or be the admin)
+
+## Error Cases
+
+1. **Invalid Executor**: Executor address is not valid Bech32
+2. **Manager Splitter Not Found**: The manager splitter address doesn't exist
+3. **Permission Denied**: Executor doesn't have required permissions
+4. **Invalid Message**: The `UniversalUpdateCollection` message is invalid
+5. **Badges Module Error**: The Badges module execution fails
+
+
+
+## File: ./x-managersplitter/messages/msg-update-manager-splitter.md
+
+# MsgUpdateManagerSplitter
+
+## Overview
+
+`MsgUpdateManagerSplitter` updates the permissions of an existing Manager Splitter entity. Only the admin address can update the manager splitter.
+
+## Message Structure
+
+```protobuf
+message MsgUpdateManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/UpdateManagerSplitter";
+
+  // Admin address updating the entity.
+  string admin = 1;
+
+  // Address of the manager splitter to update.
+  string address = 2;
+
+  // New permissions to set.
+  ManagerSplitterPermissions permissions = 3;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
+
+### `address` (string, required)
+The address of the manager splitter to update. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+### `permissions` (ManagerSplitterPermissions, required)
+The new permissions configuration to set. This completely replaces the existing permissions structure.
+
+## ManagerSplitterPermissions Structure
+
+```protobuf
+message ManagerSplitterPermissions {
+  PermissionCriteria canDeleteCollection = 1;
+  PermissionCriteria canArchiveCollection = 2;
+  PermissionCriteria canUpdateStandards = 3;
+  PermissionCriteria canUpdateCustomData = 4;
+  PermissionCriteria canUpdateManager = 5;
+  PermissionCriteria canUpdateCollectionMetadata = 6;
+  PermissionCriteria canUpdateValidTokenIds = 7;
+  PermissionCriteria canUpdateTokenMetadata = 8;
+  PermissionCriteria canUpdateCollectionApprovals = 9;
+}
+```
+
+Each field is optional. If a permission is not set in the update, it will be removed (denied by default).
+
+## PermissionCriteria Structure
+
+```protobuf
+message PermissionCriteria {
+  // List of approved addresses that can execute this permission.
+  repeated string approvedAddresses = 1;
+}
+```
+
+### `approvedAddresses` (string[], optional)
+A list of Bech32 addresses that are approved to execute this permission. If empty or not provided, only the admin can execute this permission.
+
+## Response
+
+```protobuf
+message MsgUpdateManagerSplitterResponse {}
+```
+
+An empty response indicates successful update.
+
+## Validation
+
+The message is validated to ensure:
+1. The `admin` address is a valid Bech32 address
+2. The `address` is a valid Bech32 address
+3. The manager splitter exists
+4. The `admin` matches the manager splitter's stored admin address
+
+## Authorization
+
+Only the admin address can update the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
+
+## State Changes
+
+The manager splitter's permissions are completely replaced with the new permissions structure. This means:
+- Permissions not included in the update will be removed
+- Existing permissions will be overwritten with the new values
+- The admin address and manager splitter address remain unchanged
+
+## Usage Example
+
+```json
+{
+  "admin": "cosmos1abc123...",
+  "address": "cosmos1managersplitter...",
+  "permissions": {
+    "canUpdateCollectionMetadata": {
+      "approvedAddresses": [
+        "cosmos1def456...",
+        "cosmos1new789..."
+      ]
+    },
+    "canUpdateTokenMetadata": {
+      "approvedAddresses": [
+        "cosmos1def456..."
+      ]
+    }
+  }
+}
+```
+
+In this example:
+- The manager splitter's permissions are updated
+- `cosmos1def456...` and `cosmos1new789...` can now update collection metadata
+- Only `cosmos1def456...` can update token metadata
+- All other permissions are removed (not set in the update)
+
+## Important Notes
+
+1. **Complete Replacement**: The permissions structure is completely replaced, not merged
+2. **Admin Only**: Only the admin can update the manager splitter
+3. **Admin Immutable**: The admin address cannot be changed via this message
+4. **Address Immutable**: The manager splitter address cannot be changed
+5. **Removal of Permissions**: Permissions not included in the update are effectively removed
+
+
+
+## File: ./x-managersplitter/messages/msg-update-params.md
+
+# MsgUpdateParams
+
+## Overview
+
+`MsgUpdateParams` is the governance message used to update the Manager Splitter module's parameters.
+
+## Message Structure
+
+```protobuf
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "managersplitter/MsgUpdateParams";
+
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+```
+
+## Fields
+
+### `authority` (string, required)
+The address authorized to update the module parameters. This must match the module's configured authority address (defaults to the governance module account).
+
+### `params` (Params, required)
+The complete set of module parameters to set. All parameters must be supplied - partial updates are not supported.
+
+## Validation
+
+The message is validated to ensure:
+1. The `authority` address matches the module's configured authority
+2. All parameters are valid
+3. All required fields are provided
+
+## Response
+
+```protobuf
+message MsgUpdateParamsResponse {}
+```
+
+An empty response indicates successful parameter update.
+
+## Governance
+
+This message is typically submitted as a governance proposal, allowing the community to vote on parameter changes. The authority address must sign the transaction.
+
+
+
+## File: ./x-managersplitter/overview.md
+
+# Manager Splitter Module
+
+## Overview
+
+The Manager Splitter module provides a permissioned proxy system for managing badge collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
+
+## Purpose
+
+The module enables:
+- **Permission Delegation**: Split collection management permissions among multiple addresses
+- **Granular Control**: Define which addresses can perform which actions on a collection
+- **Admin Override**: Maintain a permanent admin address with full control
+- **Secure Execution**: Execute badge collection updates through the manager splitter with permission checks
+
+## Architecture
+
+The module creates **Manager Splitter** entities that:
+1. Have a module-derived address that acts as the collection manager
+2. Define permissions for each collection management action
+3. Allow approved addresses to execute actions on behalf of the manager splitter
+4. Maintain an admin address with permanent full control
+
+## Key Concepts
+
+### Manager Splitter Entity
+
+A Manager Splitter is a permissioned proxy that:
+- **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager
+- **Admin**: A permanent admin address with full control over the splitter and all permissions
+- **Permissions**: A mapping of collection permission types to execution criteria
+
+### Permission System
+
+The module mirrors the Badges module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
+
+- **CanDeleteCollection**: Permission to delete the collection
+- **CanArchiveCollection**: Permission to archive the collection
+- **CanUpdateStandards**: Permission to update collection standards
+- **CanUpdateCustomData**: Permission to update custom data
+- **CanUpdateManager**: Permission to update the manager timeline
+- **CanUpdateCollectionMetadata**: Permission to update collection metadata
+- **CanUpdateValidTokenIds**: Permission to update valid token IDs
+- **CanUpdateTokenMetadata**: Permission to update token metadata
+- **CanUpdateCollectionApprovals**: Permission to update collection approvals
+
+### Permission Criteria
+
+Each permission can specify:
+- **Approved Addresses**: A whitelist of addresses that can execute this permission
+
+If a permission has no criteria set, it is denied by default (except for the admin).
+
+### Admin Privileges
+
+The admin address:
+- Has full control over the manager splitter
+- Can always execute all permissions
+- Can create, update, and delete the manager splitter
+- Cannot be changed after creation
+
+## Integration with Badges Module
+
+The module integrates with the Badges module by:
+1. Creating a manager splitter with a module-derived address
+2. Setting that address as a collection's manager
+3. Allowing approved addresses to execute `UniversalUpdateCollection` messages through the manager splitter
+4. The badges module sees the manager splitter address as the manager, not the executor
+
+## Address Derivation
+
+Manager Splitter addresses are derived using:
+```go
+address = ModuleAddress(ModuleName, ID_bytes)
+```
+
+Where:
+- `ModuleName` is "managersplitter"
+- `ID` is a sequential ID starting from 1
+- The address is deterministic and can be calculated from the ID
+
+## State Management
+
+The module stores:
+- **Manager Splitters**: The complete manager splitter entities (address, admin, permissions)
+- **Next ID**: The next available manager splitter ID for address derivation
+
+## Use Cases
+
+1. **Multi-sig Management**: Multiple addresses can manage different aspects of a collection
+2. **Role-based Access**: Different addresses can have different permission levels
+3. **Delegated Management**: Delegate specific management tasks to trusted addresses
+4. **Governance Integration**: Use manager splitters for governance-controlled collections
+
+## Security Model
+
+1. **Admin Control**: Only the admin can create, update, or delete the manager splitter
+2. **Permission Checks**: All actions check permissions before execution
+3. **Address Validation**: All addresses are validated before use
+4. **Atomic Execution**: Permission checks and execution are atomic
+5. **Immutable Admin**: The admin address cannot be changed after creation
+
+## Limitations
+
+1. **Single Admin**: Each manager splitter has one permanent admin
+2. **Approved Addresses Only**: Currently supports whitelist-based permissions only
+3. **UniversalUpdateCollection Only**: Currently only supports executing `UniversalUpdateCollection` messages
+4. **No Permission Inheritance**: Permissions must be explicitly set for each action type
+
 
 
 ## File: ./.github/workflows/for--llms.yml
