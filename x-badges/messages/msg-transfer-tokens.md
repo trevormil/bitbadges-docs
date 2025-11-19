@@ -46,10 +46,8 @@ message Transfer {
   bool onlyCheckPrioritizedOutgoingApprovals = 11;
   // The options for precalculating the balances.
   PrecalculationOptions precalculationOptions = 12;
-  // Affiliate address for the transfer.
-  string affiliateAddress = 13;
   // The number of times to attempt approval validation. If 0 / not specified, we default to only one.
-  string numAttempts = 14;
+  string numAttempts = 13;
 }
 
 message PrecalculationOptions {
@@ -278,8 +276,6 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
             "onlyCheckPrioritizedIncomingApprovals": false,
             "onlyCheckPrioritizedOutgoingApprovals": false,
 
-            // Add your address if you want to claim part of the protocol fee
-            "affiliateAddress": "",
             // Number of times to attempt this transfer (default is 1, 0 is empty and also defaults to 1)
             // Use this if you want to try this transfer multiple times
             "numAttempts": "1"

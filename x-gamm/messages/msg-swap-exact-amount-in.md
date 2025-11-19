@@ -18,7 +18,7 @@ When executing a swap:
 ```protobuf
 // ===================== MsgSwapExactAmountIn
 message MsgSwapExactAmountIn {
-  option (amino.name) = "gamm/swap-exact-amount-in";
+  option (amino.name) = "gamm/SwapExactAmountIn";
   option (cosmos.msg.v1.signer) = "sender";
 
   string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];

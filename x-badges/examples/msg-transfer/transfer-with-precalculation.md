@@ -50,7 +50,6 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                     "overrideTimestamp": "0",
                     "tokenIdsOverride": []
                 },
-                "affiliateAddress": "",
                 "numAttempts": "1"
             }
         ]

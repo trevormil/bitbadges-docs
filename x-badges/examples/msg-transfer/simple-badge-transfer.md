@@ -63,7 +63,6 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
                 "onlyCheckPrioritizedCollectionApprovals": true,
                 "onlyCheckPrioritizedIncomingApprovals": false,
                 "onlyCheckPrioritizedOutgoingApprovals": false,
-                "affiliateAddress": "",
                 "numAttempts": "1"
             }
         ]
