@@ -18,7 +18,7 @@ Warning: Native x/badges assets cannot be IBC transferred. Only x/bank assets ca
 
 ### Hook Data Format
 
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (no affiliates and some other features may nto be supproted).
+Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
 
 ### Swap and Action
 
@@ -70,6 +70,7 @@ type SwapAndAction struct {
     TimeoutTimestamp          *uint64         `json:"timeout_timestamp,omitempty"`
     PostSwapAction            *PostSwapAction `json:"post_swap_action,omitempty"`
     DestinationRecoverAddress string          `json:"destination_recover_address,omitempty"`
+    Affiliates                []Affiliate     `json:"affiliates,omitempty"`
 }
 ```
 
@@ -100,6 +101,23 @@ type Operation struct {
 }
 ```
 
+### MinAsset
+
+```go
+type MinAsset struct {
+    Native *NativeAsset `json:"native,omitempty"`
+}
+```
+
+### NativeAsset
+
+```go
+type NativeAsset struct {
+    Denom  string `json:"denom"`
+    Amount string `json:"amount"`
+}
+```
+
 ### PostSwapAction
 
 ```go
@@ -110,6 +128,77 @@ type PostSwapAction struct {
 ```
 
 **Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
+
+### TransferInfo
+
+```go
+type TransferInfo struct {
+    ToAddress string `json:"to_address"`
+}
+```
+
+### IBCTransferInfo
+
+```go
+type IBCTransferInfo struct {
+    IBCInfo *IBCInfo `json:"ibc_info,omitempty"`
+}
+```
+
+### IBCInfo
+
+```go
+type IBCInfo struct {
+    SourceChannel  string `json:"source_channel"`
+    Receiver       string `json:"receiver"`
+    Memo           string `json:"memo,omitempty"`
+    RecoverAddress string `json:"recover_address,omitempty"`
+}
+```
+
+### Affiliate
+
+```go
+type Affiliate struct {
+    BasisPointsFee string `json:"basis_points_fee"`
+    Address        string `json:"address"`
+}
+```
+
+#### Affiliates
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. This is useful for referral programs, partnerships, or revenue sharing.
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
+-   **Address format**: Must be a valid Bech32 address on the destination chain
+
+**Example**:
+
+```json
+{
+    "affiliates": [
+        {
+            "basis_points_fee": "10", // 0.1% fee
+            "address": "bb1..."
+        },
+        {
+            "basis_points_fee": "25", // 0.25% fee
+            "address": "bb1..."
+        }
+    ]
+}
+```
+
+In this example, if the swap outputs 1,000,000 tokens:
+
+-   First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
+-   Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
+
+The remaining amount (996,500 tokens) is then used for the post-swap action.
 
 #### DestinationRecoverAddress
 
@@ -264,7 +353,55 @@ Sends the swapped tokens to another chain via IBC:
                 }
             }
         },
-        "destination_recover_address": "bb1..."
+        "destination_recover_address": "bb1...",
+        "affiliates": [
+            {
+                "basis_points_fee": "10",
+                "address": "bb1..."
+            }
+        ]
+    }
+}
+```
+
+### Swap with Affiliates
+
+```json
+{
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "post_swap_action": {
+            "transfer": {
+                "to_address": "bb1..."
+            }
+        },
+        "affiliates": [
+            {
+                "basis_points_fee": "50", // 0.5% fee
+                "address": "bb1affiliate1..."
+            },
+            {
+                "basis_points_fee": "25", // 0.25% fee
+                "address": "bb1affiliate2..."
+            }
+        ]
     }
 }
 ```

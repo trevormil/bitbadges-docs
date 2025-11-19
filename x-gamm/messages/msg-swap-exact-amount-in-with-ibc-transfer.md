@@ -30,6 +30,12 @@ export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
     tokenIn: iCosmosCoin<T>;
     tokenOutMinAmount: T;
     ibcTransferInfo: iIBCTransferInfo<T>;
+    affiliates?: iAffiliate[];
+}
+
+export interface iAffiliate {
+    basisPointsFee: string;
+    address: string;
 }
 ```
 
@@ -54,7 +60,13 @@ export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
         "receiver": "cosmos1xyz789...",
         "memo": "Cross-chain swap",
         "timeout_timestamp": "1234567890000000000"
-    }
+    },
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
 }
 ```
 
@@ -88,6 +100,19 @@ If any step fails, the entire transaction is rolled back and no state changes ar
 ## Swap Fees
 
 Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed. The IBC transfer fee is also deducted from the output tokens.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output before the IBC transfer. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount (before IBC transfer)
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   Remaining for IBC transfer: 1,000,000 - 1,000 = 999,000 tokens
 
 ## Use Cases
 

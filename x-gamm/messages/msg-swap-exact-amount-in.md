@@ -34,6 +34,7 @@ message MsgSwapExactAmountIn {
     (gogoproto.moretags) = "yaml:\"token_out_min_amount\"",
     (gogoproto.nullable) = false
   ];
+  repeated Affiliate affiliates = 5;
 }
 
 message MsgSwapExactAmountInResponse {
@@ -45,6 +46,17 @@ message MsgSwapExactAmountInResponse {
   ];
 }
 ```
+
+### Affiliate
+
+```protobuf
+message Affiliate {
+  string basis_points_fee = 1;
+  string address = 2;
+}
+```
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%) and are calculated on the swap output amount.
 
 ### JSON Example
 
@@ -61,7 +73,13 @@ message MsgSwapExactAmountInResponse {
         "denom": "uatom",
         "amount": "1000000"
     },
-    "token_out_min_amount": "5000000"
+    "token_out_min_amount": "5000000",
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
 }
 ```
 
@@ -76,3 +94,17 @@ The `token_out_min_amount` field ensures that the user receives at least the spe
 ## Swap Fees
 
 Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   User receives: 1,000,000 - 1,000 = 999,000 tokens
