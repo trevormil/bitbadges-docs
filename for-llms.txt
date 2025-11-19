@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Nov 16 15:06:52 UTC 2025
+Generated on Mon Nov 17 16:04:12 UTC 2025
 
 
 
@@ -21502,9 +21502,9 @@ The primary hook type is `swap_and_action`, which:
 
 The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
 
-* Receive the IBC transfer tokens
-* Execute the swap operation
-* Send tokens to the final destination
+-   Receive the IBC transfer tokens
+-   Execute the swap operation
+-   Send tokens to the final destination
 
 Use here for generation if needed
 
@@ -21518,9 +21518,9 @@ export function deriveIntermediateSender(channel: string, originalSender: string
 
 All operations are executed atomically:
 
-* If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
-* If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
-* State changes are only committed if all operations succeed
+-   If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
+-   If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
+-   State changes are only committed if all operations succeed
 
 ## Hook Data Structure
 
@@ -21536,10 +21536,11 @@ type HookData struct {
 
 ```go
 type SwapAndAction struct {
-    UserSwap         *UserSwap       `json:"user_swap,omitempty"`
-    MinAsset         *MinAsset       `json:"min_asset,omitempty"`
-    TimeoutTimestamp *uint64         `json:"timeout_timestamp,omitempty"`
-    PostSwapAction   *PostSwapAction `json:"post_swap_action,omitempty"`
+    UserSwap                  *UserSwap       `json:"user_swap,omitempty"`
+    MinAsset                  *MinAsset       `json:"min_asset,omitempty"`
+    TimeoutTimestamp          *uint64         `json:"timeout_timestamp,omitempty"`
+    PostSwapAction            *PostSwapAction `json:"post_swap_action,omitempty"`
+    DestinationRecoverAddress string          `json:"destination_recover_address,omitempty"`
 }
 ```
 
@@ -21581,6 +21582,43 @@ type PostSwapAction struct {
 
 **Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
 
+#### DestinationRecoverAddress
+
+The `destination_recover_address` field specifies what to do in the case of a swap failure. The typical behavior is that if a swap of asset A to asset B fails, the whole IBC transfer is failed (acknowledgement error) and funds (asset A) are rolled back to the source chain. However, by specifying the address here, you can let the hook know that you are okay with just keeping asset A in the specified destination address in the case of a swap failure on the destination chain. Any post-swap action will not be executed since the swap failed. It will simply be treated as a standard IBC transfer to the specified address with no swap or post-swap action.
+
+```json
+{
+    "destination_recover_address": "bb1..." // Destination chain address (optional)
+}
+```
+
+This only applies in the case of swap failures. Swap logic failures include, but are not limited to:
+
+-   Exceeds slippage tolerance
+-   Compliance not passed
+-   Insufficient funds (should never happen since we use the amount transferred via IBC as the input amount)
+-   Calculated amount out equals zero
+-   etc.
+
+This is not applied in the cases below. Standard behavior is used in these cases.
+
+-   Misconfigurations of the messages (wrong prefixes, missing fields, etc.)
+-   Invalid pool IDs
+-   Standard IBC transfer failures (rate limits, timeouts, etc.)
+
+Logic here is that in the event of a swap failure, the expected chain where the user expects funds to be recoverable is the source chain.
+
+For example, if we have a multi-swap path like:
+
+1. Send Asset A from BitBadges to Osmosis
+2. Swap Asset A to Asset B on Osmosis
+3. Send Asset B from Osmosis to BitBadges
+4. Swap Asset B to Asset C on BitBadges
+
+If Step 4 fails, the default behavior is that funds (Asset B) will be recoverable on Osmosis (bad UX).
+With this recovery logic, if Step 4 fails, funds (Asset B) will be recoverable on BitBadges (better UX).
+Minor, but it avoids confusion for the user and potentially needing to interact with other chains for recovery. It isn't a catch-all solution, but it is a good UX improvement in many cases.
+
 ## Validation Rules
 
 1. **Post-swap action is required**: The `post_swap_action` field must be present
@@ -21600,9 +21638,9 @@ Transfers the swapped tokens to a local address:
 
 ```json
 {
-  "transfer": {
-    "to_address": "bb1..."
-  }
+    "transfer": {
+        "to_address": "bb1..."
+    }
 }
 ```
 
@@ -21612,14 +21650,14 @@ Sends the swapped tokens to another chain via IBC:
 
 ```json
 {
-  "ibc_transfer": {
-    "ibc_info": {
-      "source_channel": "channel-0",
-      "receiver": "bb1...", 
-      "memo": "...",
-      "recover_address": "bb1..."
+    "ibc_transfer": {
+        "ibc_info": {
+            "source_channel": "channel-0",
+            "receiver": "bb1...",
+            "memo": "...",
+            "recover_address": "bb1..."
+        }
     }
-  }
 }
 ```
 
@@ -21636,31 +21674,31 @@ Sends the swapped tokens to another chain via IBC:
 
 ```json
 {
-  "swap_and_action": {
-    "user_swap": {
-      "swap_exact_asset_in": {
-        "swap_venue_name": "bitbadges-poolmanager",
-        "operations": [
-          {
-            "pool": "1",
-            "denom_in": "ubadge",
-            "denom_out": "ibc/ABC..."
-          }
-        ]
-      }
-    },
-    "min_asset": {
-      "native": {
-        "denom": "ibc/ABC...",
-        "amount": "1000000"
-      }
-    },
-    "post_swap_action": {
-      "transfer": {
-        "to_address": "bb1..."
-      }
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "post_swap_action": {
+            "transfer": {
+                "to_address": "bb1..."
+            }
+        }
     }
-  }
 }
 ```
 
@@ -21668,36 +21706,37 @@ Sends the swapped tokens to another chain via IBC:
 
 ```json
 {
-  "swap_and_action": {
-    "user_swap": {
-      "swap_exact_asset_in": {
-        "swap_venue_name": "bitbadges-poolmanager",
-        "operations": [
-          {
-            "pool": "1",
-            "denom_in": "ubadge",
-            "denom_out": "ibc/ABC..."
-          }
-        ]
-      }
-    },
-    "min_asset": {
-      "native": {
-        "denom": "ibc/ABC...",
-        "amount": "1000000"
-      }
-    },
-    "timeout_timestamp": 1234567890000000000,
-    "post_swap_action": {
-      "ibc_transfer": {
-        "ibc_info": {
-          "source_channel": "channel-0",
-          "receiver": "cosmos1xyz789...",
-          "recover_address": "cosmos1intermediate..."
-        }
-      }
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "timeout_timestamp": 1234567890000000000,
+        "post_swap_action": {
+            "ibc_transfer": {
+                "ibc_info": {
+                    "source_channel": "channel-0",
+                    "receiver": "cosmos1xyz789...",
+                    "recover_address": "cosmos1intermediate..."
+                }
+            }
+        },
+        "destination_recover_address": "bb1..."
     }
-  }
 }
 ```
 
