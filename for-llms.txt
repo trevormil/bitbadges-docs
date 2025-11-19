@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Nov 19 20:31:50 UTC 2025
+Generated on Wed Nov 19 20:43:53 UTC 2025
 
 
 
@@ -21483,7 +21483,7 @@ Warning: Native x/badges assets cannot be IBC transferred. Only x/bank assets ca
 
 ### Hook Data Format
 
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (no affiliates and some other features may nto be supproted).
+Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
 
 ### Swap and Action
 
@@ -21535,6 +21535,7 @@ type SwapAndAction struct {
     TimeoutTimestamp          *uint64         `json:"timeout_timestamp,omitempty"`
     PostSwapAction            *PostSwapAction `json:"post_swap_action,omitempty"`
     DestinationRecoverAddress string          `json:"destination_recover_address,omitempty"`
+    Affiliates                []Affiliate     `json:"affiliates,omitempty"`
 }
 ```
 
@@ -21565,6 +21566,23 @@ type Operation struct {
 }
 ```
 
+### MinAsset
+
+```go
+type MinAsset struct {
+    Native *NativeAsset `json:"native,omitempty"`
+}
+```
+
+### NativeAsset
+
+```go
+type NativeAsset struct {
+    Denom  string `json:"denom"`
+    Amount string `json:"amount"`
+}
+```
+
 ### PostSwapAction
 
 ```go
@@ -21575,6 +21593,77 @@ type PostSwapAction struct {
 ```
 
 **Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
+
+### TransferInfo
+
+```go
+type TransferInfo struct {
+    ToAddress string `json:"to_address"`
+}
+```
+
+### IBCTransferInfo
+
+```go
+type IBCTransferInfo struct {
+    IBCInfo *IBCInfo `json:"ibc_info,omitempty"`
+}
+```
+
+### IBCInfo
+
+```go
+type IBCInfo struct {
+    SourceChannel  string `json:"source_channel"`
+    Receiver       string `json:"receiver"`
+    Memo           string `json:"memo,omitempty"`
+    RecoverAddress string `json:"recover_address,omitempty"`
+}
+```
+
+### Affiliate
+
+```go
+type Affiliate struct {
+    BasisPointsFee string `json:"basis_points_fee"`
+    Address        string `json:"address"`
+}
+```
+
+#### Affiliates
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. This is useful for referral programs, partnerships, or revenue sharing.
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
+-   **Address format**: Must be a valid Bech32 address on the destination chain
+
+**Example**:
+
+```json
+{
+    "affiliates": [
+        {
+            "basis_points_fee": "10", // 0.1% fee
+            "address": "bb1..."
+        },
+        {
+            "basis_points_fee": "25", // 0.25% fee
+            "address": "bb1..."
+        }
+    ]
+}
+```
+
+In this example, if the swap outputs 1,000,000 tokens:
+
+-   First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
+-   Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
+
+The remaining amount (996,500 tokens) is then used for the post-swap action.
 
 #### DestinationRecoverAddress
 
@@ -21729,7 +21818,55 @@ Sends the swapped tokens to another chain via IBC:
                 }
             }
         },
-        "destination_recover_address": "bb1..."
+        "destination_recover_address": "bb1...",
+        "affiliates": [
+            {
+                "basis_points_fee": "10",
+                "address": "bb1..."
+            }
+        ]
+    }
+}
+```
+
+### Swap with Affiliates
+
+```json
+{
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "post_swap_action": {
+            "transfer": {
+                "to_address": "bb1..."
+            }
+        },
+        "affiliates": [
+            {
+                "basis_points_fee": "50", // 0.5% fee
+                "address": "bb1affiliate1..."
+            },
+            {
+                "basis_points_fee": "25", // 0.25% fee
+                "address": "bb1affiliate2..."
+            }
+        ]
     }
 }
 ```
@@ -22179,6 +22316,12 @@ export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
     tokenIn: iCosmosCoin<T>;
     tokenOutMinAmount: T;
     ibcTransferInfo: iIBCTransferInfo<T>;
+    affiliates?: iAffiliate[];
+}
+
+export interface iAffiliate {
+    basisPointsFee: string;
+    address: string;
 }
 ```
 
@@ -22203,7 +22346,13 @@ export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
         "receiver": "cosmos1xyz789...",
         "memo": "Cross-chain swap",
         "timeout_timestamp": "1234567890000000000"
-    }
+    },
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
 }
 ```
 
@@ -22237,6 +22386,19 @@ If any step fails, the entire transaction is rolled back and no state changes ar
 ## Swap Fees
 
 Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed. The IBC transfer fee is also deducted from the output tokens.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output before the IBC transfer. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount (before IBC transfer)
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   Remaining for IBC transfer: 1,000,000 - 1,000 = 999,000 tokens
 
 ## Use Cases
 
@@ -22283,6 +22445,7 @@ message MsgSwapExactAmountIn {
     (gogoproto.moretags) = "yaml:\"token_out_min_amount\"",
     (gogoproto.nullable) = false
   ];
+  repeated Affiliate affiliates = 5;
 }
 
 message MsgSwapExactAmountInResponse {
@@ -22294,6 +22457,17 @@ message MsgSwapExactAmountInResponse {
   ];
 }
 ```
+
+### Affiliate
+
+```protobuf
+message Affiliate {
+  string basis_points_fee = 1;
+  string address = 2;
+}
+```
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%) and are calculated on the swap output amount.
 
 ### JSON Example
 
@@ -22310,7 +22484,13 @@ message MsgSwapExactAmountInResponse {
         "denom": "uatom",
         "amount": "1000000"
     },
-    "token_out_min_amount": "5000000"
+    "token_out_min_amount": "5000000",
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
 }
 ```
 
@@ -22325,6 +22505,20 @@ The `token_out_min_amount` field ensures that the user receives at least the spe
 ## Swap Fees
 
 Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   User receives: 1,000,000 - 1,000 = 999,000 tokens
 
 
 ## File: ./x-ibc-rate-limit/README.md
