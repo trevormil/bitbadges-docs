@@ -108,6 +108,11 @@ const EmptyApprovalCriteria = {
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
+        // No alternative time checks
+        altTimeChecks: {
+            offlineHours: [],
+            offlineDays: [],
+        },
     },
 };
 ```

@@ -44,6 +44,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     recipientChecks?: iAddressChecks;
     /** Address checks for initiator */
     initiatorChecks?: iAddressChecks;
+    /** Alternative time-based checks for approval denial (offline hours/days). */
+    altTimeChecks?: iAltTimeChecks;
 }
 ```
 
@@ -63,6 +65,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 -   **[Address Checks](address-checks.md)** - Address type restrictions (WASM contracts, liquidity pools)
 -   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
 -   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
+-   **[Alt Time Checks](alt-time-checks.md)** - Time-based restrictions (offline hours/days)
 
 ## Key Concepts
 
