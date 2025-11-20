@@ -12,6 +12,8 @@ BADGE has 3 primary purposes:
 
 BADGE does NOT represent ownership in BitBadges Inc. Protocol fees do NOT flow to BADGE holders at the moment. It is simply used as a gas token, governance token, and proof of stake token.&#x20;
 
+We do not want to play the game of extracting value to token vs BitBadges Inc equity. We want to be straight up with BADGE holders and say that BADGE should always be thought of as just a governance token and not regarded as a future investment or expectation of future profits in any way.
+
 ### **Distribution**
 
 For current distributions, supply, and more, we refer you to our explorer: [https://explorer.bitbadges.io](https://explorer.bitbadges.io/).
@@ -41,5 +43,6 @@ Couple notes on our approach to this:
 
 * In the short term, BitBadges still controls a large amount of the supply (>50%+) and operates on a more centralized governance at the moment, simply due to the fact that we have almost enough voting power to make any proposal pass.
 * BitBadges, at the time of writing this, currently has \~70 validators. Almost all are experienced in Cosmos and are validating other networks. The quality of validators is very high at the moment.&#x20;
+* Moving forward, we will look to adopt a Know-Your-Validator approach as we see fit. We will decentralize through allocations to trusted validators.
 
-In other words, treat BitBadges as much more of a proof of authority chain at thte moment.
+In other words, treat BitBadges as much more of a proof of authority chain at the moment.
