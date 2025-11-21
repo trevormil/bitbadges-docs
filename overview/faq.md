@@ -57,3 +57,17 @@ Note that we support Cosmos / IBC wrapping for true interoperability where you m
 ### **Does BitBadges support extending with smart contracts?**
 
 Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM and CosmWASM environments.
+
+### **Pricing? Affiliates?**
+
+BitBadges charges a 0.1% fee on the protocol level on all swaps and transfers. This works as follows:
+
+* For any x/badges transfers with IBC payments (coinTransfers), we charge in the IBC currency.
+* For any x/gamm swaps, we charge a 0.1% taker fee
+
+Normal x/badges or IBC MsgSends or transfers do not charge a fee.
+
+As for affiliates, you are free to build protocols to charge anything on top of that.
+
+* For x/badges, simply add another coin transfer to approvals (payout initiator 0.1% or somehting)
+* For x/gamm, we have an in-built affiliates field built into the protocol. If you use the BitBadges API, we will charge a 20% fee of affiliates, but on the protocol level, there is no such charge.
