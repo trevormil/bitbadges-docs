@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec  1 13:53:30 UTC 2025
+Generated on Wed Dec 10 17:58:04 UTC 2025
 
 
 
@@ -10242,6 +10242,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     initiatorChecks?: iAddressChecks;
     /** Alternative time-based checks for approval denial (offline hours/days). */
     altTimeChecks?: iAltTimeChecks;
+    /** Whether this approval must be prioritized during evaluation. */
+    mustPrioritize?: boolean;
 }
 ```
 
@@ -10262,6 +10264,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 -   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
 -   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
 -   **[Alt Time Checks](alt-time-checks.md)** - Time-based restrictions (offline hours/days)
+-   **[Must Prioritize](must-prioritize.md)** - Requiring explicit approval prioritization
 
 ## Key Concepts
 
@@ -11528,6 +11531,156 @@ For more information, see [ETH Signature Challenges](eth-signature-challenges.md
 2. **Gas Distribution**: Merkle trees excel with large user bases
 3. **Proof Verification**: On-chain verification is gas-efficient
 4. **Storage**: No on-chain storage of large lists required
+
+
+## File: ./x-badges/concepts/approval-criteria/must-prioritize.md
+
+# Must Prioritize
+
+Control whether an approval requires explicit prioritization in transfer requests or can be used in auto-scan mode.
+
+## Interface
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    mustPrioritize?: boolean;
+}
+```
+
+## How It Works
+
+The `mustPrioritize` field determines how an approval can be used during transfer evaluation:
+
+### `mustPrioritize: true` (Required Prioritization)
+
+When set to `true`, the approval **must** be explicitly specified in the `prioritizedApprovals` field of `MsgTransferTokens`. The transfer will fail if:
+
+- The approval is not included in `prioritizedApprovals`
+- The specified version doesn't match the current approval version
+- The approval doesn't match the transfer criteria
+
+### `mustPrioritize: false` or `undefined` (Auto-Scan Compatible)
+
+When set to `false` or not specified, the approval can be used in **auto-scan mode** if other auto-scan criteria are met:
+
+- The approval has [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+- No custom logic or side effects are present
+- The transfer doesn't require explicit version control
+
+## Use Cases
+
+### Requiring Explicit Prioritization
+
+Use `mustPrioritize: true` when you need:
+
+- **Version Control**: Ensure users are aware of the exact approval version they're using
+- **Side Effects**: Approvals with coin transfers, custom logic, or other side effects
+- **Deterministic Behavior**: Guarantee which approval will be used for the transfer
+- **Security**: Prevent accidental use of the wrong approval
+
+### Allowing Auto-Scan
+
+Use `mustPrioritize: false` (or omit) when:
+
+- **Simple Transfers**: No side effects or custom logic
+- **User Convenience**: Allow automatic approval selection
+- **Empty Criteria**: Using [Empty Approval Criteria](../examples/empty-approval-criteria.md)
+
+## Examples
+
+### Required Prioritization
+
+An approval that requires explicit prioritization:
+
+```json
+{
+    "approvalCriteria": {
+        "mustPrioritize": true,
+        "coinTransfers": [
+            {
+                "coins": [
+                    {
+                        "denom": "ubadge",
+                        "amount": "1000000"
+                    }
+                ],
+                "toAddress": "bb1..."
+            }
+        ]
+    }
+}
+```
+
+**Transfer must include**:
+
+```typescript
+{
+    "prioritizedApprovals": [
+        {
+            "approvalId": "reward-approval",
+            "approvalLevel": "collection",
+            "approverAddress": "",
+            "version": "1" // Must match current version
+        }
+    ],
+    "onlyCheckPrioritizedCollectionApprovals": true
+}
+```
+
+### Auto-Scan Compatible
+
+An approval that can be auto-scanned:
+
+```json
+{
+    "approvalCriteria": {
+        "mustPrioritize": false,
+        // ... empty approval criteria with no side effects
+    }
+}
+```
+
+**Transfer can use auto-scan**:
+
+```typescript
+{
+    "prioritizedApprovals": [], // Empty - will auto-scan
+    // System will automatically find and use matching approval
+}
+```
+
+## Relationship to Auto-Scan Mode
+
+The `mustPrioritize` field works in conjunction with the auto-scan system:
+
+### Auto-Scan Mode
+
+- **Default behavior**: System automatically scans approvals
+- **Works with**: Approvals where `mustPrioritize: false` or `undefined`
+- **Requires**: [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+- **No versioning**: System handles approval selection automatically
+
+### Prioritized Mode
+
+- **Explicit selection**: User must specify approvals in `prioritizedApprovals`
+- **Required for**: Approvals where `mustPrioritize: true`
+- **Version control**: Must specify exact approval version
+- **Deterministic**: Guarantees which approval will be used
+
+## Important Notes
+
+- **Default Behavior**: If `mustPrioritize` is not specified, it defaults to `false` (auto-scan compatible)
+- **Side Effects**: Approvals with side effects (coin transfers, custom logic) should typically use `mustPrioritize: true`
+- **Race Conditions**: Using `mustPrioritize: true` with version control prevents race conditions from approval updates
+- **Transfer Flags**: When using prioritized approvals, set `onlyCheckPrioritizedCollectionApprovals` (or corresponding flags) to `true` for deterministic behavior
+
+## Related Concepts
+
+-   [Approval Criteria Overview](README.md)
+-   [MsgTransferTokens](../../messages/msg-transfer-tokens.md) - Transfer message with prioritizedApprovals
+-   [Auto-Scan vs Prioritized Approvals](../../concepts/transferability-approvals.md#auto-scan-vs-prioritized-approvals) - Transfer modes
+-   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Auto-scan compatible template
+
 
 
 ## File: ./x-badges/concepts/approval-criteria/overrides.md
@@ -17251,6 +17404,8 @@ const EmptyApprovalCriteria = {
             offlineHours: [],
             offlineDays: [],
         },
+        // No priority requirement
+        mustPrioritize: false,
     },
 };
 ```
