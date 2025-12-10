@@ -46,6 +46,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     initiatorChecks?: iAddressChecks;
     /** Alternative time-based checks for approval denial (offline hours/days). */
     altTimeChecks?: iAltTimeChecks;
+    /** Whether this approval must be prioritized during evaluation. */
+    mustPrioritize?: boolean;
 }
 ```
 
@@ -66,6 +68,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 -   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
 -   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
 -   **[Alt Time Checks](alt-time-checks.md)** - Time-based restrictions (offline hours/days)
+-   **[Must Prioritize](must-prioritize.md)** - Requiring explicit approval prioritization
 
 ## Key Concepts
 

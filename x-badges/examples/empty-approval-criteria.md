@@ -113,6 +113,8 @@ const EmptyApprovalCriteria = {
             offlineHours: [],
             offlineDays: [],
         },
+        // No priority requirement
+        mustPrioritize: false,
     },
 };
 ```
