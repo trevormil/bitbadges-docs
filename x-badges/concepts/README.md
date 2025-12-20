@@ -14,6 +14,7 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Metadata**](metadata.md) - Rich, dynamic content for collections and tokens with timeline support
 -   [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
 -   [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
+-   [**Auto-Scan Mode**](auto-scan-mode.md) - Automatic approval scanning for simple transfers without side effects
 -   [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
 -   [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 -   [**Permissions**](permissions/) - Granular control over collection management operations

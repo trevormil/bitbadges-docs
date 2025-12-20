@@ -30,6 +30,7 @@
     -   [Timeline System](x-badges/concepts/timeline-system.md)
     -   [Total Supply](x-badges/concepts/total-supply.md)
     -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+    -   [Auto-Scan Mode](x-badges/concepts/auto-scan-mode.md)
     -   [UintRanges](x-badges/concepts/uintrange.md)
     -   [Valid Token IDs](x-badges/concepts/valid-token-ids.md)
     -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
