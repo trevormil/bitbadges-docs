@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Dec 20 13:34:51 UTC 2025
+Generated on Sat Dec 20 13:38:26 UTC 2025
 
 
 
@@ -9807,16 +9807,16 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 
 In the case of trying to support multiple standards dynamically, you simply have to call a wrapper function where you want to support both dynamically and pattern match.
 
-For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithWrapping function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
+For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithBadgesRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
 
 ```go
-// SendCoinsWithWrapping(ctx, bk, 'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
-func (k Keeper) SendCoinsWithWrapping(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
+// SendCoinsWithBadgesRouting(ctx, bk, 'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
+func (k Keeper) SendCoinsWithBadgesRouting(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
 
 // Couple notes:
-// 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens. 
+// 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens.
 // 2. No advanced flows like FundCommunityPool(), SendCoinsFromModuleToAccount()
-// 3. User-level approvals are not handled. 
+// 3. User-level approvals are not handled.
 // 4. Only auto-scannable approvals are checked for our MsgTransferTokens (no explicitly prioritized)
 // 5. Even though we use sdk.Coins[] as parameter, there is no wrapping done. It is just an alias and always uses our standard natively.
 
@@ -9827,7 +9827,7 @@ Behind the scenes, this works as follows
 
 1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.&#x20;
 2. The path element provides details about the conversion rate amounts. Handle the conversion (int amount -> Balance\[] array).
-3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard.       &#x20;
+3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard. &#x20;
 4. Anywhere you want to support both dynamically, call the wrapper function instead of your `SendCoins` or other token transfer functionality.
 
 Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.
@@ -9871,7 +9871,7 @@ func (k Keeper) SendNativeTokensToAddress(ctx sdk.Context, recipientAddress stri
 	badgesMsgServer := NewMsgServerImpl(k)
 
 	// Handle any approvals that need to be set
-	updateApprovalsMsg ::= ...	
+	updateApprovalsMsg ::= ...
 	_, err = badgesMsgServer.UpdateUserApprovals(ctx, updateApprovalsMsg)
 	if err != nil {
 		return err
