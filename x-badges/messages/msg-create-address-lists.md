@@ -1,6 +1,6 @@
 # MsgCreateAddressLists
 
-Creates reusable address lists by ID for gas optimizations. Note these serve no other purpose than to be an immutable shorthand ID reference to save on gas. These are permanent once created and cannot be deleted.
+Creates reusable address lists by ID for gas optimizations. Note these serve no other purpose than to be an immutable shorthand ID reference to save on gas. These are permanent once created and cannot be deleted or edited.
 
 ## Important Notes
 
@@ -38,8 +38,6 @@ bitbadgeschaind tx badges create-address-lists '[tx-json]' --from creator-key
             "listId": "", // Unique ID for the address list
             "addresses": ["bb1...", "bb1..."],
             "whitelist": true,
-            "createdBy": "", // Leave blank - auto-generated
-            "aliasAddress": "", // Leave blank - auto-generated
             "uri": "",
             "customData": ""
         }

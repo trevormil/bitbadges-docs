@@ -49,9 +49,7 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                 "precalculationOptions": {
                     "overrideTimestamp": "0",
                     "tokenIdsOverride": []
-                },
-                "numAttempts": "1"
-            }
+                }
         ]
     }
 ]

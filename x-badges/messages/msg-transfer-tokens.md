@@ -46,8 +46,6 @@ message Transfer {
   bool onlyCheckPrioritizedOutgoingApprovals = 11;
   // The options for precalculating the balances.
   PrecalculationOptions precalculationOptions = 12;
-  // The number of times to attempt approval validation. If 0 / not specified, we default to only one.
-  string numAttempts = 13;
 }
 
 message PrecalculationOptions {
@@ -275,10 +273,6 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
             "onlyCheckPrioritizedCollectionApprovals": false,
             "onlyCheckPrioritizedIncomingApprovals": false,
             "onlyCheckPrioritizedOutgoingApprovals": false,
-
-            // Number of times to attempt this transfer (default is 1, 0 is empty and also defaults to 1)
-            // Use this if you want to try this transfer multiple times
-            "numAttempts": "1"
         }
     ]
 }

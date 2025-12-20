@@ -62,8 +62,7 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
                 ],
                 "onlyCheckPrioritizedCollectionApprovals": true,
                 "onlyCheckPrioritizedIncomingApprovals": false,
-                "onlyCheckPrioritizedOutgoingApprovals": false,
-                "numAttempts": "1"
+                "onlyCheckPrioritizedOutgoingApprovals": false
             }
         ]
     }
@@ -97,7 +96,6 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
 -   `"merkleProofs": []` - No merkle proofs required for this simple transfer
 -   `"ethSignatureProofs": []` - No ETH signature proofs required for this simple transfer
 -   `"memo": ""` - No memo attached
--   `"numAttempts": "1"` - Single transfer attempt
 
 ## Usage
 
