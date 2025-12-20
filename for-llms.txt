@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Dec 10 17:58:04 UTC 2025
+Generated on Sat Dec 20 12:13:39 UTC 2025
 
 
 
