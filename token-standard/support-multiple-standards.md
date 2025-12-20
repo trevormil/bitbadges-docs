@@ -13,6 +13,7 @@ func (k Keeper) SendCoinsWithWrapping(ctx sdk.Context, bankKeeper types.BankKeep
 // 2. No advanced flows like FundCommunityPool(), SendCoinsFromModuleToAccount()
 // 3. User-level approvals are not handled. 
 // 4. Only auto-scannable approvals are checked for our MsgTransferTokens (no explicitly prioritized)
+// 5. Even though we use sdk.Coins[] as parameter, there is no wrapping done. It is just an alias and always uses our standard natively.
 
 // If you need other functionality, consider writing your own which is also very easy (see below).
 ```
