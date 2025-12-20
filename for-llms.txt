@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Dec 20 12:58:36 UTC 2025
+Generated on Sat Dec 20 13:19:46 UTC 2025
 
 
 
@@ -9798,7 +9798,24 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 
 # 🤹 Support Multiple Standards
 
-In the case of trying to support multiple standards dynamically, consider an approach such as this one.&#x20;
+In the case of trying to support multiple standards dynamically, you simply have to call a wrapper function where you want to support both dynamically and pattern match.
+
+For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithWrapping function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
+
+```go
+// SendCoinsWithWrapping(ctx, bk, 'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
+func (k Keeper) SendCoinsWithWrapping(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
+
+// Couple notes:
+// 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens. 
+// 2. No advanced flows like FundCommunityPool(), SendCoinsFromModuleToAccount()
+// 3. User-level approvals are not handled. 
+// 4. Only auto-scannable approvals are checked for our MsgTransferTokens (no explicitly prioritized)
+
+// If you need other functionality, consider writing your own which is also very easy (see below).
+```
+
+Behind the scenes, this works as follows
 
 1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.&#x20;
 2. The path element provides details about the conversion rate amounts. Handle the conversion (int amount -> Balance\[] array).
