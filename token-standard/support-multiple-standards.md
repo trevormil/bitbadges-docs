@@ -5,7 +5,7 @@ In the case of trying to support multiple standards dynamically, consider an app
 1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.&#x20;
 2. The path element provides details about the conversion rate amounts. Handle the conversion (int amount -> Balance\[] array).
 3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard.       &#x20;
-4. Anywhere you want to support both dynamically, call the wrapper function instead.
+4. Anywhere you want to support both dynamically, call the wrapper function instead of your `SendCoins` or other token transfer functionality.
 
 Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.
 
