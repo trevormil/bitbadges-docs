@@ -164,6 +164,18 @@ You **must** use prioritized approvals when:
 -   The approval requires ETH signatures
 -   You need explicit control over which approval is used
 
+### Special Contexts Requiring Prioritized Approvals
+
+Certain special transfer contexts are also **not compatible with auto-scan mode** and require you to specify prioritized collection approvals:
+
+#### IBC Backed Minting Paths
+
+When using [IBC backed paths](./ibc-backed-paths.md) for minting/unwinding tokens, transfers involving the special backing address **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
+
+#### Cosmos Wrapper Paths
+
+When using [Cosmos wrapper paths](./cosmos-wrapper-paths.md) for wrapping/unwrapping tokens to native Cosmos SDK coins, transfers involving wrapper addresses **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
+
 See [Transferability & Approvals](./transferability-approvals.md) for more details on prioritized approvals.
 
 ## Examples

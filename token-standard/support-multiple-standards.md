@@ -5,8 +5,8 @@ In the case of trying to support multiple standards dynamically, you simply have
 For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithBadgesRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
 
 ```go
-// SendCoinsWithBadgesRouting(ctx, bk, 'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
-func (k Keeper) SendCoinsWithBadgesRouting(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
+// SendCoinsWithAliasRouting(ctx,  'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
+func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
 
 // Couple notes:
 // 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens.
@@ -28,30 +28,37 @@ Behind the scenes, this works as follows
 Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.
 
 ```go
-func (k Keeper) SendCoinsToPoolWithWrapping(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins) error {
+
+func (k Keeper) SendCoinsWithAliasRouting(
+	ctx sdk.Context,
+	fromAddressAcc sdk.AccAddress,
+	toAddressAcc sdk.AccAddress,
+	coins sdk.Coins,
+) error {
+	// Check if this is a wrapped badges denom
 	for _, coin := range coins {
 		if k.CheckIsWrappedDenom(ctx, coin.Denom) {
-			// If denom is a BitBadges denom, use the BitBadges standard
-			err := k.SendNativeTokensToAddress(ctx, from.String(), to.String(), coin.Denom, sdkmath.NewUintFromBigInt(coin.Amount.BigInt()))
+			err := k.SendNativeTokensViaAliasDenom(ctx, fromAddressAcc.String(), toAddressAcc.String(), coin.Denom, sdkmath.NewUintFromBigInt(coin.Amount.BigInt()))
 			if err != nil {
 				return err
 			}
 		} else {
-			// If denom is not a BitBadges denom, send the coins normally with x/bank keeper
-			err := bankKeeper.SendCoins(ctx, from, to, sdk.NewCoins(coin))
+			err := k.bankKeeper.SendCoins(ctx, fromAddressAcc, toAddressAcc, sdk.NewCoins(coin))
 			if err != nil {
-				return customhookstypes.WrapErr(&ctx, err, "failed to send coins to pool: %s", coin.Denom)
+				return err
 			}
 		}
 	}
 
 	return nil
 }
+
 ```
 
 ```go
-// SendNativeTokensToAddress sends native badges tokens to an address
-func (k Keeper) SendNativeTokensToAddress(ctx sdk.Context, recipientAddress string, toAddress string, denom string, amount sdkmath.Uint) error {
+
+// sendNativeTokensToAddressWithPoolApprovals sends native badges tokens to an address
+func (k Keeper) SendNativeTokensViaAliasDenom(ctx sdk.Context, recipientAddress string, toAddress string, denom string, amount sdkmath.Uint) error {
 	collection, err := k.ParseCollectionFromDenom(ctx, denom)
 	if err != nil {
 		return err
@@ -64,15 +71,6 @@ func (k Keeper) SendNativeTokensToAddress(ctx sdk.Context, recipientAddress stri
 
 	// Create and execute MsgTransferTokens to ensure proper event handling and validation
 	badgesMsgServer := NewMsgServerImpl(k)
-
-	// Handle any approvals that need to be set
-	updateApprovalsMsg ::= ...
-	_, err = badgesMsgServer.UpdateUserApprovals(ctx, updateApprovalsMsg)
-	if err != nil {
-		return err
-	}
-
-	// Important: This only allows auto-scanned approvals since no prioritized approvals are set
 	msg := &badgestypes.MsgTransferTokens{
 		Creator:      recipientAddress,
 		CollectionId: collection.CollectionId,
