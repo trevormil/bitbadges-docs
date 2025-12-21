@@ -1,13 +1,16 @@
-# 🤹 Support Multiple Standards
+# 🤹 Supporting Multiple Standards
+
+All standards
+
+
 
 In the case of trying to support multiple standards dynamically, you simply have to call a wrapper function where you want to support both dynamically and pattern match.
 
-For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithBadgesRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
+For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithAliasRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.
 
-```go
-// SendCoinsWithAliasRouting(ctx,  'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
-func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
-
+<pre class="language-go"><code class="lang-go">// SendCoinsWithAliasRouting(ctx,  'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
+<strong>func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
+</strong>
 // Couple notes:
 // 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens.
 // 2. No advanced flows like FundCommunityPool(), SendCoinsFromModuleToAccount()
@@ -16,13 +19,13 @@ func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, 
 // 5. Even though we use sdk.Coins[] as parameter, there is no wrapping done. It is just an alias and always uses our standard natively.
 
 // If you need other functionality, consider writing your own which is also very easy (see below).
-```
+</code></pre>
 
 Behind the scenes, this works as follows
 
-1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.&#x20;
+1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.
 2. The path element provides details about the conversion rate amounts. Handle the conversion (int amount -> Balance\[] array).
-3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard. &#x20;
+3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard.
 4. Anywhere you want to support both dynamically, call the wrapper function instead of your `SendCoins` or other token transfer functionality.
 
 Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.

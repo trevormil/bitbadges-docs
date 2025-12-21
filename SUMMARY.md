@@ -137,7 +137,8 @@
 * [📡 Events](x-badges/events.md)
 * [👤 Multi-Chain Accounts](for-developers/accounts.md)
 * [❓ FAQ](overview/faq.md)
-* [🤹 Support Multiple Standards](token-standard/support-multiple-standards.md)
+* [🤹 Supporting Multiple Standards](token-standard/support-multiple-standards.md)
+* [🕵️ Custom Extension Hooks](token-standard/custom-extension-hooks.md)
 * [⛓️ Integrate The Standard?](token-standard/integrate-the-standard.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
