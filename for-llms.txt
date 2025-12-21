@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Dec 20 19:11:23 UTC 2025
+Generated on Sun Dec 21 12:58:42 UTC 2025
 
 
 
@@ -1882,12 +1882,10 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
   * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-  * [MsgDecrementStoreValue](x-badges/messages/msg-decrement-store-value.md)
   * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
   * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
   * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
   * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-  * [MsgIncrementStoreValue](x-badges/messages/msg-increment-store-value.md)
   * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
   * [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
   * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
@@ -9810,8 +9808,8 @@ In the case of trying to support multiple standards dynamically, you simply have
 For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithBadgesRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.&#x20;
 
 ```go
-// SendCoinsWithBadgesRouting(ctx, bk, 'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
-func (k Keeper) SendCoinsWithBadgesRouting(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
+// SendCoinsWithAliasRouting(ctx,  'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
+func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
 
 // Couple notes:
 // 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens.
@@ -9833,30 +9831,37 @@ Behind the scenes, this works as follows
 Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.
 
 ```go
-func (k Keeper) SendCoinsToPoolWithWrapping(ctx sdk.Context, bankKeeper types.BankKeeper, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins) error {
+
+func (k Keeper) SendCoinsWithAliasRouting(
+	ctx sdk.Context,
+	fromAddressAcc sdk.AccAddress,
+	toAddressAcc sdk.AccAddress,
+	coins sdk.Coins,
+) error {
+	// Check if this is a wrapped badges denom
 	for _, coin := range coins {
 		if k.CheckIsWrappedDenom(ctx, coin.Denom) {
-			// If denom is a BitBadges denom, use the BitBadges standard
-			err := k.SendNativeTokensToAddress(ctx, from.String(), to.String(), coin.Denom, sdkmath.NewUintFromBigInt(coin.Amount.BigInt()))
+			err := k.SendNativeTokensViaAliasDenom(ctx, fromAddressAcc.String(), toAddressAcc.String(), coin.Denom, sdkmath.NewUintFromBigInt(coin.Amount.BigInt()))
 			if err != nil {
 				return err
 			}
 		} else {
-			// If denom is not a BitBadges denom, send the coins normally with x/bank keeper
-			err := bankKeeper.SendCoins(ctx, from, to, sdk.NewCoins(coin))
+			err := k.bankKeeper.SendCoins(ctx, fromAddressAcc, toAddressAcc, sdk.NewCoins(coin))
 			if err != nil {
-				return customhookstypes.WrapErr(&ctx, err, "failed to send coins to pool: %s", coin.Denom)
+				return err
 			}
 		}
 	}
 
 	return nil
 }
+
 ```
 
 ```go
-// SendNativeTokensToAddress sends native badges tokens to an address
-func (k Keeper) SendNativeTokensToAddress(ctx sdk.Context, recipientAddress string, toAddress string, denom string, amount sdkmath.Uint) error {
+
+// sendNativeTokensToAddressWithPoolApprovals sends native badges tokens to an address
+func (k Keeper) SendNativeTokensViaAliasDenom(ctx sdk.Context, recipientAddress string, toAddress string, denom string, amount sdkmath.Uint) error {
 	collection, err := k.ParseCollectionFromDenom(ctx, denom)
 	if err != nil {
 		return err
@@ -9869,15 +9874,6 @@ func (k Keeper) SendNativeTokensToAddress(ctx sdk.Context, recipientAddress stri
 
 	// Create and execute MsgTransferTokens to ensure proper event handling and validation
 	badgesMsgServer := NewMsgServerImpl(k)
-
-	// Handle any approvals that need to be set
-	updateApprovalsMsg ::= ...
-	_, err = badgesMsgServer.UpdateUserApprovals(ctx, updateApprovalsMsg)
-	if err != nil {
-		return err
-	}
-
-	// Important: This only allows auto-scanned approvals since no prioritized approvals are set
 	msg := &badgestypes.MsgTransferTokens{
 		Creator:      recipientAddress,
 		CollectionId: collection.CollectionId,
@@ -10120,12 +10116,10 @@ This directory contains comprehensive developer documentation for the BitBadges 
 ### Address Lists & Dynamic Stores
 
 -   [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
--   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create boolean store
 -   [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
 -   [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
--   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
--   [MsgIncrementStoreValue](messages/msg-increment-store-value.md) - Increase values for addresses
--   [MsgDecrementStoreValue](messages/msg-decrement-store-value.md) - Decrease values for addresses
+-   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set boolean values for addresses
 -   [More messages...](messages/) - See full message reference
 
 ## Query Reference
@@ -11048,23 +11042,23 @@ Require users to own specific tokens to access premium features or exclusive tra
 
 # Dynamic Store Challenges
 
-Require transfer initiators to pass checks against dynamic stores. Typically, these are used with smart contracts.
+Require transfer initiators to pass checks against dynamic stores. Typically, these are used in combination with smart contracts or other custom extensions.
 
-Dynamic stores are simply standalone (address -> number) stores where the number is the amount of uses an initiator has left. They are controlled by whoever creates them. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
+Dynamic stores are standalone (address -> boolean) stores controlled by whoever creates them. They are stored and maintained by the creator. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
 
 ## How It Works
 
-Dynamic store challenges check if the transfer initiator has a value greater than 0 in specified dynamic stores. The system:
+Dynamic store challenges check if the transfer initiator has a value of `true` in specified dynamic stores. The system:
 
 1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
-2. **Evaluates Number**: Returns the numeric value for the initiator
-3. **Requires All > 0**: All challenges must return a value greater than 0 for approval
-4. **Fails if Any ≤ 0**: If any challenge returns 0 or less, transfer is denied
+2. **Evaluates Boolean**: Returns the boolean value for the initiator
+3. **Requires All True**: All challenges must return `true` for approval
+4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
 
 ## Interface
 
 ```typescript
-interface DynamicStoreChallenge<T extends NumberType> {
+interface DynamicStoreChallenge {
     storeId: string; // Dynamic store ID to check
 }
 ```
@@ -11074,8 +11068,8 @@ interface DynamicStoreChallenge<T extends NumberType> {
 ```json
 {
     "dynamicStoreChallenges": [
-        { "storeId": "1" }, // Member points store (must have > 0 points)
-        { "storeId": "2" } // Subscription level store (must have > 0 level)
+        { "storeId": "1" }, // Member store (must be true)
+        { "storeId": "2" } // Subscription store (must be true)
     ]
 }
 ```
@@ -11084,19 +11078,11 @@ interface DynamicStoreChallenge<T extends NumberType> {
 
 ### Creating Stores
 
-Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with default numeric values.
+Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
 
 ### Setting Values
 
-Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set numeric values for specific addresses.
-
-### Incrementing Values
-
-Use [MsgIncrementStoreValue](../../messages/msg-increment-store-value.md) to increase values for specific addresses.
-
-### Decrementing Values
-
-Use [MsgDecrementStoreValue](../../messages/msg-decrement-store-value.md) to decrease values for specific addresses.
+Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
 
 ### Querying Values
 
@@ -12751,6 +12737,18 @@ You **must** use prioritized approvals when:
 -   The approval requires merkle proofs
 -   The approval requires ETH signatures
 -   You need explicit control over which approval is used
+
+### Special Contexts Requiring Prioritized Approvals
+
+Certain special transfer contexts are also **not compatible with auto-scan mode** and require you to specify prioritized collection approvals:
+
+#### IBC Backed Minting Paths
+
+When using [IBC backed paths](./ibc-backed-paths.md) for minting/unwinding tokens, transfers involving the special backing address **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
+
+#### Cosmos Wrapper Paths
+
+When using [Cosmos wrapper paths](./cosmos-wrapper-paths.md) for wrapping/unwrapping tokens to native Cosmos SDK coins, transfers involving wrapper addresses **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
 
 See [Transferability & Approvals](./transferability-approvals.md) for more details on prioritized approvals.
 
@@ -19390,12 +19388,10 @@ This directory contains detailed documentation for all message types supported b
 
 ### Dynamic Store Management
 
-* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create numeric stores for approval criteria
+* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
 * [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
 * [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set individual address values in dynamic store
-* [MsgIncrementStoreValue](msg-increment-store-value.md) - Increase values for addresses
-* [MsgDecrementStoreValue](msg-decrement-store-value.md) - Decrease values for addresses
+* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
 
 ## Additional Message Types
 
@@ -19560,14 +19556,14 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 # MsgCreateDynamicStore
 
-Creates a new dynamic store for numeric key-value storage.
+Creates a new dynamic store for boolean key-value storage.
 
 ## Proto Definition
 
 ```protobuf
 message MsgCreateDynamicStore {
   string creator = 1; // Address creating the dynamic store
-  string defaultValue = 2; // Default numeric value for uninitialized addresses
+  bool defaultValue = 2; // Default boolean value for uninitialized addresses
 }
 
 message MsgCreateDynamicStoreResponse {
@@ -19579,69 +19575,16 @@ message MsgCreateDynamicStoreResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges create-dynamic-store [default-value] --from creator-key
+bitbadgeschaind tx badges create-dynamic-store [true|false] --from creator-key
 ```
 
 ### JSON Example
 ```json
 {
   "creator": "bb1...",
-  "defaultValue": "0"
+  "defaultValue": false
 }
 ```
-
-## File: ./x-badges/messages/msg-decrement-store-value.md
-
-# MsgDecrementStoreValue
-
-Decrements a numeric value for a specific address in a dynamic store.
-
-## Proto Definition
-
-```protobuf
-message MsgDecrementStoreValue {
-  string creator = 1; // Address decrementing the value (must be store creator)
-  string storeId = 2; // ID of the dynamic store
-  string address = 3; // Address to decrement the value for
-  string amount = 4; // Amount to decrement by
-  bool setToZeroOnUnderflow = 5; // Whether to set to 0 if result would be negative
-}
-
-message MsgDecrementStoreValueResponse {}
-```
-
-## Usage Example
-
-```bash
-# CLI command
-bitbadgeschaind tx badges decrement-store-value [store-id] [address] [amount] [set-to-zero-on-underflow] --from creator-key
-```
-
-### JSON Example
-
-```json
-{
-    "creator": "bb1...",
-    "storeId": "1",
-    "address": "bb1...",
-    "amount": "5",
-    "setToZeroOnUnderflow": false
-}
-```
-
-## Underflow Behavior
-
-The `setToZeroOnUnderflow` field controls what happens when decrementing would result in a negative value:
-
--   **`true`**: The value is set to 0 instead of going negative
--   **`false`**: The operation fails with an error if it would result in a negative value
-
-## Related Messages
-
--   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set absolute values
--   [MsgIncrementStoreValue](./msg-increment-store-value.md) - Increase values
--   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create new stores
-
 
 ## File: ./x-badges/messages/msg-delete-collection.md
 
@@ -19819,50 +19762,6 @@ Users can only delete their own outgoing approvals. The operation must be perfor
 -   [MsgUpdateUserApprovals](./msg-update-user-approvals.md) - Full approval management
 -   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
 -   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete an incoming approval
-
-
-## File: ./x-badges/messages/msg-increment-store-value.md
-
-# MsgIncrementStoreValue
-
-Increments a numeric value for a specific address in a dynamic store.
-
-## Proto Definition
-
-```protobuf
-message MsgIncrementStoreValue {
-  string creator = 1; // Address incrementing the value (must be store creator)
-  string storeId = 2; // ID of the dynamic store
-  string address = 3; // Address to increment the value for
-  string amount = 4; // Amount to increment by
-}
-
-message MsgIncrementStoreValueResponse {}
-```
-
-## Usage Example
-
-```bash
-# CLI command
-bitbadgeschaind tx badges increment-store-value [store-id] [address] [amount] --from creator-key
-```
-
-### JSON Example
-
-```json
-{
-    "creator": "bb1...",
-    "storeId": "1",
-    "address": "bb1...",
-    "amount": "10"
-}
-```
-
-## Related Messages
-
--   [MsgSetDynamicStoreValue](./msg-set-dynamic-store-value.md) - Set absolute values
--   [MsgDecrementStoreValue](./msg-decrement-store-value.md) - Decrease values
--   [MsgCreateDynamicStore](./msg-create-dynamic-store.md) - Create new stores
 
 
 ## File: ./x-badges/messages/msg-purge-approvals.md
@@ -20229,7 +20128,7 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 
 # MsgSetDynamicStoreValue
 
-Sets a numeric value for a specific address in a dynamic store.
+Sets a boolean value for a specific address in a dynamic store.
 
 ## Proto Definition
 
@@ -20238,7 +20137,7 @@ message MsgSetDynamicStoreValue {
   string creator = 1; // Address setting the value (must be store creator)
   string storeId = 2; // ID of the dynamic store
   string address = 3; // Address to set the value for
-  string value = 4; // Numeric value to set
+  bool value = 4; // Boolean value to set
 }
 
 message MsgSetDynamicStoreValueResponse {}
@@ -20248,7 +20147,7 @@ message MsgSetDynamicStoreValueResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [value] --from creator-key
+bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [true|false] --from creator-key
 ```
 
 ### JSON Example
@@ -20257,7 +20156,7 @@ bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [value] -
   "creator": "bb1...",
   "storeId": "1",
   "address": "bb1...",
-  "value": "100"
+  "value": true
 }
 ```
 
@@ -21817,7 +21716,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_collection/1"
 
 # GetDynamicStoreValue
 
-Retrieves the numeric value for a specific address in a dynamic store. This is the number of uses an address has left for a dynamic store.
+Retrieves the boolean value for a specific address in a dynamic store.
 
 ## Proto Definition
 
@@ -21834,7 +21733,7 @@ message QueryGetDynamicStoreValueResponse {
 message DynamicStoreValue {
   string storeId = 1; // The dynamic store ID
   string address = 2; // The address this value applies to
-  string value = 3; // The numeric value
+  bool value = 3; // The boolean value
 }
 ```
 
@@ -21855,7 +21754,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
     "value": {
         "storeId": "1",
         "address": "bb1...",
-        "value": "100"
+        "value": true
     }
 }
 ```
