@@ -1,6 +1,6 @@
 # GetDynamicStoreValue
 
-Retrieves the numeric value for a specific address in a dynamic store. This is the number of uses an address has left for a dynamic store.
+Retrieves the boolean value for a specific address in a dynamic store.
 
 ## Proto Definition
 
@@ -17,7 +17,7 @@ message QueryGetDynamicStoreValueResponse {
 message DynamicStoreValue {
   string storeId = 1; // The dynamic store ID
   string address = 2; // The address this value applies to
-  string value = 3; // The numeric value
+  bool value = 3; // The boolean value
 }
 ```
 
@@ -38,7 +38,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
     "value": {
         "storeId": "1",
         "address": "bb1...",
-        "value": "100"
+        "value": true
     }
 }
 ```

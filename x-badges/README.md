@@ -44,12 +44,10 @@ This directory contains comprehensive developer documentation for the BitBadges 
 ### Address Lists & Dynamic Stores
 
 -   [MsgCreateAddressLists](messages/msg-create-address-lists.md) - Create reusable address lists
--   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create key-value store
+-   [MsgCreateDynamicStore](messages/msg-create-dynamic-store.md) - Create boolean store
 -   [MsgUpdateDynamicStore](messages/msg-update-dynamic-store.md) - Update dynamic store properties
 -   [MsgDeleteDynamicStore](messages/msg-delete-dynamic-store.md) - Delete dynamic store
--   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set address-specific store values
--   [MsgIncrementStoreValue](messages/msg-increment-store-value.md) - Increase values for addresses
--   [MsgDecrementStoreValue](messages/msg-decrement-store-value.md) - Decrease values for addresses
+-   [MsgSetDynamicStoreValue](messages/msg-set-dynamic-store-value.md) - Set boolean values for addresses
 -   [More messages...](messages/) - See full message reference
 
 ## Query Reference

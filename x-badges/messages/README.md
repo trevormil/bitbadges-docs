@@ -41,12 +41,10 @@ This directory contains detailed documentation for all message types supported b
 
 ### Dynamic Store Management
 
-* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create numeric stores for approval criteria
+* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
 * [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
 * [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set individual address values in dynamic store
-* [MsgIncrementStoreValue](msg-increment-store-value.md) - Increase values for addresses
-* [MsgDecrementStoreValue](msg-decrement-store-value.md) - Decrease values for addresses
+* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
 
 ## Additional Message Types
 
