@@ -1,9 +1,5 @@
 # 🤹 Supporting Multiple Standards
 
-All standards
-
-
-
 In the case of trying to support multiple standards dynamically, you simply have to call a wrapper function where you want to support both dynamically and pattern match.
 
 For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithAliasRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.
