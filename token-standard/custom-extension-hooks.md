@@ -4,6 +4,12 @@ Within our module, we attempt to make it easy to extend with custom configuratio
 
 In your `app.go` , you can wire up custom code that is run at certain points no matter the collection. If you need to use the `ctx` field, you can. State is rolled back if anything fails.&#x20;
 
+These are often good for global implementations like:
+
+* Global archiving / halting
+* Only allowing specific addresses administrative privileges
+* Global indexing
+
 ### Custom Approval Criteria Checkers
 
 Custom approval criteria checkers add validation logic during approval processing. These are run along with checking our native approval criteria (every level - collection, incoming, outgoing).
