@@ -1,10 +1,12 @@
 # 🕵️ Custom Extension Hooks
 
-Within our module, we attempt to make it easy to extend with custom configurations if you are a chain developer. In your `app.go` , you can wire up custom code that is run at certain points no matter the collection:
+Within our module, we attempt to make it easy to extend with custom configurations if you are a chain developer. Oftentimes, you want to implement minor global invariants custom to your chain.
+
+In your `app.go` , you can wire up custom code that is run at certain points no matter the collection. If you need to use the `ctx` field, you can. State is rolled back if anything fails.&#x20;
 
 ### Custom Approval Criteria Checkers
 
-Custom approval criteria checkers add validation logic during approval processing.
+Custom approval criteria checkers add validation logic during approval processing. These are run along with checking our native approval criteria (every level - collection, incoming, outgoing).
 
 #### Example: Require Specific Address
 
@@ -46,7 +48,7 @@ app.BadgesKeeper.RegisterCustomApprovalCriteriaChecker(func(approval *types.Coll
 
 ### Custom Global Transfer Checkers
 
-Custom global transfer checkers run before `HandleTransfer()` and can reject transfers at a global level.
+Custom global transfer checkers run before `HandleTransfer()` and can reject transfers at a global level. Here, you have access to the balances for the transfer.&#x20;
 
 #### Example: Require Specific Memo
 
