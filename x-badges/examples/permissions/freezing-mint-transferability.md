@@ -75,6 +75,4 @@ Once set to permanently forbidden, mint permissions cannot be restored. Carefull
 
 ## Related Concepts
 
--   [Permissions System](../../concepts/permissions/README.md) - Permission mechanics
--   [Collection Permissions](../../concepts/permissions/permission-system.md) - Collection-level controls
--   [Action Permissions](../../concepts/permissions/action-permission.md) - Specific action controls
+-   [Permissions](../../../learn/permissions.md) - Permission mechanics and controls

@@ -110,4 +110,4 @@ const collectionPermissions = {
 
 * [Total Supply](/broken/pages/PV7aK6FnbshnT1ORXgiM) - Supply calculation mechanics
 * [Max Number of Transfers](../concepts/approval-criteria/max-number-of-transfers.md) - Transfer limits
-* [Permissions System](../concepts/permissions/) - Permission controls
+* [Permissions](../../learn/permissions.md) - Permission controls

@@ -26,6 +26,6 @@ BitBadges permissions follow a timeline-based system where:
 
 ## Related Concepts
 
-* [Permission System](../../concepts/permissions/permission-system.md)
+* [Permissions](../../../learn/permissions.md) - Permission system and controls
 * [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
 * [Timeline System](../../concepts/timeline-system.md)

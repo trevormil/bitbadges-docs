@@ -82,6 +82,5 @@ For user approval configuration, see:
 
 ## Related Concepts
 
-* [Permissions System](../concepts/permissions/) - Permission mechanics
-* [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+* [Permissions](../../learn/permissions.md) - Permission mechanics and controls
 * [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) - Default balances and user permission structure

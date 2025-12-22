@@ -100,4 +100,4 @@ const createCollection = {
 ## Related Concepts
 
 * [Collection Setup Fields](../../../token-standard/learn/collection-setup-fields.md) - Token ID range concept
-* [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
+* [Permissions](../../../learn/permissions.md) - Permission mechanics and controls
