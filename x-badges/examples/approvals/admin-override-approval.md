@@ -39,6 +39,6 @@ const approveSelfForcefully = (address: string) => {
 
 ## Related Concepts
 
-* [Transferability / Approvals](../../concepts/transferability-approvals.md)
+* [Transferability](../../../learn/transferability.md)
 * [Address Lists](../../concepts/address-lists.md)
 * [Approval Criteria](broken-reference)

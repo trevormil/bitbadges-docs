@@ -197,7 +197,7 @@ ETH Signature Proofs are required when transfers use [ETH Signature Challenges](
 
 ### Related Documentation
 
-* [Transferability / Approvals](../concepts/transferability-approvals.md) - Approval system overview
+* [Transferability](../../learn/transferability.md) - Approval system overview
 * [Collection Approvals](broken-reference) - Collection-level controls
 * [User Approvals](../examples/building-user-approvals.md) - User-level settings
 * [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements

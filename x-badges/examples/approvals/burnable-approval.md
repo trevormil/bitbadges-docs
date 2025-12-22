@@ -26,6 +26,6 @@ const burnableApproval = new CollectionApproval({
 
 ## Related Concepts
 
--   [Transferability / Approvals](../../concepts/transferability-approvals.md)
+-   [Transferability](../../../learn/transferability.md)
 -   [Address Lists](../../concepts/address-lists.md)
 -   [Timeline System](../../concepts/timeline-system.md)

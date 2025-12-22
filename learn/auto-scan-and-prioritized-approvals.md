@@ -491,4 +491,4 @@ const msg: MsgTransferTokens = {
 };
 ```
 
-See [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
+See [Transferability](./transferability.md) for detailed documentation.

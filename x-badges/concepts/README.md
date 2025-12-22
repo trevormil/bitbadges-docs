@@ -10,7 +10,6 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Total Supply**](total-supply.md) - Maximum number of tokens that can exist for each token ID
 -   [**Mint Escrow Address**](mint-escrow-address.md) - Reserved address for holding native funds on behalf of the Mint address
 -   [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
--   [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
 -   [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
 -   [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 -   [**Permissions**](permissions/) - Granular control over collection management operations

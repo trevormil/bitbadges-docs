@@ -123,4 +123,4 @@ const EmptyApprovalCriteria = {
 
 -   [Approval Criteria Overview](broken-reference)
 -   [Building Collection Approvals](building-collection-approvals.md)
--   [Transferability / Approvals](../concepts/transferability-approvals.md)
+-   [Transferability](../../learn/transferability.md)

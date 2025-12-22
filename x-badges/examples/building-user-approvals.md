@@ -86,5 +86,5 @@ For approval criteria examples, see:
 
 For concepts, see:
 
--   [Transferability / Approvals](../concepts/transferability-approvals.md)
+-   [Transferability](../../learn/transferability.md)
 -   [Approval Criteria](broken-reference)

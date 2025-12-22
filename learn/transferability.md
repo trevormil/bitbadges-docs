@@ -37,6 +37,19 @@ interface CollectionApproval<T extends bigint> {
 }
 ```
 
+## The Six Core Fields
+
+Every approval defines **Who? When? What?** through these six core fields:
+
+| Field               | Type                             | Purpose                                 | Example                                          |
+| ------------------- | -------------------------------- | --------------------------------------- | ------------------------------------------------ |
+| `toListId`          | Address List ID                  | Who can receive tokens                  | `"All"`, `"Mint"`, `"bb1..."`                    |
+| `fromListId`        | Address List ID                  | Who can send tokens                     | `"Mint"`, `"!Mint"`                              |
+| `initiatedByListId` | Address List ID                  | Who can initiate transfer               | `"All"`, `"bb1..."`                              |
+| `transferTimes`     | UintRange\[] (UNIX Milliseconds) | When transfer can occur                 | `[{start: 1691931600000n, end: 1723554000000n}]` |
+| `tokenIds`          | UintRange\[] (Token IDs)         | Which token IDs                         | `[{start: 1n, end: 100n}]`                       |
+| `ownershipTimes`    | UintRange\[] (UNIX Milliseconds) | Which ownership times to be transferred | `[{start: 1n, end: 18446744073709551615n}]`      |
+
 ### Example Approval
 
 ```typescript
