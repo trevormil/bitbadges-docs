@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 12:58:17 UTC 2025
+Generated on Mon Dec 22 13:04:09 UTC 2025
 
 
 
@@ -1802,10 +1802,13 @@ BitBadges is simply tokenization-as-a-service. Create anything from subscription
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
 * **No Code, No Smart Contracts, No Audits** - Everything works out-of-the-box with no code. One reusable module.
-* **Compliance Checked Every Transfer, Swap, IBC Transfer** - Build complex transferability systems checked everywhere. No backdoors.
-* **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems via IBC.
+* **Compliance Checked Every Transfer, Swap, IBC Transfer** - Build complex transferability systems checked everywhere. No backdoors. Compliance checked every swap.
+* **Drop-In 1000x Upgrade -** We are a superset of existing standards. One line of code change for 1000x unlock in features.
+* **Supports Any IBC (ICS20) Currency -** We've designed it in a way such that it is seamlessly compatible with any ICS20 currency paired for payments, swaps, liquidity, or anything else.
+* **IBC Compatibility** - One interface, one token experience for all blockchain ecosystems via IBC.
 * **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials with time-dependent logic and approvals.
-* **Advanced Transferability / Compliance** - Fine-grained controls over who can transfer what, when, and how on any level.
+* **Advanced Transferability / Compliance** - Fine-grained controls over who can transfer what, when, and how on any level.&#x20;
+* **Three Transferability Levels** - Customize transferability on the collection, sender,and recipient levels.&#x20;
 * **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
 * **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
 * **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts or any other custom environment
