@@ -6,11 +6,15 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 BitBadges supports three levels of transferability control:
 
-| Level          | Controlled By  | Stored On              | Msg                                    | Use Case                               |
-| -------------- | -------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
-| **Incoming**   | Recipient      | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+<div style="overflow-x: auto;">
+
+| Level          | Controlled By  | Approval Level | Approver Address | Stored On              | Msg                                    | Use Case                               |
+| -------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | collection     | ""                | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | outgoing       | bb1...            | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
+| **Incoming**   | Recipient      | incoming       | bb1...            | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+
+</div>
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
@@ -34,6 +38,8 @@ Collection approvals define transferability rules for the entire collection on a
 
 **All transfers must satisfy the collection approvals.**
 
+**Important:** Approval IDs are unique identifiers and must not collide with other collection approvals.
+
 ```typescript
 // Stored on TokenCollection.collectionApprovals[] (CollectionApproval<T>[])
 interface CollectionApproval<T extends bigint> {
@@ -44,7 +50,7 @@ interface CollectionApproval<T extends bigint> {
     transferTimes: UintRange<T>[]; // When can transfer happen?
     tokenIds: UintRange<T>[]; // Which token IDs?
     ownershipTimes: UintRange<T>[]; // Which ownership times?
-    approvalId: string; // Unique identifier
+    approvalId: string; // Unique identifier - must not collide with other approvals on the same level
     version: T; // Version control (incremented on each update)
 
     // Optional Fields
@@ -231,17 +237,25 @@ If set to true, we do NOT check the corresponding user-level approvals for the s
 
 ```typescript
 const collectionApproval: CollectionApproval<bigint> = {
-    fromListId: '!Mint',
-    toListId: 'All',
-    initiatedByListId: 'All',
-    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-    approvalId: 'override-approval',
-    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Skip sender approvals
         overridesToIncomingApprovals: true, // Skip recipient approvals
+        // ... other criteria
+    },
+    // ... other fields
+};
+```
+
+#### Mint Address Overrides
+
+Because the Mint address cannot control its own user-level approvals, it must always override the sender's outgoing approvals to properly work.
+
+```typescript
+const mintApproval: CollectionApproval<bigint> = {
+    fromListId: 'Mint',
+    // ... other fields
+    approvalCriteria: {
+        overridesFromOutgoingApprovals: true, // Required for Mint
         // ... other criteria
     },
 };

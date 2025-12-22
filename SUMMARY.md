@@ -28,7 +28,6 @@
     * [Token Ownership](token-standard/learn/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](token-standard/learn/approval-criteria/dynamic-store-challenges.md)
     * [ETH Signature Challenges](token-standard/learn/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](token-standard/learn/approval-criteria/linking-trackers-advanced.md)
     * [Max Number of Transfers](token-standard/learn/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](token-standard/learn/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](token-standard/learn/approval-criteria/overrides.md)

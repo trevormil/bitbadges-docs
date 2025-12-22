@@ -238,21 +238,10 @@ If false, we will check the prioritized approvals first and then scan through th
 
 ```typescript
 const msg: MsgTransferTokens = {
-    creator: 'bb1initiator...',
-    collectionId: '1',
+    // ... other fields
     transfers: [
         {
-            from: 'bb1sender...',
-            toAddresses: ['bb1recipient...'],
-            balances: [
-                {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
-                    ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
-                    ],
-                },
-            ],
+            // ... other fields
             prioritizedApprovals: [
                 {
                     approvalId: 'abc123',
@@ -275,14 +264,6 @@ The `mustPrioritize` flag explicitly requires an approval to be prioritized. Thi
 
 ```typescript
 const approval: CollectionApproval<bigint> = {
-    approvalId: 'force-prioritize',
-    fromListId: '!Mint',
-    toListId: 'All',
-    initiatedByListId: 'All',
-    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-    version: 0n,
     approvalCriteria: {
         mustPrioritize: true, // Cannot be auto-scanned
         // ... other criteria
