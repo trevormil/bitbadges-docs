@@ -79,15 +79,6 @@
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
   * [Params](x-badges/queries/params.md)
-* [⌨️ Type Definitions](token-standard/type-definitions/README.md)
-  * [Address Lists](token-standard/type-definitions/address-lists.md)
-  * [Balances](token-standard/type-definitions/balances.md)
-  * [Core Collection](token-standard/type-definitions/core-collection.md)
-  * [Dynamic Stores](token-standard/type-definitions/dynamic-stores.md)
-  * [Metadata](token-standard/type-definitions/metadata.md)
-  * [Permissions](token-standard/type-definitions/permissions.md)
-  * [Timelines](token-standard/type-definitions/timelines.md)
-  * [Transfers](token-standard/type-definitions/transfers.md)
 * [💡 Examples and Snippets](x-badges/examples/README.md)
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
@@ -123,6 +114,7 @@
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
 * [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
+* [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/badges)
 
 ## ⌨️ For Developers
 
