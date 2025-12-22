@@ -1,8 +1,3 @@
----
-description: >-
-    Fine-grained permissions system for token collections: manager controls and administrative actions
----
-
 ## Manager
 
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.

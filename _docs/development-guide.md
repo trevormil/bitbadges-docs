@@ -65,12 +65,11 @@ const tokenIds: UintRange[] = [
 
 ### Frontmatter
 
-Always include frontmatter for GitBook:
+**Do not include descriptions in frontmatter.** GitBook automatically generates descriptions from page titles and content.
 
 ```markdown
 ---
-description: >-
-  Brief description of the page content (max 160 characters)
+# No description field needed
 ---
 ````
 

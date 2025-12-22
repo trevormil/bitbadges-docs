@@ -1,8 +1,3 @@
----
-description: >-
-    Time-dependent approvals: gate token transfers with time-based restrictions for subscriptions, unlocks, and vesting
----
-
 BitBadges supports time-dependent approvals through the `transferTimes` field, allowing you to gate the flow of tokens based on time. This enables time-dependent functionality at scale, such as subscriptions, unlocks, and vesting.
 
 ## Time-Dependent Approvals

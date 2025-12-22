@@ -1,8 +1,3 @@
----
-description: >-
-    Mint address and circulating supply: how token creation works and how supply is controlled
----
-
 ## Mint Address
 
 The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
@@ -14,7 +9,7 @@ The **manager** of the collection controls minting by setting and updating colle
 -   Create, edit, or remove mint approvals (approvals where `fromListId: 'Mint'`) that allow specific minting patterns, according to the updatability permissions set (`canUpdateCollectionApprovals`)
 -   Set the updatability permissions to lock the future updatability of mint approvals (locking, enabling, soft-enabling, etc.). This is flexible and allows fine-grained patterns like locking for specific times, to specific addresses, etc.
 
-**Important distinction:** Approvals define what transfers are **allowed**, but minting only occurs on **executed transfers**. Approvals are permission rules. Transfers execute those rules and create tokens.
+**Important distinction:** Approvals define what transfers are **allowed**, but minting only occurs on **executed transfers**. Approvals are transferability rules. Transfers execute dependent on those rules. Permissions control the updatability of approvals.
 
 ```typescript
 // Manager sets initial mint approval

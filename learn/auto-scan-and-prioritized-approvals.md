@@ -1,8 +1,3 @@
----
-description: >-
-    Auto-scan mode vs prioritized approvals: how the system selects approvals and versioning control
----
-
 The transfer approval system operates in two modes: **auto-scan** (default) and **prioritized approvals**. When a transfer is submitted without explicitly prioritizing specific approvals, the system operates in **auto-scan mode** and automatically searches through available approvals to find a match.
 
 However, **not all approvals are safe for auto-scanning**. In auto-scan mode, unsafe approvals are ignored to prevent unexpected behavior. If a transfer needs to be prioritized, it MUST always be prioritized with proper versioning specified to prevent malicious approval changes after submission.

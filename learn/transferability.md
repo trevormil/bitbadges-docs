@@ -1,8 +1,3 @@
----
-description: >-
-    How transferability and approvals work: collection approvals, user-level controls, and validation
----
-
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
 
 ## Three Transferability Levels

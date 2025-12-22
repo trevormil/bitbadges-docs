@@ -1,8 +1,3 @@
----
-description: >-
-    Key design decisions behind BitBadges: universality, no-code approach, ever-evolving, and IBC compatibility
----
-
 ## Universality
 
 Our token standard is universal and feature-rich enough for any use case. It can be used for NFTs, fungible tokens, subscriptions, quests, credentials, real-world assets, complex regulatory compliance, or anything you can think of. The problem with existing standards is they are too limited for 95% of real-world applications. One standard to rule them all.

@@ -1,8 +1,3 @@
----
-description: >-
-    Why existing token standards (ERC/CW/ICS-20/721) are flawed and need a complete overhaul
----
-
 Existing tokenization standards (ERC/CW/ICS-20/721) are good for many use cases, but the system is **flawed from the ground up**.
 
 ## Problems
