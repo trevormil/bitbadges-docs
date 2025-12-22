@@ -141,9 +141,3 @@ You can combine multiple checks for a single party:
 ## Constraints
 
 All checks are evaluated after the address lists (`toList`, `fromList`, `initiatedByList`) are matched. An address must first be in the appropriate list, then pass the address checks.
-
-## Related Concepts
-
--   [Approval Criteria Overview](README.md)
--   [Requires](requires.md) - Address relationship restrictions
--   [Transferability & Approvals](../transferability-approvals.md)

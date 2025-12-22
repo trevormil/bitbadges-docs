@@ -60,7 +60,7 @@ message TokenCollection {
 }
 ```
 
-### JSON
+## JSON
 
 ```json
 {

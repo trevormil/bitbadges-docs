@@ -126,10 +126,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
-* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
-* **Behavior**: Automatically finds and uses the first matching approval
-* **Use case**: Simple transfers without custom logic or side effects
-* **No versioning required**: The system handles approval selection automatically
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -151,10 +151,3 @@ The versioning control ensures that before submitting, the user knows the exact 
 ```
 
 See [MsgTransferTokens](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
-
-## Related Topics
-
-* [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
-* [Address Lists](../address-lists.md) - Managing address groups
-* [UintRanges](../uint-ranges.md) - Range logic implementation
-* [Permissions](permissions/) - Controlling who can update approvals

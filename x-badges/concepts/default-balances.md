@@ -34,11 +34,4 @@ Default balances **cannot** include:
 
 Default balances are limited to basic approval structures without complex criteria.
 
-## Related Concepts
-
--   **[Balance System](balance-system.md)** - How user balances work and inherit from defaults
--   **[Transferability & Approvals](transferability-approvals.md)** - User-level approval system
--   **[Permissions](permissions/)** - User permissions for updating their own approvals
--   **[Manager](manager.md)** - Collection-level controls that can override user defaults
-
 Default balances provide a powerful way to establish baseline behavior for all users while maintaining the flexibility for users to customize their own approval settings after initialization.

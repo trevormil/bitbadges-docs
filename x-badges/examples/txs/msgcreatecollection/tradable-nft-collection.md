@@ -1,6 +1,6 @@
 # Tradable Collection Example
 
-This example demonstrates creating a tradable collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
+This example demonstrates creating a tradable collection that supports orderbook-style trading.
 
 ## Transaction Structure
 
@@ -307,13 +307,3 @@ This example demonstrates creating a tradable collection that supports orderbook
     }
 ]
 ```
-
-## Protocol Compliance
-
-This collection follows the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md) requirements:
-
--   ✅ Includes "Tradable" in standards timeline
--   ✅ Compatible with both fungible and non-fungible tokens
--   ✅ Supports orderbook-style trading
--   ✅ No restrictions on bid/listing creation
--   ✅ Enables decentralized marketplace functionality

@@ -14,7 +14,6 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Metadata**](metadata.md) - Rich, dynamic content for collections and tokens with timeline support
 -   [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
 -   [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
--   [**Auto-Scan Mode**](auto-scan-mode.md) - Automatic approval scanning for simple transfers without side effects
 -   [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
 -   [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 -   [**Permissions**](permissions/) - Granular control over collection management operations
@@ -24,4 +23,3 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - Wrapping between tokens and native Cosmos SDK coins for IBC compatibility
 -   [**IBC Backed Paths**](ibc-backed-paths.md) - IBC-backed Cosmos SDK coin paths for collection minting
 -   [**Collection Invariants**](collection-invariants.md) - Immutable rules that enforce fundamental constraints on collection behavior
--   [**Protocols**](protocols/) - Standardized implementation patterns for collections

@@ -57,7 +57,6 @@ Collections marked with the **Subscriptions** standard are designed for recurrin
     -   Must support time-based ownership periods for subscription-like behavior
     -   Must be able to handle recurring token issuance and expiration
     -   Should support dynamic content updates based on subscription status
--   **Implementation**: See [Subscriptions Protocol](protocols/subscriptions-protocol.md) for detailed implementation requirements and validation logic
 
 ### 5. Quests Standard
 

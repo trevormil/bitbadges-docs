@@ -263,11 +263,3 @@ noForcefulPostMintTransfers invariant violation: collection approval cannot use 
 ```
 disablePoolCreation invariant violation: pool creation with this collection's assets is not allowed
 ```
-
-## Related Concepts
-
--   [Collections](./badge-collections.md)
--   [Transferability Approvals](./transferability-approvals.md)
--   [Time Fields](./time-fields.md)
--   [UintRange](./uintrange.md)
--   [IBC Backed Paths](./ibc-backed-paths.md)

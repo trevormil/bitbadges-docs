@@ -87,9 +87,3 @@ If either condition fails, the approval is denied.
 -   All time checks use **UTC timezone**
 -   Ranges within the same array should not overlap (though overlapping ranges will still work, they may be redundant)
 -   If both `offlineHours` and `offlineDays` are specified, the approval is denied if **either** condition matches
-
-## Related Concepts
-
--   [Approval Criteria Overview](README.md)
--   [Transferability & Approvals](../transferability-approvals.md) - Standard `transferTimes` field
--   [UintRanges](../uintrange.md) - Range logic implementation

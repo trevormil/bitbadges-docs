@@ -81,6 +81,40 @@ An approval is considered **safe for auto-scan mode** if:
 5. **No ETH signature challenges** - `approvalCriteria.ethSignatureChallenges` is nil or empty
 6. **Not special context** - certain special protocol contexts require prioritized approvals (ex: IBC backed minting, Cosmos wrapping)
 
+### Complete Function Reference
+
+The complete implementation of the auto-scannable check:
+
+```go
+func CollectionApprovalIsAutoScannable(approvalCriteria *ApprovalCriteria) bool {
+	if approvalCriteria == nil {
+		return true
+	}
+
+	if approvalCriteria.MustPrioritize {
+		return false
+	}
+
+	if approvalCriteria.CoinTransfers != nil && len(approvalCriteria.CoinTransfers) > 0 {
+		return false
+	}
+
+	if approvalCriteria.PredeterminedBalances != nil && !PredeterminedBalancesIsBasicallyNil(approvalCriteria.PredeterminedBalances) {
+		return false
+	}
+
+	if approvalCriteria.MerkleChallenges != nil && len(approvalCriteria.MerkleChallenges) > 0 {
+		return false
+	}
+
+	if approvalCriteria.EthSignatureChallenges != nil && len(approvalCriteria.EthSignatureChallenges) > 0 {
+		return false
+	}
+
+	return true
+}
+```
+
 ```typescript
 // ✅ Auto-scannable approval
 const approval: CollectionApproval<bigint> = {
@@ -142,7 +176,7 @@ Read-only criteria are safe and won't prevent auto-scanning:
 
 ### Versioning Control
 
-Versioning ensures users know the exact approval they're using before submitting, preventing race conditions.
+Versioning ensures users know the exact approval they're using before submitting, preventing race conditions. Every time you update an approval, the version will increment automatically.
 
 ```typescript
 // Approval version increments on each update
@@ -457,4 +491,4 @@ const msg: MsgTransferTokens = {
 };
 ```
 
-See [Auto-Scan Mode](../x-badges/concepts/auto-scan-mode.md) and [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
+See [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
