@@ -5,17 +5,21 @@ BitBadges supports time-dependent approvals through the `transferTimes` field, a
 The `transferTimes` field in approvals defines when transfers are allowed. This field uses UNIX millisecond timestamps to control transfer windows.
 
 ```typescript
-const approval = {
+const approval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
     transferTimes: [
         {
-            start: '1691931600000', // Aug 13, 2023
-            end: '1723554000000', // Aug 13, 2024
+            start: 1691931600000n, // Aug 13, 2023
+            end: 1723554000000n, // Aug 13, 2024
         },
     ],
-    tokenIds: [{ start: '1', end: '100' }],
+    tokenIds: [{ start: 1n, end: 100n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'time-gated-mint',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -30,16 +34,21 @@ Time-dependent approvals enable powerful use cases:
 Control when tokens become transferable after a lock period:
 
 ```typescript
-const unlockApproval = {
+const unlockApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'investor-address',
+    initiatedByListId: 'All',
     transferTimes: [
         {
-            start: '1735689600000', // Unlock date: Jan 1, 2025
-            end: '18446744073709551615', // Forever after unlock
+            start: 1735689600000n, // Unlock date: Jan 1, 2025
+            end: 18446744073709551615n, // Forever after unlock
         },
     ],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'vesting-unlock',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -50,30 +59,38 @@ Tokens are locked until the unlock date, then transferable indefinitely.
 Gradually unlock tokens over time using multiple approval windows:
 
 ```typescript
-const vestingApprovals = [
+const vestingApprovals: CollectionApproval<bigint>[] = [
     {
         fromListId: 'Mint',
         toListId: 'employee-address',
+        initiatedByListId: 'All',
         transferTimes: [
             {
-                start: '1691931600000', // 25% after 1 year
-                end: '1723554000000',
+                start: 1691931600000n, // 25% after 1 year
+                end: 1723554000000n,
             },
         ],
-        tokenIds: [{ start: '1', end: '250' }],
+        tokenIds: [{ start: 1n, end: 250n }],
+        ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
         approvalId: 'vesting-year-1',
+        version: 0n,
+        // ... other fields
     },
     {
         fromListId: 'Mint',
         toListId: 'employee-address',
+        initiatedByListId: 'All',
         transferTimes: [
             {
-                start: '1723554000000', // 25% after 2 years
-                end: '1755090000000',
+                start: 1723554000000n, // 25% after 2 years
+                end: 1755090000000n,
             },
         ],
-        tokenIds: [{ start: '251', end: '500' }],
+        tokenIds: [{ start: 251n, end: 500n }],
+        ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
         approvalId: 'vesting-year-2',
+        version: 0n,
+        // ... other fields
     },
     // ... more vesting periods
 ];

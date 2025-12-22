@@ -3,16 +3,18 @@
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
 
 ```typescript
-const collection = {
+const collection: TokenCollection<bigint> = {
     managerTimeline: [
         {
             manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: '1', end: '18446744073709551615' }],
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
         },
     ],
     collectionPermissions: {
         // Permissions define what the manager can do
+        // ... permission fields
     },
+    // ... other collection fields
 };
 ```
 
@@ -22,14 +24,17 @@ Managers can change over time using timeline-based configuration:
 
 ```typescript
 // Manager changes automatically on a specific date
-const managerTimeline = [
+const managerTimeline: ManagerTimeline<bigint>[] = [
     {
-        timelineTimes: [{ start: '1', end: '1672531199000' }],
+        timelineTimes: [{ start: 1n, end: 1672531199000n }],
         manager: 'bb1alice...',
     },
     {
         timelineTimes: [
-            { start: '1672531200000', end: '18446744073709551615' },
+            {
+                start: 1672531200000n,
+                end: 18446744073709551615n,
+            },
         ],
         manager: 'bb1bob...',
     },
@@ -43,7 +48,7 @@ This transfers management from Alice to Bob on January 1, 2023 automatically.
 If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
 
 ```typescript
-const managerTimeline = [];
+const managerTimeline: ManagerTimeline<bigint>[] = [];
 ```
 
 ## Permissions
@@ -62,7 +67,7 @@ Permissions have three states:
 
 ```typescript
 // Lock collection deletion forever
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [
         {
             permanentlyPermittedTimes: [],
@@ -71,11 +76,13 @@ const collectionPermissions = {
             ],
         },
     ],
+    // ... other permission fields
 };
 
 // Soft-enabled (default behavior - allowed but can be changed)
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [], // Empty = allowed by default
+    // ... other permission fields
 };
 ```
 
@@ -96,7 +103,7 @@ The manager can execute administrative actions according to permissions:
 
 ```typescript
 // Manager with full control (soft-enabled)
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [],
     canArchiveCollection: [],
     canUpdateStandards: [],
@@ -106,6 +113,7 @@ const collectionPermissions = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    // ... other permission fields
 };
 ```
 
@@ -119,13 +127,16 @@ Simple time-based permissions (no criteria):
 
 ```typescript
 // Lock collection deletion
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [
         {
             permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: FullTimeRanges,
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
         },
     ],
+    // ... other permission fields
 };
 ```
 
@@ -135,15 +146,23 @@ Control approval updates with transfer criteria:
 
 ```typescript
 // Lock mint approval updates
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateCollectionApprovals: [
         {
             fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
             approvalId: 'All',
-            ...,
-            permanentlyForbiddenTimes: FullTimeRanges,
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
         },
     ],
+    // ... other permission fields
 };
 ```
 

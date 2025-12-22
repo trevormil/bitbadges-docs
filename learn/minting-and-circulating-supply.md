@@ -13,13 +13,24 @@ The **manager** of the collection controls minting by setting and updating colle
 
 ```typescript
 // Manager sets initial mint approval
-const collection = {
-    managerTimeline: [{ manager: 'bb1...', timelineTimes: FullTimeRanges }],
+const collection: TokenCollection<bigint> = {
+    managerTimeline: [
+        {
+            manager: 'bb1...',
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        },
+    ],
     collectionApprovals: [
         {
             fromListId: 'Mint',
             toListId: 'All',
-            // ... approval criteria
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            approvalId: 'mint-approval',
+            version: 0n,
+            // ... other fields
         },
     ],
     collectionPermissions: {
@@ -27,11 +38,18 @@ const collection = {
             {
                 fromListId: 'Mint',
                 toListId: 'All',
-                ...,
+                initiatedByListId: 'All',
+                transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+                tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+                approvalId: 'All',
                 permanentlyPermittedTimes: [],
-                permanentlyForbiddenTimes: [{ start: '1', end: '18446744073709551615' }], // Locks it forever
+                permanentlyForbiddenTimes: [
+                    { start: 1n, end: 18446744073709551615n },
+                ], // Locks it forever
             },
         ],
+        // ... other permission fields
     },
 };
 ```
@@ -71,11 +89,18 @@ Thus, design of your Mint approvals is crucial to the supply control of your col
 
 ```typescript
 // Supply control via approvals
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'supply-control',
+    version: 0n,
     // Approval criteria control who can mint, when, how much
     approvalCriteria: {
-        maxNumTransfers: '1000', // Limit number of mints
+        maxNumTransfers: 1000n, // Limit number of mints
         overridesFromOutgoingApprovals: true, // Required for Mint address
         // ... other criteria
     },
@@ -88,16 +113,23 @@ Even if current approvals don't allow minting, if the manager can update approva
 
 ```typescript
 // Lock mint approvals to cap supply
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateCollectionApprovals: [
         {
             fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
             approvalId: 'All',
-            ...,
             permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: FullTimeRanges, // Manager cannot update
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ], // Manager cannot update
         },
     ],
+    // ... other permission fields
 };
 ```
 
@@ -111,20 +143,41 @@ For proper design, we highly recommend separating minting and post-mint approval
 
 ```typescript
 // ❌ BAD - Never do this
-const badApproval = {
+const badApproval: CollectionApproval<bigint> = {
     fromListId: 'All', // Mixing Mint with other addresses
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'bad-approval',
+    version: 0n,
+    // ... other fields
 };
 
 // ✅ GOOD - Separate mint and post-mint approvals
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint', // Minting only
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'mint-only',
+    version: 0n,
+    // ... other fields
 };
 
-const postMintApproval = {
+const postMintApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint', // All addresses except Mint
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'post-mint',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -140,10 +193,18 @@ const postMintApproval = {
 Mint address approvals must always override its user-level approvals to properly work, since it cannot control its own user-level approvals itself.
 
 ```typescript
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'mint-approval',
+    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Required
+        // ... other criteria
     },
 };
 ```

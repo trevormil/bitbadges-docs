@@ -19,7 +19,7 @@ Collection approvals define transferability rules for the entire collection on a
 **All transfers must satisfy the collection approvals.**
 
 ```typescript
-interface CollectionApproval<T extends NumberType> {
+interface CollectionApproval<T extends bigint> {
     // Core Fields - Define Who? When? What?
     toListId: string; // Who can receive?
     fromListId: string; // Who can send?
@@ -40,18 +40,25 @@ interface CollectionApproval<T extends NumberType> {
 ### Example Approval
 
 ```typescript
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'All',
     initiatedByListId: 'All',
-    transferTimes: [{ start: '1691931600000', end: '1723554000000' }],
-    tokenIds: [{ start: '1', end: '100' }],
-    ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
+    transferTimes: [{ start: 1691931600000n, end: 1723554000000n }],
+    tokenIds: [{ start: 1n, end: 100n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'mint-to-all',
-    version: '0',
+    version: 0n,
     approvalCriteria: {
-        maxNumTransfers: '1000', // Only 1000 transfers allowed
+        maxNumTransfers: {
+            overallMaxNumTransfers: 1000n,
+            perFromAddressMaxNumTransfers: 0n,
+            perToAddressMaxNumTransfers: 0n,
+            perInitiatedByAddressMaxNumTransfers: 1n,
+            amountTrackerId: 'mint-to-all',
+        },
         overridesFromOutgoingApprovals: true, // Required for Mint
+        // ... other criteria
     },
 };
 ```
@@ -63,7 +70,7 @@ const mintApproval = {
 Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
 
 ```typescript
-interface ApprovalCriteria<T extends NumberType> {
+interface ApprovalCriteria<T extends bigint> {
     maxNumTransfers?: T; // Limit number of transfers
     approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
     coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers
@@ -88,16 +95,18 @@ Sender approvals control who can send tokens on behalf of the user. Recipient ap
 Control who can send tokens on behalf of the user:
 
 ```typescript
-const outgoingApproval = {
+const outgoingApproval: OutgoingApproval<bigint> = {
     // fromListId: 'bb1user...', // Locked to the user's address, not in interface
     toListId: 'bb1...', // Who can receive from this user
     initiatedByListId: 'bb1...', // Who can initiate the transfer
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'my-listing',
-    version: '0',
-    approvalCriteria: { ... }
+    version: 0n,
+    approvalCriteria: {
+        // ... criteria fields
+    },
 };
 ```
 
@@ -106,16 +115,18 @@ const outgoingApproval = {
 Control who can send tokens to the user:
 
 ```typescript
-const incomingApproval = {
+const incomingApproval: IncomingApproval<bigint> = {
     // toListId: 'bb1user...', // Locked to the user's address, not in interface
     fromListId: 'bb1...', // Who can send to this user
     initiatedByListId: 'bb1...', // Who can initiate the transfer
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'my-bids',
-    version: '0',
-    approvalCriteria: { ... }
+    version: 0n,
+    approvalCriteria: {
+        // ... criteria fields
+    },
 };
 ```
 
@@ -124,10 +135,15 @@ const incomingApproval = {
 We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
 
 ```typescript
-interface UserBalanceStore {
+interface UserBalanceStore<T extends bigint> {
+    balances: Balance<T>[];
+    outgoingApprovals: OutgoingApproval<T>[];
+    incomingApprovals: IncomingApproval<T>[];
     autoApproveSelfInitiatedOutgoingTransfers: boolean;
     autoApproveSelfInitiatedIncomingTransfers: boolean;
     autoApproveAllIncomingTransfers: boolean;
+    userPermissions: UserPermissions<T>;
+    // ... other fields
 }
 ```
 
@@ -154,10 +170,11 @@ When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are aut
 Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
 
 ```typescript
-const userPermissions = {
+const userPermissions: UserPermissions<bigint> = {
     canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
     canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
     canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
+    // ... other permission fields
 };
 ```
 
@@ -168,12 +185,19 @@ Collection approvals can override user-level approvals for administrative contro
 If set to true, we do NOT check the corresponding user-level approvals for the sender and/or recipient.
 
 ```typescript
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'override-approval',
+    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Skip sender approvals
         overridesToIncomingApprovals: true, // Skip recipient approvals
+        // ... other criteria
     },
 };
 ```

@@ -35,6 +35,8 @@ const msg: MsgTransferTokens = {
 ## Prioritized Approvals Mode
 
 ```typescript
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
     collectionId: '1',
@@ -44,10 +46,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
@@ -56,7 +61,7 @@ const msg: MsgTransferTokens = {
                     approvalId: 'abc123',
                     approvalLevel: 'collection',
                     approverAddress: '', // Empty for collection, address for user approvals
-                    version: '2', // Must specify exact version
+                    version: 2n, // Must specify exact version
                 },
             ],
             onlyCheckPrioritizedCollectionApprovals: true,
@@ -78,26 +83,50 @@ An approval is considered **safe for auto-scan mode** if:
 
 ```typescript
 // ✅ Auto-scannable approval
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'simple-transfer',
     fromListId: 'Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         // Only read-only checks - safe for auto-scan
-        mustOwnTokens: [...],
+        mustOwnTokens: [
+            {
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [
+                    {
+                        start: 1n,
+                        end: 18446744073709551615n,
+                    },
+                ],
+            },
+        ],
+        // ... other criteria
     },
 };
 
 // ❌ NOT auto-scannable - has coin transfers
-const approvalWithSideEffects = {
+const approvalWithSideEffects: CollectionApproval<bigint> = {
     approvalId: 'paid-transfer',
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         coinTransfers: [
             {
                 to: 'bb1...',
-                coins: [{ denom: 'ubadge', amount: '1000000' }],
+                coins: [{ denom: 'ubadge', amount: 1000000n }],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -117,9 +146,15 @@ Versioning ensures users know the exact approval they're using before submitting
 
 ```typescript
 // Approval version increments on each update
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'my-approval',
-    version: '0', // Initial version
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n, // Initial version
     // ... other fields
 };
 
@@ -127,6 +162,8 @@ const approval = {
 
 // Transfer must specify version '1' to use updated approval
 // If mismatched version, transfer will fail / ignore that approval
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
     collectionId: '1',
@@ -136,10 +173,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
@@ -148,7 +188,7 @@ const msg: MsgTransferTokens = {
                     approvalId: 'my-approval',
                     approvalLevel: 'collection',
                     approverAddress: '',
-                    version: '1', // Must match current version
+                    version: 1n, // Must match current version
                 },
             ],
         },
@@ -200,8 +240,15 @@ const msg: MsgTransferTokens = {
 The `mustPrioritize` flag explicitly requires an approval to be prioritized. This is an easy way to prevent auto-scanning of approvals that you do not want to be auto-scanned.
 
 ```typescript
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'force-prioritize',
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         mustPrioritize: true, // Cannot be auto-scanned
         // ... other criteria
@@ -225,10 +272,17 @@ All user-level auto approval flags are auto-scannable by default. These flags ha
 
 ```typescript
 // User enables auto-approval flags
-const userBalanceStore = {
+const userBalanceStore: UserBalanceStore<bigint> = {
+    balances: [],
+    outgoingApprovals: [],
+    incomingApprovals: [],
     autoApproveSelfInitiatedOutgoingTransfers: true,
     autoApproveSelfInitiatedIncomingTransfers: true,
     autoApproveAllIncomingTransfers: true,
+    userPermissions: {
+        // ... permission fields
+    },
+    // ... other fields
 };
 ```
 
@@ -244,22 +298,29 @@ Oftentimes, you may want to make collection-level approvals fully transferable w
 
 ```typescript
 // ✅ Auto-scannable - fully transferable with read-only restrictions
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
     initiatedByListId: 'All',
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'transferable-approval',
+    version: 0n,
     approvalCriteria: {
         // Read-only checks - safe for auto-scan
         mustOwnTokens: [
             {
-                tokenIds: [{ start: '1', end: '1' }],
-                ownershipTimes: FullTimeRanges,
-                ...
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [
+                    {
+                        start: 1n,
+                        end: 18446744073709551615n,
+                    },
+                ],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -270,16 +331,23 @@ However, if you introduce `coinTransfers` or other disallowed logic, the approva
 
 ```typescript
 // ❌ NOT auto-scannable - has coin transfers
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'paid-approval',
+    version: 0n,
     approvalCriteria: {
         coinTransfers: [
             {
                 to: 'bb1...',
-                coins: [{ denom: 'ubadge', amount: '1000000' }],
+                coins: [{ denom: 'ubadge', amount: 1000000n }],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -289,6 +357,8 @@ const collectionApproval = {
 ### Auto-Scan Compatible Transfer
 
 ```typescript
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 // Simple transfer - no side effects
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -299,10 +369,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
