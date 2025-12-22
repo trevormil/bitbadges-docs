@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 15:19:05 UTC 2025
+Generated on Mon Dec 22 15:45:53 UTC 2025
 
 
 
@@ -9787,6 +9787,8 @@ const msg: MsgTransferTokens = {
 ## Prioritized Approvals Mode
 
 ```typescript
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
     collectionId: '1',
@@ -9796,10 +9798,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
@@ -9808,7 +9813,7 @@ const msg: MsgTransferTokens = {
                     approvalId: 'abc123',
                     approvalLevel: 'collection',
                     approverAddress: '', // Empty for collection, address for user approvals
-                    version: '2', // Must specify exact version
+                    version: 2n, // Must specify exact version
                 },
             ],
             onlyCheckPrioritizedCollectionApprovals: true,
@@ -9830,26 +9835,50 @@ An approval is considered **safe for auto-scan mode** if:
 
 ```typescript
 // ✅ Auto-scannable approval
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'simple-transfer',
     fromListId: 'Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         // Only read-only checks - safe for auto-scan
-        mustOwnTokens: [...],
+        mustOwnTokens: [
+            {
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [
+                    {
+                        start: 1n,
+                        end: 18446744073709551615n,
+                    },
+                ],
+            },
+        ],
+        // ... other criteria
     },
 };
 
 // ❌ NOT auto-scannable - has coin transfers
-const approvalWithSideEffects = {
+const approvalWithSideEffects: CollectionApproval<bigint> = {
     approvalId: 'paid-transfer',
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         coinTransfers: [
             {
                 to: 'bb1...',
-                coins: [{ denom: 'ubadge', amount: '1000000' }],
+                coins: [{ denom: 'ubadge', amount: 1000000n }],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -9869,9 +9898,15 @@ Versioning ensures users know the exact approval they're using before submitting
 
 ```typescript
 // Approval version increments on each update
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'my-approval',
-    version: '0', // Initial version
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n, // Initial version
     // ... other fields
 };
 
@@ -9879,6 +9914,8 @@ const approval = {
 
 // Transfer must specify version '1' to use updated approval
 // If mismatched version, transfer will fail / ignore that approval
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
     collectionId: '1',
@@ -9888,10 +9925,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
@@ -9900,7 +9940,7 @@ const msg: MsgTransferTokens = {
                     approvalId: 'my-approval',
                     approvalLevel: 'collection',
                     approverAddress: '',
-                    version: '1', // Must match current version
+                    version: 1n, // Must match current version
                 },
             ],
         },
@@ -9952,8 +9992,15 @@ const msg: MsgTransferTokens = {
 The `mustPrioritize` flag explicitly requires an approval to be prioritized. This is an easy way to prevent auto-scanning of approvals that you do not want to be auto-scanned.
 
 ```typescript
-const approval = {
+const approval: CollectionApproval<bigint> = {
     approvalId: 'force-prioritize',
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
     approvalCriteria: {
         mustPrioritize: true, // Cannot be auto-scanned
         // ... other criteria
@@ -9977,10 +10024,17 @@ All user-level auto approval flags are auto-scannable by default. These flags ha
 
 ```typescript
 // User enables auto-approval flags
-const userBalanceStore = {
+const userBalanceStore: UserBalanceStore<bigint> = {
+    balances: [],
+    outgoingApprovals: [],
+    incomingApprovals: [],
     autoApproveSelfInitiatedOutgoingTransfers: true,
     autoApproveSelfInitiatedIncomingTransfers: true,
     autoApproveAllIncomingTransfers: true,
+    userPermissions: {
+        // ... permission fields
+    },
+    // ... other fields
 };
 ```
 
@@ -9996,22 +10050,29 @@ Oftentimes, you may want to make collection-level approvals fully transferable w
 
 ```typescript
 // ✅ Auto-scannable - fully transferable with read-only restrictions
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
     initiatedByListId: 'All',
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'transferable-approval',
+    version: 0n,
     approvalCriteria: {
         // Read-only checks - safe for auto-scan
         mustOwnTokens: [
             {
-                tokenIds: [{ start: '1', end: '1' }],
-                ownershipTimes: FullTimeRanges,
-                ...
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [
+                    {
+                        start: 1n,
+                        end: 18446744073709551615n,
+                    },
+                ],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -10022,16 +10083,23 @@ However, if you introduce `coinTransfers` or other disallowed logic, the approva
 
 ```typescript
 // ❌ NOT auto-scannable - has coin transfers
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'paid-approval',
+    version: 0n,
     approvalCriteria: {
         coinTransfers: [
             {
                 to: 'bb1...',
-                coins: [{ denom: 'ubadge', amount: '1000000' }],
+                coins: [{ denom: 'ubadge', amount: 1000000n }],
             },
         ],
+        // ... other criteria
     },
 };
 ```
@@ -10041,6 +10109,8 @@ const collectionApproval = {
 ### Auto-Scan Compatible Transfer
 
 ```typescript
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
 // Simple transfer - no side effects
 const msg: MsgTransferTokens = {
     creator: 'bb1initiator...',
@@ -10051,10 +10121,13 @@ const msg: MsgTransferTokens = {
             toAddresses: ['bb1recipient...'],
             balances: [
                 {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
+                    amount: 1n,
+                    tokenIds: [{ start: 1n, end: 1n }],
                     ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
+                        {
+                            start: 1n,
+                            end: 18446744073709551615n,
+                        },
                     ],
                 },
             ],
@@ -10193,13 +10266,24 @@ The **manager** of the collection controls minting by setting and updating colle
 
 ```typescript
 // Manager sets initial mint approval
-const collection = {
-    managerTimeline: [{ manager: 'bb1...', timelineTimes: FullTimeRanges }],
+const collection: TokenCollection<bigint> = {
+    managerTimeline: [
+        {
+            manager: 'bb1...',
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        },
+    ],
     collectionApprovals: [
         {
             fromListId: 'Mint',
             toListId: 'All',
-            // ... approval criteria
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            approvalId: 'mint-approval',
+            version: 0n,
+            // ... other fields
         },
     ],
     collectionPermissions: {
@@ -10207,11 +10291,18 @@ const collection = {
             {
                 fromListId: 'Mint',
                 toListId: 'All',
-                ...,
+                initiatedByListId: 'All',
+                transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+                tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+                approvalId: 'All',
                 permanentlyPermittedTimes: [],
-                permanentlyForbiddenTimes: [{ start: '1', end: '18446744073709551615' }], // Locks it forever
+                permanentlyForbiddenTimes: [
+                    { start: 1n, end: 18446744073709551615n },
+                ], // Locks it forever
             },
         ],
+        // ... other permission fields
     },
 };
 ```
@@ -10251,11 +10342,18 @@ Thus, design of your Mint approvals is crucial to the supply control of your col
 
 ```typescript
 // Supply control via approvals
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'supply-control',
+    version: 0n,
     // Approval criteria control who can mint, when, how much
     approvalCriteria: {
-        maxNumTransfers: '1000', // Limit number of mints
+        maxNumTransfers: 1000n, // Limit number of mints
         overridesFromOutgoingApprovals: true, // Required for Mint address
         // ... other criteria
     },
@@ -10268,16 +10366,23 @@ Even if current approvals don't allow minting, if the manager can update approva
 
 ```typescript
 // Lock mint approvals to cap supply
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateCollectionApprovals: [
         {
             fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
             approvalId: 'All',
-            ...,
             permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: FullTimeRanges, // Manager cannot update
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ], // Manager cannot update
         },
     ],
+    // ... other permission fields
 };
 ```
 
@@ -10291,20 +10396,41 @@ For proper design, we highly recommend separating minting and post-mint approval
 
 ```typescript
 // ❌ BAD - Never do this
-const badApproval = {
+const badApproval: CollectionApproval<bigint> = {
     fromListId: 'All', // Mixing Mint with other addresses
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'bad-approval',
+    version: 0n,
+    // ... other fields
 };
 
 // ✅ GOOD - Separate mint and post-mint approvals
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint', // Minting only
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'mint-only',
+    version: 0n,
+    // ... other fields
 };
 
-const postMintApproval = {
+const postMintApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint', // All addresses except Mint
-    // ...
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'post-mint',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -10320,10 +10446,18 @@ const postMintApproval = {
 Mint address approvals must always override its user-level approvals to properly work, since it cannot control its own user-level approvals itself.
 
 ```typescript
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'mint-approval',
+    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Required
+        // ... other criteria
     },
 };
 ```
@@ -10350,16 +10484,18 @@ The Mint Escrow Address is a generated `bb1` address that holds Cosmos native fu
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
 
 ```typescript
-const collection = {
+const collection: TokenCollection<bigint> = {
     managerTimeline: [
         {
             manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: '1', end: '18446744073709551615' }],
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
         },
     ],
     collectionPermissions: {
         // Permissions define what the manager can do
+        // ... permission fields
     },
+    // ... other collection fields
 };
 ```
 
@@ -10369,14 +10505,17 @@ Managers can change over time using timeline-based configuration:
 
 ```typescript
 // Manager changes automatically on a specific date
-const managerTimeline = [
+const managerTimeline: ManagerTimeline<bigint>[] = [
     {
-        timelineTimes: [{ start: '1', end: '1672531199000' }],
+        timelineTimes: [{ start: 1n, end: 1672531199000n }],
         manager: 'bb1alice...',
     },
     {
         timelineTimes: [
-            { start: '1672531200000', end: '18446744073709551615' },
+            {
+                start: 1672531200000n,
+                end: 18446744073709551615n,
+            },
         ],
         manager: 'bb1bob...',
     },
@@ -10390,7 +10529,7 @@ This transfers management from Alice to Bob on January 1, 2023 automatically.
 If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
 
 ```typescript
-const managerTimeline = [];
+const managerTimeline: ManagerTimeline<bigint>[] = [];
 ```
 
 ## Permissions
@@ -10409,7 +10548,7 @@ Permissions have three states:
 
 ```typescript
 // Lock collection deletion forever
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [
         {
             permanentlyPermittedTimes: [],
@@ -10418,11 +10557,13 @@ const collectionPermissions = {
             ],
         },
     ],
+    // ... other permission fields
 };
 
 // Soft-enabled (default behavior - allowed but can be changed)
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [], // Empty = allowed by default
+    // ... other permission fields
 };
 ```
 
@@ -10443,7 +10584,7 @@ The manager can execute administrative actions according to permissions:
 
 ```typescript
 // Manager with full control (soft-enabled)
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [],
     canArchiveCollection: [],
     canUpdateStandards: [],
@@ -10453,6 +10594,7 @@ const collectionPermissions = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    // ... other permission fields
 };
 ```
 
@@ -10466,13 +10608,16 @@ Simple time-based permissions (no criteria):
 
 ```typescript
 // Lock collection deletion
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canDeleteCollection: [
         {
             permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: FullTimeRanges,
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
         },
     ],
+    // ... other permission fields
 };
 ```
 
@@ -10482,15 +10627,23 @@ Control approval updates with transfer criteria:
 
 ```typescript
 // Lock mint approval updates
-const collectionPermissions = {
+const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateCollectionApprovals: [
         {
             fromListId: 'Mint',
+            toListId: 'All',
+            initiatedByListId: 'All',
+            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
             approvalId: 'All',
-            ...,
-            permanentlyForbiddenTimes: FullTimeRanges,
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
         },
     ],
+    // ... other permission fields
 };
 ```
 
@@ -10544,17 +10697,21 @@ BitBadges supports time-dependent approvals through the `transferTimes` field, a
 The `transferTimes` field in approvals defines when transfers are allowed. This field uses UNIX millisecond timestamps to control transfer windows.
 
 ```typescript
-const approval = {
+const approval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
     transferTimes: [
         {
-            start: '1691931600000', // Aug 13, 2023
-            end: '1723554000000', // Aug 13, 2024
+            start: 1691931600000n, // Aug 13, 2023
+            end: 1723554000000n, // Aug 13, 2024
         },
     ],
-    tokenIds: [{ start: '1', end: '100' }],
+    tokenIds: [{ start: 1n, end: 100n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'time-gated-mint',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -10569,16 +10726,21 @@ Time-dependent approvals enable powerful use cases:
 Control when tokens become transferable after a lock period:
 
 ```typescript
-const unlockApproval = {
+const unlockApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'investor-address',
+    initiatedByListId: 'All',
     transferTimes: [
         {
-            start: '1735689600000', // Unlock date: Jan 1, 2025
-            end: '18446744073709551615', // Forever after unlock
+            start: 1735689600000n, // Unlock date: Jan 1, 2025
+            end: 18446744073709551615n, // Forever after unlock
         },
     ],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'vesting-unlock',
+    version: 0n,
+    // ... other fields
 };
 ```
 
@@ -10589,30 +10751,38 @@ Tokens are locked until the unlock date, then transferable indefinitely.
 Gradually unlock tokens over time using multiple approval windows:
 
 ```typescript
-const vestingApprovals = [
+const vestingApprovals: CollectionApproval<bigint>[] = [
     {
         fromListId: 'Mint',
         toListId: 'employee-address',
+        initiatedByListId: 'All',
         transferTimes: [
             {
-                start: '1691931600000', // 25% after 1 year
-                end: '1723554000000',
+                start: 1691931600000n, // 25% after 1 year
+                end: 1723554000000n,
             },
         ],
-        tokenIds: [{ start: '1', end: '250' }],
+        tokenIds: [{ start: 1n, end: 250n }],
+        ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
         approvalId: 'vesting-year-1',
+        version: 0n,
+        // ... other fields
     },
     {
         fromListId: 'Mint',
         toListId: 'employee-address',
+        initiatedByListId: 'All',
         transferTimes: [
             {
-                start: '1723554000000', // 25% after 2 years
-                end: '1755090000000',
+                start: 1723554000000n, // 25% after 2 years
+                end: 1755090000000n,
             },
         ],
-        tokenIds: [{ start: '251', end: '500' }],
+        tokenIds: [{ start: 251n, end: 500n }],
+        ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
         approvalId: 'vesting-year-2',
+        version: 0n,
+        // ... other fields
     },
     // ... more vesting periods
 ];
@@ -10644,7 +10814,7 @@ Collection approvals define transferability rules for the entire collection on a
 **All transfers must satisfy the collection approvals.**
 
 ```typescript
-interface CollectionApproval<T extends NumberType> {
+interface CollectionApproval<T extends bigint> {
     // Core Fields - Define Who? When? What?
     toListId: string; // Who can receive?
     fromListId: string; // Who can send?
@@ -10665,18 +10835,25 @@ interface CollectionApproval<T extends NumberType> {
 ### Example Approval
 
 ```typescript
-const mintApproval = {
+const mintApproval: CollectionApproval<bigint> = {
     fromListId: 'Mint',
     toListId: 'All',
     initiatedByListId: 'All',
-    transferTimes: [{ start: '1691931600000', end: '1723554000000' }],
-    tokenIds: [{ start: '1', end: '100' }],
-    ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
+    transferTimes: [{ start: 1691931600000n, end: 1723554000000n }],
+    tokenIds: [{ start: 1n, end: 100n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'mint-to-all',
-    version: '0',
+    version: 0n,
     approvalCriteria: {
-        maxNumTransfers: '1000', // Only 1000 transfers allowed
+        maxNumTransfers: {
+            overallMaxNumTransfers: 1000n,
+            perFromAddressMaxNumTransfers: 0n,
+            perToAddressMaxNumTransfers: 0n,
+            perInitiatedByAddressMaxNumTransfers: 1n,
+            amountTrackerId: 'mint-to-all',
+        },
         overridesFromOutgoingApprovals: true, // Required for Mint
+        // ... other criteria
     },
 };
 ```
@@ -10688,7 +10865,7 @@ const mintApproval = {
 Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
 
 ```typescript
-interface ApprovalCriteria<T extends NumberType> {
+interface ApprovalCriteria<T extends bigint> {
     maxNumTransfers?: T; // Limit number of transfers
     approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
     coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers
@@ -10713,16 +10890,18 @@ Sender approvals control who can send tokens on behalf of the user. Recipient ap
 Control who can send tokens on behalf of the user:
 
 ```typescript
-const outgoingApproval = {
+const outgoingApproval: OutgoingApproval<bigint> = {
     // fromListId: 'bb1user...', // Locked to the user's address, not in interface
     toListId: 'bb1...', // Who can receive from this user
     initiatedByListId: 'bb1...', // Who can initiate the transfer
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'my-listing',
-    version: '0',
-    approvalCriteria: { ... }
+    version: 0n,
+    approvalCriteria: {
+        // ... criteria fields
+    },
 };
 ```
 
@@ -10731,16 +10910,18 @@ const outgoingApproval = {
 Control who can send tokens to the user:
 
 ```typescript
-const incomingApproval = {
+const incomingApproval: IncomingApproval<bigint> = {
     // toListId: 'bb1user...', // Locked to the user's address, not in interface
     fromListId: 'bb1...', // Who can send to this user
     initiatedByListId: 'bb1...', // Who can initiate the transfer
-    transferTimes: FullTimeRanges,
-    tokenIds: FullTimeRanges,
-    ownershipTimes: FullTimeRanges,
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
     approvalId: 'my-bids',
-    version: '0',
-    approvalCriteria: { ... }
+    version: 0n,
+    approvalCriteria: {
+        // ... criteria fields
+    },
 };
 ```
 
@@ -10749,10 +10930,15 @@ const incomingApproval = {
 We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
 
 ```typescript
-interface UserBalanceStore {
+interface UserBalanceStore<T extends bigint> {
+    balances: Balance<T>[];
+    outgoingApprovals: OutgoingApproval<T>[];
+    incomingApprovals: IncomingApproval<T>[];
     autoApproveSelfInitiatedOutgoingTransfers: boolean;
     autoApproveSelfInitiatedIncomingTransfers: boolean;
     autoApproveAllIncomingTransfers: boolean;
+    userPermissions: UserPermissions<T>;
+    // ... other fields
 }
 ```
 
@@ -10779,10 +10965,11 @@ When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are aut
 Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
 
 ```typescript
-const userPermissions = {
+const userPermissions: UserPermissions<bigint> = {
     canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
     canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
     canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
+    // ... other permission fields
 };
 ```
 
@@ -10793,12 +10980,19 @@ Collection approvals can override user-level approvals for administrative contro
 If set to true, we do NOT check the corresponding user-level approvals for the sender and/or recipient.
 
 ```typescript
-const collectionApproval = {
+const collectionApproval: CollectionApproval<bigint> = {
     fromListId: '!Mint',
     toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    approvalId: 'override-approval',
+    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Skip sender approvals
         overridesToIncomingApprovals: true, // Skip recipient approvals
+        // ... other criteria
     },
 };
 ```
@@ -14651,7 +14845,7 @@ message TokenCollection {
 
   // The address of the manager of this collection, subject to changes over time.
   repeated ManagerTimeline managerTimeline = 5;
-  
+
   // Permissions that define what the manager of the collection can do or not do.
   CollectionPermissions collectionPermissions = 6;
 
@@ -14686,6 +14880,408 @@ message TokenCollection {
   // Collection-level invariants that cannot be broken.
   // These are set upon genesis and cannot be modified.
   CollectionInvariants invariants = 16;
+}
+```
+
+### JSON
+
+```json
+{
+    "collectionApprovals": [
+        {
+            "toListId": "All",
+            "fromListId": "!Mint",
+            "initiatedByListId": "!(bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany)",
+            "transferTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "tokenIds": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "approvalId": "transferable-approval",
+            "uri": "",
+            "customData": "",
+            "approvalCriteria": {
+                "merkleChallenges": [],
+                "mustOwnTokens": [],
+                "predeterminedBalances": {
+                    "manualBalances": [],
+                    "incrementedBalances": {
+                        "startBalances": [],
+                        "incrementTokenIdsBy": 0,
+                        "incrementOwnershipTimesBy": 0,
+                        "durationFromTimestamp": 0,
+                        "allowOverrideTimestamp": false,
+                        "recurringOwnershipTimes": {
+                            "startTime": 0,
+                            "intervalLength": 0,
+                            "chargePeriodLength": 0
+                        },
+                        "allowOverrideWithAnyValidToken": false
+                    },
+                    "orderCalculationMethod": {
+                        "useOverallNumTransfers": false,
+                        "usePerToAddressNumTransfers": false,
+                        "usePerFromAddressNumTransfers": false,
+                        "usePerInitiatedByAddressNumTransfers": false,
+                        "useMerkleChallengeLeafIndex": false,
+                        "challengeTrackerId": ""
+                    }
+                },
+                "approvalAmounts": {
+                    "overallApprovalAmount": 0,
+                    "perToAddressApprovalAmount": 0,
+                    "perFromAddressApprovalAmount": 0,
+                    "perInitiatedByAddressApprovalAmount": 0,
+                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
+                    "resetTimeIntervals": {
+                        "startTime": 0,
+                        "intervalLength": 0
+                    }
+                },
+                "maxNumTransfers": {
+                    "overallMaxNumTransfers": 0,
+                    "perToAddressMaxNumTransfers": 0,
+                    "perFromAddressMaxNumTransfers": 0,
+                    "perInitiatedByAddressMaxNumTransfers": 0,
+                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
+                    "resetTimeIntervals": {
+                        "startTime": 0,
+                        "intervalLength": 0
+                    }
+                },
+                "autoDeletionOptions": {
+                    "afterOneUse": false,
+                    "afterOverallMaxNumTransfers": false,
+                    "allowCounterpartyPurge": false,
+                    "allowPurgeIfExpired": false
+                },
+                "requireToEqualsInitiatedBy": false,
+                "requireFromEqualsInitiatedBy": false,
+                "requireToDoesNotEqualInitiatedBy": false,
+                "requireFromDoesNotEqualInitiatedBy": false,
+                "overridesFromOutgoingApprovals": false,
+                "overridesToIncomingApprovals": false,
+                "coinTransfers": [],
+                "userRoyalties": {
+                    "percentage": 0,
+                    "payoutAddress": ""
+                },
+                "dynamicStoreChallenges": [],
+                "ethSignatureChallenges": [],
+                "senderChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "recipientChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "initiatorChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "altTimeChecks": null,
+                "mustPrioritize": false
+            },
+            "version": 0
+        }
+    ],
+    "collectionId": "73",
+    "collectionMetadataTimeline": [
+        {
+            "collectionMetadata": {
+                "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
+                "customData": ""
+            },
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "collectionPermissions": {
+        "canDeleteCollection": [],
+        "canArchiveCollection": [
+            {
+                "timelineTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ],
+        "canUpdateStandards": [],
+        "canUpdateCustomData": [
+            {
+                "timelineTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ],
+        "canUpdateManager": [],
+        "canUpdateCollectionMetadata": [],
+        "canUpdateValidTokenIds": [
+            {
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ],
+        "canUpdateTokenMetadata": [],
+        "canUpdateCollectionApprovals": [
+            {
+                "fromListId": "All",
+                "toListId": "All",
+                "initiatedByListId": "All",
+                "transferTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "approvalId": "All",
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            },
+            {
+                "fromListId": "Mint",
+                "toListId": "All",
+                "initiatedByListId": "All",
+                "transferTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "approvalId": "All",
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ]
+    },
+    "cosmosCoinWrapperPaths": [
+        {
+            "address": "bb1qatt2wn99umjn87eaz4ev965yut7vl8rpclxnvfejp9ww6s6fu4sdstzsn",
+            "denom": "cubadge",
+            "balances": [
+                {
+                    "amount": 1,
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "ownershipTimes": [
+                        {
+                            "start": 1,
+                            "end": "18446744073709551615"
+                        }
+                    ]
+                }
+            ],
+            "symbol": "cubadge",
+            "denomUnits": [
+                {
+                    "decimals": 9,
+                    "symbol": "cBADGE",
+                    "isDefaultDisplay": true
+                }
+            ],
+            "allowOverrideWithAnyValidToken": false,
+            "allowCosmosWrapping": false
+        }
+    ],
+    "createdBy": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
+    "customDataTimeline": [],
+    "defaultBalances": {
+        "balances": [],
+        "incomingApprovals": [],
+        "outgoingApprovals": [],
+        "userPermissions": {
+            "canUpdateOutgoingApprovals": [],
+            "canUpdateIncomingApprovals": [],
+            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+            "canUpdateAutoApproveAllIncomingTransfers": []
+        },
+        "autoApproveSelfInitiatedOutgoingTransfers": true,
+        "autoApproveSelfInitiatedIncomingTransfers": true,
+        "autoApproveAllIncomingTransfers": true
+    },
+    "invariants": {
+        "noCustomOwnershipTimes": true,
+        "maxSupplyPerId": 0,
+        "cosmosCoinBackedPath": {
+            "address": "bb18vjxx2hvr234rml4znk0ncnd6w583qjrxpg9xjg8hrhgc4kx7jcssqk6zr",
+            "ibcDenom": "ubadge",
+            "balances": [
+                {
+                    "amount": 1000000000,
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "ownershipTimes": [
+                        {
+                            "start": 1,
+                            "end": "18446744073709551615"
+                        }
+                    ]
+                }
+            ],
+            "ibcAmount": 1000000000
+        },
+        "noForcefulPostMintTransfers": true,
+        "disablePoolCreation": false
+    },
+    "isArchivedTimeline": [],
+    "managerTimeline": [
+        {
+            "manager": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "mintEscrowAddress": "bb1jc62rquvfyyzyn807fdgj42hl9htz9dst0tlj7ewvcm9uky8ulwssaxyjj",
+    "standardsTimeline": [
+        {
+            "standards": ["Liquidity Pools"],
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "tokenMetadataTimeline": [
+        {
+            "tokenMetadata": [
+                {
+                    "uri": "ipfs://QmSviTf2qQLpFU84oF8CrxNrdgXPdWwHEyrkX3k6j7iiqR",
+                    "tokenIds": [
+                        {
+                            "start": 2,
+                            "end": "18446744073709551615"
+                        }
+                    ],
+                    "customData": ""
+                },
+                {
+                    "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "customData": ""
+                }
+            ],
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "validTokenIds": [
+        {
+            "start": 1,
+            "end": 1
+        }
+    ]
 }
 ```
 
