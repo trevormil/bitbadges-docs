@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 18:58:57 UTC 2025
+Generated on Mon Dec 22 19:09:09 UTC 2025
 
 
 
@@ -1818,6 +1818,27 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 
 The answer is simple. We believe in the potential of blockchains and a multi-chain world, but this potential cannot be realized with the current infrastructure and token standards in place today.
 
+### Problems with Existing Standards
+
+Existing tokenization standards (ERC-20, ERC-721, CW-20, ICS-20, etc.) are **flawed from the ground up**:
+
+* **Too Simple** - Basic mint/transfer/burn functionality lacks the flexibility needed for 90% of real-world applications. The industry has been stuck with these limited standards for 10+ years due to technical debt.
+* **Vulnerable by Default** - Smart contract approach introduces new attack vectors with each token contract. Each deployment is a potential vulnerability.
+* **Complex & Expensive** - Requires extensive technical knowledge to implement, deploy, and maintain contracts.
+* **Low Interoperability** - Tokens are siloed to single ecosystems, forcing companies to split their userbase across chains.
+* **Fragmented Standards** - Many competing standards with incompatible twists create confusion and fragmentation.
+
+**The whole tokenization approach needs a complete overhaul.**
+
+### Our Design Philosophy
+
+BitBadges addresses these fundamental issues through core design decisions:
+
+* **Universality** - One standard powerful enough for any use case: NFTs, fungible tokens, subscriptions, credentials, RWAs, compliance, or anything you can imagine. One standard to rule them all.
+* **No-Code Module Approach** - Built as a Cosmos SDK module, not smart contracts. 99% of users will never need to write code, regardless of complexity. Promotes reusability and battle-tested security.
+* **Ever-Evolving** - Purpose-built for next-generation tokenization. We're not stuck in the past like ERC-20/721. New features are added continuously with no technical debt accrual.
+* **IBC-First** - Cosmos-native with IBC at the core. Custom wrappable to ICS-20/721, supports IBC denominations for payments/swaps/liquidity, and enables one-signature multi-hop IBC transfers.
+
 
 ## File: ./SUMMARY.md
 
@@ -1836,8 +1857,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 * [📚 Overview](x-badges/README.md)
 * [🎓 Learn](learn/README.md)
   * [Explore!](learn/pre-readings.md)
-  * [Problems With Existing Standards](learn/problems-with-existing-standards.md)
-  * [Design Decisions](learn/key-design-decisions.md)
   * [Manager / Permissions](learn/permissions.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Transferability / Approvals](learn/transferability.md)
@@ -11137,40 +11156,6 @@ const unbackTokens: MsgTransferTokens = {
 | **Standard Minting**  | Disabled                               | Enabled                      |
 
 
-## File: ./learn/key-design-decisions.md
-
-# Design Decisions
-
-### Universality
-
-Our token standard is universal and feature-rich enough for any use case. It can be used for NFTs, fungible tokens, subscriptions, quests, credentials, real-world assets, complex regulatory compliance, or anything you can think of. The problem with existing standards is they are too limited for 95% of real-world applications. One standard to rule them all.
-
-### No-Code / Module Approach
-
-The BitBadges standard is no-code by default. It uses a Cosmos module approach to offer a seamless, developer-friendly API-like experience rather than complex smart contracts.
-
-You don't need any technical knowledge to use our standard. Simply go to our site and start building! The native support is feature-rich enough that we envision that 99% of users will NEVER need to write any code, no matter how complex the use case.
-
-This promotes reusability and battle-testing the code, rather than potential vulnerabilities introduced per token contract.
-
-### Ever-Evolving
-
-BitBadges is an ever-evolving standard. We are not making the same mistakes as ERC-20/721/etc. We are not stuck in the past. We are always on the bleeding edge of technology and will never be behind a trend. No technical debt accrual.
-
-New feature idea? We will add it. It is purpose-built for the next-generation of tokenization.
-
-### IBC Compatibility
-
-We are Cosmos through and through. Our plan is to be the tokenization launchpad for all of Cosmos with IBC at the core of everything.
-
-While tokens are siloed to the module, we support IBC / ICS20 in a variet of ways:
-
-1. Any token created is custom wrappable to ICS-20/721 format
-2. Tap into IBC / ICS20 denominations for payments, subscriptions, swaps, liquidity, etc.
-3. Our module is IBC-enabled and core Msgs can be executed via IBC
-4. One-signature aggregation of IBC transfers for multi-hop swaps, etc using our standard
-
-
 ## File: ./learn/minting-and-circulating-supply.md
 
 ## Mint Address
@@ -11303,7 +11288,14 @@ const mintApproval: CollectionApproval<bigint> = {
     version: 0n,
     // Approval criteria control who can mint, when, how much
     approvalCriteria: {
-        maxNumTransfers: 1000n, // Limit number of mints
+        maxNumTransfers: {
+            overallMaxNumTransfers: 1000n,
+            perFromAddressMaxNumTransfers: 0n,
+            perToAddressMaxNumTransfers: 0n,
+            perInitiatedByAddressMaxNumTransfers: 0n,
+            amountTrackerId: 'supply-control',
+            resetTimeIntervals: null
+        },
         overridesFromOutgoingApprovals: true, // Required for Mint address
         // ... other criteria
     },
@@ -11314,27 +11306,30 @@ const mintApproval: CollectionApproval<bigint> = {
 
 Even if current approvals don't allow minting, if the manager can update approvals, there is effectively unlimited supply potential. They can simply update and create a new unlimited mint approval. Thus, it is crucial to control both the current approvals and the updatability permissions.
 
-```typescript
-// Lock mint approvals to cap supply
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionApprovals: [
-        {
-            fromListId: 'Mint',
-            toListId: 'All',
-            initiatedByListId: 'All',
-            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-            approvalId: 'All',
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ], // Manager cannot update
-        },
-    ],
-    // ... other permission fields
-};
+**Visual Example: The Supply Cap Bypass**
+
+Imagine a collection with a capped supply of 1,000 tokens:
+
 ```
+Current State:
+│ Collection: "Limited Edition Badge"      
+│ Current Supply: 500/1,000                
+│                                          
+│ Current Mint Approval:                   
+│   ✅ Allows: 500 more tokens            
+│   ❌ Blocks: Any additional minting      
+│                                           
+│ Manager Permission:                      
+│   ⚠️ Can Update Approvals: YES           
+```
+
+On the outside, it may seem like only 500 more are allowed. However, the manager still has the ability to update or create new approvals. Thus, the supply is effectively unlimited because they can simply update the approvals to allow unlimited minting.
+
+**Key Takeaway:**
+
+To truly cap supply, you must lock BOTH:
+1. **Current approvals** - What minting is allowed now
+2. **Updatability permissions** - Whether approvals can be created
 
 ## Important Disclaimers
 
@@ -12069,27 +12064,6 @@ Everything is no-code and plug-and-play by default. You may have all you need di
 <figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./learn/problems-with-existing-standards.md
-
-Existing tokenization standards (ERC/CW/ICS-20/721) are good for many use cases, but the system is **flawed from the ground up**.
-
-## Problems
-
-**Simple**: They lack the flexibility and feature set needed for 90% of real-world applications. Simple mint, transfer, and burn functionality with no custom compliance or transferability rules is nowhere near enough. The industry has been stuck with these simple standards and no innovation for 10+ years due to technical debt.
-
-**Vulnerable**: They are vulnerable by default due to the smart contract approach. Each token contract introduces a new attack vector and chance of vulnerability. The whole smart contract approach is flawed and not sustainable.
-
-**Complex**: A simple contract requires extensive technical knowledge to implement.
-
-**Expensive**: Contracts are expensive to deploy and maintain.
-
-**Low Interoperability**: Ecosystem-agnostic companies do not want to split their userbase or handle tokens on multiple chains. They want an all-in-one solution that is compatible with any user from any ecosystem out of the box.
-
-**Many Competing Standards**: There are many competing standards and products for tokenization. Each tokenization product adds its own little twists that are not compatible with other products. This creates fragmentation and confusion.
-
-**The whole tokenization approach is broken from the foundation and NEEDS a complete overhaul.**
 
 
 ## File: ./learn/transferability.md
