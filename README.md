@@ -1,14 +1,18 @@
 ---
 description: >-
-    Here, you will find documentation about BitBadges, how it works, how to
-    interact, and how to contribute!
+  Here, you will find documentation about BitBadges, how it works, how to
+  interact, and how to contribute!
 ---
 
 # 👋 BitBadges Overview
 
 ## 🚀 The Next-Generation Token Standard
 
-BitBadges has built a brand new tokenization standard exclusively as a Cosmos SDK module, designed specifically for RWAs (Real World Assets), compliance, payments, and custom transferability requirements. Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/tokenization` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
+BitBadges has built a brand new tokenization standard exclusively as a Cosmos SDK module, designed specifically for RWAs (Real World Assets), compliance, payments, and custom transferability requirements.&#x20;
+
+Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/tokenization` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.&#x20;
+
+Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
 
 Our theses are:
 
@@ -24,15 +28,15 @@ BitBadges is simply tokenization-as-a-service. Create anything from subscription
 
 Traditional token standards are limited, inflexible, and locked to single blockchain ecosystems. BitBadges fixes this with a 100x improvement that supports:
 
--   **No Code, No Smart Contracts, No Audits** - Everything works out-of-the-box with no code. One reusable module.
--   **Compliance Checked Every Transfer, Swap, IBC Transfer** - Build complex transferability systems checked everywhere. No backdoors.
--   **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems via IBC.
--   **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials with time-dependent logic and approvals.
--   **Advanced Transferability / Compliance** - Fine-grained controls over who can transfer what, when, and how on any level.
--   **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
--   **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
--   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts or any other custom environment
--   **Customizable Permissions** - Flexible manager controls for collections
+* **No Code, No Smart Contracts, No Audits** - Everything works out-of-the-box with no code. One reusable module.
+* **Compliance Checked Every Transfer, Swap, IBC Transfer** - Build complex transferability systems checked everywhere. No backdoors.
+* **Multi-Chain Compatibility** - Users from ANY blockchain can own and transfer the SAME tokens. One interface, one token experience for all blockchain ecosystems via IBC.
+* **Time-Dependent Ownership** - Create subscriptions, time-locked tokens, and expiring credentials with time-dependent logic and approvals.
+* **Advanced Transferability / Compliance** - Fine-grained controls over who can transfer what, when, and how on any level.
+* **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
+* **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
+* **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts or any other custom environment
+* **Customizable Permissions** - Flexible manager controls for collections
 
 ## 🤔 Motive for building BitBadges?
 
