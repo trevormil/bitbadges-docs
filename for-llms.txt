@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 18:06:55 UTC 2025
+Generated on Mon Dec 22 18:58:57 UTC 2025
 
 
 
@@ -10176,10 +10176,6 @@ const userBalanceStore: UserBalanceStore<bigint> = {
 };
 ```
 
-These flags when true work seamlessly with auto-scan mode since they operate at the user level and don't require explicit approval selection.
-
-However, if you introduce `coinTransfers` or other disallowed logic (e.g. bids, listings, etc.), the approval becomes incompatible with auto-scan mode, and you must specify the approval explicitly.
-
 ## Examples
 
 ### Collection-Level Transferability
@@ -11054,7 +11050,7 @@ The system automatically detects transfers involving the special address:
 -   Checks if `from` address matches the backed path address (unbacking)
 -   Triggers the appropriate conversion logic
 
-**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Note: The approval must be prioritized as this is a special context / environment. We also verify that the initiator is equal to the recipient / sender. There is no doing this on behalf of another user.
+**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Approvals of the special address are handled behind the scenes by the system. Note: The approval must be prioritized as this is a special context / environment. We also verify that the initiator is equal to the recipient / sender. There is no doing this on behalf of another user.
 
 ## Example: Backing Tokens
 
@@ -11138,7 +11134,7 @@ const unbackTokens: MsgTransferTokens = {
 | **Minting**       | No minting/burning (uses existing IBC) | Minting/burning of new denom |
 | **Denom Source**  | Existing IBC denom                     | Generated denom              |
 | **Configuration** | Collection invariant (immutable)       | Timeline-based (mutable)     |
-| **Mint Address**  | Disabled                               | Enabled                      |
+| **Standard Minting**  | Disabled                               | Enabled                      |
 
 
 ## File: ./learn/key-design-decisions.md
@@ -11180,6 +11176,34 @@ While tokens are siloed to the module, we support IBC / ICS20 in a variet of way
 ## Mint Address
 
 The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
+
+```typescript
+const transferMsg: MsgTransferTokens = {
+    from: 'Mint',
+    toAddresses: ['bb1...'],
+    balances: [
+        {
+            amount: 1n,
+            tokenIds: [{ start: 1n, end: 1n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+        },
+    ],
+    // ... other fields
+}
+```
+
+```typescript
+const approval: CollectionApproval<bigint> = {
+    fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    // ... other fields
+    approvalCriteria: {
+        // ... other criteria
+        overridesFromOutgoingApprovals: true, // Required for Mint
+    },
+}
+```
 
 ### Manager Controls Minting Flow
 
@@ -11553,6 +11577,23 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
+
+## User Permissions
+
+User permissions control what individual users can do with their own badges and transfer approvals. Unlike manager permissions which control collection-wide administrative actions, user permissions control user-specific actions like updating auto-approve settings and managing their own incoming/outgoing transfer approvals.
+
+These are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
+
+```typescript
+const userPermissions: UserPermissions<bigint> = {
+    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [],
+    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [],
+    canUpdateAutoApproveAllIncomingTransfers: [],
+    canUpdateOutgoingApprovals: [],
+    canUpdateIncomingApprovals: [],
+};
+```
+
 ## Permissions
 
 Permissions control which actions can be performed and when those actions can be executed. The manager executes administrative actions according to these permission rules.
@@ -11589,6 +11630,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     // ... other permission fields
 };
 ```
+
 
 ## First Match Policy
 
@@ -11686,15 +11728,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-## Important Notes
-
--   **First Match Policy**: Only the first matching permission is applied
--   **Default Allow**: Unspecified permissions are allowed by default
--   **Manager Required**: Collection permissions require a manager
--   **User Control**: User permissions typically remain empty for full control
--   **Brute Force**: Use maximum ranges to ensure complete coverage
--   **Order Matters**: Array order affects permission evaluation
--   **No Forbidden + Not Frozen**: There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted)
 
 ## Permission Types
 
@@ -12021,7 +12054,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 2. **Range Lock with Overlap Protection**: Lock a token range AND all overlapping approvals
 3. **Complete Freeze**: Lock all approvals for a collection
 
-
 ## File: ./learn/pre-readings.md
 
 ### Explore the BitBadges Platform
@@ -12070,11 +12102,11 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 BitBadges supports three levels of transferability control:
 
-| Level          | Controlled By  | Use Case                               |
-| -------------- | -------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | Listings, delegation                   |
-| **Incoming**   | Recipient      | Bids, access control                   |
+| Level          | Controlled By  | Stored On              | Msg                                    | Use Case                               |
+| -------------- | -------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
+| **Incoming**   | Recipient      | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
@@ -12083,6 +12115,19 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 * Approvals define the rules for transfers on multiple levels.
 * Transfers execute if the approval rules defined allow it and sufficient balances.
 * Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+
+### Transfer Validation Process
+
+Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
+
+**Validation flow:**
+
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
+
+1. **Balance validation**: Sender has sufficient tokens
+2. **Collection approval**: At least one collection approval passes
+3. **User approvals**: Sender/recipient approvals pass (unless overridden)
+
 
 ### Collection Approvals
 
@@ -12152,7 +12197,7 @@ const mintApproval: CollectionApproval<bigint> = {
 
 ### Approval Criteria
 
-Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
+Approval criteria adds additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more. If criteria is not satisfied, the approval is not satisfied.
 
 ```typescript
 interface ApprovalCriteria<T extends bigint> {
@@ -12171,9 +12216,7 @@ See [Approval Criteria](../token-standard/learn/approval-criteria/) for all avai
 
 ### User-Level Approvals
 
-Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
-
-Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
+Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively). Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
 
 #### Outgoing Approvals
 
@@ -12215,9 +12258,9 @@ const incomingApproval: IncomingApproval<bigint> = {
 };
 ```
 
-### Auto-Approval Flags
+### User-Level Auto-Approval Flags
 
-We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true. 
 
 ```typescript
 interface UserBalanceStore<T extends bigint> {
@@ -12249,19 +12292,6 @@ When `autoApproveSelfInitiatedIncomingTransfers: true`, incoming transfers initi
 When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are automatically approved regardless of who initiates them.
 
 **Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
-
-#### Permission Control
-
-Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
-
-```typescript
-const userPermissions: UserPermissions<bigint> = {
-    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
-    // ... other permission fields
-};
-```
 
 ### Override Behavior
 
@@ -12303,18 +12333,6 @@ const collectionApproval: CollectionApproval<bigint> = {
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
 If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
-
-### Transfer Validation Process
-
-Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
-
-**Validation flow:**
-
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
-
-1. **Balance validation**: Sender has sufficient tokens
-2. **Collection approval**: At least one collection approval passes
-3. **User approvals**: Sender/recipient approvals pass (unless overridden)
 
 ### Break-Down Logic
 
@@ -15478,7 +15496,7 @@ const invariants: CollectionInvariants<bigint> = {
 
 * IBC backed (sdk.coin) path for the collection
 * Only one path allowed per collection
-* See [IBC Backed Paths](../../x-badges/concepts/ibc-backed-paths.md) for details
+* See the IBC Backed Minting documentation for details
 
 **noForcefulPostMintTransfers**
 
