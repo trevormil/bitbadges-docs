@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 17:00:41 UTC 2025
+Generated on Mon Dec 22 17:01:24 UTC 2025
 
 
 
@@ -1853,7 +1853,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Transferability & Approvals](token-standard/concepts/transferability-and-approvals.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
     * [Address Checks](x-badges/concepts/approval-criteria/address-checks.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
@@ -11626,12 +11625,6 @@ While our approach is no-code by default, we do support CosmWASM for any custom 
 ## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
 
 # Token ID Action Permissions
-
-
-
-## File: ./token-standard/concepts/transferability-and-approvals.md
-
-# Transferability & Approvals
 
 
 
