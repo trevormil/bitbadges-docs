@@ -126,5 +126,5 @@ This example demonstrates how to update user outgoing approvals to control what 
 ## Related Concepts
 
 * [Transferability](../../../../learn/transferability.md) - Approval system overview
-* [Approval Criteria](broken-reference) - Criteria configuration
-* [Tallied Approval Amounts](../../../concepts/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
+* [Approval Criteria](broken-reference/) - Criteria configuration
+* [Tallied Approval Amounts](../../../../token-standard/learn/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics

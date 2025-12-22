@@ -6,11 +6,11 @@ We refer you to the collection-level examples and just apply the same logic to t
 
 ## Key Differences from Collection Approvals
 
--   **Fixed Address Lists**:
-    -   Incoming approvals: `fromListId` is locked to the user's address
-    -   Outgoing approvals: `toListId` is locked to the user's address
--   **No Override Functionality**: Cannot override other approval levels
--   **User-Controlled**: Only the user can update their own approvals
+* **Fixed Address Lists**:
+  * Incoming approvals: `fromListId` is locked to the user's address
+  * Outgoing approvals: `toListId` is locked to the user's address
+* **No Override Functionality**: Cannot override other approval levels
+* **User-Controlled**: Only the user can update their own approvals
 
 ## Incoming Approvals
 
@@ -78,13 +78,13 @@ const updateUserApprovals = {
 
 For approval criteria examples, see:
 
--   [Empty Approval Criteria](empty-approval-criteria.md) - No restrictions template
--   [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
--   [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
--   [Address Checks](../concepts/approval-criteria/address-checks.md) - Address type restrictions
--   [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
+* [Empty Approval Criteria](empty-approval-criteria.md) - No restrictions template
+* [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
+* [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
+* [Address Checks](../../token-standard/learn/approval-criteria/address-checks.md) - Address type restrictions
+* [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
 
 For concepts, see:
 
--   [Transferability](../../learn/transferability.md)
--   [Approval Criteria](broken-reference)
+* [Transferability](../../learn/transferability.md)
+* [Approval Criteria](broken-reference/)

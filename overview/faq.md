@@ -30,8 +30,8 @@ Cosmos modules (like our token standard) can be called from EVM environments usi
 
 Simply, each approval can specify native Cosmos coin transfers to trigger if used. For example, if the mint approval is used and specifies a 5 USDC payment to Bob, it will trigger it. This supports any bank denomination.
 
-{% content-ref url="../x-badges/concepts/approval-criteria/usdbadge-transfers.md" %}
-[usdbadge-transfers.md](../x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+{% content-ref url="../token-standard/learn/approval-criteria/usdbadge-transfers.md" %}
+[usdbadge-transfers.md](../token-standard/learn/approval-criteria/usdbadge-transfers.md)
 {% endcontent-ref %}
 
 ### **How does Cosmos / IBC wrapping work?**

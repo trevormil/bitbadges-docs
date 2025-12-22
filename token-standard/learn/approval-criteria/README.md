@@ -53,22 +53,22 @@ export interface iApprovalCriteria<T extends NumberType> {
 
 ## Core Components
 
--   **[Approval Trackers](approval-trackers.md)** - Tracking transfer amounts and counts
--   **[Tallied Approval Amounts](tallied-approval-amounts.md)** - Amount limits and thresholds
--   **[Max Number of Transfers](max-number-of-transfers.md)** - Transfer count limits
--   **[Predetermined Balances](predetermined-balances.md)** - Exact balance requirements
--   **[Merkle Challenges](merkle-challenges.md)** - Cryptographic proof requirements
--   **[Dynamic Store Challenges](dynamic-store-challenges.md)** - On-chain numeric checks
--   **[ETH Signature Challenges](eth-signature-challenges.md)** - Ethereum signature requirements
--   **[Token Ownership](badge-ownership.md)** - Required token holdings
--   **[Cosmos Coin Transfers](usdbadge-transfers.md)** - Payments per approval (BADGE or other sdk.Coin)
--   **[Overrides](overrides.md)** - Bypassing user-level approvals
--   **[Requires](requires.md)** - Address relationship restrictions
--   **[Address Checks](address-checks.md)** - Address type restrictions (WASM contracts, liquidity pools)
--   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
--   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
--   **[Alt Time Checks](alt-time-checks.md)** - Time-based restrictions (offline hours/days)
--   **[Must Prioritize](must-prioritize.md)** - Requiring explicit approval prioritization
+* [**Approval Trackers**](approval-trackers.md) - Tracking transfer amounts and counts
+* [**Tallied Approval Amounts**](tallied-approval-amounts.md) - Amount limits and thresholds
+* [**Max Number of Transfers**](max-number-of-transfers.md) - Transfer count limits
+* [**Predetermined Balances**](predetermined-balances.md) - Exact balance requirements
+* [**Merkle Challenges**](merkle-challenges.md) - Cryptographic proof requirements
+* [**Dynamic Store Challenges**](dynamic-store-challenges.md) - On-chain numeric checks
+* [**ETH Signature Challenges**](eth-signature-challenges.md) - Ethereum signature requirements
+* [**Token Ownership**](badge-ownership.md) - Required token holdings
+* [**Cosmos Coin Transfers**](usdbadge-transfers.md) - Payments per approval (BADGE or other sdk.Coin)
+* [**Overrides**](overrides.md) - Bypassing user-level approvals
+* [**Requires**](requires.md) - Address relationship restrictions
+* [**Address Checks**](address-checks.md) - Address type restrictions (WASM contracts, liquidity pools)
+* [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
+* [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
+* [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
+* [**Must Prioritize**](../../../x-badges/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 
 ## Key Concepts
 
@@ -86,13 +86,13 @@ Trackers are increment-only and immutable. Never reuse tracker IDs with prior hi
 
 For custom logic beyond native options:
 
--   Use CosmWASM smart contracts
--   Leverage Merkle challenges for commit-reveal mechanisms
+* Use CosmWASM smart contracts
+* Leverage Merkle challenges for commit-reveal mechanisms
 
 ### Cross-Approval Logic
 
 Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
 
--   Workarounds and careful design
--   CosmWASM for advanced functionality
--   Contact us for recommendations
+* Workarounds and careful design
+* CosmWASM for advanced functionality
+* Contact us for recommendations

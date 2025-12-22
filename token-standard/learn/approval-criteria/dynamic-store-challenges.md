@@ -36,19 +36,19 @@ interface DynamicStoreChallenge {
 
 ### Creating Stores
 
-Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
+Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
 
 ### Setting Values
 
-Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
+Use [MsgSetDynamicStoreValue](../../../x-badges/messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
 
 ### Querying Values
 
-Use [GetDynamicStoreValue](../../queries/get-dynamic-store-value.md) to check current values for addresses.
+Use [GetDynamicStoreValue](../../../x-badges/queries/get-dynamic-store-value.md) to check current values for addresses.
 
 ## Alternatives
 
 For fully off-chain solutions, consider:
 
--   [Merkle Challenges](merkle-challenges.md) to save gas costs
--   [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization
+* [Merkle Challenges](merkle-challenges.md) to save gas costs
+* [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization

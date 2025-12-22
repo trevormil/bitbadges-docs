@@ -16,9 +16,9 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 
 ## Approval vs Permission vs Transfers
 
--   Approvals define the rules for transfers on multiple levels.
--   Transfers execute if the approval rules defined allow it and sufficient balances.
--   Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+* Approvals define the rules for transfers on multiple levels.
+* Transfers execute if the approval rules defined allow it and sufficient balances.
+* Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
 
 ### Collection Approvals
 
@@ -103,7 +103,7 @@ interface ApprovalCriteria<T extends bigint> {
 }
 ```
 
-See [Approval Criteria](../x-badges/concepts/approval-criteria/) for all available criteria.
+See [Approval Criteria](../token-standard/learn/approval-criteria/) for all available criteria.
 
 ### User-Level Approvals
 
@@ -227,14 +227,14 @@ const collectionApproval: CollectionApproval<bigint> = {
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
--   Freezing tokens (prevent transfers regardless of user settings)
--   Forced revocation (remove tokens from users)
--   Administrative transfers (manager-controlled actions)
+* Freezing tokens (prevent transfers regardless of user settings)
+* Forced revocation (remove tokens from users)
+* Administrative transfers (manager-controlled actions)
 
 **Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
 
--   Forced transfers (send tokens even if recipient blocks them)
--   Administrative actions (manager-controlled distributions)
+* Forced transfers (send tokens even if recipient blocks them)
+* Administrative actions (manager-controlled distributions)
 
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
