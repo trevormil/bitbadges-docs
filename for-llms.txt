@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 16:49:07 UTC 2025
+Generated on Mon Dec 22 16:51:29 UTC 2025
 
 
 
@@ -1843,15 +1843,15 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Transferability](learn/transferability.md)
   * [Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
   * [Time-Dependent Accounting](learn/time-dependent-accounting.md)
+  * [Collection Configuration](token-standard/learn/collection-setup-fields.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Core Structures](token-standard/concepts/core-structures/README.md)
-    * [Address Lists](token-standard/concepts/core-structures/address-lists.md)
-    * [Collections](token-standard/concepts/core-structures/badge-collections.md)
-    * [Balances](token-standard/concepts/core-structures/balance-system.md)
-    * [UintRanges](token-standard/concepts/core-structures/uintrange.md)
-    * [Timeline System](token-standard/concepts/core-structures/timeline-system.md)
-    * [Different Time Fields](token-standard/concepts/core-structures/time-fields.md)
-  * [Collection Configuration](x-badges/concepts/collection-setup-fields.md)
+    * [Address Lists](x-badges/concepts/address-lists.md)
+    * [Collections](x-badges/concepts/badge-collections.md)
+    * [Balances](x-badges/concepts/balance-system.md)
+    * [UintRanges](x-badges/concepts/uintrange.md)
+    * [Timeline System](x-badges/concepts/timeline-system.md)
+    * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
   * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
@@ -10878,9 +10878,11 @@ Each approval unlocks a portion of tokens at different times, creating a gradual
 
 ## File: ./learn/transferability.md
 
+# Transferability
+
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
 
-## Three Transferability Levels
+### Three Transferability Levels
 
 BitBadges supports three levels of transferability control:
 
@@ -10892,7 +10894,13 @@ BitBadges supports three levels of transferability control:
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
-## Collection Approvals
+## Approval vs Permission vs Transfers
+
+* Approvals define the rules for transfers on multiple levels.
+* Transfers execute if the approval rules defined allow it and sufficient balances.
+* Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+
+### Collection Approvals
 
 Collection approvals define transferability rules for the entire collection on a global level. These rules apply to both minting and post-minting transfers. These let the issuer / manager control global compliance and transferability, such as freezability, revocation, and more.
 
@@ -10917,7 +10925,7 @@ interface CollectionApproval<T extends bigint> {
 }
 ```
 
-### Example Approval
+#### Example Approval
 
 ```typescript
 const mintApproval: CollectionApproval<bigint> = {
@@ -10945,7 +10953,7 @@ const mintApproval: CollectionApproval<bigint> = {
 
 **Translation:** Allow anyone to claim tokens 1-100 from the Mint address between Aug 13, 2023 and Aug 13, 2024.
 
-## Approval Criteria
+### Approval Criteria
 
 Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
 
@@ -10962,15 +10970,15 @@ interface ApprovalCriteria<T extends bigint> {
 }
 ```
 
-See [Approval Criteria](../x-badges/concepts/approval-criteria/README.md) for all available criteria.
+See [Approval Criteria](../x-badges/concepts/approval-criteria/) for all available criteria.
 
-## User-Level Approvals
+### User-Level Approvals
 
 Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
 
 Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
 
-### Outgoing Approvals
+#### Outgoing Approvals
 
 Control who can send tokens on behalf of the user:
 
@@ -10990,7 +10998,7 @@ const outgoingApproval: OutgoingApproval<bigint> = {
 };
 ```
 
-### Incoming Approvals
+#### Incoming Approvals
 
 Control who can send tokens to the user:
 
@@ -11010,7 +11018,7 @@ const incomingApproval: IncomingApproval<bigint> = {
 };
 ```
 
-## Auto-Approval Flags
+### Auto-Approval Flags
 
 We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
 
@@ -11027,25 +11035,25 @@ interface UserBalanceStore<T extends bigint> {
 }
 ```
 
-### Auto-Approve Self-Initiated Outgoing Transfers
+#### Auto-Approve Self-Initiated Outgoing Transfers
 
 When `autoApproveSelfInitiatedOutgoingTransfers: true`, outgoing transfers initiated by the user are automatically approved without checking outgoing approvals.
 
 **Use case:** Convenience for users who want to freely send tokens they own without managing outgoing approval configurations.
 
-### Auto-Approve Self-Initiated Incoming Transfers
+#### Auto-Approve Self-Initiated Incoming Transfers
 
 When `autoApproveSelfInitiatedIncomingTransfers: true`, incoming transfers initiated by the user are automatically approved without checking incoming approvals.
 
 **Use case:** Convenience for users who want to receive tokens they request (e.g., claiming, requesting airdrops) without managing incoming approval configurations.
 
-### Auto-Approve All Incoming Transfers
+#### Auto-Approve All Incoming Transfers
 
 When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are automatically approved regardless of who initiates them.
 
 **Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
 
-### Permission Control
+#### Permission Control
 
 Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
 
@@ -11058,7 +11066,7 @@ const userPermissions: UserPermissions<bigint> = {
 };
 ```
 
-## Override Behavior
+### Override Behavior
 
 Collection approvals can override user-level approvals for administrative controls like freezing, revocation, or forced transfers. This is done via the `approvalCriteria` field and only available on the collection approval criteria interface.
 
@@ -11082,42 +11090,42 @@ const collectionApproval: CollectionApproval<bigint> = {
 };
 ```
 
-### When Overrides Apply
+#### When Overrides Apply
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
--   Freezing tokens (prevent transfers regardless of user settings)
--   Forced revocation (remove tokens from users)
--   Administrative transfers (manager-controlled actions)
+* Freezing tokens (prevent transfers regardless of user settings)
+* Forced revocation (remove tokens from users)
+* Administrative transfers (manager-controlled actions)
 
 **Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
 
--   Forced transfers (send tokens even if recipient blocks them)
--   Administrative actions (manager-controlled distributions)
+* Forced transfers (send tokens even if recipient blocks them)
+* Administrative actions (manager-controlled distributions)
 
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
 If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
 
-## Transfer Validation Process
+### Transfer Validation Process
 
 Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
 
 **Validation flow:**
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption>Transfer validation flow</figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
 
 1. **Balance validation**: Sender has sufficient tokens
 2. **Collection approval**: At least one collection approval passes
 3. **User approvals**: Sender/recipient approvals pass (unless overridden)
 
-## Break-Down Logic
+### Break-Down Logic
 
 The system can break down transfers and approvals into partial matches to make transfers succeed. It deducts as much as possible from each approval as it iterates.
 
 For proper design, you should try to design your approvals such that they never have to match to more than one. However, if needed, we break down the transfer and approvals as fine-grained as we can to make it succeed.
 
-See [Auto-Scan and Prioritized Approvals](./auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.
+See [Auto-Scan and Prioritized Approvals](auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.
 
 
 ## File: ./overview/badge.md
@@ -11706,1005 +11714,6 @@ While our approach is no-code by default, we do support CosmWASM for any custom 
 
 
 
-## File: ./token-standard/concepts/core-structures/address-lists.md
-
-# Address Lists
-
-Address lists define collections of addresses for use in approval configurations (`fromListId`, `toListId`, `initiatedByListId`). They support reserved IDs, inline colon-separated lists, and user-created stored lists.
-
-## Proto Definition
-
-```protobuf
-message AddressList {
-  string listId = 1;
-  repeated string addresses = 2;
-  bool whitelist = 3;  // true = whitelist, false = blacklist
-  string uri = 4;
-  string customData = 5;
-  string createdBy = 6;
-}
-```
-
-## Matching Logic
-
-```javascript
-function checkAddress(address, addressList) {
-    const found = addressList.addresses.includes(address);
-    return addressList.whitelist ? found : !found;
-}
-```
-
--   **Whitelist** (`whitelist: true`): Only listed addresses are included
--   **Blacklist** (`whitelist: false`): All addresses except listed ones are included
-
-## Reserved IDs
-
-Dynamically generated, zero storage overhead.
-
-| ID                    | Logic                                               | Description                            |
-| --------------------- | --------------------------------------------------- | -------------------------------------- |
-| `"Mint"`              | `{addresses: ["Mint"], whitelist: true}`            | Only Mint address                      |
-| `"All"`               | `{addresses: [], whitelist: false}`                 | All addresses (including Mint)         |
-| `"None"`              | `{addresses: [], whitelist: true}`                  | No addresses                           |
-| `"AllWithout<addrs>"` | `{addresses: [addrs...], whitelist: false}`         | All except specified (colon-separated) |
-| `"addr1:addr2:..."`   | `{addresses: [addr1, addr2, ...], whitelist: true}` | Inline whitelist                       |
-
-## Mint Address Handling
-
-The set of valid addresses includes any valid `bb1` address **and** `"Mint"` (a reserved address representing the collection's mint address).
-
-**Important**: `"All"` includes the Mint address. When creating approvals, especially `fromListId`, be careful with Mint handling since the Mint address has unlimited balances.
-
-```json
-// Exclude Mint from senders (common pattern)
-{
-    "fromListId": "AllWithoutMint",  // All addresses except Mint
-    "toListId": "All"
-}
-
-// Allow only Mint to send (minting only)
-{
-    "fromListId": "Mint",
-    "toListId": "All"
-}
-```
-
-## Inversion
-
-Prefix with `!` to invert whitelist/blacklist behavior. **Only works with reserved IDs and inline lists, not user-created lists.** Supports parentheses too for syntax `!(...)`.
-
-```javascript
-'!All'; // Inverts All → None behavior
-'!bb1alice...:bb1bob...'; // Inverts inline list → blacklist
-'!(AllWithoutMint)'; // Inverts AllWithoutMint → whitelist with only Mint
-```
-
-Formats: `"!listId"` (if listId doesn't end with `)`) or `"!(listId)"`.
-
-## User-Created Lists
-
-Created via `MsgCreateAddressLists`. **Immutable** once created. Referenced by the custom listId where needed. This approach is useful for large lists that are referenced multiple times to save on gas.
-
-### ID Validation
-
--   Alphanumeric only (`a-z`, `A-Z`, `0-9`)
--   Cannot be empty
--   Cannot start with `!`
--   Cannot conflict with reserved IDs (`"All"`, `"Mint"`, `"None"`, `"AllWithout*"`)
--   Must be unique
-
-### Example
-
-```json
-{
-    "listId": "vipMembers",
-    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
-    "whitelist": true,
-    "uri": "",
-    "customData": "",
-    "createdBy": "bb1manager..."
-}
-```
-
-## Usage Examples
-
-```json
-// Universal access
-{
-    "fromListId": "AllWithoutMint",
-    "toListId": "All",
-    "initiatedByListId": "All"
-}
-
-// Restricted with inline list
-{
-    "fromListId": "bb1alice...:bb1bob...:bb1charlie...",
-    "toListId": "AllWithoutMint:bb1blocked...",
-    "initiatedByListId": "All"
-}
-
-// User-created list
-{
-    "fromListId": "vipMembers",
-    "toListId": "!bb1banned...",  // Inversion works with inline lists
-    "initiatedByListId": "All"
-}
-```
-
-## Performance
-
--   **Reserved IDs**: Zero storage, dynamic generation, minimal gas
--   **Inline lists**: Zero storage, dynamic parsing, efficient for < 10 addresses
--   **User-created**: On-chain storage, reusable short ID, efficient lookups, best for large/repeated lists
-
-
-## File: ./token-standard/concepts/core-structures/badge-collections.md
-
-# Collections
-
-A collection is the primary entity that defines a group of related tokens with shared properties and rules. We refer you to other pages for more details on the different concepts that make up a collection.
-
-Note: This is what is stored on-chain in storage for a collection. You may typically interact with similar concepts but moreso in Messages and Queries format.
-
-## Proto Definition
-
-```protobuf
-message TokenCollection {
-  // The unique identifier for this collection. This is assigned by the blockchain. First collection has ID 1.
-  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-
-  // The metadata for the collection itself, which can vary over time.
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 2;
-
-  // The metadata for each token in the collection, also subject to changes over time.
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
-
-  // An arbitrary field that can store any data, subject to changes over time.
-  repeated CustomDataTimeline customDataTimeline = 4;
-
-  // The address of the manager of this collection, subject to changes over time.
-  repeated ManagerTimeline managerTimeline = 5;
-
-  // Permissions that define what the manager of the collection can do or not do.
-  CollectionPermissions collectionPermissions = 6;
-
-  // Transferability of the collection for collections with standard balances, subject to changes over time.
-  // Overrides user approvals for a transfer if specified.
-  // Transfer must satisfy both user and collection-level approvals.
-  // Only applicable to on-chain balances.
-  repeated CollectionApproval collectionApprovals = 7;
-
-  // Standards that define how to interpret the fields of the collection, subject to changes over time.
-  repeated StandardsTimeline standardsTimeline = 8;
-
-  // Whether the collection is archived or not, subject to changes over time.
-  // When archived, it becomes read-only, and no transactions can be processed until it is unarchived.
-  repeated IsArchivedTimeline isArchivedTimeline = 9;
-
-  // The default store of a balance for a user, upon genesis.
-  UserBalanceStore defaultBalances = 10;
-
-  // The user or entity who created the collection.
-  string createdBy = 11;
-
-  // The valid token IDs for this collection.
-  repeated UintRange validTokenIds = 12;
-
-  // The generated address of the collection. Also used to escrow Mint balances.
-  string mintEscrowAddress = 13;
-
-  // The IBC wrapper (sdk.coin) paths for the collection.
-  repeated CosmosCoinWrapperPath cosmosCoinWrapperPaths = 14;
-
-  // Collection-level invariants that cannot be broken.
-  // These are set upon genesis and cannot be modified.
-  CollectionInvariants invariants = 16;
-}
-```
-
-## JSON
-
-```json
-{
-    "collectionApprovals": [
-        {
-            "toListId": "All",
-            "fromListId": "!Mint",
-            "initiatedByListId": "!(bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany)",
-            "transferTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ],
-            "tokenIds": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ],
-            "ownershipTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ],
-            "approvalId": "transferable-approval",
-            "uri": "",
-            "customData": "",
-            "approvalCriteria": {
-                "merkleChallenges": [],
-                "mustOwnTokens": [],
-                "predeterminedBalances": {
-                    "manualBalances": [],
-                    "incrementedBalances": {
-                        "startBalances": [],
-                        "incrementTokenIdsBy": 0,
-                        "incrementOwnershipTimesBy": 0,
-                        "durationFromTimestamp": 0,
-                        "allowOverrideTimestamp": false,
-                        "recurringOwnershipTimes": {
-                            "startTime": 0,
-                            "intervalLength": 0,
-                            "chargePeriodLength": 0
-                        },
-                        "allowOverrideWithAnyValidToken": false
-                    },
-                    "orderCalculationMethod": {
-                        "useOverallNumTransfers": false,
-                        "usePerToAddressNumTransfers": false,
-                        "usePerFromAddressNumTransfers": false,
-                        "usePerInitiatedByAddressNumTransfers": false,
-                        "useMerkleChallengeLeafIndex": false,
-                        "challengeTrackerId": ""
-                    }
-                },
-                "approvalAmounts": {
-                    "overallApprovalAmount": 0,
-                    "perToAddressApprovalAmount": 0,
-                    "perFromAddressApprovalAmount": 0,
-                    "perInitiatedByAddressApprovalAmount": 0,
-                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
-                    "resetTimeIntervals": {
-                        "startTime": 0,
-                        "intervalLength": 0
-                    }
-                },
-                "maxNumTransfers": {
-                    "overallMaxNumTransfers": 0,
-                    "perToAddressMaxNumTransfers": 0,
-                    "perFromAddressMaxNumTransfers": 0,
-                    "perInitiatedByAddressMaxNumTransfers": 0,
-                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
-                    "resetTimeIntervals": {
-                        "startTime": 0,
-                        "intervalLength": 0
-                    }
-                },
-                "autoDeletionOptions": {
-                    "afterOneUse": false,
-                    "afterOverallMaxNumTransfers": false,
-                    "allowCounterpartyPurge": false,
-                    "allowPurgeIfExpired": false
-                },
-                "requireToEqualsInitiatedBy": false,
-                "requireFromEqualsInitiatedBy": false,
-                "requireToDoesNotEqualInitiatedBy": false,
-                "requireFromDoesNotEqualInitiatedBy": false,
-                "overridesFromOutgoingApprovals": false,
-                "overridesToIncomingApprovals": false,
-                "coinTransfers": [],
-                "userRoyalties": {
-                    "percentage": 0,
-                    "payoutAddress": ""
-                },
-                "dynamicStoreChallenges": [],
-                "ethSignatureChallenges": [],
-                "senderChecks": {
-                    "mustBeWasmContract": false,
-                    "mustNotBeWasmContract": false,
-                    "mustBeLiquidityPool": false,
-                    "mustNotBeLiquidityPool": false
-                },
-                "recipientChecks": {
-                    "mustBeWasmContract": false,
-                    "mustNotBeWasmContract": false,
-                    "mustBeLiquidityPool": false,
-                    "mustNotBeLiquidityPool": false
-                },
-                "initiatorChecks": {
-                    "mustBeWasmContract": false,
-                    "mustNotBeWasmContract": false,
-                    "mustBeLiquidityPool": false,
-                    "mustNotBeLiquidityPool": false
-                },
-                "altTimeChecks": null,
-                "mustPrioritize": false
-            },
-            "version": 0
-        }
-    ],
-    "collectionId": "73",
-    "collectionMetadataTimeline": [
-        {
-            "collectionMetadata": {
-                "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
-                "customData": ""
-            },
-            "timelineTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ]
-        }
-    ],
-    "collectionPermissions": {
-        "canDeleteCollection": [],
-        "canArchiveCollection": [
-            {
-                "timelineTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "canUpdateStandards": [],
-        "canUpdateCustomData": [
-            {
-                "timelineTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "canUpdateManager": [],
-        "canUpdateCollectionMetadata": [],
-        "canUpdateValidTokenIds": [
-            {
-                "tokenIds": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": [
-            {
-                "fromListId": "All",
-                "toListId": "All",
-                "initiatedByListId": "All",
-                "transferTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "tokenIds": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "ownershipTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "approvalId": "All",
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ]
-            },
-            {
-                "fromListId": "Mint",
-                "toListId": "All",
-                "initiatedByListId": "All",
-                "transferTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "tokenIds": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "ownershipTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ],
-                "approvalId": "All",
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    {
-                        "start": 1,
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ]
-    },
-    "cosmosCoinWrapperPaths": [
-        {
-            "address": "bb1qatt2wn99umjn87eaz4ev965yut7vl8rpclxnvfejp9ww6s6fu4sdstzsn",
-            "denom": "cubadge",
-            "balances": [
-                {
-                    "amount": 1,
-                    "tokenIds": [
-                        {
-                            "start": 1,
-                            "end": 1
-                        }
-                    ],
-                    "ownershipTimes": [
-                        {
-                            "start": 1,
-                            "end": "18446744073709551615"
-                        }
-                    ]
-                }
-            ],
-            "symbol": "cubadge",
-            "denomUnits": [
-                {
-                    "decimals": 9,
-                    "symbol": "cBADGE",
-                    "isDefaultDisplay": true
-                }
-            ],
-            "allowOverrideWithAnyValidToken": false,
-            "allowCosmosWrapping": false
-        }
-    ],
-    "createdBy": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
-    "customDataTimeline": [],
-    "defaultBalances": {
-        "balances": [],
-        "incomingApprovals": [],
-        "outgoingApprovals": [],
-        "userPermissions": {
-            "canUpdateOutgoingApprovals": [],
-            "canUpdateIncomingApprovals": [],
-            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
-            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
-            "canUpdateAutoApproveAllIncomingTransfers": []
-        },
-        "autoApproveSelfInitiatedOutgoingTransfers": true,
-        "autoApproveSelfInitiatedIncomingTransfers": true,
-        "autoApproveAllIncomingTransfers": true
-    },
-    "invariants": {
-        "noCustomOwnershipTimes": true,
-        "maxSupplyPerId": 0,
-        "cosmosCoinBackedPath": {
-            "address": "bb18vjxx2hvr234rml4znk0ncnd6w583qjrxpg9xjg8hrhgc4kx7jcssqk6zr",
-            "ibcDenom": "ubadge",
-            "balances": [
-                {
-                    "amount": 1000000000,
-                    "tokenIds": [
-                        {
-                            "start": 1,
-                            "end": 1
-                        }
-                    ],
-                    "ownershipTimes": [
-                        {
-                            "start": 1,
-                            "end": "18446744073709551615"
-                        }
-                    ]
-                }
-            ],
-            "ibcAmount": 1000000000
-        },
-        "noForcefulPostMintTransfers": true,
-        "disablePoolCreation": false
-    },
-    "isArchivedTimeline": [],
-    "managerTimeline": [
-        {
-            "manager": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
-            "timelineTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ]
-        }
-    ],
-    "mintEscrowAddress": "bb1jc62rquvfyyzyn807fdgj42hl9htz9dst0tlj7ewvcm9uky8ulwssaxyjj",
-    "standardsTimeline": [
-        {
-            "standards": ["Liquidity Pools"],
-            "timelineTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ]
-        }
-    ],
-    "tokenMetadataTimeline": [
-        {
-            "tokenMetadata": [
-                {
-                    "uri": "ipfs://QmSviTf2qQLpFU84oF8CrxNrdgXPdWwHEyrkX3k6j7iiqR",
-                    "tokenIds": [
-                        {
-                            "start": 2,
-                            "end": "18446744073709551615"
-                        }
-                    ],
-                    "customData": ""
-                },
-                {
-                    "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
-                    "tokenIds": [
-                        {
-                            "start": 1,
-                            "end": 1
-                        }
-                    ],
-                    "customData": ""
-                }
-            ],
-            "timelineTimes": [
-                {
-                    "start": 1,
-                    "end": "18446744073709551615"
-                }
-            ]
-        }
-    ],
-    "validTokenIds": [
-        {
-            "start": 1,
-            "end": 1
-        }
-    ]
-}
-```
-
-
-## File: ./token-standard/concepts/core-structures/balance-system.md
-
-# Balance System
-
-The Balance system in BitBadges is designed to represent ownership of tokens across different IDs and time ranges. Ownership times are a new concept to BitBadges allowing you to set that someone owns a token during a specific time but not other times.
-
-## Balance Interface
-
-```typescript
-export interface Balance<T extends NumberType> {
-    amount: T;
-    tokenIds: UintRange<T>[];
-    ownershipTimes: UintRange<T>[];
-}
-```
-
--   `amount`: The quantity of tokens owned
--   `tokenIds`: An array of ID ranges representing the tokens owned
--   `ownershipTimes`: An array of time ranges during which the tokens are owned
-
-## Interpreting Balances
-
-When interpreting balances, it's crucial to understand that multiple ranges of token IDs and ownership times within a single Balance structure represent all possible combinations.
-
-### Interpretation Algorithm
-
-```javascript
-for (balance of balances) {
-    for (tokenIdRange of balance.tokenIds) {
-        for (ownershipTimeRange of balance.ownershipTimes) {
-            // User owns x(balance.amount) of (tokenIdRange) for the times (ownershipTimeRange)
-        }
-    }
-}
-```
-
-### Example
-
-Consider the following balance:
-
-```json
-{
-    "amount": 1,
-    "tokenIds": [
-        { "start": 1, "end": 10 },
-        { "start": 20, "end": 30 }
-    ],
-    "ownershipTimes": [
-        { "start": 20, "end": 50 },
-        { "start": 100, "end": 200 }
-    ]
-}
-```
-
-This balance expands to:
-
-1. 1x of IDs 1-10 from times 20-50
-2. 1x of IDs 1-10 from times 100-200
-3. 1x of IDs 20-30 from times 20-50
-4. 1x of IDs 20-30 from times 100-200
-
-## Balance Subtraction
-
-When subtracting balances, you may need to represent the result as multiple Balance objects. For example, if we subtract the first set of balances from the example above (1x of IDs 1-10 from times 20-50), the result would be:
-
-```json
-[
-    {
-        "amount": 1,
-        "tokenIds": [
-            { "start": 1, "end": 10 },
-            { "start": 20, "end": 30 }
-        ],
-        "ownershipTimes": [{ "start": 100, "end": 200 }]
-    },
-    {
-        "amount": 1,
-        "tokenIds": [{ "start": 20, "end": 30 }],
-        "ownershipTimes": [{ "start": 20, "end": 50 }]
-    }
-]
-```
-
-## Handling Duplicates
-
-When duplicate token IDs are specified in balances, they are combined and their amounts are added. For example:
-
-```json
-{
-    "amount": 1,
-    "tokenIds": [
-        { "start": 1, "end": 10 },
-        { "start": 1, "end": 10 }
-    ],
-    "ownershipTimes": [{ "start": 100, "end": 200 }]
-}
-```
-
-This is equivalent to and will be treated as:
-
-```json
-{
-    "amount": 2,
-    "tokenIds": [{ "start": 1, "end": 10 }],
-    "ownershipTimes": [{ "start": 100, "end": 200 }]
-}
-```
-
-## Best Practices
-
-1. **Efficient Representation**: Try to represent balances in the most compact form possible by combining overlapping ranges
-2. **Careful Subtraction**: When subtracting balances, ensure that you correctly split the remaining balances to accurately represent the result
-3. **Avoid Duplicates**: While the system handles duplicates by combining them, it's more efficient to represent balances without duplicates in the first place
-4. **Time-Aware Operations**: Always consider the time dimension when performing operations on balances, as ownership can vary over time
-5. **Range Calculations**: Familiarize yourself with range operations, as they are crucial for correctly manipulating and interpreting balances
-
-
-## File: ./token-standard/concepts/core-structures/time-fields.md
-
-# Different Time Fields
-
-BitBadges uses various time-related fields to manage permissions, timelines, transfers, and ownership. Understanding these fields is crucial for effectively managing collections and tokens.
-
-## Time Representation
-
-All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
-
-Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
-
-## Time Field Types
-
-### 1. permanentlyPermittedTimes
-
--   **Purpose**: Defines the times when a permission will always be executable (permanent)
--   **Usage**: Setting allowed periods for specific actions
-
-### 2. permanentlyForbiddenTimes
-
--   **Purpose**: Defines the times when a permission will always be forbidden (permanent)
--   **Usage**: Setting restricted periods for specific actions
-
-### 3. timelineTimes
-
--   **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
--   **Usage**: Scheduling changes to collection or token properties over time
-
-### 4. transferTimes
-
--   **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
--   **Usage**: Setting periods when tokens can be transferred between addresses
-
-### 5. ownershipTimes
-
--   **Purpose**: Specifies the times that a user owns a token
--   **Usage**: Defining the duration of token ownership for users
-
-## Important Note
-
-The `timelineTimes` in permissions correspond to the updatability of the timeline, while `timelineTimes` in the actual timeline represent the actual times for the values.
-
-## Examples
-
-### Example 1: Presidential Election Badges
-
-Scenario: Users participate in a US presidential election by casting votes through token transfers.
-
--   T1: Conclusion of voting
--   T2: Start of presidential term
--   T3: End of presidential term
-
-Setup:
-
--   `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
--   `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
-
-### Example 2: Managing Collection Archival
-
-Scenario: A collection can be optionally archived by the manager from T1 to T2, but is non-archivable at all other times.
-
-Before archiving:
-
-```
-Permission:
-permanentlyPermittedTimes: [{ start: T1, end: T2 }]
-permanentlyForbiddenTimes: [everything but T1 to T2]
-timelineTimes: [{ start: 1, end: MAX_TIME }]
-
-Archived Timeline:
-isArchived: false for [{ start: 1, end: MAX_TIME }]
-```
-
-After archiving for all times:
-
-```
-Permission: (unchanged)
-permanentlyPermittedTimes: [{ start: T1, end: T2 }]
-permanentlyForbiddenTimes: [everything but T1 to T2]
-timelineTimes: [{ start: 1, end: MAX_TIME }]
-
-Archived Timeline:
-isArchived: true for [{ start: 1, end: MAX_TIME }]
-```
-
-## Best Practices
-
-1. **Clear Timelines**: Always define clear and non-overlapping time ranges for each field to avoid confusion and conflicts
-2. **Permission Management**: Carefully consider the implications of setting `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`, as these can significantly impact the flexibility of your collection
-3. **Timeline Planning**: When using `timelineTimes`, plan your collection's lifecycle in advance to minimize the need for frequent updates
-4. **Transfer Windows**: Use `transferTimes` to create specific windows for token transfers, which can be useful for time-limited events or phased distributions
-5. **Ownership Tracking**: Leverage `ownershipTimes` to create tokens with time-bound ownership, useful for temporary privileges or rotating responsibilities
-6. **Permission Locking**: Be cautious when permanently locking permissions, as this action is irreversible and may limit future flexibility
-7. **Time Synchronization**: Ensure all systems interacting with your BitBadges collection are properly time-synchronized to avoid discrepancies in time-based operations
-
-
-## File: ./token-standard/concepts/core-structures/timeline-system.md
-
-# Timeline System
-
-BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
-
-## Structure
-
-Timeline-based fields extend the `TimelineItem` interface:
-
-```typescript
-export interface TimelineItem<T extends NumberType> {
-    timelineTimes: UintRange<T>[];
-}
-```
-
-## Proto Definition Examples
-
-```protobuf
-message ManagerTimeline {
-  repeated UintRange timelineTimes = 1;
-  string manager = 2;
-}
-
-message CollectionMetadataTimeline {
-  repeated UintRange timelineTimes = 1;
-  CollectionMetadata collectionMetadata = 2;
-}
-
-message TokenMetadataTimeline {
-  repeated UintRange timelineTimes = 1;
-  repeated UintRange tokenIds = 2;
-  TokenMetadata tokenMetadata = 3;
-}
-```
-
-## Timeline Fields in Collections
-
-The collection interface includes the following timeline-based fields:
-
-* `managerTimeline: ManagerTimeline<T>[]`
-* `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
-* `tokenMetadataTimeline: TokenMetadataTimeline<T>[]`
-* `customDataTimeline: CustomDataTimeline<T>[]`
-* `standardsTimeline: StandardsTimeline<T>[]`
-* `isArchivedTimeline: IsArchivedTimeline<T>[]`
-
-## Usage Example
-
-### Collection Metadata Timeline
-
-```json
-{
-    "collectionMetadataTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1680307199000" }],
-            "collectionMetadata": {
-                "uri": "ipfs://abc123",
-                "customData": ""
-            }
-        },
-        {
-            "timelineTimes": [
-                { "start": "1680307200000", "end": "18446744073709551615" }
-            ],
-            "collectionMetadata": {
-                "uri": "ipfs://xyz456",
-                "customData": ""
-            }
-        }
-    ]
-}
-```
-
-In this example:
-
-* From time 1 to March 31, 2023, the collection metadata URI is 'ipfs://abc123'
-* From April 1, 2023 onwards, the collection metadata URI is 'ipfs://xyz456'
-* The change happens automatically without additional transactions
-
-
-## File: ./token-standard/concepts/core-structures/uintrange.md
-
-# UintRanges
-
-The `UintRange` is the fundamental data structure used throughout the tokens module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
-
-## Proto Definition
-
-```protobuf
-message UintRange {
-  string start = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-  string end = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-}
-```
-
-## Usage Patterns
-
-UintRanges are used to represent:
-
--   **Token ID ranges**: `[1-100]` represents token IDs 1 through 100 (inclusive)
--   **Time ranges**: `[1640995200000-1672531200000]` represents a year in UNIX milliseconds
--   **Amount ranges**: `[1-5]` represents quantities from 1 to 5
--   **Ownership time ranges**: When tokens are valid for ownership
-
-## Restrictions & Valid Values
-
-Unless otherwise specified, we only allow numbers in the ranges to be from **1 to Go Max UInt64**:
-
--   **Valid range**: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
--   **Zero and negative values**: Not allowed
--   **Values greater than maximum**: Not allowed
-
-## Validation Rules
-
--   `start` must be ≤ `end`
--   Ranges in the same array cannot overlap
--   Zero amounts are not allowed in balance ranges
--   All values must be within the valid range (1 to MaxUint64)
-
-## Special Cases
-
-### Full Range
-
-To represent a complete range covering all possible values:
-
-```protobuf
-// Full range from 1 to maximum
-{
-  start: "1",
-  end: "18446744073709551615"
-}
-```
-
-### Single Value
-
-To represent a single value, use the same value for start and end:
-
-```protobuf
-// Single token ID 5
-{
-  start: "5",
-  end: "5"
-}
-```
-
-### Range Inversion
-
-Inverting a range results in all values from 1 to 18446744073709551615 that are **not** in the current range. This is useful for exclusion logic.
-
-## Examples
-
-### Token ID Examples
-
-```typescript
-// Token IDs 1-10 (inclusive)
-const badgeRange: UintRange[] = [{ start: '1', end: '10' }];
-
-// Multiple non-overlapping ranges
-const multipleBadges: UintRange[] = [
-    { start: '1', end: '10' },
-    { start: '20', end: '50' },
-];
-```
-
-### Go Code Examples
-
-```go
-// Token IDs 1-10
-tokenIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
-
-// Unlimited amount
-unlimitedAmount := UintRange{Start: NewUint(1), End: MaxUint}
-
-// Single token ID
-singleBadge := UintRange{Start: NewUint(5), End: NewUint(5)}
-```
-
-## Efficiency Benefits
-
--   **Compact representation**: Ranges avoid storing individual values
--   **Range operations**: Efficient intersection, union, and containment checks
--   **Gas optimization**: Reduces transaction size and computational costs
--   **Scalability**: Handles large ranges without performance degradation
-
-
 ## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
 
 # Token ID Action Permissions
@@ -13027,6 +12036,324 @@ balance, err := sendManagerKeeper.GetBalanceWithAliasRouting(ctx, address, denom
 ```
 
 
+## File: ./token-standard/learn/collection-setup-fields.md
+
+# Collection Configuration
+
+There are plenty of fields to define the core configuration for your collection during creation. These are all stored on the collection object controlled by the manager. These fields control metadata, standards, valid token IDs, custom data, and immutable invariants.
+
+Most fields are updatable over time, according to their corresponding permissions set in the collection permissions object (e.g. canUpdateValidTokenIds, canUpdateCollectionMetadata, etc). However, some fields are immutable and cannot be changed after creation (invariants).
+
+## Complete Example
+
+```typescript
+import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+
+const msg: MsgCreateCollection = {
+    creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+    defaultBalances: {
+        balances: [],
+        outgoingApprovals: [],
+        incomingApprovals: [],
+        autoApproveSelfInitiatedOutgoingTransfers: false,
+        autoApproveSelfInitiatedIncomingTransfers: true,
+        autoApproveAllIncomingTransfers: false,
+        userPermissions: {
+            // ... permission fields
+        },
+    },
+    validTokenIds: [{ start: 1n, end: 100n }],
+    collectionPermissions: {
+        // ... permission fields
+    },
+    managerTimeline: [
+        {
+            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        },
+    ],
+    collectionMetadataTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            collectionMetadata: {
+                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
+                customData: '',
+            },
+        },
+    ],
+    tokenMetadataTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenMetadata: [
+                {
+                    uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
+                    tokenIds: [{ start: 1n, end: 100n }],
+                    customData: '',
+                },
+            ],
+        },
+    ],
+    customDataTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            customData: 'Application-specific data',
+        },
+    ],
+    collectionApprovals: [
+        // ... approval fields
+    ],
+    standardsTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            standards: ['Tradable', 'NFT'],
+        },
+    ],
+    isArchivedTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            isArchived: false,
+        },
+    ],
+    invariants: {
+        noCustomOwnershipTimes: false,
+        maxSupplyPerId: '0',
+        cosmosCoinBackedPath: undefined,
+        noForcefulPostMintTransfers: false,
+        disablePoolCreation: false,
+    },
+    // ... other fields
+};
+```
+
+## Valid Token IDs
+
+`validTokenIds` defines the range of token IDs that exist within a collection. This is mainly informational but may also be used to enforce certain rules like canOverrideWithAnyValidTokenId.
+
+Must be sequential from 1 to the total supply of the collection.
+
+```typescript
+const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
+```
+
+**Key points:**
+
+* Set during collection creation or via `MsgUpdateCollection`
+* Controlled by `canUpdateValidTokenIds` permission
+* Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
+
+## Standards
+
+`standardsTimeline` provides informational tags that guide how to interpret and implement collection features. Standards are purely informational—no blockchain validation.
+
+```typescript
+const standardsTimeline: StandardsTimeline<bigint>[] = [
+    {
+        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        standards: ['Tradable', 'NFT', 'Cosmos Wrappable'],
+    },
+];
+```
+
+**BitBadges Site Standards:**
+
+* **Tradable**: Enables trading interface, orderbook tracking, and marketplace features
+* **NFT**: Expects supply = 1 per token ID with full ownership times
+* **Cosmos Wrappable**: Can be wrapped into Cosmos SDK coin denominations
+* **Subscriptions**: Designed for recurring content delivery and subscription systems
+* **Quests**: Achievement-based systems and quest completion tracking
+
+For more information on compatibility with the BitBadges site, please reach out.
+
+**Important:** Standards are informational only. Applications must verify compliance.
+
+## Collection Metadata
+
+`collectionMetadataTimeline` defines metadata for the entire collection over time.
+
+```typescript
+const collectionMetadataTimeline: CollectionMetadataTimeline<bigint>[] = [
+    {
+        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        collectionMetadata: {
+            uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
+            customData: '',
+        },
+    },
+];
+```
+
+**Metadata Format:** The BitBadges API expects metadata to follow this interface:
+
+```typescript
+interface Metadata {
+    name: string;
+    description: string;
+    image: string;
+}
+```
+
+**Permission Control:** Updates controlled by `canUpdateCollectionMetadata` permission.
+
+## Token Metadata
+
+`tokenMetadataTimeline` defines metadata for individual tokens over time. Uses first-match approach via linear scan for specific token IDs. We support the dynamic token ID replacement feature {id} in the URI.
+
+```typescript
+const tokenMetadataTimeline: TokenMetadataTimeline<bigint>[] = [
+    {
+        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        tokenMetadata: [
+            {
+                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
+                tokenIds: [{ start: 1n, end: 100n }],
+                customData: '',
+            },
+        ],
+    },
+];
+```
+
+**Key Features:**
+
+* **Dynamic Token ID Replacement**: URI `{id}` placeholder is replaced with actual token ID
+* **First-Match Logic**: Entries evaluated in order; first matching entry for a token ID is used, subsequent entries are ignored.
+* **Permission Control**: Updates controlled by `canUpdateTokenMetadata` permission
+
+## Custom Data
+
+`customDataTimeline` provides generic string storage for application-specific information. Not used by BitBadges site—for future customization and extensibility.
+
+This is often used for application-specific implementations or contract integrations. You may also see `customData` used elsewhere like in approvals, address lists, and other structures.
+
+```typescript
+const customDataTimeline: CustomDataTimeline<bigint>[] = [
+    {
+        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        customData: 'Any string value you want to store',
+    },
+];
+```
+
+**Where Custom Data Appears:**
+
+* Collection-level: `customDataTimeline`
+* Token metadata: `customData` within token metadata structures
+* Address lists: `customData` for list-specific information
+* Messages: Various transaction messages include custom data fields
+
+**Permission Control:** Updates controlled by `canUpdateCustomData` permission.
+
+## Default Balances
+
+`defaultBalances` are predefined balance stores automatically assigned to new users (uninitialized balance stores) when they first interact with a collection. Set during collection creation only—cannot be updated after genesis.
+
+This is not often used but can be useful for certain use cases:
+
+* Blocking incoming transfers by default (enforcing opt-in only restrictions)
+* Default starting balances for all users
+* Default approval settings for all users
+
+```typescript
+const defaultBalances: UserBalanceStore<bigint> = {
+    balances: [],
+    outgoingApprovals: [],
+    incomingApprovals: [],
+    autoApproveSelfInitiatedOutgoingTransfers: false,
+    autoApproveSelfInitiatedIncomingTransfers: true,
+    autoApproveAllIncomingTransfers: false,
+    userPermissions: {
+        // ... permission fields
+    },
+};
+```
+
+**Important Limitations:**
+
+* **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../../x-badges/learn/auto-scan-and-prioritized-approvals.md) for more information.
+
+**Key points:**
+
+* Creation-only field—set once during collection creation
+* Establishes baseline behavior for all new users
+* Users can customize their own approval settings after initialization
+
+## IsArchived Timeline
+
+`isArchivedTimeline` controls whether a collection is archived, temporarily or permanently disabling all transactions while keeping collection data verifiable and public on-chain.
+
+This is a collection-level option that can be used to temporarily or permanently disable all transactions until unarchived. Controlled by the manager. Useful for pausing, halts, or other maintenance operations.
+
+Note that there are also other ways to implement halting logic which may be better suited for your use case.
+
+* Chain-level x/circuit breakers
+* Dynamic stores / token ownership requirements that can be controlled by another entity
+
+```typescript
+const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
+    {
+        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+        isArchived: false,
+    },
+];
+```
+
+**Transaction Behavior:**
+
+* **When archived**: All transactions fail (no updates, transfers, or changes allowed). Read operations continue. Only unarchiving transactions can succeed.
+* **When unarchived**: Normal operations resume. All collection data remains intact. Standard permission checks apply.
+
+**Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchivedTimeline` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
+
+## Invariants
+
+`invariants` are immutable rules set upon collection creation that cannot be broken or modified afterward. They enforce fundamental constraints on collection behavior.
+
+```typescript
+const invariants: CollectionInvariants<bigint> = {
+    noCustomOwnershipTimes: false,
+    maxSupplyPerId: '0',
+    cosmosCoinBackedPath: undefined,
+    noForcefulPostMintTransfers: false,
+    disablePoolCreation: false,
+};
+```
+
+### Available Invariants
+
+**noCustomOwnershipTimes**
+
+* Enforces all ownership times must be full ranges `[{ start: 1n, end: 18446744073709551615n }]` for all time-dependent structures - balances, approvals, etc.
+* Prevents time-based restrictions on token ownership
+* Affects collection approvals, user approvals, and transfer balances
+* Typically recommended to be set to true if you do not need such functionality.
+
+**maxSupplyPerId**
+
+* Maximum supply per token ID (string-based uint64)
+* Prevents any balance amount from exceeding the specified maximum
+* Zero value means no enforcement
+* Sanity check to enforce a minting cap. Should NOT replace proper approval design.
+
+**cosmosCoinBackedPath**
+
+* IBC backed (sdk.coin) path for the collection
+* Only one path allowed per collection
+* See [IBC Backed Paths](../../x-badges/concepts/ibc-backed-paths.md) for details
+
+**noForcefulPostMintTransfers**
+
+* Disallows collection approvals with `overridesFromOutgoingApprovals` or `overridesToIncomingApprovals` set to `true` (excluding the Mint address which is exempt)
+* Prevents forceful transfers that bypass user-level approvals
+* Easy way for you to enforce that there will never be any forceful transfers that bypass user-level approvals ever in your collection.
+
+**disablePoolCreation**
+
+* Prevents creation of liquidity pools using assets from this collection in our gamm module.
+* When enabled, pool creation attempts will fail
+
+**Important:** Invariants can only be set during collection creation and cannot be updated or removed afterward.
+
+
 ## File: ./token-standard/messages/msgsettokenmetadata.md
 
 # MsgSetTokenMetadata
@@ -13221,21 +12548,153 @@ This documentation follows the [Cosmos SDK module documentation standards](https
 
 This directory contains detailed explanations of the core concepts and data structures that form the foundation of the BitBadges module.
 
-* [**UintRange**](../../token-standard/concepts/core-structures/uintrange.md) - Representing ranges of unsigned integers
-* [**Timeline System**](../../token-standard/concepts/core-structures/timeline-system.md) - How properties change over time with immutable historical records
-* [**Collections**](../../token-standard/concepts/core-structures/badge-collections.md) - The primary entity that defines groups of related tokens
-* [**Balance System**](../../token-standard/concepts/core-structures/balance-system.md) - How token ownership is tracked with precise control over quantities and time
-* [**Collection Setup Fields**](collection-setup-fields.md) - Valid token IDs, standards, metadata, custom data, default balances, archived status, and invariants
+* [**UintRange**](uintrange.md) - Representing ranges of unsigned integers
+* [**Timeline System**](timeline-system.md) - How properties change over time with immutable historical records
+* [**Collections**](badge-collections.md) - The primary entity that defines groups of related tokens
+* [**Balance System**](balance-system.md) - How token ownership is tracked with precise control over quantities and time
+* [**Collection Setup Fields**](../../token-standard/learn/collection-setup-fields.md) - Valid token IDs, standards, metadata, custom data, default balances, archived status, and invariants
 * [**Total Supply**](total-supply.md) - Maximum number of tokens that can exist for each token ID
 * [**Mint Escrow Address**](mint-escrow-address.md) - Reserved address for holding native funds on behalf of the Mint address
 * [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
 * [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
 * [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
-* [**Address Lists**](../../token-standard/concepts/core-structures/address-lists.md) - Reusable collections of addresses for approval configurations
+* [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 * [**Permissions**](permissions/) - Granular control over collection management operations
-* [**Time Fields**](../../token-standard/concepts/core-structures/time-fields.md) - Understanding the different time-related fields used throughout BitBadges
+* [**Time Fields**](time-fields.md) - Understanding the different time-related fields used throughout BitBadges
 * [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - Wrapping between tokens and native Cosmos SDK coins for IBC compatibility
 * [**IBC Backed Paths**](ibc-backed-paths.md) - IBC-backed Cosmos SDK coin paths for collection minting
+
+
+## File: ./x-badges/concepts/address-lists.md
+
+# Address Lists
+
+Address lists define collections of addresses for use in approval configurations (`fromListId`, `toListId`, `initiatedByListId`). They support reserved IDs, inline colon-separated lists, and user-created stored lists.
+
+## Proto Definition
+
+```protobuf
+message AddressList {
+  string listId = 1;
+  repeated string addresses = 2;
+  bool whitelist = 3;  // true = whitelist, false = blacklist
+  string uri = 4;
+  string customData = 5;
+  string createdBy = 6;
+}
+```
+
+## Matching Logic
+
+```javascript
+function checkAddress(address, addressList) {
+    const found = addressList.addresses.includes(address);
+    return addressList.whitelist ? found : !found;
+}
+```
+
+* **Whitelist** (`whitelist: true`): Only listed addresses are included
+* **Blacklist** (`whitelist: false`): All addresses except listed ones are included
+
+## Reserved IDs
+
+Dynamically generated, zero storage overhead.
+
+| ID                    | Logic                                               | Description                            |
+| --------------------- | --------------------------------------------------- | -------------------------------------- |
+| `"Mint"`              | `{addresses: ["Mint"], whitelist: true}`            | Only Mint address                      |
+| `"All"`               | `{addresses: [], whitelist: false}`                 | All addresses (including Mint)         |
+| `"None"`              | `{addresses: [], whitelist: true}`                  | No addresses                           |
+| `"AllWithout<addrs>"` | `{addresses: [addrs...], whitelist: false}`         | All except specified (colon-separated) |
+| `"addr1:addr2:..."`   | `{addresses: [addr1, addr2, ...], whitelist: true}` | Inline whitelist                       |
+
+## Mint Address Handling
+
+The set of valid addresses includes any valid `bb1` address **and** `"Mint"` (a reserved address representing the collection's mint address).
+
+**Important**: `"All"` includes the Mint address. When creating approvals, especially `fromListId`, be careful with Mint handling since the Mint address has unlimited balances.
+
+```json
+// Exclude Mint from senders (common pattern)
+{
+    "fromListId": "AllWithoutMint",  // All addresses except Mint
+    "toListId": "All"
+}
+
+// Allow only Mint to send (minting only)
+{
+    "fromListId": "Mint",
+    "toListId": "All"
+}
+```
+
+## Inversion
+
+Prefix with `!` to invert whitelist/blacklist behavior. **Only works with reserved IDs and inline lists, not user-created lists.** Supports parentheses too for syntax `!(...)`.
+
+```javascript
+'!All'; // Inverts All → None behavior
+'!bb1alice...:bb1bob...'; // Inverts inline list → blacklist
+'!(AllWithoutMint)'; // Inverts AllWithoutMint → whitelist with only Mint
+```
+
+Formats: `"!listId"` (if listId doesn't end with `)`) or `"!(listId)"`.
+
+## User-Created Lists
+
+Created via `MsgCreateAddressLists`. **Immutable** once created. Referenced by the custom listId where needed. This approach is useful for large lists that are referenced multiple times to save on gas.
+
+### ID Validation
+
+* Alphanumeric only (`a-z`, `A-Z`, `0-9`)
+* Cannot be empty
+* Cannot start with `!`
+* Cannot conflict with reserved IDs (`"All"`, `"Mint"`, `"None"`, `"AllWithout*"`)
+* Must be unique
+
+### Example
+
+```json
+{
+    "listId": "vipMembers",
+    "addresses": ["bb1alice...", "bb1bob...", "bb1charlie..."],
+    "whitelist": true,
+    "uri": "",
+    "customData": "",
+    "createdBy": "bb1manager..."
+}
+```
+
+## Usage Examples
+
+```json
+// Universal access
+{
+    "fromListId": "AllWithoutMint",
+    "toListId": "All",
+    "initiatedByListId": "All"
+}
+
+// Restricted with inline list
+{
+    "fromListId": "bb1alice...:bb1bob...:bb1charlie...",
+    "toListId": "AllWithoutMint:bb1blocked...",
+    "initiatedByListId": "All"
+}
+
+// User-created list
+{
+    "fromListId": "vipMembers",
+    "toListId": "!bb1banned...",  // Inversion works with inline lists
+    "initiatedByListId": "All"
+}
+```
+
+## Performance
+
+* **Reserved IDs**: Zero storage, dynamic generation, minimal gas
+* **Inline lists**: Zero storage, dynamic parsing, efficient for < 10 addresses
+* **User-created**: On-chain storage, reusable short ID, efficient lookups, best for large/repeated lists
 
 
 ## File: ./x-badges/concepts/approval-criteria/README.md
@@ -15386,323 +14845,588 @@ User royalties automatically deduct a percentage from transfers and send it to a
 Currently, we only support one specific royalty percentage applied per transfer. If a transfer matches to different approvals with multiple royalties, the transfer may fail.
 
 
-## File: ./x-badges/concepts/collection-setup-fields.md
+## File: ./x-badges/concepts/badge-collections.md
 
-# Collection Setup Fields
+# Collections
 
-There are plenty of fields to define the core configuration for your collection during creation. These are all stored on the collection object controlled by the manager. These fields control metadata, standards, valid token IDs, custom data, and immutable invariants.
+A collection is the primary entity that defines a group of related tokens with shared properties and rules. We refer you to other pages for more details on the different concepts that make up a collection.
 
-Most fields are updatable over time, according to their corresponding permissions set in the collection permissions object (e.g. canUpdateValidTokenIds, canUpdateCollectionMetadata, etc). However, some fields are immutable and cannot be changed after creation (invariants).
+Note: This is what is stored on-chain in storage for a collection. You may typically interact with similar concepts but moreso in Messages and Queries format.
 
-## Complete Example
+## Proto Definition
 
-```typescript
-import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+```protobuf
+message TokenCollection {
+  // The unique identifier for this collection. This is assigned by the blockchain. First collection has ID 1.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-const msg: MsgCreateCollection = {
-    creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-    defaultBalances: {
-        balances: [],
-        outgoingApprovals: [],
-        incomingApprovals: [],
-        autoApproveSelfInitiatedOutgoingTransfers: false,
-        autoApproveSelfInitiatedIncomingTransfers: true,
-        autoApproveAllIncomingTransfers: false,
-        userPermissions: {
-            // ... permission fields
-        },
-    },
-    validTokenIds: [{ start: 1n, end: 100n }],
-    collectionPermissions: {
-        // ... permission fields
-    },
-    managerTimeline: [
-        {
-            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    collectionMetadataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            collectionMetadata: {
-                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
-                customData: '',
-            },
-        },
-    ],
-    tokenMetadataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            tokenMetadata: [
-                {
-                    uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    customData: '',
-                },
-            ],
-        },
-    ],
-    customDataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            customData: 'Application-specific data',
-        },
-    ],
-    collectionApprovals: [
-        // ... approval fields
-    ],
-    standardsTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            standards: ['Tradable', 'NFT'],
-        },
-    ],
-    isArchivedTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            isArchived: false,
-        },
-    ],
-    invariants: {
-        noCustomOwnershipTimes: false,
-        maxSupplyPerId: '0',
-        cosmosCoinBackedPath: undefined,
-        noForcefulPostMintTransfers: false,
-        disablePoolCreation: false,
-    },
-    // ... other fields
-};
-```
+  // The metadata for the collection itself, which can vary over time.
+  repeated CollectionMetadataTimeline collectionMetadataTimeline = 2;
 
-## Valid Token IDs
+  // The metadata for each token in the collection, also subject to changes over time.
+  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
 
-`validTokenIds` defines the range of token IDs that exist within a collection. This is mainly informational but may also be used to enforce certain rules like canOverrideWithAnyValidTokenId.
+  // An arbitrary field that can store any data, subject to changes over time.
+  repeated CustomDataTimeline customDataTimeline = 4;
 
-Must be sequential from 1 to the total supply of the collection.
+  // The address of the manager of this collection, subject to changes over time.
+  repeated ManagerTimeline managerTimeline = 5;
 
-```typescript
-const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
-```
+  // Permissions that define what the manager of the collection can do or not do.
+  CollectionPermissions collectionPermissions = 6;
 
-**Key points:**
+  // Transferability of the collection for collections with standard balances, subject to changes over time.
+  // Overrides user approvals for a transfer if specified.
+  // Transfer must satisfy both user and collection-level approvals.
+  // Only applicable to on-chain balances.
+  repeated CollectionApproval collectionApprovals = 7;
 
--   Set during collection creation or via `MsgUpdateCollection`
--   Controlled by `canUpdateValidTokenIds` permission
--   Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
+  // Standards that define how to interpret the fields of the collection, subject to changes over time.
+  repeated StandardsTimeline standardsTimeline = 8;
 
-## Standards
+  // Whether the collection is archived or not, subject to changes over time.
+  // When archived, it becomes read-only, and no transactions can be processed until it is unarchived.
+  repeated IsArchivedTimeline isArchivedTimeline = 9;
 
-`standardsTimeline` provides informational tags that guide how to interpret and implement collection features. Standards are purely informational—no blockchain validation.
+  // The default store of a balance for a user, upon genesis.
+  UserBalanceStore defaultBalances = 10;
 
-```typescript
-const standardsTimeline: StandardsTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        standards: ['Tradable', 'NFT', 'Cosmos Wrappable'],
-    },
-];
-```
+  // The user or entity who created the collection.
+  string createdBy = 11;
 
-**BitBadges Site Standards:**
+  // The valid token IDs for this collection.
+  repeated UintRange validTokenIds = 12;
 
--   **Tradable**: Enables trading interface, orderbook tracking, and marketplace features
--   **NFT**: Expects supply = 1 per token ID with full ownership times
--   **Cosmos Wrappable**: Can be wrapped into Cosmos SDK coin denominations
--   **Subscriptions**: Designed for recurring content delivery and subscription systems
--   **Quests**: Achievement-based systems and quest completion tracking
+  // The generated address of the collection. Also used to escrow Mint balances.
+  string mintEscrowAddress = 13;
 
-For more information on compatibility with the BitBadges site, please reach out.
+  // The IBC wrapper (sdk.coin) paths for the collection.
+  repeated CosmosCoinWrapperPath cosmosCoinWrapperPaths = 14;
 
-**Important:** Standards are informational only. Applications must verify compliance.
-
-## Collection Metadata
-
-`collectionMetadataTimeline` defines metadata for the entire collection over time.
-
-```typescript
-const collectionMetadataTimeline: CollectionMetadataTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        collectionMetadata: {
-            uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
-            customData: '',
-        },
-    },
-];
-```
-
-**Metadata Format:**
-The BitBadges API expects metadata to follow this interface:
-
-```typescript
-interface Metadata {
-    name: string;
-    description: string;
-    image: string;
+  // Collection-level invariants that cannot be broken.
+  // These are set upon genesis and cannot be modified.
+  CollectionInvariants invariants = 16;
 }
 ```
 
-**Permission Control:** Updates controlled by `canUpdateCollectionMetadata` permission.
+## JSON
 
-## Token Metadata
-
-`tokenMetadataTimeline` defines metadata for individual tokens over time. Uses first-match approach via linear scan for specific token IDs. We support the dynamic token ID replacement feature {id} in the URI.
-
-```typescript
-const tokenMetadataTimeline: TokenMetadataTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        tokenMetadata: [
-            {
-                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
-                tokenIds: [{ start: 1n, end: 100n }],
-                customData: '',
+```json
+{
+    "collectionApprovals": [
+        {
+            "toListId": "All",
+            "fromListId": "!Mint",
+            "initiatedByListId": "!(bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany)",
+            "transferTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "tokenIds": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ],
+            "approvalId": "transferable-approval",
+            "uri": "",
+            "customData": "",
+            "approvalCriteria": {
+                "merkleChallenges": [],
+                "mustOwnTokens": [],
+                "predeterminedBalances": {
+                    "manualBalances": [],
+                    "incrementedBalances": {
+                        "startBalances": [],
+                        "incrementTokenIdsBy": 0,
+                        "incrementOwnershipTimesBy": 0,
+                        "durationFromTimestamp": 0,
+                        "allowOverrideTimestamp": false,
+                        "recurringOwnershipTimes": {
+                            "startTime": 0,
+                            "intervalLength": 0,
+                            "chargePeriodLength": 0
+                        },
+                        "allowOverrideWithAnyValidToken": false
+                    },
+                    "orderCalculationMethod": {
+                        "useOverallNumTransfers": false,
+                        "usePerToAddressNumTransfers": false,
+                        "usePerFromAddressNumTransfers": false,
+                        "usePerInitiatedByAddressNumTransfers": false,
+                        "useMerkleChallengeLeafIndex": false,
+                        "challengeTrackerId": ""
+                    }
+                },
+                "approvalAmounts": {
+                    "overallApprovalAmount": 0,
+                    "perToAddressApprovalAmount": 0,
+                    "perFromAddressApprovalAmount": 0,
+                    "perInitiatedByAddressApprovalAmount": 0,
+                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
+                    "resetTimeIntervals": {
+                        "startTime": 0,
+                        "intervalLength": 0
+                    }
+                },
+                "maxNumTransfers": {
+                    "overallMaxNumTransfers": 0,
+                    "perToAddressMaxNumTransfers": 0,
+                    "perFromAddressMaxNumTransfers": 0,
+                    "perInitiatedByAddressMaxNumTransfers": 0,
+                    "amountTrackerId": "e7444fe3e1a6fe74036965d4bf82e3c3bc50bed3bb38506a7331b48a426e620c",
+                    "resetTimeIntervals": {
+                        "startTime": 0,
+                        "intervalLength": 0
+                    }
+                },
+                "autoDeletionOptions": {
+                    "afterOneUse": false,
+                    "afterOverallMaxNumTransfers": false,
+                    "allowCounterpartyPurge": false,
+                    "allowPurgeIfExpired": false
+                },
+                "requireToEqualsInitiatedBy": false,
+                "requireFromEqualsInitiatedBy": false,
+                "requireToDoesNotEqualInitiatedBy": false,
+                "requireFromDoesNotEqualInitiatedBy": false,
+                "overridesFromOutgoingApprovals": false,
+                "overridesToIncomingApprovals": false,
+                "coinTransfers": [],
+                "userRoyalties": {
+                    "percentage": 0,
+                    "payoutAddress": ""
+                },
+                "dynamicStoreChallenges": [],
+                "ethSignatureChallenges": [],
+                "senderChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "recipientChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "initiatorChecks": {
+                    "mustBeWasmContract": false,
+                    "mustNotBeWasmContract": false,
+                    "mustBeLiquidityPool": false,
+                    "mustNotBeLiquidityPool": false
+                },
+                "altTimeChecks": null,
+                "mustPrioritize": false
             },
+            "version": 0
+        }
+    ],
+    "collectionId": "73",
+    "collectionMetadataTimeline": [
+        {
+            "collectionMetadata": {
+                "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
+                "customData": ""
+            },
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "collectionPermissions": {
+        "canDeleteCollection": [],
+        "canArchiveCollection": [
+            {
+                "timelineTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
         ],
+        "canUpdateStandards": [],
+        "canUpdateCustomData": [
+            {
+                "timelineTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ],
+        "canUpdateManager": [],
+        "canUpdateCollectionMetadata": [],
+        "canUpdateValidTokenIds": [
+            {
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ],
+        "canUpdateTokenMetadata": [],
+        "canUpdateCollectionApprovals": [
+            {
+                "fromListId": "All",
+                "toListId": "All",
+                "initiatedByListId": "All",
+                "transferTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "approvalId": "All",
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            },
+            {
+                "fromListId": "Mint",
+                "toListId": "All",
+                "initiatedByListId": "All",
+                "transferTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "tokenIds": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ],
+                "approvalId": "All",
+                "permanentlyPermittedTimes": [],
+                "permanentlyForbiddenTimes": [
+                    {
+                        "start": 1,
+                        "end": "18446744073709551615"
+                    }
+                ]
+            }
+        ]
     },
-];
+    "cosmosCoinWrapperPaths": [
+        {
+            "address": "bb1qatt2wn99umjn87eaz4ev965yut7vl8rpclxnvfejp9ww6s6fu4sdstzsn",
+            "denom": "cubadge",
+            "balances": [
+                {
+                    "amount": 1,
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "ownershipTimes": [
+                        {
+                            "start": 1,
+                            "end": "18446744073709551615"
+                        }
+                    ]
+                }
+            ],
+            "symbol": "cubadge",
+            "denomUnits": [
+                {
+                    "decimals": 9,
+                    "symbol": "cBADGE",
+                    "isDefaultDisplay": true
+                }
+            ],
+            "allowOverrideWithAnyValidToken": false,
+            "allowCosmosWrapping": false
+        }
+    ],
+    "createdBy": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
+    "customDataTimeline": [],
+    "defaultBalances": {
+        "balances": [],
+        "incomingApprovals": [],
+        "outgoingApprovals": [],
+        "userPermissions": {
+            "canUpdateOutgoingApprovals": [],
+            "canUpdateIncomingApprovals": [],
+            "canUpdateAutoApproveSelfInitiatedOutgoingTransfers": [],
+            "canUpdateAutoApproveSelfInitiatedIncomingTransfers": [],
+            "canUpdateAutoApproveAllIncomingTransfers": []
+        },
+        "autoApproveSelfInitiatedOutgoingTransfers": true,
+        "autoApproveSelfInitiatedIncomingTransfers": true,
+        "autoApproveAllIncomingTransfers": true
+    },
+    "invariants": {
+        "noCustomOwnershipTimes": true,
+        "maxSupplyPerId": 0,
+        "cosmosCoinBackedPath": {
+            "address": "bb18vjxx2hvr234rml4znk0ncnd6w583qjrxpg9xjg8hrhgc4kx7jcssqk6zr",
+            "ibcDenom": "ubadge",
+            "balances": [
+                {
+                    "amount": 1000000000,
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "ownershipTimes": [
+                        {
+                            "start": 1,
+                            "end": "18446744073709551615"
+                        }
+                    ]
+                }
+            ],
+            "ibcAmount": 1000000000
+        },
+        "noForcefulPostMintTransfers": true,
+        "disablePoolCreation": false
+    },
+    "isArchivedTimeline": [],
+    "managerTimeline": [
+        {
+            "manager": "bb1w63npeee74ewuudzf8cgvy6at4jn4mjr0a9r5p",
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "mintEscrowAddress": "bb1jc62rquvfyyzyn807fdgj42hl9htz9dst0tlj7ewvcm9uky8ulwssaxyjj",
+    "standardsTimeline": [
+        {
+            "standards": ["Liquidity Pools"],
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "tokenMetadataTimeline": [
+        {
+            "tokenMetadata": [
+                {
+                    "uri": "ipfs://QmSviTf2qQLpFU84oF8CrxNrdgXPdWwHEyrkX3k6j7iiqR",
+                    "tokenIds": [
+                        {
+                            "start": 2,
+                            "end": "18446744073709551615"
+                        }
+                    ],
+                    "customData": ""
+                },
+                {
+                    "uri": "ipfs://QmbidUFyrh4m9gCLihD8KXj9t8Y3rsiu5cmuikMjzQUQy2",
+                    "tokenIds": [
+                        {
+                            "start": 1,
+                            "end": 1
+                        }
+                    ],
+                    "customData": ""
+                }
+            ],
+            "timelineTimes": [
+                {
+                    "start": 1,
+                    "end": "18446744073709551615"
+                }
+            ]
+        }
+    ],
+    "validTokenIds": [
+        {
+            "start": 1,
+            "end": 1
+        }
+    ]
+}
 ```
 
-**Key Features:**
 
--   **Dynamic Token ID Replacement**: URI `{id}` placeholder is replaced with actual token ID
--   **First-Match Logic**: Entries evaluated in order; first matching entry for a token ID is used, subsequent entries are ignored.
--   **Permission Control**: Updates controlled by `canUpdateTokenMetadata` permission
+## File: ./x-badges/concepts/balance-system.md
 
-## Custom Data
+# Balances
 
-`customDataTimeline` provides generic string storage for application-specific information. Not used by BitBadges site—for future customization and extensibility.
+The Balance system in BitBadges is designed to represent ownership of tokens across different IDs and time ranges. Ownership times are a new concept to BitBadges allowing you to set that someone owns a token during a specific time but not other times.
 
-This is often used for application-specific implementations or contract integrations. You may also see `customData` used elsewhere like in approvals, address lists, and other structures.
+## Balance Interface
 
 ```typescript
-const customDataTimeline: CustomDataTimeline<bigint>[] = [
+export interface Balance<T extends NumberType> {
+    amount: T;
+    tokenIds: UintRange<T>[];
+    ownershipTimes: UintRange<T>[];
+}
+```
+
+* `amount`: The quantity of tokens owned
+* `tokenIds`: An array of ID ranges representing the tokens owned
+* `ownershipTimes`: An array of time ranges during which the tokens are owned
+
+## Interpreting Balances
+
+When interpreting balances, it's crucial to understand that multiple ranges of token IDs and ownership times within a single Balance structure represent all possible combinations.
+
+### Interpretation Algorithm
+
+```javascript
+for (balance of balances) {
+    for (tokenIdRange of balance.tokenIds) {
+        for (ownershipTimeRange of balance.ownershipTimes) {
+            // User owns x(balance.amount) of (tokenIdRange) for the times (ownershipTimeRange)
+        }
+    }
+}
+```
+
+### Example
+
+Consider the following balance:
+
+```json
+{
+    "amount": 1,
+    "tokenIds": [
+        { "start": 1, "end": 10 },
+        { "start": 20, "end": 30 }
+    ],
+    "ownershipTimes": [
+        { "start": 20, "end": 50 },
+        { "start": 100, "end": 200 }
+    ]
+}
+```
+
+This balance expands to:
+
+1. 1x of IDs 1-10 from times 20-50
+2. 1x of IDs 1-10 from times 100-200
+3. 1x of IDs 20-30 from times 20-50
+4. 1x of IDs 20-30 from times 100-200
+
+## Balance Subtraction
+
+When subtracting balances, you may need to represent the result as multiple Balance objects. For example, if we subtract the first set of balances from the example above (1x of IDs 1-10 from times 20-50), the result would be:
+
+```json
+[
     {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        customData: 'Any string value you want to store',
+        "amount": 1,
+        "tokenIds": [
+            { "start": 1, "end": 10 },
+            { "start": 20, "end": 30 }
+        ],
+        "ownershipTimes": [{ "start": 100, "end": 200 }]
     },
-];
-```
-
-**Where Custom Data Appears:**
-
--   Collection-level: `customDataTimeline`
--   Token metadata: `customData` within token metadata structures
--   Address lists: `customData` for list-specific information
--   Messages: Various transaction messages include custom data fields
-
-**Permission Control:** Updates controlled by `canUpdateCustomData` permission.
-
-## Default Balances
-
-`defaultBalances` are predefined balance stores automatically assigned to new users (uninitialized balance stores) when they first interact with a collection. Set during collection creation only—cannot be updated after genesis.
-
-This is not often used but can be useful for certain use cases:
-
--   Blocking incoming transfers by default (enforcing opt-in only restrictions)
--   Default starting balances for all users
--   Default approval settings for all users
-
-```typescript
-const defaultBalances: UserBalanceStore<bigint> = {
-    balances: [],
-    outgoingApprovals: [],
-    incomingApprovals: [],
-    autoApproveSelfInitiatedOutgoingTransfers: false,
-    autoApproveSelfInitiatedIncomingTransfers: true,
-    autoApproveAllIncomingTransfers: false,
-    userPermissions: {
-        // ... permission fields
-    },
-};
-```
-
-**Important Limitations:**
-
--   **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../learn/auto-scan-and-prioritized-approvals.md) for more information.
-
-**Key points:**
-
--   Creation-only field—set once during collection creation
--   Establishes baseline behavior for all new users
--   Users can customize their own approval settings after initialization
-
-## IsArchived Timeline
-
-`isArchivedTimeline` controls whether a collection is archived, temporarily or permanently disabling all transactions while keeping collection data verifiable and public on-chain.
-
-This is a collection-level option that can be used to temporarily or permanently disable all transactions until unarchived. Controlled by the manager. Useful for pausing, halts, or other maintenance operations.
-
-Note that there are also other ways to implement halting logic which may be better suited for your use case.
-
--   Chain-level x/circuit breakers
--   Dynamic stores / token ownership requirements that can be controlled by another entity
-
-```typescript
-const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
     {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        isArchived: false,
-    },
-];
+        "amount": 1,
+        "tokenIds": [{ "start": 20, "end": 30 }],
+        "ownershipTimes": [{ "start": 20, "end": 50 }]
+    }
+]
 ```
 
-**Transaction Behavior:**
+## Handling Duplicates
 
--   **When archived**: All transactions fail (no updates, transfers, or changes allowed). Read operations continue. Only unarchiving transactions can succeed.
--   **When unarchived**: Normal operations resume. All collection data remains intact. Standard permission checks apply.
+When duplicate token IDs are specified in balances, they are combined and their amounts are added. For example:
 
-**Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchivedTimeline` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
-
-## Invariants
-
-`invariants` are immutable rules set upon collection creation that cannot be broken or modified afterward. They enforce fundamental constraints on collection behavior.
-
-```typescript
-const invariants: CollectionInvariants<bigint> = {
-    noCustomOwnershipTimes: false,
-    maxSupplyPerId: '0',
-    cosmosCoinBackedPath: undefined,
-    noForcefulPostMintTransfers: false,
-    disablePoolCreation: false,
-};
+```json
+{
+    "amount": 1,
+    "tokenIds": [
+        { "start": 1, "end": 10 },
+        { "start": 1, "end": 10 }
+    ],
+    "ownershipTimes": [{ "start": 100, "end": 200 }]
+}
 ```
 
-### Available Invariants
+This is equivalent to and will be treated as:
 
-**noCustomOwnershipTimes**
+```json
+{
+    "amount": 2,
+    "tokenIds": [{ "start": 1, "end": 10 }],
+    "ownershipTimes": [{ "start": 100, "end": 200 }]
+}
+```
 
--   Enforces all ownership times must be full ranges `[{ start: 1n, end: 18446744073709551615n }]` for all time-dependent structures - balances, approvals, etc.
--   Prevents time-based restrictions on token ownership
--   Affects collection approvals, user approvals, and transfer balances
--   Typically recommended to be set to true if you do not need such functionality.
+## Best Practices
 
-**maxSupplyPerId**
-
--   Maximum supply per token ID (string-based uint64)
--   Prevents any balance amount from exceeding the specified maximum
--   Zero value means no enforcement
--   Sanity check to enforce a minting cap. Should NOT replace proper approval design.
-
-**cosmosCoinBackedPath**
-
--   IBC backed (sdk.coin) path for the collection
--   Only one path allowed per collection
--   See [IBC Backed Paths](./ibc-backed-paths.md) for details
-
-**noForcefulPostMintTransfers**
-
--   Disallows collection approvals with `overridesFromOutgoingApprovals` or `overridesToIncomingApprovals` set to `true` (excluding the Mint address which is exempt)
--   Prevents forceful transfers that bypass user-level approvals
--   Easy way for you to enforce that there will never be any forceful transfers that bypass user-level approvals ever in your collection.
-
-**disablePoolCreation**
-
--   Prevents creation of liquidity pools using assets from this collection in our gamm module.
--   When enabled, pool creation attempts will fail
-
-**Important:** Invariants can only be set during collection creation and cannot be updated or removed afterward.
+1. **Efficient Representation**: Try to represent balances in the most compact form possible by combining overlapping ranges
+2. **Careful Subtraction**: When subtracting balances, ensure that you correctly split the remaining balances to accurately represent the result
+3. **Avoid Duplicates**: While the system handles duplicates by combining them, it's more efficient to represent balances without duplicates in the first place
+4. **Time-Aware Operations**: Always consider the time dimension when performing operations on balances, as ownership can vary over time
+5. **Range Calculations**: Familiarize yourself with range operations, as they are crucial for correctly manipulating and interpreting balances
 
 
 ## File: ./x-badges/concepts/cosmos-wrapper-paths.md
@@ -17139,6 +16863,184 @@ interface TokenIdsActionPermission {
 ```
 
 
+## File: ./x-badges/concepts/time-fields.md
+
+# Different Time Fields
+
+BitBadges uses various time-related fields to manage permissions, timelines, transfers, and ownership. Understanding these fields is crucial for effectively managing collections and tokens.
+
+## Time Representation
+
+All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
+
+Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
+
+## Time Field Types
+
+### 1. permanentlyPermittedTimes
+
+* **Purpose**: Defines the times when a permission will always be executable (permanent)
+* **Usage**: Setting allowed periods for specific actions
+
+### 2. permanentlyForbiddenTimes
+
+* **Purpose**: Defines the times when a permission will always be forbidden (permanent)
+* **Usage**: Setting restricted periods for specific actions
+
+### 3. timelineTimes
+
+* **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
+* **Usage**: Scheduling changes to collection or token properties over time
+
+### 4. transferTimes
+
+* **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
+* **Usage**: Setting periods when tokens can be transferred between addresses
+
+### 5. ownershipTimes
+
+* **Purpose**: Specifies the times that a user owns a token
+* **Usage**: Defining the duration of token ownership for users
+
+## Important Note
+
+The `timelineTimes` in permissions correspond to the updatability of the timeline, while `timelineTimes` in the actual timeline represent the actual times for the values.
+
+## Examples
+
+### Example 1: Presidential Election Badges
+
+Scenario: Users participate in a US presidential election by casting votes through token transfers.
+
+* T1: Conclusion of voting
+* T2: Start of presidential term
+* T3: End of presidential term
+
+Setup:
+
+* `transferTimes`: \[{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+* `ownershipTimes`: \[{ start: T2, end: T3 }] (Defines the presidential term)
+
+### Example 2: Managing Collection Archival
+
+Scenario: A collection can be optionally archived by the manager from T1 to T2, but is non-archivable at all other times.
+
+Before archiving:
+
+```
+Permission:
+permanentlyPermittedTimes: [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes: [everything but T1 to T2]
+timelineTimes: [{ start: 1, end: MAX_TIME }]
+
+Archived Timeline:
+isArchived: false for [{ start: 1, end: MAX_TIME }]
+```
+
+After archiving for all times:
+
+```
+Permission: (unchanged)
+permanentlyPermittedTimes: [{ start: T1, end: T2 }]
+permanentlyForbiddenTimes: [everything but T1 to T2]
+timelineTimes: [{ start: 1, end: MAX_TIME }]
+
+Archived Timeline:
+isArchived: true for [{ start: 1, end: MAX_TIME }]
+```
+
+## Best Practices
+
+1. **Clear Timelines**: Always define clear and non-overlapping time ranges for each field to avoid confusion and conflicts
+2. **Permission Management**: Carefully consider the implications of setting `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`, as these can significantly impact the flexibility of your collection
+3. **Timeline Planning**: When using `timelineTimes`, plan your collection's lifecycle in advance to minimize the need for frequent updates
+4. **Transfer Windows**: Use `transferTimes` to create specific windows for token transfers, which can be useful for time-limited events or phased distributions
+5. **Ownership Tracking**: Leverage `ownershipTimes` to create tokens with time-bound ownership, useful for temporary privileges or rotating responsibilities
+6. **Permission Locking**: Be cautious when permanently locking permissions, as this action is irreversible and may limit future flexibility
+7. **Time Synchronization**: Ensure all systems interacting with your BitBadges collection are properly time-synchronized to avoid discrepancies in time-based operations
+
+
+## File: ./x-badges/concepts/timeline-system.md
+
+# Timeline System
+
+BitBadges uses timeline-based fields to allow dynamic, time-dependent values for various attributes. This feature enables automatic updates to field values based on the current time, without requiring additional blockchain transactions.
+
+## Structure
+
+Timeline-based fields extend the `TimelineItem` interface:
+
+```typescript
+export interface TimelineItem<T extends NumberType> {
+    timelineTimes: UintRange<T>[];
+}
+```
+
+## Proto Definition Examples
+
+```protobuf
+message ManagerTimeline {
+  repeated UintRange timelineTimes = 1;
+  string manager = 2;
+}
+
+message CollectionMetadataTimeline {
+  repeated UintRange timelineTimes = 1;
+  CollectionMetadata collectionMetadata = 2;
+}
+
+message TokenMetadataTimeline {
+  repeated UintRange timelineTimes = 1;
+  repeated UintRange tokenIds = 2;
+  TokenMetadata tokenMetadata = 3;
+}
+```
+
+## Timeline Fields in Collections
+
+The collection interface includes the following timeline-based fields:
+
+* `managerTimeline: ManagerTimeline<T>[]`
+* `collectionMetadataTimeline: CollectionMetadataTimeline<T>[]`
+* `tokenMetadataTimeline: TokenMetadataTimeline<T>[]`
+* `customDataTimeline: CustomDataTimeline<T>[]`
+* `standardsTimeline: StandardsTimeline<T>[]`
+* `isArchivedTimeline: IsArchivedTimeline<T>[]`
+
+## Usage Example
+
+### Collection Metadata Timeline
+
+```json
+{
+    "collectionMetadataTimeline": [
+        {
+            "timelineTimes": [{ "start": "1", "end": "1680307199000" }],
+            "collectionMetadata": {
+                "uri": "ipfs://abc123",
+                "customData": ""
+            }
+        },
+        {
+            "timelineTimes": [
+                { "start": "1680307200000", "end": "18446744073709551615" }
+            ],
+            "collectionMetadata": {
+                "uri": "ipfs://xyz456",
+                "customData": ""
+            }
+        }
+    ]
+}
+```
+
+In this example:
+
+* From time 1 to March 31, 2023, the collection metadata URI is 'ipfs://abc123'
+* From April 1, 2023 onwards, the collection metadata URI is 'ipfs://xyz456'
+* The change happens automatically without additional transactions
+
+
 ## File: ./x-badges/concepts/total-supply.md
 
 # Total Supply
@@ -17250,57 +17152,111 @@ TRANSFER APPROVED
 
 For optimal design, you should try to design transfers such that they only use specific approvals without the need for splitting. However, if needed, we split the transfer / approvals as fine-grained as we can to make it succeed. In other words, we deduct as much as possible from each approval as we iterate.
 
-### Prioritized Approvals
 
-In MsgTransferTokens, you can specify which approvals to prioritize. This allows you to prioritize certain approvals over others.
 
-```typescript
-// In MsgTransferTokens
-{
-  prioritizedApprovals: [{
-    approvalId: "approval1",
-    approvalLevel: "collection",
-    approverAdress: "", // ""bb1" if approvalLevel is "incoming" or "outgoing",
-    version: 0,
-  }],
-  onlyCheckPrioritizedCollectionApprovals: true,
-  // If true, the transfer will be denied if no prioritized approvals match
+## File: ./x-badges/concepts/uintrange.md
+
+# UintRanges
+
+The `UintRange` is the fundamental data structure used throughout the tokens module to represent inclusive ranges of unsigned integers efficiently. This type enables powerful range-based operations and is primarily used for token IDs, time ranges, and amounts.
+
+## Proto Definition
+
+```protobuf
+message UintRange {
+  string start = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+  string end = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 }
 ```
 
-## Auto-Scan vs Prioritized Approvals
+## Usage Patterns
 
-The transfer approval system operates in two modes to balance efficiency and precision:
+UintRanges are used to represent:
 
-### Auto-Scan Mode (Default)
+* **Token ID ranges**: `[1-100]` represents token IDs 1 through 100 (inclusive)
+* **Time ranges**: `[1640995200000-1672531200000]` represents a year in UNIX milliseconds
+* **Amount ranges**: `[1-5]` represents quantities from 1 to 5
+* **Ownership time ranges**: When tokens are valid for ownership
 
-By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
+## Restrictions & Valid Values
 
--   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
--   **Behavior**: Automatically finds and uses the first matching approval
--   **Use case**: Simple transfers without custom logic or side effects
--   **No versioning required**: The system handles approval selection automatically
+Unless otherwise specified, we only allow numbers in the ranges to be from **1 to Go Max UInt64**:
 
-### Prioritized Approvals (Required for Side Effects)
+* **Valid range**: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
+* **Zero and negative values**: Not allowed
+* **Values greater than maximum**: Not allowed
 
-**CRITICAL REQUIREMENT**: Any transfer with side effects or custom approval criteria MUST always be prioritized with proper versioning set. No exceptions.
+## Validation Rules
 
-#### Race Condition Protection
+* `start` must be ≤ `end`
+* Ranges in the same array cannot overlap
+* Zero amounts are not allowed in balance ranges
+* All values must be within the valid range (1 to MaxUint64)
 
-The versioning control ensures that before submitting, the user knows the exact approval they are using:
+## Special Cases
 
-```typescript
-"prioritizedApprovals": [
-    {
-        "approvalId": "abc123",
-        "approvalLevel": "collection",
-        "approverAddress": "",
-        "version": "2" // Must specify exact version
-  }
-]
+### Full Range
+
+To represent a complete range covering all possible values:
+
+```protobuf
+// Full range from 1 to maximum
+{
+  start: "1",
+  end: "18446744073709551615"
+}
 ```
 
-See [MsgTransferTokens](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
+### Single Value
+
+To represent a single value, use the same value for start and end:
+
+```protobuf
+// Single token ID 5
+{
+  start: "5",
+  end: "5"
+}
+```
+
+### Range Inversion
+
+Inverting a range results in all values from 1 to 18446744073709551615 that are **not** in the current range. This is useful for exclusion logic.
+
+## Examples
+
+### Token ID Examples
+
+```typescript
+// Token IDs 1-10 (inclusive)
+const badgeRange: UintRange[] = [{ start: '1', end: '10' }];
+
+// Multiple non-overlapping ranges
+const multipleBadges: UintRange[] = [
+    { start: '1', end: '10' },
+    { start: '20', end: '50' },
+];
+```
+
+### Go Code Examples
+
+```go
+// Token IDs 1-10
+tokenIdRange := UintRange{Start: NewUint(1), End: NewUint(10)}
+
+// Unlimited amount
+unlimitedAmount := UintRange{Start: NewUint(1), End: MaxUint}
+
+// Single token ID
+singleBadge := UintRange{Start: NewUint(5), End: NewUint(5)}
+```
+
+## Efficiency Benefits
+
+* **Compact representation**: Ranges avoid storing individual values
+* **Range operations**: Efficient intersection, union, and containment checks
+* **Gas optimization**: Reduces transaction size and computational costs
+* **Scalability**: Handles large ranges without performance degradation
 
 
 ## File: ./x-badges/events.md
@@ -17635,7 +17591,7 @@ const approveSelfForcefully = (address: string) => {
 ## Related Concepts
 
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
+* [Address Lists](../../concepts/address-lists.md)
 * [Approval Criteria](broken-reference/)
 
 
@@ -17670,8 +17626,8 @@ const burnableApproval = new CollectionApproval({
 ## Related Concepts
 
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
-* [Timeline System](../../../token-standard/concepts/core-structures/timeline-system.md)
+* [Address Lists](../../concepts/address-lists.md)
+* [Timeline System](../../concepts/timeline-system.md)
 
 
 ## File: ./x-badges/examples/approvals/cosmos-unwrapper-approval.md
@@ -17726,7 +17682,7 @@ export const unwrapperApproval = ({
 * [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
 * [Cosmos Wrapper Paths](broken-reference/)
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
+* [Address Lists](../../concepts/address-lists.md)
 
 
 ## File: ./x-badges/examples/approvals/cosmos-wrapper-approval.md
@@ -17780,7 +17736,7 @@ export const wrapperApproval = ({
 
 * [Cosmos Wrapper Paths](broken-reference/)
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
+* [Address Lists](../../concepts/address-lists.md)
 
 
 ## File: ./x-badges/examples/approvals/transferable-approval.md
@@ -17812,8 +17768,8 @@ const transferableApproval = new CollectionApproval({
 ## Related Concepts
 
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
-* [Timeline System](../../../token-standard/concepts/core-structures/timeline-system.md)
+* [Address Lists](../../concepts/address-lists.md)
+* [Timeline System](../../concepts/timeline-system.md)
 
 
 ## File: ./x-badges/examples/base-collection-details.md
@@ -17826,19 +17782,19 @@ BitBadges collections are very expressive but also can lead to verbose configura
 
 For detailed information about each field, see the corresponding concepts documentation:
 
-| Field                         | Concepts Link                                                                       |
-| ----------------------------- | ----------------------------------------------------------------------------------- |
-| `validTokenIds`               | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `managerTimeline`             | [Manager](../concepts/manager.md)                                                   |
-| `collectionMetadataTimeline`  | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `tokenMetadataTimeline`       | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `customDataTimeline`          | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `standardsTimeline`           | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `isArchivedTimeline`          | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `defaultBalances`             | [Collection Setup Fields](../concepts/collection-setup-fields.md)                   |
-| `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)                           |
-| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](broken-reference/)                                           |
-| Timeline System (all fields)  | [Timeline System](../../token-standard/concepts/core-structures/timeline-system.md) |
+| Field                         | Concepts Link                                                                    |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| `validTokenIds`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `managerTimeline`             | [Manager](../concepts/manager.md)                                                |
+| `collectionMetadataTimeline`  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `tokenMetadataTimeline`       | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `customDataTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `standardsTimeline`           | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `isArchivedTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)                        |
+| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](broken-reference/)                                        |
+| Timeline System (all fields)  | [Timeline System](../concepts/timeline-system.md)                                |
 
 ## Base Collection Details
 
@@ -18007,8 +17963,8 @@ const collectionApprovalTimeline = [
 ## Related Concepts
 
 * [Transferability / Approvals](../concepts/transferability-approvals.md)
-* [Address Lists](../../token-standard/concepts/core-structures/address-lists.md)
-* [Timeline System](../../token-standard/concepts/core-structures/timeline-system.md)
+* [Address Lists](../concepts/address-lists.md)
+* [Timeline System](../concepts/timeline-system.md)
 * [Approval Examples](approvals/)
 
 
@@ -18111,7 +18067,7 @@ We refer you to the [examples](permissions/) or relevant concepts for more detai
 
 * [Permission System](../concepts/permissions/permission-system.md)
 * [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../../token-standard/concepts/core-structures/timeline-system.md)
+* [Timeline System](../concepts/timeline-system.md)
 * [Timed Update Permission](../concepts/permissions/timed-update-permission.md)
 
 
@@ -18215,7 +18171,7 @@ For concepts, see:
 
 User-level permissions allow individual users to control their ability to update their own approvals. Note that these are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
 
-The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](./building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
+The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
 
 ## User Permission Structure
 
@@ -18284,20 +18240,20 @@ const updateUserApprovals = {
 
 For permission patterns, see:
 
--   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
--   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
--   [Locking Specific Token IDs](./permissions/locking-specific-token-ids.md) - Token ID targeting
--   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
+* [Freezing Mint Transferability](permissions/freezing-mint-transferability.md) - Collection permission example
+* [Locking Specific Approval ID](permissions/locking-specific-approval-id.md) - Approval ID targeting
+* [Locking Specific Token IDs](permissions/locking-specific-token-ids.md) - Token ID targeting
+* [Building Collection Permissions](building-collection-permissions.md) - Collection-level patterns
 
 For user approval configuration, see:
 
--   [Building User Approvals](./building-user-approvals.md) - User approval setup
+* [Building User Approvals](building-user-approvals.md) - User approval setup
 
 ## Related Concepts
 
--   [Permissions System](../concepts/permissions/README.md) - Permission mechanics
--   [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
--   [Collection Setup Fields](../concepts/collection-setup-fields.md) - Default balances and user permission structure
+* [Permissions System](../concepts/permissions/) - Permission mechanics
+* [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) - Default balances and user permission structure
 
 
 ## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
@@ -18362,7 +18318,7 @@ const collection = {
 
 * [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
 * [Approval System](../concepts/approval-criteria/approval-system.md)
-* [Token Collections](../../token-standard/concepts/core-structures/badge-collections.md)
+* [Token Collections](../concepts/badge-collections.md)
 
 
 ## File: ./x-badges/examples/defining-circulating-supply.md
@@ -18949,7 +18905,7 @@ BitBadges permissions follow a timeline-based system where:
 
 * [Permission System](../../concepts/permissions/permission-system.md)
 * [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../../../token-standard/concepts/core-structures/timeline-system.md)
+* [Timeline System](../../concepts/timeline-system.md)
 
 
 ## File: ./x-badges/examples/permissions/freezing-mint-transferability.md
@@ -19363,19 +19319,19 @@ const createCollection = {
 
 ### ⚠️ Token ID Targeting
 
--   Permissions only apply to the specified token ID ranges
--   Unspecified ranges remain soft-enabled for manager updates
--   Cannot reduce valid token IDs once locked (only expansion possible for unlocked ranges)
+* Permissions only apply to the specified token ID ranges
+* Unspecified ranges remain soft-enabled for manager updates
+* Cannot reduce valid token IDs once locked (only expansion possible for unlocked ranges)
 
 ## Related Examples
 
--   [Locking Specific Token IDs](./locking-specific-token-ids.md) - Lock approval updates for token ranges
--   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
+* [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approval updates for token ranges
+* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
--   [Collection Setup Fields](../../concepts/collection-setup-fields.md) - Token ID range concept
--   [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
+* [Collection Setup Fields](../../../token-standard/learn/collection-setup-fields.md) - Token ID range concept
+* [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
 
 
 ## File: ./x-badges/examples/txs/README.md
@@ -21778,20 +21734,20 @@ A universal message that can be used to either create a new collection or update
 
 ## Dual Purpose
 
--   **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
--   **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
+* **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
+* **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
 
 ## Update Flag Pattern
 
 This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidTokenIds`, `updateCollectionPermissions`).
 
--   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
--   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
+* **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
+* **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
 
 ## Authorization & Permissions
 
--   **For Collection Creation**: Can be executed by any address
--   **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
+* **For Collection Creation**: Can be executed by any address
+* **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
 
 ## Proto Definition
 
@@ -21936,15 +21892,15 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 
 ### vs MsgCreateCollection
 
--   More flexible update flag pattern
--   Can be used for both creation and updates
--   Includes invariants support
+* More flexible update flag pattern
+* Can be used for both creation and updates
+* Includes invariants support
 
 ### vs MsgUpdateCollection
 
--   Can create new collections when collectionId = "0"
-    -   Includes creation-only fields like `defaultBalances`
--   Includes invariants support
+* Can create new collections when collectionId = "0"
+  * Includes creation-only fields like `defaultBalances`
+* Includes invariants support
 
 ## Invariants Support
 
@@ -21964,9 +21920,9 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 
 ## Related Messages
 
--   [MsgCreateCollection](./msg-create-collection.md)
--   [MsgUpdateCollection](./msg-update-collection.md)
--   [Collection Setup Fields](../concepts/collection-setup-fields.md)
+* [MsgCreateCollection](msg-create-collection.md)
+* [MsgUpdateCollection](msg-update-collection.md)
+* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)
 
 
 ## File: ./x-badges/messages/msg-update-collection.md
