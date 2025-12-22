@@ -262,11 +262,6 @@
       * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
       * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
     * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
-* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
-  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
-    * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
-    * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
-    * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
 
 ## x/gamm
 
