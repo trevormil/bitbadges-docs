@@ -45,7 +45,7 @@ export const unwrapperApproval = ({
 
 ## Related Concepts
 
-* [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
-* [Cosmos Wrapper Paths](broken-reference)
-* [Transferability](../../../learn/transferability.md)
-* [Address Lists](../../concepts/address-lists.md)
+-   [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
+-   [Cosmos Wrapper Paths](broken-reference)
+-   [Transferability](../../../learn/transferability.md)
+-   [Address Lists](../../concepts/address-lists.md)
