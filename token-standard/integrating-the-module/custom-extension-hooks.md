@@ -1,14 +1,8 @@
-# 🕵️ Custom Extension Hooks
+# Custom Extension Hooks
 
 Within our module, we attempt to make it easy to extend with custom configurations if you are a chain developer. Oftentimes, you want to implement minor global invariants custom to your chain.
 
 In your `app.go` , you can wire up custom code that is run at certain points no matter the collection. If you need to use the `ctx` field, you can. State is rolled back if anything fails.&#x20;
-
-These are often good for global implementations like:
-
-* Global archiving / halting
-* Only allowing specific addresses administrative privileges
-* Global indexing
 
 ### Custom Approval Criteria Checkers
 
@@ -16,9 +10,19 @@ Custom approval criteria checkers add validation logic during approval processin
 
 #### Example: Require Specific Address
 
-```go
-type RequireSpecificAddressChecker struct {
-	requiredAddress string
+<pre class="language-go"><code class="lang-go">// Usage in app.go:
+app.BadgesKeeper.RegisterCustomApprovalCriteriaChecker(func(approval *types.CollectionApproval) []approvalcriteria.ApprovalCriteriaChecker {
+	if approval.ApprovalId == "special-approval" {
+		return []approvalcriteria.ApprovalCriteriaChecker{
+			NewRequireSpecificAddressChecker("bb1abc123..."),
+		}
+	}
+	return nil
+})
+
+// Implementation
+<strong>type RequireSpecificAddressChecker struct {
+</strong>	requiredAddress string
 }
 
 func (c *RequireSpecificAddressChecker) Name() string {
@@ -40,17 +44,7 @@ func (c *RequireSpecificAddressChecker) Check(
 	}
 	return "", nil
 }
-
-// Usage in app.go:
-app.BadgesKeeper.RegisterCustomApprovalCriteriaChecker(func(approval *types.CollectionApproval) []approvalcriteria.ApprovalCriteriaChecker {
-	if approval.ApprovalId == "special-approval" {
-		return []approvalcriteria.ApprovalCriteriaChecker{
-			NewRequireSpecificAddressChecker("bb1abc123..."),
-		}
-	}
-	return nil
-})
-```
+</code></pre>
 
 ### Custom Global Transfer Checkers
 
@@ -59,6 +53,25 @@ Custom global transfer checkers run before `HandleTransfer()` and can reject tra
 #### Example: Require Specific Memo
 
 ```go
+// Usage in app.go:
+app.BadgesKeeper.RegisterCustomGlobalTransferChecker(func(
+	ctx sdk.Context,
+	from string,
+	to string,
+	initiatedBy string,
+	collection *types.TokenCollection,
+	transferBalances []*types.Balance,
+	memo string,
+) []badgesmodulekeeper.GlobalTransferChecker {
+	if collection.CollectionId.String() == "1" {
+		return []badgesmodulekeeper.GlobalTransferChecker{
+			NewRequireSpecificMemoChecker("approved-transfer"),
+		}
+	}
+	return nil
+})
+
+// Implementation
 type RequireSpecificMemoChecker struct {
 	requiredMemo string
 }
@@ -82,24 +95,6 @@ func (c *RequireSpecificMemoChecker) Check(
 	}
 	return "", nil
 }
-
-// Usage in app.go:
-app.BadgesKeeper.RegisterCustomGlobalTransferChecker(func(
-	ctx sdk.Context,
-	from string,
-	to string,
-	initiatedBy string,
-	collection *types.TokenCollection,
-	transferBalances []*types.Balance,
-	memo string,
-) []badgesmodulekeeper.GlobalTransferChecker {
-	if collection.CollectionId.String() == "1" {
-		return []badgesmodulekeeper.GlobalTransferChecker{
-			NewRequireSpecificMemoChecker("approved-transfer"),
-		}
-	}
-	return nil
-})
 ```
 
 ### Custom Collection Verifiers
@@ -109,6 +104,12 @@ Custom collection verifiers run before collections are stored and can validate c
 #### Example: Require Specific Manager
 
 ```go
+// Usage in app.go:
+app.BadgesKeeper.RegisterCustomCollectionVerifier(
+	NewRequireSpecificManagerVerifier("bb1..."),
+)
+
+// Implementation
 type RequireSpecificManagerVerifier struct {
 	requiredManager string
 }
@@ -128,8 +129,4 @@ func (v *RequireSpecificManagerVerifier) VerifyCollection(ctx sdk.Context, colle
 	return nil
 }
 
-// Usage in app.go:
-app.BadgesKeeper.RegisterCustomCollectionVerifier(
-	NewRequireSpecificManagerVerifier("bb1..."),
-)
 ```

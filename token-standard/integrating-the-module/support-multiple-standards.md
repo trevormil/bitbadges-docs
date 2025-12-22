@@ -1,4 +1,4 @@
-# 🤹 Supporting Multiple Standards
+# Supporting Multiple Standards
 
 To support multiple token standards, we recommend using a SendManager module with **alias denom routing**. It automatically routes transactions to the appropriate handler based on denomination prefixes.
 
