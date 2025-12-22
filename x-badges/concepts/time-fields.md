@@ -4,7 +4,7 @@ BitBadges uses various time-related fields to manage permissions, timelines, tra
 
 ## Time Representation
 
-All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
+All times in BitTokens are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
 
 Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
 
@@ -12,28 +12,28 @@ Time fields use UintRange format with valid values from 1 to 1844674407370955161
 
 ### 1. permanentlyPermittedTimes
 
--   **Purpose**: Defines the times when a permission will always be executable (permanent)
--   **Usage**: Setting allowed periods for specific actions
+* **Purpose**: Defines the times when a permission will always be executable (permanent)
+* **Usage**: Setting allowed periods for specific actions
 
 ### 2. permanentlyForbiddenTimes
 
--   **Purpose**: Defines the times when a permission will always be forbidden (permanent)
--   **Usage**: Setting restricted periods for specific actions
+* **Purpose**: Defines the times when a permission will always be forbidden (permanent)
+* **Usage**: Setting restricted periods for specific actions
 
 ### 3. timelineTimes
 
--   **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
--   **Usage**: Scheduling changes to collection or token properties over time
+* **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
+* **Usage**: Scheduling changes to collection or token properties over time
 
 ### 4. transferTimes
 
--   **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
--   **Usage**: Setting periods when tokens can be transferred between addresses
+* **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
+* **Usage**: Setting periods when tokens can be transferred between addresses
 
 ### 5. ownershipTimes
 
--   **Purpose**: Specifies the times that a user owns a token
--   **Usage**: Defining the duration of token ownership for users
+* **Purpose**: Specifies the times that a user owns a token
+* **Usage**: Defining the duration of token ownership for users
 
 ## Important Note
 
@@ -45,14 +45,14 @@ The `timelineTimes` in permissions correspond to the updatability of the timelin
 
 Scenario: Users participate in a US presidential election by casting votes through token transfers.
 
--   T1: Conclusion of voting
--   T2: Start of presidential term
--   T3: End of presidential term
+* T1: Conclusion of voting
+* T2: Start of presidential term
+* T3: End of presidential term
 
 Setup:
 
--   `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
--   `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
+* `transferTimes`: \[{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+* `ownershipTimes`: \[{ start: T2, end: T3 }] (Defines the presidential term)
 
 ### Example 2: Managing Collection Archival
 
