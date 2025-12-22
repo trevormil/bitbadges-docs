@@ -36,9 +36,3 @@ const approveSelfForcefully = (address: string) => {
     };
 };
 ```
-
-## Related Concepts
-
-* [Transferability](../../../learn/transferability.md)
-* [Address Lists](../../concepts/address-lists.md)
-* [Approval Criteria](broken-reference/)

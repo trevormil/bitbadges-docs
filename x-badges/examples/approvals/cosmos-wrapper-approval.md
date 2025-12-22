@@ -42,9 +42,3 @@ export const wrapperApproval = ({
     return toSet;
 };
 ```
-
-## Related Concepts
-
-* [Cosmos Wrapper Paths](broken-reference)
-* [Transferability](../../../learn/transferability.md)
-* [Address Lists](../../concepts/address-lists.md)

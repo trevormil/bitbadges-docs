@@ -90,9 +90,3 @@ const {
 ## Examples
 
 We refer you to the [examples](permissions/) or relevant concepts for more detailed examples.
-
-## Related Concepts
-
-* [Permissions](../../learn/permissions.md) - Permission system and controls
-* [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../concepts/timeline-system.md)

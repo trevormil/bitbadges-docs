@@ -23,9 +23,3 @@ const burnableApproval = new CollectionApproval({
     approvalCriteria: undefined, // No additional restrictions
 });
 ```
-
-## Related Concepts
-
--   [Transferability](../../../learn/transferability.md)
--   [Address Lists](../../concepts/address-lists.md)
--   [Timeline System](../../concepts/timeline-system.md)

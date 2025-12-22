@@ -42,17 +42,3 @@ export const unwrapperApproval = ({
     return toSet;
 };
 ```
-
-## Related Concepts
-
-<<<<<<< HEAD
--   [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
--   [Cosmos Wrapper Paths](broken-reference)
--   [Transferability](../../../learn/transferability.md)
--   [Address Lists](../../concepts/address-lists.md)
-=======
-* [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
-* [Cosmos Wrapper Paths](broken-reference/)
-* [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../concepts/address-lists.md)
->>>>>>> d34afbef585731a03fb3588449635b6d464bd0d2

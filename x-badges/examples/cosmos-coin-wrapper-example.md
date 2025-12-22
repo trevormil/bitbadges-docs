@@ -53,9 +53,3 @@ const collection = {
     ],
 };
 ```
-
-## Related Concepts
-
-* [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
-* [Approval System](../concepts/approval-criteria/approval-system.md)
-* [Token Collections](../concepts/badge-collections.md)

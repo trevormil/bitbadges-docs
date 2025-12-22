@@ -23,9 +23,3 @@ BitBadges permissions follow a timeline-based system where:
 * **Complete Control** - Empty permission arrays for full soft-enabled control
 * **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
 * **Time-Limited** - Use specific time ranges for temporary control
-
-## Related Concepts
-
-* [Permissions](../../../learn/permissions.md) - Permission system and controls
-* [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../../concepts/timeline-system.md)

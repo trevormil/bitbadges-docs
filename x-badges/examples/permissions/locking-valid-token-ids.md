@@ -96,8 +96,3 @@ const createCollection = {
 
 * [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approval updates for token ranges
 * [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
-
-## Related Concepts
-
-* [Collection Setup Fields](../../../token-standard/learn/collection-setup-fields.md) - Token ID range concept
-* [Permissions](../../../learn/permissions.md) - Permission mechanics and controls

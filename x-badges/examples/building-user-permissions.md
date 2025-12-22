@@ -79,8 +79,3 @@ For permission patterns, see:
 For user approval configuration, see:
 
 * [Building User Approvals](building-user-approvals.md) - User approval setup
-
-## Related Concepts
-
-* [Permissions](../../learn/permissions.md) - Permission mechanics and controls
-* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) - Default balances and user permission structure

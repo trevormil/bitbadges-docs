@@ -98,7 +98,3 @@ const createCollection = {
 
 -   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
 -   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
-
-## Related Concepts
-
--   [Permissions](../../../learn/permissions.md) - Permission mechanics and controls

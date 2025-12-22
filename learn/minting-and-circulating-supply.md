@@ -221,4 +221,4 @@ const mintEscrowAddress = generateAlias(
 );
 ```
 
-The Mint Escrow Address is a generated `bb1` address that holds Cosmos native funds on behalf of the Mint address. It's used for coin transfers, payouts, and escrows. See [Mint Escrow Address](../x-badges/concepts/mint-escrow-address.md) for details.
+The Mint Escrow Address is a generated `bb1` address that holds Cosmos native funds on behalf of the Mint address. It's used for coin transfers, payouts, and escrows. See [Coin Transfers](../token-standard/learn/approval-criteria/usdbadge-transfers.md#mint-escrow-address) for details.

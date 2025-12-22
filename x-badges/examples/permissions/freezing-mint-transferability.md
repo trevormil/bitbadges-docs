@@ -72,7 +72,3 @@ Once set to permanently forbidden, mint permissions cannot be restored. Carefull
 
 -   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
 -   [Building Collection Approvals](../building-collection-approvals.md) - Approval configuration
-
-## Related Concepts
-
--   [Permissions](../../../learn/permissions.md) - Permission mechanics and controls

@@ -122,9 +122,3 @@ This example demonstrates how to update user outgoing approvals to control what 
 
 * [Building User Approvals](../../building-user-approvals.md) - User approval patterns
 * [Empty Approval Criteria](../../empty-approval-criteria.md) - Template for unrestricted approvals
-
-## Related Concepts
-
-* [Transferability](../../../../learn/transferability.md) - Approval system overview
-* [Approval Criteria](broken-reference/) - Criteria configuration
-* [Tallied Approval Amounts](../../../../token-standard/learn/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics

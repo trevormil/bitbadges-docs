@@ -66,10 +66,3 @@ const transfers = [
     },
 ];
 ```
-
-## Related Concepts
-
--   [Building Collection Approvals](./building-collection-approvals.md)
--   [Admin Override Approval](./approvals/admin-override-approval.md)
--   [Mint Escrow Address](../concepts/mint-escrow-address.md)
--   [MsgTransferTokens](../messages/msg-transfer-tokens.md)
