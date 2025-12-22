@@ -20,6 +20,8 @@
     -   [Transferability / Approvals](learn/transferability.md)
     -   [Auto-Scan vs. Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
     -   [Alias Compatibility](learn/alias-compatibility.md)
+    -   [IBC Backed Minting](learn/ibc-backed-minting.md)
+    -   [Cosmos Coin Wrapper Paths](learn/cosmos-coin-wrapper-paths.md)
     -   [Collection Configuration](token-standard/learn/collection-setup-fields.md)
     -   [Approval Criteria](token-standard/learn/approval-criteria/README.md)
         -   [Address Checks](token-standard/learn/approval-criteria/address-checks.md)
