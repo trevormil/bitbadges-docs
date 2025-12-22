@@ -45,7 +45,7 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 
 The answer is simple. We believe in the potential of blockchains and a multi-chain world, but this potential cannot be realized with the current infrastructure and token standards in place today.
 
-### Problems with Existing Standards
+## ⚠️ Problems with Existing Standards
 
 Existing tokenization standards (ERC-20, ERC-721, CW-20, ICS-20, etc.) are **flawed from the ground up**:
 
@@ -57,7 +57,7 @@ Existing tokenization standards (ERC-20, ERC-721, CW-20, ICS-20, etc.) are **fla
 
 **The whole tokenization approach needs a complete overhaul.**
 
-### Our Design Philosophy
+## 💡 Our Design Philosophy
 
 BitBadges addresses these fundamental issues through core design decisions:
 
