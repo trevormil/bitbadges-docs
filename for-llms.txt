@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 17:13:09 UTC 2025
+Generated on Mon Dec 22 17:15:23 UTC 2025
 
 
 
@@ -1843,6 +1843,22 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Transferability](learn/transferability.md)
   * [Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
   * [Collection Configuration](token-standard/learn/collection-setup-fields.md)
+  * [Approval Criteria](token-standard/learn/approval-criteria/README.md)
+    * [Address Checks](token-standard/learn/approval-criteria/address-checks.md)
+    * [Approval Trackers](token-standard/learn/approval-criteria/approval-trackers.md)
+    * [Auto-Deletion Options](token-standard/learn/approval-criteria/auto-deletion-options.md)
+    * [Token Ownership](token-standard/learn/approval-criteria/badge-ownership.md)
+    * [Dynamic Store Challenges](token-standard/learn/approval-criteria/dynamic-store-challenges.md)
+    * [ETH Signature Challenges](token-standard/learn/approval-criteria/eth-signature-challenges.md)
+    * [Extending Approvals (Advanced)](token-standard/learn/approval-criteria/linking-trackers-advanced.md)
+    * [Max Number of Transfers](token-standard/learn/approval-criteria/max-number-of-transfers.md)
+    * [Merkle Challenges](token-standard/learn/approval-criteria/merkle-challenges.md)
+    * [Override User Level Approvals](token-standard/learn/approval-criteria/overrides.md)
+    * [Predetermined Balances](token-standard/learn/approval-criteria/predetermined-balances.md)
+    * [Requires](token-standard/learn/approval-criteria/requires.md)
+    * [Tallied Approval Amounts](token-standard/learn/approval-criteria/tallied-approval-amounts.md)
+    * [Coin Transfers](token-standard/learn/approval-criteria/usdbadge-transfers.md)
+    * [User Royalties](token-standard/learn/approval-criteria/user-royalties.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Core Structures](token-standard/concepts/core-structures/README.md)
     * [Address Lists](x-badges/concepts/address-lists.md)
@@ -1853,23 +1869,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-    * [Address Checks](x-badges/concepts/approval-criteria/address-checks.md)
-    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
-    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
-    * [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
-    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-    * [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
-    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
-    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
-    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-    * [Requires](x-badges/concepts/approval-criteria/requires.md)
-    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
-  * [Permissions](learn/permissions.md)
 * [📨 Messages](x-badges/messages/README.md)
   * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
   * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
@@ -6985,7 +6984,7 @@ In the BitBadges site, we allow using claims to gate approvals, such as mints. F
 
 It is important to note the hybrid apporach here. Claims are checked off-chain. BitBadges becomes the centralized oracle distributing unique claim codes to be used on-chain eventually. Thus, think of claims gating approvals as gating the "right to initiate the transfer" rather than automatically initiating it. It is a two-step process.
 
-On-chain, these are the leaves of [Merkle challenge](../../../x-badges/concepts/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if en
+On-chain, these are the leaves of [Merkle challenge](../../../token-standard/learn/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if en
 
 
 ## File: ./for-developers/claim-builder/concepts/identify-by-socials-emails.md
@@ -11168,9 +11167,9 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 
 ## Approval vs Permission vs Transfers
 
--   Approvals define the rules for transfers on multiple levels.
--   Transfers execute if the approval rules defined allow it and sufficient balances.
--   Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+* Approvals define the rules for transfers on multiple levels.
+* Transfers execute if the approval rules defined allow it and sufficient balances.
+* Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
 
 ### Collection Approvals
 
@@ -11255,7 +11254,7 @@ interface ApprovalCriteria<T extends bigint> {
 }
 ```
 
-See [Approval Criteria](../x-badges/concepts/approval-criteria/) for all available criteria.
+See [Approval Criteria](../token-standard/learn/approval-criteria/) for all available criteria.
 
 ### User-Level Approvals
 
@@ -11379,14 +11378,14 @@ const collectionApproval: CollectionApproval<bigint> = {
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
--   Freezing tokens (prevent transfers regardless of user settings)
--   Forced revocation (remove tokens from users)
--   Administrative transfers (manager-controlled actions)
+* Freezing tokens (prevent transfers regardless of user settings)
+* Forced revocation (remove tokens from users)
+* Administrative transfers (manager-controlled actions)
 
 **Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
 
--   Forced transfers (send tokens even if recipient blocks them)
--   Administrative actions (manager-controlled distributions)
+* Forced transfers (send tokens even if recipient blocks them)
+* Administrative actions (manager-controlled distributions)
 
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
@@ -11560,8 +11559,8 @@ Cosmos modules (like our token standard) can be called from EVM environments usi
 
 Simply, each approval can specify native Cosmos coin transfers to trigger if used. For example, if the mint approval is used and specifies a 5 USDC payment to Bob, it will trigger it. This supports any bank denomination.
 
-{% content-ref url="../x-badges/concepts/approval-criteria/usdbadge-transfers.md" %}
-[usdbadge-transfers.md](../x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+{% content-ref url="../token-standard/learn/approval-criteria/usdbadge-transfers.md" %}
+[usdbadge-transfers.md](../token-standard/learn/approval-criteria/usdbadge-transfers.md)
 {% endcontent-ref %}
 
 ### **How does Cosmos / IBC wrapping work?**
@@ -12321,6 +12320,1919 @@ balance, err := sendManagerKeeper.GetBalanceWithAliasRouting(ctx, address, denom
 ```
 
 
+## File: ./token-standard/learn/approval-criteria/README.md
+
+# Approval Criteria
+
+Additional restrictions and conditions that determine whether a transfer is approved beyond the basic approval matching.
+
+## Interface
+
+```typescript
+export interface iApprovalCriteria<T extends NumberType> {
+    /** The BADGE or other sdk.Coin transfers to be executed upon every approval. */
+    coinTransfers?: iCoinTransfer<T>[];
+    /** The list of merkle challenges that need valid proofs to be approved. */
+    merkleChallenges?: iMerkleChallenge<T>[];
+    /** The list of must own tokens that need valid proofs to be approved. */
+    mustOwnTokens?: iMustOwnToken<T>[];
+    /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
+    predeterminedBalances?: iPredeterminedBalances<T>;
+    /** The maximum approved amounts for this approval. */
+    approvalAmounts?: iApprovalAmounts<T>;
+    /** The max num transfers for this approval. */
+    maxNumTransfers?: iMaxNumTransfers<T>;
+    /** Whether the approval should be deleted after one use. */
+    autoDeletionOptions?: iAutoDeletionOptions;
+    /** Whether the to address must equal the initiatedBy address. */
+    requireToEqualsInitiatedBy?: boolean;
+    /** Whether the from address must equal the initiatedBy address. */
+    requireFromEqualsInitiatedBy?: boolean;
+    /** Whether the to address must not equal the initiatedBy address. */
+    requireToDoesNotEqualInitiatedBy?: boolean;
+    /** Whether the from address must not equal the initiatedBy address. */
+    requireFromDoesNotEqualInitiatedBy?: boolean;
+    /** Whether this approval overrides the from address's approved outgoing transfers. */
+    overridesFromOutgoingApprovals?: boolean;
+    /** Whether this approval overrides the to address's approved incoming transfers. */
+    overridesToIncomingApprovals?: boolean;
+    /** The royalties to apply to the transfer. */
+    userRoyalties?: iUserRoyalties<T>;
+    /** The list of dynamic store challenges that the initiator must pass for approval. */
+    dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
+    /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
+    ethSignatureChallenges?: iETHSignatureChallenge<T>[];
+    /** Address checks for sender */
+    senderChecks?: iAddressChecks;
+    /** Address checks for recipient */
+    recipientChecks?: iAddressChecks;
+    /** Address checks for initiator */
+    initiatorChecks?: iAddressChecks;
+    /** Alternative time-based checks for approval denial (offline hours/days). */
+    altTimeChecks?: iAltTimeChecks;
+    /** Whether this approval must be prioritized during evaluation. */
+    mustPrioritize?: boolean;
+}
+```
+
+## Core Components
+
+* [**Approval Trackers**](approval-trackers.md) - Tracking transfer amounts and counts
+* [**Tallied Approval Amounts**](tallied-approval-amounts.md) - Amount limits and thresholds
+* [**Max Number of Transfers**](max-number-of-transfers.md) - Transfer count limits
+* [**Predetermined Balances**](predetermined-balances.md) - Exact balance requirements
+* [**Merkle Challenges**](merkle-challenges.md) - Cryptographic proof requirements
+* [**Dynamic Store Challenges**](dynamic-store-challenges.md) - On-chain numeric checks
+* [**ETH Signature Challenges**](eth-signature-challenges.md) - Ethereum signature requirements
+* [**Token Ownership**](badge-ownership.md) - Required token holdings
+* [**Cosmos Coin Transfers**](usdbadge-transfers.md) - Payments per approval (BADGE or other sdk.Coin)
+* [**Overrides**](overrides.md) - Bypassing user-level approvals
+* [**Requires**](requires.md) - Address relationship restrictions
+* [**Address Checks**](address-checks.md) - Address type restrictions (WASM contracts, liquidity pools)
+* [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
+* [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
+* [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
+* [**Must Prioritize**](../../../x-badges/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
+
+## Key Concepts
+
+### Tracker IDs
+
+Trackers use IDs with format: `approvalId-trackerId` plus identifying details. All trackers are scoped to a specific `approvalId`.
+
+**Important**: Trackers are increment-only and immutable. Never reuse tracker IDs with prior history.
+
+### Best Practices - Creating / Updating / Deleting
+
+Trackers are increment-only and immutable. Never reuse tracker IDs with prior history when creating approvals that should start from scratch.
+
+### Extending Functionality
+
+For custom logic beyond native options:
+
+* Use CosmWASM smart contracts
+* Leverage Merkle challenges for commit-reveal mechanisms
+
+### Cross-Approval Logic
+
+Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
+
+* Workarounds and careful design
+* CosmWASM for advanced functionality
+* Contact us for recommendations
+
+
+## File: ./token-standard/learn/approval-criteria/address-checks.md
+
+# Address Checks
+
+Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be a WASM contract, must not be a liquidity pool).
+
+## Interface
+
+```typescript
+interface AddressChecks {
+    /** Require the address to be a WASM contract. */
+    mustBeWasmContract?: boolean;
+    /** Require the address to not be a WASM contract. */
+    mustNotBeWasmContract?: boolean;
+    /** Require the address to be a liquidity pool. */
+    mustBeLiquidityPool?: boolean;
+    /** Require the address to not be a liquidity pool. */
+    mustNotBeLiquidityPool?: boolean;
+}
+```
+
+## How It Works
+
+Address checks validate the type of addresses involved in a transfer. The checks are applied to different parties depending on the approval type:
+
+### Collection Approvals
+
+Collection approvals can check all three parties:
+
+-   **`senderChecks`**: Validates the sender address (`from`)
+-   **`recipientChecks`**: Validates the recipient address (`to`)
+-   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
+
+### Incoming Approvals
+
+Incoming approvals can check the sender and initiator (but not the recipient, since the recipient is always the approval owner):
+
+-   **`senderChecks`**: Validates the sender address (`from`)
+-   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
+
+### Outgoing Approvals
+
+Outgoing approvals can check the recipient and initiator (but not the sender, since the sender is always the approval owner):
+
+-   **`recipientChecks`**: Validates the recipient address (`to`)
+-   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
+
+## Available Checks
+
+### WASM Contract Checks
+
+-   **`mustBeWasmContract`**: Requires the address to be a CosmWASM smart contract
+-   **`mustNotBeWasmContract`**: Requires the address to NOT be a CosmWASM smart contract
+
+### Liquidity Pool Checks
+
+-   **`mustBeLiquidityPool`**: Requires the address to be a liquidity pool
+-   **`mustNotBeLiquidityPool`**: Requires the address to NOT be a liquidity pool
+
+## Examples
+
+### Collection Approval: Require Contract Recipients
+
+Only allow transfers to WASM contracts:
+
+```json
+{
+    "approvalCriteria": {
+        "recipientChecks": {
+            "mustBeWasmContract": true
+        }
+    }
+}
+```
+
+### Collection Approval: Block Liquidity Pool Senders
+
+Prevent transfers from liquidity pools:
+
+```json
+{
+    "approvalCriteria": {
+        "senderChecks": {
+            "mustNotBeLiquidityPool": true
+        }
+    }
+}
+```
+
+### Incoming Approval: Require Contract Initiators
+
+Only allow transfers initiated by WASM contracts:
+
+```json
+{
+    "approvalCriteria": {
+        "initiatorChecks": {
+            "mustBeWasmContract": true
+        }
+    }
+}
+```
+
+### Outgoing Approval: Block Liquidity Pool Recipients
+
+Prevent sending tokens to liquidity pools:
+
+```json
+{
+    "approvalCriteria": {
+        "recipientChecks": {
+            "mustNotBeLiquidityPool": true
+        }
+    }
+}
+```
+
+### Combined Checks
+
+You can combine multiple checks for a single party:
+
+```json
+{
+    "approvalCriteria": {
+        "recipientChecks": {
+            "mustBeWasmContract": true,
+            "mustNotBeLiquidityPool": true
+        },
+        "initiatorChecks": {
+            "mustNotBeWasmContract": true
+        }
+    }
+}
+```
+
+## Use Cases
+
+-   **Smart Contract Integration**: Require transfers to/from specific contract types
+-   **Liquidity Protection**: Prevent transfers to/from liquidity pools to maintain token economics
+-   **Security**: Enforce that certain operations can only be initiated by contracts or regular addresses
+-   **Protocol Compliance**: Ensure transfers comply with protocol-specific address requirements
+
+## Constraints
+
+All checks are evaluated after the address lists (`toList`, `fromList`, `initiatedByList`) are matched. An address must first be in the appropriate list, then pass the address checks.
+
+
+## File: ./token-standard/learn/approval-criteria/approval-trackers.md
+
+# Approval Trackers
+
+Track transfer amounts and counts using increment-only tallies with thresholds.
+
+## How It Works
+
+Trackers use an incrementing tally system with thresholds:
+
+1. **Setup**: Approved for x10 of token IDs 1-10 with tracker ID "xyz"
+2. **Transfer x5**: Tracker "xyz" goes from 0/10 → 5/10
+3. **Transfer x5**: Tracker "xyz" goes to 10/10
+4. **Transfer x1**: Exceeds threshold, transfer fails
+
+## Tracker Identification
+
+Tracker IDs include multiple components:
+
+```
+ID: collectionId-approvalLevel-approverAddress-approvalId-amountTrackerId-trackerType-approvedAddress
+```
+
+### Tracker ID Details Interface
+
+```typescript
+interface ApprovalTrackerIdDetails<T extends NumberType> {
+    collectionId: T;
+    approvalLevel: 'collection' | 'incoming' | 'outgoing' | '';
+    approvalId: string;
+    approverAddress: string;
+    amountTrackerId: string;
+    trackerType: 'overall' | 'to' | 'from' | 'initiatedBy' | '';
+    approvedAddress: string;
+}
+```
+
+### Component Breakdown
+
+-   **collectionId**: The collection this tracker belongs to
+-   **approvalLevel**: Level of approval ("collection", "incoming", "outgoing", or empty)
+-   **approvalId**: Unique identifier for the specific approval
+-   **approverAddress**: Address of the approver (empty for collection-level)
+-   **amountTrackerId**: User-defined tracker identifier specified in approvalAmounts or maxNumTransfers (see below)
+-   **trackerType**: Type of tracking ("overall", "to", "from", "initiatedBy", or empty)
+-   **approvedAddress**: Specific address being tracked (empty for "overall")
+
+```typescript
+interface iApprovalAmounts<T extends NumberType> {
+    amountTrackerId: string; // Key for tracking tallies
+}
+
+interface iMaxNumTransfers<T extends NumberType> {
+    amountTrackerId: string; // Key for tracking tallies
+}
+```
+
+### Tracker Types
+
+-   **"overall"**: Universal tally for any transfer (approvedAddress empty)
+-   **"to"**: Per-recipient tally (approvedAddress = recipient)
+-   **"from"**: Per-sender tally (approvedAddress = sender)
+-   **"initiatedBy"**: Per-initiator tally (approvedAddress = initiator)
+
+## Increment Only and Immutable
+
+Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused tracker ID. This can be done simply by editing `amountTrackerId` (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
+
+**IMPORTANT**: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
+
+## As-Needed Basis
+
+Only increment when necessary (e.g., if no amount restrictions, don't track amounts). Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we do not increment for efficiency purposes. For example, if we only have requirements for numTransfers but do not need the amounts, we do not increment the amounts.
+
+### Example Tracker States
+
+```json
+{
+    "fullTrackerId1": {
+        "numTransfers": 5,
+        "amounts": [
+            {
+                "amount": 50,
+                "tokenIds": [{ "start": 1, "end": 10 }],
+                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
+            }
+        ],
+        "lastUpdatedAt": 1691978400000
+    },
+    "fullTrackerId2": {
+        "numTransfers": 3,
+        "amounts": [
+            {
+                "amount": 15,
+                "tokenIds": [{ "start": 1, "end": 5 }],
+                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
+            }
+        ],
+        "lastUpdatedAt": 1691978400000
+    }
+}
+```
+
+## Periodic Resets
+
+Trackers support periodic resets to zero using time intervals.
+
+Leave the values at 0 to disable periodic resets.
+
+```typescript
+interface ResetTimeIntervals<T extends NumberType> {
+    startTime: T; // Original start time of the first interval
+    intervalLength: T; // Interval length in unix milliseconds
+}
+```
+
+### How It Works
+
+-   **First Update**: If it's the first update of the interval, all tracker progress is reset to zero
+-   **Recurring**: Useful for recurring subscriptions (e.g., one transfer per month)
+-   **No Reset**: Set both values to 0 for no periodic resets
+
+### Example
+
+```json
+{
+    "approvalAmounts": {
+        "overallApprovalAmount": "100",
+        "amountTrackerId": "monthly-tracker",
+        "resetTimeIntervals": {
+            "startTime": "1691978400000", // Aug 13, 2023
+            "intervalLength": "2592000000" // 30 days in milliseconds
+        }
+    }
+}
+```
+
+This creates a monthly reset cycle starting from August 13, 2023.
+
+
+## File: ./token-standard/learn/approval-criteria/auto-deletion-options.md
+
+# Auto-Deletion Options
+
+Automatically delete approvals after specific conditions are met.
+
+## Interface
+
+```typescript
+interface AutoDeletionOptions {
+    afterOneUse: boolean;
+    afterOverallMaxNumTransfers: boolean;
+    allowCounterpartyPurge?: boolean;
+    allowPurgeIfExpired?: boolean;
+}
+```
+
+## How It Works
+
+Auto-deletion options allow approvals to be automatically removed when certain conditions are met:
+
+-   **`afterOneUse`**: Delete the approval after it's used once
+-   **`afterOverallMaxNumTransfers`**: Delete the approval after the overall max number of transfers threshold is met
+-   **`allowCounterpartyPurge`**: If true, allows the counterparty (the only initiator in `initiatedByList`, must be a whitelist with exactly one address) to purge the approval, even if they are not the owner. This may be used for like a rejection of the approval.
+-   **`allowPurgeIfExpired`**: If true, allows others (in addition to the approval owner) to purge expired approvals on the owner's behalf. This may be used for a cleanup-like system.
+
+## Usage Examples
+
+### Single-Use Approval
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": true,
+        "afterOverallMaxNumTransfers": false
+    }
+}
+```
+
+**Result**: Approval is deleted immediately after the first transfer.
+
+### Limited-Use Approval
+
+```json
+{
+    "maxNumTransfers": {
+        "overallMaxNumTransfers": "10"
+    },
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": true
+    }
+}
+```
+
+**Result**: Approval is deleted after 10 transfers are completed.
+
+### Allow Counterparty Purge
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": false,
+        "allowCounterpartyPurge": true
+    }
+}
+```
+
+**Result**: The counterparty (if they are the only initiator in a whitelist) can purge this approval, even if not the owner.
+
+### Allow Others to Purge Expired Approvals
+
+```json
+{
+    "autoDeletionOptions": {
+        "afterOneUse": false,
+        "afterOverallMaxNumTransfers": false,
+        "allowPurgeIfExpired": true
+    }
+}
+```
+
+**Result**: Any user can purge this approval if it is expired (no future valid transfer times), not just the owner.
+
+
+## File: ./token-standard/learn/approval-criteria/badge-ownership.md
+
+# Token Ownership
+
+Require specific token holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain balances to ensure users own required tokens before allowing transfers.
+
+## Overview
+
+Token ownership requirements enable gating mechanisms where users must possess specific tokens to access certain transfers. This creates dependency relationships between collections and enables sophisticated access control systems.
+
+**Key Benefits**:
+
+-   **Access Control**: Gate transfers based on token ownership
+-   **Collection Dependencies**: Create relationships between different collections
+-   **On-Chain Verification**: Automatic balance checking without external data
+-   **Flexible Requirements**: Support for amount ranges, time-based ownership, and multiple token types
+
+## Interface
+
+```typescript
+interface MustOwnTokens<T extends NumberType> {
+    collectionId: T;
+    amountRange: UintRange<T>; // Min/max amount expected
+    ownershipTimes: UintRange<T>[];
+    tokenIds: UintRange<T>[];
+
+    overrideWithCurrentTime: boolean; // Use current block time. Overrides ownershipTimes with [{ start: currentTime, end: currentTime }]
+    mustSatisfyForAllAssets: boolean; // All vs one requirement
+    ownershipCheckParty: string; // Which party to check ownership for: "initiator", "sender", "recipient" (default: "initiator" if empty)
+}
+```
+
+## Field Descriptions
+
+### collectionId
+
+-   **Type**: `T` (NumberType)
+-   **Description**: The ID of the collection containing the required tokens
+-   **Example**: `"1"` for collection ID 1
+
+### amountRange
+
+-   **Type**: `UintRange<T>`
+-   **Description**: Minimum and maximum amount of tokens the user must own
+-   **Format**: `{ start: "minAmount", end: "maxAmount" }`
+-   **Example**: `{ start: "1", end: "10" }` requires 1-10 tokens (amounts)
+
+### ownershipTimes
+
+-   **Type**: `UintRange<T>[]`
+-   **Description**: Time ranges when the user must have owned the tokens (UNIX milliseconds)
+-   **Example**: `[{ start: "1691931600000", end: "1723554000000" }]` for Aug 13, 2023 - Aug 13, 2024
+
+### tokenIds
+
+-   **Type**: `UintRange<T>[]`
+-   **Description**: Specific token IDs that must be owned
+-   **Example**: `[{ start: "1", end: "100" }]` for token IDs 1-100
+
+### overrideWithCurrentTime
+
+-   **Type**: `boolean`
+-   **Description**: When true, ignores `ownershipTimes` and uses current block time
+-   **Behavior**: Sets ownership time to `[{ start: currentTime, end: currentTime }]`
+-   **Use Case**: Require current ownership only, not historical ownership
+
+### mustSatisfyForAllAssets
+
+-   **Type**: `boolean`
+-   **Description**: Controls whether all specified token requirements must be met or just one
+-   **True**: User must own ALL specified token combinations
+-   **False**: User must own AT LEAST ONE of the specified token combinations
+
+### ownershipCheckParty
+
+-   **Type**: `string`
+-   **Description**: Specifies which party of the transfer to check ownership for
+-   **Options**:
+    -   `"initiator"` (default): Check ownership for the address that initiated the transfer
+    -   `"sender"`: Check ownership for the address sending the tokens
+    -   `"recipient"`: Check ownership for the address receiving the tokens
+-   **Default**: `"initiator"` (if empty or not specified)
+-   **Example**: `"sender"` to require the sender to own specific tokens before allowing the transfer
+
+## Example
+
+Require users to own specific tokens to access premium features or exclusive transfers.
+
+```json
+{
+    "mustOwnTokens": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
+            "tokenIds": [{ "start": "1", "end": "1" }],
+            "overrideWithCurrentTime": false,
+            "mustSatisfyForAllAssets": true,
+            "ownershipCheckParty": "initiator"
+        }
+    ]
+}
+```
+
+### Party-Specific Examples
+
+#### Check Initiator Ownership (Default)
+
+```json
+{
+    "mustOwnTokens": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "tokenIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "initiator"
+        }
+    ]
+}
+```
+
+#### Check Sender Ownership
+
+```json
+{
+    "mustOwnTokens": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "tokenIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "sender"
+        }
+    ]
+}
+```
+
+#### Check Recipient Ownership
+
+```json
+{
+    "mustOwnTokens": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "tokenIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "recipient"
+        }
+    ]
+}
+```
+
+
+## File: ./token-standard/learn/approval-criteria/dynamic-store-challenges.md
+
+# Dynamic Store Challenges
+
+Require transfer initiators to pass checks against dynamic stores. Typically, these are used in combination with smart contracts or other custom extensions.
+
+Dynamic stores are standalone (address -> boolean) stores controlled by whoever creates them. They are stored and maintained by the creator. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
+
+## How It Works
+
+Dynamic store challenges check if the transfer initiator has a value of `true` in specified dynamic stores. The system:
+
+1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
+2. **Evaluates Boolean**: Returns the boolean value for the initiator
+3. **Requires All True**: All challenges must return `true` for approval
+4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
+
+## Interface
+
+```typescript
+interface DynamicStoreChallenge {
+    storeId: string; // Dynamic store ID to check
+}
+```
+
+## Usage in Approval Criteria
+
+```json
+{
+    "dynamicStoreChallenges": [
+        { "storeId": "1" }, // Member store (must be true)
+        { "storeId": "2" } // Subscription store (must be true)
+    ]
+}
+```
+
+## Managing Dynamic Stores
+
+### Creating Stores
+
+Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
+
+### Setting Values
+
+Use [MsgSetDynamicStoreValue](../../../x-badges/messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
+
+### Querying Values
+
+Use [GetDynamicStoreValue](../../../x-badges/queries/get-dynamic-store-value.md) to check current values for addresses.
+
+## Alternatives
+
+For fully off-chain solutions, consider:
+
+* [Merkle Challenges](merkle-challenges.md) to save gas costs
+* [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization
+
+
+## File: ./token-standard/learn/approval-criteria/eth-signature-challenges.md
+
+# ETH Signature Challenges
+
+ETH Signature Challenges are a type of approval criteria that require users to provide valid Ethereum signatures from a predetermined signer to complete transfers. The signer approves the address by signing a message that contains the address and a nonce. This feature allows for secure, on-chain verification of off-chain authorization without the complexity of Merkle trees.
+
+## Overview
+
+ETH Signature Challenges work by requiring users to provide Ethereum signatures that prove they have authorization from specific Ethereum addresses. Each signature can only be used once, preventing replay attacks and ensuring the security of the approval system.
+
+## How It Works
+
+### Signature Scheme
+
+The signature scheme follows the pattern:
+
+```
+ETHSign(nonce + "-" + creatorAddress)
+```
+
+Where:
+
+-   `nonce`: A unique identifier provided by the user
+-   `creatorAddress`: The address of the collection creator
+-   `-`: A literal dash character separating the two values
+
+### Challenge Structure
+
+Each ETH Signature Challenge contains:
+
+-   `signer`: The Ethereum address that must sign the challenge
+-   `challengeTrackerId`: Unique identifier for tracking used signatures
+-   `uri`: Optional metadata URI
+-   `customData`: Optional custom data
+
+### Proof Structure
+
+Users provide ETH Signature Proofs containing:
+
+-   `nonce`: The nonce that was signed
+-   `signature`: The Ethereum signature of the nonce
+
+## Key Features
+
+### One-Time Use Signatures
+
+Each signature can only be used once per challenge tracker. This prevents:
+
+-   Replay attacks
+-   Double-spending of approvals
+-   Unauthorized reuse of signatures
+
+### Multiple Signers
+
+You can require signatures from multiple Ethereum addresses in a single approval:
+
+```json
+{
+    "ethSignatureChallenges": [
+        {
+            "signer": "0x1234567890123456789012345678901234567890",
+            "challengeTrackerId": "challenge1"
+        },
+        {
+            "signer": "0x0987654321098765432109876543210987654321",
+            "challengeTrackerId": "challenge2"
+        }
+    ]
+}
+```
+
+## Implementation Details
+
+### Signature Verification
+
+The system verifies signatures by:
+
+1. Reconstructing the signed message: `nonce + "-" + creatorAddress`
+2. Recovering the signer address from the signature
+3. Comparing the recovered address with the expected `signer` address
+4. Checking that the signature hasn't been used before
+
+### Storage
+
+Used signatures are tracked in the blockchain state using:
+
+-   **Key**: `ETHSignatureTrackerKey` with challenge tracker ID
+-   **Value**: Number of times the signature has been used (increment-only per tracker ID)
+
+## Quick Reference
+
+### Interface Definitions
+
+```typescript
+interface ETHSignatureChallenge {
+    signer: string; // Ethereum address that must sign
+    challengeTrackerId: string; // Unique ID for tracking used signatures
+    uri?: string; // Optional metadata URI
+    customData?: string; // Optional custom data
+}
+
+interface ETHSignatureProof {
+    nonce: string; // The nonce that was signed
+    signature: string; // Ethereum signature
+}
+```
+
+## Error Handling
+
+Common error scenarios:
+
+-   **Invalid Signature**: Signature doesn't match the expected signer
+-   **Already Used**: Signature has been used before
+-   **Missing Proof**: Required ETH signature proof not provided
+-   **Invalid Nonce**: Nonce format or content is invalid
+
+The system provides clear error messages to help users understand and resolve issues.
+
+
+## File: ./token-standard/learn/approval-criteria/linking-trackers-advanced.md
+
+# Extending Approvals (Advanced)
+
+For edge cases requiring advanced functionality beyond native interfaces.
+
+## When to Extend
+
+Consider extending when you need:
+
+-   Cross-approval functionality
+-   Access to other blockchain data/modules
+-   Custom logic not covered by native options
+
+## Before Extending
+
+1. **Consider Workarounds**: Many approvals can be adapted to fit native interfaces
+2. **Design Alternatives**: Think creatively about using existing features
+3. **Evaluate Necessity**: Ensure extension is truly required
+
+## Implementation Options
+
+### CosmWASM Smart Contracts
+
+Build custom smart contracts that call into the x/badges module.
+
+### EVM Smart Contracts (Coming Soon)
+
+Build custom EVM contracts that call into the x/badges module.
+
+
+## File: ./token-standard/learn/approval-criteria/max-number-of-transfers.md
+
+# Max Number of Transfers
+
+Limit the number of transfers that can occur using approval trackers.
+
+See [Approval Trackers](./approval-trackers.md) for more information on how trackers work.
+
+## Interface
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    maxNumTransfers?: MaxNumTransfers<T>;
+}
+```
+
+## How It Works
+
+Similar to approval amounts, specify maximum transfers on:
+
+-   **Overall**: Universal limit for all transfers
+-   **Per Sender**: Limit per unique sender address
+-   **Per Recipient**: Limit per unique recipient address
+-   **Per Initiator**: Limit per unique initiator address
+
+"0" means unlimited and not tracked. "N" means max N transfers allowed.
+
+## Example
+
+```json
+{
+    "maxNumTransfers": {
+        "overallMaxNumTransfers": "0",
+        "perFromAddressMaxNumTransfers": "0",
+        "perToAddressMaxNumTransfers": "0",
+        "perInitiatedByAddressMaxNumTransfers": "1",
+        "amountTrackerId": "uniqueID"
+    }
+}
+```
+
+Alice can initiate 1 transfer, then no more. Bob can still transfer (different tracker).
+
+```typescript
+{
+    "fullTrackerId": {
+        "numTransfers": 1,
+        "amounts": [],
+        "lastUpdatedAt": 1691978400000
+    }
+}
+```
+
+## As-Needed Basis
+
+We track on an as-needed basis, meaning if we do not have requirements that use the number of transfers, we will not increment the tracker.
+
+Edge Case: In Predetermined Balances, you may need the number of transfers for determining the balances to assign to each transfer (e.g. transfer #10 -> token ID 10). In this case, we do need to track the number of transfers. This is all facilitated via the same tracker, so even if you have "0" or unlimited set for the corresponding value in maxNumTransfers, the tracker may be incremented behind the scenes. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
+
+
+## File: ./token-standard/learn/approval-criteria/merkle-challenges.md
+
+# Merkle Challenges
+
+## Overview
+
+Merkle challenges provide cryptographic proof-based approval mechanisms using SHA256 Merkle trees. They enable secure, gas-efficient whitelisting and claim code systems without storing large address lists on-chain.
+
+**Key Benefits**:
+
+-   **Gas Efficiency**: Distribute gas costs among users instead of collection creators
+-   **Security**: Cryptographic proof verification prevents unauthorized access
+-   **Flexibility**: Support both whitelist trees and claim code systems
+-   **Scalability**: Handle large user bases without on-chain storage
+
+## Interface Definition
+
+```typescript
+export interface MerkleChallenge<T extends NumberType> {
+    root: string; // SHA256 Merkle tree root hash
+    expectedProofLength: T; // Required proof length (security)
+    useCreatorAddressAsLeaf: boolean; // Use initiator address as leaf?
+    maxUsesPerLeaf: T; // Maximum uses per leaf
+    uri: string; // Metadata URI
+    customData: string; // Custom data field
+    challengeTrackerId: string; // Unique tracker identifier
+    leafSigner: string; // Optional leaf signature authority
+}
+```
+
+## Basic Example
+
+```json
+{
+    "merkleChallenges": [
+        {
+            "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
+            "expectedProofLength": "1",
+            "useCreatorAddressAsLeaf": false,
+            "maxUsesPerLeaf": "1",
+            "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
+            "customData": "",
+            "challengeTrackerId": "uniqueId",
+            "leafSigner": "0x"
+        }
+    ]
+}
+```
+
+## Challenge Types
+
+### 1. Claim Code Challenges
+
+Create a Merkle tree of secret claim codes that users must provide to claim tokens.
+
+**Use Case**: Private claim codes, invitation systems, promotional campaigns
+
+**Process**:
+
+1. Generate secret claim codes
+2. Build Merkle tree from hashed codes
+3. Distribute codes privately to users with leaf signatures
+4. Users provide code + Merkle proof in transfer
+
+### 2. Whitelist Challenges
+
+Create a Merkle tree of user addresses for gas-efficient whitelisting.
+
+**Use Case**: Large whitelists, community access, gas cost distribution
+
+**Process**:
+
+1. Collect user addresses
+2. Build Merkle tree from hashed addresses
+3. Users provide their address + Merkle proof
+4. System verifies address is in whitelist / valid proof
+
+**Gas Cost Distribution**: Instead of the collection creator paying gas to store N addresses on-chain, each user pays their own gas for proof verification.
+
+## Understanding useCreatorAddressAsLeaf
+
+The `useCreatorAddressAsLeaf` field determines how the system handles the leaf value in Merkle proofs:
+
+### Whitelist Trees (`useCreatorAddressAsLeaf: true`)
+
+**Purpose**: Verify that the transaction initiator is in the whitelist.
+
+**How It Works**:
+
+1. **Automatic Override**: The system expects the provided leaf to be the initiator's BitBadges address ("bb1...")
+2. **Address Verification**: Checks if the initiator's address exists in the Merkle tree
+3. **No Manual Leaf**: Users don't need to provide their address as the leaf - the system handles it
+
+**Recommended Configuration**:
+
+-   Set `initiatedByList` to "All" (whitelist tree handles the restriction)
+-   Set `useCreatorAddressAsLeaf: true`
+-   Build Merkle tree from BitBadges addresses as leaves ["bb1...", "bb2...", "bb3..."]
+
+### Claim Code Trees (`useCreatorAddressAsLeaf: false`)
+
+**Purpose**: Verify that the user possesses a valid claim code.
+
+**How It Works**:
+
+1. **Manual Leaf**: User must provide the actual claim code as the leaf
+2. **Code Verification**: System verifies the provided code exists in the Merkle tree
+3. **User Responsibility**: Users must know and provide their claim code
+
+**Recommended Configuration**:
+
+-   Set `useCreatorAddressAsLeaf: false`
+-   Build Merkle tree from claim codes as leaves ["secret1", "secret2", "secret3"]
+-   Post root hash on-chain as challenge
+-   Distribute codes privately to users with leaf signatures
+
+## Security Features
+
+### Expected Proof Length
+
+**Critical Security Feature**: All proofs must have the same length to prevent preimage and second preimage attacks.
+
+```typescript
+// All proofs must match this length
+expectedProofLength: '2'; // 2-level proof required
+```
+
+**Design Requirement**: Your Merkle tree must be constructed so all leaves are at the same depth.
+
+### Max Uses Per Leaf
+
+Control how many times each leaf can be used:
+
+| Setting         | Behavior          | Use Case             |
+| --------------- | ----------------- | -------------------- |
+| `"0"` or `null` | Unlimited uses    | Public claim codes   |
+| `"1"`           | One-time use      | Single-use codes     |
+| `"5"`           | Five uses maximum | Limited distribution |
+
+**Critical Security Requirement**: For claim code challenges (`useCreatorAddressAsLeaf: false`), `maxUsesPerLeaf` must be `"1"` to prevent replay attacks.
+
+### Replay Attack Protection
+
+**⚠️ CRITICAL SECURITY RISK**: Non-address trees (claim codes) are vulnerable to front-running attacks.
+
+**The Problem**:
+
+1. User submits transaction with valid Merkle proof
+2. Proof becomes visible in mempool (public blockchain)
+3. Malicious actor sees the proof and front-runs the transaction
+4. Original user's transaction fails, attacker gets the token
+
+**Why This Happens**:
+
+-   Merkle proofs for claim codes are reusable until consumed
+-   Once in mempool, proofs are publicly visible
+-   No built-in protection against proof reuse
+
+**The Solution**: Leaf signatures provide cryptographic protection against this attack.
+
+## Challenge Tracking
+
+### Tracker System
+
+Uses increment-only, immutable trackers to prevent double-spending:
+
+```typescript
+{
+    collectionId: T;
+    approvalId: string;
+    approvalLevel: 'collection' | 'incoming' | 'outgoing';
+    approverAddress: string; // blank if collection-level
+    challengeTrackerId: string;
+    leafIndex: T; // Leftmost base layer leaf index = 0, rightmost = numLeaves - 1
+}
+```
+
+Note the fact we use leaf indices to track usage and not leaf values.
+
+### Tracker Examples
+
+```
+1-collection- -approvalId-uniqueID-0  → USED 1 TIME
+1-collection- -approvalId-uniqueID-1  → UNUSED
+1-collection- -approvalId-uniqueID-2  → USED 3 TIMES
+```
+
+**Important**: Trackers are scoped to specific approvals and cannot be shared between different approval configurations.
+
+### Tracker Management
+
+-   **Increment-Only**: Once used, the number of uses cannot be decremented
+-   **Immutable**: Tracker state cannot be modified
+-   **Best Practice**: Use unique `challengeTrackerId` for fresh tracking of new approvals
+
+## Leaf Signatures
+
+### Protection Against Front-Running
+
+Leaf signatures provide cryptographic protection against front-running attacks on claim code challenges.
+
+**How It Works**:
+
+```typescript
+// Signature scheme
+signature = ETHSign(leaf + '-' + bitbadgesAddressOfInitiator);
+```
+
+**Security Mechanism**:
+
+1. **Address Binding**: Each proof is cryptographically tied to a specific BitBadges address
+2. **Replay Prevention**: Even if proof is intercepted, it cannot be used by other addresses
+3. **Mempool Safety**: Intercepted proofs in mempool are useless to attackers
+
+### Implementation
+
+```typescript
+// Only Ethereum addresses supported currently
+leafSigner: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
+```
+
+**Critical Benefits**:
+
+-   **Front-Running Protection**: Prevents attackers from stealing tokens via mempool interception
+-   **Address-Specific**: Each proof is cryptographically bound to the intended recipient
+-   **Mempool Safety**: Makes intercepted proofs useless to malicious actors
+-   **Required for Claim Codes**: Strongly recommended for all non-address tree challenges
+
+**⚠️ IMPORTANT**: For claim code challenges, leaf signatures are not just recommended—they are essential for security against front-running attacks.
+
+## Merkle Tree Construction
+
+### Standard Configuration
+
+```typescript
+import { SHA256 } from 'crypto-js';
+import MerkleTree from 'merkletreejs';
+
+// For claim codes
+const codes = ['secret1', 'secret2', 'secret3'];
+const hashedCodes = codes.map((x) => SHA256(x).toString());
+
+// For whitelists
+const addresses = ['bb1...', 'bb1...', 'bb1...'];
+const hashedAddresses = addresses.map((x) => SHA256(x));
+
+// Tree options (tested configuration)
+const treeOptions = {
+    fillDefaultHash:
+        '0000000000000000000000000000000000000000000000000000000000000000',
+};
+
+// Build tree
+const tree = new MerkleTree(hashedCodes, SHA256, treeOptions);
+const root = tree.getRoot().toString('hex');
+const expectedProofLength = tree.getLayerCount() - 1;
+```
+
+### Critical Requirements
+
+1. **Same Layer**: All leaves must be at the same depth
+2. **Consistent Proof Length**: All proofs must have identical length
+3. **Test Thoroughly**: Verify all paths work before deployment
+4. **Use Tested Options**: Stick to the `fillDefaultHash` configuration
+
+## Transfer Integration
+
+### Providing Proofs
+
+Include Merkle proofs in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
+
+```typescript
+const txCosmosMsg: MsgTransferTokens<bigint> = {
+    creator: chain.bitbadgesAddress,
+    collectionId: collectionId,
+    transfers: [
+        {
+            // ... other fields
+            merkleProofs: [
+                {
+                    aunts: proofObj.map((proof) => ({
+                        aunt: proof.data.toString('hex'),
+                        onRight: proof.position === 'right',
+                    })),
+                    leaf: isWhitelist ? '' : passwordCodeToSubmit,
+                    leafSignature: leafSignature, // if applicable
+                },
+            ],
+        },
+    ],
+};
+```
+
+### Proof Generation
+
+```typescript
+// Generate proof for user submission
+const passwordCodeToSubmit = 'secretCode123';
+const leaf = isWhitelist
+    ? SHA256(chain.bitbadgesAddress).toString()
+    : SHA256(passwordCodeToSubmit).toString();
+
+const proofObj = tree.getProof(leaf, whitelistIndex);
+const isValidProof = proofObj && proofObj.length === tree.getLayerCount() - 1;
+
+// Create signature if needed
+const leafSignature = signLeaf(leaf + '-' + chain.bitbadgesAddress);
+```
+
+## Comparison with ETH Signature Challenges
+
+Merkle challenges and ETH signature challenges are very similar. The main difference is that Merkle challenges must also check that the signed message was pre-committed to in the tree, whereas ETH signature challenges only need to check that the signature is valid and not used before.
+
+For more information, see [ETH Signature Challenges](eth-signature-challenges.md).
+
+## Best Practices
+
+### Design Considerations
+
+1. **Tree Structure**: Ensure all leaves at same depth
+2. **Proof Length**: Test all proof lengths are identical
+3. **Tracker Management**: Use unique IDs for fresh tracking
+4. **Security**: **MANDATORY** - Enable leaf signatures for claim codes to prevent front-running
+5. **Testing**: Verify all paths work before mainnet
+
+### Performance Optimization
+
+1. **Small Lists**: For <100 users, consider regular address lists
+2. **Gas Distribution**: Merkle trees excel with large user bases
+3. **Proof Verification**: On-chain verification is gas-efficient
+4. **Storage**: No on-chain storage of large lists required
+
+
+## File: ./token-standard/learn/approval-criteria/overrides.md
+
+# Override User Level Approvals
+
+Collection-level approvals can override user-level approvals to force transfers.
+
+## Interface
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    overridesFromOutgoingApprovals?: boolean;
+    overridesToIncomingApprovals?: boolean;
+}
+```
+
+## How It Works
+
+-   **`overridesFromOutgoingApprovals: true`**: Skip sender's outgoing approvals
+-   **`overridesToIncomingApprovals: true`**: Skip recipient's incoming approvals
+
+This enables forced transfers without user consent.
+
+## Use Cases
+
+-   **Force Revoke**: Remove tokens from users
+-   **Freeze Tokens**: Prevent transfers regardless of user settings
+-   **Emergency Actions**: Administrative control over transfers
+
+## Mint Address Requirement
+
+**CRITICAL**: Mint address approvals must always override outgoing approvals:
+
+```json
+{
+    "fromListId": "Mint",
+    "approvalCriteria": {
+        "overridesFromOutgoingApprovals": true
+    }
+}
+```
+
+The Mint address has no user-level approvals, so overrides are required for functionality.
+
+## Dangerous Configuration Warning
+
+⚠️ **Dangerous Configuration Detected**
+
+When an approval enables forceful transfers without a non-Mint address sender consent (via `overridesFromOutgoingApprovals: true`), this can cause dangerous side effects if not handled properly.
+
+### Risks
+
+Forceful transfers can break protocols that rely on escrow or alternate state. Ensure you understand all side effects of every initiated transfer before proceeding.
+
+**Example**: Revoking from liquidity pools without handling pool shares can desync balances and enable exploits like infinite glitches (e.g. repeated revoke → rejoin pool → infinite liquidity).
+
+### Recommendations
+
+1. **Educate All Potential Initiators**
+
+    - Ensure all approved initiators understand the risks and will handle transfers responsibly.
+
+2. **Use Multi-Sig**
+
+    - Use multi-sig or governance addresses to prevent single points of failure and unauthorized use.
+
+3. **Consider Alternatives**
+    - Do you really need revocation capabilities? If not, consider using safer approaches like whitelists, ownership checks, or other freezing methods instead of revoking to avoid these risks entirely.
+
+## Reserved Addresses Protection
+
+BitBadges reserves certain addresses that cannot be forcefully overridden as a sanity check. This protection is **not a replacement for due diligence** but serves as an additional safety measure to prevent accidental or malicious transfers from critical protocol addresses.
+
+When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using athe approval criteria address checks for WASM contracts and / or liquidity pool addresses to prevent this.
+
+### Protected Address Types
+
+The following addresses are protected from forceful overrides:
+
+1. **Liquidity Pool Addresses**
+
+    - Every liquidity pool address is protected to prevent desyncing balances and enabling exploits
+
+2. **Cosmos Coin Wrapper Path Addresses**
+
+    - Every cosmos coin wrapper path address is protected to maintain wrapper functionality integrity
+
+3. **Governance-Configured Addresses**
+    - Any addresses explicitly set by governance as protected addresses
+
+### Important Notes
+
+-   This protection is a **sanity check**, not a comprehensive security measure
+-   You should still perform thorough due diligence when designing approvals and initializing forceful transfers
+-   The protection applies to forceful transfers (when `overridesFromOutgoingApprovals: true` is used)
+-   This does not apply to transfers to / from these addresses that actually check their user-level approvals.
+-   We bypass these protections if the initiatedBy === from address (the initiator is the protected address)
+-   Normal transfers (with user consent) are not affected by this protection
+
+
+## File: ./token-standard/learn/approval-criteria/predetermined-balances.md
+
+# Predetermined Balances
+
+## Overview
+
+Predetermined balances provide fine-grained control over the exact amounts and order of transfers in an approval. Unlike traditional tally-based systems where you approve a total amount (e.g., 100 tokens) without controlling the specific combinations, predetermined balances let you explicitly define:
+
+-   **Exact amounts** that must be transferred
+-   **Specific order** of transfers
+-   **Precise token IDs and ownership times** for each transfer
+
+**Key Principle**: The transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.
+
+## Interface Definition
+
+```typescript
+export interface PredeterminedBalances<T extends NumberType> {
+    manualBalances: ManualBalances<T>[];
+    incrementedBalances: IncrementedBalances<T>;
+    orderCalculationMethod: PredeterminedOrderCalculationMethod;
+}
+```
+
+## Balance Definition Methods
+
+There are two mutually exclusive ways to define balances:
+
+### 1. Manual Balances
+
+Define an array of specific balance sets manually. Each element corresponds to a different transfer.
+
+```json
+{
+    "manualBalances": [
+        {
+            "amount": "1",
+            "tokenIds": [
+                {
+                    "start": "1",
+                    "end": "1"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1691978400000",
+                    "end": "1723514400000"
+                }
+            ]
+        },
+        {
+            "amount": "5",
+            "tokenIds": [
+                {
+                    "start": "2",
+                    "end": "6"
+                }
+            ],
+            "ownershipTimes": [
+                {
+                    "start": "1691978400000",
+                    "end": "1723514400000"
+                }
+            ]
+        }
+    ]
+}
+```
+
+**Use Case**: When you need complete control over each specific transfer amount and timing.
+
+### 2. Incremented Balances
+
+Define starting balances and rules for subsequent transfers. Perfect for sequential minting or time-based releases or other common patterns. Note that most options are incompatible with each other.
+
+```json
+{
+    "incrementedBalances": {
+        "startBalances": [
+            {
+                "amount": "1",
+                "tokenIds": [
+                    {
+                        "start": "1",
+                        "end": "1"
+                    }
+                ],
+                "ownershipTimes": [
+                    {
+                        "start": "1691978400000",
+                        "end": "1723514400000"
+                    }
+                ]
+            }
+        ],
+        "incrementTokenIdsBy": "1",
+        "incrementOwnershipTimesBy": "0",
+        "durationFromTimestamp": "0",
+        "allowOverrideTimestamp": false,
+        "allowOverrideWithAnyValidToken": false,
+        "recurringOwnershipTimes": {
+            "startTime": "0",
+            "intervalLength": "0",
+            "chargePeriodLength": "0"
+        }
+    }
+}
+```
+
+#### Increment Options
+
+| Field                            | Description                                          | Example                                              |
+| -------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `incrementTokenIdsBy`            | Amount to increment token IDs by after each transfer | `"1"` = next transfer gets token ID 2, then 3, etc.  |
+| `incrementOwnershipTimesBy`      | Amount to increment ownership times by               | `"86400000"` = add 1 day to ownership times          |
+| `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
+| `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
+| `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
+| `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
+
+#### Duration From Timestamp
+
+Dynamically calculate ownership times from a timestamp plus a set duration. This overwrites all ownership times in the starting balances.
+
+```json
+{
+    "durationFromTimestamp": "2592000000", // 30 days in milliseconds
+    "allowOverrideTimestamp": true
+}
+```
+
+**Behavior**:
+
+-   **Default**: Uses transfer time as the base timestamp
+-   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferTokens` `precalculationOptions`
+-   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
+-   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
+
+#### Recurring Ownership Times
+
+Define repeating time intervals for subscriptions or periodic rewards:
+
+```json
+{
+    "recurringOwnershipTimes": {
+        "startTime": "1691978400000", // When intervals begin
+        "intervalLength": "2592000000", // 30 days in milliseconds
+        "chargePeriodLength": "604800000" // 7 days advance charging
+    }
+}
+```
+
+**Example**: Monthly subscription starting August 13, 2023, with 7-day advance charging period.
+
+## Precalculating Balances
+
+### The Race Condition Problem
+
+Predetermined balances can change rapidly between transaction broadcast and confirmation. For example:
+
+-   Other users' mints get processed
+-   Token IDs shift due to concurrent activity
+-   Manual balance specification becomes unreliable
+
+### The Solution: Precalculation
+
+Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
+
+```typescript
+{
+  precalculateBalancesFromApproval: {
+    approvalId: string;           // The approval to precalculate from
+    approvalLevel: string;        // "collection" | "incoming" | "outgoing"
+    approverAddress: string;      // "" if collection-level
+    version: string;              // Must specify exact version
+  },
+  precalculationOptions: {
+    // Additional override options dependent on the selections
+  }
+}
+```
+
+## Order Calculation Methods
+
+The system needs to determine which balance set to use for each transfer. This is controlled by the `orderCalculationMethod`.
+
+### How Order Numbers Work
+
+The order number determines which balances to transfer, but it works differently depending on the balance type:
+
+#### Manual Balances
+
+-   **Order number = 0**: Transfer `manualBalances[0]` (first element)
+-   **Order number = 1**: Transfer `manualBalances[1]` (second element)
+-   **Order number = 5**: Transfer `manualBalances[5]` (sixth element)
+
+**Example**: If you have 3 manual balance sets, order numbers 0, 1, and 2 will use each set once. Order number 3 would be out of bounds.
+
+#### Incremented Balances
+
+-   **Order number = 0**: Use starting balances as-is (no increments)
+-   **Order number = 1**: Apply increments once to starting balances
+-   **Order number = 5**: Apply increments five times to starting balances
+
+**Example**: Starting with token ID 1, increment by 1:
+
+-   Order 0: Token ID 1
+-   Order 1: Token ID 2
+-   Order 2: Token ID 3
+-   Order 5: Token ID 6
+
+### Transfer-Based Order Numbers
+
+Track the number of transfers to determine order:
+
+| Method                                 | Description           | Use Case                    |
+| -------------------------------------- | --------------------- | --------------------------- |
+| `useOverallNumTransfers`               | Global transfer count | Simple sequential transfers |
+| `usePerToAddressNumTransfers`          | Per-recipient count   | User-specific limits        |
+| `usePerFromAddressNumTransfers`        | Per-sender count      | Sender-specific limits      |
+| `usePerInitiatedByAddressNumTransfers` | Per-initiator count   | Initiator-specific limits   |
+
+**Important**: Uses the same tracker as [Max Number of Transfers](max-number-of-transfers.md). Trackers are:
+
+-   Increment-only and immutable
+-   Shared between predetermined balances and max transfer limits
+-   Must be carefully managed to avoid conflicts
+
+### Merkle-Based Order Numbers
+
+Use Merkle challenge leaf indices (leftmost = 0, rightmost = numLeaves - 1) for reserved transfers:
+
+```typescript
+{
+  "useMerkleChallengeLeafIndex": true,
+  "challengeTrackerId": "uniqueId"
+}
+```
+
+**Use Case**: Reserve specific token IDs for specific users or claim codes.
+
+## Order Calculation Interface
+
+```typescript
+export interface PredeterminedOrderCalculationMethod {
+    useOverallNumTransfers: boolean;
+    usePerToAddressNumTransfers: boolean;
+    usePerFromAddressNumTransfers: boolean;
+    usePerInitiatedByAddressNumTransfers: boolean;
+    useMerkleChallengeLeafIndex: boolean;
+    challengeTrackerId: string;
+}
+```
+
+## Boundary Handling
+
+### Understanding Bounds
+
+Every approval defines bounds through its core fields (tokenIds, ownershipTimes, etc.). For example:
+
+-   **Token IDs**: 1-100
+-   **Ownership Times**: Mon-Fri only
+-   **Transfer Times**: Specific date range
+
+Predetermined balances must work within these bounds, but note that order numbers can eventually exceed them.
+
+### Boundary Scenarios
+
+#### Complete Out-of-Bounds
+
+**Scenario**: Order number corresponds to balances completely outside approval bounds.
+
+**Example**:
+
+-   Approval allows token IDs 1-100
+-   Increment by 1 for each transfer
+-   Order number 101 would require token ID 101 (out of bounds)
+
+**Result**: Transfer is ignored because token ID 101 never matches the approval's token ID range.
+
+#### Partial Overlap
+
+**Scenario**: Order number corresponds to balances that partially overlap with approval bounds.
+
+**Example**:
+
+-   Approval allows token IDs 1-100
+-   Transfer requires token IDs 95-105
+-   Token IDs 95-100 are in bounds, 101-105 are out of bounds
+
+**Result**:
+
+-   Only in-bounds balances (95-100) are approved by current approval
+-   Out-of-bounds balances (101-105) must be approved by a separate approval
+-   The complete transfer (95-105) must still be exactly as defined
+
+**Important**: The transfer will fail unless all out-of-bounds balances are approved by other approvals.
+
+
+## File: ./token-standard/learn/approval-criteria/requires.md
+
+# Requires
+
+Additional address relationship restrictions for transfer approval.
+
+## Interface
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    requireToEqualsInitiatedBy?: boolean;
+    requireToDoesNotEqualInitiatedBy?: boolean;
+    requireFromEqualsInitiatedBy?: boolean;
+    requireFromDoesNotEqualInitiatedBy?: boolean;
+}
+```
+
+## How It Works
+
+Enforce additional checks on address relationships:
+
+-   **`requireToEqualsInitiatedBy`**: Recipient must equal initiator
+-   **`requireToDoesNotEqualInitiatedBy`**: Recipient must not equal initiator
+-   **`requireFromEqualsInitiatedBy`**: Sender must equal initiator
+-   **`requireFromDoesNotEqualInitiatedBy`**: Sender must not equal initiator
+
+## Constraints
+
+All checks are bounded by the respective address lists (`toList`, `fromList`, `initiatedByList`).
+
+
+## File: ./token-standard/learn/approval-criteria/tallied-approval-amounts.md
+
+# Tallied Approval Amounts
+
+Limit transfer amounts using increment-only trackers with thresholds.
+
+## Interface
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    approvalAmounts?: ApprovalAmounts<T>;
+}
+```
+
+## How It Works
+
+Specify maximum amounts that can be transferred using four tracker types:
+
+-   **Overall** (`trackerType = "overall"`): Universal limit for all transfers
+-   **Per To Address** (`trackerType = "to"`): Limit per unique recipient
+-   **Per From Address** (`trackerType = "from"`): Limit per unique sender
+-   **Per Initiated By Address** (`trackerType = "initiatedBy"`): Limit per unique initiator
+
+"0" means unlimited and not tracked. "N" means max N amount allowed.
+
+## Example
+
+```json
+{
+    "approvalAmounts": {
+        "overallApprovalAmount": "1000",
+        "perFromAddressApprovalAmount": "0",
+        "perToAddressApprovalAmount": "0",
+        "perInitiatedByAddressApprovalAmount": "10",
+        "amountTrackerId": "uniqueID"
+    }
+}
+```
+
+## Tracker Types
+
+### Overall Tracker
+
+-   **ID**: `1-collection- -approvalId-uniqueID-overall-`
+-   **Behavior**: Increments for all transfers regardless of sender/recipient/initiator
+-   **Use Case**: Global collection limits
+
+### Per-To Address Tracker
+
+-   **ID**: `1-collection- -approvalId-uniqueID-to-recipientAddress`
+-   **Behavior**: Separate tracker for each unique recipient
+-   **Use Case**: Limit how much each user can receive
+
+### Per-From Address Tracker
+
+-   **ID**: `1-collection- -approvalId-uniqueID-from-senderAddress`
+-   **Behavior**: Separate tracker for each unique sender
+-   **Use Case**: Limit how much each user can send
+
+### Per-InitiatedBy Address Tracker
+
+-   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-initiatorAddress`
+-   **Behavior**: Separate tracker for each unique initiator
+-   **Use Case**: Limit how much each user can initiate
+
+## Detailed Example
+
+Using the approval amounts defined above, when Alice initiates a transfer of x10 from Bob:
+
+### Two Trackers Get Incremented
+
+**#1) Overall Tracker**
+
+-   **ID**: `1-collection- -approvalId-uniqueID-overall-`
+-   **Before**: 0/1000
+-   **After**: 10/1000
+-   **Behavior**: Any subsequent transfers (from Charlie, etc.) will also increment this universal tracker
+
+**#2) Per-Initiator Tracker**
+
+-   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-alice`
+-   **Before**: 0/10
+-   **After**: 10/10 (fully used)
+-   **Behavior**: Only incremented when Alice initiates. Charlie's transfers use a separate tracker: `1-collection- -approvalId-uniqueID-initiatedBy-charlie`
+
+### Amount Tracking with Balance Type
+
+Trackers store amounts using the balance type structure. Above, we simplified it to just the amount.
+
+```json
+{
+    "amounts": [
+        {
+            "amount": 10n,
+            "tokenIds": [{ "start": 1n, "end": 1n }],
+            "ownershipTimes": [{ "start": 1n, "end": 100000000000n }]
+        }
+    ]
+}
+```
+
+**What Gets Incremented**:
+
+-   **Amount**: The total quantity transferred
+-   **Token IDs**: Specific token IDs that were transferred
+-   **Ownership Times**: The ownership time ranges that were transferred
+
+### Unlimited Trackers (No Increment)
+
+Since "to" and "from" trackers are set to "0" (unlimited), no tracking occurs for these types.
+
+## Tracker Behavior
+
+-   **As-Needed**: Only increment trackers when necessary (unlimited = no tracking)
+-   **Separate Counts**: Each tracker type maintains independent tallies
+-   **Address Scoped**: Per-address trackers create unique counters per address
+-   **Balance Tracking**: Increments for specific token IDs and ownership times transferred
+
+## Resets and ID Changes
+
+### Changing Tracker ID
+
+When you update `amountTrackerId` from "uniqueID" to "uniqueID2":
+
+```
+1-collection- -approvalId-uniqueID-initiatedBy-alice
+↓
+1-collection- -approvalId-uniqueID2-initiatedBy-alice
+```
+
+**Result**: All tracker IDs change, so all tallies start from scratch.
+
+### Reusing Old IDs
+
+If you later change back to "uniqueID", the starting point will be the previous tally:
+
+-   Alice's initiatedBy tracker: 10/10 used (not 0/10)
+
+**Important**: Never reuse tracker IDs unless you want to continue from the previous state. They are increment-only.
+
+
+## File: ./token-standard/learn/approval-criteria/usdbadge-transfers.md
+
+# Coin Transfers
+
+Automatic token transfers executed on every approval use. Supports any Cosmos SDK denomination. These are triggered every time an approval is used.
+
+To get all supported denominations, use the query parameters for the tokens module.
+
+## Interface
+
+```typescript
+interface iCoinTransfer<T extends NumberType> {
+    to: string; // Recipient BitBadges address
+    coins: iCosmosCoin<T>[];
+
+    overrideFromWithApproverAddress: boolean; // By default, this is the initiator address
+    overrideToWithInitiator: boolean; // By default, this is the to address specified
+}
+
+interface iCosmosCoin<T extends NumberType> {
+    amount: T;
+    denom: string; // Any Cosmos SDK denomination (e.g., "ubadge", "uatom", "uosmo")
+}
+```
+
+## Mint Escrow Address
+
+For collection approvals with `overrideFromWithApproverAddress: true`, the approver address is a special mint escrow address.
+
+### Generation
+
+```typescript
+const mintEscrowAddress = generateAlias(
+    'badges',
+    getAliasDerivationKeysForCollection(collectionId)
+);
+```
+
+### Properties
+
+-   Longer than normal addresses
+-   No private key (cannot be controlled by users)
+-   Can receive Cosmos-native tokens
+-   Only collection approvals can trigger transfers from it
+
+## Example
+
+```json
+[
+    {
+        "to": "bb1...",
+        "coins": [{ "amount": "1000000000", "denom": "ubadge" }],
+        "overrideFromWithApproverAddress": false,
+        "overrideToWithInitiator": false
+    }
+]
+```
+
+
+## File: ./token-standard/learn/approval-criteria/user-royalties.md
+
+# User Royalties
+
+Apply percentage-based royalties to transfers.
+
+## Interface
+
+```typescript
+interface UserRoyalties {
+    percentage: string; // 1 to 10000 represents basis points (0.01% to 100%)
+    payoutAddress: string; // Address to receive the royalties
+}
+```
+
+## How It Works
+
+User royalties automatically deduct a percentage from transfers and send it to a specified payout address:
+
+-   **Percentage**: Expressed in basis points (1 = 0.01%, 100 = 1%, 10000 = 100%)
+-   **Payout**: Automatically sent to the specified address on each transfer
+-   **Deduction**: Applied to the transfer amount before the transfer is processed
+
+## Usage Examples
+
+### 5% Royalty
+
+```json
+{
+    "userRoyalties": {
+        "percentage": "500", // 500 basis points = 5%
+        "payoutAddress": "bb1creator..."
+    }
+}
+```
+
+**Result**: 5% of each transfer amount is sent to the creator's address.
+
+### 2.5% Royalty
+
+```json
+{
+    "userRoyalties": {
+        "percentage": "250", // 250 basis points = 2.5%
+        "payoutAddress": "bb1artist..."
+    }
+}
+```
+
+**Result**: 2.5% of each transfer amount is sent to the artist's address.
+
+## Edge Case: One per Transfer
+
+Currently, we only support one specific royalty percentage applied per transfer. If a transfer matches to different approvals with multiple royalties, the transfer may fail.
+
+
 ## File: ./token-standard/learn/collection-setup-fields.md
 
 # Collection Configuration
@@ -12964,255 +14876,6 @@ Created via `MsgCreateAddressLists`. **Immutable** once created. Referenced by t
 * **User-created**: On-chain storage, reusable short ID, efficient lookups, best for large/repeated lists
 
 
-## File: ./x-badges/concepts/approval-criteria/README.md
-
-# Approval Criteria
-
-Additional restrictions and conditions that determine whether a transfer is approved beyond the basic approval matching.
-
-## Interface
-
-```typescript
-export interface iApprovalCriteria<T extends NumberType> {
-    /** The BADGE or other sdk.Coin transfers to be executed upon every approval. */
-    coinTransfers?: iCoinTransfer<T>[];
-    /** The list of merkle challenges that need valid proofs to be approved. */
-    merkleChallenges?: iMerkleChallenge<T>[];
-    /** The list of must own tokens that need valid proofs to be approved. */
-    mustOwnTokens?: iMustOwnToken<T>[];
-    /** The predetermined balances for each transfer. These allow approvals to use predetermined balance amounts rather than an incrementing tally system. */
-    predeterminedBalances?: iPredeterminedBalances<T>;
-    /** The maximum approved amounts for this approval. */
-    approvalAmounts?: iApprovalAmounts<T>;
-    /** The max num transfers for this approval. */
-    maxNumTransfers?: iMaxNumTransfers<T>;
-    /** Whether the approval should be deleted after one use. */
-    autoDeletionOptions?: iAutoDeletionOptions;
-    /** Whether the to address must equal the initiatedBy address. */
-    requireToEqualsInitiatedBy?: boolean;
-    /** Whether the from address must equal the initiatedBy address. */
-    requireFromEqualsInitiatedBy?: boolean;
-    /** Whether the to address must not equal the initiatedBy address. */
-    requireToDoesNotEqualInitiatedBy?: boolean;
-    /** Whether the from address must not equal the initiatedBy address. */
-    requireFromDoesNotEqualInitiatedBy?: boolean;
-    /** Whether this approval overrides the from address's approved outgoing transfers. */
-    overridesFromOutgoingApprovals?: boolean;
-    /** Whether this approval overrides the to address's approved incoming transfers. */
-    overridesToIncomingApprovals?: boolean;
-    /** The royalties to apply to the transfer. */
-    userRoyalties?: iUserRoyalties<T>;
-    /** The list of dynamic store challenges that the initiator must pass for approval. */
-    dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
-    /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
-    ethSignatureChallenges?: iETHSignatureChallenge<T>[];
-    /** Address checks for sender */
-    senderChecks?: iAddressChecks;
-    /** Address checks for recipient */
-    recipientChecks?: iAddressChecks;
-    /** Address checks for initiator */
-    initiatorChecks?: iAddressChecks;
-    /** Alternative time-based checks for approval denial (offline hours/days). */
-    altTimeChecks?: iAltTimeChecks;
-    /** Whether this approval must be prioritized during evaluation. */
-    mustPrioritize?: boolean;
-}
-```
-
-## Core Components
-
--   **[Approval Trackers](approval-trackers.md)** - Tracking transfer amounts and counts
--   **[Tallied Approval Amounts](tallied-approval-amounts.md)** - Amount limits and thresholds
--   **[Max Number of Transfers](max-number-of-transfers.md)** - Transfer count limits
--   **[Predetermined Balances](predetermined-balances.md)** - Exact balance requirements
--   **[Merkle Challenges](merkle-challenges.md)** - Cryptographic proof requirements
--   **[Dynamic Store Challenges](dynamic-store-challenges.md)** - On-chain numeric checks
--   **[ETH Signature Challenges](eth-signature-challenges.md)** - Ethereum signature requirements
--   **[Token Ownership](badge-ownership.md)** - Required token holdings
--   **[Cosmos Coin Transfers](usdbadge-transfers.md)** - Payments per approval (BADGE or other sdk.Coin)
--   **[Overrides](overrides.md)** - Bypassing user-level approvals
--   **[Requires](requires.md)** - Address relationship restrictions
--   **[Address Checks](address-checks.md)** - Address type restrictions (WASM contracts, liquidity pools)
--   **[Auto-Deletion Options](auto-deletion-options.md)** - Automatic approval cleanup
--   **[User Royalties](user-royalties.md)** - Percentage-based transfer fees
--   **[Alt Time Checks](alt-time-checks.md)** - Time-based restrictions (offline hours/days)
--   **[Must Prioritize](must-prioritize.md)** - Requiring explicit approval prioritization
-
-## Key Concepts
-
-### Tracker IDs
-
-Trackers use IDs with format: `approvalId-trackerId` plus identifying details. All trackers are scoped to a specific `approvalId`.
-
-**Important**: Trackers are increment-only and immutable. Never reuse tracker IDs with prior history.
-
-### Best Practices - Creating / Updating / Deleting
-
-Trackers are increment-only and immutable. Never reuse tracker IDs with prior history when creating approvals that should start from scratch.
-
-### Extending Functionality
-
-For custom logic beyond native options:
-
--   Use CosmWASM smart contracts
--   Leverage Merkle challenges for commit-reveal mechanisms
-
-### Cross-Approval Logic
-
-Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
-
--   Workarounds and careful design
--   CosmWASM for advanced functionality
--   Contact us for recommendations
-
-
-## File: ./x-badges/concepts/approval-criteria/address-checks.md
-
-# Address Checks
-
-Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be a WASM contract, must not be a liquidity pool).
-
-## Interface
-
-```typescript
-interface AddressChecks {
-    /** Require the address to be a WASM contract. */
-    mustBeWasmContract?: boolean;
-    /** Require the address to not be a WASM contract. */
-    mustNotBeWasmContract?: boolean;
-    /** Require the address to be a liquidity pool. */
-    mustBeLiquidityPool?: boolean;
-    /** Require the address to not be a liquidity pool. */
-    mustNotBeLiquidityPool?: boolean;
-}
-```
-
-## How It Works
-
-Address checks validate the type of addresses involved in a transfer. The checks are applied to different parties depending on the approval type:
-
-### Collection Approvals
-
-Collection approvals can check all three parties:
-
--   **`senderChecks`**: Validates the sender address (`from`)
--   **`recipientChecks`**: Validates the recipient address (`to`)
--   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
-
-### Incoming Approvals
-
-Incoming approvals can check the sender and initiator (but not the recipient, since the recipient is always the approval owner):
-
--   **`senderChecks`**: Validates the sender address (`from`)
--   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
-
-### Outgoing Approvals
-
-Outgoing approvals can check the recipient and initiator (but not the sender, since the sender is always the approval owner):
-
--   **`recipientChecks`**: Validates the recipient address (`to`)
--   **`initiatorChecks`**: Validates the initiator address (`initiatedBy`)
-
-## Available Checks
-
-### WASM Contract Checks
-
--   **`mustBeWasmContract`**: Requires the address to be a CosmWASM smart contract
--   **`mustNotBeWasmContract`**: Requires the address to NOT be a CosmWASM smart contract
-
-### Liquidity Pool Checks
-
--   **`mustBeLiquidityPool`**: Requires the address to be a liquidity pool
--   **`mustNotBeLiquidityPool`**: Requires the address to NOT be a liquidity pool
-
-## Examples
-
-### Collection Approval: Require Contract Recipients
-
-Only allow transfers to WASM contracts:
-
-```json
-{
-    "approvalCriteria": {
-        "recipientChecks": {
-            "mustBeWasmContract": true
-        }
-    }
-}
-```
-
-### Collection Approval: Block Liquidity Pool Senders
-
-Prevent transfers from liquidity pools:
-
-```json
-{
-    "approvalCriteria": {
-        "senderChecks": {
-            "mustNotBeLiquidityPool": true
-        }
-    }
-}
-```
-
-### Incoming Approval: Require Contract Initiators
-
-Only allow transfers initiated by WASM contracts:
-
-```json
-{
-    "approvalCriteria": {
-        "initiatorChecks": {
-            "mustBeWasmContract": true
-        }
-    }
-}
-```
-
-### Outgoing Approval: Block Liquidity Pool Recipients
-
-Prevent sending tokens to liquidity pools:
-
-```json
-{
-    "approvalCriteria": {
-        "recipientChecks": {
-            "mustNotBeLiquidityPool": true
-        }
-    }
-}
-```
-
-### Combined Checks
-
-You can combine multiple checks for a single party:
-
-```json
-{
-    "approvalCriteria": {
-        "recipientChecks": {
-            "mustBeWasmContract": true,
-            "mustNotBeLiquidityPool": true
-        },
-        "initiatorChecks": {
-            "mustNotBeWasmContract": true
-        }
-    }
-}
-```
-
-## Use Cases
-
--   **Smart Contract Integration**: Require transfers to/from specific contract types
--   **Liquidity Protection**: Prevent transfers to/from liquidity pools to maintain token economics
--   **Security**: Enforce that certain operations can only be initiated by contracts or regular addresses
--   **Protocol Compliance**: Ensure transfers comply with protocol-specific address requirements
-
-## Constraints
-
-All checks are evaluated after the address lists (`toList`, `fromList`, `initiatedByList`) are matched. An address must first be in the appropriate list, then pass the address checks.
-
-
 ## File: ./x-badges/concepts/approval-criteria/alt-time-checks.md
 
 # Alt Time Checks
@@ -13304,985 +14967,6 @@ If either condition fails, the approval is denied.
 -   All time checks use **UTC timezone**
 -   Ranges within the same array should not overlap (though overlapping ranges will still work, they may be redundant)
 -   If both `offlineHours` and `offlineDays` are specified, the approval is denied if **either** condition matches
-
-
-## File: ./x-badges/concepts/approval-criteria/approval-trackers.md
-
-# Approval Trackers
-
-Track transfer amounts and counts using increment-only tallies with thresholds.
-
-## How It Works
-
-Trackers use an incrementing tally system with thresholds:
-
-1. **Setup**: Approved for x10 of token IDs 1-10 with tracker ID "xyz"
-2. **Transfer x5**: Tracker "xyz" goes from 0/10 → 5/10
-3. **Transfer x5**: Tracker "xyz" goes to 10/10
-4. **Transfer x1**: Exceeds threshold, transfer fails
-
-## Tracker Identification
-
-Tracker IDs include multiple components:
-
-```
-ID: collectionId-approvalLevel-approverAddress-approvalId-amountTrackerId-trackerType-approvedAddress
-```
-
-### Tracker ID Details Interface
-
-```typescript
-interface ApprovalTrackerIdDetails<T extends NumberType> {
-    collectionId: T;
-    approvalLevel: 'collection' | 'incoming' | 'outgoing' | '';
-    approvalId: string;
-    approverAddress: string;
-    amountTrackerId: string;
-    trackerType: 'overall' | 'to' | 'from' | 'initiatedBy' | '';
-    approvedAddress: string;
-}
-```
-
-### Component Breakdown
-
--   **collectionId**: The collection this tracker belongs to
--   **approvalLevel**: Level of approval ("collection", "incoming", "outgoing", or empty)
--   **approvalId**: Unique identifier for the specific approval
--   **approverAddress**: Address of the approver (empty for collection-level)
--   **amountTrackerId**: User-defined tracker identifier specified in approvalAmounts or maxNumTransfers (see below)
--   **trackerType**: Type of tracking ("overall", "to", "from", "initiatedBy", or empty)
--   **approvedAddress**: Specific address being tracked (empty for "overall")
-
-```typescript
-interface iApprovalAmounts<T extends NumberType> {
-    amountTrackerId: string; // Key for tracking tallies
-}
-
-interface iMaxNumTransfers<T extends NumberType> {
-    amountTrackerId: string; // Key for tracking tallies
-}
-```
-
-### Tracker Types
-
--   **"overall"**: Universal tally for any transfer (approvedAddress empty)
--   **"to"**: Per-recipient tally (approvedAddress = recipient)
--   **"from"**: Per-sender tally (approvedAddress = sender)
--   **"initiatedBy"**: Per-initiator tally (approvedAddress = initiator)
-
-## Increment Only and Immutable
-
-Trackers are increment only and immutable in storage. To start an approval tally from scratch, you will need to map the approval to a new unused tracker ID. This can be done simply by editing `amountTrackerId` (because this changes the whole ID) or restructuring to change one of the other fields that make up the overall ID.
-
-**IMPORTANT**: Because of the immutable nature, be careful to not revert to a previously used ID unintentionally because the starting point will be the previous tally (not starting from scratch).
-
-## As-Needed Basis
-
-Only increment when necessary (e.g., if no amount restrictions, don't track amounts). Meaning, if there is no need to increment the tally (unlimited limit and/or not restrictions), we do not increment for efficiency purposes. For example, if we only have requirements for numTransfers but do not need the amounts, we do not increment the amounts.
-
-### Example Tracker States
-
-```json
-{
-    "fullTrackerId1": {
-        "numTransfers": 5,
-        "amounts": [
-            {
-                "amount": 50,
-                "tokenIds": [{ "start": 1, "end": 10 }],
-                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
-            }
-        ],
-        "lastUpdatedAt": 1691978400000
-    },
-    "fullTrackerId2": {
-        "numTransfers": 3,
-        "amounts": [
-            {
-                "amount": 15,
-                "tokenIds": [{ "start": 1, "end": 5 }],
-                "ownershipTimes": [{ "start": 1, "end": 100000000000 }]
-            }
-        ],
-        "lastUpdatedAt": 1691978400000
-    }
-}
-```
-
-## Periodic Resets
-
-Trackers support periodic resets to zero using time intervals.
-
-Leave the values at 0 to disable periodic resets.
-
-```typescript
-interface ResetTimeIntervals<T extends NumberType> {
-    startTime: T; // Original start time of the first interval
-    intervalLength: T; // Interval length in unix milliseconds
-}
-```
-
-### How It Works
-
--   **First Update**: If it's the first update of the interval, all tracker progress is reset to zero
--   **Recurring**: Useful for recurring subscriptions (e.g., one transfer per month)
--   **No Reset**: Set both values to 0 for no periodic resets
-
-### Example
-
-```json
-{
-    "approvalAmounts": {
-        "overallApprovalAmount": "100",
-        "amountTrackerId": "monthly-tracker",
-        "resetTimeIntervals": {
-            "startTime": "1691978400000", // Aug 13, 2023
-            "intervalLength": "2592000000" // 30 days in milliseconds
-        }
-    }
-}
-```
-
-This creates a monthly reset cycle starting from August 13, 2023.
-
-
-## File: ./x-badges/concepts/approval-criteria/auto-deletion-options.md
-
-# Auto-Deletion Options
-
-Automatically delete approvals after specific conditions are met.
-
-## Interface
-
-```typescript
-interface AutoDeletionOptions {
-    afterOneUse: boolean;
-    afterOverallMaxNumTransfers: boolean;
-    allowCounterpartyPurge?: boolean;
-    allowPurgeIfExpired?: boolean;
-}
-```
-
-## How It Works
-
-Auto-deletion options allow approvals to be automatically removed when certain conditions are met:
-
--   **`afterOneUse`**: Delete the approval after it's used once
--   **`afterOverallMaxNumTransfers`**: Delete the approval after the overall max number of transfers threshold is met
--   **`allowCounterpartyPurge`**: If true, allows the counterparty (the only initiator in `initiatedByList`, must be a whitelist with exactly one address) to purge the approval, even if they are not the owner. This may be used for like a rejection of the approval.
--   **`allowPurgeIfExpired`**: If true, allows others (in addition to the approval owner) to purge expired approvals on the owner's behalf. This may be used for a cleanup-like system.
-
-## Usage Examples
-
-### Single-Use Approval
-
-```json
-{
-    "autoDeletionOptions": {
-        "afterOneUse": true,
-        "afterOverallMaxNumTransfers": false
-    }
-}
-```
-
-**Result**: Approval is deleted immediately after the first transfer.
-
-### Limited-Use Approval
-
-```json
-{
-    "maxNumTransfers": {
-        "overallMaxNumTransfers": "10"
-    },
-    "autoDeletionOptions": {
-        "afterOneUse": false,
-        "afterOverallMaxNumTransfers": true
-    }
-}
-```
-
-**Result**: Approval is deleted after 10 transfers are completed.
-
-### Allow Counterparty Purge
-
-```json
-{
-    "autoDeletionOptions": {
-        "afterOneUse": false,
-        "afterOverallMaxNumTransfers": false,
-        "allowCounterpartyPurge": true
-    }
-}
-```
-
-**Result**: The counterparty (if they are the only initiator in a whitelist) can purge this approval, even if not the owner.
-
-### Allow Others to Purge Expired Approvals
-
-```json
-{
-    "autoDeletionOptions": {
-        "afterOneUse": false,
-        "afterOverallMaxNumTransfers": false,
-        "allowPurgeIfExpired": true
-    }
-}
-```
-
-**Result**: Any user can purge this approval if it is expired (no future valid transfer times), not just the owner.
-
-
-## File: ./x-badges/concepts/approval-criteria/badge-ownership.md
-
-# Token Ownership
-
-Require specific token holdings from the initiator as a prerequisite for transfer approval. This approval criteria checks on-chain balances to ensure users own required tokens before allowing transfers.
-
-## Overview
-
-Token ownership requirements enable gating mechanisms where users must possess specific tokens to access certain transfers. This creates dependency relationships between collections and enables sophisticated access control systems.
-
-**Key Benefits**:
-
--   **Access Control**: Gate transfers based on token ownership
--   **Collection Dependencies**: Create relationships between different collections
--   **On-Chain Verification**: Automatic balance checking without external data
--   **Flexible Requirements**: Support for amount ranges, time-based ownership, and multiple token types
-
-## Interface
-
-```typescript
-interface MustOwnTokens<T extends NumberType> {
-    collectionId: T;
-    amountRange: UintRange<T>; // Min/max amount expected
-    ownershipTimes: UintRange<T>[];
-    tokenIds: UintRange<T>[];
-
-    overrideWithCurrentTime: boolean; // Use current block time. Overrides ownershipTimes with [{ start: currentTime, end: currentTime }]
-    mustSatisfyForAllAssets: boolean; // All vs one requirement
-    ownershipCheckParty: string; // Which party to check ownership for: "initiator", "sender", "recipient" (default: "initiator" if empty)
-}
-```
-
-## Field Descriptions
-
-### collectionId
-
--   **Type**: `T` (NumberType)
--   **Description**: The ID of the collection containing the required tokens
--   **Example**: `"1"` for collection ID 1
-
-### amountRange
-
--   **Type**: `UintRange<T>`
--   **Description**: Minimum and maximum amount of tokens the user must own
--   **Format**: `{ start: "minAmount", end: "maxAmount" }`
--   **Example**: `{ start: "1", end: "10" }` requires 1-10 tokens (amounts)
-
-### ownershipTimes
-
--   **Type**: `UintRange<T>[]`
--   **Description**: Time ranges when the user must have owned the tokens (UNIX milliseconds)
--   **Example**: `[{ start: "1691931600000", end: "1723554000000" }]` for Aug 13, 2023 - Aug 13, 2024
-
-### tokenIds
-
--   **Type**: `UintRange<T>[]`
--   **Description**: Specific token IDs that must be owned
--   **Example**: `[{ start: "1", end: "100" }]` for token IDs 1-100
-
-### overrideWithCurrentTime
-
--   **Type**: `boolean`
--   **Description**: When true, ignores `ownershipTimes` and uses current block time
--   **Behavior**: Sets ownership time to `[{ start: currentTime, end: currentTime }]`
--   **Use Case**: Require current ownership only, not historical ownership
-
-### mustSatisfyForAllAssets
-
--   **Type**: `boolean`
--   **Description**: Controls whether all specified token requirements must be met or just one
--   **True**: User must own ALL specified token combinations
--   **False**: User must own AT LEAST ONE of the specified token combinations
-
-### ownershipCheckParty
-
--   **Type**: `string`
--   **Description**: Specifies which party of the transfer to check ownership for
--   **Options**:
-    -   `"initiator"` (default): Check ownership for the address that initiated the transfer
-    -   `"sender"`: Check ownership for the address sending the tokens
-    -   `"recipient"`: Check ownership for the address receiving the tokens
--   **Default**: `"initiator"` (if empty or not specified)
--   **Example**: `"sender"` to require the sender to own specific tokens before allowing the transfer
-
-## Example
-
-Require users to own specific tokens to access premium features or exclusive transfers.
-
-```json
-{
-    "mustOwnTokens": [
-        {
-            "collectionId": "1",
-            "amountRange": { "start": "1", "end": "1" },
-            "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "tokenIds": [{ "start": "1", "end": "1" }],
-            "overrideWithCurrentTime": false,
-            "mustSatisfyForAllAssets": true,
-            "ownershipCheckParty": "initiator"
-        }
-    ]
-}
-```
-
-### Party-Specific Examples
-
-#### Check Initiator Ownership (Default)
-
-```json
-{
-    "mustOwnTokens": [
-        {
-            "collectionId": "1",
-            "amountRange": { "start": "1", "end": "1" },
-            "tokenIds": [{ "start": "1", "end": "1" }],
-            "ownershipCheckParty": "initiator"
-        }
-    ]
-}
-```
-
-#### Check Sender Ownership
-
-```json
-{
-    "mustOwnTokens": [
-        {
-            "collectionId": "1",
-            "amountRange": { "start": "1", "end": "1" },
-            "tokenIds": [{ "start": "1", "end": "1" }],
-            "ownershipCheckParty": "sender"
-        }
-    ]
-}
-```
-
-#### Check Recipient Ownership
-
-```json
-{
-    "mustOwnTokens": [
-        {
-            "collectionId": "1",
-            "amountRange": { "start": "1", "end": "1" },
-            "tokenIds": [{ "start": "1", "end": "1" }],
-            "ownershipCheckParty": "recipient"
-        }
-    ]
-}
-```
-
-
-## File: ./x-badges/concepts/approval-criteria/dynamic-store-challenges.md
-
-# Dynamic Store Challenges
-
-Require transfer initiators to pass checks against dynamic stores. Typically, these are used in combination with smart contracts or other custom extensions.
-
-Dynamic stores are standalone (address -> boolean) stores controlled by whoever creates them. They are stored and maintained by the creator. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
-
-## How It Works
-
-Dynamic store challenges check if the transfer initiator has a value of `true` in specified dynamic stores. The system:
-
-1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
-2. **Evaluates Boolean**: Returns the boolean value for the initiator
-3. **Requires All True**: All challenges must return `true` for approval
-4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
-
-## Interface
-
-```typescript
-interface DynamicStoreChallenge {
-    storeId: string; // Dynamic store ID to check
-}
-```
-
-## Usage in Approval Criteria
-
-```json
-{
-    "dynamicStoreChallenges": [
-        { "storeId": "1" }, // Member store (must be true)
-        { "storeId": "2" } // Subscription store (must be true)
-    ]
-}
-```
-
-## Managing Dynamic Stores
-
-### Creating Stores
-
-Use [MsgCreateDynamicStore](../../messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
-
-### Setting Values
-
-Use [MsgSetDynamicStoreValue](../../messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
-
-### Querying Values
-
-Use [GetDynamicStoreValue](../../queries/get-dynamic-store-value.md) to check current values for addresses.
-
-## Alternatives
-
-For fully off-chain solutions, consider:
-
--   [Merkle Challenges](merkle-challenges.md) to save gas costs
--   [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization
-
-
-## File: ./x-badges/concepts/approval-criteria/eth-signature-challenges.md
-
-# ETH Signature Challenges
-
-ETH Signature Challenges are a type of approval criteria that require users to provide valid Ethereum signatures from a predetermined signer to complete transfers. The signer approves the address by signing a message that contains the address and a nonce. This feature allows for secure, on-chain verification of off-chain authorization without the complexity of Merkle trees.
-
-## Overview
-
-ETH Signature Challenges work by requiring users to provide Ethereum signatures that prove they have authorization from specific Ethereum addresses. Each signature can only be used once, preventing replay attacks and ensuring the security of the approval system.
-
-## How It Works
-
-### Signature Scheme
-
-The signature scheme follows the pattern:
-
-```
-ETHSign(nonce + "-" + creatorAddress)
-```
-
-Where:
-
--   `nonce`: A unique identifier provided by the user
--   `creatorAddress`: The address of the collection creator
--   `-`: A literal dash character separating the two values
-
-### Challenge Structure
-
-Each ETH Signature Challenge contains:
-
--   `signer`: The Ethereum address that must sign the challenge
--   `challengeTrackerId`: Unique identifier for tracking used signatures
--   `uri`: Optional metadata URI
--   `customData`: Optional custom data
-
-### Proof Structure
-
-Users provide ETH Signature Proofs containing:
-
--   `nonce`: The nonce that was signed
--   `signature`: The Ethereum signature of the nonce
-
-## Key Features
-
-### One-Time Use Signatures
-
-Each signature can only be used once per challenge tracker. This prevents:
-
--   Replay attacks
--   Double-spending of approvals
--   Unauthorized reuse of signatures
-
-### Multiple Signers
-
-You can require signatures from multiple Ethereum addresses in a single approval:
-
-```json
-{
-    "ethSignatureChallenges": [
-        {
-            "signer": "0x1234567890123456789012345678901234567890",
-            "challengeTrackerId": "challenge1"
-        },
-        {
-            "signer": "0x0987654321098765432109876543210987654321",
-            "challengeTrackerId": "challenge2"
-        }
-    ]
-}
-```
-
-## Implementation Details
-
-### Signature Verification
-
-The system verifies signatures by:
-
-1. Reconstructing the signed message: `nonce + "-" + creatorAddress`
-2. Recovering the signer address from the signature
-3. Comparing the recovered address with the expected `signer` address
-4. Checking that the signature hasn't been used before
-
-### Storage
-
-Used signatures are tracked in the blockchain state using:
-
--   **Key**: `ETHSignatureTrackerKey` with challenge tracker ID
--   **Value**: Number of times the signature has been used (increment-only per tracker ID)
-
-## Quick Reference
-
-### Interface Definitions
-
-```typescript
-interface ETHSignatureChallenge {
-    signer: string; // Ethereum address that must sign
-    challengeTrackerId: string; // Unique ID for tracking used signatures
-    uri?: string; // Optional metadata URI
-    customData?: string; // Optional custom data
-}
-
-interface ETHSignatureProof {
-    nonce: string; // The nonce that was signed
-    signature: string; // Ethereum signature
-}
-```
-
-## Error Handling
-
-Common error scenarios:
-
--   **Invalid Signature**: Signature doesn't match the expected signer
--   **Already Used**: Signature has been used before
--   **Missing Proof**: Required ETH signature proof not provided
--   **Invalid Nonce**: Nonce format or content is invalid
-
-The system provides clear error messages to help users understand and resolve issues.
-
-
-## File: ./x-badges/concepts/approval-criteria/linking-trackers-advanced.md
-
-# Extending Approvals (Advanced)
-
-For edge cases requiring advanced functionality beyond native interfaces.
-
-## When to Extend
-
-Consider extending when you need:
-
--   Cross-approval functionality
--   Access to other blockchain data/modules
--   Custom logic not covered by native options
-
-## Before Extending
-
-1. **Consider Workarounds**: Many approvals can be adapted to fit native interfaces
-2. **Design Alternatives**: Think creatively about using existing features
-3. **Evaluate Necessity**: Ensure extension is truly required
-
-## Implementation Options
-
-### CosmWASM Smart Contracts
-
-Build custom smart contracts that call into the x/badges module.
-
-### EVM Smart Contracts (Coming Soon)
-
-Build custom EVM contracts that call into the x/badges module.
-
-
-## File: ./x-badges/concepts/approval-criteria/max-number-of-transfers.md
-
-# Max Number of Transfers
-
-Limit the number of transfers that can occur using approval trackers.
-
-See [Approval Trackers](./approval-trackers.md) for more information on how trackers work.
-
-## Interface
-
-```typescript
-interface ApprovalCriteria<T extends NumberType> {
-    maxNumTransfers?: MaxNumTransfers<T>;
-}
-```
-
-## How It Works
-
-Similar to approval amounts, specify maximum transfers on:
-
--   **Overall**: Universal limit for all transfers
--   **Per Sender**: Limit per unique sender address
--   **Per Recipient**: Limit per unique recipient address
--   **Per Initiator**: Limit per unique initiator address
-
-"0" means unlimited and not tracked. "N" means max N transfers allowed.
-
-## Example
-
-```json
-{
-    "maxNumTransfers": {
-        "overallMaxNumTransfers": "0",
-        "perFromAddressMaxNumTransfers": "0",
-        "perToAddressMaxNumTransfers": "0",
-        "perInitiatedByAddressMaxNumTransfers": "1",
-        "amountTrackerId": "uniqueID"
-    }
-}
-```
-
-Alice can initiate 1 transfer, then no more. Bob can still transfer (different tracker).
-
-```typescript
-{
-    "fullTrackerId": {
-        "numTransfers": 1,
-        "amounts": [],
-        "lastUpdatedAt": 1691978400000
-    }
-}
-```
-
-## As-Needed Basis
-
-We track on an as-needed basis, meaning if we do not have requirements that use the number of transfers, we will not increment the tracker.
-
-Edge Case: In Predetermined Balances, you may need the number of transfers for determining the balances to assign to each transfer (e.g. transfer #10 -> token ID 10). In this case, we do need to track the number of transfers. This is all facilitated via the same tracker, so even if you have "0" or unlimited set for the corresponding value in maxNumTransfers, the tracker may be incremented behind the scenes. Consider this when editing / creating approvals. You do not want to use a tracker that has prior history when you expect it to start from scratch.
-
-
-## File: ./x-badges/concepts/approval-criteria/merkle-challenges.md
-
-# Merkle Challenges
-
-## Overview
-
-Merkle challenges provide cryptographic proof-based approval mechanisms using SHA256 Merkle trees. They enable secure, gas-efficient whitelisting and claim code systems without storing large address lists on-chain.
-
-**Key Benefits**:
-
--   **Gas Efficiency**: Distribute gas costs among users instead of collection creators
--   **Security**: Cryptographic proof verification prevents unauthorized access
--   **Flexibility**: Support both whitelist trees and claim code systems
--   **Scalability**: Handle large user bases without on-chain storage
-
-## Interface Definition
-
-```typescript
-export interface MerkleChallenge<T extends NumberType> {
-    root: string; // SHA256 Merkle tree root hash
-    expectedProofLength: T; // Required proof length (security)
-    useCreatorAddressAsLeaf: boolean; // Use initiator address as leaf?
-    maxUsesPerLeaf: T; // Maximum uses per leaf
-    uri: string; // Metadata URI
-    customData: string; // Custom data field
-    challengeTrackerId: string; // Unique tracker identifier
-    leafSigner: string; // Optional leaf signature authority
-}
-```
-
-## Basic Example
-
-```json
-{
-    "merkleChallenges": [
-        {
-            "root": "758691e922381c4327646a86e44dddf8a2e060f9f5559022638cc7fa94c55b77",
-            "expectedProofLength": "1",
-            "useCreatorAddressAsLeaf": false,
-            "maxUsesPerLeaf": "1",
-            "uri": "ipfs://Qmbbe75FaJyTHn7W5q8EaePEZ9M3J5Rj3KGNfApSfJtYyD",
-            "customData": "",
-            "challengeTrackerId": "uniqueId",
-            "leafSigner": "0x"
-        }
-    ]
-}
-```
-
-## Challenge Types
-
-### 1. Claim Code Challenges
-
-Create a Merkle tree of secret claim codes that users must provide to claim tokens.
-
-**Use Case**: Private claim codes, invitation systems, promotional campaigns
-
-**Process**:
-
-1. Generate secret claim codes
-2. Build Merkle tree from hashed codes
-3. Distribute codes privately to users with leaf signatures
-4. Users provide code + Merkle proof in transfer
-
-### 2. Whitelist Challenges
-
-Create a Merkle tree of user addresses for gas-efficient whitelisting.
-
-**Use Case**: Large whitelists, community access, gas cost distribution
-
-**Process**:
-
-1. Collect user addresses
-2. Build Merkle tree from hashed addresses
-3. Users provide their address + Merkle proof
-4. System verifies address is in whitelist / valid proof
-
-**Gas Cost Distribution**: Instead of the collection creator paying gas to store N addresses on-chain, each user pays their own gas for proof verification.
-
-## Understanding useCreatorAddressAsLeaf
-
-The `useCreatorAddressAsLeaf` field determines how the system handles the leaf value in Merkle proofs:
-
-### Whitelist Trees (`useCreatorAddressAsLeaf: true`)
-
-**Purpose**: Verify that the transaction initiator is in the whitelist.
-
-**How It Works**:
-
-1. **Automatic Override**: The system expects the provided leaf to be the initiator's BitBadges address ("bb1...")
-2. **Address Verification**: Checks if the initiator's address exists in the Merkle tree
-3. **No Manual Leaf**: Users don't need to provide their address as the leaf - the system handles it
-
-**Recommended Configuration**:
-
--   Set `initiatedByList` to "All" (whitelist tree handles the restriction)
--   Set `useCreatorAddressAsLeaf: true`
--   Build Merkle tree from BitBadges addresses as leaves ["bb1...", "bb2...", "bb3..."]
-
-### Claim Code Trees (`useCreatorAddressAsLeaf: false`)
-
-**Purpose**: Verify that the user possesses a valid claim code.
-
-**How It Works**:
-
-1. **Manual Leaf**: User must provide the actual claim code as the leaf
-2. **Code Verification**: System verifies the provided code exists in the Merkle tree
-3. **User Responsibility**: Users must know and provide their claim code
-
-**Recommended Configuration**:
-
--   Set `useCreatorAddressAsLeaf: false`
--   Build Merkle tree from claim codes as leaves ["secret1", "secret2", "secret3"]
--   Post root hash on-chain as challenge
--   Distribute codes privately to users with leaf signatures
-
-## Security Features
-
-### Expected Proof Length
-
-**Critical Security Feature**: All proofs must have the same length to prevent preimage and second preimage attacks.
-
-```typescript
-// All proofs must match this length
-expectedProofLength: '2'; // 2-level proof required
-```
-
-**Design Requirement**: Your Merkle tree must be constructed so all leaves are at the same depth.
-
-### Max Uses Per Leaf
-
-Control how many times each leaf can be used:
-
-| Setting         | Behavior          | Use Case             |
-| --------------- | ----------------- | -------------------- |
-| `"0"` or `null` | Unlimited uses    | Public claim codes   |
-| `"1"`           | One-time use      | Single-use codes     |
-| `"5"`           | Five uses maximum | Limited distribution |
-
-**Critical Security Requirement**: For claim code challenges (`useCreatorAddressAsLeaf: false`), `maxUsesPerLeaf` must be `"1"` to prevent replay attacks.
-
-### Replay Attack Protection
-
-**⚠️ CRITICAL SECURITY RISK**: Non-address trees (claim codes) are vulnerable to front-running attacks.
-
-**The Problem**:
-
-1. User submits transaction with valid Merkle proof
-2. Proof becomes visible in mempool (public blockchain)
-3. Malicious actor sees the proof and front-runs the transaction
-4. Original user's transaction fails, attacker gets the token
-
-**Why This Happens**:
-
--   Merkle proofs for claim codes are reusable until consumed
--   Once in mempool, proofs are publicly visible
--   No built-in protection against proof reuse
-
-**The Solution**: Leaf signatures provide cryptographic protection against this attack.
-
-## Challenge Tracking
-
-### Tracker System
-
-Uses increment-only, immutable trackers to prevent double-spending:
-
-```typescript
-{
-    collectionId: T;
-    approvalId: string;
-    approvalLevel: 'collection' | 'incoming' | 'outgoing';
-    approverAddress: string; // blank if collection-level
-    challengeTrackerId: string;
-    leafIndex: T; // Leftmost base layer leaf index = 0, rightmost = numLeaves - 1
-}
-```
-
-Note the fact we use leaf indices to track usage and not leaf values.
-
-### Tracker Examples
-
-```
-1-collection- -approvalId-uniqueID-0  → USED 1 TIME
-1-collection- -approvalId-uniqueID-1  → UNUSED
-1-collection- -approvalId-uniqueID-2  → USED 3 TIMES
-```
-
-**Important**: Trackers are scoped to specific approvals and cannot be shared between different approval configurations.
-
-### Tracker Management
-
--   **Increment-Only**: Once used, the number of uses cannot be decremented
--   **Immutable**: Tracker state cannot be modified
--   **Best Practice**: Use unique `challengeTrackerId` for fresh tracking of new approvals
-
-## Leaf Signatures
-
-### Protection Against Front-Running
-
-Leaf signatures provide cryptographic protection against front-running attacks on claim code challenges.
-
-**How It Works**:
-
-```typescript
-// Signature scheme
-signature = ETHSign(leaf + '-' + bitbadgesAddressOfInitiator);
-```
-
-**Security Mechanism**:
-
-1. **Address Binding**: Each proof is cryptographically tied to a specific BitBadges address
-2. **Replay Prevention**: Even if proof is intercepted, it cannot be used by other addresses
-3. **Mempool Safety**: Intercepted proofs in mempool are useless to attackers
-
-### Implementation
-
-```typescript
-// Only Ethereum addresses supported currently
-leafSigner: '0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6';
-```
-
-**Critical Benefits**:
-
--   **Front-Running Protection**: Prevents attackers from stealing tokens via mempool interception
--   **Address-Specific**: Each proof is cryptographically bound to the intended recipient
--   **Mempool Safety**: Makes intercepted proofs useless to malicious actors
--   **Required for Claim Codes**: Strongly recommended for all non-address tree challenges
-
-**⚠️ IMPORTANT**: For claim code challenges, leaf signatures are not just recommended—they are essential for security against front-running attacks.
-
-## Merkle Tree Construction
-
-### Standard Configuration
-
-```typescript
-import { SHA256 } from 'crypto-js';
-import MerkleTree from 'merkletreejs';
-
-// For claim codes
-const codes = ['secret1', 'secret2', 'secret3'];
-const hashedCodes = codes.map((x) => SHA256(x).toString());
-
-// For whitelists
-const addresses = ['bb1...', 'bb1...', 'bb1...'];
-const hashedAddresses = addresses.map((x) => SHA256(x));
-
-// Tree options (tested configuration)
-const treeOptions = {
-    fillDefaultHash:
-        '0000000000000000000000000000000000000000000000000000000000000000',
-};
-
-// Build tree
-const tree = new MerkleTree(hashedCodes, SHA256, treeOptions);
-const root = tree.getRoot().toString('hex');
-const expectedProofLength = tree.getLayerCount() - 1;
-```
-
-### Critical Requirements
-
-1. **Same Layer**: All leaves must be at the same depth
-2. **Consistent Proof Length**: All proofs must have identical length
-3. **Test Thoroughly**: Verify all paths work before deployment
-4. **Use Tested Options**: Stick to the `fillDefaultHash` configuration
-
-## Transfer Integration
-
-### Providing Proofs
-
-Include Merkle proofs in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
-
-```typescript
-const txCosmosMsg: MsgTransferTokens<bigint> = {
-    creator: chain.bitbadgesAddress,
-    collectionId: collectionId,
-    transfers: [
-        {
-            // ... other fields
-            merkleProofs: [
-                {
-                    aunts: proofObj.map((proof) => ({
-                        aunt: proof.data.toString('hex'),
-                        onRight: proof.position === 'right',
-                    })),
-                    leaf: isWhitelist ? '' : passwordCodeToSubmit,
-                    leafSignature: leafSignature, // if applicable
-                },
-            ],
-        },
-    ],
-};
-```
-
-### Proof Generation
-
-```typescript
-// Generate proof for user submission
-const passwordCodeToSubmit = 'secretCode123';
-const leaf = isWhitelist
-    ? SHA256(chain.bitbadgesAddress).toString()
-    : SHA256(passwordCodeToSubmit).toString();
-
-const proofObj = tree.getProof(leaf, whitelistIndex);
-const isValidProof = proofObj && proofObj.length === tree.getLayerCount() - 1;
-
-// Create signature if needed
-const leafSignature = signLeaf(leaf + '-' + chain.bitbadgesAddress);
-```
-
-## Comparison with ETH Signature Challenges
-
-Merkle challenges and ETH signature challenges are very similar. The main difference is that Merkle challenges must also check that the signed message was pre-committed to in the tree, whereas ETH signature challenges only need to check that the signature is valid and not used before.
-
-For more information, see [ETH Signature Challenges](eth-signature-challenges.md).
-
-## Best Practices
-
-### Design Considerations
-
-1. **Tree Structure**: Ensure all leaves at same depth
-2. **Proof Length**: Test all proof lengths are identical
-3. **Tracker Management**: Use unique IDs for fresh tracking
-4. **Security**: **MANDATORY** - Enable leaf signatures for claim codes to prevent front-running
-5. **Testing**: Verify all paths work before mainnet
-
-### Performance Optimization
-
-1. **Small Lists**: For <100 users, consider regular address lists
-2. **Gas Distribution**: Merkle trees excel with large user bases
-3. **Proof Verification**: On-chain verification is gas-efficient
-4. **Storage**: No on-chain storage of large lists required
 
 
 ## File: ./x-badges/concepts/approval-criteria/must-prioritize.md
@@ -14425,691 +15109,6 @@ The `mustPrioritize` field works in conjunction with the auto-scan system:
 -   **Side Effects**: Approvals with side effects (coin transfers, custom logic) should typically use `mustPrioritize: true`
 -   **Race Conditions**: Using `mustPrioritize: true` with version control prevents race conditions from approval updates
 -   **Transfer Flags**: When using prioritized approvals, set `onlyCheckPrioritizedCollectionApprovals` (or corresponding flags) to `true` for deterministic behavior
-
-
-## File: ./x-badges/concepts/approval-criteria/overrides.md
-
-# Override User Level Approvals
-
-Collection-level approvals can override user-level approvals to force transfers.
-
-## Interface
-
-```typescript
-interface ApprovalCriteria<T extends NumberType> {
-    overridesFromOutgoingApprovals?: boolean;
-    overridesToIncomingApprovals?: boolean;
-}
-```
-
-## How It Works
-
--   **`overridesFromOutgoingApprovals: true`**: Skip sender's outgoing approvals
--   **`overridesToIncomingApprovals: true`**: Skip recipient's incoming approvals
-
-This enables forced transfers without user consent.
-
-## Use Cases
-
--   **Force Revoke**: Remove tokens from users
--   **Freeze Tokens**: Prevent transfers regardless of user settings
--   **Emergency Actions**: Administrative control over transfers
-
-## Mint Address Requirement
-
-**CRITICAL**: Mint address approvals must always override outgoing approvals:
-
-```json
-{
-    "fromListId": "Mint",
-    "approvalCriteria": {
-        "overridesFromOutgoingApprovals": true
-    }
-}
-```
-
-The Mint address has no user-level approvals, so overrides are required for functionality.
-
-## Dangerous Configuration Warning
-
-⚠️ **Dangerous Configuration Detected**
-
-When an approval enables forceful transfers without a non-Mint address sender consent (via `overridesFromOutgoingApprovals: true`), this can cause dangerous side effects if not handled properly.
-
-### Risks
-
-Forceful transfers can break protocols that rely on escrow or alternate state. Ensure you understand all side effects of every initiated transfer before proceeding.
-
-**Example**: Revoking from liquidity pools without handling pool shares can desync balances and enable exploits like infinite glitches (e.g. repeated revoke → rejoin pool → infinite liquidity).
-
-### Recommendations
-
-1. **Educate All Potential Initiators**
-
-    - Ensure all approved initiators understand the risks and will handle transfers responsibly.
-
-2. **Use Multi-Sig**
-
-    - Use multi-sig or governance addresses to prevent single points of failure and unauthorized use.
-
-3. **Consider Alternatives**
-    - Do you really need revocation capabilities? If not, consider using safer approaches like whitelists, ownership checks, or other freezing methods instead of revoking to avoid these risks entirely.
-
-## Reserved Addresses Protection
-
-BitBadges reserves certain addresses that cannot be forcefully overridden as a sanity check. This protection is **not a replacement for due diligence** but serves as an additional safety measure to prevent accidental or malicious transfers from critical protocol addresses.
-
-When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using athe approval criteria address checks for WASM contracts and / or liquidity pool addresses to prevent this.
-
-### Protected Address Types
-
-The following addresses are protected from forceful overrides:
-
-1. **Liquidity Pool Addresses**
-
-    - Every liquidity pool address is protected to prevent desyncing balances and enabling exploits
-
-2. **Cosmos Coin Wrapper Path Addresses**
-
-    - Every cosmos coin wrapper path address is protected to maintain wrapper functionality integrity
-
-3. **Governance-Configured Addresses**
-    - Any addresses explicitly set by governance as protected addresses
-
-### Important Notes
-
--   This protection is a **sanity check**, not a comprehensive security measure
--   You should still perform thorough due diligence when designing approvals and initializing forceful transfers
--   The protection applies to forceful transfers (when `overridesFromOutgoingApprovals: true` is used)
--   This does not apply to transfers to / from these addresses that actually check their user-level approvals.
--   We bypass these protections if the initiatedBy === from address (the initiator is the protected address)
--   Normal transfers (with user consent) are not affected by this protection
-
-
-## File: ./x-badges/concepts/approval-criteria/predetermined-balances.md
-
-# Predetermined Balances
-
-## Overview
-
-Predetermined balances provide fine-grained control over the exact amounts and order of transfers in an approval. Unlike traditional tally-based systems where you approve a total amount (e.g., 100 tokens) without controlling the specific combinations, predetermined balances let you explicitly define:
-
--   **Exact amounts** that must be transferred
--   **Specific order** of transfers
--   **Precise token IDs and ownership times** for each transfer
-
-**Key Principle**: The transfer will fail if the balances are not EXACTLY as defined in the predetermined balances.
-
-## Interface Definition
-
-```typescript
-export interface PredeterminedBalances<T extends NumberType> {
-    manualBalances: ManualBalances<T>[];
-    incrementedBalances: IncrementedBalances<T>;
-    orderCalculationMethod: PredeterminedOrderCalculationMethod;
-}
-```
-
-## Balance Definition Methods
-
-There are two mutually exclusive ways to define balances:
-
-### 1. Manual Balances
-
-Define an array of specific balance sets manually. Each element corresponds to a different transfer.
-
-```json
-{
-    "manualBalances": [
-        {
-            "amount": "1",
-            "tokenIds": [
-                {
-                    "start": "1",
-                    "end": "1"
-                }
-            ],
-            "ownershipTimes": [
-                {
-                    "start": "1691978400000",
-                    "end": "1723514400000"
-                }
-            ]
-        },
-        {
-            "amount": "5",
-            "tokenIds": [
-                {
-                    "start": "2",
-                    "end": "6"
-                }
-            ],
-            "ownershipTimes": [
-                {
-                    "start": "1691978400000",
-                    "end": "1723514400000"
-                }
-            ]
-        }
-    ]
-}
-```
-
-**Use Case**: When you need complete control over each specific transfer amount and timing.
-
-### 2. Incremented Balances
-
-Define starting balances and rules for subsequent transfers. Perfect for sequential minting or time-based releases or other common patterns. Note that most options are incompatible with each other.
-
-```json
-{
-    "incrementedBalances": {
-        "startBalances": [
-            {
-                "amount": "1",
-                "tokenIds": [
-                    {
-                        "start": "1",
-                        "end": "1"
-                    }
-                ],
-                "ownershipTimes": [
-                    {
-                        "start": "1691978400000",
-                        "end": "1723514400000"
-                    }
-                ]
-            }
-        ],
-        "incrementTokenIdsBy": "1",
-        "incrementOwnershipTimesBy": "0",
-        "durationFromTimestamp": "0",
-        "allowOverrideTimestamp": false,
-        "allowOverrideWithAnyValidToken": false,
-        "recurringOwnershipTimes": {
-            "startTime": "0",
-            "intervalLength": "0",
-            "chargePeriodLength": "0"
-        }
-    }
-}
-```
-
-#### Increment Options
-
-| Field                            | Description                                          | Example                                              |
-| -------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `incrementTokenIdsBy`            | Amount to increment token IDs by after each transfer | `"1"` = next transfer gets token ID 2, then 3, etc.  |
-| `incrementOwnershipTimesBy`      | Amount to increment ownership times by               | `"86400000"` = add 1 day to ownership times          |
-| `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
-| `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
-| `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
-| `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
-
-#### Duration From Timestamp
-
-Dynamically calculate ownership times from a timestamp plus a set duration. This overwrites all ownership times in the starting balances.
-
-```json
-{
-    "durationFromTimestamp": "2592000000", // 30 days in milliseconds
-    "allowOverrideTimestamp": true
-}
-```
-
-**Behavior**:
-
--   **Default**: Uses transfer time as the base timestamp
--   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferTokens` `precalculationOptions`
--   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
--   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
-
-#### Recurring Ownership Times
-
-Define repeating time intervals for subscriptions or periodic rewards:
-
-```json
-{
-    "recurringOwnershipTimes": {
-        "startTime": "1691978400000", // When intervals begin
-        "intervalLength": "2592000000", // 30 days in milliseconds
-        "chargePeriodLength": "604800000" // 7 days advance charging
-    }
-}
-```
-
-**Example**: Monthly subscription starting August 13, 2023, with 7-day advance charging period.
-
-## Precalculating Balances
-
-### The Race Condition Problem
-
-Predetermined balances can change rapidly between transaction broadcast and confirmation. For example:
-
--   Other users' mints get processed
--   Token IDs shift due to concurrent activity
--   Manual balance specification becomes unreliable
-
-### The Solution: Precalculation
-
-Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
-
-```typescript
-{
-  precalculateBalancesFromApproval: {
-    approvalId: string;           // The approval to precalculate from
-    approvalLevel: string;        // "collection" | "incoming" | "outgoing"
-    approverAddress: string;      // "" if collection-level
-    version: string;              // Must specify exact version
-  },
-  precalculationOptions: {
-    // Additional override options dependent on the selections
-  }
-}
-```
-
-## Order Calculation Methods
-
-The system needs to determine which balance set to use for each transfer. This is controlled by the `orderCalculationMethod`.
-
-### How Order Numbers Work
-
-The order number determines which balances to transfer, but it works differently depending on the balance type:
-
-#### Manual Balances
-
--   **Order number = 0**: Transfer `manualBalances[0]` (first element)
--   **Order number = 1**: Transfer `manualBalances[1]` (second element)
--   **Order number = 5**: Transfer `manualBalances[5]` (sixth element)
-
-**Example**: If you have 3 manual balance sets, order numbers 0, 1, and 2 will use each set once. Order number 3 would be out of bounds.
-
-#### Incremented Balances
-
--   **Order number = 0**: Use starting balances as-is (no increments)
--   **Order number = 1**: Apply increments once to starting balances
--   **Order number = 5**: Apply increments five times to starting balances
-
-**Example**: Starting with token ID 1, increment by 1:
-
--   Order 0: Token ID 1
--   Order 1: Token ID 2
--   Order 2: Token ID 3
--   Order 5: Token ID 6
-
-### Transfer-Based Order Numbers
-
-Track the number of transfers to determine order:
-
-| Method                                 | Description           | Use Case                    |
-| -------------------------------------- | --------------------- | --------------------------- |
-| `useOverallNumTransfers`               | Global transfer count | Simple sequential transfers |
-| `usePerToAddressNumTransfers`          | Per-recipient count   | User-specific limits        |
-| `usePerFromAddressNumTransfers`        | Per-sender count      | Sender-specific limits      |
-| `usePerInitiatedByAddressNumTransfers` | Per-initiator count   | Initiator-specific limits   |
-
-**Important**: Uses the same tracker as [Max Number of Transfers](max-number-of-transfers.md). Trackers are:
-
--   Increment-only and immutable
--   Shared between predetermined balances and max transfer limits
--   Must be carefully managed to avoid conflicts
-
-### Merkle-Based Order Numbers
-
-Use Merkle challenge leaf indices (leftmost = 0, rightmost = numLeaves - 1) for reserved transfers:
-
-```typescript
-{
-  "useMerkleChallengeLeafIndex": true,
-  "challengeTrackerId": "uniqueId"
-}
-```
-
-**Use Case**: Reserve specific token IDs for specific users or claim codes.
-
-## Order Calculation Interface
-
-```typescript
-export interface PredeterminedOrderCalculationMethod {
-    useOverallNumTransfers: boolean;
-    usePerToAddressNumTransfers: boolean;
-    usePerFromAddressNumTransfers: boolean;
-    usePerInitiatedByAddressNumTransfers: boolean;
-    useMerkleChallengeLeafIndex: boolean;
-    challengeTrackerId: string;
-}
-```
-
-## Boundary Handling
-
-### Understanding Bounds
-
-Every approval defines bounds through its core fields (tokenIds, ownershipTimes, etc.). For example:
-
--   **Token IDs**: 1-100
--   **Ownership Times**: Mon-Fri only
--   **Transfer Times**: Specific date range
-
-Predetermined balances must work within these bounds, but note that order numbers can eventually exceed them.
-
-### Boundary Scenarios
-
-#### Complete Out-of-Bounds
-
-**Scenario**: Order number corresponds to balances completely outside approval bounds.
-
-**Example**:
-
--   Approval allows token IDs 1-100
--   Increment by 1 for each transfer
--   Order number 101 would require token ID 101 (out of bounds)
-
-**Result**: Transfer is ignored because token ID 101 never matches the approval's token ID range.
-
-#### Partial Overlap
-
-**Scenario**: Order number corresponds to balances that partially overlap with approval bounds.
-
-**Example**:
-
--   Approval allows token IDs 1-100
--   Transfer requires token IDs 95-105
--   Token IDs 95-100 are in bounds, 101-105 are out of bounds
-
-**Result**:
-
--   Only in-bounds balances (95-100) are approved by current approval
--   Out-of-bounds balances (101-105) must be approved by a separate approval
--   The complete transfer (95-105) must still be exactly as defined
-
-**Important**: The transfer will fail unless all out-of-bounds balances are approved by other approvals.
-
-
-## File: ./x-badges/concepts/approval-criteria/requires.md
-
-# Requires
-
-Additional address relationship restrictions for transfer approval.
-
-## Interface
-
-```typescript
-interface ApprovalCriteria<T extends NumberType> {
-    requireToEqualsInitiatedBy?: boolean;
-    requireToDoesNotEqualInitiatedBy?: boolean;
-    requireFromEqualsInitiatedBy?: boolean;
-    requireFromDoesNotEqualInitiatedBy?: boolean;
-}
-```
-
-## How It Works
-
-Enforce additional checks on address relationships:
-
--   **`requireToEqualsInitiatedBy`**: Recipient must equal initiator
--   **`requireToDoesNotEqualInitiatedBy`**: Recipient must not equal initiator
--   **`requireFromEqualsInitiatedBy`**: Sender must equal initiator
--   **`requireFromDoesNotEqualInitiatedBy`**: Sender must not equal initiator
-
-## Constraints
-
-All checks are bounded by the respective address lists (`toList`, `fromList`, `initiatedByList`).
-
-
-## File: ./x-badges/concepts/approval-criteria/tallied-approval-amounts.md
-
-# Tallied Approval Amounts
-
-Limit transfer amounts using increment-only trackers with thresholds.
-
-## Interface
-
-```typescript
-interface ApprovalCriteria<T extends NumberType> {
-    approvalAmounts?: ApprovalAmounts<T>;
-}
-```
-
-## How It Works
-
-Specify maximum amounts that can be transferred using four tracker types:
-
--   **Overall** (`trackerType = "overall"`): Universal limit for all transfers
--   **Per To Address** (`trackerType = "to"`): Limit per unique recipient
--   **Per From Address** (`trackerType = "from"`): Limit per unique sender
--   **Per Initiated By Address** (`trackerType = "initiatedBy"`): Limit per unique initiator
-
-"0" means unlimited and not tracked. "N" means max N amount allowed.
-
-## Example
-
-```json
-{
-    "approvalAmounts": {
-        "overallApprovalAmount": "1000",
-        "perFromAddressApprovalAmount": "0",
-        "perToAddressApprovalAmount": "0",
-        "perInitiatedByAddressApprovalAmount": "10",
-        "amountTrackerId": "uniqueID"
-    }
-}
-```
-
-## Tracker Types
-
-### Overall Tracker
-
--   **ID**: `1-collection- -approvalId-uniqueID-overall-`
--   **Behavior**: Increments for all transfers regardless of sender/recipient/initiator
--   **Use Case**: Global collection limits
-
-### Per-To Address Tracker
-
--   **ID**: `1-collection- -approvalId-uniqueID-to-recipientAddress`
--   **Behavior**: Separate tracker for each unique recipient
--   **Use Case**: Limit how much each user can receive
-
-### Per-From Address Tracker
-
--   **ID**: `1-collection- -approvalId-uniqueID-from-senderAddress`
--   **Behavior**: Separate tracker for each unique sender
--   **Use Case**: Limit how much each user can send
-
-### Per-InitiatedBy Address Tracker
-
--   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-initiatorAddress`
--   **Behavior**: Separate tracker for each unique initiator
--   **Use Case**: Limit how much each user can initiate
-
-## Detailed Example
-
-Using the approval amounts defined above, when Alice initiates a transfer of x10 from Bob:
-
-### Two Trackers Get Incremented
-
-**#1) Overall Tracker**
-
--   **ID**: `1-collection- -approvalId-uniqueID-overall-`
--   **Before**: 0/1000
--   **After**: 10/1000
--   **Behavior**: Any subsequent transfers (from Charlie, etc.) will also increment this universal tracker
-
-**#2) Per-Initiator Tracker**
-
--   **ID**: `1-collection- -approvalId-uniqueID-initiatedBy-alice`
--   **Before**: 0/10
--   **After**: 10/10 (fully used)
--   **Behavior**: Only incremented when Alice initiates. Charlie's transfers use a separate tracker: `1-collection- -approvalId-uniqueID-initiatedBy-charlie`
-
-### Amount Tracking with Balance Type
-
-Trackers store amounts using the balance type structure. Above, we simplified it to just the amount.
-
-```json
-{
-    "amounts": [
-        {
-            "amount": 10n,
-            "tokenIds": [{ "start": 1n, "end": 1n }],
-            "ownershipTimes": [{ "start": 1n, "end": 100000000000n }]
-        }
-    ]
-}
-```
-
-**What Gets Incremented**:
-
--   **Amount**: The total quantity transferred
--   **Token IDs**: Specific token IDs that were transferred
--   **Ownership Times**: The ownership time ranges that were transferred
-
-### Unlimited Trackers (No Increment)
-
-Since "to" and "from" trackers are set to "0" (unlimited), no tracking occurs for these types.
-
-## Tracker Behavior
-
--   **As-Needed**: Only increment trackers when necessary (unlimited = no tracking)
--   **Separate Counts**: Each tracker type maintains independent tallies
--   **Address Scoped**: Per-address trackers create unique counters per address
--   **Balance Tracking**: Increments for specific token IDs and ownership times transferred
-
-## Resets and ID Changes
-
-### Changing Tracker ID
-
-When you update `amountTrackerId` from "uniqueID" to "uniqueID2":
-
-```
-1-collection- -approvalId-uniqueID-initiatedBy-alice
-↓
-1-collection- -approvalId-uniqueID2-initiatedBy-alice
-```
-
-**Result**: All tracker IDs change, so all tallies start from scratch.
-
-### Reusing Old IDs
-
-If you later change back to "uniqueID", the starting point will be the previous tally:
-
--   Alice's initiatedBy tracker: 10/10 used (not 0/10)
-
-**Important**: Never reuse tracker IDs unless you want to continue from the previous state. They are increment-only.
-
-
-## File: ./x-badges/concepts/approval-criteria/usdbadge-transfers.md
-
-# Coin Transfers
-
-Automatic token transfers executed on every approval use. Supports any Cosmos SDK denomination. These are triggered every time an approval is used.
-
-To get all supported denominations, use the query parameters for the tokens module.
-
-## Interface
-
-```typescript
-interface iCoinTransfer<T extends NumberType> {
-    to: string; // Recipient BitBadges address
-    coins: iCosmosCoin<T>[];
-
-    overrideFromWithApproverAddress: boolean; // By default, this is the initiator address
-    overrideToWithInitiator: boolean; // By default, this is the to address specified
-}
-
-interface iCosmosCoin<T extends NumberType> {
-    amount: T;
-    denom: string; // Any Cosmos SDK denomination (e.g., "ubadge", "uatom", "uosmo")
-}
-```
-
-## Mint Escrow Address
-
-For collection approvals with `overrideFromWithApproverAddress: true`, the approver address is a special mint escrow address.
-
-### Generation
-
-```typescript
-const mintEscrowAddress = generateAlias(
-    'badges',
-    getAliasDerivationKeysForCollection(collectionId)
-);
-```
-
-### Properties
-
--   Longer than normal addresses
--   No private key (cannot be controlled by users)
--   Can receive Cosmos-native tokens
--   Only collection approvals can trigger transfers from it
-
-## Example
-
-```json
-[
-    {
-        "to": "bb1...",
-        "coins": [{ "amount": "1000000000", "denom": "ubadge" }],
-        "overrideFromWithApproverAddress": false,
-        "overrideToWithInitiator": false
-    }
-]
-```
-
-
-## File: ./x-badges/concepts/approval-criteria/user-royalties.md
-
-# User Royalties
-
-Apply percentage-based royalties to transfers.
-
-## Interface
-
-```typescript
-interface UserRoyalties {
-    percentage: string; // 1 to 10000 represents basis points (0.01% to 100%)
-    payoutAddress: string; // Address to receive the royalties
-}
-```
-
-## How It Works
-
-User royalties automatically deduct a percentage from transfers and send it to a specified payout address:
-
--   **Percentage**: Expressed in basis points (1 = 0.01%, 100 = 1%, 10000 = 100%)
--   **Payout**: Automatically sent to the specified address on each transfer
--   **Deduction**: Applied to the transfer amount before the transfer is processed
-
-## Usage Examples
-
-### 5% Royalty
-
-```json
-{
-    "userRoyalties": {
-        "percentage": "500", // 500 basis points = 5%
-        "payoutAddress": "bb1creator..."
-    }
-}
-```
-
-**Result**: 5% of each transfer amount is sent to the creator's address.
-
-### 2.5% Royalty
-
-```json
-{
-    "userRoyalties": {
-        "percentage": "250", // 250 basis points = 2.5%
-        "payoutAddress": "bb1artist..."
-    }
-}
-```
-
-**Result**: 2.5% of each transfer amount is sent to the artist's address.
-
-## Edge Case: One per Transfer
-
-Currently, we only support one specific royalty percentage applied per transfer. If a transfer matches to different approvals with multiple royalties, the transfer may fail.
 
 
 ## File: ./x-badges/concepts/badge-collections.md
@@ -17460,11 +17459,11 @@ We refer you to the collection-level examples and just apply the same logic to t
 
 ## Key Differences from Collection Approvals
 
--   **Fixed Address Lists**:
-    -   Incoming approvals: `fromListId` is locked to the user's address
-    -   Outgoing approvals: `toListId` is locked to the user's address
--   **No Override Functionality**: Cannot override other approval levels
--   **User-Controlled**: Only the user can update their own approvals
+* **Fixed Address Lists**:
+  * Incoming approvals: `fromListId` is locked to the user's address
+  * Outgoing approvals: `toListId` is locked to the user's address
+* **No Override Functionality**: Cannot override other approval levels
+* **User-Controlled**: Only the user can update their own approvals
 
 ## Incoming Approvals
 
@@ -17532,16 +17531,16 @@ const updateUserApprovals = {
 
 For approval criteria examples, see:
 
--   [Empty Approval Criteria](empty-approval-criteria.md) - No restrictions template
--   [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
--   [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
--   [Address Checks](../concepts/approval-criteria/address-checks.md) - Address type restrictions
--   [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
+* [Empty Approval Criteria](empty-approval-criteria.md) - No restrictions template
+* [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
+* [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
+* [Address Checks](../../token-standard/learn/approval-criteria/address-checks.md) - Address type restrictions
+* [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
 
 For concepts, see:
 
--   [Transferability](../../learn/transferability.md)
--   [Approval Criteria](broken-reference)
+* [Transferability](../../learn/transferability.md)
+* [Approval Criteria](broken-reference/)
 
 
 ## File: ./x-badges/examples/building-user-permissions.md
@@ -17812,7 +17811,7 @@ const collectionPermissions = {
 ## Related Concepts
 
 * [Total Supply](/broken/pages/PV7aK6FnbshnT1ORXgiM) - Supply calculation mechanics
-* [Max Number of Transfers](../concepts/approval-criteria/max-number-of-transfers.md) - Transfer limits
+* [Max Number of Transfers](../../token-standard/learn/approval-criteria/max-number-of-transfers.md) - Transfer limits
 * [Permissions](../../learn/permissions.md) - Permission controls
 
 
@@ -19483,8 +19482,8 @@ This example demonstrates how to update user outgoing approvals to control what 
 ## Related Concepts
 
 * [Transferability](../../../../learn/transferability.md) - Approval system overview
-* [Approval Criteria](broken-reference) - Criteria configuration
-* [Tallied Approval Amounts](../../../concepts/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
+* [Approval Criteria](broken-reference/) - Criteria configuration
+* [Tallied Approval Amounts](../../../../token-standard/learn/approval-criteria/tallied-approval-amounts.md) - Amount tracking mechanics
 
 
 ## File: ./x-badges/messages/README.md
@@ -20886,10 +20885,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
--   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
--   **Behavior**: Automatically finds and uses the first matching approval
--   **Use case**: Simple transfers without custom logic or side effects
--   **No versioning required**: The system handles approval selection automatically
+* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+* **Behavior**: Automatically finds and uses the first matching approval
+* **Use case**: Simple transfers without custom logic or side effects
+* **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -20936,17 +20935,17 @@ The versioning control ensures that before submitting, the user knows the exact 
 
 ### Control Flags
 
--   `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
--   `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
--   `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
+* `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
+* `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
+* `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
 
 **Setting these to `true` is recommended when using prioritized approvals to ensure deterministic behavior.**
 
 ### Related Documentation
 
--   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
--   [Approval Criteria](broken-reference) - Understanding approval complexity
--   [Coin Transfers](../concepts/approval-criteria/usdbadge-transfers.md) - Side effect examples
+* [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
+* [Approval Criteria](broken-reference/) - Understanding approval complexity
+* [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
 
@@ -20994,8 +20993,8 @@ PRE. CALCULATE BALANCES (if needed)
 
 Collection approvals can override user-level approvals:
 
--   **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
--   **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
+* **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
+* **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
 
 This allows collection managers to enable transfers that would otherwise be blocked by user settings.
 
@@ -21010,19 +21009,19 @@ Transfers fail at the first validation step that doesn't pass:
 
 ### ETH Signature Proofs
 
-ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md). Each proof contains:
+ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
--   **`nonce`**: The unique identifier that was signed
--   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+* **`nonce`**: The unique identifier that was signed
+* **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 
 ### Related Documentation
 
--   [Transferability](../../learn/transferability.md) - Approval system overview
--   [Collection Approvals](broken-reference) - Collection-level controls
--   [User Approvals](../examples/building-user-approvals.md) - User-level settings
--   [ETH Signature Challenges](../concepts/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+* [Transferability](../../learn/transferability.md) - Approval system overview
+* [Collection Approvals](broken-reference/) - Collection-level controls
+* [User Approvals](../examples/building-user-approvals.md) - User-level settings
+* [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
 
 ## Collection ID Auto-Lookup
 
