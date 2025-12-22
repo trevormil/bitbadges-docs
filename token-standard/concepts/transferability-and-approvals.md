@@ -1,2 +1,0 @@
-# Transferability & Approvals
-

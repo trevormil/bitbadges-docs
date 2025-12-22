@@ -30,7 +30,6 @@
     * [Different Time Fields](x-badges/concepts/time-fields.md)
   * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
   * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Transferability & Approvals](token-standard/concepts/transferability-and-approvals.md)
   * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
     * [Address Checks](x-badges/concepts/approval-criteria/address-checks.md)
     * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
