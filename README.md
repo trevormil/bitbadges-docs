@@ -16,7 +16,7 @@ Our theses are:
 2. Compliance / transferability is not just a matter of a simple whitelist/blacklist or transferable vs soulbound. It is a complex series of moving parts (time-gating, ownerships, approvals, who can send to who?, initiated by who?, revokable? freezable?, and so on). To truly make compliance work on-chain, you need to handle all these moving parts automatically, not with a manually updated whitelist/blacklist. And, this belongs on the token standard level.
 3. The standardized, reusable, no-code approach wins over per use-case smart contracts over time.
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/image (181) (1).png" alt=""><figcaption></figcaption></figure></div>
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## ❓ Why BitBadges?
 
