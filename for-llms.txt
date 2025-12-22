@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 19:15:16 UTC 2025
+Generated on Mon Dec 22 19:27:10 UTC 2025
 
 
 
@@ -1872,7 +1872,6 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Token Ownership](token-standard/learn/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](token-standard/learn/approval-criteria/dynamic-store-challenges.md)
     * [ETH Signature Challenges](token-standard/learn/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](token-standard/learn/approval-criteria/linking-trackers-advanced.md)
     * [Max Number of Transfers](token-standard/learn/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](token-standard/learn/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](token-standard/learn/approval-criteria/overrides.md)
@@ -10113,21 +10112,10 @@ If false, we will check the prioritized approvals first and then scan through th
 
 ```typescript
 const msg: MsgTransferTokens = {
-    creator: 'bb1initiator...',
-    collectionId: '1',
+    // ... other fields
     transfers: [
         {
-            from: 'bb1sender...',
-            toAddresses: ['bb1recipient...'],
-            balances: [
-                {
-                    amount: '1',
-                    tokenIds: [{ start: '1', end: '1' }],
-                    ownershipTimes: [
-                        { start: '1', end: '18446744073709551615' },
-                    ],
-                },
-            ],
+            // ... other fields
             prioritizedApprovals: [
                 {
                     approvalId: 'abc123',
@@ -10150,14 +10138,6 @@ The `mustPrioritize` flag explicitly requires an approval to be prioritized. Thi
 
 ```typescript
 const approval: CollectionApproval<bigint> = {
-    approvalId: 'force-prioritize',
-    fromListId: '!Mint',
-    toListId: 'All',
-    initiatedByListId: 'All',
-    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-    version: 0n,
     approvalCriteria: {
         mustPrioritize: true, // Cannot be auto-scanned
         // ... other criteria
@@ -12076,11 +12056,15 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 BitBadges supports three levels of transferability control:
 
-| Level          | Controlled By  | Stored On              | Msg                                    | Use Case                               |
-| -------------- | -------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
-| **Incoming**   | Recipient      | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+<div style="overflow-x: auto;">
+
+| Level          | Controlled By  | Approval Level | Approver Address | Stored On              | Msg                                    | Use Case                               |
+| -------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | collection     | ""                | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | outgoing       | bb1...            | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
+| **Incoming**   | Recipient      | incoming       | bb1...            | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+
+</div>
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
@@ -12104,6 +12088,8 @@ Collection approvals define transferability rules for the entire collection on a
 
 **All transfers must satisfy the collection approvals.**
 
+**Important:** Approval IDs are unique identifiers and must not collide with other collection approvals.
+
 ```typescript
 // Stored on TokenCollection.collectionApprovals[] (CollectionApproval<T>[])
 interface CollectionApproval<T extends bigint> {
@@ -12114,7 +12100,7 @@ interface CollectionApproval<T extends bigint> {
     transferTimes: UintRange<T>[]; // When can transfer happen?
     tokenIds: UintRange<T>[]; // Which token IDs?
     ownershipTimes: UintRange<T>[]; // Which ownership times?
-    approvalId: string; // Unique identifier
+    approvalId: string; // Unique identifier - must not collide with other approvals on the same level
     version: T; // Version control (incremented on each update)
 
     // Optional Fields
@@ -12301,17 +12287,25 @@ If set to true, we do NOT check the corresponding user-level approvals for the s
 
 ```typescript
 const collectionApproval: CollectionApproval<bigint> = {
-    fromListId: '!Mint',
-    toListId: 'All',
-    initiatedByListId: 'All',
-    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-    approvalId: 'override-approval',
-    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Skip sender approvals
         overridesToIncomingApprovals: true, // Skip recipient approvals
+        // ... other criteria
+    },
+    // ... other fields
+};
+```
+
+#### Mint Address Overrides
+
+Because the Mint address cannot control its own user-level approvals, it must always override the sender's outgoing approvals to properly work.
+
+```typescript
+const mintApproval: CollectionApproval<bigint> = {
+    fromListId: 'Mint',
+    // ... other fields
+    approvalCriteria: {
+        overridesFromOutgoingApprovals: true, // Required for Mint
         // ... other criteria
     },
 };
@@ -13331,21 +13325,6 @@ Trackers use IDs with format: `approvalId-trackerId` plus identifying details. A
 
 Trackers are increment-only and immutable. Never reuse tracker IDs with prior history when creating approvals that should start from scratch.
 
-### Extending Functionality
-
-For custom logic beyond native options:
-
-* Use CosmWASM smart contracts
-* Leverage Merkle challenges for commit-reveal mechanisms
-
-### Cross-Approval Logic
-
-Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
-
-* Workarounds and careful design
-* CosmWASM for advanced functionality
-* Contact us for recommendations
-
 
 ## File: ./token-standard/learn/approval-criteria/address-checks.md
 
@@ -14047,37 +14026,6 @@ Common error scenarios:
 -   **Invalid Nonce**: Nonce format or content is invalid
 
 The system provides clear error messages to help users understand and resolve issues.
-
-
-## File: ./token-standard/learn/approval-criteria/linking-trackers-advanced.md
-
-# Extending Approvals (Advanced)
-
-For edge cases requiring advanced functionality beyond native interfaces.
-
-## When to Extend
-
-Consider extending when you need:
-
--   Cross-approval functionality
--   Access to other blockchain data/modules
--   Custom logic not covered by native options
-
-## Before Extending
-
-1. **Consider Workarounds**: Many approvals can be adapted to fit native interfaces
-2. **Design Alternatives**: Think creatively about using existing features
-3. **Evaluate Necessity**: Ensure extension is truly required
-
-## Implementation Options
-
-### CosmWASM Smart Contracts
-
-Build custom smart contracts that call into the x/badges module.
-
-### EVM Smart Contracts (Coming Soon)
-
-Build custom EVM contracts that call into the x/badges module.
 
 
 ## File: ./token-standard/learn/approval-criteria/max-number-of-transfers.md
