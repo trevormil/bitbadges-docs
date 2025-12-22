@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Dec 21 21:19:35 UTC 2025
+Generated on Mon Dec 22 01:29:31 UTC 2025
 
 
 
@@ -9943,206 +9943,119 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 
 # 🤹 Supporting Multiple Standards
 
-In the case of trying to support multiple standards dynamically, you simply have to call a wrapper function where you want to support both dynamically and pattern match.
+To support multiple token standards, we recommend using a SendManager module with **alias denom routing**. It automatically routes transactions to the appropriate handler based on denomination prefixes.
 
-For the equivalent of bankkeeper.SendCoins() with our MsgTransferTokens, we provide the SendCoinsWithAliasRouting function in the keeper itself. Simply call this using the `badgeslp:collectionID:pathdenom` alias, and it will handle all for you.
+For complete implementation details, see the [source code](https://github.com/BitBadges/bitbadgeschain). We recommend simply copying / importing the implementation and using it directly if all you need is x/badges and x/bank.
 
-<pre class="language-go"><code class="lang-go">// SendCoinsWithAliasRouting(ctx,  'bb1..', 'bb1...', []{ amount: 100, denom: 'badgeslp:73:utoken' })
-<strong>func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from sdk.AccAddress, to sdk.AccAddress, coins sdk.Coins)
-</strong>
-// Couple notes:
-// 1. Only pattern matches to bk.SendCoins or our MsgTransferTokens.
-// 2. No advanced flows like FundCommunityPool(), SendCoinsFromModuleToAccount()
-// 3. User-level approvals are not handled.
-// 4. Only auto-scannable approvals are checked for our MsgTransferTokens (no explicitly prioritized)
-// 5. Even though we use sdk.Coins[] as parameter, there is no wrapping done. It is just an alias and always uses our standard natively.
-
-// If you need other functionality, consider writing your own which is also very easy (see below).
-</code></pre>
-
-Behind the scenes, this works as follows
-
-1. Use an alias system. For our liquidity pools we use badgeslp:collectionId:denom format. The denom + collection ID corresponds to the `cosmosCoinWrapperPaths` element of the collection with that ID and denom matching the denom.
-2. The path element provides details about the conversion rate amounts. Handle the conversion (int amount -> Balance\[] array).
-3. Create a wrapped function like below where for each coin, you handle accordingly with your alias system. If it matches the alias, you use our standard and `MsgTransferTokens`. If not, use standard x/bank or whatever standard.
-4. Anywhere you want to support both dynamically, call the wrapper function instead of your `SendCoins` or other token transfer functionality.
-
-Note that depending on the execution context, your module, contract, etc may not have "forceful" permissions and may be treated as a normal user who has to set its user-level approvals. Handle these accordingly to ensure that the transfers will pass compliance and transferability.
+It is intended to be a drop-in replacement for the BankKeeper interface. Simply replace anywhere you call k.bankKeeper.SendCoins() with k.sendManagerKeeper.SendCoinsWithAliasRouting() (or whatever other functions you need) and get support for multiple token standards at once via dynamic routing.
 
 ```go
-
-func (k Keeper) SendCoinsWithAliasRouting(
-	ctx sdk.Context,
-	fromAddressAcc sdk.AccAddress,
-	toAddressAcc sdk.AccAddress,
-	coins sdk.Coins,
-) error {
-	// Check if this is a wrapped badges denom
-	for _, coin := range coins {
-		if k.CheckIsWrappedDenom(ctx, coin.Denom) {
-			err := k.SendNativeTokensViaAliasDenom(ctx, fromAddressAcc.String(), toAddressAcc.String(), coin.Denom, sdkmath.NewUintFromBigInt(coin.Amount.BigInt()))
-			if err != nil {
-				return err
-			}
-		} else {
-			err := k.bankKeeper.SendCoins(ctx, fromAddressAcc, toAddressAcc, sdk.NewCoins(coin))
-			if err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
-}
-
-```
-
-```go
-
-// sendNativeTokensToAddressWithPoolApprovals sends native badges tokens to an address
-func (k Keeper) SendNativeTokensViaAliasDenom(ctx sdk.Context, recipientAddress string, toAddress string, denom string, amount sdkmath.Uint) error {
-	collection, err := k.ParseCollectionFromDenom(ctx, denom)
-	if err != nil {
-		return err
-	}
-
-	balancesToTransfer, err := GetBalancesToTransfer(collection, denom, amount)
-	if err != nil {
-		return err
-	}
-
-	// Create and execute MsgTransferTokens to ensure proper event handling and validation
-	badgesMsgServer := NewMsgServerImpl(k)
-	msg := &badgestypes.MsgTransferTokens{
-		Creator:      recipientAddress,
-		CollectionId: collection.CollectionId,
-		Transfers: []*badgestypes.Transfer{
-			{
-				From:        recipientAddress,
-				ToAddresses: []string{toAddress},
-				Balances:    balancesToTransfer,
-			},
-		},
-	}
-
-	_, err = badgesMsgServer.TransferTokens(ctx, msg)
-	return err
+type SendManagerKeeper interface {
+	SendCoinWithAliasRouting(ctx sdk.Context, fromAddressAcc sdk.AccAddress, toAddressAcc sdk.AccAddress, coin *sdk.Coin) error
+	SendCoinsWithAliasRouting(ctx sdk.Context, fromAddressAcc sdk.AccAddress, toAddressAcc sdk.AccAddress, coins sdk.Coins) error
+	FundCommunityPoolWithAliasRouting(ctx sdk.Context, fromAddressAcc sdk.AccAddress, coins sdk.Coins) error
+	SpendFromCommunityPoolWithAliasRouting(ctx sdk.Context, toAddressAcc sdk.AccAddress, coins sdk.Coins) error
+	SendCoinsFromModuleToAccountWithAliasRouting(ctx sdk.Context, moduleName string, toAddressAcc sdk.AccAddress, coins sdk.Coins) error
+	SendCoinsFromAccountToModuleWithAliasRouting(ctx sdk.Context, fromAddressAcc sdk.AccAddress, moduleName string, coins sdk.Coins) error
+	GetBalanceWithAliasRouting(ctx sdk.Context, address sdk.AccAddress, denom string) (sdk.Coin, error)
 }
 ```
 
-<pre class="language-go"><code class="lang-go"><strong>// GetCorrespondingPath finds the CosmosCoinWrapperPath for a given denom
-</strong>func GetCorrespondingPath(collection *badgestypes.TokenCollection, denom string) (*badgestypes.CosmosCoinWrapperPath, error) {
-	baseDenom, err := ParseDenomPath(denom)
-	if err != nil {
-		return nil, err
-	}
+### How It Works
 
-	cosmosPaths := collection.CosmosCoinWrapperPaths
-	for _, path := range cosmosPaths {
-		if path.AllowOverrideWithAnyValidToken {
-			panic("") //advanced case not shown here
-		}
+#### Pattern Matching
 
-		if path.Denom == baseDenom {
-			return path, nil
-		}
-	}
+SendManager uses **prefix-based pattern matching** to route denoms. It checks each registered prefix against the denom and routes to the first matching handler:
 
-	return nil, fmt.Errorf("path not found for denom: %s", denom)
+```go
+// Example: denom = "badgeslp:1:utoken"
+func (k Keeper) getRouterForDenom(denom string) (types.AliasDenomRouter, bool) {
+    // Check registered prefixes in order (e.g., ["badgeslp:", "badges:"])
+    for _, prefix := range k.registeredPrefixes {
+        // Does "badgeslp:1:utoken" start with "badgeslp:"? Yes!
+        if strings.HasPrefix(denom, prefix) {
+            // Return the router registered for this prefix
+            return k.prefixToRouter[prefix], true
+        }
+    }
+    // No prefix matched - will use bank keeper for standard coins
+    return nil, false
 }
+```
 
-// GetBalancesToTransfer calculates the balances to transfer for a given denom and amount
-func GetBalancesToTransfer(collection *badgestypes.TokenCollection, denom string, amount sdkmath.Uint) ([]*badgestypes.Balance, error) {
-	path, err := GetCorrespondingPath(collection, denom)
-	if err != nil {
-		return nil, err
-	}
+**Examples**:
 
-	conversionRateBalances := badgestypes.DeepCopyBalances(path.Balances)
-	for _, balance := range conversionRateBalances {
-		balance.Amount = balance.Amount.Mul(amount)
-	}
+* `badgeslp:1:utoken` → matches `badgeslp:` prefix → routes to x/badges
+* `uatom` → no prefix match → routes to x/bank (standard Cosmos SDK coin)
 
-	return balancesToTransfer, nil
+#### Alias Denoms
+
+BitBadges format: `badgeslp:COLLECTION_ID:denom` (e.g., `badgeslp:1:utoken`). The integer amount converts to `Balances[]` via collection's `cosmosCoinWrapperPaths` field (where the conversion rate is defined). Note that this process has no wrapping involved. The conversion is simply an alias for the full `Balances[]` field for compatibility with other environments.
+
+#### Auto-Scan Mode
+
+All sends through SendManager use **auto-scan mode** (no prioritized approvals). The underlying transfer is executed via `MsgTransferTokens`:
+
+```go
+// From SendNativeTokensViaAliasDenom
+msg := &badgestypes.MsgTransferTokens{
+    Creator:      recipientAddress,
+    CollectionId: collection.CollectionId,
+    Transfers: []*badgestypes.Transfer{
+        {
+            From:        recipientAddress,
+            ToAddresses: []string{toAddress},
+            Balances:    balancesToTransfer,
+            // Note: No PrioritizedApprovals field - uses auto-scan mode
+        },
+    },
 }
+badgesMsgServer.TransferTokens(ctx, msg)
+```
 
-// CheckIsWrappedDenom checks if a denom is a wrapped badges denom
-func (k Keeper) CheckIsWrappedDenom(ctx sdk.Context, denom string) bool {
-	if !CheckStartsWithBadges(denom) {
-		return false // Not an alias
-	}
+#### User-Level Approvals
 
-	collection, err := k.ParseCollectionFromDenom(ctx, denom)
-	if err != nil {
-		return false
-	}
+SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before calling SendManager. Note: All x/badges transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
 
-	path, err := GetCorrespondingPath(collection, denom)
-	if err != nil {
-		return false
-	}
+This may be especially important for module addresses or special non-user addresses. They automatically inherit the defaults for the collection.
 
-	if path.AllowCosmosWrapping {
-		return false // Edge case: 
-	}
+```go
+// Example: Sometimes, you may need both pre and post approval updates to make stuff work and clean up.
+preUpdateApprovalsMsg := &badgestypes.MsgUpdateUserApprovals{ ... }
+badgesMsgServer.UpdateUserApprovals(ctx, preUpdateApprovalsMsg)
 
-	return true
+sendManagerKeeper.SendCoinsWithAliasRouting(ctx, from, to, coins)
+
+postUpdateApprovalsMsg := &badgestypes.MsgUpdateUserApprovals{ ... }
+badgesMsgServer.UpdateUserApprovals(ctx, postUpdateApprovalsMsg)
+```
+
+#### Routing Flow
+
+```go
+func (k Keeper) SendCoinsWithAliasRouting(ctx sdk.Context, from, to sdk.AccAddress, coins sdk.Coins) error {
+    for _, coin := range coins {
+        router, found := k.getRouterForDenom(coin.Denom)
+        if found {
+            // Alias denom - use custom router
+            amountUint := sdkmath.NewUintFromBigInt(coin.Amount.BigInt())
+            return router.SendNativeTokensViaAliasDenom(ctx, from.String(), to.String(), coin.Denom, amountUint)
+        }
+        // Standard coin - use bank keeper
+        return k.bankKeeper.SendCoins(ctx, from, to, sdk.NewCoins(coin))
+    }
 }
+```
 
-// ParseCollectionFromDenom parses a collection from a badges denom
-func (k Keeper) ParseCollectionFromDenom(ctx sdk.Context, denom string) (*badgestypes.TokenCollection, error) {
-	collectionId, err := ParseDenomCollectionId(denom)
-	if err != nil {
-		return nil, err
-	}
+### Usage
 
-	collection, found := k.GetCollectionFromStore(ctx, sdkmath.NewUint(collectionId))
-	if !found {
-		return nil, customhookstypes.WrapErr(&#x26;ctx, badgestypes.ErrInvalidCollectionID, "collection %s not found",
-			sdkmath.NewUint(collectionId).String())
-	}
+```go
+// Sending - works for both standard coins ("uatom") and alias denoms ("badgeslp:1:utoken")
+err := sendManagerKeeper.SendCoinsWithAliasRouting(ctx, from, to, coins)
 
-	return collection, nil
-}
-
-func CheckStartsWithBadges(denom string) bool {
-	return strings.HasPrefix(denom, "badgeslp:")
-}
-
-// GetPartsFromDenom parses a badges denom into its parts
-func GetPartsFromDenom(denom string) ([]string, error) {
-	if !CheckStartsWithBadges(denom) {
-		return nil, fmt.Errorf("invalid denom: %s", denom)
-	}
-
-	parts := strings.Split(denom, ":")
-	if len(parts) != 3 {
-		return nil, fmt.Errorf("invalid denom: %s", denom)
-	}
-	return parts, nil
-}
-
-// ParseDenomCollectionId extracts the collection ID from a badges denom
-func ParseDenomCollectionId(denom string) (uint64, error) {
-	parts, err := GetPartsFromDenom(denom)
-	if err != nil {
-		return 0, err
-	}
-
-	// this is equivalent to split(':')[1]
-	return strconv.ParseUint(parts[1], 10, 64)
-}
-
-// ParseDenomPath extracts the path from a badges denom
-func ParseDenomPath(denom string) (string, error) {
-	parts, err := GetPartsFromDenom(denom)
-	if err != nil {
-		return "", err
-	}
-	// this is equivalent to split(':')[2]
-	return parts[2], nil
-}
-</code></pre>
+// Querying - automatically routes to correct handler
+balance, err := sendManagerKeeper.GetBalanceWithAliasRouting(ctx, address, denom)
+```
 
 
 ## File: ./token-standard/type-definitions/README.md
