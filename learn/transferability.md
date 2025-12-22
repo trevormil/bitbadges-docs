@@ -6,11 +6,11 @@ Transferability in BitBadges is controlled through a hierarchical approval syste
 
 BitBadges supports three levels of transferability control:
 
-| Level          | Controlled By  | Use Case                               |
-| -------------- | -------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | Listings, delegation                   |
-| **Incoming**   | Recipient      | Bids, access control                   |
+| Level          | Controlled By  | Stored On              | Msg                                    | Use Case                               |
+| -------------- | -------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
+| **Incoming**   | Recipient      | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
@@ -19,6 +19,19 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 * Approvals define the rules for transfers on multiple levels.
 * Transfers execute if the approval rules defined allow it and sufficient balances.
 * Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+
+### Transfer Validation Process
+
+Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
+
+**Validation flow:**
+
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
+
+1. **Balance validation**: Sender has sufficient tokens
+2. **Collection approval**: At least one collection approval passes
+3. **User approvals**: Sender/recipient approvals pass (unless overridden)
+
 
 ### Collection Approvals
 
@@ -88,7 +101,7 @@ const mintApproval: CollectionApproval<bigint> = {
 
 ### Approval Criteria
 
-Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
+Approval criteria adds additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more. If criteria is not satisfied, the approval is not satisfied.
 
 ```typescript
 interface ApprovalCriteria<T extends bigint> {
@@ -107,9 +120,7 @@ See [Approval Criteria](../token-standard/learn/approval-criteria/) for all avai
 
 ### User-Level Approvals
 
-Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
-
-Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
+Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively). Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
 
 #### Outgoing Approvals
 
@@ -151,9 +162,9 @@ const incomingApproval: IncomingApproval<bigint> = {
 };
 ```
 
-### Auto-Approval Flags
+### User-Level Auto-Approval Flags
 
-We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true. 
 
 ```typescript
 interface UserBalanceStore<T extends bigint> {
@@ -185,19 +196,6 @@ When `autoApproveSelfInitiatedIncomingTransfers: true`, incoming transfers initi
 When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are automatically approved regardless of who initiates them.
 
 **Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
-
-#### Permission Control
-
-Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
-
-```typescript
-const userPermissions: UserPermissions<bigint> = {
-    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
-    // ... other permission fields
-};
-```
 
 ### Override Behavior
 
@@ -239,18 +237,6 @@ const collectionApproval: CollectionApproval<bigint> = {
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
 If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
-
-### Transfer Validation Process
-
-Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
-
-**Validation flow:**
-
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
-
-1. **Balance validation**: Sender has sufficient tokens
-2. **Collection approval**: At least one collection approval passes
-3. **User approvals**: Sender/recipient approvals pass (unless overridden)
 
 ### Break-Down Logic
 

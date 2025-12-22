@@ -2,6 +2,34 @@
 
 The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
 
+```typescript
+const transferMsg: MsgTransferTokens = {
+    from: 'Mint',
+    toAddresses: ['bb1...'],
+    balances: [
+        {
+            amount: 1n,
+            tokenIds: [{ start: 1n, end: 1n }],
+            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+        },
+    ],
+    // ... other fields
+}
+```
+
+```typescript
+const approval: CollectionApproval<bigint> = {
+    fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    // ... other fields
+    approvalCriteria: {
+        // ... other criteria
+        overridesFromOutgoingApprovals: true, // Required for Mint
+    },
+}
+```
+
 ### Manager Controls Minting Flow
 
 The **manager** of the collection controls minting by setting and updating collection transferability rules (`collectionApprovals`) and the updatability of such rules via permissions (`collectionPermissions.canUpdateCollectionApprovals`). The manager can:

@@ -190,7 +190,7 @@ The system automatically detects transfers involving the special address:
 -   Checks if `from` address matches the backed path address (unbacking)
 -   Triggers the appropriate conversion logic
 
-**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Note: The approval must be prioritized as this is a special context / environment. We also verify that the initiator is equal to the recipient / sender. There is no doing this on behalf of another user.
+**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Approvals of the special address are handled behind the scenes by the system. Note: The approval must be prioritized as this is a special context / environment. We also verify that the initiator is equal to the recipient / sender. There is no doing this on behalf of another user.
 
 ## Example: Backing Tokens
 
@@ -274,4 +274,4 @@ const unbackTokens: MsgTransferTokens = {
 | **Minting**       | No minting/burning (uses existing IBC) | Minting/burning of new denom |
 | **Denom Source**  | Existing IBC denom                     | Generated denom              |
 | **Configuration** | Collection invariant (immutable)       | Timeline-based (mutable)     |
-| **Mint Address**  | Disabled                               | Enabled                      |
+| **Standard Minting**  | Disabled                               | Enabled                      |

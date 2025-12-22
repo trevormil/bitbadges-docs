@@ -320,10 +320,6 @@ const userBalanceStore: UserBalanceStore<bigint> = {
 };
 ```
 
-These flags when true work seamlessly with auto-scan mode since they operate at the user level and don't require explicit approval selection.
-
-However, if you introduce `coinTransfers` or other disallowed logic (e.g. bids, listings, etc.), the approval becomes incompatible with auto-scan mode, and you must specify the approval explicitly.
-
 ## Examples
 
 ### Collection-Level Transferability
