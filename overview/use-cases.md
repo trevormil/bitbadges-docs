@@ -2,6 +2,8 @@
 
 BitBadges is a powerful platform that enables tokenization of virtually any asset, service, or concept. With its flexible protocol-level controls, multi-currency support, and extensive customization options, BitBadges supports a wide range of use cases across industries.
 
+Beyond tokenization / RWAs, BitBadges is very powerful as a Swiss-Army knife module for development. If you think about it, any use case in crypto is a tokenization use case in one form or another. We provide any primitive you may need in our module for any use case, not just tokenization.
+
 <figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
 
 ***
