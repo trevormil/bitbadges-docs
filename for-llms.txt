@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 15:48:52 UTC 2025
+Generated on Mon Dec 22 15:49:19 UTC 2025
 
 
 
@@ -1838,10 +1838,10 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
   * [Explore!](learn/pre-readings.md)
   * [Problems With Existing Standards](learn/problems-with-existing-standards.md)
   * [Design Decisions](learn/key-design-decisions.md)
+  * [Manager / Permissions](learn/permissions.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Transferability](learn/transferability.md)
   * [Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
-  * [Permissions](learn/permissions.md)
   * [Time-Dependent Accounting](learn/time-dependent-accounting.md)
 * [🧠 Concepts](x-badges/concepts/README.md)
   * [Address Lists](x-badges/concepts/address-lists.md)
