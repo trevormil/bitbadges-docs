@@ -19,6 +19,7 @@
     -   [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
     -   [Transferability / Approvals](learn/transferability.md)
     -   [Auto-Scan vs. Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
+    -   [Alias Compatibility](learn/alias-compatibility.md)
     -   [Collection Configuration](token-standard/learn/collection-setup-fields.md)
     -   [Approval Criteria](token-standard/learn/approval-criteria/README.md)
         -   [Address Checks](token-standard/learn/approval-criteria/address-checks.md)
