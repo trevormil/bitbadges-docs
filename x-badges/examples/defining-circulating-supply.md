@@ -102,12 +102,12 @@ const collectionPermissions = {
 
 ## Related Examples
 
--   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Lock all mint approvals
--   [Building Collection Approvals](./building-collection-approvals.md) - Create mint approvals
--   [Empty Approval Criteria](./empty-approval-criteria.md) - Unlimited mint template
+* [Freezing Mint Transferability](permissions/freezing-mint-transferability.md) - Lock all mint approvals
+* [Building Collection Approvals](building-collection-approvals.md) - Create mint approvals
+* [Empty Approval Criteria](empty-approval-criteria.md) - Unlimited mint template
 
 ## Related Concepts
 
--   [Total Supply](../concepts/total-supply.md) - Supply calculation mechanics
--   [Max Number of Transfers](../concepts/approval-criteria/max-number-of-transfers.md) - Transfer limits
--   [Permissions System](../concepts/permissions/README.md) - Permission controls
+* [Total Supply](/broken/pages/PV7aK6FnbshnT1ORXgiM) - Supply calculation mechanics
+* [Max Number of Transfers](../concepts/approval-criteria/max-number-of-transfers.md) - Transfer limits
+* [Permissions System](../concepts/permissions/) - Permission controls

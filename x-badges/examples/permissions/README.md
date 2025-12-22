@@ -4,10 +4,10 @@ This directory contains practical examples of different permission configuration
 
 ## Contents
 
--   [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
--   [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
--   [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approvals for specific token ID ranges
--   [Locking Valid Token IDs](locking-valid-token-ids.md) - Control valid token ID range updates
+* [Freezing Mint Transferability](freezing-mint-transferability.md) - Permanently freeze minting capabilities
+* [Locking Specific Approval ID](locking-specific-approval-id.md) - Lock specific approval IDs with granular control
+* [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approvals for specific token ID ranges
+* [Locking Valid Token IDs](locking-valid-token-ids.md) - Control valid token ID range updates
 
 ## Permission System Overview
 
@@ -19,13 +19,13 @@ BitBadges permissions follow a timeline-based system where:
 
 ## Common Patterns
 
--   **No Manager** - Set manager to empty string to disable all management
--   **Complete Control** - Empty permission arrays for full soft-enabled control
--   **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
--   **Time-Limited** - Use specific time ranges for temporary control
+* **No Manager** - Set manager to empty string to disable all management
+* **Complete Control** - Empty permission arrays for full soft-enabled control
+* **Locked Forever** - Use `permanentlyForbiddenTimes: FullTimeRanges`
+* **Time-Limited** - Use specific time ranges for temporary control
 
 ## Related Concepts
 
--   [Permission System](../../concepts/permissions/permission-system.md)
--   [Manager](../../concepts/manager.md)
--   [Timeline System](../../concepts/timeline-system.md)
+* [Permission System](../../concepts/permissions/permission-system.md)
+* [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
+* [Timeline System](../../../token-standard/concepts/core-structures/timeline-system.md)
