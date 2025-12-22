@@ -4,12 +4,12 @@ This tutorial walks you through setting up cosmos coin wrappers to bridge BitBad
 
 ## Prerequisites
 
-* Understanding of [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md)
+* Understanding of [Cosmos Wrapper Paths](/broken/pages/QmxEDk1kIqoymCdRaTfg)
 * Basic knowledge of BitBadges collections and approvals
 
 ## Step 1: Set Up Your Cosmos Denominations
 
-First, define your cosmos coin wrapper paths. For detailed information about available options, see [Cosmos Wrapper Paths](../concepts/cosmos-wrapper-paths.md).
+First, define your cosmos coin wrapper paths. For detailed information about available options, see [Cosmos Wrapper Paths](/broken/pages/QmxEDk1kIqoymCdRaTfg).
 
 ```typescript
 const cosmosCoinWrapperPaths = [ ... ];

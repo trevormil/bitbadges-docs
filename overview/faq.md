@@ -40,8 +40,8 @@ While our token standard and all state is scoped to the module, we allow you to 
 
 This is done by sending to / from a special wrapper address that is auto-generated. It is abstracted as a typical transfer in our standard. Thus, this opens up the possibilities to control who, when, how often wrapping is allowed.
 
-{% content-ref url="../x-badges/concepts/cosmos-wrapper-paths.md" %}
-[cosmos-wrapper-paths.md](../x-badges/concepts/cosmos-wrapper-paths.md)
+{% content-ref url="/broken/pages/QmxEDk1kIqoymCdRaTfg" %}
+[Broken link](/broken/pages/QmxEDk1kIqoymCdRaTfg)
 {% endcontent-ref %}
 
 ### **How does permissioned IBC wrapping work?**
