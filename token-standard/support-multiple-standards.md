@@ -72,7 +72,7 @@ badgesMsgServer.TransferTokens(ctx, msg)
 
 #### User-Level Approvals
 
-SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before calling SendManager. Note: All x/badges transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
+SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before / after calling SendManager. Note: All x/badges transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
 
 This may be especially important for module addresses or special non-user addresses. They automatically inherit the defaults for the collection.
 
@@ -85,6 +85,55 @@ sendManagerKeeper.SendCoinsWithAliasRouting(ctx, from, to, coins)
 
 postUpdateApprovalsMsg := &badgestypes.MsgUpdateUserApprovals{ ... }
 badgesMsgServer.UpdateUserApprovals(ctx, postUpdateApprovalsMsg)
+```
+
+**Example: Setting approvals before sending (from `FundCommunityPoolViaAliasDenom`)**
+
+For example, the community pool address (depending on the defaults) may not accept incoming approvals by default which is needed to transfer tokens to it in the x/badges module.
+
+```go
+func (k Keeper) FundCommunityPoolViaAliasDenom(
+    ctx sdk.Context,
+    fromAddress string,
+    toAddress string,
+    denom string,
+    amount sdkmath.Uint,
+) error {
+    collection, err := k.ParseCollectionFromDenom(ctx, denom)
+    if err != nil {
+        return err
+    }
+
+    // Set auto-approvals for recipient to accept incoming transfers
+    err = k.SetAllAutoApprovalFlagsForAddress(ctx, collection, toAddress)
+    if err != nil {
+        return err
+    }
+
+    // Now safe to send - recipient has auto-approvals set
+    return k.SendNativeTokensViaAliasDenom(ctx, fromAddress, toAddress, denom, amount)
+}
+
+// SetAllAutoApprovalFlagsForAddress sets all auto-approval flags for an address
+func (k Keeper) SetAllAutoApprovalFlagsForAddress(
+    ctx sdk.Context,
+    collection *badgestypes.TokenCollection,
+    address string,
+) error {
+    badgesMsgServer := NewMsgServerImpl(k)
+    updateApprovalsMsg := &badgestypes.MsgUpdateUserApprovals{
+        Creator:                               address,
+        CollectionId:                          collection.CollectionId,
+        UpdateAutoApproveAllIncomingTransfers: true,
+        AutoApproveAllIncomingTransfers:       true,
+        UpdateAutoApproveSelfInitiatedOutgoingTransfers: true,
+        AutoApproveSelfInitiatedOutgoingTransfers:       true,
+        UpdateAutoApproveSelfInitiatedIncomingTransfers: true,
+        AutoApproveSelfInitiatedIncomingTransfers:       true,
+    }
+    _, err := badgesMsgServer.UpdateUserApprovals(ctx, updateApprovalsMsg)
+    return err
+}
 ```
 
 #### Routing Flow
