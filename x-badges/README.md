@@ -6,11 +6,10 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Learn](../learn/README.md) - Core concepts and guides
+1. [Concepts ](../learn/)- Core data structures and business logic
 2. [Messages](messages/) - Transaction messages and handlers
 3. [Queries](queries/) - Query types and endpoints
-4. [Events](events.md) - Event emissions and tracking
-5. [Examples](examples/) - Common usage patterns and building blocks
+4. [Examples](examples/) - Common usage patterns and building blocks
 
 ## Main Features
 

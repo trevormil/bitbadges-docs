@@ -81,18 +81,3 @@ Trackers use IDs with format: `approvalId-trackerId` plus identifying details. A
 ### Best Practices - Creating / Updating / Deleting
 
 Trackers are increment-only and immutable. Never reuse tracker IDs with prior history when creating approvals that should start from scratch.
-
-### Extending Functionality
-
-For custom logic beyond native options:
-
-* Use CosmWASM smart contracts
-* Leverage Merkle challenges for commit-reveal mechanisms
-
-### Cross-Approval Logic
-
-Native interface doesn't support cross-approval logic (e.g., preventing double-dipping between approvals). Consider:
-
-* Workarounds and careful design
-* CosmWASM for advanced functionality
-* Contact us for recommendations

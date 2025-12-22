@@ -146,6 +146,23 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
+
+## User Permissions
+
+User permissions control what individual users can do with their own badges and transfer approvals. Unlike manager permissions which control collection-wide administrative actions, user permissions control user-specific actions like updating auto-approve settings and managing their own incoming/outgoing transfer approvals.
+
+These are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
+
+```typescript
+const userPermissions: UserPermissions<bigint> = {
+    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [],
+    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [],
+    canUpdateAutoApproveAllIncomingTransfers: [],
+    canUpdateOutgoingApprovals: [],
+    canUpdateIncomingApprovals: [],
+};
+```
+
 ## Permissions
 
 Permissions control which actions can be performed and when those actions can be executed. The manager executes administrative actions according to these permission rules.
@@ -182,6 +199,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     // ... other permission fields
 };
 ```
+
 
 ## First Match Policy
 
@@ -279,15 +297,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-## Important Notes
-
--   **First Match Policy**: Only the first matching permission is applied
--   **Default Allow**: Unspecified permissions are allowed by default
--   **Manager Required**: Collection permissions require a manager
--   **User Control**: User permissions typically remain empty for full control
--   **Brute Force**: Use maximum ranges to ensure complete coverage
--   **Order Matters**: Array order affects permission evaluation
--   **No Forbidden + Not Frozen**: There is no forbidden + not frozen state because theoretically, it could be updated to permitted at any time and executed (thus making it permitted)
 
 ## Permission Types
 

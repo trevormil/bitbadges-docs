@@ -1,2 +1,0 @@
-# 🪄 BitBadges x AI
-

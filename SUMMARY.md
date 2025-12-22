@@ -13,8 +13,6 @@
 * [📚 Overview](x-badges/README.md)
 * [🎓 Learn](learn/README.md)
   * [Explore!](learn/pre-readings.md)
-  * [Problems With Existing Standards](learn/problems-with-existing-standards.md)
-  * [Design Decisions](learn/key-design-decisions.md)
   * [Manager / Permissions](learn/permissions.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Transferability / Approvals](learn/transferability.md)
@@ -30,7 +28,6 @@
     * [Token Ownership](token-standard/learn/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](token-standard/learn/approval-criteria/dynamic-store-challenges.md)
     * [ETH Signature Challenges](token-standard/learn/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](token-standard/learn/approval-criteria/linking-trackers-advanced.md)
     * [Max Number of Transfers](token-standard/learn/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](token-standard/learn/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](token-standard/learn/approval-criteria/overrides.md)
@@ -82,15 +79,6 @@
   * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
   * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
   * [Params](x-badges/queries/params.md)
-* [⌨️ Type Definitions](token-standard/type-definitions/README.md)
-  * [Address Lists](token-standard/type-definitions/address-lists.md)
-  * [Balances](token-standard/type-definitions/balances.md)
-  * [Core Collection](token-standard/type-definitions/core-collection.md)
-  * [Dynamic Stores](token-standard/type-definitions/dynamic-stores.md)
-  * [Metadata](token-standard/type-definitions/metadata.md)
-  * [Permissions](token-standard/type-definitions/permissions.md)
-  * [Timelines](token-standard/type-definitions/timelines.md)
-  * [Transfers](token-standard/type-definitions/transfers.md)
 * [💡 Examples and Snippets](x-badges/examples/README.md)
   * [Base Collection Details](x-badges/examples/base-collection-details.md)
   * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
@@ -121,12 +109,12 @@
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
 * [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
+* [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/badges)
 
 ## ⌨️ For Developers
 
@@ -274,11 +262,6 @@
       * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
       * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
     * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
-* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
-  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
-    * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
-    * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
-    * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
 
 ## x/gamm
 

@@ -2,15 +2,19 @@
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
 
-### Three Transferability Levels
+## Three Transferability Levels
 
 BitBadges supports three levels of transferability control:
 
-| Level          | Controlled By  | Use Case                               |
-| -------------- | -------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | Listings, delegation                   |
-| **Incoming**   | Recipient      | Bids, access control                   |
+<div style="overflow-x: auto;">
+
+| Level          | Controlled By  | Approval Level | Approver Address | Stored On              | Msg                                    | Use Case                               |
+| -------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | collection     | ""                | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | outgoing       | bb1...            | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
+| **Incoming**   | Recipient      | incoming       | bb1...            | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+
+</div>
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
@@ -20,13 +24,24 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 * Transfers execute if the approval rules defined allow it and sufficient balances.
 * Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
 
-### Collection Approvals
+### Transfer Validation Process
+
+Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
+
+**Validation flow:**
+
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
+
+## Collection Approvals
 
 Collection approvals define transferability rules for the entire collection on a global level. These rules apply to both minting and post-minting transfers. These let the issuer / manager control global compliance and transferability, such as freezability, revocation, and more.
 
 **All transfers must satisfy the collection approvals.**
 
+**Important:** Approval IDs are unique identifiers and must not collide with other collection approvals.
+
 ```typescript
+// Stored on TokenCollection.collectionApprovals[] (CollectionApproval<T>[])
 interface CollectionApproval<T extends bigint> {
     // Core Fields - Define Who? When? What?
     toListId: string; // Who can receive?
@@ -35,7 +50,7 @@ interface CollectionApproval<T extends bigint> {
     transferTimes: UintRange<T>[]; // When can transfer happen?
     tokenIds: UintRange<T>[]; // Which token IDs?
     ownershipTimes: UintRange<T>[]; // Which ownership times?
-    approvalId: string; // Unique identifier
+    approvalId: string; // Unique identifier - must not collide with other approvals on the same level
     version: T; // Version control (incremented on each update)
 
     // Optional Fields
@@ -45,7 +60,7 @@ interface CollectionApproval<T extends bigint> {
 }
 ```
 
-## The Six Core Fields
+### The Six Core Fields
 
 Every approval defines **Who? When? What?** through these six core fields:
 
@@ -88,28 +103,69 @@ const mintApproval: CollectionApproval<bigint> = {
 
 ### Approval Criteria
 
-Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
+Approval criteria adds additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, how often, and more. If criteria is not satisfied, the approval is not satisfied.
 
 ```typescript
 interface ApprovalCriteria<T extends bigint> {
-    maxNumTransfers?: T; // Limit number of transfers
+    // Transfer limits and amounts
+    maxNumTransfers?: MaxNumTransfers<T>; // Limit number of transfers
     approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
-    coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers
+    predeterminedBalances?: PredeterminedBalances<T>; // Exact balance requirements
+    
+    // Automatic actions
+    coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers (BADGE or sdk.Coin)
+    userRoyalties?: UserRoyalties<T>; // Percentage-based transfer fees
+    
+    // Challenge requirements
     merkleChallenges?: MerkleChallenge<T>[]; // Require merkle proofs
     mustOwnTokens?: MustOwnToken<T>[]; // Require owning specific tokens
+    dynamicStoreChallenges?: DynamicStoreChallenge<T>[]; // On-chain numeric checks
+    ethSignatureChallenges?: ETHSignatureChallenge<T>[]; // Ethereum signature requirements
+    
+    // Address relationship requirements
+    requireToEqualsInitiatedBy?: boolean; // to == initiatedBy
+    requireFromEqualsInitiatedBy?: boolean; // from == initiatedBy
+    requireToDoesNotEqualInitiatedBy?: boolean; // to != initiatedBy
+    requireFromDoesNotEqualInitiatedBy?: boolean; // from != initiatedBy
+    
+    // Address type checks
+    senderChecks?: AddressChecks; // Address checks for sender
+    recipientChecks?: AddressChecks; // Address checks for recipient
+    initiatorChecks?: AddressChecks; // Address checks for initiator
+    
+    // Overrides (collection-level only)
     overridesFromOutgoingApprovals?: boolean; // Override sender approvals
     overridesToIncomingApprovals?: boolean; // Override recipient approvals
-    // ... more fields
+    
+    // Time-based restrictions
+    altTimeChecks?: AltTimeChecks; // Alternative time checks (offline hours/days)
+    
+    // Approval behavior
+    autoDeletionOptions?: AutoDeletionOptions; // Auto-delete after use
+    mustPrioritize?: boolean; // Require explicit prioritization
 }
 ```
 
 See [Approval Criteria](../token-standard/learn/approval-criteria/) for all available criteria.
 
-### User-Level Approvals
+## User-Level Approvals
 
-Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
+Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively and no override logic). Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
 
-Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
+Stored on UserBalanceStore.outgoingApprovals[] (OutgoingApproval<T>[]) and UserBalanceStore.incomingApprovals[] (IncomingApproval<T>[]).
+
+```typescript
+interface UserBalanceStore<T extends bigint> {
+    balances: Balance<T>[];
+    outgoingApprovals: OutgoingApproval<T>[];
+    incomingApprovals: IncomingApproval<T>[];
+    autoApproveSelfInitiatedOutgoingTransfers: boolean;
+    autoApproveSelfInitiatedIncomingTransfers: boolean;
+    autoApproveAllIncomingTransfers: boolean;
+    userPermissions: UserPermissions<T>;
+    // ... other fields
+}
+```
 
 #### Outgoing Approvals
 
@@ -151,22 +207,9 @@ const incomingApproval: IncomingApproval<bigint> = {
 };
 ```
 
-### Auto-Approval Flags
+### User-Level Auto-Approval Flags
 
-We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
-
-```typescript
-interface UserBalanceStore<T extends bigint> {
-    balances: Balance<T>[];
-    outgoingApprovals: OutgoingApproval<T>[];
-    incomingApprovals: IncomingApproval<T>[];
-    autoApproveSelfInitiatedOutgoingTransfers: boolean;
-    autoApproveSelfInitiatedIncomingTransfers: boolean;
-    autoApproveAllIncomingTransfers: boolean;
-    userPermissions: UserPermissions<T>;
-    // ... other fields
-}
-```
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true. 
 
 #### Auto-Approve Self-Initiated Outgoing Transfers
 
@@ -186,20 +229,7 @@ When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are aut
 
 **Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
 
-#### Permission Control
-
-Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
-
-```typescript
-const userPermissions: UserPermissions<bigint> = {
-    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
-    canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
-    // ... other permission fields
-};
-```
-
-### Override Behavior
+## Override Behavior
 
 Collection approvals can override user-level approvals for administrative controls like freezing, revocation, or forced transfers. This is done via the `approvalCriteria` field and only available on the collection approval criteria interface.
 
@@ -207,17 +237,25 @@ If set to true, we do NOT check the corresponding user-level approvals for the s
 
 ```typescript
 const collectionApproval: CollectionApproval<bigint> = {
-    fromListId: '!Mint',
-    toListId: 'All',
-    initiatedByListId: 'All',
-    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-    tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-    approvalId: 'override-approval',
-    version: 0n,
     approvalCriteria: {
         overridesFromOutgoingApprovals: true, // Skip sender approvals
         overridesToIncomingApprovals: true, // Skip recipient approvals
+        // ... other criteria
+    },
+    // ... other fields
+};
+```
+
+#### Mint Address Overrides
+
+Because the Mint address cannot control its own user-level approvals, it must always override the sender's outgoing approvals to properly work.
+
+```typescript
+const mintApproval: CollectionApproval<bigint> = {
+    fromListId: 'Mint',
+    // ... other fields
+    approvalCriteria: {
+        overridesFromOutgoingApprovals: true, // Required for Mint
         // ... other criteria
     },
 };
@@ -240,19 +278,7 @@ const collectionApproval: CollectionApproval<bigint> = {
 
 If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
 
-### Transfer Validation Process
-
-Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
-
-**Validation flow:**
-
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
-
-1. **Balance validation**: Sender has sufficient tokens
-2. **Collection approval**: At least one collection approval passes
-3. **User approvals**: Sender/recipient approvals pass (unless overridden)
-
-### Break-Down Logic
+## Break-Down Logic
 
 The system can break down transfers and approvals into partial matches to make transfers succeed. It deducts as much as possible from each approval as it iterates.
 

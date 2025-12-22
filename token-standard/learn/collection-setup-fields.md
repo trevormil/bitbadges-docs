@@ -97,9 +97,9 @@ const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
 
 **Key points:**
 
-* Set during collection creation or via `MsgUpdateCollection`
-* Controlled by `canUpdateValidTokenIds` permission
-* Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
+-   Set during collection creation or via `MsgUpdateCollection`
+-   Controlled by `canUpdateValidTokenIds` permission
+-   Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
 
 ## Standards
 
@@ -116,11 +116,11 @@ const standardsTimeline: StandardsTimeline<bigint>[] = [
 
 **BitBadges Site Standards:**
 
-* **Tradable**: Enables trading interface, orderbook tracking, and marketplace features
-* **NFT**: Expects supply = 1 per token ID with full ownership times
-* **Cosmos Wrappable**: Can be wrapped into Cosmos SDK coin denominations
-* **Subscriptions**: Designed for recurring content delivery and subscription systems
-* **Quests**: Achievement-based systems and quest completion tracking
+-   **Tradable**: Enables trading interface, orderbook tracking, and marketplace features
+-   **NFT**: Expects supply = 1 per token ID with full ownership times
+-   **Cosmos Wrappable**: Can be wrapped into Cosmos SDK coin denominations
+-   **Subscriptions**: Designed for recurring content delivery and subscription systems
+-   **Quests**: Achievement-based systems and quest completion tracking
 
 For more information on compatibility with the BitBadges site, please reach out.
 
@@ -175,9 +175,9 @@ const tokenMetadataTimeline: TokenMetadataTimeline<bigint>[] = [
 
 **Key Features:**
 
-* **Dynamic Token ID Replacement**: URI `{id}` placeholder is replaced with actual token ID
-* **First-Match Logic**: Entries evaluated in order; first matching entry for a token ID is used, subsequent entries are ignored.
-* **Permission Control**: Updates controlled by `canUpdateTokenMetadata` permission
+-   **Dynamic Token ID Replacement**: URI `{id}` placeholder is replaced with actual token ID
+-   **First-Match Logic**: Entries evaluated in order; first matching entry for a token ID is used, subsequent entries are ignored.
+-   **Permission Control**: Updates controlled by `canUpdateTokenMetadata` permission
 
 ## Custom Data
 
@@ -196,10 +196,10 @@ const customDataTimeline: CustomDataTimeline<bigint>[] = [
 
 **Where Custom Data Appears:**
 
-* Collection-level: `customDataTimeline`
-* Token metadata: `customData` within token metadata structures
-* Address lists: `customData` for list-specific information
-* Messages: Various transaction messages include custom data fields
+-   Collection-level: `customDataTimeline`
+-   Token metadata: `customData` within token metadata structures
+-   Address lists: `customData` for list-specific information
+-   Messages: Various transaction messages include custom data fields
 
 **Permission Control:** Updates controlled by `canUpdateCustomData` permission.
 
@@ -209,9 +209,9 @@ const customDataTimeline: CustomDataTimeline<bigint>[] = [
 
 This is not often used but can be useful for certain use cases:
 
-* Blocking incoming transfers by default (enforcing opt-in only restrictions)
-* Default starting balances for all users
-* Default approval settings for all users
+-   Blocking incoming transfers by default (enforcing opt-in only restrictions)
+-   Default starting balances for all users
+-   Default approval settings for all users
 
 ```typescript
 const defaultBalances: UserBalanceStore<bigint> = {
@@ -229,13 +229,13 @@ const defaultBalances: UserBalanceStore<bigint> = {
 
 **Important Limitations:**
 
-* **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../../x-badges/learn/auto-scan-and-prioritized-approvals.md) for more information.
+-   **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../../x-badges/learn/auto-scan-and-prioritized-approvals.md) for more information.
 
 **Key points:**
 
-* Creation-only field—set once during collection creation
-* Establishes baseline behavior for all new users
-* Users can customize their own approval settings after initialization
+-   Creation-only field—set once during collection creation
+-   Establishes baseline behavior for all new users
+-   Users can customize their own approval settings after initialization
 
 ## IsArchived Timeline
 
@@ -245,8 +245,8 @@ This is a collection-level option that can be used to temporarily or permanently
 
 Note that there are also other ways to implement halting logic which may be better suited for your use case.
 
-* Chain-level x/circuit breakers
-* Dynamic stores / token ownership requirements that can be controlled by another entity
+-   Chain-level x/circuit breakers
+-   Dynamic stores / token ownership requirements that can be controlled by another entity
 
 ```typescript
 const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
@@ -259,8 +259,8 @@ const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
 
 **Transaction Behavior:**
 
-* **When archived**: All transactions fail (no updates, transfers, or changes allowed). Read operations continue. Only unarchiving transactions can succeed.
-* **When unarchived**: Normal operations resume. All collection data remains intact. Standard permission checks apply.
+-   **When archived**: All transactions fail (no updates, transfers, or changes allowed). Read operations continue. Only unarchiving transactions can succeed.
+-   **When unarchived**: Normal operations resume. All collection data remains intact. Standard permission checks apply.
 
 **Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchivedTimeline` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
 
@@ -282,33 +282,33 @@ const invariants: CollectionInvariants<bigint> = {
 
 **noCustomOwnershipTimes**
 
-* Enforces all ownership times must be full ranges `[{ start: 1n, end: 18446744073709551615n }]` for all time-dependent structures - balances, approvals, etc.
-* Prevents time-based restrictions on token ownership
-* Affects collection approvals, user approvals, and transfer balances
-* Typically recommended to be set to true if you do not need such functionality.
+-   Enforces all ownership times must be full ranges `[{ start: 1n, end: 18446744073709551615n }]` for all time-dependent structures - balances, approvals, etc.
+-   Prevents time-based restrictions on token ownership
+-   Affects collection approvals, user approvals, and transfer balances
+-   Typically recommended to be set to true if you do not need such functionality.
 
 **maxSupplyPerId**
 
-* Maximum supply per token ID (string-based uint64)
-* Prevents any balance amount from exceeding the specified maximum
-* Zero value means no enforcement
-* Sanity check to enforce a minting cap. Should NOT replace proper approval design.
+-   Maximum supply per token ID (string-based uint64)
+-   Prevents any balance amount from exceeding the specified maximum
+-   Zero value means no enforcement
+-   Sanity check to enforce a minting cap. Should NOT replace proper approval design.
 
 **cosmosCoinBackedPath**
 
-* IBC backed (sdk.coin) path for the collection
-* Only one path allowed per collection
-* See [IBC Backed Minting Invariants](../../learn/ibc-backed-minting.md) for details
+-   IBC backed (sdk.coin) path for the collection
+-   Only one path allowed per collection
+-   See [IBC Backed Minting Invariants](../../learn/ibc-backed-minting.md) for details
 
 **noForcefulPostMintTransfers**
 
-* Disallows collection approvals with `overridesFromOutgoingApprovals` or `overridesToIncomingApprovals` set to `true` (excluding the Mint address which is exempt)
-* Prevents forceful transfers that bypass user-level approvals
-* Easy way for you to enforce that there will never be any forceful transfers that bypass user-level approvals ever in your collection.
+-   Disallows collection approvals with `overridesFromOutgoingApprovals` or `overridesToIncomingApprovals` set to `true` (excluding the Mint address which is exempt)
+-   Prevents forceful transfers that bypass user-level approvals
+-   Easy way for you to enforce that there will never be any forceful transfers that bypass user-level approvals ever in your collection.
 
 **disablePoolCreation**
 
-* Prevents creation of liquidity pools using assets from this collection in our gamm module.
-* When enabled, pool creation attempts will fail
+-   Prevents creation of liquidity pools using assets from this collection in our gamm module.
+-   When enabled, pool creation attempts will fail
 
 **Important:** Invariants can only be set during collection creation and cannot be updated or removed afterward.
