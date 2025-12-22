@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 15:12:55 UTC 2025
+Generated on Mon Dec 22 15:19:05 UTC 2025
 
 
 
@@ -1835,14 +1835,14 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 -   [📚 Overview](x-badges/README.md)
 -   [🎓 Learn](learn/README.md)
-    -   [📔 Pre-Readings](learn/pre-readings.md)
-    -   [💰 Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
-    -   [🔄 Transferability](learn/transferability.md)
-    -   [🔍 Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
-    -   [⚠️ Problems With Existing Standards](learn/problems-with-existing-standards.md)
-    -   [🎯 Key Design Decisions](learn/key-design-decisions.md)
-    -   [🔐 Permissions](learn/permissions.md)
-    -   [⏰ Time-Dependent Accounting](learn/time-dependent-accounting.md)
+    -   [Explore!](learn/pre-readings.md)
+    -   [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
+    -   [Transferability](learn/transferability.md)
+    -   [Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
+    -   [Problems With Existing Standards](learn/problems-with-existing-standards.md)
+    -   [Key Design Decisions](learn/key-design-decisions.md)
+    -   [Permissions](learn/permissions.md)
+    -   [Time-Dependent Accounting](learn/time-dependent-accounting.md)
 -   [🧠 Concepts](x-badges/concepts/README.md)
     -   [Address Lists](x-badges/concepts/address-lists.md)
     -   [Archived Collections](x-badges/concepts/archived-collections.md)
@@ -2223,12 +2223,11 @@ const tokenIds: UintRange[] = [
 
 ### Frontmatter
 
-Always include frontmatter for GitBook:
+**Do not include descriptions in frontmatter.** GitBook automatically generates descriptions from page titles and content.
 
 ```markdown
 ---
-description: >-
-  Brief description of the page content (max 160 characters)
+# No description field needed
 ---
 ````
 
@@ -9747,18 +9746,9 @@ Does not check natively :x:
 
 ## File: ./learn/README.md
 
----
-description: >-
-    Learn BitBadges: Getting started guides, prerequisites, and fundamental concepts
----
 
 
 ## File: ./learn/auto-scan-and-prioritized-approvals.md
-
----
-description: >-
-    Auto-scan mode vs prioritized approvals: how the system selects approvals and versioning control
----
 
 The transfer approval system operates in two modes: **auto-scan** (default) and **prioritized approvals**. When a transfer is submitted without explicitly prioritizing specific approvals, the system operates in **auto-scan mode** and automatically searches through available approvals to find a match.
 
@@ -10151,11 +10141,6 @@ See [Auto-Scan Mode](../x-badges/concepts/auto-scan-mode.md) and [Transferabilit
 
 ## File: ./learn/key-design-decisions.md
 
----
-description: >-
-    Key design decisions behind BitBadges: universality, no-code approach, ever-evolving, and IBC compatibility
----
-
 ## Universality
 
 Our token standard is universal and feature-rich enough for any use case. It can be used for NFTs, fungible tokens, subscriptions, quests, credentials, real-world assets, complex regulatory compliance, or anything you can think of. The problem with existing standards is they are too limited for 95% of real-world applications. One standard to rule them all.
@@ -10193,11 +10178,6 @@ While tokens are siloed to the module, we support IBC / ICS20 in a variet of way
 
 ## File: ./learn/minting-and-circulating-supply.md
 
----
-description: >-
-    Mint address and circulating supply: how token creation works and how supply is controlled
----
-
 ## Mint Address
 
 The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
@@ -10209,7 +10189,7 @@ The **manager** of the collection controls minting by setting and updating colle
 -   Create, edit, or remove mint approvals (approvals where `fromListId: 'Mint'`) that allow specific minting patterns, according to the updatability permissions set (`canUpdateCollectionApprovals`)
 -   Set the updatability permissions to lock the future updatability of mint approvals (locking, enabling, soft-enabling, etc.). This is flexible and allows fine-grained patterns like locking for specific times, to specific addresses, etc.
 
-**Important distinction:** Approvals define what transfers are **allowed**, but minting only occurs on **executed transfers**. Approvals are permission rules. Transfers execute those rules and create tokens.
+**Important distinction:** Approvals define what transfers are **allowed**, but minting only occurs on **executed transfers**. Approvals are transferability rules. Transfers execute dependent on those rules. Permissions control the updatability of approvals.
 
 ```typescript
 // Manager sets initial mint approval
@@ -10365,11 +10345,6 @@ The Mint Escrow Address is a generated `bb1` address that holds Cosmos native fu
 
 ## File: ./learn/permissions.md
 
----
-description: >-
-    Fine-grained permissions system for token collections: manager controls and administrative actions
----
-
 ## Manager
 
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
@@ -10524,49 +10499,22 @@ See [Permissions](../x-badges/concepts/permissions/README.md) for detailed permi
 
 ## File: ./learn/pre-readings.md
 
----
-description: >-
-    Essential prerequisites before diving into BitBadges technical documentation
----
+### Explore the BitBadges Platform
 
-Before diving into technical details, complete these prerequisites:
-
-### 1. Explore the BitBadges Platform
-
-Familiarize yourself with the platform by exploring [bitbadges.io](https://bitbadges.io):
+Familiarize yourself with the platform by exploring [bitbadges.io](https://bitbadges.io). We always recommend that the best way to learn is just go and try stuff out first:
 
 -   Review the landing and explore pages
 -   Complete the collection creation flow
 -   Examine transaction JSONs by clicking "Show Tx" at the end of different creation flows
 
+Everything is no-code and plug-and-play by default. You may have all you need directly in-site!
+
 <figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
 
-### 2. Understand Minting and Transferability
-
-Understanding how tokens are created and transferred is essential:
-
--   [Minting and Circulating Supply](./minting-and-circulating-supply.md) - How token creation works
--   [Transferability](./transferability.md) - How transfers and approvals work
-
-## Quick Links
-
-| Need                  | Resource                                                         |
-| --------------------- | ---------------------------------------------------------------- |
-| **SDK Documentation** | [BitBadges SDK](../for-developers/bitbadges-sdk/overview.md)     |
-| **API Reference**     | [BitBadges API](../for-developers/bitbadges-api/api.md)          |
-| **Blockchain Module** | [x/badges Overview](../x-badges/README.md)                       |
-| **Type Definitions**  | [Type Definitions](../token-standard/type-definitions/README.md) |
-| **Examples**          | [x/badges Examples](../x-badges/examples/README.md)              |
-
 
 ## File: ./learn/problems-with-existing-standards.md
-
----
-description: >-
-    Why existing token standards (ERC/CW/ICS-20/721) are flawed and need a complete overhaul
----
 
 Existing tokenization standards (ERC/CW/ICS-20/721) are good for many use cases, but the system is **flawed from the ground up**.
 
@@ -10588,11 +10536,6 @@ Existing tokenization standards (ERC/CW/ICS-20/721) are good for many use cases,
 
 
 ## File: ./learn/time-dependent-accounting.md
-
----
-description: >-
-    Time-dependent approvals: gate token transfers with time-based restrictions for subscriptions, unlocks, and vesting
----
 
 BitBadges supports time-dependent approvals through the `transferTimes` field, allowing you to gate the flow of tokens based on time. This enables time-dependent functionality at scale, such as subscriptions, unlocks, and vesting.
 
@@ -10679,11 +10622,6 @@ Each approval unlocks a portion of tokens at different times, creating a gradual
 
 
 ## File: ./learn/transferability.md
-
----
-description: >-
-    How transferability and approvals work: collection approvals, user-level controls, and validation
----
 
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
 
