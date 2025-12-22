@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 13:14:04 UTC 2025
+Generated on Mon Dec 22 15:10:31 UTC 2025
 
 
 
@@ -1825,326 +1825,920 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
 
 ## Overview
 
-* [👋 BitBadges Overview](README.md)
-* [🎨 Use Cases](overview/use-cases.md)
-* [🪙 BADGE](overview/badge.md)
-* [🔗 Official Links and Resources](overview/official-links.md)
-* [🤝 Brand Guidelines](overview/link-sharing.md)
+-   [👋 BitBadges Overview](README.md)
+-   [🎨 Use Cases](overview/use-cases.md)
+-   [🪙 BADGE](overview/badge.md)
+-   [🔗 Official Links and Resources](overview/official-links.md)
+-   [🤝 Brand Guidelines](overview/link-sharing.md)
 
 ## 🏗️ Token Standard
 
-* [📚 Overview](x-badges/README.md)
-* [📔 Pre-Readings](token-standard/pre-readings.md)
-* [🪄 The BitBadges Standard](overview/what-is-bitbadges.md)
-* [🧠 Concepts](x-badges/concepts/README.md)
-  * [Address Lists](x-badges/concepts/address-lists.md)
-  * [Archived Collections](x-badges/concepts/archived-collections.md)
-  * [Collections](x-badges/concepts/badge-collections.md)
-  * [Balances](x-badges/concepts/balance-system.md)
-  * [Collection Invariants](x-badges/concepts/collection-invariants.md)
-  * [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
-  * [Custom Data](x-badges/concepts/custom-data.md)
-  * [Default Balances](x-badges/concepts/default-balances.md)
-  * [Manager](x-badges/concepts/manager.md)
-  * [Metadata](x-badges/concepts/metadata.md)
-  * [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
-  * [Standards](x-badges/concepts/standards.md)
-  * [Different Time Fields](x-badges/concepts/time-fields.md)
-  * [Timeline System](x-badges/concepts/timeline-system.md)
-  * [Total Supply](x-badges/concepts/total-supply.md)
-  * [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
-  * [Auto-Scan Mode](x-badges/concepts/auto-scan-mode.md)
-  * [UintRanges](x-badges/concepts/uintrange.md)
-  * [Valid Token IDs](x-badges/concepts/valid-token-ids.md)
-  * [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
-    * [Address Checks](x-badges/concepts/approval-criteria/address-checks.md)
-    * [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
-    * [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
-    * [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
-    * [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
-    * [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
-    * [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
-    * [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
-    * [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
-    * [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
-    * [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
-    * [Requires](x-badges/concepts/approval-criteria/requires.md)
-    * [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
-    * [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
-    * [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
-  * [Permissions](x-badges/concepts/permissions/README.md)
-    * [Overview](x-badges/concepts/permissions/overview.md)
-    * [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
-    * [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
-    * [Token ID Action Permissions](token-standard/concepts/permissions/token-id-action-permissions.md)
-    * [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
-  * [Protocols](x-badges/concepts/protocols/README.md)
-    * [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
-    * [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
-    * [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
-* [📨 Messages](x-badges/messages/README.md)
-  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
-  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
-  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
-  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
-  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
-  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-  * [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
-  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
-  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
-  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
-  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
-  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
-  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
-  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
-  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
-  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-  * [MsgSetValidTokenIds](x-badges/messages/msg-set-valid-token-ids.md)
-  * [MsgTransferTokens](x-badges/messages/msg-transfer-tokens.md)
-  * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
-  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
-  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [🔍 Queries](x-badges/queries/README.md)
-  * [Node API](https://lcd.bitbadges.io/)
-  * [GetAddressList](x-badges/queries/get-address-list.md)
-  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
-  * [GetBalance](x-badges/queries/get-balance.md)
-  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
-  * [GetCollection](x-badges/queries/get-collection.md)
-  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
-  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
-  * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
-  * [Params](x-badges/queries/params.md)
-* [⌨️ Type Definitions](token-standard/type-definitions/README.md)
-  * [Address Lists](token-standard/type-definitions/address-lists.md)
-  * [Balances](token-standard/type-definitions/balances.md)
-  * [Core Collection](token-standard/type-definitions/core-collection.md)
-  * [Dynamic Stores](token-standard/type-definitions/dynamic-stores.md)
-  * [Metadata](token-standard/type-definitions/metadata.md)
-  * [Permissions](token-standard/type-definitions/permissions.md)
-  * [Timelines](token-standard/type-definitions/timelines.md)
-  * [Transfers](token-standard/type-definitions/transfers.md)
-* [💡 Examples and Snippets](x-badges/examples/README.md)
-  * [Base Collection Details](x-badges/examples/base-collection-details.md)
-  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
-  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
-  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
-  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
-  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
-  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
-  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
-  * [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
-  * [Approvals](token-standard/examples/approvals/README.md)
-    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
-    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
-    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
-    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
-    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
-  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
-    * [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
-    * [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
-  * [Permission Examples](x-badges/examples/permissions/README.md)
-    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
-    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-token-ids.md)
-    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-token-ids.md)
-  * [Transaction Examples](x-badges/examples/txs/README.md)
-    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
-      * [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
-      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
-* [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
-  * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
-  * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
-* [❓ FAQ](overview/faq.md)
-* [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
+-   [📚 Overview](x-badges/README.md)
+-   [🎓 Learn](learn/README.md)
+    -   [📔 Pre-Readings](learn/pre-readings.md)
+    -   [💰 Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
+    -   [🔄 Transferability](learn/transferability.md)
+    -   [🔍 Auto-Scan and Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
+    -   [⚠️ Problems With Existing Standards](learn/problems-with-existing-standards.md)
+    -   [🎯 Key Design Decisions](learn/key-design-decisions.md)
+    -   [🔐 Permissions](learn/permissions.md)
+    -   [⏰ Time-Dependent Accounting](learn/time-dependent-accounting.md)
+-   [🧠 Concepts](x-badges/concepts/README.md)
+    -   [Address Lists](x-badges/concepts/address-lists.md)
+    -   [Archived Collections](x-badges/concepts/archived-collections.md)
+    -   [Collections](x-badges/concepts/badge-collections.md)
+    -   [Balances](x-badges/concepts/balance-system.md)
+    -   [Collection Invariants](x-badges/concepts/collection-invariants.md)
+    -   [Cosmos Wrapper Paths](x-badges/concepts/cosmos-wrapper-paths.md)
+    -   [Custom Data](x-badges/concepts/custom-data.md)
+    -   [Default Balances](x-badges/concepts/default-balances.md)
+    -   [Manager](x-badges/concepts/manager.md)
+    -   [Metadata](x-badges/concepts/metadata.md)
+    -   [Mint Escrow Address](x-badges/concepts/mint-escrow-address.md)
+    -   [Standards](x-badges/concepts/standards.md)
+    -   [Different Time Fields](x-badges/concepts/time-fields.md)
+    -   [Timeline System](x-badges/concepts/timeline-system.md)
+    -   [Total Supply](x-badges/concepts/total-supply.md)
+    -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
+    -   [Auto-Scan Mode](x-badges/concepts/auto-scan-mode.md)
+    -   [UintRanges](x-badges/concepts/uintrange.md)
+    -   [Valid Token IDs](x-badges/concepts/valid-token-ids.md)
+    -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
+        -   [Address Checks](x-badges/concepts/approval-criteria/address-checks.md)
+        -   [Approval Trackers](x-badges/concepts/approval-criteria/approval-trackers.md)
+        -   [Auto-Deletion Options](x-badges/concepts/approval-criteria/auto-deletion-options.md)
+        -   [Token Ownership](x-badges/concepts/approval-criteria/badge-ownership.md)
+        -   [Dynamic Store Challenges](x-badges/concepts/approval-criteria/dynamic-store-challenges.md)
+        -   [ETH Signature Challenges](x-badges/concepts/approval-criteria/eth-signature-challenges.md)
+        -   [Extending Approvals (Advanced)](x-badges/concepts/approval-criteria/linking-trackers-advanced.md)
+        -   [Max Number of Transfers](x-badges/concepts/approval-criteria/max-number-of-transfers.md)
+        -   [Merkle Challenges](x-badges/concepts/approval-criteria/merkle-challenges.md)
+        -   [Override User Level Approvals](x-badges/concepts/approval-criteria/overrides.md)
+        -   [Predetermined Balances](x-badges/concepts/approval-criteria/predetermined-balances.md)
+        -   [Requires](x-badges/concepts/approval-criteria/requires.md)
+        -   [Tallied Approval Amounts](x-badges/concepts/approval-criteria/tallied-approval-amounts.md)
+        -   [Coin Transfers](x-badges/concepts/approval-criteria/usdbadge-transfers.md)
+        -   [User Royalties](x-badges/concepts/approval-criteria/user-royalties.md)
+    -   [Permissions](x-badges/concepts/permissions/README.md)
+        -   [Overview](x-badges/concepts/permissions/overview.md)
+        -   [Action Permissions](x-badges/concepts/permissions/action-permissions.md)
+        -   [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
+        -   [Token ID Action Permissions](token-standard/concepts/permissions/token-id-action-permissions.md)
+        -   [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
+    -   [Protocols](x-badges/concepts/protocols/README.md)
+        -   [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
+        -   [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
+        -   [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
+-   [📨 Messages](x-badges/messages/README.md)
+    -   [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
+    -   [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
+    -   [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
+    -   [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
+    -   [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
+    -   [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
+    -   [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
+    -   [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+    -   [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
+    -   [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
+    -   [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
+    -   [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
+    -   [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
+    -   [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
+    -   [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
+    -   [MsgSetManager](x-badges/messages/msg-set-manager.md)
+    -   [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
+    -   [MsgSetStandards](x-badges/messages/msg-set-standards.md)
+    -   [MsgSetValidTokenIds](x-badges/messages/msg-set-valid-token-ids.md)
+    -   [MsgTransferTokens](x-badges/messages/msg-transfer-tokens.md)
+    -   [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
+    -   [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
+    -   [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
+    -   [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
+-   [🔍 Queries](x-badges/queries/README.md)
+    -   [Node API](https://lcd.bitbadges.io/)
+    -   [GetAddressList](x-badges/queries/get-address-list.md)
+    -   [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
+    -   [GetBalance](x-badges/queries/get-balance.md)
+    -   [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
+    -   [GetCollection](x-badges/queries/get-collection.md)
+    -   [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
+    -   [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
+    -   [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
+    -   [Params](x-badges/queries/params.md)
+-   [⌨️ Type Definitions](token-standard/type-definitions/README.md)
+    -   [Address Lists](token-standard/type-definitions/address-lists.md)
+    -   [Balances](token-standard/type-definitions/balances.md)
+    -   [Core Collection](token-standard/type-definitions/core-collection.md)
+    -   [Dynamic Stores](token-standard/type-definitions/dynamic-stores.md)
+    -   [Metadata](token-standard/type-definitions/metadata.md)
+    -   [Permissions](token-standard/type-definitions/permissions.md)
+    -   [Timelines](token-standard/type-definitions/timelines.md)
+    -   [Transfers](token-standard/type-definitions/transfers.md)
+-   [💡 Examples and Snippets](x-badges/examples/README.md)
+    -   [Base Collection Details](x-badges/examples/base-collection-details.md)
+    -   [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
+    -   [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
+    -   [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
+    -   [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
+    -   [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
+    -   [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
+    -   [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
+    -   [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+    -   [Approvals](token-standard/examples/approvals/README.md)
+        -   [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
+        -   [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
+        -   [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
+        -   [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
+        -   [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
+    -   [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
+        -   [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
+        -   [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
+    -   [Permission Examples](x-badges/examples/permissions/README.md)
+        -   [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
+        -   [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
+        -   [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-token-ids.md)
+        -   [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-token-ids.md)
+    -   [Transaction Examples](x-badges/examples/txs/README.md)
+        -   [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
+            -   [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
+            -   [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+        -   [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
+            -   [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+-   [📡 Events](x-badges/events.md)
+-   [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
+    -   [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
+    -   [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
+-   [❓ FAQ](overview/faq.md)
+-   [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 
 ## ⌨️ For Developers
 
-* [🔨 Getting Started](for-developers/getting-started.md)
-* [📚 BitBadges API](for-developers/bitbadges-api/README.md)
-  * [Getting Started](for-developers/bitbadges-api/api.md)
-  * [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
-  * [Blockchain API Reference](https://lcd.bitbadges.io/)
-  * [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
-  * [Estimating Swaps](for-developers/bitbadges-api/estimating-swaps.md)
-  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-  * [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
-  * [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
-  * [Concepts](for-developers/bitbadges-api/concepts/README.md)
-    * [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
-    * [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
-    * [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
-    * [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
-  * [Sign In with BitBadges (OAuth)](for-developers/sign-in-with-bitbadges/README.md)
-    * [Overview](for-developers/sign-in-with-bitbadges/overview.md)
-    * [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
-      * [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
-      * [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
-      * [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
-      * [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
-      * [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
-      * [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
-    * [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
-    * [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
-      * [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
-      * [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
-    * [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
-    * [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
-      * [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
-      * [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
-      * [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
-    * [Blockin Docs](https://blockin.gitbook.io/blockin)
-* [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
-  * [Overview](for-developers/bitbadges-sdk/overview.md)
-  * [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
-  * [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
-    * [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
-    * [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
-    * [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
-    * [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
-    * [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
-    * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
-    * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
-    * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-    * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
-* [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
-  * [Overview](for-developers/bitbadges-blockchain/overview.md)
-  * [BitBadges Explorer](https://explorer.bitbadges.io/)
-  * [Registry Details](https://github.com/cosmos/chain-registry/tree/master/bitbadges)
-  * [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
-  * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
-  * [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
-  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
-  * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
-  * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
-    * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
-    * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
-    * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
-    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
-    * [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
-    * [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
-    * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
-    * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
-  * [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
-    * [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
-    * [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
-      * [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
-      * [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
-      * [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
-    * [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
-      * [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
-      * [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
-      * [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
-      * [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
-    * [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
-    * [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
-  * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
-* [🎁 BitBadges Claims](overview/claim-builder/README.md)
-  * [Overview](for-developers/claim-builder/overview.md)
-  * [Concepts](for-developers/claim-builder/concepts/README.md)
-    * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
-    * [Completion Methods](for-developers/claim-builder/completion-methods.md)
-    * [Gating On-Chain Approvals](for-developers/claim-builder/concepts/gating-badge-distribution.md)
-    * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
-    * [Success Logic](for-developers/claim-builder/success-logic.md)
-    * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
-    * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-    * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
-  * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
-  * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
-  * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
-  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
-    * [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
-    * [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
-    * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
-    * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
-    * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-  * [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
-    * [Overview](for-developers/claim-builder/plugins/overview.md)
-    * [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
-    * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
-      * [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
-        * [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
-        * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
-        * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
-        * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-        * [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
-        * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
-      * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
-      * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-    * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
-  * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
-    * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
-    * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
-    * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
-    * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
-    * [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
-    * [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
-      * [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
-  * [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
-    * [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
-    * [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
-    * [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
-    * [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
-      * [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
-      * [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
-      * [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
-      * [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
-    * [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
-      * [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
-    * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
-  * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
-    * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
-  * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
-    * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
-    * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
-      * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
-      * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
-      * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
-    * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
-* [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
-  * [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
-    * [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
-    * [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
-    * [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
+-   [🔨 Getting Started](for-developers/getting-started.md)
+-   [📚 BitBadges API](for-developers/bitbadges-api/README.md)
+    -   [Getting Started](for-developers/bitbadges-api/api.md)
+    -   [Standard API Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+    -   [Blockchain API Reference](https://lcd.bitbadges.io/)
+    -   [Typed SDK Types](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html)
+    -   [Estimating Swaps](for-developers/bitbadges-api/estimating-swaps.md)
+    -   [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    -   [Upgrading an API Key Tier](for-developers/bitbadges-api/upgrading-an-api-key-tier.md)
+    -   [Want to run an indexer?](for-developers/bitbadges-api/want-to-run-an-indexer.md)
+    -   [Concepts](for-developers/bitbadges-api/concepts/README.md)
+        -   [Native Chain Algorithm](for-developers/bitbadges-api/concepts/native-chain-algorithm.md)
+        -   [Refresh / Claim Completion Queue](for-developers/bitbadges-api/concepts/refresh-queue.md)
+        -   [Limits / Restrictions](for-developers/bitbadges-api/concepts/limits-restrictions.md)
+        -   [Managing Views](for-developers/bitbadges-api/concepts/managing-views.md)
+    -   [Sign In with BitBadges (OAuth)](for-developers/sign-in-with-bitbadges/README.md)
+        -   [Overview](for-developers/sign-in-with-bitbadges/overview.md)
+        -   [Templates and Frameworks](for-developers/sign-in-with-bitbadges/templates-and-frameworks/README.md)
+            -   [WordPress](for-developers/sign-in-with-bitbadges/templates-and-frameworks/wordpress.md)
+            -   [Auth0](for-developers/sign-in-with-bitbadges/templates-and-frameworks/auth0.md)
+            -   [ExpressJS](for-developers/sign-in-with-bitbadges/templates-and-frameworks/expressjs.md)
+            -   [Discourse](for-developers/sign-in-with-bitbadges/templates-and-frameworks/discourse.md)
+            -   [Supabase](for-developers/sign-in-with-bitbadges/templates-and-frameworks/supabase.md)
+            -   [Others](for-developers/sign-in-with-bitbadges/templates-and-frameworks/others.md)
+        -   [Setting Up an App](for-developers/sign-in-with-bitbadges/setting-up-an-app.md)
+        -   [Authorization URL](for-developers/sign-in-with-bitbadges/authorization-url/README.md)
+            -   [Configuration](for-developers/sign-in-with-bitbadges/authorization-url/configuration.md)
+            -   [Generating the URL](for-developers/sign-in-with-bitbadges/authorization-url/generating-the-url.md)
+        -   [Redirect Callback](for-developers/sign-in-with-bitbadges/approaches/redirected-callback.md)
+        -   [Verification](for-developers/sign-in-with-bitbadges/verification/README.md)
+            -   [Verification Flow](for-developers/sign-in-with-bitbadges/verification/verification-flow.md)
+            -   [Access Tokens](for-developers/sign-in-with-bitbadges/verification/access-tokens.md)
+            -   [Security Considerations](for-developers/sign-in-with-bitbadges/verification/security-considerations.md)
+        -   [Blockin Docs](https://blockin.gitbook.io/blockin)
+-   [⚒️ BitBadges JS / SDK](for-developers/bitbadges-sdk/README.md)
+    -   [Overview](for-developers/bitbadges-sdk/overview.md)
+    -   [SDK Types](for-developers/bitbadges-sdk/sdk-types.md)
+    -   [Common Snippets](for-developers/bitbadges-sdk/common-snippets/README.md)
+        -   [Address Conversions](for-developers/bitbadges-sdk/common-snippets/address-conversions.md)
+        -   [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
+        -   [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
+        -   [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
+        -   [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
+        -   [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
+        -   [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
+        -   [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
+        -   [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
+-   [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
+    -   [Overview](for-developers/bitbadges-blockchain/overview.md)
+    -   [BitBadges Explorer](https://explorer.bitbadges.io/)
+    -   [Registry Details](https://github.com/cosmos/chain-registry/tree/master/bitbadges)
+    -   [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
+    -   [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
+    -   [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
+    -   [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
+    -   [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
+    -   [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+        -   [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
+        -   [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
+        -   [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+        -   [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
+        -   [Signing - Solana](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-solana.md)
+        -   [Signing - Bitcoin](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md)
+        -   [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
+        -   [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
+    -   [Cosmos SDK Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/README.md)
+        -   [x/badges](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-badges.md)
+        -   [x/wasmx](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/README.md)
+            -   [MsgStoreCodeCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgstorecodecompat.md)
+            -   [MsgInstantiateContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msginstantiatecontractcompat.md)
+            -   [MsgExecuteContractCompat](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-wasmx/msgexecutecontractcompat.md)
+        -   [x/maps](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/README.md)
+            -   [MsgCreateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgcreateprotocol.md)
+            -   [MsgUpdateMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgupdateprotocol.md)
+            -   [MsgDeleteMap](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgdeleteprotocol.md)
+            -   [MsgSetValue](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/x-maps/msgsetcollectionforprotocol.md)
+        -   [MsgSend](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/msgsend.md)
+        -   [Cosmos Native Msgs](for-developers/bitbadges-blockchain/cosmos-sdk-msgs/cosmos-native-msgs.md)
+    -   [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
+-   [🎁 BitBadges Claims](overview/claim-builder/README.md)
+    -   [Overview](for-developers/claim-builder/overview.md)
+    -   [Concepts](for-developers/claim-builder/concepts/README.md)
+        -   [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
+        -   [Completion Methods](for-developers/claim-builder/completion-methods.md)
+        -   [Gating On-Chain Approvals](for-developers/claim-builder/concepts/gating-badge-distribution.md)
+        -   [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
+        -   [Success Logic](for-developers/claim-builder/success-logic.md)
+        -   [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
+        -   [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
+        -   [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
+    -   [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
+    -   [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
+    -   [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
+    -   [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
+        -   [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
+        -   [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
+        -   [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
+    -   [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
+        -   [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
+        -   [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
+    -   [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
+        -   [Overview](for-developers/claim-builder/plugins/overview.md)
+        -   [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
+        -   [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
+            -   [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
+                -   [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
+                -   [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
+                -   [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
+                -   [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
+                -   [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
+                -   [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
+            -   [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
+            -   [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
+        -   [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
+    -   [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
+        -   [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
+        -   [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
+        -   [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
+        -   [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
+        -   [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
+        -   [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
+            -   [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
+    -   [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
+        -   [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
+        -   [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
+        -   [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
+        -   [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
+            -   [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
+            -   [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
+            -   [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
+            -   [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
+        -   [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
+            -   [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
+        -   [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
+    -   [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
+        -   [Plugins Directory](https://bitbadges.io/plugin-directory)
+        -   [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
+    -   [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
+        -   [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
+        -   [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
+            -   [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
+            -   [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
+            -   [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
+        -   [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
+-   [🪄 BitBadges x AI](for-developers/bitbadges-x-ai/README.md)
+    -   [Prompts](for-developers/bitbadges-x-ai/prompts/README.md)
+        -   [Collection Approval Builder](for-developers/bitbadges-x-ai/prompts/collection-approval-builder.md)
+        -   [Documentation Parsing and Context Setup](for-developers/bitbadges-x-ai/prompts/documentation-parsing.md)
+        -   [SDK Setup and Usage Guide](for-developers/bitbadges-x-ai/prompts/sdk-setup-and-usage.md)
 
 ## x/gamm
 
-* [📚 Overview](x-gamm/README.md)
-* [📨 Messages](x-gamm/messages/README.md)
-  * [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
-  * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
-  * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
-  * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
-  * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
+-   [📚 Overview](x-gamm/README.md)
+-   [📨 Messages](x-gamm/messages/README.md)
+    -   [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
+    -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
+    -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
+    -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+    -   [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
 
 ## x/custom-ibc-hooks
 
-* [📚 Overview](x-custom-ibc-hooks/README.md)
-* [📖 Introduction](x-custom-ibc-hooks/overview.md)
+-   [📚 Overview](x-custom-ibc-hooks/README.md)
+-   [📖 Introduction](x-custom-ibc-hooks/overview.md)
 
 ## x/ibc-rate-limit
 
-* [📚 Overview](x-ibc-rate-limit/README.md)
-* [📖 Introduction](x-ibc-rate-limit/overview.md)
+-   [📚 Overview](x-ibc-rate-limit/README.md)
+-   [📖 Introduction](x-ibc-rate-limit/overview.md)
 
 ## x/managersplitter
 
-* [📚 Overview](x-managersplitter/README.md)
-* [📖 Introduction](x-managersplitter/overview.md)
-* [📨 Messages](x-managersplitter/messages/README.md)
-  * [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
-  * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
-  * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
-  * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+-   [📚 Overview](x-managersplitter/README.md)
+-   [📖 Introduction](x-managersplitter/overview.md)
+-   [📨 Messages](x-managersplitter/messages/README.md)
+    -   [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
+    -   [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
+    -   [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
+    -   [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+
+
+## File: ./_docs/development-guide.md
+
+# Documentation Development Guide
+
+A concise guide for writing GitBook markdown documentation for BitBadges.
+
+## Core Principles
+
+### 1. Be Concise
+
+**Bad:**
+
+```markdown
+In this section, we will be discussing the various aspects and components that make up the transfer validation process, which is a critical part of how the system ensures that all transfers are properly validated before they are executed.
+```
+
+**Good:**
+
+```markdown
+Transfers must pass validation before execution. The system checks balances, collection approvals, and user-level approvals.
+```
+
+### 2. Code Snippets Everywhere
+
+Every section should include at least one code snippet, example, or graphic.
+
+````markdown
+## Creating a Collection
+
+Use `MsgCreateCollection` to create a new badge collection:
+
+```typescript
+const msg = {
+    typeUrl: '/bitbadges.badges.MsgCreateCollection',
+    value: {
+        creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+        collectionId: '1',
+        badges: [],
+    },
+};
+```
+````
+
+````
+
+### 3. Developer-First, Zero Assumptions
+
+Use technical jargon freely, but explain concepts as if the reader has no prior knowledge.
+
+```markdown
+## UintRanges
+
+UintRanges represent token ID ranges using string-based uint64 values. Use them for batch operations:
+
+```typescript
+const tokenIds: UintRange[] = [
+  { start: '1', end: '100' },
+  { start: '200', end: '300' },
+];
+````
+
+**Why strings?** JavaScript's `Number.MAX_SAFE_INTEGER` is `2^53 - 1`, but uint64 supports up to `2^64 - 1`. Strings prevent precision loss.
+
+````
+
+## GitBook Markdown Syntax
+
+### Frontmatter
+
+Always include frontmatter for GitBook:
+
+```markdown
+---
+description: >-
+  Brief description of the page content (max 160 characters)
+---
+````
+
+### Content References
+
+Link to related docs using GitBook's content reference syntax:
+
+```markdown
+{% content-ref url="../path/to/file.md" %}
+[Link Text](../path/to/file.md)
+{% endcontent-ref %}
+```
+
+### Images
+
+Use GitBook's figure syntax with captions:
+
+```markdown
+<figure>
+  <img src="../.gitbook/assets/image.png" alt="Description">
+  <figcaption>Caption explaining the image</figcaption>
+</figure>
+```
+
+### Code Blocks
+
+Always specify language for syntax highlighting:
+
+```typescript
+// TypeScript example
+const collection = { id: '1' };
+```
+
+```json
+// JSON example
+{
+    "collectionId": "1",
+    "badges": []
+}
+```
+
+```bash
+# Shell commands
+bitbadgeschaind query badges collection 1
+```
+
+## Structure Guidelines
+
+### Headers
+
+**Avoid H1 headings:** GitBook automatically applies the page title as an H1. Start with H2 (`##`) or lower:
+
+```markdown
+# ❌ Don't use H1 - GitBook adds this automatically
+
+## ✅ Start with H2
+```
+
+Use descriptive headers. Prefer action-oriented titles:
+
+```markdown
+## Creating Collections
+
+## Building Approvals
+
+## Querying Balances
+```
+
+Not:
+
+```markdown
+## Collection Creation
+
+## About Approvals
+
+## Balance Information
+```
+
+### Nested Section READMEs
+
+For parent pages with nested children, leave the README minimal or blank. GitBook automatically generates a table of contents:
+
+```markdown
+---
+description: >-
+    Brief description of the section
+---
+
+<!-- GitBook automatically shows child pages here -->
+```
+
+**Don't manually list child pages** - GitBook does this automatically from SUMMARY.md.
+
+### Sections
+
+Keep sections focused. If a section exceeds 300 words, split it:
+
+```markdown
+## Collection Configuration
+
+### Base Fields
+
+[Content here]
+
+### Metadata Timeline
+
+[Content here]
+
+### Permissions
+
+[Content here]
+```
+
+### Lists
+
+Use lists for multiple items, steps, or options:
+
+````markdown
+## Transfer Validation Steps
+
+1. **Balance Check**: Verify sender has sufficient tokens
+2. **Collection Approval**: At least one approval must pass
+3. **User Approvals**: Sender/recipient approvals must pass
+
+```typescript
+const validateTransfer = (transfer: Transfer) => {
+    checkBalance(transfer);
+    checkCollectionApprovals(transfer);
+    checkUserApprovals(transfer);
+};
+```
+````
+
+````
+
+## Code Examples
+
+### Real Examples Only
+
+Always use working, tested code:
+
+```typescript
+// ✅ Good - Real, working example
+const msg = {
+  typeUrl: '/bitbadges.badges.MsgCreateCollection',
+  value: {
+    creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+    collectionId: '1',
+    badges: [],
+  },
+};
+
+// ❌ Bad - Placeholder
+const msg = {
+  typeUrl: '...',
+  value: {
+    creator: 'YOUR_ADDRESS',
+    // ...
+  },
+};
+````
+
+### Context Matters
+
+Provide enough context for the example to be useful:
+
+```typescript
+import { MsgCreateCollection } from 'bitbadgesjs-sdk';
+
+// Create a collection with 100 token IDs
+const collection = {
+    validTokenIds: [{ start: '1', end: '100' }],
+    managerTimeline: [
+        {
+            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+            timelineTimes: [{ start: '1', end: '18446744073709551615' }],
+        },
+    ],
+};
+
+const msg = MsgCreateCollection(collection);
+```
+
+### Common Patterns
+
+Extract common patterns into reusable examples:
+
+```typescript
+// Standard "forever" time range
+const FullTimeRanges = [{ start: '1', end: '18446744073709551615' }];
+
+// Use throughout documentation
+const managerTimeline = [
+    {
+        manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+        timelineTimes: FullTimeRanges,
+    },
+];
+```
+
+## Tables
+
+Use tables for structured data:
+
+```markdown
+| Field             | Type              | Description                     |
+| ----------------- | ----------------- | ------------------------------- |
+| `collectionId`    | string            | Unique collection identifier    |
+| `validTokenIds`   | UintRange[]       | Valid token ID ranges           |
+| `managerTimeline` | ManagerTimeline[] | Manager configuration over time |
+```
+
+## Cross-References
+
+Link to related concepts liberally within the content, but avoid "Next Steps" sections at the end:
+
+```markdown
+## Collection Approvals
+
+Collection approvals define transferability rules. See [User Approvals](./user-approvals.md) for sender/recipient-level controls.
+
+For approval criteria details, see [Approval Criteria](../concepts/approval-criteria/).
+```
+
+**Don't add "Next Steps" sections:** Avoid adding a "Next Steps" section with links at the end of pages. Instead, embed relevant links naturally within the content where they're contextually relevant.
+
+## Writing Style
+
+### Active Voice
+
+```markdown
+✅ The system validates transfers automatically.
+❌ Transfers are validated automatically by the system.
+```
+
+### Direct Statements
+
+```markdown
+✅ Use `MsgTransfer` to transfer tokens.
+❌ You can use `MsgTransfer` if you want to transfer tokens.
+```
+
+### Technical Terms
+
+Define terms on first use, then use freely:
+
+```markdown
+## Mint Address
+
+The **Mint address** is a reserved address representing the collection's minting source. It has unlimited balances.
+
+Transfers from the Mint address create new tokens. The Mint address cannot receive tokens.
+```
+
+### Avoid Redundant Explanations
+
+Don't repeat information that's already explained in the text. If you've stated something, don't create a separate "Key properties" or "Summary" list that repeats it:
+
+```markdown
+# ❌ Bad - Redundant
+
+The **Mint address** is a reserved address representing the collection's minting source. It has unlimited balances, and any transfer from the Mint address creates tokens.
+
+**Key properties:**
+
+-   Unlimited balances
+-   Transfers from Mint = token creation
+-   Cannot receive tokens
+
+# ✅ Good - No redundancy
+
+The **Mint address** is a reserved address representing the collection's minting source. It has unlimited balances, and any transfer from the Mint address creates tokens. The Mint address cannot receive tokens.
+```
+
+**Exception:** Summary lists are acceptable if they consolidate information from multiple sections or provide a quick reference after a long explanation.
+
+## Common Patterns
+
+### Concept Explanation
+
+````markdown
+## Timeline System
+
+Timelines enable time-dependent configuration. Each timeline entry specifies a time range and associated value.
+
+```typescript
+const metadataTimeline = [
+    {
+        timelineTimes: [{ start: '1', end: '1000' }],
+        collectionMetadata: { uri: 'ipfs://...' },
+    },
+    {
+        timelineTimes: [{ start: '1001', end: '18446744073709551615' }],
+        collectionMetadata: { uri: 'ipfs://...' },
+    },
+];
+```
+````
+
+This allows metadata to change at specific block times.
+
+````
+
+### API Documentation
+
+```markdown
+## Query Collection
+
+Query a collection by ID:
+
+```bash
+bitbadgeschaind query badges collection 1
+````
+
+**Response:**
+
+```json
+{
+    "collection": {
+        "collectionId": "1",
+        "validTokenIds": [{ "start": "1", "end": "100" }]
+    }
+}
+```
+
+````
+
+### Tutorial Format
+
+```markdown
+## Creating Your First Collection
+
+1. **Set valid token IDs:**
+```typescript
+const validTokenIds = [{ start: '1', end: '100' }];
+````
+
+2. **Configure manager:**
+
+```typescript
+const managerTimeline = [
+    {
+        manager: 'YOUR_ADDRESS',
+        timelineTimes: FullTimeRanges,
+    },
+];
+```
+
+3. **Create the collection:**
+
+```typescript
+const msg = MsgCreateCollection({ validTokenIds, managerTimeline });
+```
+
+````
+
+## Checklist
+
+Before publishing, verify:
+
+- [ ] Every section has at least one code snippet/example/graphic
+- [ ] All code examples are real and tested
+- [ ] Frontmatter includes description
+- [ ] Related docs are cross-referenced
+- [ ] Technical terms are defined on first use
+- [ ] No fluff or unnecessary words
+- [ ] Headers are action-oriented
+- [ ] Code blocks specify language
+- [ ] Images have alt text and captions
+
+## BitBadges-Specific Conventions
+
+### CLI Command
+
+Always use `bitbadgeschaind` (not `bitbadgesd`):
+
+```bash
+# ✅ Correct
+bitbadgeschaind query badges collection 1
+bitbadgeschaind tx badges create-collection '[tx-json]' --from key
+
+# ❌ Incorrect
+bitbadgesd query badges collection 1
+```
+
+### Address Format
+
+BitBadges addresses use the `bb1` prefix:
+
+```typescript
+// ✅ Correct
+const address = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
+const manager = 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d';
+
+// ❌ Incorrect
+const address = 'cosmos1...'; // Wrong prefix
+const address = '0x...'; // Ethereum format
+```
+
+**Reserved addresses:**
+- `"Mint"` - Special reserved address for minting (not a `bb1` address)
+
+### SDK Package
+
+Use `bitbadgesjs-sdk` (not `@bitbadges/bitbadgesjs`):
+
+```typescript
+// ✅ Correct
+import { BitBadgesAPI, BigIntify, Balance } from 'bitbadgesjs-sdk';
+
+// ❌ Incorrect
+import { BitBadgesAPI } from '@bitbadges/bitbadgesjs';
+```
+
+### Number Types
+
+Use string-based uint64 values to prevent precision loss:
+
+```typescript
+// ✅ Correct - Strings for large numbers
+const tokenIds = [{ start: '1', end: '18446744073709551615' }];
+const amount = '1000000000000';
+
+// ❌ Incorrect - Numbers lose precision
+const tokenIds = [{ start: 1, end: 18446744073709551615 }]; // Precision loss!
+```
+
+Convert with SDK functions:
+- `BigIntify` - Convert to `bigint`
+- `Numberify` - Convert to `number`
+- `Stringify` - Keep as `string`
+
+### Denomination
+
+Base denomination is `ubadge` (display: `BADGE`):
+
+```typescript
+// ✅ Correct
+const coin = { denom: 'ubadge', amount: '1000000000' };
+
+// ❌ Incorrect
+const coin = { denom: 'badge', amount: '1000000000' };
+```
+
+### Module Name
+
+The Cosmos SDK module is `x/badges`:
+
+```typescript
+// ✅ Correct
+typeUrl: '/bitbadges.badges.MsgCreateCollection'
+
+// ❌ Incorrect
+typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
+```
+
+### Reserved Address List IDs
+
+Use reserved IDs for common patterns:
+
+```typescript
+// ✅ Correct
+toListId: 'All' // All addresses including Mint
+toListId: 'Mint' // Only Mint address
+toListId: 'None' // No addresses
+toListId: 'AllWithoutMint:bb1abc...' // All except specified
+toListId: 'bb1abc...:bb1def...' // Inline whitelist
+
+// ❌ Incorrect
+toListId: 'all' // Case-sensitive
+toListId: 'ALL' // Case-sensitive
+```
+
+### API Endpoints
+
+```typescript
+// API base URL
+const apiUrl = 'https://api.bitbadges.io/';
+
+// LCD (Light Client Daemon) endpoint
+const lcdUrl = 'https://lcd.bitbadges.io/';
+```
+
+## Quick Reference
+
+### GitBook Syntax
+
+```markdown
+{% content-ref url="path" %}
+[Text](path)
+{% endcontent-ref %}
+
+<figure>
+  <img src="path" alt="alt">
+  <figcaption>Caption</figcaption>
+</figure>
+````
+
+### Common Code Patterns
+
+```typescript
+// Time range
+const FullTimeRanges = [{ start: '1', end: '18446744073709551615' }];
+
+// Token ID range
+const tokenIds = [{ start: '1', end: '100' }];
+
+// Address
+const address = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
+```
 
 
 ## File: ./badge-standard/examples/approvals/README.md
@@ -9151,6 +9745,1164 @@ Does not check natively :x:
 
 
 
+## File: ./learn/README.md
+
+---
+description: >-
+    Learn BitBadges: Getting started guides, prerequisites, and fundamental concepts
+---
+
+
+## File: ./learn/auto-scan-and-prioritized-approvals.md
+
+---
+description: >-
+    Auto-scan mode vs prioritized approvals: how the system selects approvals and versioning control
+---
+
+The transfer approval system operates in two modes: **auto-scan** (default) and **prioritized approvals**. When a transfer is submitted without explicitly prioritizing specific approvals, the system operates in **auto-scan mode** and automatically searches through available approvals to find a match.
+
+However, **not all approvals are safe for auto-scanning**. In auto-scan mode, unsafe approvals are ignored to prevent unexpected behavior. If a transfer needs to be prioritized, it MUST always be prioritized with proper versioning specified to prevent malicious approval changes after submission.
+
+This is important to consider when designing your systems. For example, auto-scan environments like liquidity pools should account for this.
+
+**Why:** Prioritization ensures users know exactly which approval they're using and its side effects (e.g., coin transfers, predetermined balances, version control to prevent malicious approval changes after submission).
+
+## Auto-Scan Mode (Default)
+
+```typescript
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            // No prioritizedApprovals specified - uses auto-scan
+            // System automatically finds matching approval
+        },
+    ],
+};
+```
+
+## Prioritized Approvals Mode
+
+```typescript
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            prioritizedApprovals: [
+                {
+                    approvalId: 'abc123',
+                    approvalLevel: 'collection',
+                    approverAddress: '', // Empty for collection, address for user approvals
+                    version: '2', // Must specify exact version
+                },
+            ],
+            onlyCheckPrioritizedCollectionApprovals: true,
+        },
+    ],
+};
+```
+
+### Safety Check Logic
+
+An approval is considered **safe for auto-scan mode** if:
+
+1. **Must prioritize flag is false** - `mustPrioritize` is not `true`
+2. **No coin transfers** - `approvalCriteria.coinTransfers` is nil or empty
+3. **No predetermined balances** - `approvalCriteria.predeterminedBalances` is nil or empty / not used
+4. **No merkle challenges** - `approvalCriteria.merkleChallenges` is nil or empty
+5. **No ETH signature challenges** - `approvalCriteria.ethSignatureChallenges` is nil or empty
+6. **Not special context** - certain special protocol contexts require prioritized approvals (ex: IBC backed minting, Cosmos wrapping)
+
+```typescript
+// ✅ Auto-scannable approval
+const approval = {
+    approvalId: 'simple-transfer',
+    fromListId: 'Mint',
+    toListId: 'All',
+    approvalCriteria: {
+        // Only read-only checks - safe for auto-scan
+        mustOwnTokens: [...],
+    },
+};
+
+// ❌ NOT auto-scannable - has coin transfers
+const approvalWithSideEffects = {
+    approvalId: 'paid-transfer',
+    approvalCriteria: {
+        coinTransfers: [
+            {
+                to: 'bb1...',
+                coins: [{ denom: 'ubadge', amount: '1000000' }],
+            },
+        ],
+    },
+};
+```
+
+### Safe Criteria for Auto-Scan
+
+Read-only criteria are safe and won't prevent auto-scanning:
+
+-   `mustOwnTokens`, address checks
+-   `requireToEqualsInitiatedBy`, etc.
+-   `overridesFromOutgoingApprovals`, `overridesToIncomingApprovals`
+-   `autoDeletionOptions`
+
+### Versioning Control
+
+Versioning ensures users know the exact approval they're using before submitting, preventing race conditions.
+
+```typescript
+// Approval version increments on each update
+const approval = {
+    approvalId: 'my-approval',
+    version: '0', // Initial version
+    // ... other fields
+};
+
+// After update, version becomes '1'
+
+// Transfer must specify version '1' to use updated approval
+// If mismatched version, transfer will fail / ignore that approval
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            prioritizedApprovals: [
+                {
+                    approvalId: 'my-approval',
+                    approvalLevel: 'collection',
+                    approverAddress: '',
+                    version: '1', // Must match current version
+                },
+            ],
+        },
+    ],
+};
+```
+
+### Only Check Prioritized Approvals
+
+You can restrict the system to only check prioritized approvals. If true, we will only check the prioritized approvals provided and fail if none match (i.e. do not check any non-prioritized approvals).
+
+If false, we will check the prioritized approvals first and then scan through the rest of the approvals in auto-scan mode.
+
+```typescript
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            prioritizedApprovals: [
+                {
+                    approvalId: 'abc123',
+                    approvalLevel: 'collection',
+                    approverAddress: '',
+                    version: '0',
+                },
+            ],
+            onlyCheckPrioritizedCollectionApprovals: true, // Only check prioritized, fail if none match
+            onlyCheckPrioritizedIncomingApprovals: true,
+            onlyCheckPrioritizedOutgoingApprovals: true,
+        },
+    ],
+};
+```
+
+## Must Prioritize Flag
+
+The `mustPrioritize` flag explicitly requires an approval to be prioritized. This is an easy way to prevent auto-scanning of approvals that you do not want to be auto-scanned.
+
+```typescript
+const approval = {
+    approvalId: 'force-prioritize',
+    approvalCriteria: {
+        mustPrioritize: true, // Cannot be auto-scanned
+        // ... other criteria
+    },
+};
+```
+
+**Recommended to use `mustPrioritize: true` when:**
+
+-   Forceful transfers (overrides user approvals)
+-   Stateful approvals (increment trackers)
+-   Sensitive operations requiring explicit control
+
+## Selective Prioritization
+
+Prioritization is not only used for non auto-scannable approvals. It can also be used to selectively prioritize approvals over others or match to a single approval for a specific transfer context.
+
+## User-Level Auto Approval Flags
+
+All user-level auto approval flags are auto-scannable by default. These flags have no disallowed criteria, so they don't need to be prioritized.
+
+```typescript
+// User enables auto-approval flags
+const userBalanceStore = {
+    autoApproveSelfInitiatedOutgoingTransfers: true,
+    autoApproveSelfInitiatedIncomingTransfers: true,
+    autoApproveAllIncomingTransfers: true,
+};
+```
+
+These flags when true work seamlessly with auto-scan mode since they operate at the user level and don't require explicit approval selection.
+
+However, if you introduce `coinTransfers` or other disallowed logic (e.g. bids, listings, etc.), the approval becomes incompatible with auto-scan mode, and you must specify the approval explicitly.
+
+## Examples
+
+### Collection-Level Transferability
+
+Oftentimes, you may want to make collection-level approvals fully transferable with certain approval criteria restrictions like `mustOwnTokens`. This is fine and compatible with liquidity pools and other auto-scan environments. Handle accordingly in your design.
+
+```typescript
+// ✅ Auto-scannable - fully transferable with read-only restrictions
+const collectionApproval = {
+    fromListId: '!Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: FullTimeRanges,
+    tokenIds: FullTimeRanges,
+    ownershipTimes: FullTimeRanges,
+    approvalCriteria: {
+        // Read-only checks - safe for auto-scan
+        mustOwnTokens: [
+            {
+                tokenIds: [{ start: '1', end: '1' }],
+                ownershipTimes: FullTimeRanges,
+                ...
+            },
+        ],
+    },
+};
+```
+
+**Compatible with:** Liquidity pools, automated trading, and other auto-scan environments.
+
+However, if you introduce `coinTransfers` or other disallowed logic, the approval becomes incompatible with auto-scan mode:
+
+```typescript
+// ❌ NOT auto-scannable - has coin transfers
+const collectionApproval = {
+    fromListId: '!Mint',
+    toListId: 'All',
+    approvalCriteria: {
+        coinTransfers: [
+            {
+                to: 'bb1...',
+                coins: [{ denom: 'ubadge', amount: '1000000' }],
+            },
+        ],
+    },
+};
+```
+
+**Not compatible with:** Auto-scan environments. Transfers must be prioritized.
+
+### Auto-Scan Compatible Transfer
+
+```typescript
+// Simple transfer - no side effects
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            // No prioritizedApprovals - system auto-scans
+        },
+    ],
+};
+```
+
+### Prioritized Transfer with Coin Transfers
+
+```typescript
+// Transfer with payment side effects - MUST prioritize
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            prioritizedApprovals: [
+                {
+                    approvalId: 'reward-approval',
+                    approvalLevel: 'collection',
+                    approverAddress: '',
+                    version: '1', // Must match current version
+                },
+            ],
+        },
+    ],
+};
+```
+
+### Multiple Prioritized Approvals
+
+```typescript
+// Transfer using multiple approvals
+const msg: MsgTransferTokens = {
+    creator: 'bb1initiator...',
+    collectionId: '1',
+    transfers: [
+        {
+            from: 'bb1sender...',
+            toAddresses: ['bb1recipient...'],
+            balances: [
+                {
+                    amount: '1',
+                    tokenIds: [{ start: '1', end: '1' }],
+                    ownershipTimes: [
+                        { start: '1', end: '18446744073709551615' },
+                    ],
+                },
+            ],
+            prioritizedApprovals: [
+                {
+                    approvalId: 'collection-approval',
+                    approvalLevel: 'collection',
+                    approverAddress: '',
+                    version: '2',
+                },
+                {
+                    approvalId: 'outgoing-approval',
+                    approvalLevel: 'outgoing',
+                    approverAddress: 'bb1sender...',
+                    version: '0',
+                },
+            ],
+        },
+    ],
+};
+```
+
+See [Auto-Scan Mode](../x-badges/concepts/auto-scan-mode.md) and [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
+
+
+## File: ./learn/key-design-decisions.md
+
+---
+description: >-
+    Key design decisions behind BitBadges: universality, no-code approach, ever-evolving, and IBC compatibility
+---
+
+## Universality
+
+Our token standard is universal and feature-rich enough for any use case. It can be used for NFTs, fungible tokens, subscriptions, quests, credentials, real-world assets, complex regulatory compliance, or anything you can think of. The problem with existing standards is they are too limited for 95% of real-world applications. One standard to rule them all.
+
+## No-Code / Module Approach
+
+The BitBadges standard is no-code by default. It uses a Cosmos module approach to offer a seamless, developer-friendly API-like experience rather than complex smart contracts.
+
+You don't need any technical knowledge to use our standard. Simply go to our site and start building! The native support is feature-rich enough that we envision that 99% of users will NEVER need to write any code, no matter how complex the use case.
+
+This promotes reusability and battle-testing the code, rather than potential vulnerabilities introduced per token contract.
+
+```bash
+# Just use the module directly
+bitbadgeschaind tx badges create-collection '[tx-json]' --from key
+```
+
+## Ever-Evolving
+
+BitBadges is an ever-evolving standard. We are not making the same mistakes as ERC-20/721/etc. We are not stuck in the past. We are always on the bleeding edge of technology and will never be behind a trend. No technical debt accrual.
+
+New feature idea? We will add it. It is purpose-built for the next-generation of tokenization.
+
+## IBC Compatibility
+
+We are Cosmos through and through. Our plan is to be the tokenization launchpad for all of Cosmos with IBC at the core of everything.
+
+While tokens are siloed to the module, we support IBC / ICS20 in a variet of ways:
+
+1. Any token created is custom wrappable to ICS-20/721 format
+2. Tap into IBC / ICS20 denominations for payments, subscriptions, swaps, liquidity, etc.
+3. Our module is IBC-enabled and core Msgs can be executed via IBC
+4. One-signature aggregation of IBC transfers for multi-hop swaps, etc using our standard
+
+
+## File: ./learn/minting-and-circulating-supply.md
+
+---
+description: >-
+    Mint address and circulating supply: how token creation works and how supply is controlled
+---
+
+## Mint Address
+
+The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
+
+### Manager Controls Minting Flow
+
+The **manager** of the collection controls minting by setting and updating collection transferability rules (`collectionApprovals`) and the updatability of such rules via permissions (`collectionPermissions.canUpdateCollectionApprovals`). The manager can:
+
+-   Create, edit, or remove mint approvals (approvals where `fromListId: 'Mint'`) that allow specific minting patterns, according to the updatability permissions set (`canUpdateCollectionApprovals`)
+-   Set the updatability permissions to lock the future updatability of mint approvals (locking, enabling, soft-enabling, etc.). This is flexible and allows fine-grained patterns like locking for specific times, to specific addresses, etc.
+
+**Important distinction:** Approvals define what transfers are **allowed**, but minting only occurs on **executed transfers**. Approvals are permission rules. Transfers execute those rules and create tokens.
+
+```typescript
+// Manager sets initial mint approval
+const collection = {
+    managerTimeline: [{ manager: 'bb1...', timelineTimes: FullTimeRanges }],
+    collectionApprovals: [
+        {
+            fromListId: 'Mint',
+            toListId: 'All',
+            // ... approval criteria
+        },
+    ],
+    collectionPermissions: {
+        canUpdateCollectionApprovals: [
+            {
+                fromListId: 'Mint',
+                toListId: 'All',
+                ...,
+                permanentlyPermittedTimes: [],
+                permanentlyForbiddenTimes: [{ start: '1', end: '18446744073709551615' }], // Locks it forever
+            },
+        ],
+    },
+};
+```
+
+**To lock minting:** Disable approval updates permanently for any Mint approval. The current approvals set will be frozen and cannot be updated.
+
+### Common Approaches
+
+Two common approaches for managing supply:
+
+#### 1. Mint All at Genesis, Then Lock
+
+Mint all tokens you need upon collection creation, then lock mint approval updates. Control future flow with post-mint transferability.
+
+For example:
+
+1. Create collection with Mint approvals
+2. Mint all tokens to yourself you may ever need (via MsgTransferTokens)
+3. Lock minting forever
+
+**Result:** Fixed supply. All tokens minted. Control distribution via post-mint transferability rules.
+
+#### 2. Keep Mint as "Escrow" for Future Mints
+
+Keep the Mint address as an escrow for future mints. Control flow with approval updatability and current approvals. For example:
+
+1. Create collection with Mint approvals
+2. Edit Mint approvals over time (according to permissions) to enable future minting as needed
+
+**Result:** More dynamic supply. Manager can update mint approvals to enable future minting as needed. Current approvals control immediate minting capabilities, but the manager can always update them to enable more minting in the future.
+
+## Circulating Supply
+
+Circulating supply is the cumulative total of all tokens transferred from the Mint address. It's dynamic, not static. This may be a slightly different concept than you're used to, but it's a powerful one because it allows for you to control the supply of your tokens dynamically and flexibly over time.
+
+Thus, design of your Mint approvals is crucial to the supply control of your collection.
+
+```typescript
+// Supply control via approvals
+const mintApproval = {
+    fromListId: 'Mint',
+    // Approval criteria control who can mint, when, how much
+    approvalCriteria: {
+        maxNumTransfers: '1000', // Limit number of mints
+        overridesFromOutgoingApprovals: true, // Required for Mint address
+        // ... other criteria
+    },
+};
+```
+
+### Importance of Updatability Permissions
+
+Even if current approvals don't allow minting, if the manager can update approvals, there is effectively unlimited supply potential. They can simply update and create a new unlimited mint approval. Thus, it is crucial to control both the current approvals and the updatability permissions.
+
+```typescript
+// Lock mint approvals to cap supply
+const collectionPermissions = {
+    canUpdateCollectionApprovals: [
+        {
+            fromListId: 'Mint',
+            approvalId: 'All',
+            ...,
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges, // Manager cannot update
+        },
+    ],
+};
+```
+
+## Important Disclaimers
+
+### Never Mix Mint with Other Addresses
+
+**CRITICAL**: When handling collection approvals, you do NOT want to handle the Mint address with other addresses. By default, lists with reserved aliases like "All" include the Mint address. You do not want to accidentally allow minting when you don't intend to.
+
+For proper design, we highly recommend separating minting and post-mint approvals (`fromListId: '!Mint'` vs `fromListId: 'Mint'`).
+
+```typescript
+// ❌ BAD - Never do this
+const badApproval = {
+    fromListId: 'All', // Mixing Mint with other addresses
+    // ...
+};
+
+// ✅ GOOD - Separate mint and post-mint approvals
+const mintApproval = {
+    fromListId: 'Mint', // Minting only
+    // ...
+};
+
+const postMintApproval = {
+    fromListId: '!Mint', // All addresses except Mint
+    // ...
+};
+```
+
+**Rules:**
+
+-   Use `"Mint"` for minting approvals only
+-   Use `"!Mint"` or `"AllWithoutMint"` for post-mint approvals
+-   Never use `"All"` for `fromListId` (it includes Mint)
+-   Never mix `"Mint"` with other addresses in the same list
+
+### Mint Approvals Must Override
+
+Mint address approvals must always override its user-level approvals to properly work, since it cannot control its own user-level approvals itself.
+
+```typescript
+const mintApproval = {
+    fromListId: 'Mint',
+    approvalCriteria: {
+        overridesFromOutgoingApprovals: true, // Required
+    },
+};
+```
+
+### Mint vs Mint Escrow Address
+
+Most use cases use `"Mint"` as the reserved address in approvals. For advanced cases needing escrows or payouts, you can use the `mintEscrowAddress` as a helper.
+
+```typescript
+// Mint Escrow Address (for advanced cases)
+const mintEscrowAddress = generateAlias(
+    'badges',
+    getAliasDerivationKeysForCollection(collectionId)
+);
+```
+
+The Mint Escrow Address is a generated `bb1` address that holds Cosmos native funds on behalf of the Mint address. It's used for coin transfers, payouts, and escrows. See [Mint Escrow Address](../x-badges/concepts/mint-escrow-address.md) for details.
+
+
+## File: ./learn/permissions.md
+
+---
+description: >-
+    Fine-grained permissions system for token collections: manager controls and administrative actions
+---
+
+## Manager
+
+The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
+
+```typescript
+const collection = {
+    managerTimeline: [
+        {
+            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+            timelineTimes: [{ start: '1', end: '18446744073709551615' }],
+        },
+    ],
+    collectionPermissions: {
+        // Permissions define what the manager can do
+    },
+};
+```
+
+### Manager Timeline
+
+Managers can change over time using timeline-based configuration:
+
+```typescript
+// Manager changes automatically on a specific date
+const managerTimeline = [
+    {
+        timelineTimes: [{ start: '1', end: '1672531199000' }],
+        manager: 'bb1alice...',
+    },
+    {
+        timelineTimes: [
+            { start: '1672531200000', end: '18446744073709551615' },
+        ],
+        manager: 'bb1bob...',
+    },
+];
+```
+
+This transfers management from Alice to Bob on January 1, 2023 automatically.
+
+### No Manager
+
+If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
+
+```typescript
+const managerTimeline = [];
+```
+
+## Permissions
+
+Permissions control who can perform actions on collections and when those actions can be executed. The manager executes administrative actions according to these permission rules.
+
+## Permission States
+
+Permissions have three states:
+
+| State                     | Description                    | Behavior                                                   |
+| ------------------------- | ------------------------------ | ---------------------------------------------------------- |
+| **Permanently Permitted** | Action ALWAYS allowed (frozen) | Can be executed                                            |
+| **Permanently Forbidden** | Action ALWAYS blocked (frozen) | Cannot be executed                                         |
+| **Neutral**               | Not specified                  | **Allowed by default now, but can change state in future** |
+
+```typescript
+// Lock collection deletion forever
+const collectionPermissions = {
+    canDeleteCollection: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: '1', end: '18446744073709551615' },
+            ],
+        },
+    ],
+};
+
+// Soft-enabled (default behavior - allowed but can be changed)
+const collectionPermissions = {
+    canDeleteCollection: [], // Empty = allowed by default
+};
+```
+
+**Important:** Once set to permanently permitted or forbidden, it cannot be changed.
+
+## Manager Capabilities
+
+The manager can execute administrative actions according to permissions:
+
+-   Updating collection metadata
+-   Updating token metadata
+-   Updating transferability (collection approvals)
+-   Updating valid token IDs
+-   Archiving the collection
+-   Deleting the collection
+-   Updating manager timeline
+-   And more...
+
+```typescript
+// Manager with full control (soft-enabled)
+const collectionPermissions = {
+    canDeleteCollection: [],
+    canArchiveCollection: [],
+    canUpdateStandards: [],
+    canUpdateCustomData: [],
+    canUpdateManager: [],
+    canUpdateCollectionMetadata: [],
+    canUpdateTokenMetadata: [],
+    canUpdateCollectionApprovals: [],
+    canUpdateValidTokenIds: [],
+};
+```
+
+All permissions are defined on-chain with timeline-based configuration, allowing permissions to change over time.
+
+## Common Permission Types
+
+### Action Permissions
+
+Simple time-based permissions (no criteria):
+
+```typescript
+// Lock collection deletion
+const collectionPermissions = {
+    canDeleteCollection: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+### Approval Permissions
+
+Control approval updates with transfer criteria:
+
+```typescript
+// Lock mint approval updates
+const collectionPermissions = {
+    canUpdateCollectionApprovals: [
+        {
+            fromListId: 'Mint',
+            approvalId: 'All',
+            ...,
+            permanentlyForbiddenTimes: FullTimeRanges,
+        },
+    ],
+};
+```
+
+See [Permissions](../x-badges/concepts/permissions/README.md) for detailed permission configuration and all permission types.
+
+
+## File: ./learn/pre-readings.md
+
+---
+description: >-
+    Essential prerequisites before diving into BitBadges technical documentation
+---
+
+Before diving into technical details, complete these prerequisites:
+
+### 1. Explore the BitBadges Platform
+
+Familiarize yourself with the platform by exploring [bitbadges.io](https://bitbadges.io):
+
+-   Review the landing and explore pages
+-   Complete the collection creation flow
+-   Examine transaction JSONs by clicking "Show Tx" at the end of different creation flows
+
+<figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
+
+### 2. Understand Minting and Transferability
+
+Understanding how tokens are created and transferred is essential:
+
+-   [Minting and Circulating Supply](./minting-and-circulating-supply.md) - How token creation works
+-   [Transferability](./transferability.md) - How transfers and approvals work
+
+## Quick Links
+
+| Need                  | Resource                                                         |
+| --------------------- | ---------------------------------------------------------------- |
+| **SDK Documentation** | [BitBadges SDK](../for-developers/bitbadges-sdk/overview.md)     |
+| **API Reference**     | [BitBadges API](../for-developers/bitbadges-api/api.md)          |
+| **Blockchain Module** | [x/badges Overview](../x-badges/README.md)                       |
+| **Type Definitions**  | [Type Definitions](../token-standard/type-definitions/README.md) |
+| **Examples**          | [x/badges Examples](../x-badges/examples/README.md)              |
+
+
+## File: ./learn/problems-with-existing-standards.md
+
+---
+description: >-
+    Why existing token standards (ERC/CW/ICS-20/721) are flawed and need a complete overhaul
+---
+
+Existing tokenization standards (ERC/CW/ICS-20/721) are good for many use cases, but the system is **flawed from the ground up**.
+
+## Problems
+
+**Simple**: They lack the flexibility and feature set needed for 90% of real-world applications. Simple mint, transfer, and burn functionality with no custom compliance or transferability rules is nowhere near enough. The industry has been stuck with these simple standards and no innovation for 10+ years due to technical debt.
+
+**Vulnerable**: They are vulnerable by default due to the smart contract approach. Each token contract introduces a new attack vector and chance of vulnerability. The whole smart contract approach is flawed and not sustainable.
+
+**Complex**: A simple contract requires extensive technical knowledge to implement.
+
+**Expensive**: Contracts are expensive to deploy and maintain.
+
+**Low Interoperability**: Ecosystem-agnostic companies do not want to split their userbase or handle tokens on multiple chains. They want an all-in-one solution that is compatible with any user from any ecosystem out of the box.
+
+**Many Competing Standards**: There are many competing standards and products for tokenization. Each tokenization product adds its own little twists that are not compatible with other products. This creates fragmentation and confusion.
+
+**The whole tokenization approach is broken from the foundation and NEEDS a complete overhaul.**
+
+
+## File: ./learn/time-dependent-accounting.md
+
+---
+description: >-
+    Time-dependent approvals: gate token transfers with time-based restrictions for subscriptions, unlocks, and vesting
+---
+
+BitBadges supports time-dependent approvals through the `transferTimes` field, allowing you to gate the flow of tokens based on time. This enables time-dependent functionality at scale, such as subscriptions, unlocks, and vesting.
+
+## Time-Dependent Approvals
+
+The `transferTimes` field in approvals defines when transfers are allowed. This field uses UNIX millisecond timestamps to control transfer windows.
+
+```typescript
+const approval = {
+    fromListId: 'Mint',
+    toListId: 'All',
+    transferTimes: [
+        {
+            start: '1691931600000', // Aug 13, 2023
+            end: '1723554000000', // Aug 13, 2024
+        },
+    ],
+    tokenIds: [{ start: '1', end: '100' }],
+    approvalId: 'time-gated-mint',
+};
+```
+
+**Translation:** Transfers are only allowed between Aug 13, 2023 and Aug 13, 2024. Outside this window, transfers are automatically blocked.
+
+## Use Cases
+
+Time-dependent approvals enable powerful use cases:
+
+### Token Unlocks
+
+Control when tokens become transferable after a lock period:
+
+```typescript
+const unlockApproval = {
+    fromListId: 'Mint',
+    toListId: 'investor-address',
+    transferTimes: [
+        {
+            start: '1735689600000', // Unlock date: Jan 1, 2025
+            end: '18446744073709551615', // Forever after unlock
+        },
+    ],
+    approvalId: 'vesting-unlock',
+};
+```
+
+Tokens are locked until the unlock date, then transferable indefinitely.
+
+### Token Vesting
+
+Gradually unlock tokens over time using multiple approval windows:
+
+```typescript
+const vestingApprovals = [
+    {
+        fromListId: 'Mint',
+        toListId: 'employee-address',
+        transferTimes: [
+            {
+                start: '1691931600000', // 25% after 1 year
+                end: '1723554000000',
+            },
+        ],
+        tokenIds: [{ start: '1', end: '250' }],
+        approvalId: 'vesting-year-1',
+    },
+    {
+        fromListId: 'Mint',
+        toListId: 'employee-address',
+        transferTimes: [
+            {
+                start: '1723554000000', // 25% after 2 years
+                end: '1755090000000',
+            },
+        ],
+        tokenIds: [{ start: '251', end: '500' }],
+        approvalId: 'vesting-year-2',
+    },
+    // ... more vesting periods
+];
+```
+
+Each approval unlocks a portion of tokens at different times, creating a gradual vesting schedule.
+
+
+## File: ./learn/transferability.md
+
+---
+description: >-
+    How transferability and approvals work: collection approvals, user-level controls, and validation
+---
+
+Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
+
+## Three Transferability Levels
+
+BitBadges supports three levels of transferability control:
+
+| Level          | Controlled By  | Use Case                               |
+| -------------- | -------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | Listings, delegation                   |
+| **Incoming**   | Recipient      | Bids, access control                   |
+
+Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
+
+## Collection Approvals
+
+Collection approvals define transferability rules for the entire collection on a global level. These rules apply to both minting and post-minting transfers. These let the issuer / manager control global compliance and transferability, such as freezability, revocation, and more.
+
+**All transfers must satisfy the collection approvals.**
+
+```typescript
+interface CollectionApproval<T extends NumberType> {
+    // Core Fields - Define Who? When? What?
+    toListId: string; // Who can receive?
+    fromListId: string; // Who can send?
+    initiatedByListId: string; // Who can initiate?
+    transferTimes: UintRange<T>[]; // When can transfer happen?
+    tokenIds: UintRange<T>[]; // Which token IDs?
+    ownershipTimes: UintRange<T>[]; // Which ownership times?
+    approvalId: string; // Unique identifier
+    version: T; // Version control (incremented on each update)
+
+    // Optional Fields
+    uri?: string; // Metadata link
+    customData?: string; // Custom data
+    approvalCriteria?: ApprovalCriteria<T>; // Additional restrictions
+}
+```
+
+### Example Approval
+
+```typescript
+const mintApproval = {
+    fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'All',
+    transferTimes: [{ start: '1691931600000', end: '1723554000000' }],
+    tokenIds: [{ start: '1', end: '100' }],
+    ownershipTimes: [{ start: '1', end: '18446744073709551615' }],
+    approvalId: 'mint-to-all',
+    version: '0',
+    approvalCriteria: {
+        maxNumTransfers: '1000', // Only 1000 transfers allowed
+        overridesFromOutgoingApprovals: true, // Required for Mint
+    },
+};
+```
+
+**Translation:** Allow anyone to claim tokens 1-100 from the Mint address between Aug 13, 2023 and Aug 13, 2024.
+
+## Approval Criteria
+
+Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
+
+```typescript
+interface ApprovalCriteria<T extends NumberType> {
+    maxNumTransfers?: T; // Limit number of transfers
+    approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
+    coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers
+    merkleChallenges?: MerkleChallenge<T>[]; // Require merkle proofs
+    mustOwnTokens?: MustOwnToken<T>[]; // Require owning specific tokens
+    overridesFromOutgoingApprovals?: boolean; // Override sender approvals
+    overridesToIncomingApprovals?: boolean; // Override recipient approvals
+    // ... more fields
+}
+```
+
+See [Approval Criteria](../x-badges/concepts/approval-criteria/README.md) for all available criteria.
+
+## User-Level Approvals
+
+Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
+
+Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
+
+### Outgoing Approvals
+
+Control who can send tokens on behalf of the user:
+
+```typescript
+const outgoingApproval = {
+    // fromListId: 'bb1user...', // Locked to the user's address, not in interface
+    toListId: 'bb1...', // Who can receive from this user
+    initiatedByListId: 'bb1...', // Who can initiate the transfer
+    transferTimes: FullTimeRanges,
+    tokenIds: FullTimeRanges,
+    ownershipTimes: FullTimeRanges,
+    approvalId: 'my-listing',
+    version: '0',
+    approvalCriteria: { ... }
+};
+```
+
+### Incoming Approvals
+
+Control who can send tokens to the user:
+
+```typescript
+const incomingApproval = {
+    // toListId: 'bb1user...', // Locked to the user's address, not in interface
+    fromListId: 'bb1...', // Who can send to this user
+    initiatedByListId: 'bb1...', // Who can initiate the transfer
+    transferTimes: FullTimeRanges,
+    tokenIds: FullTimeRanges,
+    ownershipTimes: FullTimeRanges,
+    approvalId: 'my-bids',
+    version: '0',
+    approvalCriteria: { ... }
+};
+```
+
+## Auto-Approval Flags
+
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
+
+```typescript
+interface UserBalanceStore {
+    autoApproveSelfInitiatedOutgoingTransfers: boolean;
+    autoApproveSelfInitiatedIncomingTransfers: boolean;
+    autoApproveAllIncomingTransfers: boolean;
+}
+```
+
+### Auto-Approve Self-Initiated Outgoing Transfers
+
+When `autoApproveSelfInitiatedOutgoingTransfers: true`, outgoing transfers initiated by the user are automatically approved without checking outgoing approvals.
+
+**Use case:** Convenience for users who want to freely send tokens they own without managing outgoing approval configurations.
+
+### Auto-Approve Self-Initiated Incoming Transfers
+
+When `autoApproveSelfInitiatedIncomingTransfers: true`, incoming transfers initiated by the user are automatically approved without checking incoming approvals.
+
+**Use case:** Convenience for users who want to receive tokens they request (e.g., claiming, requesting airdrops) without managing incoming approval configurations.
+
+### Auto-Approve All Incoming Transfers
+
+When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are automatically approved regardless of who initiates them.
+
+**Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
+
+### Permission Control
+
+Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
+
+```typescript
+const userPermissions = {
+    canUpdateAutoApproveSelfInitiatedOutgoingTransfers: [], // Soft-enabled
+    canUpdateAutoApproveSelfInitiatedIncomingTransfers: [], // Soft-enabled
+    canUpdateAutoApproveAllIncomingTransfers: [], // Soft-enabled
+};
+```
+
+## Override Behavior
+
+Collection approvals can override user-level approvals for administrative controls like freezing, revocation, or forced transfers. This is done via the `approvalCriteria` field and only available on the collection approval criteria interface.
+
+If set to true, we do NOT check the corresponding user-level approvals for the sender and/or recipient.
+
+```typescript
+const collectionApproval = {
+    fromListId: '!Mint',
+    toListId: 'All',
+    approvalCriteria: {
+        overridesFromOutgoingApprovals: true, // Skip sender approvals
+        overridesToIncomingApprovals: true, // Skip recipient approvals
+    },
+};
+```
+
+### When Overrides Apply
+
+**Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
+
+-   Freezing tokens (prevent transfers regardless of user settings)
+-   Forced revocation (remove tokens from users)
+-   Administrative transfers (manager-controlled actions)
+
+**Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
+
+-   Forced transfers (send tokens even if recipient blocks them)
+-   Administrative actions (manager-controlled distributions)
+
+**Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
+
+If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
+
+## Transfer Validation Process
+
+Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
+
+**Validation flow:**
+
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption>Transfer validation flow</figcaption></figure>
+
+1. **Balance validation**: Sender has sufficient tokens
+2. **Collection approval**: At least one collection approval passes
+3. **User approvals**: Sender/recipient approvals pass (unless overridden)
+
+## Break-Down Logic
+
+The system can break down transfers and approvals into partial matches to make transfers succeed. It deducts as much as possible from each approval as it iterates.
+
+For proper design, you should try to design your approvals such that they never have to match to more than one. However, if needed, we break down the transfer and approvals as fine-grained as we can to make it succeed.
+
+See [Auto-Scan and Prioritized Approvals](./auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.
+
+
 ## File: ./overview/badge.md
 
 # 🪙 BADGE
@@ -9558,179 +11310,6 @@ All BitBadges use cases benefit from:
 * **Flexible Approvals System**: Create complex approval workflows for transfers and operations
 
 
-## File: ./overview/what-is-bitbadges.md
-
-# 🪄 The BitBadges Standard
-
-BitBadges is a project aiming to drive the adoption of Cosmos with one mission: **build the best tokenization standard ever seen and make it exclusively available as a Cosmos module.**
-
-Cosmos sells software-as-a-service, but it is incomplete without offering a state-of-the-art solution for the main primitive of all of crypto (tokenization). The next 5 years are about advanced tokenization (e.g. Project Crypto) and tokenizing everything. What better way to onboard developers and institutions to Cosmos than offer a 1000x tokenization experience that is **Cosmos exclusive**? This is what BitBadges has built.
-
-### Problems With Existing Token Standards
-
-Existing tokenization standards (ERC/CW/ICS-20/721) are good for plenty of use cases, but the whole system is **flawed from the ground up**.
-
-Existing standards are:
-
-**Simple**: They lack the flexibility and feature set needed for 90% of real-world applications. Simple mint, transfer, and burn functionality is nowhere near enough. The industry has been stuck with these simple standards and no innovation for 10+ years due to technical debt. It is a mess.
-
-**Vulnerable**: They are vulnerable by default due to the smart contract approach. Each token contract introduces a new attack vector and chance of vulnerability. We frankly find it crazy how much is spent on smart contract audits and security. The whole smart contract approach is flawed and not sustainable. It is broken from the foundation, and it has been that way for 10+ years with little done to fix it.
-
-**Complex**: A simple contract requires extensive technical knowledge to implement.
-
-**Expensive**: Contracts are expensive to deploy and maintain.
-
-**Low Interoperability**: Interoperability of tokens has improved recently, and IBC is the leading example of this. However, there is still a lot of room for improvement. Ecosystem-agnostic companies do not want to split their userbase or handle tokens on multiple chains. They want an all-in-one solution that is compatible with any user from any ecosystem out of the box.
-
-**Many Competing Standards**: There are many competing standards and products for tokenization. Each tokenization product adds its own little twists that are not compatible with other products. This creates fragmentation and confusion. We believe that there should be one universal standard that is the best solution for all use cases.
-
-**And Much More**: I could go on and on, but the point stands: **the whole tokenization approach is broken from the foundation and NEEDS a complete overhaul.**
-
-### The BitBadges Token Standard
-
-To solve all of these problems, BitBadges has taken a ground-up approach to build a new universal token standard supported by our own Cosmos SDK blockchain. Our mission is to build the only token standard anyone will ever need with every possible use case supported natively. No smart contracts. No code. 1000x functionality. Exclusive to Cosmos.
-
-Below, we outline a high-level overview of what BitBadges has built and how it compares to existing tokenization standards. We aim to not go into too low-level details and will do our best to explain all concepts; however, the protocol is incredibly feature-rich, and we may not explain everything as thoroughly as we would like. For the full details, please refer to the BitBadges site or documentation. We actually think the best way of learning all that we offer is our landing page and exploring the site, so we encourage you to check it out before reading below. We are also happy to answer any questions you have.
-
-#### Universality
-
-Our token standard is universal and feature-rich enough for any use case. It can not only be used for NFTs and fungible tokens, but also for subscriptions, quests, credentials, real-world assets, complex regulatory compliance, or anything you can think of. The problem with existing standards is they are too limited for 95% of real-world applications. One standard to rule them all.
-
-#### No-Code / Module Approach
-
-The BitBadges standard is no-code by default. It uses a Cosmos module approach to offer a seamless, developer-friendly API-like experience rather than complex smart contracts. As a result, you actually don't even need any technical knowledge to use our standard. Simply go to our site and start building! The native support is feature-rich enough that we envision that 99% of users will NEVER need to write any code, no matter how complex the use case. As it should be.
-
-This promotes reusability and battle-testing the code, rather than potential vulnerabilities introduced per token contract. We strongly believe that over time, this approach will be proven to be the right approach.
-
-#### Ever-Evolving
-
-BitBadges is an ever-evolving standard. We are not making the same mistakes as ERC-20/721/etc. We are not stuck in the past. We are always on the bleeding edge of technology and will never be behind a trend. New feature idea? We will add it. It is purpose-built for the next-generation of tokenization.
-
-#### Same Token, Any User, Any Chain
-
-Through address mapping and signature compatibility, the BitBadges blockchain supports any wallet from any ecosystem. This enables seamless compatibility with any user from any ecosystem directly on the same chain with one module. One interface for any user. This, for example, enables an Ethereum user to own and transfer tokens to Solana users to a Cosmos user and so on.
-
-This is how it should be and is a great tool onboarding ecosystem-agnostic companies who want an all-in-one solution out of the box. No need to split their userbase or launch on multiple chains to support all their users.
-
-Note: This does not include minting or burning on destination chains. All token state and balances live in our own custom module on our own chain. For interoperability, we support IBC (see below).
-
-#### IBC Compatibility
-
-We are Cosmos through and through. Our plan is to be the tokenization launchpad for all of Cosmos with IBC at the core of everything.
-
-1. Any token created is wrappable to ICS-20/721 format for use on any other IBC-enabled chain.
-2. We can support payments via any IBC denomination (e.g. payments, subscriptions, etc). For example, an NFT / fungible token marketplace or subscription service with payments accepted via any IBC-enabled token.
-3. Our module is IBC-enabled and core Msgs can be executed via IBC
-
-For example, you could theoretically:
-
-1. Create a token via our module
-2. Wrap 20% of the supply to ICS-20 format
-3. Send 10% to Osmosis
-4. Send 10% to an EVM chain with IBC Eureka
-5. Keep the remaining with time-dependent unlocks in our native module
-6. Or any combination you can think of. That is the beauty of it.
-
-Think of BitBadges as a layer above IBC. Tokens are launched on BitBadges for all the features that we offer, and then, they can be wrapped to IBC for interoperability and use with any IBC-enabled service.
-
-#### Value-Add Mindset
-
-BitBadges prioritizes unique value-add to Cosmos over everything else. We are not trying to reinvent the wheel or compete with existing ecosystem projects in Cosmos. We focus on bringing utility and enabling use cases not already out there. For features or services already available, we actually promote using them instead of us by wrapping them and sending them via IBC.
-
-For example, while we could focus on building out a decentralized exchange with our standard, that is incredibly low value-add to Cosmos considering there are plenty of options already available via IBC.
-
-#### Time-Dependent Accounting
-
-We are the first and only token standard to support time-dependent accounting. This is a huge primitive needed to be able to support subscriptions, unlocks, or any other time-dependent functionality at scale. All token balances can be fractionalized down to the millisecond. Think of them like "ownership rights".
-
-This enables use cases like:
-
-* Auto-expiring / renewing subscription tokens
-* Token unlocks
-* Token vesting
-
-All without needing future transactions to update the balances.
-
-Ex: Bob owns this token ID until next July when the subscription token auto-expires. At that point, the token is no longer owned by Bob.
-
-**Featured Use Case: Subscriptions**:
-
-BitBadges has an in-built standard using our tokenization protocol that leverages time-dependent accounting to implement no-code, recurring tokenized subscriptions. We use a bot-tipping system to handle the recurring payments and time-dependent ownership rights to handle the expiration of the subscription.
-
-This could make Cosmos the premier subscription layer for all of crypto. Anyone can go to our site and in a few clicks create a no-code, auto-recurring, decentralized, peer-to-peer subscription paid using any IBC-enabled token.
-
-#### Transferability Revamped
-
-Probably the biggest innovation of the BitBadges standard is our revamped transferability and approvals system.
-
-**Three Transferability Levels**:
-
-1. **Collection-Level Transferability**: The issuer / manager defines overall rules for the collection. Can forcefully override user-level approvals if needed.
-2. **Sender Approvals**: Each user can set rules for outgoing transfers (e.g. listings, etc).
-3. **Recipient Approvals**: Each recipient can set rules for incoming transfers (e.g. bids, etc).
-
-This allows for a lot of flexibility and control over the transferability of a token. Each transfer must 1) have sufficient balances from the sender, 2) satisfy the collection transferability, and 3) satisfy the user-level approvals (if not forcefuly overridden by the collection).
-
-This is especially valuable for many real-world use cases that need that issuer control, such as KYC regulatory compliance, freezability, royalties, revokability, etc. Our standard allows you full control to configure whatever you need.
-
-**Revamped On-Chain Approvals**:
-
-Approvals are no longer a simple incremented counter that cannot exceed a threshold. Our approvals are incredibly flexible and powerful while being standardized.
-
-Seamlessly define all the following on-chain for EVERY approval. Define the exact rules and stipulations, enabling complex and powerful transferability rules on the three levels (collection, sender, recipient). All in a standardized manner.
-
-* Who Can Transfer?
-* Who Can Receive?
-* Who Can Initiate?
-* Transfer Times?
-* Predetermined or Tallied Amounts?
-* How Many Transfers?
-* Revokable?
-* Freezable?
-* BADGE or other IBC transfers?
-* Royalties?
-* Ownership Times?
-* Recurring?
-* Non-Transferable?
-* Incrementing Token IDs?
-* Owns Other Tokens?
-* And plenty more...
-
-**Off-Chain Approval Criteria: 7000+ Web2 Integrations**:
-
-Additionally, BitBadges has an oracle-like system that allows letting a centralized service approve users dynamically by checking off-chain criteria and giving them signed codes to redeem on-chain. BitBadges runs its own criteria checking service that connects to 7000+ Web2 integrations in no-code through in-site plugins. This enables powerful use cases like:
-
-* Gating mints by Discord membership
-* Gating mints by X followers
-* Gating mints by email
-* Gating mints by checking your private off-chain data
-* Gating mints through claim codes or passwords
-* Gating approvals by AI agents
-* Building your own custom endpoints to check your own criteria
-* And anything else you can think of. We make it easy for anyone to add their own integration, custom plugin, or build their own criteria checking service. All the heavy on-chain hybrid work is done for you. You focus on your application-specific logic.
-
-This is a huge tool for Web2 adoption and onboarding users to on-chain tokenization.
-
-While BitBadges runs its own criteria checking service, anyone can spin up their own oracle-like service to check their own criteria and reduce this trust assumption on BitBadges. It is decentralized in nature.
-
-#### Fine-Grained Permissions
-
-Each token collection can have a manager that can execute administrative actions for full control over whatever is needed. This is a great tool to allow for more complex use cases where centralized control is needed with predefined checks and balances enforced on-chain, like regulatory compliance.
-
-* Updating the token metadata
-* Updating transferability
-* Archiving the collection
-* Deleting the collection
-* Adding more tokens to the collection
-* Pausing transfers
-* Volume throttling
-* And more...
-
-#### Smart Contract Extendibility
-
-While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
-
-
 ## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
 
 # Token ID Action Permissions
@@ -10057,51 +11636,6 @@ balance, err := sendManagerKeeper.GetBalanceWithAliasRouting(ctx, address, denom
 
 # MsgSetTokenMetadata
 
-
-
-## File: ./token-standard/pre-readings.md
-
-# 📔 Pre-Readings
-
-Before diving deep into the behind the scenes of our token standard, we encourage you to do two things.
-
-1\) Explore the landing and explore page ([https://bitbadges.io](https://bitbadges.io\)/)) in our site to get an idea of what is possible! Also, go through the create flow to see what all is possible! At the end of the create flow, you can click on the Show Tx button to see what the JSON transaction looks like behind the scenes.
-
-<figure><img src="../.gitbook/assets/image (403).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/image (406).png" alt=""><figcaption></figcaption></figure>
-
-2\) For a full A-Z description of what BitBadges is and why we built it, read this:
-
-{% content-ref url="../overview/what-is-bitbadges.md" %}
-[what-is-bitbadges.md](../overview/what-is-bitbadges.md)
-{% endcontent-ref %}
-
-3\) How does BitBadges transferability work from a high-level?
-
-**Mint Address**
-
-The Mint address has unlimited balances. Any 'Mint' creates a token out of thin air.
-
-**Circulating Supply**
-
-The circulating supply is not a static number but rather the total amount of tokens transferred from the Mint address. Set approvals and permissions accordingly.
-
-**Collection Approvals (Transferability)**
-
-Collection approvals (minting and post-minting) define the overall rules for the collection. All transfers must always obey a collection approval. This gives you overarching control about the transferability of the collection. Examples: freezability, non-transferable, revoking, etc.
-
-**User-Level Approvals**
-
-The sender / receiver can also set user-level approvals that must be satisfied by default to gate who can send on their behalf or send to them.
-
-These can be skipped / forcefully overriden by the collection-level approvals (for implementing forceful functionality like freezing, etc).
-
-**What is checked on each transfer?**
-
-Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.
-
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./token-standard/type-definitions/README.md
