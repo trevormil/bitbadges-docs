@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 16:06:28 UTC 2025
+Generated on Mon Dec 22 16:19:55 UTC 2025
 
 
 
@@ -1858,7 +1858,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
     -   [Different Time Fields](x-badges/concepts/time-fields.md)
     -   [Timeline System](x-badges/concepts/timeline-system.md)
     -   [Transferability & Approvals](x-badges/concepts/transferability-approvals.md)
-    -   [Auto-Scan Mode](x-badges/concepts/auto-scan-mode.md)
     -   [UintRanges](x-badges/concepts/uintrange.md)
     -   [Valid Token IDs](x-badges/concepts/valid-token-ids.md)
     -   [Approval Criteria](x-badges/concepts/approval-criteria/README.md)
@@ -1883,10 +1882,6 @@ The answer is simple. We believe in the potential of blockchains and a multi-cha
         -   [Approval Permissions](x-badges/concepts/permissions/approval-permissions.md)
         -   [Token ID Action Permissions](token-standard/concepts/permissions/token-id-action-permissions.md)
         -   [Timeline Permissions](x-badges/concepts/permissions/timeline-permissions.md)
-    -   [Protocols](x-badges/concepts/protocols/README.md)
-        -   [Quest Protocol](x-badges/concepts/protocols/quest-protocol.md)
-        -   [Subscriptions Protocol](x-badges/concepts/protocols/subscriptions-protocol.md)
-        -   [Tradable Protocol](x-badges/concepts/protocols/tradable-protocol.md)
 -   [📨 Messages](x-badges/messages/README.md)
     -   [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
     -   [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
@@ -4308,15 +4303,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
-* Some features available in production may not be accessible in testnet:
-  * Off-chain balances managed by BitTokens are not hosted externally (via CDN)
-  * Buying BADGE credits
-  * Push notifications
-  * And more
-* Some restrictions may be more relaxed
-  * No API keys required
-  * Faucet may be more lenient
-* Performance also may differ from the production environment
+-   Some features available in production may not be accessible in testnet:
+    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+    -   Buying BADGE credits
+    -   Push notifications
+    -   And more
+-   Some restrictions may be more relaxed
+    -   No API keys required
+    -   Faucet may be more lenient
+-   Performance also may differ from the production environment
 
 ### Links
 
@@ -4326,8 +4321,8 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
-* RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
-* REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+-   RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
+-   REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
 
 ### Feedback
 
@@ -8326,10 +8321,10 @@ For testing purposes, you can setup using Pipedream's request bin ([https://pipe
 
 ### Timing of Hooks
 
-BitTokens can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
+BitBadges can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
 
-* Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
-* Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
+-   Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
+-   Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
 <figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -9831,6 +9826,40 @@ An approval is considered **safe for auto-scan mode** if:
 5. **No ETH signature challenges** - `approvalCriteria.ethSignatureChallenges` is nil or empty
 6. **Not special context** - certain special protocol contexts require prioritized approvals (ex: IBC backed minting, Cosmos wrapping)
 
+### Complete Function Reference
+
+The complete implementation of the auto-scannable check:
+
+```go
+func CollectionApprovalIsAutoScannable(approvalCriteria *ApprovalCriteria) bool {
+	if approvalCriteria == nil {
+		return true
+	}
+
+	if approvalCriteria.MustPrioritize {
+		return false
+	}
+
+	if approvalCriteria.CoinTransfers != nil && len(approvalCriteria.CoinTransfers) > 0 {
+		return false
+	}
+
+	if approvalCriteria.PredeterminedBalances != nil && !PredeterminedBalancesIsBasicallyNil(approvalCriteria.PredeterminedBalances) {
+		return false
+	}
+
+	if approvalCriteria.MerkleChallenges != nil && len(approvalCriteria.MerkleChallenges) > 0 {
+		return false
+	}
+
+	if approvalCriteria.EthSignatureChallenges != nil && len(approvalCriteria.EthSignatureChallenges) > 0 {
+		return false
+	}
+
+	return true
+}
+```
+
 ```typescript
 // ✅ Auto-scannable approval
 const approval: CollectionApproval<bigint> = {
@@ -9892,7 +9921,7 @@ Read-only criteria are safe and won't prevent auto-scanning:
 
 ### Versioning Control
 
-Versioning ensures users know the exact approval they're using before submitting, preventing race conditions.
+Versioning ensures users know the exact approval they're using before submitting, preventing race conditions. Every time you update an approval, the version will increment automatically.
 
 ```typescript
 // Approval version increments on each update
@@ -10207,7 +10236,7 @@ const msg: MsgTransferTokens = {
 };
 ```
 
-See [Auto-Scan Mode](../x-badges/concepts/auto-scan-mode.md) and [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
+See [Transferability & Approvals](../x-badges/concepts/transferability-approvals.md) for detailed documentation.
 
 
 ## File: ./learn/key-design-decisions.md
@@ -10474,9 +10503,7 @@ The Mint Escrow Address is a generated `bb1` address that holds Cosmos native fu
 
 ## File: ./learn/permissions.md
 
-# Manager / Permissions
-
-### Manager
+## Manager
 
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
 
@@ -10490,13 +10517,12 @@ const collection: TokenCollection<bigint> = {
     ],
     collectionPermissions: {
         // Permissions define what the manager can do
-        // ... permission fields
     },
     // ... other collection fields
 };
 ```
 
-#### Manager Timeline
+### Manager Timeline
 
 Managers can change over time using timeline-based configuration:
 
@@ -10521,19 +10547,82 @@ const managerTimeline: ManagerTimeline<bigint>[] = [
 
 This transfers management from Alice to Bob on January 1, 2023 automatically.
 
-#### No Manager
+### Setting Initial Manager
 
-If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
+During collection creation:
+
+```typescript
+const collection: TokenCollection<bigint> = {
+    creator: 'bb1alice...',
+    managerTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            manager: 'bb1alice...',
+        },
+    ],
+    collectionPermissions: {
+        canUpdateManager: [
+            {
+                permanentlyPermittedTimes: [
+                    { start: 1n, end: 18446744073709551615n },
+                ],
+                permanentlyForbiddenTimes: [],
+            },
+        ],
+        // ... other permission fields
+    },
+    // ... other collection fields
+};
+```
+
+### Decentralized Management Transition
+
+Transition to a burn address manager and lock management permanently, creating a decentralized collection:
+
+```typescript
+const collection: TokenCollection<bigint> = {
+    managerTimeline: [
+        {
+            timelineTimes: [{ start: 1n, end: 1672531199000n }],
+            manager: 'bb1alice...',
+        },
+        {
+            timelineTimes: [
+                { start: 1672531200000n, end: 18446744073709551615n },
+            ],
+            manager: 'bb1qqqq....', // Burn address
+        },
+    ],
+    collectionPermissions: {
+        canUpdateManager: [
+            {
+                permanentlyPermittedTimes: [],
+                permanentlyForbiddenTimes: [
+                    { start: 1672531200000n, end: 18446744073709551615n },
+                ],
+            },
+        ],
+        // ... other permission fields
+    },
+    // ... other collection fields
+};
+```
+
+This transitions to a burn address manager and locks management permanently, creating a decentralized collection.
+
+### No Manager
+
+If you don't want a manager, set the manager to an empty string or empty array. Permission values don't matter when there's no manager:
 
 ```typescript
 const managerTimeline: ManagerTimeline<bigint>[] = [];
 ```
 
-### Permissions
+## Permissions
 
-Permissions control who can perform actions on collections and when those actions can be executed. The manager executes administrative actions according to these permission rules.
+Permissions control which actions can be performed and when those actions can be executed. The manager executes administrative actions according to these permission rules.
 
-### Permission States
+## Permission States
 
 Permissions have three states:
 
@@ -10542,6 +10631,8 @@ Permissions have three states:
 | **Permanently Permitted** | Action ALWAYS allowed (frozen) | Can be executed                                            |
 | **Permanently Forbidden** | Action ALWAYS blocked (frozen) | Cannot be executed                                         |
 | **Neutral**               | Not specified                  | **Allowed by default now, but can change state in future** |
+
+**Important:** Once set to permanently permitted or forbidden, it can never changed. This is by design to act as a check and balance enforced on-chain.
 
 ```typescript
 // Lock collection deletion forever
@@ -10564,20 +10655,22 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-**Important:** Once set to permanently permitted or forbidden, it cannot be changed.
-
-### Manager Capabilities
+## Manager Capabilities
 
 The manager can execute administrative actions according to permissions:
 
-* Updating collection metadata
-* Updating token metadata
-* Updating transferability (collection approvals)
-* Updating valid token IDs
-* Archiving the collection
-* Deleting the collection
-* Updating manager timeline
-* And more...
+-   Updating collection metadata
+-   Updating token metadata
+-   Updating transferability (collection approvals)
+-   Updating valid token IDs
+-   Archiving the collection
+-   Deleting the collection
+-   Updating manager timeline
+-   And more...
+
+All permissions are defined on-chain with time-based configuration, allowing permissions to change over time.
+
+You may also implement off-chain permissions for the manager, but this is up to you and your use case.
 
 ```typescript
 // Manager with full control (soft-enabled)
@@ -10595,11 +10688,9 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-All permissions are defined on-chain with timeline-based configuration, allowing permissions to change over time.
+## Common Permission Types
 
-### Common Permission Types
-
-#### Action Permissions
+### Action Permissions
 
 Simple time-based permissions (no criteria):
 
@@ -10618,9 +10709,9 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-#### Approval Permissions
+### Approval Permissions
 
-Control approval updates with transfer criteria:
+Control approval updates with transfer criteria with support for fine-grained control:
 
 ```typescript
 // Lock mint approval updates
@@ -10644,7 +10735,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-See [Permissions](../x-badges/concepts/permissions/) for detailed permission configuration and all permission types.
+See [Permissions](../x-badges/concepts/permissions/README.md) for detailed permission configuration and all permission types.
 
 
 ## File: ./learn/pre-readings.md
@@ -12140,7 +12231,6 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Metadata**](metadata.md) - Rich, dynamic content for collections and tokens with timeline support
 -   [**Manager**](manager.md) - Central authority for collection administration with timeline-based control
 -   [**Transferability & Approvals**](transferability-approvals.md) - Overview of the three-tier approval system for token transfers
--   [**Auto-Scan Mode**](auto-scan-mode.md) - Automatic approval scanning for simple transfers without side effects
 -   [**Approval Criteria**](approval-criteria/) - Detailed approval criteria and conditions for token transfers
 -   [**Address Lists**](address-lists.md) - Reusable collections of addresses for approval configurations
 -   [**Permissions**](permissions/) - Granular control over collection management operations
@@ -12150,7 +12240,6 @@ This directory contains detailed explanations of the core concepts and data stru
 -   [**Cosmos Wrapper Paths**](cosmos-wrapper-paths.md) - Wrapping between tokens and native Cosmos SDK coins for IBC compatibility
 -   [**IBC Backed Paths**](ibc-backed-paths.md) - IBC-backed Cosmos SDK coin paths for collection minting
 -   [**Collection Invariants**](collection-invariants.md) - Immutable rules that enforce fundamental constraints on collection behavior
--   [**Protocols**](protocols/) - Standardized implementation patterns for collections
 
 
 ## File: ./x-badges/concepts/address-lists.md
@@ -12533,12 +12622,6 @@ You can combine multiple checks for a single party:
 
 All checks are evaluated after the address lists (`toList`, `fromList`, `initiatedByList`) are matched. An address must first be in the appropriate list, then pass the address checks.
 
-## Related Concepts
-
--   [Approval Criteria Overview](README.md)
--   [Requires](requires.md) - Address relationship restrictions
--   [Transferability & Approvals](../transferability-approvals.md)
-
 
 ## File: ./x-badges/concepts/approval-criteria/alt-time-checks.md
 
@@ -12631,12 +12714,6 @@ If either condition fails, the approval is denied.
 -   All time checks use **UTC timezone**
 -   Ranges within the same array should not overlap (though overlapping ranges will still work, they may be redundant)
 -   If both `offlineHours` and `offlineDays` are specified, the approval is denied if **either** condition matches
-
-## Related Concepts
-
--   [Approval Criteria Overview](README.md)
--   [Transferability & Approvals](../transferability-approvals.md) - Standard `transferTimes` field
--   [UintRanges](../uintrange.md) - Range logic implementation
 
 
 ## File: ./x-badges/concepts/approval-criteria/approval-trackers.md
@@ -13759,13 +13836,6 @@ The `mustPrioritize` field works in conjunction with the auto-scan system:
 -   **Race Conditions**: Using `mustPrioritize: true` with version control prevents race conditions from approval updates
 -   **Transfer Flags**: When using prioritized approvals, set `onlyCheckPrioritizedCollectionApprovals` (or corresponding flags) to `true` for deterministic behavior
 
-## Related Concepts
-
--   [Approval Criteria Overview](README.md)
--   [MsgTransferTokens](../../messages/msg-transfer-tokens.md) - Transfer message with prioritizedApprovals
--   [Auto-Scan vs Prioritized Approvals](../../concepts/transferability-approvals.md#auto-scan-vs-prioritized-approvals) - Transfer modes
--   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Auto-scan compatible template
-
 
 ## File: ./x-badges/concepts/approval-criteria/overrides.md
 
@@ -14549,273 +14619,6 @@ Use [MsgUpdateCollection](../../messages/msg-update-collection.md) to update the
 ```
 
 
-## File: ./x-badges/concepts/auto-scan-mode.md
-
-# Auto-Scan Mode
-
-Auto-scan mode is a feature that allows the BitBadges system to automatically scan through available approvals to find a match for a transfer without requiring explicit prioritization. This mode provides convenience and efficiency for automatic environments, such as liquidity pools and other automated environments.
-
-## Overview
-
-When a transfer is submitted without explicitly prioritizing specific approvals for a specific approval level, the system operates in **auto-scan mode**. In this mode, the system automatically searches through available approvals to find a match for the transfer request. It will break down into partial if needed and continue until the transfer is fully approved or denied.
-
-However, not all approvals are safe for auto-scanning. Some approvals have side effects or require specific handling that makes automatic selection unsafe. The system checks whether an approval is auto-scannable before using it in this mode.
-
-## Safety Check Logic
-
-An approval is considered **safe for auto-scan mode** if:
-
-### 1. No Approval Criteria
-
-If `approvalCriteria` is `nil` or empty, the approval is automatically safe for auto-scanning.
-
-```go
-if approvalCriteria == nil {
-    return true
-}
-```
-
-### 2. Must Prioritize Flag
-
-If `mustPrioritize` is set to `true`, the approval **cannot** be auto-scanned. This flag explicitly requires the approval to be prioritized in the transfer request.
-
-```go
-if approvalCriteria.MustPrioritize {
-    return false
-}
-```
-
-**Why**: Approvals with `mustPrioritize` set are intentionally designed to require explicit selection, preventing accidental use.
-
-### 3. Coin Transfers
-
-If the approval includes any coin transfers (BADGE or other sdk.Coin transfers), it is **not** auto-scannable.
-
-```go
-if approvalCriteria.CoinTransfers != nil && len(approvalCriteria.CoinTransfers) > 0 {
-    return false
-}
-```
-
-**Why**: Coin transfers execute side effects (payments) that should be explicitly intended by the user. Auto-selecting an approval with coin transfers could result in unexpected payments.
-
-### 4. Predetermined Balances
-
-If the approval uses predetermined balances (non-nil and non-empty), it is **not** auto-scannable.
-
-```go
-if approvalCriteria.PredeterminedBalances != nil && !PredeterminedBalancesIsBasicallyNil(approvalCriteria.PredeterminedBalances) {
-    return false
-}
-```
-
-**Why**: Predetermined balances specify exact amounts that must be transferred, which could affect which token IDs are received. This requires explicit approval selection to ensure the user understands what they're receiving.
-
-### 5. Merkle Challenges
-
-If the approval includes merkle challenges, it is **not** auto-scannable.
-
-```go
-if approvalCriteria.MerkleChallenges != nil && len(approvalCriteria.MerkleChallenges) > 0 {
-    return false
-}
-```
-
-**Why**: Merkle challenges require proofs to be passed in `MsgTransferTokens`. The system cannot automatically select an approval that requires specific proof data that must be provided by the user.
-
-### 6. ETH Signature Challenges
-
-If the approval includes ETH signature challenges, it is **not** auto-scannable.
-
-```go
-if approvalCriteria.EthSignatureChallenges != nil && len(approvalCriteria.EthSignatureChallenges) > 0 {
-    return false
-}
-```
-
-**Why**: Similar to merkle challenges, ETH signature challenges require specific signature data to be provided in the transfer message, which cannot be automatically selected.
-
-## Safe Criteria for Auto-Scan
-
-The following approval criteria are **safe** for auto-scan mode and will not prevent an approval from being auto-scannable:
-
--   **Read-only checks**: `mustOwnTokens`, address checks (`senderChecks`, `recipientChecks`, `initiatorChecks`), and other read-only validations
--   **Requires flags**: `requireToEqualsInitiatedBy`, `requireFromEqualsInitiatedBy`, etc.
--   **Overrides**: `overridesFromOutgoingApprovals`, `overridesToIncomingApprovals`
--   **Auto-deletion options**: `autoDeletionOptions`
--   **User royalties**: `userRoyalties` (read-only during transfer)
--   **Alt time checks**: `altTimeChecks` (read-only validation)
-
-These criteria only perform read-only checks or affect approval behavior without requiring additional data in the transfer message.
-
-## Designing Approvals Properly
-
-It is crucial to design your approvals with auto-scan mode in mind. While the system automatically prevents certain types of approvals from being auto-scanned, there are important design considerations that require explicit attention.
-
-### The `mustPrioritize` Flag
-
-The `mustPrioritize` flag is a powerful tool for controlling whether an approval can be used in auto-scan mode. Setting `mustPrioritize: true` ensures that the approval **must** be explicitly prioritized in the transfer request, preventing it from being automatically selected.
-
-**Consider using `mustPrioritize: true` when:**
-
--   **Forceful transfers**: Approvals that override user-level approvals (`overridesFromOutgoingApprovals` or `overridesToIncomingApprovals`) should typically require explicit prioritization, as these are important operations that should be intentional. While overrides are technically safe for auto-scanning, they bypass user consent and should be used intentionally, not automatically.
-
--   **Stateful approvals**: Approvals that increment stateful trackers like `approvalAmounts` or `maxNumTransfers` should often require prioritization. Users may not want to unintentionally increment their transfer limits, especially in automated environments like liquidity pools where they cannot control which approval is selected.
-
--   **Sensitive operations**: Any approval that performs operations users might want explicit control over, even if technically safe for auto-scanning.
-
-## Complete Function Reference
-
-```go
-func CollectionApprovalIsAutoScannable(approvalCriteria *ApprovalCriteria) bool {
-	if approvalCriteria == nil {
-		return true
-	}
-
-	if approvalCriteria.MustPrioritize {
-		return false
-	}
-
-	if approvalCriteria.CoinTransfers != nil && len(approvalCriteria.CoinTransfers) > 0 {
-		return false
-	}
-
-	if approvalCriteria.PredeterminedBalances != nil && !PredeterminedBalancesIsBasicallyNil(approvalCriteria.PredeterminedBalances) {
-		return false
-	}
-
-	if approvalCriteria.MerkleChallenges != nil && len(approvalCriteria.MerkleChallenges) > 0 {
-		return false
-	}
-
-	if approvalCriteria.EthSignatureChallenges != nil && len(approvalCriteria.EthSignatureChallenges) > 0 {
-		return false
-	}
-
-	return true
-}
-```
-
-## Usage Guidelines
-
-### When to Use Auto-Scan Mode
-
-Auto-scan mode is ideal for:
-
--   **Simple transfers**: Basic token transfers without side effects
--   **Standard approvals**: Approvals with empty or minimal approval criteria
--   **User convenience**: When you want the system to automatically find the right approval
-
-### When to Use Prioritized Approvals
-
-You **must** use prioritized approvals when:
-
--   The approval has `mustPrioritize` set to `true`
--   The approval includes coin transfers
--   The approval uses predetermined balances
--   The approval requires merkle proofs
--   The approval requires ETH signatures
--   You need explicit control over which approval is used
-
-### Special Contexts Requiring Prioritized Approvals
-
-Certain special transfer contexts are also **not compatible with auto-scan mode** and require you to specify prioritized collection approvals:
-
-#### IBC Backed Minting Paths
-
-When using [IBC backed paths](./ibc-backed-paths.md) for minting/unwinding tokens, transfers involving the special backing address **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
-
-#### Cosmos Wrapper Paths
-
-When using [Cosmos wrapper paths](./cosmos-wrapper-paths.md) for wrapping/unwrapping tokens to native Cosmos SDK coins, transfers involving wrapper addresses **cannot** use auto-scan mode. We enforce that you must explicitly specify the prioritized collection approval in your transfer request.
-
-See [Transferability & Approvals](./transferability-approvals.md) for more details on prioritized approvals.
-
-## Examples
-
-### ✅ Auto-Scannable Approval
-
-```json
-{
-    "approvalId": "simple-transfer",
-    "fromListId": "Mint",
-    "toListId": "All",
-    "initiatedByListId": "All",
-    "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-    "tokenIds": [{ "start": "1", "end": "100" }],
-    "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }],
-    "approvalCriteria": {
-        "mustOwnTokens": [
-            {
-                "tokenIds": [{ "start": "1", "end": "1" }],
-                "ownershipTimes": [
-                    { "start": "1", "end": "18446744073709551615" }
-                ]
-            }
-        ]
-    }
-}
-```
-
-This approval is auto-scannable because it only includes read-only checks (`mustOwnTokens`).
-
-### ❌ Not Auto-Scannable - Coin Transfers
-
-```json
-{
-    "approvalId": "paid-transfer",
-    "approvalCriteria": {
-        "coinTransfers": [
-            {
-                "toAddress": "bb1...",
-                "amount": "1000000",
-                "denom": "badge"
-            }
-        ]
-    }
-}
-```
-
-This approval is **not** auto-scannable because it includes coin transfers that execute payments.
-
-### ❌ Not Auto-Scannable - Must Prioritize
-
-```json
-{
-    "approvalId": "priority-approval",
-    "approvalCriteria": {
-        "mustPrioritize": true
-    }
-}
-```
-
-This approval is **not** auto-scannable because it explicitly requires prioritization.
-
-### ❌ Not Auto-Scannable - Merkle Challenges
-
-```json
-{
-    "approvalId": "merkle-approval",
-    "approvalCriteria": {
-        "merkleChallenges": [
-            {
-                "root": "0x...",
-                "expectedProofLength": 3
-            }
-        ]
-    }
-}
-```
-
-This approval is **not** auto-scannable because it requires merkle proofs to be provided in the transfer message.
-
-## Related Topics
-
--   [Transferability & Approvals](./transferability-approvals.md) - Overview of the approval system and auto-scan vs prioritized modes
--   [Approval Criteria](./approval-criteria/) - Detailed explanation of approval criteria components
--   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scannable approvals
-
-
 ## File: ./x-badges/concepts/badge-collections.md
 
 # Collections
@@ -14880,7 +14683,7 @@ message TokenCollection {
 }
 ```
 
-### JSON
+## JSON
 
 ```json
 {
@@ -15668,14 +15471,6 @@ noForcefulPostMintTransfers invariant violation: collection approval cannot use 
 disablePoolCreation invariant violation: pool creation with this collection's assets is not allowed
 ```
 
-## Related Concepts
-
--   [Collections](./badge-collections.md)
--   [Transferability Approvals](./transferability-approvals.md)
--   [Time Fields](./time-fields.md)
--   [UintRange](./uintrange.md)
--   [IBC Backed Paths](./ibc-backed-paths.md)
-
 
 ## File: ./x-badges/concepts/cosmos-wrapper-paths.md
 
@@ -16026,13 +15821,6 @@ Default balances **cannot** include:
 -   **Advanced conditional logic**
 
 Default balances are limited to basic approval structures without complex criteria.
-
-## Related Concepts
-
--   **[Balance System](balance-system.md)** - How user balances work and inherit from defaults
--   **[Transferability & Approvals](transferability-approvals.md)** - User-level approval system
--   **[Permissions](permissions/)** - User permissions for updating their own approvals
--   **[Manager](manager.md)** - Collection-level controls that can override user defaults
 
 Default balances provide a powerful way to establish baseline behavior for all users while maintaining the flexibility for users to customize their own approval settings after initialization.
 
@@ -17329,881 +17117,6 @@ interface TokenIdsActionPermission {
 ```
 
 
-## File: ./x-badges/concepts/protocols/README.md
-
-# Protocols
-
-This directory contains documentation for standardized protocols that can be implemented using BitBadges collections. These protocols define specific patterns and requirements for creating interoperable collections with well-defined behaviors.
-
-## Available Protocols
-
-* [**Subscriptions Protocol**](subscriptions-protocol.md) - Implementation pattern for subscription-based collections with recurring payments and time-based ownership
-* [**Quest Protocol**](quest-protocol.md) - Implementation pattern for quest-based collections with cryptographic proof verification and coin rewards
-* [**Tradable Protocol**](tradable-protocol.md) - Implementation pattern for orderbook-style trading of tokens with bids and listings
-
-## Protocol Overview
-
-Protocols in BitTokens are standardized implementations that:
-
-* Define specific collection configuration patterns
-* Establish validation rules for protocol compliance
-* Enable interoperability between different applications
-* Provide predictable behavior for users and developers
-
-
-## File: ./x-badges/concepts/protocols/quest-protocol.md
-
-# Quest Protocol
-
-The Quest Protocol is a standardized way to create quest-based collections that reward users with tokens and coins for completing cryptographically verified tasks. Quest collections are designed for achievement-based systems where users complete quests (tasks) and provide cryptographic proofs (Merkle proofs) to claim tokens along with coin incentives.
-
-## Protocol Requirements
-
-### Collection Standards
-
--   Must include "Quests" in the `standardsTimeline` for the current time period
--   Must have exactly one valid token ID: `{"start": "1", "end": "1"}`
-
-### Quest Approval Requirements
-
--   **From List**: Must be "Mint" (minting from the mint address)
--   **Merkle Challenge**: Must have exactly one Merkle challenge with:
-    -   `maxUsesPerLeaf`: 1 (one use per proof)
-    -   `useCreatorAddressAsLeaf`: false (custom proof verification)
-    -   Valid Merkle root hash for proof verification
--   **Coin Transfers**: Must have exactly one coin transfer with:
-    -   Exactly one coin denomination and amount
-    -   `overrideFromWithApproverAddress`: true (coins come from collection creator)
-    -   `overrideToWithInitiator`: true (coins go to the quest completer)
--   **Max Transfers**: Must have `overallMaxNumTransfers` > 0
--   **Predetermined Balances**: Must have:
-    -   Exactly one `startBalance` with amount 1 for token ID 1
-    -   `incrementTokenIdsBy`: 0 (no token ID incrementing)
-    -   `incrementOwnershipTimesBy`: 0 (no time incrementing)
-    -   `durationFromTimestamp`: 0 (no time-based duration)
-    -   `allowOverrideTimestamp`: false (no timestamp overrides)
-    -   All `recurringOwnershipTimes` fields set to 0 (no recurring)
--   **Additional Constraints**:
-    -   `mustOwnTokens`: empty (no prerequisite tokens)
-    -   `requireToEqualsInitiatedBy`: false (no address matching required)
-
-## Validation Functions
-
-### Collection Validation
-
-**API Documentation:** [doesCollectionFollowQuestProtocol](https://bitbadges.github.io/bitbadgesjs/functions/doesCollectionFollowQuestProtocol.html)
-
-```typescript
-export const doesCollectionFollowQuestProtocol = (
-    collection?: Readonly<iCollectionDoc<bigint>>
-) => {
-    if (!collection) {
-        return false;
-    }
-
-    // Check if "Quests" standard is active for current time
-    let found = false;
-    for (const standard of collection.standardsTimeline) {
-        const isCurrentTime = UintRangeArray.From(
-            standard.timelineTimes
-        ).searchIfExists(BigInt(Date.now()));
-        if (!isCurrentTime) {
-            continue;
-        }
-
-        if (!standard.standards.includes('Quests')) {
-            continue;
-        }
-
-        found = true;
-    }
-
-    if (!found) {
-        return false;
-    }
-
-    // Assert valid token IDs are only 1n-1n
-    const tokenIds = UintRangeArray.From(collection.validTokenIds)
-        .sortAndMerge()
-        .convert(BigInt);
-    if (tokenIds.length !== 1 || tokenIds.size() !== 1n) {
-        return false;
-    }
-
-    if (tokenIds[0].start !== 1n || tokenIds[0].end !== 1n) {
-        return false;
-    }
-
-    return true;
-};
-```
-
-### Approval Validation
-
-**API Documentation:** [isQuestApproval](https://bitbadges.github.io/bitbadgesjs/functions/isQuestApproval.html)
-
-```typescript
-export const isQuestApproval = (approval: iCollectionApproval<bigint>) => {
-    const approvalCriteria = approval.approvalCriteria;
-    if (!approvalCriteria?.coinTransfers) {
-        return false;
-    }
-
-    // Must be minting approval
-    if (approval.fromListId !== 'Mint') {
-        return false;
-    }
-
-    // Must have exactly one Merkle challenge
-    if (
-        !approvalCriteria.merkleChallenges ||
-        approvalCriteria.merkleChallenges.length !== 1
-    ) {
-        return false;
-    }
-
-    let merkleChallenge = approvalCriteria.merkleChallenges?.[0];
-    if (merkleChallenge.maxUsesPerLeaf !== 1n) {
-        return false;
-    }
-
-    // Must not require owning other tokens
-    if (approvalCriteria.mustOwnTokens?.length) {
-        return false;
-    }
-
-    // Must not use creator address as leaf
-    if (merkleChallenge.useCreatorAddressAsLeaf) {
-        return false;
-    }
-
-    // Must have max transfer limit
-    const maxNumTransfers =
-        approvalCriteria.maxNumTransfers?.overallMaxNumTransfers;
-    if (!maxNumTransfers) {
-        return false;
-    }
-
-    if (maxNumTransfers <= 0n) {
-        return false;
-    }
-
-    // Must have exactly one coin transfer
-    if (approvalCriteria.coinTransfers.length !== 1) {
-        return false;
-    }
-
-    // Validate coin transfer configuration
-    for (const coinTransfer of approvalCriteria.coinTransfers) {
-        if (coinTransfer.coins.length !== 1) {
-            return false;
-        }
-
-        if (
-            !coinTransfer.overrideFromWithApproverAddress ||
-            !coinTransfer.overrideToWithInitiator
-        ) {
-            return false;
-        }
-    }
-
-    // Validate predetermined balances
-    const incrementedBalances =
-        approvalCriteria.predeterminedBalances?.incrementedBalances;
-    if (!incrementedBalances) {
-        return false;
-    }
-
-    if (incrementedBalances.startBalances.length !== 1) {
-        return false;
-    }
-
-    const allTokenIds = UintRangeArray.From(
-        incrementedBalances.startBalances[0].tokenIds
-    )
-        .sortAndMerge()
-        .convert(BigInt);
-    if (allTokenIds.length !== 1 || allTokenIds.size() !== 1n) {
-        return false;
-    }
-
-    if (allTokenIds[0].start !== 1n || allTokenIds[0].end !== 1n) {
-        return false;
-    }
-
-    const amount = incrementedBalances.startBalances[0].amount;
-    if (amount !== 1n) {
-        return false;
-    }
-
-    if (incrementedBalances.incrementTokenIdsBy !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.incrementOwnershipTimesBy !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.durationFromTimestamp !== 0n) {
-        return false;
-    }
-
-    // Needs this to be false for the subscription faucet to work
-    if (incrementedBalances.allowOverrideTimestamp) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.startTime !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.intervalLength !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.chargePeriodLength !== 0n) {
-        return false;
-    }
-
-    if (approvalCriteria.requireToEqualsInitiatedBy) {
-        return false;
-    }
-
-    return true;
-};
-```
-
-## Implementation Example
-
-For a complete implementation example, see the [Quest Token Collection Example](../../examples/txs/msgcreatecollection/quest-badge-collection.md).
-
-
-## File: ./x-badges/concepts/protocols/subscriptions-protocol.md
-
-# Subscriptions Protocol
-
-The Subscriptions Protocol enables collections to implement subscription-based token ownership with recurring payments, time-limited access, and a tipping system for automatic renewal. This protocol standardizes how subscription tokens are created, distributed, and renewed.
-
-## Protocol Overview
-
-Subscription collections allow users to pay a recurring fee + tip to maintain ownership of tokens for specific time periods. The protocol ensures predictable behavior for subscription management across different applications.
-
-## Protocol Requirements
-
-### Standards Declaration
-
-Collections must include "Subscriptions" in their standards timeline:
-
-```json
-{
-    "standardsTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "standards": ["Subscriptions"]
-        }
-    ]
-}
-```
-
-### Token ID Configuration
-
--   **Single Token ID**: Only one token ID range (1-1) is permitted
--   **Valid Token IDs**: Must match exactly with subscription approval token IDs
-
-### Collection Approvals
-
-Must contain at least one subscription faucet approval with the following characteristics:
-
-#### From Address
-
--   **fromListId**: Must be "Mint" (minting operation)
-
-#### Approval Criteria Requirements
-
-##### Coin Transfers
-
--   **Required**: At least one coin transfer specification
--   **Single Denom**: All coin transfers must use the same denomination
--   **No Address Override**: `overrideFromWithApproverAddress` and `overrideToWithInitiator` must be false
-
-##### Predetermined Balances
-
-Must use `incrementedBalances` with specific configuration:
-
-```json
-{
-    "predeterminedBalances": {
-        "incrementedBalances": {
-            "startBalances": [
-                {
-                    "amount": "1",
-                    "tokenIds": [{ "start": "1", "end": "1" }],
-                    "ownershipTimes": [{ "start": "0", "end": "0" }]
-                }
-            ],
-            "incrementTokenIdsBy": "0",
-            "incrementOwnershipTimesBy": "0",
-            "durationFromTimestamp": "2592000000", // 30 days in milliseconds
-            "allowOverrideTimestamp": true,
-            "recurringOwnershipTimes": {
-                "startTime": "0",
-                "intervalLength": "0",
-                "chargePeriodLength": "0"
-            }
-        }
-    }
-}
-```
-
-**Key Requirements:**
-
--   **Amount**: Must be exactly 1
--   **Token IDs**: Single token ID (1-1)
--   **Duration**: Must be greater than 0 (subscription period length)
--   **Override Timestamp**: Must be true for faucet functionality
--   **No Increments**: Token ID and ownership time increments must be 0
--   **No Recurring**: Recurring ownership times must be all 0
-
-##### Restrictions
-
--   **No Merkle Challenges**: Cannot include merkle challenges
--   **No Token Requirements**: Cannot include mustOwnTokens requirements
--   **No Address Restrictions**: Cannot require from/to equals initiated by
--   **No Override Approvals**: Cannot override incoming approvals
-
-## User Subscription Management
-
-Users manage their subscriptions through incoming approvals that complement the collection's faucet approval:
-
-### User Incoming Approval Requirements
-
-#### Basic Configuration
-
--   **fromListId**: Must be "Mint"
--   **Token IDs**: Must match subscription approval token IDs exactly
--   **Single Token**: Only one token ID range permitted
-
-#### Coin Transfer Configuration
-
-```json
-{
-    "coinTransfers": [
-        {
-            "coins": [
-                {
-                    "denom": "ubadge", // Must match subscription denom
-                    "amount": "100000" // Must be >= subscription amount
-                }
-            ],
-            "overrideFromWithApproverAddress": true,
-            "overrideToWithInitiator": true
-        }
-    ]
-}
-```
-
-#### Predetermined Balances for Renewals
-
-```json
-{
-    "predeterminedBalances": {
-        "incrementedBalances": {
-            "startBalances": [
-                {
-                    "amount": "1",
-                    "tokenIds": [{ "start": "1", "end": "1" }]
-                }
-            ],
-            "incrementTokenIdsBy": "0",
-            "incrementOwnershipTimesBy": "0",
-            "durationFromTimestamp": "0",
-            "allowOverrideTimestamp": false,
-            "recurringOwnershipTimes": {
-                "startTime": "1672531200000", // Current subscription start
-                "intervalLength": "2592000000", // 30 days
-                "chargePeriodLength": "604800000" // 7 days max charge period
-            }
-        }
-    }
-}
-```
-
-#### Transfer Limits
-
-```json
-{
-    "maxNumTransfers": {
-        "overallMaxNumTransfers": "1",
-        "resetTimeIntervals": {
-            "startTime": "1672531200000",
-            "intervalLength": "2592000000" // Same as subscription interval
-        }
-    }
-}
-```
-
-## Protocol Validation Logic
-
-### Collection Validation
-
-**API Documentation:** [doesCollectionFollowSubscriptionProtocol](https://bitbadges.github.io/bitbadgesjs/functions/doesCollectionFollowSubscriptionProtocol.html)
-
-```typescript
-function doesCollectionFollowSubscriptionProtocol(collection) {
-    // Check for "Subscriptions" standard
-    const hasSubscriptionStandard = collection.standardsTimeline.some(
-        (standard) =>
-            standard.standards.includes('Subscriptions') &&
-            isCurrentTime(standard.timelineTimes)
-    );
-
-    if (!hasSubscriptionStandard) return false;
-
-    // Find subscription faucet approvals
-    const subscriptionApprovals = collection.collectionApprovals.filter(
-        (approval) => isSubscriptionFaucetApproval(approval)
-    );
-
-    if (subscriptionApprovals.length < 1) return false;
-
-    // Validate single token ID requirement
-    if (collection.validTokenIds.length !== 1) return false;
-
-    // Ensure approval token IDs match collection token IDs
-    const allApprovalTokenIds = subscriptionApprovals
-        .map((approval) => approval.tokenIds)
-        .flat();
-
-    return tokenIdsMatch(collection.validTokenIds, allApprovalTokenIds);
-}
-```
-
-### Faucet Approval Validation
-
-**API Documentation:** [isSubscriptionFaucetApproval](https://bitbadges.github.io/bitbadgesjs/functions/isSubscriptionFaucetApproval.html)
-
-```typescript
-function isSubscriptionFaucetApproval(approval) {
-    // Must be from Mint
-    if (approval.fromListId !== 'Mint') return false;
-
-    // Must have coin transfers
-    if (!approval.approvalCriteria?.coinTransfers?.length) return false;
-
-    // Single denomination requirement
-    const allDenoms = approval.approvalCriteria.coinTransfers.flatMap((ct) =>
-        ct.coins.map((c) => c.denom)
-    );
-    if (new Set(allDenoms).size > 1) return false;
-
-    // No address overrides in coin transfers
-    for (const coinTransfer of approval.approvalCriteria.coinTransfers) {
-        if (
-            coinTransfer.overrideFromWithApproverAddress ||
-            coinTransfer.overrideToWithInitiator
-        ) {
-            return false;
-        }
-    }
-
-    // Validate incremented balances configuration
-    const incrementedBalances =
-        approval.approvalCriteria.predeterminedBalances?.incrementedBalances;
-    if (!incrementedBalances) return false;
-
-    return validateIncrementedBalances(incrementedBalances, approval.tokenIds);
-}
-```
-
-### User Approval Validation
-
-**API Documentation:** [isUserRecurringApproval](https://bitbadges.github.io/bitbadgesjs/functions/isUserRecurringApproval.html)
-
-```typescript
-function isUserRecurringApproval(userApproval, subscriptionApproval) {
-    // Must be from Mint
-    if (userApproval.fromListId !== 'Mint') return false;
-
-    // Token IDs must match subscription
-    if (!tokenIdsMatch(userApproval.tokenIds, subscriptionApproval.tokenIds)) {
-        return false;
-    }
-
-    // Payment amount must be >= subscription amount
-    const userAmount =
-        userApproval.approvalCriteria?.coinTransfers?.[0]?.coins?.[0]?.amount;
-    const subscriptionAmount =
-        subscriptionApproval.approvalCriteria?.coinTransfers?.[0]?.coins?.[0]
-            ?.amount;
-    if (userAmount < subscriptionAmount) return false;
-
-    // Validate coin transfer overrides
-    const coinTransfer = userApproval.approvalCriteria.coinTransfers[0];
-    if (
-        !coinTransfer.overrideFromWithApproverAddress ||
-        !coinTransfer.overrideToWithInitiator
-    ) {
-        return false;
-    }
-
-    // Validate recurring configuration
-    return validateRecurringConfiguration(userApproval, subscriptionApproval);
-}
-```
-
-## Usage Examples
-
-### Basic Subscription Collection
-
-```json
-{
-    "validTokenIds": [{ "start": "1", "end": "1" }],
-    "standardsTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "standards": ["Subscriptions"]
-        }
-    ],
-    "collectionApprovals": [
-        {
-            "fromListId": "Mint",
-            "toListId": "All",
-            "initiatedByListId": "All",
-            "transferTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "tokenIds": [{ "start": "1", "end": "1" }],
-            "approvalCriteria": {
-                "coinTransfers": [
-                    {
-                        "coins": [{ "denom": "ubadge", "amount": "100000" }],
-                        "overrideFromWithApproverAddress": false,
-                        "overrideToWithInitiator": false
-                    }
-                ],
-                "predeterminedBalances": {
-                    "incrementedBalances": {
-                        "startBalances": [
-                            {
-                                "amount": "1",
-                                "tokenIds": [{ "start": "1", "end": "1" }]
-                            }
-                        ],
-                        "durationFromTimestamp": "2592000000",
-                        "allowOverrideTimestamp": true
-                    }
-                }
-            }
-        }
-    ]
-}
-```
-
-### User Subscription Setup
-
-```json
-{
-    "fromListId": "Mint",
-    "tokenIds": [{ "start": "1", "end": "1" }],
-    "approvalCriteria": {
-        "coinTransfers": [
-            {
-                "coins": [{ "denom": "ubadge", "amount": "100000" }],
-                "overrideFromWithApproverAddress": true,
-                "overrideToWithInitiator": true
-            }
-        ],
-        "predeterminedBalances": {
-            "incrementedBalances": {
-                "recurringOwnershipTimes": {
-                    "intervalLength": "2592000000",
-                    "chargePeriodLength": "604800000"
-                }
-            }
-        },
-        "maxNumTransfers": {
-            "overallMaxNumTransfers": "1",
-            "resetTimeIntervals": {
-                "intervalLength": "2592000000"
-            }
-        }
-    }
-}
-```
-
-## Implementation Benefits
-
-1. **Standardization**: Predictable subscription behavior across applications
-2. **Interoperability**: Common interface for subscription management
-3. **Automation**: Recurring payment and renewal mechanisms
-4. **Flexibility**: Configurable subscription periods and pricing
-5. **Validation**: Built-in compliance checking for protocol adherence
-
-The Subscriptions Protocol provides a robust foundation for implementing subscription-based token systems while maintaining the flexibility and security of the BitBadges approval system.
-
-
-## File: ./x-badges/concepts/protocols/tradable-protocol.md
-
-# Tradable Protocol
-
-The Tradable Protocol enables orderbook-style trading of tokens through standardized bid and listing approvals. This protocol supports both fungible and non-fungible token types with coin-based transactions.
-
-## Protocol Overview
-
-The Tradable Protocol creates a decentralized marketplace where users can:
-
--   **List tokens for sale** at specific prices
--   **Place bids** to buy tokens from other users
--   **Support both NFT and fungible tokens** with flexible trading rules
--   **Execute trades** through standardized approval mechanisms
-
-## Protocol Requirements
-
-### Collection Standards
-
--   Must include "Tradable" in the `standardsTimeline` for the current time period. Note this often also goes well with "NFT" standard if your collection is NFTs.
--   Compatible with all token types (fungible and non-fungible)
--   No restrictions on token ID ranges or quantities
-
-### Approval Types
-
-#### 1. Listing Approvals (Outgoing)
-
-Listings allow owners to sell their tokens for coins.
-
-**Requirements:**
-
--   Single transfer time range
--   Exactly one coin transfer with one coin denomination
--   Coin recipient must be the token owner (`to` equals `fromListId`)
--   No address overrides (`overrideFromWithApproverAddress` and `overrideToWithInitiator` must be false)
--   Specific token IDs (no `allowOverrideWithAnyValidToken`)
--   Full ownership times
--   No Merkle challenges or prerequisite tokens
--   `overallMaxNumTransfers` > 0
--   Typically, you want the denomination to match the collection's preferred denomination.
-
-#### 2. Bid Approvals (Incoming)
-
-Bids allow users to offer coins to purchase tokens from others.
-
-**Requirements:**
-
--   Single transfer time range
--   Exactly one coin transfer with one coin denomination
--   Coins come from bidder (`overrideFromWithApproverAddress` must be true)
--   Coins go to token owner (`overrideToWithInitiator` must be true)
--   Specific token IDs (no `allowOverrideWithAnyValidToken` unless collection bid)
--   Full ownership times
--   No Merkle challenges or prerequisite tokens
--   `overallMaxNumTransfers` > 0
-
-#### 3. Collection Bids (Special Case)
-
-Collection bids allow users to bid on any token within a collection.
-
-**Additional Requirements:**
-
--   Must have `allowOverrideWithAnyValidToken` set to true
--   All other bid requirements apply
-
-## Validation Functions
-
-### General Orderbook Validation
-
-**API Documentation:** [isOrderbookBidOrListingApproval](https://bitbadges.github.io/bitbadgesjs/functions/isOrderbookBidOrListingApproval.html)
-
-```typescript
-export const isOrderbookBidOrListingApproval = (
-    approval: iCollectionApproval<bigint>,
-    approvalLevel: 'incoming' | 'outgoing'
-) => {
-    return isBidOrListingApproval(approval, approvalLevel, {
-        isFungibleCheck: true,
-        fungibleOrNonFungibleAllowed: true,
-    });
-};
-```
-
-### Core Bid/Listing Validation
-
-**API Documentation:** [isBidOrListingApproval](https://bitbadges.github.io/bitbadgesjs/functions/isBidOrListingApproval.html)
-
-```typescript
-export const isBidOrListingApproval = (
-    approval: iCollectionApproval<bigint>,
-    approvalLevel: 'incoming' | 'outgoing',
-    options?: {
-        isFungibleCheck?: boolean;
-        fungibleOrNonFungibleAllowed?: boolean;
-        isCollectionBid?: boolean;
-    }
-) => {
-    const approvalCriteria = approval.approvalCriteria;
-    if (approvalCriteria?.coinTransfers?.length !== 1) {
-        return false;
-    }
-
-    if (approval.transferTimes.length !== 1) {
-        return false;
-    }
-
-    const coinTransfer = approvalCriteria.coinTransfers[0];
-    if (coinTransfer.coins.length !== 1) {
-        return false;
-    }
-
-    // Validate address overrides for incoming approvals (bids)
-    if (
-        approvalLevel === 'incoming' &&
-        !coinTransfer.overrideFromWithApproverAddress
-    ) {
-        return false;
-    }
-
-    if (approvalLevel === 'incoming' && !coinTransfer.overrideToWithInitiator) {
-        return false;
-    }
-
-    // Validate address overrides for outgoing approvals (listings)
-    if (
-        approvalLevel === 'outgoing' &&
-        coinTransfer.overrideFromWithApproverAddress
-    ) {
-        return false;
-    }
-
-    if (approvalLevel === 'outgoing' && coinTransfer.overrideToWithInitiator) {
-        return false;
-    }
-
-    // For listings, recipient must be the approving user
-    const to = coinTransfer.to;
-    if (approvalLevel === 'outgoing' && to !== approval.fromListId) {
-        return false;
-    }
-
-    const incrementedBalances =
-        approvalCriteria.predeterminedBalances?.incrementedBalances;
-    if (!incrementedBalances) {
-        return false;
-    }
-
-    if (incrementedBalances.startBalances.length !== 1) {
-        return false;
-    }
-
-    // Collection bids can accept any valid ID
-    if (options?.isCollectionBid) {
-        if (!incrementedBalances.allowOverrideWithAnyValidToken) {
-            return false;
-        }
-    } else {
-        const allTokenIds = UintRangeArray.From(
-            incrementedBalances.startBalances[0].tokenIds
-        )
-            .sortAndMerge()
-            .convert(BigInt);
-        if (allTokenIds.length !== 1 || allTokenIds.size() !== 1n) {
-            return false;
-        }
-
-        if (incrementedBalances.allowOverrideWithAnyValidToken) {
-            return false;
-        }
-    }
-
-    const amount = incrementedBalances.startBalances[0].amount;
-    const toCheckAmountOne =
-        !options ||
-        (!options.isFungibleCheck && !options.fungibleOrNonFungibleAllowed);
-    if (toCheckAmountOne) {
-        if (amount !== 1n) {
-            return false;
-        }
-    }
-
-    if (
-        !UintRangeArray.From(
-            incrementedBalances.startBalances[0].ownershipTimes
-        ).isFull()
-    ) {
-        return false;
-    }
-
-    if (incrementedBalances.incrementTokenIdsBy !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.incrementOwnershipTimesBy !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.durationFromTimestamp !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.allowOverrideTimestamp) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.startTime !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.intervalLength !== 0n) {
-        return false;
-    }
-
-    if (incrementedBalances.recurringOwnershipTimes.chargePeriodLength !== 0n) {
-        return false;
-    }
-
-    if (approvalCriteria.requireFromEqualsInitiatedBy) {
-        return false;
-    }
-
-    if (approvalCriteria.requireToEqualsInitiatedBy) {
-        return false;
-    }
-
-    if (approvalCriteria.overridesToIncomingApprovals) {
-        return false;
-    }
-
-    if (approvalCriteria.merkleChallenges?.length) {
-        return false;
-    }
-
-    if (approvalCriteria.mustOwnTokens?.length) {
-        return false;
-    }
-
-    if (
-        (approvalCriteria.maxNumTransfers?.overallMaxNumTransfers ?? 0n) === 0n
-    ) {
-        return false;
-    }
-
-    return true;
-};
-```
-
-### Collection Bid Validation
-
-**API Documentation:** [isCollectionBid](https://bitbadges.github.io/bitbadgesjs/functions/isCollectionBid.html)
-
-```typescript
-export const isCollectionBid = (approval: iCollectionApproval<bigint>) => {
-    return isBidOrListingApproval(approval, 'incoming', {
-        isCollectionBid: true,
-    });
-};
-```
-
-## Implementation Example
-
-For a complete implementation example, see the [Tradable NFT Collection Example](../../examples/txs/msgcreatecollection/tradable-nft-collection.md).
-
-
 ## File: ./x-badges/concepts/standards.md
 
 # Standards
@@ -18265,7 +17178,6 @@ Collections marked with the **Subscriptions** standard are designed for recurrin
     -   Must support time-based ownership periods for subscription-like behavior
     -   Must be able to handle recurring token issuance and expiration
     -   Should support dynamic content updates based on subscription status
--   **Implementation**: See [Subscriptions Protocol](protocols/subscriptions-protocol.md) for detailed implementation requirements and validation logic
 
 ### 5. Quests Standard
 
@@ -18308,7 +17220,7 @@ BitBadges uses various time-related fields to manage permissions, timelines, tra
 
 ## Time Representation
 
-All times in BitTokens are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
+All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
 
 Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
 
@@ -18316,28 +17228,28 @@ Time fields use UintRange format with valid values from 1 to 1844674407370955161
 
 ### 1. permanentlyPermittedTimes
 
-* **Purpose**: Defines the times when a permission will always be executable (permanent)
-* **Usage**: Setting allowed periods for specific actions
+-   **Purpose**: Defines the times when a permission will always be executable (permanent)
+-   **Usage**: Setting allowed periods for specific actions
 
 ### 2. permanentlyForbiddenTimes
 
-* **Purpose**: Defines the times when a permission will always be forbidden (permanent)
-* **Usage**: Setting restricted periods for specific actions
+-   **Purpose**: Defines the times when a permission will always be forbidden (permanent)
+-   **Usage**: Setting restricted periods for specific actions
 
 ### 3. timelineTimes
 
-* **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
-* **Usage**: Scheduling changes to collection or token properties over time
+-   **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
+-   **Usage**: Scheduling changes to collection or token properties over time
 
 ### 4. transferTimes
 
-* **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
-* **Usage**: Setting periods when tokens can be transferred between addresses
+-   **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
+-   **Usage**: Setting periods when tokens can be transferred between addresses
 
 ### 5. ownershipTimes
 
-* **Purpose**: Specifies the times that a user owns a token
-* **Usage**: Defining the duration of token ownership for users
+-   **Purpose**: Specifies the times that a user owns a token
+-   **Usage**: Defining the duration of token ownership for users
 
 ## Important Note
 
@@ -18349,14 +17261,14 @@ The `timelineTimes` in permissions correspond to the updatability of the timelin
 
 Scenario: Users participate in a US presidential election by casting votes through token transfers.
 
-* T1: Conclusion of voting
-* T2: Start of presidential term
-* T3: End of presidential term
+-   T1: Conclusion of voting
+-   T2: Start of presidential term
+-   T3: End of presidential term
 
 Setup:
 
-* `transferTimes`: \[{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
-* `ownershipTimes`: \[{ start: T2, end: T3 }] (Defines the presidential term)
+-   `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+-   `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
 
 ### Example 2: Managing Collection Archival
 
@@ -18501,13 +17413,6 @@ Timeline-based fields enable:
 
 The total circulating supply is not a fixed value but rather dynamically determined through the collection approvals and permissions. The total supply is the sum of all the tokens that have been transferred from the Mint address (which has unlimited balances). Setting the Mint approvals and using them determines the total supply. Permissions are used to control the ability to set, update, or delete the Mint approvals by the manager.
 
-## Related Concepts
-
--   **[Valid Token IDs](valid-token-ids.md)** - Defines which token IDs can exist for informational purposes
--   **[Manager](manager.md)** - Controls the collection approvals and permissions
--   **[Transferability & Approvals](transferability-approvals.md)** - Governs transfers from Mint address
--   **[Permissions](permissions/)** - Controls what managers can do and when they can do it
-
 
 ## File: ./x-badges/concepts/transferability-approvals.md
 
@@ -18639,10 +17544,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
-* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
-* **Behavior**: Automatically finds and uses the first matching approval
-* **Use case**: Simple transfers without custom logic or side effects
-* **No versioning required**: The system handles approval selection automatically
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects). For example, when you approve all incoming transfers w/ no restrictions, this has no side effects.
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -18664,13 +17569,6 @@ The versioning control ensures that before submitting, the user knows the exact 
 ```
 
 See [MsgTransferTokens](../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) for the complete message structure.
-
-## Related Topics
-
-* [Approval Criteria](approval-criteria/) - Additional restrictions and challenges
-* [Address Lists](../address-lists.md) - Managing address groups
-* [UintRanges](../uint-ranges.md) - Range logic implementation
-* [Permissions](permissions/) - Controlling who can update approvals
 
 
 ## File: ./x-badges/concepts/uintrange.md
@@ -21260,7 +20158,7 @@ This example creates a quest collection with the following characteristics:
 
 # Tradable Collection Example
 
-This example demonstrates creating a tradable collection that supports orderbook-style trading through the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md).
+This example demonstrates creating a tradable collection that supports orderbook-style trading.
 
 ## Transaction Structure
 
@@ -21567,16 +20465,6 @@ This example demonstrates creating a tradable collection that supports orderbook
     }
 ]
 ```
-
-## Protocol Compliance
-
-This collection follows the [Tradable Protocol](../../../concepts/protocols/tradable-protocol.md) requirements:
-
--   ✅ Includes "Tradable" in standards timeline
--   ✅ Compatible with both fungible and non-fungible tokens
--   ✅ Supports orderbook-style trading
--   ✅ No restrictions on bid/listing creation
--   ✅ Enables decentralized marketplace functionality
 
 
 ## File: ./x-badges/examples/txs/msgupdate-user-approvals/README.md
