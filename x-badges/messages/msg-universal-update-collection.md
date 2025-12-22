@@ -192,4 +192,4 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 
 -   [MsgCreateCollection](./msg-create-collection.md)
 -   [MsgUpdateCollection](./msg-update-collection.md)
--   [Collection Invariants](../concepts/collection-invariants.md)
+-   [Collection Setup Fields](../concepts/collection-setup-fields.md)

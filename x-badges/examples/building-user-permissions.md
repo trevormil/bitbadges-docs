@@ -84,4 +84,4 @@ For user approval configuration, see:
 
 -   [Permissions System](../concepts/permissions/README.md) - Permission mechanics
 -   [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
--   [Default Balances](../concepts/default-balances.md) - User permission structure
+-   [Collection Setup Fields](../concepts/collection-setup-fields.md) - Default balances and user permission structure

@@ -99,5 +99,5 @@ const createCollection = {
 
 ## Related Concepts
 
--   [Valid Token IDs](../../concepts/valid-token-ids.md) - Token ID range concept
+-   [Collection Setup Fields](../../concepts/collection-setup-fields.md) - Token ID range concept
 -   [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
