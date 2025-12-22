@@ -47,4 +47,4 @@ export const wrapperApproval = ({
 
 * [Cosmos Wrapper Paths](broken-reference/)
 * [Transferability / Approvals](../../concepts/transferability-approvals.md)
-* [Address Lists](../../../token-standard/concepts/core-structures/address-lists.md)
+* [Address Lists](../../concepts/address-lists.md)

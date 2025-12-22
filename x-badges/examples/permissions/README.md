@@ -28,4 +28,4 @@ BitBadges permissions follow a timeline-based system where:
 
 * [Permission System](../../concepts/permissions/permission-system.md)
 * [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../../../token-standard/concepts/core-structures/timeline-system.md)
+* [Timeline System](../../concepts/timeline-system.md)

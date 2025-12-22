@@ -45,6 +45,6 @@ const collectionApprovalTimeline = [
 ## Related Concepts
 
 * [Transferability / Approvals](../concepts/transferability-approvals.md)
-* [Address Lists](../../token-standard/concepts/core-structures/address-lists.md)
-* [Timeline System](../../token-standard/concepts/core-structures/timeline-system.md)
+* [Address Lists](../concepts/address-lists.md)
+* [Timeline System](../concepts/timeline-system.md)
 * [Approval Examples](approvals/)

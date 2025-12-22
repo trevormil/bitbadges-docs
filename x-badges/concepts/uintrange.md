@@ -15,25 +15,25 @@ message UintRange {
 
 UintRanges are used to represent:
 
--   **Token ID ranges**: `[1-100]` represents token IDs 1 through 100 (inclusive)
--   **Time ranges**: `[1640995200000-1672531200000]` represents a year in UNIX milliseconds
--   **Amount ranges**: `[1-5]` represents quantities from 1 to 5
--   **Ownership time ranges**: When tokens are valid for ownership
+* **Token ID ranges**: `[1-100]` represents token IDs 1 through 100 (inclusive)
+* **Time ranges**: `[1640995200000-1672531200000]` represents a year in UNIX milliseconds
+* **Amount ranges**: `[1-5]` represents quantities from 1 to 5
+* **Ownership time ranges**: When tokens are valid for ownership
 
 ## Restrictions & Valid Values
 
 Unless otherwise specified, we only allow numbers in the ranges to be from **1 to Go Max UInt64**:
 
--   **Valid range**: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
--   **Zero and negative values**: Not allowed
--   **Values greater than maximum**: Not allowed
+* **Valid range**: 1 to 18446744073709551615 (Go's `math.MaxUint64`)
+* **Zero and negative values**: Not allowed
+* **Values greater than maximum**: Not allowed
 
 ## Validation Rules
 
--   `start` must be ≤ `end`
--   Ranges in the same array cannot overlap
--   Zero amounts are not allowed in balance ranges
--   All values must be within the valid range (1 to MaxUint64)
+* `start` must be ≤ `end`
+* Ranges in the same array cannot overlap
+* Zero amounts are not allowed in balance ranges
+* All values must be within the valid range (1 to MaxUint64)
 
 ## Special Cases
 
@@ -95,7 +95,7 @@ singleBadge := UintRange{Start: NewUint(5), End: NewUint(5)}
 
 ## Efficiency Benefits
 
--   **Compact representation**: Ranges avoid storing individual values
--   **Range operations**: Efficient intersection, union, and containment checks
--   **Gas optimization**: Reduces transaction size and computational costs
--   **Scalability**: Handles large ranges without performance degradation
+* **Compact representation**: Ranges avoid storing individual values
+* **Range operations**: Efficient intersection, union, and containment checks
+* **Gas optimization**: Reduces transaction size and computational costs
+* **Scalability**: Handles large ranges without performance degradation

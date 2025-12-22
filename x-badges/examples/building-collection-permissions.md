@@ -95,5 +95,5 @@ We refer you to the [examples](permissions/) or relevant concepts for more detai
 
 * [Permission System](../concepts/permissions/permission-system.md)
 * [Manager](/broken/pages/CdbXs3rvXqSiLLH8NlOk)
-* [Timeline System](../../token-standard/concepts/core-structures/timeline-system.md)
+* [Timeline System](../concepts/timeline-system.md)
 * [Timed Update Permission](../concepts/permissions/timed-update-permission.md)

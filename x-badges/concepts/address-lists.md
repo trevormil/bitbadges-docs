@@ -24,8 +24,8 @@ function checkAddress(address, addressList) {
 }
 ```
 
--   **Whitelist** (`whitelist: true`): Only listed addresses are included
--   **Blacklist** (`whitelist: false`): All addresses except listed ones are included
+* **Whitelist** (`whitelist: true`): Only listed addresses are included
+* **Blacklist** (`whitelist: false`): All addresses except listed ones are included
 
 ## Reserved IDs
 
@@ -77,11 +77,11 @@ Created via `MsgCreateAddressLists`. **Immutable** once created. Referenced by t
 
 ### ID Validation
 
--   Alphanumeric only (`a-z`, `A-Z`, `0-9`)
--   Cannot be empty
--   Cannot start with `!`
--   Cannot conflict with reserved IDs (`"All"`, `"Mint"`, `"None"`, `"AllWithout*"`)
--   Must be unique
+* Alphanumeric only (`a-z`, `A-Z`, `0-9`)
+* Cannot be empty
+* Cannot start with `!`
+* Cannot conflict with reserved IDs (`"All"`, `"Mint"`, `"None"`, `"AllWithout*"`)
+* Must be unique
 
 ### Example
 
@@ -123,6 +123,6 @@ Created via `MsgCreateAddressLists`. **Immutable** once created. Referenced by t
 
 ## Performance
 
--   **Reserved IDs**: Zero storage, dynamic generation, minimal gas
--   **Inline lists**: Zero storage, dynamic parsing, efficient for < 10 addresses
--   **User-created**: On-chain storage, reusable short ID, efficient lookups, best for large/repeated lists
+* **Reserved IDs**: Zero storage, dynamic generation, minimal gas
+* **Inline lists**: Zero storage, dynamic parsing, efficient for < 10 addresses
+* **User-created**: On-chain storage, reusable short ID, efficient lookups, best for large/repeated lists

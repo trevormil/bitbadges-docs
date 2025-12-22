@@ -4,20 +4,20 @@ A universal message that can be used to either create a new collection or update
 
 ## Dual Purpose
 
--   **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
--   **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
+* **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
+* **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
 
 ## Update Flag Pattern
 
 This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidTokenIds`, `updateCollectionPermissions`).
 
--   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
--   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
+* **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
+* **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
 
 ## Authorization & Permissions
 
--   **For Collection Creation**: Can be executed by any address
--   **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
+* **For Collection Creation**: Can be executed by any address
+* **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
 
 ## Proto Definition
 
@@ -162,15 +162,15 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 
 ### vs MsgCreateCollection
 
--   More flexible update flag pattern
--   Can be used for both creation and updates
--   Includes invariants support
+* More flexible update flag pattern
+* Can be used for both creation and updates
+* Includes invariants support
 
 ### vs MsgUpdateCollection
 
--   Can create new collections when collectionId = "0"
-    -   Includes creation-only fields like `defaultBalances`
--   Includes invariants support
+* Can create new collections when collectionId = "0"
+  * Includes creation-only fields like `defaultBalances`
+* Includes invariants support
 
 ## Invariants Support
 
@@ -190,6 +190,6 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 
 ## Related Messages
 
--   [MsgCreateCollection](./msg-create-collection.md)
--   [MsgUpdateCollection](./msg-update-collection.md)
--   [Collection Setup Fields](../concepts/collection-setup-fields.md)
+* [MsgCreateCollection](msg-create-collection.md)
+* [MsgUpdateCollection](msg-update-collection.md)
+* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)
