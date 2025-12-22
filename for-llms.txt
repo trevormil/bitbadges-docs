@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 16:05:21 UTC 2025
+Generated on Mon Dec 22 16:06:28 UTC 2025
 
 
 
@@ -4308,15 +4308,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
--   Some features available in production may not be accessible in testnet:
-    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-    -   Buying BADGE credits
-    -   Push notifications
-    -   And more
--   Some restrictions may be more relaxed
-    -   No API keys required
-    -   Faucet may be more lenient
--   Performance also may differ from the production environment
+* Some features available in production may not be accessible in testnet:
+  * Off-chain balances managed by BitTokens are not hosted externally (via CDN)
+  * Buying BADGE credits
+  * Push notifications
+  * And more
+* Some restrictions may be more relaxed
+  * No API keys required
+  * Faucet may be more lenient
+* Performance also may differ from the production environment
 
 ### Links
 
@@ -4326,8 +4326,8 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
--   RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
--   REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+* RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
+* REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
 
 ### Feedback
 
@@ -8326,10 +8326,10 @@ For testing purposes, you can setup using Pipedream's request bin ([https://pipe
 
 ### Timing of Hooks
 
-BitBadges can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
+BitTokens can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
 
--   Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
--   Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
+* Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
+* Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
 
 <figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -10474,7 +10474,9 @@ The Mint Escrow Address is a generated `bb1` address that holds Cosmos native fu
 
 ## File: ./learn/permissions.md
 
-## Manager
+# Manager / Permissions
+
+### Manager
 
 The **manager** is the central authority for a collection, controlling all administrative operations. The manager executes actions according to permission rules defined in `collectionPermissions`.
 
@@ -10488,12 +10490,13 @@ const collection: TokenCollection<bigint> = {
     ],
     collectionPermissions: {
         // Permissions define what the manager can do
+        // ... permission fields
     },
     // ... other collection fields
 };
 ```
 
-### Manager Timeline
+#### Manager Timeline
 
 Managers can change over time using timeline-based configuration:
 
@@ -10518,82 +10521,19 @@ const managerTimeline: ManagerTimeline<bigint>[] = [
 
 This transfers management from Alice to Bob on January 1, 2023 automatically.
 
-### Setting Initial Manager
+#### No Manager
 
-During collection creation:
-
-```typescript
-const collection: TokenCollection<bigint> = {
-    creator: 'bb1alice...',
-    managerTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            manager: 'bb1alice...',
-        },
-    ],
-    collectionPermissions: {
-        canUpdateManager: [
-            {
-                permanentlyPermittedTimes: [
-                    { start: 1n, end: 18446744073709551615n },
-                ],
-                permanentlyForbiddenTimes: [],
-            },
-        ],
-        // ... other permission fields
-    },
-    // ... other collection fields
-};
-```
-
-### Decentralized Management Transition
-
-Transition to a burn address manager and lock management permanently, creating a decentralized collection:
-
-```typescript
-const collection: TokenCollection<bigint> = {
-    managerTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 1672531199000n }],
-            manager: 'bb1alice...',
-        },
-        {
-            timelineTimes: [
-                { start: 1672531200000n, end: 18446744073709551615n },
-            ],
-            manager: 'bb1qqqq....', // Burn address
-        },
-    ],
-    collectionPermissions: {
-        canUpdateManager: [
-            {
-                permanentlyPermittedTimes: [],
-                permanentlyForbiddenTimes: [
-                    { start: 1672531200000n, end: 18446744073709551615n },
-                ],
-            },
-        ],
-        // ... other permission fields
-    },
-    // ... other collection fields
-};
-```
-
-This transitions to a burn address manager and locks management permanently, creating a decentralized collection.
-
-### No Manager
-
-If you don't want a manager, set the manager to an empty string or empty array. Permission values don't matter when there's no manager:
+If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
 
 ```typescript
 const managerTimeline: ManagerTimeline<bigint>[] = [];
 ```
 
-## Permissions
+### Permissions
 
-Permissions control which actions can be performed and when those actions can be executed. The manager executes administrative actions according to these permission rules.
+Permissions control who can perform actions on collections and when those actions can be executed. The manager executes administrative actions according to these permission rules.
 
-## Permission States
+### Permission States
 
 Permissions have three states:
 
@@ -10602,8 +10542,6 @@ Permissions have three states:
 | **Permanently Permitted** | Action ALWAYS allowed (frozen) | Can be executed                                            |
 | **Permanently Forbidden** | Action ALWAYS blocked (frozen) | Cannot be executed                                         |
 | **Neutral**               | Not specified                  | **Allowed by default now, but can change state in future** |
-
-**Important:** Once set to permanently permitted or forbidden, it can never changed. This is by design to act as a check and balance enforced on-chain.
 
 ```typescript
 // Lock collection deletion forever
@@ -10626,22 +10564,20 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-## Manager Capabilities
+**Important:** Once set to permanently permitted or forbidden, it cannot be changed.
+
+### Manager Capabilities
 
 The manager can execute administrative actions according to permissions:
 
--   Updating collection metadata
--   Updating token metadata
--   Updating transferability (collection approvals)
--   Updating valid token IDs
--   Archiving the collection
--   Deleting the collection
--   Updating manager timeline
--   And more...
-
-All permissions are defined on-chain with time-based configuration, allowing permissions to change over time.
-
-You may also implement off-chain permissions for the manager, but this is up to you and your use case.
+* Updating collection metadata
+* Updating token metadata
+* Updating transferability (collection approvals)
+* Updating valid token IDs
+* Archiving the collection
+* Deleting the collection
+* Updating manager timeline
+* And more...
 
 ```typescript
 // Manager with full control (soft-enabled)
@@ -10659,9 +10595,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-## Common Permission Types
+All permissions are defined on-chain with timeline-based configuration, allowing permissions to change over time.
 
-### Action Permissions
+### Common Permission Types
+
+#### Action Permissions
 
 Simple time-based permissions (no criteria):
 
@@ -10680,9 +10618,9 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-### Approval Permissions
+#### Approval Permissions
 
-Control approval updates with transfer criteria with support for fine-grained control:
+Control approval updates with transfer criteria:
 
 ```typescript
 // Lock mint approval updates
@@ -10706,7 +10644,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-See [Permissions](../x-badges/concepts/permissions/README.md) for detailed permission configuration and all permission types.
+See [Permissions](../x-badges/concepts/permissions/) for detailed permission configuration and all permission types.
 
 
 ## File: ./learn/pre-readings.md
@@ -17399,18 +17337,18 @@ This directory contains documentation for standardized protocols that can be imp
 
 ## Available Protocols
 
--   **[Subscriptions Protocol](./subscriptions-protocol.md)** - Implementation pattern for subscription-based collections with recurring payments and time-based ownership
--   **[Quest Protocol](./quest-protocol.md)** - Implementation pattern for quest-based collections with cryptographic proof verification and coin rewards
--   **[Tradable Protocol](./tradable-protocol.md)** - Implementation pattern for orderbook-style trading of tokens with bids and listings
+* [**Subscriptions Protocol**](subscriptions-protocol.md) - Implementation pattern for subscription-based collections with recurring payments and time-based ownership
+* [**Quest Protocol**](quest-protocol.md) - Implementation pattern for quest-based collections with cryptographic proof verification and coin rewards
+* [**Tradable Protocol**](tradable-protocol.md) - Implementation pattern for orderbook-style trading of tokens with bids and listings
 
 ## Protocol Overview
 
-Protocols in BitBadges are standardized implementations that:
+Protocols in BitTokens are standardized implementations that:
 
--   Define specific collection configuration patterns
--   Establish validation rules for protocol compliance
--   Enable interoperability between different applications
--   Provide predictable behavior for users and developers
+* Define specific collection configuration patterns
+* Establish validation rules for protocol compliance
+* Enable interoperability between different applications
+* Provide predictable behavior for users and developers
 
 
 ## File: ./x-badges/concepts/protocols/quest-protocol.md
@@ -18370,7 +18308,7 @@ BitBadges uses various time-related fields to manage permissions, timelines, tra
 
 ## Time Representation
 
-All times in BitBadges are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
+All times in BitTokens are represented as UNIX time, which is the number of milliseconds elapsed since the epoch (midnight at the beginning of January 1, 1970, UTC).
 
 Time fields use UintRange format with valid values from 1 to 18446744073709551615 (Go MaxUint64). For complete details on range formatting and restrictions, see the [UintRange concept](uintrange.md).
 
@@ -18378,28 +18316,28 @@ Time fields use UintRange format with valid values from 1 to 1844674407370955161
 
 ### 1. permanentlyPermittedTimes
 
--   **Purpose**: Defines the times when a permission will always be executable (permanent)
--   **Usage**: Setting allowed periods for specific actions
+* **Purpose**: Defines the times when a permission will always be executable (permanent)
+* **Usage**: Setting allowed periods for specific actions
 
 ### 2. permanentlyForbiddenTimes
 
--   **Purpose**: Defines the times when a permission will always be forbidden (permanent)
--   **Usage**: Setting restricted periods for specific actions
+* **Purpose**: Defines the times when a permission will always be forbidden (permanent)
+* **Usage**: Setting restricted periods for specific actions
 
 ### 3. timelineTimes
 
--   **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
--   **Usage**: Scheduling changes to collection or token properties over time
+* **Purpose**: Specifies when a field is scheduled to have a specific value in a timeline-based field
+* **Usage**: Scheduling changes to collection or token properties over time
 
 ### 4. transferTimes
 
--   **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
--   **Usage**: Setting periods when tokens can be transferred between addresses
+* **Purpose**: Defines when a transfer transaction can occur (i.e. when an approval is valid)
+* **Usage**: Setting periods when tokens can be transferred between addresses
 
 ### 5. ownershipTimes
 
--   **Purpose**: Specifies the times that a user owns a token
--   **Usage**: Defining the duration of token ownership for users
+* **Purpose**: Specifies the times that a user owns a token
+* **Usage**: Defining the duration of token ownership for users
 
 ## Important Note
 
@@ -18411,14 +18349,14 @@ The `timelineTimes` in permissions correspond to the updatability of the timelin
 
 Scenario: Users participate in a US presidential election by casting votes through token transfers.
 
--   T1: Conclusion of voting
--   T2: Start of presidential term
--   T3: End of presidential term
+* T1: Conclusion of voting
+* T2: Start of presidential term
+* T3: End of presidential term
 
 Setup:
 
--   `transferTimes`: [{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
--   `ownershipTimes`: [{ start: T2, end: T3 }] (Defines the presidential term)
+* `transferTimes`: \[{ start: T1, end: T2 }] (President badge can be transferred after voting concludes)
+* `ownershipTimes`: \[{ start: T2, end: T3 }] (Defines the presidential term)
 
 ### Example 2: Managing Collection Archival
 
