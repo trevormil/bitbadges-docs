@@ -2,7 +2,7 @@
 
 The **Mint address** is a reserved address string (`"Mint"`) representing each collection's minting source. It has unlimited balances, and any transfer from the Mint address creates new tokens out of thin air. The Mint address cannot receive tokens, only send/mint them.
 
-### Manager Controls Minting
+### Manager Controls Minting Flow
 
 The **manager** of the collection controls minting by setting and updating collection transferability rules (`collectionApprovals`) and the updatability of such rules via permissions (`collectionPermissions.canUpdateCollectionApprovals`). The manager can:
 
@@ -85,13 +85,7 @@ Keep the Mint address as an escrow for future mints. Control flow with approval 
 
 Circulating supply is the cumulative total of all tokens transferred from the Mint address. It's dynamic, not static. This may be a slightly different concept than you're used to, but it's a powerful one because it allows for you to control the supply of your tokens dynamically and flexibly over time.
 
-### How It Works
-
-Design of your Mint approvals is crucial to the supply control of your collection. The circulating supply increases each time tokens are transferred from the Mint address to any other address.
-
-### Supply Control via Approvals
-
-Use approval criteria to control who can mint, when, and how much:
+Thus, design of your Mint approvals is crucial to the supply control of your collection.
 
 ```typescript
 // Supply control via approvals
@@ -139,7 +133,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-## Best Practices
+## Important Disclaimers
 
 ### Never Mix Mint with Other Addresses
 
@@ -215,7 +209,7 @@ const mintApproval: CollectionApproval<bigint> = {
 };
 ```
 
-## Mint vs Mint Escrow Address
+### Mint vs Mint Escrow Address
 
 Most use cases use `"Mint"` as the reserved address in approvals. For advanced cases needing escrows or payouts, you can use the `mintEscrowAddress` as a helper.
 
