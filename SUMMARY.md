@@ -13,8 +13,6 @@
 * [📚 Overview](x-badges/README.md)
 * [🎓 Learn](learn/README.md)
   * [Explore!](learn/pre-readings.md)
-  * [Problems With Existing Standards](learn/problems-with-existing-standards.md)
-  * [Design Decisions](learn/key-design-decisions.md)
   * [Manager / Permissions](learn/permissions.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Transferability / Approvals](learn/transferability.md)

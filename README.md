@@ -44,3 +44,24 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 ## 🤔 Motive for building BitBadges?
 
 The answer is simple. We believe in the potential of blockchains and a multi-chain world, but this potential cannot be realized with the current infrastructure and token standards in place today.
+
+### Problems with Existing Standards
+
+Existing tokenization standards (ERC-20, ERC-721, CW-20, ICS-20, etc.) are **flawed from the ground up**:
+
+* **Too Simple** - Basic mint/transfer/burn functionality lacks the flexibility needed for 90% of real-world applications. The industry has been stuck with these limited standards for 10+ years due to technical debt.
+* **Vulnerable by Default** - Smart contract approach introduces new attack vectors with each token contract. Each deployment is a potential vulnerability.
+* **Complex & Expensive** - Requires extensive technical knowledge to implement, deploy, and maintain contracts.
+* **Low Interoperability** - Tokens are siloed to single ecosystems, forcing companies to split their userbase across chains.
+* **Fragmented Standards** - Many competing standards with incompatible twists create confusion and fragmentation.
+
+**The whole tokenization approach needs a complete overhaul.**
+
+### Our Design Philosophy
+
+BitBadges addresses these fundamental issues through core design decisions:
+
+* **Universality** - One standard powerful enough for any use case: NFTs, fungible tokens, subscriptions, credentials, RWAs, compliance, or anything you can imagine. One standard to rule them all.
+* **No-Code Module Approach** - Built as a Cosmos SDK module, not smart contracts. 99% of users will never need to write code, regardless of complexity. Promotes reusability and battle-tested security.
+* **Ever-Evolving** - Purpose-built for next-generation tokenization. We're not stuck in the past like ERC-20/721. New features are added continuously with no technical debt accrual.
+* **IBC-First** - Cosmos-native with IBC at the core. Custom wrappable to ICS-20/721, supports IBC denominations for payments/swaps/liquidity, and enables one-signature multi-hop IBC transfers.

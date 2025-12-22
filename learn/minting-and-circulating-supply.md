@@ -128,7 +128,14 @@ const mintApproval: CollectionApproval<bigint> = {
     version: 0n,
     // Approval criteria control who can mint, when, how much
     approvalCriteria: {
-        maxNumTransfers: 1000n, // Limit number of mints
+        maxNumTransfers: {
+            overallMaxNumTransfers: 1000n,
+            perFromAddressMaxNumTransfers: 0n,
+            perToAddressMaxNumTransfers: 0n,
+            perInitiatedByAddressMaxNumTransfers: 0n,
+            amountTrackerId: 'supply-control',
+            resetTimeIntervals: null
+        },
         overridesFromOutgoingApprovals: true, // Required for Mint address
         // ... other criteria
     },
@@ -139,27 +146,30 @@ const mintApproval: CollectionApproval<bigint> = {
 
 Even if current approvals don't allow minting, if the manager can update approvals, there is effectively unlimited supply potential. They can simply update and create a new unlimited mint approval. Thus, it is crucial to control both the current approvals and the updatability permissions.
 
-```typescript
-// Lock mint approvals to cap supply
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionApprovals: [
-        {
-            fromListId: 'Mint',
-            toListId: 'All',
-            initiatedByListId: 'All',
-            transferTimes: [{ start: 1n, end: 18446744073709551615n }],
-            tokenIds: [{ start: 1n, end: 18446744073709551615n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-            approvalId: 'All',
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ], // Manager cannot update
-        },
-    ],
-    // ... other permission fields
-};
+**Visual Example: The Supply Cap Bypass**
+
+Imagine a collection with a capped supply of 1,000 tokens:
+
 ```
+Current State:
+│ Collection: "Limited Edition Badge"      
+│ Current Supply: 500/1,000                
+│                                          
+│ Current Mint Approval:                   
+│   ✅ Allows: 500 more tokens            
+│   ❌ Blocks: Any additional minting      
+│                                           
+│ Manager Permission:                      
+│   ⚠️ Can Update Approvals: YES           
+```
+
+On the outside, it may seem like only 500 more are allowed. However, the manager still has the ability to update or create new approvals. Thus, the supply is effectively unlimited because they can simply update the approvals to allow unlimited minting.
+
+**Key Takeaway:**
+
+To truly cap supply, you must lock BOTH:
+1. **Current approvals** - What minting is allowed now
+2. **Updatability permissions** - Whether approvals can be created
 
 ## Important Disclaimers
 
