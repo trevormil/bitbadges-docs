@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Dec 22 01:53:08 UTC 2025
+Generated on Mon Dec 22 12:52:01 UTC 2025
 
 
 
@@ -1781,9 +1781,9 @@ description: >-
 
 ## 🚀 The Next-Generation Token Standard
 
-BitBadges offers tokenization-as-a-service and gating-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more. All implemented as a Cosmos module.
+BitBadges offers tokenization-as-a-service. We are building the best tokenization standard out there because current standards are simply not good enough. Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, multi-chain compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more. All implemented as a Cosmos module.
 
-<div data-full-width="false"><figure><img src=".gitbook/assets/image (181) (1).png" alt=""><figcaption></figcaption></figure></div>
+<figure><img src=".gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 ## ❓ Why BitBadges?
 
@@ -3320,9 +3320,9 @@ export interface TransactionPayload {
 
 For development, you may just want an interface to handle all of this for you. See if [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) fits your needs. You can simply copy / paste the transaction context, and our interface will handle all the signing / behind the scenes.
 
-This is to be used as a developer tool and not a user-facing solution.&#x20;
+This is to be used as a developer tool and not a user-facing solution.
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-bitcoin.md
@@ -9995,7 +9995,7 @@ These can be skipped / forcefully overriden by the collection-level approvals (f
 
 Each transfer must have sufficient balances, satisfy a collection approval, and satisfy user-level approvals if not overridden.
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./token-standard/type-definitions/README.md
