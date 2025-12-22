@@ -9,7 +9,7 @@ For detailed information about each field, see the corresponding concepts docume
 | Field                         | Concepts Link                                                                                            |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `validTokenIds`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `managerTimeline`             | [Manager](../concepts/manager.md)                                                                        |
+| `managerTimeline`             | [Manager / Permissions](../../learn/permissions.md)                                                      |
 | `collectionMetadataTimeline`  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `tokenMetadataTimeline`       | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `customDataTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
@@ -17,7 +17,7 @@ For detailed information about each field, see the corresponding concepts docume
 | `isArchivedTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `mintEscrowCoinsToTransfer`   | [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md#mint-escrow-address) |
-| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](broken-reference/)                                                                |
+| `cosmosCoinWrapperPathsToAdd` | [Cosmos Coin Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md)                                    |
 | Timeline System (all fields)  | [Timeline System](../../token-standard/learn/core-structures/timeline-system.md)                         |
 
 ## Base Collection Details

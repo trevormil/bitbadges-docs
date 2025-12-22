@@ -298,7 +298,7 @@ const invariants: CollectionInvariants<bigint> = {
 
 * IBC backed (sdk.coin) path for the collection
 * Only one path allowed per collection
-* See [IBC Backed Paths](../../x-badges/concepts/ibc-backed-paths.md) for details
+* See [IBC Backed Minting Invariants](../../learn/ibc-backed-minting.md) for details
 
 **noForcefulPostMintTransfers**
 
