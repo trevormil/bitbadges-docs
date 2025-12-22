@@ -1,6 +1,8 @@
+# Transferability
+
 Transferability in BitBadges is controlled through a hierarchical approval system with three levels: collection, outgoing, and incoming.
 
-## Three Transferability Levels
+### Three Transferability Levels
 
 BitBadges supports three levels of transferability control:
 
@@ -12,7 +14,13 @@ BitBadges supports three levels of transferability control:
 
 Each transfer must satisfy collection-level AND (unless overridden) user-level approvals, while also having sufficient balances to transfer.
 
-## Collection Approvals
+## Approval vs Permission vs Transfers
+
+-   Approvals define the rules for transfers on multiple levels.
+-   Transfers execute if the approval rules defined allow it and sufficient balances.
+-   Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+
+### Collection Approvals
 
 Collection approvals define transferability rules for the entire collection on a global level. These rules apply to both minting and post-minting transfers. These let the issuer / manager control global compliance and transferability, such as freezability, revocation, and more.
 
@@ -78,7 +86,7 @@ const mintApproval: CollectionApproval<bigint> = {
 
 **Translation:** Allow anyone to claim tokens 1-100 from the Mint address between Aug 13, 2023 and Aug 13, 2024.
 
-## Approval Criteria
+### Approval Criteria
 
 Approval criteria add additional restrictions beyond basic approval matching. They are used to control who can transfer, when, how much, hwo often, and more.
 
@@ -95,15 +103,15 @@ interface ApprovalCriteria<T extends bigint> {
 }
 ```
 
-See [Approval Criteria](../x-badges/concepts/approval-criteria/README.md) for all available criteria.
+See [Approval Criteria](../x-badges/concepts/approval-criteria/) for all available criteria.
 
-## User-Level Approvals
+### User-Level Approvals
 
 Senders and recipients can configure user-level approvals that gate transfers. These follow the same structure as collection approvals (minus hardcoded sender/recipient logic respectively).
 
 Sender approvals control who can send tokens on behalf of the user. Recipient approvals control who can send tokens to the user.
 
-### Outgoing Approvals
+#### Outgoing Approvals
 
 Control who can send tokens on behalf of the user:
 
@@ -123,7 +131,7 @@ const outgoingApproval: OutgoingApproval<bigint> = {
 };
 ```
 
-### Incoming Approvals
+#### Incoming Approvals
 
 Control who can send tokens to the user:
 
@@ -143,7 +151,7 @@ const incomingApproval: IncomingApproval<bigint> = {
 };
 ```
 
-## Auto-Approval Flags
+### Auto-Approval Flags
 
 We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use. They are only available on the user-level approvals interface.
 
@@ -160,25 +168,25 @@ interface UserBalanceStore<T extends bigint> {
 }
 ```
 
-### Auto-Approve Self-Initiated Outgoing Transfers
+#### Auto-Approve Self-Initiated Outgoing Transfers
 
 When `autoApproveSelfInitiatedOutgoingTransfers: true`, outgoing transfers initiated by the user are automatically approved without checking outgoing approvals.
 
 **Use case:** Convenience for users who want to freely send tokens they own without managing outgoing approval configurations.
 
-### Auto-Approve Self-Initiated Incoming Transfers
+#### Auto-Approve Self-Initiated Incoming Transfers
 
 When `autoApproveSelfInitiatedIncomingTransfers: true`, incoming transfers initiated by the user are automatically approved without checking incoming approvals.
 
 **Use case:** Convenience for users who want to receive tokens they request (e.g., claiming, requesting airdrops) without managing incoming approval configurations.
 
-### Auto-Approve All Incoming Transfers
+#### Auto-Approve All Incoming Transfers
 
 When `autoApproveAllIncomingTransfers: true`, **all** incoming transfers are automatically approved regardless of who initiates them.
 
 **Use case:** Users who want to accept all incoming transfers without restrictions. Useful for open wallets or accounts that should receive tokens from anyone.
 
-### Permission Control
+#### Permission Control
 
 Users can only update these flags according to their user permissions; however, you typically always leave these soft-enabled (empty array) for all because users should always have full control over their own auto-approval settings.
 
@@ -191,7 +199,7 @@ const userPermissions: UserPermissions<bigint> = {
 };
 ```
 
-## Override Behavior
+### Override Behavior
 
 Collection approvals can override user-level approvals for administrative controls like freezing, revocation, or forced transfers. This is done via the `approvalCriteria` field and only available on the collection approval criteria interface.
 
@@ -215,7 +223,7 @@ const collectionApproval: CollectionApproval<bigint> = {
 };
 ```
 
-### When Overrides Apply
+#### When Overrides Apply
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
@@ -232,22 +240,22 @@ const collectionApproval: CollectionApproval<bigint> = {
 
 If you want to setup your collection without any overrides, you can simply set the `invariants.noForcefulPostMintTransfers` to true. This will prevent any collection approvals from ever using override flags.
 
-## Transfer Validation Process
+### Transfer Validation Process
 
 Each transfer must 1) have sufficient balances, 2) satisfy the collection approvals, and 3) satisfy the corresponding user-level approvals (unless overridden).
 
 **Validation flow:**
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption>Transfer validation flow</figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Transfer validation flow</p></figcaption></figure>
 
 1. **Balance validation**: Sender has sufficient tokens
 2. **Collection approval**: At least one collection approval passes
 3. **User approvals**: Sender/recipient approvals pass (unless overridden)
 
-## Break-Down Logic
+### Break-Down Logic
 
 The system can break down transfers and approvals into partial matches to make transfers succeed. It deducts as much as possible from each approval as it iterates.
 
 For proper design, you should try to design your approvals such that they never have to match to more than one. However, if needed, we break down the transfer and approvals as fine-grained as we can to make it succeed.
 
-See [Auto-Scan and Prioritized Approvals](./auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.
+See [Auto-Scan and Prioritized Approvals](auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.

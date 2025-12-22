@@ -4,7 +4,7 @@ This example demonstrates how to create an approval that allows the Cosmos coin 
 
 You pretty much: 1) figure out your address and 2) figure out a path that users can send from this address without needing the address to control its approvals.
 
-Full example: [Cosmos Coin Wrapper Example](broken-reference)
+Full example: [Cosmos Coin Wrapper Example](broken-reference/)
 
 ## Code Example
 
@@ -45,7 +45,14 @@ export const unwrapperApproval = ({
 
 ## Related Concepts
 
+<<<<<<< HEAD
 -   [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
 -   [Cosmos Wrapper Paths](broken-reference)
 -   [Transferability](../../../learn/transferability.md)
 -   [Address Lists](../../concepts/address-lists.md)
+=======
+* [Cosmos Wrapper Approval](cosmos-wrapper-approval.md)
+* [Cosmos Wrapper Paths](broken-reference/)
+* [Transferability / Approvals](../../concepts/transferability-approvals.md)
+* [Address Lists](../../concepts/address-lists.md)
+>>>>>>> d34afbef585731a03fb3588449635b6d464bd0d2

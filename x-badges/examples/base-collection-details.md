@@ -6,19 +6,19 @@ BitBadges collections are very expressive but also can lead to verbose configura
 
 For detailed information about each field, see the corresponding concepts documentation:
 
-| Field                         | Concepts Link                                                     |
-| ----------------------------- | ----------------------------------------------------------------- |
-| `validTokenIds`               | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `managerTimeline`             | [Manager](../concepts/manager.md)                                 |
-| `collectionMetadataTimeline`  | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `tokenMetadataTimeline`       | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `customDataTimeline`          | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `standardsTimeline`           | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `isArchivedTimeline`          | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `defaultBalances`             | [Collection Setup Fields](../concepts/collection-setup-fields.md) |
-| `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)         |
-| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](broken-reference)                          |
-| Timeline System (all fields)  | [Timeline System](../concepts/timeline-system.md)                 |
+| Field                         | Concepts Link                                                                    |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| `validTokenIds`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `managerTimeline`             | [Manager](../concepts/manager.md)                                                |
+| `collectionMetadataTimeline`  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `tokenMetadataTimeline`       | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `customDataTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `standardsTimeline`           | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `isArchivedTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) |
+| `mintEscrowCoinsToTransfer`   | [Mint Escrow Address](../concepts/mint-escrow-address.md)                        |
+| `cosmosCoinWrapperPathsToAdd` | [Cosmos Wrapper Paths](broken-reference/)                                        |
+| Timeline System (all fields)  | [Timeline System](../concepts/timeline-system.md)                                |
 
 ## Base Collection Details
 

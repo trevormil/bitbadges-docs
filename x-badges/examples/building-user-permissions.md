@@ -2,7 +2,7 @@
 
 User-level permissions allow individual users to control their ability to update their own approvals. Note that these are almost always never needed unless in advanced situations. Typically, you just leave these soft-enabled (empty arrays) for all. These are only really needed in advanced situations where you want to lock down a user's ability to update their own approvals, such as escrow accounts.
 
-The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](./building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
+The canUpdateOutgoingApprovals and canUpdateIncomingApprovals work similarly to [canUpdateCollectionApprovals](building-collection-permissions.md) with key restrictions. - `fromListId` is locked to the user's address for outgoing approvals - `toListId` is locked to the user's address for incoming approvals
 
 ## User Permission Structure
 
@@ -71,17 +71,17 @@ const updateUserApprovals = {
 
 For permission patterns, see:
 
--   [Freezing Mint Transferability](./permissions/freezing-mint-transferability.md) - Collection permission example
--   [Locking Specific Approval ID](./permissions/locking-specific-approval-id.md) - Approval ID targeting
--   [Locking Specific Token IDs](./permissions/locking-specific-token-ids.md) - Token ID targeting
--   [Building Collection Permissions](./building-collection-permissions.md) - Collection-level patterns
+* [Freezing Mint Transferability](permissions/freezing-mint-transferability.md) - Collection permission example
+* [Locking Specific Approval ID](permissions/locking-specific-approval-id.md) - Approval ID targeting
+* [Locking Specific Token IDs](permissions/locking-specific-token-ids.md) - Token ID targeting
+* [Building Collection Permissions](building-collection-permissions.md) - Collection-level patterns
 
 For user approval configuration, see:
 
--   [Building User Approvals](./building-user-approvals.md) - User approval setup
+* [Building User Approvals](building-user-approvals.md) - User approval setup
 
 ## Related Concepts
 
--   [Permissions System](../concepts/permissions/README.md) - Permission mechanics
--   [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
--   [Collection Setup Fields](../concepts/collection-setup-fields.md) - Default balances and user permission structure
+* [Permissions System](../concepts/permissions/) - Permission mechanics
+* [Update Approval Permission](../concepts/permissions/update-approval-permission.md) - Approval-specific controls
+* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md) - Default balances and user permission structure

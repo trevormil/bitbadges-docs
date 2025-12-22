@@ -1,4 +1,4 @@
-# Balance System
+# Balances
 
 The Balance system in BitBadges is designed to represent ownership of tokens across different IDs and time ranges. Ownership times are a new concept to BitBadges allowing you to set that someone owns a token during a specific time but not other times.
 
@@ -12,9 +12,9 @@ export interface Balance<T extends NumberType> {
 }
 ```
 
--   `amount`: The quantity of tokens owned
--   `tokenIds`: An array of ID ranges representing the tokens owned
--   `ownershipTimes`: An array of time ranges during which the tokens are owned
+* `amount`: The quantity of tokens owned
+* `tokenIds`: An array of ID ranges representing the tokens owned
+* `ownershipTimes`: An array of time ranges during which the tokens are owned
 
 ## Interpreting Balances
 

@@ -88,16 +88,16 @@ const createCollection = {
 
 ### ⚠️ Token ID Targeting
 
--   Permissions only apply to the specified token ID ranges
--   Unspecified ranges remain soft-enabled for manager updates
--   Cannot reduce valid token IDs once locked (only expansion possible for unlocked ranges)
+* Permissions only apply to the specified token ID ranges
+* Unspecified ranges remain soft-enabled for manager updates
+* Cannot reduce valid token IDs once locked (only expansion possible for unlocked ranges)
 
 ## Related Examples
 
--   [Locking Specific Token IDs](./locking-specific-token-ids.md) - Lock approval updates for token ranges
--   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock mint approvals
+* [Locking Specific Token IDs](locking-specific-token-ids.md) - Lock approval updates for token ranges
+* [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
 
 ## Related Concepts
 
--   [Collection Setup Fields](../../concepts/collection-setup-fields.md) - Token ID range concept
--   [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls
+* [Collection Setup Fields](../../../token-standard/learn/collection-setup-fields.md) - Token ID range concept
+* [Token IDs Action Permission](../../concepts/permissions/balances-action-permission.md) - Token-specific permission controls

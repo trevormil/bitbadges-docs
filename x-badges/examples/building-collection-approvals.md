@@ -6,8 +6,8 @@ The collection-level transferability is determined by the collection-level appro
 
 It is typically recommended to split into two categories:
 
--   **Mint Approvals** (`fromListId: 'Mint'`)
--   **Post-Mint Approvals** (`fromListId: '!Mint'`)
+* **Mint Approvals** (`fromListId: 'Mint'`)
+* **Post-Mint Approvals** (`fromListId: '!Mint'`)
 
 ## Important Notes
 
@@ -18,8 +18,8 @@ It is typically recommended to split into two categories:
 
 Mix and match the approvals as you see fit. See the examples in the Approvals folder for a bunch of examples.
 
--   [Transferable Approval](./approvals/transferable-approval.md)
--   [Burnable Approval](./approvals/burnable-approval.md)
+* [Transferable Approval](approvals/transferable-approval.md)
+* [Burnable Approval](approvals/burnable-approval.md)
 
 ```typescript
 const mintApprovals = [
