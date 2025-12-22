@@ -118,7 +118,6 @@
       * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [📡 Events](x-badges/events.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
