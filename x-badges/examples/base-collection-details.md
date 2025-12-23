@@ -18,7 +18,7 @@ For detailed information about each field, see the corresponding concepts docume
 | `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `mintEscrowCoinsToTransfer`   | [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md#mint-escrow-address) |
 | `cosmosCoinWrapperPathsToAdd` | [Cosmos Coin Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md)                                    |
-| Timeline System (all fields)  | [Timeline System](../../token-standard/learn/core-structures/timeline-system.md)                         |
+| Timeline System (all fields)  | [Timeline System](/broken/pages/9EUbN6P70EToKUcgs8qB)                                                    |
 
 ## Base Collection Details
 
