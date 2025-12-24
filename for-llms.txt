@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Dec 24 16:47:13 UTC 2025
+Generated on Wed Dec 24 16:49:50 UTC 2025
 
 
 
@@ -2011,7 +2011,6 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Registry Details](https://github.com/cosmos/chain-registry/tree/master/bitbadges)
   * [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
   * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
-  * [Staking / Validators](for-developers/bitbadges-blockchain/staking-usdbadge.md)
   * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
@@ -3856,21 +3855,6 @@ Most node parameters are flexible and you can set up according to your preferenc
 * timeout\_commit: 2s
 
 
-## File: ./for-developers/bitbadges-blockchain/staking-usdbadge.md
-
-# Staking / Validators
-
-## **Staking**
-
-The BitBadges blockchain is a [delegated proof-of-stake blockchain](https://101blockchains.com/proof-of-stake-vs-delegated-proof-of-stake/). Behind the scenes, this uses the [Cosmos SDK staking](https://docs.cosmos.network/main/modules/staking) module. To stake, visit [https://bitbadges.io/stake](https://bitbadges.io/stake) or our explorer.
-
-## **Governance**
-
-For important decisions, we use the Cosmos governance proposal module. Validators vote on decisions according to their voting power.
-
-[https://explorer.bitbadges.io/BitBadges%20Mainnet/gov](https://explorer.bitbadges.io/BitBadges%20Mainnet/gov)
-
-
 ## File: ./for-developers/bitbadges-blockchain/supported-denoms.md
 
 # Supported Denoms
@@ -3929,7 +3913,7 @@ export const MAINNET_COINS_REGISTRY: Record<string, CoinDetails> = {
 
 Testnet mode provides a separate environment for testing purposes. Simply turn on the switch (or go to [testnet.bitbadges.io](https://testnet.bitbadges.io)). It is isolated from the production environment of BitBadges and uses its own resources, such as a testnet blockchain, database, API, and more.
 
-<pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same.
+<pre><code><strong>Note: Third-party integrations (e.g. claim plugins) are the exact same. 
 </strong></code></pre>
 
 <figure><img src="../../.gitbook/assets/image (129) (1).png" alt=""><figcaption></figcaption></figure>
@@ -3940,15 +3924,15 @@ You should treat testnet as an entirely SEPARATE service. NOTHING will carry ove
 
 ### Differences
 
--   Some features available in production may not be accessible in testnet:
-    -   Off-chain balances managed by BitBadges are not hosted externally (via CDN)
-    -   Buying BADGE credits
-    -   Push notifications
-    -   And more
--   Some restrictions may be more relaxed
-    -   No API keys required
-    -   Faucet may be more lenient
--   Performance also may differ from the production environment
+* Some features available in production may not be accessible in testnet:
+  * Off-chain balances managed by BitBadges are not hosted externally (via CDN)
+  * Buying BADGE credits
+  * Push notifications
+  * And more
+* Some restrictions may be more relaxed
+  * No API keys required
+  * Faucet may be more lenient
+* Performance also may differ from the production environment
 
 ### Links
 
@@ -3958,8 +3942,8 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
--   RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
--   REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+* RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
+* REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
 
 ### Feedback
 
