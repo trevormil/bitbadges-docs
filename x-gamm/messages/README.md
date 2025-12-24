@@ -1,4 +1,4 @@
-# 📨 Messages
+# Messages
 
 This directory contains documentation for the core transaction messages supported by the `x/gamm` module.
 

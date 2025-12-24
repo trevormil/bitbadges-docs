@@ -1,4 +1,4 @@
-# 📚 Overview
+# Overview
 
 This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/ibc-rate-limit` module.
 
@@ -22,4 +22,3 @@ The module operates as an IBC middleware that intercepts IBC transfer packets be
 ## Table of Contents
 
 1. [Introduction](overview.md) - Overview and key concepts
-

@@ -1,4 +1,4 @@
-# 📖 Introduction
+# Introduction
 
 ## Architecture
 
@@ -31,9 +31,9 @@ The primary hook type is `swap_and_action`, which:
 
 The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
 
--   Receive the IBC transfer tokens
--   Execute the swap operation
--   Send tokens to the final destination
+* Receive the IBC transfer tokens
+* Execute the swap operation
+* Send tokens to the final destination
 
 Use here for generation if needed
 
@@ -47,9 +47,9 @@ export function deriveIntermediateSender(channel: string, originalSender: string
 
 All operations are executed atomically:
 
--   If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
--   If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
--   State changes are only committed if all operations succeed
+* If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
+* If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
+* State changes are only committed if all operations succeed
 
 ## Hook Data Structure
 
@@ -169,11 +169,11 @@ type Affiliate struct {
 
 The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. This is useful for referral programs, partnerships, or revenue sharing.
 
--   **Optional**: If not specified, no affiliate fees are deducted
--   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
--   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
--   **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
--   **Address format**: Must be a valid Bech32 address on the destination chain
+* **Optional**: If not specified, no affiliate fees are deducted
+* **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
+* **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+* **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
+* **Address format**: Must be a valid Bech32 address on the destination chain
 
 **Example**:
 
@@ -194,9 +194,9 @@ The `affiliates` field allows you to specify fee recipients who will receive a p
 
 In this example, if the swap outputs 1,000,000 tokens:
 
--   First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
--   Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
--   Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
+* First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+* Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
+* Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
 
 The remaining amount (996,500 tokens) is then used for the post-swap action.
 
@@ -212,17 +212,17 @@ The `destination_recover_address` field specifies what to do in the case of a sw
 
 This only applies in the case of swap failures. Swap logic failures include, but are not limited to:
 
--   Exceeds slippage tolerance
--   Compliance not passed
--   Insufficient funds (should never happen since we use the amount transferred via IBC as the input amount)
--   Calculated amount out equals zero
--   etc.
+* Exceeds slippage tolerance
+* Compliance not passed
+* Insufficient funds (should never happen since we use the amount transferred via IBC as the input amount)
+* Calculated amount out equals zero
+* etc.
 
 This is not applied in the cases below. Standard behavior is used in these cases.
 
--   Misconfigurations of the messages (wrong prefixes, missing fields, etc.)
--   Invalid pool IDs
--   Standard IBC transfer failures (rate limits, timeouts, etc.)
+* Misconfigurations of the messages (wrong prefixes, missing fields, etc.)
+* Invalid pool IDs
+* Standard IBC transfer failures (rate limits, timeouts, etc.)
 
 Logic here is that in the event of a swap failure, the expected chain where the user expects funds to be recoverable is the source chain.
 
@@ -233,9 +233,7 @@ For example, if we have a multi-swap path like:
 3. Send Asset B from Osmosis to BitBadges
 4. Swap Asset B to Asset C on BitBadges
 
-If Step 4 fails, the default behavior is that funds (Asset B) will be recoverable on Osmosis (bad UX).
-With this recovery logic, if Step 4 fails, funds (Asset B) will be recoverable on BitBadges (better UX).
-Minor, but it avoids confusion for the user and potentially needing to interact with other chains for recovery. It isn't a catch-all solution, but it is a good UX improvement in many cases.
+If Step 4 fails, the default behavior is that funds (Asset B) will be recoverable on Osmosis (bad UX). With this recovery logic, if Step 4 fails, funds (Asset B) will be recoverable on BitBadges (better UX). Minor, but it avoids confusion for the user and potentially needing to interact with other chains for recovery. It isn't a catch-all solution, but it is a good UX improvement in many cases.
 
 ## Validation Rules
 
