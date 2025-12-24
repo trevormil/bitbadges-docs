@@ -1,1 +1,1 @@
-# x/ibc-rate-limit
+# 🚦 x/ibc-rate-limit
