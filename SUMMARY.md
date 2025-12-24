@@ -259,32 +259,29 @@
       * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
     * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
 
-## x/gamm
+## Other Modules
 
-* [📚 Overview](x-gamm/README.md)
-* [📨 Messages](x-gamm/messages/README.md)
-  * [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
-  * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
-  * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
-  * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
-  * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
-
-## x/custom-ibc-hooks
-
-* [📚 Overview](x-custom-ibc-hooks/README.md)
-* [📖 Introduction](x-custom-ibc-hooks/overview.md)
-
-## x/ibc-rate-limit
-
-* [📚 Overview](x-ibc-rate-limit/README.md)
-* [📖 Introduction](x-ibc-rate-limit/overview.md)
-
-## x/managersplitter
-
-* [📚 Overview](x-managersplitter/README.md)
-* [📖 Introduction](x-managersplitter/overview.md)
-* [📨 Messages](x-managersplitter/messages/README.md)
-  * [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
-  * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
-  * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
-  * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+* [📚 Overview](other-modules/README.md)
+* [x/gamm](other-modules/x-gamm/README.md)
+  * [📚 Overview](x-gamm/README.md)
+  * [📖 Introduction](x-gamm/introduction.md)
+  * [📨 Messages](x-gamm/messages/README.md)
+    * [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
+    * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
+    * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
+    * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+    * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
+* [x/custom-ibc-hooks](other-modules/x-custom-ibc-hooks/README.md)
+  * [📚 Overview](x-custom-ibc-hooks/README.md)
+  * [📖 Introduction](x-custom-ibc-hooks/overview.md)
+* [x/ibc-rate-limit](other-modules/x-ibc-rate-limit/README.md)
+  * [📚 Overview](x-ibc-rate-limit/README.md)
+  * [📖 Introduction](x-ibc-rate-limit/overview.md)
+* [x/managersplitter](other-modules/x-managersplitter/README.md)
+  * [📚 Overview](x-managersplitter/README.md)
+  * [📖 Introduction](x-managersplitter/overview.md)
+  * [📨 Messages](x-managersplitter/messages/README.md)
+    * [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
+    * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
+    * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
+    * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
