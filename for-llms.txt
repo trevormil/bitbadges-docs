@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Dec 23 12:48:15 UTC 2025
+Generated on Wed Dec 24 16:43:00 UTC 2025
 
 
 
@@ -2103,35 +2103,32 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
     * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
 
-## x/gamm
+## Other Modules
 
-* [📚 Overview](x-gamm/README.md)
-* [📨 Messages](x-gamm/messages/README.md)
-  * [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
-  * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
-  * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
-  * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
-  * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
-
-## x/custom-ibc-hooks
-
-* [📚 Overview](x-custom-ibc-hooks/README.md)
-* [📖 Introduction](x-custom-ibc-hooks/overview.md)
-
-## x/ibc-rate-limit
-
-* [📚 Overview](x-ibc-rate-limit/README.md)
-* [📖 Introduction](x-ibc-rate-limit/overview.md)
-
-## x/managersplitter
-
-* [📚 Overview](x-managersplitter/README.md)
-* [📖 Introduction](x-managersplitter/overview.md)
-* [📨 Messages](x-managersplitter/messages/README.md)
-  * [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
-  * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
-  * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
-  * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
+* [📚 Overview](other-modules/README.md)
+* [x/gamm](other-modules/x-gamm/README.md)
+  * [📚 Overview](x-gamm/README.md)
+  * [📖 Introduction](x-gamm/introduction.md)
+  * [📨 Messages](x-gamm/messages/README.md)
+    * [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md)
+    * [MsgExitPool](x-gamm/messages/msg-exit-pool.md)
+    * [MsgJoinPool](x-gamm/messages/msg-join-pool.md)
+    * [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md)
+    * [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md)
+* [x/custom-ibc-hooks](other-modules/x-custom-ibc-hooks/README.md)
+  * [📚 Overview](x-custom-ibc-hooks/README.md)
+  * [📖 Introduction](x-custom-ibc-hooks/overview.md)
+* [x/ibc-rate-limit](other-modules/x-ibc-rate-limit/README.md)
+  * [📚 Overview](x-ibc-rate-limit/README.md)
+  * [📖 Introduction](x-ibc-rate-limit/overview.md)
+* [x/managersplitter](other-modules/x-managersplitter/README.md)
+  * [📚 Overview](x-managersplitter/README.md)
+  * [📖 Introduction](x-managersplitter/overview.md)
+  * [📨 Messages](x-managersplitter/messages/README.md)
+    * [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md)
+    * [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md)
+    * [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md)
+    * [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md)
 
 
 ## File: ./_docs/development-guide.md
@@ -11017,6 +11014,74 @@ For proper design, you should try to design your approvals such that they never 
 See [Auto-Scan and Prioritized Approvals](auto-scan-and-prioritized-approvals.md) for details on how the system selects approvals and how you can selectively prioritize approvals.
 
 
+## File: ./other-modules/README.md
+
+# Other Modules
+
+This section contains documentation for additional Cosmos SDK modules used in the BitBadges blockchain.
+
+## Table of Contents
+
+### x/gamm
+
+The `x/gamm` module implements the Generalized Automated Market Maker (GAMM) functionality for the BitBadges blockchain.
+
+-   [📚 Overview](x-gamm/README.md) - Module overview and key differences from Osmosis
+-   [📖 Introduction](x-gamm/introduction.md) - Detailed introduction to GAMM concepts
+-   [📨 Messages](x-gamm/messages/README.md) - Transaction messages and handlers
+    -   [MsgCreateBalancerPool](x-gamm/messages/msg-create-balancer-pool.md) - Create new balancer pool
+    -   [MsgExitPool](x-gamm/messages/msg-exit-pool.md) - Exit pool and receive tokens
+    -   [MsgJoinPool](x-gamm/messages/msg-join-pool.md) - Join existing pool with liquidity
+    -   [MsgSwapExactAmountIn](x-gamm/messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+    -   [MsgSwapExactAmountInWithIBCTransfer](x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md) - Swap and transfer via IBC
+
+### x/custom-ibc-hooks
+
+The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions automatically when receiving IBC tokens.
+
+-   [📚 Overview](x-custom-ibc-hooks/README.md) - Module overview and key features
+-   [📖 Introduction](x-custom-ibc-hooks/overview.md) - Architecture and usage details
+
+### x/ibc-rate-limit
+
+The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers.
+
+-   [📚 Overview](x-ibc-rate-limit/README.md) - Module overview and key features
+-   [📖 Introduction](x-ibc-rate-limit/overview.md) - Rate limiting concepts and configuration
+
+### x/managersplitter
+
+The Manager Splitter module provides a permissioned proxy system for managing token collections.
+
+-   [📚 Overview](x-managersplitter/README.md) - Module overview and key features
+-   [📖 Introduction](x-managersplitter/overview.md) - Permission system and use cases
+-   [📨 Messages](x-managersplitter/messages/README.md) - Transaction messages and handlers
+    -   [MsgCreateManagerSplitter](x-managersplitter/messages/msg-create-manager-splitter.md) - Create a new manager splitter
+    -   [MsgDeleteManagerSplitter](x-managersplitter/messages/msg-delete-manager-splitter.md) - Delete a manager splitter
+    -   [MsgExecuteUniversalUpdateCollection](x-managersplitter/messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
+    -   [MsgUpdateManagerSplitter](x-managersplitter/messages/msg-update-manager-splitter.md) - Update manager splitter permissions
+
+
+## File: ./other-modules/x-custom-ibc-hooks/README.md
+
+# x/custom-ibc-hooks
+
+
+## File: ./other-modules/x-gamm/README.md
+
+# x/gamm
+
+
+## File: ./other-modules/x-ibc-rate-limit/README.md
+
+# x/ibc-rate-limit
+
+
+## File: ./other-modules/x-managersplitter/README.md
+
+# x/managersplitter
+
+
 ## File: ./overview/badge.md
 
 # 🪙 BADGE
@@ -11136,7 +11201,7 @@ Let us know if you have another idea and how we can help.
 
 ### **Are smart contracts needed?**
 
-No!  One universal standard that can support any use case with no code, no smart contracts. It is all a Cosmos SDK module reused for any token type.
+No! One universal standard that can support any use case with no code, no smart contracts. It is all a Cosmos SDK module reused for any token type.
 
 ### **How is compliance checked every transfer?**
 
@@ -11148,7 +11213,7 @@ BitBadges is its own Layer-1 blockchain built with Cosmos SDK.
 
 ### **Why the registry architecture over unique smart contracts for every collection?**
 
-In the long run, we believe a reusable standard tested 100s of times will win over unique, vulnerable contracts. The registry approach also improves scalability, consistency, and standardization. Standardization wins.
+In the long run, we believe a reusable standard tested thousands of times will win over unique, vulnerable contracts. The registry approach also improves scalability, consistency, and standardization. Standardization wins.
 
 ### **Are tokens ERC-721 or ERC-20 or ERC-3643 compatible?**
 
@@ -11162,15 +11227,15 @@ Yes, our token standard is a Cosmos module. While we aim for no smart contracts 
 
 BitBadges charges a 0.1% fee on the protocol level on all swaps and transfers. This works as follows:
 
-* For any x/badges transfers with IBC payments (coinTransfers), we charge in the IBC currency.
-* For any x/gamm swaps, we charge a 0.1% taker fee
+-   For any x/badges transfers with IBC payments (coinTransfers), we charge in the IBC currency.
+-   For any x/gamm swaps, we charge a 0.1% taker fee
 
 Normal x/badges or IBC MsgSends or transfers do not charge a fee.
 
 As for affiliates, you are free to build protocols to charge anything on top of that.
 
-* For x/badges, simply add another coin transfer to approvals (payout initiator 0.1% or somehting)
-* For x/gamm, we have an in-built affiliates field built into the protocol. If you use the BitBadges API, we will charge a 20% fee of affiliates, but on the protocol level, there is no such charge.
+-   For x/badges, simply add another coin transfer to approvals (payout initiator 0.1% or somehting)
+-   For x/gamm, we have an in-built affiliates field built into the protocol. If you use the BitBadges API, we will charge a 20% fee of affiliates, but on the protocol level, there is no such charge.
 
 
 ## File: ./overview/learn/badge-concepts/standards.md
@@ -14521,7 +14586,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 ## Table of Contents
 
-1. [Concepts ](../learn/)- Core data structures and business logic
+1. [Concepts](../learn/)- Core data structures and business logic
 2. [Messages](messages/) - Transaction messages and handlers
 3. [Queries](queries/) - Query types and endpoints
 4. [Examples](examples/) - Common usage patterns and building blocks
