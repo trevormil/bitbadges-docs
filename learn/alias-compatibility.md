@@ -11,24 +11,24 @@ BitBadges uses the format `badgeslp:COLLECTION_ID:denom` for alias denominations
 -   **Format**: `badgeslp:COLLECTION_ID:denom`
 -   **Example**: `5 badgeslp:73:utoken`
     -   Collection ID: `73`
-    -   Base denomination: `utoken` (from the collection's `cosmosCoinWrapperPaths` path)
+    -   Base denomination: `utoken` (from the collection's `aliasPaths` array)
     -   Amount: `5`
 
 ## How It Works
 
-The alias denomination converts an integer amount to `Balances[]` using the collection's `cosmosCoinWrapperPaths` field, which defines the conversion rate.
+The alias denomination converts an integer amount to `Balances[]` using the collection's `aliasPaths` field, which defines the conversion rate.
 
 ### Conversion Process
 
 1. **Parse the alias**: Extract collection ID and denom from `badgeslp:COLLECTION_ID:denom`
-2. **Find wrapper path**: Look up the matching `cosmosCoinWrapperPath` in the collection's `cosmosCoinWrapperPaths` array by denom
-3. **Convert amount**: Use the path's `balances` field to convert the integer amount to `Balances[]. This is the conversion rate. 1 badgeslp:73:utoken = amount defined in balances
+2. **Find alias path**: Look up the matching `AliasPath` in the collection's `aliasPaths` array by denom
+3. **Convert amount**: Use the path's `conversion` field to convert the integer amount to `Balances[]`. The conversion rate is: `conversion.sideA.amount` alias units = `conversion.sideB[]` tokens. For example, if `sideA.amount = "1"` and `sideB = [{ amount: 1n, ... }]`, then `1 badgeslp:73:utoken = 1 token` (1:1 conversion)
 4. **Execute transfer**: Process the transfer using the converted `Balances[]` via `MsgTransferTokens`
 
 ### Important Notes
 
 -   **No wrapping involved**: This is not a wrapping/unwrapping process. The conversion is simply an alias for the full `Balances[]` field.
--   **Conversion rate defined**: The conversion rate is defined in the collection's `cosmosCoinWrapperPaths` field, specifically in the `balances` array of each path.
+-   **Conversion rate defined**: The conversion rate is defined in the collection's `aliasPaths` field, specifically in the `conversion.sideA.amount` and `conversion.sideB[]` fields of each path.
 -   **Auto-scan mode**: Implementations that support alias denominations almost always operate in **auto-scan mode** (no prioritized approvals required).
 
 ## Use Cases
@@ -42,7 +42,7 @@ Alias denominations enable BitBadges tokens to participate in liquidity pools th
 const coins = [
     {
         denom: 'badgeslp:73:utoken',
-        amount: '1000000', // Converts to Balances[] via cosmosCoinWrapperPaths behind the scenes
+        amount: '1000000', // Converts to Balances[] via aliasPaths behind the scenes
     },
     {
         denom: 'uatom',
@@ -75,21 +75,28 @@ const transfer = {
 
 ## Configuration
 
-The conversion is defined in the collection's `cosmosCoinWrapperPaths` field:
+The conversion is defined in the collection's `aliasPaths` field:
 
 ```typescript
 const collection: MsgCreateCollection = {
     // ... other fields
-    cosmosCoinWrapperPaths: [
+    aliasPathsToAdd: [
         {
             denom: 'utoken',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of alias unit
                 },
-            ],
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
             symbol: 'BASETOKEN',
             denomUnits: [
                 {
@@ -98,16 +105,19 @@ const collection: MsgCreateCollection = {
                     isDefaultDisplay: true,
                 },
             ],
-            allowOverrideWithAnyValidToken: false,
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
     ],
 };
 ```
 
+**Metadata**: Alias paths use the standard metadata structure with `uri` (e.g., `ipfs://Qm...`) pointing to hosted JSON containing `{ name, image, description }`. The image is the primary use case. The on-chain `symbol` field is typically used for identification, not the metadata name.
+
 In this example:
 
 -   `1 badgeslp:COLLECTION_ID:utoken` converts to `1` token with IDs `1-100` and full ownership times
--   The conversion rate is `1:1` (1 alias unit = 1 token)
+-   The conversion rate is `1:1` (1 alias unit = 1 token) because `conversion.sideA.amount = "1"` and `conversion.sideB[0].amount = 1n`
+-   The conversion structure uses `ConversionWithoutDenom` because the denom is stored separately at the path level
 
 ## Benefits
 

@@ -8,11 +8,11 @@ BitBadges supports three levels of transferability control:
 
 <div style="overflow-x: auto;">
 
-| Level          | Controlled By  | Approval Level | Approver Address | Stored On              | Msg                                    | Use Case                               |
-| -------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | collection     | ""                | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | outgoing       | bb1...            | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
-| **Incoming**   | Recipient      | incoming       | bb1...            | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+| Level          | Controlled By  | Approval Level | Approver Address | Stored On                           | Msg                                       | Use Case                               |
+| -------------- | -------------- | -------------- | ---------------- | ----------------------------------- | ----------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | collection     | ""               | TokenCollection.collectionApprovals | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | outgoing       | bb1...           | UserBalanceStore.outgoingApprovals  | MsgUpdateUserApprovals                    | Listings, delegation                   |
+| **Incoming**   | Recipient      | incoming       | bb1...           | UserBalanceStore.incomingApprovals  | MsgUpdateUserApprovals                    | Bids, access control                   |
 
 </div>
 
@@ -20,9 +20,9 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 
 ## Approval vs Permission vs Transfers
 
-* Approvals define the rules for transfers on multiple levels.
-* Transfers execute if the approval rules defined allow it and sufficient balances.
-* Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+-   Approvals define the rules for transfers on multiple levels.
+-   Transfers execute if the approval rules defined allow it and sufficient balances.
+-   Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
 
 ### Transfer Validation Process
 
@@ -111,35 +111,36 @@ interface ApprovalCriteria<T extends bigint> {
     maxNumTransfers?: MaxNumTransfers<T>; // Limit number of transfers
     approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
     predeterminedBalances?: PredeterminedBalances<T>; // Exact balance requirements
-    
+
     // Automatic actions
     coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers (BADGE or sdk.Coin)
     userRoyalties?: UserRoyalties<T>; // Percentage-based transfer fees
-    
+
     // Challenge requirements
     merkleChallenges?: MerkleChallenge<T>[]; // Require merkle proofs
     mustOwnTokens?: MustOwnToken<T>[]; // Require owning specific tokens
     dynamicStoreChallenges?: DynamicStoreChallenge<T>[]; // On-chain numeric checks
     ethSignatureChallenges?: ETHSignatureChallenge<T>[]; // Ethereum signature requirements
-    
+    votingChallenges?: VotingChallenge<T>[]; // Require weighted quorum thresholds
+
     // Address relationship requirements
     requireToEqualsInitiatedBy?: boolean; // to == initiatedBy
     requireFromEqualsInitiatedBy?: boolean; // from == initiatedBy
     requireToDoesNotEqualInitiatedBy?: boolean; // to != initiatedBy
     requireFromDoesNotEqualInitiatedBy?: boolean; // from != initiatedBy
-    
+
     // Address type checks
     senderChecks?: AddressChecks; // Address checks for sender
     recipientChecks?: AddressChecks; // Address checks for recipient
     initiatorChecks?: AddressChecks; // Address checks for initiator
-    
+
     // Overrides (collection-level only)
     overridesFromOutgoingApprovals?: boolean; // Override sender approvals
     overridesToIncomingApprovals?: boolean; // Override recipient approvals
-    
+
     // Time-based restrictions
     altTimeChecks?: AltTimeChecks; // Alternative time checks (offline hours/days)
-    
+
     // Approval behavior
     autoDeletionOptions?: AutoDeletionOptions; // Auto-delete after use
     mustPrioritize?: boolean; // Require explicit prioritization
@@ -209,7 +210,7 @@ const incomingApproval: IncomingApproval<bigint> = {
 
 ### User-Level Auto-Approval Flags
 
-We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true. 
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true.
 
 #### Auto-Approve Self-Initiated Outgoing Transfers
 
@@ -265,14 +266,14 @@ const mintApproval: CollectionApproval<bigint> = {
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
-* Freezing tokens (prevent transfers regardless of user settings)
-* Forced revocation (remove tokens from users)
-* Administrative transfers (manager-controlled actions)
+-   Freezing tokens (prevent transfers regardless of user settings)
+-   Forced revocation (remove tokens from users)
+-   Administrative transfers (manager-controlled actions)
 
 **Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
 
-* Forced transfers (send tokens even if recipient blocks them)
-* Administrative actions (manager-controlled distributions)
+-   Forced transfers (send tokens even if recipient blocks them)
+-   Administrative actions (manager-controlled distributions)
 
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 

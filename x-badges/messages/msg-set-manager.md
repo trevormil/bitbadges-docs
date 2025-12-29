@@ -5,18 +5,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetManager
 
-Sets the manager timeline and update permissions for a collection. This is a convenience message that focuses specifically on manager management.
+Sets the manager and update permissions for a collection. This is a convenience message that focuses specifically on manager management.
 
 ### Overview
 
 This message allows you to:
 
-* Set who manages the collection at different times
-* Configure permissions to update the manager in the future
+-   Set who manages the collection
+-   Configure permissions to update the manager in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the manager timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the manager according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -31,11 +31,11 @@ message MsgSetManager {
   // ID of the collection.
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-  // New manager timeline to set.
-  repeated ManagerTimeline managerTimeline = 3;
+  // New manager to set.
+  string manager = 3;
 
-  // Permission to update manager timeline
-  repeated TimedUpdatePermission canUpdateManager = 4;
+  // Permission to update manager
+  repeated ActionPermission canUpdateManager = 4;
 }
 
 message MsgSetManagerResponse {
@@ -57,15 +57,9 @@ bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "managerTimeline": [
-        {
-            "manager": "bb1def456...",
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
-        }
-    ],
+    "manager": "bb1def456...",
     "canUpdateManager": [
         {
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -75,5 +69,5 @@ bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message

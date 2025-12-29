@@ -41,15 +41,10 @@ The transfers still operate under the approval / transferability system. We will
 ```typescript
 const collection = {
     ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [
-                ...otherApprovals,
-                wrapperApproval,
-                unwrapperApproval,
-            ],
-        },
+    collectionApprovals: [
+        ...otherApprovals,
+        wrapperApproval,
+        unwrapperApproval,
     ],
 };
 ```

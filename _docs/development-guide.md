@@ -241,13 +241,9 @@ import { MsgCreateCollection } from 'bitbadgesjs-sdk';
 
 // Create a collection with 100 token IDs
 const collection = {
+    // ...
     validTokenIds: [{ start: '1', end: '100' }],
-    managerTimeline: [
-        {
-            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: '1', end: '18446744073709551615' }],
-        },
-    ],
+    manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
 };
 
 const msg = MsgCreateCollection(collection);
@@ -258,16 +254,8 @@ const msg = MsgCreateCollection(collection);
 Extract common patterns into reusable examples:
 
 ```typescript
-// Standard "forever" time range
-const FullTimeRanges = [{ start: '1', end: '18446744073709551615' }];
-
 // Use throughout documentation
-const managerTimeline = [
-    {
-        manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-        timelineTimes: FullTimeRanges,
-    },
-];
+const manager = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
 ```
 
 ## Tables
@@ -275,11 +263,11 @@ const managerTimeline = [
 Use tables for structured data:
 
 ```markdown
-| Field             | Type              | Description                     |
-| ----------------- | ----------------- | ------------------------------- |
-| `collectionId`    | string            | Unique collection identifier    |
-| `validTokenIds`   | UintRange[]       | Valid token ID ranges           |
-| `managerTimeline` | ManagerTimeline[] | Manager configuration over time |
+| Field           | Type        | Description                  |
+| --------------- | ----------- | ---------------------------- |
+| `collectionId`  | string      | Unique collection identifier |
+| `validTokenIds` | UintRange[] | Valid token ID ranges        |
+| `manager`       | string      | Manager address              |
 ```
 
 ## Cross-References
@@ -351,25 +339,19 @@ The **Mint address** is a reserved address representing the collection's minting
 ### Concept Explanation
 
 ````markdown
-## Timeline System
+## Collection Fields
 
-Timelines enable time-dependent configuration. Each timeline entry specifies a time range and associated value.
+Collection fields are set directly without timeline structures.
 
 ```typescript
-const metadataTimeline = [
-    {
-        timelineTimes: [{ start: '1', end: '1000' }],
-        collectionMetadata: { uri: 'ipfs://...' },
-    },
-    {
-        timelineTimes: [{ start: '1001', end: '18446744073709551615' }],
-        collectionMetadata: { uri: 'ipfs://...' },
-    },
-];
+const collectionMetadata = {
+    uri: 'ipfs://...',
+    customData: '',
+};
 ```
 ````
 
-This allows metadata to change at specific block times.
+This sets the collection metadata directly.
 
 ````
 
@@ -410,12 +392,7 @@ const validTokenIds = [{ start: '1', end: '100' }];
 2. **Configure manager:**
 
 ```typescript
-const managerTimeline = [
-    {
-        manager: 'YOUR_ADDRESS',
-        timelineTimes: FullTimeRanges,
-    },
-];
+const manager = 'YOUR_ADDRESS';
 ```
 
 3. **Create the collection:**

@@ -34,12 +34,7 @@ const mintApproval = {
 // Step 1: Create your collection with the mint approval
 const collection = {
     ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [mintApproval, ...otherApprovals],
-        },
-    ],
+    collectionApprovals: [mintApproval, ...otherApprovals],
 };
 
 // Create the collection

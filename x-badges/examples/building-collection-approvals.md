@@ -34,10 +34,5 @@ const postMintApprovals = [
 
 const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 
-const collectionApprovalTimeline = [
-    {
-        timelineTimes: FullTimeRanges,
-        collectionApprovals,
-    },
-];
+const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 ```

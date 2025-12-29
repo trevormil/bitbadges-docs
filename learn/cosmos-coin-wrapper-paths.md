@@ -27,13 +27,20 @@ const collection: MsgCreateCollection = {
     cosmosCoinWrapperPathsToAdd: [
         {
             denom: 'utoken',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
                 },
-            ],
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
             symbol: 'TOKEN',
             denomUnits: [
                 {
@@ -43,66 +50,70 @@ const collection: MsgCreateCollection = {
                 },
             ],
             allowOverrideWithAnyValidToken: false,
-            allowCosmosWrapping: true, // Enable wrapping/unwrapping
+            metadata: { uri: '', customData: '' }, // Optional metadata
+        },
+    ],
+    aliasPathsToAdd: [
+        {
+            denom: 'utoken-alias',
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
+                },
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
+            symbol: 'ALIAS',
+            denomUnits: [
+                {
+                    decimals: 6n,
+                    symbol: 'ALIAS',
+                    isDefaultDisplay: true,
+                },
+            ],
+            metadata: { uri: '', customData: '' }, // Optional metadata
         },
     ],
     // ... other fields
 };
 ```
 
-## Alias-Only vs Wrappable Paths
+## Wrapper Paths vs Alias Paths
 
-Wrapper paths serve two distinct purposes based on the `allowCosmosWrapping` field:
+The system now distinguishes between two separate path types:
 
-### Alias-Only (`allowCosmosWrapping: false`)
+### Cosmos Coin Wrapper Paths
 
-Used for compatibility with existing Cosmos SDK interfaces without actual wrapping:
-
--   **Purpose**: Alias denomination support (e.g., `badgeslp:COLLECTION_ID:denom`)
--   **Behavior**: No minting/burning occurs, only an alias for information al prposes
--   **Use case**: Compatibility with liquidity pools, DeFi protocols that expect `sdk.Coin` format
--   **See**: [Alias Compatibility](alias-compatibility.md) for details
-
-```typescript
-{
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: false, // Alias-only, no wrapping
-}
-```
-
-### Wrappable/Convertable (`allowCosmosWrapping: true`)
-
-Enables actual wrapping and unwrapping with minting/burning:
+Used for actual wrapping/unwrapping with minting and burning:
 
 -   **Purpose**: Convert tokens to native Cosmos SDK coins and vice versa
 -   **Behavior**: Tokens are burned when wrapping, coins are minted. Coins are burned when unwrapping, tokens are minted
 -   **Use case**: IBC transfers, converting tokens to native coins for Cosmos ecosystem compatibility
+-   **Storage**: Stored in `cosmosCoinWrapperPaths` array
+-   **Features**: Includes `address` field (wrapper address) and `allowOverrideWithAnyValidToken` option
 
 ```typescript
 {
     denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
+                },
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     symbol: 'TOKEN',
     denomUnits: [
         {
@@ -111,7 +122,46 @@ Enables actual wrapping and unwrapping with minting/burning:
             isDefaultDisplay: true,
         },
     ],
-    allowCosmosWrapping: true, // Enable wrapping/unwrapping
+    allowOverrideWithAnyValidToken: false,
+    metadata: { uri: '', customData: '' }, // Optional PathMetadata
+}
+```
+
+### Alias Paths
+
+Used for compatibility with existing Cosmos SDK interfaces without actual wrapping:
+
+-   **Purpose**: Alias denomination support (e.g., `badgeslp:COLLECTION_ID:denom`)
+-   **Behavior**: No minting/burning occurs, only an alias for information purposes
+-   **Use case**: Compatibility with liquidity pools, DeFi protocols that expect `sdk.Coin` format
+-   **Storage**: Stored in `aliasPaths` array (separate from wrapper paths)
+-   **See**: [Alias Compatibility](alias-compatibility.md) for details
+-   **Note**: Does not include `address` or `allowOverrideWithAnyValidToken` fields
+
+```typescript
+{
+    denom: 'utoken',
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of alias unit
+                },
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
+    symbol: 'TOKEN',
+    denomUnits: [
+        {
+            decimals: 6n,
+            symbol: 'TOKEN',
+            isDefaultDisplay: true,
+        },
+    ],
+    metadata: { uri: '', customData: '' }, // Optional PathMetadata
 }
 ```
 
@@ -129,6 +179,49 @@ console.log('Wrapper Address:', wrapperAddress);
 
 **Note:** The address is generated from the custom denom, not the full `badges:collectionId:denom` format.
 
+## Conversion Structure
+
+Wrapper paths and alias paths use a structured conversion format to define the relationship between wrapped/alias units and badge tokens:
+
+### ConversionWithoutDenom
+
+Used by wrapper paths and alias paths (denom stored separately):
+
+```typescript
+{
+    conversion: {
+        sideA: {
+            amount: '1', // Required: amount of wrapped/alias coin (Uint type)
+        },
+        sideB: [
+            // Balances[] that define which tokens participate
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
+}
+```
+
+**Key Points:**
+
+-   `sideA.amount`: The amount of wrapped/alias coin units (required, must be specified)
+-   `sideB`: Array of `Balance` objects that define the tokens involved in the conversion
+-   The denom is stored at the path level, not in the conversion (hence "WithoutDenom")
+-   Conversion rate: `sideA.amount` wrapped/alias units = `sideB[]` tokens
+
+**Example:**
+
+-   If `sideA.amount = "1"` and `sideB = [{ amount: 1n, tokenIds: [...], ... }]`
+-   Then: `1 wrapped coin = 1 token` (1:1 conversion)
+
+**Example with different rate:**
+
+-   If `sideA.amount = "100"` and `sideB = [{ amount: 1n, tokenIds: [...], ... }]`
+-   Then: `100 wrapped coins = 1 token` (100:1 conversion)
+
 ## Configuration Fields
 
 ### Denom
@@ -142,23 +235,34 @@ The base denomination for the wrapped coin. The full Cosmos denomination will be
 }
 ```
 
-### Balances
+### Conversion
 
-Defines the conversion rate and which tokens participate in wrapping:
+Defines the conversion rate between wrapped coins and tokens using a structured conversion format:
 
 ```typescript
 {
-    balances: [
-        {
-            amount: 1n, // 1 wrapped coin unit
-            tokenIds: [{ start: 1n, end: 100n }], // Token IDs that can wrap
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }], // Ownership times
+    conversion: {
+        sideA: {
+            amount: '1', // Required: amount of wrapped coin
         },
-    ],
+        sideB: [
+            {
+                amount: 1n, // Token amount
+                tokenIds: [{ start: 1n, end: 100n }], // Token IDs that can wrap
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }], // Ownership times
+            },
+        ],
+    },
 }
 ```
 
-**Conversion rate:** `1 wrapped coin = balances[] tokens`
+**Conversion rate:** `conversion.sideA.amount wrapped coin = conversion.sideB[] tokens`
+
+**Key Points:**
+
+-   `sideA.amount` is required and must be specified (cannot be "0" or nil)
+-   `sideB` contains the `Balances[]` that define which tokens participate in wrapping
+-   The denom is stored separately at the path level (not in the conversion)
 
 ### Denomination Units
 
@@ -171,11 +275,13 @@ Multiple denomination units allow different display formats:
             decimals: 3n, // 3 decimal places
             symbol: 'mtoken', // Milli-token
             isDefaultDisplay: false,
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
         {
             decimals: 6n, // 6 decimal places
             symbol: 'TOKEN', // Full token
             isDefaultDisplay: true, // Shown by default
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
     ],
 }
@@ -187,6 +293,8 @@ Multiple denomination units allow different display formats:
 -   `mtoken` = 1,000 `utoken` (3 decimals)
 -   `TOKEN` = 1,000,000 `utoken` (6 decimals, default display)
 
+**Note:** Each `DenomUnit` now includes an optional `metadata` field of type `PathMetadata` for additional information.
+
 ### Allow Override With Any Valid Token
 
 When `true`, allows the wrapper to accept any SINGLE valid token ID from the collection's `validTokenIds` range:
@@ -194,13 +302,18 @@ When `true`, allows the wrapper to accept any SINGLE valid token ID from the col
 ```typescript
 {
     denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }], // Overridden during transfer
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1',
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }], // Overridden during transfer
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     allowOverrideWithAnyValidToken: true, // Accept any valid token ID
 }
 ```
@@ -209,7 +322,7 @@ When `true`, allows the wrapper to accept any SINGLE valid token ID from the col
 
 1. User transfers token ID 5 to wrapper
 2. System validates token ID 5 is in `validTokenIds`
-3. System temporarily overrides `balances[].tokenIds` with `[{ start: 5n, end: 5n }]` ignoring the values set in the `balances` array
+3. System temporarily overrides `conversion.sideB[].tokenIds` with `[{ start: 5n, end: 5n }]` ignoring the values set in the `sideB` array
 4. Conversion proceeds with token ID 5
 
 ## {id} Placeholder Support
@@ -220,81 +333,40 @@ You can use `{id}` in the denom to dynamically replace it with the actual token 
 {
     denom: 'utoken{id}', // Dynamic denom
     symbol: 'TOKEN:{id}',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1',
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     allowOverrideWithAnyValidToken: true,
 }
 ```
 
 **Example:** Transferring token ID 5 results in denom `utoken5`.
 
-### Allow Cosmos Wrapping
+### Metadata
 
-The `allowCosmosWrapping` field determines the purpose of the wrapper path:
-
-**`allowCosmosWrapping: false` (Alias-Only)**
-
--   Used for alias denomination compatibility (e.g., `badgeslp:COLLECTION_ID:denom`)
--   No actual wrapping/unwrapping occurs
--   No minting/burning of coins
--   Simply provides a conversion mapping for compatibility with existing interfaces
--   See [Alias Compatibility](alias-compatibility.md) for details
-
-**`allowCosmosWrapping: true` (Wrappable/Convertable)**
-
--   Enables actual wrapping and unwrapping functionality
--   Tokens are burned when wrapping, coins are minted
--   Coins are burned when unwrapping, tokens are minted
--   Required for IBC transfers and full Cosmos ecosystem compatibility
+Both wrapper paths and alias paths support optional metadata using the standard metadata structure:
 
 ```typescript
-// Alias-only path (no wrapping)
 {
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: false, // Alias-only
-}
-
-// Wrappable path (with wrapping/unwrapping)
-{
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: true, // Enable wrapping/unwrapping
+    metadata: {
+        uri: 'ipfs://Qm...', // Optional URI to hosted JSON metadata
+        customData: '{"key": "value"}', // Optional custom JSON data
+    },
 }
 ```
+
+The hosted JSON at the URI typically contains `{ name, image, description }`, though the image is the primary use case. The on-chain `symbol` field is used for identification, not the metadata name.
+
+**Note:** Metadata is optional. It's also available on `DenomUnit` objects for additional per-unit metadata.
 
 ## Transferability Requirements
 
@@ -376,8 +448,8 @@ const wrapTokens: MsgTransferTokens = {
     ],
 };
 
-// Result: User receives 10 badges:1:utoken coins
-// 10 badge tokens are burned
+// Result: User receives 10 badges:1:utoken coins (based on conversion.sideA.amount = 1)
+// 10 badge tokens are burned (based on conversion.sideB balances)
 ```
 
 ### Coin to Token (Unwrapping)
@@ -421,8 +493,8 @@ const unwrapCoins: MsgTransferTokens = {
     ],
 };
 
-// Result: User receives 10 badge tokens
-// 10 badges:1:utoken coins are burned from wrapper address
+// Result: User receives 10 badge tokens (based on conversion.sideB balances)
+// 10 badges:1:utoken coins are burned from wrapper address (based on conversion.sideA.amount = 1)
 ```
 
 ## Use Cases
@@ -434,6 +506,7 @@ Enable cross-chain transfers of wrapped tokens:
 ```typescript
 // Wrap tokens for IBC transfer
 // ⚠️ IMPORTANT: Requires prioritized approvals
+// The conversion rate is defined in the wrapper path's conversion field
 const wrapForIBC: MsgTransferTokens = {
     creator: 'bb1user...',
     collectionId: '1',
@@ -502,5 +575,5 @@ const addLiquidity = {
 | ----------------- | ---------------------------- | -------------------------------------- |
 | **Minting**       | Minting/burning of new denom | No minting/burning (uses existing IBC) |
 | **Denom Source**  | Generated denom              | Existing IBC denom                     |
-| **Configuration** | Timeline-based (mutable)     | Collection invariant (immutable)       |
+| **Configuration** | Can add paths, no edits      | Collection invariant                   |
 | **Mint Address**  | Enabled                      | Disabled                               |

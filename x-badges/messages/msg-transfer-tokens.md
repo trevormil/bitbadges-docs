@@ -22,7 +22,7 @@ message Transfer {
   repeated Balance balances = 3;
   // If defined, we will use the predeterminedBalances from the specified approval to calculate the balances at execution time.
   // We will override the balances field with the precalculated balances. Only applicable for approvals with predeterminedBalances set.
-  ApprovalIdentifierDetails precalculateBalancesFromApproval = 4;
+  PrecalculateBalancesFromApprovalDetails precalculateBalancesFromApproval = 4;
   // The Merkle proofs / solutions for all Merkle challenges required for the transfer.
   repeated MerkleProof merkleProofs = 5;
   // The ETH signature proofs / solutions for all ETH signature challenges required for the transfer.
@@ -44,14 +44,18 @@ message Transfer {
   // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
   // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
   bool onlyCheckPrioritizedOutgoingApprovals = 11;
-  // The options for precalculating the balances.
-  PrecalculationOptions precalculationOptions = 12;
+}
+
+message PrecalculateBalancesFromApprovalDetails {
+  string approvalId = 1;
+  string approvalLevel = 2;  // "collection", "incoming", or "outgoing"
+  string approverAddress = 3;  // "" if collection-level
+  string version = 4 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+  PrecalculationOptions precalculationOptions = 5;
 }
 
 message PrecalculationOptions {
-  // The timestamp to override with when calculating the balances.
-  string overrideTimestamp = 1;
-  // The IDs to override with when calculating the balances.
+  string overrideTimestamp = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
   repeated UintRange tokenIdsOverride = 2;
 }
 ```
@@ -64,10 +68,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
-* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
-* **Behavior**: Automatically finds and uses the first matching approval
-* **Use case**: Simple transfers without custom logic or side effects
-* **No versioning required**: The system handles approval selection automatically
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -114,17 +118,17 @@ The versioning control ensures that before submitting, the user knows the exact 
 
 ### Control Flags
 
-* `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
-* `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
-* `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
+-   `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
+-   `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
+-   `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
 
 **Setting these to `true` is recommended when using prioritized approvals to ensure deterministic behavior.**
 
 ### Related Documentation
 
-* [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
-* [Approval Criteria](broken-reference/) - Understanding approval complexity
-* [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
+-   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
+-   [Approval Criteria](broken-reference/) - Understanding approval complexity
+-   [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
 
@@ -172,8 +176,8 @@ PRE. CALCULATE BALANCES (if needed)
 
 Collection approvals can override user-level approvals:
 
-* **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
-* **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
+-   **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
+-   **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
 
 This allows collection managers to enable transfers that would otherwise be blocked by user settings.
 
@@ -190,17 +194,42 @@ Transfers fail at the first validation step that doesn't pass:
 
 ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
-* **`nonce`**: The unique identifier that was signed
-* **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+-   **`nonce`**: The unique identifier that was signed
+-   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 
 ### Related Documentation
 
-* [Transferability](../../learn/transferability.md) - Approval system overview
-* [Collection Approvals](broken-reference/) - Collection-level controls
-* [User Approvals](../examples/building-user-approvals.md) - User-level settings
-* [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+-   [Transferability](../../learn/transferability.md) - Approval system overview
+-   [Collection Approvals](broken-reference/) - Collection-level controls
+-   [User Approvals](../examples/building-user-approvals.md) - User-level settings
+-   [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+
+## Precalculating Balances
+
+When using `precalculateBalancesFromApproval`, you can override certain calculation parameters using `precalculationOptions`. These options only apply when the corresponding flags are enabled in the approval's `IncrementedBalances`.
+
+### PrecalculationOptions
+
+| Field               | Type          | Description                                                      |
+| ------------------- | ------------- | ---------------------------------------------------------------- |
+| `overrideTimestamp` | string (Uint) | Override timestamp for ownership time calculation (milliseconds) |
+| `tokenIdsOverride`  | UintRange[]   | Override token IDs (must be single ID if provided)               |
+
+**overrideTimestamp**:
+
+-   Only applies when `IncrementedBalances.durationFromTimestamp` is set and `allowOverrideTimestamp` is `true`
+-   If zero or not provided, uses current block time
+-   Used to calculate ownership times as `[overrideTimestamp, overrideTimestamp + durationFromTimestamp - 1]`
+
+**tokenIdsOverride**:
+
+-   Only applies when `IncrementedBalances.allowOverrideWithAnyValidToken` is `true`
+-   Must contain exactly one `UintRange` with `start == end` (single token ID)
+-   Token ID must be in the collection's `validTokenIds`
+
+For detailed documentation, see [Predetermined Balances](../../token-standard/learn/approval-criteria/predetermined-balances.md#precalculation-options).
 
 ## Collection ID Auto-Lookup
 
@@ -235,15 +264,14 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
             ],
             // Specific approval to calculate balances dynamically for (from the approvalCriteria.predeterminedBalances)
             "precalculateBalancesFromApproval": {
-                "approvalId": "",
-                "approvalLevel": "",
+                "approvalId": "approval-1",
+                "approvalLevel": "collection",
                 "approverAddress": "",
-                "version": "0"
-            },
-            // Additional options dependent on what is allowed (e.g. allow timestamp override, token ID override, etc.)
-            "precalculationOptions": {
-                "overrideTimestamp": "0",
-                "tokenIdsOverride": []
+                "version": "1",
+                "precalculationOptions": {
+                    "overrideTimestamp": "0", // Optional: override timestamp (milliseconds)
+                    "tokenIdsOverride": [] // Optional: override token IDs (must be single ID if provided)
+                }
             },
             // Supply all merkle proofs for any merkle challenges that need to be satisfied
             "merkleProofs": [],

@@ -15,12 +15,7 @@ You have a few options for setting your permissions.
 If you simply don't want a manager, you can set the manager to an empty string. Then, the permission values never matter.
 
 ```typescript
-const managerTimeline = [
-    {
-        manager: '',
-        timelineTimes: FullTimeRanges,
-    },
-];
+const manager = '';
 ```
 
 2. Complete Control - Soft Enabled
@@ -55,7 +50,6 @@ Each permission follows the same pattern:
 const CanArchiveCollection = {
     permanentlyPermittedTimes: [],
     permanentlyForbiddenTimes: FullTimeRanges,
-    timelineTimes: FullTimeRanges,
 };
 ```
 
@@ -68,7 +62,6 @@ const permanentlyForbiddenTimes = FullTimeRanges;
 
 // Part 2. For what values (if any) does this apply? This is dependent on the permission type.
 const {
-    timelineTimes,
     tokenIds,
     fromListId,
     toListId,

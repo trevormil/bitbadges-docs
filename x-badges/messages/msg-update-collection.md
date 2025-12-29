@@ -43,7 +43,8 @@ message MsgUpdateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 20;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
-  CollectionInvariants invariants = 23;
+  repeated AliasPathAddObject aliasPathsToAdd = 23;
+  CollectionInvariants invariants = 24;
 }
 
 message MsgUpdateCollectionResponse {
@@ -94,6 +95,7 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",

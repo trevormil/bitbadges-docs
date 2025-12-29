@@ -4,43 +4,13 @@ The **manager** is the central authority for a collection, controlling all admin
 
 ```typescript
 const collection: TokenCollection<bigint> = {
-    managerTimeline: [
-        {
-            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
+    manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
     collectionPermissions: {
         // Permissions define what the manager can do
     },
     // ... other collection fields
 };
 ```
-
-### Manager Timeline
-
-Managers can change over time using timeline-based configuration:
-
-```typescript
-// Manager changes automatically on a specific date
-const managerTimeline: ManagerTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 1672531199000n }],
-        manager: 'bb1alice...',
-    },
-    {
-        timelineTimes: [
-            {
-                start: 1672531200000n,
-                end: 18446744073709551615n,
-            },
-        ],
-        manager: 'bb1bob...',
-    },
-];
-```
-
-This transfers management from Alice to Bob on January 1, 2023 automatically.
 
 ### Setting Initial Manager
 
@@ -49,12 +19,7 @@ During collection creation:
 ```typescript
 const collection: TokenCollection<bigint> = {
     creator: 'bb1alice...',
-    managerTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            manager: 'bb1alice...',
-        },
-    ],
+    manager: 'bb1alice...',
     collectionPermissions: {
         canUpdateManager: [
             {
@@ -70,47 +35,12 @@ const collection: TokenCollection<bigint> = {
 };
 ```
 
-### Decentralized Management Transition
-
-Transition to a burn address manager and lock management permanently, creating a decentralized collection:
-
-```typescript
-const collection: TokenCollection<bigint> = {
-    managerTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 1672531199000n }],
-            manager: 'bb1alice...',
-        },
-        {
-            timelineTimes: [
-                { start: 1672531200000n, end: 18446744073709551615n },
-            ],
-            manager: 'bb1qqqq....', // Burn address
-        },
-    ],
-    collectionPermissions: {
-        canUpdateManager: [
-            {
-                permanentlyPermittedTimes: [],
-                permanentlyForbiddenTimes: [
-                    { start: 1672531200000n, end: 18446744073709551615n },
-                ],
-            },
-        ],
-        // ... other permission fields
-    },
-    // ... other collection fields
-};
-```
-
-This transitions to a burn address manager and locks management permanently, creating a decentralized collection.
-
 ### No Manager
 
-If you don't want a manager, set the manager to an empty string or empty array. Permission values don't matter when there's no manager:
+If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
 
 ```typescript
-const managerTimeline: ManagerTimeline<bigint>[] = [];
+const manager: string = '';
 ```
 
 ## Manager Capabilities
@@ -123,7 +53,7 @@ The manager can execute administrative actions according to permissions:
 -   Updating valid token IDs
 -   Archiving the collection
 -   Deleting the collection
--   Updating manager timeline
+-   Updating manager
 -   And more...
 
 All permissions are defined on-chain with time-based configuration, allowing permissions to change over time.
@@ -145,7 +75,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     // ... other permission fields
 };
 ```
-
 
 ## User Permissions
 
@@ -200,7 +129,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-
 ## First Match Policy
 
 Permissions are evaluated as a linear array where each element has criteria and time controls. Only the **first matching element** is applied - all subsequent matches are ignored.
@@ -212,22 +140,16 @@ Permissions are evaluated as a linear array where each element has criteria and 
 -   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
 -   **Order Matters**: Array order affects which permissions are applied
 
-**Example: Timeline Permissions**
+**Example: Action Permissions**
 
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateCollectionMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 10n }],
             permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [{ start: 1n, end: 10n }],
-        },
-        {
-            timelineTimes: [{ start: 1n, end: 100n }],
-            permanentlyPermittedTimes: [
+            permanentlyForbiddenTimes: [
                 { start: 1n, end: 18446744073709551615n },
             ],
-            permanentlyForbiddenTimes: [],
         },
     ],
 };
@@ -235,8 +157,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 
 **Result:**
 
--   Timeline times 1-10: **Forbidden** (first element matches, second element does not)
--   Timeline times 11-100: **Permitted** (second element matches)
+-   Collection metadata updates: **Forbidden** (locked forever)
 
 ## Satisfying Criteria
 
@@ -248,7 +169,6 @@ All criteria in a permission element must match for it to be applied. Partial ma
 const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateTokenMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 10n }],
             tokenIds: [{ start: 1n, end: 10n }],
             permanentlyPermittedTimes: [
                 { start: 1n, end: 18446744073709551615n },
@@ -261,13 +181,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 
 **This permission only covers:**
 
--   Timeline times 1-10 AND token IDs 1-10
+-   Token IDs 1-10
 
 **It does NOT cover:**
 
--   Timeline time 1 with token ID 11
--   Timeline time 11 with token ID 1
--   Timeline time 11 with token ID 11
+-   Token ID 11
 
 These combinations are **unhandled** and **allowed by default** since they do not match the permission criteria.
 
@@ -297,18 +215,15 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-
 ## Permission Types
 
-There are **five types** of permissions, each with different criteria:
+There are **four types** of permissions, each with different criteria:
 
-| Type                            | Criteria                                       | Examples                                                     |
-| ------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| **Action Permissions**          | Time control only                              | `canDeleteCollection`                                        |
-| **Timeline Permissions**        | Timeline times + time control                  | `canUpdateCollectionMetadata`, `canUpdateStandards`          |
-| **Timeline with Token IDs**     | Timeline times + token IDs + time control      | `canUpdateTokenMetadata`                                     |
-| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`                                     |
-| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals` |
+| Type                            | Criteria                                       | Examples                                                                                                                                      |
+| ------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Action Permissions**          | Time control only                              | `canDeleteCollection`, `canUpdateCollectionMetadata`, `canUpdateStandards`, `canUpdateCustomData`, `canUpdateManager`, `canArchiveCollection` |
+| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`, `canUpdateTokenMetadata`                                                                                            |
+| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals`                                                                                  |
 
 ### Action Permissions
 
@@ -317,6 +232,11 @@ Simple time-based permissions with no additional criteria. Control when actions 
 **Collection Actions:**
 
 -   `canDeleteCollection` - Delete entire collection
+-   `canUpdateCollectionMetadata` - Update collection metadata
+-   `canUpdateStandards` - Update standards
+-   `canUpdateCustomData` - Update custom data
+-   `canUpdateManager` - Update manager
+-   `canArchiveCollection` - Archive/unarchive collection
 
 **User Actions:**
 
@@ -368,27 +288,20 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-### Timeline Permissions
+### Token ID Action Permissions
 
-Control when timeline-based fields can be updated. These permissions match on `timelineTimes` to determine which timeline values can be updated.
+Control when token ID-based fields can be updated. These permissions match on `tokenIds` to determine which token IDs can be updated.
 
-**Basic Timeline Permissions** (timeline times only):
+**Token ID Action Permissions:**
 
--   `canArchiveCollection`
--   `canUpdateStandards`
--   `canUpdateCustomData`
--   `canUpdateManager`
--   `canUpdateCollectionMetadata`
-
-**Token-Specific Timeline Permissions** (timeline times + token IDs):
-
--   `canUpdateTokenMetadata`
+-   `canUpdateValidTokenIds` - Update valid token IDs
+-   `canUpdateTokenMetadata` - Update token metadata
 
 **Logic:**
 
 ```
-For each timeline update request:
-    Check if timeline time matches any timelineTimes criteria
+For each token ID update request:
+    Check if token ID matches any tokenIds criteria
         → If no match: ALLOW (neutral state)
         → If match: Check if current time is in permanentlyPermittedTimes
             → If yes: ALLOW
@@ -397,47 +310,13 @@ For each timeline update request:
                 → If no: ALLOW (neutral state)
 ```
 
-**Timeline vs Execution Times:**
-
--   **Timeline Times**: Which timeline values can be updated?
--   **Execution Times**: When can the permission be executed?
-
-These may not align. For example, you might forbid updating timeline values for Jan 2024 during 2023.
-
 **Examples:**
 
 ```typescript
-// Lock collection metadata forever
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ],
-        },
-    ],
-};
-
-// Lock specific timeline period
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
-        {
-            timelineTimes: [{ start: 1000n, end: 2000n }],
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ],
-        },
-    ],
-};
-
-// Lock token metadata for existing tokens
+// Lock token metadata for specific tokens forever
 const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateTokenMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
             tokenIds: [{ start: 1n, end: 100n }],
             permanentlyPermittedTimes: [],
             permanentlyForbiddenTimes: [
@@ -447,11 +326,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     ],
 };
 
-// Allow updates only during specific period
+// Allow token metadata updates only during specific period
 const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
+    canUpdateTokenMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 100n }],
             permanentlyPermittedTimes: [
                 { start: 1704067200000n, end: 1735689600000n },
             ],

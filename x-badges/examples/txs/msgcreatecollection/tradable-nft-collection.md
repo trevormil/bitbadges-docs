@@ -41,64 +41,34 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
+                    {
+                        "start": "101",
+                        "end": "18446744073709551615"
+                    }
+                ]
+            },
+            {
+                "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
-                        "end": "18446744073709551615"
+                        "end": "100"
                     }
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "101",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    },
-                    {
-                        "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "100"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -286,22 +256,12 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": [
-                    "Tradable",
-                    "NFTs",
-                    "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
+        "standards": [
+            "Tradable",
+            "NFTs",
+            "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
-        "isArchivedTimeline": [],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
         "cosmosCoinWrapperPathsToAdd": [] // No wrapping allowed
     }

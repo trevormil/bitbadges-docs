@@ -5,18 +5,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetCustomData
 
-Sets the custom data timeline and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
+Sets the custom data and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
 
 ### Overview
 
 This message allows you to:
 
-* Set custom data timeline for the collection
-* Configure permissions to update the custom data in the future
+-   Set custom data for the collection
+-   Configure permissions to update the custom data in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -31,11 +31,11 @@ message MsgSetCustomData {
   // ID of the collection.
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-  // New custom data timeline to set.
-  repeated CustomDataTimeline customDataTimeline = 3;
+  // New custom data to set.
+  string customData = 3;
 
-  // Permission to update custom data timeline
-  repeated TimedUpdatePermission canUpdateCustomData = 4;
+  // Permission to update custom data
+  repeated ActionPermission canUpdateCustomData = 4;
 }
 
 message MsgSetCustomDataResponse {
@@ -57,15 +57,9 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "customDataTimeline": [
-        {
-            "customData": "{\"description\": \"My custom data\", \"version\": \"1.0\"}",
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
-        }
-    ],
+    "customData": "{\"description\": \"My custom data\", \"version\": \"1.0\"}",
     "canUpdateCustomData": [
         {
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -75,5 +69,5 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message

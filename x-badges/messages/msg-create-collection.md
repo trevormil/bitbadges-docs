@@ -29,7 +29,8 @@ message MsgCreateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 11;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 12;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 13;
-  CollectionInvariants invariants = 14;
+  repeated AliasPathAddObject aliasPathsToAdd = 14; // NEW: Separate array for alias paths
+  CollectionInvariants invariants = 15;
 }
 
 message MsgCreateCollectionResponse {
@@ -87,6 +88,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",

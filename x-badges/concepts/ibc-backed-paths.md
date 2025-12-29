@@ -26,20 +26,28 @@ Each IBC backed path has a **special address** that is automatically generated b
 
 ```protobuf
 message CosmosCoinBackedPath {
-  string address = 1;              // Auto-generated special address
-  string ibcDenom = 2;              // IBC denomination (e.g., "ibc/1234...")
-  repeated Balance balances = 3;    // Balance structure for conversion calculation
-  string ibcAmount = 4;             // Base IBC coin amount per balance unit
+  string address = 1;              // Auto-generated special address (from conversion.sideA.denom)
+  Conversion conversion = 2;       // Conversion structure with sideA (amount+denom) and sideB (balances)
+}
+
+message Conversion {
+  ConversionSideAWithDenom sideA = 1;  // Contains amount + denom (from old ibcAmount + ibcDenom)
+  repeated Balance sideB = 2;          // Badge token balances (from old balances field)
+}
+
+message ConversionSideAWithDenom {
+  string amount = 1;  // IBC coin amount (from old ibcAmount)
+  string denom = 2;   // IBC denomination (from old ibcDenom)
 }
 ```
 
 ### Conversion Mechanism
 
-The conversion is simply a direct mapping of:
+The conversion uses a structured format that combines the IBC denom and amount:
 
 ```
-1 ibcAmount of ibcDenom = balances (x/badges)
-Ex: 1 ubadge = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+conversion.sideA (amount, denom) = conversion.sideB[] (x/badges)
+Ex: { amount: "1000000", denom: "ibc/1234..." } = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
 
 ## Transferability Requirements
@@ -100,17 +108,21 @@ Note this is done from our MsgTransferTokens implementation as the entrypoint. S
 {
     "invariants": {
         "cosmosCoinBackedPath": {
-            "ibcDenom": "ibc/1234567890ABCDEF",
-            "balances": [
-                {
-                    "amount": "1",
-                    "tokenIds": [{ "start": "1", "end": "1" }],
-                    "ownershipTimes": [
-                        { "start": "1", "end": "18446744073709551615" }
-                    ]
-                }
-            ],
-            "ibcAmount": "1000000"
+            "conversion": {
+                "sideA": {
+                    "amount": "1000000",
+                    "denom": "ibc/1234567890ABCDEF"
+                },
+                "sideB": [
+                    {
+                        "amount": "1",
+                        "tokenIds": [{ "start": "1", "end": "1" }],
+                        "ownershipTimes": [
+                            { "start": "1", "end": "18446744073709551615" }
+                        ]
+                    }
+                ]
+            }
         }
     }
 }

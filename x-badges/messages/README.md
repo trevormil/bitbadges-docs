@@ -6,48 +6,49 @@ This directory contains detailed documentation for all message types supported b
 
 ### Collection Management
 
-* [MsgCreateCollection](msg-create-collection.md) - Create new collection
-* [MsgUpdateCollection](msg-update-collection.md) - Update existing collection properties
-* [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Universal create/update interface with invariants support
-* [MsgDeleteCollection](msg-delete-collection.md) - Archive/delete collection
+-   [MsgCreateCollection](msg-create-collection.md) - Create new collection
+-   [MsgUpdateCollection](msg-update-collection.md) - Update existing collection properties
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Universal create/update interface with invariants support
+-   [MsgDeleteCollection](msg-delete-collection.md) - Archive/delete collection
 
 ### Helper Collection Update Messages
 
-* [MsgSetValidTokenIds](msg-set-valid-token-ids.md) - Update valid token IDs and permissions
-* [MsgSetManager](msg-set-manager.md) - Update manager timeline and permissions
-* [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata timeline and permissions
-* [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata timeline and permissions
-* [MsgSetCustomData](msg-set-custom-data.md) - Update custom data timeline and permissions
-* [MsgSetStandards](msg-set-standards.md) - Update standards timeline and permissions
-* [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
-* [MsgSetIsArchived](msg-set-is-archived.md) - Update isArchived timeline and permissions
+-   [MsgSetValidTokenIds](msg-set-valid-token-ids.md) - Update valid token IDs and permissions
+-   [MsgSetManager](msg-set-manager.md) - Update manager and permissions
+-   [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata and permissions
+-   [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata and permissions
+-   [MsgSetCustomData](msg-set-custom-data.md) - Update custom data and permissions
+-   [MsgSetStandards](msg-set-standards.md) - Update standards and permissions
+-   [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
+-   [MsgSetIsArchived](msg-set-is-archived.md) - Update isArchived status and permissions
 
 ### Token Transfers
 
-* [MsgTransferTokens](msg-transfer-tokens.md) - Transfer tokens between addresses with approval validation
+-   [MsgTransferTokens](msg-transfer-tokens.md) - Transfer tokens between addresses with approval validation
 
 ### User Approval Management
 
-* [MsgUpdateUserApprovals](msg-update-user-approvals.md) - Update user transfer approval settings
-* [MsgSetIncomingApproval](msg-set-incoming-approval.md) - Set a single incoming approval (helper)
-* [MsgDeleteIncomingApproval](msg-delete-incoming-approval.md) - Delete a single incoming approval (helper)
-* [MsgSetOutgoingApproval](msg-set-outgoing-approval.md) - Set a single outgoing approval (helper)
-* [MsgDeleteOutgoingApproval](msg-delete-outgoing-approval.md) - Delete a single outgoing approval (helper)
-* [MsgPurgeApprovals](msg-purge-approvals.md) - Purge expired approvals (helper)
+-   [MsgUpdateUserApprovals](msg-update-user-approvals.md) - Update user transfer approval settings
+-   [MsgSetIncomingApproval](msg-set-incoming-approval.md) - Set a single incoming approval (helper)
+-   [MsgDeleteIncomingApproval](msg-delete-incoming-approval.md) - Delete a single incoming approval (helper)
+-   [MsgSetOutgoingApproval](msg-set-outgoing-approval.md) - Set a single outgoing approval (helper)
+-   [MsgDeleteOutgoingApproval](msg-delete-outgoing-approval.md) - Delete a single outgoing approval (helper)
+-   [MsgPurgeApprovals](msg-purge-approvals.md) - Purge expired approvals (helper)
+-   [MsgCastVote](msg-cast-vote.md) - Cast or update a vote for a voting challenge in approval criteria
 
 ### Address List Management
 
-* [MsgCreateAddressLists](msg-create-address-lists.md) - Create reusable address lists for access control
+-   [MsgCreateAddressLists](msg-create-address-lists.md) - Create reusable address lists for access control
 
 ### Dynamic Store Management
 
-* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
-* [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
-* [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
+-   [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
+-   [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
+-   [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
 
 ## Additional Message Types
 
 The following message types exist in the protocol but may be documented separately:
 
-* **MsgUpdateParams** - Update module parameters via governance
+-   **MsgUpdateParams** - Update module parameters via governance

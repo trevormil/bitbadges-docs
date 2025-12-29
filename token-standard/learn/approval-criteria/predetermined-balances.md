@@ -162,7 +162,7 @@ Predetermined balances can change rapidly between transaction broadcast and conf
 
 ### The Solution: Precalculation
 
-Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
+Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../x-badges/messages/msg-transfer-tokens.md) to dynamically calculate balances at execution time.
 
 ```typescript
 {
@@ -171,12 +171,43 @@ Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges
     approvalLevel: string;        // "collection" | "incoming" | "outgoing"
     approverAddress: string;      // "" if collection-level
     version: string;              // Must specify exact version
-  },
-  precalculationOptions: {
-    // Additional override options dependent on the selections
+    precalculationOptions: {
+      overrideTimestamp: string;  // Optional: override timestamp (milliseconds)
+      tokenIdsOverride: UintRange[]; // Optional: override token IDs
+    }
   }
 }
 ```
+
+## Precalculation Options
+
+When using `precalculateBalancesFromApproval`, you can override calculation parameters. These options only apply when the corresponding flags are enabled in `IncrementedBalances`.
+
+| Field               | Type          | When It Applies                                                    | Validation                                    |
+| ------------------- | ------------- | ------------------------------------------------------------------ | --------------------------------------------- |
+| `overrideTimestamp` | string (Uint) | `durationFromTimestamp` set and `allowOverrideTimestamp` is `true` | If zero, uses current block time              |
+| `tokenIdsOverride`  | UintRange[]   | `allowOverrideWithAnyValidToken` is `true`                         | Must be exactly one range with `start == end` |
+
+**overrideTimestamp**: Overrides the base timestamp for ownership time calculation. Ownership times become `[overrideTimestamp, overrideTimestamp + durationFromTimestamp - 1]`.
+
+**tokenIdsOverride**: Replaces incrementally calculated token IDs. The token ID must be in the collection's `validTokenIds`.
+
+```json
+{
+    "precalculateBalancesFromApproval": {
+        "approvalId": "approval-1",
+        "approvalLevel": "collection",
+        "approverAddress": "",
+        "version": "1",
+        "precalculationOptions": {
+            "overrideTimestamp": "1704067200000",
+            "tokenIdsOverride": [{ "start": "5", "end": "5" }]
+        }
+    }
+}
+```
+
+If the corresponding flags are `false`, the options are ignored (no error).
 
 ## Order Calculation Methods
 

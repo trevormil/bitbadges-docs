@@ -38,6 +38,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
     /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
     ethSignatureChallenges?: iETHSignatureChallenge<T>[];
+    /** The list of voting challenges that require weighted quorum thresholds to be met. */
+    votingChallenges?: iVotingChallenge<T>[];
     /** Address checks for sender */
     senderChecks?: iAddressChecks;
     /** Address checks for recipient */
@@ -60,6 +62,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Merkle Challenges**](merkle-challenges.md) - Cryptographic proof requirements
 * [**Dynamic Store Challenges**](dynamic-store-challenges.md) - On-chain numeric checks
 * [**ETH Signature Challenges**](eth-signature-challenges.md) - Ethereum signature requirements
+* [**Voting Challenges**](voting-challenges.md) - Weighted quorum threshold requirements
 * [**Token Ownership**](badge-ownership.md) - Required token holdings
 * [**Cosmos Coin Transfers**](usdbadge-transfers.md) - Payments per approval (BADGE or other sdk.Coin)
 * [**Overrides**](overrides.md) - Bypassing user-level approvals

@@ -26,54 +26,24 @@ const msg: MsgCreateCollection = {
     collectionPermissions: {
         // ... permission fields
     },
-    managerTimeline: [
+    manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
+    collectionMetadata: {
+        uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
+        customData: '',
+    },
+    tokenMetadata: [
         {
-            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
+            tokenIds: [{ start: 1n, end: 100n }],
+            customData: '',
         },
     ],
-    collectionMetadataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            collectionMetadata: {
-                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
-                customData: '',
-            },
-        },
-    ],
-    tokenMetadataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            tokenMetadata: [
-                {
-                    uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    customData: '',
-                },
-            ],
-        },
-    ],
-    customDataTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            customData: 'Application-specific data',
-        },
-    ],
+    customData: 'Application-specific data',
     collectionApprovals: [
         // ... approval fields
     ],
-    standardsTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            standards: ['Tradable', 'NFT'],
-        },
-    ],
-    isArchivedTimeline: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            isArchived: false,
-        },
-    ],
+    standards: ['Tradable', 'NFT'],
+    isArchived: false,
     invariants: {
         noCustomOwnershipTimes: false,
         maxSupplyPerId: '0',
@@ -103,15 +73,10 @@ const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
 
 ## Standards
 
-`standardsTimeline` provides informational tags that guide how to interpret and implement collection features. Standards are purely informational—no blockchain validation.
+`standards` provides informational tags that guide how to interpret and implement collection features. Standards are purely informational—no blockchain validation.
 
 ```typescript
-const standardsTimeline: StandardsTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        standards: ['Tradable', 'NFT', 'Cosmos Wrappable'],
-    },
-];
+const standards: string[] = ['Tradable', 'NFT', 'Cosmos Wrappable'];
 ```
 
 **BitBadges Site Standards:**
@@ -128,18 +93,13 @@ For more information on compatibility with the BitBadges site, please reach out.
 
 ## Collection Metadata
 
-`collectionMetadataTimeline` defines metadata for the entire collection over time.
+`collectionMetadata` defines metadata for the entire collection.
 
 ```typescript
-const collectionMetadataTimeline: CollectionMetadataTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        collectionMetadata: {
-            uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
-            customData: '',
-        },
-    },
-];
+const collectionMetadata: CollectionMetadata = {
+    uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub',
+    customData: '',
+};
 ```
 
 **Metadata Format:** The BitBadges API expects metadata to follow this interface:
@@ -156,19 +116,14 @@ interface Metadata {
 
 ## Token Metadata
 
-`tokenMetadataTimeline` defines metadata for individual tokens over time. Uses first-match approach via linear scan for specific token IDs. We support the dynamic token ID replacement feature {id} in the URI.
+`tokenMetadata` defines metadata for individual tokens. Uses first-match approach via linear scan for specific token IDs. We support the dynamic token ID replacement feature {id} in the URI.
 
 ```typescript
-const tokenMetadataTimeline: TokenMetadataTimeline<bigint>[] = [
+const tokenMetadata: TokenMetadata[] = [
     {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        tokenMetadata: [
-            {
-                uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
-                tokenIds: [{ start: 1n, end: 100n }],
-                customData: '',
-            },
-        ],
+        uri: 'ipfs://Qmf8xxN2fwXGgouue3qsJtN8ZRSsnoHxM9mGcynTPhh6Ub/{id}',
+        tokenIds: [{ start: 1n, end: 100n }],
+        customData: '',
     },
 ];
 ```
@@ -181,22 +136,17 @@ const tokenMetadataTimeline: TokenMetadataTimeline<bigint>[] = [
 
 ## Custom Data
 
-`customDataTimeline` provides generic string storage for application-specific information. Not used by BitBadges site—for future customization and extensibility.
+`customData` provides generic string storage for application-specific information. Not used by BitBadges site—for future customization and extensibility.
 
 This is often used for application-specific implementations or contract integrations. You may also see `customData` used elsewhere like in approvals, address lists, and other structures.
 
 ```typescript
-const customDataTimeline: CustomDataTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        customData: 'Any string value you want to store',
-    },
-];
+const customData: string = 'Any string value you want to store';
 ```
 
 **Where Custom Data Appears:**
 
--   Collection-level: `customDataTimeline`
+-   Collection-level: `customData`
 -   Token metadata: `customData` within token metadata structures
 -   Address lists: `customData` for list-specific information
 -   Messages: Various transaction messages include custom data fields
@@ -237,9 +187,9 @@ const defaultBalances: UserBalanceStore<bigint> = {
 -   Establishes baseline behavior for all new users
 -   Users can customize their own approval settings after initialization
 
-## IsArchived Timeline
+## IsArchived
 
-`isArchivedTimeline` controls whether a collection is archived, temporarily or permanently disabling all transactions while keeping collection data verifiable and public on-chain.
+`isArchived` controls whether a collection is archived, temporarily or permanently disabling all transactions while keeping collection data verifiable and public on-chain.
 
 This is a collection-level option that can be used to temporarily or permanently disable all transactions until unarchived. Controlled by the manager. Useful for pausing, halts, or other maintenance operations.
 
@@ -249,12 +199,7 @@ Note that there are also other ways to implement halting logic which may be bett
 -   Dynamic stores / token ownership requirements that can be controlled by another entity
 
 ```typescript
-const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
-    {
-        timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        isArchived: false,
-    },
-];
+const isArchived: boolean = false;
 ```
 
 **Transaction Behavior:**
@@ -262,7 +207,7 @@ const isArchivedTimeline: IsArchivedTimeline<bigint>[] = [
 -   **When archived**: All transactions fail (no updates, transfers, or changes allowed). Read operations continue. Only unarchiving transactions can succeed.
 -   **When unarchived**: Normal operations resume. All collection data remains intact. Standard permission checks apply.
 
-**Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchivedTimeline` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
+**Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchived` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
 
 ## Invariants
 

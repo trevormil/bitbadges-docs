@@ -5,14 +5,14 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetIsArchived
 
-Sets the isArchived timeline and update permissions for a collection. This is a convenience message that focuses specifically on archiving management.
+Sets the isArchived status and update permissions for a collection. This is a convenience message that focuses specifically on archiving management.
 
 ### Overview
 
 This message allows you to:
 
-* Set isArchived timeline for the collection
-* Configure permissions to archive the collection in the future
+-   Set isArchived status for the collection
+-   Configure permissions to archive the collection in the future
 
 ### Authorization & Permissions
 
@@ -31,11 +31,11 @@ message MsgSetIsArchived {
   // ID of the collection.
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-  // New isArchived timeline to set.
-  repeated IsArchivedTimeline isArchivedTimeline = 3;
+  // New isArchived status to set.
+  bool isArchived = 3;
 
   // Permission to archive collection
-  repeated TimedUpdatePermission canArchiveCollection = 4;
+  repeated ActionPermission canArchiveCollection = 4;
 }
 
 message MsgSetIsArchivedResponse {
@@ -57,15 +57,9 @@ bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "isArchivedTimeline": [
-        {
-            "isArchived": true,
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
-        }
-    ],
+    "isArchived": true,
     "canArchiveCollection": [
         {
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -75,5 +69,5 @@ bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message

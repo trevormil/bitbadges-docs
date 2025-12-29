@@ -4,37 +4,13 @@ The manager is the central authority for a collection, controlling all administr
 
 <figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Manager Timeline
+## Manager
 
 ### Structure
 
 ```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
-    "manager": "bb1alice..."
-  }
-]
+"manager": "bb1alice..."
 ```
-
-### Time-Based Manager Changes
-
-Managers can be scheduled to change automatically:
-
-```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "1672531199000"}],
-    "manager": "bb1alice..."
-  },
-  {
-    "timelineTimes": [{"start": "1672531200000", "end": "18446744073709551615"}],
-    "manager": "bb1bob..."
-  }
-]
-```
-
-This transfers management from Alice to Bob on January 1, 2023.
 
 ## Manager Permissions
 
@@ -51,27 +27,27 @@ The manager role can be granted various permissions, allowing for flexible admin
 
 ### Metadata Management
 
-* **Collection Metadata Updates** - Modify collection-level metadata and URIs
-* **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
-* **Timeline Management** - Schedule metadata changes over time
+-   **Collection Metadata Updates** - Modify collection-level metadata and URIs
+-   **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
+-   **Metadata Management** - Update collection and token metadata
 
 ### Transferability Control
 
-* **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
-* **Transfer Rules** - Update transferability conditions and restrictions
-* **Permission Updates** - Configure transferability permissions
+-   **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
+-   **Transfer Rules** - Update transferability conditions and restrictions
+-   **Permission Updates** - Configure transferability permissions
 
 ### Off-Chain Management
 
-* **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
-* **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
+-   **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
+-   **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
 
 ### User-Level Operation Limits
 
 The manager cannot directly:
 
-* Modify user balances (must follow approval system)
-* Access user private keys or personal data
+-   Modify user balances (must follow approval system)
+-   Access user private keys or personal data
 
 ## Fine-Grained Permission Customizability
 
@@ -81,24 +57,24 @@ Permissions can be customized based on various factors:
 
 ### Permission Dimensions
 
-* **Token Specificity** - Which particular tokens within the collection can be affected
-* **Time Constraints** - When can certain actions be performed
-* **Value Limitations** - What specific values or ranges are allowed for updates
-* **Conditional Triggers** - Under what circumstances can certain permissions be exercised
+-   **Token Specificity** - Which particular tokens within the collection can be affected
+-   **Time Constraints** - When can certain actions be performed
+-   **Value Limitations** - What specific values or ranges are allowed for updates
+-   **Conditional Triggers** - Under what circumstances can certain permissions be exercised
 
 ### Permission States
 
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen**
-   * The permission is permanently disallowed
-   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely
+    - The permission is permanently disallowed
+    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely
 2. **Permitted + Not Frozen**
-   * The permission is currently allowed
-   * This state can be changed to either of the other two states, offering flexibility in management
+    - The permission is currently allowed
+    - This state can be changed to either of the other two states, offering flexibility in management
 3. **Permitted + Permanently Frozen**
-   * The permission is permanently allowed
-   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available
+    - The permission is permanently allowed
+    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available
 
 **Note**: There is no "Forbidden + Not Frozen" state because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 
@@ -111,7 +87,6 @@ Manager updates are controlled by the `canUpdateManager` permission:
 ```json
 "canUpdateManager": [
   {
-    "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyPermittedTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyForbiddenTimes": []
   }
@@ -127,12 +102,7 @@ During collection creation:
 ```json
 {
     "creator": "bb1alice...",
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "manager": "bb1alice..."
-        }
-    ],
+    "manager": "bb1alice...",
     "collectionPermissions": {
         "canUpdateManager": [
             {
@@ -145,34 +115,3 @@ During collection creation:
     }
 }
 ```
-
-### Decentralized Management Transition
-
-```json
-{
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1qqqq...."
-        }
-    ],
-    "collectionPermissions": {
-        "canUpdateManager": [
-            {
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    { "start": "1672531200000", "end": "18446744073709551615" }
-                ]
-            }
-        ]
-    }
-}
-```
-
-This transitions to a burn address manager and locks management permanently, creating a decentralized collection.

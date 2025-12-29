@@ -19,16 +19,22 @@ const collection: MsgCreateCollection = {
     validTokenIds: [{ start: 1n, end: 1n }],
     invariants: {
         cosmosCoinBackedPath: {
-            // address: auto-generated from ibcDenom
-            ibcDenom: 'ibc/1234567890ABCDEF',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            // address: auto-generated from conversion.sideA.denom
+            conversion: {
+                sideA: {
+                    amount: '1000000', // IBC coin amount (from old ibcAmount)
+                    denom: 'ibc/1234567890ABCDEF', // IBC denomination (from old ibcDenom)
                 },
-            ],
-            ibcAmount: '1000000', // 1 ubadge = 1,000,000 IBC coin units
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 1n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
         },
         noCustomOwnershipTimes: false,
         maxSupplyPerId: '0',
@@ -41,7 +47,7 @@ const collection: MsgCreateCollection = {
 
 ## Special Address
 
-Each IBC backed path has a **special address** automatically generated from the IBC denomination:
+Each IBC backed path has a **special address** automatically generated from the IBC denomination in `conversion.sideA.denom`:
 
 ```typescript
 import { generateAliasAddressForIBCDenom } from 'bitbadgesjs-sdk';
@@ -60,10 +66,10 @@ console.log('Special Address:', specialAddress);
 
 ## Conversion Mechanism
 
-The conversion is a direct mapping. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
+The conversion uses a structured `Conversion` format that combines the IBC denom and amount into `sideA`, with badge tokens in `sideB`. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
 
 ```
-[{ amount: ibcAmount, denom: ibcDenom }] = [...Balances[]] (x/badges)
+conversion.sideA (amount + denom) = conversion.sideB[] (x/badges)
 ```
 
 **Example:**
@@ -71,17 +77,28 @@ The conversion is a direct mapping. You can't fractionalize it, but if you make 
 ```typescript
 // Configuration
 const backedPath = {
-    ibcDenom: 'ibc/1234567890ABCDEF',
-    ibcAmount: '1000000', // 1 badge = 1,000,000 IBC coin units
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1000000', // IBC coin amount (from old ibcAmount)
+            denom: 'ibc/1234567890ABCDEF', // IBC denomination (from old ibcDenom)
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
 };
 ```
+
+**Conversion Structure:**
+
+-   **`Conversion`** (with denom): Used by backed paths because the denom is part of the conversion
+-   **`sideA`**: Contains both `amount` and `denom` (from old `ibcAmount` and `ibcDenom` fields)
+-   **`sideB`**: Array of `Balance` objects that define the badge tokens (from old `balances` field)
+-   **Conversion rate**: `conversion.sideA.amount` of `conversion.sideA.denom` = `conversion.sideB[]` tokens
 
 ## Configuration
 
@@ -98,15 +115,21 @@ const collection: MsgCreateCollection = {
     validTokenIds: [{ start: 1n, end: 100n }],
     invariants: {
         cosmosCoinBackedPath: {
-            ibcDenom: 'ibc/1234567890ABCDEF',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1000000', // IBC coin amount
+                    denom: 'ibc/1234567890ABCDEF', // IBC denomination
                 },
-            ],
-            ibcAmount: '1000000',
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
         },
         noCustomOwnershipTimes: false,
         maxSupplyPerId: '0',
@@ -116,12 +139,7 @@ const collection: MsgCreateCollection = {
     collectionPermissions: {
         // ... permission fields
     },
-    managerTimeline: [
-        {
-            manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
+    manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
     // ... other collection fields
 };
 ```
@@ -269,9 +287,9 @@ const unbackTokens: MsgTransferTokens = {
 
 ## Differences from Wrapper Paths
 
-| Feature           | IBC Backed Path                        | Wrapper Path                 |
-| ----------------- | -------------------------------------- | ---------------------------- |
-| **Minting**       | No minting/burning (uses existing IBC) | Minting/burning of new denom |
-| **Denom Source**  | Existing IBC denom                     | Generated denom              |
-| **Configuration** | Collection invariant (immutable)       | Timeline-based (mutable)     |
-| **Standard Minting**  | Disabled                               | Enabled                      |
+| Feature              | IBC Backed Path                        | Wrapper Path                 |
+| -------------------- | -------------------------------------- | ---------------------------- |
+| **Minting**          | No minting/burning (uses existing IBC) | Minting/burning of new denom |
+| **Denom Source**     | Existing IBC denom                     | Generated denom              |
+| **Configuration**    | Collection invariant                   | Can add paths, no edits      |
+| **Standard Minting** | Disabled                               | Enabled                      |

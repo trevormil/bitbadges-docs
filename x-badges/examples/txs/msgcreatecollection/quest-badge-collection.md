@@ -41,10 +41,16 @@ This example demonstrates creating a quest collection.
             "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "18446744073709551615"
@@ -52,43 +58,7 @@ This example demonstrates creating a quest collection.
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -223,18 +193,8 @@ This example demonstrates creating a quest collection.
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": ["Quests"],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "isArchivedTimeline": [],
+        "standards": ["Quests"],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [
             {
                 "denom": "ubadge",

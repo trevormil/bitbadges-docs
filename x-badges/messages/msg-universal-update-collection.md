@@ -51,9 +51,10 @@ message MsgUniversalUpdateCollection {
   // Transfer fields
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
+  repeated AliasPathAddObject aliasPathsToAdd = 23; // NEW: Separate array for alias paths
 
   // Invariants (creation-only)
-  CollectionInvariants invariants = 23;
+  CollectionInvariants invariants = 24;
 }
 
 message MsgUniversalUpdateCollectionResponse {
@@ -118,6 +119,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",
@@ -154,6 +156,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {}
 }
 ```

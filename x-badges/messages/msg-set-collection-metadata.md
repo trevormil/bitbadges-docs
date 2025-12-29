@@ -5,18 +5,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetCollectionMetadata
 
-Sets the collection metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on collection metadata management.
+Sets the collection metadata and update permissions for a collection. This is a convenience message that focuses specifically on collection metadata management.
 
 ### Overview
 
 This message allows you to:
 
-* Set collection metadata timeline for the collection
-* Configure permissions to update the collection metadata in the future
+-   Set collection metadata for the collection
+-   Configure permissions to update the collection metadata in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the collection metadata timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the collection metadata according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -31,11 +31,11 @@ message MsgSetCollectionMetadata {
   // ID of the collection.
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-  // New collection metadata timeline to set.
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 3;
+  // New collection metadata to set.
+  CollectionMetadata collectionMetadata = 3;
 
-  // Permission to update collection metadata timeline
-  repeated TimedUpdatePermission canUpdateCollectionMetadata = 4;
+  // Permission to update collection metadata
+  repeated ActionPermission canUpdateCollectionMetadata = 4;
 }
 
 message MsgSetCollectionMetadataResponse {
@@ -57,18 +57,12 @@ bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "collectionMetadataTimeline": [
-        {
-            "collectionMetadata": {
-                "uri": "https://example.com/collection.json",
-                "customData": "{\"description\": \"My collection\"}"
-            },
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
-        }
-    ],
+    "collectionMetadata": {
+        "uri": "https://example.com/collection.json",
+        "customData": "{\"description\": \"My collection\"}"
+    },
     "canUpdateCollectionMetadata": [
         {
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -78,5 +72,5 @@ bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message

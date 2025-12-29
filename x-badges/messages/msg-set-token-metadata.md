@@ -5,18 +5,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetTokenMetadata
 
-Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
+Sets the token metadata and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
 
 ### Overview
 
 This message allows you to:
 
-* Set token metadata timeline for the collection
-* Configure permissions to update the token metadata in the future
+-   Set token metadata for the collection
+-   Configure permissions to update the token metadata in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -31,11 +31,11 @@ message MsgSetTokenMetadata {
   // ID of the collection.
   string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
 
-  // New token metadata timeline to set.
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 3;
+  // New token metadata to set.
+  repeated TokenMetadata tokenMetadata = 3;
 
-  // Permission to update token metadata timeline
-  repeated TimedUpdateWithTokenIdsPermission canUpdateTokenMetadata = 4;
+  // Permission to update token metadata
+  repeated TokenIdsActionPermission canUpdateTokenMetadata = 4;
 }
 
 message MsgSetTokenMetadataResponse {
@@ -57,22 +57,16 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 {
     "creator": "bb1abc123...",
     "collectionId": "1",
-    "tokenMetadataTimeline": [
+    "tokenMetadata": [
         {
-            "tokenMetadata": [
-                {
-                    "uri": "https://example.com/badge1.json",
-                    "customData": "{\"description\": \"First token\"}",
-                    "tokenIds": [{ "start": "1", "end": "10" }]
-                }
-            ],
-            "timelineTimes": [{ "start": "1000", "end": "2000" }]
+            "uri": "https://example.com/badge1.json",
+            "customData": "{\"description\": \"First token\"}",
+            "tokenIds": [{ "start": "1", "end": "10" }]
         }
     ],
     "canUpdateTokenMetadata": [
         {
             "tokenIds": [{ "start": "1", "end": "10" }],
-            "timelineTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyPermittedTimes": [{ "start": "1000", "end": "2000" }],
             "permanentlyForbiddenTimes": []
         }
@@ -82,5 +76,5 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message

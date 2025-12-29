@@ -24,7 +24,7 @@ interface MustOwnTokens<T extends NumberType> {
 
     overrideWithCurrentTime: boolean; // Use current block time. Overrides ownershipTimes with [{ start: currentTime, end: currentTime }]
     mustSatisfyForAllAssets: boolean; // All vs one requirement
-    ownershipCheckParty: string; // Which party to check ownership for: "initiator", "sender", "recipient" (default: "initiator" if empty)
+    ownershipCheckParty: string; // Which party to check ownership for: "initiator", "sender", "recipient", or a hardcoded bb1 address (default: "initiator" if empty)
 }
 ```
 
@@ -77,8 +77,10 @@ interface MustOwnTokens<T extends NumberType> {
     -   `"initiator"` (default): Check ownership for the address that initiated the transfer
     -   `"sender"`: Check ownership for the address sending the tokens
     -   `"recipient"`: Check ownership for the address receiving the tokens
+    -   Hardcoded bb1 address (e.g., `"bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls"`): Check ownership for a specific address, regardless of transfer parties
 -   **Default**: `"initiator"` (if empty or not specified)
 -   **Example**: `"sender"` to require the sender to own specific tokens before allowing the transfer
+-   **Hardcoded Address Example**: `"bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls"` to require a specific address to own tokens (useful for multi-sig or contract-based checks)
 
 ## Example
 
@@ -146,3 +148,22 @@ Require users to own specific tokens to access premium features or exclusive tra
     ]
 }
 ```
+
+#### Check Hardcoded Address Ownership
+
+You can also specify a hardcoded bb1 address to check ownership for a specific address, regardless of who is involved in the transfer. This is useful for multi-sig wallets, contract addresses, or other scenarios where you need to verify ownership for a specific address.
+
+```json
+{
+    "mustOwnTokens": [
+        {
+            "collectionId": "1",
+            "amountRange": { "start": "1", "end": "1" },
+            "tokenIds": [{ "start": "1", "end": "1" }],
+            "ownershipCheckParty": "bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls"
+        }
+    ]
+}
+```
+
+This example requires the address `bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls` to own the specified tokens, regardless of who initiates, sends, or receives the transfer.

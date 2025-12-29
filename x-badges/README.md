@@ -39,6 +39,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 ### User Approvals
 
 * [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+* [MsgCastVote](messages/msg-cast-vote.md) - Cast or update votes for voting challenges
 
 ### Address Lists & Dynamic Stores
 

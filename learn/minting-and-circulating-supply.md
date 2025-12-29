@@ -42,12 +42,7 @@ The **manager** of the collection controls minting by setting and updating colle
 ```typescript
 // Manager sets initial mint approval
 const collection: TokenCollection<bigint> = {
-    managerTimeline: [
-        {
-            manager: 'bb1...',
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
+    manager: 'bb1...',
     collectionApprovals: [
         {
             fromListId: 'Mint',

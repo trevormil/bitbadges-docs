@@ -30,7 +30,11 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                     "approvalId": "fd1cef5941fb08487ecc1038af09fb29a6d7d40a89d8e4889c9c954978aa7e41",
                     "approvalLevel": "collection",
                     "approverAddress": "",
-                    "version": "0"
+                    "version": "0",
+                    "precalculationOptions": {
+                        "overrideTimestamp": "0",
+                        "tokenIdsOverride": []
+                    }
                 },
                 "merkleProofs": [],
                 "ethSignatureProofs": [],
@@ -45,11 +49,7 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                 ],
                 "onlyCheckPrioritizedCollectionApprovals": true,
                 "onlyCheckPrioritizedIncomingApprovals": false,
-                "onlyCheckPrioritizedOutgoingApprovals": false,
-                "precalculationOptions": {
-                    "overrideTimestamp": "0",
-                    "tokenIdsOverride": []
-                }
+                "onlyCheckPrioritizedOutgoingApprovals": false
         ]
     }
 ]
@@ -72,8 +72,8 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
 
 ### Precalculation Options
 
--   `"overrideTimestamp": "0"` - Use current timestamp for calculations
--   `"tokenIdsOverride": []` - No token ID overrides, use approval criteria
+-   `"precalculationOptions.overrideTimestamp": "0"` - Use current timestamp for calculations (only applies if `allowOverrideTimestamp` is true in approval)
+-   `"precalculationOptions.tokenIdsOverride": []` - No token ID overrides, use approval criteria (only applies if `allowOverrideWithAnyValidToken` is true in approval)
 
 ### Non-Auto-Scan Behavior
 
@@ -102,4 +102,5 @@ This example is useful when:
 | Approval Scanning     | Auto-scan enabled    | Only specified approval   |
 | Flexibility           | Fixed amounts        | Dynamic based on criteria |
 | Control               | Direct specification | Approval-driven           |
-****
+
+---
