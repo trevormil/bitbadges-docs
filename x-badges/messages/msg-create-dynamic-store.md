@@ -1,6 +1,6 @@
 # MsgCreateDynamicStore
 
-Creates a new dynamic store for boolean key-value storage.
+Creates a new dynamic store for boolean key-value storage. New stores are created with `globalEnabled = true` by default, meaning the store is active and can be used in approval criteria.
 
 ## Proto Definition
 
