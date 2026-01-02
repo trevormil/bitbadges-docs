@@ -221,11 +221,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 
 There are **four types** of permissions, each with different criteria:
 
-| Type                            | Criteria                                       | Examples                                                                                                                                      |
-| ------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type                            | Criteria                                       | Examples                                                                                                                                                                                                  |
+| ------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Action Permissions**          | Time control only                              | `canDeleteCollection`, `canUpdateCollectionMetadata`, `canUpdateStandards`, `canUpdateCustomData`, `canUpdateManager`, `canArchiveCollection`, `canAddMoreAliasPaths`, `canAddMoreCosmosCoinWrapperPaths` |
-| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`, `canUpdateTokenMetadata`                                                                                            |
-| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals`                                                                                  |
+| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`, `canUpdateTokenMetadata`                                                                                                                                                        |
+| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals`                                                                                                                                              |
 
 ### Action Permissions
 

@@ -125,8 +125,8 @@ Adding new alias paths to a collection is controlled by the `canAddMoreAliasPath
 
 ### Default Behavior
 
-- **Empty/Nil Permissions**: When `canAddMoreAliasPaths` is empty or nil, adding paths is **allowed** (neutral state)
-- **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
+-   **Empty/Nil Permissions**: When `canAddMoreAliasPaths` is empty or nil, adding paths is **allowed** (neutral state)
+-   **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
 
 ### Permission Structure
 
@@ -148,6 +148,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ### Usage Examples
 
 **Allow adding paths at all times:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreAliasPaths: [], // Empty = allowed by default
@@ -155,6 +156,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ```
 
 **Lock adding paths forever:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreAliasPaths: [
@@ -169,6 +171,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ```
 
 **Allow adding paths only during specific period:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreAliasPaths: [
