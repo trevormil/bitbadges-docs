@@ -67,6 +67,8 @@ const collectionPermissions = {
 const collectionPermissions = {
     // ... other permissions
     canUpdateCollectionApprovals: [], // Soft-enabled
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 

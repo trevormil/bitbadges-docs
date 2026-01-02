@@ -56,6 +56,8 @@ The module checks permissions based on which fields are being updated in the `Un
 * **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
 * **UpdateStandardsTimeline**: Requires `canUpdateStandards` permission
 * **UpdateIsArchivedTimeline**: Requires `canArchiveCollection` permission
+* **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+* **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
 
 **Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
 

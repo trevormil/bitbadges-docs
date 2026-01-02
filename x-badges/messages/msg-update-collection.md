@@ -77,7 +77,9 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "updateManagerTimeline": false,
     "managerTimeline": [],

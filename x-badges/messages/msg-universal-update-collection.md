@@ -19,6 +19,15 @@ This message uses an update flag + value pattern for selective updates. Each upd
 * **For Collection Creation**: Can be executed by any address
 * **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
 
+### Path Addition Permissions
+
+When adding paths to an existing collection, the following permissions are checked:
+
+* **`cosmosCoinWrapperPathsToAdd`**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+* **`aliasPathsToAdd`**: Requires `canAddMoreAliasPaths` permission
+
+These permissions are checked before paths are processed. If the permission check fails, the transaction will be rejected. Both permissions use the `ActionPermission` type with time-based controls. Empty/nil permissions mean the action is allowed (neutral state).
+
 ## Proto Definition
 
 ```protobuf
@@ -50,8 +59,8 @@ message MsgUniversalUpdateCollection {
 
   // Transfer fields
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
-  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
-  repeated AliasPathAddObject aliasPathsToAdd = 23; // NEW: Separate array for alias paths
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22; // Requires canAddMoreCosmosCoinWrapperPaths permission
+  repeated AliasPathAddObject aliasPathsToAdd = 23; // Requires canAddMoreAliasPaths permission
 
   // Invariants (creation-only)
   CollectionInvariants invariants = 24;
@@ -101,7 +110,9 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "updateManagerTimeline": true,
     "managerTimeline": [],

@@ -72,6 +72,8 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
     // ... other permission fields
 };
 ```
@@ -221,7 +223,7 @@ There are **four types** of permissions, each with different criteria:
 
 | Type                            | Criteria                                       | Examples                                                                                                                                      |
 | ------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Action Permissions**          | Time control only                              | `canDeleteCollection`, `canUpdateCollectionMetadata`, `canUpdateStandards`, `canUpdateCustomData`, `canUpdateManager`, `canArchiveCollection` |
+| **Action Permissions**          | Time control only                              | `canDeleteCollection`, `canUpdateCollectionMetadata`, `canUpdateStandards`, `canUpdateCustomData`, `canUpdateManager`, `canArchiveCollection`, `canAddMoreAliasPaths`, `canAddMoreCosmosCoinWrapperPaths` |
 | **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`, `canUpdateTokenMetadata`                                                                                            |
 | **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals`                                                                                  |
 
@@ -237,6 +239,8 @@ Simple time-based permissions with no additional criteria. Control when actions 
 -   `canUpdateCustomData` - Update custom data
 -   `canUpdateManager` - Update manager
 -   `canArchiveCollection` - Archive/unarchive collection
+-   `canAddMoreAliasPaths` - Add new alias paths to collection
+-   `canAddMoreCosmosCoinWrapperPaths` - Add new cosmos coin wrapper paths to collection
 
 **User Actions:**
 

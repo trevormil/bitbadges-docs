@@ -33,6 +33,8 @@ const collectionPermissions = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 

@@ -35,6 +35,8 @@ const collectionPermissions = {
     ],
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 
@@ -66,6 +68,8 @@ const collectionPermissions = {
     ],
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 

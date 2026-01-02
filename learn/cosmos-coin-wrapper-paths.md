@@ -569,6 +569,75 @@ const addLiquidity = {
 };
 ```
 
+## Permission Control
+
+Adding new cosmos coin wrapper paths to a collection is controlled by the `canAddMoreCosmosCoinWrapperPaths` permission. This permission allows you to control when managers can add new wrapper paths.
+
+### Default Behavior
+
+- **Empty/Nil Permissions**: When `canAddMoreCosmosCoinWrapperPaths` is empty or nil, adding paths is **allowed** (neutral state)
+- **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
+
+### Permission Structure
+
+The permission uses the `ActionPermission` type with time-based controls:
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Usage Examples
+
+**Allow adding paths at all times:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [], // Empty = allowed by default
+};
+```
+
+**Lock adding paths forever:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+        },
+    ],
+};
+```
+
+**Allow adding paths only during specific period:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1704067200000n, end: 1735689600000n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Permission Check
+
+When using `MsgUniversalUpdateCollection` to add wrapper paths via `cosmosCoinWrapperPathsToAdd`, the system checks the `canAddMoreCosmosCoinWrapperPaths` permission before processing the paths. If the permission check fails, the transaction will be rejected with an appropriate error message.
+
+**Note**: The permission is checked before paths are added, but the permission itself can be updated at the end of the transaction (if `updateCollectionPermissions` is set to `true`).
+
 ## Differences from IBC Backed Paths
 
 | Feature           | Wrapper Path                 | IBC Backed Path                        |

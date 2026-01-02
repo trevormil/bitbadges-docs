@@ -77,7 +77,9 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "managerTimeline": [],
     "collectionMetadataTimeline": [],

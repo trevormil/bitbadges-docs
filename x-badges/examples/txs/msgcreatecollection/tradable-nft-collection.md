@@ -39,7 +39,9 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateCollectionMetadata": [],
             "canUpdateValidTokenIds": [],
             "canUpdateTokenMetadata": [],
-            "canUpdateCollectionApprovals": []
+            "canUpdateCollectionApprovals": [],
+            "canAddMoreAliasPaths": [],
+            "canAddMoreCosmosCoinWrapperPaths": []
         },
         "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
         "collectionMetadata": {
