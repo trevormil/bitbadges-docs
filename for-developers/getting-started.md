@@ -58,6 +58,8 @@ await BitBadgesAPI.getCollection(...);
 
 Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
 
+[https://docs.bitbadges.io/\~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) - GitBook Provided MCP with searchDocumentation tool
+
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
 [BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
