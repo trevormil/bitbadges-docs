@@ -22,6 +22,10 @@ message DynamicStore {
   bool defaultValue = 3;
   // Global kill switch. When false, all approvals using this store fail immediately.
   bool globalEnabled = 4;
+  // URI for additional metadata or resources associated with this dynamic store.
+  string uri = 5;
+  // Custom data field for storing arbitrary data associated with this dynamic store.
+  string customData = 6;
 }
 ```
 
@@ -43,10 +47,14 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
         "storeId": "1",
         "createdBy": "bb1...",
         "defaultValue": false,
-        "globalEnabled": true
+        "globalEnabled": true,
+        "uri": "https://example.com/metadata",
+        "customData": "{\"key\": \"value\"}"
     }
 }
 ```
+
+**Note**: Both `uri` and `customData` are optional fields. They may be empty strings (`""`) if not set when creating or updating the store.
 
 ## Global Kill Switch
 

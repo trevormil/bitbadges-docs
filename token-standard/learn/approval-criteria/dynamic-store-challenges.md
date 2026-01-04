@@ -74,7 +74,7 @@ Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.
 
 ### Updating Stores
 
-Use [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to update the store's `defaultValue` and `globalEnabled` fields.
+Use [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to update the store's `defaultValue`, `globalEnabled`, `uri`, and `customData` fields. The `uri` and `customData` fields allow storing additional metadata and arbitrary data associated with the store.
 
 ### Setting Values
 
@@ -84,7 +84,7 @@ Use [MsgSetDynamicStoreValue](../../../x-badges/messages/msg-set-dynamic-store-v
 
 Use [GetDynamicStoreValue](../../../x-badges/queries/get-dynamic-store-value.md) to check current values for addresses.
 
-Use [GetDynamicStore](../../../x-badges/queries/get-dynamic-store.md) to retrieve the store's configuration, including `globalEnabled` status.
+Use [GetDynamicStore](../../../x-badges/queries/get-dynamic-store.md) to retrieve the store's configuration, including `globalEnabled` status, `uri`, and `customData` fields.
 
 ## Alternatives
 
