@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Jan  3 16:11:57 UTC 2026
+Generated on Sun Jan  4 20:21:01 UTC 2026
 
 
 
@@ -1867,7 +1867,6 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Token Ownership](token-standard/learn/approval-criteria/badge-ownership.md)
     * [Dynamic Store Challenges](token-standard/learn/approval-criteria/dynamic-store-challenges.md)
     * [ETH Signature Challenges](token-standard/learn/approval-criteria/eth-signature-challenges.md)
-    * [Voting Challenges](token-standard/learn/approval-criteria/voting-challenges.md)
     * [Max Number of Transfers](token-standard/learn/approval-criteria/max-number-of-transfers.md)
     * [Merkle Challenges](token-standard/learn/approval-criteria/merkle-challenges.md)
     * [Override User Level Approvals](token-standard/learn/approval-criteria/overrides.md)
@@ -1893,7 +1892,6 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
   * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
   * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
-  * [MsgCastVote](x-badges/messages/msg-cast-vote.md)
   * [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
   * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
   * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
@@ -2364,6 +2362,7 @@ import { MsgCreateCollection } from 'bitbadgesjs-sdk';
 
 // Create a collection with 100 token IDs
 const collection = {
+    // ...
     validTokenIds: [{ start: '1', end: '100' }],
     manager: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
 };
@@ -2385,11 +2384,11 @@ const manager = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
 Use tables for structured data:
 
 ```markdown
-| Field             | Type              | Description                     |
-| ----------------- | ----------------- | ------------------------------- |
-| `collectionId`    | string            | Unique collection identifier    |
-| `validTokenIds`   | UintRange[]       | Valid token ID ranges           |
-| `manager` | string | Manager address |
+| Field           | Type        | Description                  |
+| --------------- | ----------- | ---------------------------- |
+| `collectionId`  | string      | Unique collection identifier |
+| `validTokenIds` | UintRange[] | Valid token ID ranges        |
+| `manager`       | string      | Manager address              |
 ```
 
 ## Cross-References
@@ -2468,7 +2467,7 @@ Collection fields are set directly without timeline structures.
 ```typescript
 const collectionMetadata = {
     uri: 'ipfs://...',
-    customData: ''
+    customData: '',
 };
 ```
 ````
@@ -2520,7 +2519,7 @@ const manager = 'YOUR_ADDRESS';
 3. **Create the collection:**
 
 ```typescript
-const msg = MsgCreateCollection({ validTokenIds, manager });
+const msg = MsgCreateCollection({ validTokenIds, managerTimeline });
 ```
 
 ````
@@ -8057,24 +8056,24 @@ BitBadges uses the format `badgeslp:COLLECTION_ID:denom` for alias denominations
 -   **Format**: `badgeslp:COLLECTION_ID:denom`
 -   **Example**: `5 badgeslp:73:utoken`
     -   Collection ID: `73`
-    -   Base denomination: `utoken` (from the collection's `cosmosCoinWrapperPaths` path)
+    -   Base denomination: `utoken` (from the collection's `aliasPaths` array)
     -   Amount: `5`
 
 ## How It Works
 
-The alias denomination converts an integer amount to `Balances[]` using the collection's `cosmosCoinWrapperPaths` field, which defines the conversion rate.
+The alias denomination converts an integer amount to `Balances[]` using the collection's `aliasPaths` field, which defines the conversion rate.
 
 ### Conversion Process
 
 1. **Parse the alias**: Extract collection ID and denom from `badgeslp:COLLECTION_ID:denom`
-2. **Find wrapper path**: Look up the matching `cosmosCoinWrapperPath` in the collection's `cosmosCoinWrapperPaths` array by denom
-3. **Convert amount**: Use the path's `balances` field to convert the integer amount to `Balances[]. This is the conversion rate. 1 badgeslp:73:utoken = amount defined in balances
+2. **Find alias path**: Look up the matching `AliasPath` in the collection's `aliasPaths` array by denom
+3. **Convert amount**: Use the path's `conversion` field to convert the integer amount to `Balances[]`. The conversion rate is: `conversion.sideA.amount` alias units = `conversion.sideB[]` tokens. For example, if `sideA.amount = "1"` and `sideB = [{ amount: 1n, ... }]`, then `1 badgeslp:73:utoken = 1 token` (1:1 conversion)
 4. **Execute transfer**: Process the transfer using the converted `Balances[]` via `MsgTransferTokens`
 
 ### Important Notes
 
 -   **No wrapping involved**: This is not a wrapping/unwrapping process. The conversion is simply an alias for the full `Balances[]` field.
--   **Conversion rate defined**: The conversion rate is defined in the collection's `cosmosCoinWrapperPaths` field, specifically in the `balances` array of each path.
+-   **Conversion rate defined**: The conversion rate is defined in the collection's `aliasPaths` field, specifically in the `conversion.sideA.amount` and `conversion.sideB[]` fields of each path.
 -   **Auto-scan mode**: Implementations that support alias denominations almost always operate in **auto-scan mode** (no prioritized approvals required).
 
 ## Use Cases
@@ -8088,7 +8087,7 @@ Alias denominations enable BitBadges tokens to participate in liquidity pools th
 const coins = [
     {
         denom: 'badgeslp:73:utoken',
-        amount: '1000000', // Converts to Balances[] via cosmosCoinWrapperPaths behind the scenes
+        amount: '1000000', // Converts to Balances[] via aliasPaths behind the scenes
     },
     {
         denom: 'uatom',
@@ -8121,21 +8120,28 @@ const transfer = {
 
 ## Configuration
 
-The conversion is defined in the collection's `cosmosCoinWrapperPaths` field:
+The conversion is defined in the collection's `aliasPaths` field:
 
 ```typescript
 const collection: MsgCreateCollection = {
     // ... other fields
-    cosmosCoinWrapperPaths: [
+    aliasPathsToAdd: [
         {
             denom: 'utoken',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of alias unit
                 },
-            ],
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
             symbol: 'BASETOKEN',
             denomUnits: [
                 {
@@ -8144,16 +8150,91 @@ const collection: MsgCreateCollection = {
                     isDefaultDisplay: true,
                 },
             ],
-            allowOverrideWithAnyValidToken: false,
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
     ],
 };
 ```
 
+**Metadata**: Alias paths use the standard metadata structure with `uri` (e.g., `ipfs://Qm...`) pointing to hosted JSON containing `{ name, image, description }`. The image is the primary use case. The on-chain `symbol` field is typically used for identification, not the metadata name.
+
 In this example:
 
 -   `1 badgeslp:COLLECTION_ID:utoken` converts to `1` token with IDs `1-100` and full ownership times
--   The conversion rate is `1:1` (1 alias unit = 1 token)
+-   The conversion rate is `1:1` (1 alias unit = 1 token) because `conversion.sideA.amount = "1"` and `conversion.sideB[0].amount = 1n`
+-   The conversion structure uses `ConversionWithoutDenom` because the denom is stored separately at the path level
+
+## Permission Control
+
+Adding new alias paths to a collection is controlled by the `canAddMoreAliasPaths` permission. This permission allows you to control when managers can add new alias paths.
+
+### Default Behavior
+
+-   **Empty/Nil Permissions**: When `canAddMoreAliasPaths` is empty or nil, adding paths is **allowed** (neutral state)
+-   **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
+
+### Permission Structure
+
+The permission uses the `ActionPermission` type with time-based controls:
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreAliasPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Usage Examples
+
+**Allow adding paths at all times:**
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreAliasPaths: [], // Empty = allowed by default
+};
+```
+
+**Lock adding paths forever:**
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreAliasPaths: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+        },
+    ],
+};
+```
+
+**Allow adding paths only during specific period:**
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreAliasPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1704067200000n, end: 1735689600000n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Permission Check
+
+When using `MsgUniversalUpdateCollection` to add alias paths via `aliasPathsToAdd`, the system checks the `canAddMoreAliasPaths` permission before processing the paths. If the permission check fails, the transaction will be rejected with an appropriate error message.
+
+**Note**: The permission is checked before paths are added, but the permission itself can be updated at the end of the transaction (if `updateCollectionPermissions` is set to `true`).
 
 ## Benefits
 
@@ -8670,13 +8751,20 @@ const collection: MsgCreateCollection = {
     cosmosCoinWrapperPathsToAdd: [
         {
             denom: 'utoken',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
                 },
-            ],
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
             symbol: 'TOKEN',
             denomUnits: [
                 {
@@ -8686,66 +8774,70 @@ const collection: MsgCreateCollection = {
                 },
             ],
             allowOverrideWithAnyValidToken: false,
-            allowCosmosWrapping: true, // Enable wrapping/unwrapping
+            metadata: { uri: '', customData: '' }, // Optional metadata
+        },
+    ],
+    aliasPathsToAdd: [
+        {
+            denom: 'utoken-alias',
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
+                },
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
+            symbol: 'ALIAS',
+            denomUnits: [
+                {
+                    decimals: 6n,
+                    symbol: 'ALIAS',
+                    isDefaultDisplay: true,
+                },
+            ],
+            metadata: { uri: '', customData: '' }, // Optional metadata
         },
     ],
     // ... other fields
 };
 ```
 
-## Alias-Only vs Wrappable Paths
+## Wrapper Paths vs Alias Paths
 
-Wrapper paths serve two distinct purposes based on the `allowCosmosWrapping` field:
+The system now distinguishes between two separate path types:
 
-### Alias-Only (`allowCosmosWrapping: false`)
+### Cosmos Coin Wrapper Paths
 
-Used for compatibility with existing Cosmos SDK interfaces without actual wrapping:
-
--   **Purpose**: Alias denomination support (e.g., `badgeslp:COLLECTION_ID:denom`)
--   **Behavior**: No minting/burning occurs, only an alias for information al prposes
--   **Use case**: Compatibility with liquidity pools, DeFi protocols that expect `sdk.Coin` format
--   **See**: [Alias Compatibility](alias-compatibility.md) for details
-
-```typescript
-{
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: false, // Alias-only, no wrapping
-}
-```
-
-### Wrappable/Convertable (`allowCosmosWrapping: true`)
-
-Enables actual wrapping and unwrapping with minting/burning:
+Used for actual wrapping/unwrapping with minting and burning:
 
 -   **Purpose**: Convert tokens to native Cosmos SDK coins and vice versa
 -   **Behavior**: Tokens are burned when wrapping, coins are minted. Coins are burned when unwrapping, tokens are minted
 -   **Use case**: IBC transfers, converting tokens to native coins for Cosmos ecosystem compatibility
+-   **Storage**: Stored in `cosmosCoinWrapperPaths` array
+-   **Features**: Includes `address` field (wrapper address) and `allowOverrideWithAnyValidToken` option
 
 ```typescript
 {
     denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of wrapped coin
+                },
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     symbol: 'TOKEN',
     denomUnits: [
         {
@@ -8754,7 +8846,46 @@ Enables actual wrapping and unwrapping with minting/burning:
             isDefaultDisplay: true,
         },
     ],
-    allowCosmosWrapping: true, // Enable wrapping/unwrapping
+    allowOverrideWithAnyValidToken: false,
+    metadata: { uri: '', customData: '' }, // Optional PathMetadata
+}
+```
+
+### Alias Paths
+
+Used for compatibility with existing Cosmos SDK interfaces without actual wrapping:
+
+-   **Purpose**: Alias denomination support (e.g., `badgeslp:COLLECTION_ID:denom`)
+-   **Behavior**: No minting/burning occurs, only an alias for information purposes
+-   **Use case**: Compatibility with liquidity pools, DeFi protocols that expect `sdk.Coin` format
+-   **Storage**: Stored in `aliasPaths` array (separate from wrapper paths)
+-   **See**: [Alias Compatibility](alias-compatibility.md) for details
+-   **Note**: Does not include `address` or `allowOverrideWithAnyValidToken` fields
+
+```typescript
+{
+    denom: 'utoken',
+            conversion: {
+                sideA: {
+                    amount: '1', // Required: amount of alias unit
+                },
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
+    symbol: 'TOKEN',
+    denomUnits: [
+        {
+            decimals: 6n,
+            symbol: 'TOKEN',
+            isDefaultDisplay: true,
+        },
+    ],
+    metadata: { uri: '', customData: '' }, // Optional PathMetadata
 }
 ```
 
@@ -8772,6 +8903,49 @@ console.log('Wrapper Address:', wrapperAddress);
 
 **Note:** The address is generated from the custom denom, not the full `badges:collectionId:denom` format.
 
+## Conversion Structure
+
+Wrapper paths and alias paths use a structured conversion format to define the relationship between wrapped/alias units and badge tokens:
+
+### ConversionWithoutDenom
+
+Used by wrapper paths and alias paths (denom stored separately):
+
+```typescript
+{
+    conversion: {
+        sideA: {
+            amount: '1', // Required: amount of wrapped/alias coin (Uint type)
+        },
+        sideB: [
+            // Balances[] that define which tokens participate
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 100n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
+}
+```
+
+**Key Points:**
+
+-   `sideA.amount`: The amount of wrapped/alias coin units (required, must be specified)
+-   `sideB`: Array of `Balance` objects that define the tokens involved in the conversion
+-   The denom is stored at the path level, not in the conversion (hence "WithoutDenom")
+-   Conversion rate: `sideA.amount` wrapped/alias units = `sideB[]` tokens
+
+**Example:**
+
+-   If `sideA.amount = "1"` and `sideB = [{ amount: 1n, tokenIds: [...], ... }]`
+-   Then: `1 wrapped coin = 1 token` (1:1 conversion)
+
+**Example with different rate:**
+
+-   If `sideA.amount = "100"` and `sideB = [{ amount: 1n, tokenIds: [...], ... }]`
+-   Then: `100 wrapped coins = 1 token` (100:1 conversion)
+
 ## Configuration Fields
 
 ### Denom
@@ -8785,23 +8959,34 @@ The base denomination for the wrapped coin. The full Cosmos denomination will be
 }
 ```
 
-### Balances
+### Conversion
 
-Defines the conversion rate and which tokens participate in wrapping:
+Defines the conversion rate between wrapped coins and tokens using a structured conversion format:
 
 ```typescript
 {
-    balances: [
-        {
-            amount: 1n, // 1 wrapped coin unit
-            tokenIds: [{ start: 1n, end: 100n }], // Token IDs that can wrap
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }], // Ownership times
+    conversion: {
+        sideA: {
+            amount: '1', // Required: amount of wrapped coin
         },
-    ],
+        sideB: [
+            {
+                amount: 1n, // Token amount
+                tokenIds: [{ start: 1n, end: 100n }], // Token IDs that can wrap
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }], // Ownership times
+            },
+        ],
+    },
 }
 ```
 
-**Conversion rate:** `1 wrapped coin = balances[] tokens`
+**Conversion rate:** `conversion.sideA.amount wrapped coin = conversion.sideB[] tokens`
+
+**Key Points:**
+
+-   `sideA.amount` is required and must be specified (cannot be "0" or nil)
+-   `sideB` contains the `Balances[]` that define which tokens participate in wrapping
+-   The denom is stored separately at the path level (not in the conversion)
 
 ### Denomination Units
 
@@ -8814,11 +8999,13 @@ Multiple denomination units allow different display formats:
             decimals: 3n, // 3 decimal places
             symbol: 'mtoken', // Milli-token
             isDefaultDisplay: false,
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
         {
             decimals: 6n, // 6 decimal places
             symbol: 'TOKEN', // Full token
             isDefaultDisplay: true, // Shown by default
+            metadata: { uri: '', customData: '' }, // Optional PathMetadata
         },
     ],
 }
@@ -8830,6 +9017,8 @@ Multiple denomination units allow different display formats:
 -   `mtoken` = 1,000 `utoken` (3 decimals)
 -   `TOKEN` = 1,000,000 `utoken` (6 decimals, default display)
 
+**Note:** Each `DenomUnit` now includes an optional `metadata` field of type `PathMetadata` for additional information.
+
 ### Allow Override With Any Valid Token
 
 When `true`, allows the wrapper to accept any SINGLE valid token ID from the collection's `validTokenIds` range:
@@ -8837,13 +9026,18 @@ When `true`, allows the wrapper to accept any SINGLE valid token ID from the col
 ```typescript
 {
     denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }], // Overridden during transfer
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1',
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }], // Overridden during transfer
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     allowOverrideWithAnyValidToken: true, // Accept any valid token ID
 }
 ```
@@ -8852,7 +9046,7 @@ When `true`, allows the wrapper to accept any SINGLE valid token ID from the col
 
 1. User transfers token ID 5 to wrapper
 2. System validates token ID 5 is in `validTokenIds`
-3. System temporarily overrides `balances[].tokenIds` with `[{ start: 5n, end: 5n }]` ignoring the values set in the `balances` array
+3. System temporarily overrides `conversion.sideB[].tokenIds` with `[{ start: 5n, end: 5n }]` ignoring the values set in the `sideB` array
 4. Conversion proceeds with token ID 5
 
 ## {id} Placeholder Support
@@ -8863,81 +9057,40 @@ You can use `{id}` in the denom to dynamically replace it with the actual token 
 {
     denom: 'utoken{id}', // Dynamic denom
     symbol: 'TOKEN:{id}',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1',
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
     allowOverrideWithAnyValidToken: true,
 }
 ```
 
 **Example:** Transferring token ID 5 results in denom `utoken5`.
 
-### Allow Cosmos Wrapping
+### Metadata
 
-The `allowCosmosWrapping` field determines the purpose of the wrapper path:
-
-**`allowCosmosWrapping: false` (Alias-Only)**
-
--   Used for alias denomination compatibility (e.g., `badgeslp:COLLECTION_ID:denom`)
--   No actual wrapping/unwrapping occurs
--   No minting/burning of coins
--   Simply provides a conversion mapping for compatibility with existing interfaces
--   See [Alias Compatibility](alias-compatibility.md) for details
-
-**`allowCosmosWrapping: true` (Wrappable/Convertable)**
-
--   Enables actual wrapping and unwrapping functionality
--   Tokens are burned when wrapping, coins are minted
--   Coins are burned when unwrapping, tokens are minted
--   Required for IBC transfers and full Cosmos ecosystem compatibility
+Both wrapper paths and alias paths support optional metadata using the standard metadata structure:
 
 ```typescript
-// Alias-only path (no wrapping)
 {
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: false, // Alias-only
-}
-
-// Wrappable path (with wrapping/unwrapping)
-{
-    denom: 'utoken',
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 100n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
-        },
-    ],
-    symbol: 'TOKEN',
-    denomUnits: [
-        {
-            decimals: 6n,
-            symbol: 'TOKEN',
-            isDefaultDisplay: true,
-        },
-    ],
-    allowCosmosWrapping: true, // Enable wrapping/unwrapping
+    metadata: {
+        uri: 'ipfs://Qm...', // Optional URI to hosted JSON metadata
+        customData: '{"key": "value"}', // Optional custom JSON data
+    },
 }
 ```
+
+The hosted JSON at the URI typically contains `{ name, image, description }`, though the image is the primary use case. The on-chain `symbol` field is used for identification, not the metadata name.
+
+**Note:** Metadata is optional. It's also available on `DenomUnit` objects for additional per-unit metadata.
 
 ## Transferability Requirements
 
@@ -9019,8 +9172,8 @@ const wrapTokens: MsgTransferTokens = {
     ],
 };
 
-// Result: User receives 10 badges:1:utoken coins
-// 10 badge tokens are burned
+// Result: User receives 10 badges:1:utoken coins (based on conversion.sideA.amount = 1)
+// 10 badge tokens are burned (based on conversion.sideB balances)
 ```
 
 ### Coin to Token (Unwrapping)
@@ -9064,8 +9217,8 @@ const unwrapCoins: MsgTransferTokens = {
     ],
 };
 
-// Result: User receives 10 badge tokens
-// 10 badges:1:utoken coins are burned from wrapper address
+// Result: User receives 10 badge tokens (based on conversion.sideB balances)
+// 10 badges:1:utoken coins are burned from wrapper address (based on conversion.sideA.amount = 1)
 ```
 
 ## Use Cases
@@ -9077,6 +9230,7 @@ Enable cross-chain transfers of wrapped tokens:
 ```typescript
 // Wrap tokens for IBC transfer
 // ⚠️ IMPORTANT: Requires prioritized approvals
+// The conversion rate is defined in the wrapper path's conversion field
 const wrapForIBC: MsgTransferTokens = {
     creator: 'bb1user...',
     collectionId: '1',
@@ -9139,13 +9293,82 @@ const addLiquidity = {
 };
 ```
 
+## Permission Control
+
+Adding new cosmos coin wrapper paths to a collection is controlled by the `canAddMoreCosmosCoinWrapperPaths` permission. This permission allows you to control when managers can add new wrapper paths.
+
+### Default Behavior
+
+- **Empty/Nil Permissions**: When `canAddMoreCosmosCoinWrapperPaths` is empty or nil, adding paths is **allowed** (neutral state)
+- **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
+
+### Permission Structure
+
+The permission uses the `ActionPermission` type with time-based controls:
+
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Usage Examples
+
+**Allow adding paths at all times:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [], // Empty = allowed by default
+};
+```
+
+**Lock adding paths forever:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [],
+            permanentlyForbiddenTimes: [
+                { start: 1n, end: 18446744073709551615n },
+            ],
+        },
+    ],
+};
+```
+
+**Allow adding paths only during specific period:**
+```typescript
+const collectionPermissions: CollectionPermissions<bigint> = {
+    canAddMoreCosmosCoinWrapperPaths: [
+        {
+            permanentlyPermittedTimes: [
+                { start: 1704067200000n, end: 1735689600000n },
+            ],
+            permanentlyForbiddenTimes: [],
+        },
+    ],
+};
+```
+
+### Permission Check
+
+When using `MsgUniversalUpdateCollection` to add wrapper paths via `cosmosCoinWrapperPathsToAdd`, the system checks the `canAddMoreCosmosCoinWrapperPaths` permission before processing the paths. If the permission check fails, the transaction will be rejected with an appropriate error message.
+
+**Note**: The permission is checked before paths are added, but the permission itself can be updated at the end of the transaction (if `updateCollectionPermissions` is set to `true`).
+
 ## Differences from IBC Backed Paths
 
 | Feature           | Wrapper Path                 | IBC Backed Path                        |
 | ----------------- | ---------------------------- | -------------------------------------- |
 | **Minting**       | Minting/burning of new denom | No minting/burning (uses existing IBC) |
 | **Denom Source**  | Generated denom              | Existing IBC denom                     |
-| **Configuration** | Timeline-based (mutable)     | Collection invariant (immutable)       |
+| **Configuration** | Can add paths, no edits      | Collection invariant                   |
 | **Mint Address**  | Enabled                      | Disabled                               |
 
 
@@ -9172,29 +9395,35 @@ const collection: MsgCreateCollection = {
     validTokenIds: [{ start: 1n, end: 1n }],
     invariants: {
         cosmosCoinBackedPath: {
-            // address: auto-generated from ibcDenom
-            ibcDenom: 'ibc/1234567890ABCDEF',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            // address: auto-generated from conversion.sideA.denom
+            conversion: {
+                sideA: {
+                    amount: '1000000', // IBC coin amount (from old ibcAmount)
+                    denom: 'ibc/1234567890ABCDEF', // IBC denomination (from old ibcDenom)
                 },
-            ],
-            ibcAmount: '1000000', // 1 ubadge = 1,000,000 IBC coin units
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 1n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
         },
         noCustomOwnershipTimes: false,
         maxSupplyPerId: '0',
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
     },
-    // ... other fields (collectionPermissions, manager, etc.)
+    // ... other fields (collectionPermissions, managerTimeline, etc.)
 };
 ```
 
 ## Special Address
 
-Each IBC backed path has a **special address** automatically generated from the IBC denomination:
+Each IBC backed path has a **special address** automatically generated from the IBC denomination in `conversion.sideA.denom`:
 
 ```typescript
 import { generateAliasAddressForIBCDenom } from 'bitbadgesjs-sdk';
@@ -9213,10 +9442,10 @@ console.log('Special Address:', specialAddress);
 
 ## Conversion Mechanism
 
-The conversion is a direct mapping. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
+The conversion uses a structured `Conversion` format that combines the IBC denom and amount into `sideA`, with badge tokens in `sideB`. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
 
 ```
-[{ amount: ibcAmount, denom: ibcDenom }] = [...Balances[]] (x/badges)
+conversion.sideA (amount + denom) = conversion.sideB[] (x/badges)
 ```
 
 **Example:**
@@ -9224,17 +9453,28 @@ The conversion is a direct mapping. You can't fractionalize it, but if you make 
 ```typescript
 // Configuration
 const backedPath = {
-    ibcDenom: 'ibc/1234567890ABCDEF',
-    ibcAmount: '1000000', // 1 badge = 1,000,000 IBC coin units
-    balances: [
-        {
-            amount: 1n,
-            tokenIds: [{ start: 1n, end: 1n }],
-            ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    conversion: {
+        sideA: {
+            amount: '1000000', // IBC coin amount (from old ibcAmount)
+            denom: 'ibc/1234567890ABCDEF', // IBC denomination (from old ibcDenom)
         },
-    ],
+        sideB: [
+            {
+                amount: 1n,
+                tokenIds: [{ start: 1n, end: 1n }],
+                ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            },
+        ],
+    },
 };
 ```
+
+**Conversion Structure:**
+
+-   **`Conversion`** (with denom): Used by backed paths because the denom is part of the conversion
+-   **`sideA`**: Contains both `amount` and `denom` (from old `ibcAmount` and `ibcDenom` fields)
+-   **`sideB`**: Array of `Balance` objects that define the badge tokens (from old `balances` field)
+-   **Conversion rate**: `conversion.sideA.amount` of `conversion.sideA.denom` = `conversion.sideB[]` tokens
 
 ## Configuration
 
@@ -9251,15 +9491,21 @@ const collection: MsgCreateCollection = {
     validTokenIds: [{ start: 1n, end: 100n }],
     invariants: {
         cosmosCoinBackedPath: {
-            ibcDenom: 'ibc/1234567890ABCDEF',
-            balances: [
-                {
-                    amount: 1n,
-                    tokenIds: [{ start: 1n, end: 100n }],
-                    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+            conversion: {
+                sideA: {
+                    amount: '1000000', // IBC coin amount
+                    denom: 'ibc/1234567890ABCDEF', // IBC denomination
                 },
-            ],
-            ibcAmount: '1000000',
+                sideB: [
+                    {
+                        amount: 1n,
+                        tokenIds: [{ start: 1n, end: 100n }],
+                        ownershipTimes: [
+                            { start: 1n, end: 18446744073709551615n },
+                        ],
+                    },
+                ],
+            },
         },
         noCustomOwnershipTimes: false,
         maxSupplyPerId: '0',
@@ -9417,12 +9663,12 @@ const unbackTokens: MsgTransferTokens = {
 
 ## Differences from Wrapper Paths
 
-| Feature           | IBC Backed Path                        | Wrapper Path                 |
-| ----------------- | -------------------------------------- | ---------------------------- |
-| **Minting**       | No minting/burning (uses existing IBC) | Minting/burning of new denom |
-| **Denom Source**  | Existing IBC denom                     | Generated denom              |
-| **Configuration** | Collection invariant (immutable)       | Timeline-based (mutable)     |
-| **Standard Minting**  | Disabled                               | Enabled                      |
+| Feature              | IBC Backed Path                        | Wrapper Path                 |
+| -------------------- | -------------------------------------- | ---------------------------- |
+| **Minting**          | No minting/burning (uses existing IBC) | Minting/burning of new denom |
+| **Denom Source**     | Existing IBC denom                     | Generated denom              |
+| **Configuration**    | Collection invariant                   | Can add paths, no edits      |
+| **Standard Minting** | Disabled                               | Enabled                      |
 
 
 ## File: ./learn/minting-and-circulating-supply.md
@@ -9702,17 +9948,6 @@ const collection: TokenCollection<bigint> = {
 };
 ```
 
-### Manager Timeline
-
-Managers can change over time using timeline-based configuration:
-
-```typescript
-// Manager changes automatically on a specific date
-const manager = 'bb1alice...';
-```
-
-This transfers management from Alice to Bob on January 1, 2023 automatically.
-
 ### Setting Initial Manager
 
 During collection creation:
@@ -9736,30 +9971,6 @@ const collection: TokenCollection<bigint> = {
 };
 ```
 
-### Decentralized Management Transition
-
-Transition to a burn address manager and lock management permanently, creating a decentralized collection:
-
-```typescript
-const collection: TokenCollection<bigint> = {
-    manager: 'bb1qqqq....', // Burn address
-    collectionPermissions: {
-        canUpdateManager: [
-            {
-                permanentlyPermittedTimes: [],
-                permanentlyForbiddenTimes: [
-                    { start: 1n, end: 18446744073709551615n },
-                ],
-            },
-        ],
-        // ... other permission fields
-    },
-    // ... other collection fields
-};
-```
-
-This sets the manager to a burn address and locks management permanently, creating a decentralized collection.
-
 ### No Manager
 
 If you don't want a manager, set the manager to an empty string. Permission values don't matter when there's no manager:
@@ -9778,7 +9989,7 @@ The manager can execute administrative actions according to permissions:
 -   Updating valid token IDs
 -   Archiving the collection
 -   Deleting the collection
--   Updating manager timeline
+-   Updating manager
 -   And more...
 
 All permissions are defined on-chain with time-based configuration, allowing permissions to change over time.
@@ -9797,10 +10008,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
     // ... other permission fields
 };
 ```
-
 
 ## User Permissions
 
@@ -9855,7 +10067,6 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-
 ## First Match Policy
 
 Permissions are evaluated as a linear array where each element has criteria and time controls. Only the **first matching element** is applied - all subsequent matches are ignored.
@@ -9867,7 +10078,7 @@ Permissions are evaluated as a linear array where each element has criteria and 
 -   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
 -   **Order Matters**: Array order affects which permissions are applied
 
-**Example: Timeline Permissions**
+**Example: Action Permissions**
 
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
@@ -9942,18 +10153,15 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-
 ## Permission Types
 
-There are **five types** of permissions, each with different criteria:
+There are **four types** of permissions, each with different criteria:
 
-| Type                            | Criteria                                       | Examples                                                     |
-| ------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| **Action Permissions**          | Time control only                              | `canDeleteCollection`                                        |
-| **Timeline Permissions**        | Timeline times + time control                  | `canUpdateCollectionMetadata`, `canUpdateStandards`          |
-| **Timeline with Token IDs**     | Timeline times + token IDs + time control      | `canUpdateTokenMetadata`                                     |
-| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`                                     |
-| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals` |
+| Type                            | Criteria                                       | Examples                                                                                                                                                                                                  |
+| ------------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Action Permissions**          | Time control only                              | `canDeleteCollection`, `canUpdateCollectionMetadata`, `canUpdateStandards`, `canUpdateCustomData`, `canUpdateManager`, `canArchiveCollection`, `canAddMoreAliasPaths`, `canAddMoreCosmosCoinWrapperPaths` |
+| **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`, `canUpdateTokenMetadata`                                                                                                                                                        |
+| **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals`                                                                                                                                              |
 
 ### Action Permissions
 
@@ -9962,6 +10170,13 @@ Simple time-based permissions with no additional criteria. Control when actions 
 **Collection Actions:**
 
 -   `canDeleteCollection` - Delete entire collection
+-   `canUpdateCollectionMetadata` - Update collection metadata
+-   `canUpdateStandards` - Update standards
+-   `canUpdateCustomData` - Update custom data
+-   `canUpdateManager` - Update manager
+-   `canArchiveCollection` - Archive/unarchive collection
+-   `canAddMoreAliasPaths` - Add new alias paths to collection
+-   `canAddMoreCosmosCoinWrapperPaths` - Add new cosmos coin wrapper paths to collection
 
 **User Actions:**
 
@@ -10013,27 +10228,20 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-### Timeline Permissions
+### Token ID Action Permissions
 
-Control when collection fields can be updated.
+Control when token ID-based fields can be updated. These permissions match on `tokenIds` to determine which token IDs can be updated.
 
-**Basic Timeline Permissions** (timeline times only):
+**Token ID Action Permissions:**
 
--   `canArchiveCollection`
--   `canUpdateStandards`
--   `canUpdateCustomData`
--   `canUpdateManager`
--   `canUpdateCollectionMetadata`
-
-**Token-Specific Timeline Permissions** (timeline times + token IDs):
-
--   `canUpdateTokenMetadata`
+-   `canUpdateValidTokenIds` - Update valid token IDs
+-   `canUpdateTokenMetadata` - Update token metadata
 
 **Logic:**
 
 ```
-For each timeline update request:
-    Check if current time is in permanentlyPermittedTimes
+For each token ID update request:
+    Check if token ID matches any tokenIds criteria
         → If no match: ALLOW (neutral state)
         → If match: Check if current time is in permanentlyPermittedTimes
             → If yes: ALLOW
@@ -10042,47 +10250,13 @@ For each timeline update request:
                 → If no: ALLOW (neutral state)
 ```
 
-**Timeline vs Execution Times:**
-
--   **Timeline Times**: Which timeline values can be updated?
--   **Execution Times**: When can the permission be executed?
-
-These may not align. For example, you might forbid updating timeline values for Jan 2024 during 2023.
-
 **Examples:**
 
 ```typescript
-// Lock collection metadata forever
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
-        {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ],
-        },
-    ],
-};
-
-// Lock specific timeline period
-const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
-        {
-            timelineTimes: [{ start: 1000n, end: 2000n }],
-            permanentlyPermittedTimes: [],
-            permanentlyForbiddenTimes: [
-                { start: 1n, end: 18446744073709551615n },
-            ],
-        },
-    ],
-};
-
-// Lock token metadata for existing tokens
+// Lock token metadata for specific tokens forever
 const collectionPermissions: CollectionPermissions<bigint> = {
     canUpdateTokenMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
             tokenIds: [{ start: 1n, end: 100n }],
             permanentlyPermittedTimes: [],
             permanentlyForbiddenTimes: [
@@ -10092,11 +10266,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
     ],
 };
 
-// Allow updates only during specific period
+// Allow token metadata updates only during specific period
 const collectionPermissions: CollectionPermissions<bigint> = {
-    canUpdateCollectionMetadata: [
+    canUpdateTokenMetadata: [
         {
-            timelineTimes: [{ start: 1n, end: 18446744073709551615n }],
+            tokenIds: [{ start: 1n, end: 100n }],
             permanentlyPermittedTimes: [
                 { start: 1704067200000n, end: 1735689600000n },
             ],
@@ -10268,6 +10442,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 2. **Range Lock with Overlap Protection**: Lock a token range AND all overlapping approvals
 3. **Complete Freeze**: Lock all approvals for a collection
 
+
 ## File: ./learn/pre-readings.md
 
 ### Explore the BitBadges Platform
@@ -10297,11 +10472,11 @@ BitBadges supports three levels of transferability control:
 
 <div style="overflow-x: auto;">
 
-| Level          | Controlled By  | Approval Level | Approver Address | Stored On              | Msg                                    | Use Case                               |
-| -------------- | -------------- | -------------- | ----------------- | ---------------------- | -------------------------------------- | -------------------------------------- |
-| **Collection** | Manager/Issuer | collection     | ""                | TokenCollection.collectionApprovals      | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
-| **Outgoing**   | Sender         | outgoing       | bb1...            | UserBalanceStore.outgoingApprovals       | MsgUpdateUserApprovals                 | Listings, delegation                   |
-| **Incoming**   | Recipient      | incoming       | bb1...            | UserBalanceStore.incomingApprovals       | MsgUpdateUserApprovals                 | Bids, access control                   |
+| Level          | Controlled By  | Approval Level | Approver Address | Stored On                           | Msg                                       | Use Case                               |
+| -------------- | -------------- | -------------- | ---------------- | ----------------------------------- | ----------------------------------------- | -------------------------------------- |
+| **Collection** | Manager/Issuer | collection     | ""               | TokenCollection.collectionApprovals | MsgCreateCollection / MsgUpdateCollection | Global rules, freezability, compliance |
+| **Outgoing**   | Sender         | outgoing       | bb1...           | UserBalanceStore.outgoingApprovals  | MsgUpdateUserApprovals                    | Listings, delegation                   |
+| **Incoming**   | Recipient      | incoming       | bb1...           | UserBalanceStore.incomingApprovals  | MsgUpdateUserApprovals                    | Bids, access control                   |
 
 </div>
 
@@ -10309,9 +10484,9 @@ Each transfer must satisfy collection-level AND (unless overridden) user-level a
 
 ## Approval vs Permission vs Transfers
 
-* Approvals define the rules for transfers on multiple levels.
-* Transfers execute if the approval rules defined allow it and sufficient balances.
-* Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
+-   Approvals define the rules for transfers on multiple levels.
+-   Transfers execute if the approval rules defined allow it and sufficient balances.
+-   Permissions can control the updatability of approvals - `canUpdateCollectionApprovals`
 
 ### Transfer Validation Process
 
@@ -10400,36 +10575,36 @@ interface ApprovalCriteria<T extends bigint> {
     maxNumTransfers?: MaxNumTransfers<T>; // Limit number of transfers
     approvalAmounts?: ApprovalAmounts<T>; // Limit transfer amounts
     predeterminedBalances?: PredeterminedBalances<T>; // Exact balance requirements
-    
+
     // Automatic actions
     coinTransfers?: CoinTransfer<T>[]; // Automatic coin transfers (BADGE or sdk.Coin)
     userRoyalties?: UserRoyalties<T>; // Percentage-based transfer fees
-    
+
     // Challenge requirements
     merkleChallenges?: MerkleChallenge<T>[]; // Require merkle proofs
     mustOwnTokens?: MustOwnToken<T>[]; // Require owning specific tokens
     dynamicStoreChallenges?: DynamicStoreChallenge<T>[]; // On-chain numeric checks
     ethSignatureChallenges?: ETHSignatureChallenge<T>[]; // Ethereum signature requirements
     votingChallenges?: VotingChallenge<T>[]; // Require weighted quorum thresholds
-    
+
     // Address relationship requirements
     requireToEqualsInitiatedBy?: boolean; // to == initiatedBy
     requireFromEqualsInitiatedBy?: boolean; // from == initiatedBy
     requireToDoesNotEqualInitiatedBy?: boolean; // to != initiatedBy
     requireFromDoesNotEqualInitiatedBy?: boolean; // from != initiatedBy
-    
+
     // Address type checks
     senderChecks?: AddressChecks; // Address checks for sender
     recipientChecks?: AddressChecks; // Address checks for recipient
     initiatorChecks?: AddressChecks; // Address checks for initiator
-    
+
     // Overrides (collection-level only)
     overridesFromOutgoingApprovals?: boolean; // Override sender approvals
     overridesToIncomingApprovals?: boolean; // Override recipient approvals
-    
+
     // Time-based restrictions
     altTimeChecks?: AltTimeChecks; // Alternative time checks (offline hours/days)
-    
+
     // Approval behavior
     autoDeletionOptions?: AutoDeletionOptions; // Auto-delete after use
     mustPrioritize?: boolean; // Require explicit prioritization
@@ -10499,7 +10674,7 @@ const incomingApproval: IncomingApproval<bigint> = {
 
 ### User-Level Auto-Approval Flags
 
-We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true. 
+We provide auto-approval flags to automatically approve transfers without requiring explicit approval matching. These flags are used for convenience and ease of use for user-level approval handling. Typically, we recommend leaving all the auto-approval flags set to true.
 
 #### Auto-Approve Self-Initiated Outgoing Transfers
 
@@ -10555,14 +10730,14 @@ const mintApproval: CollectionApproval<bigint> = {
 
 **Outgoing overrides:** When `overridesFromOutgoingApprovals: true`, the collection approval bypasses the sender's outgoing approvals. This enables:
 
-* Freezing tokens (prevent transfers regardless of user settings)
-* Forced revocation (remove tokens from users)
-* Administrative transfers (manager-controlled actions)
+-   Freezing tokens (prevent transfers regardless of user settings)
+-   Forced revocation (remove tokens from users)
+-   Administrative transfers (manager-controlled actions)
 
 **Incoming overrides:** When `overridesToIncomingApprovals: true`, the collection approval bypasses the recipient's incoming approvals. This enables:
 
-* Forced transfers (send tokens even if recipient blocks them)
-* Administrative actions (manager-controlled distributions)
+-   Forced transfers (send tokens even if recipient blocks them)
+-   Administrative actions (manager-controlled distributions)
 
 **Important:** Overrides are powerful and should be used carefully. They allow executing transfers that would otherwise be blocked by user settings.
 
@@ -12293,10 +12468,11 @@ Dynamic stores are standalone (address -> boolean) stores controlled by whoever 
 
 Dynamic store challenges check if the transfer initiator has a value of `true` in specified dynamic stores. The system:
 
-1. **Checks Initiator**: Looks up the initiator's address in the specified dynamic store
-2. **Evaluates Boolean**: Returns the boolean value for the initiator
-3. **Requires All True**: All challenges must return `true` for approval
-4. **Fails if Any False**: If any challenge returns `false`, transfer is denied
+1. **Checks Global Kill Switch**: First checks if the dynamic store's `globalEnabled` field is `true`. If `globalEnabled = false`, the approval fails immediately with error: "dynamic store storeId {id} is globally disabled"
+2. **Checks Initiator**: If the store is globally enabled, looks up the initiator's address in the specified dynamic store
+3. **Evaluates Boolean**: Returns the boolean value for the initiator (or `defaultValue` if not set)
+4. **Requires All True**: All challenges must return `true` for approval
+5. **Fails if Any False**: If any challenge returns `false`, transfer is denied
 
 ## Interface
 
@@ -12317,11 +12493,48 @@ interface DynamicStoreChallenge {
 }
 ```
 
+## Global Kill Switch
+
+Each dynamic store has a `globalEnabled` field that acts as a global kill switch. When `globalEnabled = false`, **all approvals** using that store via `DynamicStoreChallenge` will fail immediately, regardless of per-address values.
+
+This is useful for quickly halting all approvals that depend on a specific dynamic store (e.g., if a protocol is compromised and needs to be disabled immediately).
+
+### Behavior
+
+- **New stores**: `globalEnabled` defaults to `true` (enabled by default)
+- **Existing stores**: All existing stores are set to `globalEnabled = true` for backward compatibility
+- **Disabling**: Set `globalEnabled = false` via [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to halt all dependent approvals
+- **Re-enabling**: Set `globalEnabled = true` to restore normal operation
+
+### Usage Example
+
+```json
+// Disable all approvals using store "1"
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,  // Must pass current value
+    "globalEnabled": false  // Disable kill switch
+}
+
+// Re-enable when ready
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,
+    "globalEnabled": true  // Re-enable
+}
+```
+
 ## Managing Dynamic Stores
 
 ### Creating Stores
 
-Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value.
+Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value. New stores are created with `globalEnabled = true` by default.
+
+### Updating Stores
+
+Use [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to update the store's `defaultValue`, `globalEnabled`, `uri`, and `customData` fields. The `uri` and `customData` fields allow storing additional metadata and arbitrary data associated with the store.
 
 ### Setting Values
 
@@ -12330,6 +12543,8 @@ Use [MsgSetDynamicStoreValue](../../../x-badges/messages/msg-set-dynamic-store-v
 ### Querying Values
 
 Use [GetDynamicStoreValue](../../../x-badges/queries/get-dynamic-store-value.md) to check current values for addresses.
+
+Use [GetDynamicStore](../../../x-badges/queries/get-dynamic-store.md) to retrieve the store's configuration, including `globalEnabled` status, `uri`, and `customData` fields.
 
 ## Alternatives
 
@@ -12343,7 +12558,7 @@ For fully off-chain solutions, consider:
 
 # ETH Signature Challenges
 
-ETH Signature Challenges are a type of approval criteria that require users to provide valid Ethereum signatures from a predetermined signer to complete transfers. The signer approves the address by signing a message that contains the address and a nonce. This feature allows for secure, on-chain verification of off-chain authorization without the complexity of Merkle trees.
+ETH Signature Challenges are a type of approval criteria that require users to provide valid Ethereum signatures from a predetermined signer to complete transfers. The signer approves the transfer by signing a message that contains the nonce and contextual information about the transfer. This feature allows for secure, on-chain verification of off-chain authorization without the complexity of Merkle trees.
 
 ## Overview
 
@@ -12356,14 +12571,21 @@ ETH Signature Challenges work by requiring users to provide Ethereum signatures 
 The signature scheme follows the pattern:
 
 ```
-ETHSign(nonce + "-" + creatorAddress)
+ETHSign(nonce + "-" + initiatorAddress + "-" + collectionId + "-" + approverAddress + "-" + approvalLevel + "-" + approvalId + "-" + challengeId)
 ```
 
 Where:
 
 -   `nonce`: A unique identifier provided by the user
--   `creatorAddress`: The address of the collection creator
--   `-`: A literal dash character separating the two values
+-   `initiatorAddress`: The address initiating the transfer
+-   `collectionId`: The ID of the collection being transferred
+-   `approverAddress`: The address that needs to approve the transfer
+-   `approvalLevel`: The approval level (e.g., "initial", "update")
+-   `approvalId`: The ID of the approval being checked
+-   `challengeId`: The challenge tracker ID
+-   `-`: Literal dash characters separating the values
+
+This comprehensive signature format ensures that signatures are bound to specific transfer contexts, preventing signature reuse across different transfers, collections, or approval scenarios.
 
 ### Challenge Structure
 
@@ -12378,8 +12600,8 @@ Each ETH Signature Challenge contains:
 
 Users provide ETH Signature Proofs containing:
 
--   `nonce`: The nonce that was signed
--   `signature`: The Ethereum signature of the nonce
+-   `nonce`: The nonce that was signed (this is the only user-provided value in the signature message)
+-   `signature`: The Ethereum signature of the full message string
 
 ## Key Features
 
@@ -12390,6 +12612,15 @@ Each signature can only be used once per challenge tracker. This prevents:
 -   Replay attacks
 -   Double-spending of approvals
 -   Unauthorized reuse of signatures
+
+The signature tracking is scoped to the combination of:
+
+-   Collection ID
+-   Approver address
+-   Approval level
+-   Approval ID
+-   Challenge tracker ID
+-   The signature itself
 
 ### Multiple Signers
 
@@ -12410,23 +12641,48 @@ You can require signatures from multiple Ethereum addresses in a single approval
 }
 ```
 
+### Context-Aware Signatures
+
+The new signature format includes contextual information about the transfer, ensuring that:
+
+-   Signatures cannot be reused across different collections
+-   Signatures cannot be reused across different approvers
+-   Signatures cannot be reused across different approval levels
+-   Signatures are bound to specific approval IDs and challenge IDs
+
+This provides stronger security guarantees compared to simpler signature schemes.
+
 ## Implementation Details
 
 ### Signature Verification
 
 The system verifies signatures by:
 
-1. Reconstructing the signed message: `nonce + "-" + creatorAddress`
-2. Recovering the signer address from the signature
+1. Constructing the signed message: `nonce + "-" + initiatorAddress + "-" + collectionId + "-" + approverAddress + "-" + approvalLevel + "-" + approvalId + "-" + challengeId`
+2. Recovering the signer address from the signature using elliptic curve signature verification
 3. Comparing the recovered address with the expected `signer` address
-4. Checking that the signature hasn't been used before
+4. Checking that the signature hasn't been used before (tracked per collection, approver, approval level, approval ID, and challenge ID)
 
 ### Storage
 
 Used signatures are tracked in the blockchain state using:
 
--   **Key**: `ETHSignatureTrackerKey` with challenge tracker ID
--   **Value**: Number of times the signature has been used (increment-only per tracker ID)
+-   **Key**: `ETHSignatureTrackerKey` constructed from:
+    -   Collection ID
+    -   Approver address
+    -   Approval level
+    -   Approval ID
+    -   Challenge tracker ID
+    -   The signature itself
+-   **Value**: Number of times the signature has been used (increment-only, must be 0 for first use)
+
+### Proof Matching
+
+The system checks all provided ETH signature proofs against each challenge. A challenge is satisfied if at least one proof:
+
+1. Has a valid signature from the expected signer
+2. Has not been used before
+3. Matches the signature scheme with the correct contextual parameters
 
 ## Quick Reference
 
@@ -12441,21 +12697,61 @@ interface ETHSignatureChallenge {
 }
 
 interface ETHSignatureProof {
-    nonce: string; // The nonce that was signed
-    signature: string; // Ethereum signature
+    nonce: string; // The nonce that was signed (user-provided)
+    signature: string; // Ethereum signature of the full message
 }
 ```
+
+### Signature Message Format
+
+When signing, the message string is constructed as:
+
+```
+{nonce}-{initiatorAddress}-{collectionId}-{approverAddress}-{approvalLevel}-{approvalId}-{challengeId}
+```
+
+All values are joined with literal dash (`-`) characters. The signer must sign this exact string.
 
 ## Error Handling
 
 Common error scenarios:
 
--   **Invalid Signature**: Signature doesn't match the expected signer
--   **Already Used**: Signature has been used before
+-   **Invalid Signature**: Signature doesn't match the expected signer or the message format is incorrect
+-   **Already Used**: Signature has been used before for this specific combination of collection, approver, approval level, approval ID, and challenge ID
 -   **Missing Proof**: Required ETH signature proof not provided
 -   **Invalid Nonce**: Nonce format or content is invalid
+-   **Context Mismatch**: Signature was created for a different transfer context (different collection, approver, etc.)
 
 The system provides clear error messages to help users understand and resolve issues.
+
+## Security Considerations
+
+### Replay Attack Prevention
+
+The combination of contextual information in the signature and one-time-use tracking prevents:
+
+-   Reusing signatures across different transfers
+-   Reusing signatures across different collections
+-   Reusing signatures across different approvers
+-   Reusing signatures after the challenge tracker ID changes
+
+### Signature Binding
+
+By including transfer context in the signature, the system ensures that:
+
+-   Signatures cannot be extracted and used in unauthorized contexts
+-   Each signature is cryptographically bound to specific transfer parameters
+-   Signers can review exactly what they are approving before signing
+
+### Challenge Tracker ID Management
+
+Changing the `challengeTrackerId` resets the usage tracker, allowing signatures to be reused. This can be useful for:
+
+-   Rotating challenge configurations
+-   Resetting usage counters
+-   Creating new challenge periods
+
+However, care should be taken to ensure old signatures cannot be maliciously reused when tracker IDs are changed.
 
 
 ## File: ./token-standard/learn/approval-criteria/max-number-of-transfers.md
@@ -13116,7 +13412,7 @@ Predetermined balances can change rapidly between transaction broadcast and conf
 
 ### The Solution: Precalculation
 
-Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md) to dynamically calculate balances at execution time.
+Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../x-badges/messages/msg-transfer-tokens.md) to dynamically calculate balances at execution time.
 
 ```typescript
 {
@@ -13125,12 +13421,43 @@ Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../../bitbadges
     approvalLevel: string;        // "collection" | "incoming" | "outgoing"
     approverAddress: string;      // "" if collection-level
     version: string;              // Must specify exact version
-  },
-  precalculationOptions: {
-    // Additional override options dependent on the selections
+    precalculationOptions: {
+      overrideTimestamp: string;  // Optional: override timestamp (milliseconds)
+      tokenIdsOverride: UintRange[]; // Optional: override token IDs
+    }
   }
 }
 ```
+
+## Precalculation Options
+
+When using `precalculateBalancesFromApproval`, you can override calculation parameters. These options only apply when the corresponding flags are enabled in `IncrementedBalances`.
+
+| Field               | Type          | When It Applies                                                    | Validation                                    |
+| ------------------- | ------------- | ------------------------------------------------------------------ | --------------------------------------------- |
+| `overrideTimestamp` | string (Uint) | `durationFromTimestamp` set and `allowOverrideTimestamp` is `true` | If zero, uses current block time              |
+| `tokenIdsOverride`  | UintRange[]   | `allowOverrideWithAnyValidToken` is `true`                         | Must be exactly one range with `start == end` |
+
+**overrideTimestamp**: Overrides the base timestamp for ownership time calculation. Ownership times become `[overrideTimestamp, overrideTimestamp + durationFromTimestamp - 1]`.
+
+**tokenIdsOverride**: Replaces incrementally calculated token IDs. The token ID must be in the collection's `validTokenIds`.
+
+```json
+{
+    "precalculateBalancesFromApproval": {
+        "approvalId": "approval-1",
+        "approvalLevel": "collection",
+        "approverAddress": "",
+        "version": "1",
+        "precalculationOptions": {
+            "overrideTimestamp": "1704067200000",
+            "tokenIdsOverride": [{ "start": "5", "end": "5" }]
+        }
+    }
+}
+```
+
+If the corresponding flags are `false`, the options are ignored (no error).
 
 ## Order Calculation Methods
 
@@ -13570,6 +13897,238 @@ User royalties automatically deduct a percentage from transfers and send it to a
 ## Edge Case: One per Transfer
 
 Currently, we only support one specific royalty percentage applied per transfer. If a transfer matches to different approvals with multiple royalties, the transfer may fail.
+
+
+## File: ./token-standard/learn/approval-criteria/voting-challenges.md
+
+# Voting Challenges
+
+Voting challenges require a weighted quorum threshold to be met through votes from specified voters. This enables multi-signature-like approval where multiple parties must vote to approve transfers, with each voter having a configurable weight. Votes are stored separately and can be updated.
+
+The system requires a minimum percentage of total voter weight to vote "yes" before a transfer can be approved. Each voter has a weight, and each vote allocates a percentage (0-100%) to "yes" with the remainder going to "no".
+
+## Structure
+
+### Challenge Fields
+
+| Field             | Type    | Description                                                      |
+| ----------------- | ------- | ---------------------------------------------------------------- |
+| `proposalId`      | string  | Unique identifier for tracking votes                             |
+| `quorumThreshold` | string  | Percentage (0-100) of total possible weight that must vote "yes" |
+| `voters`          | Voter[] | List of voters with addresses and weights                        |
+| `uri`             | string  | Optional metadata URI                                            |
+| `customData`      | string  | Optional custom data                                             |
+
+### Vote Fields
+
+| Field        | Type   | Description                                                   |
+| ------------ | ------ | ------------------------------------------------------------- |
+| `proposalId` | string | Proposal ID this vote is for                                  |
+| `voter`      | string | Address of the voter casting the vote                         |
+| `yesWeight`  | string | Percentage (0-100) allocated to "yes"; remainder goes to "no" |
+
+## Voting Process
+
+1. **Cast Vote**: Voters use `MsgCastVote` with `yesWeight` (0-100%)
+2. **Store Vote**: Votes stored with key: `collectionId-approverAddress-approvalLevel-approvalId-proposalId-voterAddress`
+3. **Update Vote**: Casting a new vote with same parameters overwrites the previous vote
+4. **Calculate Threshold**: On transfer attempt:
+    - Retrieve all votes for the proposal
+    - Calculate each voter's yes contribution: `(voterWeight × yesWeight) / 100`
+    - Sum all yes contributions
+    - Calculate percentage: `(totalYesWeight × 100) / totalPossibleWeight`
+    - Compare to `quorumThreshold`
+
+## Weighted Voting
+
+Each voter has a configurable weight:
+
+```json
+{
+    "votingChallenges": [
+        {
+            "proposalId": "proposal-1",
+            "quorumThreshold": "50",
+            "voters": [
+                { "address": "bb1abc...", "weight": "100" },
+                { "address": "bb1def...", "weight": "200" },
+                { "address": "bb1ghi...", "weight": "50" }
+            ]
+        }
+    ]
+}
+```
+
+**Example:**
+
+-   Total possible weight: 350
+-   Quorum threshold: 50% of 350 = 175 weight must vote "yes"
+
+## Partial Votes
+
+Voters can allocate a percentage to "yes" with the remainder going to "no":
+
+| `yesWeight` | Yes % | No % |
+| ----------- | ----- | ---- |
+| `100`       | 100%  | 0%   |
+| `70`        | 70%   | 30%  |
+| `50`        | 50%   | 50%  |
+| `0`         | 0%    | 100% |
+
+## Threshold Calculation
+
+**Important**: The threshold is calculated as a percentage of **total possible weight** (all voters), not just voters who have cast votes. Non-voting voters count as 0% yes.
+
+**Example:**
+
+-   Voter A: weight 100, votes 100% yes → contributes 100 yes weight
+-   Voter B: weight 200, votes 50% yes → contributes 100 yes weight
+-   Voter C: weight 50, doesn't vote → contributes 0 yes weight
+-   Total possible weight: 350
+-   Quorum threshold: 50%
+
+**Calculation:**
+
+-   Total yes weight: 100 + 100 + 0 = 200
+-   Percentage: (200 × 100) / 350 = 57.14%
+-   Result: 57.14% ≥ 50% → **Challenge satisfied**
+
+## Implementation Details
+
+### Vote Key Format
+
+Votes are stored with key: `collectionId-approverAddress-approvalLevel-approvalId-proposalId-voterAddress`
+
+This scopes votes to specific collection, approver, approval level, approval ID, proposal ID, and voter.
+
+### Vote Verification
+
+When checking if a challenge is satisfied:
+
+1. Retrieve all votes for voters in the challenge
+2. For each voter:
+    - If vote exists: calculate yes contribution `(voterWeight × yesWeight) / 100`
+    - If no vote: contribution is 0
+3. Sum all yes contributions
+4. Calculate percentage: `(totalYesWeight × 100) / totalPossibleWeight`
+5. Compare to `quorumThreshold`
+
+## Type Definitions
+
+```typescript
+interface VotingChallenge {
+    proposalId: string; // Unique ID for tracking votes
+    quorumThreshold: string; // Percentage (0-100) of total weight that must vote yes
+    voters: Voter[]; // List of voters with their weights
+    uri?: string; // Optional metadata URI
+    customData?: string; // Optional custom data
+}
+
+interface Voter {
+    address: string; // Address of the voter
+    weight: string; // Weight of this voter's vote
+}
+```
+
+Cast votes using [MsgCastVote](../../x-badges/messages/msg-cast-vote.md).
+
+## Use Cases
+
+### Multi-Signature Approval
+
+Require unanimous approval from multiple parties:
+
+```json
+{
+    "votingChallenges": [
+        {
+            "proposalId": "multisig-1",
+            "quorumThreshold": "100",
+            "voters": [
+                { "address": "bb1alice...", "weight": "1" },
+                { "address": "bb1bob...", "weight": "1" },
+                { "address": "bb1charlie...", "weight": "1" }
+            ]
+        }
+    ]
+}
+```
+
+Requires all three voters to vote 100% yes.
+
+### Weighted Governance
+
+Different stakeholders have different voting power:
+
+```json
+{
+    "votingChallenges": [
+        {
+            "proposalId": "governance-1",
+            "quorumThreshold": "66",
+            "voters": [
+                { "address": "bb1founder...", "weight": "1000" },
+                { "address": "bb1investor...", "weight": "500" },
+                { "address": "bb1community...", "weight": "100" }
+            ]
+        }
+    ]
+}
+```
+
+Requires 66% of total weight (1056 out of 1600) to vote yes.
+
+### Flexible Approval
+
+Lower threshold for partial approval:
+
+```json
+{
+    "votingChallenges": [
+        {
+            "proposalId": "flexible-1",
+            "quorumThreshold": "30",
+            "voters": [
+                { "address": "bb1voter1...", "weight": "100" },
+                { "address": "bb1voter2...", "weight": "100" },
+                { "address": "bb1voter3...", "weight": "100" }
+            ]
+        }
+    ]
+}
+```
+
+Allows approval with 30% of total weight voting yes.
+
+## Error Conditions
+
+The system fails if:
+
+-   Voter is not in the challenge's voters list
+-   `yesWeight` is greater than 100
+-   Percentage of yes votes is less than the quorum threshold
+-   `proposalId` doesn't match any voting challenge in the approval
+-   Challenge has no voters or all voters have zero weight
+
+## Security Considerations
+
+### Proposal ID Management
+
+Changing the `proposalId` resets the vote tracker. Use unique proposal IDs for each challenge to prevent vote overlap. Useful for rotating challenge configurations or creating new voting periods, but ensure old votes cannot be maliciously reused.
+
+### Vote Tampering Prevention
+
+Votes are stored on-chain and cannot be tampered with. Votes can be updated by the voter, are scoped to specific contexts (preventing cross-context reuse), and the system validates voters are in the challenge's voters list.
+
+### Abstention Handling
+
+Non-voting voters are treated as 0% yes (100% no). Set realistic thresholds that account for expected participation. High thresholds with many voters may be difficult to meet if voters abstain.
+
+### Weight Distribution
+
+Weight distribution affects security. If one voter has most of the weight, they can control approvals. Distribute weights appropriately to prevent single points of failure. Use equal weights for multi-signature scenarios.
+
+Use the `uri` and `customData` fields to provide context about what voters are approving. Monitor vote tallies to understand approval status.
 
 
 ## File: ./token-standard/learn/balance-system.md
@@ -14151,6 +14710,7 @@ This directory contains comprehensive developer documentation for the BitBadges 
 ### User Approvals
 
 * [MsgUpdateUserApprovals](messages/msg-update-user-approvals.md) - Update transfer approvals
+* [MsgCastVote](messages/msg-cast-vote.md) - Cast or update votes for voting challenges
 
 ### Address Lists & Dynamic Stores
 
@@ -14447,20 +15007,28 @@ Each IBC backed path has a **special address** that is automatically generated b
 
 ```protobuf
 message CosmosCoinBackedPath {
-  string address = 1;              // Auto-generated special address
-  string ibcDenom = 2;              // IBC denomination (e.g., "ibc/1234...")
-  repeated Balance balances = 3;    // Balance structure for conversion calculation
-  string ibcAmount = 4;             // Base IBC coin amount per balance unit
+  string address = 1;              // Auto-generated special address (from conversion.sideA.denom)
+  Conversion conversion = 2;       // Conversion structure with sideA (amount+denom) and sideB (balances)
+}
+
+message Conversion {
+  ConversionSideAWithDenom sideA = 1;  // Contains amount + denom (from old ibcAmount + ibcDenom)
+  repeated Balance sideB = 2;          // Badge token balances (from old balances field)
+}
+
+message ConversionSideAWithDenom {
+  string amount = 1;  // IBC coin amount (from old ibcAmount)
+  string denom = 2;   // IBC denomination (from old ibcDenom)
 }
 ```
 
 ### Conversion Mechanism
 
-The conversion is simply a direct mapping of:
+The conversion uses a structured format that combines the IBC denom and amount:
 
 ```
-1 ibcAmount of ibcDenom = balances (x/badges)
-Ex: 1 ubadge = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+conversion.sideA (amount, denom) = conversion.sideB[] (x/badges)
+Ex: { amount: "1000000", denom: "ibc/1234..." } = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
 
 ## Transferability Requirements
@@ -14521,17 +15089,21 @@ Note this is done from our MsgTransferTokens implementation as the entrypoint. S
 {
     "invariants": {
         "cosmosCoinBackedPath": {
-            "ibcDenom": "ibc/1234567890ABCDEF",
-            "balances": [
-                {
-                    "amount": "1",
-                    "tokenIds": [{ "start": "1", "end": "1" }],
-                    "ownershipTimes": [
-                        { "start": "1", "end": "18446744073709551615" }
-                    ]
-                }
-            ],
-            "ibcAmount": "1000000"
+            "conversion": {
+                "sideA": {
+                    "amount": "1000000",
+                    "denom": "ibc/1234567890ABCDEF"
+                },
+                "sideB": [
+                    {
+                        "amount": "1",
+                        "tokenIds": [{ "start": "1", "end": "1" }],
+                        "ownershipTimes": [
+                            { "start": "1", "end": "18446744073709551615" }
+                        ]
+                    }
+                ]
+            }
         }
     }
 }
@@ -14576,37 +15148,13 @@ The manager is the central authority for a collection, controlling all administr
 
 <figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
-## Manager Timeline
+## Manager
 
 ### Structure
 
 ```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
-    "manager": "bb1alice..."
-  }
-]
+"manager": "bb1alice..."
 ```
-
-### Time-Based Manager Changes
-
-Managers can be scheduled to change automatically:
-
-```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "1672531199000"}],
-    "manager": "bb1alice..."
-  },
-  {
-    "timelineTimes": [{"start": "1672531200000", "end": "18446744073709551615"}],
-    "manager": "bb1bob..."
-  }
-]
-```
-
-This transfers management from Alice to Bob on January 1, 2023.
 
 ## Manager Permissions
 
@@ -14623,27 +15171,27 @@ The manager role can be granted various permissions, allowing for flexible admin
 
 ### Metadata Management
 
-* **Collection Metadata Updates** - Modify collection-level metadata and URIs
-* **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
-* **Timeline Management** - Schedule metadata changes over time
+-   **Collection Metadata Updates** - Modify collection-level metadata and URIs
+-   **Token Metadata Updates** - Update individual token metadata (with token-specific permissions)
+-   **Metadata Management** - Update collection and token metadata
 
 ### Transferability Control
 
-* **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
-* **Transfer Rules** - Update transferability conditions and restrictions
-* **Permission Updates** - Configure transferability permissions
+-   **Approval Settings** - Modify the collection's approval settings that determine how tokens can be transferred
+-   **Transfer Rules** - Update transferability conditions and restrictions
+-   **Permission Updates** - Configure transferability permissions
 
 ### Off-Chain Management
 
-* **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
-* **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
+-   **Off-chain Balance Management** - For collections using off-chain balance storage, managers can update these balances
+-   **External Integrations** - Manager role can extend to off-chain functionalities and custom utilities
 
 ### User-Level Operation Limits
 
 The manager cannot directly:
 
-* Modify user balances (must follow approval system)
-* Access user private keys or personal data
+-   Modify user balances (must follow approval system)
+-   Access user private keys or personal data
 
 ## Fine-Grained Permission Customizability
 
@@ -14653,24 +15201,24 @@ Permissions can be customized based on various factors:
 
 ### Permission Dimensions
 
-* **Token Specificity** - Which particular tokens within the collection can be affected
-* **Time Constraints** - When can certain actions be performed
-* **Value Limitations** - What specific values or ranges are allowed for updates
-* **Conditional Triggers** - Under what circumstances can certain permissions be exercised
+-   **Token Specificity** - Which particular tokens within the collection can be affected
+-   **Time Constraints** - When can certain actions be performed
+-   **Value Limitations** - What specific values or ranges are allowed for updates
+-   **Conditional Triggers** - Under what circumstances can certain permissions be exercised
 
 ### Permission States
 
 Each permission can exist in one of three states:
 
 1. **Forbidden + Permanently Frozen**
-   * The permission is permanently disallowed
-   * This state cannot be changed, ensuring certain actions remain off-limits indefinitely
+    - The permission is permanently disallowed
+    - This state cannot be changed, ensuring certain actions remain off-limits indefinitely
 2. **Permitted + Not Frozen**
-   * The permission is currently allowed
-   * This state can be changed to either of the other two states, offering flexibility in management
+    - The permission is currently allowed
+    - This state can be changed to either of the other two states, offering flexibility in management
 3. **Permitted + Permanently Frozen**
-   * The permission is permanently allowed
-   * Like the first state, this cannot be changed, ensuring certain capabilities always remain available
+    - The permission is permanently allowed
+    - Like the first state, this cannot be changed, ensuring certain capabilities always remain available
 
 **Note**: There is no "Forbidden + Not Frozen" state because such a state could theoretically be updated to "Permitted" at any time and then immediately executed, effectively making it a "Permitted" state.
 
@@ -14683,7 +15231,6 @@ Manager updates are controlled by the `canUpdateManager` permission:
 ```json
 "canUpdateManager": [
   {
-    "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyPermittedTimes": [{"start": "1", "end": "18446744073709551615"}],
     "permanentlyForbiddenTimes": []
   }
@@ -14699,12 +15246,7 @@ During collection creation:
 ```json
 {
     "creator": "bb1alice...",
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "manager": "bb1alice..."
-        }
-    ],
+    "manager": "bb1alice...",
     "collectionPermissions": {
         "canUpdateManager": [
             {
@@ -14717,37 +15259,6 @@ During collection creation:
     }
 }
 ```
-
-### Decentralized Management Transition
-
-```json
-{
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
-        {
-            "timelineTimes": [
-                { "start": "1672531200000", "end": "18446744073709551615" }
-            ],
-            "manager": "bb1qqqq...."
-        }
-    ],
-    "collectionPermissions": {
-        "canUpdateManager": [
-            {
-                "permanentlyPermittedTimes": [],
-                "permanentlyForbiddenTimes": [
-                    { "start": "1672531200000", "end": "18446744073709551615" }
-                ]
-            }
-        ]
-    }
-}
-```
-
-This transitions to a burn address manager and locks management permanently, creating a decentralized collection.
 
 
 ## File: ./x-badges/concepts/total-supply.md
@@ -14992,30 +15503,21 @@ For detailed information about each field, see the corresponding concepts docume
 | Field                         | Concepts Link                                                                                            |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `validTokenIds`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `managerTimeline`             | [Manager / Permissions](../../learn/permissions.md)                                                      |
-| `collectionMetadataTimeline`  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `tokenMetadataTimeline`       | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `customDataTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `standardsTimeline`           | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `isArchivedTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `manager`                     | [Manager / Permissions](../../learn/permissions.md)                                                      |
+| `collectionMetadata`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `tokenMetadata`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `customData`                  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `standards`                   | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `isArchived`                  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `mintEscrowCoinsToTransfer`   | [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md#mint-escrow-address) |
 | `cosmosCoinWrapperPathsToAdd` | [Cosmos Coin Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md)                                    |
-| Timeline System (all fields)  | [Timeline System](/broken/pages/9EUbN6P70EToKUcgs8qB)                                                    |
 
 ## Base Collection Details
 
 For most collections, your base configuration for these fields will be very similar to this. Note that this excludes collection permissions and approvals. See the [Building Collection Approvals](building-collection-approvals.md) example and [Building Collection Permissions](building-collection-permissions.md) example for these.
 
 ```typescript
-// Our standard time range represeting "forever"
-const FullTimeRanges = [
-    {
-        start: '1',
-        end: '18446744073709551615',
-    },
-];
-
 const BaseCollectionDetails = {
     validTokenIds: [
         {
@@ -15129,12 +15631,7 @@ const postMintApprovals = [
 
 const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 
-const collectionApprovalTimeline = [
-    {
-        timelineTimes: FullTimeRanges,
-        collectionApprovals,
-    },
-];
+const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 ```
 
 
@@ -15157,12 +15654,7 @@ You have a few options for setting your permissions.
 If you simply don't want a manager, you can set the manager to an empty string. Then, the permission values never matter.
 
 ```typescript
-const managerTimeline = [
-    {
-        manager: '',
-        timelineTimes: FullTimeRanges,
-    },
-];
+const manager = '';
 ```
 
 2. Complete Control - Soft Enabled
@@ -15180,6 +15672,8 @@ const collectionPermissions = {
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
     canUpdateValidTokenIds: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 
@@ -15197,7 +15691,6 @@ Each permission follows the same pattern:
 const CanArchiveCollection = {
     permanentlyPermittedTimes: [],
     permanentlyForbiddenTimes: FullTimeRanges,
-    timelineTimes: FullTimeRanges,
 };
 ```
 
@@ -15210,7 +15703,6 @@ const permanentlyForbiddenTimes = FullTimeRanges;
 
 // Part 2. For what values (if any) does this apply? This is dependent on the permission type.
 const {
-    timelineTimes,
     tokenIds,
     fromListId,
     toListId,
@@ -15458,15 +15950,10 @@ The transfers still operate under the approval / transferability system. We will
 ```typescript
 const collection = {
     ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [
-                ...otherApprovals,
-                wrapperApproval,
-                unwrapperApproval,
-            ],
-        },
+    collectionApprovals: [
+        ...otherApprovals,
+        wrapperApproval,
+        unwrapperApproval,
     ],
 };
 ```
@@ -15543,6 +16030,8 @@ const collectionPermissions = {
 const collectionPermissions = {
     // ... other permissions
     canUpdateCollectionApprovals: [], // Soft-enabled
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 
@@ -15751,12 +16240,7 @@ const mintApproval = {
 // Step 1: Create your collection with the mint approval
 const collection = {
     ...BaseCollectionDetails,
-    collectionApprovalTimeline: [
-        {
-            timelineTimes: FullTimeRanges,
-            collectionApprovals: [mintApproval, ...otherApprovals],
-        },
-    ],
+    collectionApprovals: [mintApproval, ...otherApprovals],
 };
 
 // Create the collection
@@ -15937,7 +16421,11 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                     "approvalId": "fd1cef5941fb08487ecc1038af09fb29a6d7d40a89d8e4889c9c954978aa7e41",
                     "approvalLevel": "collection",
                     "approverAddress": "",
-                    "version": "0"
+                    "version": "0",
+                    "precalculationOptions": {
+                        "overrideTimestamp": "0",
+                        "tokenIdsOverride": []
+                    }
                 },
                 "merkleProofs": [],
                 "ethSignatureProofs": [],
@@ -15952,11 +16440,7 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
                 ],
                 "onlyCheckPrioritizedCollectionApprovals": true,
                 "onlyCheckPrioritizedIncomingApprovals": false,
-                "onlyCheckPrioritizedOutgoingApprovals": false,
-                "precalculationOptions": {
-                    "overrideTimestamp": "0",
-                    "tokenIdsOverride": []
-                }
+                "onlyCheckPrioritizedOutgoingApprovals": false
         ]
     }
 ]
@@ -15979,8 +16463,8 @@ This transfer creates tokens from collection 20 and sends them to the creator ad
 
 ### Precalculation Options
 
--   `"overrideTimestamp": "0"` - Use current timestamp for calculations
--   `"tokenIdsOverride": []` - No token ID overrides, use approval criteria
+-   `"precalculationOptions.overrideTimestamp": "0"` - Use current timestamp for calculations (only applies if `allowOverrideTimestamp` is true in approval)
+-   `"precalculationOptions.tokenIdsOverride": []` - No token ID overrides, use approval criteria (only applies if `allowOverrideWithAnyValidToken` is true in approval)
 
 ### Non-Auto-Scan Behavior
 
@@ -16009,7 +16493,9 @@ This example is useful when:
 | Approval Scanning     | Auto-scan enabled    | Only specified approval   |
 | Flexibility           | Fixed amounts        | Dynamic based on criteria |
 | Control               | Direct specification | Approval-driven           |
-****
+
+---
+
 
 ## File: ./x-badges/examples/permissions/README.md
 
@@ -16387,6 +16873,8 @@ const collectionPermissions = {
     ],
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 
@@ -16418,6 +16906,8 @@ const collectionPermissions = {
     ],
     canUpdateTokenMetadata: [],
     canUpdateCollectionApprovals: [],
+    canAddMoreAliasPaths: [],
+    canAddMoreCosmosCoinWrapperPaths: [],
 };
 ```
 
@@ -16517,12 +17007,20 @@ This example demonstrates creating a quest collection.
             "canUpdateCollectionMetadata": [],
             "canUpdateValidTokenIds": [],
             "canUpdateTokenMetadata": [],
-            "canUpdateCollectionApprovals": []
+            "canUpdateCollectionApprovals": [],
+            "canAddMoreAliasPaths": [],
+            "canAddMoreCosmosCoinWrapperPaths": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "18446744073709551615"
@@ -16530,43 +17028,7 @@ This example demonstrates creating a quest collection.
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -16701,18 +17163,8 @@ This example demonstrates creating a quest collection.
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": ["Quests"],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "isArchivedTimeline": [],
+        "standards": ["Quests"],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [
             {
                 "denom": "ubadge",
@@ -16813,66 +17265,38 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateCollectionMetadata": [],
             "canUpdateValidTokenIds": [],
             "canUpdateTokenMetadata": [],
-            "canUpdateCollectionApprovals": []
+            "canUpdateCollectionApprovals": [],
+            "canAddMoreAliasPaths": [],
+            "canAddMoreCosmosCoinWrapperPaths": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
+                    {
+                        "start": "101",
+                        "end": "18446744073709551615"
+                    }
+                ]
+            },
+            {
+                "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
-                        "end": "18446744073709551615"
+                        "end": "100"
                     }
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "101",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    },
-                    {
-                        "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "100"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -17060,22 +17484,12 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": [
-                    "Tradable",
-                    "NFTs",
-                    "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
+        "standards": [
+            "Tradable",
+            "NFTs",
+            "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
-        "isArchivedTimeline": [],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
         "cosmosCoinWrapperPathsToAdd": [] // No wrapping allowed
     }
@@ -17232,51 +17646,206 @@ This directory contains detailed documentation for all message types supported b
 
 ### Collection Management
 
-* [MsgCreateCollection](msg-create-collection.md) - Create new collection
-* [MsgUpdateCollection](msg-update-collection.md) - Update existing collection properties
-* [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Universal create/update interface with invariants support
-* [MsgDeleteCollection](msg-delete-collection.md) - Archive/delete collection
+-   [MsgCreateCollection](msg-create-collection.md) - Create new collection
+-   [MsgUpdateCollection](msg-update-collection.md) - Update existing collection properties
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Universal create/update interface with invariants support
+-   [MsgDeleteCollection](msg-delete-collection.md) - Archive/delete collection
 
 ### Helper Collection Update Messages
 
-* [MsgSetValidTokenIds](msg-set-valid-token-ids.md) - Update valid token IDs and permissions
-* [MsgSetManager](msg-set-manager.md) - Update manager timeline and permissions
-* [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata timeline and permissions
-* [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata timeline and permissions
-* [MsgSetCustomData](msg-set-custom-data.md) - Update custom data timeline and permissions
-* [MsgSetStandards](msg-set-standards.md) - Update standards timeline and permissions
-* [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
-* [MsgSetIsArchived](msg-set-is-archived.md) - Update isArchived timeline and permissions
+-   [MsgSetValidTokenIds](msg-set-valid-token-ids.md) - Update valid token IDs and permissions
+-   [MsgSetManager](msg-set-manager.md) - Update manager and permissions
+-   [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata and permissions
+-   [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata and permissions
+-   [MsgSetCustomData](msg-set-custom-data.md) - Update custom data and permissions
+-   [MsgSetStandards](msg-set-standards.md) - Update standards and permissions
+-   [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
+-   [MsgSetIsArchived](msg-set-is-archived.md) - Update isArchived status and permissions
 
 ### Token Transfers
 
-* [MsgTransferTokens](msg-transfer-tokens.md) - Transfer tokens between addresses with approval validation
+-   [MsgTransferTokens](msg-transfer-tokens.md) - Transfer tokens between addresses with approval validation
 
 ### User Approval Management
 
-* [MsgUpdateUserApprovals](msg-update-user-approvals.md) - Update user transfer approval settings
-* [MsgSetIncomingApproval](msg-set-incoming-approval.md) - Set a single incoming approval (helper)
-* [MsgDeleteIncomingApproval](msg-delete-incoming-approval.md) - Delete a single incoming approval (helper)
-* [MsgSetOutgoingApproval](msg-set-outgoing-approval.md) - Set a single outgoing approval (helper)
-* [MsgDeleteOutgoingApproval](msg-delete-outgoing-approval.md) - Delete a single outgoing approval (helper)
-* [MsgPurgeApprovals](msg-purge-approvals.md) - Purge expired approvals (helper)
+-   [MsgUpdateUserApprovals](msg-update-user-approvals.md) - Update user transfer approval settings
+-   [MsgSetIncomingApproval](msg-set-incoming-approval.md) - Set a single incoming approval (helper)
+-   [MsgDeleteIncomingApproval](msg-delete-incoming-approval.md) - Delete a single incoming approval (helper)
+-   [MsgSetOutgoingApproval](msg-set-outgoing-approval.md) - Set a single outgoing approval (helper)
+-   [MsgDeleteOutgoingApproval](msg-delete-outgoing-approval.md) - Delete a single outgoing approval (helper)
+-   [MsgPurgeApprovals](msg-purge-approvals.md) - Purge expired approvals (helper)
+-   [MsgCastVote](msg-cast-vote.md) - Cast or update a vote for a voting challenge in approval criteria
 
 ### Address List Management
 
-* [MsgCreateAddressLists](msg-create-address-lists.md) - Create reusable address lists for access control
+-   [MsgCreateAddressLists](msg-create-address-lists.md) - Create reusable address lists for access control
 
 ### Dynamic Store Management
 
-* [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
-* [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
-* [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
-* [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
+-   [MsgCreateDynamicStore](msg-create-dynamic-store.md) - Create boolean stores for approval criteria
+-   [MsgUpdateDynamicStore](msg-update-dynamic-store.md) - Update dynamic store configuration
+-   [MsgDeleteDynamicStore](msg-delete-dynamic-store.md) - Delete dynamic store
+-   [MsgSetDynamicStoreValue](msg-set-dynamic-store-value.md) - Set boolean values for addresses in dynamic store
 
 ## Additional Message Types
 
 The following message types exist in the protocol but may be documented separately:
 
-* **MsgUpdateParams** - Update module parameters via governance
+-   **MsgUpdateParams** - Update module parameters via governance
+
+
+## File: ./x-badges/messages/msg-cast-vote.md
+
+# MsgCastVote
+
+Casts or updates a vote for a voting challenge in an approval criteria. Used in weighted quorum voting systems where multiple parties must vote to approve transfers.
+
+Votes can be updated by casting a new vote with the same parameters, which overwrites the previous vote.
+
+## Authorization
+
+Only addresses in the voting challenge's `voters` list can cast votes. The `creator` address must match one of the voters in the challenge.
+
+### Proto Definition
+
+```protobuf
+message MsgCastVote {
+  option (cosmos.msg.v1.signer) = "creator";
+  option (amino.name) = "badges/CastVote";
+
+  // The address of the voter casting the vote.
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // The collection ID for the voting challenge.
+  string collectionId = 2 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+
+  // The approval level ("collection", "incoming", or "outgoing").
+  string approvalLevel = 3;
+
+  // The approver address (empty string for collection-level approvals).
+  string approverAddress = 4;
+
+  // The approval ID.
+  string approvalId = 5;
+
+  // The proposal ID (challenge ID) from the VotingChallenge.
+  string proposalId = 6;
+
+  // The percentage weight (0-100) allocated to "yes" vote.
+  // The remaining percentage (100 - yesWeight) is allocated to "no" vote.
+  // Example: yesWeight=70 means 70% yes, 30% no.
+  string yesWeight = 7 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+
+message MsgCastVoteResponse {}
+```
+
+### Usage Example
+
+```bash
+# CLI command
+bitbadgeschaind tx badges cast-vote '[tx-json]' --from voter-key
+```
+
+#### JSON Example
+
+```json
+{
+    "creator": "bb1voter123...",
+    "collectionId": "1",
+    "approvalLevel": "collection",
+    "approverAddress": "",
+    "approvalId": "multisig-approval",
+    "proposalId": "proposal-1",
+    "yesWeight": "100"
+}
+```
+
+## Fields
+
+| Field             | Type   | Description                                                                     |
+| ----------------- | ------ | ------------------------------------------------------------------------------- |
+| `creator`         | string | Voter address casting the vote (must be in challenge's voters list)             |
+| `collectionId`    | string | Collection ID containing the approval                                           |
+| `approvalLevel`   | string | Approval level: `"collection"`, `"incoming"`, or `"outgoing"`                   |
+| `approverAddress` | string | Approver address (empty `""` for collection-level, user address for user-level) |
+| `approvalId`      | string | ID of the approval containing the voting challenge                              |
+| `proposalId`      | string | Proposal ID from the `VotingChallenge`                                          |
+| `yesWeight`       | string | Percentage weight (0-100) for "yes" vote; remaining goes to "no" vote           |
+
+## Vote Calculation
+
+The system calculates the voter's contribution to the "yes" weight as:
+
+```
+yesContribution = (voterWeight × yesWeight) / 100
+```
+
+**Example:**
+
+-   Voter weight: 200
+-   `yesWeight`: 75
+-   Contribution: (200 × 75) / 100 = 150 yes weight
+
+Casting a new vote with the same parameters overwrites the previous vote, allowing voters to change their position.
+
+## Examples
+
+### Collection-Level Vote
+
+```json
+{
+    "creator": "bb1voter123...",
+    "collectionId": "1",
+    "approvalLevel": "collection",
+    "approverAddress": "",
+    "approvalId": "governance-approval",
+    "proposalId": "governance-proposal-1",
+    "yesWeight": "100"
+}
+```
+
+### User-Level Vote
+
+```json
+{
+    "creator": "bb1voter123...",
+    "collectionId": "1",
+    "approvalLevel": "outgoing",
+    "approverAddress": "bb1user456...",
+    "approvalId": "delegation-approval",
+    "proposalId": "delegation-proposal-1",
+    "yesWeight": "80"
+}
+```
+
+### Partial Vote
+
+```json
+{
+    "creator": "bb1voter123...",
+    "collectionId": "1",
+    "approvalLevel": "collection",
+    "approverAddress": "",
+    "approvalId": "flexible-approval",
+    "proposalId": "flexible-proposal-1",
+    "yesWeight": "60"
+}
+```
+
+This allocates 60% to "yes" and 40% to "no".
+
+## Error Conditions
+
+The message fails if:
+
+-   `creator` is not in the voting challenge's voters list
+-   `yesWeight` is greater than 100
+-   `approvalLevel` is not `"collection"`, `"incoming"`, or `"outgoing"`
+-   `proposalId` doesn't match any voting challenge in the specified approval
+-   The approval with the specified ID doesn't exist
+
+For details on voting challenges, see [Voting Challenges](../../token-standard/learn/approval-criteria/voting-challenges.md).
 
 
 ## File: ./x-badges/messages/msg-create-address-lists.md
@@ -17362,7 +17931,8 @@ message MsgCreateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 11;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 12;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 13;
-  CollectionInvariants invariants = 14;
+  repeated AliasPathAddObject aliasPathsToAdd = 14; // NEW: Separate array for alias paths
+  CollectionInvariants invariants = 15;
 }
 
 message MsgCreateCollectionResponse {
@@ -17409,7 +17979,9 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "managerTimeline": [],
     "collectionMetadataTimeline": [],
@@ -17420,6 +17992,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",
@@ -17435,7 +18008,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 
 # MsgCreateDynamicStore
 
-Creates a new dynamic store for boolean key-value storage.
+Creates a new dynamic store for boolean key-value storage. New stores are created with `globalEnabled = true` by default, meaning the store is active and can be used in approval criteria.
 
 ## Proto Definition
 
@@ -17443,6 +18016,8 @@ Creates a new dynamic store for boolean key-value storage.
 message MsgCreateDynamicStore {
   string creator = 1; // Address creating the dynamic store
   bool defaultValue = 2; // Default boolean value for uninitialized addresses
+  string uri = 3; // Optional: URI for additional metadata or resources
+  string customData = 4; // Optional: Custom data field for arbitrary data
 }
 
 message MsgCreateDynamicStoreResponse {
@@ -17457,13 +18032,38 @@ message MsgCreateDynamicStoreResponse {
 bitbadgeschaind tx badges create-dynamic-store [true|false] --from creator-key
 ```
 
-### JSON Example
+### JSON Examples
+
+**Basic example (without metadata):**
 ```json
 {
   "creator": "bb1...",
   "defaultValue": false
 }
 ```
+
+**With optional metadata fields:**
+```json
+{
+  "creator": "bb1...",
+  "defaultValue": false,
+  "uri": "https://example.com/store-metadata",
+  "customData": "{\"description\": \"Member store\", \"version\": \"1.0\"}"
+}
+```
+
+## Metadata Fields
+
+Both `uri` and `customData` are **optional** fields:
+
+- **`uri`**: URI for additional metadata or resources associated with this dynamic store. Typically used for URLs pointing to hosted JSON metadata or documentation. No validation is performed on the URI format.
+- **`customData`**: Custom data field for storing arbitrary string data. Commonly used to store JSON-encoded structured data, but can contain any string value. No validation is performed on the content.
+
+**Important Notes:**
+- Both fields default to empty strings (`""`) if not provided
+- Fields are stored and persisted with the DynamicStore
+- Fields can be updated later using [MsgUpdateDynamicStore](msg-update-dynamic-store.md)
+- Fields are included in EIP712 schemas for Ethereum signature compatibility
 
 ## File: ./x-badges/messages/msg-delete-collection.md
 
@@ -17843,18 +18443,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetCollectionMetadata
 
-Sets the collection metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on collection metadata management.
+Sets the collection metadata and update permissions for a collection. This is a convenience message that focuses specifically on collection metadata management.
 
 ### Overview
 
 This message allows you to:
 
-* Set collection metadata timeline for the collection
-* Configure permissions to update the collection metadata in the future
+-   Set collection metadata for the collection
+-   Configure permissions to update the collection metadata in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the collection metadata timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the collection metadata according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -17910,8 +18510,8 @@ bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-set-custom-data.md
@@ -17923,18 +18523,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetCustomData
 
-Sets the custom data timeline and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
+Sets the custom data and update permissions for a collection. This is a convenience message that focuses specifically on custom data management.
 
 ### Overview
 
 This message allows you to:
 
-* Set custom data timeline for the collection
-* Configure permissions to update the custom data in the future
+-   Set custom data for the collection
+-   Configure permissions to update the custom data in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the custom data according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -17987,8 +18587,8 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-set-dynamic-store-value.md
@@ -18083,14 +18683,14 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetIsArchived
 
-Sets the isArchived timeline and update permissions for a collection. This is a convenience message that focuses specifically on archiving management.
+Sets the isArchived status and update permissions for a collection. This is a convenience message that focuses specifically on archiving management.
 
 ### Overview
 
 This message allows you to:
 
-* Set isArchived timeline for the collection
-* Configure permissions to archive the collection in the future
+-   Set isArchived status for the collection
+-   Configure permissions to archive the collection in the future
 
 ### Authorization & Permissions
 
@@ -18147,8 +18747,8 @@ bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-set-manager.md
@@ -18160,18 +18760,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetManager
 
-Sets the manager timeline and update permissions for a collection. This is a convenience message that focuses specifically on manager management.
+Sets the manager and update permissions for a collection. This is a convenience message that focuses specifically on manager management.
 
 ### Overview
 
 This message allows you to:
 
-* Set who manages the collection at different times
-* Configure permissions to update the manager in the future
+-   Set who manages the collection
+-   Configure permissions to update the manager in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the manager timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the manager according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -18224,8 +18824,8 @@ bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-set-outgoing-approval.md
@@ -18284,18 +18884,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetStandards
 
-Sets the standards timeline and update permissions for a collection. This is a convenience message that focuses specifically on standards management.
+Sets the standards and update permissions for a collection. This is a convenience message that focuses specifically on standards management.
 
 ### Overview
 
 This message allows you to:
 
-* Set standards timeline for the collection
-* Configure permissions to update the standards in the future
+-   Set standards for the collection
+-   Configure permissions to update the standards in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the standards timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the standards according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -18346,11 +18946,6 @@ bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
 }
 ```
 
-### Related Messages
-
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
-
 
 ## File: ./x-badges/messages/msg-set-token-metadata.md
 
@@ -18361,18 +18956,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetTokenMetadata
 
-Sets the token metadata timeline and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
+Sets the token metadata and update permissions for a collection. This is a convenience message that focuses specifically on token metadata management.
 
 ### Overview
 
 This message allows you to:
 
-* Set token metadata timeline for the collection
-* Configure permissions to update the token metadata in the future
+-   Set token metadata for the collection
+-   Configure permissions to update the token metadata in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the token metadata according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -18432,8 +19027,8 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
+-   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
 ## File: ./x-badges/messages/msg-set-valid-token-ids.md
@@ -18543,7 +19138,7 @@ message Transfer {
   repeated Balance balances = 3;
   // If defined, we will use the predeterminedBalances from the specified approval to calculate the balances at execution time.
   // We will override the balances field with the precalculated balances. Only applicable for approvals with predeterminedBalances set.
-  ApprovalIdentifierDetails precalculateBalancesFromApproval = 4;
+  PrecalculateBalancesFromApprovalDetails precalculateBalancesFromApproval = 4;
   // The Merkle proofs / solutions for all Merkle challenges required for the transfer.
   repeated MerkleProof merkleProofs = 5;
   // The ETH signature proofs / solutions for all ETH signature challenges required for the transfer.
@@ -18565,14 +19160,18 @@ message Transfer {
   // If true, we will only check the prioritized approvals and fail if none of them match (i.e. do not check any non-prioritized approvals).
   // If false, we will check the prioritized approvals first and then scan through the rest of the approvals.
   bool onlyCheckPrioritizedOutgoingApprovals = 11;
-  // The options for precalculating the balances.
-  PrecalculationOptions precalculationOptions = 12;
+}
+
+message PrecalculateBalancesFromApprovalDetails {
+  string approvalId = 1;
+  string approvalLevel = 2;  // "collection", "incoming", or "outgoing"
+  string approverAddress = 3;  // "" if collection-level
+  string version = 4 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+  PrecalculationOptions precalculationOptions = 5;
 }
 
 message PrecalculationOptions {
-  // The timestamp to override with when calculating the balances.
-  string overrideTimestamp = 1;
-  // The IDs to override with when calculating the balances.
+  string overrideTimestamp = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
   repeated UintRange tokenIdsOverride = 2;
 }
 ```
@@ -18585,10 +19184,10 @@ The transfer approval system operates in two modes to balance efficiency and pre
 
 By default, the system automatically scans through available approvals to find a match for the transfer. This mode:
 
-* **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
-* **Behavior**: Automatically finds and uses the first matching approval
-* **Use case**: Simple transfers without custom logic or side effects
-* **No versioning required**: The system handles approval selection automatically
+-   **Works with**: Approvals using [Empty Approval Criteria](../examples/empty-approval-criteria.md) (no side effects)
+-   **Behavior**: Automatically finds and uses the first matching approval
+-   **Use case**: Simple transfers without custom logic or side effects
+-   **No versioning required**: The system handles approval selection automatically
 
 ### Prioritized Approvals (Required for Side Effects)
 
@@ -18635,17 +19234,17 @@ The versioning control ensures that before submitting, the user knows the exact 
 
 ### Control Flags
 
-* `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
-* `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
-* `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
+-   `onlyCheckPrioritizedCollectionApprovals`: If true, only check prioritized approvals
+-   `onlyCheckPrioritizedIncomingApprovals`: If true, only check prioritized incoming approvals
+-   `onlyCheckPrioritizedOutgoingApprovals`: If true, only check prioritized outgoing approvals
 
 **Setting these to `true` is recommended when using prioritized approvals to ensure deterministic behavior.**
 
 ### Related Documentation
 
-* [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
-* [Approval Criteria](broken-reference/) - Understanding approval complexity
-* [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
+-   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
+-   [Approval Criteria](broken-reference/) - Understanding approval complexity
+-   [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
 
@@ -18693,8 +19292,8 @@ PRE. CALCULATE BALANCES (if needed)
 
 Collection approvals can override user-level approvals:
 
-* **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
-* **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
+-   **`overridesFromOutgoingApprovals: true`** - Forcefully skips sender approval check
+-   **`overridesToIncomingApprovals: true`** - Forcefully skips recipient approval checks
 
 This allows collection managers to enable transfers that would otherwise be blocked by user settings.
 
@@ -18711,17 +19310,42 @@ Transfers fail at the first validation step that doesn't pass:
 
 ETH Signature Proofs are required when transfers use [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md). Each proof contains:
 
-* **`nonce`**: The unique identifier that was signed
-* **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
+-   **`nonce`**: The unique identifier that was signed
+-   **`signature`**: The Ethereum signature of the message `nonce + "-" + creatorAddress`
 
 **Important**: Each signature can only be used once per challenge tracker. The system tracks used signatures to prevent replay attacks.
 
 ### Related Documentation
 
-* [Transferability](../../learn/transferability.md) - Approval system overview
-* [Collection Approvals](broken-reference/) - Collection-level controls
-* [User Approvals](../examples/building-user-approvals.md) - User-level settings
-* [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+-   [Transferability](../../learn/transferability.md) - Approval system overview
+-   [Collection Approvals](broken-reference/) - Collection-level controls
+-   [User Approvals](../examples/building-user-approvals.md) - User-level settings
+-   [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
+
+## Precalculating Balances
+
+When using `precalculateBalancesFromApproval`, you can override certain calculation parameters using `precalculationOptions`. These options only apply when the corresponding flags are enabled in the approval's `IncrementedBalances`.
+
+### PrecalculationOptions
+
+| Field               | Type          | Description                                                      |
+| ------------------- | ------------- | ---------------------------------------------------------------- |
+| `overrideTimestamp` | string (Uint) | Override timestamp for ownership time calculation (milliseconds) |
+| `tokenIdsOverride`  | UintRange[]   | Override token IDs (must be single ID if provided)               |
+
+**overrideTimestamp**:
+
+-   Only applies when `IncrementedBalances.durationFromTimestamp` is set and `allowOverrideTimestamp` is `true`
+-   If zero or not provided, uses current block time
+-   Used to calculate ownership times as `[overrideTimestamp, overrideTimestamp + durationFromTimestamp - 1]`
+
+**tokenIdsOverride**:
+
+-   Only applies when `IncrementedBalances.allowOverrideWithAnyValidToken` is `true`
+-   Must contain exactly one `UintRange` with `start == end` (single token ID)
+-   Token ID must be in the collection's `validTokenIds`
+
+For detailed documentation, see [Predetermined Balances](../../token-standard/learn/approval-criteria/predetermined-balances.md#precalculation-options).
 
 ## Collection ID Auto-Lookup
 
@@ -18756,15 +19380,14 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
             ],
             // Specific approval to calculate balances dynamically for (from the approvalCriteria.predeterminedBalances)
             "precalculateBalancesFromApproval": {
-                "approvalId": "",
-                "approvalLevel": "",
+                "approvalId": "approval-1",
+                "approvalLevel": "collection",
                 "approverAddress": "",
-                "version": "0"
-            },
-            // Additional options dependent on what is allowed (e.g. allow timestamp override, token ID override, etc.)
-            "precalculationOptions": {
-                "overrideTimestamp": "0",
-                "tokenIdsOverride": []
+                "version": "1",
+                "precalculationOptions": {
+                    "overrideTimestamp": "0", // Optional: override timestamp (milliseconds)
+                    "tokenIdsOverride": [] // Optional: override token IDs (must be single ID if provided)
+                }
             },
             // Supply all merkle proofs for any merkle challenges that need to be satisfied
             "merkleProofs": [],
@@ -18823,6 +19446,15 @@ This message uses an update flag + value pattern for selective updates. Each upd
 * **For Collection Creation**: Can be executed by any address
 * **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
 
+### Path Addition Permissions
+
+When adding paths to an existing collection, the following permissions are checked:
+
+* **`cosmosCoinWrapperPathsToAdd`**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+* **`aliasPathsToAdd`**: Requires `canAddMoreAliasPaths` permission
+
+These permissions are checked before paths are processed. If the permission check fails, the transaction will be rejected. Both permissions use the `ActionPermission` type with time-based controls. Empty/nil permissions mean the action is allowed (neutral state).
+
 ## Proto Definition
 
 ```protobuf
@@ -18854,10 +19486,11 @@ message MsgUniversalUpdateCollection {
 
   // Transfer fields
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
-  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
+  repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22; // Requires canAddMoreCosmosCoinWrapperPaths permission
+  repeated AliasPathAddObject aliasPathsToAdd = 23; // Requires canAddMoreAliasPaths permission
 
   // Invariants (creation-only)
-  CollectionInvariants invariants = 23;
+  CollectionInvariants invariants = 24;
 }
 
 message MsgUniversalUpdateCollectionResponse {
@@ -18904,7 +19537,9 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "updateManagerTimeline": true,
     "managerTimeline": [],
@@ -18922,6 +19557,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",
@@ -18958,6 +19594,7 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {}
 }
 ```
@@ -19046,7 +19683,8 @@ message MsgUpdateCollection {
   repeated IsArchivedTimeline isArchivedTimeline = 20;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
-  CollectionInvariants invariants = 23;
+  repeated AliasPathAddObject aliasPathsToAdd = 23;
+  CollectionInvariants invariants = 24;
 }
 
 message MsgUpdateCollectionResponse {
@@ -19079,7 +19717,9 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
         "canUpdateCollectionMetadata": [],
         "canUpdateValidTokenIds": [],
         "canUpdateTokenMetadata": [],
-        "canUpdateCollectionApprovals": []
+        "canUpdateCollectionApprovals": [],
+        "canAddMoreAliasPaths": [],
+        "canAddMoreCosmosCoinWrapperPaths": []
     },
     "updateManagerTimeline": false,
     "managerTimeline": [],
@@ -19097,6 +19737,7 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
     "isArchivedTimeline": [],
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
+    "aliasPathsToAdd": [],
     "invariants": {
         "noCustomOwnershipTimes": false,
         "maxSupplyPerId": "0",
@@ -19112,7 +19753,7 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 
 # MsgUpdateDynamicStore
 
-Updates an existing dynamic store's default value.
+Updates an existing dynamic store's default value, global kill switch status, and optional metadata fields.
 
 ## Proto Definition
 
@@ -19121,6 +19762,9 @@ message MsgUpdateDynamicStore {
   string creator = 1; // Address updating the store (must be creator)
   string storeId = 2; // ID of dynamic store to update
   bool defaultValue = 3; // New default value for uninitialized addresses
+  bool globalEnabled = 4; // Global kill switch. When false, all approvals using this store fail immediately
+  string uri = 5; // Optional: URI for additional metadata or resources
+  string customData = 6; // Optional: Custom data field for arbitrary data
 }
 
 message MsgUpdateDynamicStoreResponse {}
@@ -19130,18 +19774,89 @@ message MsgUpdateDynamicStoreResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges update-dynamic-store [store-id] [default-value] --from creator-key
+bitbadgeschaind tx badges update-dynamic-store [store-id] [default-value] [global-enabled] --from creator-key
 ```
 
-### JSON Example
+### JSON Examples
 
+**Update default value only (keep globalEnabled unchanged):**
 ```json
 {
     "creator": "bb1...",
     "storeId": "1",
-    "defaultValue": true
+    "defaultValue": true,
+    "globalEnabled": true  // Must pass current value to avoid changing it
 }
 ```
+
+**Disable global kill switch (halt all approvals using this store):**
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,  // Must pass current value
+    "globalEnabled": false  // Disable kill switch
+}
+```
+
+**Re-enable global kill switch:**
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,
+    "globalEnabled": true  // Re-enable
+}
+```
+
+**Update metadata fields:**
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,
+    "globalEnabled": true,
+    "uri": "https://example.com/updated-metadata",
+    "customData": "{\"updated\": true, \"timestamp\": \"2024-01-01\"}"
+}
+```
+
+**Clear metadata fields (set to empty strings):**
+```json
+{
+    "creator": "bb1...",
+    "storeId": "1",
+    "defaultValue": true,
+    "globalEnabled": true,
+    "uri": "",
+    "customData": ""
+}
+```
+
+## Global Kill Switch
+
+The `globalEnabled` field acts as a global kill switch for the dynamic store. When `globalEnabled = false`:
+- All approvals using this store via `DynamicStoreChallenge` will fail immediately
+- The error message will be: "dynamic store storeId {id} is globally disabled"
+- Per-address values are ignored when the kill switch is disabled
+
+This is useful for quickly halting all approvals that depend on a specific dynamic store (e.g., if a protocol is compromised).
+
+**Note**: When updating a store, you must pass the current `globalEnabled` value if you want to keep it unchanged. Proto3 bools default to `false`, so you must explicitly pass `true` to maintain an enabled state.
+
+## Metadata Fields
+
+The `uri` and `customData` fields can be updated along with other store properties:
+
+- **`uri`**: URI for additional metadata or resources. Can be set, updated, or cleared (set to empty string).
+- **`customData`**: Custom data field for arbitrary string data. Can be set, updated, or cleared (set to empty string).
+
+**Important Notes:**
+- Both fields are optional and default to empty strings if not provided
+- To keep existing values unchanged, you can omit the fields or pass the current values
+- To clear a field, explicitly set it to an empty string (`""`)
+- Fields are stored and persisted with the DynamicStore
+- Fields are included in EIP712 schemas for Ethereum signature compatibility
 
 
 ## File: ./x-badges/messages/msg-update-user-approvals.md
@@ -19627,6 +20342,12 @@ message DynamicStore {
   string createdBy = 2;
   // The default value for uninitialized addresses.
   bool defaultValue = 3;
+  // Global kill switch. When false, all approvals using this store fail immediately.
+  bool globalEnabled = 4;
+  // URI for additional metadata or resources associated with this dynamic store.
+  string uri = 5;
+  // Custom data field for storing arbitrary data associated with this dynamic store.
+  string customData = 6;
 }
 ```
 
@@ -19647,10 +20368,23 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
     "store": {
         "storeId": "1",
         "createdBy": "bb1...",
-        "defaultValue": false
+        "defaultValue": false,
+        "globalEnabled": true,
+        "uri": "https://example.com/metadata",
+        "customData": "{\"key\": \"value\"}"
     }
 }
 ```
+
+**Note**: Both `uri` and `customData` are optional fields. They may be empty strings (`""`) if not set when creating or updating the store.
+
+## Global Kill Switch
+
+The `globalEnabled` field indicates whether the global kill switch is enabled for this store. When `globalEnabled = false`, all approvals using this store via `DynamicStoreChallenge` will fail immediately, regardless of per-address values.
+
+- **New stores**: Default to `globalEnabled = true`
+- **Existing stores**: Set to `globalEnabled = true` for backward compatibility
+- **Disabling**: Use [MsgUpdateDynamicStore](../messages/msg-update-dynamic-store.md) to set `globalEnabled = false`
 
 
 ## File: ./x-badges/queries/get-eth-signature-tracker.md
@@ -21291,6 +22025,8 @@ The module checks permissions based on which fields are being updated in the `Un
 * **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
 * **UpdateStandardsTimeline**: Requires `canUpdateStandards` permission
 * **UpdateIsArchivedTimeline**: Requires `canArchiveCollection` permission
+* **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+* **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
 
 **Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
 
