@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Dec 24 17:11:03 UTC 2025
+Generated on Sat Jan  3 16:11:57 UTC 2026
 
 
 
@@ -7281,6 +7281,8 @@ await BitBadgesAPI.getCollection(...);
 ## Developing with AI
 
 Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
+
+[https://docs.bitbadges.io/\~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) - GitBook Provided MCP with searchDocumentation tool
 
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
