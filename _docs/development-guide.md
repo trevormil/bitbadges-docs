@@ -174,7 +174,7 @@ Keep sections focused. If a section exceeds 300 words, split it:
 
 [Content here]
 
-### Metadata Timeline
+### Metadata
 
 [Content here]
 
@@ -341,7 +341,7 @@ The **Mint address** is a reserved address representing the collection's minting
 ````markdown
 ## Collection Fields
 
-Collection fields are set directly without timeline structures.
+Collection fields are set directly as simple values.
 
 ```typescript
 const collectionMetadata = {

@@ -239,7 +239,6 @@ This example creates a quest collection with the following characteristics:
 
 -   **Manager**: `bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl` (one manager)
 -   **Collection Permissions**: All permissions are empty (all soft-enabled)
--   **Timeline**: All configurations are forever (start: 1, end: max uint64)
 
 ### Metadata
 
