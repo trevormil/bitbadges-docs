@@ -28,8 +28,8 @@ message MsgExecuteUniversalUpdateCollection {
 
 The address that is executing the message. This address must be:
 
-* The admin of the manager splitter, OR
-* An approved address for all permissions required by the `UniversalUpdateCollection` message
+-   The admin of the manager splitter, OR
+-   An approved address for all permissions required by the `UniversalUpdateCollection` message
 
 Must be a valid Bech32 address.
 
@@ -47,17 +47,17 @@ Note that you should only set the fields you are allowed to update. Use the upda
 
 The module checks permissions based on which fields are being updated in the `UniversalUpdateCollection` message:
 
-* **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
-* **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
-* **UpdateManagerTimeline**: Requires `canUpdateManager` permission
-* **UpdateCollectionMetadataTimeline**: Requires `canUpdateCollectionMetadata` permission
-* **UpdateTokenMetadataTimeline**: Requires `canUpdateTokenMetadata` permission
-* **UpdateCustomDataTimeline**: Requires `canUpdateCustomData` permission
-* **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
-* **UpdateStandardsTimeline**: Requires `canUpdateStandards` permission
-* **UpdateIsArchivedTimeline**: Requires `canArchiveCollection` permission
-* **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
-* **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
+-   **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
+-   **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
+-   **UpdateManager**: Requires `canUpdateManager` permission
+-   **UpdateCollectionMetadata**: Requires `canUpdateCollectionMetadata` permission
+-   **UpdateTokenMetadata**: Requires `canUpdateTokenMetadata` permission
+-   **UpdateCustomData**: Requires `canUpdateCustomData` permission
+-   **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
+-   **UpdateStandards**: Requires `canUpdateStandards` permission
+-   **UpdateIsArchived**: Requires `canArchiveCollection` permission
+-   **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+-   **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
 
 **Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
 
@@ -88,8 +88,8 @@ The message is validated to ensure:
 
 The executor must be:
 
-* The admin of the manager splitter (has full permissions), OR
-* An approved address for all permissions required by the update
+-   The admin of the manager splitter (has full permissions), OR
+-   An approved address for all permissions required by the update
 
 If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
 
@@ -103,8 +103,8 @@ If the executor doesn't have the required permissions, the transaction will fail
     "creator": "bb1managersplitter...",
     "collectionId": "1",
     ...
-    "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": [...]
+    "updateCollectionMetadata": true,
+    "collectionMetadata": {...}
   }
 }
 ```

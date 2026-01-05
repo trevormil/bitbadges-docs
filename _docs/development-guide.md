@@ -398,7 +398,7 @@ const manager = 'YOUR_ADDRESS';
 3. **Create the collection:**
 
 ```typescript
-const msg = MsgCreateCollection({ validTokenIds, managerTimeline });
+const msg = MsgCreateCollection({ validTokenIds, manager: 'bb1...' });
 ```
 
 ````

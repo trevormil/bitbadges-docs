@@ -11,7 +11,7 @@ This directory contains practical examples of different permission configuration
 
 ## Permission System Overview
 
-BitBadges permissions follow a timeline-based system where:
+BitBadges permissions follow a time-based system where:
 
 1. **Permanently Permitted Times** - Permission is always allowed
 2. **Permanently Forbidden Times** - Permission is always denied

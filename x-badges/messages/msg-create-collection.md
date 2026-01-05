@@ -20,13 +20,13 @@ message MsgCreateCollection {
   UserBalanceStore defaultBalances = 2;
   repeated UintRange validTokenIds  = 3; // Token ID ranges to include
   CollectionPermissions collectionPermissions = 4;
-  repeated ManagerTimeline managerTimeline = 5;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 6;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 7;
-  repeated CustomDataTimeline customDataTimeline = 8;
+  string manager = 5;
+  CollectionMetadata collectionMetadata = 6;
+  repeated TokenMetadata tokenMetadata = 7;
+  string customData = 8;
   repeated CollectionApproval collectionApprovals = 9;
-  repeated StandardsTimeline standardsTimeline = 10;
-  repeated IsArchivedTimeline isArchivedTimeline = 11;
+  repeated string standards = 10;
+  bool isArchived = 11;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 12;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 13;
   repeated AliasPathAddObject aliasPathsToAdd = 14; // NEW: Separate array for alias paths
@@ -81,13 +81,13 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canAddMoreAliasPaths": [],
         "canAddMoreCosmosCoinWrapperPaths": []
     },
-    "managerTimeline": [],
-    "collectionMetadataTimeline": [],
-    "tokenMetadataTimeline": [],
-    "customDataTimeline": [],
+    "manager": "",
+    "collectionMetadata": {},
+    "tokenMetadata": [],
+    "customData": "",
     "collectionApprovals": [],
-    "standardsTimeline": [],
-    "isArchivedTimeline": [],
+    "standards": [],
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "aliasPathsToAdd": [],

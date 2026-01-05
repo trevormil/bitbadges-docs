@@ -27,20 +27,20 @@ message MsgUpdateCollection {
   repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
-  bool updateManagerTimeline = 7;
-  repeated ManagerTimeline managerTimeline = 8;
-  bool updateCollectionMetadataTimeline = 9;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateTokenMetadataTimeline = 11;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
-  bool updateCustomDataTimeline = 13;
-  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateManager = 7;
+  string manager = 8;
+  bool updateCollectionMetadata = 9;
+  CollectionMetadata collectionMetadata = 10;
+  bool updateTokenMetadata = 11;
+  repeated TokenMetadata tokenMetadata = 12;
+  bool updateCustomData = 13;
+  string customData = 14;
   bool updateCollectionApprovals = 15;
   repeated CollectionApproval collectionApprovals = 16;
-  bool updateStandardsTimeline = 17;
-  repeated StandardsTimeline standardsTimeline = 18;
-  bool updateIsArchivedTimeline = 19;
-  repeated IsArchivedTimeline isArchivedTimeline = 20;
+  bool updateStandards = 17;
+  repeated string standards = 18;
+  bool updateIsArchived = 19;
+  bool isArchived = 20;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
   repeated AliasPathAddObject aliasPathsToAdd = 23;
@@ -81,20 +81,20 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
         "canAddMoreAliasPaths": [],
         "canAddMoreCosmosCoinWrapperPaths": []
     },
-    "updateManagerTimeline": false,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": false,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": false,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": false,
-    "customDataTimeline": [],
+    "updateManager": false,
+    "manager": "",
+    "updateCollectionMetadata": false,
+    "collectionMetadata": {},
+    "updateTokenMetadata": false,
+    "tokenMetadata": [],
+    "updateCustomData": false,
+    "customData": "",
     "updateCollectionApprovals": false,
     "collectionApprovals": [],
-    "updateStandardsTimeline": false,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": false,
-    "isArchivedTimeline": [],
+    "updateStandards": false,
+    "standards": [],
+    "updateIsArchived": false,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "aliasPathsToAdd": [],

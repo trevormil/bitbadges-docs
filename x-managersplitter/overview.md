@@ -22,7 +22,7 @@ The module mirrors the Badges module's `CollectionPermissions` structure but map
 * **CanArchiveCollection**: Permission to archive the collection
 * **CanUpdateStandards**: Permission to update collection standards
 * **CanUpdateCustomData**: Permission to update custom data
-* **CanUpdateManager**: Permission to update the manager timeline
+* **CanUpdateManager**: Permission to update the manager
 * **CanUpdateCollectionMetadata**: Permission to update collection metadata
 * **CanUpdateValidTokenIds**: Permission to update valid token IDs
 * **CanUpdateTokenMetadata**: Permission to update token metadata

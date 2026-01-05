@@ -15,14 +15,14 @@ message QueryGetCollectionResponse {
 
 message TokenCollection {
   string collectionId = 1; // Unique identifier for this collection
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 2; // Collection metadata over time
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 3; // Token metadata over time
-  repeated CustomDataTimeline customDataTimeline = 4; // Arbitrary custom data over time
-  repeated ManagerTimeline managerTimeline = 5; // Manager address over time
+  CollectionMetadata collectionMetadata = 2; // Collection metadata
+  repeated TokenMetadata tokenMetadata = 3; // Token metadata
+  string customData = 4; // Arbitrary custom data
+  string manager = 5; // Manager address
   CollectionPermissions collectionPermissions = 6; // Collection permissions
   repeated CollectionApproval collectionApprovals = 7; // Collection-level approvals
-  repeated StandardsTimeline standardsTimeline = 8; // Standards over time
-  repeated IsArchivedTimeline isArchivedTimeline = 9; // Archive status over time
+  repeated string standards = 8; // Standards
+  bool isArchived = 9; // Archive status
   UserBalanceStore defaultBalances = 10; // Default balance store for users
   string createdBy = 11; // Creator of the collection
   repeated UintRange validTokenIds = 12; // Valid token ID ranges

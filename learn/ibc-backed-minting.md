@@ -41,7 +41,7 @@ const collection: MsgCreateCollection = {
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
     },
-    // ... other fields (collectionPermissions, managerTimeline, etc.)
+    // ... other fields (collectionPermissions, manager, etc.)
 };
 ```
 

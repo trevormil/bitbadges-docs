@@ -4,27 +4,27 @@ A universal message that can be used to either create a new collection or update
 
 ## Dual Purpose
 
-* **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
-* **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
+-   **Collection Creation**: When `collectionId` is set to `"0"`, this message creates a new collection
+-   **Collection Update**: When `collectionId` is set to an existing collection ID, this message updates that collection
 
 ## Update Flag Pattern
 
 This message uses an update flag + value pattern for selective updates. Each updatable field has a corresponding boolean flag (e.g., `updateValidTokenIds`, `updateCollectionPermissions`).
 
-* **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
-* **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
+-   **If update flag is `true`**: The corresponding value field is processed and the collection is updated with the new value
+-   **If update flag is `false`**: The corresponding value field is completely ignored, regardless of what data is provided
 
 ## Authorization & Permissions
 
-* **For Collection Creation**: Can be executed by any address
-* **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
+-   **For Collection Creation**: Can be executed by any address
+-   **For Collection Updates**: Can only be executed by the **current manager** of the collection. All updates must obey the previously set permissions.
 
 ### Path Addition Permissions
 
 When adding paths to an existing collection, the following permissions are checked:
 
-* **`cosmosCoinWrapperPathsToAdd`**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
-* **`aliasPathsToAdd`**: Requires `canAddMoreAliasPaths` permission
+-   **`cosmosCoinWrapperPathsToAdd`**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+-   **`aliasPathsToAdd`**: Requires `canAddMoreAliasPaths` permission
 
 These permissions are checked before paths are processed. If the permission check fails, the transaction will be rejected. Both permissions use the `ActionPermission` type with time-based controls. Empty/nil permissions mean the action is allowed (neutral state).
 
@@ -42,20 +42,20 @@ message MsgUniversalUpdateCollection {
   repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
-  bool updateManagerTimeline = 7;
-  repeated ManagerTimeline managerTimeline = 8;
-  bool updateCollectionMetadataTimeline = 9;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateTokenMetadataTimeline = 11;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
-  bool updateCustomDataTimeline = 13;
-  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateManager = 7;
+  string manager = 8;
+  bool updateCollectionMetadata = 9;
+  CollectionMetadata collectionMetadata = 10;
+  bool updateTokenMetadata = 11;
+  repeated TokenMetadata tokenMetadata = 12;
+  bool updateCustomData = 13;
+  string customData = 14;
   bool updateCollectionApprovals = 15;
   repeated CollectionApproval collectionApprovals = 16;
-  bool updateStandardsTimeline = 17;
-  repeated StandardsTimeline standardsTimeline = 18;
-  bool updateIsArchivedTimeline = 19;
-  repeated IsArchivedTimeline isArchivedTimeline = 20;
+  bool updateStandards = 17;
+  repeated string standards = 18;
+  bool updateIsArchived = 19;
+  bool isArchived = 20;
 
   // Transfer fields
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
@@ -114,20 +114,20 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
         "canAddMoreAliasPaths": [],
         "canAddMoreCosmosCoinWrapperPaths": []
     },
-    "updateManagerTimeline": true,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": true,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": true,
-    "customDataTimeline": [],
+    "updateManager": true,
+    "manager": "",
+    "updateCollectionMetadata": true,
+    "collectionMetadata": {},
+    "updateTokenMetadata": true,
+    "tokenMetadata": [],
+    "updateCustomData": true,
+    "customData": "",
     "updateCollectionApprovals": true,
     "collectionApprovals": [],
-    "updateStandardsTimeline": true,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": true,
-    "isArchivedTimeline": [],
+    "updateStandards": true,
+    "standards": [],
+    "updateIsArchived": true,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "aliasPathsToAdd": [],
@@ -151,20 +151,20 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "validTokenIds": [{ "start": "1", "end": "200" }],
     "updateCollectionPermissions": false,
     "collectionPermissions": {},
-    "updateManagerTimeline": false,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": false,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": false,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": false,
-    "customDataTimeline": [],
+    "updateManager": false,
+    "manager": "",
+    "updateCollectionMetadata": false,
+    "collectionMetadata": {},
+    "updateTokenMetadata": false,
+    "tokenMetadata": [],
+    "updateCustomData": false,
+    "customData": "",
     "updateCollectionApprovals": false,
     "collectionApprovals": [],
-    "updateStandardsTimeline": false,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": false,
-    "isArchivedTimeline": [],
+    "updateStandards": false,
+    "standards": [],
+    "updateIsArchived": false,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "aliasPathsToAdd": [],
@@ -176,15 +176,15 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
 
 ### vs MsgCreateCollection
 
-* More flexible update flag pattern
-* Can be used for both creation and updates
-* Includes invariants support
+-   More flexible update flag pattern
+-   Can be used for both creation and updates
+-   Includes invariants support
 
 ### vs MsgUpdateCollection
 
-* Can create new collections when collectionId = "0"
-  * Includes creation-only fields like `defaultBalances`
-* Includes invariants support
+-   Can create new collections when collectionId = "0"
+    -   Includes creation-only fields like `defaultBalances`
+-   Includes invariants support
 
 ## Invariants Support
 
@@ -204,6 +204,6 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 
 ## Related Messages
 
-* [MsgCreateCollection](msg-create-collection.md)
-* [MsgUpdateCollection](msg-update-collection.md)
-* [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)
+-   [MsgCreateCollection](msg-create-collection.md)
+-   [MsgUpdateCollection](msg-update-collection.md)
+-   [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)

@@ -60,6 +60,6 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
 
 The `globalEnabled` field indicates whether the global kill switch is enabled for this store. When `globalEnabled = false`, all approvals using this store via `DynamicStoreChallenge` will fail immediately, regardless of per-address values.
 
-- **New stores**: Default to `globalEnabled = true`
-- **Existing stores**: Set to `globalEnabled = true` for backward compatibility
-- **Disabling**: Use [MsgUpdateDynamicStore](../messages/msg-update-dynamic-store.md) to set `globalEnabled = false`
+-   **New stores**: Default to `globalEnabled = true`
+-   **Existing stores**: Set to `globalEnabled = true` for backward compatibility
+-   **Disabling**: Use [MsgUpdateDynamicStore](../messages/msg-update-dynamic-store.md) to set `globalEnabled = false`

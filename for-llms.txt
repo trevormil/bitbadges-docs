@@ -2006,7 +2006,6 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
-    * [Timelines](for-developers/bitbadges-sdk/common-snippets/timelines.md)
 * [⛓️ BitBadges Blockchain](for-developers/bitbadges-blockchain/README.md)
   * [Overview](for-developers/bitbadges-blockchain/overview.md)
   * [BitBadges Explorer](https://explorer.bitbadges.io/)
@@ -2297,7 +2296,7 @@ Keep sections focused. If a section exceeds 300 words, split it:
 
 [Content here]
 
-### Metadata Timeline
+### Metadata
 
 [Content here]
 
@@ -4276,45 +4275,6 @@ In our API, JS bigints cannot be natively sent over HTTP. So, we use the followi
 
 1. Before sending to the client, stringify everything before sending over HTTP
 2. The client can use the converter functions to coonvert all types to their preferred method
-
-
-## File: ./for-developers/bitbadges-sdk/common-snippets/timelines.md
-
-# Timelines
-
-As you may have noticed, many of the collection fields are timeline-based, meaning they can be scheduled to have different values at different times. Check out the [Timeline helpers](https://bitbadges.github.io/bitbadgesjs/functions/getCurrentValuesForCollection.html) from bitbadgesjs-sdk in the SDK.
-
-**Examples:**
-
-If you are using the BitBadgesCollection interface, this is achievable simply with the helper functions. There is one for every timeline.
-
-```typescript
-const manager = collection.getManager(); //Can pass in a time too (defaults to now)
-```
-
-Or, you can do it manually
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const manager = getCurrentValuesForCollection(collection).manager;
-</strong></code></pre>
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>const manager = getValuesAtTimeForCollection(collection, Date.now() + 1000 * 60).manager;
-</strong></code></pre>
-
-You can also get all possible values for timelines as such. This will set all missing times with empty or default values.
-
-```typescript
-function getFullManagerTimeline(
-    timeline: ManagerTimeline<bigint>[]
-): ManagerTimeline<bigint>[];
-```
-
-```typescript
-function getFullCollectionMetadataTimeline(
-    timeline: CollectionMetadataTimeline<bigint>[]
-): CollectionMetadataTimeline<bigint>[];
-```
-
-And so on for all other timelines.
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md
@@ -9702,9 +9662,9 @@ const collection: TokenCollection<bigint> = {
 };
 ```
 
-### Manager Timeline
+### Manager
 
-Managers can change over time using timeline-based configuration:
+Managers can be updated through update messages:
 
 ```typescript
 // Manager changes automatically on a specific date
@@ -9778,7 +9738,7 @@ The manager can execute administrative actions according to permissions:
 -   Updating valid token IDs
 -   Archiving the collection
 -   Deleting the collection
--   Updating manager timeline
+-   Updating manager
 -   And more...
 
 All permissions are defined on-chain with time-based configuration, allowing permissions to change over time.
@@ -9867,7 +9827,7 @@ Permissions are evaluated as a linear array where each element has criteria and 
 -   **No Overlap**: Times cannot be in both `permanentlyPermittedTimes` and `permanentlyForbiddenTimes`
 -   **Order Matters**: Array order affects which permissions are applied
 
-**Example: Timeline Permissions**
+**Example: Field Update Permissions**
 
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
@@ -9950,8 +9910,8 @@ There are **five types** of permissions, each with different criteria:
 | Type                            | Criteria                                       | Examples                                                     |
 | ------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
 | **Action Permissions**          | Time control only                              | `canDeleteCollection`                                        |
-| **Timeline Permissions**        | Timeline times + time control                  | `canUpdateCollectionMetadata`, `canUpdateStandards`          |
-| **Timeline with Token IDs**     | Timeline times + token IDs + time control      | `canUpdateTokenMetadata`                                     |
+| **Field Update Permissions**    | Time control                                   | `canUpdateCollectionMetadata`, `canUpdateStandards`          |
+| **Token-Specific Permissions** | Token IDs + time control                       | `canUpdateTokenMetadata`                                     |
 | **Token ID Action Permissions** | Token IDs + time control                       | `canUpdateValidTokenIds`                                     |
 | **Approval Permissions**        | Transfer criteria + approval ID + time control | `canUpdateCollectionApprovals`, `canUpdateIncomingApprovals` |
 
@@ -10013,11 +9973,11 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 };
 ```
 
-### Timeline Permissions
+### Field Update Permissions
 
 Control when collection fields can be updated.
 
-**Basic Timeline Permissions** (timeline times only):
+**Basic Field Update Permissions** (time control only):
 
 -   `canArchiveCollection`
 -   `canUpdateStandards`
@@ -10025,14 +9985,14 @@ Control when collection fields can be updated.
 -   `canUpdateManager`
 -   `canUpdateCollectionMetadata`
 
-**Token-Specific Timeline Permissions** (timeline times + token IDs):
+**Token-Specific Permissions** (token IDs + time control):
 
 -   `canUpdateTokenMetadata`
 
 **Logic:**
 
 ```
-For each timeline update request:
+For each field update request:
     Check if current time is in permanentlyPermittedTimes
         → If no match: ALLOW (neutral state)
         → If match: Check if current time is in permanentlyPermittedTimes
@@ -10042,12 +10002,13 @@ For each timeline update request:
                 → If no: ALLOW (neutral state)
 ```
 
-**Timeline vs Execution Times:**
+**Time Control:**
 
--   **Timeline Times**: Which timeline values can be updated?
--   **Execution Times**: When can the permission be executed?
+-   **Permanently Permitted Times**: When is the permission always allowed?
+-   **Permanently Forbidden Times**: When is the permission always denied?
+-   **Default (Empty)**: Permission is soft-enabled (manager can change)
 
-These may not align. For example, you might forbid updating timeline values for Jan 2024 during 2023.
+These time controls determine when field updates can be executed.
 
 **Examples:**
 
@@ -14581,32 +14542,10 @@ The manager is the central authority for a collection, controlling all administr
 ### Structure
 
 ```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "18446744073709551615"}],
-    "manager": "bb1alice..."
-  }
-]
+"manager": "bb1alice..."
 ```
 
-### Time-Based Manager Changes
-
-Managers can be scheduled to change automatically:
-
-```json
-"managerTimeline": [
-  {
-    "timelineTimes": [{"start": "1", "end": "1672531199000"}],
-    "manager": "bb1alice..."
-  },
-  {
-    "timelineTimes": [{"start": "1672531200000", "end": "18446744073709551615"}],
-    "manager": "bb1bob..."
-  }
-]
-```
-
-This transfers management from Alice to Bob on January 1, 2023.
+The manager is a simple string address. Manager changes must be done through update messages.
 
 ## Manager Permissions
 
@@ -14699,12 +14638,7 @@ During collection creation:
 ```json
 {
     "creator": "bb1alice...",
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "18446744073709551615" }],
-            "manager": "bb1alice..."
-        }
-    ],
+    "manager": "bb1alice...",
     "collectionPermissions": {
         "canUpdateManager": [
             {
@@ -14720,13 +14654,11 @@ During collection creation:
 
 ### Decentralized Management Transition
 
+Managers can be updated through update messages. To transfer management, use an update message:
+
 ```json
 {
-    "managerTimeline": [
-        {
-            "timelineTimes": [{ "start": "1", "end": "1672531199000" }],
-            "manager": "bb1alice..."
-        },
+    "manager": "bb1alice...",
         {
             "timelineTimes": [
                 { "start": "1672531200000", "end": "18446744073709551615" }
@@ -14992,16 +14924,15 @@ For detailed information about each field, see the corresponding concepts docume
 | Field                         | Concepts Link                                                                                            |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `validTokenIds`               | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `managerTimeline`             | [Manager / Permissions](../../learn/permissions.md)                                                      |
-| `collectionMetadataTimeline`  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `tokenMetadataTimeline`       | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `customDataTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `standardsTimeline`           | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
-| `isArchivedTimeline`          | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `manager`                     | [Manager / Permissions](../../learn/permissions.md)                                                      |
+| `collectionMetadata`         | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `tokenMetadata`              | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `customData`                  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `standards`                   | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
+| `isArchived`                  | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `defaultBalances`             | [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)                         |
 | `mintEscrowCoinsToTransfer`   | [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md#mint-escrow-address) |
 | `cosmosCoinWrapperPathsToAdd` | [Cosmos Coin Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md)                                    |
-| Timeline System (all fields)  | [Timeline System](/broken/pages/9EUbN6P70EToKUcgs8qB)                                                    |
 
 ## Base Collection Details
 
@@ -15157,11 +15088,7 @@ You have a few options for setting your permissions.
 If you simply don't want a manager, you can set the manager to an empty string. Then, the permission values never matter.
 
 ```typescript
-const managerTimeline = [
-    {
-        manager: '',
-        timelineTimes: FullTimeRanges,
-    },
+const manager = '';
 ];
 ```
 
@@ -16519,10 +16446,16 @@ This example demonstrates creating a quest collection.
             "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
                         "end": "18446744073709551615"
@@ -16530,43 +16463,7 @@ This example demonstrates creating a quest collection.
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -16701,18 +16598,8 @@ This example demonstrates creating a quest collection.
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": ["Quests"],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "isArchivedTimeline": [],
+        "standards": ["Quests"],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [
             {
                 "denom": "ubadge",
@@ -16815,64 +16702,34 @@ This example demonstrates creating a tradable collection that supports orderbook
             "canUpdateTokenMetadata": [],
             "canUpdateCollectionApprovals": []
         },
-        "managerTimeline": [
+        "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
+        "collectionMetadata": {
+            "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+            "customData": ""
+        },
+        "tokenMetadata": [
             {
-                "manager": "bb18el5ug46umcws58m445ql5scgg2n3tzagfecvl",
-                "timelineTimes": [
+                "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
+                "customData": "",
+                "tokenIds": [
+                    {
+                        "start": "101",
+                        "end": "18446744073709551615"
+                    }
+                ]
+            },
+            {
+                "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
+                "customData": "",
+                "tokenIds": [
                     {
                         "start": "1",
-                        "end": "18446744073709551615"
+                        "end": "100"
                     }
                 ]
             }
         ],
-        "collectionMetadataTimeline": [
-            {
-                "collectionMetadata": {
-                    "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                    "customData": ""
-                },
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "tokenMetadataTimeline": [
-            {
-                "tokenMetadata": [
-                    {
-                        "uri": "ipfs://QmRbRYYyphz73apphqP3QQmkeZxbtMWmAxasGfhcw1RApD",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "101",
-                                "end": "18446744073709551615"
-                            }
-                        ]
-                    },
-                    {
-                        "uri": "ipfs://QmdqD7VE4MTZz2V1XeCBqdFcQ9orE6a4PEUzbFi2SfFxoR",
-                        "customData": "",
-                        "tokenIds": [
-                            {
-                                "start": "1",
-                                "end": "100"
-                            }
-                        ]
-                    }
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
-        ],
-        "customDataTimeline": [],
+        "customData": "",
         "collectionApprovals": [
             {
                 "fromListId": "Mint",
@@ -17060,22 +16917,12 @@ This example demonstrates creating a tradable collection that supports orderbook
                 "version": "0"
             }
         ],
-        "standardsTimeline": [
-            {
-                "standards": [
-                    "Tradable",
-                    "NFTs",
-                    "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
-                ],
-                "timelineTimes": [
-                    {
-                        "start": "1",
-                        "end": "18446744073709551615"
-                    }
-                ]
-            }
+        "standards": [
+            "Tradable",
+            "NFTs",
+            "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
-        "isArchivedTimeline": [],
+        "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
         "cosmosCoinWrapperPathsToAdd": [] // No wrapping allowed
     }
@@ -17244,7 +17091,7 @@ This directory contains detailed documentation for all message types supported b
 * [MsgSetCollectionMetadata](msg-set-collection-metadata.md) - Update collection metadata timeline and permissions
 * [MsgSetTokenMetadata](msg-set-badge-metadata.md) - Update token metadata timeline and permissions
 * [MsgSetCustomData](msg-set-custom-data.md) - Update custom data timeline and permissions
-* [MsgSetStandards](msg-set-standards.md) - Update standards timeline and permissions
+* [MsgSetStandards](msg-set-standards.md) - Update standards and permissions
 * [MsgSetCollectionApprovals](msg-set-collection-approvals.md) - Update collection approvals and permissions
 * [MsgSetIsArchived](msg-set-is-archived.md) - Update isArchived timeline and permissions
 
@@ -17353,13 +17200,13 @@ message MsgCreateCollection {
   UserBalanceStore defaultBalances = 2;
   repeated UintRange validTokenIds  = 3; // Token ID ranges to include
   CollectionPermissions collectionPermissions = 4;
-  repeated ManagerTimeline managerTimeline = 5;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 6;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 7;
-  repeated CustomDataTimeline customDataTimeline = 8;
+  string manager = 5;
+  CollectionMetadata collectionMetadata = 6;
+  repeated TokenMetadata tokenMetadata = 7;
+  string customData = 8;
   repeated CollectionApproval collectionApprovals = 9;
-  repeated StandardsTimeline standardsTimeline = 10;
-  repeated IsArchivedTimeline isArchivedTimeline = 11;
+  repeated string standards = 10;
+  bool isArchived = 11;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 12;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 13;
   CollectionInvariants invariants = 14;
@@ -17411,13 +17258,13 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
-    "managerTimeline": [],
-    "collectionMetadataTimeline": [],
-    "tokenMetadataTimeline": [],
-    "customDataTimeline": [],
+    "manager": "",
+    "collectionMetadata": {},
+    "tokenMetadata": [],
+    "customData": "",
     "collectionApprovals": [],
-    "standardsTimeline": [],
-    "isArchivedTimeline": [],
+    "standards": [],
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
@@ -18284,18 +18131,18 @@ This message is a streamlined alternative to [MsgUpdateCollection](broken-refere
 
 ## MsgSetStandards
 
-Sets the standards timeline and update permissions for a collection. This is a convenience message that focuses specifically on standards management.
+Sets the standards and update permissions for a collection. This is a convenience message that focuses specifically on standards management.
 
 ### Overview
 
 This message allows you to:
 
-* Set standards timeline for the collection
+* Set standards for the collection
 * Configure permissions to update the standards in the future
 
 ### Authorization & Permissions
 
-Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the standards timeline according to the collection's current permission settings.
+Updates can only be performed by the **current manager** of the collection. The manager must have permission to update the standards according to the collection's current permission settings.
 
 ### Proto Definition
 
@@ -18837,20 +18684,20 @@ message MsgUniversalUpdateCollection {
   repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
-  bool updateManagerTimeline = 7;
-  repeated ManagerTimeline managerTimeline = 8;
-  bool updateCollectionMetadataTimeline = 9;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateTokenMetadataTimeline = 11;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
-  bool updateCustomDataTimeline = 13;
-  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateManager = 7;
+  string manager = 8;
+  bool updateCollectionMetadata = 9;
+  CollectionMetadata collectionMetadata = 10;
+  bool updateTokenMetadata = 11;
+  repeated TokenMetadata tokenMetadata = 12;
+  bool updateCustomData = 13;
+  string customData = 14;
   bool updateCollectionApprovals = 15;
   repeated CollectionApproval collectionApprovals = 16;
-  bool updateStandardsTimeline = 17;
-  repeated StandardsTimeline standardsTimeline = 18;
-  bool updateIsArchivedTimeline = 19;
-  repeated IsArchivedTimeline isArchivedTimeline = 20;
+  bool updateStandards = 17;
+  repeated Standards standards = 18;
+  bool updateIsArchived = 19;
+  bool isArchived = 20;
 
   // Transfer fields
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
@@ -18906,20 +18753,20 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
         "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
-    "updateManagerTimeline": true,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": true,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": true,
-    "customDataTimeline": [],
+    "updateManager": true,
+    "manager": "",
+    "updateCollectionMetadata": true,
+    "collectionMetadata": {},
+    "updateTokenMetadata": true,
+    "tokenMetadata": [],
+    "updateCustomData": true,
+    "customData": "",
     "updateCollectionApprovals": true,
     "collectionApprovals": [],
-    "updateStandardsTimeline": true,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": true,
-    "isArchivedTimeline": [],
+    "updateStandards": true,
+    "standards": [],
+    "updateIsArchived": true,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
@@ -18942,20 +18789,20 @@ bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator
     "validTokenIds": [{ "start": "1", "end": "200" }],
     "updateCollectionPermissions": false,
     "collectionPermissions": {},
-    "updateManagerTimeline": false,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": false,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": false,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": false,
-    "customDataTimeline": [],
+    "updateManager": false,
+    "manager": "",
+    "updateCollectionMetadata": false,
+    "collectionMetadata": {},
+    "updateTokenMetadata": false,
+    "tokenMetadata": [],
+    "updateCustomData": false,
+    "customData": "",
     "updateCollectionApprovals": false,
     "collectionApprovals": [],
-    "updateStandardsTimeline": false,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": false,
-    "isArchivedTimeline": [],
+    "updateStandards": false,
+    "standards": [],
+    "updateIsArchived": false,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {}
@@ -19030,20 +18877,20 @@ message MsgUpdateCollection {
   repeated UintRange validTokenIds = 4;
   bool updateCollectionPermissions = 5;
   CollectionPermissions collectionPermissions = 6;
-  bool updateManagerTimeline = 7;
-  repeated ManagerTimeline managerTimeline = 8;
-  bool updateCollectionMetadataTimeline = 9;
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 10;
-  bool updateTokenMetadataTimeline = 11;
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 12;
-  bool updateCustomDataTimeline = 13;
-  repeated CustomDataTimeline customDataTimeline = 14;
+  bool updateManager = 7;
+  string manager = 8;
+  bool updateCollectionMetadata = 9;
+  CollectionMetadata collectionMetadata = 10;
+  bool updateTokenMetadata = 11;
+  repeated TokenMetadata tokenMetadata = 12;
+  bool updateCustomData = 13;
+  string customData = 14;
   bool updateCollectionApprovals = 15;
   repeated CollectionApproval collectionApprovals = 16;
-  bool updateStandardsTimeline = 17;
-  repeated StandardsTimeline standardsTimeline = 18;
-  bool updateIsArchivedTimeline = 19;
-  repeated IsArchivedTimeline isArchivedTimeline = 20;
+  bool updateStandards = 17;
+  repeated Standards standards = 18;
+  bool updateIsArchived = 19;
+  bool isArchived = 20;
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
   CollectionInvariants invariants = 23;
@@ -19081,20 +18928,20 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
         "canUpdateTokenMetadata": [],
         "canUpdateCollectionApprovals": []
     },
-    "updateManagerTimeline": false,
-    "managerTimeline": [],
-    "updateCollectionMetadataTimeline": false,
-    "collectionMetadataTimeline": [],
-    "updateTokenMetadataTimeline": false,
-    "tokenMetadataTimeline": [],
-    "updateCustomDataTimeline": false,
-    "customDataTimeline": [],
+    "updateManager": false,
+    "manager": "",
+    "updateCollectionMetadata": false,
+    "collectionMetadata": {},
+    "updateTokenMetadata": false,
+    "tokenMetadata": [],
+    "updateCustomData": false,
+    "customData": "",
     "updateCollectionApprovals": false,
     "collectionApprovals": [],
-    "updateStandardsTimeline": false,
-    "standardsTimeline": [],
-    "updateIsArchivedTimeline": false,
-    "isArchivedTimeline": [],
+    "updateStandards": false,
+    "standards": [],
+    "updateIsArchived": false,
+    "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
     "invariants": {
@@ -19516,14 +19363,14 @@ message QueryGetCollectionResponse {
 
 message TokenCollection {
   string collectionId = 1; // Unique identifier for this collection
-  repeated CollectionMetadataTimeline collectionMetadataTimeline = 2; // Collection metadata over time
-  repeated TokenMetadataTimeline tokenMetadataTimeline = 3; // Token metadata over time
-  repeated CustomDataTimeline customDataTimeline = 4; // Arbitrary custom data over time
-  repeated ManagerTimeline managerTimeline = 5; // Manager address over time
+  CollectionMetadata collectionMetadata = 2; // Collection metadata
+  repeated TokenMetadata tokenMetadata = 3; // Token metadata
+  string customData = 4; // Arbitrary custom data
+  string manager = 5; // Manager address
   CollectionPermissions collectionPermissions = 6; // Collection permissions
   repeated CollectionApproval collectionApprovals = 7; // Collection-level approvals
-  repeated StandardsTimeline standardsTimeline = 8; // Standards over time
-  repeated IsArchivedTimeline isArchivedTimeline = 9; // Archive status over time
+  repeated string standards = 8; // Standards
+  bool isArchived = 9; // Archive status
   UserBalanceStore defaultBalances = 10; // Default balance store for users
   string createdBy = 11; // Creator of the collection
   repeated UintRange validTokenIds = 12; // Valid token ID ranges
@@ -21284,13 +21131,13 @@ The module checks permissions based on which fields are being updated in the `Un
 
 * **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
 * **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
-* **UpdateManagerTimeline**: Requires `canUpdateManager` permission
-* **UpdateCollectionMetadataTimeline**: Requires `canUpdateCollectionMetadata` permission
-* **UpdateTokenMetadataTimeline**: Requires `canUpdateTokenMetadata` permission
-* **UpdateCustomDataTimeline**: Requires `canUpdateCustomData` permission
+* **UpdateManager**: Requires `canUpdateManager` permission
+* **UpdateCollectionMetadata**: Requires `canUpdateCollectionMetadata` permission
+* **UpdateTokenMetadata**: Requires `canUpdateTokenMetadata` permission
+* **UpdateCustomData**: Requires `canUpdateCustomData` permission
 * **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
-* **UpdateStandardsTimeline**: Requires `canUpdateStandards` permission
-* **UpdateIsArchivedTimeline**: Requires `canArchiveCollection` permission
+* **UpdateStandards**: Requires `canUpdateStandards` permission
+* **UpdateIsArchived**: Requires `canArchiveCollection` permission
 
 **Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
 
@@ -21336,8 +21183,8 @@ If the executor doesn't have the required permissions, the transaction will fail
     "creator": "bb1managersplitter...",
     "collectionId": "1",
     ...
-    "updateCollectionMetadataTimeline": true,
-    "collectionMetadataTimeline": [...]
+    "updateCollectionMetadata": true,
+    "collectionMetadata": {...}
   }
 }
 ```
