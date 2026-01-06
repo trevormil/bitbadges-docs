@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Jan  5 21:58:38 UTC 2026
+Generated on Tue Jan  6 14:50:09 UTC 2026
 
 
 
@@ -7240,6 +7240,8 @@ await BitBadgesAPI.getCollection(...);
 ## Developing with AI
 
 Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
+
+[https://github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai)
 
 [https://docs.bitbadges.io/\~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) - GitBook Provided MCP with searchDocumentation tool
 
