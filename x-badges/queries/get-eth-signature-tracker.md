@@ -27,7 +27,7 @@ bitbadgeschaind query badges get-num-used-for-eth-signature-challenge [collectio
 
 # REST API
 # Note for blank values, use "" so you may have // in the query
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature_tracker/1/collection//approval-123/challenge-1/0x1234567890abcdef..."
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature_tracker/1/collection//approval-123/challenge-1/bb1..."
 ```
 
 ### Response Example

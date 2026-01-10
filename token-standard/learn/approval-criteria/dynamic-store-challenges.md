@@ -1,24 +1,26 @@
 # Dynamic Store Challenges
 
-Require transfer initiators to pass checks against dynamic stores. Typically, these are used in combination with smart contracts or other custom extensions.
+Require specified parties (initiator, sender, recipient, or a hardcoded address) to pass checks against dynamic stores. Typically, these are used in combination with smart contracts or other custom extensions.
 
-Dynamic stores are standalone (address -> boolean) stores controlled by whoever creates them. They are stored and maintained by the creator. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases.
+Dynamic stores are standalone (address -> boolean) stores controlled by whoever creates them. They are stored and maintained by the creator. These are powerful for creating dynamic approval criteria with smart contracts and other custom use cases liek global kill switches.
 
 ## How It Works
 
-Dynamic store challenges check if the transfer initiator has a value of `true` in specified dynamic stores. The system:
+Dynamic store challenges check if a specified party has a value of `true` in specified dynamic stores. The system:
 
 1. **Checks Global Kill Switch**: First checks if the dynamic store's `globalEnabled` field is `true`. If `globalEnabled = false`, the approval fails immediately with error: "dynamic store storeId {id} is globally disabled"
-2. **Checks Initiator**: If the store is globally enabled, looks up the initiator's address in the specified dynamic store
-3. **Evaluates Boolean**: Returns the boolean value for the initiator (or `defaultValue` if not set)
-4. **Requires All True**: All challenges must return `true` for approval
-5. **Fails if Any False**: If any challenge returns `false`, transfer is denied
+2. **Determines Check Party**: Determines which address to check based on the `ownershipCheckParty` field (defaults to "initiator" if not specified)
+3. **Looks Up Address**: If the store is globally enabled, looks up the specified party's address in the dynamic store
+4. **Evaluates Boolean**: Returns the boolean value for that address (or `defaultValue` if not set)
+5. **Requires All True**: All challenges must return `true` for approval
+6. **Fails if Any False**: If any challenge returns `false`, transfer is denied
 
 ## Interface
 
 ```typescript
 interface DynamicStoreChallenge {
     storeId: string; // Dynamic store ID to check
+    ownershipCheckParty?: string; // Which party to check: "initiator", "sender", "recipient", or a hardcoded bb1 address (default: "initiator")
 }
 ```
 
@@ -27,11 +29,33 @@ interface DynamicStoreChallenge {
 ```json
 {
     "dynamicStoreChallenges": [
-        { "storeId": "1" }, // Member store (must be true)
-        { "storeId": "2" } // Subscription store (must be true)
+        { "storeId": "1", "ownershipCheckParty": "initiator" }, // Member store (must be true for initiator, default)
+        { "storeId": "2", "ownershipCheckParty": "sender" } // Subscription store (must be true for sender)
     ]
 }
 ```
+
+## Field Descriptions
+
+### storeId
+
+-   **Type**: `string`
+-   **Description**: The ID of the dynamic store to check
+-   **Required**: Yes
+-   **Example**: `"1"` for store ID 1
+
+### ownershipCheckParty
+
+-   **Type**: `string` (optional)
+-   **Description**: Specifies which party of the transfer to check the dynamic store value for
+-   **Options**:
+    -   `"initiator"` (default): Check the dynamic store value for the address that initiated the transfer
+    -   `"sender"`: Check the dynamic store value for the address sending the tokens
+    -   `"recipient"`: Check the dynamic store value for the address receiving the tokens
+    -   Hardcoded bb1 address (e.g., `"bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls"`): Check the dynamic store value for a specific address, regardless of transfer parties
+-   **Default**: `"initiator"` (if empty or not specified)
+-   **Example**: `"sender"` to require the sender to have `true` in the dynamic store before allowing the transfer
+-   **Hardcoded Address Example**: `"bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls"` to require a specific address to have `true` in the store (useful for multi-sig or contract-based checks)
 
 ## Global Kill Switch
 
@@ -41,10 +65,10 @@ This is useful for quickly halting all approvals that depend on a specific dynam
 
 ### Behavior
 
-- **New stores**: `globalEnabled` defaults to `true` (enabled by default)
-- **Existing stores**: All existing stores are set to `globalEnabled = true` for backward compatibility
-- **Disabling**: Set `globalEnabled = false` via [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to halt all dependent approvals
-- **Re-enabling**: Set `globalEnabled = true` to restore normal operation
+-   **New stores**: `globalEnabled` defaults to `true` (enabled by default)
+-   **Existing stores**: All existing stores are set to `globalEnabled = true` for backward compatibility
+-   **Disabling**: Set `globalEnabled = false` via [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to halt all dependent approvals
+-   **Re-enabling**: Set `globalEnabled = true` to restore normal operation
 
 ### Usage Example
 
@@ -90,5 +114,5 @@ Use [GetDynamicStore](../../../x-badges/queries/get-dynamic-store.md) to retriev
 
 For fully off-chain solutions, consider:
 
-* [Merkle Challenges](merkle-challenges.md) to save gas costs
-* [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization
+-   [Merkle Challenges](merkle-challenges.md) to save gas costs
+-   [ETH Signature Challenges](eth-signature-challenges.md) for direct authorization

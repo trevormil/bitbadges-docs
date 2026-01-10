@@ -97,10 +97,3 @@ The `uri` and `customData` fields can be updated along with other store properti
 
 - **`uri`**: URI for additional metadata or resources. Can be set, updated, or cleared (set to empty string).
 - **`customData`**: Custom data field for arbitrary string data. Can be set, updated, or cleared (set to empty string).
-
-**Important Notes:**
-- Both fields are optional and default to empty strings if not provided
-- To keep existing values unchanged, you can omit the fields or pass the current values
-- To clear a field, explicitly set it to an empty string (`""`)
-- Fields are stored and persisted with the DynamicStore
-- Fields are included in EIP712 schemas for Ethereum signature compatibility

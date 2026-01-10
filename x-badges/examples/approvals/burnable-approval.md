@@ -1,6 +1,6 @@
 # Burnable Approval
 
-This example demonstrates how to create a burnable approval that allows tokens to be sent to the burn address (0x0000000000000000000000000000000000000000), effectively removing them from circulation.
+This example demonstrates how to create a burnable approval that allows tokens to be sent to the burn address, effectively removing them from circulation.
 
 ## Overview
 
@@ -11,9 +11,7 @@ A burnable approval enables tokens to be permanently destroyed by sending them t
 ```typescript
 const burnableApproval = new CollectionApproval({
     fromListId: '!Mint', // Excludes the Mint address
-    toListId: convertToBitBadgesAddress(
-        '0x0000000000000000000000000000000000000000' //bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv
-    ),
+    toListId: 'bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqs7gvmv', // Burn address (bb-prefixed)
     initiatedByListId: 'All',
     transferTimes: UintRangeArray.FullRanges(),
     ownershipTimes: UintRangeArray.FullRanges(),

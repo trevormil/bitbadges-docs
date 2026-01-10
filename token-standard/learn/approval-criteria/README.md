@@ -34,7 +34,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     overridesToIncomingApprovals?: boolean;
     /** The royalties to apply to the transfer. */
     userRoyalties?: iUserRoyalties<T>;
-    /** The list of dynamic store challenges that the initiator must pass for approval. */
+    /** The list of dynamic store challenges that must pass for approval. Can check initiator, sender, recipient, or a hardcoded address. */
     dynamicStoreChallenges?: iDynamicStoreChallenge<T>[];
     /** The list of ETH signature challenges that require valid Ethereum signatures for approval. */
     ethSignatureChallenges?: iETHSignatureChallenge<T>[];

@@ -2,7 +2,7 @@
 
 ## Comparing BitBadges L1 to Other Protocols
 
-BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK that aims to simplify the multi-chain experience. The BitBadges token (badge) standard is not EVM-compatible, ERC-20 compatible, or Bitcoin Ordinals compatible. Instead, we offers our own flexible, ever-evolving token standard, making it easier to build multi-chain applications. This is because it is compatible with ANY wallet from ANY chain, all with ONE interface.
+BitBadges is a unique L1 (Layer 1) blockchain built using the Cosmos SDK. The BitBadges token standard is not EVM-compatible, ERC-20 compatible, or Bitcoin Ordinals compatible. Instead, we offer our own flexible, ever-evolving token standard built on Cosmos foundations.
 
 While BitBadges may lack some of the native smart contract support and interoperability features of other protocols, its self-contained design and API-like token standard can be a compelling solution for certain use cases.
 
@@ -12,8 +12,6 @@ While BitBadges may lack some of the native smart contract support and interoper
 
 BitBadges is its own L1 blockchain, not a layer-2 or sidechain solution. It is built using the Cosmos SDK, which gives it flexibility and scalability. It also connects to the IBC ecosystem and all other Cosmos features.
 
-Protocols like Bitcoin Oracles, Ethereum NFTs, and Solana NFTs are all deployed on their respective chain and not compatible with each other. If you wanted to implement a token-gated application for all those chains, you would need to issue tokens on every chain. With BitBadges, it is one token in one place for all users from any chain.
-
 ### Security Model
 
 Yes, BitBadges may not be as secure or decentralized (yet) as some other protocols. It is its own L1, and over time, we will only get more decentralized and secure. However, we actually envision BitBadges being a flexible part of any application stack and used where needed rather than an all encompassing solution.
@@ -22,9 +20,7 @@ For example, when building an application, you may use BitBadges for authenticat
 
 ### Cross-Chain Interoperability
 
-BitBadges is not interoperable in the traditional sense, as it is a self-contained L1 blockchain. BitBadges does not "pull" or "connect" data from other chains. All relevant data is stored on the BitBadges chain, simplifying application development.
-
-However, it supports users and wallets from any chain, allowing for easy multi-chain token transfers and multi-chain application development (e.g. Ethereum users can transfer tokens to Solana users to Bitcoin users). For example, Bitcoin users can sign BitBadges transactions with their Bitcoin wallets.
+BitBadges leverages IBC to connect to other chains and use the BitBadges token standard on any Cosmos chain.
 
 ### Token Standard
 
