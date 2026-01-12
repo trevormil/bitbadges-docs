@@ -9,7 +9,7 @@ Use cases could include:
 -   Using our standard tokens for time-dependent logic but eventually making them native Cosmos SDK coins
 -   Compatibility with existing Cosmos services and chains like Osmosis, Juno, etc.
 
-> **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly.
+> **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly. Additionally, collection approvals used for wrapper path operations must have `allowSpecialWrapping: true` set in their `approvalCriteria`.
 
 ## Core Concept
 
@@ -385,6 +385,7 @@ const collectionApprovals = [
         approvalId: 'wrap-approval',
         version: 0n,
         approvalCriteria: {
+            allowSpecialWrapping: true, // Required for wrapper path operations
             maxNumTransfers: {
                 perInitiatedByAddressMaxNumTransfers: 10n, // 10 wraps per day
                 // ... reset time intervals
@@ -401,6 +402,7 @@ const collectionApprovals = [
         approvalId: 'unwrap-approval',
         version: 0n,
         approvalCriteria: {
+            allowSpecialWrapping: true, // Required for wrapper path operations
             // Override wrapper's incoming approvals
             overridesToIncomingApprovals: true,
         },

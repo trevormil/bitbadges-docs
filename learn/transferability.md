@@ -144,6 +144,10 @@ interface ApprovalCriteria<T extends bigint> {
     // Approval behavior
     autoDeletionOptions?: AutoDeletionOptions; // Auto-delete after use
     mustPrioritize?: boolean; // Require explicit prioritization
+
+    // Special address flags (collection-level only)
+    allowedBackedMinting?: boolean; // Allow approval for IBC backed path operations
+    allowSpecialWrapping?: boolean; // Allow approval for cosmos coin wrapper path operations
 }
 ```
 

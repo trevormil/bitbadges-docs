@@ -50,6 +50,10 @@ export interface iApprovalCriteria<T extends NumberType> {
     altTimeChecks?: iAltTimeChecks;
     /** Whether this approval must be prioritized during evaluation. */
     mustPrioritize?: boolean;
+    /** Whether this approval can be used for IBC backed path operations (collection-level only). */
+    allowedBackedMinting?: boolean;
+    /** Whether this approval can be used for cosmos coin wrapper path operations (collection-level only). */
+    allowSpecialWrapping?: boolean;
 }
 ```
 
@@ -72,6 +76,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
 * [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
 * [**Must Prioritize**](../../../x-badges/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
+* [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
 
 ## Key Concepts
 

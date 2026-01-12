@@ -54,6 +54,8 @@ Ex: { amount: "1000000", denom: "ibc/1234..." } = [{ amount: 1n, tokenIds: [{ st
 
 Even though this is a special address, it is still subject to the same transferability requirements as any other address. This means that you can user-gate, rate-limit, or anything else you can do with an address and its transferability.
 
+**Important:** Collection approvals used for IBC backed path operations must have `allowedBackedMinting: true` set in their `approvalCriteria`. This flag ensures that only explicitly designated approvals can be used for backed minting operations.
+
 This allows you to build complex minting / unwinding logic. For example:
 
 -   $2500 per day withdrawal limit
