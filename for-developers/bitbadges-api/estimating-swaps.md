@@ -12,25 +12,74 @@ POST https://api.bitbadges.io/api/v0/api/{version}/swaps/estimate
 
 ```typescript
 export interface iEstimateSwapPayload {
-    /** The token in to swap. Format: "amount:X,denom:Y" */
-    tokenIn: string;
-    /** The token out denom to swap to. */
-    tokenOutDenom: string;
+  /** The token in to swap. Format: "amount:X,denom:Y" */
+  tokenIn: string;
+  /** Optional chain ID for the token in. Defaults to "bitbadges-1" if not provided. */
+  tokenInChainId?: string;
+  /** The token out denom to swap to. */
+  tokenOutDenom: string;
+  /** Optional chain ID for the token out. Defaults to "bitbadges-1" if not provided. */
+  tokenOutChainId?: string;
+  /**
+   * Mapping of chain IDs to addresses.
+   * Only supports "bitbadges-1" (bech32 bb prefixed address for Cosmos-based chains and "1" (EVM-based chains with a standard 0x address)
+   *
+   * We will generate any other chain addresses from these addresses.
+   */
+  chainIdsToAddresses: Record<string, string>;
+  /**
+   * Optional mapping of chain IDs to affiliate fee recipients.
+   * Structure: { [chainId]: { affiliates: Array<{ address: string; basis_points_fee: string }> } }
+   */
+  chainIdsToAffiliates?: Record<string, { affiliates: Array<{ address: string; basis_points_fee: string }> }>;
+  /** Slippage tolerance as a percentage (0-100). Can be a string or number. */
+  slippageTolerancePercent: string | number;
+  /** Forcefully recheck compliance and avoid cache (5 minutes) */
+  forcefulRecheckCompliance?: boolean;
 }
+
 ```
 
 ## Response
 
 ```typescript
 export interface iEstimateSwapSuccessResponse {
-    success: boolean;
-    estimate: {
-        tokenOutAmount: string;
-        tokenInAmount: string;
-        skipGoMsgs: SkipGoMessage[];
-        doesSwap: boolean;
-        lowLiquidityWarning?: boolean;
-    };
+  /** Whether the swap estimation was successful. */
+  success: boolean;
+  /** Detailed estimation information for the swap. */
+  estimate: {
+    /** The estimated amount of tokens that will be received (token out). */
+    tokenOutAmount: string;
+    /** The amount of tokens being swapped in (token in). */
+    tokenInAmount: string;
+    /**
+     * Messages for multi-chain routing.
+     * Contains either a multi-chain message (for Cosmos chains) or an EVM transaction (for EVM chains).
+     * These messages are used to execute the swap across different chains if needed.
+     */
+    skipGoMsgs: SkipGoMessage[];
+    /**
+     * The path the asset takes through different chains and operations to complete the swap.
+     * Each step in the path indicates the denom, chain ID, and how the asset moves (genesis, swap, or transfer).
+     */
+    assetPath: {
+      denom: string;
+      chainId: string;
+      how: 'genesis' | 'swap' | 'transfer';
+    }[];
+    /** Whether an actual swap operation occurs (true) or if it's just a transfer. */
+    doesSwap: boolean;
+    /** Warning flag indicating if the liquidity pool has low liquidity, which may affect swap execution. */
+    lowLiquidityWarning?: boolean;
+    /** Warning flag indicating if compliance checks did not pass for this swap. This means swap is likely to fail on BitBadges pool swap with compliance checks. */
+    complianceNotPassedWarning?: boolean;
+    /** Detailed error message if compliance checks failed. */
+    complianceErrorMessage?: string;
+    /** Estimated time in seconds for the swap to complete (if available). */
+    estimatedTime?: number;
+    /** Fallback asset if swap is not possible. */
+    fallbackAsset?: { denom: string; chainId: string; };
+  };
 }
 ```
 

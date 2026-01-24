@@ -9,7 +9,7 @@ Use cases could include:
 -   Using our standard tokens for time-dependent logic but eventually making them native Cosmos SDK coins
 -   Compatibility with existing Cosmos services and chains like Osmosis, Juno, etc.
 
-> **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly. Additionally, collection approvals used for wrapper path operations must have `allowSpecialWrapping: true` set in their `approvalCriteria`.
+> **Important**: Since wrapper addresses are uncontrollable (no private keys), approval design requires careful consideration. You must override the wrapper address's user-level approvals where necessary using collection approvals to ensure wrapping/unwrapping functions properly. Additionally, collection approvals used for wrapper path operations must have `allowSpecialWrapping: true` set in their `approvalCriteria`. See [Special Address Flags](../token-standard/learn/approval-criteria/special-address-flags.md) for details.
 
 ## Core Concept
 
@@ -577,8 +577,8 @@ Adding new cosmos coin wrapper paths to a collection is controlled by the `canAd
 
 ### Default Behavior
 
-- **Empty/Nil Permissions**: When `canAddMoreCosmosCoinWrapperPaths` is empty or nil, adding paths is **allowed** (neutral state)
-- **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
+-   **Empty/Nil Permissions**: When `canAddMoreCosmosCoinWrapperPaths` is empty or nil, adding paths is **allowed** (neutral state)
+-   **Migration**: Collections migrated from v21 will have empty permissions, meaning adding paths is allowed by default
 
 ### Permission Structure
 
@@ -600,6 +600,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ### Usage Examples
 
 **Allow adding paths at all times:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreCosmosCoinWrapperPaths: [], // Empty = allowed by default
@@ -607,6 +608,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ```
 
 **Lock adding paths forever:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreCosmosCoinWrapperPaths: [
@@ -621,6 +623,7 @@ const collectionPermissions: CollectionPermissions<bigint> = {
 ```
 
 **Allow adding paths only during specific period:**
+
 ```typescript
 const collectionPermissions: CollectionPermissions<bigint> = {
     canAddMoreCosmosCoinWrapperPaths: [

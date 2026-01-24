@@ -51,7 +51,7 @@ export interface iApprovalCriteria<T extends NumberType> {
     /** Whether this approval must be prioritized during evaluation. */
     mustPrioritize?: boolean;
     /** Whether this approval can be used for IBC backed path operations (collection-level only). */
-    allowedBackedMinting?: boolean;
+    allowBackedMinting?: boolean;
     /** Whether this approval can be used for cosmos coin wrapper path operations (collection-level only). */
     allowSpecialWrapping?: boolean;
 }

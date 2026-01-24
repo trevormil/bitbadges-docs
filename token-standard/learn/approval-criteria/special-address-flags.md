@@ -12,40 +12,24 @@ These flags provide fine-grained control over which collection approvals are eli
 
 ```typescript
 interface ApprovalCriteria<T extends NumberType> {
-    allowedBackedMinting?: boolean;
+    allowBackedMinting?: boolean;
     allowSpecialWrapping?: boolean;
 }
 ```
 
 ## Flags
 
-### `allowedBackedMinting`
+### `allowBackedMinting`
 
-A boolean flag in `ApprovalCriteria` that determines whether this collection approval can be used for transfers involving **backed minting** (via `CosmosCoinBackedPath`).
+Controls whether a collection approval can be used for backed minting operations (via `CosmosCoinBackedPath`). Defaults to `false` if not set.
 
-**When `true`:**
-
--   The approval can be used for transfers to/from the backed path address
--   Allows the approval to participate in IBC token backing/unbacking operations
-
-**When `false` (default):**
-
--   The approval cannot be used for backed minting operations
--   Transfers involving the backed path address will not match this approval
+Prevents accidental allowances when `toListIds` is "All" - even if an approval matches all addresses, it won't apply to backing/unbacking operations unless explicitly set to `true`. Validation is bidirectional, checking both `from` and `to` addresses.
 
 ### `allowSpecialWrapping`
 
-A boolean flag in `ApprovalCriteria` that determines whether this collection approval can be used for transfers involving **special wrapping** (via `CosmosCoinWrapperPath`).
+Controls whether a collection approval can be used for special wrapping operations (via `CosmosCoinWrapperPath`). Defaults to `false` if not set.
 
-**When `true`:**
-
--   The approval can be used for transfers to/from wrapper path addresses
--   Allows the approval to participate in cosmos coin wrapping/unwrapping operations
-
-**When `false` (default):**
-
--   The approval cannot be used for special wrapping operations
--   Transfers involving wrapper path addresses will not match this approval
+Prevents accidental allowances when `toListIds` is "All" - even if an approval matches all addresses, it won't apply to wrapping/unwrapping operations unless explicitly set to `true`. Validation is bidirectional, checking both `from` and `to` addresses.
 
 ## Usage
 
@@ -64,7 +48,7 @@ const backingApproval: CollectionApproval<bigint> = {
     approvalId: 'backing-approval',
     version: 0n,
     approvalCriteria: {
-        allowedBackedMinting: true, // Required for IBC backed path operations
+        allowBackedMinting: true, // Required for IBC backed path operations
         overridesFromOutgoingApprovals: true,
     },
 };
@@ -91,8 +75,7 @@ const wrapperApproval: CollectionApproval<bigint> = {
 
 ## Important Notes
 
--   These flags are **collection-level only** - they cannot be used in user-level (outgoing/incoming) approvals
--   Default value is `false` for both flags - approvals must explicitly opt-in to special address operations
--   These flags work in conjunction with other approval criteria - all criteria must be satisfied for the approval to match
--   When using these flags, you typically also need to use override flags (`overridesFromOutgoingApprovals` or `overridesToIncomingApprovals`) since special addresses cannot control their own user-level approvals
+-   **Collection-level only:** These flags are only supported at the collection approval level (not user-level approvals)
+-   **Default:** Both flags default to `false` - approvals must explicitly opt-in to special address operations
+-   **Override flags:** When using these flags, you typically also need override flags (`overridesFromOutgoingApprovals` or `overridesToIncomingApprovals`) since special addresses cannot control their own user-level approvals
 
