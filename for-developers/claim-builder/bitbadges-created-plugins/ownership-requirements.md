@@ -101,28 +101,6 @@ For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to 
 }
 ```
 
-**Ethereum / Polygon / Solana NFTs (Beta)**
-
-We also support verifying Ethereum Polygon NFTs through this interface. However, note that we use external APIs to check this, so is not reliant on our infrastructure. Use at your own risk.
-
-```typescript
-{
-    $and: [
-        {
-            assets: [
-                {
-                    chain: 'Polygon', //Or 'Ethereum'
-                    collectionId: '0x9a7f0b7d4b6c1c3f3b6d4e6d5b6e6d5b6e6d5b6e',
-                    assetIds: ['1'],
-                    ownershipTimes: [],
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-    ];
-}
-```
-
 #### **Ownership Times** <a href="#ownership-times" id="ownership-times"></a>
 
 ```

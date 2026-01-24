@@ -27,20 +27,22 @@ bitbadgeschaind tx badges create-dynamic-store [true|false] --from creator-key
 ### JSON Examples
 
 **Basic example (without metadata):**
+
 ```json
 {
-  "creator": "bb1...",
-  "defaultValue": false
+    "creator": "bb1...",
+    "defaultValue": false
 }
 ```
 
 **With optional metadata fields:**
+
 ```json
 {
-  "creator": "bb1...",
-  "defaultValue": false,
-  "uri": "https://example.com/store-metadata",
-  "customData": "{\"description\": \"Member store\", \"version\": \"1.0\"}"
+    "creator": "bb1...",
+    "defaultValue": false,
+    "uri": "https://example.com/store-metadata",
+    "customData": "{\"description\": \"Member store\", \"version\": \"1.0\"}"
 }
 ```
 
@@ -48,11 +50,5 @@ bitbadgeschaind tx badges create-dynamic-store [true|false] --from creator-key
 
 Both `uri` and `customData` are **optional** fields:
 
-- **`uri`**: URI for additional metadata or resources associated with this dynamic store. Typically used for URLs pointing to hosted JSON metadata or documentation. No validation is performed on the URI format.
-- **`customData`**: Custom data field for storing arbitrary string data. Commonly used to store JSON-encoded structured data, but can contain any string value. No validation is performed on the content.
-
-**Important Notes:**
-- Both fields default to empty strings (`""`) if not provided
-- Fields are stored and persisted with the DynamicStore
-- Fields can be updated later using [MsgUpdateDynamicStore](msg-update-dynamic-store.md)
-- Fields are included in EIP712 schemas for Ethereum signature compatibility
+-   **`uri`**: URI for additional metadata or resources associated with this dynamic store. Typically used for URLs pointing to hosted JSON metadata or documentation. No validation is performed on the URI format.
+-   **`customData`**: Custom data field for storing arbitrary string data. Commonly used to store JSON-encoded structured data, but can contain any string value. No validation is performed on the content.

@@ -174,7 +174,9 @@ const validApproval = {
 
 ## Transferability Requirements
 
-The special address is subject to the same transferability requirements as any other address. You can user-gate, rate-limit, or apply any approval logic:
+The special address is subject to the same transferability requirements as any other address. You can user-gate, rate-limit, or apply any approval logic.
+
+**Important:** Collection approvals used for IBC backed path operations must have `allowBackedMinting: true` set in their `approvalCriteria`. See [Special Address Flags](../token-standard/learn/approval-criteria/special-address-flags.md) for details.
 
 ```typescript
 // Example: Rate-limited backing
@@ -189,6 +191,7 @@ const collectionApprovals = [
         approvalId: 'backing-approval',
         version: 0n,
         approvalCriteria: {
+            allowBackedMinting: true, // Required for IBC backed path operations
             maxNumTransfers: {
                 perInitiatedByAddressMaxNumTransfers: 10n, // 10 backs per day
                 // ... reset time intervals

@@ -35,6 +35,7 @@ export const wrapperApproval = ({
         approvalId: id,
         approvalCriteria: {
             ...EmptyApprovalCriteria,
+            allowSpecialWrapping: true, // Required for wrapper path operations
             overridesToIncomingApprovals: true,
         },
     };

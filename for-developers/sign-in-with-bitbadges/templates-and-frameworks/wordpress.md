@@ -1,6 +1,6 @@
 # WordPress
 
-Gate your WordPress site with BitBadges! Authenticate with SIgn In with BitBadges and check any claim criteria, allowing you to create multi-chain websites gated for anything.
+Gate your WordPress site with BitBadges! Authenticate with Sign In with BitBadges and check any claim criteria, allowing you to create gated websites for anything.
 
 Directory Link: [https://wordpress.org/plugins/sign-in-with-bitbadges/](https://wordpress.org/plugins/sign-in-with-bitbadges/)
 

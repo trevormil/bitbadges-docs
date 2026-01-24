@@ -4,12 +4,12 @@ Configuration tools are a helper layer abstracted over the core plugin implement
 
 For example,&#x20;
 
-* Google Calendar can be implemented by configuring the Email plugin with the attendee emails
-* Auto-configure approved user addresses with the Address Restrictions plugin
-* Or any application can be implemented by issuing claim codes with the Codes plugin.
+-   Google Calendar can be implemented by configuring the Email plugin with the attendee emails
+-   Auto-configure approved user addresses with the Address Restrictions plugin
+-   Or any application can be implemented by issuing claim codes with the Codes plugin.
 
 ```
-Note: This is a more advanced option and is not a great user experience. 
+Note: This is a more advanced option and is not a great user experience.
 This should only be used in select cases.
 
 Please create custom plugins for better UX.
@@ -20,5 +20,10 @@ Prompt the user to add the copy / paste the stringified JSON to the Configuratio
 <figure><img src="../../../.gitbook/assets/image (387).png" alt=""><figcaption></figcaption></figure>
 
 ```json
-{"pluginId":"codes","version": "0", "publicParams":{"numCodes":1},"privateParams":{"codes":["code123"]}}
+{
+    "pluginId": "codes",
+    "version": "0",
+    "publicParams": { "numCodes": 1 },
+    "privateParams": { "codes": ["code123"] }
+}
 ```

@@ -4,4 +4,4 @@ This section covers core BitBadges concepts that developers need to understand w
 
 ## Account System
 
-BitBadges supports multi-chain accounts, allowing users from Ethereum, Bitcoin, Solana, and Cosmos to interact with the same tokens and services using their native wallets and signing methods.
+BitBadges uses Cosmos-based accounts with 'bb' prefixed bech32 addresses. All users interact with tokens and services using Cosmos-compatible wallets and Cosmos signatures.

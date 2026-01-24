@@ -2,13 +2,13 @@
 
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
 
-* **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
-* **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim. We also provide the mapped equivalents (**ethAddress**, etc).
-  * Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
-* **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
-* **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
-* **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
-* **Simulation (Dry Run) Flag:** The **\_isSimulation** flag tells you whether this is a known dry run.
+-   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
+-   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address).
+    -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
+-   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
+-   **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
+-   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
+-   **Simulation (Dry Run) Flag:** The **\_isSimulation** flag tells you whether this is a known dry run.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
 
@@ -29,9 +29,6 @@ const payload = {
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
     bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured
-    ethAddress: context.ethAddress, //If pass address is configured
-    solAddress: context.solAddress, //If pass address is configured
-    btcAddress: context.btcAddress, //If pass address is configured
     _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
@@ -88,7 +85,7 @@ Please follow the { message } interface for returned JSON error responses.
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, solAddress, btcAddress, lastUpdated, createdAt } = body;
+    const { claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
     
     //Handle anything specific to dry runs _isSimulation

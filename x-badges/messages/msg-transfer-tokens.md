@@ -276,12 +276,7 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
             // Supply all merkle proofs for any merkle challenges that need to be satisfied
             "merkleProofs": [],
             // Supply all ETH signature proofs for any ETH signature challenges that need to be satisfied
-            "ethSignatureProofs": [
-                {
-                    "nonce": "unique-nonce-001",
-                    "signature": "0x..."
-                }
-            ],
+            "ethSignatureProofs": [],
             // Memo for the transfer (can be left blank)
             "memo": "",
 

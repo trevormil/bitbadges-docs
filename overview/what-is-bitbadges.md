@@ -18,7 +18,7 @@ Existing standards are:
 
 **Expensive**: Contracts are expensive to deploy and maintain.
 
-**Low Interoperability**: Interoperability of tokens has improved recently, and IBC is the leading example of this. However, there is still a lot of room for improvement. Ecosystem-agnostic companies do not want to split their userbase or handle tokens on multiple chains. They want an all-in-one solution that is compatible with any user from any ecosystem out of the box.
+**Low Interoperability**: Interoperability of tokens has improved recently, and IBC is the leading example of this. However, there is still a lot of room for improvement. Companies want an all-in-one solution that works seamlessly with all infrastructure out of the box.
 
 **Many Competing Standards**: There are many competing standards and products for tokenization. Each tokenization product adds its own little twists that are not compatible with other products. This creates fragmentation and confusion. We believe that there should be one universal standard that is the best solution for all use cases.
 
@@ -43,14 +43,6 @@ This promotes reusability and battle-testing the code, rather than potential vul
 #### Ever-Evolving
 
 BitBadges is an ever-evolving standard. We are not making the same mistakes as ERC-20/721/etc. We are not stuck in the past. We are always on the bleeding edge of technology and will never be behind a trend. New feature idea? We will add it. It is purpose-built for the next-generation of tokenization.
-
-#### Same Token, Any User, Any Chain
-
-Through address mapping and signature compatibility, the BitBadges blockchain supports any wallet from any ecosystem. This enables seamless compatibility with any user from any ecosystem directly on the same chain with one module. One interface for any user. This, for example, enables an Ethereum user to own and transfer tokens to Solana users to a Cosmos user and so on.
-
-This is how it should be and is a great tool onboarding ecosystem-agnostic companies who want an all-in-one solution out of the box. No need to split their userbase or launch on multiple chains to support all their users.
-
-Note: This does not include minting or burning on destination chains. All token state and balances live in our own custom module on our own chain. For interoperability, we support IBC (see below).
 
 #### IBC Compatibility
 
@@ -83,9 +75,9 @@ We are the first and only token standard to support time-dependent accounting. T
 
 This enables use cases like:
 
-* Auto-expiring / renewing subscription tokens
-* Token unlocks
-* Token vesting
+-   Auto-expiring / renewing subscription tokens
+-   Token unlocks
+-   Token vesting
 
 All without needing future transactions to update the balances.
 
@@ -117,35 +109,35 @@ Approvals are no longer a simple incremented counter that cannot exceed a thresh
 
 Seamlessly define all the following on-chain for EVERY approval. Define the exact rules and stipulations, enabling complex and powerful transferability rules on the three levels (collection, sender, recipient). All in a standardized manner.
 
-* Who Can Transfer?
-* Who Can Receive?
-* Who Can Initiate?
-* Transfer Times?
-* Predetermined or Tallied Amounts?
-* How Many Transfers?
-* Revokable?
-* Freezable?
-* BADGE or other IBC transfers?
-* Royalties?
-* Ownership Times?
-* Recurring?
-* Non-Transferable?
-* Incrementing Token IDs?
-* Owns Other Tokens?
-* And plenty more...
+-   Who Can Transfer?
+-   Who Can Receive?
+-   Who Can Initiate?
+-   Transfer Times?
+-   Predetermined or Tallied Amounts?
+-   How Many Transfers?
+-   Revokable?
+-   Freezable?
+-   BADGE or other IBC transfers?
+-   Royalties?
+-   Ownership Times?
+-   Recurring?
+-   Non-Transferable?
+-   Incrementing Token IDs?
+-   Owns Other Tokens?
+-   And plenty more...
 
 **Off-Chain Approval Criteria: 7000+ Web2 Integrations**:
 
 Additionally, BitBadges has an oracle-like system that allows letting a centralized service approve users dynamically by checking off-chain criteria and giving them signed codes to redeem on-chain. BitBadges runs its own criteria checking service that connects to 7000+ Web2 integrations in no-code through in-site plugins. This enables powerful use cases like:
 
-* Gating mints by Discord membership
-* Gating mints by X followers
-* Gating mints by email
-* Gating mints by checking your private off-chain data
-* Gating mints through claim codes or passwords
-* Gating approvals by AI agents
-* Building your own custom endpoints to check your own criteria
-* And anything else you can think of. We make it easy for anyone to add their own integration, custom plugin, or build their own criteria checking service. All the heavy on-chain hybrid work is done for you. You focus on your application-specific logic.
+-   Gating mints by Discord membership
+-   Gating mints by X followers
+-   Gating mints by email
+-   Gating mints by checking your private off-chain data
+-   Gating mints through claim codes or passwords
+-   Gating approvals by AI agents
+-   Building your own custom endpoints to check your own criteria
+-   And anything else you can think of. We make it easy for anyone to add their own integration, custom plugin, or build their own criteria checking service. All the heavy on-chain hybrid work is done for you. You focus on your application-specific logic.
 
 This is a huge tool for Web2 adoption and onboarding users to on-chain tokenization.
 
@@ -155,14 +147,14 @@ While BitBadges runs its own criteria checking service, anyone can spin up their
 
 Each token collection can have a manager that can execute administrative actions for full control over whatever is needed. This is a great tool to allow for more complex use cases where centralized control is needed with predefined checks and balances enforced on-chain, like regulatory compliance.
 
-* Updating the token metadata
-* Updating transferability
-* Archiving the collection
-* Deleting the collection
-* Adding more tokens to the collection
-* Pausing transfers
-* Volume throttling
-* And more...
+-   Updating the token metadata
+-   Updating transferability
+-   Archiving the collection
+-   Deleting the collection
+-   Adding more tokens to the collection
+-   Pausing transfers
+-   Volume throttling
+-   And more...
 
 #### Smart Contract Extendibility
 
