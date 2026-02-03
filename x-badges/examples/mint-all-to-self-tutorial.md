@@ -11,7 +11,7 @@ This is a two-step process that can be executed as a single multi-message transa
 
 ## Step 1: Create Mint Approval
 
-First, create an approval that allows you to mint tokens from the "Mint" address:
+First, create an approval that allows you to mint tokens from the "**Mint**" address:
 
 ```typescript
 // Step 1: Set up your mint approval

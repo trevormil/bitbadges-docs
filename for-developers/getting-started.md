@@ -64,7 +64,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
-[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+[BitBadges API OpenAPI Spec](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json)
 
 [Full Documentation .txt](../for-llms.txt)
 

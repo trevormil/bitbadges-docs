@@ -16,8 +16,7 @@ Note: Numbers are stringified in responses to avoid precision loss. You will hav
 
 ## References
 
-* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
-* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+* [OpenAPI Spec](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json)
 
 In this documentation, we often use the SDK format for explanation purposes. Please convert the corresponding function name to vanilla HTTP if you are not using the SDK from the documentation above.
 
