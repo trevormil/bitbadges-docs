@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Jan 31 13:43:51 UTC 2026
+Generated on Tue Feb  3 12:59:33 UTC 2026
 
 
 
@@ -2706,8 +2706,7 @@ Note: Numbers are stringified in responses to avoid precision loss. You will hav
 
 ## References
 
-* [Main](https://bitbadges.stoplight.io/docs/bitbadges)
-* [OpenAPI](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapitypes/combined.yaml)
+* [OpenAPI Spec](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json)
 
 In this documentation, we often use the SDK format for explanation purposes. Please convert the corresponding function name to vanilla HTTP if you are not using the SDK from the documentation above.
 
@@ -7126,7 +7125,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 [Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
 
-[BitBadges API OpenApi Spec](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/openapi/combined_processed.yaml) - [Stoplight Reference](https://bitbadges.stoplight.io/docs/bitbadges)
+[BitBadges API OpenAPI Spec](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json)
 
 [Full Documentation .txt](../for-llms.txt)
 
@@ -16173,7 +16172,7 @@ This is a two-step process that can be executed as a single multi-message transa
 
 ## Step 1: Create Mint Approval
 
-First, create an approval that allows you to mint tokens from the "Mint" address:
+First, create an approval that allows you to mint tokens from the "**Mint**" address:
 
 ```typescript
 // Step 1: Set up your mint approval
