@@ -249,7 +249,7 @@ Most use cases use `"Mint"` as the reserved address in approvals. For advanced c
 ```typescript
 // Mint Escrow Address (for advanced cases)
 const mintEscrowAddress = generateAlias(
-    'badges',
+    'tokenization',
     getAliasDerivationKeysForCollection(collectionId)
 );
 ```

@@ -2,7 +2,7 @@
 
 To support multiple token standards, we recommend using a SendManager module with **alias denom routing**. It automatically routes transactions to the appropriate handler based on denomination prefixes.
 
-For complete implementation details, see the [source code](https://github.com/BitBadges/bitbadgeschain). We recommend simply copying / importing the implementation and using it directly if all you need is x/badges and x/bank.
+For complete implementation details, see the [source code](https://github.com/BitBadges/bitbadgeschain). We recommend simply copying / importing the implementation and using it directly if all you need is x/tokenization and x/bank.
 
 It is intended to be a drop-in replacement for the BankKeeper interface. Simply replace anywhere you call k.bankKeeper.SendCoins() with k.sendManagerKeeper.SendCoinsWithAliasRouting() (or whatever other functions you need) and get support for multiple token standards at once via dynamic routing.
 
@@ -42,7 +42,7 @@ func (k Keeper) getRouterForDenom(denom string) (types.AliasDenomRouter, bool) {
 
 **Examples**:
 
-* `badgeslp:1:utoken` → matches `badgeslp:` prefix → routes to x/badges
+* `badgeslp:1:utoken` → matches `badgeslp:` prefix → routes to x/tokenization
 * `uatom` → no prefix match → routes to x/bank (standard Cosmos SDK coin)
 
 #### Alias Denoms
@@ -72,7 +72,7 @@ badgesMsgServer.TransferTokens(ctx, msg)
 
 #### User-Level Approvals
 
-SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before / after calling SendManager. Note: All x/badges transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
+SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before / after calling SendManager. Note: All x/tokenization transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
 
 This may be especially important for module addresses or special non-user addresses. They automatically inherit the defaults for the collection.
 
@@ -89,7 +89,7 @@ badgesMsgServer.UpdateUserApprovals(ctx, postUpdateApprovalsMsg)
 
 **Example: Setting approvals before sending (from `FundCommunityPoolViaAliasDenom`)**
 
-For example, the community pool address (depending on the defaults) may not accept incoming approvals by default which is needed to transfer tokens to it in the x/badges module.
+For example, the community pool address (depending on the defaults) may not accept incoming approvals by default which is needed to transfer tokens to it in the x/tokenization module.
 
 ```go
 func (k Keeper) FundCommunityPoolViaAliasDenom(

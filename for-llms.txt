@@ -1783,7 +1783,7 @@ description: >-
 
 BitBadges has built a brand new tokenization standard exclusively as a Cosmos SDK module, designed specifically for RWAs (Real World Assets), compliance, payments, and custom transferability requirements.
 
-Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/badges` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.
+Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/tokenization` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.
 
 Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, IBC compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
 
@@ -1854,7 +1854,7 @@ BitBadges addresses these fundamental issues through core design decisions:
 
 ## 🏗️ Token Standard
 
-* [📚 Overview](x-badges/README.md)
+* [📚 Overview](x-tokenization/README.md)
 * [🎓 Learn](learn/README.md)
   * [Explore!](learn/pre-readings.md)
   * [Manager / Permissions](learn/permissions.md)
@@ -1883,78 +1883,78 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Collection Configuration](token-standard/learn/collection-setup-fields.md)
   * [Address Lists](token-standard/learn/address-lists.md)
   * [UintRanges](token-standard/learn/uintrange.md)
-* [📨 Messages](x-badges/messages/README.md)
-  * [MsgCreateAddressLists](x-badges/messages/msg-create-address-lists.md)
-  * [MsgCreateCollection](x-badges/messages/msg-create-collection.md)
-  * [MsgCreateDynamicStore](x-badges/messages/msg-create-dynamic-store.md)
-  * [MsgDeleteCollection](x-badges/messages/msg-delete-collection.md)
-  * [MsgDeleteDynamicStore](x-badges/messages/msg-delete-dynamic-store.md)
-  * [MsgDeleteIncomingApproval](x-badges/messages/msg-delete-incoming-approval.md)
-  * [MsgDeleteOutgoingApproval](x-badges/messages/msg-delete-outgoing-approval.md)
-  * [MsgPurgeApprovals](x-badges/messages/msg-purge-approvals.md)
+* [📨 Messages](x-tokenization/messages/README.md)
+  * [MsgCreateAddressLists](x-tokenization/messages/msg-create-address-lists.md)
+  * [MsgCreateCollection](x-tokenization/messages/msg-create-collection.md)
+  * [MsgCreateDynamicStore](x-tokenization/messages/msg-create-dynamic-store.md)
+  * [MsgDeleteCollection](x-tokenization/messages/msg-delete-collection.md)
+  * [MsgDeleteDynamicStore](x-tokenization/messages/msg-delete-dynamic-store.md)
+  * [MsgDeleteIncomingApproval](x-tokenization/messages/msg-delete-incoming-approval.md)
+  * [MsgDeleteOutgoingApproval](x-tokenization/messages/msg-delete-outgoing-approval.md)
+  * [MsgPurgeApprovals](x-tokenization/messages/msg-purge-approvals.md)
   * [MsgSetTokenMetadata](token-standard/messages/msgsettokenmetadata.md)
-  * [MsgSetCollectionApprovals](x-badges/messages/msg-set-collection-approvals.md)
-  * [MsgSetCollectionMetadata](x-badges/messages/msg-set-collection-metadata.md)
-  * [MsgSetCustomData](x-badges/messages/msg-set-custom-data.md)
-  * [MsgSetDynamicStoreValue](x-badges/messages/msg-set-dynamic-store-value.md)
-  * [MsgSetIncomingApproval](x-badges/messages/msg-set-incoming-approval.md)
-  * [MsgSetIsArchived](x-badges/messages/msg-set-is-archived.md)
-  * [MsgSetManager](x-badges/messages/msg-set-manager.md)
-  * [MsgSetOutgoingApproval](x-badges/messages/msg-set-outgoing-approval.md)
-  * [MsgSetStandards](x-badges/messages/msg-set-standards.md)
-  * [MsgSetValidTokenIds](x-badges/messages/msg-set-valid-token-ids.md)
-  * [MsgTransferTokens](x-badges/messages/msg-transfer-tokens.md)
-  * [MsgUniversalUpdateCollection](x-badges/messages/msg-universal-update-collection.md)
-  * [MsgUpdateCollection](x-badges/messages/msg-update-collection.md)
-  * [MsgUpdateDynamicStore](x-badges/messages/msg-update-dynamic-store.md)
-  * [MsgUpdateUserApprovals](x-badges/messages/msg-update-user-approvals.md)
-* [🔍 Queries](x-badges/queries/README.md)
+  * [MsgSetCollectionApprovals](x-tokenization/messages/msg-set-collection-approvals.md)
+  * [MsgSetCollectionMetadata](x-tokenization/messages/msg-set-collection-metadata.md)
+  * [MsgSetCustomData](x-tokenization/messages/msg-set-custom-data.md)
+  * [MsgSetDynamicStoreValue](x-tokenization/messages/msg-set-dynamic-store-value.md)
+  * [MsgSetIncomingApproval](x-tokenization/messages/msg-set-incoming-approval.md)
+  * [MsgSetIsArchived](x-tokenization/messages/msg-set-is-archived.md)
+  * [MsgSetManager](x-tokenization/messages/msg-set-manager.md)
+  * [MsgSetOutgoingApproval](x-tokenization/messages/msg-set-outgoing-approval.md)
+  * [MsgSetStandards](x-tokenization/messages/msg-set-standards.md)
+  * [MsgSetValidTokenIds](x-tokenization/messages/msg-set-valid-token-ids.md)
+  * [MsgTransferTokens](x-tokenization/messages/msg-transfer-tokens.md)
+  * [MsgUniversalUpdateCollection](x-tokenization/messages/msg-universal-update-collection.md)
+  * [MsgUpdateCollection](x-tokenization/messages/msg-update-collection.md)
+  * [MsgUpdateDynamicStore](x-tokenization/messages/msg-update-dynamic-store.md)
+  * [MsgUpdateUserApprovals](x-tokenization/messages/msg-update-user-approvals.md)
+* [🔍 Queries](x-tokenization/queries/README.md)
   * [Node API](https://lcd.bitbadges.io/)
-  * [GetAddressList](x-badges/queries/get-address-list.md)
-  * [GetApprovalTracker](x-badges/queries/get-approval-tracker.md)
-  * [GetBalance](x-badges/queries/get-balance.md)
-  * [GetChallengeTracker](x-badges/queries/get-challenge-tracker.md)
-  * [GetCollection](x-badges/queries/get-collection.md)
-  * [GetDynamicStore](x-badges/queries/get-dynamic-store.md)
-  * [GetDynamicStoreValue](x-badges/queries/get-dynamic-store-value.md)
-  * [GetETHSignatureTracker](x-badges/queries/get-eth-signature-tracker.md)
-  * [Params](x-badges/queries/params.md)
-* [💡 Examples and Snippets](x-badges/examples/README.md)
-  * [Base Collection Details](x-badges/examples/base-collection-details.md)
-  * [Building Your Collection Approvals](x-badges/examples/building-collection-approvals.md)
-  * [Building Your Collection Permissions](x-badges/examples/building-collection-permissions.md)
-  * [Building User-Level Approvals](x-badges/examples/building-user-approvals.md)
-  * [Building User-Level Permissions](x-badges/examples/building-user-permissions.md)
-  * [Cosmos Coin Wrapper Tutorial](x-badges/examples/cosmos-coin-wrapper-example.md)
-  * [Defining and Locking Circulating Supply](x-badges/examples/defining-circulating-supply.md)
-  * [Empty Approval Criteria Template](x-badges/examples/empty-approval-criteria.md)
-  * [Mint All Tokens to Self - Tutorial](x-badges/examples/mint-all-to-self-tutorial.md)
+  * [GetAddressList](x-tokenization/queries/get-address-list.md)
+  * [GetApprovalTracker](x-tokenization/queries/get-approval-tracker.md)
+  * [GetBalance](x-tokenization/queries/get-balance.md)
+  * [GetChallengeTracker](x-tokenization/queries/get-challenge-tracker.md)
+  * [GetCollection](x-tokenization/queries/get-collection.md)
+  * [GetDynamicStore](x-tokenization/queries/get-dynamic-store.md)
+  * [GetDynamicStoreValue](x-tokenization/queries/get-dynamic-store-value.md)
+  * [GetETHSignatureTracker](x-tokenization/queries/get-eth-signature-tracker.md)
+  * [Params](x-tokenization/queries/params.md)
+* [💡 Examples and Snippets](x-tokenization/examples/README.md)
+  * [Base Collection Details](x-tokenization/examples/base-collection-details.md)
+  * [Building Your Collection Approvals](x-tokenization/examples/building-collection-approvals.md)
+  * [Building Your Collection Permissions](x-tokenization/examples/building-collection-permissions.md)
+  * [Building User-Level Approvals](x-tokenization/examples/building-user-approvals.md)
+  * [Building User-Level Permissions](x-tokenization/examples/building-user-permissions.md)
+  * [Cosmos Coin Wrapper Tutorial](x-tokenization/examples/cosmos-coin-wrapper-example.md)
+  * [Defining and Locking Circulating Supply](x-tokenization/examples/defining-circulating-supply.md)
+  * [Empty Approval Criteria Template](x-tokenization/examples/empty-approval-criteria.md)
+  * [Mint All Tokens to Self - Tutorial](x-tokenization/examples/mint-all-to-self-tutorial.md)
   * [Approvals](token-standard/examples/approvals/README.md)
-    * [Admin Override Approval](x-badges/examples/approvals/admin-override-approval.md)
-    * [Burnable Approval](x-badges/examples/approvals/burnable-approval.md)
-    * [Cosmos Unwrapper Approval](x-badges/examples/approvals/cosmos-unwrapper-approval.md)
-    * [Cosmos Wrapper Approval](x-badges/examples/approvals/cosmos-wrapper-approval.md)
-    * [Transferable Approval](x-badges/examples/approvals/transferable-approval.md)
-  * [Message Transfer Examples](x-badges/examples/msg-transfer/README.md)
-    * [Simple Token Transfer](x-badges/examples/msg-transfer/simple-badge-transfer.md)
-    * [Transfer with Precalculation](x-badges/examples/msg-transfer/transfer-with-precalculation.md)
-  * [Permission Examples](x-badges/examples/permissions/README.md)
-    * [Freezing Mint Transferability](x-badges/examples/permissions/freezing-mint-transferability.md)
-    * [Locking Specific Approval ID](x-badges/examples/permissions/locking-specific-approval-id.md)
-    * [Locking Specific Token IDs](x-badges/examples/permissions/locking-specific-token-ids.md)
-    * [Locking Valid Token IDs](x-badges/examples/permissions/locking-valid-token-ids.md)
-  * [Transaction Examples](x-badges/examples/txs/README.md)
-    * [MsgCreateCollection Examples](x-badges/examples/txs/msgcreatecollection/README.md)
-      * [Quest Token Collection Example](x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md)
-      * [Tradable Collection Example](x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md)
-    * [MsgUpdateUserApprovals Examples](x-badges/examples/txs/msgupdate-user-approvals/README.md)
-      * [Updating Outgoing Approvals](x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+    * [Admin Override Approval](x-tokenization/examples/approvals/admin-override-approval.md)
+    * [Burnable Approval](x-tokenization/examples/approvals/burnable-approval.md)
+    * [Cosmos Unwrapper Approval](x-tokenization/examples/approvals/cosmos-unwrapper-approval.md)
+    * [Cosmos Wrapper Approval](x-tokenization/examples/approvals/cosmos-wrapper-approval.md)
+    * [Transferable Approval](x-tokenization/examples/approvals/transferable-approval.md)
+  * [Message Transfer Examples](x-tokenization/examples/msg-transfer/README.md)
+    * [Simple Token Transfer](x-tokenization/examples/msg-transfer/simple-badge-transfer.md)
+    * [Transfer with Precalculation](x-tokenization/examples/msg-transfer/transfer-with-precalculation.md)
+  * [Permission Examples](x-tokenization/examples/permissions/README.md)
+    * [Freezing Mint Transferability](x-tokenization/examples/permissions/freezing-mint-transferability.md)
+    * [Locking Specific Approval ID](x-tokenization/examples/permissions/locking-specific-approval-id.md)
+    * [Locking Specific Token IDs](x-tokenization/examples/permissions/locking-specific-token-ids.md)
+    * [Locking Valid Token IDs](x-tokenization/examples/permissions/locking-valid-token-ids.md)
+  * [Transaction Examples](x-tokenization/examples/txs/README.md)
+    * [MsgCreateCollection Examples](x-tokenization/examples/txs/msgcreatecollection/README.md)
+      * [Quest Token Collection Example](x-tokenization/examples/txs/msgcreatecollection/quest-badge-collection.md)
+      * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
+    * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
+      * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
 * [❓ FAQ](overview/faq.md)
-* [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
-* [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/badges)
+* [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/tokenization)
+* [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/tokenization)
 
 ## ⌨️ For Developers
 
@@ -2144,7 +2144,7 @@ Use `MsgCreateCollection` to create a new badge collection:
 
 ```typescript
 const msg = {
-    typeUrl: '/bitbadges.badges.MsgCreateCollection',
+    typeUrl: '/bitbadges.tokenization.MsgCreateCollection',
     value: {
         creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
         collectionId: '1',
@@ -2228,7 +2228,7 @@ const collection = { id: '1' };
 
 ```bash
 # Shell commands
-bitbadgeschaind query badges collection 1
+bitbadgeschaind query tokenization collection 1
 ```
 
 ## Structure Guidelines
@@ -2329,7 +2329,7 @@ Always use working, tested code:
 ```typescript
 // ✅ Good - Real, working example
 const msg = {
-  typeUrl: '/bitbadges.badges.MsgCreateCollection',
+  typeUrl: '/bitbadges.tokenization.MsgCreateCollection',
   value: {
     creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
     collectionId: '1',
@@ -2478,7 +2478,7 @@ This sets the collection metadata directly.
 Query a collection by ID:
 
 ```bash
-bitbadgeschaind query badges collection 1
+bitbadgeschaind query tokenization collection 1
 ````
 
 **Response:**
@@ -2540,11 +2540,11 @@ Always use `bitbadgeschaind` (not `bitbadgesd`):
 
 ```bash
 # ✅ Correct
-bitbadgeschaind query badges collection 1
-bitbadgeschaind tx badges create-collection '[tx-json]' --from key
+bitbadgeschaind query tokenization collection 1
+bitbadgeschaind tx tokenization create-collection '[tx-json]' --from key
 
 # ❌ Incorrect
-bitbadgesd query badges collection 1
+bitbadgesd query tokenization collection 1
 ```
 
 ### Address Format
@@ -2608,14 +2608,14 @@ const coin = { denom: 'badge', amount: '1000000000' };
 
 ### Module Name
 
-The Cosmos SDK module is `x/badges`:
+The Cosmos SDK module is `x/tokenization`:
 
 ```typescript
 // ✅ Correct
-typeUrl: '/bitbadges.badges.MsgCreateCollection'
+typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
 
 // ❌ Incorrect
-typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
+typeUrl: '/bitbadges.badges.MsgCreateCollection'
 ```
 
 ### Reserved Address List IDs
@@ -3185,8 +3185,8 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 * Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
 * 3-Step Process: Upload / Store Code, Instantiate, Execute
   * Instantiating requires governance proposal (see below)
-* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+* Contracts can call into the core x/tokenization module as submessages (delayed until directly after the contract)
+  * When calling into x/tokenization, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
 * The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
 
 ```rust
@@ -3241,7 +3241,7 @@ use bitbadges_cosmwasm::{
 ```
 
 <pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
-// This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
+// This is how you call into x/tokenization by adding Ok(Response::new().add_message(msg))
 use bitbadges_cosmwasm::{
   transfer_tokens_msg, delete_collection_msg, BitBadgesMsg
 }
@@ -3488,11 +3488,11 @@ You can build out the transaction from the exported Proto type definitions from 
 import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
-//proto.badges for BitBadges x/badges
-const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
-const MsgCreateCollection = proto.badges.MsgCreateCollection;
-const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
-const MsgTransferTokens = proto.badges.MsgTransferTokens;
+//proto.tokenization for BitBadges x/tokenization
+const MsgDeleteCollection = proto.tokenization.MsgDeleteCollection;
+const MsgCreateCollection = proto.tokenization.MsgCreateCollection;
+const MsgUpdateCollection = proto.tokenization.MsgUpdateCollection;
+const MsgTransferTokens = proto.tokenization.MsgTransferTokens;
 
 const protoMsgs = [
     new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),
@@ -4430,7 +4430,7 @@ const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
 If you ever end up with something like the following, this is also the proto definition. We recommend using the proto.abc.xyz method to avoid confusion.
 
 ```typescript
-import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/badges";
+import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/tokenization";
 ```
 
 
@@ -7081,8 +7081,8 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Quick Start - Tokens
 
-{% content-ref url="../x-badges/" %}
-[x-badges](../x-badges/)
+{% content-ref url="../x-tokenization/" %}
+[x-badges](../x-tokenization/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims
@@ -9290,7 +9290,7 @@ console.log('Special Address:', specialAddress);
 The conversion uses a structured `Conversion` format that combines the IBC denom and amount into `sideA`, with badge tokens in `sideB`. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
 
 ```
-conversion.sideA (amount + denom) = conversion.sideB[] (x/badges)
+conversion.sideA (amount + denom) = conversion.sideB[] (x/tokenization)
 ```
 
 **Example:**
@@ -10813,14 +10813,14 @@ Yes, our token standard is a Cosmos module. While we aim for no smart contracts 
 
 BitBadges charges a 0.1% fee on the protocol level on all swaps and transfers. This works as follows:
 
--   For any x/badges transfers with IBC payments (coinTransfers), we charge in the IBC currency.
+-   For any x/tokenization transfers with IBC payments (coinTransfers), we charge in the IBC currency.
 -   For any x/gamm swaps, we charge a 0.1% taker fee
 
-Normal x/badges or IBC MsgSends or transfers do not charge a fee.
+Normal x/tokenization or IBC MsgSends or transfers do not charge a fee.
 
 As for affiliates, you are free to build protocols to charge anything on top of that.
 
--   For x/badges, simply add another coin transfer to approvals (payout initiator 0.1% or somehting)
+-   For x/tokenization, simply add another coin transfer to approvals (payout initiator 0.1% or somehting)
 -   For x/gamm, we have an in-built affiliates field built into the protocol. If you use the BitBadges API, we will charge a 20% fee of affiliates, but on the protocol level, there is no such charge.
 
 
@@ -11366,7 +11366,7 @@ func (v *RequireSpecificManagerVerifier) VerifyCollection(ctx sdk.Context, colle
 
 To support multiple token standards, we recommend using a SendManager module with **alias denom routing**. It automatically routes transactions to the appropriate handler based on denomination prefixes.
 
-For complete implementation details, see the [source code](https://github.com/BitBadges/bitbadgeschain). We recommend simply copying / importing the implementation and using it directly if all you need is x/badges and x/bank.
+For complete implementation details, see the [source code](https://github.com/BitBadges/bitbadgeschain). We recommend simply copying / importing the implementation and using it directly if all you need is x/tokenization and x/bank.
 
 It is intended to be a drop-in replacement for the BankKeeper interface. Simply replace anywhere you call k.bankKeeper.SendCoins() with k.sendManagerKeeper.SendCoinsWithAliasRouting() (or whatever other functions you need) and get support for multiple token standards at once via dynamic routing.
 
@@ -11406,7 +11406,7 @@ func (k Keeper) getRouterForDenom(denom string) (types.AliasDenomRouter, bool) {
 
 **Examples**:
 
-* `badgeslp:1:utoken` → matches `badgeslp:` prefix → routes to x/badges
+* `badgeslp:1:utoken` → matches `badgeslp:` prefix → routes to x/tokenization
 * `uatom` → no prefix match → routes to x/bank (standard Cosmos SDK coin)
 
 #### Alias Denoms
@@ -11436,7 +11436,7 @@ badgesMsgServer.TransferTokens(ctx, msg)
 
 #### User-Level Approvals
 
-SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before / after calling SendManager. Note: All x/badges transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
+SendManager does **not** manage user-level approvals automatically. If they need to be handled, you must set them as needed elsewhere before / after calling SendManager. Note: All x/tokenization transfers require approvals to be satisfied on the collection, sender, and recipient level, where applicable.
 
 This may be especially important for module addresses or special non-user addresses. They automatically inherit the defaults for the collection.
 
@@ -11453,7 +11453,7 @@ badgesMsgServer.UpdateUserApprovals(ctx, postUpdateApprovalsMsg)
 
 **Example: Setting approvals before sending (from `FundCommunityPoolViaAliasDenom`)**
 
-For example, the community pool address (depending on the defaults) may not accept incoming approvals by default which is needed to transfer tokens to it in the x/badges module.
+For example, the community pool address (depending on the defaults) may not accept incoming approvals by default which is needed to transfer tokens to it in the x/tokenization module.
 
 ```go
 func (k Keeper) FundCommunityPoolViaAliasDenom(
@@ -11738,8 +11738,8 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Address Checks**](address-checks.md) - Address type restrictions (WASM contracts, liquidity pools)
 * [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
 * [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
-* [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
-* [**Must Prioritize**](../../../x-badges/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
+* [**Alt Time Checks**](../../../x-tokenization/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
+* [**Must Prioritize**](../../../x-tokenization/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 * [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
 
 ## Key Concepts
@@ -12372,7 +12372,7 @@ This is useful for quickly halting all approvals that depend on a specific dynam
 
 -   **New stores**: `globalEnabled` defaults to `true` (enabled by default)
 -   **Existing stores**: All existing stores are set to `globalEnabled = true` for backward compatibility
--   **Disabling**: Set `globalEnabled = false` via [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to halt all dependent approvals
+-   **Disabling**: Set `globalEnabled = false` via [MsgUpdateDynamicStore](../../../x-tokenization/messages/msg-update-dynamic-store.md) to halt all dependent approvals
 -   **Re-enabling**: Set `globalEnabled = true` to restore normal operation
 
 ### Usage Example
@@ -12399,21 +12399,21 @@ This is useful for quickly halting all approvals that depend on a specific dynam
 
 ### Creating Stores
 
-Use [MsgCreateDynamicStore](../../../x-badges/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value. New stores are created with `globalEnabled = true` by default.
+Use [MsgCreateDynamicStore](../../../x-tokenization/messages/msg-create-dynamic-store.md) to create new dynamic stores with a default boolean value. New stores are created with `globalEnabled = true` by default.
 
 ### Updating Stores
 
-Use [MsgUpdateDynamicStore](../../../x-badges/messages/msg-update-dynamic-store.md) to update the store's `defaultValue`, `globalEnabled`, `uri`, and `customData` fields. The `uri` and `customData` fields allow storing additional metadata and arbitrary data associated with the store.
+Use [MsgUpdateDynamicStore](../../../x-tokenization/messages/msg-update-dynamic-store.md) to update the store's `defaultValue`, `globalEnabled`, `uri`, and `customData` fields. The `uri` and `customData` fields allow storing additional metadata and arbitrary data associated with the store.
 
 ### Setting Values
 
-Use [MsgSetDynamicStoreValue](../../../x-badges/messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
+Use [MsgSetDynamicStoreValue](../../../x-tokenization/messages/msg-set-dynamic-store-value.md) to set boolean values for specific addresses.
 
 ### Querying Values
 
-Use [GetDynamicStoreValue](../../../x-badges/queries/get-dynamic-store-value.md) to check current values for addresses.
+Use [GetDynamicStoreValue](../../../x-tokenization/queries/get-dynamic-store-value.md) to check current values for addresses.
 
-Use [GetDynamicStore](../../../x-badges/queries/get-dynamic-store.md) to retrieve the store's configuration, including `globalEnabled` status, `uri`, and `customData` fields.
+Use [GetDynamicStore](../../../x-tokenization/queries/get-dynamic-store.md) to retrieve the store's configuration, including `globalEnabled` status, `uri`, and `customData` fields.
 
 ## Alternatives
 
@@ -12952,7 +12952,7 @@ const expectedProofLength = tree.getLayerCount() - 1;
 
 ### Providing Proofs
 
-Include Merkle proofs in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-badges/msgtransferbadges.md):
+Include Merkle proofs in [MsgTransferTokens](../../../bitbadges-blockchain/cosmos-sdk-msgs/x-tokenization/msgtransferbadges.md):
 
 ```typescript
 const txCosmosMsg: MsgTransferTokens<bigint> = {
@@ -13281,7 +13281,7 @@ Predetermined balances can change rapidly between transaction broadcast and conf
 
 ### The Solution: Precalculation
 
-Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../x-badges/messages/msg-transfer-tokens.md) to dynamically calculate balances at execution time.
+Use `precalculateBalancesFromApproval` in [MsgTransferTokens](../../x-tokenization/messages/msg-transfer-tokens.md) to dynamically calculate balances at execution time.
 
 ```typescript
 {
@@ -13984,7 +13984,7 @@ interface Voter {
 }
 ```
 
-Cast votes using [MsgCastVote](../../x-badges/messages/msg-cast-vote.md).
+Cast votes using [MsgCastVote](../../x-tokenization/messages/msg-cast-vote.md).
 
 ## Use Cases
 
@@ -14385,7 +14385,7 @@ const defaultBalances: UserBalanceStore<bigint> = {
 
 **Important Limitations:**
 
--   **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../../x-badges/learn/auto-scan-and-prioritized-approvals.md) for more information.
+-   **No complex approval criteria**: Cannot include any approvals not compatible with auto-scan mode. See [Auto-Scan and Prioritized Approvals](../../x-tokenization/learn/auto-scan-and-prioritized-approvals.md) for more information.
 
 **Key points:**
 
@@ -14621,13 +14621,13 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
-## File: ./x-badges/README.md
+## File: ./x-tokenization/README.md
 
 # 📚 Overview
 
-This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/badges` module.
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/tokenization` module.
 
-> 💡 **Note:** For most development, you may actually not need to know many of the underlying details of x/badges that we describe in this section. For example, you may only need high-level API getters like fetching balances and metadata as well as the no-code Create tab in the BitBadges site.
+> 💡 **Note:** For most development, you may actually not need to know many of the underlying details of x/tokenization that we describe in this section. For example, you may only need high-level API getters like fetching balances and metadata as well as the no-code Create tab in the BitBadges site.
 
 ## Table of Contents
 
@@ -14688,14 +14688,14 @@ This directory contains comprehensive developer documentation for the BitBadges 
 
 -   [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
 -   [BitBadges Documentation](https://docs.bitbadges.io)
--   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+-   [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/tokenization)
 
 ## Documentation Style
 
 This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
 
 
-## File: ./x-badges/concepts/approval-criteria/alt-time-checks.md
+## File: ./x-tokenization/concepts/approval-criteria/alt-time-checks.md
 
 # Alt Time Checks
 
@@ -14788,7 +14788,7 @@ If either condition fails, the approval is denied.
 -   If both `offlineHours` and `offlineDays` are specified, the approval is denied if **either** condition matches
 
 
-## File: ./x-badges/concepts/approval-criteria/must-prioritize.md
+## File: ./x-tokenization/concepts/approval-criteria/must-prioritize.md
 
 # Must Prioritize
 
@@ -14930,7 +14930,7 @@ The `mustPrioritize` field works in conjunction with the auto-scan system:
 -   **Transfer Flags**: When using prioritized approvals, set `onlyCheckPrioritizedCollectionApprovals` (or corresponding flags) to `true` for deterministic behavior
 
 
-## File: ./x-badges/concepts/ibc-backed-paths.md
+## File: ./x-tokenization/concepts/ibc-backed-paths.md
 
 # IBC Backed Paths
 
@@ -14980,7 +14980,7 @@ message ConversionSideAWithDenom {
 The conversion uses a structured format that combines the IBC denom and amount:
 
 ```
-conversion.sideA (amount, denom) = conversion.sideB[] (x/badges)
+conversion.sideA (amount, denom) = conversion.sideB[] (x/tokenization)
 Ex: { amount: "1000000", denom: "ibc/1234..." } = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
 ```
 
@@ -15095,7 +15095,7 @@ IBC backed paths differ mainly from which IBC denom is used for minting.
 IBC Backed Paths provide a powerful mechanism for connecting badge tokens to the broader Cosmos ecosystem through IBC coins. By enabling bidirectional conversion between badges and IBC-denominated assets, they unlock cross-chain interoperability, DeFi integration, and liquidity provision while maintaining the unique features and capabilities of the badge system.
 
 
-## File: ./x-badges/concepts/manager.md
+## File: ./x-tokenization/concepts/manager.md
 
 # Manager
 
@@ -15216,18 +15216,18 @@ During collection creation:
 ```
 
 
-## File: ./x-badges/concepts/total-supply.md
+## File: ./x-tokenization/concepts/total-supply.md
 
 # Total Supply
 
 The total circulating supply is not a fixed value but rather dynamically determined through the collection approvals and permissions. The total supply is the sum of all the tokens that have been transferred from the Mint address (which has unlimited balances). Setting the Mint approvals and using them determines the total supply. Permissions are used to control the ability to set, update, or delete the Mint approvals by the manager.
 
 
-## File: ./x-badges/examples/README.md
+## File: ./x-tokenization/examples/README.md
 
 # 💡 Examples and Snippets
 
-This directory contains practical examples and building blocks for x/badges.
+This directory contains practical examples and building blocks for x/tokenization.
 
 ## Contents
 
@@ -15251,7 +15251,7 @@ This directory contains practical examples and building blocks for x/badges.
   * [MsgCreateCollection](txs/msgcreatecollection/) - Complete transaction examples for creating collections
 
 
-## File: ./x-badges/examples/approvals/admin-override-approval.md
+## File: ./x-tokenization/examples/approvals/admin-override-approval.md
 
 # Admin Override Approval
 
@@ -15293,7 +15293,7 @@ const approveSelfForcefully = (address: string) => {
 ```
 
 
-## File: ./x-badges/examples/approvals/burnable-approval.md
+## File: ./x-tokenization/examples/approvals/burnable-approval.md
 
 # Burnable Approval
 
@@ -15320,7 +15320,7 @@ const burnableApproval = new CollectionApproval({
 ```
 
 
-## File: ./x-badges/examples/approvals/cosmos-unwrapper-approval.md
+## File: ./x-tokenization/examples/approvals/cosmos-unwrapper-approval.md
 
 # Cosmos Unwrapper Approval
 
@@ -15369,7 +15369,7 @@ export const unwrapperApproval = ({
 ```
 
 
-## File: ./x-badges/examples/approvals/cosmos-wrapper-approval.md
+## File: ./x-tokenization/examples/approvals/cosmos-wrapper-approval.md
 
 # Cosmos Wrapper Approval
 
@@ -15418,7 +15418,7 @@ export const wrapperApproval = ({
 ```
 
 
-## File: ./x-badges/examples/approvals/transferable-approval.md
+## File: ./x-tokenization/examples/approvals/transferable-approval.md
 
 # Transferable Approval
 
@@ -15445,7 +15445,7 @@ const transferableApproval = new CollectionApproval({
 ```
 
 
-## File: ./x-badges/examples/base-collection-details.md
+## File: ./x-tokenization/examples/base-collection-details.md
 
 # Base Collection Details
 
@@ -15548,7 +15548,7 @@ const BaseCollectionDetails = {
 For information on building collection approvals, see [Building Collection Approvals](building-collection-approvals.md).
 
 
-## File: ./x-badges/examples/building-collection-approvals.md
+## File: ./x-tokenization/examples/building-collection-approvals.md
 
 # Building Your Collection Approvals
 
@@ -15590,7 +15590,7 @@ const collectionApprovals = [...mintApprovals, ...postMintApprovals];
 ```
 
 
-## File: ./x-badges/examples/building-collection-permissions.md
+## File: ./x-tokenization/examples/building-collection-permissions.md
 
 # Building Your Collection Permissions
 
@@ -15681,7 +15681,7 @@ const {
 We refer you to the [examples](permissions/) or relevant concepts for more detailed examples.
 
 
-## File: ./x-badges/examples/building-user-approvals.md
+## File: ./x-tokenization/examples/building-user-approvals.md
 
 # Building User-Level Approvals
 
@@ -15775,7 +15775,7 @@ For concepts, see:
 * [Approval Criteria](broken-reference/)
 
 
-## File: ./x-badges/examples/building-user-permissions.md
+## File: ./x-tokenization/examples/building-user-permissions.md
 
 # Building User-Level Permissions
 
@@ -15860,7 +15860,7 @@ For user approval configuration, see:
 * [Building User Approvals](building-user-approvals.md) - User approval setup
 
 
-## File: ./x-badges/examples/cosmos-coin-wrapper-example.md
+## File: ./x-tokenization/examples/cosmos-coin-wrapper-example.md
 
 # Cosmos Coin Wrapper Tutorial
 
@@ -15914,7 +15914,7 @@ const collection = {
 ```
 
 
-## File: ./x-badges/examples/defining-circulating-supply.md
+## File: ./x-tokenization/examples/defining-circulating-supply.md
 
 # Defining and Locking Circulating Supply
 
@@ -16027,7 +16027,7 @@ const collectionPermissions = {
 -   [Empty Approval Criteria](empty-approval-criteria.md) - Unlimited mint template
 
 
-## File: ./x-badges/examples/empty-approval-criteria.md
+## File: ./x-tokenization/examples/empty-approval-criteria.md
 
 # Empty Approval Criteria Template
 
@@ -16157,7 +16157,7 @@ const EmptyApprovalCriteria = {
 -   [Transferability](../../learn/transferability.md)
 
 
-## File: ./x-badges/examples/mint-all-to-self-tutorial.md
+## File: ./x-tokenization/examples/mint-all-to-self-tutorial.md
 
 # Mint All Tokens to Self - Tutorial
 
@@ -16224,7 +16224,7 @@ const transfers = [
 ```
 
 
-## File: ./x-badges/examples/msg-transfer/README.md
+## File: ./x-tokenization/examples/msg-transfer/README.md
 
 # Message Transfer Examples
 
@@ -16236,7 +16236,7 @@ This section contains practical examples of token transfer messages for the BitB
 -   [Transfer with Precalculation](transfer-with-precalculation.md) - Transfer using approval-based precalculation
 
 
-## File: ./x-badges/examples/msg-transfer/simple-badge-transfer.md
+## File: ./x-tokenization/examples/msg-transfer/simple-badge-transfer.md
 
 # Simple Token Transfer
 
@@ -16342,7 +16342,7 @@ This transfer creates token ID 1 from collection 20 and sends it to the creator 
 This example can be used as a template for basic token minting operations where you want to create a new token and transfer it to a specific address using collection-level approval.
 
 
-## File: ./x-badges/examples/msg-transfer/transfer-with-precalculation.md
+## File: ./x-tokenization/examples/msg-transfer/transfer-with-precalculation.md
 
 # Transfer with Precalculation
 
@@ -16452,7 +16452,7 @@ This example is useful when:
 ---
 
 
-## File: ./x-badges/examples/permissions/README.md
+## File: ./x-tokenization/examples/permissions/README.md
 
 # Permission Examples
 
@@ -16481,7 +16481,7 @@ BitBadges permissions follow a time-based system where:
 * **Time-Limited** - Use specific time ranges for temporary control
 
 
-## File: ./x-badges/examples/permissions/freezing-mint-transferability.md
+## File: ./x-tokenization/examples/permissions/freezing-mint-transferability.md
 
 # Freezing Mint Transferability
 
@@ -16559,7 +16559,7 @@ Once set to permanently forbidden, mint permissions cannot be restored. Carefull
 -   [Building Collection Approvals](../building-collection-approvals.md) - Approval configuration
 
 
-## File: ./x-badges/examples/permissions/locking-specific-approval-id.md
+## File: ./x-tokenization/examples/permissions/locking-specific-approval-id.md
 
 # Locking Specific Approval ID
 
@@ -16663,7 +16663,7 @@ const createCollection = {
 -   [Building Collection Permissions](../building-collection-permissions.md) - General permission patterns
 
 
-## File: ./x-badges/examples/permissions/locking-specific-token-ids.md
+## File: ./x-tokenization/examples/permissions/locking-specific-token-ids.md
 
 # Locking Specific Token IDs
 
@@ -16789,7 +16789,7 @@ The permission only applies to approvals that overlap with the specified token I
 -   [Freezing Mint Transferability](./freezing-mint-transferability.md) - Lock all mint approvals
 
 
-## File: ./x-badges/examples/permissions/locking-valid-token-ids.md
+## File: ./x-tokenization/examples/permissions/locking-valid-token-ids.md
 
 # Locking Valid Token IDs
 
@@ -16895,11 +16895,11 @@ const createCollection = {
 * [Freezing Mint Transferability](freezing-mint-transferability.md) - Lock mint approvals
 
 
-## File: ./x-badges/examples/txs/README.md
+## File: ./x-tokenization/examples/txs/README.md
 
 # Transaction Examples
 
-This directory contains complete transaction examples for the x/badges module.
+This directory contains complete transaction examples for the x/tokenization module.
 
 ## Contents
 
@@ -16907,7 +16907,7 @@ This directory contains complete transaction examples for the x/badges module.
 -   [MsgUpdateUserApprovals](msgupdate-user-approvals/) - Examples for updating user-level approvals
 
 
-## File: ./x-badges/examples/txs/msgcreatecollection/README.md
+## File: ./x-tokenization/examples/txs/msgcreatecollection/README.md
 
 # MsgCreateCollection Examples
 
@@ -16919,7 +16919,7 @@ This directory contains complete examples for creating collections using the `Ms
 -   [Tradable NFT Collection](tradable-nft-collection.md) - Example of creating a tradable NFT collection for marketplace trading
 
 
-## File: ./x-badges/examples/txs/msgcreatecollection/quest-badge-collection.md
+## File: ./x-tokenization/examples/txs/msgcreatecollection/quest-badge-collection.md
 
 # Quest Token Collection Example
 
@@ -17176,7 +17176,7 @@ This example creates a quest collection with the following characteristics:
 -   **No Cosmos Coin Wrapper**: Empty `cosmosCoinWrapperPathsToAdd` array. No wrapping allowed.
 
 
-## File: ./x-badges/examples/txs/msgcreatecollection/tradable-nft-collection.md
+## File: ./x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md
 
 # Tradable Collection Example
 
@@ -17451,7 +17451,7 @@ This example demonstrates creating a tradable collection that supports orderbook
 ```
 
 
-## File: ./x-badges/examples/txs/msgupdate-user-approvals/README.md
+## File: ./x-tokenization/examples/txs/msgupdate-user-approvals/README.md
 
 # MsgUpdateUserApprovals Examples
 
@@ -17462,7 +17462,7 @@ This directory contains complete examples for updating user-level approvals usin
 -   [Updating Outgoing Approvals](updating-outgoing-approvals.md) - Example of updating user outgoing approvals
 
 
-## File: ./x-badges/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md
+## File: ./x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md
 
 # Updating Outgoing Approvals
 
@@ -17590,7 +17590,7 @@ This example demonstrates how to update user outgoing approvals to control what 
 * [Empty Approval Criteria](../../empty-approval-criteria.md) - Template for unrestricted approvals
 
 
-## File: ./x-badges/messages/README.md
+## File: ./x-tokenization/messages/README.md
 
 # 📨 Messages
 
@@ -17648,7 +17648,7 @@ The following message types exist in the protocol but may be documented separate
 -   **MsgUpdateParams** - Update module parameters via governance
 
 
-## File: ./x-badges/messages/msg-cast-vote.md
+## File: ./x-tokenization/messages/msg-cast-vote.md
 
 # MsgCastVote
 
@@ -17665,7 +17665,7 @@ Only addresses in the voting challenge's `voters` list can cast votes. The `crea
 ```protobuf
 message MsgCastVote {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/CastVote";
+  option (amino.name) = "tokenization/CastVote";
 
   // The address of the voter casting the vote.
   string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
@@ -17698,7 +17698,7 @@ message MsgCastVoteResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges cast-vote '[tx-json]' --from voter-key
+bitbadgeschaind tx tokenization cast-vote '[tx-json]' --from voter-key
 ```
 
 #### JSON Example
@@ -17802,7 +17802,7 @@ The message fails if:
 For details on voting challenges, see [Voting Challenges](../../token-standard/learn/approval-criteria/voting-challenges.md).
 
 
-## File: ./x-badges/messages/msg-create-address-lists.md
+## File: ./x-tokenization/messages/msg-create-address-lists.md
 
 # MsgCreateAddressLists
 
@@ -17831,7 +17831,7 @@ message MsgCreateAddressListsResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges create-address-lists '[tx-json]' --from creator-key
+bitbadgeschaind tx tokenization create-address-lists '[tx-json]' --from creator-key
 ```
 
 ### JSON Example
@@ -17852,7 +17852,7 @@ bitbadgeschaind tx badges create-address-lists '[tx-json]' --from creator-key
 ```
 
 
-## File: ./x-badges/messages/msg-create-collection.md
+## File: ./x-tokenization/messages/msg-create-collection.md
 
 # MsgCreateCollection
 
@@ -17898,7 +17898,7 @@ message MsgCreateCollectionResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges create-collection '[tx-json]' --from creator-key
+bitbadgeschaind tx tokenization create-collection '[tx-json]' --from creator-key
 ```
 
 ### JSON Example
@@ -17958,7 +17958,7 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
 ```
 
 
-## File: ./x-badges/messages/msg-create-dynamic-store.md
+## File: ./x-tokenization/messages/msg-create-dynamic-store.md
 
 # MsgCreateDynamicStore
 
@@ -17983,7 +17983,7 @@ message MsgCreateDynamicStoreResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges create-dynamic-store [true|false] --from creator-key
+bitbadgeschaind tx tokenization create-dynamic-store [true|false] --from creator-key
 ```
 
 ### JSON Examples
@@ -18016,7 +18016,7 @@ Both `uri` and `customData` are **optional** fields:
 -   **`customData`**: Custom data field for storing arbitrary string data. Commonly used to store JSON-encoded structured data, but can contain any string value. No validation is performed on the content.
 
 
-## File: ./x-badges/messages/msg-delete-collection.md
+## File: ./x-tokenization/messages/msg-delete-collection.md
 
 # MsgDeleteCollection
 
@@ -18041,7 +18041,7 @@ message MsgDeleteCollectionResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges delete-collection [collection-id] --from manager-key
+bitbadgeschaind tx tokenization delete-collection [collection-id] --from manager-key
 ```
 
 ### JSON Example
@@ -18054,7 +18054,7 @@ bitbadgeschaind tx badges delete-collection [collection-id] --from manager-key
 ```
 
 
-## File: ./x-badges/messages/msg-delete-dynamic-store.md
+## File: ./x-tokenization/messages/msg-delete-dynamic-store.md
 
 # MsgDeleteDynamicStore
 
@@ -18075,7 +18075,7 @@ message MsgDeleteDynamicStoreResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges delete-dynamic-store [store-id] --from creator-key
+bitbadgeschaind tx tokenization delete-dynamic-store [store-id] --from creator-key
 ```
 
 ### JSON Example
@@ -18088,7 +18088,7 @@ bitbadgeschaind tx badges delete-dynamic-store [store-id] --from creator-key
 ```
 
 
-## File: ./x-badges/messages/msg-delete-incoming-approval.md
+## File: ./x-tokenization/messages/msg-delete-incoming-approval.md
 
 # MsgDeleteIncomingApproval
 
@@ -18114,13 +18114,13 @@ message MsgDeleteIncomingApprovalResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges delete-incoming-approval [collection-id] [approval-id] --from user-key
+bitbadgeschaind tx tokenization delete-incoming-approval [collection-id] [approval-id] --from user-key
 ```
 
 ### Example
 
 ```bash
-bitbadgeschaind tx badges delete-incoming-approval 1 "my-approval-1" --from user-key
+bitbadgeschaind tx tokenization delete-incoming-approval 1 "my-approval-1" --from user-key
 ```
 
 ## Behavior
@@ -18141,7 +18141,7 @@ Users can only delete their own incoming approvals. The operation must be perfor
 -   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete an outgoing approval
 
 
-## File: ./x-badges/messages/msg-delete-outgoing-approval.md
+## File: ./x-tokenization/messages/msg-delete-outgoing-approval.md
 
 # MsgDeleteOutgoingApproval
 
@@ -18167,13 +18167,13 @@ message MsgDeleteOutgoingApprovalResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges delete-outgoing-approval [collection-id] [approval-id] --from user-key
+bitbadgeschaind tx tokenization delete-outgoing-approval [collection-id] [approval-id] --from user-key
 ```
 
 ### Example
 
 ```bash
-bitbadgeschaind tx badges delete-outgoing-approval 1 "my-approval-1" --from user-key
+bitbadgeschaind tx tokenization delete-outgoing-approval 1 "my-approval-1" --from user-key
 ```
 
 ## Behavior
@@ -18194,7 +18194,7 @@ Users can only delete their own outgoing approvals. The operation must be perfor
 -   [MsgDeleteIncomingApproval](./msg-delete-incoming-approval.md) - Delete an incoming approval
 
 
-## File: ./x-badges/messages/msg-purge-approvals.md
+## File: ./x-tokenization/messages/msg-purge-approvals.md
 
 # MsgPurgeApprovals
 
@@ -18258,7 +18258,7 @@ Although user approval permissions are rarely disabled, we still check these pur
 ```bash
 # [collectionId, purgeExpired, approverAddress, purgeCounterpartyApprovals, approvalsToPurge]
 
-bitbadgeschaind tx badges purge-approvals 1 true "" false '[{"approvalId":"my-approval","approvalLevel":"outgoing","approverAddress":"bb1...","version":"0"}]' --from user-key
+bitbadgeschaind tx tokenization purge-approvals 1 true "" false '[{"approvalId":"my-approval","approvalLevel":"outgoing","approverAddress":"bb1...","version":"0"}]' --from user-key
 ```
 
 ## Response
@@ -18280,7 +18280,7 @@ The response includes the number of approvals that were successfully purged:
 -   [MsgDeleteOutgoingApproval](./msg-delete-outgoing-approval.md) - Delete a single outgoing approval
 
 
-## File: ./x-badges/messages/msg-set-collection-approvals.md
+## File: ./x-tokenization/messages/msg-set-collection-approvals.md
 
 # MsgSetCollectionApprovals
 
@@ -18307,7 +18307,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetCollectionApprovals {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetCollectionApprovals";
+  option (amino.name) = "tokenization/SetCollectionApprovals";
 
   // Address of the creator.
   string creator = 1;
@@ -18332,7 +18332,7 @@ message MsgSetCollectionApprovalsResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-collection-approvals '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18385,7 +18385,7 @@ bitbadgeschaind tx badges set-collection-approvals '[tx-json]' --from manager-ke
 * [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-collection-metadata.md
+## File: ./x-tokenization/messages/msg-set-collection-metadata.md
 
 # MsgSetCollectionMetadata
 
@@ -18412,7 +18412,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetCollectionMetadata {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetCollectionMetadata";
+  option (amino.name) = "tokenization/SetCollectionMetadata";
 
   // Address of the creator.
   string creator = 1;
@@ -18437,7 +18437,7 @@ message MsgSetCollectionMetadataResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-collection-metadata '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18465,7 +18465,7 @@ bitbadgeschaind tx badges set-collection-metadata '[tx-json]' --from manager-key
 -   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-custom-data.md
+## File: ./x-tokenization/messages/msg-set-custom-data.md
 
 # MsgSetCustomData
 
@@ -18492,7 +18492,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetCustomData {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetCustomData";
+  option (amino.name) = "tokenization/SetCustomData";
 
   // Address of the creator.
   string creator = 1;
@@ -18517,7 +18517,7 @@ message MsgSetCustomDataResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-custom-data '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18542,7 +18542,7 @@ bitbadgeschaind tx badges set-custom-data '[tx-json]' --from manager-key
 -   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-dynamic-store-value.md
+## File: ./x-tokenization/messages/msg-set-dynamic-store-value.md
 
 # MsgSetDynamicStoreValue
 
@@ -18565,7 +18565,7 @@ message MsgSetDynamicStoreValueResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [true|false] --from creator-key
+bitbadgeschaind tx tokenization set-dynamic-store-value [store-id] [address] [true|false] --from creator-key
 ```
 
 ### JSON Example
@@ -18578,7 +18578,7 @@ bitbadgeschaind tx badges set-dynamic-store-value [store-id] [address] [true|fal
 }
 ```
 
-## File: ./x-badges/messages/msg-set-incoming-approval.md
+## File: ./x-tokenization/messages/msg-set-incoming-approval.md
 
 # MsgSetIncomingApproval
 
@@ -18604,7 +18604,7 @@ message MsgSetIncomingApprovalResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-incoming-approval [collection-id] '[approval-json]' --from user-key
+bitbadgeschaind tx tokenization set-incoming-approval [collection-id] '[approval-json]' --from user-key
 ```
 
 ## Behavior
@@ -18625,7 +18625,7 @@ Users can only set their own incoming approvals. The operation must be performed
 -   [MsgSetOutgoingApproval](./msg-set-outgoing-approval.md) - Set an outgoing approval
 
 
-## File: ./x-badges/messages/msg-set-is-archived.md
+## File: ./x-tokenization/messages/msg-set-is-archived.md
 
 # MsgSetIsArchived
 
@@ -18652,7 +18652,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetIsArchived {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetIsArchived";
+  option (amino.name) = "tokenization/SetIsArchived";
 
   // Address of the creator.
   string creator = 1;
@@ -18677,7 +18677,7 @@ message MsgSetIsArchivedResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-is-archived '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18702,7 +18702,7 @@ bitbadgeschaind tx badges set-is-archived '[tx-json]' --from manager-key
 -   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-manager.md
+## File: ./x-tokenization/messages/msg-set-manager.md
 
 # MsgSetManager
 
@@ -18729,7 +18729,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetManager {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetManager";
+  option (amino.name) = "tokenization/SetManager";
 
   // Address of the creator.
   string creator = 1;
@@ -18754,7 +18754,7 @@ message MsgSetManagerResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-manager '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18779,7 +18779,7 @@ bitbadgeschaind tx badges set-manager '[tx-json]' --from manager-key
 -   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-outgoing-approval.md
+## File: ./x-tokenization/messages/msg-set-outgoing-approval.md
 
 # MsgSetOutgoingApproval
 
@@ -18805,7 +18805,7 @@ message MsgSetOutgoingApprovalResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-outgoing-approval [collection-id] '[approval-json]' --from user-key
+bitbadgeschaind tx tokenization set-outgoing-approval [collection-id] '[approval-json]' --from user-key
 ```
 
 ## Behavior
@@ -18826,7 +18826,7 @@ Users can only set their own outgoing approvals. The operation must be performed
 -   [MsgSetIncomingApproval](./msg-set-incoming-approval.md) - Set an incoming approval
 
 
-## File: ./x-badges/messages/msg-set-standards.md
+## File: ./x-tokenization/messages/msg-set-standards.md
 
 # MsgSetStandards
 
@@ -18853,7 +18853,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetStandards {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetStandards";
+  option (amino.name) = "tokenization/SetStandards";
 
   // Address of the creator.
   string creator = 1;
@@ -18878,7 +18878,7 @@ message MsgSetStandardsResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-standards '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18898,7 +18898,7 @@ bitbadgeschaind tx badges set-standards '[tx-json]' --from manager-key
 ```
 
 
-## File: ./x-badges/messages/msg-set-token-metadata.md
+## File: ./x-tokenization/messages/msg-set-token-metadata.md
 
 # MsgSetTokenMetadata
 
@@ -18925,7 +18925,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetTokenMetadata {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetTokenMetadata";
+  option (amino.name) = "tokenization/SetTokenMetadata";
 
   // Address of the creator.
   string creator = 1;
@@ -18950,7 +18950,7 @@ message MsgSetTokenMetadataResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-badge-metadata '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -18982,7 +18982,7 @@ bitbadgeschaind tx badges set-badge-metadata '[tx-json]' --from manager-key
 -   [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-set-valid-token-ids.md
+## File: ./x-tokenization/messages/msg-set-valid-token-ids.md
 
 # MsgSetValidTokenIds
 
@@ -19009,7 +19009,7 @@ Updates can only be performed by the **current manager** of the collection. The 
 ```protobuf
 message MsgSetValidTokenIds {
   option (cosmos.msg.v1.signer) = "creator";
-  option (amino.name) = "badges/SetValidTokenIds";
+  option (amino.name) = "tokenization/SetValidTokenIds";
 
   // Address of the creator.
   string creator = 1;
@@ -19034,7 +19034,7 @@ message MsgSetValidTokenIdsResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges set-valid-token-ids '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization set-valid-token-ids '[tx-json]' --from manager-key
 ```
 
 #### JSON Example
@@ -19063,7 +19063,7 @@ bitbadgeschaind tx badges set-valid-token-ids '[tx-json]' --from manager-key
 * [MsgUpdateCollection](broken-reference) - Legacy update message
 
 
-## File: ./x-badges/messages/msg-transfer-tokens.md
+## File: ./x-tokenization/messages/msg-transfer-tokens.md
 
 # MsgTransferTokens
 
@@ -19306,7 +19306,7 @@ If you specify `collectionId` as `"0"`, it will automatically lookup the latest 
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
+bitbadgeschaind tx tokenization transfer-tokens '[tx-json]' --from sender-key
 ```
 
 ### JSON Example
@@ -19369,7 +19369,7 @@ bitbadgeschaind tx badges transfer-tokens '[tx-json]' --from sender-key
 ```
 
 
-## File: ./x-badges/messages/msg-universal-update-collection.md
+## File: ./x-tokenization/messages/msg-universal-update-collection.md
 
 # MsgUniversalUpdateCollection
 
@@ -19448,7 +19448,7 @@ message MsgUniversalUpdateCollectionResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges universal-update-collection '[tx-json]' --from creator-key
+bitbadgeschaind tx tokenization universal-update-collection '[tx-json]' --from creator-key
 ```
 
 ### JSON Example - Creating a New Collection
@@ -19582,7 +19582,7 @@ When creating a new collection (collectionId = "0"), you can set collection inva
 -   [Collection Setup Fields](../../token-standard/learn/collection-setup-fields.md)
 
 
-## File: ./x-badges/messages/msg-update-collection.md
+## File: ./x-tokenization/messages/msg-update-collection.md
 
 # MsgUpdateCollection
 
@@ -19642,7 +19642,7 @@ message MsgUpdateCollectionResponse {
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
+bitbadgeschaind tx tokenization update-collection '[tx-json]' --from manager-key
 ```
 
 ### JSON Example
@@ -19695,7 +19695,7 @@ bitbadgeschaind tx badges update-collection '[tx-json]' --from manager-key
 ```
 
 
-## File: ./x-badges/messages/msg-update-dynamic-store.md
+## File: ./x-tokenization/messages/msg-update-dynamic-store.md
 
 # MsgUpdateDynamicStore
 
@@ -19720,7 +19720,7 @@ message MsgUpdateDynamicStoreResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges update-dynamic-store [store-id] [default-value] [global-enabled] --from creator-key
+bitbadgeschaind tx tokenization update-dynamic-store [store-id] [default-value] [global-enabled] --from creator-key
 ```
 
 ### JSON Examples
@@ -19798,7 +19798,7 @@ The `uri` and `customData` fields can be updated along with other store properti
 - **`customData`**: Custom data field for arbitrary string data. Can be set, updated, or cleared (set to empty string).
 
 
-## File: ./x-badges/messages/msg-update-user-approvals.md
+## File: ./x-tokenization/messages/msg-update-user-approvals.md
 
 # MsgUpdateUserApprovals
 
@@ -19850,7 +19850,7 @@ message MsgUpdateUserApprovalsResponse {}
 
 ```bash
 # CLI command
-bitbadgeschaind tx badges update-user-approved-transfers '[tx-json]' --from user-key
+bitbadgeschaind tx tokenization update-user-approved-transfers '[tx-json]' --from user-key
 ```
 
 ### JSON Example
@@ -19889,7 +19889,7 @@ For complete transaction examples, see [MsgUpdateUserApprovals Examples](../exam
 ```
 
 
-## File: ./x-badges/queries/README.md
+## File: ./x-tokenization/queries/README.md
 
 # 🔍 Queries
 
@@ -19926,7 +19926,7 @@ This directory contains detailed documentation for all query types supported by 
 -   [Params](./params.md) - Get current module parameters and configuration
 
 
-## File: ./x-badges/queries/get-address-list.md
+## File: ./x-tokenization/queries/get-address-list.md
 
 # GetAddressList
 
@@ -19957,10 +19957,10 @@ message AddressList {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-address-list [id]
+bitbadgeschaind query tokenization get-address-list [id]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_address_list/1"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_address_list/1"
 ```
 
 ### Response Example
@@ -19979,7 +19979,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_address_list/
 ```
 
 
-## File: ./x-badges/queries/get-approval-tracker.md
+## File: ./x-tokenization/queries/get-approval-tracker.md
 
 # GetApprovalTracker
 
@@ -20013,10 +20013,10 @@ message ApprovalTracker {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-approval-tracker [collectionId] [approvalLevel] [approverAddress] [approvalId] [amountTrackerId] [trackerType] [approvedAddress]
+bitbadgeschaind query tokenization get-approval-tracker [collectionId] [approvalLevel] [approverAddress] [approvalId] [amountTrackerId] [trackerType] [approvedAddress]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_approvals_tracker/1/outgoing/bb1.../approval-1/tracker-1/overall/"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_approvals_tracker/1/outgoing/bb1.../approval-1/tracker-1/overall/"
 ```
 
 ### Response Example
@@ -20036,7 +20036,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_approvals_tra
 }
 ```
 
-## File: ./x-badges/queries/get-balance.md
+## File: ./x-tokenization/queries/get-balance.md
 
 # GetBalance
 
@@ -20064,17 +20064,17 @@ message UserBalanceStore {
   UserPermissions userPermissions = 7; // Permissions for this user's actions
 }
 
-// See all the proto definitions [here](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/badges)
+// See all the proto definitions [here](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/tokenization)
 ```
 
 ## Usage Example
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-balance [collection-id] [address]
+bitbadgeschaind query tokenization get-balance [collection-id] [address]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_balance/1/bb1..."
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_balance/1/bb1..."
 ```
 
 ### Response Example
@@ -20108,7 +20108,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_balance/1/bb1
 ```
 
 
-## File: ./x-badges/queries/get-challenge-tracker.md
+## File: ./x-tokenization/queries/get-challenge-tracker.md
 
 # GetChallengeTracker
 
@@ -20135,11 +20135,11 @@ message QueryGetChallengeTrackerResponse {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-challenge-tracker [collectionId] [approvalLevel] [approverAddress] [approvalId] [challengeTrackerId] [leafIndex]
+bitbadgeschaind query tokenization get-challenge-tracker [collectionId] [approvalLevel] [approverAddress] [approvalId] [challengeTrackerId] [leafIndex]
 
 # REST API
 # Note for blank values, use "" so you may have // in the query
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_challenge_tracker/1/collection//approval-123/challenge-1/42"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_challenge_tracker/1/collection//approval-123/challenge-1/42"
 ```
 
 ### Response Example
@@ -20151,7 +20151,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_challenge_tra
 ```
 
 
-## File: ./x-badges/queries/get-collection.md
+## File: ./x-tokenization/queries/get-collection.md
 
 # GetCollection
 
@@ -20184,17 +20184,17 @@ message TokenCollection {
   string mintEscrowAddress = 13; // Generated escrow address for the collection
 }
 
-// See all the proto definitions [here](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/badges)
+// See all the proto definitions [here](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/tokenization)
 ```
 
 ## Usage Example
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-collection [id]
+bitbadgeschaind query tokenization get-collection [id]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_collection/1"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_collection/1"
 ```
 
 ### Response Example
@@ -20209,7 +20209,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_collection/1"
 ```
 
 
-## File: ./x-badges/queries/get-dynamic-store-value.md
+## File: ./x-tokenization/queries/get-dynamic-store-value.md
 
 # GetDynamicStoreValue
 
@@ -20238,10 +20238,10 @@ message DynamicStoreValue {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-dynamic-store-value [store-id] [address]
+bitbadgeschaind query tokenization get-dynamic-store-value [store-id] [address]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store_value/1/bb1..."
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_dynamic_store_value/1/bb1..."
 ```
 
 ### Response Example
@@ -20257,7 +20257,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store
 ```
 
 
-## File: ./x-badges/queries/get-dynamic-store.md
+## File: ./x-tokenization/queries/get-dynamic-store.md
 
 # GetDynamicStore
 
@@ -20294,10 +20294,10 @@ message DynamicStore {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-dynamic-store [store-id]
+bitbadgeschaind query tokenization get-dynamic-store [store-id]
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_dynamic_store/1"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_dynamic_store/1"
 ```
 
 ### Response Example
@@ -20326,7 +20326,7 @@ The `globalEnabled` field indicates whether the global kill switch is enabled fo
 -   **Disabling**: Use [MsgUpdateDynamicStore](../messages/msg-update-dynamic-store.md) to set `globalEnabled = false`
 
 
-## File: ./x-badges/queries/get-eth-signature-tracker.md
+## File: ./x-tokenization/queries/get-eth-signature-tracker.md
 
 # GetETHSignatureTracker
 
@@ -20353,11 +20353,11 @@ message QueryGetETHSignatureTrackerResponse {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-num-used-for-eth-signature-challenge [collectionId] [approvalLevel] [approverAddress] [approvalId] [challengeTrackerId] [signature]
+bitbadgeschaind query tokenization get-num-used-for-eth-signature-challenge [collectionId] [approvalLevel] [approverAddress] [approvalId] [challengeTrackerId] [signature]
 
 # REST API
 # Note for blank values, use "" so you may have // in the query
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature_tracker/1/collection//approval-123/challenge-1/bb1..."
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_eth_signature_tracker/1/collection//approval-123/challenge-1/bb1..."
 ```
 
 ### Response Example
@@ -20374,7 +20374,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_eth_signature
 - If a signature has never been used, the response will be "0"
 - The signature parameter should be the full Ethereum signature (0x-prefixed hex string) 
 
-## File: ./x-badges/queries/get-wrappable-balances.md
+## File: ./x-tokenization/queries/get-wrappable-balances.md
 
 # GetWrappableBalances
 
@@ -20407,20 +20407,20 @@ The query supports both static denoms and dynamic `{id}` placeholder denoms. For
 
 ```bash
 # CLI query
-bitbadgeschaind query badges get-wrappable-balances [denom] [address]
+bitbadgeschaind query tokenization get-wrappable-balances [denom] [address]
 
 # Example with static denom
-bitbadgeschaind query badges get-wrappable-balances "badges:1:mytoken" "bb1..."
+bitbadgeschaind query tokenization get-wrappable-balances "badges:1:mytoken" "bb1..."
 
 # Example with dynamic denom (where 123 is the token ID)
-bitbadgeschaind query badges get-wrappable-balances "badgeslp:1:token123" "bb1..."
+bitbadgeschaind query tokenization get-wrappable-balances "badgeslp:1:token123" "bb1..."
 ```
 
 ### REST API
 
 ```bash
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_balances?denom=badges:1:mytoken&address=bb1..."
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_wrappable_balances?denom=badges:1:mytoken&address=bb1..."
 ```
 
 ### Response Example
@@ -20451,7 +20451,7 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/get_wrappable_bal
 -   [GetCollection](./get-collection.md) - Get collection details including wrapper paths
 
 
-## File: ./x-badges/queries/params.md
+## File: ./x-tokenization/queries/params.md
 
 # Params
 
@@ -20476,10 +20476,10 @@ message Params {
 
 ```bash
 # CLI query
-bitbadgeschaind query badges params
+bitbadgeschaind query tokenization params
 
 # REST API
-curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/badges/params"
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/params"
 ```
 
 ### Response Example
@@ -20537,7 +20537,7 @@ The module operates as an IBC middleware hook that:
 5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
 
 ```
-Warning: Native x/badges assets cannot be IBC transferred. Only x/bank assets can be.
+Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank assets can be.
 ```
 
 ## Key Concepts
@@ -20955,11 +20955,11 @@ This module was forked from Osmosis's `x/gamm` module with several key modificat
 The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
 
 * **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to abstract badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
-* **Mint/Burns**: Behind the scenes, `x/badges` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
+* **Mint/Burns**: Behind the scenes, `x/tokenization` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
 * **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
 * **Automatic Conversion**: Handles badge token transfers to/from pools automatically
 
-There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/badges tokens.
+There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/tokenization tokens.
 
 #### Conversion Example
 
@@ -21910,7 +21910,7 @@ Only the admin address can delete the manager splitter. If the `admin` field doe
 
 ## Overview
 
-`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the Badges module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
+`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the tokenization module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
 
 ## Message Structure
 
@@ -21926,7 +21926,7 @@ message MsgExecuteUniversalUpdateCollection {
   string managerSplitterAddress = 2;
 
   // The UniversalUpdateCollection message to execute.
-  badges.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
+  tokenization.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
 }
 ```
 
@@ -21945,9 +21945,9 @@ Must be a valid Bech32 address.
 
 The address of the manager splitter to execute through. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
 
-### `universalUpdateCollectionMsg` (badges.MsgUniversalUpdateCollection, required)
+### `universalUpdateCollectionMsg` (tokenization.MsgUniversalUpdateCollection, required)
 
-The `UniversalUpdateCollection` message from the Badges module to execute. This message will be executed with the manager splitter address as the creator/manager.
+The `UniversalUpdateCollection` message from the tokenization module to execute. This message will be executed with the manager splitter address as the creator/manager.
 
 Note that you should only set the fields you are allowed to update. Use the update flag approach = false for all others.
 
@@ -21980,7 +21980,7 @@ message MsgExecuteUniversalUpdateCollectionResponse {
 
 ### `collectionId` (Uint)
 
-The ID of the collection that was updated, returned from the Badges module's `UniversalUpdateCollection` execution.
+The ID of the collection that was updated, returned from the tokenization module's `UniversalUpdateCollection` execution.
 
 ## Validation
 
@@ -22129,7 +22129,7 @@ The Manager Splitter module provides a permissioned proxy system for managing to
 
 A Manager Splitter is a permissioned proxy that:
 
-* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/badges.
+* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/tokenization.
 * **Admin**: A permanent admin address with full control over the splitter and all permissions
 * **Permissions**: A mapping of collection permission types to execution criteria
 
@@ -22137,7 +22137,7 @@ Then, any token collection updates must be handled through this module and throu
 
 ### Permission System
 
-The module mirrors the Badges module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
+The module mirrors the tokenization module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
 
 * **CanDeleteCollection**: Permission to delete the collection
 * **CanArchiveCollection**: Permission to archive the collection

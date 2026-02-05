@@ -10,7 +10,7 @@ description: >-
 
 BitBadges has built a brand new tokenization standard exclusively as a Cosmos SDK module, designed specifically for RWAs (Real World Assets), compliance, payments, and custom transferability requirements.
 
-Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/badges` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.
+Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/tokenization` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.
 
 Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, IBC compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
 

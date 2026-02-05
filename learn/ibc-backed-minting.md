@@ -69,7 +69,7 @@ console.log('Special Address:', specialAddress);
 The conversion uses a structured `Conversion` format that combines the IBC denom and amount into `sideA`, with badge tokens in `sideB`. You can't fractionalize it, but if you make the denominations as small as possible, you can get as fine-grained as you want.
 
 ```
-conversion.sideA (amount + denom) = conversion.sideB[] (x/badges)
+conversion.sideA (amount + denom) = conversion.sideB[] (x/tokenization)
 ```
 
 **Example:**

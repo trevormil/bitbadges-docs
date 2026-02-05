@@ -8,7 +8,7 @@ The Manager Splitter module provides a permissioned proxy system for managing to
 
 A Manager Splitter is a permissioned proxy that:
 
-* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/badges.
+* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/tokenization.
 * **Admin**: A permanent admin address with full control over the splitter and all permissions
 * **Permissions**: A mapping of collection permission types to execution criteria
 
@@ -16,7 +16,7 @@ Then, any token collection updates must be handled through this module and throu
 
 ### Permission System
 
-The module mirrors the Badges module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
+The module mirrors the tokenization module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
 
 * **CanDeleteCollection**: Permission to delete the collection
 * **CanArchiveCollection**: Permission to archive the collection

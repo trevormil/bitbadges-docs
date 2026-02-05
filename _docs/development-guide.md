@@ -29,7 +29,7 @@ Use `MsgCreateCollection` to create a new badge collection:
 
 ```typescript
 const msg = {
-    typeUrl: '/bitbadges.badges.MsgCreateCollection',
+    typeUrl: '/bitbadges.tokenization.MsgCreateCollection',
     value: {
         creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
         collectionId: '1',
@@ -113,7 +113,7 @@ const collection = { id: '1' };
 
 ```bash
 # Shell commands
-bitbadgeschaind query badges collection 1
+bitbadgeschaind query tokenization collection 1
 ```
 
 ## Structure Guidelines
@@ -214,7 +214,7 @@ Always use working, tested code:
 ```typescript
 // ✅ Good - Real, working example
 const msg = {
-  typeUrl: '/bitbadges.badges.MsgCreateCollection',
+  typeUrl: '/bitbadges.tokenization.MsgCreateCollection',
   value: {
     creator: 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls',
     collectionId: '1',
@@ -363,7 +363,7 @@ This sets the collection metadata directly.
 Query a collection by ID:
 
 ```bash
-bitbadgeschaind query badges collection 1
+bitbadgeschaind query tokenization collection 1
 ````
 
 **Response:**
@@ -425,11 +425,11 @@ Always use `bitbadgeschaind` (not `bitbadgesd`):
 
 ```bash
 # ✅ Correct
-bitbadgeschaind query badges collection 1
-bitbadgeschaind tx badges create-collection '[tx-json]' --from key
+bitbadgeschaind query tokenization collection 1
+bitbadgeschaind tx tokenization create-collection '[tx-json]' --from key
 
 # ❌ Incorrect
-bitbadgesd query badges collection 1
+bitbadgesd query tokenization collection 1
 ```
 
 ### Address Format
@@ -493,11 +493,11 @@ const coin = { denom: 'badge', amount: '1000000000' };
 
 ### Module Name
 
-The Cosmos SDK module is `x/badges`:
+The Cosmos SDK module is `x/tokenization`:
 
 ```typescript
 // ✅ Correct
-typeUrl: '/bitbadges.badges.MsgCreateCollection'
+typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
 
 // ❌ Incorrect
 typeUrl: '/bitbadges.tokenization.MsgCreateCollection'

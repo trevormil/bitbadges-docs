@@ -41,8 +41,8 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 * Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
 * 3-Step Process: Upload / Store Code, Instantiate, Execute
   * Instantiating requires governance proposal (see below)
-* Contracts can call into the core x/badges module as submessages (delayed until directly after the contract)
-  * When calling into x/badges, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
+* Contracts can call into the core x/tokenization module as submessages (delayed until directly after the contract)
+  * When calling into x/tokenization, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
 * The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
 
 ```rust
@@ -97,7 +97,7 @@ use bitbadges_cosmwasm::{
 ```
 
 <pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
-// This is how you call into x/badges by adding Ok(Response::new().add_message(msg))
+// This is how you call into x/tokenization by adding Ok(Response::new().add_message(msg))
 use bitbadges_cosmwasm::{
   transfer_tokens_msg, delete_collection_msg, BitBadgesMsg
 }
