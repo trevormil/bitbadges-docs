@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Feb  8 12:37:19 UTC 2026
+Generated on Sun Feb  8 13:05:29 UTC 2026
 
 
 
@@ -2692,668 +2692,47 @@ const address = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
 
 ## File: ./evm/EVM_INTEGRATION.md
 
-# EVM Integration Documentation
+# EVM Integration
 
-> ⚠️ **Important Pre-Reading: Production Status**
+> ⚠️ **Important: Production Status**
 > 
 > **The EVM integration is not currently deployed on BitBadges mainnet.**
 > 
-> 1. **Development Status**: The EVM implementation is available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain).
+> - Available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain)
+> - Can be run locally or testnet setup available upon request
+> - Fully code complete and open to licensing discussions
+> - **Mainnet deployment is not in our short-term plans**
 > 
-> 2. **Testing Options**:
->    - You can run it locally by checking out the `evm-poc` branch
->    - Reach out to us to set up a dedicated testnet if that would be easier for your use case
->    - For a full end-to-end example, see the [counter-dapp directory](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the evm-poc repository - a simple counter dApp demonstrating complete integration
->    - See the [contracts folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples, the precompile interface, and helper libraries
-> 
-> 3. **Code Status & Licensing**:
->    - The implementation is **fully code complete** and functional
->    - We are open to discussing licensing models or other collaboration ideas
->    - **Deploying EVM on BitBadges mainnet is not in our short-term plans**
-> 
-> Please keep this in mind when evaluating the EVM integration for your projects.
+> See [counter-dapp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) and [contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples.
 
 ## Overview
 
-The BitBadges chain integrates the Cosmos `x/evm` module to enable Ethereum Virtual Machine (EVM) compatibility. This allows Solidity smart contracts to interact with the BitBadges tokenization module through a precompile interface.
+BitBadges Chain integrates the Cosmos `x/evm` module to enable Ethereum Virtual Machine (EVM) compatibility. Solidity contracts can interact with the tokenization module through precompiled contracts.
 
 ## Architecture
 
 ```
-Solidity Contract → EVM Precompile (0x0000000000000000000000000000000000001001) → Tokenization Module → Cosmos SDK State
+Solidity Contract → EVM Precompile → Tokenization Module → Cosmos SDK State
 ```
 
-### Components
-
-1. **EVM Module**: Cosmos `x/evm` module providing EVM runtime
-2. **Tokenization Precompile**: Precompiled contract at address `0x0000000000000000000000000000000000001001`
-3. **ERC-3643 Wrapper**: Example Solidity contract demonstrating integration
-
-## Precompile Address
-
-The tokenization precompile is available at:
-```
-0x0000000000000000000000000000000000001001
-```
-
-## API Reference
-
-### Transaction Methods
-
-#### `transferTokens`
-
-Transfers tokens from the caller to one or more recipients.
-
-**Signature:**
-```solidity
-function transferTokens(
-    uint256 collectionId,
-    address[] calldata toAddresses,
-    uint256 amount,
-    UintRange[] calldata tokenIds,
-    UintRange[] calldata ownershipTimes
-) external returns (bool);
-```
-
-**Parameters:**
-- `collectionId`: The collection ID to transfer from
-- `toAddresses`: Array of recipient addresses
-- `amount`: Amount to transfer to each recipient
-- `tokenIds`: Array of token ID ranges to transfer
-- `ownershipTimes`: Array of ownership time ranges to transfer
-
-**Returns:**
-- `bool`: `true` if transfer succeeded
-
-**Gas Cost:** Base 30,000 + 5,000 per recipient + 1,000 per token ID range + 1,000 per ownership time range
-
-#### `setIncomingApproval`
-
-Sets an incoming approval for the caller.
-
-**Signature:**
-```solidity
-function setIncomingApproval(
-    uint256 collectionId,
-    UserIncomingApproval calldata approval
-) external returns (bool);
-```
-
-**Gas Cost:** Base 20,000 + dynamic based on ranges
-
-#### `setOutgoingApproval`
-
-Sets an outgoing approval for the caller.
-
-**Signature:**
-```solidity
-function setOutgoingApproval(
-    uint256 collectionId,
-    UserOutgoingApproval calldata approval
-) external returns (bool);
-```
-
-**Gas Cost:** Base 20,000 + dynamic based on ranges
-
-### Query Methods
-
-#### `getBalanceAmount`
-
-Gets the balance amount for a user with specific token IDs and ownership times.
-
-**Signature:**
-```solidity
-function getBalanceAmount(
-    uint256 collectionId,
-    address userAddress,
-    UintRange[] calldata tokenIds,
-    UintRange[] calldata ownershipTimes
-) external view returns (uint256);
-```
-
-**Returns:**
-- `uint256`: Total balance amount matching the criteria
-
-#### `getTotalSupply`
-
-Gets the total supply for a collection with specific token IDs and ownership times.
-
-**Signature:**
-```solidity
-function getTotalSupply(
-    uint256 collectionId,
-    UintRange[] calldata tokenIds,
-    UintRange[] calldata ownershipTimes
-) external view returns (uint256);
-```
-
-**Returns:**
-- `uint256`: Total supply matching the criteria
-
-#### Other Query Methods
-
-- `getCollection(uint256 collectionId) returns (bytes)`
-- `getBalance(uint256 collectionId, address userAddress) returns (bytes)`
-- `getAddressList(string listId) returns (bytes)`
-- `getApprovalTracker(...) returns (bytes)`
-- `getChallengeTracker(...) returns (uint256)`
-- `getETHSignatureTracker(...) returns (uint256)`
-- `getDynamicStore(uint256 storeId) returns (bytes)`
-- `getDynamicStoreValue(uint256 storeId, address userAddress) returns (bytes)`
-- `getWrappableBalances(string denom, address userAddress) returns (uint256)`
-- `isAddressReservedProtocol(address addr) returns (bool)`
-- `getAllReservedProtocolAddresses() returns (address[])`
-- `getVote(...) returns (bytes)`
-- `getVotes(...) returns (bytes)`
-- `params() returns (bytes)`
-
-## ERC-3643 Integration
-
-The `ERC3643Tokenization.sol` contract provides an ERC-3643 compliant interface that wraps the precompile.
-
-### Usage Example
-
-```solidity
-// Deploy the contract with a collection ID
-ERC3643Tokenization token = new ERC3643Tokenization(1);
-
-// Transfer tokens
-token.transfer(recipient, amount);
-
-// Query balance
-uint256 balance = token.balanceOf(account);
-
-// Query total supply
-uint256 supply = token.totalSupply();
-```
-
-### Contract Address
-
-The ERC-3643 contract must be deployed separately for each collection. The contract address is determined by the deployment transaction.
-
-## Error Handling
-
-The precompile uses structured error codes:
-
-- `ErrorCodeInvalidInput (1)`: Invalid input parameters
-- `ErrorCodeCollectionNotFound (2)`: Collection not found
-- `ErrorCodeBalanceNotFound (3)`: Balance not found
-- `ErrorCodeTransferFailed (4)`: Transfer operation failed
-- `ErrorCodeApprovalFailed (5)`: Approval operation failed
-- `ErrorCodeQueryFailed (6)`: Query operation failed
-- `ErrorCodeInternalError (7)`: Internal error
-- `ErrorCodeUnauthorized (8)`: Unauthorized operation
-
-## Security Considerations
-
-### Input Validation
-
-All inputs are validated:
-- Zero addresses are rejected
-- Empty arrays are rejected where appropriate
-- Invalid ranges (start > end) are rejected
-- Negative amounts are rejected
-- Array sizes are limited to prevent DoS
-
-### Limits
-
-- Maximum recipients: 100
-- Maximum token ID ranges: 100
-- Maximum ownership time ranges: 100
-- Maximum approval ranges: 100
-
-### Reentrancy Protection
-
-Reentrancy is prevented by:
-- EVM call stack mechanism
-- Cosmos SDK state machine atomicity
-- Precompile operations execute atomically
-
-### Caller Verification
-
-The caller address is verified by the EVM and cannot be spoofed. The caller is used as the "from" address for transfers.
-
-## Events
-
-The precompile emits Cosmos SDK events for all operations:
-
-- `precompile_transfer_tokens`: Emitted on token transfers
-- `precompile_set_incoming_approval`: Emitted on incoming approval updates
-- `precompile_set_outgoing_approval`: Emitted on outgoing approval updates
-
-## Gas Costs
-
-### Gas Cost Rationale
-
-Gas costs are designed to:
-1. **Prevent DoS attacks**: Limit array sizes and charge per element
-2. **Reflect computational complexity**: More complex operations cost more
-3. **Encourage efficient usage**: Batch operations when possible
-
-### Base Costs
-
-**Transaction Methods:**
-- `transferTokens`: 30,000 base gas
-- `setIncomingApproval`: 20,000 base gas
-- `setOutgoingApproval`: 20,000 base gas
-
-**Query Methods:**
-- Simple queries (`getCollection`, `getBalance`, `params`): 2,000 - 3,000 gas
-- Complex queries (trackers, votes, stores): 5,000 gas
-- Range-based queries (`getBalanceAmount`, `getTotalSupply`): 3,000 base + 500 per range
-
-### Dynamic Costs
-
-- **Per recipient**: 5,000 gas (for `transferTokens`)
-- **Per token ID range**: 1,000 gas (for transactions), 500 gas (for queries)
-- **Per ownership time range**: 1,000 gas (for transactions), 500 gas (for queries)
-- **Per approval field**: 500 gas (for approval methods)
-
-### Gas Estimation Examples
-
-**Example 1: Simple Transfer**
-```solidity
-// Transfer to 1 recipient, 1 token ID range, 1 ownership time range
-// Gas = 30,000 (base) + 5,000 (1 recipient) + 1,000 (1 token range) + 1,000 (1 ownership range)
-// Total = 37,000 gas
-```
-
-**Example 2: Multi-Recipient Transfer**
-```solidity
-// Transfer to 5 recipients, 2 token ID ranges, 1 ownership time range
-// Gas = 30,000 (base) + 25,000 (5 recipients) + 2,000 (2 token ranges) + 1,000 (1 ownership range)
-// Total = 58,000 gas
-```
-
-**Example 3: Balance Query**
-```solidity
-// Query balance with 3 token ID ranges, 2 ownership time ranges
-// Gas = 3,000 (base) + 1,500 (3 token ranges) + 1,000 (2 ownership ranges)
-// Total = 5,500 gas
-```
-
-### Gas Optimization Tips
-
-1. **Minimize Recipients**: Each recipient adds 5,000 gas. Batch transfers when possible.
-2. **Consolidate Ranges**: Fewer ranges = lower gas costs
-3. **Use Direct Return Methods**: `getBalanceAmount` and `getTotalSupply` avoid protobuf decoding overhead
-4. **Cache Query Results**: Store frequently accessed data in contract storage
-5. **Batch Operations**: Group multiple operations in a single transaction when possible
-
-## Deployment Guide
-
-### Prerequisites Checklist
-
-Before deploying, ensure:
-
-- [ ] Chain has EVM module enabled
-- [ ] FeeMarket module is initialized
-- [ ] Tokenization module is enabled
-- [ ] Precompile address is available: `0x0000000000000000000000000000000000001001`
-- [ ] EVM chain ID is configured correctly
-- [ ] Genesis state includes EVM configuration
-
-### Step-by-Step Deployment
-
-#### 1. Genesis Configuration
-
-The EVM module must be configured in genesis. Add the following to your genesis file:
-
-```json
-{
-  "app_state": {
-    "evm": {
-      "params": {
-        "evm_denom": "ustake",
-        "enable_create": true,
-        "enable_call": true,
-        "extra_eips": [],
-        "chain_config": {
-          "chain_id": "9000",
-          "homestead_block": "0",
-          "dao_fork_block": "0",
-          "dao_fork_support": true,
-          "eip150_block": "0",
-          "eip150_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-          "eip155_block": "0",
-          "eip158_block": "0",
-          "byzantium_block": "0",
-          "constantinople_block": "0",
-          "petersburg_block": "0",
-          "istanbul_block": "0",
-          "muir_glacier_block": "0",
-          "berlin_block": "0",
-          "london_block": "0"
-        }
-      }
-    },
-    "feemarket": {
-      "params": {
-        "no_base_fee": false,
-        "base_fee_change_denominator": 8,
-        "elasticity_multiplier": 2,
-        "enable_height": "0",
-        "base_fee": "1000000000",
-        "min_gas_price": "0",
-        "min_gas_multiplier": "0.5"
-      }
-    }
-  }
-}
-```
-
-#### 2. Precompile Registration
-
-The precompile is automatically registered when the EVM module is initialized in `app/evm.go`:
-
-```go
-tokenizationPrecompile := tokenizationprecompile.NewPrecompile(app.TokenizationKeeper)
-tokenizationPrecompileAddr := common.HexToAddress(tokenizationprecompile.TokenizationPrecompileAddress)
-app.EVMKeeper.RegisterStaticPrecompile(tokenizationPrecompileAddr, tokenizationPrecompile)
-```
-
-#### 3. Verify Precompile Registration
-
-After deployment, verify the precompile is registered:
-
-```bash
-# Query precompile address (should return code)
-cast code 0x0000000000000000000000000000000000001001 --rpc-url <your-rpc-url>
-```
-
-Or in Solidity:
-```solidity
-address precompileAddr = 0x0000000000000000000000000000000000001001;
-uint256 codeSize;
-assembly {
-    codeSize := extcodesize(precompileAddr)
-}
-require(codeSize > 0, "Precompile not registered");
-```
-
-#### 4. Test Deployment
-
-Create a test contract to verify the precompile works:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-interface ITokenizationPrecompile {
-    function params() external view returns (bytes);
-}
-
-contract PrecompileTest {
-    ITokenizationPrecompile constant PRECOMPILE = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-    
-    function testPrecompile() external view returns (bool) {
-        try PRECOMPILE.params() returns (bytes memory) {
-            return true;
-        } catch {
-            return false;
-        }
-    }
-}
-```
-
-### Common Deployment Issues
-
-1. **Precompile Not Found:**
-   - Verify EVM module is enabled in genesis
-   - Check that precompile registration code is executed
-   - Ensure the precompile address matches exactly
-
-2. **"Module Not Found" Errors:**
-   - Verify tokenization module is enabled
-   - Check that all required modules are initialized in correct order
-   - Ensure FeeMarket is initialized before EVM
-
-3. **Gas Estimation Failures:**
-   - Verify EVM chain configuration is correct
-   - Check that FeeMarket parameters are set
-   - Ensure base fee is configured appropriately
-
-4. **Transaction Reverts:**
-   - Check that collections exist before transferring
-   - Verify approvals are set correctly
-   - Ensure sufficient balance for transfers
-
-### Post-Deployment Verification
-
-1. **Test Basic Query:**
-   ```solidity
-   bytes memory params = precompile.params();
-   require(params.length > 0, "Params query failed");
-   ```
-
-2. **Test Collection Query:**
-   ```solidity
-   bytes memory collection = precompile.getCollection(collectionId);
-   require(collection.length > 0, "Collection query failed");
-   ```
-
-3. **Test Transfer (if collection exists):**
-   ```solidity
-   bool success = precompile.transferTokens(...);
-   require(success, "Transfer failed");
-   ```
-
-### Production Considerations
-
-1. **Gas Price Configuration:**
-   - Set appropriate base fee in FeeMarket
-   - Configure min gas price to prevent spam
-   - Monitor gas usage patterns
-
-2. **Rate Limiting:**
-   - Consider implementing rate limiting at chain level
-   - Monitor for DoS attempts (large arrays, many ranges)
-   - Set appropriate transaction size limits
-
-3. **Monitoring:**
-   - Monitor precompile usage via events
-   - Track gas consumption patterns
-   - Alert on error rate spikes
-
-4. **Security:**
-   - Review all input validations
-   - Monitor for unusual transaction patterns
-   - Keep EVM module and dependencies updated
-
-## Testing
-
-### Running Tests
-
-```bash
-# Run all precompile tests
-go test ./x/evm/precompiles/tokenization/...
-
-# Run specific test suite
-go test ./x/evm/precompiles/tokenization/... -run TestE2ESuite
-
-# Run error scenario tests
-go test ./x/evm/precompiles/tokenization/... -run TestPrecompile_ErrorScenarios
-```
-
-### Test Coverage
-
-- Unit tests for validation functions
-- Integration tests for precompile methods
-- E2E tests for complete transfer flows
-- Error scenario tests
-- ERC-3643 wrapper tests
-
-## Troubleshooting
-
-### Common Issues
-
-1. **"collection not found" (Error Code 2)**: 
-   - Ensure the collection ID exists
-   - Verify the collection was created successfully
-   - Check that you're using the correct collection ID format (uint256)
-
-2. **"caller cannot be zero address" (Error Code 1)**:
-   - Ensure the transaction has a valid sender
-   - Verify `msg.sender` is not the zero address
-   - Check that the contract is being called correctly
-
-3. **"invalid input parameters" (Error Code 1)**:
-   - Check that all addresses are non-zero
-   - Verify ranges are valid (start <= end, both non-negative)
-   - Ensure amounts are greater than zero
-   - Check array sizes don't exceed limits (max 100 recipients, 100 ranges)
-
-4. **"transfer failed" (Error Code 4)**:
-   - Check that the caller has sufficient balance
-   - Verify approvals are set correctly (incoming/outgoing)
-   - Ensure collection approvals allow the transfer
-   - Check that the collection is not archived
-
-5. **"unauthorized operation" (Error Code 8)**:
-   - Verify the caller has the necessary permissions
-   - Check that approvals are configured correctly
-   - Ensure the collection manager permissions allow the operation
-
-6. **"collection is archived" (Error Code 9)**:
-   - The collection is in read-only mode
-   - Transfers and modifications are not allowed
-   - Only queries are permitted
-
-7. **"query failed" (Error Code 6)**:
-   - The requested resource does not exist
-   - Check that collection IDs, addresses, and other identifiers are correct
-   - Verify the resource was created before querying
-
-### Debugging
-
-Enable debug logging to see detailed error messages:
-```go
-// In precompile methods, errors are wrapped with context
-// Check the error code and message for details
-```
-
-**Interpreting Error Codes in Solidity:**
-```solidity
-// Errors are returned as revert reasons
-// The error message includes the error code
-// Example: "precompile error [code=2]: collection not found: collectionId: 123"
-```
-
-**Common Error Patterns:**
-- Error Code 1: Usually indicates validation failures - check all inputs
-- Error Code 2: Resource doesn't exist - verify IDs and addresses
-- Error Code 4: Operation failed - check balances, approvals, permissions
-- Error Code 6: Query failed - resource may not exist or be inaccessible
-- Error Code 8: Permission denied - check approvals and manager permissions
-
-### Performance Troubleshooting
-
-1. **High Gas Costs:**
-   - Reduce number of recipients (each adds 5,000 gas)
-   - Minimize number of ranges (each adds 1,000 gas)
-   - Batch operations when possible
-
-2. **Slow Query Performance:**
-   - Use `getBalanceAmount` and `getTotalSupply` instead of protobuf methods when possible
-   - Limit range queries to necessary ranges only
-   - Cache results when appropriate
-
-3. **Protobuf Decoding Issues:**
-   - Use direct return methods (`getBalanceAmount`, `getTotalSupply`) when possible
-   - Ensure protobuf library is correctly configured
-   - Verify byte array length before decoding
-
-## Error Code Reference
-
-All precompile methods return structured errors with specific error codes:
-
-| Code | Name | When Returned | How to Handle |
-|------|------|---------------|---------------|
-| 1 | ErrorCodeInvalidInput | Invalid parameters (zero addresses, negative values, invalid ranges, etc.) | Validate all inputs before calling |
-| 2 | ErrorCodeCollectionNotFound | Collection does not exist | Verify collection ID is correct and collection exists |
-| 3 | ErrorCodeBalanceNotFound | Balance does not exist | Check that user has balance in the collection |
-| 4 | ErrorCodeTransferFailed | Transfer failed (insufficient balance, approval issues, etc.) | Check balances, approvals, and permissions |
-| 5 | ErrorCodeApprovalFailed | Approval operation failed | Verify approval parameters and permissions |
-| 6 | ErrorCodeQueryFailed | Query operation failed | Resource may not exist or be inaccessible |
-| 7 | ErrorCodeInternalError | Internal error (marshaling, etc.) | Report as bug, check logs |
-| 8 | ErrorCodeUnauthorized | Unauthorized operation | Check approvals and manager permissions |
-| 9 | ErrorCodeCollectionArchived | Collection is archived (read-only) | Collection cannot be modified, only queried |
-
-### Handling Errors in Solidity
-
-```solidity
-// Example: Handle errors gracefully
-function safeTransfer(uint256 collectionId, address to, uint256 amount) external {
-    try precompile.transferTokens(...) returns (bool success) {
-        require(success, "Transfer returned false");
-    } catch Error(string memory reason) {
-        // Parse error code from reason string
-        // Format: "precompile error [code=X]: message"
-        revert(reason);
-    } catch {
-        revert("Unknown error");
-    }
-}
-```
-
-### Example Error Scenarios
-
-**Scenario 1: Invalid Collection ID**
-```solidity
-// Error: ErrorCodeInvalidInput (1) or ErrorCodeCollectionNotFound (2)
-bytes memory collection = precompile.getCollection(999999);
-// Will revert with error code 2 if collection doesn't exist
-```
-
-**Scenario 2: Insufficient Balance**
-```solidity
-// Error: ErrorCodeTransferFailed (4)
-bool success = precompile.transferTokens(collectionId, recipients, amount, ...);
-// Will revert with error code 4 if balance is insufficient
-```
-
-**Scenario 3: Missing Approval**
-```solidity
-// Error: ErrorCodeUnauthorized (8) or ErrorCodeTransferFailed (4)
-bool success = precompile.transferTokens(...);
-// Will revert if approvals are not set correctly
-```
-
-## Limitations
-
-1. **Gas Estimation**: Dynamic gas calculation is limited in `RequiredGas` since arguments aren't parsed yet. Actual gas may vary based on input size.
-
-2. **Query Parsing**: Most query methods return protobuf-encoded bytes, requiring decoding in Solidity. Use `getBalanceAmount` and `getTotalSupply` for direct uint256 returns.
-
-3. **Rate Limiting**: Currently no per-address rate limiting (can be added at chain level). Array size limits (max 100) provide DoS protection.
-
-4. **Protobuf Decoding**: Solidity contracts need a protobuf library to decode query responses. Consider using direct return methods when possible.
-
-5. **Event Emission**: Events are emitted as Cosmos SDK events, not Solidity events. Use event indexing services to monitor precompile usage.
-
-## Additional Resources
-
-- [Cosmos EVM Module Documentation](https://github.com/cosmos/evm)
-- [BitBadges Tokenization Module](../x-tokenization/README.md)
-- [API Reference](./EVM_PRECOMPILE_API.md)
-- [Usage Examples](./EVM_USAGE_EXAMPLES.md)
-- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) - Full end-to-end counter dApp in the evm-poc repository
-- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) - Examples, precompile interface, and helper libraries
-
-## Future Enhancements
-
-- Enhanced gas estimation with argument parsing
-- Batch operations for multiple transfers
-- More query helpers returning simple types
-- Rate limiting per address
-- Enhanced monitoring and metrics
-
-## References
-
-- [Cosmos EVM Module Documentation](https://github.com/cosmos/evm)
-- [ERC-3643 Standard](https://eips.ethereum.org/EIPS/eip-3643)
-- [BitBadges Tokenization Module](../x-tokenization/README.md)
-
+**Precompile Address:** `0x0000000000000000000000000000000000001001`
+
+## Documentation
+
+- **[Setup & Configuration](evm-precompiles/setup-and-configuration.md)** - Chain config, MetaMask setup, dApp setup
+- **[Developer Guide](evm-precompiles/developer-guide.md)** - Transaction signing, address conversion, limitations
+- **[Architecture](evm-precompiles/architecture.md)** - System architecture details
+- **[Tokenization Precompile API](evm-precompiles/tokenization-precompile/API.md)** - Complete API reference
+- **[Error Handling](evm-precompiles/tokenization-precompile/errors.md)** - Error codes and handling
+- **[Gas Costs](evm-precompiles/tokenization-precompile/gas.md)** - Gas calculation and optimization
+- **[Security](evm-precompiles/tokenization-precompile/security.md)** - Security best practices
+
+## Resources
+
+- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
+- [Tokenization Module](../../x-badges/README.md)
+- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
+- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
 
 
 ## File: ./evm/EVM_POC_COMPLETION_SUMMARY.md
@@ -3419,13 +2798,11 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
 ### Phase 3: Documentation ✅
 
 #### 6. Complete API Reference
-- **File**: `docs/EVM_PRECOMPILE_API.md`
+- **File**: `evm/evm-precompiles/tokenization-precompile/API.md`
 - **Content**:
-  - Complete documentation for all 18 precompile methods
+  - Complete documentation for all precompile methods
   - Method signatures, parameters, return values
-  - Gas cost breakdowns
-  - Error code reference
-  - Input validation rules
+  - High-level overview with references to implementation for details
   - Best practices and examples
 
 #### 7. Expanded Integration Guide
@@ -3439,17 +2816,17 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
   - Post-deployment verification steps
 
 #### 8. Usage Examples
-- **File**: `docs/EVM_USAGE_EXAMPLES.md`
+- **Files**: 
+  - `evm/evm-precompiles/setup-and-configuration.md` - Setup and contract snippets
+  - `evm/evm-precompiles/tokenization-precompile/API.md` - API examples
+  - Repository: `contracts/examples/` - Complete example contracts
 - **Content**:
   - Basic setup and interface definitions
-  - Token transfer examples (simple, batch, multi-range)
+  - Token transfer examples
   - Balance query examples
   - Approval management examples
   - Complete ERC-3643 wrapper implementation
-  - Advanced patterns (batch operations, conditional transfers)
-  - Error handling patterns
-  - Gas optimization techniques
-  - Complete marketplace example
+  - Advanced patterns and real-world examples
 
 ### Phase 4: ERC-3643 Compliance ✅
 
@@ -3490,9 +2867,9 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
 2. `x/evm/precompiles/tokenization/edge_case_test.go` - Edge case tests
 3. `x/evm/precompiles/tokenization/evm_integration_test.go` - EVM integration test structure
 4. `x/evm/precompiles/tokenization/erc3643_compliance_test.go` - ERC-3643 compliance tests
-5. `docs/EVM_PRECOMPILE_API.md` - Complete API reference
-6. `docs/EVM_USAGE_EXAMPLES.md` - Usage examples
-7. `docs/EVM_POC_COMPLETION_SUMMARY.md` - This summary document
+5. `evm/evm-precompiles/tokenization-precompile/API.md` - Complete API reference
+6. `evm/evm-precompiles/setup-and-configuration.md` - Setup guide with examples
+7. `evm/EVM_POC_COMPLETION_SUMMARY.md` - This summary document
 
 ### Files Modified (3)
 1. `x/evm/precompiles/tokenization/errors.go` - Added error mapping functionality
@@ -3574,1571 +2951,20 @@ The codebase is ready for deployment and further development.
 
 
 
-## File: ./evm/EVM_PRECOMPILE_API.md
-
-# BitBadges EVM Precompile API Documentation
-
-## Overview
-
-The BitBadges EVM precompile provides a comprehensive interface for interacting with the tokenization module from Solidity smart contracts. The precompile is available at address `0x0000000000000000000000000000000000001001`.
-
-## Table of Contents
-
-- [Security](#security)
-- [Type System](#type-system)
-- [Transaction Methods](#transaction-methods)
-- [Query Methods](#query-methods)
-- [Examples](#examples)
-- [Error Codes](#error-codes)
-
-## Security
-
-### Creator Field Security
-
-**CRITICAL**: The `creator` field in all transaction methods is **automatically** set from `msg.sender`. This field is **NOT** exposed in the ABI and cannot be specified by calling contracts. This prevents impersonation attacks.
-
-All transaction methods use `contract.Caller()` which returns the EVM `msg.sender` - the address that directly called the current contract. This cannot be spoofed.
-
-### Best Practices
-
-1. **Never trust `creator` parameters** - They don't exist in the ABI
-2. **Always validate inputs** - Use the helper library validation functions
-3. **Check return values** - All methods return success indicators
-4. **Handle errors** - Use structured error codes for debugging
-
-## Type System
-
-All types are defined in `TokenizationTypes.sol` and mirror the proto message definitions 1:1. Use `BadgesHelpers.sol` for constructing and validating types.
-
-### Core Types
-
-- `UintRange`: Range of IDs (start, end inclusive)
-- `Balance`: Token balance with amount, ownership times, and token IDs
-- `CollectionMetadata`: Collection-level metadata
-- `TokenMetadata`: Token-level metadata
-- `UserBalanceStore`: Complete user balance and approval state
-- `CollectionPermissions`: Collection-level permissions
-- `UserPermissions`: User-level permissions
-
-See `contracts/types/TokenizationTypes.sol` for complete type definitions.
-
-## Transaction Methods
-
-### Collection Management
-
-#### `createCollection`
-Creates a new token collection.
-
-```solidity
-function createCollection(
-    TokenizationTypes.MsgCreateCollection calldata msg_
-) external returns (uint256 collectionId);
-```
-
-**Parameters:**
-- `msg_.defaultBalances`: Initial user balance store (can be empty)
-- `msg_.validTokenIds`: Array of valid token ID ranges
-- `msg_.collectionPermissions`: Collection permissions
-- `msg_.manager`: Manager address
-- `msg_.collectionMetadata`: Collection metadata
-- `msg_.tokenMetadata`: Array of token metadata entries
-- `msg_.customData`: Custom data string
-- `msg_.collectionApprovals`: Array of collection approvals
-- `msg_.standards`: Array of standard strings
-- `msg_.isArchived`: Whether collection is archived
-
-**Returns:** `uint256` - The created collection ID
-
-**Example:**
-```solidity
-import {TokenizationTypes} from "./types/TokenizationTypes.sol";
-import {BadgesHelpers} from "./libraries/BadgesHelpers.sol";
-
-TokenizationTypes.MsgCreateCollection memory msg_;
-msg_.validTokenIds = BadgesHelpers.createUintRangeArray(
-    new uint256[](1),
-    new uint256[](1)
-);
-msg_.validTokenIds[0] = BadgesHelpers.createUintRange(1, 100);
-msg_.collectionMetadata = BadgesHelpers.createCollectionMetadata("", "");
-msg_.collectionPermissions = BadgesHelpers.createEmptyCollectionPermissions();
-msg_.manager = address(0x123...);
-msg_.isArchived = false;
-
-uint256 collectionId = tokenizationPrecompile.createCollection(msg_);
-```
-
-#### `updateCollection`
-Updates an existing collection with update flags.
-
-```solidity
-function updateCollection(
-    TokenizationTypes.MsgUpdateCollection calldata msg_
-) external returns (uint256 collectionId);
-```
-
-#### `deleteCollection`
-Deletes a collection (only creator can delete).
-
-```solidity
-function deleteCollection(uint256 collectionId) external returns (bool);
-```
-
-#### `setManager`
-Sets the manager address for a collection.
-
-```solidity
-function setManager(
-    uint256 collectionId,
-    string calldata manager
-) external returns (uint256 collectionId);
-```
-
-#### `setCollectionMetadata`
-Sets collection-level metadata.
-
-```solidity
-function setCollectionMetadata(
-    uint256 collectionId,
-    string calldata uri,
-    string calldata customData
-) external returns (uint256 collectionId);
-```
-
-#### `setStandards`
-Sets standards for a collection.
-
-```solidity
-function setStandards(
-    uint256 collectionId,
-    string[] calldata standards
-) external returns (uint256 collectionId);
-```
-
-#### `setCustomData`
-Sets custom data for a collection.
-
-```solidity
-function setCustomData(
-    uint256 collectionId,
-    string calldata customData
-) external returns (uint256 collectionId);
-```
-
-#### `setIsArchived`
-Sets the archived status of a collection.
-
-```solidity
-function setIsArchived(
-    uint256 collectionId,
-    bool isArchived
-) external returns (uint256 collectionId);
-```
-
-### Token Management
-
-#### `setValidTokenIds`
-Sets valid token IDs for a collection.
-
-```solidity
-function setValidTokenIds(
-    uint256 collectionId,
-    TokenizationTypes.UintRange[] calldata validTokenIds,
-    TokenizationTypes.TokenIdsActionPermission[] calldata canUpdateValidTokenIds
-) external returns (uint256 collectionId);
-```
-
-#### `setTokenMetadata`
-Sets metadata for specific token IDs.
-
-```solidity
-function setTokenMetadata(
-    uint256 collectionId,
-    TokenizationTypes.TokenMetadata[] calldata tokenMetadata,
-    TokenizationTypes.TokenIdsActionPermission[] calldata canUpdateTokenMetadata
-) external returns (uint256 collectionId);
-```
-
-### Transfers
-
-#### `transferTokens`
-Transfers tokens from the caller to one or more recipients.
-
-```solidity
-function transferTokens(
-    uint256 collectionId,
-    address[] calldata toAddresses,
-    uint256 amount,
-    TokenizationTypes.UintRange[] calldata tokenIds,
-    TokenizationTypes.UintRange[] calldata ownershipTimes
-) external returns (bool);
-```
-
-**Example:**
-```solidity
-address[] memory recipients = new address[](2);
-recipients[0] = address(0xABC...);
-recipients[1] = address(0xDEF...);
-
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
-tokenIds[0] = BadgesHelpers.createUintRange(1, 10);
-
-TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
-ownershipTimes[0] = BadgesHelpers.createFullOwnershipTimeRange();
-
-bool success = tokenizationPrecompile.transferTokens(
-    collectionId,
-    recipients,
-    100,
-    tokenIds,
-    ownershipTimes
-);
-```
-
-### Approvals
-
-#### `setOutgoingApproval`
-Sets an outgoing approval for the caller.
-
-```solidity
-function setOutgoingApproval(
-    uint256 collectionId,
-    TokenizationTypes.UserOutgoingApproval calldata approval
-) external returns (bool);
-```
-
-#### `setIncomingApproval`
-Sets an incoming approval for the caller.
-
-```solidity
-function setIncomingApproval(
-    uint256 collectionId,
-    TokenizationTypes.UserIncomingApproval calldata approval
-) external returns (bool);
-```
-
-#### `deleteOutgoingApproval`
-Deletes an outgoing approval.
-
-```solidity
-function deleteOutgoingApproval(
-    uint256 collectionId,
-    string calldata approvalId
-) external returns (bool);
-```
-
-#### `deleteIncomingApproval`
-Deletes an incoming approval.
-
-```solidity
-function deleteIncomingApproval(
-    uint256 collectionId,
-    string calldata approvalId
-) external returns (bool);
-```
-
-#### `updateUserApprovals`
-Updates user approvals with update flags.
-
-```solidity
-function updateUserApprovals(
-    TokenizationTypes.MsgUpdateUserApprovals calldata msg_
-) external returns (bool);
-```
-
-#### `setCollectionApprovals`
-Sets collection-level approvals.
-
-```solidity
-function setCollectionApprovals(
-    uint256 collectionId,
-    TokenizationTypes.CollectionApproval[] calldata collectionApprovals,
-    TokenizationTypes.CollectionApprovalPermission[] calldata canUpdateCollectionApprovals
-) external returns (uint256 collectionId);
-```
-
-#### `purgeApprovals`
-Purges expired or specified approvals.
-
-```solidity
-function purgeApprovals(
-    uint256 collectionId,
-    bool purgeExpired,
-    string calldata approverAddress,
-    bool purgeCounterpartyApprovals,
-    TokenizationTypes.ApprovalIdentifierDetails[] calldata approvalsToPurge
-) external returns (uint256 numPurged);
-```
-
-### Dynamic Stores
-
-#### `createDynamicStore`
-Creates a dynamic key-value store.
-
-```solidity
-function createDynamicStore(
-    bool defaultValue,
-    string calldata uri,
-    string calldata customData
-) external returns (uint256 storeId);
-```
-
-#### `updateDynamicStore`
-Updates a dynamic store.
-
-```solidity
-function updateDynamicStore(
-    uint256 storeId,
-    bool defaultValue,
-    bool globalEnabled,
-    string calldata uri,
-    string calldata customData
-) external returns (bool);
-```
-
-#### `deleteDynamicStore`
-Deletes a dynamic store.
-
-```solidity
-function deleteDynamicStore(uint256 storeId) external returns (bool);
-```
-
-#### `setDynamicStoreValue`
-Sets a value in a dynamic store for an address.
-
-```solidity
-function setDynamicStoreValue(
-    uint256 storeId,
-    address address_,
-    bool value
-) external returns (bool);
-```
-
-### Address Lists
-
-#### `createAddressLists`
-Creates one or more address lists.
-
-```solidity
-function createAddressLists(
-    TokenizationTypes.AddressListInput[] calldata addressLists
-) external returns (bool);
-```
-
-### Voting
-
-#### `castVote`
-Casts a vote on a proposal.
-
-```solidity
-function castVote(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    string calldata approverAddress,
-    string calldata approvalId,
-    string calldata proposalId,
-    uint256 yesWeight
-) external returns (bool);
-```
-
-## Query Methods
-
-### Collections
-
-#### `getCollection`
-Queries a collection by ID. Returns structured `TokenCollection` type.
-
-```solidity
-function getCollection(
-    uint256 collectionId
-) external view returns (TokenizationTypes.TokenCollection memory);
-```
-
-**Example:**
-```solidity
-TokenizationTypes.TokenCollection memory collection = tokenizationPrecompile.getCollection(collectionId);
-require(collection.collectionId == collectionId, "Collection not found");
-string memory uri = collection.collectionMetadata.uri;
-```
-
-### Balances
-
-#### `getBalance`
-Queries a user's balance store. Returns structured `UserBalanceStore` type.
-
-```solidity
-function getBalance(
-    uint256 collectionId,
-    address userAddress
-) external view returns (TokenizationTypes.UserBalanceStore memory);
-```
-
-**Example:**
-```solidity
-TokenizationTypes.UserBalanceStore memory balance = tokenizationPrecompile.getBalance(collectionId, userAddress);
-uint256 numBalances = balance.balances.length;
-if (numBalances > 0) {
-    uint256 amount = balance.balances[0].amount;
-}
-```
-
-#### `getBalanceAmount`
-Queries the total balance amount for specific token IDs and ownership times.
-
-```solidity
-function getBalanceAmount(
-    uint256 collectionId,
-    address userAddress,
-    TokenizationTypes.UintRange[] calldata tokenIds,
-    TokenizationTypes.UintRange[] calldata ownershipTimes
-) external view returns (uint256);
-```
-
-#### `getTotalSupply`
-Queries the total supply for specific token IDs and ownership times.
-
-```solidity
-function getTotalSupply(
-    uint256 collectionId,
-    TokenizationTypes.UintRange[] calldata tokenIds,
-    TokenizationTypes.UintRange[] calldata ownershipTimes
-) external view returns (uint256);
-```
-
-### Address Lists
-
-#### `getAddressList`
-Queries an address list by ID. Returns structured `AddressList` type.
-
-```solidity
-function getAddressList(
-    string calldata listId
-) external view returns (TokenizationTypes.AddressList memory);
-```
-
-### Dynamic Stores
-
-#### `getDynamicStore`
-Queries a dynamic store by ID.
-
-```solidity
-function getDynamicStore(
-    uint256 storeId
-) external view returns (bytes memory);
-```
-
-#### `getDynamicStoreValue`
-Queries a dynamic store value for an address.
-
-```solidity
-function getDynamicStoreValue(
-    uint256 storeId,
-    address userAddress
-) external view returns (bytes memory);
-```
-
-### Approvals and Trackers
-
-#### `getApprovalTracker`
-Queries an approval tracker.
-
-```solidity
-function getApprovalTracker(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    address approverAddress,
-    string calldata amountTrackerId,
-    string calldata trackerType,
-    address approvedAddress,
-    string calldata approvalId
-) external view returns (bytes memory);
-```
-
-#### `getChallengeTracker`
-Queries a challenge tracker.
-
-```solidity
-function getChallengeTracker(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    address approverAddress,
-    string calldata challengeTrackerId,
-    uint256 leafIndex,
-    string calldata approvalId
-) external view returns (bytes memory);
-```
-
-#### `getETHSignatureTracker`
-Queries an ETH signature tracker.
-
-```solidity
-function getETHSignatureTracker(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    address approverAddress,
-    string calldata approvalId,
-    string calldata challengeTrackerId,
-    string calldata signature
-) external view returns (bytes memory);
-```
-
-### Voting
-
-#### `getVote`
-Queries a single vote.
-
-```solidity
-function getVote(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    address approverAddress,
-    string calldata approvalId,
-    string calldata proposalId,
-    address voterAddress
-) external view returns (bytes memory);
-```
-
-#### `getVotes`
-Queries all votes for a proposal.
-
-```solidity
-function getVotes(
-    uint256 collectionId,
-    string calldata approvalLevel,
-    address approverAddress,
-    string calldata approvalId,
-    string calldata proposalId
-) external view returns (bytes memory);
-```
-
-### Other Queries
-
-#### `getWrappableBalances`
-Queries wrappable balances for a denom and address.
-
-```solidity
-function getWrappableBalances(
-    string calldata denom,
-    address userAddress
-) external view returns (uint256);
-```
-
-#### `isAddressReservedProtocol`
-Checks if an address is a reserved protocol address.
-
-```solidity
-function isAddressReservedProtocol(address addr) external view returns (bool);
-```
-
-#### `getAllReservedProtocolAddresses`
-Gets all reserved protocol addresses.
-
-```solidity
-function getAllReservedProtocolAddresses() external view returns (address[] memory);
-```
-
-#### `params`
-Queries module parameters.
-
-```solidity
-function params() external view returns (bytes memory);
-```
-
-## Examples
-
-### Complete Collection Creation Example
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./interfaces/ITokenizationPrecompile.sol";
-import "./types/TokenizationTypes.sol";
-import "./libraries/BadgesHelpers.sol";
-
-contract MyTokenizationContract {
-    ITokenizationPrecompile constant precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-    
-    function createMyCollection() external returns (uint256) {
-        TokenizationTypes.MsgCreateCollection memory msg_;
-        
-        // Set valid token IDs (1-1000)
-        msg_.validTokenIds = new TokenizationTypes.UintRange[](1);
-        msg_.validTokenIds[0] = BadgesHelpers.createUintRange(1, 1000);
-        
-        // Set collection metadata
-        msg_.collectionMetadata = BadgesHelpers.createCollectionMetadata(
-            "https://example.com/metadata",
-            "My custom data"
-        );
-        
-        // Set empty permissions (anyone can manage)
-        msg_.collectionPermissions = BadgesHelpers.createEmptyCollectionPermissions();
-        
-        // Set manager to this contract
-        msg_.manager = address(this);
-        
-        // Set token metadata for tokens 1-100
-        msg_.tokenMetadata = new TokenizationTypes.TokenMetadata[](1);
-        msg_.tokenMetadata[0] = BadgesHelpers.createTokenMetadata(
-            "https://example.com/token",
-            "",
-            BadgesHelpers.createUintRangeArray(
-                new uint256[](1),
-                new uint256[](1)
-            )
-        );
-        msg_.tokenMetadata[0].tokenIds[0] = BadgesHelpers.createUintRange(1, 100);
-        
-        // Set standards
-        msg_.standards = new string[](1);
-        msg_.standards[0] = "ERC721";
-        
-        // Create collection
-        return badges.createCollection(msg_);
-    }
-    
-    function transferMyTokens(
-        uint256 collectionId,
-        address to,
-        uint256 amount
-    ) external {
-        address[] memory recipients = new address[](1);
-        recipients[0] = to;
-        
-        TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
-        tokenIds[0] = BadgesHelpers.createUintRange(1, amount);
-        
-        TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
-        ownershipTimes[0] = BadgesHelpers.createFullOwnershipTimeRange();
-        
-        badges.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
-    }
-}
-```
-
-## Error Codes
-
-The precompile uses structured error codes for consistent error handling:
-
-- `ErrorCodeInvalidInput (1)`: Invalid input parameters
-- `ErrorCodeCollectionNotFound (2)`: Collection not found
-- `ErrorCodeBalanceNotFound (3)`: Balance not found
-- `ErrorCodeTransferFailed (4)`: Transfer operation failed
-- `ErrorCodeApprovalFailed (5)`: Approval operation failed
-- `ErrorCodeQueryFailed (6)`: Query operation failed
-- `ErrorCodeInternalError (7)`: Internal error
-
-Errors are returned as `bytes` that can be decoded using the error code and message.
-
-## Gas Costs
-
-All methods have defined gas costs:
-- Simple operations: 20,000 - 30,000 gas
-- Complex operations (createCollection, updateCollection): 40,000 - 50,000 gas
-- Query operations: 5,000 - 10,000 gas
-
-Gas costs are automatically calculated by the precompile based on operation complexity.
-
-## Helper Library
-
-Use `BadgesHelpers.sol` for:
-- Creating structs with validation
-- Building default values
-- Validating inputs
-- Common range operations
-
-**Example:**
-```solidity
-// Create a UintRange
-TokenizationTypes.UintRange memory range = BadgesHelpers.createUintRange(1, 100);
-
-// Create full ownership time range
-TokenizationTypes.UintRange memory fullTime = BadgesHelpers.createFullOwnershipTimeRange();
-
-// Create empty permissions
-TokenizationTypes.CollectionPermissions memory perms = BadgesHelpers.createEmptyCollectionPermissions();
-
-// Validate a range
-require(BadgesHelpers.validateUintRange(range), "Invalid range");
-```
-
-## Migration Notes
-
-### Return Type Changes
-
-Query methods now return structured Solidity types instead of protobuf-encoded bytes:
-- `getCollection`: Returns `TokenCollection` struct
-- `getBalance`: Returns `UserBalanceStore` struct  
-- `getAddressList`: Returns `AddressList` struct
-
-This provides better type safety and IDE support. If you need the old bytes format, you can marshal the structs yourself.
-
-## Support
-
-For issues or questions:
-- Check the type definitions in `TokenizationTypes.sol`
-- Use `BadgesHelpers.sol` for common operations
-- Review examples in this documentation
-- See the implementation in `x/evm/precompiles/tokenization/`
-
-
-## File: ./evm/EVM_USAGE_EXAMPLES.md
-
-# EVM Precompile Usage Examples
-
-This document provides practical Solidity examples for using the BitBadges tokenization precompile.
-
-## Table of Contents
-
-1. [Basic Setup](#basic-setup)
-2. [Token Transfers](#token-transfers)
-3. [Balance Queries](#balance-queries)
-4. [Approval Management](#approval-management)
-5. [ERC-3643 Wrapper](#erc-3643-wrapper)
-6. [Advanced Patterns](#advanced-patterns)
-7. [Error Handling](#error-handling)
-8. [Gas Optimization](#gas-optimization)
-
-## Basic Setup
-
-### Interface Definition
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-interface ITokenizationPrecompile {
-    struct UintRange {
-        uint256 start;
-        uint256 end;
-    }
-    
-    struct UserIncomingApproval {
-        string approvalId;
-        string fromListId;
-        string initiatedByListId;
-        UintRange[] transferTimes;
-        UintRange[] tokenIds;
-        UintRange[] ownershipTimes;
-        string uri;
-        string customData;
-    }
-    
-    struct UserOutgoingApproval {
-        string approvalId;
-        string toListId;
-        string initiatedByListId;
-        UintRange[] transferTimes;
-        UintRange[] tokenIds;
-        UintRange[] ownershipTimes;
-        string uri;
-        string customData;
-    }
-    
-    // Transaction methods
-    function transferTokens(
-        uint256 collectionId,
-        address[] calldata toAddresses,
-        uint256 amount,
-        UintRange[] calldata tokenIds,
-        UintRange[] calldata ownershipTimes
-    ) external returns (bool);
-    
-    function setIncomingApproval(
-        uint256 collectionId,
-        UserIncomingApproval calldata approval
-    ) external returns (bool);
-    
-    function setOutgoingApproval(
-        uint256 collectionId,
-        UserOutgoingApproval calldata approval
-    ) external returns (bool);
-    
-    // Query methods
-    function getBalanceAmount(
-        uint256 collectionId,
-        address userAddress,
-        UintRange[] calldata tokenIds,
-        UintRange[] calldata ownershipTimes
-    ) external view returns (uint256);
-    
-    function getTotalSupply(
-        uint256 collectionId,
-        UintRange[] calldata tokenIds,
-        UintRange[] calldata ownershipTimes
-    ) external view returns (uint256);
-    
-    function getCollection(uint256 collectionId) external view returns (bytes);
-    function getBalance(uint256 collectionId, address userAddress) external view returns (bytes);
-    function params() external view returns (bytes);
-}
-
-// Precompile address
-address constant TOKENIZATION_PRECOMPILE = 0x0000000000000000000000000000000000001001;
-```
-
-### Basic Contract Template
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./ITokenizationPrecompile.sol";
-
-contract TokenizationContract {
-    ITokenizationPrecompile public constant precompile = ITokenizationPrecompile(TOKENIZATION_PRECOMPILE);
-    uint256 public collectionId;
-    
-    constructor(uint256 _collectionId) {
-        collectionId = _collectionId;
-    }
-    
-    // Helper to create full range
-    function getFullRange() internal pure returns (ITokenizationPrecompile.UintRange[] memory) {
-        ITokenizationPrecompile.UintRange[] memory ranges = new ITokenizationPrecompile.UintRange[](1);
-        ranges[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-        return ranges;
-    }
-}
-```
-
-## Token Transfers
-
-### Simple Transfer to One Recipient
-
-```solidity
-function transfer(address to, uint256 amount) external returns (bool) {
-    address[] memory recipients = new address[](1);
-    recipients[0] = to;
-    
-    ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.transferTokens(
-        collectionId,
-        recipients,
-        amount,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Transfer to Multiple Recipients
-
-```solidity
-function transferBatch(address[] calldata recipients, uint256 amount) external returns (bool) {
-    require(recipients.length > 0 && recipients.length <= 100, "Invalid recipients");
-    
-    ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.transferTokens(
-        collectionId,
-        recipients,
-        amount,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Transfer Specific Token IDs
-
-```solidity
-function transferSpecificTokens(
-    address to,
-    uint256 amount,
-    uint256 tokenIdStart,
-    uint256 tokenIdEnd
-) external returns (bool) {
-    address[] memory recipients = new address[](1);
-    recipients[0] = to;
-    
-    ITokenizationPrecompile.UintRange[] memory tokenIds = new ITokenizationPrecompile.UintRange[](1);
-    tokenIds[0] = ITokenizationPrecompile.UintRange({
-        start: tokenIdStart,
-        end: tokenIdEnd
-    });
-    
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.transferTokens(
-        collectionId,
-        recipients,
-        amount,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Transfer with Multiple Token ID Ranges
-
-```solidity
-function transferMultipleRanges(
-    address to,
-    uint256 amount,
-    uint256[] calldata tokenIdStarts,
-    uint256[] calldata tokenIdEnds
-) external returns (bool) {
-    require(tokenIdStarts.length == tokenIdEnds.length, "Mismatched arrays");
-    require(tokenIdStarts.length <= 100, "Too many ranges");
-    
-    address[] memory recipients = new address[](1);
-    recipients[0] = to;
-    
-    ITokenizationPrecompile.UintRange[] memory tokenIds = new ITokenizationPrecompile.UintRange[](tokenIdStarts.length);
-    for (uint256 i = 0; i < tokenIdStarts.length; i++) {
-        require(tokenIdStarts[i] <= tokenIdEnds[i], "Invalid range");
-        tokenIds[i] = ITokenizationPrecompile.UintRange({
-            start: tokenIdStarts[i],
-            end: tokenIdEnds[i]
-        });
-    }
-    
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.transferTokens(
-        collectionId,
-        recipients,
-        amount,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-## Balance Queries
-
-### Get Balance for User
-
-```solidity
-function balanceOf(address user) external view returns (uint256) {
-    ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.getBalanceAmount(
-        collectionId,
-        user,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Get Balance for Specific Token IDs
-
-```solidity
-function balanceOfTokens(
-    address user,
-    uint256 tokenIdStart,
-    uint256 tokenIdEnd
-) external view returns (uint256) {
-    ITokenizationPrecompile.UintRange[] memory tokenIds = new ITokenizationPrecompile.UintRange[](1);
-    tokenIds[0] = ITokenizationPrecompile.UintRange({
-        start: tokenIdStart,
-        end: tokenIdEnd
-    });
-    
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.getBalanceAmount(
-        collectionId,
-        user,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Get Total Supply
-
-```solidity
-function totalSupply() external view returns (uint256) {
-    ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.getTotalSupply(
-        collectionId,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-### Get Total Supply for Specific Token IDs
-
-```solidity
-function totalSupplyForTokens(
-    uint256 tokenIdStart,
-    uint256 tokenIdEnd
-) external view returns (uint256) {
-    ITokenizationPrecompile.UintRange[] memory tokenIds = new ITokenizationPrecompile.UintRange[](1);
-    tokenIds[0] = ITokenizationPrecompile.UintRange({
-        start: tokenIdStart,
-        end: tokenIdEnd
-    });
-    
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    return precompile.getTotalSupply(
-        collectionId,
-        tokenIds,
-        ownershipTimes
-    );
-}
-```
-
-## Approval Management
-
-### Set Incoming Approval (Allow Others to Send to You)
-
-```solidity
-function allowIncomingFromAll() external returns (bool) {
-    ITokenizationPrecompile.UserIncomingApproval memory approval = ITokenizationPrecompile.UserIncomingApproval({
-        approvalId: "incoming_all",
-        fromListId: "All",
-        initiatedByListId: "All",
-        transferTimes: new ITokenizationPrecompile.UintRange[](0), // Empty = all times
-        tokenIds: new ITokenizationPrecompile.UintRange[](0), // Empty = all token IDs
-        ownershipTimes: new ITokenizationPrecompile.UintRange[](0), // Empty = all ownership times
-        uri: "",
-        customData: ""
-    });
-    
-    return precompile.setIncomingApproval(collectionId, approval);
-}
-```
-
-### Set Outgoing Approval (Allow Sending to Specific Addresses)
-
-```solidity
-function allowOutgoingTo(address to) external returns (bool) {
-    // Create address list first (via Cosmos SDK), then reference it
-    // For this example, we'll use "All" which allows transfers to any address
-    ITokenizationPrecompile.UserOutgoingApproval memory approval = ITokenizationPrecompile.UserOutgoingApproval({
-        approvalId: "outgoing_all",
-        toListId: "All",
-        initiatedByListId: "All",
-        transferTimes: new ITokenizationPrecompile.UintRange[](0),
-        tokenIds: new ITokenizationPrecompile.UintRange[](0),
-        ownershipTimes: new ITokenizationPrecompile.UintRange[](0),
-        uri: "",
-        customData: ""
-    });
-    
-    return precompile.setOutgoingApproval(collectionId, approval);
-}
-```
-
-### Set Approval with Specific Ranges
-
-```solidity
-function setRestrictedApproval(
-    uint256 tokenIdStart,
-    uint256 tokenIdEnd,
-    uint256 timeStart,
-    uint256 timeEnd
-) external returns (bool) {
-    ITokenizationPrecompile.UintRange[] memory tokenIds = new ITokenizationPrecompile.UintRange[](1);
-    tokenIds[0] = ITokenizationPrecompile.UintRange({
-        start: tokenIdStart,
-        end: tokenIdEnd
-    });
-    
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = new ITokenizationPrecompile.UintRange[](1);
-    ownershipTimes[0] = ITokenizationPrecompile.UintRange({
-        start: timeStart,
-        end: timeEnd
-    });
-    
-    ITokenizationPrecompile.UserOutgoingApproval memory approval = ITokenizationPrecompile.UserOutgoingApproval({
-        approvalId: "restricted_approval",
-        toListId: "All",
-        initiatedByListId: "All",
-        transferTimes: new ITokenizationPrecompile.UintRange[](0),
-        tokenIds: tokenIds,
-        ownershipTimes: ownershipTimes,
-        uri: "",
-        customData: ""
-    });
-    
-    return precompile.setOutgoingApproval(collectionId, approval);
-}
-```
-
-## ERC-3643 Wrapper
-
-### Complete ERC-3643 Implementation
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./ITokenizationPrecompile.sol";
-
-contract ERC3643Tokenization {
-    ITokenizationPrecompile public constant precompile = ITokenizationPrecompile(TOKENIZATION_PRECOMPILE);
-    
-    uint256 public collectionId;
-    string public name;
-    string public symbol;
-    uint8 public decimals;
-    
-    event Transfer(address indexed from, address indexed to, uint256 value);
-    
-    constructor(
-        uint256 _collectionId,
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals
-    ) {
-        collectionId = _collectionId;
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
-    }
-    
-    function totalSupply() external view returns (uint256) {
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        return precompile.getTotalSupply(collectionId, tokenIds, ownershipTimes);
-    }
-    
-    function balanceOf(address account) external view returns (uint256) {
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        return precompile.getBalanceAmount(collectionId, account, tokenIds, ownershipTimes);
-    }
-    
-    function transfer(address to, uint256 amount) external returns (bool) {
-        address[] memory recipients = new address[](1);
-        recipients[0] = to;
-        
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        bool success = precompile.transferTokens(
-            collectionId,
-            recipients,
-            amount,
-            tokenIds,
-            ownershipTimes
-        );
-        
-        if (success) {
-            emit Transfer(msg.sender, to, amount);
-        }
-        
-        return success;
-    }
-    
-    function getFullRange() internal pure returns (ITokenizationPrecompile.UintRange[] memory) {
-        ITokenizationPrecompile.UintRange[] memory ranges = new ITokenizationPrecompile.UintRange[](1);
-        ranges[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-        return ranges;
-    }
-}
-```
-
-## Advanced Patterns
-
-### Batch Operations
-
-```solidity
-function batchTransfer(
-    address[] calldata recipients,
-    uint256[] calldata amounts
-) external returns (bool) {
-    require(recipients.length == amounts.length, "Mismatched arrays");
-    require(recipients.length <= 100, "Too many recipients");
-    
-    ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-    ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-    
-    bool allSuccess = true;
-    for (uint256 i = 0; i < recipients.length; i++) {
-        address[] memory singleRecipient = new address[](1);
-        singleRecipient[0] = recipients[i];
-        
-        bool success = precompile.transferTokens(
-            collectionId,
-            singleRecipient,
-            amounts[i],
-            tokenIds,
-            ownershipTimes
-        );
-        
-        if (!success) {
-            allSuccess = false;
-        }
-    }
-    
-    return allSuccess;
-}
-```
-
-### Conditional Transfer
-
-```solidity
-function transferIfBalanceSufficient(
-    address to,
-    uint256 amount
-) external returns (bool) {
-    // Check balance first
-    uint256 balance = balanceOf(msg.sender);
-    require(balance >= amount, "Insufficient balance");
-    
-    // Perform transfer
-    return transfer(to, amount);
-}
-```
-
-### Multi-Collection Contract
-
-```solidity
-contract MultiCollectionBadges {
-    ITokenizationPrecompile public constant precompile = ITokenizationPrecompile(TOKENIZATION_PRECOMPILE);
-    
-    mapping(uint256 => string) public collectionNames;
-    uint256[] public collectionIds;
-    
-    function addCollection(uint256 collectionId, string memory name) external {
-        collectionNames[collectionId] = name;
-        collectionIds.push(collectionId);
-    }
-    
-    function transferFromCollection(
-        uint256 collectionId,
-        address to,
-        uint256 amount
-    ) external returns (bool) {
-        address[] memory recipients = new address[](1);
-        recipients[0] = to;
-        
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        return precompile.transferTokens(
-            collectionId,
-            recipients,
-            amount,
-            tokenIds,
-            ownershipTimes
-        );
-    }
-    
-    function getFullRange() internal pure returns (ITokenizationPrecompile.UintRange[] memory) {
-        ITokenizationPrecompile.UintRange[] memory ranges = new ITokenizationPrecompile.UintRange[](1);
-        ranges[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-        return ranges;
-    }
-}
-```
-
-## Error Handling
-
-### Try-Catch Pattern
-
-```solidity
-function safeTransfer(address to, uint256 amount) external {
-    try precompile.transferTokens(...) returns (bool success) {
-        require(success, "Transfer returned false");
-    } catch Error(string memory reason) {
-        // Handle error with reason
-        revert(reason);
-    } catch (bytes memory lowLevelData) {
-        // Handle low-level error
-        revert("Transfer failed");
-    }
-}
-```
-
-### Error Code Parsing
-
-```solidity
-function parseErrorCode(bytes memory errorData) internal pure returns (uint256) {
-    // Error format: "precompile error [code=X]: message"
-    // This is a simplified parser - in production, use a proper library
-    if (errorData.length < 20) return 0;
-    
-    // Look for "[code=" pattern
-    for (uint256 i = 0; i < errorData.length - 10; i++) {
-        if (errorData[i] == '[' && 
-            errorData[i+1] == 'c' && 
-            errorData[i+2] == 'o' && 
-            errorData[i+3] == 'd' && 
-            errorData[i+4] == 'e' && 
-            errorData[i+5] == '=') {
-            // Extract code number
-            uint256 code = 0;
-            uint256 j = i + 6;
-            while (j < errorData.length && errorData[j] >= '0' && errorData[j] <= '9') {
-                code = code * 10 + (uint256(uint8(errorData[j])) - 48);
-                j++;
-            }
-            return code;
-        }
-    }
-    return 0;
-}
-```
-
-### Validation Before Transfer
-
-```solidity
-function validatedTransfer(
-    address to,
-    uint256 amount
-) external returns (bool) {
-    require(to != address(0), "Cannot transfer to zero address");
-    require(amount > 0, "Amount must be greater than zero");
-    
-    uint256 balance = balanceOf(msg.sender);
-    require(balance >= amount, "Insufficient balance");
-    
-    return transfer(to, amount);
-}
-```
-
-## Gas Optimization
-
-### Reuse Range Arrays
-
-```solidity
-contract OptimizedBadges {
-    ITokenizationPrecompile public constant precompile = ITokenizationPrecompile(TOKENIZATION_PRECOMPILE);
-    uint256 public collectionId;
-    
-    // Cache full range arrays
-    ITokenizationPrecompile.UintRange[] private fullTokenRange;
-    ITokenizationPrecompile.UintRange[] private fullOwnershipRange;
-    
-    constructor(uint256 _collectionId) {
-        collectionId = _collectionId;
-        
-        // Initialize cached ranges
-        fullTokenRange = new ITokenizationPrecompile.UintRange[](1);
-        fullTokenRange[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-        
-        fullOwnershipRange = new ITokenizationPrecompile.UintRange[](1);
-        fullOwnershipRange[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-    }
-    
-    function transfer(address to, uint256 amount) external returns (bool) {
-        address[] memory recipients = new address[](1);
-        recipients[0] = to;
-        
-        // Use cached ranges instead of creating new ones
-        return precompile.transferTokens(
-            collectionId,
-            recipients,
-            amount,
-            fullTokenRange,
-            fullOwnershipRange
-        );
-    }
-}
-```
-
-### Batch Range Creation
-
-```solidity
-function createRanges(
-    uint256[] calldata starts,
-    uint256[] calldata ends
-) internal pure returns (ITokenizationPrecompile.UintRange[] memory) {
-    require(starts.length == ends.length, "Mismatched arrays");
-    
-    ITokenizationPrecompile.UintRange[] memory ranges = new ITokenizationPrecompile.UintRange[](starts.length);
-    for (uint256 i = 0; i < starts.length; i++) {
-        require(starts[i] <= ends[i], "Invalid range");
-        ranges[i] = ITokenizationPrecompile.UintRange({
-            start: starts[i],
-            end: ends[i]
-        });
-    }
-    return ranges;
-}
-```
-
-## Complete Example: Token Marketplace
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./ITokenizationPrecompile.sol";
-
-contract BadgesMarketplace {
-    ITokenizationPrecompile public constant precompile = ITokenizationPrecompile(TOKENIZATION_PRECOMPILE);
-    
-    struct Listing {
-        uint256 collectionId;
-        address seller;
-        uint256 amount;
-        uint256 price;
-        bool active;
-    }
-    
-    mapping(uint256 => Listing) public listings;
-    uint256 public listingCounter;
-    
-    event Listed(uint256 indexed listingId, address indexed seller, uint256 collectionId, uint256 amount, uint256 price);
-    event Sold(uint256 indexed listingId, address indexed buyer);
-    
-    function list(
-        uint256 collectionId,
-        uint256 amount,
-        uint256 price
-    ) external returns (uint256) {
-        // Transfer tokens to this contract
-        address[] memory recipients = new address[](1);
-        recipients[0] = address(this);
-        
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        bool success = precompile.transferTokens(
-            collectionId,
-            recipients,
-            amount,
-            tokenIds,
-            ownershipTimes
-        );
-        require(success, "Transfer to marketplace failed");
-        
-        // Create listing
-        uint256 listingId = listingCounter++;
-        listings[listingId] = Listing({
-            collectionId: collectionId,
-            seller: msg.sender,
-            amount: amount,
-            price: price,
-            active: true
-        });
-        
-        emit Listed(listingId, msg.sender, collectionId, amount, price);
-        return listingId;
-    }
-    
-    function buy(uint256 listingId) external payable {
-        Listing storage listing = listings[listingId];
-        require(listing.active, "Listing not active");
-        require(msg.value >= listing.price, "Insufficient payment");
-        
-        // Transfer tokens to buyer
-        address[] memory recipients = new address[](1);
-        recipients[0] = msg.sender;
-        
-        ITokenizationPrecompile.UintRange[] memory tokenIds = getFullRange();
-        ITokenizationPrecompile.UintRange[] memory ownershipTimes = getFullRange();
-        
-        bool success = precompile.transferTokens(
-            listing.collectionId,
-            recipients,
-            listing.amount,
-            tokenIds,
-            ownershipTimes
-        );
-        require(success, "Transfer to buyer failed");
-        
-        // Transfer payment to seller
-        payable(listing.seller).transfer(listing.price);
-        
-        // Refund excess
-        if (msg.value > listing.price) {
-            payable(msg.sender).transfer(msg.value - listing.price);
-        }
-        
-        listing.active = false;
-        emit Sold(listingId, msg.sender);
-    }
-    
-    function getFullRange() internal pure returns (ITokenizationPrecompile.UintRange[] memory) {
-        ITokenizationPrecompile.UintRange[] memory ranges = new ITokenizationPrecompile.UintRange[](1);
-        ranges[0] = ITokenizationPrecompile.UintRange({
-            start: 0,
-            end: type(uint256).max
-        });
-        return ranges;
-    }
-}
-```
-
-## Best Practices Summary
-
-1. **Always validate inputs** before calling precompile methods
-2. **Use direct return methods** (`getBalanceAmount`, `getTotalSupply`) when possible
-3. **Cache range arrays** to save gas on repeated calls
-4. **Handle errors gracefully** with try-catch blocks
-5. **Respect array size limits** (max 100 elements)
-6. **Check balances** before attempting transfers
-7. **Use events** to track important state changes
-8. **Optimize gas** by reusing arrays and minimizing ranges
-
-
-
 ## File: ./evm/evm-precompiles/README.md
 
-# EVM Precompiles Documentation
+# EVM Precompiles
 
-> ⚠️ **Important Pre-Reading: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> 1. **Development Status**: The EVM implementation is available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain).
-> 
-> 2. **Testing Options**:
->    - You can run it locally by checking out the `evm-poc` branch
->    - Reach out to us to set up a dedicated testnet if that would be easier for your use case
->    - For a full end-to-end example, see the [counter-dapp directory](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the evm-poc repository - a simple counter dApp demonstrating complete integration
->    - See the [contracts folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples, the precompile interface, and helper libraries
-> 
-> 3. **Code Status & Licensing**:
->    - The implementation is **fully code complete** and functional
->    - We are open to discussing licensing models or other collaboration ideas
->    - **Deploying EVM on BitBadges mainnet is not in our short-term plans**
-> 
-> Please keep this in mind when evaluating the EVM integration for your projects.
-
-Welcome to the BitBadges Chain EVM Precompiles documentation. This documentation provides comprehensive guides for using precompiled contracts to interact with Cosmos SDK modules from Solidity smart contracts.
-
-## Quick Links
-
-- [Overview](overview.md) - Introduction to EVM precompiles
-- [Developer Guide](developer-guide.md) - **Essential guide for app developers** - Transaction signing, address conversion, and limitations
-- [Getting Started](getting-started.md) - Quick start guide
-- [Architecture](architecture.md) - System architecture
-- [Tokenization Precompile](tokenization-precompile/README.md) - Tokenization precompile documentation
+> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
 
 ## What are Precompiles?
 
-Precompiles are special contract addresses that execute native Go code instead of EVM bytecode. They provide:
+Precompiles are special contract addresses that execute native Go code instead of EVM bytecode, providing:
 
-- **Native Performance**: Direct access to Cosmos SDK modules
-- **Type Safety**: Full type conversion between Solidity and Cosmos SDK
-- **Security**: Built-in validation and error handling
-- **Gas Efficiency**: Optimized gas costs
+- Direct access to Cosmos SDK modules
+- Full type conversion between Solidity and Cosmos SDK
+- Built-in validation and error handling
+- Optimized gas costs
 
 ## Available Precompiles
 
@@ -5146,84 +2972,23 @@ Precompiles are special contract addresses that execute native Go code instead o
 
 **Address:** `0x0000000000000000000000000000000000001001`
 
-Full access to the BitBadges tokenization module:
-- Token transfers with approval systems
-- Collection management
-- Balance queries
-- Approval management
-- Dynamic stores
-- Governance features
+Provides full access to the BitBadges tokenization module for token transfers, collection management, approvals, dynamic stores, and governance.
 
-[Read the Tokenization Precompile Documentation →](tokenization-precompile/README.md)
+[Tokenization Precompile Documentation →](tokenization-precompile/README.md)
 
-## Documentation Structure
+## Documentation
 
-```
-docs/evm-precompiles/
-├── SUMMARY.md              # GitBook table of contents
-├── overview.md             # Introduction to precompiles
-├── developer-guide.md      # Essential guide: signing, addresses, limitations
-├── getting-started.md      # Quick start guide
-├── architecture.md         # System architecture
-├── tokenization-precompile/
-│   ├── README.md          # Tokenization precompile overview
-│   ├── overview.md        # Detailed overview
-│   ├── installation.md    # Setup guide
-│   ├── api-reference.md   # Complete API reference
-│   ├── transactions.md    # Transaction methods
-│   ├── queries.md         # Query methods
-│   ├── types.md           # Type definitions
-│   ├── errors.md          # Error handling
-│   ├── gas.md             # Gas costs
-│   ├── security.md         # Security best practices
-│   └── examples.md        # Code examples
-├── examples/              # Tutorials and examples
-├── integration-guide.md   # Integration guide
-├── troubleshooting.md     # Common issues
-└── faq.md                 # Frequently asked questions
-```
-
-## Getting Started
-
-1. **Read the Overview**: Understand what precompiles are and how they work
-2. **Read the Developer Guide**: **Essential reading** - Learn about transaction signing, address conversion, and limitations
-3. **Follow the Getting Started Guide**: Set up your first precompile interaction
-4. **Explore the Tokenization Precompile**: Learn about available methods
-5. **Check Examples**: See real-world usage patterns
+- **[Setup & Configuration](setup-and-configuration.md)** - Chain config, MetaMask setup, dApp setup
+- **[Developer Guide](developer-guide.md)** - Transaction signing, address conversion, limitations
+- **[Architecture](architecture.md)** - System architecture
+- **[Tokenization Precompile](tokenization-precompile/README.md)** - Precompile documentation
 
 ## Resources
 
-- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview) - Official Cosmos SDK EVM docs
-- [Tokenization Module](../_docs/TOKENIZATION_MODULE_ARCHITECTURE.md) - Tokenization module architecture
-- [Example Contracts](../contracts/examples/) - Solidity example contracts
-- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) - Full end-to-end counter dApp in the evm-poc repository
-- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) - Examples, precompile interface, and helper libraries
-
-## Contributing
-
-Documentation improvements are welcome! Please:
-
-1. Follow the existing documentation style
-2. Include code examples where helpful
-3. Link to relevant Cosmos SDK documentation
-4. Keep examples up-to-date with the latest code
-
-## Support
-
-For questions or issues:
-
-- Check the [FAQ](faq.md)
-- Review [Troubleshooting](troubleshooting.md)
-- Open an issue on GitHub
-
----
-
-**Last Updated:** 2024-12-19  
-**Version:** 1.0.0
-
-
-
-
+- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
+- [Tokenization Module](../../x-badges/README.md)
+- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
+- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
 
 
 ## File: ./evm/evm-precompiles/SUMMARY.md
@@ -5232,28 +2997,15 @@ For questions or issues:
 
 ## Table of Contents
 
-* [Overview](overview.md)
-* [Getting Started](getting-started.md)
+* [README](README.md)
+* [Setup and Configuration](setup-and-configuration.md)
+* [Developer Guide](developer-guide.md)
 * [Architecture](architecture.md)
 * [Tokenization Precompile](tokenization-precompile/README.md)
-  * [Overview](tokenization-precompile/overview.md)
-  * [Installation](tokenization-precompile/installation.md)
-  * [API Reference](tokenization-precompile/api-reference.md)
-  * [Transaction Methods](tokenization-precompile/transactions.md)
-  * [Query Methods](tokenization-precompile/queries.md)
-  * [Types & Data Structures](tokenization-precompile/types.md)
-  * [Error Handling](tokenization-precompile/errors.md)
+  * [API Reference](tokenization-precompile/API.md)
   * [Gas & Costs](tokenization-precompile/gas.md)
+  * [Error Handling](tokenization-precompile/errors.md)
   * [Security](tokenization-precompile/security.md)
-  * [Examples](tokenization-precompile/examples.md)
-* [Examples & Tutorials](examples/README.md)
-  * [Basic Token Transfer](examples/basic-transfer.md)
-  * [Creating Collections](examples/creating-collections.md)
-  * [Approval System](examples/approvals.md)
-  * [Advanced Patterns](examples/advanced-patterns.md)
-* [Integration Guide](integration-guide.md)
-* [Troubleshooting](troubleshooting.md)
-* [FAQ](faq.md)
 
 
 
@@ -5481,8 +3233,8 @@ For more information on Cosmos SDK EVM integration, see the [official documentat
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Architecture](../x-tokenization/README.md)
-- [Precompile Implementation](../x/evm/precompiles/tokenization/)
+- [Tokenization Module Architecture](../../x-badges/README.md)
+- [Precompile Implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile)
 
 
 
@@ -5819,49 +3571,133 @@ This allows the ante handler to recognize and verify signatures from both key ty
 
 ## Additional Resources
 
-- [EVM Precompiles Overview](./overview.md)
+- [EVM Precompiles Overview](./README.md)
 - [Tokenization Precompile Documentation](./tokenization-precompile/README.md)
 - [Architecture Details](./architecture.md)
 - [Security Best Practices](./tokenization-precompile/security.md)
 
 
 
-## File: ./evm/evm-precompiles/getting-started.md
+## File: ./evm/evm-precompiles/setup-and-configuration.md
 
-# Getting Started with EVM Precompiles
+# Setup and Configuration
 
-> ⚠️ **Important Pre-Reading: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> 1. **Development Status**: The EVM implementation is available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain).
-> 
-> 2. **Testing Options**:
->    - You can run it locally by checking out the `evm-poc` branch
->    - Reach out to us to set up a dedicated testnet if that would be easier for your use case
->    - For a full end-to-end example, see the [counter-dapp directory](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the evm-poc repository - a simple counter dApp demonstrating complete integration
->    - See the [contracts folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples, the precompile interface, and helper libraries
-> 
-> 3. **Code Status & Licensing**:
->    - The implementation is **fully code complete** and functional
->    - We are open to discussing licensing models or other collaboration ideas
->    - **Deploying EVM on BitBadges mainnet is not in our short-term plans**
-> 
-> Please keep this in mind when evaluating the EVM integration for your projects.
+> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
 
-This guide will help you get started using the BitBadges EVM precompiles in your Solidity smart contracts.
+This guide covers everything you need to set up your development environment for building dApps on BitBadges Chain with EVM compatibility.
 
-## Prerequisites
+## Chain Configuration
 
-- Basic knowledge of Solidity
-- Understanding of Ethereum smart contracts
-- Familiarity with Cosmos SDK concepts (helpful but not required)
+### Chain ID
 
-## Installation
+The BitBadges Chain EVM uses a custom Chain ID for EVM compatibility:
 
-### 1. Import the Precompile Interface
+- **Local Development**: `90123`
+- **Testnet**: TBD (contact us for testnet setup)
+- **Mainnet**: Not deployed (see production status notice)
 
-First, import the precompile interface in your Solidity contract:
+The Chain ID is configured in `app/params/constants.go`:
+
+```go
+EVMChainID = "90123" // Default for testing
+```
+
+**Important**: The Chain ID in your genesis file (`app_state.evm.params.chain_config.chain_id`) must match this value.
+
+### RPC Endpoints
+
+BitBadges Chain provides two RPC interfaces:
+
+1. **Tendermint RPC** (Port 26657)
+   - Used for Cosmos SDK queries and transactions
+   - Endpoint: `http://localhost:26657`
+   - Supports standard Cosmos SDK operations
+
+2. **EVM JSON-RPC** (Port 8545)
+   - Used for Ethereum-compatible operations
+   - Endpoint: `http://localhost:8545`
+   - Supports standard Ethereum JSON-RPC methods
+   - Required for MetaMask, ethers.js, web3.js, etc.
+
+### Starting the Chain with EVM
+
+To start the chain with EVM support, use the `--json-rpc.enable` flag:
+
+```bash
+# From the bitbadgeschain repository root
+bitbadgeschaind start --json-rpc.enable --json-rpc.address 0.0.0.0:8545
+```
+
+Or use the provided startup script:
+
+```bash
+# From the bitbadgeschain repository root
+./start-chain.sh start
+```
+
+The startup script automatically enables EVM JSON-RPC on port 8545.
+
+**Note**: The EVM module is always enabled in the chain binary. You only need to enable the JSON-RPC server to interact with it via Ethereum-compatible tools (MetaMask, ethers.js, etc.).
+
+## MetaMask Configuration
+
+To connect MetaMask to your local BitBadges chain:
+
+1. Open MetaMask
+2. Go to **Settings > Networks > Add Network**
+3. Add the following network configuration:
+
+**For Local Development:**
+- **Network Name**: BitBadges Local
+- **RPC URL**: `http://localhost:8545` (EVM JSON-RPC)
+- **Chain ID**: `90123`
+- **Currency Symbol**: `BADGE`
+- **Block Explorer**: (Optional, leave blank for local)
+
+**Note**: Use port 8545 (EVM JSON-RPC), not 26657 (Tendermint RPC).
+
+### Getting Test Tokens
+
+After starting your local chain, fund your MetaMask account:
+
+```bash
+# Get your MetaMask address (0x... format)
+# Then fund it using the chain's genesis or by transferring from a validator
+
+# Option 1: Transfer from a validator account
+bitbadgeschaind tx bank send \
+  $(bitbadgeschaind keys show alice -a --keyring-backend test) \
+  <your-metamask-address> \
+  1000000000ubadge \
+  --chain-id bitbadges \
+  --keyring-backend test \
+  --yes
+
+# Option 2: Use the chain's genesis accounts if configured
+```
+
+## Simple dApp Setup
+
+### Project Structure
+
+A typical dApp project structure:
+
+```
+my-dapp/
+├── contracts/              # Solidity contracts
+│   ├── MyContract.sol
+│   └── interfaces/
+│       └── ITokenizationPrecompile.sol
+├── scripts/               # Deployment scripts
+│   └── deploy.ts
+├── app/                   # Frontend (Next.js, React, etc.)
+│   └── page.tsx
+└── package.json
+```
+
+### Basic Contract Template
+
+Here's a minimal contract that uses the tokenization precompile:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -5869,61 +3705,322 @@ pragma solidity ^0.8.0;
 
 import "./interfaces/ITokenizationPrecompile.sol";
 import "./types/TokenizationTypes.sol";
-```
 
-### 2. Initialize the Precompile
-
-Create an instance of the precompile at its fixed address:
-
-```solidity
 contract MyTokenContract {
+    // Precompile address
     ITokenizationPrecompile constant precompile = 
         ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
     
-    // Your contract code here
-}
-```
-
-## Basic Example: Transfer Tokens
-
-Here's a simple example of transferring tokens:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./interfaces/ITokenizationPrecompile.sol";
-import "./types/TokenizationTypes.sol";
-
-contract SimpleTransfer {
-    ITokenizationPrecompile constant precompile = 
-        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+    uint256 public collectionId;
     
-    function transferTokens(
-        uint256 collectionId,
-        address recipient,
+    constructor(uint256 _collectionId) {
+        collectionId = _collectionId;
+    }
+    
+    function transfer(
+        address to,
         uint256 amount,
         uint256 tokenId
     ) external returns (bool) {
-        // Prepare recipients array
         address[] memory recipients = new address[](1);
-        recipients[0] = recipient;
+        recipients[0] = to;
         
-        // Prepare token ID range
         TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
         tokenIds[0] = TokenizationTypes.UintRange({
             start: tokenId,
             end: tokenId
         });
         
-        // Prepare ownership time range (full range)
         TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
         ownershipTimes[0] = TokenizationTypes.UintRange({
             start: 1,
             end: type(uint256).max
         });
         
-        // Execute transfer
+        return precompile.transferTokens(
+            collectionId,
+            recipients,
+            amount,
+            tokenIds,
+            ownershipTimes
+        );
+    }
+    
+    function getBalance(address user) external view returns (uint256) {
+        TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+        tokenIds[0] = TokenizationTypes.UintRange({
+            start: 1,
+            end: type(uint256).max
+        });
+        
+        TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+        ownershipTimes[0] = TokenizationTypes.UintRange({
+            start: 1,
+            end: type(uint256).max
+        });
+        
+        return precompile.getBalanceAmount(collectionId, user, tokenIds, ownershipTimes);
+    }
+}
+```
+
+### Deployment Script (TypeScript/ethers.js)
+
+```typescript
+import { ethers } from "ethers";
+import * as fs from "fs";
+
+async function deploy() {
+  // Connect to EVM JSON-RPC
+  const provider = new ethers.JsonRpcProvider("http://localhost:8545");
+  
+  // Get deployer wallet
+  const privateKey = process.env.PRIVATE_KEY || "";
+  if (!privateKey) {
+    throw new Error("PRIVATE_KEY environment variable required");
+  }
+  
+  const wallet = new ethers.Wallet(privateKey, provider);
+  console.log("Deployer address:", wallet.address);
+  
+  // Check balance
+  const balance = await provider.getBalance(wallet.address);
+  console.log("Balance:", ethers.formatEther(balance), "BADGE");
+  
+  // Deploy contract
+  const contractFactory = new ethers.ContractFactory(
+    CONTRACT_ABI,
+    CONTRACT_BYTECODE,
+    wallet
+  );
+  
+  const contract = await contractFactory.deploy(collectionId);
+  await contract.waitForDeployment();
+  
+  const address = await contract.getAddress();
+  console.log("Contract deployed at:", address);
+  
+  // Save deployment info
+  fs.writeFileSync(
+    "deployed.json",
+    JSON.stringify({ address, abi: CONTRACT_ABI }, null, 2)
+  );
+}
+
+deploy().catch(console.error);
+```
+
+### Frontend Integration (React/ethers.js)
+
+```typescript
+import { ethers } from "ethers";
+import { useState, useEffect } from "react";
+
+export function useContract() {
+  const [contract, setContract] = useState<ethers.Contract | null>(null);
+  const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
+  
+  useEffect(() => {
+    if (typeof window.ethereum !== "undefined") {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      setProvider(provider);
+      
+      // Load deployed contract
+      const contractAddress = "0x..."; // Your deployed contract address
+      const contract = new ethers.Contract(
+        contractAddress,
+        CONTRACT_ABI,
+        await provider.getSigner()
+      );
+      setContract(contract);
+    }
+  }, []);
+  
+  const transfer = async (to: string, amount: bigint, tokenId: bigint) => {
+    if (!contract) throw new Error("Contract not loaded");
+    const tx = await contract.transfer(to, amount, tokenId);
+    await tx.wait();
+  };
+  
+  return { contract, provider, transfer };
+}
+```
+
+## Contract Snippets
+
+### Helper Library
+
+The repository includes a comprehensive helper library at `contracts/libraries/TokenizationHelpers.sol` that provides utility functions for:
+
+- Creating `UintRange` structs (single values, sequences, full ranges)
+- Creating `Balance`, `CollectionMetadata`, `TokenMetadata` structs
+- Creating empty permission structures
+- Validating ranges and balances
+- Common patterns for ownership times and token IDs
+
+**Import and use the helper library:**
+
+```solidity
+import "./libraries/TokenizationHelpers.sol";
+
+contract MyContract {
+    function example() external {
+        // Create a single token ID range
+        TokenizationTypes.UintRange memory tokenId = 
+            TokenizationHelpers.createSingleTokenIdRange(123);
+        
+        // Create a full ownership time range (1 to max uint256)
+        TokenizationTypes.UintRange memory fullTime = 
+            TokenizationHelpers.createFullOwnershipTimeRange();
+        
+        // Create a token ID sequence (range from start to end)
+        TokenizationTypes.UintRange memory sequence = 
+            TokenizationHelpers.createTokenIdSequence(1, 100);
+        
+        // Create a UintRange array from arrays
+        uint256[] memory starts = new uint256[](2);
+        uint256[] memory ends = new uint256[](2);
+        starts[0] = 1; ends[0] = 10;
+        starts[1] = 20; ends[1] = 30;
+        TokenizationTypes.UintRange[] memory ranges = 
+            TokenizationHelpers.createUintRangeArray(starts, ends);
+    }
+}
+```
+
+See the [TokenizationHelpers.sol](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/libraries/TokenizationHelpers.sol) file for all available helper functions.
+
+### Common Patterns
+
+#### Pattern 1: Simple Token Transfer
+
+```solidity
+ITokenizationPrecompile constant precompile = 
+    ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+
+function simpleTransfer(
+    uint256 collectionId,
+    address to,
+    uint256 amount,
+    uint256 tokenId
+) external returns (bool) {
+    address[] memory recipients = new address[](1);
+    recipients[0] = to;
+    
+    TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+    tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(tokenId);
+    
+    TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+    ownershipTimes[0] = TokenizationHelpers.createFullOwnershipTimeRange();
+    
+    return precompile.transferTokens(
+        collectionId,
+        recipients,
+        amount,
+        tokenIds,
+        ownershipTimes
+    );
+}
+```
+
+#### Pattern 2: Batch Transfer
+
+```solidity
+ITokenizationPrecompile constant precompile = 
+    ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+
+function batchTransfer(
+    uint256 collectionId,
+    address[] calldata recipients,
+    uint256[] calldata amounts,
+    uint256 tokenId
+) external returns (bool) {
+    require(recipients.length == amounts.length, "Arrays length mismatch");
+    
+    // Transfer to each recipient
+    for (uint256 i = 0; i < recipients.length; i++) {
+        address[] memory singleRecipient = new address[](1);
+        singleRecipient[0] = recipients[i];
+        
+        TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+        tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(tokenId);
+        
+        TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+        ownershipTimes[0] = TokenizationHelpers.createFullOwnershipTimeRange();
+        
+        precompile.transferTokens(
+            collectionId,
+            singleRecipient,
+            amounts[i],
+            tokenIds,
+            ownershipTimes
+        );
+    }
+    
+    return true;
+}
+```
+
+#### Pattern 3: Time-Limited Transfer
+
+```solidity
+ITokenizationPrecompile constant precompile = 
+    ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+
+function transferWithExpiration(
+    uint256 collectionId,
+    address to,
+    uint256 amount,
+    uint256 tokenId,
+    uint256 expirationTime
+) external returns (bool) {
+    address[] memory recipients = new address[](1);
+    recipients[0] = to;
+    
+    TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+    ownershipTimes[0] = TokenizationTypes.UintRange({
+        start: block.timestamp,
+        end: expirationTime
+    });
+    
+    TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+    tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(tokenId);
+    
+    return precompile.transferTokens(
+        collectionId,
+        recipients,
+        amount,
+        tokenIds,
+        ownershipTimes
+    );
+}
+```
+
+#### Pattern 4: Using Helper Library
+
+```solidity
+import "./libraries/TokenizationHelpers.sol";
+
+contract HelperExample {
+    ITokenizationPrecompile constant precompile = 
+        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+    
+    function transferWithHelpers(
+        uint256 collectionId,
+        address to,
+        uint256 amount,
+        uint256 tokenId
+    ) external returns (bool) {
+        address[] memory recipients = new address[](1);
+        recipients[0] = to;
+        
+        // Use helper library for cleaner code
+        TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+        tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(tokenId);
+        
+        TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+        ownershipTimes[0] = TokenizationHelpers.createFullOwnershipTimeRange();
+        
         return precompile.transferTokens(
             collectionId,
             recipients,
@@ -5935,291 +4032,353 @@ contract SimpleTransfer {
 }
 ```
 
-## Basic Example: Query Balance
-
-Query a user's balance:
+#### Pattern 5: Dynamic Store for Compliance
 
 ```solidity
-function getBalance(
-    uint256 collectionId,
-    address user
-) external view returns (bytes memory) {
-    // Query balance (returns protobuf-encoded bytes)
-    return precompile.getBalance(collectionId, user);
-}
-```
-
-## Understanding Types
-
-The precompile uses comprehensive type definitions that match the Cosmos SDK proto types. Key types include:
-
-- `UintRange`: Represents a range of token IDs or ownership times
-- `Balance`: Represents a user's balance with token IDs and ownership times
-- `CollectionMetadata`: Collection metadata (URI, custom data)
-- `ApprovalCriteria`: Complex approval conditions
-
-See [Types & Data Structures](tokenization-precompile/types.md) for complete type reference.
-
-## Error Handling
-
-All precompile methods can revert with structured errors. Handle errors appropriately:
-
-```solidity
-function safeTransfer(
-    uint256 collectionId,
-    address recipient,
-    uint256 amount
-) external {
-    try precompile.transferTokens(...) returns (bool success) {
-        require(success, "Transfer failed");
-    } catch Error(string memory reason) {
-        // Handle error
-        revert(reason);
+contract ComplianceToken {
+    ITokenizationPrecompile constant precompile = 
+        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+    
+    uint256 public kycRegistryId;
+    uint256 public collectionId;
+    
+    function initialize(uint256 _collectionId) external {
+        collectionId = _collectionId;
+        
+        // Create KYC registry (default: false = not KYC'd)
+        kycRegistryId = precompile.createDynamicStore(
+            false,
+            "ipfs://...", // URI
+            "" // customData
+        );
+    }
+    
+    function setKYC(address user, bool isKYCd) external {
+        precompile.setDynamicStoreValue(kycRegistryId, user, isKYCd);
+    }
+    
+    function isKYCd(address user) public view returns (bool) {
+        bytes memory result = precompile.getDynamicStoreValue(kycRegistryId, user);
+        return abi.decode(result, (bool));
+    }
+    
+    function transfer(address to, uint256 amount, uint256 tokenId) external {
+        require(isKYCd(msg.sender), "Sender not KYC'd");
+        require(isKYCd(to), "Recipient not KYC'd");
+        
+        // Proceed with transfer...
     }
 }
 ```
 
-See [Error Handling](tokenization-precompile/errors.md) for error codes and handling strategies.
+## Complete Examples
+
+### Counter dApp
+
+For a complete end-to-end example, see the [counter-dapp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the repository. It includes:
+
+- Simple Solidity contract (Counter.sol)
+- Deployment script (TypeScript)
+- Next.js frontend with MetaMask integration
+- Complete setup instructions
+
+### ERC-3643 Example Contracts
+
+The [contracts/examples](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples) directory contains production-ready examples:
+
+1. **TwoFactorSecurityToken.sol** - Security token with 2FA authentication
+2. **RealEstateSecurityToken.sol** - Tokenized real estate with KYC/AML
+3. **CarbonCreditToken.sol** - Carbon credits with vintage tracking
+4. **PrivateEquityToken.sol** - Private equity fund tokens with lock-ups
+
+Each example demonstrates:
+- Dynamic Stores for compliance registries
+- Time-bound ownership for lock-ups and expirations
+- Complex approval systems
+- Real-world use cases
+
+See the [examples README](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples/README.md) for detailed explanations of each contract.
+
+## Troubleshooting
+
+### RPC Connection Issues
+
+**Problem**: Can't connect to RPC endpoint
+
+**Solutions**:
+- Ensure the chain is running: `bitbadgeschaind start --json-rpc.enable --json-rpc.address 0.0.0.0:8545`
+- Check if EVM JSON-RPC is enabled in `app.toml`
+- Try both ports: `http://localhost:8545` (EVM) and `http://localhost:26657` (Tendermint)
+- Verify the chain is fully synced
+
+### MetaMask Connection Issues
+
+**Problem**: MetaMask can't connect to the network
+
+**Solutions**:
+- Use the correct Chain ID: `90123` for local development
+- Use EVM JSON-RPC port: `http://localhost:8545` (not 26657)
+- Ensure your local chain is running
+- Check MetaMask console for detailed error messages
+
+### Transaction Failures
+
+**Problem**: Transactions fail with "insufficient funds" or revert
+
+**Solutions**:
+- Fund your account with BADGE tokens:
+  ```bash
+  bitbadgeschaind tx bank send <validator> <your-address> 1000000000ubadge --keyring-backend test
+  ```
+- Check gas prices (may need to adjust in MetaMask)
+- Verify approvals are set correctly for token transfers
+- Check contract logs for specific error messages
+
+### Contract Deployment Issues
+
+**Problem**: Contract deployment fails
+
+**Solutions**:
+- Ensure you have sufficient balance for deployment gas
+- Check that the EVM module is enabled
+- Verify your Solidity version matches the chain's supported version
+- Check deployment script logs for specific errors
 
 ## Next Steps
 
-- Read the [Tokenization Precompile Overview](tokenization-precompile/overview.md)
-- Explore [Transaction Methods](tokenization-precompile/transactions.md)
-- Review [Query Methods](tokenization-precompile/queries.md)
-- Check out [Examples](examples/README.md) for more complex use cases
-
-## Common Patterns
-
-### Batch Transfers
-
-Transfer to multiple recipients:
-
-```solidity
-address[] memory recipients = new address[](3);
-recipients[0] = address1;
-recipients[1] = address2;
-recipients[2] = address3;
-
-precompile.transferTokens(
-    collectionId,
-    recipients,
-    amount,
-    tokenIds,
-    ownershipTimes
-);
-```
-
-### Token ID Ranges
-
-Transfer multiple token IDs:
-
-```solidity
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](2);
-tokenIds[0] = TokenizationTypes.UintRange({start: 1, end: 100});
-tokenIds[1] = TokenizationTypes.UintRange({start: 200, end: 300});
-```
-
-### Time-Based Ownership
-
-Specify ownership time ranges:
-
-```solidity
-TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
-ownershipTimes[0] = TokenizationTypes.UintRange({
-    start: block.timestamp,
-    end: block.timestamp + 365 days
-});
-```
-
-## Resources
-
-- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Architecture](../x-tokenization/README.md)
-- [Example Contracts](../contracts/examples/)
-- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) - Full end-to-end counter dApp in the evm-poc repository
-- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) - Examples, precompile interface, and helper libraries
+- Review the [Developer Guide](developer-guide.md) for essential information
+- Explore [Contract Examples](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples) for real-world patterns
+- Check the [Precompile API Reference](tokenization-precompile/API.md) for all available methods
+- See the [Counter dApp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) for a complete working example
 
 
 
+## File: ./evm/evm-precompiles/tokenization-precompile/API.md
 
-
-
-
-
-
-
-
-## File: ./evm/evm-precompiles/overview.md
-
-# EVM Precompiles Overview
-
-> ⚠️ **Important Pre-Reading: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> 1. **Development Status**: The EVM implementation is available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain).
-> 
-> 2. **Testing Options**:
->    - You can run it locally by checking out the `evm-poc` branch
->    - Reach out to us to set up a dedicated testnet if that would be easier for your use case
->    - For a full end-to-end example, see the [counter-dapp directory](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the evm-poc repository - a simple counter dApp demonstrating complete integration
->    - See the [contracts folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples, the precompile interface, and helper libraries
-> 
-> 3. **Code Status & Licensing**:
->    - The implementation is **fully code complete** and functional
->    - We are open to discussing licensing models or other collaboration ideas
->    - **Deploying EVM on BitBadges mainnet is not in our short-term plans**
-> 
-> Please keep this in mind when evaluating the EVM integration for your projects.
-
-## Introduction
-
-BitBadges Chain extends the Cosmos SDK with Ethereum Virtual Machine (EVM) compatibility, enabling developers to interact with Cosmos SDK modules directly from Solidity smart contracts through **precompiled contracts** (precompiles).
-
-Precompiles are special contracts that execute native Go code instead of EVM bytecode, providing:
-- **Native Performance**: Direct access to Cosmos SDK modules without overhead
-- **Type Safety**: Full type conversion between Solidity and Cosmos SDK types
-- **Security**: Built-in validation and error handling
-- **Gas Efficiency**: Optimized gas costs for common operations
-
-## What are Precompiles?
-
-Precompiles are special contract addresses that execute native code when called. Unlike regular smart contracts, precompiles:
-
-- Execute Go code directly (not EVM bytecode)
-- Have fixed addresses (cannot be deployed)
-- Provide native access to Cosmos SDK modules
-- Support both transactions (state-changing) and queries (read-only)
-
-For more information on the Cosmos SDK EVM module, see the [official documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview).
-
-## Available Precompiles
-
-### Tokenization Precompile
+# Tokenization Precompile API Reference
 
 **Address:** `0x0000000000000000000000000000000000001001`
 
-The tokenization precompile provides full access to the BitBadges tokenization module, enabling:
+Complete interface for interacting with the BitBadges tokenization module from Solidity contracts.
 
-- Token transfers with complex approval systems
-- Collection management (create, update, delete)
-- Balance queries with time-based ownership
-- Approval management (incoming/outgoing)
-- Dynamic store operations
-- Voting and governance features
+## Type System
 
-See the [Tokenization Precompile documentation](tokenization-precompile/README.md) for complete details.
+All types are defined in `TokenizationTypes.sol` and mirror the Cosmos SDK proto definitions. Use `TokenizationHelpers.sol` for constructing types.
 
-## Key Concepts
+**Key Types:**
+- `UintRange`: Range of IDs (start, end inclusive)
+- `Balance`: Token balance with amount, ownership times, and token IDs
+- `CollectionMetadata`: Collection-level metadata
+- `TokenMetadata`: Token-level metadata
+- `UserBalanceStore`: Complete user balance and approval state
+- `CollectionPermissions`: Collection-level permissions
 
-### Address Conversion
+See `contracts/types/TokenizationTypes.sol` for complete definitions.
 
-EVM addresses (20 bytes) are automatically converted to Cosmos addresses (Bech32 format) when interacting with Cosmos SDK modules. The precompile handles this conversion transparently.
+## Transaction Methods
 
-### Gas Costs
+### Collection Management
 
-Precompiles use dynamic gas calculation based on operation complexity:
-- Base gas for each operation
-- Additional gas per element (recipients, ranges, etc.)
-- Query operations have lower gas costs
+#### `createCollection`
+Creates a new token collection. Returns the collection ID.
 
-See [Gas & Costs](tokenization-precompile/gas.md) for detailed information.
+```solidity
+function createCollection(
+    TokenizationTypes.MsgCreateCollection calldata msg_
+) external returns (uint256 collectionId);
+```
 
-### Error Handling
+#### `updateCollection`
+Updates an existing collection.
 
-All precompiles use structured error handling with error codes:
-- `ErrorCodeInvalidInput`: Invalid parameters
-- `ErrorCodeCollectionNotFound`: Collection doesn't exist
-- `ErrorCodeTransferFailed`: Transfer operation failed
-- And more...
+```solidity
+function updateCollection(
+    TokenizationTypes.MsgUpdateCollection calldata msg_
+) external returns (uint256 collectionId);
+```
 
-See [Error Handling](tokenization-precompile/errors.md) for complete error reference.
+#### `deleteCollection`
+Deletes a collection (only creator can delete).
 
-### Security
+```solidity
+function deleteCollection(uint256 collectionId) external returns (bool);
+```
 
-Precompiles implement comprehensive security measures:
-- Caller verification (prevents impersonation)
-- Input validation (prevents invalid data)
-- DoS protection (array size limits)
-- Error sanitization (prevents information leakage)
+#### `setManager`, `setCollectionMetadata`, `setStandards`, `setCustomData`, `setIsArchived`
+Collection configuration methods.
 
-See [Security](tokenization-precompile/security.md) for security best practices.
+### Token Management
 
-## Getting Started
+#### `setValidTokenIds`
+Sets valid token ID ranges for a collection.
 
-1. **Read the Developer Guide**: **Essential first step** - Understand transaction signing, address conversion, and limitations
-2. **Install Dependencies**: Import the precompile interface in your Solidity contract
-3. **Initialize Precompile**: Get the precompile instance at its fixed address
-4. **Call Methods**: Use transaction or query methods as needed
+#### `setTokenMetadata`
+Sets metadata for specific token ID ranges.
 
-See the [Developer Guide](developer-guide.md) for essential information about transaction signing and address handling.  
-See the [Getting Started Guide](getting-started.md) for a step-by-step tutorial.
+### Transfers
 
-## Architecture
+#### `transferTokens`
+Transfers tokens from the caller to one or more recipients.
 
-The precompile system consists of:
+```solidity
+function transferTokens(
+    uint256 collectionId,
+    address[] calldata toAddresses,
+    uint256 amount,
+    TokenizationTypes.UintRange[] calldata tokenIds,
+    TokenizationTypes.UintRange[] calldata ownershipTimes
+) external returns (bool);
+```
 
-- **Precompile Contract**: Go implementation that interfaces with Cosmos SDK modules
-- **ABI Definition**: JSON ABI for Solidity integration
-- **Type Registry**: Solidity types matching Cosmos SDK proto definitions
-- **Conversion Layer**: Type conversion between Solidity and Cosmos SDK types
+**Example:**
+```solidity
+address[] memory recipients = new address[](1);
+recipients[0] = to;
 
-See [Architecture](architecture.md) for detailed architecture documentation.
+TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
+tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(1);
 
-## Resources
+TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
+ownershipTimes[0] = TokenizationHelpers.createFullOwnershipTimeRange();
 
-- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Documentation](../x-tokenization/README.md)
-- [Example Contracts](../contracts/examples/)
-- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) - Full end-to-end counter dApp in the evm-poc repository
-- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) - Examples, precompile interface, and helper libraries
+precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
+```
 
+### Approvals
 
+#### `setIncomingApproval`, `setOutgoingApproval`
+Set incoming/outgoing approvals with complex criteria (merkle challenges, voting, time-based checks, etc.).
 
+#### `deleteIncomingApproval`, `deleteOutgoingApproval`
+Delete approvals by ID.
 
+#### `updateUserApprovals`
+Update user approvals with update flags.
+
+#### `setCollectionApprovals`
+Set collection-level approvals.
+
+#### `purgeApprovals`
+Purge expired or specified approvals.
+
+### Dynamic Stores
+
+#### `createDynamicStore`, `updateDynamicStore`, `deleteDynamicStore`
+Manage dynamic key-value stores for flexible data storage.
+
+#### `setDynamicStoreValue`
+Set a value in a dynamic store for an address.
+
+### Address Lists
+
+#### `createAddressLists`
+Create one or more address lists.
+
+### Voting
+
+#### `castVote`
+Cast a vote on a proposal.
+
+## Query Methods
+
+### Collections
+
+#### `getCollection`
+Queries a collection by ID. Returns `TokenCollection` struct.
+
+```solidity
+function getCollection(
+    uint256 collectionId
+) external view returns (TokenizationTypes.TokenCollection memory);
+```
+
+### Balances
+
+#### `getBalance`
+Queries a user's complete balance store. Returns `UserBalanceStore` struct.
+
+#### `getBalanceAmount`
+Queries the total balance amount for specific token IDs and ownership times. Returns `uint256`.
+
+```solidity
+function getBalanceAmount(
+    uint256 collectionId,
+    address userAddress,
+    TokenizationTypes.UintRange[] calldata tokenIds,
+    TokenizationTypes.UintRange[] calldata ownershipTimes
+) external view returns (uint256);
+```
+
+#### `getTotalSupply`
+Queries the total supply for specific token IDs and ownership times. Returns `uint256`.
+
+### Address Lists
+
+#### `getAddressList`
+Queries an address list by ID. Returns `AddressList` struct.
+
+### Dynamic Stores
+
+#### `getDynamicStore`, `getDynamicStoreValue`
+Query dynamic stores and their values.
+
+### Approvals and Trackers
+
+#### `getApprovalTracker`, `getChallengeTracker`, `getETHSignatureTracker`
+Query approval tracking data.
+
+### Voting
+
+#### `getVote`, `getVotes`
+Query voting data.
+
+### Other
+
+#### `getWrappableBalances`
+Queries wrappable balances for a denom and address.
+
+#### `isAddressReservedProtocol`, `getAllReservedProtocolAddresses`
+Protocol address utilities.
+
+#### `params`
+Queries module parameters.
+
+## Helper Library
+
+Use `TokenizationHelpers.sol` for constructing and validating types:
+
+```solidity
+// Create ranges
+TokenizationTypes.UintRange memory range = TokenizationHelpers.createSingleTokenIdRange(1);
+TokenizationTypes.UintRange memory fullTime = TokenizationHelpers.createFullOwnershipTimeRange();
+
+// Create empty structures
+TokenizationTypes.CollectionPermissions memory perms = 
+    TokenizationHelpers.createEmptyCollectionPermissions();
+```
+
+## Security Note
+
+The `creator` field in all transaction methods is **automatically** set from `msg.sender` and cannot be specified by calling contracts. This prevents impersonation attacks.
+
+## Implementation Details
+
+For detailed gas costs, error codes, and implementation specifics, see:
+- [Gas Costs](gas.md)
+- [Error Handling](errors.md)
+- [Security](security.md)
+- [Precompile Implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile)
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/README.md
 
 # Tokenization Precompile
 
-> ⚠️ **Important Pre-Reading: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> 1. **Development Status**: The EVM implementation is available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain).
-> 
-> 2. **Testing Options**:
->    - You can run it locally by checking out the `evm-poc` branch
->    - Reach out to us to set up a dedicated testnet if that would be easier for your use case
->    - For a full end-to-end example, see the [counter-dapp directory](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) in the evm-poc repository - a simple counter dApp demonstrating complete integration
->    - See the [contracts folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples, the precompile interface, and helper libraries
-> 
-> 3. **Code Status & Licensing**:
->    - The implementation is **fully code complete** and functional
->    - We are open to discussing licensing models or other collaboration ideas
->    - **Deploying EVM on BitBadges mainnet is not in our short-term plans**
-> 
-> Please keep this in mind when evaluating the EVM integration for your projects.
+> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch.
 
-The Tokenization Precompile provides full access to the BitBadges tokenization module from Solidity smart contracts.
+**Address:** `0x0000000000000000000000000000000000001001`
 
-## Precompile Address
-
-```
-0x0000000000000000000000000000000000001001
-```
-
-## Overview
-
-The tokenization precompile enables Solidity contracts to:
-
-- **Transfer tokens** with complex approval systems
-- **Create and manage collections** of digital assets
-- **Query balances** with time-based ownership
-- **Manage approvals** (incoming/outgoing) with sophisticated criteria
-- **Use dynamic stores** for flexible data storage
-- **Participate in governance** through voting challenges
+Provides full access to the BitBadges tokenization module from Solidity contracts.
 
 ## Quick Start
 
@@ -6229,1066 +4388,131 @@ import "./interfaces/ITokenizationPrecompile.sol";
 ITokenizationPrecompile constant precompile = 
     ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
 
-// Transfer tokens
 bool success = precompile.transferTokens(
-    collectionId,
-    recipients,
-    amount,
-    tokenIds,
-    ownershipTimes
+    collectionId, recipients, amount, tokenIds, ownershipTimes
 );
 ```
 
-## Features
+## Capabilities
 
-### Transaction Methods (24+)
-
-- **Transfers**: `transferTokens`
-- **Approvals**: `setIncomingApproval`, `setOutgoingApproval`, `deleteIncomingApproval`, `deleteOutgoingApproval`
-- **Collections**: `createCollection`, `updateCollection`, `deleteCollection`, `universalUpdateCollection`
-- **Metadata**: `setCollectionMetadata`, `setTokenMetadata`, `setCustomData`
-- **Management**: `setManager`, `setValidTokenIds`, `setStandards`, `setIsArchived`
-- **Address Lists**: `createAddressLists`
-- **Dynamic Stores**: `createDynamicStore`, `updateDynamicStore`, `deleteDynamicStore`, `setDynamicStoreValue`
-- **Governance**: `castVote`, `purgeApprovals`, `updateUserApprovals`
-
-### Query Methods (15+)
-
-- **Collections**: `getCollection`
-- **Balances**: `getBalance`, `getBalanceAmount`, `getTotalSupply`, `getWrappableBalances`
-- **Approvals**: `getApprovalTracker`
-- **Challenges**: `getChallengeTracker`, `getETHSignatureTracker`
-- **Address Lists**: `getAddressList`
-- **Dynamic Stores**: `getDynamicStore`, `getDynamicStoreValue`
-- **Voting**: `getVote`, `getVotes`
-- **Protocol**: `isAddressReservedProtocol`, `getAllReservedProtocolAddresses`
-- **Parameters**: `params`
+- **Transfers**: Token transfers with approval systems
+- **Collections**: Create and manage collections
+- **Queries**: Balance and collection queries
+- **Approvals**: Incoming/outgoing approval management
+- **Dynamic Stores**: Flexible key-value storage
+- **Governance**: Voting and challenge systems
 
 ## Documentation
 
-- [Overview](overview.md) - Detailed overview and features
-- [Installation](installation.md) - Setup and configuration
-- [API Reference](api-reference.md) - Complete API documentation
-- [Transaction Methods](transactions.md) - All transaction methods
-- [Query Methods](queries.md) - All query methods
-- [Types & Data Structures](types.md) - Type definitions
-- [Error Handling](errors.md) - Error codes and handling
-- [Gas & Costs](gas.md) - Gas calculation and costs
-- [Security](security.md) - Security best practices
-- [Examples](examples.md) - Code examples
-
-## Integration
-
-The precompile integrates seamlessly with:
-
-- **Cosmos SDK EVM Module**: Uses standard EVM precompile interface
-- **Tokenization Module**: Direct access to tokenization keeper
-- **Type System**: Full type compatibility with proto definitions
-
-For Cosmos SDK EVM integration details, see the [official documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview).
+- **[API Reference](API.md)** - Complete API documentation
+- **[Error Handling](errors.md)** - Error codes and handling
+- **[Gas Costs](gas.md)** - Gas calculation and optimization
+- **[Security](security.md)** - Security best practices
 
 ## Resources
 
-- [Getting Started Guide](../getting-started.md)
-- [Architecture Documentation](../architecture.md)
-- [Example Contracts](../../contracts/examples/)
-- [Tokenization Module Documentation](../../../_docs/TOKENIZATION_MODULE_ARCHITECTURE.md)
-- [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) - Full end-to-end counter dApp in the evm-poc repository
-- [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) - Examples, precompile interface, and helper libraries
-
-
-
-
-
-
-
-
-
+- [Setup & Configuration](../setup-and-configuration.md)
+- [Developer Guide](../developer-guide.md)
+- [Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
+- [Counter dApp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/errors.md
 
 # Error Handling
 
-The tokenization precompile uses structured error handling with error codes for consistent error reporting.
-
-## Error Structure
-
-All errors follow this structure:
-
-```
-precompile error [code=X]: Message: Details
-```
-
-Where:
-- **code**: Numeric error code (see below)
-- **Message**: Human-readable error message
-- **Details**: Additional context (sanitized to prevent information leakage)
-
-## Error Codes
-
-| Code | Name | Description |
-|------|------|-------------|
-| 1 | `ErrorCodeInvalidInput` | Invalid input parameters |
-| 2 | `ErrorCodeCollectionNotFound` | Collection does not exist |
-| 3 | `ErrorCodeBalanceNotFound` | Balance not found |
-| 4 | `ErrorCodeTransferFailed` | Transfer operation failed |
-| 5 | `ErrorCodeApprovalFailed` | Approval operation failed |
-| 6 | `ErrorCodeQueryFailed` | Query operation failed |
-| 7 | `ErrorCodeInternalError` | Internal error |
-| 8 | `ErrorCodeUnauthorized` | Unauthorized operation |
-| 9 | `ErrorCodeCollectionArchived` | Collection is archived (read-only) |
+The precompile uses structured error handling. All methods can revert with descriptive error messages.
 
 ## Error Handling in Solidity
 
-### Basic Error Handling
+Handle errors using standard Solidity error handling:
 
 ```solidity
-function safeTransfer(
-    uint256 collectionId,
-    address recipient,
-    uint256 amount
-) external {
+function safeTransfer(...) external {
     try precompile.transferTokens(...) returns (bool success) {
         require(success, "Transfer failed");
     } catch Error(string memory reason) {
-        // Handle error
         revert(reason);
-    } catch (bytes memory lowLevelData) {
-        // Handle low-level error
-        revert("Low-level error");
+    } catch {
+        revert("Unknown error");
     }
 }
 ```
 
-### Error Code Extraction
+## Common Error Scenarios
 
-Error codes are embedded in the error message. You can parse them:
+- **Invalid Input**: Check that all addresses are non-zero, ranges are valid (start <= end), and amounts are positive
+- **Collection Not Found**: Verify the collection ID exists
+- **Insufficient Balance**: Ensure the caller has sufficient balance for transfers
+- **Unauthorized**: Check that approvals and permissions are configured correctly
+- **Collection Archived**: Archived collections are read-only
 
-```solidity
-function parseErrorCode(string memory error) internal pure returns (uint256) {
-    // Extract error code from "precompile error [code=X]: ..."
-    // Implementation depends on your needs
-}
-```
-
-## Common Errors
-
-### Invalid Input
-
-**Code:** 1  
-**Causes:**
-- Invalid collection ID (zero or negative)
-- Invalid address (zero address)
-- Invalid ranges (start > end)
-- Array size exceeds limits
-- Type mismatches
-
-**Example:**
-```
-precompile error [code=1]: invalid input: collectionId cannot be zero
-```
-
-### Collection Not Found
-
-**Code:** 2  
-**Causes:**
-- Collection ID doesn't exist
-- Collection was deleted
-
-**Example:**
-```
-precompile error [code=2]: collection not found: collection 123 does not exist
-```
-
-### Transfer Failed
-
-**Code:** 4  
-**Causes:**
-- Insufficient balance
-- Approval requirements not met
-- Collection archived
-- Invalid token IDs or ownership times
-
-**Example:**
-```
-precompile error [code=4]: transfer failed: insufficient balance
-```
-
-### Unauthorized
-
-**Code:** 8  
-**Causes:**
-- Not the collection creator/manager
-- Missing required permissions
-- Zero address caller
-
-**Example:**
-```
-precompile error [code=8]: unauthorized: caller is not the collection manager
-```
-
-### Collection Archived
-
-**Code:** 9  
-**Causes:**
-- Collection is archived (read-only)
-- Attempting to modify archived collection
-
-**Example:**
-```
-precompile error [code=9]: collection archived: collection 123 is archived
-```
-
-## Error Sanitization
-
-Error details are sanitized to prevent information leakage:
-
-- File paths removed
-- Stack traces truncated
-- Internal module paths redacted
-- IP addresses removed
-
-This ensures that error messages are helpful for debugging without exposing sensitive system information.
-
-## Best Practices
-
-### 1. Always Check Return Values
-
-```solidity
-bool success = precompile.transferTokens(...);
-require(success, "Transfer failed");
-```
-
-### 2. Handle Errors Gracefully
-
-```solidity
-try precompile.transferTokens(...) returns (bool success) {
-    if (!success) {
-        // Handle failure
-    }
-} catch Error(string memory reason) {
-    // Log error for debugging
-    emit ErrorOccurred(reason);
-    revert(reason);
-}
-```
-
-### 3. Validate Inputs Before Calling
-
-```solidity
-function transferTokens(...) external {
-    require(collectionId > 0, "Invalid collection ID");
-    require(recipient != address(0), "Invalid recipient");
-    // ... more validation
-    
-    precompile.transferTokens(...);
-}
-```
-
-### 4. Use Events for Error Logging
-
-```solidity
-event TransferError(uint256 collectionId, string reason);
-
-function safeTransfer(...) external {
-    try precompile.transferTokens(...) {
-        // Success
-    } catch Error(string memory reason) {
-        emit TransferError(collectionId, reason);
-        revert(reason);
-    }
-}
-```
-
-## Error Recovery
-
-Some errors are recoverable:
-
-- **Invalid Input**: Fix input parameters and retry
-- **Insufficient Balance**: Wait for balance or request transfer
-- **Approval Required**: Set appropriate approvals first
-
-Some errors are not recoverable:
-
-- **Collection Not Found**: Collection doesn't exist
-- **Unauthorized**: Caller doesn't have permission
-- **Collection Archived**: Collection is read-only
-
-## Debugging
-
-When debugging errors:
-
-1. **Check Error Code**: Identify the error category
-2. **Review Error Message**: Understand what went wrong
-3. **Validate Inputs**: Ensure all inputs are valid
-4. **Check Permissions**: Verify caller has required permissions
-5. **Check State**: Verify collection/balance exists
-
-## Resources
-
-- [API Reference](api-reference.md) - Method-specific error information
-- [Security](security.md) - Security-related error handling
-- [Troubleshooting](../troubleshooting.md) - Common issues and solutions
-
-
-
-
-
-
-
-
-
+For complete error code definitions and detailed error handling, see the [precompile implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile).
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/gas.md
 
-# Gas & Costs
+# Gas Costs
 
-The tokenization precompile uses dynamic gas calculation based on operation complexity.
+Gas costs are calculated dynamically based on operation complexity. More complex operations (multiple recipients, ranges, etc.) consume more gas.
 
-## Gas Calculation
+For detailed gas calculations and optimization strategies, see the implementation in the [precompile code](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile).
 
-Gas costs are calculated as:
+## General Principles
 
-```
-Total Gas = Base Gas + (Per-Element Costs)
-```
+- **Base costs** apply to all operations
+- **Per-element costs** for arrays (recipients, ranges, etc.)
+- **Query operations** are generally cheaper than transactions
+- **Batch operations** are more gas-efficient than multiple individual calls
 
-Where per-element costs depend on:
-- Number of recipients
-- Number of token ID ranges
-- Number of ownership time ranges
-- Number of approval fields
-- Query range complexity
+## Optimization Tips
 
-## Transaction Gas Costs
-
-### Base Gas Costs
-
-| Method | Base Gas |
-|--------|----------|
-| `transferTokens` | 30,000 |
-| `setIncomingApproval` | 20,000 |
-| `setOutgoingApproval` | 20,000 |
-| `createCollection` | 50,000 |
-| `updateCollection` | 40,000 |
-| `deleteCollection` | 20,000 |
-| `createAddressLists` | 30,000 |
-| `updateUserApprovals` | 30,000 |
-| `deleteIncomingApproval` | 15,000 |
-| `deleteOutgoingApproval` | 15,000 |
-| `purgeApprovals` | 25,000 |
-| `createDynamicStore` | 20,000 |
-| `updateDynamicStore` | 20,000 |
-| `deleteDynamicStore` | 15,000 |
-| `setDynamicStoreValue` | 15,000 |
-| `setValidTokenIds` | 20,000 |
-| `setManager` | 15,000 |
-| `setCollectionMetadata` | 15,000 |
-| `setTokenMetadata` | 20,000 |
-| `setCustomData` | 15,000 |
-| `setStandards` | 15,000 |
-| `setCollectionApprovals` | 30,000 |
-| `setIsArchived` | 15,000 |
-| `castVote` | 15,000 |
-| `universalUpdateCollection` | 50,000 |
-
-### Per-Element Costs
-
-| Element | Cost per Element |
-|---------|------------------|
-| Recipient | 5,000 |
-| Token ID Range | 1,000 |
-| Ownership Time Range | 1,000 |
-| Approval Field | 500 |
-
-### Example: Transfer Tokens
-
-```solidity
-// Transfer to 3 recipients with 2 token ID ranges
-// Gas = 30,000 (base) + (3 * 5,000) + (2 * 1,000) = 47,000
-address[] memory recipients = new address[](3);
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](2);
-// ... setup
-
-precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
-```
-
-## Query Gas Costs
-
-### Base Gas Costs
-
-| Method | Base Gas |
-|--------|----------|
-| `getCollection` | 3,000 |
-| `getBalance` | 3,000 |
-| `getAddressList` | 5,000 |
-| `getApprovalTracker` | 5,000 |
-| `getChallengeTracker` | 5,000 |
-| `getETHSignatureTracker` | 5,000 |
-| `getDynamicStore` | 5,000 |
-| `getDynamicStoreValue` | 5,000 |
-| `getWrappableBalances` | 5,000 |
-| `isAddressReservedProtocol` | 2,000 |
-| `getAllReservedProtocolAddresses` | 5,000 |
-| `getVote` | 5,000 |
-| `getVotes` | 5,000 |
-| `params` | 2,000 |
-| `getBalanceAmount` | 3,000 |
-| `getTotalSupply` | 3,000 |
-
-### Per-Range Costs
-
-| Element | Cost per Range |
-|---------|----------------|
-| Query Range | 500 |
-
-### Example: Get Balance Amount
-
-```solidity
-// Query with 3 token ID ranges and 2 ownership time ranges
-// Gas = 3,000 (base) + (3 * 500) + (2 * 500) = 5,500
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](3);
-TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](2);
-// ... setup
-
-bytes memory result = precompile.getBalanceAmount(collectionId, user, tokenIds, ownershipTimes);
-```
-
-## Gas Estimation
-
-### Estimating Transaction Gas
-
-```solidity
-function estimateTransferGas(
-    uint256 numRecipients,
-    uint256 numTokenRanges,
-    uint256 numOwnershipRanges
-) public pure returns (uint256) {
-    return 30_000 + // base
-           (numRecipients * 5_000) +
-           (numTokenRanges * 1_000) +
-           (numOwnershipRanges * 1_000);
-}
-```
-
-### Estimating Query Gas
-
-```solidity
-function estimateQueryGas(
-    uint256 numTokenRanges,
-    uint256 numOwnershipRanges
-) public pure returns (uint256) {
-    return 3_000 + // base (example: getBalanceAmount)
-           (numTokenRanges * 500) +
-           (numOwnershipRanges * 500);
-}
-```
-
-## Gas Optimization Tips
-
-### 1. Batch Operations
-
-Instead of multiple transfers, use a single transfer with multiple recipients:
-
-```solidity
-// ❌ Inefficient: 3 separate transfers
-precompile.transferTokens(collectionId, [recipient1], amount, tokenIds, ownershipTimes);
-precompile.transferTokens(collectionId, [recipient2], amount, tokenIds, ownershipTimes);
-precompile.transferTokens(collectionId, [recipient3], amount, tokenIds, ownershipTimes);
-
-// ✅ Efficient: 1 transfer with 3 recipients
-address[] memory recipients = new address[](3);
-recipients[0] = recipient1;
-recipients[1] = recipient2;
-recipients[2] = recipient3;
-precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
-```
-
-### 2. Minimize Ranges
-
-Use fewer, larger ranges instead of many small ranges:
-
-```solidity
-// ❌ Inefficient: 10 small ranges
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](10);
-// ... 10 ranges
-
-// ✅ Efficient: 1 large range
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
-tokenIds[0] = TokenizationTypes.UintRange({start: 1, end: 1000});
-```
-
-### 3. Cache Query Results
-
-Cache query results in your contract to avoid repeated queries:
-
-```solidity
-mapping(uint256 => bytes) private cachedBalances;
-
-function getCachedBalance(uint256 collectionId, address user) external returns (bytes memory) {
-    if (cachedBalances[collectionId] != bytes(0)) {
-        return cachedBalances[collectionId];
-    }
-    bytes memory balance = precompile.getBalance(collectionId, user);
-    cachedBalances[collectionId] = balance;
-    return balance;
-}
-```
-
-## Gas Limits
-
-The EVM has a gas limit per transaction. For complex operations:
-
-- **Maximum Recipients**: ~200 (with base gas)
-- **Maximum Ranges**: ~1,000 (with base gas)
-- **Complex Approvals**: Depends on approval criteria complexity
-
-Always test with realistic data sizes to ensure operations complete within gas limits.
-
-## Resources
-
-- [Transaction Methods](transactions.md) - Method-specific gas information
-- [Query Methods](queries.md) - Query-specific gas information
-- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview) - EVM gas model
-
-
-
-
-
-
-
-
-
-
-
-## File: ./evm/evm-precompiles/tokenization-precompile/installation.md
-
-# Installation
-
-This guide covers installing and setting up the tokenization precompile in your Solidity project.
-
-## Prerequisites
-
-- Solidity ^0.8.0
-- Access to BitBadges Chain (mainnet or testnet)
-- Understanding of EVM precompiles
-
-## Installation Steps
-
-### 1. Import Required Files
-
-Copy the following files to your project:
-
-```
-contracts/
-├── interfaces/
-│   └── ITokenizationPrecompile.sol
-├── types/
-│   └── TokenizationTypes.sol
-└── libraries/
-    └── BadgesHelpers.sol (optional)
-```
-
-### 2. Import in Your Contract
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "./interfaces/ITokenizationPrecompile.sol";
-import "./types/TokenizationTypes.sol";
-```
-
-### 3. Initialize Precompile
-
-```solidity
-contract MyContract {
-    ITokenizationPrecompile constant precompile = 
-        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-    
-    // Your contract code
-}
-```
-
-## Precompile Address
-
-The tokenization precompile is available at:
-
-```
-0x0000000000000000000000000000000000001001
-```
-
-This address is fixed and cannot be changed.
-
-## Network Configuration
-
-### Mainnet
-
-- **Chain ID**: [Your mainnet chain ID]
-- **Precompile Address**: `0x0000000000000000000000000000000000001001`
-- **RPC Endpoint**: [Your mainnet RPC]
-
-### Testnet
-
-- **Chain ID**: [Your testnet chain ID]
-- **Precompile Address**: `0x0000000000000000000000000000000000001001`
-- **RPC Endpoint**: [Your testnet RPC]
-
-## Verification
-
-### Check Precompile Availability
-
-```solidity
-function checkPrecompile() external view returns (bool) {
-    // Try to call a simple query method
-    try precompile.params() returns (bytes memory) {
-        return true;
-    } catch {
-        return false;
-    }
-}
-```
-
-### Verify Address
-
-```solidity
-function verifyPrecompileAddress() external pure returns (address) {
-    return address(precompile);
-    // Should return: 0x0000000000000000000000000000000000001001
-}
-```
-
-## Dependencies
-
-### Required
-
-- **Solidity**: ^0.8.0
-- **EVM Compatibility**: Full EVM compatibility required
-
-### Optional
-
-- **BadgesHelpers**: Helper library for common operations
-- **OpenZeppelin**: For additional security utilities
-
-## Troubleshooting
-
-### Precompile Not Found
-
-If the precompile is not found:
-
-1. Verify you're on the correct network
-2. Check the precompile address
-3. Ensure the chain has the precompile enabled
-
-### Type Errors
-
-If you encounter type errors:
-
-1. Ensure `TokenizationTypes.sol` is imported
-2. Check Solidity version compatibility
-3. Verify type definitions match your version
-
-### Compilation Errors
-
-If compilation fails:
-
-1. Check Solidity version (^0.8.0 required)
-2. Verify all imports are correct
-3. Check for missing dependencies
-
-## Next Steps
-
-- Read the [Getting Started Guide](../getting-started.md)
-- Explore [API Reference](api-reference.md)
-- Check out [Examples](examples.md)
-
-## Resources
-
-- [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Documentation](../../../_docs/TOKENIZATION_MODULE_ARCHITECTURE.md)
-
-
-
-
-
-
-
-
-## File: ./evm/evm-precompiles/tokenization-precompile/overview.md
-
-# Tokenization Precompile Overview
-
-## Introduction
-
-The Tokenization Precompile is a precompiled contract that provides Solidity smart contracts with native access to the BitBadges tokenization module. It enables developers to build sophisticated token management systems directly in Solidity while leveraging the full power of the Cosmos SDK tokenization module.
-
-## Key Features
-
-### 1. Token Transfers
-
-Transfer tokens with support for:
-- Multiple recipients in a single transaction
-- Token ID ranges (transfer multiple token IDs efficiently)
-- Ownership time ranges (time-based ownership)
-- Complex approval systems
-
-### 2. Collection Management
-
-Create and manage token collections:
-- Create collections with custom metadata
-- Update collection properties
-- Set valid token ID ranges
-- Manage collection permissions
-- Archive/unarchive collections
-
-### 3. Approval System
-
-Sophisticated approval system with:
-- Incoming approvals (who can send to you)
-- Outgoing approvals (who you can send to)
-- Complex approval criteria:
-  - Merkle challenges
-  - Predetermined balances
-  - Voting challenges
-  - Time-based checks
-  - Address checks
-
-### 4. Balance Queries
-
-Query balances with:
-- Token ID filtering
-- Ownership time filtering
-- Amount calculations
-- Total supply queries
-
-### 5. Dynamic Stores
-
-Flexible key-value storage:
-- Create custom stores
-- Set values for addresses
-- Query store values
-- Global enable/disable
-
-### 6. Governance
-
-Participate in collection governance:
-- Cast votes on proposals
-- Query vote status
-- Track voting challenges
-
-## Architecture
-
-The precompile consists of:
-
-1. **Precompile Contract** (Go): Implements the EVM precompile interface
-2. **ABI Definition** (JSON): Defines the Solidity interface
-3. **Type Registry** (Solidity): Type definitions matching proto types
-4. **Conversion Layer** (Go): Converts between Solidity and Cosmos SDK types
-5. **Handler Methods** (Go): Implements business logic
-
-## Address
-
-The precompile is available at a fixed address:
-
-```
-0x0000000000000000000000000000000000001001
-```
-
-This address cannot be changed and is part of the chain's configuration.
-
-## Type System
-
-The precompile uses comprehensive type definitions that match the Cosmos SDK proto types:
-
-- **UintRange**: Represents ranges of token IDs or ownership times
-- **Balance**: User balance with token IDs and ownership times
-- **CollectionMetadata**: Collection metadata (URI, custom data)
-- **ApprovalCriteria**: Complex approval conditions
-- **And many more...**
-
-See [Types & Data Structures](types.md) for complete type reference.
-
-## Security
-
-The precompile implements comprehensive security measures:
-
-- **Caller Verification**: Prevents impersonation attacks
-- **Input Validation**: Validates all inputs before processing
-- **DoS Protection**: Array size limits prevent DoS attacks
-- **Error Sanitization**: Prevents information leakage
-
-See [Security](security.md) for security best practices.
-
-## Gas Costs
-
-Gas costs are calculated dynamically based on operation complexity:
-
-- **Base Gas**: Fixed cost per operation
-- **Per-Element Costs**: Additional gas for arrays, ranges, etc.
-- **Query Operations**: Lower gas costs (read-only)
-
-See [Gas & Costs](gas.md) for detailed gas information.
-
-## Error Handling
-
-All methods use structured error handling:
-
-- **Error Codes**: Categorized error types
-- **Error Messages**: Clear, user-friendly messages
-- **Error Sanitization**: Sensitive information removed
-
-See [Error Handling](errors.md) for error codes and handling.
-
-## Integration with Cosmos SDK
-
-The precompile integrates with the Cosmos SDK EVM module, which provides:
-
-- EVM compatibility layer
-- Address conversion (EVM ↔ Cosmos)
-- Gas accounting
-- Transaction execution
-
-For more information, see the [Cosmos SDK EVM documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview).
-
-## Limitations
-
-### Known Limitations
-
-1. **Invariants and Paths**: Cannot be set through the precompile. Use native Cosmos SDK interface.
-2. **Complex Nested Types**: Some deeply nested structures may have simplified representations in Solidity.
-3. **ABI Load Failure**: If `abi.json` is corrupted, the precompile will be disabled but the chain will still start.
-
-### Design Decisions
-
-1. **Creator Field**: Always set from `msg.sender` (cannot be specified in input)
-2. **Overlapping Ranges**: Allowed for token IDs and ownership times (by design)
-3. **Return Types**: Complex types returned as protobuf-encoded bytes for full compatibility
-
-## Next Steps
-
-- Read the [API Reference](api-reference.md)
-- Explore [Transaction Methods](transactions.md)
-- Review [Query Methods](queries.md)
-- Check out [Examples](examples.md)
+- Minimize the number of recipients when transferring
+- Consolidate token ID and ownership time ranges when possible
+- Use direct return methods (`getBalanceAmount`, `getTotalSupply`) instead of protobuf-encoded methods when you only need amounts
+- Batch multiple operations in a single transaction when possible
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/security.md
 
 # Security
 
-The tokenization precompile implements comprehensive security measures to protect against common attack vectors.
+The precompile implements security measures to protect against common attack vectors.
 
 ## Security Features
 
-### 1. Caller Verification
+### Caller Verification
 
-All transaction methods verify the caller to prevent impersonation:
+All transaction methods automatically use `msg.sender` as the caller. The caller cannot be spoofed - it's always the address that directly called the contract.
 
-```go
-caller := contract.Caller()
-if err := VerifyCaller(caller); err != nil {
-    return nil, err
-}
-```
+### Input Validation
 
-**Protection:**
-- Prevents zero address calls
-- Ensures `msg.sender` is valid
-- Cannot be spoofed by malicious contracts
+All inputs are validated:
+- Zero addresses are rejected
+- Invalid ranges (start > end) are rejected
+- Array sizes are limited to prevent DoS attacks
+- Business logic constraints are enforced
 
-### 2. Input Validation
-
-All inputs are validated before processing:
-
-- **Type Checking**: Ensures correct types
-- **Range Validation**: Validates token ID and ownership time ranges
-- **Size Limits**: Prevents DoS attacks
-- **Business Rules**: Validates business logic constraints
-
-**Example:**
-```go
-if collectionId.Sign() <= 0 {
-    return nil, ErrInvalidInput("collectionId cannot be zero or negative")
-}
-```
-
-### 3. DoS Protection
+### DoS Protection
 
 Array size limits prevent denial-of-service attacks:
+- Maximum 100 recipients per transfer
+- Maximum 100 token ID ranges
+- Maximum 100 ownership time ranges
 
-| Field | Max Size |
-|-------|----------|
-| Recipients | 100 |
-| Token ID Ranges | 100 |
-| Ownership Time Ranges | 100 |
-| Approval Ranges | 100 |
+### Reentrancy Protection
 
-**Protection:**
-- Prevents excessive gas consumption
-- Limits memory usage
-- Prevents transaction timeouts
+Operations execute atomically through the Cosmos SDK state machine, preventing reentrancy attacks.
 
-### 4. Error Sanitization
+## Best Practices
 
-Error messages are sanitized to prevent information leakage:
+1. **Validate inputs** in your contracts before calling the precompile
+2. **Check return values** - all methods return success indicators
+3. **Handle errors** appropriately using try-catch blocks
+4. **Use helper library** for type construction and validation
+5. **Review permissions** - ensure approvals and collection permissions are configured correctly
 
-- File paths removed
-- Stack traces truncated
-- Internal module paths redacted
-- IP addresses removed
-
-**Example:**
-```
-// Before sanitization:
-Error: /home/user/project/handlers.go:123: collection not found
-
-// After sanitization:
-Error: collection not found
-```
-
-### 5. Creator Field Protection
-
-The `creator` field is always set from `msg.sender`:
-
-```go
-creatorCosmosAddr, err := p.GetCallerAddress(contract)
-// creator field cannot be specified in input
-```
-
-**Protection:**
-- Prevents impersonation attacks
-- Creator field not exposed in ABI
-- Always uses actual caller address
-
-## Security Best Practices
-
-### 1. Validate All Inputs
-
-Always validate inputs in your Solidity contract:
-
-```solidity
-function transferTokens(
-    uint256 collectionId,
-    address recipient,
-    uint256 amount
-) external {
-    require(collectionId > 0, "Invalid collection ID");
-    require(recipient != address(0), "Invalid recipient");
-    require(amount > 0, "Invalid amount");
-    
-    precompile.transferTokens(...);
-}
-```
-
-### 2. Check Return Values
-
-Always check return values:
-
-```solidity
-bool success = precompile.transferTokens(...);
-require(success, "Transfer failed");
-```
-
-### 3. Handle Errors Gracefully
-
-Use try-catch for error handling:
-
-```solidity
-try precompile.transferTokens(...) returns (bool success) {
-    require(success, "Transfer failed");
-} catch Error(string memory reason) {
-    revert(reason);
-}
-```
-
-### 4. Use Events for Logging
-
-Log important operations:
-
-```solidity
-event TransferAttempted(uint256 collectionId, address recipient, bool success);
-
-function transferTokens(...) external {
-    bool success = precompile.transferTokens(...);
-    emit TransferAttempted(collectionId, recipient, success);
-    require(success, "Transfer failed");
-}
-```
-
-### 5. Reentrancy Protection
-
-The precompile is protected against reentrancy by the EVM's call stack, but you should still follow best practices:
-
-```solidity
-bool private locked;
-
-modifier noReentrant() {
-    require(!locked, "Reentrant call");
-    locked = true;
-    _;
-    locked = false;
-}
-
-function transferTokens(...) external noReentrant {
-    precompile.transferTokens(...);
-}
-```
-
-## Threat Model
-
-### Protected Against
-
-✅ **Reentrancy Attacks**: Prevented by EVM call stack and atomic transactions  
-✅ **Integer Overflow**: Prevented by validation and `sdkmath.Uint` type  
-✅ **Invalid Input Attacks**: Prevented by comprehensive input validation  
-✅ **DoS Attacks**: Prevented by array size limits  
-✅ **Information Leakage**: Prevented by structured error handling  
-✅ **State Corruption**: Prevented by atomic transactions and keeper validation  
-✅ **Impersonation**: Prevented by caller verification  
-
-### Known Limitations
-
-⚠️ **Rate Limiting**: Not implemented at precompile level (can be added at chain level)  
-⚠️ **Gas Price Manipulation**: Handled by EVM module, not precompile  
-⚠️ **Access Control**: Handled by tokenization module's approval system  
-
-## Security Audit
-
-The precompile has been evaluated for production readiness:
-
-- ✅ Comprehensive type safety
-- ✅ Input validation
-- ✅ Error handling
-- ✅ DoS protection
-- ✅ Security patterns documented
-
-See the [Production Readiness Evaluation](../../x/evm/precompiles/tokenization/THIRD_EVALUATION.md) for details.
-
-## Reporting Security Issues
-
-If you discover a security vulnerability, please report it responsibly:
-
-1. **Do not** open a public issue
-2. Contact the security team directly
-3. Provide detailed information about the vulnerability
-4. Allow time for the issue to be addressed before disclosure
-
-## Resources
-
-- [Error Handling](errors.md) - Error codes and handling
-- [API Reference](api-reference.md) - Method-specific security notes
-- [Cosmos SDK Security](https://docs.cosmos.network/evm/v0.5.0/documentation/overview) - EVM security model
-
-
-
-
-
-
-
-
-
+For detailed security implementation, see the [precompile code](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile).
 
 
 ## File: ./for-developers/bitbadges-api/README.md
