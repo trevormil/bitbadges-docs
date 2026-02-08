@@ -321,7 +321,7 @@ This allows the ante handler to recognize and verify signatures from both key ty
 
 ## Additional Resources
 
-- [EVM Precompiles Overview](./overview.md)
+- [EVM Precompiles Overview](./README.md)
 - [Tokenization Precompile Documentation](./tokenization-precompile/README.md)
 - [Architecture Details](./architecture.md)
 - [Security Best Practices](./tokenization-precompile/security.md)

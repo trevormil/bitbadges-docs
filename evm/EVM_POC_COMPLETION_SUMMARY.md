@@ -59,13 +59,11 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
 ### Phase 3: Documentation ✅
 
 #### 6. Complete API Reference
-- **File**: `docs/EVM_PRECOMPILE_API.md`
+- **File**: `evm/evm-precompiles/tokenization-precompile/API.md`
 - **Content**:
-  - Complete documentation for all 18 precompile methods
+  - Complete documentation for all precompile methods
   - Method signatures, parameters, return values
-  - Gas cost breakdowns
-  - Error code reference
-  - Input validation rules
+  - High-level overview with references to implementation for details
   - Best practices and examples
 
 #### 7. Expanded Integration Guide
@@ -79,17 +77,17 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
   - Post-deployment verification steps
 
 #### 8. Usage Examples
-- **File**: `docs/EVM_USAGE_EXAMPLES.md`
+- **Files**: 
+  - `evm/evm-precompiles/setup-and-configuration.md` - Setup and contract snippets
+  - `evm/evm-precompiles/tokenization-precompile/API.md` - API examples
+  - Repository: `contracts/examples/` - Complete example contracts
 - **Content**:
   - Basic setup and interface definitions
-  - Token transfer examples (simple, batch, multi-range)
+  - Token transfer examples
   - Balance query examples
   - Approval management examples
   - Complete ERC-3643 wrapper implementation
-  - Advanced patterns (batch operations, conditional transfers)
-  - Error handling patterns
-  - Gas optimization techniques
-  - Complete marketplace example
+  - Advanced patterns and real-world examples
 
 ### Phase 4: ERC-3643 Compliance ✅
 
@@ -130,9 +128,9 @@ This document summarizes all the work completed to bring the EVM Proof-of-Concep
 2. `x/evm/precompiles/tokenization/edge_case_test.go` - Edge case tests
 3. `x/evm/precompiles/tokenization/evm_integration_test.go` - EVM integration test structure
 4. `x/evm/precompiles/tokenization/erc3643_compliance_test.go` - ERC-3643 compliance tests
-5. `docs/EVM_PRECOMPILE_API.md` - Complete API reference
-6. `docs/EVM_USAGE_EXAMPLES.md` - Usage examples
-7. `docs/EVM_POC_COMPLETION_SUMMARY.md` - This summary document
+5. `evm/evm-precompiles/tokenization-precompile/API.md` - Complete API reference
+6. `evm/evm-precompiles/setup-and-configuration.md` - Setup guide with examples
+7. `evm/EVM_POC_COMPLETION_SUMMARY.md` - This summary document
 
 ### Files Modified (3)
 1. `x/evm/precompiles/tokenization/errors.go` - Added error mapping functionality
