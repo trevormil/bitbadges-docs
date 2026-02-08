@@ -118,6 +118,7 @@
       * [Gas](evm/evm-precompiles/tokenization-precompile/gas.md)
       * [Errors](evm/evm-precompiles/tokenization-precompile/errors.md)
       * [Security](evm/evm-precompiles/tokenization-precompile/security.md)
+* [🕸️ CosmWASM Compatibility](token-standard/cosmwasm-compatibility.md)
 * [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/badges)
 * [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/badges)
