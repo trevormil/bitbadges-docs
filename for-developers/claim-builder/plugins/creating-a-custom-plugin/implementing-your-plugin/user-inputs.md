@@ -32,6 +32,8 @@ You can also select to automatically pass supported identifying details about th
 
 We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). The only one that may not be verified in some cases is the claiming address. This depends on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, check the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
 
+**Address Formats:** The plugin payload will include both **bitbadgesAddress** (bb-prefixed Cosmos address) and optionally **ethAddress** (0x-prefixed Ethereum address) if the user is using an Ethereum wallet. Both addresses represent the same account.
+
 <figure><img src="../../../../../.gitbook/assets/image (388).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../../../.gitbook/assets/image (389).png" alt=""><figcaption></figcaption></figure>

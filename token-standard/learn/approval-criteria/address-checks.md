@@ -1,15 +1,15 @@
 # Address Checks
 
-Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be a WASM contract, must not be a liquidity pool).
+Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be an EVM contract, must not be a liquidity pool).
 
 ## Interface
 
 ```typescript
 interface AddressChecks {
-    /** Require the address to be a WASM contract. */
-    mustBeWasmContract?: boolean;
-    /** Require the address to not be a WASM contract. */
-    mustNotBeWasmContract?: boolean;
+    /** Require the address to be an EVM contract. */
+    mustBeEvmContract?: boolean;
+    /** Require the address to not be an EVM contract. */
+    mustNotBeEvmContract?: boolean;
     /** Require the address to be a liquidity pool. */
     mustBeLiquidityPool?: boolean;
     /** Require the address to not be a liquidity pool. */
@@ -45,10 +45,10 @@ Outgoing approvals can check the recipient and initiator (but not the sender, si
 
 ## Available Checks
 
-### WASM Contract Checks
+### EVM Contract Checks
 
--   **`mustBeWasmContract`**: Requires the address to be a CosmWASM smart contract
--   **`mustNotBeWasmContract`**: Requires the address to NOT be a CosmWASM smart contract
+-   **`mustBeEvmContract`**: Requires the address to be an EVM smart contract
+-   **`mustNotBeEvmContract`**: Requires the address to NOT be an EVM smart contract
 
 ### Liquidity Pool Checks
 
@@ -57,15 +57,15 @@ Outgoing approvals can check the recipient and initiator (but not the sender, si
 
 ## Examples
 
-### Collection Approval: Require Contract Recipients
+### Collection Approval: Require EVM Contract Recipients
 
-Only allow transfers to WASM contracts:
+Only allow transfers to EVM contracts:
 
 ```json
 {
     "approvalCriteria": {
         "recipientChecks": {
-            "mustBeWasmContract": true
+            "mustBeEvmContract": true
         }
     }
 }
@@ -85,15 +85,15 @@ Prevent transfers from liquidity pools:
 }
 ```
 
-### Incoming Approval: Require Contract Initiators
+### Incoming Approval: Require EVM Contract Initiators
 
-Only allow transfers initiated by WASM contracts:
+Only allow transfers initiated by EVM contracts:
 
 ```json
 {
     "approvalCriteria": {
         "initiatorChecks": {
-            "mustBeWasmContract": true
+            "mustBeEvmContract": true
         }
     }
 }
@@ -121,11 +121,11 @@ You can combine multiple checks for a single party:
 {
     "approvalCriteria": {
         "recipientChecks": {
-            "mustBeWasmContract": true,
+            "mustBeEvmContract": true,
             "mustNotBeLiquidityPool": true
         },
         "initiatorChecks": {
-            "mustNotBeWasmContract": true
+            "mustNotBeEvmContract": true
         }
     }
 }
@@ -133,7 +133,7 @@ You can combine multiple checks for a single party:
 
 ## Use Cases
 
--   **Smart Contract Integration**: Require transfers to/from specific contract types
+-   **Smart Contract Integration**: Require transfers to/from specific EVM contract types
 -   **Liquidity Protection**: Prevent transfers to/from liquidity pools to maintain token economics
 -   **Security**: Enforce that certain operations can only be initiated by contracts or regular addresses
 -   **Protocol Compliance**: Ensure transfers comply with protocol-specific address requirements

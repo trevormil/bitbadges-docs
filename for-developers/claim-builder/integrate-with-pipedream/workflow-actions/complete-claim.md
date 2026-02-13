@@ -29,7 +29,7 @@ export default defineComponent({
       type: "string", // Claim details passed as a string in the format "claimId-passwordPluginId-password"
     },
     address: {
-      type: "string", // Address of the user
+      type: "string", // Address of the user (can be BitBadges bb-prefixed or Ethereum 0x-prefixed format)
     },
     isSimulation: {
       type: "boolean", // Boolean to determine if this is a simulated run

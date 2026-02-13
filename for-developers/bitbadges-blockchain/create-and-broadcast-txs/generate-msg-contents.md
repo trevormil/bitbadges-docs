@@ -44,7 +44,16 @@ export interface TransactionPayload {
         authInfo: AuthInfo;
         signBytes: string;
     };
-    txnString: string;
-    txnJson: Record<string, any>;
+    // Optional: EVM transaction details (present when evmAddress is provided in TxContext)
+    evmTx?: {
+        to: string;        // Precompile address (0x1001, 0x1002, or 0x1003)
+        data: string;      // Encoded function call data
+        value: string;     // Always "0" for precompiles
+        functionName: string; // Function name for debugging
+    };
 }
 ```
+
+**EVM Support:**
+
+When you provide an `evmAddress` in the `TxContext`, the SDK automatically converts supported messages to EVM precompile calls. The `evmTx` field will be populated with the EVM transaction details. See [Signing - Ethereum](./signing-ethereum.md) for complete details.

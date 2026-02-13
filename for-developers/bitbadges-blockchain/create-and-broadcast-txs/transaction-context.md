@@ -43,8 +43,20 @@ const txContext = {
         gas: `400000`,
     },
     memo: '',
+    // Optional: Add evmAddress to enable EVM precompile conversion
+    // When provided, createTransactionPayload will return evmTx field in payload
+    evmAddress: '0x1234...', // Ethereum address (0x-prefixed)
 };
 ```
+
+**For EVM Transactions:**
+
+When using Ethereum wallets, add the `evmAddress` field to enable automatic conversion to EVM precompile calls. The SDK will:
+- Convert Cosmos SDK messages to EVM precompile function calls
+- Return both Cosmos payload and EVM transaction details in `TransactionPayload`
+- Handle address conversion between BitBadges (bb1...) and Ethereum (0x...) formats
+
+See [Signing - Ethereum](./signing-ethereum.md) for complete EVM transaction examples.
 
 **Fee Generation**
 

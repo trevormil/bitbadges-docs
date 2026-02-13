@@ -22,7 +22,7 @@ No. While our token standard takes inspiration from existing standards like ERC-
 
 ### **Does BitBadges support extending with smart contracts?**
 
-Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM and CosmWASM environments. Or, extend our module to call into other environments.&#x20;
+Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM environments. Or, extend our module to call into other environments.&#x20;
 
 ### **Pricing? Affiliates?**
 

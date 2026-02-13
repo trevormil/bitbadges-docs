@@ -3,7 +3,7 @@
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
 
 -   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
--   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address).
+-   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address). If the user is using an Ethereum address, it will be automatically converted to the BitBadges address format. You may also receive the **ethAddress** field if the user is using an Ethereum wallet (0x-prefixed address).
     -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
 -   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 -   **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
@@ -28,7 +28,8 @@ const payload = {
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
-    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured
+    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured (bb-prefixed)
+    ethAddress: context.ethAddress, //If user is using Ethereum wallet (0x-prefixed, optional)
     _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
@@ -85,7 +86,7 @@ Please follow the { message } interface for returned JSON error responses.
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
+    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
     
     //Handle anything specific to dry runs _isSimulation

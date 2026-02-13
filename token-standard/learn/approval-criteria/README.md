@@ -71,7 +71,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Cosmos Coin Transfers**](usdbadge-transfers.md) - Payments per approval (BADGE or other sdk.Coin)
 * [**Overrides**](overrides.md) - Bypassing user-level approvals
 * [**Requires**](requires.md) - Address relationship restrictions
-* [**Address Checks**](address-checks.md) - Address type restrictions (WASM contracts, liquidity pools)
+* [**Address Checks**](address-checks.md) - Address type restrictions (EVM contracts, liquidity pools)
 * [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
 * [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
 * [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)

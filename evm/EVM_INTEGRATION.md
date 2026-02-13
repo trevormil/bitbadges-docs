@@ -1,16 +1,5 @@
 # EVM Integration
 
-> ⚠️ **Important: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> - Available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain)
-> - Can be run locally or testnet setup available upon request
-> - Fully code complete and open to licensing discussions
-> - **Mainnet deployment is not in our short-term plans**
-> 
-> See [counter-dapp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) and [contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples.
-
 ## Overview
 
 BitBadges Chain integrates the Cosmos `x/evm` module to enable Ethereum Virtual Machine (EVM) compatibility. Solidity contracts can interact with the tokenization module through precompiled contracts.

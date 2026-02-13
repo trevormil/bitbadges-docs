@@ -11,7 +11,14 @@ Typically, we recommend making a custom webhook / plugin over this. Get creative
 You can use the BitBadges SDK to auto-complete claims for users.
 
 ```typescript
-const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"; // Ethereum address
+const bitbadgesAddress = "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"; // BitBadges address
+
+// Both formats work
+const res = await BitBadgesApi.completeClaim(claimId, ethAddress, { ... });
+// or
+const res = await BitBadgesApi.completeClaim(claimId, bitbadgesAddress, { ... });
 console.log(res.claimAttemptId);
 
 //Sleep 2 seconds to wait for it to be processed in the queue
@@ -36,7 +43,9 @@ You can also simulate the claim (which is instant and not put into the queue). T
 The body is the same as the completeClaim route. See below.
 
 ```typescript
-const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652";
+const res = await BitBadgesApi.simulateClaim(claimId, ethAddress, { ...body });
 ```
 
 **Custom Body**

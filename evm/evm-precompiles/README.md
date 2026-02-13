@@ -1,7 +1,5 @@
 # EVM Precompiles
 
-> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
-
 ## What are Precompiles?
 
 Precompiles are special contract addresses that execute native Go code instead of EVM bytecode, providing:
@@ -19,7 +17,29 @@ Precompiles are special contract addresses that execute native Go code instead o
 
 Provides full access to the BitBadges tokenization module for token transfers, collection management, approvals, dynamic stores, and governance.
 
+**Features:**
+- Single and multi-message execution
+- Collection creation and management
+- Token transfers with approvals
+- Dynamic stores for custom data
+- Governance voting
+
 [Tokenization Precompile Documentation →](tokenization-precompile/README.md)
+
+### Gamm Precompile
+
+**Address:** `0x0000000000000000000000000000000000001002`
+
+Provides access to liquidity pools for joining, exiting, and swapping tokens.
+
+**Features:**
+- Join and exit liquidity pools
+- Single and multi-hop swaps
+- IBC transfers with swaps
+- Pool information queries
+- Calculation queries
+
+[Gamm Precompile Documentation →](gamm-precompile/README.md) | [Common Gotchas →](gamm-precompile/gotchas.md)
 
 ## Documentation
 

@@ -158,4 +158,4 @@ Each token collection can have a manager that can execute administrative actions
 
 #### Smart Contract Extendibility
 
-While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
+While our approach is no-code by default, we do support EVM for any custom applications or advanced logic. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.

@@ -27,7 +27,7 @@ Think of this like a request storage bin. We store the requests that would've be
 // GET /api/v0/requestBin/attemptData/{claimId}/{claimAttemptId}
 const res = await BitBadgesApi.getAttemptDataFromRequestBin("claim123", "attempt123", { ... });
 console.log(res);
-// { bitbadgesAddress, email, claimAttemptId } 
+// { bitbadgesAddress, ethAddress, email, claimAttemptId } 
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>

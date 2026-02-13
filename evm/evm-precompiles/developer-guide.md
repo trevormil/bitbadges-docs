@@ -40,8 +40,18 @@ BitBadges Chain supports two types of transactions, each with specific signing r
 **Example:**
 ```solidity
 // ✅ This works - ETH wallet can sign MsgEthereumTx
+import "./libraries/TokenizationJSONHelpers.sol";
+
 ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
+
+// Build JSON using helper
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+    collectionId, recipients, amount, tokenIdsJson, ownershipJson
+);
+
+precompile.transferTokens(transferJson);
 ```
 
 #### ✅ Cosmos Wallets (standard secp256k1 keys)
@@ -190,23 +200,42 @@ Because the precompile sees the contract address, not the user address, you need
 
 **Pattern 1: Contract-Level Authorization**
 ```solidity
+import "./libraries/TokenizationJSONHelpers.sol";
+
 contract MyContract {
     ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
     
     mapping(address => bool) public authorized;
     
-    function transferTokens(...) external {
+    function transferTokens(
+        uint256 collectionId,
+        address to,
+        uint256 amount
+    ) external {
         require(authorized[msg.sender], "Not authorized");
+        
+        // Build JSON
+        address[] memory recipients = new address[](1);
+        recipients[0] = to;
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+        string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+            collectionId, recipients, amount, tokenIdsJson, ownershipJson
+        );
+        
         // Contract is authorized, so precompile call succeeds
-        precompile.transferTokens(...);
+        precompile.transferTokens(transferJson);
     }
 }
 ```
 
 **Pattern 2: Pass User Address Explicitly**
 ```solidity
-// If precompile method accepts a "from" parameter, pass msg.sender
-precompile.transferTokensFrom(msg.sender, ...);
+// The precompile automatically uses contract.Caller() as the creator
+// For transfers, tokens move from the contract's balance
+// If you need to transfer from a specific user, use approvals or pass user address in JSON
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(...);
+precompile.transferTokens(transferJson);
 ```
 
 **Pattern 3: Use Approval System**

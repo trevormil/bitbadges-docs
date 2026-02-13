@@ -13,7 +13,7 @@ Plugins / webhooks are simply HTTP requests.
 const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   //Step 1: Handle the request payload from the plugin
   const body = req.body; //For POST
-  const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
+  const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, ethAddress, lastUpdated, createdAt } = body;
   const { ...otherCustomProvidedInputs } = body;
   
   //Step 1.5: Catch simulations if applicable. Don't run success logic on a dry run

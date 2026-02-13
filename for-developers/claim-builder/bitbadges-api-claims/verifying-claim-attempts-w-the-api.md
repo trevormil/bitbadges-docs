@@ -12,9 +12,16 @@ Note: You may opt to simply receive a post-success webhook which would take the 
 // Pre-Req: User is authenticated
 
 // 1. By address (if you already have it)
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
 // GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
 // successCount will be 1 for on-demand claims and the number of completions for standard
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"; // Ethereum address
+const bitbadgesAddress = "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"; // BitBadges address
+
+// Both formats work
+const res = await BitBadgesApi.checkClaimSuccess(claimId, ethAddress);
+// or
+const res2 = await BitBadgesApi.checkClaimSuccess(claimId, bitbadgesAddress);
 if (res.successCount >= 1) { doSomething(); }
 
 // 2. By attempt ID 

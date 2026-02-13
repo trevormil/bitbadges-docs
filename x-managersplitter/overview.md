@@ -73,4 +73,4 @@ This is an alternative to standard single manager approach. You can also explore
 
 * x/group - Cosmos SDK module for multisigs / DAOs and voting
 * DAO tooling
-* Custom WASM or EVM contracts
+* Custom EVM contracts

@@ -33,11 +33,11 @@ To be used with on-demand claims, the plugin must meet specific requirements and
 
 * Stateless - No per-attempt state
 * No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
-* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
+* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address (both bitbadgesAddress and optionally ethAddress if using Ethereum wallet).
 
 Typically, these are only possible with crypto-native plugins. For example,
 
-* Check >1 ETH in account from address
+* Check >1 ETH in account from address (use ethAddress if available, or convert bitbadgesAddress)
 * Check POAP ownership
 * Check token ownership
 

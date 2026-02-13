@@ -30,6 +30,6 @@ This approach vastly differs to existing ones requiring an individual smart cont
 
 ### Smart Contract Support
 
-While BitBadges does not natively support EVM or ERC-20 contracts, it does support CosmWASM contracts, allowing for the extension of functionality and the creation of dApps. However, our goal is to keep evolving our token standard so that no custom contracts are EVER needed.
+While BitBadges does not natively support ERC-20 contracts, it does support EVM contracts, allowing for the extension of functionality and the creation of dApps. However, our goal is to keep evolving our token standard so that no custom contracts are EVER needed.
 
 Protocols like Ethereum and Solana have robust smart contract support, enabling a wide range of decentralized applications.

@@ -68,7 +68,7 @@ Forceful transfers can break protocols that rely on escrow or alternate state. E
 
 BitBadges reserves certain addresses that cannot be forcefully overridden as a sanity check. This protection is **not a replacement for due diligence** but serves as an additional safety measure to prevent accidental or malicious transfers from critical protocol addresses.
 
-When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using athe approval criteria address checks for WASM contracts and / or liquidity pool addresses to prevent this.
+When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using the approval criteria address checks for EVM contracts and / or liquidity pool addresses to prevent this.
 
 ### Protected Address Types
 

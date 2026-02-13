@@ -91,20 +91,20 @@ const EmptyApprovalCriteria = {
         mustOwnTokens: [],
         // No address checks
         senderChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
         recipientChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
         initiatorChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },

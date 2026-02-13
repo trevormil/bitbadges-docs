@@ -1,7 +1,5 @@
 # Setup and Configuration
 
-> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
-
 This guide covers everything you need to set up your development environment for building dApps on BitBadges Chain with EVM compatibility.
 
 ## Chain Configuration
@@ -11,13 +9,23 @@ This guide covers everything you need to set up your development environment for
 The BitBadges Chain EVM uses a custom Chain ID for EVM compatibility:
 
 - **Local Development**: `90123`
-- **Testnet**: TBD (contact us for testnet setup)
-- **Mainnet**: Not deployed (see production status notice)
+- **Testnet**: `50025` (claimed in ethereum-lists/chains registry)
+- **Mainnet**: `50024` (claimed in ethereum-lists/chains registry)
 
 The Chain ID is configured in `app/params/constants.go`:
 
 ```go
-EVMChainID = "90123" // Default for testing
+// EVMChainIDMainnet is the EVM chain ID for BitBadges mainnet
+// Chain ID: 50024 (claimed in ethereum-lists/chains registry)
+// This should match the chain_id in genesis under app_state.evm.params.chain_config.chain_id
+EVMChainIDMainnet = "50024"
+
+// EVMChainIDTestnet is the EVM chain ID for BitBadges testnet
+// Chain ID: 50025 (claimed in ethereum-lists/chains registry)
+// This should match the chain_id in genesis under app_state.evm.params.chain_config.chain_id
+EVMChainIDTestnet = "50025"
+
+EVMChainID = "90123" // Default for local development/testing
 ```
 
 **Important**: The Chain ID in your genesis file (`app_state.evm.params.chain_config.chain_id`) must match this value.
@@ -71,6 +79,20 @@ To connect MetaMask to your local BitBadges chain:
 - **Chain ID**: `90123`
 - **Currency Symbol**: `BADGE`
 - **Block Explorer**: (Optional, leave blank for local)
+
+**For Testnet:**
+- **Network Name**: BitBadges Testnet
+- **RPC URL**: (Testnet RPC endpoint - contact us for details)
+- **Chain ID**: `50025`
+- **Currency Symbol**: `BADGE`
+- **Block Explorer**: (Testnet block explorer URL)
+
+**For Mainnet:**
+- **Network Name**: BitBadges Mainnet
+- **RPC URL**: (Mainnet RPC endpoint - contact us for details)
+- **Chain ID**: `50024`
+- **Currency Symbol**: `BADGE`
+- **Block Explorer**: (Mainnet block explorer URL)
 
 **Note**: Use port 8545 (EVM JSON-RPC), not 26657 (Tendermint RPC).
 
@@ -534,9 +556,12 @@ See the [examples README](https://github.com/BitBadges/bitbadgeschain/tree/evm-p
 **Problem**: MetaMask can't connect to the network
 
 **Solutions**:
-- Use the correct Chain ID: `90123` for local development
-- Use EVM JSON-RPC port: `http://localhost:8545` (not 26657)
-- Ensure your local chain is running
+- Use the correct Chain ID:
+  - `90123` for local development
+  - `50025` for testnet
+  - `50024` for mainnet
+- Use EVM JSON-RPC port: `http://localhost:8545` (not 26657) for local development
+- Ensure your local chain is running (for local development)
 - Check MetaMask console for detailed error messages
 
 ### Transaction Failures
