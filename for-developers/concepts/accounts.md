@@ -26,3 +26,4 @@ const ethAddress = cosmosToEth(bitbadgesAddress);
 
 
 
+

@@ -348,10 +348,104 @@ This allows the ante handler to recognize and verify signatures from both key ty
 | **Precompile access** | ✅ Via Solidity contracts | ❌ No direct access |
 | **Native SDK access** | ❌ Via precompiles only | ✅ Direct access |
 
+## Decimal Handling and the Precisebank Module
+
+### Overview
+
+BitBadges Chain uses different decimal precisions for Cosmos SDK and EVM compatibility:
+
+- **Cosmos SDK (x/bank)**: Uses 9 decimals with base denom `ubadge`
+- **EVM (precisebank module)**: Uses 18 decimals for Ethereum compatibility
+
+The **precisebank module** bridges these two systems, automatically handling conversions between Cosmos and EVM decimal representations.
+
+### Unit Conversions
+
+| Unit | Decimals | Value | Context |
+|------|----------|-------|---------|
+| **BADGE** | 9 (Cosmos) / 18 (EVM) | 1 BADGE | Display unit |
+| **ubadge** | 9 | 1 \* 10^9 | Base unit in Cosmos SDK (x/bank) |
+| **abadge** | 0 | 1 \* 10^0 | Base unit in EVM (smallest unit) |
+
+**Conversion Relationships:**
+- 1 BADGE = 1 \* 10^9 ubadge (Cosmos)
+- 1 BADGE = 1 \* 10^18 abadge (EVM)
+- 1 ubadge = 1 \* 10^9 abadge
+
+### For Developers
+
+#### Working with EVM Contracts
+
+When writing Solidity contracts or interacting with EVM precompiles:
+
+```solidity
+// ✅ Correct - Use 18 decimal precision in EVM
+uint256 oneBadge = 1 * 10**18;  // 1 BADGE in EVM
+uint256 halfBadge = 5 * 10**17; // 0.5 BADGE in EVM
+
+// ❌ Wrong - Don't use 9 decimals in EVM
+uint256 wrongAmount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
+```
+
+#### Working with Cosmos SDK
+
+When working with native Cosmos SDK messages or queries:
+
+```typescript
+// ✅ Correct - Use 9 decimal precision in Cosmos
+const coin = {
+  denom: 'ubadge',
+  amount: '1000000000'  // 1 BADGE in Cosmos (1 * 10^9)
+};
+
+// ❌ Wrong - Don't use 18 decimals in Cosmos
+const wrongCoin = {
+  denom: 'ubadge',
+  amount: '1000000000000000000'  // This is 1 * 10^9 BADGE in Cosmos!
+};
+```
+
+#### Automatic Conversion
+
+The precisebank module handles conversions automatically:
+
+- **EVM → Cosmos**: When EVM contracts interact with Cosmos SDK modules, amounts are converted from 18 decimals to 9 decimals
+- **Cosmos → EVM**: When Cosmos SDK operations interact with EVM, amounts are converted from 9 decimals to 18 decimals
+
+**Important:** Always use the correct decimal precision for the context you're working in. The precisebank module handles the conversion, but you must provide amounts in the correct format for your context.
+
+### Common Mistakes
+
+1. **Mixing decimal precisions**
+   ```solidity
+   // ❌ Wrong - Using Cosmos precision in EVM
+   uint256 amount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
+   
+   // ✅ Correct - Use EVM precision
+   uint256 amount = 1 * 10**18;  // 1 BADGE in EVM
+   ```
+
+2. **Assuming 1:1 conversion**
+   ```typescript
+   // ❌ Wrong - These are NOT equal
+   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
+   const evmAmount = '1000000000';        // 0.000000001 BADGE in EVM!
+   
+   // ✅ Correct - Use proper conversion
+   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
+   const evmAmount = '1000000000000000000'; // 1 BADGE in EVM
+   ```
+
+3. **Not accounting for context**
+   - In Solidity contracts: Always use 18 decimals
+   - In Cosmos SDK messages: Always use 9 decimals
+   - The precisebank module handles the bridge automatically
+
 ## Additional Resources
 
 - [EVM Precompiles Overview](./README.md)
 - [Tokenization Precompile Documentation](./tokenization-precompile/README.md)
 - [Architecture Details](./architecture.md)
 - [Security Best Practices](./tokenization-precompile/security.md)
+- [Chain Details](../../for-developers/concepts/chain-details.md)
 
