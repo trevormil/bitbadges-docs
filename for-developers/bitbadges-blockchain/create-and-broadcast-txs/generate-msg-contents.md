@@ -8,11 +8,11 @@ You can build out the transaction from the exported Proto type definitions from 
 import { proto } from 'bitbadgesjs-sdk';
 
 //proto.cosmos.module for standard Cosmos
-//proto.badges for BitBadges x/badges
-const MsgDeleteCollection = proto.badges.MsgDeleteCollection;
-const MsgCreateCollection = proto.badges.MsgCreateCollection;
-const MsgUpdateCollection = proto.badges.MsgUpdateCollection;
-const MsgTransferTokens = proto.badges.MsgTransferTokens;
+//proto.tokenization for BitBadges x/tokenization
+const MsgDeleteCollection = proto.tokenization.MsgDeleteCollection;
+const MsgCreateCollection = proto.tokenization.MsgCreateCollection;
+const MsgUpdateCollection = proto.tokenization.MsgUpdateCollection;
+const MsgTransferTokens = proto.tokenization.MsgTransferTokens;
 
 const protoMsgs = [
     new MsgDeleteCollection({ collectionId: '1', creator: 'bb...' }),

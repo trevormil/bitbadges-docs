@@ -2,7 +2,7 @@
 
 ## Overview
 
-`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the Badges module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
+`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the tokenization module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
 
 ## Message Structure
 
@@ -18,7 +18,7 @@ message MsgExecuteUniversalUpdateCollection {
   string managerSplitterAddress = 2;
 
   // The UniversalUpdateCollection message to execute.
-  badges.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
+  tokenization.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
 }
 ```
 
@@ -37,9 +37,9 @@ Must be a valid Bech32 address.
 
 The address of the manager splitter to execute through. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
 
-### `universalUpdateCollectionMsg` (badges.MsgUniversalUpdateCollection, required)
+### `universalUpdateCollectionMsg` (tokenization.MsgUniversalUpdateCollection, required)
 
-The `UniversalUpdateCollection` message from the Badges module to execute. This message will be executed with the manager splitter address as the creator/manager.
+The `UniversalUpdateCollection` message from the tokenization module to execute. This message will be executed with the manager splitter address as the creator/manager.
 
 Note that you should only set the fields you are allowed to update. Use the update flag approach = false for all others.
 
@@ -72,7 +72,7 @@ message MsgExecuteUniversalUpdateCollectionResponse {
 
 ### `collectionId` (Uint)
 
-The ID of the collection that was updated, returned from the Badges module's `UniversalUpdateCollection` execution.
+The ID of the collection that was updated, returned from the tokenization module's `UniversalUpdateCollection` execution.
 
 ## Validation
 

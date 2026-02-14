@@ -74,8 +74,8 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Address Checks**](address-checks.md) - Address type restrictions (EVM contracts, liquidity pools)
 * [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
 * [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
-* [**Alt Time Checks**](../../../x-badges/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
-* [**Must Prioritize**](../../../x-badges/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
+* [**Alt Time Checks**](../../../x-tokenization/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
+* [**Must Prioritize**](../../../x-tokenization/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 * [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
 
 ## Key Concepts

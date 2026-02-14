@@ -127,7 +127,7 @@ interface Voter {
 }
 ```
 
-Cast votes using [MsgCastVote](../../x-badges/messages/msg-cast-vote.md).
+Cast votes using [MsgCastVote](../../x-tokenization/messages/msg-cast-vote.md).
 
 ## Use Cases
 

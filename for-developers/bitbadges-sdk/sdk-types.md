@@ -84,5 +84,5 @@ const MsgCreateProtocol = proto.protocols.MsgCreateProtocol;
 If you ever end up with something like the following, this is also the proto definition. We recommend using the proto.abc.xyz method to avoid confusion.
 
 ```typescript
-import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/badges";
+import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/tokenization";
 ```

@@ -11,7 +11,7 @@ The module operates as an IBC middleware hook that:
 5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
 
 ```
-Warning: Native x/badges assets cannot be IBC transferred. Only x/bank assets can be.
+Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank assets can be.
 ```
 
 ## Key Concepts

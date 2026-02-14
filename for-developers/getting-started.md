@@ -20,8 +20,8 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 
 ## Quick Start - Tokens
 
-{% content-ref url="../x-badges/" %}
-[x-badges](../x-badges/)
+{% content-ref url="../x-tokenization/" %}
+[x-tokenization](../x-tokenization/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims

@@ -20,11 +20,11 @@ This module was forked from Osmosis's `x/gamm` module with several key modificat
 The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
 
 * **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to abstract badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
-* **Mint/Burns**: Behind the scenes, `x/badges` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
+* **Mint/Burns**: Behind the scenes, `x/tokenization` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
 * **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
 * **Automatic Conversion**: Handles badge token transfers to/from pools automatically
 
-There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/badges tokens.
+There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/tokenization tokens.
 
 #### Conversion Example
 

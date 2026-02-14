@@ -35,7 +35,7 @@ For collection approvals with `overrideFromWithApproverAddress: true`, the appro
 
 ```typescript
 const mintEscrowAddress = generateAlias(
-    'badges',
+    'tokenization',
     getAliasDerivationKeysForCollection(collectionId)
 );
 ```
