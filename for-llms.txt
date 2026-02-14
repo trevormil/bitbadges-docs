@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Feb  8 19:35:00 UTC 2026
+Generated on Fri Feb 13 23:48:52 UTC 2026
 
 
 
@@ -1785,7 +1785,7 @@ BitBadges has built a brand new tokenization standard exclusively as a Cosmos SD
 
 Unlike existing standards (`x/bank`, `x/tokenfactory`, `x/nft`, ICS20, ERC20, ERC-3643), our `x/tokenization` module provides native support for compliance checks on every transfer (even IBC transfers and in liquidity pools), custom transferability / compliance rules, issuer-level control, and enterprise-grade tokenization features—all out of the box with no code or smart contracts required, just a module! All plug-and-play and infinitely customizable.
 
-Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, IBC compatibility, connecting to 7000+ apps, connecting to EVM, IBC, CosmWASM, and more.
+Our revolutionary token standard goes far beyond ERC-20, ERC-721, and other existing standards with features like time-dependent ownership, fine-grained transferability controls, IBC compatibility, connecting to 7000+ apps, connecting to EVM, IBC, and more.
 
 Our theses are:
 
@@ -1811,7 +1811,7 @@ Traditional token standards are limited, inflexible, and locked to single blockc
 -   **Three Transferability Levels** - Customize transferability on the collection, sender,and recipient levels.
 -   **Connect to 7000+ Apps** - Connect to 7000+ apps and integrations with seamless on/off-chain criteria checks
 -   **Connect to Cosmos via IBC** - Connect to Cosmos and beyond via IBC and use the BitBadges token standard on any Cosmos chain
--   **Extend with CosmWASM or EVM Contracts** - Extend the BitBadges token standard with CosmWASM or EVM contracts or any other custom environment
+-   **Extend with EVM Contracts** - Extend the BitBadges token standard with EVM contracts or any other custom environment
 -   **Customizable Permissions** - Flexible manager controls for collections
 
 ## 🤔 Motive for building BitBadges?
@@ -1952,7 +1952,7 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
-* [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
+  * [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
   * [Setup and Configuration](evm/evm-precompiles/setup-and-configuration.md)
   * [Developer Guide](evm/evm-precompiles/developer-guide.md)
   * [Architecture](evm/evm-precompiles/architecture.md)
@@ -1961,7 +1961,6 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Gas](evm/evm-precompiles/tokenization-precompile/gas.md)
     * [Errors](evm/evm-precompiles/tokenization-precompile/errors.md)
     * [Security](evm/evm-precompiles/tokenization-precompile/security.md)
-* [🕸️ CosmWASM Compatibility](token-standard/cosmwasm-compatibility.md)
 * [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/tokenization)
 * [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/tokenization)
@@ -2018,12 +2017,12 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Registry Details](https://github.com/cosmos/chain-registry/tree/master/bitbadges)
   * [Supported IBC Connections](https://github.com/cosmos/chain-registry/tree/master/_IBC)
   * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
-  * [Create a WASM Contract](for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
+    * [Signing - Ethereum](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md)
     * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
@@ -2694,17 +2693,6 @@ const address = 'bb1kj9kt5y64n5a8677fhjqnmcc24ht2vy9atmdls';
 
 # EVM Integration
 
-> ⚠️ **Important: Production Status**
-> 
-> **The EVM integration is not currently deployed on BitBadges mainnet.**
-> 
-> - Available on the `evm-poc` branch of the [bitbadgeschain repository](https://github.com/BitBadges/bitbadgeschain)
-> - Can be run locally or testnet setup available upon request
-> - Fully code complete and open to licensing discussions
-> - **Mainnet deployment is not in our short-term plans**
-> 
-> See [counter-dapp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp) and [contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts) for examples.
-
 ## Overview
 
 BitBadges Chain integrates the Cosmos `x/evm` module to enable Ethereum Virtual Machine (EVM) compatibility. Solidity contracts can interact with the tokenization module through precompiled contracts.
@@ -2955,8 +2943,6 @@ The codebase is ready for deployment and further development.
 
 # EVM Precompiles
 
-> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
-
 ## What are Precompiles?
 
 Precompiles are special contract addresses that execute native Go code instead of EVM bytecode, providing:
@@ -2974,7 +2960,29 @@ Precompiles are special contract addresses that execute native Go code instead o
 
 Provides full access to the BitBadges tokenization module for token transfers, collection management, approvals, dynamic stores, and governance.
 
+**Features:**
+- Single and multi-message execution
+- Collection creation and management
+- Token transfers with approvals
+- Dynamic stores for custom data
+- Governance voting
+
 [Tokenization Precompile Documentation →](tokenization-precompile/README.md)
+
+### Gamm Precompile
+
+**Address:** `0x0000000000000000000000000000000000001002`
+
+Provides access to liquidity pools for joining, exiting, and swapping tokens.
+
+**Features:**
+- Join and exit liquidity pools
+- Single and multi-hop swaps
+- IBC transfers with swaps
+- Pool information queries
+- Calculation queries
+
+[Gamm Precompile Documentation →](gamm-precompile/README.md) | [Common Gotchas →](gamm-precompile/gotchas.md)
 
 ## Documentation
 
@@ -3290,8 +3298,18 @@ BitBadges Chain supports two types of transactions, each with specific signing r
 **Example:**
 ```solidity
 // ✅ This works - ETH wallet can sign MsgEthereumTx
+import "./libraries/TokenizationJSONHelpers.sol";
+
 ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
+
+// Build JSON using helper
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+    collectionId, recipients, amount, tokenIdsJson, ownershipJson
+);
+
+precompile.transferTokens(transferJson);
 ```
 
 #### ✅ Cosmos Wallets (standard secp256k1 keys)
@@ -3440,23 +3458,42 @@ Because the precompile sees the contract address, not the user address, you need
 
 **Pattern 1: Contract-Level Authorization**
 ```solidity
+import "./libraries/TokenizationJSONHelpers.sol";
+
 contract MyContract {
     ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
     
     mapping(address => bool) public authorized;
     
-    function transferTokens(...) external {
+    function transferTokens(
+        uint256 collectionId,
+        address to,
+        uint256 amount
+    ) external {
         require(authorized[msg.sender], "Not authorized");
+        
+        // Build JSON
+        address[] memory recipients = new address[](1);
+        recipients[0] = to;
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+        string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+            collectionId, recipients, amount, tokenIdsJson, ownershipJson
+        );
+        
         // Contract is authorized, so precompile call succeeds
-        precompile.transferTokens(...);
+        precompile.transferTokens(transferJson);
     }
 }
 ```
 
 **Pattern 2: Pass User Address Explicitly**
 ```solidity
-// If precompile method accepts a "from" parameter, pass msg.sender
-precompile.transferTokensFrom(msg.sender, ...);
+// The precompile automatically uses contract.Caller() as the creator
+// For transfers, tokens move from the contract's balance
+// If you need to transfer from a specific user, use approvals or pass user address in JSON
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(...);
+precompile.transferTokens(transferJson);
 ```
 
 **Pattern 3: Use Approval System**
@@ -3578,11 +3615,778 @@ This allows the ante handler to recognize and verify signatures from both key ty
 
 
 
+## File: ./evm/evm-precompiles/gamm-precompile/README.md
+
+# Gamm Precompile
+
+**Address:** `0x0000000000000000000000000000000000001002`
+
+The Gamm Precompile enables Solidity smart contracts to interact with liquidity pools through a standardized EVM interface. It provides both transaction methods (state-changing operations) and query methods (read-only operations) for managing liquidity pools, swaps, and pool information.
+
+## Quick Start
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "./interfaces/IGammPrecompile.sol";
+import "./libraries/GammJSONHelpers.sol";
+
+contract MyPoolContract {
+    IGammPrecompile constant GAMM = 
+        IGammPrecompile(0x0000000000000000000000000000000000001002);
+    
+    // Join a pool
+    function joinPool(
+        uint64 poolId,
+        uint256 shareOutAmount,
+        string memory tokenDenom,
+        uint256 tokenAmount
+    ) external returns (uint256 sharesReceived) {
+        string memory msgJson = GammJSONHelpers.joinPoolJSON(
+            poolId,
+            shareOutAmount,
+            tokenDenom,
+            tokenAmount
+        );
+        
+        (sharesReceived, ) = GAMM.joinPool(msgJson);
+        return sharesReceived;
+    }
+    
+    // Swap tokens
+    function swap(
+        uint64 poolId,
+        string memory tokenInDenom,
+        uint256 tokenInAmount,
+        string memory tokenOutDenom,
+        uint256 minTokenOutAmount
+    ) external returns (uint256 tokenOutAmount) {
+        string memory msgJson = GammJSONHelpers.swapExactAmountInJSON(
+            poolId,
+            tokenInDenom,
+            tokenInAmount,
+            tokenOutDenom,
+            minTokenOutAmount
+        );
+        
+        return GAMM.swapExactAmountIn(msgJson);
+    }
+}
+```
+
+## Why JSON?
+
+The precompile uses JSON strings instead of Solidity structs because:
+
+1. **Protobuf Compatibility**: Direct mapping to Cosmos SDK protobuf messages
+2. **Flexibility**: Easy to extend without breaking changes
+3. **Type Safety**: JSON helpers provide compile-time safety
+4. **Simplicity**: Single parameter per method, easy to understand
+
+## Core Concepts
+
+### 1. All Methods Accept JSON Strings
+
+Every precompile method accepts a single `string calldata msgJson` parameter that matches the protobuf JSON format:
+
+```solidity
+// ✅ Correct - JSON string
+string memory json = GammJSONHelpers.joinPoolJSON(...);
+(uint256 shares, ) = GAMM.joinPool(json);
+
+// ❌ Wrong - struct parameters (old interface)
+GAMM.joinPool(poolId, shareOutAmount, tokenInMaxs);
+```
+
+### 2. Use Helper Libraries
+
+The `GammJSONHelpers` library provides type-safe functions to construct JSON strings:
+
+```solidity
+import "./libraries/GammJSONHelpers.sol";
+
+// Simple operations
+string memory json = GammJSONHelpers.getPoolJSON(poolId);
+bytes memory pool = GAMM.getPool(json);
+
+// Complex operations
+string memory swapJson = GammJSONHelpers.swapExactAmountInJSON(...);
+uint256 amountOut = GAMM.swapExactAmountIn(swapJson);
+```
+
+## Common Patterns
+
+### Pattern 1: Join Pool
+
+```solidity
+function joinPool(
+    uint64 poolId,
+    uint256 desiredShares,
+    string memory denom1,
+    uint256 amount1,
+    string memory denom2,
+    uint256 amount2
+) external returns (uint256 sharesReceived) {
+    string memory msgJson = GammJSONHelpers.joinPoolJSON(
+        poolId,
+        desiredShares,
+        denom1,
+        amount1,
+        denom2,
+        amount2
+    );
+    
+    (sharesReceived, ) = GAMM.joinPool(msgJson);
+    return sharesReceived;
+}
+```
+
+### Pattern 2: Exit Pool
+
+```solidity
+function exitPool(
+    uint64 poolId,
+    uint256 shareAmount
+) external returns (uint256[] memory amountsOut) {
+    string memory msgJson = GammJSONHelpers.exitPoolJSON(
+        poolId,
+        shareAmount
+    );
+    
+    GammTypes.Coin[] memory tokensOut = GAMM.exitPool(msgJson);
+    
+    // Convert to array
+    amountsOut = new uint256[](tokensOut.length);
+    for (uint i = 0; i < tokensOut.length; i++) {
+        amountsOut[i] = tokensOut[i].amount;
+    }
+    
+    return amountsOut;
+}
+```
+
+### Pattern 3: Single-Hop Swap
+
+```solidity
+function swapTokens(
+    uint64 poolId,
+    string memory tokenInDenom,
+    uint256 tokenInAmount,
+    string memory tokenOutDenom,
+    uint256 minTokenOutAmount
+) external returns (uint256 tokenOutAmount) {
+    string memory msgJson = GammJSONHelpers.swapExactAmountInJSON(
+        poolId,
+        tokenInDenom,
+        tokenInAmount,
+        tokenOutDenom,
+        minTokenOutAmount
+    );
+    
+    return GAMM.swapExactAmountIn(msgJson);
+}
+```
+
+### Pattern 4: Multi-Hop Swap
+
+```solidity
+function multiHopSwap(
+    uint64[] memory poolIds,
+    string[] memory tokenDenoms,
+    uint256 tokenInAmount,
+    uint256 minTokenOutAmount
+) external returns (uint256 finalAmountOut) {
+    string memory msgJson = GammJSONHelpers.multiHopSwapJSON(
+        poolIds,
+        tokenDenoms,
+        tokenInAmount,
+        minTokenOutAmount
+    );
+    
+    return GAMM.swapExactAmountIn(msgJson);
+}
+```
+
+## Available Methods
+
+### Transaction Methods
+
+- `joinPool(string calldata msgJson) → (uint256 shareOutAmount, Coin[] memory tokenIn)`
+- `exitPool(string calldata msgJson) → Coin[] memory tokenOut`
+- `swapExactAmountIn(string calldata msgJson) → uint256 tokenOutAmount`
+- `swapExactAmountInWithIBCTransfer(string calldata msgJson) → uint256 tokenOutAmount`
+
+### Query Methods
+
+- `getPool(string calldata msgJson) → bytes`
+- `getPools(string calldata msgJson) → bytes`
+- `getPoolType(string calldata msgJson) → string`
+- `calcJoinPoolNoSwapShares(string calldata msgJson) → (Coin[] memory tokensOut, uint256 sharesOut)`
+- `calcExitPoolCoinsFromShares(string calldata msgJson) → Coin[] memory tokensOut`
+- `calcJoinPoolShares(string calldata msgJson) → (uint256 shareOutAmount, Coin[] memory tokensOut)`
+- `getPoolParams(string calldata msgJson) → bytes`
+- `getTotalShares(string calldata msgJson) → Coin memory totalShares`
+- `getTotalLiquidity(string calldata msgJson) → Coin[] memory liquidity`
+
+See [Common Gotchas](gotchas.md) for important details about pool IDs, Cosmos Dec handling, and other common issues.
+
+## Helper Library Functions
+
+The `GammJSONHelpers` library provides functions for all common operations:
+
+### Pool Operations
+- `joinPoolJSON(...)` - Build join pool JSON
+- `exitPoolJSON(...)` - Build exit pool JSON
+- `getPoolJSON(poolId)` - Build pool query JSON
+
+### Swap Operations
+- `swapExactAmountInJSON(...)` - Build swap JSON
+- `multiHopSwapJSON(...)` - Build multi-hop swap JSON
+
+### Query Operations
+- `getPoolJSON(poolId)` - Build pool query JSON
+- `calcJoinPoolSharesJSON(...)` - Build calculation query JSON
+
+## Return Value Handling
+
+### Direct Returns (uint256)
+
+Some methods return `uint256` directly:
+
+```solidity
+uint256 tokenOutAmount = GAMM.swapExactAmountIn(swapJson);
+```
+
+### Tuple Returns
+
+Some methods return tuples:
+
+```solidity
+(uint256 shares, GammTypes.Coin[] memory tokens) = GAMM.joinPool(joinJson);
+```
+
+### Protobuf Bytes
+
+Some query methods return protobuf-encoded `bytes`. Decode off-chain using the TypeScript SDK or emit events for indexing.
+
+## Security Considerations
+
+1. **Automatic Sender Field**: The `sender` field is automatically set from `msg.sender` and cannot be spoofed
+2. **JSON Validation**: Invalid JSON will revert with clear error messages
+3. **Slippage Protection**: Always use minimum/maximum amounts to protect against slippage
+4. **Type Safety**: Use helper functions to ensure correct JSON structure
+
+## Best Practices
+
+### 1. Always Use Helper Functions
+
+```solidity
+// ✅ Good - Type-safe and readable
+string memory json = GammJSONHelpers.joinPoolJSON(...);
+
+// ❌ Bad - Error-prone manual construction
+string memory json = string(abi.encodePacked('{"pool_id":"', ...));
+```
+
+### 2. Validate Inputs Before Building JSON
+
+```solidity
+function joinPool(uint64 poolId, uint256 shares) external {
+    require(poolId > 0, "Invalid pool ID");
+    require(shares > 0, "Invalid share amount");
+    
+    // Now build JSON
+    string memory json = GammJSONHelpers.joinPoolJSON(...);
+    GAMM.joinPool(json);
+}
+```
+
+### 3. Handle Slippage
+
+```solidity
+// Always specify minimum/maximum amounts
+string memory exitJson = GammJSONHelpers.exitPoolJSON(
+    poolId,
+    shareAmount,
+    minTokenOutAmounts  // Protect against slippage
+);
+```
+
+## Common Gotchas
+
+See [Common Gotchas](gotchas.md) for detailed information about:
+- Pool ID format (uint64 vs string)
+- Cosmos Dec handling
+- Amount string formatting
+- Return value decoding
+
+## Next Steps
+
+- Read [Common Gotchas](gotchas.md) for important details
+- Explore [Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples)
+- Review the [Complete API Reference](../../../contracts/docs/GAMM_PRECOMPILE.md)
+
+## Resources
+
+- [Setup & Configuration](../setup-and-configuration.md)
+- [Developer Guide](../developer-guide.md)
+- [Architecture](../architecture.md)
+- [Gamm Module Documentation](../../../x-gamm/README.md)
+
+
+
+
+
+
+## File: ./evm/evm-precompiles/gamm-precompile/gotchas.md
+
+# Gamm Precompile - Common Gotchas
+
+This document covers common issues and gotchas when working with the Gamm Precompile.
+
+## Table of Contents
+
+1. [Pool ID Format](#pool-id-format)
+2. [Cosmos Dec Handling](#cosmos-dec-handling)
+3. [Amount String Formatting](#amount-string-formatting)
+4. [Return Value Decoding](#return-value-decoding)
+5. [Slippage Protection](#slippage-protection)
+6. [Multi-Hop Swaps](#multi-hop-swaps)
+
+## Pool ID Format
+
+### Issue
+
+Pool IDs are `uint64` in Go/Cosmos SDK, but must be **strings in JSON**.
+
+### Correct Usage
+
+```solidity
+// ✅ Correct - Pool ID as string in JSON
+string memory json = string(abi.encodePacked(
+    '{"pool_id":"1",',  // Note: "1" not 1
+    '"share_out_amount":"1000000",',
+    // ...
+));
+
+// ❌ Wrong - Pool ID as number
+string memory json = string(abi.encodePacked(
+    '{"pool_id":1,',  // This will fail!
+    // ...
+));
+```
+
+### Helper Function
+
+```solidity
+// Use helper to ensure correct format
+string memory json = GammJSONHelpers.joinPoolJSON(
+    1,  // uint64 poolId - helper converts to "1" in JSON
+    shareOutAmount,
+    // ...
+);
+```
+
+### Why This Matters
+
+- Protobuf JSON encoding requires numbers as strings for large values
+- Prevents precision loss for large pool IDs
+- Consistent with Cosmos SDK JSON format
+
+## Cosmos Dec Handling
+
+### Issue
+
+Cosmos SDK uses `sdk.Dec` (decimal) for calculations, but amounts in JSON are strings representing integers in the smallest unit.
+
+### Understanding Cosmos Dec
+
+Cosmos Dec is a fixed-point decimal type with 18 decimal places. However, in JSON:
+- **Amounts are always strings** representing the smallest unit
+- Example: `"1000000000"` for 1 token with 9 decimals
+- No decimal point in JSON - all amounts are integers as strings
+
+### Correct Format
+
+```solidity
+// ✅ Correct - Amount as string
+string memory json = string(abi.encodePacked(
+    '{"token_in":{',
+    '"denom":"ubadge",',
+    '"amount":"1000000000"',  // String, no decimal point
+    '}}'
+));
+
+// ❌ Wrong - Amount as number or with decimal
+string memory json = string(abi.encodePacked(
+    '{"token_in":{',
+    '"denom":"ubadge",',
+    '"amount":1000000000',  // Number - will fail!
+    // or
+    '"amount":"1.0"',  // Decimal point - will fail!
+    '}}'
+));
+```
+
+### Conversion Helpers
+
+```solidity
+// Convert human-readable amount to smallest unit string
+function amountToJson(uint256 amount, uint8 decimals) internal pure returns (string memory) {
+    // amount is already in smallest unit (e.g., 1000000000 for 1 token with 9 decimals)
+    return GammJSONHelpers.uintToString(amount);
+}
+
+// Example: 1 BADGE with 9 decimals = 1000000000
+string memory amountJson = amountToJson(1e9, 9);  // Returns "1000000000"
+```
+
+### Common Mistakes
+
+1. **Using decimal points in JSON**
+   ```solidity
+   // ❌ Wrong
+   '"amount":"1.5"'
+   
+   // ✅ Correct
+   '"amount":"1500000000"'  // 1.5 tokens with 9 decimals
+   ```
+
+2. **Using number type instead of string**
+   ```solidity
+   // ❌ Wrong
+   '"amount":1000000000'
+   
+   // ✅ Correct
+   '"amount":"1000000000"'
+   ```
+
+3. **Not accounting for token decimals**
+   ```solidity
+   // ❌ Wrong - assumes 1 token = 1 unit
+   uint256 amount = 1;  // This is 0.000000001 tokens with 9 decimals!
+   
+   // ✅ Correct - account for decimals
+   uint256 amount = 1 * 10**9;  // 1 token with 9 decimals
+   ```
+
+## Amount String Formatting
+
+### All Amounts Must Be Strings
+
+Every amount field in JSON must be a string, not a number:
+
+```solidity
+// ✅ Correct
+{
+  "pool_id": "1",
+  "share_out_amount": "1000000",  // String
+  "token_in_maxs": [
+    {
+      "denom": "ubadge",
+      "amount": "1000000000"  // String
+    }
+  ]
+}
+
+// ❌ Wrong
+{
+  "pool_id": "1",
+  "share_out_amount": 1000000,  // Number - will fail!
+  "token_in_maxs": [
+    {
+      "denom": "ubadge",
+      "amount": 1000000000  // Number - will fail!
+    }
+  ]
+}
+```
+
+### Helper Functions
+
+Always use helper functions to ensure correct formatting:
+
+```solidity
+// Helper converts uint256 to string automatically
+string memory json = GammJSONHelpers.joinPoolJSON(
+    poolId,
+    shareOutAmount,  // uint256 - helper converts to string
+    tokenDenom,
+    tokenAmount      // uint256 - helper converts to string
+);
+```
+
+## Return Value Decoding
+
+### Issue
+
+Return values from precompile methods may be in different formats depending on the method.
+
+### Tuple Returns
+
+Methods like `joinPool` return tuples:
+
+```solidity
+// Method signature
+function joinPool(string calldata msgJson) 
+    external 
+    returns (uint256 shareOutAmount, GammTypes.Coin[] memory tokenIn);
+
+// Usage
+(uint256 shares, GammTypes.Coin[] memory tokens) = GAMM.joinPool(json);
+```
+
+### Coin Array Structure
+
+Coin arrays are returned as structs:
+
+```solidity
+struct Coin {
+    string denom;
+    uint256 amount;
+}
+
+// Access values
+for (uint i = 0; i < tokens.length; i++) {
+    string memory denom = tokens[i].denom;
+    uint256 amount = tokens[i].amount;
+}
+```
+
+### Protobuf Bytes
+
+Some query methods return protobuf-encoded bytes:
+
+```solidity
+bytes memory poolBytes = GAMM.getPool(json);
+// Decode off-chain using TypeScript SDK or protobuf library
+```
+
+## Slippage Protection
+
+### Always Use Minimum/Maximum Amounts
+
+Protect against slippage by specifying limits:
+
+### Join Pool - Use `token_in_maxs`
+
+```solidity
+// ✅ Correct - Specify maximum amounts you're willing to pay
+string memory json = GammJSONHelpers.joinPoolJSON(
+    poolId,
+    desiredShares,
+    denom1,
+    maxAmount1,  // Maximum you're willing to pay
+    denom2,
+    maxAmount2   // Maximum you're willing to pay
+);
+
+// ❌ Wrong - No slippage protection
+// If pool price changes, you might pay more than expected
+```
+
+### Exit Pool - Use `token_out_mins`
+
+```solidity
+// ✅ Correct - Specify minimum amounts you want to receive
+string memory json = GammJSONHelpers.exitPoolJSON(
+    poolId,
+    shareAmount,
+    minTokenOut1,  // Minimum you want to receive
+    minTokenOut2   // Minimum you want to receive
+);
+
+// ❌ Wrong - No slippage protection
+// If pool price changes, you might receive less than expected
+```
+
+### Swap - Use `token_out_min_amount`
+
+```solidity
+// ✅ Correct - Specify minimum output amount
+string memory json = GammJSONHelpers.swapExactAmountInJSON(
+    poolId,
+    tokenInDenom,
+    tokenInAmount,
+    tokenOutDenom,
+    minTokenOutAmount  // Minimum you want to receive
+);
+
+// ❌ Wrong - No slippage protection
+// If pool price changes, you might receive less than expected
+```
+
+### Calculating Slippage Tolerance
+
+```solidity
+// Example: 1% slippage tolerance
+uint256 tokenInAmount = 1000000000;  // 1 token
+uint256 minTokenOutAmount = tokenInAmount * 99 / 100;  // 0.99 tokens (1% slippage)
+
+string memory json = GammJSONHelpers.swapExactAmountInJSON(
+    poolId,
+    tokenInDenom,
+    tokenInAmount,
+    tokenOutDenom,
+    minTokenOutAmount
+);
+```
+
+## Multi-Hop Swaps
+
+### Issue
+
+When using multiple routes, account for cumulative slippage across all hops.
+
+### Correct Usage
+
+```solidity
+// Multi-hop: A → B → C
+// Slippage accumulates: 1% per hop = ~2% total for 2 hops
+
+uint256 tokenInAmount = 1000000000;
+uint256 minTokenOutAmount = tokenInAmount * 98 / 100;  // 2% slippage tolerance
+
+string memory json = GammJSONHelpers.multiHopSwapJSON(
+    poolIds,      // [pool1, pool2]
+    tokenDenoms,  // ["A", "B", "C"]
+    tokenInAmount,
+    minTokenOutAmount
+);
+```
+
+### Route Format
+
+```solidity
+// Routes array format
+{
+  "routes": [
+    {
+      "pool_id": "1",
+      "token_out_denom": "uatom"
+    },
+    {
+      "pool_id": "2",
+      "token_out_denom": "ustake"
+    }
+  ],
+  "token_in": {
+    "denom": "ubadge",
+    "amount": "1000000000"
+  },
+  "token_out_min_amount": "1800000000",  // Account for 2-hop slippage
+  "affiliates": []
+}
+```
+
+## Common Error Patterns
+
+### Error: "poolId cannot be zero"
+
+**Cause:** Pool ID is 0 or not provided correctly.
+
+**Fix:**
+```solidity
+// ✅ Correct
+require(poolId > 0, "Invalid pool ID");
+string memory json = GammJSONHelpers.joinPoolJSON(poolId, ...);
+
+// ❌ Wrong
+uint64 poolId = 0;  // Will fail validation
+```
+
+### Error: "amount must be greater than zero"
+
+**Cause:** Amount is zero, negative, or not formatted correctly.
+
+**Fix:**
+```solidity
+// ✅ Correct
+require(amount > 0, "Amount must be positive");
+string memory amountStr = GammJSONHelpers.uintToString(amount);
+
+// ❌ Wrong
+uint256 amount = 0;  // Will fail validation
+```
+
+### Error: "invalid JSON syntax"
+
+**Cause:** JSON is malformed or uses wrong types.
+
+**Fix:**
+```solidity
+// ✅ Correct - Use helper functions
+string memory json = GammJSONHelpers.joinPoolJSON(...);
+
+// ❌ Wrong - Manual construction prone to errors
+string memory json = string(abi.encodePacked('{"pool_id":', ...));  // Missing quotes, wrong types
+```
+
+### Error: "denom cannot be empty"
+
+**Cause:** Denomination string is empty.
+
+**Fix:**
+```solidity
+// ✅ Correct
+require(bytes(denom).length > 0, "Denom cannot be empty");
+string memory json = GammJSONHelpers.joinPoolJSON(poolId, shareAmount, denom, amount);
+
+// ❌ Wrong
+string memory denom = "";  // Will fail validation
+```
+
+## Best Practices Summary
+
+1. **Always use helper functions** - They handle type conversions correctly
+2. **Validate inputs** - Check pool IDs, amounts, and denominations before building JSON
+3. **Use slippage protection** - Always specify minimum/maximum amounts
+4. **Account for decimals** - Convert human-readable amounts to smallest unit
+5. **Handle return values correctly** - Understand tuple vs single return types
+6. **Test with small amounts first** - Verify behavior before large transactions
+
+## Debugging Tips
+
+### 1. Log JSON Before Sending
+
+```solidity
+string memory json = GammJSONHelpers.joinPoolJSON(...);
+console.log("JSON:", json);  // Verify format
+```
+
+### 2. Check Return Values
+
+```solidity
+(uint256 shares, GammTypes.Coin[] memory tokens) = GAMM.joinPool(json);
+console.log("Shares:", shares);
+for (uint i = 0; i < tokens.length; i++) {
+    console.log("Token:", tokens[i].denom, tokens[i].amount);
+}
+```
+
+### 3. Use Static Calls for Testing
+
+```solidity
+// Test without sending transaction
+(uint256 shares, ) = GAMM.joinPool.staticCall(json);
+console.log("Expected shares:", shares);
+```
+
+## See Also
+
+- [Gamm Precompile README](README.md) - Overview and examples
+- [Complete API Reference](../../../contracts/docs/GAMM_PRECOMPILE.md) - Full method documentation
+- [Developer Guide](../developer-guide.md) - General EVM integration guide
+
+
+
+
+
+
 ## File: ./evm/evm-precompiles/setup-and-configuration.md
 
 # Setup and Configuration
-
-> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch. See [EVM Integration](../EVM_INTEGRATION.md) for details.
 
 This guide covers everything you need to set up your development environment for building dApps on BitBadges Chain with EVM compatibility.
 
@@ -3593,13 +4397,23 @@ This guide covers everything you need to set up your development environment for
 The BitBadges Chain EVM uses a custom Chain ID for EVM compatibility:
 
 - **Local Development**: `90123`
-- **Testnet**: TBD (contact us for testnet setup)
-- **Mainnet**: Not deployed (see production status notice)
+- **Testnet**: `50025` (claimed in ethereum-lists/chains registry)
+- **Mainnet**: `50024` (claimed in ethereum-lists/chains registry)
 
 The Chain ID is configured in `app/params/constants.go`:
 
 ```go
-EVMChainID = "90123" // Default for testing
+// EVMChainIDMainnet is the EVM chain ID for BitBadges mainnet
+// Chain ID: 50024 (claimed in ethereum-lists/chains registry)
+// This should match the chain_id in genesis under app_state.evm.params.chain_config.chain_id
+EVMChainIDMainnet = "50024"
+
+// EVMChainIDTestnet is the EVM chain ID for BitBadges testnet
+// Chain ID: 50025 (claimed in ethereum-lists/chains registry)
+// This should match the chain_id in genesis under app_state.evm.params.chain_config.chain_id
+EVMChainIDTestnet = "50025"
+
+EVMChainID = "90123" // Default for local development/testing
 ```
 
 **Important**: The Chain ID in your genesis file (`app_state.evm.params.chain_config.chain_id`) must match this value.
@@ -3653,6 +4467,20 @@ To connect MetaMask to your local BitBadges chain:
 - **Chain ID**: `90123`
 - **Currency Symbol**: `BADGE`
 - **Block Explorer**: (Optional, leave blank for local)
+
+**For Testnet:**
+- **Network Name**: BitBadges Testnet
+- **RPC URL**: (Testnet RPC endpoint - contact us for details)
+- **Chain ID**: `50025`
+- **Currency Symbol**: `BADGE`
+- **Block Explorer**: (Testnet block explorer URL)
+
+**For Mainnet:**
+- **Network Name**: BitBadges Mainnet
+- **RPC URL**: (Mainnet RPC endpoint - contact us for details)
+- **Chain ID**: `50024`
+- **Currency Symbol**: `BADGE`
+- **Block Explorer**: (Mainnet block explorer URL)
 
 **Note**: Use port 8545 (EVM JSON-RPC), not 26657 (Tendermint RPC).
 
@@ -4116,9 +4944,12 @@ See the [examples README](https://github.com/BitBadges/bitbadgeschain/tree/evm-p
 **Problem**: MetaMask can't connect to the network
 
 **Solutions**:
-- Use the correct Chain ID: `90123` for local development
-- Use EVM JSON-RPC port: `http://localhost:8545` (not 26657)
-- Ensure your local chain is running
+- Use the correct Chain ID:
+  - `90123` for local development
+  - `50025` for testnet
+  - `50024` for mainnet
+- Use EVM JSON-RPC port: `http://localhost:8545` (not 26657) for local development
+- Ensure your local chain is running (for local development)
 - Check MetaMask console for detailed error messages
 
 ### Transaction Failures
@@ -4159,75 +4990,77 @@ See the [examples README](https://github.com/BitBadges/bitbadgeschain/tree/evm-p
 
 **Address:** `0x0000000000000000000000000000000000001001`
 
-Complete interface for interacting with the BitBadges tokenization module from Solidity contracts.
+Complete API documentation for the BitBadges tokenization precompile. All methods use a **JSON-based interface** where each method accepts a single `string calldata msgJson` parameter.
 
-## Type System
+## Interface
 
-All types are defined in `TokenizationTypes.sol` and mirror the Cosmos SDK proto definitions. Use `TokenizationHelpers.sol` for constructing types.
-
-**Key Types:**
-- `UintRange`: Range of IDs (start, end inclusive)
-- `Balance`: Token balance with amount, ownership times, and token IDs
-- `CollectionMetadata`: Collection-level metadata
-- `TokenMetadata`: Token-level metadata
-- `UserBalanceStore`: Complete user balance and approval state
-- `CollectionPermissions`: Collection-level permissions
-
-See `contracts/types/TokenizationTypes.sol` for complete definitions.
+```solidity
+interface ITokenizationPrecompile {
+    // Types
+    struct MessageInput {
+        string messageType;  // e.g., "createCollection", "transferTokens"
+        string msgJson;      // JSON matching the protobuf format
+    }
+    
+    // Transaction methods
+    function transferTokens(string calldata msgJson) external returns (bool);
+    function createCollection(string calldata msgJson) external returns (uint256);
+    function updateCollection(string calldata msgJson) external returns (uint256);
+    function deleteCollection(string calldata msgJson) external returns (bool);
+    function createDynamicStore(string calldata msgJson) external returns (uint256);
+    function updateDynamicStore(string calldata msgJson) external returns (bool);
+    function deleteDynamicStore(string calldata msgJson) external returns (bool);
+    function setDynamicStoreValue(string calldata msgJson) external returns (bool);
+    function setIncomingApproval(string calldata msgJson) external returns (bool);
+    function setOutgoingApproval(string calldata msgJson) external returns (bool);
+    function deleteIncomingApproval(string calldata msgJson) external returns (bool);
+    function deleteOutgoingApproval(string calldata msgJson) external returns (bool);
+    function createAddressLists(string calldata msgJson) external returns (bool);
+    function castVote(string calldata msgJson) external returns (bool);
+    function executeMultiple(MessageInput[] calldata messages) external returns (bool success, bytes[] memory results);
+    
+    // Query methods
+    function getCollection(string calldata msgJson) external view returns (bytes memory);
+    function getBalance(string calldata msgJson) external view returns (bytes memory);
+    function getBalanceAmount(string calldata msgJson) external view returns (uint256);
+    function getTotalSupply(string calldata msgJson) external view returns (uint256);
+    function getDynamicStore(string calldata msgJson) external view returns (bytes memory);
+    function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory);
+    function getAddressList(string calldata msgJson) external view returns (bytes memory);
+}
+```
 
 ## Transaction Methods
 
-### Collection Management
+### `transferTokens`
 
-#### `createCollection`
-Creates a new token collection. Returns the collection ID.
+Transfer tokens from the caller to one or more recipients.
 
+**Signature:**
 ```solidity
-function createCollection(
-    TokenizationTypes.MsgCreateCollection calldata msg_
-) external returns (uint256 collectionId);
+function transferTokens(string calldata msgJson) external returns (bool success)
 ```
 
-#### `updateCollection`
-Updates an existing collection.
-
-```solidity
-function updateCollection(
-    TokenizationTypes.MsgUpdateCollection calldata msg_
-) external returns (uint256 collectionId);
+**JSON Format:**
+```json
+{
+  "collectionId": "123",
+  "toAddresses": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"],
+  "amount": "1000",
+  "tokenIds": [{"start": "1", "end": "1"}],
+  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+}
 ```
 
-#### `deleteCollection`
-Deletes a collection (only creator can delete).
-
+**Helper Function:**
 ```solidity
-function deleteCollection(uint256 collectionId) external returns (bool);
-```
-
-#### `setManager`, `setCollectionMetadata`, `setStandards`, `setCustomData`, `setIsArchived`
-Collection configuration methods.
-
-### Token Management
-
-#### `setValidTokenIds`
-Sets valid token ID ranges for a collection.
-
-#### `setTokenMetadata`
-Sets metadata for specific token ID ranges.
-
-### Transfers
-
-#### `transferTokens`
-Transfers tokens from the caller to one or more recipients.
-
-```solidity
-function transferTokens(
-    uint256 collectionId,
-    address[] calldata toAddresses,
-    uint256 amount,
-    TokenizationTypes.UintRange[] calldata tokenIds,
-    TokenizationTypes.UintRange[] calldata ownershipTimes
-) external returns (bool);
+string memory json = TokenizationJSONHelpers.transferTokensJSON(
+    collectionId,
+    toAddresses,
+    amount,
+    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
+    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
+);
 ```
 
 **Example:**
@@ -4235,186 +5068,1163 @@ function transferTokens(
 address[] memory recipients = new address[](1);
 recipients[0] = to;
 
-TokenizationTypes.UintRange[] memory tokenIds = new TokenizationTypes.UintRange[](1);
-tokenIds[0] = TokenizationHelpers.createSingleTokenIdRange(1);
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
 
-TokenizationTypes.UintRange[] memory ownershipTimes = new TokenizationTypes.UintRange[](1);
-ownershipTimes[0] = TokenizationHelpers.createFullOwnershipTimeRange();
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+    collectionId,
+    recipients,
+    amount,
+    tokenIdsJson,
+    ownershipJson
+);
 
-precompile.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
+bool success = TOKENIZATION.transferTokens(transferJson);
 ```
 
-### Approvals
+---
 
-#### `setIncomingApproval`, `setOutgoingApproval`
-Set incoming/outgoing approvals with complex criteria (merkle challenges, voting, time-based checks, etc.).
+### `createCollection`
 
-#### `deleteIncomingApproval`, `deleteOutgoingApproval`
-Delete approvals by ID.
+Create a new token collection.
 
-#### `updateUserApprovals`
-Update user approvals with update flags.
+**Signature:**
+```solidity
+function createCollection(string calldata msgJson) external returns (uint256 collectionId)
+```
 
-#### `setCollectionApprovals`
-Set collection-level approvals.
+**JSON Format:**
+```json
+{
+  "validTokenIds": [{"start": "1", "end": "1000"}],
+  "manager": "bb1abc...",
+  "collectionMetadata": {
+    "uri": "ipfs://...",
+    "customData": "{\"name\":\"My Token\"}"
+  },
+  "defaultBalances": {
+    "autoApproveSelfInitiatedOutgoingTransfers": true,
+    "autoApproveSelfInitiatedIncomingTransfers": true,
+    "balances": []
+  },
+  "standards": ["ERC-3643"],
+  "isArchived": false
+}
+```
 
-#### `purgeApprovals`
-Purge expired or specified approvals.
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.createCollectionJSON(
+    validTokenIdsJson,        // Use uintRangeToJson or uintRangeArrayToJson
+    manager,                   // Cosmos address string
+    collectionMetadataJson,   // Use collectionMetadataToJson
+    defaultBalancesJson,      // Use simpleUserBalanceStoreToJson or custom JSON
+    collectionPermissionsJson, // "{}" for empty
+    standardsJson,             // Use stringArrayToJson
+    customData,                // Optional string
+    isArchived                 // bool
+);
+```
 
-### Dynamic Stores
+**Example:**
+```solidity
+string memory validTokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1000);
+string memory metadataJson = TokenizationJSONHelpers.collectionMetadataToJson(
+    "ipfs://metadata",
+    "{\"name\":\"My Token\"}"
+);
+string memory defaultBalancesJson = TokenizationJSONHelpers.simpleUserBalanceStoreToJson(
+    true, true, false
+);
+string[] memory standards = new string[](1);
+standards[0] = "ERC-3643";
+string memory standardsJson = TokenizationJSONHelpers.stringArrayToJson(standards);
 
-#### `createDynamicStore`, `updateDynamicStore`, `deleteDynamicStore`
-Manage dynamic key-value stores for flexible data storage.
+string memory createJson = TokenizationJSONHelpers.createCollectionJSON(
+    validTokenIdsJson,
+    _addressToString(address(this)),
+    metadataJson,
+    defaultBalancesJson,
+    "{}",
+    standardsJson,
+    "",
+    false
+);
 
-#### `setDynamicStoreValue`
+uint256 collectionId = TOKENIZATION.createCollection(createJson);
+```
+
+---
+
+### `createDynamicStore`
+
+Create a dynamic boolean store (e.g., KYC registry).
+
+**Signature:**
+```solidity
+function createDynamicStore(string calldata msgJson) external returns (uint256 storeId)
+```
+
+**JSON Format:**
+```json
+{
+  "defaultValue": false,
+  "uri": "ipfs://store-metadata",
+  "customData": "{\"type\":\"kyc\"}"
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.createDynamicStoreJSON(
+    defaultValue,  // bool
+    uri,           // string
+    customData     // string
+);
+```
+
+**Example:**
+```solidity
+string memory createJson = TokenizationJSONHelpers.createDynamicStoreJSON(
+    false,
+    "ipfs://kyc-registry",
+    "{\"type\":\"kyc\"}"
+);
+
+uint256 storeId = TOKENIZATION.createDynamicStore(createJson);
+```
+
+---
+
+### `setDynamicStoreValue`
+
 Set a value in a dynamic store for an address.
 
-### Address Lists
+**Signature:**
+```solidity
+function setDynamicStoreValue(string calldata msgJson) external returns (bool success)
+```
 
-#### `createAddressLists`
-Create one or more address lists.
+**JSON Format:**
+```json
+{
+  "storeId": "123",
+  "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+  "value": true
+}
+```
 
-### Voting
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.setDynamicStoreValueJSON(
+    storeId,  // uint256
+    address_, // address
+    value     // bool
+);
+```
 
-#### `castVote`
-Cast a vote on a proposal.
+**Example:**
+```solidity
+string memory setValueJson = TokenizationJSONHelpers.setDynamicStoreValueJSON(
+    kycRegistryId,
+    user,
+    true
+);
+
+TOKENIZATION.setDynamicStoreValue(setValueJson);
+```
+
+---
+
+### `executeMultiple`
+
+Execute multiple messages sequentially in a single atomic transaction. This is particularly useful for workflows like "Create Collection + Transfer Tokens".
+
+**Signature:**
+```solidity
+function executeMultiple(MessageInput[] calldata messages) external returns (bool success, bytes[] memory results)
+```
+
+**MessageInput Structure:**
+```solidity
+struct MessageInput {
+    string messageType;  // Message type identifier (e.g., "createCollection", "transferTokens")
+    string msgJson;      // JSON string matching the protobuf format for the message type
+}
+```
+
+**Supported Message Types:**
+All transaction methods are supported. See [README](README.md) for the complete list.
+
+**Example:**
+```solidity
+ITokenizationPrecompile.MessageInput[] memory messages = new ITokenizationPrecompile.MessageInput[](2);
+
+// Message 1: Create Collection
+string memory createJson = TokenizationJSONHelpers.createCollectionJSON(...);
+messages[0] = ITokenizationPrecompile.MessageInput({
+    messageType: "createCollection",
+    msgJson: createJson
+});
+
+// Message 2: Transfer Tokens (using collectionId = 0 for auto-prev)
+string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+    0,  // collectionId = 0 means "use previous collection" (auto-prev)
+    recipients,
+    amount,
+    tokenIdsJson,
+    ownershipJson
+);
+messages[1] = ITokenizationPrecompile.MessageInput({
+    messageType: "transferTokens",
+    msgJson: transferJson
+});
+
+// Execute both messages atomically
+(bool success, bytes[] memory results) = TOKENIZATION.executeMultiple(messages);
+require(success, "Multi-message execution failed");
+
+// Decode results
+uint256 collectionId = abi.decode(results[0], (uint256));
+bool transferSuccess = abi.decode(results[1], (bool));
+```
+
+**Key Features:**
+- **Atomic Execution**: All messages succeed or all fail (no partial execution)
+- **Sequential Order**: Messages execute in the order provided
+- **Auto-Prev Support**: Use `collectionId: "0"` in JSON to reference the collection created in a previous message
+- **Result Decoding**: Results are returned as `bytes[]` - decode based on message type:
+  - Boolean results: `abi.decode(results[i], (bool))`
+  - Uint256 results: `abi.decode(results[i], (uint256))`
+
+**Error Handling:**
+If any message fails, the entire transaction is rolled back and an error is returned with context about which message failed (index and type).
+
+**Gas Considerations:**
+- Base gas: 10,000
+- Per message overhead: 1,000 gas units per message
+- Total gas = base + (per message × count) + sum of individual message gas costs
+
+---
+
+### `deleteIncomingApproval` / `deleteOutgoingApproval`
+
+Delete an approval by ID.
+
+**Signature:**
+```solidity
+function deleteIncomingApproval(string calldata msgJson) external returns (bool success)
+function deleteOutgoingApproval(string calldata msgJson) external returns (bool success)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123",
+  "approvalId": "approval-123"
+}
+```
+
+**Helper Functions:**
+```solidity
+string memory json = TokenizationJSONHelpers.deleteIncomingApprovalJSON(
+    collectionId,
+    approvalId
+);
+
+string memory json = TokenizationJSONHelpers.deleteOutgoingApprovalJSON(
+    collectionId,
+    approvalId
+);
+```
+
+---
+
+### `deleteCollection`
+
+Delete a collection (only creator can delete).
+
+**Signature:**
+```solidity
+function deleteCollection(string calldata msgJson) external returns (bool success)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123"
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.deleteCollectionJSON(collectionId);
+```
+
+---
 
 ## Query Methods
 
-### Collections
+### `getCollection`
 
-#### `getCollection`
-Queries a collection by ID. Returns `TokenCollection` struct.
+Get collection details by ID.
 
+**Signature:**
 ```solidity
-function getCollection(
-    uint256 collectionId
-) external view returns (TokenizationTypes.TokenCollection memory);
+function getCollection(string calldata msgJson) external view returns (bytes memory collection)
 ```
 
-### Balances
-
-#### `getBalance`
-Queries a user's complete balance store. Returns `UserBalanceStore` struct.
-
-#### `getBalanceAmount`
-Queries the total balance amount for specific token IDs and ownership times. Returns `uint256`.
-
-```solidity
-function getBalanceAmount(
-    uint256 collectionId,
-    address userAddress,
-    TokenizationTypes.UintRange[] calldata tokenIds,
-    TokenizationTypes.UintRange[] calldata ownershipTimes
-) external view returns (uint256);
+**JSON Format:**
+```json
+{
+  "collectionId": "123"
+}
 ```
 
-#### `getTotalSupply`
-Queries the total supply for specific token IDs and ownership times. Returns `uint256`.
-
-### Address Lists
-
-#### `getAddressList`
-Queries an address list by ID. Returns `AddressList` struct.
-
-### Dynamic Stores
-
-#### `getDynamicStore`, `getDynamicStoreValue`
-Query dynamic stores and their values.
-
-### Approvals and Trackers
-
-#### `getApprovalTracker`, `getChallengeTracker`, `getETHSignatureTracker`
-Query approval tracking data.
-
-### Voting
-
-#### `getVote`, `getVotes`
-Query voting data.
-
-### Other
-
-#### `getWrappableBalances`
-Queries wrappable balances for a denom and address.
-
-#### `isAddressReservedProtocol`, `getAllReservedProtocolAddresses`
-Protocol address utilities.
-
-#### `params`
-Queries module parameters.
-
-## Helper Library
-
-Use `TokenizationHelpers.sol` for constructing and validating types:
-
+**Helper Function:**
 ```solidity
-// Create ranges
-TokenizationTypes.UintRange memory range = TokenizationHelpers.createSingleTokenIdRange(1);
-TokenizationTypes.UintRange memory fullTime = TokenizationHelpers.createFullOwnershipTimeRange();
-
-// Create empty structures
-TokenizationTypes.CollectionPermissions memory perms = 
-    TokenizationHelpers.createEmptyCollectionPermissions();
+string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
 ```
 
-## Security Note
+**Example:**
+```solidity
+string memory queryJson = TokenizationJSONHelpers.getCollectionJSON(collectionId);
+bytes memory collection = TOKENIZATION.getCollection(queryJson);
+// Decode off-chain using TypeScript SDK
+```
 
-The `creator` field in all transaction methods is **automatically** set from `msg.sender` and cannot be specified by calling contracts. This prevents impersonation attacks.
+---
 
-## Implementation Details
+### `getBalanceAmount`
 
-For detailed gas costs, error codes, and implementation specifics, see:
-- [Gas Costs](gas.md)
-- [Error Handling](errors.md)
-- [Security](security.md)
-- [Precompile Implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile)
+Get balance amount for specific token/ownership ranges. Returns `uint256` directly.
+
+**Signature:**
+```solidity
+function getBalanceAmount(string calldata msgJson) external view returns (uint256 amount)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123",
+  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+  "tokenIds": [{"start": "1", "end": "100"}],
+  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.getBalanceAmountJSON(
+    collectionId,
+    userAddress,
+    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
+    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
+);
+```
+
+**Example:**
+```solidity
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+
+string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
+    collectionId,
+    user,
+    tokenIdsJson,
+    ownershipJson
+);
+
+uint256 balance = TOKENIZATION.getBalanceAmount(balanceJson);
+```
+
+---
+
+### `getTotalSupply`
+
+Get total supply for specific token/ownership ranges. Returns `uint256` directly.
+
+**Signature:**
+```solidity
+function getTotalSupply(string calldata msgJson) external view returns (uint256 amount)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123",
+  "tokenIds": [{"start": "1", "end": "100"}],
+  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.getTotalSupplyJSON(
+    collectionId,
+    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
+    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
+);
+```
+
+---
+
+### `getDynamicStoreValue`
+
+Get a value from a dynamic store. Returns protobuf-encoded `bytes`.
+
+**Signature:**
+```solidity
+function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory value)
+```
+
+**JSON Format:**
+```json
+{
+  "storeId": "123",
+  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.getDynamicStoreValueJSON(
+    storeId,
+    userAddress
+);
+```
+
+**Example:**
+```solidity
+string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
+    kycRegistryId,
+    user
+);
+
+bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+if (result.length == 0) return false;
+return abi.decode(result, (bool));  // For boolean stores
+```
+
+---
+
+### `getAddressList`
+
+Get an address list by ID.
+
+**Signature:**
+```solidity
+function getAddressList(string calldata msgJson) external view returns (bytes memory list)
+```
+
+**JSON Format:**
+```json
+{
+  "listId": "my-list-id"
+}
+```
+
+**Helper Function:**
+```solidity
+string memory json = TokenizationJSONHelpers.getAddressListJSON(listId);
+```
+
+---
+
+## Helper Library Reference
+
+### Range Helpers
+
+#### `uintRangeToJson(uint256 start, uint256 end) → string`
+
+Convert a single range to JSON array format.
+
+```solidity
+string memory json = TokenizationJSONHelpers.uintRangeToJson(1, 100);
+// Returns: [{"start":"1","end":"100"}]
+```
+
+#### `uintRangeArrayToJson(uint256[] memory starts, uint256[] memory ends) → string`
+
+Convert multiple ranges to JSON array format.
+
+```solidity
+uint256[] memory starts = new uint256[](2);
+uint256[] memory ends = new uint256[](2);
+starts[0] = 1; ends[0] = 100;
+starts[1] = 200; ends[1] = 300;
+
+string memory json = TokenizationJSONHelpers.uintRangeArrayToJson(starts, ends);
+// Returns: [{"start":"1","end":"100"},{"start":"200","end":"300"}]
+```
+
+### Collection Helpers
+
+#### `collectionMetadataToJson(string memory uri, string memory customData) → string`
+
+Build collection metadata JSON.
+
+```solidity
+string memory json = TokenizationJSONHelpers.collectionMetadataToJson(
+    "ipfs://metadata",
+    "{\"name\":\"My Token\"}"
+);
+```
+
+#### `simpleUserBalanceStoreToJson(bool outgoing, bool incoming, bool allIncoming) → string`
+
+Build simple default balances JSON with auto-approve flags.
+
+```solidity
+string memory json = TokenizationJSONHelpers.simpleUserBalanceStoreToJson(
+    true,   // autoApproveSelfInitiatedOutgoingTransfers
+    true,   // autoApproveSelfInitiatedIncomingTransfers
+    false   // autoApproveAllIncomingTransfers
+);
+```
+
+#### `stringArrayToJson(string[] memory strings) → string`
+
+Convert string array to JSON array.
+
+```solidity
+string[] memory standards = new string[](2);
+standards[0] = "ERC-3643";
+standards[1] = "Security Token";
+string memory json = TokenizationJSONHelpers.stringArrayToJson(standards);
+// Returns: ["ERC-3643","Security Token"]
+```
+
+### Utility Helpers
+
+#### `uintToString(uint256 value) → string`
+
+Convert uint256 to string.
+
+```solidity
+string memory str = TokenizationJSONHelpers.uintToString(123);
+// Returns: "123"
+```
+
+## JSON Format Reference
+
+All JSON must match the protobuf JSON format:
+
+- **Numbers**: Always strings (e.g., `"123"` not `123`)
+- **Booleans**: `true` or `false` (not strings)
+- **Arrays**: Standard JSON array format
+- **Objects**: Standard JSON object format
+- **Addresses**: Hex format with `0x` prefix (e.g., `"0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"`)
+
+## Error Handling
+
+Invalid JSON or missing required fields will cause the transaction to revert. See [Error Handling](errors.md) for complete error codes and handling strategies.
+
+## Security Notes
+
+1. The `creator` field is **automatically** set from `msg.sender` and cannot be specified
+2. All addresses are validated before processing
+3. JSON is validated against protobuf schema
+4. Invalid operations revert with clear error messages
+
+## See Also
+
+- [Complete README](README.md) - Overview and examples
+- [Error Handling](errors.md) - Error codes and handling
+- [Gas Costs](gas.md) - Gas calculation and optimization
+- [Security](security.md) - Security best practices
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/README.md
 
 # Tokenization Precompile
 
-> ⚠️ **Production Status**: EVM integration is not deployed on mainnet. Available on `evm-poc` branch.
-
 **Address:** `0x0000000000000000000000000000000000001001`
 
-Provides full access to the BitBadges tokenization module from Solidity contracts.
+The Tokenization Precompile provides full access to the BitBadges tokenization module from Solidity contracts. All methods use a **JSON-based interface** for maximum flexibility and compatibility with the underlying Cosmos SDK protobuf messages.
 
 ## Quick Start
 
 ```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
 import "./interfaces/ITokenizationPrecompile.sol";
+import "./libraries/TokenizationJSONHelpers.sol";
 
-ITokenizationPrecompile constant precompile = 
-    ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-
-bool success = precompile.transferTokens(
-    collectionId, recipients, amount, tokenIds, ownershipTimes
-);
+contract MyTokenContract {
+    ITokenizationPrecompile constant TOKENIZATION = 
+        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+    
+    // Transfer tokens using JSON helper
+    function transfer(
+        uint256 collectionId,
+        address to,
+        uint256 amount,
+        uint256 tokenId
+    ) external returns (bool) {
+        address[] memory recipients = new address[](1);
+        recipients[0] = to;
+        
+        // Build JSON using helpers
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        
+        string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+            collectionId,
+            recipients,
+            amount,
+            tokenIdsJson,
+            ownershipTimesJson
+        );
+        
+        return TOKENIZATION.transferTokens(transferJson);
+    }
+    
+    // Query balance using JSON helper
+    function balanceOf(
+        uint256 collectionId,
+        address user
+    ) external view returns (uint256) {
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        
+        string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
+            collectionId,
+            user,
+            tokenIdsJson,
+            ownershipTimesJson
+        );
+        
+        return TOKENIZATION.getBalanceAmount(balanceJson);
+    }
+}
 ```
 
-## Capabilities
+## Why JSON?
 
-- **Transfers**: Token transfers with approval systems
-- **Collections**: Create and manage collections
-- **Queries**: Balance and collection queries
-- **Approvals**: Incoming/outgoing approval management
-- **Dynamic Stores**: Flexible key-value storage
-- **Governance**: Voting and challenge systems
+The precompile uses JSON strings instead of Solidity structs because:
 
-## Documentation
+1. **Protobuf Compatibility**: Direct mapping to Cosmos SDK protobuf messages
+2. **Flexibility**: Easy to extend without breaking changes
+3. **Type Safety**: JSON helpers provide compile-time safety
+4. **Simplicity**: Single parameter per method, easy to understand
 
-- **[API Reference](API.md)** - Complete API documentation
-- **[Error Handling](errors.md)** - Error codes and handling
-- **[Gas Costs](gas.md)** - Gas calculation and optimization
-- **[Security](security.md)** - Security best practices
+## Core Concepts
+
+### 1. All Methods Accept JSON Strings
+
+Every precompile method accepts a single `string calldata msgJson` parameter that matches the protobuf JSON format:
+
+```solidity
+// ✅ Correct - JSON string
+string memory json = TokenizationJSONHelpers.transferTokensJSON(...);
+bool success = TOKENIZATION.transferTokens(json);
+
+// ❌ Wrong - struct parameters (old interface)
+TOKENIZATION.transferTokens(collectionId, recipients, amount, tokenIds, ownershipTimes);
+```
+
+### 2. Use Helper Libraries
+
+The `TokenizationJSONHelpers` library provides type-safe functions to construct JSON strings:
+
+```solidity
+import "./libraries/TokenizationJSONHelpers.sol";
+
+// Simple operations
+string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
+bytes memory collection = TOKENIZATION.getCollection(json);
+
+// Complex operations with ranges
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 100);
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(block.timestamp, expiration);
+```
+
+### 3. UintRange Arrays
+
+Token IDs and ownership times use `UintRange` arrays. Convert them to JSON using helpers:
+
+```solidity
+// Single range
+string memory singleRange = TokenizationJSONHelpers.uintRangeToJson(start, end);
+
+// Multiple ranges
+uint256[] memory starts = new uint256[](2);
+uint256[] memory ends = new uint256[](2);
+starts[0] = 1; ends[0] = 100;
+starts[1] = 200; ends[1] = 300;
+string memory multiRange = TokenizationJSONHelpers.uintRangeArrayToJson(starts, ends);
+```
+
+## Common Patterns
+
+### Pattern 1: Simple Token Transfer
+
+```solidity
+function transferToken(
+    uint256 collectionId,
+    address to,
+    uint256 amount,
+    uint256 tokenId
+) external returns (bool) {
+    address[] memory recipients = new address[](1);
+    recipients[0] = to;
+    
+    // Full ownership (no expiration)
+    string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    
+    string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+        collectionId,
+        recipients,
+        amount,
+        tokenIdsJson,
+        ownershipJson
+    );
+    
+    return TOKENIZATION.transferTokens(transferJson);
+}
+```
+
+### Pattern 2: Time-Bound Transfer
+
+```solidity
+function transferWithExpiration(
+    uint256 collectionId,
+    address to,
+    uint256 amount,
+    uint256 tokenId,
+    uint256 expirationTime
+) external returns (bool) {
+    address[] memory recipients = new address[](1);
+    recipients[0] = to;
+    
+    // Time-bound ownership
+    string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(
+        block.timestamp,
+        expirationTime
+    );
+    
+    string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+        collectionId,
+        recipients,
+        amount,
+        tokenIdsJson,
+        ownershipJson
+    );
+    
+    return TOKENIZATION.transferTokens(transferJson);
+}
+```
+
+### Pattern 3: Create Dynamic Store (KYC Registry)
+
+```solidity
+uint256 public kycRegistryId;
+
+function initializeKYCRegistry() external {
+    string memory createJson = TokenizationJSONHelpers.createDynamicStoreJSON(
+        false,  // defaultValue: not KYC'd by default
+        "ipfs://kyc-registry-metadata",
+        "{\"type\":\"kyc\"}"
+    );
+    
+    kycRegistryId = TOKENIZATION.createDynamicStore(createJson);
+}
+
+function setKYCStatus(address user, bool isKYCd) external {
+    string memory setValueJson = TokenizationJSONHelpers.setDynamicStoreValueJSON(
+        kycRegistryId,
+        user,
+        isKYCd
+    );
+    
+    TOKENIZATION.setDynamicStoreValue(setValueJson);
+}
+
+function isKYCVerified(address user) external view returns (bool) {
+    string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
+        kycRegistryId,
+        user
+    );
+    
+    bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+    if (result.length == 0) return false;
+    return abi.decode(result, (bool));
+}
+```
+
+### Pattern 4: Create Collection
+
+```solidity
+function createMyCollection(
+    string memory name,
+    string memory symbol
+) external returns (uint256) {
+    // Build JSON components
+    string memory validTokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1000);
+    
+    string memory defaultBalancesJson = TokenizationJSONHelpers.simpleUserBalanceStoreToJson(
+        true,   // autoApproveSelfInitiatedOutgoingTransfers
+        true,   // autoApproveSelfInitiatedIncomingTransfers
+        false   // autoApproveAllIncomingTransfers
+    );
+    
+    string memory metadataJson = TokenizationJSONHelpers.collectionMetadataToJson(
+        "ipfs://collection-metadata",
+        string(abi.encodePacked("{\"name\":\"", name, "\",\"symbol\":\"", symbol, "\"}"))
+    );
+    
+    string[] memory standards = new string[](1);
+    standards[0] = "ERC-3643";
+    string memory standardsJson = TokenizationJSONHelpers.stringArrayToJson(standards);
+    
+    // Build complete JSON
+    string memory createJson = TokenizationJSONHelpers.createCollectionJSON(
+        validTokenIdsJson,
+        _addressToString(address(this)),  // manager
+        metadataJson,
+        defaultBalancesJson,
+        "{}",  // collectionPermissions (empty)
+        standardsJson,
+        "",    // customData
+        false  // isArchived
+    );
+    
+    return TOKENIZATION.createCollection(createJson);
+}
+```
+
+### Pattern 5: Multi-Message Execution (Create Collection + Transfer Tokens)
+
+Execute multiple operations atomically in a single transaction:
+
+```solidity
+function createAndTransfer(
+    string memory name,
+    address recipient,
+    uint256 amount
+) external returns (uint256 collectionId) {
+    // Prepare messages array
+    ITokenizationPrecompile.MessageInput[] memory messages = new ITokenizationPrecompile.MessageInput[](2);
+    
+    // Message 1: Create Collection
+    string memory validTokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1000);
+    string memory defaultBalancesJson = TokenizationJSONHelpers.simpleUserBalanceStoreToJson(true, true, false);
+    string memory metadataJson = TokenizationJSONHelpers.collectionMetadataToJson(
+        "ipfs://metadata",
+        string(abi.encodePacked("{\"name\":\"", name, "\"}"))
+    );
+    string[] memory standards = new string[](0);
+    string memory standardsJson = TokenizationJSONHelpers.stringArrayToJson(standards);
+    
+    string memory createJson = TokenizationJSONHelpers.createCollectionJSON(
+        validTokenIdsJson,
+        _addressToString(address(this)),
+        metadataJson,
+        defaultBalancesJson,
+        "{}",
+        standardsJson,
+        "",
+        false
+    );
+    
+    messages[0] = ITokenizationPrecompile.MessageInput({
+        messageType: "createCollection",
+        msgJson: createJson
+    });
+    
+    // Message 2: Transfer Tokens (using collectionId = 0 for auto-prev)
+    address[] memory recipients = new address[](1);
+    recipients[0] = recipient;
+    string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    
+    string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
+        0,  // collectionId = 0 means "use previous collection" (auto-prev)
+        recipients,
+        amount,
+        tokenIdsJson,
+        ownershipJson
+    );
+    
+    messages[1] = ITokenizationPrecompile.MessageInput({
+        messageType: "transferTokens",
+        msgJson: transferJson
+    });
+    
+    // Execute both messages atomically
+    (bool success, bytes[] memory results) = TOKENIZATION.executeMultiple(messages);
+    require(success, "Multi-message execution failed");
+    
+    // Decode collectionId from first result
+    collectionId = abi.decode(results[0], (uint256));
+    
+    // Verify transfer succeeded (second result is bool)
+    bool transferSuccess = abi.decode(results[1], (bool));
+    require(transferSuccess, "Transfer failed");
+    
+    return collectionId;
+}
+```
+
+## Available Methods
+
+### Transaction Methods
+
+All transaction methods return `bool` (success) or `uint256` (for creation methods):
+
+- `transferTokens(string calldata msgJson) → bool`
+- `createCollection(string calldata msgJson) → uint256`
+- `updateCollection(string calldata msgJson) → uint256`
+- `deleteCollection(string calldata msgJson) → bool`
+- `createDynamicStore(string calldata msgJson) → uint256`
+- `setDynamicStoreValue(string calldata msgJson) → bool`
+- `setIncomingApproval(string calldata msgJson) → bool`
+- `setOutgoingApproval(string calldata msgJson) → bool`
+- `deleteIncomingApproval(string calldata msgJson) → bool`
+- `deleteOutgoingApproval(string calldata msgJson) → bool`
+- `createAddressLists(string calldata msgJson) → bool`
+- `castVote(string calldata msgJson) → bool`
+- `executeMultiple(MessageInput[] calldata messages) → (bool success, bytes[] memory results)` - Execute multiple messages atomically
+
+### Multi-Message Execution
+
+The `executeMultiple` method allows executing multiple tokenization messages in a single atomic transaction. This is particularly useful for workflows like "Create Collection + Transfer Tokens":
+
+```solidity
+ITokenizationPrecompile.MessageInput[] memory messages = new ITokenizationPrecompile.MessageInput[](2);
+
+messages[0] = ITokenizationPrecompile.MessageInput({
+    messageType: "createCollection",
+    msgJson: createCollectionJson
+});
+
+messages[1] = ITokenizationPrecompile.MessageInput({
+    messageType: "transferTokens",
+    msgJson: transferTokensJson
+});
+
+(bool success, bytes[] memory results) = TOKENIZATION.executeMultiple(messages);
+require(success, "Execution failed");
+
+// Decode results
+uint256 collectionId = abi.decode(results[0], (uint256));
+bool transferSuccess = abi.decode(results[1], (bool));
+```
+
+**Key Features:**
+- **Atomic Execution**: All messages succeed or all fail (no partial execution)
+- **Sequential Order**: Messages execute in the order provided
+- **Dynamic Routing**: Message type string determines which handler to use
+- **Result Decoding**: Results are returned as `bytes[]` - decode based on message type
+
+See [API Reference](API.md) for complete `executeMultiple` documentation.
+
+### Query Methods
+
+Query methods return `bytes` (protobuf-encoded) or `uint256` (for amount queries):
+
+- `getCollection(string calldata msgJson) → bytes`
+- `getBalance(string calldata msgJson) → bytes`
+- `getBalanceAmount(string calldata msgJson) → uint256`
+- `getTotalSupply(string calldata msgJson) → uint256`
+- `getDynamicStore(string calldata msgJson) → bytes`
+- `getDynamicStoreValue(string calldata msgJson) → bytes`
+- `getAddressList(string calldata msgJson) → bytes`
+
+See [API Reference](API.md) for complete method documentation.
+
+## Helper Library Functions
+
+The `TokenizationJSONHelpers` library provides functions for all common operations:
+
+### Transfer Helpers
+- `transferTokensJSON(...)` - Build transfer JSON
+- `uintRangeToJson(start, end)` - Single range
+- `uintRangeArrayToJson(starts[], ends[])` - Multiple ranges
+
+### Collection Helpers
+- `createCollectionJSON(...)` - Build collection creation JSON
+- `collectionMetadataToJson(uri, customData)` - Build metadata JSON
+- `simpleUserBalanceStoreToJson(...)` - Build default balances JSON
+- `stringArrayToJson(strings[])` - Convert string array to JSON
+
+### Dynamic Store Helpers
+- `createDynamicStoreJSON(defaultValue, uri, customData)` - Build store creation JSON
+- `setDynamicStoreValueJSON(storeId, address, value)` - Build set value JSON
+- `getDynamicStoreValueJSON(storeId, address)` - Build get value JSON
+
+### Query Helpers
+- `getCollectionJSON(collectionId)` - Build collection query JSON
+- `getBalanceJSON(collectionId, userAddress)` - Build balance query JSON
+- `getBalanceAmountJSON(...)` - Build balance amount query JSON
+- `getTotalSupplyJSON(...)` - Build supply query JSON
+
+### Utility Helpers
+- `uintToString(value)` - Convert uint256 to string
+- `deleteCollectionJSON(collectionId)` - Build delete JSON
+- `deleteIncomingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
+- `deleteOutgoingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
+
+### Multi-Message Helpers
+When using `executeMultiple`, build individual message JSONs using the helpers above, then construct the `MessageInput` array in Solidity.
+
+## Return Value Handling
+
+### Direct Returns (uint256)
+
+Some methods return `uint256` directly:
+
+```solidity
+uint256 balance = TOKENIZATION.getBalanceAmount(balanceJson);
+uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
+uint256 collectionId = TOKENIZATION.createCollection(createJson);
+```
+
+### Protobuf Bytes
+
+Most query methods return protobuf-encoded `bytes`. For simple boolean stores:
+
+```solidity
+bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+if (result.length == 0) return false;
+return abi.decode(result, (bool));
+```
+
+For complex types, decode off-chain using the TypeScript SDK or emit events for indexing.
+
+## Security Considerations
+
+1. **Automatic Creator Field**: The `creator` field is automatically set from `msg.sender` and cannot be spoofed
+2. **JSON Validation**: Invalid JSON will revert with clear error messages
+3. **Type Safety**: Use helper functions to ensure correct JSON structure
+4. **Gas Optimization**: JSON construction is efficient, but cache complex JSON strings when possible
+
+## Best Practices
+
+### 1. Always Use Helper Functions
+
+```solidity
+// ✅ Good - Type-safe and readable
+string memory json = TokenizationJSONHelpers.transferTokensJSON(...);
+
+// ❌ Bad - Error-prone manual construction
+string memory json = string(abi.encodePacked('{"collectionId":"', ...));
+```
+
+### 2. Cache Complex JSON
+
+```solidity
+// ✅ Good - Cache for reuse
+string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1000);
+// Use tokenIdsJson multiple times
+
+// ❌ Bad - Reconstruct every time
+// Rebuilding JSON on every call wastes gas
+```
+
+### 3. Validate Inputs Before Building JSON
+
+```solidity
+function transfer(uint256 collectionId, address to, uint256 amount) external {
+    require(collectionId > 0, "Invalid collection");
+    require(to != address(0), "Invalid recipient");
+    require(amount > 0, "Invalid amount");
+    
+    // Now build JSON
+    string memory json = TokenizationJSONHelpers.transferTokensJSON(...);
+    TOKENIZATION.transferTokens(json);
+}
+```
+
+### 4. Handle Errors Gracefully
+
+```solidity
+bool success = TOKENIZATION.transferTokens(transferJson);
+if (!success) {
+    // Handle failure - check events or revert with custom error
+    revert TransferFailed();
+}
+```
+
+### 5. Multi-Message Execution Best Practices
+
+When using `executeMultiple`, follow these guidelines:
+
+```solidity
+// ✅ Good - Validate inputs before building messages
+function createAndTransfer(
+    string memory name,
+    address recipient,
+    uint256 amount
+) external returns (uint256 collectionId) {
+    require(bytes(name).length > 0, "Name required");
+    require(recipient != address(0), "Invalid recipient");
+    require(amount > 0, "Amount must be positive");
+    
+    ITokenizationPrecompile.MessageInput[] memory messages = new ITokenizationPrecompile.MessageInput[](2);
+    
+    // Build messages
+    messages[0] = ITokenizationPrecompile.MessageInput({
+        messageType: "createCollection",
+        msgJson: createCollectionJson
+    });
+    
+    messages[1] = ITokenizationPrecompile.MessageInput({
+        messageType: "transferTokens",
+        msgJson: transferTokensJson
+    });
+    
+    // Execute atomically
+    (bool success, bytes[] memory results) = TOKENIZATION.executeMultiple(messages);
+    require(success, "Multi-message execution failed");
+    
+    // Decode and validate results
+    require(results.length == 2, "Unexpected result count");
+    collectionId = abi.decode(results[0], (uint256));
+    require(collectionId > 0, "Invalid collection ID");
+    
+    bool transferSuccess = abi.decode(results[1], (bool));
+    require(transferSuccess, "Transfer failed");
+    
+    return collectionId;
+}
+```
+
+**Key Points:**
+- Validate all inputs before building messages
+- Use auto-prev (`collectionId: "0"`) to reference previous message results
+- Always check result count matches message count
+- Decode and validate each result
+- Handle errors with clear messages
+
+## Examples
+
+See the example contracts for complete implementations:
+
+- **[CarbonCreditToken](../contracts/examples/CarbonCreditToken.sol)** - Carbon credit tracking with vintages
+- **[TwoFactorSecurityToken](../contracts/examples/TwoFactorSecurityToken.sol)** - 2FA-protected security tokens
+- **[RealEstateSecurityToken](../contracts/examples/RealEstateSecurityToken.sol)** - ERC-3643 compliant real estate tokens
+- **[PrivateEquityToken](../contracts/examples/PrivateEquityToken.sol)** - Private equity fund tokens
+
+## Next Steps
+
+- Read the [Complete API Reference](API.md) for all methods
+- Learn about [Error Handling](errors.md)
+- Understand [Gas Costs](gas.md)
+- Review [Security Best Practices](security.md)
+- Explore [Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples)
 
 ## Resources
 
 - [Setup & Configuration](../setup-and-configuration.md)
 - [Developer Guide](../developer-guide.md)
-- [Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
-- [Counter dApp](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
+- [Architecture](../architecture.md)
+- [Tokenization Module Documentation](../../../x-badges/README.md)
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/errors.md
@@ -4975,6 +6785,7 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 
 
+<<<<<<< HEAD
 ## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
 
 # Create a WASM Contract
@@ -5175,6 +6986,8 @@ const msgExecuteContract: MsgExecuteContractCompat = {
 ```
 
 
+=======
+>>>>>>> c6ae5abdb9e21ec430e0b2d25acbfdf5bcf6cb7e
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md
 
 # Create, Generate, and Sign Txs
@@ -5186,6 +6999,15 @@ There are multiple ways you can create, generate, and sign transactions.&#x20;
 -   Via our SDK
 
 We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
+
+## Signing Methods
+
+BitBadges Chain supports two signing methods:
+
+- **[Signing - Cosmos](./signing-cosmos.md)**: Sign transactions using Cosmos wallets (Keplr, Leap, etc.)
+- **[Signing - Ethereum](./signing-ethereum.md)**: Sign transactions using Ethereum wallets (MetaMask, Privy, etc.) via EVM precompiles
+
+The SDK automatically handles message conversion to EVM precompile calls when an EVM address is provided in the transaction context.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
@@ -5359,10 +7181,19 @@ export interface TransactionPayload {
         authInfo: AuthInfo;
         signBytes: string;
     };
-    txnString: string;
-    txnJson: Record<string, any>;
+    // Optional: EVM transaction details (present when evmAddress is provided in TxContext)
+    evmTx?: {
+        to: string;        // Precompile address (0x1001, 0x1002, or 0x1003)
+        data: string;      // Encoded function call data
+        value: string;     // Always "0" for precompiles
+        functionName: string; // Function name for debugging
+    };
 }
 ```
+
+**EVM Support:**
+
+When you provide an `evmAddress` in the `TxContext`, the SDK automatically converts supported messages to EVM precompile calls. The `evmTx` field will be populated with the EVM transaction details. See [Signing - Ethereum](./signing-ethereum.md) for complete details.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md
@@ -5427,6 +7258,399 @@ const signTxn = async (
 ```
 
 
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
+
+# Signing - Ethereum
+
+BitBadges Chain supports Ethereum-compatible transactions through EVM precompiles. The SDK automatically converts Cosmos SDK messages to EVM precompile function calls when an EVM address is provided in the transaction context.
+
+## Overview
+
+When using Ethereum wallets (MetaMask, Privy, etc.), transactions are signed as EVM transactions and sent to precompile contracts. The SDK handles the conversion from Cosmos SDK messages to EVM precompile calls automatically.
+
+## Transaction Payload with EVM Support
+
+The `createTransactionPayload` function now supports optional EVM precompile conversion. When you provide an `evmAddress` in the `TxContext`, the SDK will:
+
+1. Create the standard Cosmos transaction payload (for compatibility)
+2. Convert messages to EVM precompile calls (if supported)
+3. Return both in the `TransactionPayload` with an optional `evmTx` field
+
+### Basic Usage
+
+```typescript
+import { createTransactionPayload, TxContext, MsgTransferTokens } from 'bitbadgesjs-sdk';
+
+// Create your messages
+const msg = new MsgTransferTokens({
+  creator: 'bb1...', // BitBadges address
+  collectionId: '1',
+  transfers: [/* ... */]
+});
+
+// Create transaction context with evmAddress
+const txContext: TxContext = {
+  testnet: false,
+  sender: {
+    address: 'bb1...', // BitBadges address (bb-prefixed)
+    sequence: 0,
+    accountNumber: 1,
+    publicKey: '', // Not needed for EVM transactions
+  },
+  fee: {
+    amount: '0',
+    denom: 'ubadge',
+    gas: '200000',
+  },
+  memo: '',
+  evmAddress: '0x1234...', // ✅ Add EVM address to enable precompile conversion
+};
+
+// Create payload - SDK will automatically convert to EVM format
+const payload = createTransactionPayload(txContext, msg);
+
+// Check if EVM transaction is available
+if (payload.evmTx) {
+  // Use EVM transaction details
+  const { to, data, value, functionName } = payload.evmTx;
+  // to: precompile address (0x1001, 0x1002, or 0x1003)
+  // data: encoded function call data
+  // value: always "0" for precompiles
+  // functionName: function name for debugging
+}
+```
+
+## Signing EVM Transactions
+
+### Using Privy (Recommended)
+
+```typescript
+import { useSendTransaction } from '@privy-io/react-auth';
+
+const { sendTransaction } = useSendTransaction();
+
+const signTxn = async (
+  context: TxContext,
+  payload: TransactionPayload,
+  messages: unknown[],
+  simulate: boolean
+) => {
+  if (messages.length === 0) {
+    throw new Error('No messages provided');
+  }
+
+  // Check if payload has evmTx field (SDK converted messages to EVM format)
+  if (!payload.evmTx) {
+    throw new Error('Messages are not supported for EVM transactions');
+  }
+
+  // Use evmTx from payload (SDK has already converted the messages)
+  const { data, to: precompileAddress } = payload.evmTx;
+
+  if (simulate) {
+    // For simulation, return transaction body with EVM details
+    const txBody = createTxBroadcastBody(context, messages, '');
+    return {
+      ...txBody,
+      mode: 'evm',
+      evmTx: {
+        to: precompileAddress,
+        data: data,
+        value: '0',
+        gasLimit: context.fee?.gas || '200000'
+      }
+    };
+  }
+
+  // Send transaction using Privy
+  const result = await sendTransaction(
+    {
+      to: precompileAddress,
+      data: data,
+      value: 0n
+    },
+    {
+      address: evmAddress // Specify which wallet to use
+    }
+  );
+
+  // Return transaction hash
+  return {
+    mode: 'evm',
+    txHash: result.hash,
+    evmTx: {
+      to: precompileAddress,
+      data: data,
+      value: '0'
+    },
+    messages: messages,
+    context: context
+  };
+};
+```
+
+### Using ethers.js
+
+```typescript
+import { ethers } from 'ethers';
+
+const signTxn = async (
+  context: TxContext,
+  payload: TransactionPayload,
+  messages: unknown[],
+  simulate: boolean
+) => {
+  if (!payload.evmTx) {
+    throw new Error('Messages are not supported for EVM transactions');
+  }
+
+  const { data, to: precompileAddress } = payload.evmTx;
+
+  // Get provider and signer
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const signer = await provider.getSigner();
+
+  if (simulate) {
+    // Estimate gas for simulation
+    const gasEstimate = await provider.estimateGas({
+      to: precompileAddress,
+      data: data,
+      value: 0n
+    });
+    
+    return {
+      mode: 'evm',
+      evmTx: {
+        to: precompileAddress,
+        data: data,
+        value: '0',
+        gasLimit: gasEstimate.toString()
+      }
+    };
+  }
+
+  // Send transaction
+  const tx = await signer.sendTransaction({
+    to: precompileAddress,
+    data: data,
+    value: 0n
+  });
+
+  // Wait for transaction
+  const receipt = await tx.wait();
+
+  return {
+    mode: 'evm',
+    txHash: receipt.hash,
+    evmTx: {
+      to: precompileAddress,
+      data: data,
+      value: '0'
+    }
+  };
+};
+```
+
+## Precompile Addresses
+
+The SDK automatically selects the correct precompile address based on message type:
+
+| Precompile | Address | Message Types |
+|------------|---------|---------------|
+| Tokenization | `0x0000000000000000000000000000000000001001` | All tokenization module messages |
+| Gamm | `0x0000000000000000000000000000000000001002` | Pool operations (JoinPool, ExitPool, SwapExactAmountIn, etc.) |
+| SendManager | `0x0000000000000000000000000000000000001003` | MsgSend (native coin transfers) |
+
+## Supported Message Types
+
+### Tokenization Messages
+
+All tokenization module messages are supported:
+
+- `MsgTransferTokens`
+- `MsgCreateCollection`
+- `MsgUniversalUpdateCollection`
+- `MsgSetIncomingApproval`
+- `MsgSetOutgoingApproval`
+- `MsgSetCollectionApprovals`
+- `MsgSetTokenMetadata`
+- `MsgSetCollectionMetadata`
+- `MsgCreateDynamicStore`
+- `MsgUpdateDynamicStore`
+- `MsgDeleteDynamicStore`
+- `MsgSetDynamicStoreValue`
+- And all other tokenization messages
+
+### Gamm Messages
+
+- `MsgCreateBalancerPool`
+- `MsgJoinPool`
+- `MsgExitPool`
+- `MsgSwapExactAmountIn`
+- `MsgSwapExactAmountInWithIBCTransfer`
+
+### Bank Messages
+
+- `MsgSend` (via SendManager precompile)
+
+## Multiple Messages
+
+For multiple tokenization messages, the SDK uses the `executeMultiple` precompile function:
+
+```typescript
+const msg1 = new MsgTransferTokens({ /* ... */ });
+const msg2 = new MsgSetTokenMetadata({ /* ... */ });
+
+const payload = createTransactionPayload(
+  {
+    ...txContext,
+    evmAddress: '0x1234...'
+  },
+  [msg1, msg2] // Multiple messages
+);
+
+if (payload.evmTx) {
+  // SDK automatically uses executeMultiple for multiple tokenization messages
+  // payload.evmTx.functionName will be 'executeMultiple'
+  // payload.evmTx.to will be TOKENIZATION_PRECOMPILE_ADDRESS (0x1001)
+}
+```
+
+**Note:** Multiple messages must all be tokenization messages. Mixed message types (e.g., tokenization + gamm) are not supported in a single transaction.
+
+## Transaction Context for EVM
+
+When creating a transaction context for EVM transactions:
+
+```typescript
+const txContext: TxContext = {
+  testnet: false,
+  sender: {
+    address: 'bb1...', // BitBadges address (required)
+    sequence: 0, // Required
+    accountNumber: 1, // Required
+    publicKey: '', // Not needed for EVM (can be empty string)
+  },
+  fee: {
+    amount: '0', // Fee amount in ubadge
+    denom: 'ubadge',
+    gas: '200000', // Gas limit
+  },
+  memo: '',
+  evmAddress: '0x1234...', // ✅ EVM address for precompile conversion
+};
+```
+
+**Important Notes:**
+
+- `sender.address` must be a BitBadges address (bb-prefixed)
+- `evmAddress` should be the Ethereum address (0x-prefixed) of the same account
+- `publicKey` is not required for EVM transactions (can be empty string)
+- The SDK handles address conversion between formats automatically
+
+## Error Handling
+
+If a message type is not supported for EVM conversion, `payload.evmTx` will be `undefined`. You should check for this:
+
+```typescript
+const payload = createTransactionPayload(txContext, messages);
+
+if (!payload.evmTx) {
+  // Messages are not supported for EVM transactions
+  // Fall back to Cosmos signing or show error
+  throw new Error('Messages are not supported for EVM transactions');
+}
+```
+
+## Complete Example
+
+```typescript
+import {
+  createTransactionPayload,
+  createTxBroadcastBody,
+  TxContext,
+  MsgTransferTokens,
+  TransactionPayload
+} from 'bitbadgesjs-sdk';
+import { useSendTransaction } from '@privy-io/react-auth';
+
+function useEthereumSigning() {
+  const { sendTransaction } = useSendTransaction();
+
+  const signAndBroadcast = async (
+    evmAddress: string,
+    bitbadgesAddress: string,
+    messages: any[]
+  ) => {
+    // 1. Get account info
+    const account = await BitBadgesApi.getAccount({ address: bitbadgesAddress });
+    
+    // 2. Create transaction context with evmAddress
+    const txContext: TxContext = {
+      testnet: false,
+      sender: {
+        address: bitbadgesAddress,
+        sequence: account.sequence,
+        accountNumber: account.accountNumber,
+        publicKey: '', // Not needed for EVM
+      },
+      fee: {
+        amount: '0',
+        denom: 'ubadge',
+        gas: '200000',
+      },
+      memo: '',
+      evmAddress: evmAddress, // ✅ Enable EVM conversion
+    };
+
+    // 3. Create payload (SDK converts to EVM format automatically)
+    const payload = createTransactionPayload(txContext, messages);
+
+    // 4. Check if EVM conversion succeeded
+    if (!payload.evmTx) {
+      throw new Error('Messages not supported for EVM transactions');
+    }
+
+    // 5. Send transaction
+    const result = await sendTransaction(
+      {
+        to: payload.evmTx.to,
+        data: payload.evmTx.data,
+        value: 0n
+      },
+      { address: evmAddress }
+    );
+
+    return {
+      txHash: result.hash,
+      precompileAddress: payload.evmTx.to,
+      functionName: payload.evmTx.functionName
+    };
+  };
+
+  return { signAndBroadcast };
+}
+```
+
+## Differences from Cosmos Signing
+
+| Aspect | Cosmos | Ethereum |
+|--------|--------|----------|
+| Wallet | Keplr, Leap, etc. | MetaMask, Privy, etc. |
+| Address Format | `bb1...` (Bech32) | `0x...` (Hex) |
+| Public Key | Required | Not required |
+| Signature Format | Cosmos Direct/Amino | EVM (EIP-155) |
+| Message Format | Protobuf | Precompile JSON string |
+| Transaction Type | Cosmos SDK messages | EVM contract calls |
+
+## See Also
+
+- [Signing - Cosmos](./signing-cosmos.md) - For Cosmos wallet signing
+- [Transaction Context](./transaction-context.md) - For transaction context details
+- [EVM Precompiles Developer Guide](../../../evm/evm-precompiles/developer-guide.md) - For detailed precompile information
+
+
+
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md
 
 # Transaction Context
@@ -5474,8 +7698,20 @@ const txContext = {
         gas: `400000`,
     },
     memo: '',
+    // Optional: Add evmAddress to enable EVM precompile conversion
+    // When provided, createTransactionPayload will return evmTx field in payload
+    evmAddress: '0x1234...', // Ethereum address (0x-prefixed)
 };
 ```
+
+**For EVM Transactions:**
+
+When using Ethereum wallets, add the `evmAddress` field to enable automatic conversion to EVM precompile calls. The SDK will:
+- Convert Cosmos SDK messages to EVM precompile function calls
+- Return both Cosmos payload and EVM transaction details in `TransactionPayload`
+- Handle address conversion between BitBadges (bb1...) and Ethereum (0x...) formats
+
+See [Signing - Ethereum](./signing-ethereum.md) for complete EVM transaction examples.
 
 **Fee Generation**
 
@@ -5493,7 +7729,7 @@ const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 
 # Overview
 
-BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main). The blockchain is able to attain instant transaction finality using Tendermint and uses Cosmos-based 'bb' prefixed bech32 addresses and Cosmos signatures for all user interactions.
+BitBadges offers an L1 delegated proof-of-stake blockchain built with [Cosmos SDK](https://docs.cosmos.network/main). The blockchain is able to attain instant transaction finality using Tendermint and supports both Cosmos-based 'bb' prefixed bech32 addresses with Cosmos signatures, as well as Ethereum-compatible addresses (0x-prefixed) with EVM signatures through precompile contracts.
 
 The source code can be found at [https://github.com/bitbadges/bitbadgeschain](https://github.com/bitbadges/bitbadgeschain).&#x20;
 
@@ -5674,16 +7910,36 @@ In this section, we provide common snippets and examples for the SDK. Some of th
 
 Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitbadgesjs-sdk/docs) -> Address Utils
 
-> **Note:** As of v23, BitBadges only supports Cosmos-based 'bb' prefixed bech32 addresses. The `convertToBitBadgesAddress()` function is now essentially a pass-through validation function - it validates that the input is a valid bb-prefixed address and returns it unchanged. It is still exported for compatibility but is redundant since both input and output are bb-prefixed addresses. You can also use the `isAddressValid()` function to check if an address is a valid BitBadges address.
+## Converting Between Ethereum and Cosmos Addresses
+
+BitBadges supports both Ethereum addresses (0x-prefixed hex) and Cosmos addresses (bb-prefixed bech32). You can convert between these formats using the address converter functions.
 
 ```ts
-import { convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
+import {ethToCosmos, cosmosToEth} from "bitbadgesjs-address-converter"
 
-let address = convertToBitBadgesAddress(
-    'bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw'
-    // Previously: '0x....'
-);
+// Convert Ethereum address to Cosmos address
+let cosmosAddress = ethToCosmos("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
+// "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"
+
+// Convert Cosmos address to Ethereum address
+let ethAddress = cosmosToEth("bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw")
+// "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"
+```
+
+## BitBadges Address Validation
+
+You can also use the `convertToBitBadgesAddress()` function to validate BitBadges addresses, or use `isAddressValid()` to check if an address is valid.
+
+```ts
+import { convertToBitBadgesAddress, isAddressValid } from 'bitbadgesjs-sdk';
+
+let address = convertToBitBadgesAddress('bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw');
 if (!!address) {
+    // address is valid
+}
+
+// Or use isAddressValid
+if (isAddressValid('bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw')) {
     // address is valid
 }
 ```
@@ -6176,6 +8432,17 @@ npm install bitbadgesjs-sdk
 
 This library provides miscellaneous functionality to help you interact with BitBadges, such as types, API routes, managing metadata requests, logic with ID ranges and balances, etc.
 
+## Address Conversion
+
+The SDK includes address conversion utilities to convert between Ethereum addresses (0x-prefixed) and BitBadges addresses (bb-prefixed). See [Address Conversions](common-snippets/address-conversions.md) for more details.
+
+```typescript
+import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-sdk';
+
+const bitbadgesAddress = ethToCosmos(address);
+const ethAddress = cosmosToEth(bitbadgesAddress);
+```
+
 
 ## File: ./for-developers/bitbadges-sdk/sdk-types.md
 
@@ -6592,7 +8859,14 @@ Typically, we recommend making a custom webhook / plugin over this. Get creative
 You can use the BitBadges SDK to auto-complete claims for users.
 
 ```typescript
-const res = await BitBadgesApi.completeClaim(claimId, address, { ... });
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"; // Ethereum address
+const bitbadgesAddress = "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"; // BitBadges address
+
+// Both formats work
+const res = await BitBadgesApi.completeClaim(claimId, ethAddress, { ... });
+// or
+const res = await BitBadgesApi.completeClaim(claimId, bitbadgesAddress, { ... });
 console.log(res.claimAttemptId);
 
 //Sleep 2 seconds to wait for it to be processed in the queue
@@ -6617,7 +8891,9 @@ You can also simulate the claim (which is instant and not put into the queue). T
 The body is the same as the completeClaim route. See below.
 
 ```typescript
-const res = await BitBadgesApi.simulateClaim(claimId, address, { ...body });
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652";
+const res = await BitBadgesApi.simulateClaim(claimId, ethAddress, { ...body });
 ```
 
 **Custom Body**
@@ -6691,9 +8967,16 @@ Note: You may opt to simply receive a post-success webhook which would take the 
 // Pre-Req: User is authenticated
 
 // 1. By address (if you already have it)
+// Addresses can be in any supported format (Ethereum 0x-prefixed, BitBadges bb-prefixed, etc.)
 // GET https://api.bitbadges.io/api/v0/claims/success/{claimId}/{address}
 // successCount will be 1 for on-demand claims and the number of completions for standard
-const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+const ethAddress = "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"; // Ethereum address
+const bitbadgesAddress = "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"; // BitBadges address
+
+// Both formats work
+const res = await BitBadgesApi.checkClaimSuccess(claimId, ethAddress);
+// or
+const res2 = await BitBadgesApi.checkClaimSuccess(claimId, bitbadgesAddress);
 if (res.successCount >= 1) { doSomething(); }
 
 // 2. By attempt ID 
@@ -7666,7 +9949,7 @@ export default defineComponent({
       type: "string", // Claim details passed as a string in the format "claimId-passwordPluginId-password"
     },
     address: {
-      type: "string", // Address of the user
+      type: "string", // Address of the user (can be BitBadges bb-prefixed or Ethereum 0x-prefixed format)
     },
     isSimulation: {
       type: "boolean", // Boolean to determine if this is a simulated run
@@ -8090,7 +10373,7 @@ Think of this like a request storage bin. We store the requests that would've be
 // GET /api/v0/requestBin/attemptData/{claimId}/{claimAttemptId}
 const res = await BitBadgesApi.getAttemptDataFromRequestBin("claim123", "attempt123", { ... });
 console.log(res);
-// { bitbadgesAddress, email, claimAttemptId } 
+// { bitbadgesAddress, ethAddress, email, claimAttemptId } 
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
@@ -8118,7 +10401,7 @@ The request/response flow mirrors that of custom plugins, with the `pluginSecret
 The outgoing request (from BitBadges to your plugin) will be made up of the custom body inputs (passed from your frontend), the claim parameters, plus some contextual information about the claim and the claiming user.
 
 -   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
--   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address).
+-   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address). If the user is using an Ethereum address, it will be automatically converted to the BitBadges address format. You may also receive the **ethAddress** field if the user is using an Ethereum wallet (0x-prefixed address).
     -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
 -   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 -   **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
@@ -8143,7 +10426,8 @@ const payload = {
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
-    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured
+    bitbadgesAddress: context.bitbadgesAddress, //If pass address is configured (bb-prefixed)
+    ethAddress: context.ethAddress, //If user is using Ethereum wallet (0x-prefixed, optional)
     _attemptStatus: context._attemptStatus,
     lastUpdated: context.lastUpdated,
     createdAt: context.createdAt,
@@ -8200,7 +10484,7 @@ Please follow the { message } interface for returned JSON error responses.
   try {
     //Step 1: Handle the request payload from the plugin
     const body = req.body; //We assume the plugin sends the payload in the body of the request (change this for GET)
-    const { claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
+    const { claimId, pluginSecret, bitbadgesAddress, ethAddress, lastUpdated, createdAt } = body;
     const { ...otherCustomProvidedInputs } = body;
     
     //Handle anything specific to dry runs _isSimulation
@@ -8265,11 +10549,11 @@ To be used with on-demand claims, the plugin must meet specific requirements and
 
 * Stateless - No per-attempt state
 * No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
-* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address.
+* Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address (both bitbadgesAddress and optionally ethAddress if using Ethereum wallet).
 
 Typically, these are only possible with crypto-native plugins. For example,
 
-* Check >1 ETH in account from address
+* Check >1 ETH in account from address (use ethAddress if available, or convert bitbadgesAddress)
 * Check POAP ownership
 * Check token ownership
 
@@ -8385,6 +10669,8 @@ You can also select to automatically pass supported identifying details about th
 
 We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). The only one that may not be verified in some cases is the claiming address. This depends on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, check the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
 
+**Address Formats:** The plugin payload will include both **bitbadgesAddress** (bb-prefixed Cosmos address) and optionally **ethAddress** (0x-prefixed Ethereum address) if the user is using an Ethereum wallet. Both addresses represent the same account.
+
 <figure><img src="../../../../../.gitbook/assets/image (388).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../../../../.gitbook/assets/image (389).png" alt=""><figcaption></figcaption></figure>
@@ -8454,7 +10740,7 @@ Plugins / webhooks are simply HTTP requests.
 const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   //Step 1: Handle the request payload from the plugin
   const body = req.body; //For POST
-  const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, lastUpdated, createdAt } = body;
+  const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, ethAddress, lastUpdated, createdAt } = body;
   const { ...otherCustomProvidedInputs } = body;
   
   //Step 1.5: Catch simulations if applicable. Don't run success logic on a dry run
@@ -8558,6 +10844,38 @@ This section covers core BitBadges concepts that developers need to understand w
 ## Account System
 
 BitBadges uses Cosmos-based accounts with 'bb' prefixed bech32 addresses. All users interact with tokens and services using Cosmos-compatible wallets and Cosmos signatures.
+
+For more details on how BitBadges supports addresses from different blockchains (including Ethereum) and how to convert between address formats, see [Accounts](accounts.md).
+
+
+## File: ./for-developers/concepts/accounts.md
+
+# 👤 Accounts
+
+This page gives you an overview of BitBadges accounts and how addresses from different blockchains are supported.
+
+## How is BitBadges able to support addresses from different blockchains?
+
+To enable interoperability between different blockchains, each individual L1 blockchain has its native addresses mapped to an equivalent Cosmos address and an account ID number. An account ID number is assigned to the address when it interacts with the BitBadges blockchain or is sent BADGE for the first time.
+
+As an example, the Ethereum zero address `0x0000000000000000000000000000000000000000` maps to the Cosmos address `bb1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnrql8a` and will be assigned an account ID number upon interaction with the BitBadges blockchain.
+
+We typically refer to the native address as simply **address** and the corresponding Cosmos address as **bitbadgesAddress**. For Cosmos-native addresses, **address** will be the same as **bitbadgesAddress**.
+
+## Which address should I use (native or mapped Cosmos one)? How to convert?
+
+For user experience, you should always display the user's native address. Just note, certain behind the scenes state will be using the mapped Cosmos address.
+
+```typescript
+import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-address-converter';
+
+const bitbadgesAddress = ethToCosmos(address);
+const ethAddress = cosmosToEth(bitbadgesAddress);
+```
+
+
+
+
 
 
 ## File: ./for-developers/concepts/address-mappings-lists.md
@@ -8809,9 +11127,18 @@ This is equivalent and will be treated as:
 
 # ✏ Chain Details
 
-Cosmos Chain ID (Mainnet) - bitbadges-1
+## Cosmos Chain IDs
 
-Cosmos Chain ID (Testnet) - bitbadges-2
+- **Mainnet**: `bitbadges-1`
+- **Testnet**: `bitbadges-2`
+
+## EVM Chain IDs
+
+- **Mainnet**: `50024` (claimed in ethereum-lists/chains registry)
+- **Testnet**: `50025` (claimed in ethereum-lists/chains registry)
+- **Local Development**: `90123`
+
+## Coin Denomination
 
 [Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
 
@@ -12588,7 +14915,7 @@ This approach vastly differs to existing ones requiring an individual smart cont
 
 ### Smart Contract Support
 
-While BitBadges does not natively support EVM or ERC-20 contracts, it does support CosmWASM contracts, allowing for the extension of functionality and the creation of dApps. However, our goal is to keep evolving our token standard so that no custom contracts are EVER needed.
+While BitBadges does not natively support ERC-20 contracts, it does support EVM contracts, allowing for the extension of functionality and the creation of dApps. However, our goal is to keep evolving our token standard so that no custom contracts are EVER needed.
 
 Protocols like Ethereum and Solana have robust smart contract support, enabling a wide range of decentralized applications.
 
@@ -12642,7 +14969,7 @@ No. While our token standard takes inspiration from existing standards like ERC-
 
 ### **Does BitBadges support extending with smart contracts?**
 
-Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM and CosmWASM environments. Or, extend our module to call into other environments.&#x20;
+Yes, our token standard is a Cosmos module. While we aim for no smart contracts to ever be needed, you can definitely still call in to our module from EVM environments. Or, extend our module to call into other environments.&#x20;
 
 ### **Pricing? Affiliates?**
 
@@ -13038,22 +15365,13 @@ Each token collection can have a manager that can execute administrative actions
 
 #### Smart Contract Extendibility
 
-While our approach is no-code by default, we do support CosmWASM for any custom applications or advanced logic. We also plan to support x/evm once it is ready. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
+While our approach is no-code by default, we do support EVM for any custom applications or advanced logic. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
 
 
 ## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
 
 # Token ID Action Permissions
 
-
-
-## File: ./token-standard/cosmwasm-compatibility.md
-
-# 🕸️ CosmWASM Compatibility
-
-{% content-ref url="../for-developers/bitbadges-blockchain/create-a-wasm-contract.md" %}
-[create-a-wasm-contract.md](../for-developers/bitbadges-blockchain/create-a-wasm-contract.md)
-{% endcontent-ref %}
 
 
 ## File: ./token-standard/examples/approvals/README.md
@@ -13579,7 +15897,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Cosmos Coin Transfers**](usdbadge-transfers.md) - Payments per approval (BADGE or other sdk.Coin)
 * [**Overrides**](overrides.md) - Bypassing user-level approvals
 * [**Requires**](requires.md) - Address relationship restrictions
-* [**Address Checks**](address-checks.md) - Address type restrictions (WASM contracts, liquidity pools)
+* [**Address Checks**](address-checks.md) - Address type restrictions (EVM contracts, liquidity pools)
 * [**Auto-Deletion Options**](auto-deletion-options.md) - Automatic approval cleanup
 * [**User Royalties**](user-royalties.md) - Percentage-based transfer fees
 * [**Alt Time Checks**](../../../x-tokenization/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
@@ -13603,16 +15921,16 @@ Trackers are increment-only and immutable. Never reuse tracker IDs with prior hi
 
 # Address Checks
 
-Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be a WASM contract, must not be a liquidity pool).
+Additional restrictions on address types for transfer approval. These checks validate whether addresses involved in a transfer meet specific requirements (e.g., must be an EVM contract, must not be a liquidity pool).
 
 ## Interface
 
 ```typescript
 interface AddressChecks {
-    /** Require the address to be a WASM contract. */
-    mustBeWasmContract?: boolean;
-    /** Require the address to not be a WASM contract. */
-    mustNotBeWasmContract?: boolean;
+    /** Require the address to be an EVM contract. */
+    mustBeEvmContract?: boolean;
+    /** Require the address to not be an EVM contract. */
+    mustNotBeEvmContract?: boolean;
     /** Require the address to be a liquidity pool. */
     mustBeLiquidityPool?: boolean;
     /** Require the address to not be a liquidity pool. */
@@ -13648,10 +15966,10 @@ Outgoing approvals can check the recipient and initiator (but not the sender, si
 
 ## Available Checks
 
-### WASM Contract Checks
+### EVM Contract Checks
 
--   **`mustBeWasmContract`**: Requires the address to be a CosmWASM smart contract
--   **`mustNotBeWasmContract`**: Requires the address to NOT be a CosmWASM smart contract
+-   **`mustBeEvmContract`**: Requires the address to be an EVM smart contract
+-   **`mustNotBeEvmContract`**: Requires the address to NOT be an EVM smart contract
 
 ### Liquidity Pool Checks
 
@@ -13660,15 +15978,15 @@ Outgoing approvals can check the recipient and initiator (but not the sender, si
 
 ## Examples
 
-### Collection Approval: Require Contract Recipients
+### Collection Approval: Require EVM Contract Recipients
 
-Only allow transfers to WASM contracts:
+Only allow transfers to EVM contracts:
 
 ```json
 {
     "approvalCriteria": {
         "recipientChecks": {
-            "mustBeWasmContract": true
+            "mustBeEvmContract": true
         }
     }
 }
@@ -13688,15 +16006,15 @@ Prevent transfers from liquidity pools:
 }
 ```
 
-### Incoming Approval: Require Contract Initiators
+### Incoming Approval: Require EVM Contract Initiators
 
-Only allow transfers initiated by WASM contracts:
+Only allow transfers initiated by EVM contracts:
 
 ```json
 {
     "approvalCriteria": {
         "initiatorChecks": {
-            "mustBeWasmContract": true
+            "mustBeEvmContract": true
         }
     }
 }
@@ -13724,11 +16042,11 @@ You can combine multiple checks for a single party:
 {
     "approvalCriteria": {
         "recipientChecks": {
-            "mustBeWasmContract": true,
+            "mustBeEvmContract": true,
             "mustNotBeLiquidityPool": true
         },
         "initiatorChecks": {
-            "mustNotBeWasmContract": true
+            "mustNotBeEvmContract": true
         }
     }
 }
@@ -13736,7 +16054,7 @@ You can combine multiple checks for a single party:
 
 ## Use Cases
 
--   **Smart Contract Integration**: Require transfers to/from specific contract types
+-   **Smart Contract Integration**: Require transfers to/from specific EVM contract types
 -   **Liquidity Protection**: Prevent transfers to/from liquidity pools to maintain token economics
 -   **Security**: Enforce that certain operations can only be initiated by contracts or regular addresses
 -   **Protocol Compliance**: Ensure transfers comply with protocol-specific address requirements
@@ -14932,7 +17250,7 @@ Forceful transfers can break protocols that rely on escrow or alternate state. E
 
 BitBadges reserves certain addresses that cannot be forcefully overridden as a sanity check. This protection is **not a replacement for due diligence** but serves as an additional safety measure to prevent accidental or malicious transfers from critical protocol addresses.
 
-When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using athe approval criteria address checks for WASM contracts and / or liquidity pool addresses to prevent this.
+When designing your collection, treat these as external contracts. You can control the flow to / from, but if stuff is already escrowed, you cannot forcefully revoke it. Consider using the approval criteria address checks for EVM contracts and / or liquidity pool addresses to prevent this.
 
 ### Protected Address Types
 
@@ -17966,20 +20284,20 @@ const EmptyApprovalCriteria = {
         mustOwnTokens: [],
         // No address checks
         senderChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
         recipientChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
         initiatorChecks: {
-            mustBeWasmContract: false,
-            mustNotBeWasmContract: false,
+            mustBeEvmContract: false,
+            mustNotBeEvmContract: false,
             mustBeLiquidityPool: false,
             mustNotBeLiquidityPool: false,
         },
@@ -24038,7 +26356,7 @@ This is an alternative to standard single manager approach. You can also explore
 
 * x/group - Cosmos SDK module for multisigs / DAOs and voting
 * DAO tooling
-* Custom WASM or EVM contracts
+* Custom EVM contracts
 
 
 ## File: ./.github/workflows/for--llms.yml
