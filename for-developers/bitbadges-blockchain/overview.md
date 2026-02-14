@@ -10,7 +10,12 @@ Other Links
 
 [https://explorer.bitbadges.io](https://explorer.bitbadges.io/)
 
-[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
+**Cosmos SDK Endpoints:**
+- [https://rpc.bitbadges.io](https://rpc.bitbadges.io) - Tendermint RPC
+- [https://lcd.bitbadges.io](https://lcd.bitbadges.io) - REST/LCD API
 
-[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
+**EVM JSON-RPC Endpoints:**
+- [https://evm-rpc.bitbadges.io](https://evm-rpc.bitbadges.io) - Ethereum-compatible JSON-RPC
+
+For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rpc-endpoints.md).
 

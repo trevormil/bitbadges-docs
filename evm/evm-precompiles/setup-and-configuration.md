@@ -82,17 +82,17 @@ To connect MetaMask to your local BitBadges chain:
 
 **For Testnet:**
 - **Network Name**: BitBadges Testnet
-- **RPC URL**: (Testnet RPC endpoint - contact us for details)
+- **RPC URL**: `https://evm-rpc-testnet.bitbadges.io`
 - **Chain ID**: `50025`
 - **Currency Symbol**: `BADGE`
 - **Block Explorer**: (Testnet block explorer URL)
 
 **For Mainnet:**
 - **Network Name**: BitBadges Mainnet
-- **RPC URL**: (Mainnet RPC endpoint - contact us for details)
+- **RPC URL**: `https://evm-rpc.bitbadges.io`
 - **Chain ID**: `50024`
 - **Currency Symbol**: `BADGE`
-- **Block Explorer**: (Mainnet block explorer URL)
+- **Block Explorer**: `https://explorer.bitbadges.io`
 
 **Note**: Use port 8545 (EVM JSON-RPC), not 26657 (Tendermint RPC).
 

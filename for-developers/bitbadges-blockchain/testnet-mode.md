@@ -31,8 +31,14 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
+**Cosmos SDK Endpoints:**
 * RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
 * REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+
+**EVM JSON-RPC Endpoints:**
+* EVM RPC: [https://evm-rpc-testnet.bitbadges.io](https://evm-rpc-testnet.bitbadges.io)
+
+For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rpc-endpoints.md).
 
 ### Feedback
 
