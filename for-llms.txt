@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Feb 13 23:48:52 UTC 2026
+Generated on Sat Feb 14 14:58:56 UTC 2026
 
 
 
@@ -2026,6 +2026,7 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Broadcast to a Node](for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md)
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
+  * [EVM RPC Endpoints](for-developers/bitbadges-blockchain/evm-rpc-endpoints.md)
 * [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)
@@ -2624,7 +2625,7 @@ The Cosmos SDK module is `x/tokenization`:
 typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
 
 // ❌ Incorrect
-typeUrl: '/bitbadges.badges.MsgCreateCollection'
+typeUrl: '/bitbadges.tokenization.MsgCreateCollection'
 ```
 
 ### Reserved Address List IDs
@@ -3939,6 +3940,10 @@ See [Common Gotchas](gotchas.md) for detailed information about:
 
 
 
+
+
+
+
 ## File: ./evm/evm-precompiles/gamm-precompile/gotchas.md
 
 # Gamm Precompile - Common Gotchas
@@ -4384,6 +4389,10 @@ console.log("Expected shares:", shares);
 
 
 
+
+
+
+
 ## File: ./evm/evm-precompiles/setup-and-configuration.md
 
 # Setup and Configuration
@@ -4470,17 +4479,17 @@ To connect MetaMask to your local BitBadges chain:
 
 **For Testnet:**
 - **Network Name**: BitBadges Testnet
-- **RPC URL**: (Testnet RPC endpoint - contact us for details)
+- **RPC URL**: `https://evm-rpc-testnet.bitbadges.io`
 - **Chain ID**: `50025`
 - **Currency Symbol**: `BADGE`
 - **Block Explorer**: (Testnet block explorer URL)
 
 **For Mainnet:**
 - **Network Name**: BitBadges Mainnet
-- **RPC URL**: (Mainnet RPC endpoint - contact us for details)
+- **RPC URL**: `https://evm-rpc.bitbadges.io`
 - **Chain ID**: `50024`
 - **Currency Symbol**: `BADGE`
-- **Block Explorer**: (Mainnet block explorer URL)
+- **Block Explorer**: `https://explorer.bitbadges.io`
 
 **Note**: Use port 8545 (EVM JSON-RPC), not 26657 (Tendermint RPC).
 
@@ -6785,209 +6794,6 @@ Below are the supported customization options. Some may be applicable. Some may 
 
 
 
-<<<<<<< HEAD
-## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
-
-# Create a WASM Contract
-
-BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively!
-
-We refer you to official CosmWASM and Rust documentation for more information. This tutorial will only focus on BItBadges specific information.
-
-{% embed url="https://cosmwasm.cosmos.network/" %}
-
-```go.mod
-github.com/CosmWasm/wasmd v0.52.0
-```
-
-**Permissioned Uploads**
-
-```
-BitBadges implements CosmWASM in a permissioned manner.
-```
-
-Instantiating and officially deploying a contract does require a review process and governance approval. Reach out for more information.
-
-Requirements:
-
-* No avoidance of the protocol fee. Any token transfers that take place must use MsgTransferTokens, or if you need to implement transfer functionality directly in the contract, the protocol fee must be obeyed.
-* We encourage audits and a peer review process before officailly deploying.
-* You must also showcase a working testnet implementation as well (testnet is permissionless)
-
-Generally speaking, even though this is a permissioned implementation, we want the contract layer to be as permissionless as possible. We just have to enforce that our business model (protocol fee) is obeyed.
-
-**High-Level Development Overview**
-
-```rust
-const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d',
-    contract:
-        'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e',
-    msg: '{"myCustomMsg1": {"collectionId": "1"}}',
-    funds: '1ubadge',
-};
-```
-
-* Each contract has a Cosmos bech32 contract address (e.g. bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e).
-* 3-Step Process: Upload / Store Code, Instantiate, Execute
-  * Instantiating requires governance proposal (see below)
-* Contracts can call into the core x/tokenization module as submessages (delayed until directly after the contract)
-  * When calling into x/tokenization, msg.Creator will ALWAYS be the contract address. You may need to come up with creative workarounds or creative solutions in certain situations.
-* The main execution part of every contract is ExecuteMsg. Think of this like the API definition for your contract. You can have multiple message types with different logic.
-
-```rust
-//contract.rs
-use bitbadges_cosmwasm::{
-  transfer_tokens_msg
-};
-
-#[entry_point]
-pub fn execute(
-    _deps: DepsMut,
-    _env: Env,
-    _info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result<Response<BitBadgesMsg>, StdError> {
-    match msg {
-        ExecuteMsg::CustomMsg1 { collection_id, transfers } => {
-          let msg = transfer_tokens_msg(collection_id, transfers);
-          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
-        }
-        ExecuteMsg::CustomMsg2 { collection_id, transfers } => {
-          let msg = transfer_tokens_msg(collection_id, transfers);
-          Ok(Response::new().add_submessage(SubMsg::reply_always(msg, BADGES_REPLY_ID)))
-        }
-        // Add other messages here as needed
-    }
-}
-```
-
-### **Create a Contract Tutorial**
-
-1. Clone the BitBadges Cosmwasm repository
-
-```
-git clone https://github.com/BitBadges/bitbadges-cosmwasm-bindings.git
-cd bitbadges-cosmwasm-bindings
-```
-
-This repository exports all the custom bindings via `packages/bitbadges-cosmwasm`. You should typically NOT edit the exported types. These are already pregenerated exactly as defined on-chain for you to use.
-
-2. Create your contract
-
-You will be dealing with the `contracts` folder. This is where you implement your contract logic. The `contracts` folder is automatically configured to import from the local `packages/bitbadges-cosmwasm.` We have provided an example and boilerplate for you.
-
-Tools at your disposal:
-
-```rust
-// All BitBadges type bindings
-use bitbadges_cosmwasm::{
-  Transfer, Balance, ....
-};
-```
-
-<pre class="language-rust"><code class="lang-rust">// BitBadges *_msg() functions
-// This is how you call into x/tokenization by adding Ok(Response::new().add_message(msg))
-use bitbadges_cosmwasm::{
-  transfer_tokens_msg, delete_collection_msg, BitBadgesMsg
-}
-
-<strong>pub fn execute_my_msg(
-</strong>    collection_id: String,
-    transfers: Vec&#x3C;Transfer>,
-) -> StdResult&#x3C;Response&#x3C;BitBadgesMsg>> {
-    let msg = transfer_tokens_msg(
-        collection_id,
-        transfers,
-    );
-
-    Ok(Response::new().add_message(msg))
-}
-
-#[entry_point]
-pub fn execute(
-    _deps: DepsMut,
-    _env: Env,
-    _info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result&#x3C;Response&#x3C;BitBadgesMsg>, StdError> {
-    match msg {
-        ExecuteMsg::MyCustomMsg { collection_id, transfers } => {
-          execute_my_msg(collection_id, transfers)
-        }
-        // Add other messages here as needed
-    }
-}
-</code></pre>
-
-3. Build and Optimize
-
-You may have to edit the script for you file names and paths. Consider also using an optimizer like [https://github.com/CosmWasm/rust-optimizer](https://github.com/CosmWasm/rust-optimizer).
-
-```bash
-cargo build
-source ./build.sh # outputs a .wasm
-gzip youcontractname.wasm # outputs a .wasm.gz
-```
-
-```bash
-# build.sh
-RUSTFLAGS='-C link-arg=-s' cargo wasm
-cp ../../target/wasm32-unknown-unknown/release/YOUR_CONTRACT_NAME.wasm .
-```
-
-4. Uploading Your Contract
-
-Go to [https://bitbadges.io/dev/broadcast](https://bitbadges.io/dev/broadcast) and select MsgStoreCode. Upload your .wasm.gz file. Submit the transaction.
-
-For testnet uploads, use testnet.bitbadges.io
-
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
-
-5. Instantiate your Contract
-
-A notification from Step 4 should pop up with your code ID, assuming the transaction was successful.
-
-Refresh the page or clear all Msgs and start a new transaction. Now, select MsgInstantiateContractCompat. Set a label (name for your contract) and enter the code ID from step 3. Submit the transaction.
-
-If you want to instantiate it with funds. the **funds** property will be in the format "1badge".
-
-A notification should pop up with your contract's address. Store this somewhere.
-
-```
-Note: This is only applicable to testnet.
-
-For mainnet, instantiation requires a governance proposal. Reach out to us to start this process.
-```
-
-6. Interact with the Contract
-
-Once deployed, you need to to let your users interact with it. Use our custom x/wasmx MsgExecuteContractCompat to do so. This is a wrapper around the core x/wasm MsgExecuteContract with support for BitBadges signing. This is the same as broadcasting any other transaction, so we refer you to Creating, Signing, and Broadcasting Txs for a tutorial.
-
-Couple common misunderstandings:
-
-* Note msg is an encoded stringified JSON. Be mindful of single vs double quotes and escaped characters.
-*   Note camelCase vs snake\_case. Contracts typically auto-format with camelCase via
-
-    ```rust
-    #[serde(rename_all = "camelCase")]
-    ```
-* Parsing may not be smart enough to identify empty values like empty arrays. You may have to manually specify empty strings, arrays for compatibility.
-
-**Examples**
-
-```typescript
-const msgExecuteContract: MsgExecuteContractCompat = {
-    sender: 'bb1uqxan5ch2ulhkjrgmre90rr923932w38gwez5d', //enter sender adress here
-    contract: 'bb14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9sc8kg9e', //
-    msg: '{"deleteCollectionMsg": {"collectionId": "1"}}',
-    funds: '1badge',
-};
-```
-
-
-=======
->>>>>>> c6ae5abdb9e21ec430e0b2d25acbfdf5bcf6cb7e
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md
 
 # Create, Generate, and Sign Txs
@@ -7725,6 +7531,286 @@ const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 ```
 
 
+## File: ./for-developers/bitbadges-blockchain/evm-rpc-endpoints.md
+
+# EVM RPC Endpoints
+
+BitBadges Chain provides Ethereum-compatible JSON-RPC endpoints for interacting with the blockchain using standard Ethereum tools and libraries.
+
+## Overview
+
+The EVM RPC endpoints support all standard Ethereum JSON-RPC methods, allowing you to use tools like:
+- MetaMask
+- ethers.js
+- web3.js
+- Hardhat
+- Foundry
+- Any other Ethereum-compatible tooling
+
+## Mainnet Endpoints
+
+### EVM JSON-RPC
+
+**Endpoint**: `https://evm-rpc.bitbadges.io`
+
+This endpoint provides full Ethereum JSON-RPC compatibility for mainnet operations.
+
+**Chain ID**: `50024`
+
+**Example Usage**:
+
+```typescript
+import { ethers } from "ethers";
+
+// Connect to BitBadges mainnet EVM RPC
+const provider = new ethers.JsonRpcProvider("https://evm-rpc.bitbadges.io");
+
+// Get the current block number
+const blockNumber = await provider.getBlockNumber();
+console.log("Current block:", blockNumber);
+
+// Get balance of an address
+const balance = await provider.getBalance("0x...");
+console.log("Balance:", ethers.formatEther(balance), "BADGE");
+```
+
+```javascript
+// Using web3.js
+const Web3 = require('web3');
+const web3 = new Web3('https://evm-rpc.bitbadges.io');
+
+// Get the current block number
+const blockNumber = await web3.eth.getBlockNumber();
+console.log("Current block:", blockNumber);
+```
+
+### MetaMask Configuration
+
+To add BitBadges mainnet to MetaMask:
+
+1. Open MetaMask
+2. Go to **Settings > Networks > Add Network**
+3. Enter the following details:
+   - **Network Name**: BitBadges Mainnet
+   - **RPC URL**: `https://evm-rpc.bitbadges.io`
+   - **Chain ID**: `50024`
+   - **Currency Symbol**: `BADGE`
+   - **Block Explorer URL**: `https://explorer.bitbadges.io` (optional)
+
+## Testnet Endpoints
+
+### EVM JSON-RPC
+
+**Endpoint**: `https://evm-rpc-testnet.bitbadges.io`
+
+This endpoint provides full Ethereum JSON-RPC compatibility for testnet operations.
+
+**Chain ID**: `50025`
+
+**Example Usage**:
+
+```typescript
+import { ethers } from "ethers";
+
+// Connect to BitBadges testnet EVM RPC
+const provider = new ethers.JsonRpcProvider("https://evm-rpc-testnet.bitbadges.io");
+
+// Get the current block number
+const blockNumber = await provider.getBlockNumber();
+console.log("Current block:", blockNumber);
+```
+
+### MetaMask Configuration
+
+To add BitBadges testnet to MetaMask:
+
+1. Open MetaMask
+2. Go to **Settings > Networks > Add Network**
+3. Enter the following details:
+   - **Network Name**: BitBadges Testnet
+   - **RPC URL**: `https://evm-rpc-testnet.bitbadges.io`
+   - **Chain ID**: `50025`
+   - **Currency Symbol**: `BADGE`
+   - **Block Explorer URL**: (Testnet block explorer URL, if available)
+
+## Supported JSON-RPC Methods
+
+The EVM RPC endpoints support all standard Ethereum JSON-RPC methods, including:
+
+### Account Methods
+- `eth_accounts` - Returns a list of addresses owned by client
+- `eth_getBalance` - Returns the balance of the account of given address
+- `eth_getTransactionCount` - Returns the number of transactions sent from an address
+
+### Block Methods
+- `eth_blockNumber` - Returns the number of most recent block
+- `eth_getBlockByNumber` - Returns information about a block by block number
+- `eth_getBlockByHash` - Returns information about a block by block hash
+
+### Transaction Methods
+- `eth_sendTransaction` - Creates new message call transaction or a contract creation
+- `eth_sendRawTransaction` - Sends a signed transaction
+- `eth_getTransactionByHash` - Returns the information about a transaction requested by transaction hash
+- `eth_getTransactionReceipt` - Returns the receipt of a transaction by transaction hash
+
+### Contract Methods
+- `eth_call` - Executes a new message call immediately without creating a transaction on the block chain
+- `eth_estimateGas` - Generates and returns an estimate of how much gas is necessary to allow the transaction to complete
+
+### Event Methods
+- `eth_getLogs` - Returns an array of all logs matching a given filter object
+- `eth_newFilter` - Creates a filter object, based on filter options
+- `eth_newBlockFilter` - Creates a filter in the node, to notify when a new block arrives
+- `eth_newPendingTransactionFilter` - Creates a filter in the node, to notify when new pending transactions arrive
+
+### State Methods
+- `eth_getCode` - Returns code at a given address
+- `eth_getStorageAt` - Returns the value from a storage position at a given address
+
+### Network Methods
+- `eth_chainId` - Returns the current chain ID
+- `net_version` - Returns the current network ID
+- `net_listening` - Returns true if client is actively listening for network connections
+
+### Web3 Methods
+- `web3_clientVersion` - Returns the current client version
+- `web3_sha3` - Returns Keccak-256 hash of the given data
+
+## Example: Deploying a Contract
+
+```typescript
+import { ethers } from "ethers";
+import * as fs from "fs";
+
+async function deploy() {
+  // Connect to BitBadges mainnet EVM RPC
+  const provider = new ethers.JsonRpcProvider("https://evm-rpc.bitbadges.io");
+  
+  // Get deployer wallet
+  const privateKey = process.env.PRIVATE_KEY || "";
+  if (!privateKey) {
+    throw new Error("PRIVATE_KEY environment variable required");
+  }
+  
+  const wallet = new ethers.Wallet(privateKey, provider);
+  console.log("Deployer address:", wallet.address);
+  
+  // Check balance
+  const balance = await provider.getBalance(wallet.address);
+  console.log("Balance:", ethers.formatEther(balance), "BADGE");
+  
+  // Deploy contract
+  const contractFactory = new ethers.ContractFactory(
+    CONTRACT_ABI,
+    CONTRACT_BYTECODE,
+    wallet
+  );
+  
+  const contract = await contractFactory.deploy(/* constructor args */);
+  await contract.waitForDeployment();
+  
+  const address = await contract.getAddress();
+  console.log("Contract deployed at:", address);
+}
+```
+
+## Example: Interacting with Contracts
+
+```typescript
+import { ethers } from "ethers";
+
+async function interactWithContract() {
+  // Connect to BitBadges mainnet EVM RPC
+  const provider = new ethers.JsonRpcProvider("https://evm-rpc.bitbadges.io");
+  
+  // Load contract
+  const contractAddress = "0x..."; // Your contract address
+  const contract = new ethers.Contract(
+    contractAddress,
+    CONTRACT_ABI,
+    provider
+  );
+  
+  // Read from contract
+  const value = await contract.someViewFunction();
+  console.log("Value:", value);
+  
+  // Write to contract (requires signer)
+  const signer = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
+  const contractWithSigner = contract.connect(signer);
+  
+  const tx = await contractWithSigner.someWriteFunction(/* args */);
+  await tx.wait();
+  console.log("Transaction confirmed:", tx.hash);
+}
+```
+
+## Hardhat Configuration
+
+Add BitBadges networks to your `hardhat.config.js`:
+
+```javascript
+require("@nomicfoundation/hardhat-toolbox");
+
+module.exports = {
+  solidity: "0.8.20",
+  networks: {
+    bitbadges: {
+      url: "https://evm-rpc.bitbadges.io",
+      chainId: 50024,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
+    bitbadgesTestnet: {
+      url: "https://evm-rpc-testnet.bitbadges.io",
+      chainId: 50025,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+    },
+  },
+};
+```
+
+## Foundry Configuration
+
+Add BitBadges networks to your `foundry.toml`:
+
+```toml
+[rpc_endpoints]
+bitbadges = "https://evm-rpc.bitbadges.io"
+bitbadgesTestnet = "https://evm-rpc-testnet.bitbadges.io"
+
+[profile.default]
+rpc_endpoints = ["bitbadges", "bitbadgesTestnet"]
+```
+
+## Rate Limiting
+
+The public EVM RPC endpoints may have rate limiting in place to ensure fair usage. For production applications, consider:
+
+- Running your own node
+- Using a dedicated RPC provider
+- Implementing request caching and batching
+
+## Related Documentation
+
+- [EVM Integration Guide](../evm/EVM_INTEGRATION.md) - Complete EVM integration overview
+- [Setup and Configuration](../evm/evm-precompiles/setup-and-configuration.md) - Local development setup
+- [Developer Guide](../evm/evm-precompiles/developer-guide.md) - EVM development best practices
+- [Tokenization Precompile API](../evm/evm-precompiles/tokenization-precompile/API.md) - Precompile contract reference
+
+## Other Endpoints
+
+For Cosmos SDK operations, use the Tendermint RPC endpoints:
+
+- **Mainnet RPC**: `https://rpc.bitbadges.io`
+- **Mainnet REST/LCD**: `https://lcd.bitbadges.io`
+- **Testnet RPC**: `https://rpc-testnet.bitbadges.io`
+- **Testnet REST/LCD**: `https://lcd-testnet.bitbadges.io`
+
+See the [Blockchain Overview](overview.md) for more information about Cosmos SDK endpoints.
+
+
+
+
 ## File: ./for-developers/bitbadges-blockchain/overview.md
 
 # Overview
@@ -7739,9 +7825,14 @@ Other Links
 
 [https://explorer.bitbadges.io](https://explorer.bitbadges.io/)
 
-[https://rpc.bitbadges.io](https://rpc.bitbadges.io)
+**Cosmos SDK Endpoints:**
+- [https://rpc.bitbadges.io](https://rpc.bitbadges.io) - Tendermint RPC
+- [https://lcd.bitbadges.io](https://lcd.bitbadges.io) - REST/LCD API
 
-[https://lcd.bitbadges.io](https://lcd.bitbadges.io)
+**EVM JSON-RPC Endpoints:**
+- [https://evm-rpc.bitbadges.io](https://evm-rpc.bitbadges.io) - Ethereum-compatible JSON-RPC
+
+For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rpc-endpoints.md).
 
 
 
@@ -7883,8 +7974,14 @@ Backend: [https://api.bitbadges.io/testnet](https://api.bitbadges.io/testnet) (a
 
 Testnet Node:
 
+**Cosmos SDK Endpoints:**
 * RPC: [https://rpc-testnet.bitbadges.io](https://rpc-testnet.bitbadges.io)
 * REST: [https://lcd-testnet.bitbadges.io](https://lcd-testnet.bitbadges.io)
+
+**EVM JSON-RPC Endpoints:**
+* EVM RPC: [https://evm-rpc-testnet.bitbadges.io](https://evm-rpc-testnet.bitbadges.io)
+
+For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rpc-endpoints.md).
 
 ### Feedback
 
@@ -10878,6 +10975,8 @@ const ethAddress = cosmosToEth(bitbadgesAddress);
 
 
 
+
+
 ## File: ./for-developers/concepts/address-mappings-lists.md
 
 # 📧 Address Lists (Lists)
@@ -11244,7 +11343,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 ## Quick Start - Tokens
 
 {% content-ref url="../x-tokenization/" %}
-[x-badges](../x-tokenization/)
+[x-tokenization](../x-tokenization/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims
@@ -13934,7 +14033,7 @@ Most use cases use `"Mint"` as the reserved address in approvals. For advanced c
 ```typescript
 // Mint Escrow Address (for advanced cases)
 const mintEscrowAddress = generateAlias(
-    'badges',
+    'tokenization',
     getAliasDerivationKeysForCollection(collectionId)
 );
 ```
@@ -17903,7 +18002,7 @@ For collection approvals with `overrideFromWithApproverAddress: true`, the appro
 
 ```typescript
 const mintEscrowAddress = generateAlias(
-    'badges',
+    'tokenization',
     getAliasDerivationKeysForCollection(collectionId)
 );
 ```
@@ -18783,6 +18882,1876 @@ Each transfer must have sufficient balances, satisfy a collection approval, and 
 <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
+## File: ./x-badges/concepts/ibc-backed-paths.md
+
+# IBC Backed Paths
+
+## Overview
+
+IBC Backed Paths enable bidirectional conversion between badge tokens and IBC coins (standard Cosmos SDK coins). This feature allows badge collections to be "backed" by IBC-denominated tokens, enabling seamless interoperability between the badge system and the broader Cosmos ecosystem.
+
+## Core Concept
+
+An IBC Backed Path creates a special address that acts as an intermediary for converting badge tokens to and from IBC coins. When configured, users can:
+
+-   **Back tokens**: Send badge tokens to the special address and receive IBC coins in return
+-   **Unback tokens**: Send IBC coins to the special address and receive badge tokens in return
+
+## Key Components
+
+### Special Address
+
+Each IBC backed path has a **special address** that is automatically generated based on the IBC denomination. This address:
+
+-   Is deterministically derived from the IBC denom using a hash function
+-   Acts as the intermediary for all conversions
+-   Is marked as a reserved protocol address
+-   Holds the IBC coins that back the badge tokens
+
+### Configuration Structure
+
+```protobuf
+message CosmosCoinBackedPath {
+  string address = 1;              // Auto-generated special address (from conversion.sideA.denom)
+  Conversion conversion = 2;       // Conversion structure with sideA (amount+denom) and sideB (balances)
+}
+
+message Conversion {
+  ConversionSideAWithDenom sideA = 1;  // Contains amount + denom (from old ibcAmount + ibcDenom)
+  repeated Balance sideB = 2;          // Badge token balances (from old balances field)
+}
+
+message ConversionSideAWithDenom {
+  string amount = 1;  // IBC coin amount (from old ibcAmount)
+  string denom = 2;   // IBC denomination (from old ibcDenom)
+}
+```
+
+### Conversion Mechanism
+
+The conversion uses a structured format that combines the IBC denom and amount:
+
+```
+conversion.sideA (amount, denom) = conversion.sideB[] (x/tokenization)
+Ex: { amount: "1000000", denom: "ibc/1234..." } = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+```
+
+## Transferability Requirements
+
+Even though this is a special address, it is still subject to the same transferability requirements as any other address. This means that you can user-gate, rate-limit, or anything else you can do with an address and its transferability.
+
+**Important:** Collection approvals used for IBC backed path operations must have `allowBackedMinting: true` set in their `approvalCriteria`. See [Special Address Flags](../../token-standard/learn/approval-criteria/special-address-flags.md) for details.
+
+This allows you to build complex minting / unwinding logic. For example:
+
+-   $2500 per day withdrawal limit
+-   Must KYC on way out
+-   Or any other logic you can think of
+
+Behind the scenes, think of this address as an external contract that updates its approvals dynamically. So, swaps are technically treated as initiated by the user but approved by the address itself.
+
+## Configuration Requirements
+
+### Collection Invariants
+
+IBC backed paths are configured as **collection invariants**, meaning:
+
+-   They can only be set during collection creation
+-   They cannot be modified after creation
+-   Only **one** backed path is allowed per collection
+
+## Restrictions and Limitations
+
+### Mint Address Restrictions
+
+When an IBC backed path is configured:
+
+-   Transfers **from** the Mint address are not allowed
+-   All mints must be done through the IBC backed path
+-   Collection approvals cannot include the Mint address in `FromListId`
+-   This prevents minting tokens that would bypass the backing mechanism and cause desyncs in the system
+
+## Technical Implementation
+
+### Address Detection
+
+The system automatically detects when transfers involve the special address:
+
+-   Checks if `to` address matches the backed path address (backing)
+-   Checks if `from` address matches the backed path address (unbacking)
+-   Triggers the appropriate conversion logic
+
+Note this is done from our MsgTransferTokens implementation as the entrypoint. Simply using the bank module to detect the address will not work as the bank module does not know about the IBC backed path.
+
+### State Management
+
+-   Badge token balances are managed normally
+-   IBC coin balances are managed via the bank module
+-   Special address holds IBC coins for backing operations
+-   Special address technically has unlimited badge balances but only allows transfers when adequate IBC coins are present and sent or received
+
+## Example Configuration
+
+```json
+{
+    "invariants": {
+        "cosmosCoinBackedPath": {
+            "conversion": {
+                "sideA": {
+                    "amount": "1000000",
+                    "denom": "ibc/1234567890ABCDEF"
+                },
+                "sideB": [
+                    {
+                        "amount": "1",
+                        "tokenIds": [{ "start": "1", "end": "1" }],
+                        "ownershipTimes": [
+                            { "start": "1", "end": "18446744073709551615" }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+```
+
+## Security Considerations
+
+### Reserved Protocol Address
+
+The special address is automatically marked as a reserved protocol address:
+
+-   Prevents accidental use in other contexts
+-   Ensures proper handling by the system
+-   Maintains address integrity
+
+### Atomic Operations
+
+All conversions are atomic:
+
+-   Either the entire operation succeeds or fails
+-   No partial conversions
+-   Maintains balance consistency
+
+## Differences from Wrapper Paths
+
+IBC backed paths differ mainly from which IBC denom is used for minting.
+
+| Feature | IBC Backed Path                              | Wrapper Path                             |
+| ------- | -------------------------------------------- | ---------------------------------------- |
+| Minting | No minting/burning (uses existing IBC denom) | Minting/burning of generated denom (new) |
+
+## Summary
+
+IBC Backed Paths provide a powerful mechanism for connecting badge tokens to the broader Cosmos ecosystem through IBC coins. By enabling bidirectional conversion between tokens and IBC-denominated assets, they unlock cross-chain interoperability, DeFi integration, and liquidity provision while maintaining the unique features and capabilities of the badge system.
+
+
+## File: ./x-custom-ibc-hooks/README.md
+
+# Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/custom-ibc-hooks` module.
+
+The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction (e.g. Skip:Go compatibility or other IBC aggregators).
+
+## Key Features
+
+* **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
+* **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
+* **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
+* **Atomic Execution**: All operations are executed atomically - either all succeed or all fail
+
+## Architecture
+
+The module operates as an IBC middleware hook that:
+
+1. Intercepts incoming IBC transfer packets
+2. Parses hook data from the transfer memo
+3. Executes the IBC transfer first (to receive the tokens)
+4. Executes the custom hook actions (swap, transfer, etc.)
+5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+
+
+## File: ./x-custom-ibc-hooks/overview.md
+
+# Introduction
+
+## Architecture
+
+The module operates as an IBC middleware hook that:
+
+1. Intercepts incoming IBC transfer packets
+2. Parses hook data from the transfer memo
+3. Executes the IBC transfer first (to receive the tokens)
+4. Executes the custom hook actions (swap, transfer, etc.)
+5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
+
+```
+Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank assets can be.
+```
+
+## Key Concepts
+
+### Hook Data Format
+
+Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
+
+### Swap and Action
+
+The primary hook type is `swap_and_action`, which:
+
+1. Executes a swap operation using the received tokens
+2. Performs a post-swap action (local transfer or IBC transfer)
+
+### Intermediate Sender Address
+
+The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
+
+* Receive the IBC transfer tokens
+* Execute the swap operation
+* Send tokens to the final destination
+
+Use here for generation if needed
+
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+</strong>
+// deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
+export function deriveIntermediateSender(channel: string, originalSender: string, bech32Prefix: string)
+</code></pre>
+
+### Atomic Execution
+
+All operations are executed atomically:
+
+* If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
+* If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
+* State changes are only committed if all operations succeed
+
+## Hook Data Structure
+
+### HookData
+
+```go
+type HookData struct {
+    SwapAndAction *SwapAndAction `json:"swap_and_action,omitempty"`
+}
+```
+
+### SwapAndAction
+
+```go
+type SwapAndAction struct {
+    UserSwap                  *UserSwap       `json:"user_swap,omitempty"`
+    MinAsset                  *MinAsset       `json:"min_asset,omitempty"`
+    TimeoutTimestamp          *uint64         `json:"timeout_timestamp,omitempty"`
+    PostSwapAction            *PostSwapAction `json:"post_swap_action,omitempty"`
+    DestinationRecoverAddress string          `json:"destination_recover_address,omitempty"`
+    Affiliates                []Affiliate     `json:"affiliates,omitempty"`
+}
+```
+
+### UserSwap
+
+```go
+type UserSwap struct {
+    SwapExactAssetIn *SwapExactAssetIn `json:"swap_exact_asset_in,omitempty"`
+}
+```
+
+### SwapExactAssetIn
+
+```go
+type SwapExactAssetIn struct {
+    SwapVenueName string      `json:"swap_venue_name,omitempty"`
+    Operations    []Operation `json:"operations"`
+}
+```
+
+### Operation
+
+```go
+type Operation struct {
+    Pool     string `json:"pool"`     // Pool ID as string
+    DenomIn  string `json:"denom_in"`
+    DenomOut string `json:"denom_out"`
+}
+```
+
+### MinAsset
+
+```go
+type MinAsset struct {
+    Native *NativeAsset `json:"native,omitempty"`
+}
+```
+
+### NativeAsset
+
+```go
+type NativeAsset struct {
+    Denom  string `json:"denom"`
+    Amount string `json:"amount"`
+}
+```
+
+### PostSwapAction
+
+```go
+type PostSwapAction struct {
+    IBCTransfer *IBCTransferInfo `json:"ibc_transfer,omitempty"`
+    Transfer    *TransferInfo    `json:"transfer,omitempty"`
+}
+```
+
+**Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
+
+### TransferInfo
+
+```go
+type TransferInfo struct {
+    ToAddress string `json:"to_address"`
+}
+```
+
+### IBCTransferInfo
+
+```go
+type IBCTransferInfo struct {
+    IBCInfo *IBCInfo `json:"ibc_info,omitempty"`
+}
+```
+
+### IBCInfo
+
+```go
+type IBCInfo struct {
+    SourceChannel  string `json:"source_channel"`
+    Receiver       string `json:"receiver"`
+    Memo           string `json:"memo,omitempty"`
+    RecoverAddress string `json:"recover_address,omitempty"`
+}
+```
+
+### Affiliate
+
+```go
+type Affiliate struct {
+    BasisPointsFee string `json:"basis_points_fee"`
+    Address        string `json:"address"`
+}
+```
+
+#### Affiliates
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. This is useful for referral programs, partnerships, or revenue sharing.
+
+* **Optional**: If not specified, no affiliate fees are deducted
+* **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
+* **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+* **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
+* **Address format**: Must be a valid Bech32 address on the destination chain
+
+**Example**:
+
+```json
+{
+    "affiliates": [
+        {
+            "basis_points_fee": "10", // 0.1% fee
+            "address": "bb1..."
+        },
+        {
+            "basis_points_fee": "25", // 0.25% fee
+            "address": "bb1..."
+        }
+    ]
+}
+```
+
+In this example, if the swap outputs 1,000,000 tokens:
+
+* First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+* Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
+* Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
+
+The remaining amount (996,500 tokens) is then used for the post-swap action.
+
+#### DestinationRecoverAddress
+
+The `destination_recover_address` field specifies what to do in the case of a swap failure. The typical behavior is that if a swap of asset A to asset B fails, the whole IBC transfer is failed (acknowledgement error) and funds (asset A) are rolled back to the source chain. However, by specifying the address here, you can let the hook know that you are okay with just keeping asset A in the specified destination address in the case of a swap failure on the destination chain. Any post-swap action will not be executed since the swap failed. It will simply be treated as a standard IBC transfer to the specified address with no swap or post-swap action.
+
+```json
+{
+    "destination_recover_address": "bb1..." // Destination chain address (optional)
+}
+```
+
+This only applies in the case of swap failures. Swap logic failures include, but are not limited to:
+
+* Exceeds slippage tolerance
+* Compliance not passed
+* Insufficient funds (should never happen since we use the amount transferred via IBC as the input amount)
+* Calculated amount out equals zero
+* etc.
+
+This is not applied in the cases below. Standard behavior is used in these cases.
+
+* Misconfigurations of the messages (wrong prefixes, missing fields, etc.)
+* Invalid pool IDs
+* Standard IBC transfer failures (rate limits, timeouts, etc.)
+
+Logic here is that in the event of a swap failure, the expected chain where the user expects funds to be recoverable is the source chain.
+
+For example, if we have a multi-swap path like:
+
+1. Send Asset A from BitBadges to Osmosis
+2. Swap Asset A to Asset B on Osmosis
+3. Send Asset B from Osmosis to BitBadges
+4. Swap Asset B to Asset C on BitBadges
+
+If Step 4 fails, the default behavior is that funds (Asset B) will be recoverable on Osmosis (bad UX). With this recovery logic, if Step 4 fails, funds (Asset B) will be recoverable on BitBadges (better UX). Minor, but it avoids confusion for the user and potentially needing to interact with other chains for recovery. It isn't a catch-all solution, but it is a good UX improvement in many cases.
+
+## Validation Rules
+
+1. **Post-swap action is required**: The `post_swap_action` field must be present
+2. **Exactly one action**: Either `ibc_transfer` or `transfer` must be specified, but not both
+3. **Swap required**: If `post_swap_action` is defined, a swap must also be defined
+4. **Single-hop swaps**: Only single-operation swaps are currently supported
+5. **Denom matching**: The swap's `denom_in` must match the received token denomination and the amount will automatically be the received amount
+6. **Channel validation**: For IBC transfers, the source channel must exist
+7. **Address validation**: All addresses must be valid Bech32 addresses
+8. **Capability validation**: Channel capabilities must exist for IBC transfers
+
+### Post-Swap Actions
+
+#### Local Transfer
+
+Transfers the swapped tokens to a local address:
+
+```json
+{
+    "transfer": {
+        "to_address": "bb1..."
+    }
+}
+```
+
+#### IBC Transfer
+
+Sends the swapped tokens to another chain via IBC:
+
+```json
+{
+    "ibc_transfer": {
+        "ibc_info": {
+            "source_channel": "channel-0",
+            "receiver": "bb1...",
+            "memo": "...",
+            "recover_address": "bb1..."
+        }
+    }
+}
+```
+
+## Limitations
+
+1. **Single-hop swaps only**: Multi-hop swaps are not supported
+2. **GAMM pools only**: Only GAMM pool swaps are supported
+3. **No BitBadges IBC transfers**: BitBadges denominations cannot be IBC transferred
+4. **Required swap**: A swap is required if using post-swap actions (use packet-forward-middleware for transfers without swaps)
+
+## Usage Example
+
+### Swap and Local Transfer
+
+```json
+{
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "post_swap_action": {
+            "transfer": {
+                "to_address": "bb1..."
+            }
+        }
+    }
+}
+```
+
+### Swap and IBC Transfer
+
+```json
+{
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "timeout_timestamp": 1234567890000000000,
+        "post_swap_action": {
+            "ibc_transfer": {
+                "ibc_info": {
+                    "source_channel": "channel-0",
+                    "receiver": "cosmos1xyz789...",
+                    "recover_address": "cosmos1intermediate..."
+                }
+            }
+        },
+        "destination_recover_address": "bb1...",
+        "affiliates": [
+            {
+                "basis_points_fee": "10",
+                "address": "bb1..."
+            }
+        ]
+    }
+}
+```
+
+### Swap with Affiliates
+
+```json
+{
+    "swap_and_action": {
+        "user_swap": {
+            "swap_exact_asset_in": {
+                "swap_venue_name": "bitbadges-poolmanager",
+                "operations": [
+                    {
+                        "pool": "1",
+                        "denom_in": "ubadge",
+                        "denom_out": "ibc/ABC..."
+                    }
+                ]
+            }
+        },
+        "min_asset": {
+            "native": {
+                "denom": "ibc/ABC...",
+                "amount": "1000000"
+            }
+        },
+        "post_swap_action": {
+            "transfer": {
+                "to_address": "bb1..."
+            }
+        },
+        "affiliates": [
+            {
+                "basis_points_fee": "50", // 0.5% fee
+                "address": "bb1affiliate1..."
+            },
+            {
+                "basis_points_fee": "25", // 0.25% fee
+                "address": "bb1affiliate2..."
+            }
+        ]
+    }
+}
+```
+
+
+## File: ./x-gamm/README.md
+
+# Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/gamm` module.
+
+This module was forked from Osmosis's `x/gamm` module with several key modifications to support BitBadges tokens and enhance compatibility.
+
+## Key Differences from Osmosis
+
+### 1. Interface Revamps
+
+* Removed `smoothWeightChangeParams` and other unused parameters
+* Updated certain type definitions for better compatibility with our codebase
+* Streamlined interfaces for improved performance
+* Remove unneeded logic like stableswap pools and governance proposal handling
+* Removed future pool governor functionality
+* Removed pool creation fee requirements
+
+### 2. Badge Token Integration
+
+The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
+
+* **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to abstract badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
+* **Mint/Burns**: Behind the scenes, `x/tokenization` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
+* **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
+* **Automatic Conversion**: Handles badge token transfers to/from pools automatically
+
+There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/tokenization tokens.
+
+#### Conversion Example
+
+Here's how the badge token conversion works:
+
+**Badge Token**: `badgeslp:21:utoken`
+
+* Collection ID: `21`
+* Base Denom: `utoken`
+* Wrapper Path Balances Conversion Rate: `[{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
+
+**Conversion Process**:
+
+```
+1 badgeslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+
+2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
+```
+
+### 3. Transferability Requirements and Compliance
+
+Even though badge tokens are converted to pool-compatible denominations for liquidity pool operations, they are still subject to the same transferability requirements as any other badge token transfer via MsgTransferTokens. This means that all badge token transfers to/from pools must satisfy the collection's approval criteria, including user-level and collection-level approvals.
+
+This design enables powerful compliance features:
+
+* **User-Gated Pools**: Restrict who can join or exit pools based on approval criteria
+* **Rate Limiting**: Implement daily/weekly withdrawal limits for pool exits
+* **KYC/AML Integration**: Require identity verification before allowing pool participation
+* **Geographic Restrictions**: Control pool access based on user addresses or other criteria
+* **Time-Based Controls**: Restrict pool operations to specific time windows
+* **Custom Compliance Logic**: Implement any approval criteria that can be expressed through the badge approval system
+
+Behind the scenes, pool operations involving badge tokens are treated as transfers initiated by the user but approved by the pool address itself.
+
+## Table of Contents
+
+1. [Introduction](broken-reference/) - Overview and key concepts
+2. [Messages](messages/) - Transaction messages and handlers
+
+## Message Reference
+
+### Core Operations
+
+* [MsgCreateBalancerPool](messages/msg-create-balancer-pool.md) - Create new balancer pool
+* [MsgJoinPool](messages/msg-join-pool.md) - Join existing pool with liquidity
+* [MsgSwapExactAmountIn](messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+* [MsgExitPool](messages/msg-exit-pool.md) - Exit pool and receive tokens
+
+## Query Reference
+
+For all GAMM queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
+
+The LCD provides comprehensive query endpoints for:
+
+* Pool information and statistics
+* Trading data and spot prices
+* Module parameters
+* And more
+
+All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
+
+## Quick Links
+
+* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
+* [BitBadges Documentation](https://docs.bitbadges.io)
+* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/gamm)
+
+## Documentation Style
+
+This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
+
+
+## File: ./x-gamm/introduction.md
+
+# Introduction
+
+The `x/gamm` module implements the Generalized Automated Market Maker (GAMM) functionality for the BitBadges blockchain. This module was forked from Osmosis's `x/gamm` module and provides the core infrastructure for decentralized exchange (DEX) operations, including liquidity pool creation, token swaps, and yield farming.
+
+## Fork from Osmosis
+
+This module maintains compatibility with Osmosis's GAMM functionality while adding specialized support for BitBadges tokens. The key modifications include:
+
+-   **Interface Simplification**: Removed unused parameters and streamlined type definitions
+-   **Badge Token Support**: Integrated native badge token handling with automatic conversion
+-   **Enhanced Compatibility**: Ensures seamless operation with existing DeFi infrastructure
+
+## Key Concepts
+
+### Automated Market Maker (AMM)
+
+An AMM is a decentralized exchange protocol that uses mathematical formulas to determine token prices and facilitate trades without the need for traditional orderbooks.
+
+### Liquidity Pools
+
+Liquidity pools are smart contracts that hold pairs of tokens and allow users to trade between them. Each pool has:
+
+-   **Pool Assets**: The tokens held in the pool
+-   **Pool Shares**: LP tokens representing ownership of the pool
+-   **Swap Fee**: Fee charged on each trade
+-   **Exit Fee**: Fee charged when exiting the pool
+
+### Pool Types
+
+The GAMM module currently supports:
+
+-   **Balancer Pools**: Standard AMM pools with configurable weights
+
+
+## File: ./x-gamm/messages/README.md
+
+# Messages
+
+This directory contains documentation for the core transaction messages supported by the `x/gamm` module.
+
+## Core Operations
+
+### Pool Management
+
+* [MsgCreateBalancerPool](msg-create-balancer-pool.md) - Create new balancer pool with initial liquidity
+* [MsgJoinPool](msg-join-pool.md) - Join existing pool with liquidity
+* [MsgExitPool](msg-exit-pool.md) - Exit pool and receive underlying tokens
+
+### Trading
+
+* [MsgSwapExactAmountIn](msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
+* [MsgSwapExactAmountInWithIBCTransfer](msg-swap-exact-amount-in-with-ibc-transfer.md) - Swap exact amount of tokens in and send via IBC
+
+## Core Message List
+
+The GAMM module supports 5 core transaction messages:
+
+1. **MsgCreateBalancerPool** - Create new balancer pool
+2. **MsgJoinPool** - Join pool with proportional tokens
+3. **MsgSwapExactAmountIn** - Swap exact input for minimum output
+4. **MsgSwapExactAmountInWithIBCTransfer** - Swap exact input and send output via IBC
+5. **MsgExitPool** - Exit pool and receive underlying tokens
+
+
+## File: ./x-gamm/messages/msg-create-balancer-pool.md
+
+# MsgCreateBalancerPool
+
+Creates a new balancer pool.
+
+The poolId will be assigned at execution time and is obtainable in the transaction response. The pool creator must provide initial liquidity and set pool parameters.
+
+## Pool Creation Properties
+
+The creation transaction for a balancer pool is unique in several ways:
+
+-   Initial liquidity must be provided by the creator
+-   Pool parameters like swap fee and exit fee are set
+-   Token weights are configured for the pool assets
+-   A dedicated module account is created for the pool
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgCreatePool
+message MsgCreateBalancerPool {
+  option (amino.name) = "gamm/create-balancer-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+
+  gamm.poolmodels.balancer.PoolParams pool_params = 2
+      [ (gogoproto.moretags) = "yaml:\"pool_params\"" ];
+
+  repeated gamm.poolmodels.balancer.PoolAsset pool_assets = 3
+      [ (gogoproto.nullable) = false ];
+}
+
+// Returns the poolID
+message MsgCreateBalancerPoolResponse {
+  uint64 pool_id = 1 [ (gogoproto.customname) = "PoolID" ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_params": {
+        "swap_fee": "0.003", // Note: Depending on serialization format this may be something like "300000000" for compatibility with sdk.Int format
+        "exit_fee": "0.000"
+    },
+    "pool_assets": [
+        {
+            "token": {
+                "denom": "ubadge",
+                "amount": "1000000"
+            },
+            "weight": "50"
+        },
+        {
+            "token": {
+                "denom": "badgeslp:21:utoken",
+                "amount": "5000000"
+            },
+            "weight": "50"
+        }
+    ]
+}
+```
+
+
+## File: ./x-gamm/messages/msg-exit-pool.md
+
+# MsgExitPool
+
+Exits an existing pool by burning LP tokens and receiving underlying tokens.
+
+Users can exit a pool by burning their LP tokens. In return, they receive the underlying pool tokens proportional to their share.
+
+## Exit Pool Properties
+
+When exiting a pool:
+
+-   LP tokens are burned from the user
+-   Underlying tokens are returned proportionally
+-   Pool liquidity decreases
+-   Exit fees may be applied
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgExitPool
+message MsgExitPool {
+  option (amino.name) = "gamm/exit-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
+  string share_in_amount = 3 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"share_in_amount\"",
+    (gogoproto.nullable) = false
+  ];
+
+  repeated cosmos.base.v1beta1.Coin token_out_mins = 4 [
+    (gogoproto.moretags) = "yaml:\"token_out_min_amounts\"",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message MsgExitPoolResponse {
+  repeated cosmos.base.v1beta1.Coin token_out = 1 [
+    (gogoproto.moretags) = "yaml:\"token_out\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_id": "1",
+    "share_in_amount": "100000",
+    "token_out_mins": [
+        {
+            "denom": "uatom",
+            "amount": "10000"
+        },
+        {
+            "denom": "uosmo",
+            "amount": "50000"
+        }
+    ]
+}
+```
+
+## Token Proportions
+
+The tokens received will be in the same proportion as the current pool composition. The user cannot specify which tokens to receive.
+
+## Slippage Protection
+
+The `token_out_mins` field provides slippage protection by setting minimum amounts for each token that must be received from the exit operation.
+
+## Exit Fees
+
+Some pools may charge exit fees, which are deducted from the tokens returned to the user.
+
+## LP Token Burning
+
+Upon successful exit, LP tokens are burned from the user's address, reducing their ownership stake in the pool.
+
+
+## File: ./x-gamm/messages/msg-join-pool.md
+
+# MsgJoinPool
+
+Joins an existing pool by providing liquidity. Users can join a pool by providing tokens proportional to the current pool composition. In return, they receive LP tokens representing their share of the pool.
+
+## Join Pool Properties
+
+When joining a pool:
+
+-   Tokens must be provided in the correct proportions
+-   LP tokens are minted to the user
+-   Pool liquidity increases
+-   User becomes eligible for trading fees
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgJoinPool
+// This is really MsgJoinPoolNoSwap
+message MsgJoinPool {
+  option (amino.name) = "gamm/join-pool";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
+  string share_out_amount = 3 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"pool_amount_out\"",
+    (gogoproto.nullable) = false
+  ];
+  repeated cosmos.base.v1beta1.Coin token_in_maxs = 4 [
+    (gogoproto.moretags) = "yaml:\"token_in_max_amounts\"",
+    (gogoproto.nullable) = false
+  ];
+}
+
+message MsgJoinPoolResponse {
+  string share_out_amount = 1 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"share_out_amount\"",
+    (gogoproto.nullable) = false
+  ];
+  repeated cosmos.base.v1beta1.Coin token_in = 2 [
+    (gogoproto.moretags) = "yaml:\"token_out\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "pool_id": "1",
+    "share_out_amount": "1000000",
+    "token_in_maxs": [
+        {
+            "denom": "uatom",
+            "amount": "100000"
+        },
+        {
+            "denom": "uosmo",
+            "amount": "500000"
+        }
+    ]
+}
+```
+
+## Token Proportions
+
+The tokens provided must be in the same proportion as the current pool composition. If not, the transaction will fail or tokens will be returned.
+
+## Slippage Protection
+
+The `token_in_maxs` field provides slippage protection by setting maximum amounts for each token that can be used in the join operation.
+
+## LP Token Minting
+
+Upon successful join, LP tokens are minted to the user's address. These tokens represent ownership of the pool and can be used for:
+
+-   Earning trading fees
+-   Governance participation
+-   Staking in yield farming programs
+
+
+## File: ./x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md
+
+# MsgSwapExactAmountInWithIBCTransfer
+
+Swaps an exact amount of tokens in for a minimum amount of tokens out, then automatically sends the output tokens to another chain via IBC transfer.
+
+This message combines a swap operation with an IBC transfer, enabling seamless cross-chain swaps in a single transaction.
+
+## Swap and Transfer Properties
+
+When executing this message:
+
+-   Exact input amount is specified
+-   Minimum output amount provides slippage protection
+-   Swap fee is deducted from the input
+-   Output tokens are automatically sent via IBC to the specified receiver
+-   All operations are atomic - if any step fails, the entire transaction is rolled back
+
+## TypeScript Interface
+
+```typescript
+export interface iIBCTransferInfo<T extends NumberType> {
+    sourceChannel: string;
+    receiver: string;
+    memo: string;
+    timeoutTimestamp: T;
+}
+
+export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
+    sender: string;
+    routes: iSwapAmountInRoute<T>[];
+    tokenIn: iCosmosCoin<T>;
+    tokenOutMinAmount: T;
+    ibcTransferInfo: iIBCTransferInfo<T>;
+    affiliates?: iAffiliate[];
+}
+
+export interface iAffiliate {
+    basisPointsFee: string;
+    address: string;
+}
+```
+
+## JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "routes": [
+        {
+            "pool_id": "1",
+            "token_out_denom": "uosmo"
+        }
+    ],
+    "token_in": {
+        "denom": "uatom",
+        "amount": "1000000"
+    },
+    "token_out_min_amount": "5000000",
+    "ibc_transfer_info": {
+        "source_channel": "channel-0",
+        "receiver": "cosmos1xyz789...",
+        "memo": "Cross-chain swap",
+        "timeout_timestamp": "1234567890000000000"
+    },
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
+}
+```
+
+## Multi-Hop Swaps
+
+The `routes` field allows for multi-hop swaps through multiple pools. The swap will execute through each pool in sequence before the IBC transfer.
+
+## Slippage Protection
+
+The `token_out_min_amount` field ensures that the user receives at least the specified amount of output tokens, protecting against price slippage during the swap.
+
+## IBC Transfer Details
+
+The `ibc_transfer_info` field specifies:
+
+-   **source_channel**: The IBC channel to send tokens through
+-   **receiver**: The address on the destination chain to receive the tokens
+-   **memo**: Optional memo to include with the IBC transfer
+-   **timeout_timestamp**: The timestamp after which the IBC transfer will timeout
+
+## Atomic Execution
+
+This message executes atomically:
+
+1. Swap tokens through the specified route(s)
+2. Verify minimum output amount is met
+3. Send output tokens via IBC transfer
+
+If any step fails, the entire transaction is rolled back and no state changes are committed.
+
+## Swap Fees
+
+Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed. The IBC transfer fee is also deducted from the output tokens.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output before the IBC transfer. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount (before IBC transfer)
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   Remaining for IBC transfer: 1,000,000 - 1,000 = 999,000 tokens
+
+## Use Cases
+
+-   **Cross-chain DeFi**: Swap tokens on one chain and send to another in a single transaction
+-   **Liquidity Routing**: Route liquidity through multiple chains efficiently
+-   **Automated Trading**: Execute complex cross-chain trading strategies atomically
+
+
+## File: ./x-gamm/messages/msg-swap-exact-amount-in.md
+
+# MsgSwapExactAmountIn
+
+Swaps an exact amount of tokens in for a minimum amount of tokens out.
+
+This message allows users to swap a specific amount of input tokens for output tokens, with slippage protection through the minimum output amount.
+
+## Swap Properties
+
+When executing a swap:
+
+-   Exact input amount is specified
+-   Minimum output amount provides slippage protection
+-   Swap fee is deducted from the input
+-   Price impact is calculated based on pool liquidity
+
+## Proto Definition
+
+```protobuf
+// ===================== MsgSwapExactAmountIn
+message MsgSwapExactAmountIn {
+  option (amino.name) = "gamm/SwapExactAmountIn";
+  option (cosmos.msg.v1.signer) = "sender";
+
+  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
+  repeated poolmanager.v1beta1.SwapAmountInRoute routes = 2
+      [ (gogoproto.nullable) = false ];
+  cosmos.base.v1beta1.Coin token_in = 3 [
+    (gogoproto.moretags) = "yaml:\"token_in\"",
+    (gogoproto.nullable) = false
+  ];
+  string token_out_min_amount = 4 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"token_out_min_amount\"",
+    (gogoproto.nullable) = false
+  ];
+  repeated Affiliate affiliates = 5;
+}
+
+message MsgSwapExactAmountInResponse {
+  string token_out_amount = 1 [
+
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.moretags) = "yaml:\"token_out_amount\"",
+    (gogoproto.nullable) = false
+  ];
+}
+```
+
+### Affiliate
+
+```protobuf
+message Affiliate {
+  string basis_points_fee = 1;
+  string address = 2;
+}
+```
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%) and are calculated on the swap output amount.
+
+### JSON Example
+
+```json
+{
+    "sender": "bb1abc123...",
+    "routes": [
+        {
+            "pool_id": "1",
+            "token_out_denom": "uosmo"
+        }
+    ],
+    "token_in": {
+        "denom": "uatom",
+        "amount": "1000000"
+    },
+    "token_out_min_amount": "5000000",
+    "affiliates": [
+        {
+            "basis_points_fee": "10",
+            "address": "bb1..."
+        }
+    ]
+}
+```
+
+## Multi-Hop Swaps
+
+The `routes` field allows for multi-hop swaps through multiple pools. The swap will execute through each pool in sequence.
+
+## Slippage Protection
+
+The `token_out_min_amount` field ensures that the user receives at least the specified amount of output tokens, protecting against price slippage.
+
+## Swap Fees
+
+Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
+
+## Affiliate Fees
+
+The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output. Affiliate fees are:
+
+-   **Optional**: If not specified, no affiliate fees are deducted
+-   **Calculated on output**: Fees are calculated on the swap output amount
+-   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
+-   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
+
+**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
+
+-   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
+-   User receives: 1,000,000 - 1,000 = 999,000 tokens
+
+
+## File: ./x-ibc-rate-limit/README.md
+
+# Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/ibc-rate-limit` module.
+
+The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
+
+## Key Features
+
+* **Control Supply Shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
+* **Limit Unique Senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
+* **Enforce Per-Address Limits**: Set limits on the number of transfers and total amount per address within a timeframe
+* **Multiple Timeframes**: Support for block-based, hour-based, and day-based rate limits
+
+## Architecture
+
+The module operates as an IBC middleware that intercepts IBC transfer packets before they are processed. It uses hooks to:
+
+1. Check rate limits before processing incoming packets (`OnRecvPacketOverride`)
+2. Check rate limits before sending packets (`SendPacketOverride`)
+3. Track transfer statistics after successful transfers
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+
+
+## File: ./x-ibc-rate-limit/overview.md
+
+# Introduction
+
+## Overview
+
+The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
+
+## Purpose
+
+The module serves as a security mechanism to:
+
+* **Control supply shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
+* **Limit unique senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
+* **Enforce per-address limits**: Set limits on the number of transfers and total amount per address within a timeframe
+
+## Key Concepts
+
+### Rate Limit Configuration
+
+Rate limits are configured per channel and denomination through the module's parameters. Each configuration can specify:
+
+* **Channel ID**: The IBC channel to apply the limit to (empty string applies to all channels)
+* **Denomination**: The token denomination to limit (must be specified)
+* **Supply Shift Limits**: Limits on the absolute value of net flow (inflows - outflows)
+* **Unique Sender Limits**: Limits on the number of unique sender addresses
+* **Address Limits**: Per-address limits on transfer count and total amount
+
+### Timeframes
+
+The module supports three types of timeframes:
+
+* **BLOCK**: Duration measured in blocks
+* **HOUR**: Duration measured in hours (converted to blocks using block time)
+* **DAY**: Duration measured in days (converted to blocks using block time)
+
+Multiple timeframe limits can be configured for the same channel/denom combination, and all limits are checked. If any limit would be exceeded, the transfer is rejected.
+
+## Authority
+
+The module's parameters can be updated by the authority address, which defaults to the governance module account. This allows governance to adjust rate limits as needed.
+
+
+## File: ./x-managersplitter/README.md
+
+# Overview
+
+This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/managersplitter` module.
+
+The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
+
+For example, you may want to delegate an approved address to delete the collection on your behalf but none of the other permissions.
+
+## Key Features
+
+* **Permission Delegation**: Split collection management permissions among multiple addresses
+* **Granular Control**: Define which addresses can perform which actions on a collection
+* **Admin Override**: Maintain a permanent admin address with full control
+* **Secure Execution**: Execute badge collection updates through the manager splitter with permission checks
+
+## Architecture
+
+The module creates **Manager Splitter** entities that:
+
+1. Have a derived address that is to be set as the collection manager
+2. Define permissions for each collection management action
+3. Allow approved addresses to execute actions on behalf of the manager splitter
+4. Maintain an admin address with permanent full control
+
+## Table of Contents
+
+1. [Introduction](overview.md) - Overview and key concepts
+2. [Messages](messages/) - Transaction messages and handlers
+
+## Message Reference
+
+### Core Operations
+
+* [MsgCreateManagerSplitter](messages/msg-create-manager-splitter.md) - Create a new manager splitter
+* [MsgUpdateManagerSplitter](messages/msg-update-manager-splitter.md) - Update manager splitter permissions
+* [MsgDeleteManagerSplitter](messages/msg-delete-manager-splitter.md) - Delete a manager splitter
+* [MsgExecuteUniversalUpdateCollection](messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
+
+
+## File: ./x-managersplitter/messages/README.md
+
+# Messages
+
+This directory contains documentation for the core transaction messages supported by the `x/managersplitter` module.
+
+## Core Operations
+
+### Manager Splitter Management
+
+* [MsgCreateManagerSplitter](msg-create-manager-splitter.md) - Create a new manager splitter with permissions
+* [MsgUpdateManagerSplitter](msg-update-manager-splitter.md) - Update manager splitter permissions
+* [MsgDeleteManagerSplitter](msg-delete-manager-splitter.md) - Delete a manager splitter
+
+### Execution
+
+* [MsgExecuteUniversalUpdateCollection](msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
+
+## Core Message List
+
+The Manager Splitter module supports 5 core transaction messages:
+
+1. **MsgCreateManagerSplitter** - Create new manager splitter
+2. **MsgUpdateManagerSplitter** - Update manager splitter permissions
+3. **MsgDeleteManagerSplitter** - Delete manager splitter
+4. **MsgExecuteUniversalUpdateCollection** - Execute collection updates
+
+
+## File: ./x-managersplitter/messages/msg-create-manager-splitter.md
+
+# MsgCreateManagerSplitter
+
+## Overview
+
+`MsgCreateManagerSplitter` creates a new Manager Splitter entity with specified permissions. The manager splitter receives a module-derived address that can be used as a collection manager.
+
+## Message Structure
+
+```protobuf
+message MsgCreateManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/CreateManagerSplitter";
+
+  // Admin address creating the entity.
+  string admin = 1;
+
+  // Permissions mapping each CollectionPermission field to execution criteria.
+  ManagerSplitterPermissions permissions = 2;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+
+The address that will be the permanent admin of the manager splitter. This address:
+
+* Has full control over the manager splitter
+* Can always execute all permissions
+* Can update and delete the manager splitter
+* Cannot be changed after creation
+
+Must be a valid Bech32 address.
+
+### `permissions` (ManagerSplitterPermissions, optional)
+
+The permissions configuration for the manager splitter. Each permission maps to `PermissionCriteria` that specifies which addresses can execute that permission.
+
+If `nil` or not provided, an empty permissions structure is created (all permissions denied except for admin).
+
+## ManagerSplitterPermissions Structure
+
+```protobuf
+message ManagerSplitterPermissions {
+  PermissionCriteria canDeleteCollection = 1;
+  PermissionCriteria canArchiveCollection = 2;
+  PermissionCriteria canUpdateStandards = 3;
+  PermissionCriteria canUpdateCustomData = 4;
+  PermissionCriteria canUpdateManager = 5;
+  PermissionCriteria canUpdateCollectionMetadata = 6;
+  PermissionCriteria canUpdateValidTokenIds = 7;
+  PermissionCriteria canUpdateTokenMetadata = 8;
+  PermissionCriteria canUpdateCollectionApprovals = 9;
+}
+```
+
+Each field is optional. If a permission is not set, it is denied by default (except for the admin).
+
+## PermissionCriteria Structure
+
+```protobuf
+message PermissionCriteria {
+  // List of approved addresses that can execute this permission.
+  repeated string approvedAddresses = 1;
+}
+```
+
+### `approvedAddresses` (string\[], optional)
+
+A list of Bech32 addresses that are approved to execute this permission. If empty, only the admin can execute this permission.
+
+## Response
+
+```protobuf
+message MsgCreateManagerSplitterResponse {
+  // The address of the created manager splitter.
+  string address = 1;
+}
+```
+
+### `address` (string)
+
+The module-derived address of the created manager splitter. This address:
+
+* Is deterministic based on the manager splitter ID
+* Can be used as a collection manager address
+* Is derived using `ModuleAddress(ModuleName, ID_bytes)`
+
+## Validation
+
+The message is validated to ensure:
+
+1. The `admin` address is a valid Bech32 address
+2. The manager splitter address doesn't already exist (shouldn't happen, but checked for safety)
+
+## State Changes
+
+1. A new Manager Splitter entity is created with:
+   * A module-derived address (based on next available ID)
+   * The specified admin address
+   * The specified permissions (or empty if not provided)
+2. The next manager splitter ID is incremented
+
+## Usage Example
+
+```json
+{
+  "admin": "bb1...",
+  "permissions": {
+    "canUpdateCollectionMetadata": {
+      "approvedAddresses": [
+        "bb1abc..."
+      ]
+    },
+    "canUpdateTokenMetadata": {
+      "approvedAddresses": [
+        "bb1def456..."
+      ]
+    },
+    "canUpdateValidTokenIds": {
+      "approvedAddresses": []
+    }
+  }
+}
+```
+
+
+## File: ./x-managersplitter/messages/msg-delete-manager-splitter.md
+
+# MsgDeleteManagerSplitter
+
+## Overview
+
+`MsgDeleteManagerSplitter` deletes an existing Manager Splitter entity. Only the admin address can delete the manager splitter.
+
+## Message Structure
+
+```protobuf
+message MsgDeleteManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/DeleteManagerSplitter";
+
+  // Admin address deleting the entity.
+  string admin = 1;
+
+  // Address of the manager splitter to delete.
+  string address = 2;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+
+The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
+
+### `address` (string, required)
+
+The address of the manager splitter to delete. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+## Response
+
+```protobuf
+message MsgDeleteManagerSplitterResponse {}
+```
+
+An empty response indicates successful deletion.
+
+## Authorization
+
+Only the admin address can delete the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
+
+## Usage Example
+
+```json
+{
+  "admin": "cosmos1abc123...",
+  "address": "cosmos1managersplitter..."
+}
+```
+
+
+## File: ./x-managersplitter/messages/msg-execute-universal-update-collection.md
+
+# MsgExecuteUniversalUpdateCollection
+
+## Overview
+
+`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the tokenization module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
+
+## Message Structure
+
+```protobuf
+message MsgExecuteUniversalUpdateCollection {
+  option (cosmos.msg.v1.signer) = "executor";
+  option (amino.name) = "managersplitter/ExecuteUniversalUpdateCollection";
+
+  // Address executing the message (must be approved or admin).
+  string executor = 1;
+
+  // Address of the manager splitter to execute through.
+  string managerSplitterAddress = 2;
+
+  // The UniversalUpdateCollection message to execute.
+  tokenization.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
+}
+```
+
+## Fields
+
+### `executor` (string, required)
+
+The address that is executing the message. This address must be:
+
+-   The admin of the manager splitter, OR
+-   An approved address for all permissions required by the `UniversalUpdateCollection` message
+
+Must be a valid Bech32 address.
+
+### `managerSplitterAddress` (string, required)
+
+The address of the manager splitter to execute through. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+### `universalUpdateCollectionMsg` (tokenization.MsgUniversalUpdateCollection, required)
+
+The `UniversalUpdateCollection` message from the tokenization module to execute. This message will be executed with the manager splitter address as the creator/manager.
+
+Note that you should only set the fields you are allowed to update. Use the update flag approach = false for all others.
+
+## Permission Checking
+
+The module checks permissions based on which fields are being updated in the `UniversalUpdateCollection` message:
+
+-   **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
+-   **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
+-   **UpdateManager**: Requires `canUpdateManager` permission
+-   **UpdateCollectionMetadata**: Requires `canUpdateCollectionMetadata` permission
+-   **UpdateTokenMetadata**: Requires `canUpdateTokenMetadata` permission
+-   **UpdateCustomData**: Requires `canUpdateCustomData` permission
+-   **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
+-   **UpdateStandards**: Requires `canUpdateStandards` permission
+-   **UpdateIsArchived**: Requires `canArchiveCollection` permission
+-   **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
+-   **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
+
+**Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
+
+## Response
+
+```protobuf
+message MsgExecuteUniversalUpdateCollectionResponse {
+  // ID of the collection that was updated.
+  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+}
+```
+
+### `collectionId` (Uint)
+
+The ID of the collection that was updated, returned from the tokenization module's `UniversalUpdateCollection` execution.
+
+## Validation
+
+The message is validated to ensure:
+
+1. The `executor` address is a valid Bech32 address
+2. The `managerSplitterAddress` is a valid Bech32 address
+3. The manager splitter exists
+4. The executor has permission to execute all required actions
+5. The `universalUpdateCollectionMsg` is valid
+
+## Authorization
+
+The executor must be:
+
+-   The admin of the manager splitter (has full permissions), OR
+-   An approved address for all permissions required by the update
+
+If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
+
+## Usage Example
+
+```json
+{
+  "executor": "bb1...",
+  "managerSplitterAddress": "bb1managersplitter...",
+  "universalUpdateCollectionMsg": {
+    "creator": "bb1managersplitter...",
+    "collectionId": "1",
+    ...
+    "updateCollectionMetadata": true,
+    "collectionMetadata": {...}
+  }
+}
+```
+
+
+## File: ./x-managersplitter/messages/msg-update-manager-splitter.md
+
+# MsgUpdateManagerSplitter
+
+## Overview
+
+`MsgUpdateManagerSplitter` updates the permissions of an existing Manager Splitter entity. Only the admin address can update the manager splitter.
+
+## Message Structure
+
+```protobuf
+message MsgUpdateManagerSplitter {
+  option (cosmos.msg.v1.signer) = "admin";
+  option (amino.name) = "managersplitter/UpdateManagerSplitter";
+
+  // Admin address updating the entity.
+  string admin = 1;
+
+  // Address of the manager splitter to update.
+  string address = 2;
+
+  // New permissions to set.
+  ManagerSplitterPermissions permissions = 3;
+}
+```
+
+## Fields
+
+### `admin` (string, required)
+
+The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
+
+### `address` (string, required)
+
+The address of the manager splitter to update. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
+
+### `permissions` (ManagerSplitterPermissions, required)
+
+The new permissions configuration to set. This completely replaces the existing permissions structure.
+
+## ManagerSplitterPermissions Structure
+
+```protobuf
+message ManagerSplitterPermissions {
+  PermissionCriteria canDeleteCollection = 1;
+  PermissionCriteria canArchiveCollection = 2;
+  PermissionCriteria canUpdateStandards = 3;
+  PermissionCriteria canUpdateCustomData = 4;
+  PermissionCriteria canUpdateManager = 5;
+  PermissionCriteria canUpdateCollectionMetadata = 6;
+  PermissionCriteria canUpdateValidTokenIds = 7;
+  PermissionCriteria canUpdateTokenMetadata = 8;
+  PermissionCriteria canUpdateCollectionApprovals = 9;
+}
+```
+
+Each field is optional. If a permission is not set in the update, it will be removed (denied by default).
+
+## PermissionCriteria Structure
+
+```protobuf
+message PermissionCriteria {
+  // List of approved addresses that can execute this permission.
+  repeated string approvedAddresses = 1;
+}
+```
+
+### `approvedAddresses` (string\[], optional)
+
+A list of Bech32 addresses that are approved to execute this permission. If empty or not provided, only the admin can execute this permission.
+
+## Response
+
+```protobuf
+message MsgUpdateManagerSplitterResponse {}
+```
+
+An empty response indicates successful update.
+
+## Usage Example
+
+```json
+{
+  "admin": "bb1abc123...",
+  "address": "bb1managersplitter...",
+  "permissions": {
+    "canUpdateCollectionMetadata": {
+      "approvedAddresses": [...]
+    },
+    "canUpdateTokenMetadata": {
+      "approvedAddresses": [
+        "bb1..."
+      ]
+    }
+  }
+}
+```
+
+
+## File: ./x-managersplitter/overview.md
+
+# Introduction
+
+## Overview
+
+The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
+
+### Manager Splitter Entity
+
+A Manager Splitter is a permissioned proxy that:
+
+* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/tokenization.
+* **Admin**: A permanent admin address with full control over the splitter and all permissions
+* **Permissions**: A mapping of collection permission types to execution criteria
+
+Then, any token collection updates must be handled through this module and through the proxied address.
+
+### Permission System
+
+The module mirrors the tokenization module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
+
+* **CanDeleteCollection**: Permission to delete the collection
+* **CanArchiveCollection**: Permission to archive the collection
+* **CanUpdateStandards**: Permission to update collection standards
+* **CanUpdateCustomData**: Permission to update custom data
+* **CanUpdateManager**: Permission to update the manager
+* **CanUpdateCollectionMetadata**: Permission to update collection metadata
+* **CanUpdateValidTokenIds**: Permission to update valid token IDs
+* **CanUpdateTokenMetadata**: Permission to update token metadata
+* **CanUpdateCollectionApprovals**: Permission to update collection approvals
+
+### Permission Criteria
+
+Each permission can specify:
+
+* **Approved Addresses**: A whitelist of addresses that can execute this permission
+
+If a permission has no criteria set, it is denied by default (except for the admin).
+
+### Admin Privileges
+
+The admin address:
+
+* Has full control over the manager splitter
+* Can always execute all permissions
+* Can create, update, and delete the manager splitter
+* Cannot be changed after creation
+
+## Use Cases
+
+1. **Multi-sig Management**: Multiple addresses can manage different aspects of a collection
+2. **Role-based Access**: Different addresses can have different permission levels
+3. **Delegated Management**: Delegate specific management tasks to trusted addresses
+4. **Governance Integration**: Use manager splitters for governance-controlled collections
+
+## Security Model
+
+1. **Admin Control**: Only the admin can create, update, or delete the manager splitter
+2. **Permission Checks**: All actions check permissions before execution
+3. **Address Validation**: All addresses are validated before use
+4. **Atomic Execution**: Permission checks and execution are atomic
+5. **Immutable Admin**: The admin address cannot be changed after creation
+
+## Limitations
+
+1. **Single Admin**: Each manager splitter has one permanent admin
+2. **Approved Addresses Only**: Currently supports whitelist-based permissions only
+3. **UniversalUpdateCollection Only**: Currently only supports executing `UniversalUpdateCollection` messages
+4. **No Permission Inheritance**: Permissions must be explicitly set for each action type
+
+## Alternative
+
+This is an alternative to standard single manager approach. You can also explore setting up managerial systems with:
+
+* x/group - Cosmos SDK module for multisigs / DAOs and voting
+* DAO tooling
+* Custom EVM contracts
+
+
 ## File: ./x-tokenization/README.md
 
 # 📚 Overview
@@ -19254,7 +21223,7 @@ IBC backed paths differ mainly from which IBC denom is used for minting.
 
 ## Summary
 
-IBC Backed Paths provide a powerful mechanism for connecting badge tokens to the broader Cosmos ecosystem through IBC coins. By enabling bidirectional conversion between badges and IBC-denominated assets, they unlock cross-chain interoperability, DeFi integration, and liquidity provision while maintaining the unique features and capabilities of the badge system.
+IBC Backed Paths provide a powerful mechanism for connecting badge tokens to the broader Cosmos ecosystem through IBC coins. By enabling bidirectional conversion between tokens and IBC-denominated assets, they unlock cross-chain interoperability, DeFi integration, and liquidity provision while maintaining the unique features and capabilities of the badge system.
 
 
 ## File: ./x-tokenization/concepts/manager.md
@@ -24652,1711 +26621,6 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/params"
   }
 }
 ```
-
-
-## File: ./x-custom-ibc-hooks/README.md
-
-# Overview
-
-This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/custom-ibc-hooks` module.
-
-The Custom IBC Hooks module extends IBC transfer functionality by allowing users to execute custom actions (such as swaps and transfers) automatically when receiving IBC tokens. This enables complex cross-chain workflows in a single transaction (e.g. Skip:Go compatibility or other IBC aggregators).
-
-## Key Features
-
-* **Swap and Transfer**: Automatically swap received tokens and transfer the output to a destination
-* **Swap and IBC Transfer**: Swap received tokens and send them to another chain via IBC
-* **Cross-chain DeFi**: Enable seamless cross-chain DeFi operations without manual intervention
-* **Atomic Execution**: All operations are executed atomically - either all succeed or all fail
-
-## Architecture
-
-The module operates as an IBC middleware hook that:
-
-1. Intercepts incoming IBC transfer packets
-2. Parses hook data from the transfer memo
-3. Executes the IBC transfer first (to receive the tokens)
-4. Executes the custom hook actions (swap, transfer, etc.)
-5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
-
-## Table of Contents
-
-1. [Introduction](overview.md) - Overview and key concepts
-
-
-## File: ./x-custom-ibc-hooks/overview.md
-
-# Introduction
-
-## Architecture
-
-The module operates as an IBC middleware hook that:
-
-1. Intercepts incoming IBC transfer packets
-2. Parses hook data from the transfer memo
-3. Executes the IBC transfer first (to receive the tokens)
-4. Executes the custom hook actions (swap, transfer, etc.)
-5. Returns an error acknowledgement if the hook fails, rolling back the entire transaction
-
-```
-Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank assets can be.
-```
-
-## Key Concepts
-
-### Hook Data Format
-
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
-
-### Swap and Action
-
-The primary hook type is `swap_and_action`, which:
-
-1. Executes a swap operation using the received tokens
-2. Performs a post-swap action (local transfer or IBC transfer)
-
-### Intermediate Sender Address
-
-The module derives an intermediate sender address from the IBC channel and original sender. This address is used to:
-
-* Receive the IBC transfer tokens
-* Execute the swap operation
-* Send tokens to the final destination
-
-Use here for generation if needed
-
-<pre class="language-typescript"><code class="lang-typescript"><strong>import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
-</strong>
-// deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
-export function deriveIntermediateSender(channel: string, originalSender: string, bech32Prefix: string)
-</code></pre>
-
-### Atomic Execution
-
-All operations are executed atomically:
-
-* If the IBC transfer succeeds but the hook fails, the entire transaction is rolled back
-* If the hook fails, an error acknowledgement is returned, preventing the IBC transfer from completing
-* State changes are only committed if all operations succeed
-
-## Hook Data Structure
-
-### HookData
-
-```go
-type HookData struct {
-    SwapAndAction *SwapAndAction `json:"swap_and_action,omitempty"`
-}
-```
-
-### SwapAndAction
-
-```go
-type SwapAndAction struct {
-    UserSwap                  *UserSwap       `json:"user_swap,omitempty"`
-    MinAsset                  *MinAsset       `json:"min_asset,omitempty"`
-    TimeoutTimestamp          *uint64         `json:"timeout_timestamp,omitempty"`
-    PostSwapAction            *PostSwapAction `json:"post_swap_action,omitempty"`
-    DestinationRecoverAddress string          `json:"destination_recover_address,omitempty"`
-    Affiliates                []Affiliate     `json:"affiliates,omitempty"`
-}
-```
-
-### UserSwap
-
-```go
-type UserSwap struct {
-    SwapExactAssetIn *SwapExactAssetIn `json:"swap_exact_asset_in,omitempty"`
-}
-```
-
-### SwapExactAssetIn
-
-```go
-type SwapExactAssetIn struct {
-    SwapVenueName string      `json:"swap_venue_name,omitempty"`
-    Operations    []Operation `json:"operations"`
-}
-```
-
-### Operation
-
-```go
-type Operation struct {
-    Pool     string `json:"pool"`     // Pool ID as string
-    DenomIn  string `json:"denom_in"`
-    DenomOut string `json:"denom_out"`
-}
-```
-
-### MinAsset
-
-```go
-type MinAsset struct {
-    Native *NativeAsset `json:"native,omitempty"`
-}
-```
-
-### NativeAsset
-
-```go
-type NativeAsset struct {
-    Denom  string `json:"denom"`
-    Amount string `json:"amount"`
-}
-```
-
-### PostSwapAction
-
-```go
-type PostSwapAction struct {
-    IBCTransfer *IBCTransferInfo `json:"ibc_transfer,omitempty"`
-    Transfer    *TransferInfo    `json:"transfer,omitempty"`
-}
-```
-
-**Note**: Exactly one of `IBCTransfer` or `Transfer` must be specified.
-
-### TransferInfo
-
-```go
-type TransferInfo struct {
-    ToAddress string `json:"to_address"`
-}
-```
-
-### IBCTransferInfo
-
-```go
-type IBCTransferInfo struct {
-    IBCInfo *IBCInfo `json:"ibc_info,omitempty"`
-}
-```
-
-### IBCInfo
-
-```go
-type IBCInfo struct {
-    SourceChannel  string `json:"source_channel"`
-    Receiver       string `json:"receiver"`
-    Memo           string `json:"memo,omitempty"`
-    RecoverAddress string `json:"recover_address,omitempty"`
-}
-```
-
-### Affiliate
-
-```go
-type Affiliate struct {
-    BasisPointsFee string `json:"basis_points_fee"`
-    Address        string `json:"address"`
-}
-```
-
-#### Affiliates
-
-The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. This is useful for referral programs, partnerships, or revenue sharing.
-
-* **Optional**: If not specified, no affiliate fees are deducted
-* **Basis points**: Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%)
-* **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
-* **Fee calculation**: Fees are calculated on the swap output amount before any post-swap actions
-* **Address format**: Must be a valid Bech32 address on the destination chain
-
-**Example**:
-
-```json
-{
-    "affiliates": [
-        {
-            "basis_points_fee": "10", // 0.1% fee
-            "address": "bb1..."
-        },
-        {
-            "basis_points_fee": "25", // 0.25% fee
-            "address": "bb1..."
-        }
-    ]
-}
-```
-
-In this example, if the swap outputs 1,000,000 tokens:
-
-* First affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
-* Second affiliate receives: 1,000,000 × 0.0025 = 2,500 tokens
-* Remaining amount: 1,000,000 - 1,000 - 2,500 = 996,500 tokens
-
-The remaining amount (996,500 tokens) is then used for the post-swap action.
-
-#### DestinationRecoverAddress
-
-The `destination_recover_address` field specifies what to do in the case of a swap failure. The typical behavior is that if a swap of asset A to asset B fails, the whole IBC transfer is failed (acknowledgement error) and funds (asset A) are rolled back to the source chain. However, by specifying the address here, you can let the hook know that you are okay with just keeping asset A in the specified destination address in the case of a swap failure on the destination chain. Any post-swap action will not be executed since the swap failed. It will simply be treated as a standard IBC transfer to the specified address with no swap or post-swap action.
-
-```json
-{
-    "destination_recover_address": "bb1..." // Destination chain address (optional)
-}
-```
-
-This only applies in the case of swap failures. Swap logic failures include, but are not limited to:
-
-* Exceeds slippage tolerance
-* Compliance not passed
-* Insufficient funds (should never happen since we use the amount transferred via IBC as the input amount)
-* Calculated amount out equals zero
-* etc.
-
-This is not applied in the cases below. Standard behavior is used in these cases.
-
-* Misconfigurations of the messages (wrong prefixes, missing fields, etc.)
-* Invalid pool IDs
-* Standard IBC transfer failures (rate limits, timeouts, etc.)
-
-Logic here is that in the event of a swap failure, the expected chain where the user expects funds to be recoverable is the source chain.
-
-For example, if we have a multi-swap path like:
-
-1. Send Asset A from BitBadges to Osmosis
-2. Swap Asset A to Asset B on Osmosis
-3. Send Asset B from Osmosis to BitBadges
-4. Swap Asset B to Asset C on BitBadges
-
-If Step 4 fails, the default behavior is that funds (Asset B) will be recoverable on Osmosis (bad UX). With this recovery logic, if Step 4 fails, funds (Asset B) will be recoverable on BitBadges (better UX). Minor, but it avoids confusion for the user and potentially needing to interact with other chains for recovery. It isn't a catch-all solution, but it is a good UX improvement in many cases.
-
-## Validation Rules
-
-1. **Post-swap action is required**: The `post_swap_action` field must be present
-2. **Exactly one action**: Either `ibc_transfer` or `transfer` must be specified, but not both
-3. **Swap required**: If `post_swap_action` is defined, a swap must also be defined
-4. **Single-hop swaps**: Only single-operation swaps are currently supported
-5. **Denom matching**: The swap's `denom_in` must match the received token denomination and the amount will automatically be the received amount
-6. **Channel validation**: For IBC transfers, the source channel must exist
-7. **Address validation**: All addresses must be valid Bech32 addresses
-8. **Capability validation**: Channel capabilities must exist for IBC transfers
-
-### Post-Swap Actions
-
-#### Local Transfer
-
-Transfers the swapped tokens to a local address:
-
-```json
-{
-    "transfer": {
-        "to_address": "bb1..."
-    }
-}
-```
-
-#### IBC Transfer
-
-Sends the swapped tokens to another chain via IBC:
-
-```json
-{
-    "ibc_transfer": {
-        "ibc_info": {
-            "source_channel": "channel-0",
-            "receiver": "bb1...",
-            "memo": "...",
-            "recover_address": "bb1..."
-        }
-    }
-}
-```
-
-## Limitations
-
-1. **Single-hop swaps only**: Multi-hop swaps are not supported
-2. **GAMM pools only**: Only GAMM pool swaps are supported
-3. **No BitBadges IBC transfers**: BitBadges denominations cannot be IBC transferred
-4. **Required swap**: A swap is required if using post-swap actions (use packet-forward-middleware for transfers without swaps)
-
-## Usage Example
-
-### Swap and Local Transfer
-
-```json
-{
-    "swap_and_action": {
-        "user_swap": {
-            "swap_exact_asset_in": {
-                "swap_venue_name": "bitbadges-poolmanager",
-                "operations": [
-                    {
-                        "pool": "1",
-                        "denom_in": "ubadge",
-                        "denom_out": "ibc/ABC..."
-                    }
-                ]
-            }
-        },
-        "min_asset": {
-            "native": {
-                "denom": "ibc/ABC...",
-                "amount": "1000000"
-            }
-        },
-        "post_swap_action": {
-            "transfer": {
-                "to_address": "bb1..."
-            }
-        }
-    }
-}
-```
-
-### Swap and IBC Transfer
-
-```json
-{
-    "swap_and_action": {
-        "user_swap": {
-            "swap_exact_asset_in": {
-                "swap_venue_name": "bitbadges-poolmanager",
-                "operations": [
-                    {
-                        "pool": "1",
-                        "denom_in": "ubadge",
-                        "denom_out": "ibc/ABC..."
-                    }
-                ]
-            }
-        },
-        "min_asset": {
-            "native": {
-                "denom": "ibc/ABC...",
-                "amount": "1000000"
-            }
-        },
-        "timeout_timestamp": 1234567890000000000,
-        "post_swap_action": {
-            "ibc_transfer": {
-                "ibc_info": {
-                    "source_channel": "channel-0",
-                    "receiver": "cosmos1xyz789...",
-                    "recover_address": "cosmos1intermediate..."
-                }
-            }
-        },
-        "destination_recover_address": "bb1...",
-        "affiliates": [
-            {
-                "basis_points_fee": "10",
-                "address": "bb1..."
-            }
-        ]
-    }
-}
-```
-
-### Swap with Affiliates
-
-```json
-{
-    "swap_and_action": {
-        "user_swap": {
-            "swap_exact_asset_in": {
-                "swap_venue_name": "bitbadges-poolmanager",
-                "operations": [
-                    {
-                        "pool": "1",
-                        "denom_in": "ubadge",
-                        "denom_out": "ibc/ABC..."
-                    }
-                ]
-            }
-        },
-        "min_asset": {
-            "native": {
-                "denom": "ibc/ABC...",
-                "amount": "1000000"
-            }
-        },
-        "post_swap_action": {
-            "transfer": {
-                "to_address": "bb1..."
-            }
-        },
-        "affiliates": [
-            {
-                "basis_points_fee": "50", // 0.5% fee
-                "address": "bb1affiliate1..."
-            },
-            {
-                "basis_points_fee": "25", // 0.25% fee
-                "address": "bb1affiliate2..."
-            }
-        ]
-    }
-}
-```
-
-
-## File: ./x-gamm/README.md
-
-# Overview
-
-This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/gamm` module.
-
-This module was forked from Osmosis's `x/gamm` module with several key modifications to support BitBadges tokens and enhance compatibility.
-
-## Key Differences from Osmosis
-
-### 1. Interface Revamps
-
-* Removed `smoothWeightChangeParams` and other unused parameters
-* Updated certain type definitions for better compatibility with our codebase
-* Streamlined interfaces for improved performance
-* Remove unneeded logic like stableswap pools and governance proposal handling
-* Removed future pool governor functionality
-* Removed pool creation fee requirements
-
-### 2. Badge Token Integration
-
-The main difference is in the badge token handling system. With every attempted transfer of BitBadges tokens, the system:
-
-* **Wrapping Conversion**: Uses `cosmosCoinWrapperPaths` defined by the collection to abstract badge tokens to `x/bank` denominations (using the `path.balances` array) at a set conversion rate
-* **Mint/Burns**: Behind the scenes, `x/tokenization` denomination is used before / after each swap and to/from a pool if the asset is a BitBadges token.
-* **Pool Compatibility**: Ensures seamless integration with existing pool infrastructure
-* **Automatic Conversion**: Handles badge token transfers to/from pools automatically
-
-There actually is not any minting / burning behind the scenes. For implementation purpsoes, the pool treats it as a "ghost denom": badgeslp:collectionID:denom, but it is really backed by core x/tokenization tokens.
-
-#### Conversion Example
-
-Here's how the badge token conversion works:
-
-**Badge Token**: `badgeslp:21:utoken`
-
-* Collection ID: `21`
-* Base Denom: `utoken`
-* Wrapper Path Balances Conversion Rate: `[{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]`
-
-**Conversion Process**:
-
-```
-1 badgeslp:21:utoken = [{ amount: 1n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
-
-2 badgeslp:21:utoken = [{ amount: 2n, tokenIds: [{ start: 1n, end: 1n }], ownershipTimes: UintRangeArray.FullRanges() }]
-```
-
-### 3. Transferability Requirements and Compliance
-
-Even though badge tokens are converted to pool-compatible denominations for liquidity pool operations, they are still subject to the same transferability requirements as any other badge token transfer via MsgTransferTokens. This means that all badge token transfers to/from pools must satisfy the collection's approval criteria, including user-level and collection-level approvals.
-
-This design enables powerful compliance features:
-
-* **User-Gated Pools**: Restrict who can join or exit pools based on approval criteria
-* **Rate Limiting**: Implement daily/weekly withdrawal limits for pool exits
-* **KYC/AML Integration**: Require identity verification before allowing pool participation
-* **Geographic Restrictions**: Control pool access based on user addresses or other criteria
-* **Time-Based Controls**: Restrict pool operations to specific time windows
-* **Custom Compliance Logic**: Implement any approval criteria that can be expressed through the badge approval system
-
-Behind the scenes, pool operations involving badge tokens are treated as transfers initiated by the user but approved by the pool address itself.
-
-## Table of Contents
-
-1. [Introduction](broken-reference/) - Overview and key concepts
-2. [Messages](messages/) - Transaction messages and handlers
-
-## Message Reference
-
-### Core Operations
-
-* [MsgCreateBalancerPool](messages/msg-create-balancer-pool.md) - Create new balancer pool
-* [MsgJoinPool](messages/msg-join-pool.md) - Join existing pool with liquidity
-* [MsgSwapExactAmountIn](messages/msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
-* [MsgExitPool](messages/msg-exit-pool.md) - Exit pool and receive tokens
-
-## Query Reference
-
-For all GAMM queries, please refer to the [BitBadges LCD API](https://lcd.bitbadges.io/).
-
-The LCD provides comprehensive query endpoints for:
-
-* Pool information and statistics
-* Trading data and spot prices
-* Module parameters
-* And more
-
-All queries follow the standard Cosmos SDK query patterns and can be accessed via REST API or gRPC.
-
-## Quick Links
-
-* [BitBadges Chain Repository](https://github.com/bitbadges/bitbadgeschain)
-* [BitBadges Documentation](https://docs.bitbadges.io)
-* [Proto Definitions](https://github.com/bitbadges/bitbadgeschain/tree/master/proto/gamm)
-
-## Documentation Style
-
-This documentation follows the [Cosmos SDK module documentation standards](https://docs.cosmos.network/main/building-modules/README) and is designed for developers building on or integrating with the BitBadges blockchain.
-
-
-## File: ./x-gamm/introduction.md
-
-# Introduction
-
-The `x/gamm` module implements the Generalized Automated Market Maker (GAMM) functionality for the BitBadges blockchain. This module was forked from Osmosis's `x/gamm` module and provides the core infrastructure for decentralized exchange (DEX) operations, including liquidity pool creation, token swaps, and yield farming.
-
-## Fork from Osmosis
-
-This module maintains compatibility with Osmosis's GAMM functionality while adding specialized support for BitBadges tokens. The key modifications include:
-
--   **Interface Simplification**: Removed unused parameters and streamlined type definitions
--   **Badge Token Support**: Integrated native badge token handling with automatic conversion
--   **Enhanced Compatibility**: Ensures seamless operation with existing DeFi infrastructure
-
-## Key Concepts
-
-### Automated Market Maker (AMM)
-
-An AMM is a decentralized exchange protocol that uses mathematical formulas to determine token prices and facilitate trades without the need for traditional orderbooks.
-
-### Liquidity Pools
-
-Liquidity pools are smart contracts that hold pairs of tokens and allow users to trade between them. Each pool has:
-
--   **Pool Assets**: The tokens held in the pool
--   **Pool Shares**: LP tokens representing ownership of the pool
--   **Swap Fee**: Fee charged on each trade
--   **Exit Fee**: Fee charged when exiting the pool
-
-### Pool Types
-
-The GAMM module currently supports:
-
--   **Balancer Pools**: Standard AMM pools with configurable weights
-
-
-## File: ./x-gamm/messages/README.md
-
-# Messages
-
-This directory contains documentation for the core transaction messages supported by the `x/gamm` module.
-
-## Core Operations
-
-### Pool Management
-
-* [MsgCreateBalancerPool](msg-create-balancer-pool.md) - Create new balancer pool with initial liquidity
-* [MsgJoinPool](msg-join-pool.md) - Join existing pool with liquidity
-* [MsgExitPool](msg-exit-pool.md) - Exit pool and receive underlying tokens
-
-### Trading
-
-* [MsgSwapExactAmountIn](msg-swap-exact-amount-in.md) - Swap exact amount of tokens in
-* [MsgSwapExactAmountInWithIBCTransfer](msg-swap-exact-amount-in-with-ibc-transfer.md) - Swap exact amount of tokens in and send via IBC
-
-## Core Message List
-
-The GAMM module supports 5 core transaction messages:
-
-1. **MsgCreateBalancerPool** - Create new balancer pool
-2. **MsgJoinPool** - Join pool with proportional tokens
-3. **MsgSwapExactAmountIn** - Swap exact input for minimum output
-4. **MsgSwapExactAmountInWithIBCTransfer** - Swap exact input and send output via IBC
-5. **MsgExitPool** - Exit pool and receive underlying tokens
-
-
-## File: ./x-gamm/messages/msg-create-balancer-pool.md
-
-# MsgCreateBalancerPool
-
-Creates a new balancer pool.
-
-The poolId will be assigned at execution time and is obtainable in the transaction response. The pool creator must provide initial liquidity and set pool parameters.
-
-## Pool Creation Properties
-
-The creation transaction for a balancer pool is unique in several ways:
-
--   Initial liquidity must be provided by the creator
--   Pool parameters like swap fee and exit fee are set
--   Token weights are configured for the pool assets
--   A dedicated module account is created for the pool
-
-## Proto Definition
-
-```protobuf
-// ===================== MsgCreatePool
-message MsgCreateBalancerPool {
-  option (amino.name) = "gamm/create-balancer-pool";
-  option (cosmos.msg.v1.signer) = "sender";
-
-  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
-
-  gamm.poolmodels.balancer.PoolParams pool_params = 2
-      [ (gogoproto.moretags) = "yaml:\"pool_params\"" ];
-
-  repeated gamm.poolmodels.balancer.PoolAsset pool_assets = 3
-      [ (gogoproto.nullable) = false ];
-}
-
-// Returns the poolID
-message MsgCreateBalancerPoolResponse {
-  uint64 pool_id = 1 [ (gogoproto.customname) = "PoolID" ];
-}
-```
-
-### JSON Example
-
-```json
-{
-    "sender": "bb1abc123...",
-    "pool_params": {
-        "swap_fee": "0.003", // Note: Depending on serialization format this may be something like "300000000" for compatibility with sdk.Int format
-        "exit_fee": "0.000"
-    },
-    "pool_assets": [
-        {
-            "token": {
-                "denom": "ubadge",
-                "amount": "1000000"
-            },
-            "weight": "50"
-        },
-        {
-            "token": {
-                "denom": "badgeslp:21:utoken",
-                "amount": "5000000"
-            },
-            "weight": "50"
-        }
-    ]
-}
-```
-
-
-## File: ./x-gamm/messages/msg-exit-pool.md
-
-# MsgExitPool
-
-Exits an existing pool by burning LP tokens and receiving underlying tokens.
-
-Users can exit a pool by burning their LP tokens. In return, they receive the underlying pool tokens proportional to their share.
-
-## Exit Pool Properties
-
-When exiting a pool:
-
--   LP tokens are burned from the user
--   Underlying tokens are returned proportionally
--   Pool liquidity decreases
--   Exit fees may be applied
-
-## Proto Definition
-
-```protobuf
-// ===================== MsgExitPool
-message MsgExitPool {
-  option (amino.name) = "gamm/exit-pool";
-  option (cosmos.msg.v1.signer) = "sender";
-
-  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
-  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
-  string share_in_amount = 3 [
-
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.moretags) = "yaml:\"share_in_amount\"",
-    (gogoproto.nullable) = false
-  ];
-
-  repeated cosmos.base.v1beta1.Coin token_out_mins = 4 [
-    (gogoproto.moretags) = "yaml:\"token_out_min_amounts\"",
-    (gogoproto.nullable) = false
-  ];
-}
-
-message MsgExitPoolResponse {
-  repeated cosmos.base.v1beta1.Coin token_out = 1 [
-    (gogoproto.moretags) = "yaml:\"token_out\"",
-    (gogoproto.nullable) = false
-  ];
-}
-```
-
-### JSON Example
-
-```json
-{
-    "sender": "bb1abc123...",
-    "pool_id": "1",
-    "share_in_amount": "100000",
-    "token_out_mins": [
-        {
-            "denom": "uatom",
-            "amount": "10000"
-        },
-        {
-            "denom": "uosmo",
-            "amount": "50000"
-        }
-    ]
-}
-```
-
-## Token Proportions
-
-The tokens received will be in the same proportion as the current pool composition. The user cannot specify which tokens to receive.
-
-## Slippage Protection
-
-The `token_out_mins` field provides slippage protection by setting minimum amounts for each token that must be received from the exit operation.
-
-## Exit Fees
-
-Some pools may charge exit fees, which are deducted from the tokens returned to the user.
-
-## LP Token Burning
-
-Upon successful exit, LP tokens are burned from the user's address, reducing their ownership stake in the pool.
-
-
-## File: ./x-gamm/messages/msg-join-pool.md
-
-# MsgJoinPool
-
-Joins an existing pool by providing liquidity. Users can join a pool by providing tokens proportional to the current pool composition. In return, they receive LP tokens representing their share of the pool.
-
-## Join Pool Properties
-
-When joining a pool:
-
--   Tokens must be provided in the correct proportions
--   LP tokens are minted to the user
--   Pool liquidity increases
--   User becomes eligible for trading fees
-
-## Proto Definition
-
-```protobuf
-// ===================== MsgJoinPool
-// This is really MsgJoinPoolNoSwap
-message MsgJoinPool {
-  option (amino.name) = "gamm/join-pool";
-  option (cosmos.msg.v1.signer) = "sender";
-
-  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
-  uint64 pool_id = 2 [ (gogoproto.moretags) = "yaml:\"pool_id\"" ];
-  string share_out_amount = 3 [
-
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.moretags) = "yaml:\"pool_amount_out\"",
-    (gogoproto.nullable) = false
-  ];
-  repeated cosmos.base.v1beta1.Coin token_in_maxs = 4 [
-    (gogoproto.moretags) = "yaml:\"token_in_max_amounts\"",
-    (gogoproto.nullable) = false
-  ];
-}
-
-message MsgJoinPoolResponse {
-  string share_out_amount = 1 [
-
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.moretags) = "yaml:\"share_out_amount\"",
-    (gogoproto.nullable) = false
-  ];
-  repeated cosmos.base.v1beta1.Coin token_in = 2 [
-    (gogoproto.moretags) = "yaml:\"token_out\"",
-    (gogoproto.nullable) = false
-  ];
-}
-```
-
-### JSON Example
-
-```json
-{
-    "sender": "bb1abc123...",
-    "pool_id": "1",
-    "share_out_amount": "1000000",
-    "token_in_maxs": [
-        {
-            "denom": "uatom",
-            "amount": "100000"
-        },
-        {
-            "denom": "uosmo",
-            "amount": "500000"
-        }
-    ]
-}
-```
-
-## Token Proportions
-
-The tokens provided must be in the same proportion as the current pool composition. If not, the transaction will fail or tokens will be returned.
-
-## Slippage Protection
-
-The `token_in_maxs` field provides slippage protection by setting maximum amounts for each token that can be used in the join operation.
-
-## LP Token Minting
-
-Upon successful join, LP tokens are minted to the user's address. These tokens represent ownership of the pool and can be used for:
-
--   Earning trading fees
--   Governance participation
--   Staking in yield farming programs
-
-
-## File: ./x-gamm/messages/msg-swap-exact-amount-in-with-ibc-transfer.md
-
-# MsgSwapExactAmountInWithIBCTransfer
-
-Swaps an exact amount of tokens in for a minimum amount of tokens out, then automatically sends the output tokens to another chain via IBC transfer.
-
-This message combines a swap operation with an IBC transfer, enabling seamless cross-chain swaps in a single transaction.
-
-## Swap and Transfer Properties
-
-When executing this message:
-
--   Exact input amount is specified
--   Minimum output amount provides slippage protection
--   Swap fee is deducted from the input
--   Output tokens are automatically sent via IBC to the specified receiver
--   All operations are atomic - if any step fails, the entire transaction is rolled back
-
-## TypeScript Interface
-
-```typescript
-export interface iIBCTransferInfo<T extends NumberType> {
-    sourceChannel: string;
-    receiver: string;
-    memo: string;
-    timeoutTimestamp: T;
-}
-
-export interface iMsgSwapExactAmountInWithIBCTransfer<T extends NumberType> {
-    sender: string;
-    routes: iSwapAmountInRoute<T>[];
-    tokenIn: iCosmosCoin<T>;
-    tokenOutMinAmount: T;
-    ibcTransferInfo: iIBCTransferInfo<T>;
-    affiliates?: iAffiliate[];
-}
-
-export interface iAffiliate {
-    basisPointsFee: string;
-    address: string;
-}
-```
-
-## JSON Example
-
-```json
-{
-    "sender": "bb1abc123...",
-    "routes": [
-        {
-            "pool_id": "1",
-            "token_out_denom": "uosmo"
-        }
-    ],
-    "token_in": {
-        "denom": "uatom",
-        "amount": "1000000"
-    },
-    "token_out_min_amount": "5000000",
-    "ibc_transfer_info": {
-        "source_channel": "channel-0",
-        "receiver": "cosmos1xyz789...",
-        "memo": "Cross-chain swap",
-        "timeout_timestamp": "1234567890000000000"
-    },
-    "affiliates": [
-        {
-            "basis_points_fee": "10",
-            "address": "bb1..."
-        }
-    ]
-}
-```
-
-## Multi-Hop Swaps
-
-The `routes` field allows for multi-hop swaps through multiple pools. The swap will execute through each pool in sequence before the IBC transfer.
-
-## Slippage Protection
-
-The `token_out_min_amount` field ensures that the user receives at least the specified amount of output tokens, protecting against price slippage during the swap.
-
-## IBC Transfer Details
-
-The `ibc_transfer_info` field specifies:
-
--   **source_channel**: The IBC channel to send tokens through
--   **receiver**: The address on the destination chain to receive the tokens
--   **memo**: Optional memo to include with the IBC transfer
--   **timeout_timestamp**: The timestamp after which the IBC transfer will timeout
-
-## Atomic Execution
-
-This message executes atomically:
-
-1. Swap tokens through the specified route(s)
-2. Verify minimum output amount is met
-3. Send output tokens via IBC transfer
-
-If any step fails, the entire transaction is rolled back and no state changes are committed.
-
-## Swap Fees
-
-Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed. The IBC transfer fee is also deducted from the output tokens.
-
-## Affiliate Fees
-
-The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output before the IBC transfer. Affiliate fees are:
-
--   **Optional**: If not specified, no affiliate fees are deducted
--   **Calculated on output**: Fees are calculated on the swap output amount (before IBC transfer)
--   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
--   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
-
-**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
--   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
--   Remaining for IBC transfer: 1,000,000 - 1,000 = 999,000 tokens
-
-## Use Cases
-
--   **Cross-chain DeFi**: Swap tokens on one chain and send to another in a single transaction
--   **Liquidity Routing**: Route liquidity through multiple chains efficiently
--   **Automated Trading**: Execute complex cross-chain trading strategies atomically
-
-
-## File: ./x-gamm/messages/msg-swap-exact-amount-in.md
-
-# MsgSwapExactAmountIn
-
-Swaps an exact amount of tokens in for a minimum amount of tokens out.
-
-This message allows users to swap a specific amount of input tokens for output tokens, with slippage protection through the minimum output amount.
-
-## Swap Properties
-
-When executing a swap:
-
--   Exact input amount is specified
--   Minimum output amount provides slippage protection
--   Swap fee is deducted from the input
--   Price impact is calculated based on pool liquidity
-
-## Proto Definition
-
-```protobuf
-// ===================== MsgSwapExactAmountIn
-message MsgSwapExactAmountIn {
-  option (amino.name) = "gamm/SwapExactAmountIn";
-  option (cosmos.msg.v1.signer) = "sender";
-
-  string sender = 1 [ (gogoproto.moretags) = "yaml:\"sender\"" ];
-  repeated poolmanager.v1beta1.SwapAmountInRoute routes = 2
-      [ (gogoproto.nullable) = false ];
-  cosmos.base.v1beta1.Coin token_in = 3 [
-    (gogoproto.moretags) = "yaml:\"token_in\"",
-    (gogoproto.nullable) = false
-  ];
-  string token_out_min_amount = 4 [
-
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.moretags) = "yaml:\"token_out_min_amount\"",
-    (gogoproto.nullable) = false
-  ];
-  repeated Affiliate affiliates = 5;
-}
-
-message MsgSwapExactAmountInResponse {
-  string token_out_amount = 1 [
-
-    (gogoproto.customtype) = "cosmossdk.io/math.Int",
-    (gogoproto.moretags) = "yaml:\"token_out_amount\"",
-    (gogoproto.nullable) = false
-  ];
-}
-```
-
-### Affiliate
-
-```protobuf
-message Affiliate {
-  string basis_points_fee = 1;
-  string address = 2;
-}
-```
-
-The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output as an affiliate fee. Fees are specified in basis points (1 basis point = 0.01%, 100 basis points = 1%) and are calculated on the swap output amount.
-
-### JSON Example
-
-```json
-{
-    "sender": "bb1abc123...",
-    "routes": [
-        {
-            "pool_id": "1",
-            "token_out_denom": "uosmo"
-        }
-    ],
-    "token_in": {
-        "denom": "uatom",
-        "amount": "1000000"
-    },
-    "token_out_min_amount": "5000000",
-    "affiliates": [
-        {
-            "basis_points_fee": "10",
-            "address": "bb1..."
-        }
-    ]
-}
-```
-
-## Multi-Hop Swaps
-
-The `routes` field allows for multi-hop swaps through multiple pools. The swap will execute through each pool in sequence.
-
-## Slippage Protection
-
-The `token_out_min_amount` field ensures that the user receives at least the specified amount of output tokens, protecting against price slippage.
-
-## Swap Fees
-
-Each pool in the swap route charges a swap fee, which is deducted from the input amount before the swap is executed.
-
-## Affiliate Fees
-
-The `affiliates` field allows you to specify fee recipients who will receive a portion of the swap output. Affiliate fees are:
-
--   **Optional**: If not specified, no affiliate fees are deducted
--   **Calculated on output**: Fees are calculated on the swap output amount
--   **Multiple affiliates**: You can specify multiple affiliates, each receiving their specified fee
--   **Basis points**: Fees are specified in basis points (1 basis point = 0.01%)
-
-**Example**: If a swap outputs 1,000,000 tokens and you specify an affiliate with 10 basis points (0.1%):
-
--   Affiliate receives: 1,000,000 × 0.001 = 1,000 tokens
--   User receives: 1,000,000 - 1,000 = 999,000 tokens
-
-
-## File: ./x-ibc-rate-limit/README.md
-
-# Overview
-
-This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/ibc-rate-limit` module.
-
-The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
-
-## Key Features
-
-* **Control Supply Shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
-* **Limit Unique Senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
-* **Enforce Per-Address Limits**: Set limits on the number of transfers and total amount per address within a timeframe
-* **Multiple Timeframes**: Support for block-based, hour-based, and day-based rate limits
-
-## Architecture
-
-The module operates as an IBC middleware that intercepts IBC transfer packets before they are processed. It uses hooks to:
-
-1. Check rate limits before processing incoming packets (`OnRecvPacketOverride`)
-2. Check rate limits before sending packets (`SendPacketOverride`)
-3. Track transfer statistics after successful transfers
-
-## Table of Contents
-
-1. [Introduction](overview.md) - Overview and key concepts
-
-
-## File: ./x-ibc-rate-limit/overview.md
-
-# Introduction
-
-## Overview
-
-The IBC Rate Limit module provides rate limiting functionality for Inter-Blockchain Communication (IBC) token transfers. It allows the chain to enforce limits on token transfers across IBC channels to prevent excessive inflows or outflows that could destabilize the chain's token supply.
-
-## Purpose
-
-The module serves as a security mechanism to:
-
-* **Control supply shifts**: Limit the net change in token supply (inflows minus outflows) over specified timeframes
-* **Limit unique senders**: Restrict the number of unique addresses that can send tokens through a channel within a timeframe
-* **Enforce per-address limits**: Set limits on the number of transfers and total amount per address within a timeframe
-
-## Key Concepts
-
-### Rate Limit Configuration
-
-Rate limits are configured per channel and denomination through the module's parameters. Each configuration can specify:
-
-* **Channel ID**: The IBC channel to apply the limit to (empty string applies to all channels)
-* **Denomination**: The token denomination to limit (must be specified)
-* **Supply Shift Limits**: Limits on the absolute value of net flow (inflows - outflows)
-* **Unique Sender Limits**: Limits on the number of unique sender addresses
-* **Address Limits**: Per-address limits on transfer count and total amount
-
-### Timeframes
-
-The module supports three types of timeframes:
-
-* **BLOCK**: Duration measured in blocks
-* **HOUR**: Duration measured in hours (converted to blocks using block time)
-* **DAY**: Duration measured in days (converted to blocks using block time)
-
-Multiple timeframe limits can be configured for the same channel/denom combination, and all limits are checked. If any limit would be exceeded, the transfer is rejected.
-
-## Authority
-
-The module's parameters can be updated by the authority address, which defaults to the governance module account. This allows governance to adjust rate limits as needed.
-
-
-## File: ./x-managersplitter/README.md
-
-# Overview
-
-This directory contains comprehensive developer documentation for the BitBadges blockchain's `x/managersplitter` module.
-
-The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
-
-For example, you may want to delegate an approved address to delete the collection on your behalf but none of the other permissions.
-
-## Key Features
-
-* **Permission Delegation**: Split collection management permissions among multiple addresses
-* **Granular Control**: Define which addresses can perform which actions on a collection
-* **Admin Override**: Maintain a permanent admin address with full control
-* **Secure Execution**: Execute badge collection updates through the manager splitter with permission checks
-
-## Architecture
-
-The module creates **Manager Splitter** entities that:
-
-1. Have a derived address that is to be set as the collection manager
-2. Define permissions for each collection management action
-3. Allow approved addresses to execute actions on behalf of the manager splitter
-4. Maintain an admin address with permanent full control
-
-## Table of Contents
-
-1. [Introduction](overview.md) - Overview and key concepts
-2. [Messages](messages/) - Transaction messages and handlers
-
-## Message Reference
-
-### Core Operations
-
-* [MsgCreateManagerSplitter](messages/msg-create-manager-splitter.md) - Create a new manager splitter
-* [MsgUpdateManagerSplitter](messages/msg-update-manager-splitter.md) - Update manager splitter permissions
-* [MsgDeleteManagerSplitter](messages/msg-delete-manager-splitter.md) - Delete a manager splitter
-* [MsgExecuteUniversalUpdateCollection](messages/msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
-
-
-## File: ./x-managersplitter/messages/README.md
-
-# Messages
-
-This directory contains documentation for the core transaction messages supported by the `x/managersplitter` module.
-
-## Core Operations
-
-### Manager Splitter Management
-
-* [MsgCreateManagerSplitter](msg-create-manager-splitter.md) - Create a new manager splitter with permissions
-* [MsgUpdateManagerSplitter](msg-update-manager-splitter.md) - Update manager splitter permissions
-* [MsgDeleteManagerSplitter](msg-delete-manager-splitter.md) - Delete a manager splitter
-
-### Execution
-
-* [MsgExecuteUniversalUpdateCollection](msg-execute-universal-update-collection.md) - Execute collection updates through manager splitter
-
-## Core Message List
-
-The Manager Splitter module supports 5 core transaction messages:
-
-1. **MsgCreateManagerSplitter** - Create new manager splitter
-2. **MsgUpdateManagerSplitter** - Update manager splitter permissions
-3. **MsgDeleteManagerSplitter** - Delete manager splitter
-4. **MsgExecuteUniversalUpdateCollection** - Execute collection updates
-
-
-## File: ./x-managersplitter/messages/msg-create-manager-splitter.md
-
-# MsgCreateManagerSplitter
-
-## Overview
-
-`MsgCreateManagerSplitter` creates a new Manager Splitter entity with specified permissions. The manager splitter receives a module-derived address that can be used as a collection manager.
-
-## Message Structure
-
-```protobuf
-message MsgCreateManagerSplitter {
-  option (cosmos.msg.v1.signer) = "admin";
-  option (amino.name) = "managersplitter/CreateManagerSplitter";
-
-  // Admin address creating the entity.
-  string admin = 1;
-
-  // Permissions mapping each CollectionPermission field to execution criteria.
-  ManagerSplitterPermissions permissions = 2;
-}
-```
-
-## Fields
-
-### `admin` (string, required)
-
-The address that will be the permanent admin of the manager splitter. This address:
-
-* Has full control over the manager splitter
-* Can always execute all permissions
-* Can update and delete the manager splitter
-* Cannot be changed after creation
-
-Must be a valid Bech32 address.
-
-### `permissions` (ManagerSplitterPermissions, optional)
-
-The permissions configuration for the manager splitter. Each permission maps to `PermissionCriteria` that specifies which addresses can execute that permission.
-
-If `nil` or not provided, an empty permissions structure is created (all permissions denied except for admin).
-
-## ManagerSplitterPermissions Structure
-
-```protobuf
-message ManagerSplitterPermissions {
-  PermissionCriteria canDeleteCollection = 1;
-  PermissionCriteria canArchiveCollection = 2;
-  PermissionCriteria canUpdateStandards = 3;
-  PermissionCriteria canUpdateCustomData = 4;
-  PermissionCriteria canUpdateManager = 5;
-  PermissionCriteria canUpdateCollectionMetadata = 6;
-  PermissionCriteria canUpdateValidTokenIds = 7;
-  PermissionCriteria canUpdateTokenMetadata = 8;
-  PermissionCriteria canUpdateCollectionApprovals = 9;
-}
-```
-
-Each field is optional. If a permission is not set, it is denied by default (except for the admin).
-
-## PermissionCriteria Structure
-
-```protobuf
-message PermissionCriteria {
-  // List of approved addresses that can execute this permission.
-  repeated string approvedAddresses = 1;
-}
-```
-
-### `approvedAddresses` (string\[], optional)
-
-A list of Bech32 addresses that are approved to execute this permission. If empty, only the admin can execute this permission.
-
-## Response
-
-```protobuf
-message MsgCreateManagerSplitterResponse {
-  // The address of the created manager splitter.
-  string address = 1;
-}
-```
-
-### `address` (string)
-
-The module-derived address of the created manager splitter. This address:
-
-* Is deterministic based on the manager splitter ID
-* Can be used as a collection manager address
-* Is derived using `ModuleAddress(ModuleName, ID_bytes)`
-
-## Validation
-
-The message is validated to ensure:
-
-1. The `admin` address is a valid Bech32 address
-2. The manager splitter address doesn't already exist (shouldn't happen, but checked for safety)
-
-## State Changes
-
-1. A new Manager Splitter entity is created with:
-   * A module-derived address (based on next available ID)
-   * The specified admin address
-   * The specified permissions (or empty if not provided)
-2. The next manager splitter ID is incremented
-
-## Usage Example
-
-```json
-{
-  "admin": "bb1...",
-  "permissions": {
-    "canUpdateCollectionMetadata": {
-      "approvedAddresses": [
-        "bb1abc..."
-      ]
-    },
-    "canUpdateTokenMetadata": {
-      "approvedAddresses": [
-        "bb1def456..."
-      ]
-    },
-    "canUpdateValidTokenIds": {
-      "approvedAddresses": []
-    }
-  }
-}
-```
-
-
-## File: ./x-managersplitter/messages/msg-delete-manager-splitter.md
-
-# MsgDeleteManagerSplitter
-
-## Overview
-
-`MsgDeleteManagerSplitter` deletes an existing Manager Splitter entity. Only the admin address can delete the manager splitter.
-
-## Message Structure
-
-```protobuf
-message MsgDeleteManagerSplitter {
-  option (cosmos.msg.v1.signer) = "admin";
-  option (amino.name) = "managersplitter/DeleteManagerSplitter";
-
-  // Admin address deleting the entity.
-  string admin = 1;
-
-  // Address of the manager splitter to delete.
-  string address = 2;
-}
-```
-
-## Fields
-
-### `admin` (string, required)
-
-The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
-
-### `address` (string, required)
-
-The address of the manager splitter to delete. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
-
-## Response
-
-```protobuf
-message MsgDeleteManagerSplitterResponse {}
-```
-
-An empty response indicates successful deletion.
-
-## Authorization
-
-Only the admin address can delete the manager splitter. If the `admin` field doesn't match the manager splitter's stored admin, the transaction will fail with an unauthorized error.
-
-## Usage Example
-
-```json
-{
-  "admin": "cosmos1abc123...",
-  "address": "cosmos1managersplitter..."
-}
-```
-
-
-## File: ./x-managersplitter/messages/msg-execute-universal-update-collection.md
-
-# MsgExecuteUniversalUpdateCollection
-
-## Overview
-
-`MsgExecuteUniversalUpdateCollection` allows an approved address (or admin) to execute a `UniversalUpdateCollection` message from the tokenization module through a Manager Splitter. The message checks permissions before execution and uses the manager splitter address as the collection manager.
-
-## Message Structure
-
-```protobuf
-message MsgExecuteUniversalUpdateCollection {
-  option (cosmos.msg.v1.signer) = "executor";
-  option (amino.name) = "managersplitter/ExecuteUniversalUpdateCollection";
-
-  // Address executing the message (must be approved or admin).
-  string executor = 1;
-
-  // Address of the manager splitter to execute through.
-  string managerSplitterAddress = 2;
-
-  // The UniversalUpdateCollection message to execute.
-  tokenization.MsgUniversalUpdateCollection universalUpdateCollectionMsg = 3;
-}
-```
-
-## Fields
-
-### `executor` (string, required)
-
-The address that is executing the message. This address must be:
-
--   The admin of the manager splitter, OR
--   An approved address for all permissions required by the `UniversalUpdateCollection` message
-
-Must be a valid Bech32 address.
-
-### `managerSplitterAddress` (string, required)
-
-The address of the manager splitter to execute through. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
-
-### `universalUpdateCollectionMsg` (tokenization.MsgUniversalUpdateCollection, required)
-
-The `UniversalUpdateCollection` message from the tokenization module to execute. This message will be executed with the manager splitter address as the creator/manager.
-
-Note that you should only set the fields you are allowed to update. Use the update flag approach = false for all others.
-
-## Permission Checking
-
-The module checks permissions based on which fields are being updated in the `UniversalUpdateCollection` message:
-
--   **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
--   **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
--   **UpdateManager**: Requires `canUpdateManager` permission
--   **UpdateCollectionMetadata**: Requires `canUpdateCollectionMetadata` permission
--   **UpdateTokenMetadata**: Requires `canUpdateTokenMetadata` permission
--   **UpdateCustomData**: Requires `canUpdateCustomData` permission
--   **UpdateCollectionApprovals**: Requires `canUpdateCollectionApprovals` permission
--   **UpdateStandards**: Requires `canUpdateStandards` permission
--   **UpdateIsArchived**: Requires `canArchiveCollection` permission
--   **CosmosCoinWrapperPathsToAdd**: Requires `canAddMoreCosmosCoinWrapperPaths` permission
--   **AliasPathsToAdd**: Requires `canAddMoreAliasPaths` permission
-
-**Important**: All required permissions are checked. If the executor is not approved for any required permission (and is not the admin), the transaction will fail.
-
-## Response
-
-```protobuf
-message MsgExecuteUniversalUpdateCollectionResponse {
-  // ID of the collection that was updated.
-  string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
-}
-```
-
-### `collectionId` (Uint)
-
-The ID of the collection that was updated, returned from the tokenization module's `UniversalUpdateCollection` execution.
-
-## Validation
-
-The message is validated to ensure:
-
-1. The `executor` address is a valid Bech32 address
-2. The `managerSplitterAddress` is a valid Bech32 address
-3. The manager splitter exists
-4. The executor has permission to execute all required actions
-5. The `universalUpdateCollectionMsg` is valid
-
-## Authorization
-
-The executor must be:
-
--   The admin of the manager splitter (has full permissions), OR
--   An approved address for all permissions required by the update
-
-If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
-
-## Usage Example
-
-```json
-{
-  "executor": "bb1...",
-  "managerSplitterAddress": "bb1managersplitter...",
-  "universalUpdateCollectionMsg": {
-    "creator": "bb1managersplitter...",
-    "collectionId": "1",
-    ...
-    "updateCollectionMetadata": true,
-    "collectionMetadata": {...}
-  }
-}
-```
-
-
-## File: ./x-managersplitter/messages/msg-update-manager-splitter.md
-
-# MsgUpdateManagerSplitter
-
-## Overview
-
-`MsgUpdateManagerSplitter` updates the permissions of an existing Manager Splitter entity. Only the admin address can update the manager splitter.
-
-## Message Structure
-
-```protobuf
-message MsgUpdateManagerSplitter {
-  option (cosmos.msg.v1.signer) = "admin";
-  option (amino.name) = "managersplitter/UpdateManagerSplitter";
-
-  // Admin address updating the entity.
-  string admin = 1;
-
-  // Address of the manager splitter to update.
-  string address = 2;
-
-  // New permissions to set.
-  ManagerSplitterPermissions permissions = 3;
-}
-```
-
-## Fields
-
-### `admin` (string, required)
-
-The admin address of the manager splitter. This must match the manager splitter's stored admin address. Must be a valid Bech32 address.
-
-### `address` (string, required)
-
-The address of the manager splitter to update. This is the module-derived address returned when the manager splitter was created. Must be a valid Bech32 address.
-
-### `permissions` (ManagerSplitterPermissions, required)
-
-The new permissions configuration to set. This completely replaces the existing permissions structure.
-
-## ManagerSplitterPermissions Structure
-
-```protobuf
-message ManagerSplitterPermissions {
-  PermissionCriteria canDeleteCollection = 1;
-  PermissionCriteria canArchiveCollection = 2;
-  PermissionCriteria canUpdateStandards = 3;
-  PermissionCriteria canUpdateCustomData = 4;
-  PermissionCriteria canUpdateManager = 5;
-  PermissionCriteria canUpdateCollectionMetadata = 6;
-  PermissionCriteria canUpdateValidTokenIds = 7;
-  PermissionCriteria canUpdateTokenMetadata = 8;
-  PermissionCriteria canUpdateCollectionApprovals = 9;
-}
-```
-
-Each field is optional. If a permission is not set in the update, it will be removed (denied by default).
-
-## PermissionCriteria Structure
-
-```protobuf
-message PermissionCriteria {
-  // List of approved addresses that can execute this permission.
-  repeated string approvedAddresses = 1;
-}
-```
-
-### `approvedAddresses` (string\[], optional)
-
-A list of Bech32 addresses that are approved to execute this permission. If empty or not provided, only the admin can execute this permission.
-
-## Response
-
-```protobuf
-message MsgUpdateManagerSplitterResponse {}
-```
-
-An empty response indicates successful update.
-
-## Usage Example
-
-```json
-{
-  "admin": "bb1abc123...",
-  "address": "bb1managersplitter...",
-  "permissions": {
-    "canUpdateCollectionMetadata": {
-      "approvedAddresses": [...]
-    },
-    "canUpdateTokenMetadata": {
-      "approvedAddresses": [
-        "bb1..."
-      ]
-    }
-  }
-}
-```
-
-
-## File: ./x-managersplitter/overview.md
-
-# Introduction
-
-## Overview
-
-The Manager Splitter module provides a permissioned proxy system for managing token collections. It allows collection managers to delegate specific permissions to approved addresses while maintaining control over the collection.
-
-### Manager Splitter Entity
-
-A Manager Splitter is a permissioned proxy that:
-
-* **Address**: A module-derived address (derived from module name + ID) that serves as the collection manager. This is to be set as the actual manager in x/tokenization.
-* **Admin**: A permanent admin address with full control over the splitter and all permissions
-* **Permissions**: A mapping of collection permission types to execution criteria
-
-Then, any token collection updates must be handled through this module and through the proxied address.
-
-### Permission System
-
-The module mirrors the tokenization module's `CollectionPermissions` structure but maps each permission to `PermissionCriteria`:
-
-* **CanDeleteCollection**: Permission to delete the collection
-* **CanArchiveCollection**: Permission to archive the collection
-* **CanUpdateStandards**: Permission to update collection standards
-* **CanUpdateCustomData**: Permission to update custom data
-* **CanUpdateManager**: Permission to update the manager
-* **CanUpdateCollectionMetadata**: Permission to update collection metadata
-* **CanUpdateValidTokenIds**: Permission to update valid token IDs
-* **CanUpdateTokenMetadata**: Permission to update token metadata
-* **CanUpdateCollectionApprovals**: Permission to update collection approvals
-
-### Permission Criteria
-
-Each permission can specify:
-
-* **Approved Addresses**: A whitelist of addresses that can execute this permission
-
-If a permission has no criteria set, it is denied by default (except for the admin).
-
-### Admin Privileges
-
-The admin address:
-
-* Has full control over the manager splitter
-* Can always execute all permissions
-* Can create, update, and delete the manager splitter
-* Cannot be changed after creation
-
-## Use Cases
-
-1. **Multi-sig Management**: Multiple addresses can manage different aspects of a collection
-2. **Role-based Access**: Different addresses can have different permission levels
-3. **Delegated Management**: Delegate specific management tasks to trusted addresses
-4. **Governance Integration**: Use manager splitters for governance-controlled collections
-
-## Security Model
-
-1. **Admin Control**: Only the admin can create, update, or delete the manager splitter
-2. **Permission Checks**: All actions check permissions before execution
-3. **Address Validation**: All addresses are validated before use
-4. **Atomic Execution**: Permission checks and execution are atomic
-5. **Immutable Admin**: The admin address cannot be changed after creation
-
-## Limitations
-
-1. **Single Admin**: Each manager splitter has one permanent admin
-2. **Approved Addresses Only**: Currently supports whitelist-based permissions only
-3. **UniversalUpdateCollection Only**: Currently only supports executing `UniversalUpdateCollection` messages
-4. **No Permission Inheritance**: Permissions must be explicitly set for each action type
-
-## Alternative
-
-This is an alternative to standard single manager approach. You can also explore setting up managerial systems with:
-
-* x/group - Cosmos SDK module for multisigs / DAOs and voting
-* DAO tooling
-* Custom EVM contracts
 
 
 ## File: ./.github/workflows/for--llms.yml
