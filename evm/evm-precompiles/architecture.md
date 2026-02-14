@@ -212,7 +212,7 @@ For more information on Cosmos SDK EVM integration, see the [official documentat
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Architecture](../../x-badges/README.md)
+- [Tokenization Module Architecture](../../x-tokenization/README.md)
 - [Precompile Implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile)
 
 

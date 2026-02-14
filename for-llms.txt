@@ -2718,7 +2718,7 @@ Solidity Contract → EVM Precompile → Tokenization Module → Cosmos SDK Stat
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module](../../x-badges/README.md)
+- [Tokenization Module](../../x-tokenization/README.md)
 - [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
 - [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
 
@@ -2994,7 +2994,7 @@ Provides access to liquidity pools for joining, exiting, and swapping tokens.
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module](../../x-badges/README.md)
+- [Tokenization Module](../../x-tokenization/README.md)
 - [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
 - [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)
 
@@ -3241,7 +3241,7 @@ For more information on Cosmos SDK EVM integration, see the [official documentat
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module Architecture](../../x-badges/README.md)
+- [Tokenization Module Architecture](../../x-tokenization/README.md)
 - [Precompile Implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile)
 
 
@@ -6224,7 +6224,7 @@ See the example contracts for complete implementations:
 - [Setup & Configuration](../setup-and-configuration.md)
 - [Developer Guide](../developer-guide.md)
 - [Architecture](../architecture.md)
-- [Tokenization Module Documentation](../../../x-badges/README.md)
+- [Tokenization Module Documentation](../../../x-tokenization/README.md)
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/errors.md
@@ -6789,6 +6789,8 @@ Below are the supported customization options. Some may be applicable. Some may 
 ## File: ./for-developers/bitbadges-blockchain/create-a-wasm-contract.md
 
 # Create a WASM Contract
+
+⚠️ **DEPRECATED: CosmWASM has been removed in v24. Use EVM/Solidity smart contracts instead. See [EVM Integration](../evm/EVM_INTEGRATION.md) for details.**
 
 BitBadges support CosmWASM smart contracts to allow you to extend the token interface for custom functionality as desired. If you do need to extend the interface with unsupported functionality but you think it would be a good fit to be added natively, please let us know. Our end goal is that no smart contracts are ever needed, and everything is supported natively!
 
@@ -11244,7 +11246,7 @@ Most of your setup and management (and oftentimes all) will be done directly in-
 ## Quick Start - Tokens
 
 {% content-ref url="../x-tokenization/" %}
-[x-badges](../x-tokenization/)
+[x-tokenization](../x-tokenization/)
 {% endcontent-ref %}
 
 ## Quick Start - Claims

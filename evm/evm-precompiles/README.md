@@ -51,6 +51,6 @@ Provides access to liquidity pools for joining, exiting, and swapping tokens.
 ## Resources
 
 - [Cosmos SDK EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
-- [Tokenization Module](../../x-badges/README.md)
+- [Tokenization Module](../../x-tokenization/README.md)
 - [Counter dApp Example](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/counter-dapp)
 - [Contracts Folder](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts)

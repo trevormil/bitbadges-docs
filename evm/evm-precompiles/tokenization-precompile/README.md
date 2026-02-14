@@ -584,4 +584,4 @@ See the example contracts for complete implementations:
 - [Setup & Configuration](../setup-and-configuration.md)
 - [Developer Guide](../developer-guide.md)
 - [Architecture](../architecture.md)
-- [Tokenization Module Documentation](../../../x-badges/README.md)
+- [Tokenization Module Documentation](../../../x-tokenization/README.md)
