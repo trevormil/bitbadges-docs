@@ -13,8 +13,6 @@
 
 ## Coin Denomination
 
-### Cosmos SDK (x/bank)
-
 [Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
 
 - **Base denom**: `ubadge`
@@ -22,7 +20,7 @@
 - **Decimals**: 9
 - **Conversion**: 1 BADGE = 1 \* 10^9 ubadge
 
-### EVM (precisebank Module)
+## EVM Decimal Compatibility (precisebank Module)
 
 For EVM compatibility, BitBadges uses the **precisebank module** to provide 18 decimal compatibility, which is the standard for Ethereum-based tokens.
 
