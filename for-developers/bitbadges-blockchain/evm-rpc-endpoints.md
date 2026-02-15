@@ -255,6 +255,63 @@ The public EVM RPC endpoints may have rate limiting in place to ensure fair usag
 - Using a dedicated RPC provider
 - Implementing request caching and batching
 
+## Running Your Own JSON-RPC Node
+
+If you need higher rate limits or want full control, you can run your own node with JSON-RPC enabled.
+
+### Critical Configuration
+
+⚠️ **IMPORTANT**: When running your own node, you **must** configure the `evm-chain-id` in `app.toml`:
+
+```toml
+[evm]
+# CRITICAL: Set this to match your network's EVM chain ID
+# Mainnet: 50024
+# Testnet: 50025
+# The default (262144) will cause MetaMask transaction failures!
+evm-chain-id = 50024
+```
+
+This setting is used by `net_version` for EIP-155 signature verification. If it doesn't match `eth_chainId`, wallets will fail with: `incorrect chain-id; expected 262144, got 50024`.
+
+### Enable JSON-RPC
+
+Add to your `app.toml`:
+
+```toml
+[json-rpc]
+enable = true
+address = "0.0.0.0:8545"  # Use 127.0.0.1 for local only
+ws-address = "0.0.0.0:8546"
+api = ["eth", "net", "web3"]
+enable-indexer = true
+```
+
+### Full Configuration Reference
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `enable` | `false` | Enable JSON-RPC server |
+| `address` | `127.0.0.1:8545` | HTTP listen address |
+| `ws-address` | `127.0.0.1:8546` | WebSocket address |
+| `api` | `eth,net,web3` | Enabled namespaces |
+| `enable-indexer` | `false` | Custom tx indexer |
+| `evm-timeout` | `5s` | eth_call timeout |
+| `gas-cap` | `25000000` | Gas limit for calls |
+| `txfee-cap` | `1.0` | Max tx fee (BADGE) |
+| `filter-cap` | `200` | Max active filters |
+| `block-range-cap` | `10000` | Max block range for logs |
+| `logs-cap` | `10000` | Max log results |
+| `batch-request-limit` | `1000` | Max batch size |
+| `batch-response-max-size` | `25000000` | Max response bytes |
+| `http-timeout` | `30s` | HTTP timeout |
+| `http-idle-timeout` | `2m0s` | HTTP idle timeout |
+| `max-open-connections` | `0` | Max connections (0=unlimited) |
+| `allow-unprotected-txs` | `false` | Allow non-EIP155 txs |
+| `ws-origins` | `127.0.0.1,localhost` | WebSocket allowed origins |
+
+See [Run a Mainnet Node](run-a-mainnet-node.md#evm-json-rpc-configuration) for complete setup instructions.
+
 ## Related Documentation
 
 - [EVM Integration Guide](../evm/EVM_INTEGRATION.md) - Complete EVM integration overview
