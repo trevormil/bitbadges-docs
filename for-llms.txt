@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Feb 14 16:12:53 UTC 2026
+Generated on Sun Feb 15 13:41:27 UTC 2026
 
 
 
@@ -1952,15 +1952,15 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
-  * [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
-    * [Setup and Configuration](evm/evm-precompiles/setup-and-configuration.md)
-    * [Developer Guide](evm/evm-precompiles/developer-guide.md)
-    * [Architecture](evm/evm-precompiles/architecture.md)
-    * [Tokenization Precompile](evm/evm-precompiles/tokenization-precompile/README.md)
-      * [API Reference](evm/evm-precompiles/tokenization-precompile/API.md)
-      * [Gas](evm/evm-precompiles/tokenization-precompile/gas.md)
-      * [Errors](evm/evm-precompiles/tokenization-precompile/errors.md)
-      * [Security](evm/evm-precompiles/tokenization-precompile/security.md)
+* [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
+  * [Setup and Configuration](evm/evm-precompiles/setup-and-configuration.md)
+  * [Developer Guide](evm/evm-precompiles/developer-guide.md)
+  * [Architecture](evm/evm-precompiles/architecture.md)
+  * [Tokenization Precompile](evm/evm-precompiles/tokenization-precompile/README.md)
+    * [API Reference](evm/evm-precompiles/tokenization-precompile/API.md)
+    * [Gas](evm/evm-precompiles/tokenization-precompile/gas.md)
+    * [Errors](evm/evm-precompiles/tokenization-precompile/errors.md)
+    * [Security](evm/evm-precompiles/tokenization-precompile/security.md)
 * [❓ FAQ](overview/faq.md)
 * [🐙 Source Code](https://github.com/BitBadges/bitbadgeschain/tree/master/x/tokenization)
 * [✉️ Proto Type Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/tokenization)
@@ -4039,6 +4039,7 @@ See [Common Gotchas](gotchas.md) for detailed information about:
 
 
 
+
 ## File: ./evm/evm-precompiles/gamm-precompile/gotchas.md
 
 # Gamm Precompile - Common Gotchas
@@ -4478,6 +4479,7 @@ console.log("Expected shares:", shares);
 - [Gamm Precompile README](README.md) - Overview and examples
 - [Complete API Reference](../../../contracts/docs/GAMM_PRECOMPILE.md) - Full method documentation
 - [Developer Guide](../developer-guide.md) - General EVM integration guide
+
 
 
 
@@ -11074,6 +11076,7 @@ const ethAddress = cosmosToEth(bitbadgesAddress);
 
 
 
+
 ## File: ./for-developers/concepts/address-mappings-lists.md
 
 # 📧 Address Lists (Lists)
@@ -11336,8 +11339,6 @@ This is equivalent and will be treated as:
 
 ## Coin Denomination
 
-### Cosmos SDK (x/bank)
-
 [Cosmos SDK Coin Denom](https://docs.cosmos.network/main/modules/bank) - "ubadge" (1 BADGE = 1 \* 10^9 ubadge)
 
 - **Base denom**: `ubadge`
@@ -11345,7 +11346,7 @@ This is equivalent and will be treated as:
 - **Decimals**: 9
 - **Conversion**: 1 BADGE = 1 \* 10^9 ubadge
 
-### EVM (precisebank Module)
+## EVM Decimal Compatibility (precisebank Module)
 
 For EVM compatibility, BitBadges uses the **precisebank module** to provide 18 decimal compatibility, which is the standard for Ethereum-based tokens.
 
