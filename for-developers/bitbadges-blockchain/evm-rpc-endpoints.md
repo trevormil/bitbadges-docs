@@ -2,6 +2,10 @@
 
 BitBadges Chain provides Ethereum-compatible JSON-RPC endpoints for interacting with the blockchain using standard Ethereum tools and libraries.
 
+> **Important:** EVM RPC endpoints are different from Cosmos RPC endpoints. Use the correct endpoint type for your tooling:
+> - **EVM Tools** (MetaMask, Hardhat, ethers.js): Use `evm-rpc*.bitbadges.io` URLs
+> - **Cosmos Tools** (cosmjs, LCD queries): Use `rpc*.bitbadges.io` or `lcd*.bitbadges.io` URLs
+
 ## Overview
 
 The EVM RPC endpoints support all standard Ethereum JSON-RPC methods, allowing you to use tools like:
@@ -318,6 +322,17 @@ See [Run a Mainnet Node](run-a-mainnet-node.md#evm-json-rpc-configuration) for c
 - [Setup and Configuration](../evm/evm-precompiles/setup-and-configuration.md) - Local development setup
 - [Developer Guide](../evm/evm-precompiles/developer-guide.md) - EVM development best practices
 - [Tokenization Precompile API](../evm/evm-precompiles/tokenization-precompile/API.md) - Precompile contract reference
+
+## Quick Reference: All Endpoints
+
+| Network | Type | URL | Use For |
+|---------|------|-----|---------|
+| **Mainnet** | EVM JSON-RPC | `https://evm-rpc.bitbadges.io` | MetaMask, Hardhat, ethers.js |
+| **Mainnet** | Cosmos RPC | `https://rpc.bitbadges.io` | Cosmos SDK queries |
+| **Mainnet** | Cosmos REST/LCD | `https://lcd.bitbadges.io` | REST API queries |
+| **Testnet** | EVM JSON-RPC | `https://evm-rpc-testnet.bitbadges.io` | MetaMask, Hardhat, ethers.js |
+| **Testnet** | Cosmos RPC | `https://rpc-testnet.bitbadges.io` | Cosmos SDK queries |
+| **Testnet** | Cosmos REST/LCD | `https://lcd-testnet.bitbadges.io` | REST API queries |
 
 ## Other Endpoints
 

@@ -183,6 +183,7 @@
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
   * [EVM RPC Endpoints](for-developers/bitbadges-blockchain/evm-rpc-endpoints.md)
+  * [Cross-Chain Queries (ICQ)](for-developers/bitbadges-blockchain/cross-chain-queries.md)
 * [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)

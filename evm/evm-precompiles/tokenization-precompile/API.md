@@ -57,10 +57,23 @@ function transferTokens(string calldata msgJson) external returns (bool success)
 ```json
 {
   "collectionId": "123",
-  "toAddresses": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"],
-  "amount": "1000",
-  "tokenIds": [{"start": "1", "end": "1"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "transfers": [
+    {
+      "from": "bb1sender...",
+      "toAddresses": ["bb1recipient..."],
+      "balances": [
+        {
+          "amount": "1000",
+          "tokenIds": [{"start": "1", "end": "1"}],
+          "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+        }
+      ],
+      "prioritizedApprovals": [],
+      "onlyCheckPrioritizedCollectionApprovals": false,
+      "onlyCheckPrioritizedIncomingApprovals": false,
+      "onlyCheckPrioritizedOutgoingApprovals": false
+    }
+  ]
 }
 ```
 
@@ -68,27 +81,28 @@ function transferTokens(string calldata msgJson) external returns (bool success)
 ```solidity
 string memory json = TokenizationJSONHelpers.transferTokensJSON(
     collectionId,
-    toAddresses,
-    amount,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
+    fromAddress,       // Sender address (Cosmos format)
+    toAddresses,       // Recipient addresses array
+    balancesJson       // Use balanceToJson helper
 );
 ```
 
 **Example:**
 ```solidity
-address[] memory recipients = new address[](1);
-recipients[0] = to;
+string memory balancesJson = TokenizationJSONHelpers.balanceToJson(
+    amount,
+    TokenizationJSONHelpers.uintRangeToJson(1, 1),           // tokenIds
+    TokenizationJSONHelpers.uintRangeToJson(1, type(uint64).max)  // ownershipTimes
+);
 
-string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+string[] memory recipients = new string[](1);
+recipients[0] = "bb1recipient...";
 
 string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
     collectionId,
+    "bb1sender...",    // from address
     recipients,
-    amount,
-    tokenIdsJson,
-    ownershipJson
+    balancesJson
 );
 
 bool success = TOKENIZATION.transferTokens(transferJson);
@@ -409,7 +423,9 @@ bytes memory collection = TOKENIZATION.getCollection(queryJson);
 
 ### `getBalanceAmount`
 
-Get balance amount for specific token/ownership ranges. Returns `uint256` directly.
+Get the exact balance amount for a specific (tokenId, ownershipTime) combination. Returns `uint256` directly.
+
+This function queries a single token ID and single ownership time, returning the exact balance amount the user owns. For querying multiple token IDs or time ranges, use `getBalance` instead and process the full balance store off-chain.
 
 **Signature:**
 ```solidity
@@ -420,42 +436,42 @@ function getBalanceAmount(string calldata msgJson) external view returns (uint25
 ```json
 {
   "collectionId": "123",
-  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-  "tokenIds": [{"start": "1", "end": "100"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "address": "bb1...",
+  "tokenId": "1",
+  "ownershipTime": "1609459200000"
 }
 ```
 
-**Helper Function:**
-```solidity
-string memory json = TokenizationJSONHelpers.getBalanceAmountJSON(
-    collectionId,
-    userAddress,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
-);
-```
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+| `address` | string | User address (bech32 or 0x hex) |
+| `tokenId` | string | Single token ID to query (uint as string) |
+| `ownershipTime` | string | Single ownership time to query (uint as string, typically ms timestamp) |
 
 **Example:**
 ```solidity
-string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-
-string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
-    collectionId,
-    user,
-    tokenIdsJson,
-    ownershipJson
-);
+// Build JSON manually or use a helper
+string memory balanceJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId),
+    '","address":"', userAddress,
+    '","tokenId":"', Strings.toString(tokenId),
+    '","ownershipTime":"', Strings.toString(block.timestamp * 1000),
+    '"}'
+));
 
 uint256 balance = TOKENIZATION.getBalanceAmount(balanceJson);
 ```
+
+**Note:** For complex balance queries involving ranges, use `getBalance` to retrieve the full `UserBalanceStore` and calculate amounts off-chain.
 
 ---
 
 ### `getTotalSupply`
 
-Get total supply for specific token/ownership ranges. Returns `uint256` directly.
+Get the total supply for a specific (tokenId, ownershipTime) combination. Returns `uint256` directly.
+
+This function queries the total minted supply for a single token ID and ownership time.
 
 **Signature:**
 ```solidity
@@ -466,18 +482,27 @@ function getTotalSupply(string calldata msgJson) external view returns (uint256 
 ```json
 {
   "collectionId": "123",
-  "tokenIds": [{"start": "1", "end": "100"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "tokenId": "1",
+  "ownershipTime": "1609459200000"
 }
 ```
 
-**Helper Function:**
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+| `tokenId` | string | Single token ID to query (uint as string) |
+| `ownershipTime` | string | Single ownership time to query (uint as string, typically ms timestamp) |
+
+**Example:**
 ```solidity
-string memory json = TokenizationJSONHelpers.getTotalSupplyJSON(
-    collectionId,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
-);
+string memory supplyJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId),
+    '","tokenId":"', Strings.toString(tokenId),
+    '","ownershipTime":"', Strings.toString(block.timestamp * 1000),
+    '"}'
+));
+
+uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
 ```
 
 ---
@@ -495,7 +520,7 @@ function getDynamicStoreValue(string calldata msgJson) external view returns (by
 ```json
 {
   "storeId": "123",
-  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
+  "address": "bb1..."
 }
 ```
 

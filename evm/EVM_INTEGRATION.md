@@ -17,6 +17,7 @@ Solidity Contract → EVM Precompile → Tokenization Module → Cosmos SDK Stat
 - **[Setup & Configuration](evm-precompiles/setup-and-configuration.md)** - Chain config, MetaMask setup, dApp setup
 - **[Developer Guide](evm-precompiles/developer-guide.md)** - Transaction signing, address conversion, limitations
 - **[Architecture](evm-precompiles/architecture.md)** - System architecture details
+- **[ERC-3643 Security Token Template](evm-precompiles/erc3643-template.md)** - Standardized security token template
 - **[Tokenization Precompile API](evm-precompiles/tokenization-precompile/API.md)** - Complete API reference
 - **[Error Handling](evm-precompiles/tokenization-precompile/errors.md)** - Error codes and handling
 - **[Gas Costs](evm-precompiles/tokenization-precompile/gas.md)** - Gas calculation and optimization
