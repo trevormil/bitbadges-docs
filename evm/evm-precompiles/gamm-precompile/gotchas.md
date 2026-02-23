@@ -60,6 +60,7 @@ Cosmos SDK uses `sdk.Dec` (decimal) for calculations, but amounts in JSON are st
 ### Understanding Cosmos Dec
 
 Cosmos Dec is a fixed-point decimal type with 18 decimal places. However, in JSON:
+
 - **Amounts are always strings** representing the smallest unit
 - Example: `"1000000000"` for 1 token with 9 decimals
 - No decimal point in JSON - all amounts are integers as strings
@@ -102,31 +103,34 @@ string memory amountJson = amountToJson(1e9, 9);  // Returns "1000000000"
 ### Common Mistakes
 
 1. **Using decimal points in JSON**
-   ```solidity
-   // ❌ Wrong
-   '"amount":"1.5"'
-   
-   // ✅ Correct
-   '"amount":"1500000000"'  // 1.5 tokens with 9 decimals
-   ```
+
+    ```solidity
+    // ❌ Wrong
+    '"amount":"1.5"'
+
+    // ✅ Correct
+    '"amount":"1500000000"'  // 1.5 tokens with 9 decimals
+    ```
 
 2. **Using number type instead of string**
-   ```solidity
-   // ❌ Wrong
-   '"amount":1000000000'
-   
-   // ✅ Correct
-   '"amount":"1000000000"'
-   ```
+
+    ```solidity
+    // ❌ Wrong
+    '"amount":1000000000'
+
+    // ✅ Correct
+    '"amount":"1000000000"'
+    ```
 
 3. **Not accounting for token decimals**
-   ```solidity
-   // ❌ Wrong - assumes 1 token = 1 unit
-   uint256 amount = 1;  // This is 0.000000001 tokens with 9 decimals!
-   
-   // ✅ Correct - account for decimals
-   uint256 amount = 1 * 10**9;  // 1 token with 9 decimals
-   ```
+
+    ```solidity
+    // ❌ Wrong - assumes 1 token = 1 unit
+    uint256 amount = 1;  // This is 0.000000001 tokens with 9 decimals!
+
+    // ✅ Correct - account for decimals
+    uint256 amount = 1 * 10**9;  // 1 token with 9 decimals
+    ```
 
 ## Amount String Formatting
 
@@ -186,8 +190,8 @@ Methods like `joinPool` return tuples:
 
 ```solidity
 // Method signature
-function joinPool(string calldata msgJson) 
-    external 
+function joinPool(string calldata msgJson)
+    external
     returns (uint256 shareOutAmount, GammTypes.Coin[] memory tokenIn);
 
 // Usage
@@ -344,6 +348,7 @@ string memory json = GammJSONHelpers.multiHopSwapJSON(
 **Cause:** Pool ID is 0 or not provided correctly.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(poolId > 0, "Invalid pool ID");
@@ -358,6 +363,7 @@ uint64 poolId = 0;  // Will fail validation
 **Cause:** Amount is zero, negative, or not formatted correctly.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(amount > 0, "Amount must be positive");
@@ -372,6 +378,7 @@ uint256 amount = 0;  // Will fail validation
 **Cause:** JSON is malformed or uses wrong types.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct - Use helper functions
 string memory json = GammJSONHelpers.joinPoolJSON(...);
@@ -385,6 +392,7 @@ string memory json = string(abi.encodePacked('{"pool_id":', ...));  // Missing q
 **Cause:** Denomination string is empty.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(bytes(denom).length > 0, "Denom cannot be empty");
@@ -435,27 +443,3 @@ console.log("Expected shares:", shares);
 - [Gamm Precompile README](README.md) - Overview and examples
 - [Complete API Reference](../../../contracts/docs/GAMM_PRECOMPILE.md) - Full method documentation
 - [Developer Guide](../developer-guide.md) - General EVM integration guide
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

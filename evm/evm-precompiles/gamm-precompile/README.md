@@ -14,9 +14,9 @@ import "./interfaces/IGammPrecompile.sol";
 import "./libraries/GammJSONHelpers.sol";
 
 contract MyPoolContract {
-    IGammPrecompile constant GAMM = 
+    IGammPrecompile constant GAMM =
         IGammPrecompile(0x0000000000000000000000000000000000001002);
-    
+
     // Join a pool
     function joinPool(
         uint64 poolId,
@@ -30,11 +30,11 @@ contract MyPoolContract {
             tokenDenom,
             tokenAmount
         );
-        
+
         (sharesReceived, ) = GAMM.joinPool(msgJson);
         return sharesReceived;
     }
-    
+
     // Swap tokens
     function swap(
         uint64 poolId,
@@ -50,7 +50,7 @@ contract MyPoolContract {
             tokenOutDenom,
             minTokenOutAmount
         );
-        
+
         return GAMM.swapExactAmountIn(msgJson);
     }
 }
@@ -117,7 +117,7 @@ function joinPool(
         denom2,
         amount2
     );
-    
+
     (sharesReceived, ) = GAMM.joinPool(msgJson);
     return sharesReceived;
 }
@@ -134,15 +134,15 @@ function exitPool(
         poolId,
         shareAmount
     );
-    
+
     GammTypes.Coin[] memory tokensOut = GAMM.exitPool(msgJson);
-    
+
     // Convert to array
     amountsOut = new uint256[](tokensOut.length);
     for (uint i = 0; i < tokensOut.length; i++) {
         amountsOut[i] = tokensOut[i].amount;
     }
-    
+
     return amountsOut;
 }
 ```
@@ -164,7 +164,7 @@ function swapTokens(
         tokenOutDenom,
         minTokenOutAmount
     );
-    
+
     return GAMM.swapExactAmountIn(msgJson);
 }
 ```
@@ -184,7 +184,7 @@ function multiHopSwap(
         tokenInAmount,
         minTokenOutAmount
     );
-    
+
     return GAMM.swapExactAmountIn(msgJson);
 }
 ```
@@ -217,15 +217,18 @@ See [Common Gotchas](gotchas.md) for important details about pool IDs, Cosmos De
 The `GammJSONHelpers` library provides functions for all common operations:
 
 ### Pool Operations
+
 - `joinPoolJSON(...)` - Build join pool JSON
 - `exitPoolJSON(...)` - Build exit pool JSON
 - `getPoolJSON(poolId)` - Build pool query JSON
 
 ### Swap Operations
+
 - `swapExactAmountInJSON(...)` - Build swap JSON
 - `multiHopSwapJSON(...)` - Build multi-hop swap JSON
 
 ### Query Operations
+
 - `getPoolJSON(poolId)` - Build pool query JSON
 - `calcJoinPoolSharesJSON(...)` - Build calculation query JSON
 
@@ -276,7 +279,7 @@ string memory json = string(abi.encodePacked('{"pool_id":"', ...));
 function joinPool(uint64 poolId, uint256 shares) external {
     require(poolId > 0, "Invalid pool ID");
     require(shares > 0, "Invalid share amount");
-    
+
     // Now build JSON
     string memory json = GammJSONHelpers.joinPoolJSON(...);
     GAMM.joinPool(json);
@@ -297,6 +300,7 @@ string memory exitJson = GammJSONHelpers.exitPoolJSON(
 ## Common Gotchas
 
 See [Common Gotchas](gotchas.md) for detailed information about:
+
 - Pool ID format (uint64 vs string)
 - Cosmos Dec handling
 - Amount string formatting
@@ -314,27 +318,3 @@ See [Common Gotchas](gotchas.md) for detailed information about:
 - [Developer Guide](../developer-guide.md)
 - [Architecture](../architecture.md)
 - [Gamm Module Documentation](../../../x-gamm/README.md)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
