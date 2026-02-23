@@ -498,8 +498,13 @@ contract ComplianceToken {
     }
     
     function isKYCd(address user) public view returns (bool) {
-        bytes memory result = precompile.getDynamicStoreValue(kycRegistryId, user);
-        return abi.decode(result, (bool));
+        string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
+            kycRegistryId,
+            user
+        );
+        DynamicStoreValueResult memory result = precompile.getDynamicStoreValue(getValueJson);
+        // Use the field that matches your store's value type (e.g. result.verified for a boolean store)
+        return result.verified;
     }
     
     function transfer(address to, uint256 amount, uint256 tokenId) external {

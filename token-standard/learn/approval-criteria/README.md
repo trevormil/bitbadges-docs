@@ -54,6 +54,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     allowBackedMinting?: boolean;
     /** Whether this approval can be used for cosmos coin wrapper path operations (collection-level only). */
     allowSpecialWrapping?: boolean;
+    /** The list of EVM query challenges that must pass for approval. Executes read-only calls to EVM contracts. */
+    evmQueryChallenges?: iEVMQueryChallenge[];
 }
 ```
 
@@ -77,6 +79,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Alt Time Checks**](../../../x-tokenization/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
 * [**Must Prioritize**](../../../x-tokenization/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 * [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
+* [**EVM Query Challenges**](evm-query-challenges.md) - Read-only EVM contract queries as approval conditions
 
 ## Key Concepts
 

@@ -115,6 +115,10 @@ const EmptyApprovalCriteria = {
         },
         // No priority requirement
         mustPrioritize: false,
+        // No EVM query challenges
+        evmQueryChallenges: [],
+        // No voting challenges
+        votingChallenges: [],
     },
 };
 ```

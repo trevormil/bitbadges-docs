@@ -220,6 +220,7 @@ const invariants: CollectionInvariants<bigint> = {
     cosmosCoinBackedPath: undefined,
     noForcefulPostMintTransfers: false,
     disablePoolCreation: false,
+    evmQueryChallenges: [],
 };
 ```
 
@@ -255,5 +256,28 @@ const invariants: CollectionInvariants<bigint> = {
 
 -   Prevents creation of liquidity pools using assets from this collection in our gamm module.
 -   When enabled, pool creation attempts will fail
+
+**evmQueryChallenges**
+
+-   Post-transfer EVM query invariants that are checked after all balance updates
+-   Each challenge executes a read-only EVM contract query via staticcall
+-   If any query returns a result that doesn't match the expected result, the transfer is reverted
+-   Useful for enforcing global invariants like maximum holder count, balance caps, or custom compliance rules
+-   Placeholders: `$collectionId`, `$sender`, `$initiator`, `$recipient` (first recipient), `$recipients` (all recipients as concatenated 32-byte hex). See [EVM Query Challenges – Placeholders](approval-criteria/evm-query-challenges.md#placeholders) for approval vs invariant placeholder details.
+-   See [EVM Query Challenges](approval-criteria/evm-query-challenges.md) for the full challenge structure (fields, operators, gas limits)
+
+```typescript
+const evmQueryChallenges: EVMQueryChallenge<bigint>[] = [
+    {
+        contractAddress: '0xComplianceContract...',
+        calldata: '70a08231000000000000000000000000$collectionId',
+        expectedResult: '0000000000000000000000000000000000000000000000000000000000000001',
+        comparisonOperator: 'eq',
+        gasLimit: '100000',
+        uri: '',
+        customData: '',
+    },
+];
+```
 
 **Important:** Invariants can only be set during collection creation and cannot be updated or removed afterward.

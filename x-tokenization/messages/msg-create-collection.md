@@ -96,7 +96,8 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```

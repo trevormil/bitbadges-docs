@@ -91,7 +91,31 @@ This example demonstrates how to update user outgoing approvals to control what 
                         "afterOneUse": false,
                         "afterOverallMaxNumTransfers": false
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "userRoyalties": {
+                        "percentage": "0",
+                        "payoutAddress": ""
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             }

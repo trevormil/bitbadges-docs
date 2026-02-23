@@ -31,14 +31,15 @@ interface ITokenizationPrecompile {
     function castVote(string calldata msgJson) external returns (bool);
     function executeMultiple(MessageInput[] calldata messages) external returns (bool success, bytes[] memory results);
     
-    // Query methods
-    function getCollection(string calldata msgJson) external view returns (bytes memory);
-    function getBalance(string calldata msgJson) external view returns (bytes memory);
+    // Query methods (all return ABI-encoded structs; define matching struct types in your contract)
+    function getCollection(string calldata msgJson) external view returns (TokenCollection memory);
+    function getBalance(string calldata msgJson) external view returns (UserBalanceStore memory);
     function getBalanceAmount(string calldata msgJson) external view returns (uint256);
     function getTotalSupply(string calldata msgJson) external view returns (uint256);
-    function getDynamicStore(string calldata msgJson) external view returns (bytes memory);
-    function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory);
-    function getAddressList(string calldata msgJson) external view returns (bytes memory);
+    function getDynamicStore(string calldata msgJson) external view returns (DynamicStore memory);
+    function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory);
+    function getAddressList(string calldata msgJson) external view returns (AddressList memory);
+    function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory);
 }
 ```
 
@@ -397,7 +398,7 @@ Get collection details by ID.
 
 **Signature:**
 ```solidity
-function getCollection(string calldata msgJson) external view returns (bytes memory collection)
+function getCollection(string calldata msgJson) external view returns (TokenCollection memory collection)
 ```
 
 **JSON Format:**
@@ -415,8 +416,8 @@ string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
 **Example:**
 ```solidity
 string memory queryJson = TokenizationJSONHelpers.getCollectionJSON(collectionId);
-bytes memory collection = TOKENIZATION.getCollection(queryJson);
-// Decode off-chain using TypeScript SDK
+TokenCollection memory collection = TOKENIZATION.getCollection(queryJson);
+// Use collection fields directly in contract logic
 ```
 
 ---
@@ -509,11 +510,11 @@ uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
 
 ### `getDynamicStoreValue`
 
-Get a value from a dynamic store. Returns protobuf-encoded `bytes`.
+Get a value from a dynamic store. Returns a struct matching the store’s value type.
 
 **Signature:**
 ```solidity
-function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory value)
+function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory value)
 ```
 
 **JSON Format:**
@@ -539,9 +540,8 @@ string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
     user
 );
 
-bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-if (result.length == 0) return false;
-return abi.decode(result, (bool));  // For boolean stores
+DynamicStoreValueResult memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+// Access result fields based on your store's value type (e.g. boolean, string)
 ```
 
 ---
@@ -552,7 +552,7 @@ Get an address list by ID.
 
 **Signature:**
 ```solidity
-function getAddressList(string calldata msgJson) external view returns (bytes memory list)
+function getAddressList(string calldata msgJson) external view returns (AddressList memory list)
 ```
 
 **JSON Format:**
@@ -565,6 +565,40 @@ function getAddressList(string calldata msgJson) external view returns (bytes me
 **Helper Function:**
 ```solidity
 string memory json = TokenizationJSONHelpers.getAddressListJSON(listId);
+```
+
+---
+
+### `getCollectionStats`
+
+Get collection statistics including holder count and circulating supply.
+
+**Signature:**
+```solidity
+function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory stats)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123"
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+
+**Response structure:** The returned `CollectionStats` struct includes `holderCount` (uint256) and `balances` (array of Balance structs with amount, tokenIds, ownershipTimes).
+
+**Example:**
+```solidity
+string memory queryJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId), '"}'
+));
+
+CollectionStats memory stats = TOKENIZATION.getCollectionStats(queryJson);
+uint256 holders = stats.holderCount;
 ```
 
 ---
@@ -643,6 +677,59 @@ Convert uint256 to string.
 string memory str = TokenizationJSONHelpers.uintToString(123);
 // Returns: "123"
 ```
+
+## Struct Return Types
+
+All query methods (except `getBalanceAmount` and `getTotalSupply`, which return `uint256`) return ABI-encoded structs. Define struct types in your contract that match the precompile’s response layout and use an interface that declares those return types.
+
+**Example:**
+```solidity
+// Define matching struct types
+struct UintRange {
+    uint256 start;
+    uint256 end;
+}
+
+struct Balance {
+    uint256 amount;
+    UintRange[] tokenIds;
+    UintRange[] ownershipTimes;
+}
+
+struct CollectionStats {
+    uint256 holderCount;
+    Balance[] balances;
+}
+
+// Interface with struct return types
+interface ITokenizationPrecompile {
+    function getCollectionStats(string calldata msgJson)
+        external view returns (CollectionStats memory);
+}
+
+// Usage
+CollectionStats memory stats = ITokenizationPrecompile(TOKENIZATION_ADDRESS)
+    .getCollectionStats(queryJson);
+
+// Access fields directly
+uint256 holders = stats.holderCount;
+```
+
+**How it works:**
+- Data is packed as ABI-encoded structs matching Solidity’s decoding expectations
+- All numeric types are converted to `uint256` for Solidity compatibility
+- Nested structures (e.g. `Balance[]` within `CollectionStats`) are supported
+
+**Supported struct return types:**
+- `TokenCollection` – full collection data
+- `UserBalanceStore` – user balance and approval data
+- `AddressList` – address list data
+- `CollectionStats` – holder count and circulating supply
+- `DynamicStore` – dynamic store configuration
+- `DynamicStoreValueResult` – dynamic store value
+- Other query response types as defined by the precompile
+
+---
 
 ## JSON Format Reference
 

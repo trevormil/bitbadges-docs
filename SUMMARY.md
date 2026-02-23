@@ -31,6 +31,8 @@
     * [Tallied Approval Amounts](token-standard/learn/approval-criteria/tallied-approval-amounts.md)
     * [Coin Transfers](token-standard/learn/approval-criteria/usdbadge-transfers.md)
     * [User Royalties](token-standard/learn/approval-criteria/user-royalties.md)
+    * [Voting Challenges](token-standard/learn/approval-criteria/voting-challenges.md)
+    * [EVM Query Challenges](token-standard/learn/approval-criteria/evm-query-challenges.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Auto-Scan vs. Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
   * [Alias Compatibility](learn/alias-compatibility.md)

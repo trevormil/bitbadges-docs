@@ -16,28 +16,31 @@ This guide covers essential information for developers building applications on 
 
 BitBadges Chain supports two types of transactions, each with specific signing requirements:
 
-| Transaction Type | Signing Key Type | Hash Algorithm | Use Case |
-|-----------------|------------------|----------------|----------|
-| `MsgEthereumTx` | `ethsecp256k1` (Ethereum-style) | Keccak256 | EVM contract calls, precompile calls |
-| Standard Cosmos Messages | `secp256k1` (Cosmos-style) | SHA256 | Native Cosmos SDK messages (e.g., `MsgDelegate`, `MsgTransferTokens`) |
+| Transaction Type         | Signing Key Type                | Hash Algorithm | Use Case                                                              |
+| ------------------------ | ------------------------------- | -------------- | --------------------------------------------------------------------- |
+| `MsgEthereumTx`          | `ethsecp256k1` (Ethereum-style) | Keccak256      | EVM contract calls, precompile calls                                  |
+| Standard Cosmos Messages | `secp256k1` (Cosmos-style)      | SHA256         | Native Cosmos SDK messages (e.g., `MsgDelegate`, `MsgTransferTokens`) |
 
 ### Who Can Sign What?
 
 #### ✅ ETH Wallets (ethsecp256k1 keys)
 
 **Can sign:**
+
 - `MsgEthereumTx` transactions
-  - Direct EVM contract calls
-  - Precompile calls from Solidity contracts
-  - Any Ethereum-compatible transaction
+    - Direct EVM contract calls
+    - Precompile calls from Solidity contracts
+    - Any Ethereum-compatible transaction
 
 **Cannot sign:**
+
 - Standard Cosmos SDK messages (different hash algorithm)
-  - `MsgDelegate`
-  - `MsgTransferTokens`
-  - Other native Cosmos messages
+    - `MsgDelegate`
+    - `MsgTransferTokens`
+    - Other native Cosmos messages
 
 **Example:**
+
 ```solidity
 // ✅ This works - ETH wallet can sign MsgEthereumTx
 import "./libraries/TokenizationJSONHelpers.sol";
@@ -57,18 +60,21 @@ precompile.transferTokens(transferJson);
 #### ✅ Cosmos Wallets (standard secp256k1 keys)
 
 **Can sign:**
+
 - Standard Cosmos SDK messages
-  - `MsgDelegate`
-  - `MsgTransferTokens`
-  - `MsgCreateCollection`
-  - All native Cosmos SDK messages
+    - `MsgDelegate`
+    - `MsgTransferTokens`
+    - `MsgCreateCollection`
+    - All native Cosmos SDK messages
 
 **Cannot sign:**
+
 - `MsgEthereumTx` transactions (different signature format)
-  - Cannot directly call EVM contracts
-  - Cannot call precompiles from native Cosmos transactions
+    - Cannot directly call EVM contracts
+    - Cannot call precompiles from native Cosmos transactions
 
 **Example:**
+
 ```go
 // ✅ This works - Cosmos wallet can sign standard message
 msg := &tokenizationtypes.MsgTransferTokens{
@@ -81,15 +87,18 @@ msg := &tokenizationtypes.MsgTransferTokens{
 #### ❌ Cross-Compatibility
 
 **Not supported out of the box:**
+
 - ETH wallets cannot sign standard Cosmos messages
 - Cosmos wallets cannot sign `MsgEthereumTx`
 
 **Why?**
+
 - Different hash algorithms (Keccak256 vs SHA256)
 - Different signature formats
 - EVM ante handler routes by transaction type
 
 **Workaround:**
+
 - Use precompiles from Solidity contracts (ETH wallets) to access Cosmos SDK functionality
 - Use native Cosmos messages (Cosmos wallets) for direct SDK access
 
@@ -112,6 +121,7 @@ cosmosAddr := sdk.AccAddress(caller.Bytes()).String()  // Bech32 (e.g., bb1abc..
 ```
 
 **Key Points:**
+
 - Same 20-byte value, different encoding
 - EVM: `0x` hex prefix (e.g., `0x1234...5678`)
 - Cosmos: Bech32 with `bb` prefix (e.g., `bb1abc...xyz`)
@@ -127,25 +137,25 @@ evmAddr := common.BytesToAddress(cosmosAddr.Bytes())  // 0x1234...5678
 
 ### Address Format Examples
 
-| Format | Example | Use Case |
-|--------|---------|----------|
-| EVM (hex) | `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb` | Solidity contracts, EVM transactions |
-| Cosmos (Bech32) | `bb1abc123def456...` | Cosmos SDK messages, queries |
+| Format          | Example                                     | Use Case                             |
+| --------------- | ------------------------------------------- | ------------------------------------ |
+| EVM (hex)       | `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb` | Solidity contracts, EVM transactions |
+| Cosmos (Bech32) | `bb1abc123def456...`                        | Cosmos SDK messages, queries         |
 
 ### Important Notes
 
 1. **Same Account, Different Representations**
-   - An account with an `ethsecp256k1` key has the same 20-byte address in both formats
-   - The Bech32 encoding is just a different way to represent the same bytes
+    - An account with an `ethsecp256k1` key has the same 20-byte address in both formats
+    - The Bech32 encoding is just a different way to represent the same bytes
 
 2. **Automatic Conversion in Precompiles**
-   - Precompiles automatically convert EVM addresses to Cosmos addresses
-   - No manual conversion needed when calling precompile methods
+    - Precompiles automatically convert EVM addresses to Cosmos addresses
+    - No manual conversion needed when calling precompile methods
 
 3. **Address Validation**
-   - Cosmos SDK validates addresses using Bech32 format
-   - EVM uses hex format
-   - Both represent the same underlying account
+    - Cosmos SDK validates addresses using Bech32 format
+    - EVM uses hex format
+    - Both represent the same underlying account
 
 ## Precompile Caller Limitations
 
@@ -170,6 +180,7 @@ func (p Precompile) GetCallerAddress(contract *vm.Contract) (string, error) {
 The caller is always the immediate caller (the contract making the precompile call), not the original transaction signer.
 
 **Example:**
+
 ```
 User (0xAlice) → Contract A → Precompile
                 ↑
@@ -177,6 +188,7 @@ User (0xAlice) → Contract A → Precompile
 ```
 
 **Implication:**
+
 - Precompile sees the contract address as the caller
 - Original user address is not directly available
 - Authorization must be handled at the contract level
@@ -184,6 +196,7 @@ User (0xAlice) → Contract A → Precompile
 #### 2. **No Cross-Contract Delegation**
 
 If Contract A calls Contract B, which then calls the precompile:
+
 ```
 User → Contract A → Contract B → Precompile
                                     ↑
@@ -191,6 +204,7 @@ User → Contract A → Contract B → Precompile
 ```
 
 **Implication:**
+
 - Precompile only sees Contract B as the caller
 - Contract A's identity is not visible to the precompile
 
@@ -199,21 +213,22 @@ User → Contract A → Contract B → Precompile
 Because the precompile sees the contract address, not the user address, you need to design authorization carefully:
 
 **Pattern 1: Contract-Level Authorization**
+
 ```solidity
 import "./libraries/TokenizationJSONHelpers.sol";
 
 contract MyContract {
     ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-    
+
     mapping(address => bool) public authorized;
-    
+
     function transferTokens(
         uint256 collectionId,
         address to,
         uint256 amount
     ) external {
         require(authorized[msg.sender], "Not authorized");
-        
+
         // Build JSON
         address[] memory recipients = new address[](1);
         recipients[0] = to;
@@ -222,7 +237,7 @@ contract MyContract {
         string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
             collectionId, recipients, amount, tokenIdsJson, ownershipJson
         );
-        
+
         // Contract is authorized, so precompile call succeeds
         precompile.transferTokens(transferJson);
     }
@@ -230,6 +245,7 @@ contract MyContract {
 ```
 
 **Pattern 2: Pass User Address Explicitly**
+
 ```solidity
 // The precompile automatically uses contract.Caller() as the creator
 // For transfers, tokens move from the contract's balance
@@ -239,6 +255,7 @@ precompile.transferTokens(transferJson);
 ```
 
 **Pattern 3: Use Approval System**
+
 ```solidity
 // User approves contract, contract acts on user's behalf
 // Precompile sees contract as caller, but contract has user's approval
@@ -247,37 +264,39 @@ precompile.transferTokens(transferJson);
 ### Security Considerations
 
 1. **Impersonation Prevention**
-   - Precompile always uses `contract.Caller()` to prevent spoofing
-   - Cannot be manipulated by malicious contracts
+    - Precompile always uses `contract.Caller()` to prevent spoofing
+    - Cannot be manipulated by malicious contracts
 
 2. **Authorization Design**
-   - Design contracts to handle authorization before calling precompile
-   - Don't rely on precompile seeing the original user address
+    - Design contracts to handle authorization before calling precompile
+    - Don't rely on precompile seeing the original user address
 
 3. **Multi-Contract Scenarios**
-   - Be aware that intermediate contracts are invisible to precompile
-   - Design authorization to account for this
+    - Be aware that intermediate contracts are invisible to precompile
+    - Design authorization to account for this
 
 ## Key Types and Compatibility
 
 ### Key Type Comparison
 
-| Key Type | Algorithm | Hash Function | Address Format | Can Sign MsgEthereumTx | Can Sign Cosmos Messages |
-|----------|-----------|---------------|----------------|----------------------|-------------------------|
-| `ethsecp256k1` | secp256k1 | Keccak256 | Both (EVM hex + Cosmos Bech32) | ✅ Yes | ❌ No (different hash) |
-| `secp256k1` (Cosmos) | secp256k1 | SHA256 | Cosmos Bech32 only | ❌ No (different format) | ✅ Yes |
+| Key Type             | Algorithm | Hash Function | Address Format                 | Can Sign MsgEthereumTx   | Can Sign Cosmos Messages |
+| -------------------- | --------- | ------------- | ------------------------------ | ------------------------ | ------------------------ |
+| `ethsecp256k1`       | secp256k1 | Keccak256     | Both (EVM hex + Cosmos Bech32) | ✅ Yes                   | ❌ No (different hash)   |
+| `secp256k1` (Cosmos) | secp256k1 | SHA256        | Cosmos Bech32 only             | ❌ No (different format) | ✅ Yes                   |
 
 ### Account Creation
 
 When creating accounts:
 
 **For EVM Compatibility:**
+
 ```bash
 # Create account with ethsecp256k1 key
 bitbadgeschaind keys add my-eth-account --keyring-backend test --algo eth_secp256k1
 ```
 
 **For Cosmos-Only:**
+
 ```bash
 # Create account with standard secp256k1 key (default)
 bitbadgeschaind keys add my-cosmos-account --keyring-backend test
@@ -300,13 +319,13 @@ This allows the ante handler to recognize and verify signatures from both key ty
 ### 1. Choose the Right Key Type
 
 - **Use `ethsecp256k1`** if you need:
-  - EVM contract interaction
-  - Precompile calls from Solidity
-  - Compatibility with Ethereum tooling
+    - EVM contract interaction
+    - Precompile calls from Solidity
+    - Compatibility with Ethereum tooling
 
 - **Use standard `secp256k1`** if you need:
-  - Only native Cosmos SDK functionality
-  - No EVM interaction required
+    - Only native Cosmos SDK functionality
+    - No EVM interaction required
 
 ### 2. Address Handling
 
@@ -317,20 +336,20 @@ This allows the ante handler to recognize and verify signatures from both key ty
 ### 3. Authorization Patterns
 
 - **For contracts calling precompiles:**
-  - Implement authorization at the contract level
-  - Don't rely on precompile seeing original user address
-  - Use approval patterns when needed
+    - Implement authorization at the contract level
+    - Don't rely on precompile seeing original user address
+    - Use approval patterns when needed
 
 ### 4. Transaction Types
 
 - **Use `MsgEthereumTx`** for:
-  - EVM contract calls
-  - Precompile calls from Solidity
+    - EVM contract calls
+    - Precompile calls from Solidity
 
 - **Use standard Cosmos messages** for:
-  - Direct SDK module interaction
-  - Better gas efficiency for simple operations
-  - Native Cosmos tooling compatibility
+    - Direct SDK module interaction
+    - Better gas efficiency for simple operations
+    - Native Cosmos tooling compatibility
 
 ### 5. Testing Considerations
 
@@ -340,13 +359,13 @@ This allows the ante handler to recognize and verify signatures from both key ty
 
 ## Summary
 
-| Aspect | ETH Wallets (ethsecp256k1) | Cosmos Wallets (secp256k1) |
-|--------|---------------------------|---------------------------|
-| **Can sign MsgEthereumTx** | ✅ Yes | ❌ No |
-| **Can sign Cosmos messages** | ❌ No | ✅ Yes |
-| **Address format** | Both (hex + Bech32) | Bech32 only |
-| **Precompile access** | ✅ Via Solidity contracts | ❌ No direct access |
-| **Native SDK access** | ❌ Via precompiles only | ✅ Direct access |
+| Aspect                       | ETH Wallets (ethsecp256k1) | Cosmos Wallets (secp256k1) |
+| ---------------------------- | -------------------------- | -------------------------- |
+| **Can sign MsgEthereumTx**   | ✅ Yes                     | ❌ No                      |
+| **Can sign Cosmos messages** | ❌ No                      | ✅ Yes                     |
+| **Address format**           | Both (hex + Bech32)        | Bech32 only                |
+| **Precompile access**        | ✅ Via Solidity contracts  | ❌ No direct access        |
+| **Native SDK access**        | ❌ Via precompiles only    | ✅ Direct access           |
 
 ## Decimal Handling and the Precisebank Module
 
@@ -361,13 +380,14 @@ The **precisebank module** bridges these two systems, automatically handling con
 
 ### Unit Conversions
 
-| Unit | Decimals | Value | Context |
-|------|----------|-------|---------|
-| **BADGE** | 9 (Cosmos) / 18 (EVM) | 1 BADGE | Display unit |
-| **ubadge** | 9 | 1 \* 10^9 | Base unit in Cosmos SDK (x/bank) |
-| **abadge** | 0 | 1 \* 10^0 | Base unit in EVM (smallest unit) |
+| Unit       | Decimals              | Value     | Context                          |
+| ---------- | --------------------- | --------- | -------------------------------- |
+| **BADGE**  | 9 (Cosmos) / 18 (EVM) | 1 BADGE   | Display unit                     |
+| **ubadge** | 9                     | 1 \* 10^9 | Base unit in Cosmos SDK (x/bank) |
+| **abadge** | 0                     | 1 \* 10^0 | Base unit in EVM (smallest unit) |
 
 **Conversion Relationships:**
+
 - 1 BADGE = 1 \* 10^9 ubadge (Cosmos)
 - 1 BADGE = 1 \* 10^18 abadge (EVM)
 - 1 ubadge = 1 \* 10^9 abadge
@@ -394,14 +414,14 @@ When working with native Cosmos SDK messages or queries:
 ```typescript
 // ✅ Correct - Use 9 decimal precision in Cosmos
 const coin = {
-  denom: 'ubadge',
-  amount: '1000000000'  // 1 BADGE in Cosmos (1 * 10^9)
+    denom: 'ubadge',
+    amount: '1000000000', // 1 BADGE in Cosmos (1 * 10^9)
 };
 
 // ❌ Wrong - Don't use 18 decimals in Cosmos
 const wrongCoin = {
-  denom: 'ubadge',
-  amount: '1000000000000000000'  // This is 1 * 10^9 BADGE in Cosmos!
+    denom: 'ubadge',
+    amount: '1000000000000000000', // This is 1 * 10^9 BADGE in Cosmos!
 };
 ```
 
@@ -417,29 +437,50 @@ The precisebank module handles conversions automatically:
 ### Common Mistakes
 
 1. **Mixing decimal precisions**
-   ```solidity
-   // ❌ Wrong - Using Cosmos precision in EVM
-   uint256 amount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
-   
-   // ✅ Correct - Use EVM precision
-   uint256 amount = 1 * 10**18;  // 1 BADGE in EVM
-   ```
+
+    ```solidity
+    // ❌ Wrong - Using Cosmos precision in EVM
+    uint256 amount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
+
+    // ✅ Correct - Use EVM precision
+    uint256 amount = 1 * 10**18;  // 1 BADGE in EVM
+    ```
 
 2. **Assuming 1:1 conversion**
-   ```typescript
-   // ❌ Wrong - These are NOT equal
-   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
-   const evmAmount = '1000000000';        // 0.000000001 BADGE in EVM!
-   
-   // ✅ Correct - Use proper conversion
-   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
-   const evmAmount = '1000000000000000000'; // 1 BADGE in EVM
-   ```
+
+    ```typescript
+    // ❌ Wrong - These are NOT equal
+    const cosmosAmount = '1000000000'; // 1 BADGE in Cosmos
+    const evmAmount = '1000000000'; // 0.000000001 BADGE in EVM!
+
+    // ✅ Correct - Use proper conversion
+    const cosmosAmount = '1000000000'; // 1 BADGE in Cosmos
+    const evmAmount = '1000000000000000000'; // 1 BADGE in EVM
+    ```
 
 3. **Not accounting for context**
-   - In Solidity contracts: Always use 18 decimals
-   - In Cosmos SDK messages: Always use 9 decimals
-   - The precisebank module handles the bridge automatically
+    - In Solidity contracts: Always use 18 decimals
+    - In Cosmos SDK messages: Always use 9 decimals
+    - The precisebank module handles the bridge automatically
+
+## EVM Query Challenges / Invariants
+
+EVM queries allow you to gate token transfers or set invariants based on read-only queries to EVM smart contracts. This is a powerful feature for integrating with existing DeFi protocols, compliance registries, and cross-chain state verification.
+
+See invariants or approval criterie -> EVM Query Challenges section for more details.
+
+### Quick Example
+
+```solidity
+// Gate transfers to users holding 100+ USDC
+string memory evmQueryChallenge = string(abi.encodePacked(
+    '{"contractAddress":"0xUSDCAddress",',
+    '"calldata":"70a08231000000000000000000000000$sender",',  // balanceOf(address)
+    '"expectedResult":"0000000000000000000000000000000000000000000000000000000005f5e100",',  // 100 USDC
+    '"comparisonOperator":"gte",',
+    '"gasLimit":"100000"}'
+));
+```
 
 ## Additional Resources
 
@@ -448,4 +489,3 @@ The precisebank module handles conversions automatically:
 - [Architecture Details](./architecture.md)
 - [Security Best Practices](./tokenization-precompile/security.md)
 - [Chain Details](../../for-developers/concepts/chain-details.md)
-

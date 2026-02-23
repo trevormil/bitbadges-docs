@@ -7,6 +7,7 @@ This directory contains detailed documentation for all query types supported by 
 ### Collection Queries
 
 -   [GetCollection](./get-collection.md) - Retrieve collection data and properties
+-   [GetCollectionStats](./get-collection-stats.md) - Get holder count and circulating supply statistics
 
 ### Balance Queries
 

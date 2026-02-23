@@ -40,6 +40,7 @@ const collection: MsgCreateCollection = {
         maxSupplyPerId: '0',
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
+        evmQueryChallenges: [],
     },
     // ... other fields (collectionPermissions, manager, etc.)
 };
@@ -135,6 +136,7 @@ const collection: MsgCreateCollection = {
         maxSupplyPerId: '0',
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
+        evmQueryChallenges: [],
     },
     collectionPermissions: {
         // ... permission fields

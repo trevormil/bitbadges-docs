@@ -82,9 +82,10 @@ For approval criteria examples, see:
 * [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
 * [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
 * [Address Checks](../../token-standard/learn/approval-criteria/address-checks.md) - Address type restrictions
+* [EVM Query Challenges](../../token-standard/learn/approval-criteria/evm-query-challenges.md) - Token-gating via EVM contract queries
 * [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
 
 For concepts, see:
 
 * [Transferability](../../learn/transferability.md)
-* [Approval Criteria](broken-reference/)
+* [Approval Criteria](../../token-standard/learn/approval-criteria/README.md)

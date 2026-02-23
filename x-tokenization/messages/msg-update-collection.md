@@ -103,7 +103,8 @@ bitbadgeschaind tx tokenization update-collection '[tx-json]' --from manager-key
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```

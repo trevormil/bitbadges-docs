@@ -95,7 +95,7 @@ import "./libraries/TokenizationJSONHelpers.sol";
 
 // Simple operations
 string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
-bytes memory collection = TOKENIZATION.getCollection(json);
+TokenCollection memory collection = TOKENIZATION.getCollection(json);
 
 // Complex operations with ranges
 string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 100);
@@ -211,9 +211,10 @@ function isKYCVerified(address user) external view returns (bool) {
         user
     );
     
-    bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-    if (result.length == 0) return false;
-    return abi.decode(result, (bool));
+    DynamicStoreValueResult memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+    // Use the field that matches your store's value type (e.g. for a boolean store, the struct's bool field)
+    return result.verified;  // field name depends on your DynamicStoreValueResult definition
+}
 }
 ```
 
@@ -386,17 +387,43 @@ See [API Reference](API.md) for complete `executeMultiple` documentation.
 
 ### Query Methods
 
-Query methods return `bytes` (protobuf-encoded) or `uint256` (for amount queries):
+Query methods return structs (ABI-encoded; define matching struct types in your contract) or `uint256` for amount/supply queries:
 
-- `getCollection(string calldata msgJson) → bytes`
-- `getBalance(string calldata msgJson) → bytes`
+- `getCollection(string calldata msgJson) → TokenCollection`
+- `getBalance(string calldata msgJson) → UserBalanceStore`
 - `getBalanceAmount(string calldata msgJson) → uint256`
 - `getTotalSupply(string calldata msgJson) → uint256`
-- `getDynamicStore(string calldata msgJson) → bytes`
-- `getDynamicStoreValue(string calldata msgJson) → bytes`
-- `getAddressList(string calldata msgJson) → bytes`
+- `getCollectionStats(string calldata msgJson) → CollectionStats` - Get holder count and circulating supply
+- `getDynamicStore(string calldata msgJson) → DynamicStore`
+- `getDynamicStoreValue(string calldata msgJson) → DynamicStoreValueResult`
+- `getAddressList(string calldata msgJson) → AddressList`
 
 See [API Reference](API.md) for complete method documentation.
+
+### Struct Return Types
+
+Query methods (except `getBalanceAmount` and `getTotalSupply`) return ABI-encoded structs. Define struct types in your contract that match the precompile’s response layout:
+
+```solidity
+// Define matching struct types
+struct CollectionStats {
+    uint256 holderCount;
+    Balance[] balances;
+}
+
+// Interface with struct return types
+interface ITokenizationPrecompile {
+    function getCollectionStats(string calldata msgJson)
+        external view returns (CollectionStats memory);
+}
+
+// Usage - access fields directly in contract logic
+CollectionStats memory stats = ITokenizationPrecompile(TOKENIZATION_ADDRESS)
+    .getCollectionStats(queryJson);
+uint256 holders = stats.holderCount;
+```
+
+See [API Reference - Struct Return Types](API.md#struct-return-types) for supported struct types and layout.
 
 ## Helper Library Functions
 
@@ -445,17 +472,9 @@ uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
 uint256 collectionId = TOKENIZATION.createCollection(createJson);
 ```
 
-### Protobuf Bytes
+### Struct Returns (Query Methods)
 
-Most query methods return protobuf-encoded `bytes`. For simple boolean stores:
-
-```solidity
-bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-if (result.length == 0) return false;
-return abi.decode(result, (bool));
-```
-
-For complex types, decode off-chain using the TypeScript SDK or emit events for indexing.
+Query methods (e.g. `getCollection`, `getBalance`, `getCollectionStats`, `getDynamicStore`, `getDynamicStoreValue`, `getAddressList`) return ABI-encoded structs. Define matching struct types in your contract and use an interface that declares those return types; then use the returned struct fields directly in your logic. See [Struct Return Types](API.md#struct-return-types) for supported types and examples.
 
 ## Security Considerations
 

@@ -136,7 +136,8 @@ bitbadgeschaind tx tokenization universal-update-collection '[tx-json]' --from c
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```
@@ -197,7 +198,8 @@ When creating a new collection (collectionId = "0"), you can set collection inva
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```

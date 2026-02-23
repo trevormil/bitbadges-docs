@@ -161,7 +161,33 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "senderChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             },
@@ -253,7 +279,33 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "senderChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             }
@@ -265,7 +317,16 @@ This example demonstrates creating a tradable collection that supports orderbook
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
-        "cosmosCoinWrapperPathsToAdd": [] // No wrapping allowed
+        "cosmosCoinWrapperPathsToAdd": [],
+        "aliasPathsToAdd": [],
+        "invariants": {
+            "noCustomOwnershipTimes": false,
+            "maxSupplyPerId": "0",
+            "cosmosCoinBackedPath": null,
+            "noForcefulPostMintTransfers": false,
+            "disablePoolCreation": false,
+            "evmQueryChallenges": []
+        }
     }
 ]
 ```
