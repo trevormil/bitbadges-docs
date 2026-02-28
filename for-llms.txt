@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sun Feb 15 18:40:33 UTC 2026
+Generated on Sat Feb 28 16:13:28 UTC 2026
 
 
 
@@ -1875,6 +1875,8 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Tallied Approval Amounts](token-standard/learn/approval-criteria/tallied-approval-amounts.md)
     * [Coin Transfers](token-standard/learn/approval-criteria/usdbadge-transfers.md)
     * [User Royalties](token-standard/learn/approval-criteria/user-royalties.md)
+    * [Voting Challenges](token-standard/learn/approval-criteria/voting-challenges.md)
+    * [EVM Query Challenges](token-standard/learn/approval-criteria/evm-query-challenges.md)
   * [Minting and Circulating Supply](learn/minting-and-circulating-supply.md)
   * [Auto-Scan vs. Prioritized Approvals](learn/auto-scan-and-prioritized-approvals.md)
   * [Alias Compatibility](learn/alias-compatibility.md)
@@ -2019,6 +2021,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Signing Client (Recommended)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
@@ -2027,6 +2030,7 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Sign + Broadcast - bitbadges.io](for-developers/bitbadges-blockchain/create-and-broadcast-txs/sign-+-broadcast-bitbadges.io.md)
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
   * [EVM RPC Endpoints](for-developers/bitbadges-blockchain/evm-rpc-endpoints.md)
+  * [Cross-Chain Queries (ICQ)](for-developers/bitbadges-blockchain/cross-chain-queries.md)
 * [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)
@@ -2711,6 +2715,7 @@ Solidity Contract → EVM Precompile → Tokenization Module → Cosmos SDK Stat
 - **[Setup & Configuration](evm-precompiles/setup-and-configuration.md)** - Chain config, MetaMask setup, dApp setup
 - **[Developer Guide](evm-precompiles/developer-guide.md)** - Transaction signing, address conversion, limitations
 - **[Architecture](evm-precompiles/architecture.md)** - System architecture details
+- **[ERC-3643 Security Token Template](evm-precompiles/erc3643-template.md)** - Standardized security token template
 - **[Tokenization Precompile API](evm-precompiles/tokenization-precompile/API.md)** - Complete API reference
 - **[Error Handling](evm-precompiles/tokenization-precompile/errors.md)** - Error codes and handling
 - **[Gas Costs](evm-precompiles/tokenization-precompile/gas.md)** - Gas calculation and optimization
@@ -2970,7 +2975,7 @@ Provides full access to the BitBadges tokenization module for token transfers, c
 
 [Tokenization Precompile Documentation →](tokenization-precompile/README.md)
 
-### Gamm Precompile
+### GAMM Precompile
 
 **Address:** `0x0000000000000000000000000000000000001002`
 
@@ -2983,14 +2988,51 @@ Provides access to liquidity pools for joining, exiting, and swapping tokens.
 - Pool information queries
 - Calculation queries
 
-[Gamm Precompile Documentation →](gamm-precompile/README.md) | [Common Gotchas →](gamm-precompile/gotchas.md)
+[GAMM Precompile Documentation →](gamm-precompile/README.md) | [API Reference →](gamm-precompile/API.md) | [Common Gotchas →](gamm-precompile/gotchas.md)
+
+### SendManager Precompile
+
+**Address:** `0x0000000000000000000000000000000000001003`
+
+Send native Cosmos coins directly from EVM without ERC20 wrapping.
+
+**Features:**
+- Send native Cosmos coins from EVM
+- No ERC20 wrapping required
+- Supports alias denoms (e.g., `badgeslp:...`)
+- All accounting in `x/bank` (Cosmos side)
+
+[SendManager Precompile Documentation →](sendmanager-precompile/README.md)
+
+### Cosmos SDK Precompiles
+
+Default precompiles from [cosmos/evm](https://github.com/cosmos/evm) for interacting with Cosmos SDK modules.
+
+| Precompile | Address | Description |
+|------------|---------|-------------|
+| P256 | `0x...0100` | secp256r1 signature verification |
+| Bech32 | `0x...0400` | Address format conversion |
+| Staking | `0x...0800` | Delegate, undelegate, redelegate |
+| Distribution | `0x...0801` | Claim staking rewards |
+| ICS20 | `0x...0802` | IBC token transfers |
+| Vesting | `0x...0803` | Vesting account management |
+| Bank | `0x...0804` | Query balances and supply |
+| Governance | `0x...0805` | Vote on proposals |
+| Slashing | `0x...0806` | Unjail validators |
+
+[Cosmos SDK Precompiles Documentation →](cosmos-precompiles.md)
 
 ## Documentation
 
 - **[Setup & Configuration](setup-and-configuration.md)** - Chain config, MetaMask setup, dApp setup
 - **[Developer Guide](developer-guide.md)** - Transaction signing, address conversion, limitations
 - **[Architecture](architecture.md)** - System architecture
-- **[Tokenization Precompile](tokenization-precompile/README.md)** - Precompile documentation
+
+### Precompile Documentation
+- **[Tokenization Precompile](tokenization-precompile/README.md)** - Token transfers, collections, approvals
+- **[GAMM Precompile](gamm-precompile/README.md)** - Liquidity pools, swaps
+- **[SendManager Precompile](sendmanager-precompile/README.md)** - Native coin transfers
+- **[Cosmos SDK Precompiles](cosmos-precompiles.md)** - Staking, distribution, governance, IBC
 
 ## Resources
 
@@ -3010,11 +3052,22 @@ Provides access to liquidity pools for joining, exiting, and swapping tokens.
 * [Setup and Configuration](setup-and-configuration.md)
 * [Developer Guide](developer-guide.md)
 * [Architecture](architecture.md)
+
+## BitBadges Precompiles
+
 * [Tokenization Precompile](tokenization-precompile/README.md)
   * [API Reference](tokenization-precompile/API.md)
   * [Gas & Costs](tokenization-precompile/gas.md)
   * [Error Handling](tokenization-precompile/errors.md)
   * [Security](tokenization-precompile/security.md)
+* [GAMM Precompile](gamm-precompile/README.md)
+  * [API Reference](gamm-precompile/API.md)
+  * [Common Gotchas](gamm-precompile/gotchas.md)
+* [SendManager Precompile](sendmanager-precompile/README.md)
+
+## Cosmos SDK Precompiles
+
+* [Cosmos Precompiles](cosmos-precompiles.md)
 
 
 
@@ -3255,6 +3308,324 @@ For more information on Cosmos SDK EVM integration, see the [official documentat
 
 
 
+## File: ./evm/evm-precompiles/cosmos-precompiles.md
+
+# Cosmos SDK Precompiles
+
+These precompiles are provided by the upstream [cosmos/evm](https://github.com/cosmos/evm) module and provide direct access to Cosmos SDK functionality from EVM smart contracts.
+
+Unlike BitBadges custom precompiles (which use JSON parameters), these precompiles use traditional ABI-encoded parameters.
+
+## Address Overview
+
+| Precompile | Address | Type |
+|------------|---------|------|
+| P256 | `0x0000000000000000000000000000000000000100` | Cryptography |
+| Bech32 | `0x0000000000000000000000000000000000000400` | Utility |
+| Staking | `0x0000000000000000000000000000000000000800` | Transactions + Queries |
+| Distribution | `0x0000000000000000000000000000000000000801` | Transactions + Queries |
+| ICS20 (IBC) | `0x0000000000000000000000000000000000000802` | Transactions + Queries |
+| Vesting | `0x0000000000000000000000000000000000000803` | Transactions + Queries |
+| Bank | `0x0000000000000000000000000000000000000804` | Queries Only |
+| Governance | `0x0000000000000000000000000000000000000805` | Transactions + Queries |
+| Slashing | `0x0000000000000000000000000000000000000806` | Transactions + Queries |
+
+---
+
+## P256 Precompile
+
+**Address:** `0x0000000000000000000000000000000000000100`
+
+Implements secp256r1 (P-256) signature verification per [EIP-7212](https://github.com/ethereum/RIPs/blob/master/RIPS/rip-7212.md).
+
+**Usage:** Low-level call with 160 bytes input:
+- Bytes 0-31: Hash of signed data
+- Bytes 32-63: r component of signature
+- Bytes 64-95: s component of signature
+- Bytes 96-127: x coordinate of public key
+- Bytes 128-159: y coordinate of public key
+
+**Returns:** 32 bytes with value `1` if valid, empty if invalid.
+
+**Gas:** 3,450
+
+---
+
+## Bech32 Precompile
+
+**Address:** `0x0000000000000000000000000000000000000400`
+
+Converts between hex addresses and bech32 addresses.
+
+### Methods
+
+```solidity
+interface IBech32 {
+    /// @notice Convert hex address to bech32 string
+    function hexToBech32(address addr, string calldata prefix) external pure returns (string memory);
+
+    /// @notice Convert bech32 string to hex address
+    function bech32ToHex(string calldata bech32Addr) external pure returns (address);
+}
+```
+
+**Example:**
+```solidity
+IBech32 bech32 = IBech32(0x0000000000000000000000000000000000000400);
+
+// Convert EVM address to Cosmos address
+string memory cosmosAddr = bech32.hexToBech32(msg.sender, "bb");
+// Result: "bb1abc123..."
+
+// Convert Cosmos address to EVM address
+address evmAddr = bech32.bech32ToHex("bb1abc123...");
+```
+
+---
+
+## Staking Precompile
+
+**Address:** `0x0000000000000000000000000000000000000800`
+
+Interact with the Cosmos SDK staking module.
+
+### Transaction Methods
+
+| Method | Description |
+|--------|-------------|
+| `createValidator(...)` | Create a new validator |
+| `editValidator(...)` | Edit validator parameters |
+| `delegate(address validator, uint256 amount)` | Delegate tokens to a validator |
+| `undelegate(address validator, uint256 amount)` | Undelegate tokens from a validator |
+| `redelegate(address srcValidator, address dstValidator, uint256 amount)` | Redelegate tokens between validators |
+| `cancelUnbondingDelegation(address validator, uint256 amount, int64 creationHeight)` | Cancel an unbonding delegation |
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `delegation(address delegator, address validator)` | Get delegation info |
+| `unbondingDelegation(address delegator, address validator)` | Get unbonding delegation info |
+| `validator(address validator)` | Get validator info |
+| `validators(string status, PageRequest pagination)` | Get all validators |
+| `redelegation(address delegator, address srcValidator, address dstValidator)` | Get redelegation info |
+| `redelegations(address delegator, address srcValidator, address dstValidator, PageRequest pagination)` | Get all redelegations |
+
+---
+
+## Distribution Precompile
+
+**Address:** `0x0000000000000000000000000000000000000801`
+
+Interact with the Cosmos SDK distribution module for staking rewards.
+
+### Transaction Methods
+
+| Method | Description |
+|--------|-------------|
+| `setWithdrawAddress(address withdrawAddr)` | Set the withdrawal address for rewards |
+| `withdrawDelegatorRewards(address validator)` | Withdraw rewards from a validator |
+| `withdrawValidatorCommission(address validator)` | Withdraw validator commission |
+| `fundCommunityPool(Coin[] amount)` | Fund the community pool |
+| `claimRewards(address delegator, uint32 maxRetrieve)` | Claim all rewards |
+| `depositValidatorRewardsPool(address validator, Coin[] amount)` | Deposit to validator rewards pool |
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `validatorDistributionInfo(address validator)` | Get validator distribution info |
+| `validatorOutstandingRewards(address validator)` | Get validator outstanding rewards |
+| `validatorCommission(address validator)` | Get validator commission |
+| `validatorSlashes(address validator, uint64 startingHeight, uint64 endingHeight, PageRequest pagination)` | Get validator slashes |
+| `delegationRewards(address delegator, address validator)` | Get delegation rewards |
+| `delegationTotalRewards(address delegator)` | Get total rewards for a delegator |
+| `delegatorValidators(address delegator)` | Get validators for a delegator |
+| `delegatorWithdrawAddress(address delegator)` | Get withdraw address |
+| `communityPool()` | Get community pool balance |
+
+---
+
+## ICS20 (IBC Transfer) Precompile
+
+**Address:** `0x0000000000000000000000000000000000000802`
+
+Perform IBC token transfers.
+
+### Transaction Methods
+
+```solidity
+interface IICS20 {
+    /// @notice Transfer tokens via IBC
+    function transfer(
+        string calldata sourcePort,
+        string calldata sourceChannel,
+        string calldata denom,
+        uint256 amount,
+        string calldata receiver,
+        Height calldata timeoutHeight,
+        uint64 timeoutTimestamp,
+        string calldata memo
+    ) external returns (uint64 sequence);
+}
+```
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `denom(string hash)` | Get denom trace from hash |
+| `denoms(PageRequest pagination)` | Get all denom traces |
+| `denomHash(string trace)` | Get hash from denom trace |
+
+---
+
+## Vesting Precompile
+
+**Address:** `0x0000000000000000000000000000000000000803`
+
+Manage vesting accounts.
+
+### Methods
+
+| Method | Description |
+|--------|-------------|
+| `createClawbackVestingAccount(...)` | Create a clawback vesting account |
+| `fundVestingAccount(...)` | Fund a vesting account |
+| `clawback(...)` | Clawback unvested tokens |
+| `updateVestingFunder(...)` | Update the funder address |
+| `convertVestingAccount(...)` | Convert vesting to regular account |
+
+---
+
+## Bank Precompile
+
+**Address:** `0x0000000000000000000000000000000000000804`
+
+Query bank module data (read-only, no transactions).
+
+### Query Methods
+
+```solidity
+interface IBank {
+    /// @notice Get all balances for an account
+    function balances(address account, PageRequest pagination) external view returns (Coin[] memory, PageResponse memory);
+
+    /// @notice Get total supply of all tokens
+    function totalSupply(PageRequest pagination) external view returns (Coin[] memory, PageResponse memory);
+
+    /// @notice Get supply of a specific denom
+    function supplyOf(string calldata denom) external view returns (Coin memory);
+}
+```
+
+**Gas Costs:**
+- `balances`: 2,851
+- `totalSupply`: 2,477
+- `supplyOf`: 2,477
+
+---
+
+## Governance Precompile
+
+**Address:** `0x0000000000000000000000000000000000000805`
+
+Interact with the Cosmos SDK governance module.
+
+### Transaction Methods
+
+| Method | Description |
+|--------|-------------|
+| `submitProposal(...)` | Submit a governance proposal |
+| `deposit(uint64 proposalId, Coin[] amount)` | Deposit tokens to a proposal |
+| `cancelProposal(uint64 proposalId)` | Cancel a proposal (proposer only) |
+| `vote(uint64 proposalId, VoteOption option, string metadata)` | Vote on a proposal |
+| `voteWeighted(uint64 proposalId, WeightedVoteOption[] options, string metadata)` | Vote with weights |
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `getVotes(uint64 proposalId, PageRequest pagination)` | Get votes for a proposal |
+| `getVote(uint64 proposalId, address voter)` | Get a specific vote |
+| `getDeposit(uint64 proposalId, address depositor)` | Get a deposit |
+| `getDeposits(uint64 proposalId, PageRequest pagination)` | Get all deposits |
+| `getTallyResult(uint64 proposalId)` | Get tally result |
+| `getProposal(uint64 proposalId)` | Get proposal info |
+| `getProposals(ProposalStatus status, address voter, address depositor, PageRequest pagination)` | Get all proposals |
+| `getParams()` | Get governance params |
+| `getConstitution()` | Get chain constitution |
+
+---
+
+## Slashing Precompile
+
+**Address:** `0x0000000000000000000000000000000000000806`
+
+Interact with the Cosmos SDK slashing module.
+
+### Transaction Methods
+
+```solidity
+interface ISlashing {
+    /// @notice Unjail a jailed validator
+    function unjail(address validatorAddr) external;
+}
+```
+
+### Query Methods
+
+| Method | Description |
+|--------|-------------|
+| `getSigningInfo(address consAddr)` | Get signing info for a validator |
+| `getSigningInfos(PageRequest pagination)` | Get all signing infos |
+| `getParams()` | Get slashing params |
+
+---
+
+## Common Types
+
+```solidity
+struct Coin {
+    string denom;
+    uint256 amount;
+}
+
+struct PageRequest {
+    bytes key;
+    uint64 offset;
+    uint64 limit;
+    bool countTotal;
+    bool reverse;
+}
+
+struct PageResponse {
+    bytes nextKey;
+    uint64 total;
+}
+
+struct Height {
+    uint64 revisionNumber;
+    uint64 revisionHeight;
+}
+
+enum VoteOption {
+    Unspecified,
+    Yes,
+    Abstain,
+    No,
+    NoWithVeto
+}
+```
+
+---
+
+## Resources
+
+- [Cosmos EVM Documentation](https://docs.cosmos.network/evm/v0.5.0/documentation/overview)
+- [Cosmos EVM Precompiles Source](https://github.com/cosmos/evm/tree/v0.5.0/precompiles)
+
+
 ## File: ./evm/evm-precompiles/developer-guide.md
 
 # EVM Integration Developer Guide
@@ -3275,28 +3646,31 @@ This guide covers essential information for developers building applications on 
 
 BitBadges Chain supports two types of transactions, each with specific signing requirements:
 
-| Transaction Type | Signing Key Type | Hash Algorithm | Use Case |
-|-----------------|------------------|----------------|----------|
-| `MsgEthereumTx` | `ethsecp256k1` (Ethereum-style) | Keccak256 | EVM contract calls, precompile calls |
-| Standard Cosmos Messages | `secp256k1` (Cosmos-style) | SHA256 | Native Cosmos SDK messages (e.g., `MsgDelegate`, `MsgTransferTokens`) |
+| Transaction Type         | Signing Key Type                | Hash Algorithm | Use Case                                                              |
+| ------------------------ | ------------------------------- | -------------- | --------------------------------------------------------------------- |
+| `MsgEthereumTx`          | `ethsecp256k1` (Ethereum-style) | Keccak256      | EVM contract calls, precompile calls                                  |
+| Standard Cosmos Messages | `secp256k1` (Cosmos-style)      | SHA256         | Native Cosmos SDK messages (e.g., `MsgDelegate`, `MsgTransferTokens`) |
 
 ### Who Can Sign What?
 
 #### ✅ ETH Wallets (ethsecp256k1 keys)
 
 **Can sign:**
+
 - `MsgEthereumTx` transactions
-  - Direct EVM contract calls
-  - Precompile calls from Solidity contracts
-  - Any Ethereum-compatible transaction
+    - Direct EVM contract calls
+    - Precompile calls from Solidity contracts
+    - Any Ethereum-compatible transaction
 
 **Cannot sign:**
+
 - Standard Cosmos SDK messages (different hash algorithm)
-  - `MsgDelegate`
-  - `MsgTransferTokens`
-  - Other native Cosmos messages
+    - `MsgDelegate`
+    - `MsgTransferTokens`
+    - Other native Cosmos messages
 
 **Example:**
+
 ```solidity
 // ✅ This works - ETH wallet can sign MsgEthereumTx
 import "./libraries/TokenizationJSONHelpers.sol";
@@ -3316,18 +3690,21 @@ precompile.transferTokens(transferJson);
 #### ✅ Cosmos Wallets (standard secp256k1 keys)
 
 **Can sign:**
+
 - Standard Cosmos SDK messages
-  - `MsgDelegate`
-  - `MsgTransferTokens`
-  - `MsgCreateCollection`
-  - All native Cosmos SDK messages
+    - `MsgDelegate`
+    - `MsgTransferTokens`
+    - `MsgCreateCollection`
+    - All native Cosmos SDK messages
 
 **Cannot sign:**
+
 - `MsgEthereumTx` transactions (different signature format)
-  - Cannot directly call EVM contracts
-  - Cannot call precompiles from native Cosmos transactions
+    - Cannot directly call EVM contracts
+    - Cannot call precompiles from native Cosmos transactions
 
 **Example:**
+
 ```go
 // ✅ This works - Cosmos wallet can sign standard message
 msg := &tokenizationtypes.MsgTransferTokens{
@@ -3340,15 +3717,18 @@ msg := &tokenizationtypes.MsgTransferTokens{
 #### ❌ Cross-Compatibility
 
 **Not supported out of the box:**
+
 - ETH wallets cannot sign standard Cosmos messages
 - Cosmos wallets cannot sign `MsgEthereumTx`
 
 **Why?**
+
 - Different hash algorithms (Keccak256 vs SHA256)
 - Different signature formats
 - EVM ante handler routes by transaction type
 
 **Workaround:**
+
 - Use precompiles from Solidity contracts (ETH wallets) to access Cosmos SDK functionality
 - Use native Cosmos messages (Cosmos wallets) for direct SDK access
 
@@ -3371,6 +3751,7 @@ cosmosAddr := sdk.AccAddress(caller.Bytes()).String()  // Bech32 (e.g., bb1abc..
 ```
 
 **Key Points:**
+
 - Same 20-byte value, different encoding
 - EVM: `0x` hex prefix (e.g., `0x1234...5678`)
 - Cosmos: Bech32 with `bb` prefix (e.g., `bb1abc...xyz`)
@@ -3386,25 +3767,25 @@ evmAddr := common.BytesToAddress(cosmosAddr.Bytes())  // 0x1234...5678
 
 ### Address Format Examples
 
-| Format | Example | Use Case |
-|--------|---------|----------|
-| EVM (hex) | `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb` | Solidity contracts, EVM transactions |
-| Cosmos (Bech32) | `bb1abc123def456...` | Cosmos SDK messages, queries |
+| Format          | Example                                     | Use Case                             |
+| --------------- | ------------------------------------------- | ------------------------------------ |
+| EVM (hex)       | `0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb` | Solidity contracts, EVM transactions |
+| Cosmos (Bech32) | `bb1abc123def456...`                        | Cosmos SDK messages, queries         |
 
 ### Important Notes
 
 1. **Same Account, Different Representations**
-   - An account with an `ethsecp256k1` key has the same 20-byte address in both formats
-   - The Bech32 encoding is just a different way to represent the same bytes
+    - An account with an `ethsecp256k1` key has the same 20-byte address in both formats
+    - The Bech32 encoding is just a different way to represent the same bytes
 
 2. **Automatic Conversion in Precompiles**
-   - Precompiles automatically convert EVM addresses to Cosmos addresses
-   - No manual conversion needed when calling precompile methods
+    - Precompiles automatically convert EVM addresses to Cosmos addresses
+    - No manual conversion needed when calling precompile methods
 
 3. **Address Validation**
-   - Cosmos SDK validates addresses using Bech32 format
-   - EVM uses hex format
-   - Both represent the same underlying account
+    - Cosmos SDK validates addresses using Bech32 format
+    - EVM uses hex format
+    - Both represent the same underlying account
 
 ## Precompile Caller Limitations
 
@@ -3429,6 +3810,7 @@ func (p Precompile) GetCallerAddress(contract *vm.Contract) (string, error) {
 The caller is always the immediate caller (the contract making the precompile call), not the original transaction signer.
 
 **Example:**
+
 ```
 User (0xAlice) → Contract A → Precompile
                 ↑
@@ -3436,6 +3818,7 @@ User (0xAlice) → Contract A → Precompile
 ```
 
 **Implication:**
+
 - Precompile sees the contract address as the caller
 - Original user address is not directly available
 - Authorization must be handled at the contract level
@@ -3443,6 +3826,7 @@ User (0xAlice) → Contract A → Precompile
 #### 2. **No Cross-Contract Delegation**
 
 If Contract A calls Contract B, which then calls the precompile:
+
 ```
 User → Contract A → Contract B → Precompile
                                     ↑
@@ -3450,6 +3834,7 @@ User → Contract A → Contract B → Precompile
 ```
 
 **Implication:**
+
 - Precompile only sees Contract B as the caller
 - Contract A's identity is not visible to the precompile
 
@@ -3458,21 +3843,22 @@ User → Contract A → Contract B → Precompile
 Because the precompile sees the contract address, not the user address, you need to design authorization carefully:
 
 **Pattern 1: Contract-Level Authorization**
+
 ```solidity
 import "./libraries/TokenizationJSONHelpers.sol";
 
 contract MyContract {
     ITokenizationPrecompile precompile = ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
-    
+
     mapping(address => bool) public authorized;
-    
+
     function transferTokens(
         uint256 collectionId,
         address to,
         uint256 amount
     ) external {
         require(authorized[msg.sender], "Not authorized");
-        
+
         // Build JSON
         address[] memory recipients = new address[](1);
         recipients[0] = to;
@@ -3481,7 +3867,7 @@ contract MyContract {
         string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
             collectionId, recipients, amount, tokenIdsJson, ownershipJson
         );
-        
+
         // Contract is authorized, so precompile call succeeds
         precompile.transferTokens(transferJson);
     }
@@ -3489,6 +3875,7 @@ contract MyContract {
 ```
 
 **Pattern 2: Pass User Address Explicitly**
+
 ```solidity
 // The precompile automatically uses contract.Caller() as the creator
 // For transfers, tokens move from the contract's balance
@@ -3498,6 +3885,7 @@ precompile.transferTokens(transferJson);
 ```
 
 **Pattern 3: Use Approval System**
+
 ```solidity
 // User approves contract, contract acts on user's behalf
 // Precompile sees contract as caller, but contract has user's approval
@@ -3506,37 +3894,39 @@ precompile.transferTokens(transferJson);
 ### Security Considerations
 
 1. **Impersonation Prevention**
-   - Precompile always uses `contract.Caller()` to prevent spoofing
-   - Cannot be manipulated by malicious contracts
+    - Precompile always uses `contract.Caller()` to prevent spoofing
+    - Cannot be manipulated by malicious contracts
 
 2. **Authorization Design**
-   - Design contracts to handle authorization before calling precompile
-   - Don't rely on precompile seeing the original user address
+    - Design contracts to handle authorization before calling precompile
+    - Don't rely on precompile seeing the original user address
 
 3. **Multi-Contract Scenarios**
-   - Be aware that intermediate contracts are invisible to precompile
-   - Design authorization to account for this
+    - Be aware that intermediate contracts are invisible to precompile
+    - Design authorization to account for this
 
 ## Key Types and Compatibility
 
 ### Key Type Comparison
 
-| Key Type | Algorithm | Hash Function | Address Format | Can Sign MsgEthereumTx | Can Sign Cosmos Messages |
-|----------|-----------|---------------|----------------|----------------------|-------------------------|
-| `ethsecp256k1` | secp256k1 | Keccak256 | Both (EVM hex + Cosmos Bech32) | ✅ Yes | ❌ No (different hash) |
-| `secp256k1` (Cosmos) | secp256k1 | SHA256 | Cosmos Bech32 only | ❌ No (different format) | ✅ Yes |
+| Key Type             | Algorithm | Hash Function | Address Format                 | Can Sign MsgEthereumTx   | Can Sign Cosmos Messages |
+| -------------------- | --------- | ------------- | ------------------------------ | ------------------------ | ------------------------ |
+| `ethsecp256k1`       | secp256k1 | Keccak256     | Both (EVM hex + Cosmos Bech32) | ✅ Yes                   | ❌ No (different hash)   |
+| `secp256k1` (Cosmos) | secp256k1 | SHA256        | Cosmos Bech32 only             | ❌ No (different format) | ✅ Yes                   |
 
 ### Account Creation
 
 When creating accounts:
 
 **For EVM Compatibility:**
+
 ```bash
 # Create account with ethsecp256k1 key
 bitbadgeschaind keys add my-eth-account --keyring-backend test --algo eth_secp256k1
 ```
 
 **For Cosmos-Only:**
+
 ```bash
 # Create account with standard secp256k1 key (default)
 bitbadgeschaind keys add my-cosmos-account --keyring-backend test
@@ -3559,13 +3949,13 @@ This allows the ante handler to recognize and verify signatures from both key ty
 ### 1. Choose the Right Key Type
 
 - **Use `ethsecp256k1`** if you need:
-  - EVM contract interaction
-  - Precompile calls from Solidity
-  - Compatibility with Ethereum tooling
+    - EVM contract interaction
+    - Precompile calls from Solidity
+    - Compatibility with Ethereum tooling
 
 - **Use standard `secp256k1`** if you need:
-  - Only native Cosmos SDK functionality
-  - No EVM interaction required
+    - Only native Cosmos SDK functionality
+    - No EVM interaction required
 
 ### 2. Address Handling
 
@@ -3576,20 +3966,20 @@ This allows the ante handler to recognize and verify signatures from both key ty
 ### 3. Authorization Patterns
 
 - **For contracts calling precompiles:**
-  - Implement authorization at the contract level
-  - Don't rely on precompile seeing original user address
-  - Use approval patterns when needed
+    - Implement authorization at the contract level
+    - Don't rely on precompile seeing original user address
+    - Use approval patterns when needed
 
 ### 4. Transaction Types
 
 - **Use `MsgEthereumTx`** for:
-  - EVM contract calls
-  - Precompile calls from Solidity
+    - EVM contract calls
+    - Precompile calls from Solidity
 
 - **Use standard Cosmos messages** for:
-  - Direct SDK module interaction
-  - Better gas efficiency for simple operations
-  - Native Cosmos tooling compatibility
+    - Direct SDK module interaction
+    - Better gas efficiency for simple operations
+    - Native Cosmos tooling compatibility
 
 ### 5. Testing Considerations
 
@@ -3599,13 +3989,13 @@ This allows the ante handler to recognize and verify signatures from both key ty
 
 ## Summary
 
-| Aspect | ETH Wallets (ethsecp256k1) | Cosmos Wallets (secp256k1) |
-|--------|---------------------------|---------------------------|
-| **Can sign MsgEthereumTx** | ✅ Yes | ❌ No |
-| **Can sign Cosmos messages** | ❌ No | ✅ Yes |
-| **Address format** | Both (hex + Bech32) | Bech32 only |
-| **Precompile access** | ✅ Via Solidity contracts | ❌ No direct access |
-| **Native SDK access** | ❌ Via precompiles only | ✅ Direct access |
+| Aspect                       | ETH Wallets (ethsecp256k1) | Cosmos Wallets (secp256k1) |
+| ---------------------------- | -------------------------- | -------------------------- |
+| **Can sign MsgEthereumTx**   | ✅ Yes                     | ❌ No                      |
+| **Can sign Cosmos messages** | ❌ No                      | ✅ Yes                     |
+| **Address format**           | Both (hex + Bech32)        | Bech32 only                |
+| **Precompile access**        | ✅ Via Solidity contracts  | ❌ No direct access        |
+| **Native SDK access**        | ❌ Via precompiles only    | ✅ Direct access           |
 
 ## Decimal Handling and the Precisebank Module
 
@@ -3620,13 +4010,14 @@ The **precisebank module** bridges these two systems, automatically handling con
 
 ### Unit Conversions
 
-| Unit | Decimals | Value | Context |
-|------|----------|-------|---------|
-| **BADGE** | 9 (Cosmos) / 18 (EVM) | 1 BADGE | Display unit |
-| **ubadge** | 9 | 1 \* 10^9 | Base unit in Cosmos SDK (x/bank) |
-| **abadge** | 0 | 1 \* 10^0 | Base unit in EVM (smallest unit) |
+| Unit       | Decimals              | Value     | Context                          |
+| ---------- | --------------------- | --------- | -------------------------------- |
+| **BADGE**  | 9 (Cosmos) / 18 (EVM) | 1 BADGE   | Display unit                     |
+| **ubadge** | 9                     | 1 \* 10^9 | Base unit in Cosmos SDK (x/bank) |
+| **abadge** | 0                     | 1 \* 10^0 | Base unit in EVM (smallest unit) |
 
 **Conversion Relationships:**
+
 - 1 BADGE = 1 \* 10^9 ubadge (Cosmos)
 - 1 BADGE = 1 \* 10^18 abadge (EVM)
 - 1 ubadge = 1 \* 10^9 abadge
@@ -3653,14 +4044,14 @@ When working with native Cosmos SDK messages or queries:
 ```typescript
 // ✅ Correct - Use 9 decimal precision in Cosmos
 const coin = {
-  denom: 'ubadge',
-  amount: '1000000000'  // 1 BADGE in Cosmos (1 * 10^9)
+    denom: 'ubadge',
+    amount: '1000000000', // 1 BADGE in Cosmos (1 * 10^9)
 };
 
 // ❌ Wrong - Don't use 18 decimals in Cosmos
 const wrongCoin = {
-  denom: 'ubadge',
-  amount: '1000000000000000000'  // This is 1 * 10^9 BADGE in Cosmos!
+    denom: 'ubadge',
+    amount: '1000000000000000000', // This is 1 * 10^9 BADGE in Cosmos!
 };
 ```
 
@@ -3676,29 +4067,50 @@ The precisebank module handles conversions automatically:
 ### Common Mistakes
 
 1. **Mixing decimal precisions**
-   ```solidity
-   // ❌ Wrong - Using Cosmos precision in EVM
-   uint256 amount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
-   
-   // ✅ Correct - Use EVM precision
-   uint256 amount = 1 * 10**18;  // 1 BADGE in EVM
-   ```
+
+    ```solidity
+    // ❌ Wrong - Using Cosmos precision in EVM
+    uint256 amount = 1 * 10**9;  // This is 0.000000001 BADGE in EVM!
+
+    // ✅ Correct - Use EVM precision
+    uint256 amount = 1 * 10**18;  // 1 BADGE in EVM
+    ```
 
 2. **Assuming 1:1 conversion**
-   ```typescript
-   // ❌ Wrong - These are NOT equal
-   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
-   const evmAmount = '1000000000';        // 0.000000001 BADGE in EVM!
-   
-   // ✅ Correct - Use proper conversion
-   const cosmosAmount = '1000000000';      // 1 BADGE in Cosmos
-   const evmAmount = '1000000000000000000'; // 1 BADGE in EVM
-   ```
+
+    ```typescript
+    // ❌ Wrong - These are NOT equal
+    const cosmosAmount = '1000000000'; // 1 BADGE in Cosmos
+    const evmAmount = '1000000000'; // 0.000000001 BADGE in EVM!
+
+    // ✅ Correct - Use proper conversion
+    const cosmosAmount = '1000000000'; // 1 BADGE in Cosmos
+    const evmAmount = '1000000000000000000'; // 1 BADGE in EVM
+    ```
 
 3. **Not accounting for context**
-   - In Solidity contracts: Always use 18 decimals
-   - In Cosmos SDK messages: Always use 9 decimals
-   - The precisebank module handles the bridge automatically
+    - In Solidity contracts: Always use 18 decimals
+    - In Cosmos SDK messages: Always use 9 decimals
+    - The precisebank module handles the bridge automatically
+
+## EVM Query Challenges / Invariants
+
+EVM queries allow you to gate token transfers or set invariants based on read-only queries to EVM smart contracts. This is a powerful feature for integrating with existing DeFi protocols, compliance registries, and cross-chain state verification.
+
+See invariants or approval criterie -> EVM Query Challenges section for more details.
+
+### Quick Example
+
+```solidity
+// Gate transfers to users holding 100+ USDC
+string memory evmQueryChallenge = string(abi.encodePacked(
+    '{"contractAddress":"0xUSDCAddress",',
+    '"calldata":"70a08231000000000000000000000000$sender",',  // balanceOf(address)
+    '"expectedResult":"0000000000000000000000000000000000000000000000000000000005f5e100",',  // 100 USDC
+    '"comparisonOperator":"gte",',
+    '"gasLimit":"100000"}'
+));
+```
 
 ## Additional Resources
 
@@ -3708,6 +4120,129 @@ The precisebank module handles conversions automatically:
 - [Security Best Practices](./tokenization-precompile/security.md)
 - [Chain Details](../../for-developers/concepts/chain-details.md)
 
+
+## File: ./evm/evm-precompiles/gamm-precompile/API.md
+
+# GAMM Precompile API Reference
+
+**Address:** `0x0000000000000000000000000000000000001002`
+
+## Interface
+
+```solidity
+interface IGammPrecompile {
+    // Transaction Methods
+    function joinPool(string calldata msgJson) external returns (uint256 shareOutAmount, Coin[] memory tokenIn);
+    function exitPool(string calldata msgJson) external returns (Coin[] memory tokenOut);
+    function swapExactAmountIn(string calldata msgJson) external returns (uint256 tokenOutAmount);
+    function swapExactAmountInWithIBCTransfer(string calldata msgJson) external returns (uint256 tokenOutAmount);
+    function createPool(string calldata msgJson) external returns (uint256 poolId);
+
+    // Query Methods
+    function getPool(string calldata msgJson) external view returns (bytes memory);
+    function getPools(string calldata msgJson) external view returns (bytes memory);
+    function getPoolType(string calldata msgJson) external view returns (string memory);
+    function calcJoinPoolNoSwapShares(string calldata msgJson) external view returns (Coin[] memory tokensOut, uint256 sharesOut);
+    function calcExitPoolCoinsFromShares(string calldata msgJson) external view returns (Coin[] memory tokensOut);
+    function calcJoinPoolShares(string calldata msgJson) external view returns (uint256 shareOutAmount, Coin[] memory tokensOut);
+    function getPoolParams(string calldata msgJson) external view returns (bytes memory);
+    function getTotalShares(string calldata msgJson) external view returns (Coin memory totalShares);
+    function getTotalLiquidity(string calldata msgJson) external view returns (Coin[] memory liquidity);
+}
+
+struct Coin {
+    string denom;
+    uint256 amount;
+}
+```
+
+## JSON Formats
+
+### joinPool
+
+```json
+{
+  "poolId": "1",
+  "shareOutAmount": "1000000",
+  "tokenInMaxs": [{"denom": "ubadge", "amount": "1000000000"}]
+}
+```
+
+### exitPool
+
+```json
+{
+  "poolId": "1",
+  "shareInAmount": "1000000",
+  "tokenOutMins": [{"denom": "ubadge", "amount": "0"}]
+}
+```
+
+### swapExactAmountIn
+
+```json
+{
+  "routes": [{"poolId": "1", "tokenOutDenom": "uatom"}],
+  "tokenIn": {"denom": "ubadge", "amount": "1000000000"},
+  "tokenOutMinAmount": "900000000",
+  "affiliates": []
+}
+```
+
+### swapExactAmountInWithIBCTransfer
+
+Same as `swapExactAmountIn` plus:
+
+```json
+{
+  "ibcTransferInfo": {
+    "sourceChannel": "channel-0",
+    "receiver": "cosmos1...",
+    "memo": "",
+    "timeoutTimestamp": "1234567890"
+  }
+}
+```
+
+### createPool (Balancer)
+
+```json
+{
+  "poolParams": {"swapFee": "0.003", "exitFee": "0"},
+  "poolAssets": [
+    {"token": {"denom": "ubadge", "amount": "1000000"}, "weight": "1"},
+    {"token": {"denom": "uatom", "amount": "1000000"}, "weight": "1"}
+  ]
+}
+```
+
+### Query Methods
+
+All query methods use `{"poolId": "1"}` format or similar simple JSON.
+
+## Gas Costs
+
+| Method | Base Gas | Dynamic Costs |
+|--------|----------|---------------|
+| `joinPool` | 210,000 | +2,000 per coin |
+| `exitPool` | 210,000 | +2,000 per coin |
+| `swapExactAmountIn` | 210,000 | +5,000 per route |
+| `createPool` | 215,000 | +3,000 per asset |
+| Queries | 52,000-55,000 | - |
+
+## Error Codes
+
+| Code | Name | Description |
+|------|------|-------------|
+| 1 | InvalidInput | Invalid input parameters |
+| 2 | PoolNotFound | Pool not found |
+| 3 | SwapFailed | Swap operation failed |
+| 4 | QueryFailed | Query failed |
+| 5 | InternalError | Internal error |
+| 6 | Unauthorized | Unauthorized |
+| 7 | JoinPoolFailed | Join pool failed |
+| 8 | ExitPoolFailed | Exit pool failed |
+| 9 | IBCTransferFailed | IBC transfer failed |
 
 
 ## File: ./evm/evm-precompiles/gamm-precompile/README.md
@@ -3728,9 +4263,9 @@ import "./interfaces/IGammPrecompile.sol";
 import "./libraries/GammJSONHelpers.sol";
 
 contract MyPoolContract {
-    IGammPrecompile constant GAMM = 
+    IGammPrecompile constant GAMM =
         IGammPrecompile(0x0000000000000000000000000000000000001002);
-    
+
     // Join a pool
     function joinPool(
         uint64 poolId,
@@ -3744,11 +4279,11 @@ contract MyPoolContract {
             tokenDenom,
             tokenAmount
         );
-        
+
         (sharesReceived, ) = GAMM.joinPool(msgJson);
         return sharesReceived;
     }
-    
+
     // Swap tokens
     function swap(
         uint64 poolId,
@@ -3764,7 +4299,7 @@ contract MyPoolContract {
             tokenOutDenom,
             minTokenOutAmount
         );
-        
+
         return GAMM.swapExactAmountIn(msgJson);
     }
 }
@@ -3831,7 +4366,7 @@ function joinPool(
         denom2,
         amount2
     );
-    
+
     (sharesReceived, ) = GAMM.joinPool(msgJson);
     return sharesReceived;
 }
@@ -3848,15 +4383,15 @@ function exitPool(
         poolId,
         shareAmount
     );
-    
+
     GammTypes.Coin[] memory tokensOut = GAMM.exitPool(msgJson);
-    
+
     // Convert to array
     amountsOut = new uint256[](tokensOut.length);
     for (uint i = 0; i < tokensOut.length; i++) {
         amountsOut[i] = tokensOut[i].amount;
     }
-    
+
     return amountsOut;
 }
 ```
@@ -3878,7 +4413,7 @@ function swapTokens(
         tokenOutDenom,
         minTokenOutAmount
     );
-    
+
     return GAMM.swapExactAmountIn(msgJson);
 }
 ```
@@ -3898,7 +4433,7 @@ function multiHopSwap(
         tokenInAmount,
         minTokenOutAmount
     );
-    
+
     return GAMM.swapExactAmountIn(msgJson);
 }
 ```
@@ -3931,15 +4466,18 @@ See [Common Gotchas](gotchas.md) for important details about pool IDs, Cosmos De
 The `GammJSONHelpers` library provides functions for all common operations:
 
 ### Pool Operations
+
 - `joinPoolJSON(...)` - Build join pool JSON
 - `exitPoolJSON(...)` - Build exit pool JSON
 - `getPoolJSON(poolId)` - Build pool query JSON
 
 ### Swap Operations
+
 - `swapExactAmountInJSON(...)` - Build swap JSON
 - `multiHopSwapJSON(...)` - Build multi-hop swap JSON
 
 ### Query Operations
+
 - `getPoolJSON(poolId)` - Build pool query JSON
 - `calcJoinPoolSharesJSON(...)` - Build calculation query JSON
 
@@ -3990,7 +4528,7 @@ string memory json = string(abi.encodePacked('{"pool_id":"', ...));
 function joinPool(uint64 poolId, uint256 shares) external {
     require(poolId > 0, "Invalid pool ID");
     require(shares > 0, "Invalid share amount");
-    
+
     // Now build JSON
     string memory json = GammJSONHelpers.joinPoolJSON(...);
     GAMM.joinPool(json);
@@ -4011,6 +4549,7 @@ string memory exitJson = GammJSONHelpers.exitPoolJSON(
 ## Common Gotchas
 
 See [Common Gotchas](gotchas.md) for detailed information about:
+
 - Pool ID format (uint64 vs string)
 - Cosmos Dec handling
 - Amount string formatting
@@ -4028,17 +4567,6 @@ See [Common Gotchas](gotchas.md) for detailed information about:
 - [Developer Guide](../developer-guide.md)
 - [Architecture](../architecture.md)
 - [Gamm Module Documentation](../../../x-gamm/README.md)
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## File: ./evm/evm-precompiles/gamm-precompile/gotchas.md
@@ -4105,6 +4633,7 @@ Cosmos SDK uses `sdk.Dec` (decimal) for calculations, but amounts in JSON are st
 ### Understanding Cosmos Dec
 
 Cosmos Dec is a fixed-point decimal type with 18 decimal places. However, in JSON:
+
 - **Amounts are always strings** representing the smallest unit
 - Example: `"1000000000"` for 1 token with 9 decimals
 - No decimal point in JSON - all amounts are integers as strings
@@ -4147,31 +4676,34 @@ string memory amountJson = amountToJson(1e9, 9);  // Returns "1000000000"
 ### Common Mistakes
 
 1. **Using decimal points in JSON**
-   ```solidity
-   // ❌ Wrong
-   '"amount":"1.5"'
-   
-   // ✅ Correct
-   '"amount":"1500000000"'  // 1.5 tokens with 9 decimals
-   ```
+
+    ```solidity
+    // ❌ Wrong
+    '"amount":"1.5"'
+
+    // ✅ Correct
+    '"amount":"1500000000"'  // 1.5 tokens with 9 decimals
+    ```
 
 2. **Using number type instead of string**
-   ```solidity
-   // ❌ Wrong
-   '"amount":1000000000'
-   
-   // ✅ Correct
-   '"amount":"1000000000"'
-   ```
+
+    ```solidity
+    // ❌ Wrong
+    '"amount":1000000000'
+
+    // ✅ Correct
+    '"amount":"1000000000"'
+    ```
 
 3. **Not accounting for token decimals**
-   ```solidity
-   // ❌ Wrong - assumes 1 token = 1 unit
-   uint256 amount = 1;  // This is 0.000000001 tokens with 9 decimals!
-   
-   // ✅ Correct - account for decimals
-   uint256 amount = 1 * 10**9;  // 1 token with 9 decimals
-   ```
+
+    ```solidity
+    // ❌ Wrong - assumes 1 token = 1 unit
+    uint256 amount = 1;  // This is 0.000000001 tokens with 9 decimals!
+
+    // ✅ Correct - account for decimals
+    uint256 amount = 1 * 10**9;  // 1 token with 9 decimals
+    ```
 
 ## Amount String Formatting
 
@@ -4231,8 +4763,8 @@ Methods like `joinPool` return tuples:
 
 ```solidity
 // Method signature
-function joinPool(string calldata msgJson) 
-    external 
+function joinPool(string calldata msgJson)
+    external
     returns (uint256 shareOutAmount, GammTypes.Coin[] memory tokenIn);
 
 // Usage
@@ -4389,6 +4921,7 @@ string memory json = GammJSONHelpers.multiHopSwapJSON(
 **Cause:** Pool ID is 0 or not provided correctly.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(poolId > 0, "Invalid pool ID");
@@ -4403,6 +4936,7 @@ uint64 poolId = 0;  // Will fail validation
 **Cause:** Amount is zero, negative, or not formatted correctly.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(amount > 0, "Amount must be positive");
@@ -4417,6 +4951,7 @@ uint256 amount = 0;  // Will fail validation
 **Cause:** JSON is malformed or uses wrong types.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct - Use helper functions
 string memory json = GammJSONHelpers.joinPoolJSON(...);
@@ -4430,6 +4965,7 @@ string memory json = string(abi.encodePacked('{"pool_id":', ...));  // Missing q
 **Cause:** Denomination string is empty.
 
 **Fix:**
+
 ```solidity
 // ✅ Correct
 require(bytes(denom).length > 0, "Denom cannot be empty");
@@ -4482,15 +5018,114 @@ console.log("Expected shares:", shares);
 - [Developer Guide](../developer-guide.md) - General EVM integration guide
 
 
+## File: ./evm/evm-precompiles/sendmanager-precompile/README.md
 
+# SendManager Precompile
 
+**Address:** `0x0000000000000000000000000000000000001003`
 
+The SendManager Precompile enables Solidity smart contracts to send native Cosmos coins from EVM without requiring ERC20 wrapping. All accounting is kept in `x/bank` (Cosmos side).
 
+## Quick Start
 
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
+import "./interfaces/ISendManagerPrecompile.sol";
 
+contract TokenSender {
+    ISendManagerPrecompile constant SENDMANAGER =
+        ISendManagerPrecompile(0x0000000000000000000000000000000000001003);
 
+    function sendTokens(
+        string memory toAddress,
+        string memory denom,
+        uint256 amount
+    ) external returns (bool) {
+        string memory msgJson = string(abi.encodePacked(
+            '{"to_address":"', toAddress,
+            '","amount":[{"denom":"', denom,
+            '","amount":"', _uintToString(amount), '"}]}'
+        ));
 
+        return SENDMANAGER.send(msgJson);
+    }
+}
+```
+
+## Interface
+
+```solidity
+interface ISendManagerPrecompile {
+    /// @notice Send native Cosmos coins from the caller to a recipient
+    /// @param msgJson JSON string matching MsgSendWithAliasRouting protobuf format
+    /// @return success Whether the send succeeded
+    function send(string memory msgJson) external returns (bool success);
+}
+```
+
+## JSON Format
+
+```json
+{
+  "to_address": "bb1xyz789...",
+  "amount": [
+    {"denom": "ubadge", "amount": "1000000000"},
+    {"denom": "badgeslp:1:ubadge", "amount": "500000000"}
+  ]
+}
+```
+
+**Notes:**
+- `from_address` is automatically set from `msg.sender` (cannot be spoofed)
+- `to_address` must be a valid Cosmos bech32 address (`bb1...`)
+- Supports both standard denoms (`ubadge`) and alias denoms (`badgeslp:...`)
+
+## TypeScript Example
+
+```typescript
+import { ethers } from "ethers";
+
+const SENDMANAGER_ADDRESS = "0x0000000000000000000000000000000000001003";
+
+const sendManagerABI = [
+  "function send(string memory msgJson) external returns (bool success)"
+];
+
+const sendManager = new ethers.Contract(SENDMANAGER_ADDRESS, sendManagerABI, signer);
+
+const msgJson = JSON.stringify({
+  to_address: "bb1xyz789...",
+  amount: [{ denom: "ubadge", amount: "1000000000" }]
+});
+
+const tx = await sendManager.send(msgJson);
+await tx.wait();
+```
+
+## Gas Costs
+
+- **Base Gas**: 180,000 (30,000 + 150,000 buffer)
+- **Per Coin**: +2,000 per coin in the `amount` array
+
+## Error Codes
+
+| Code | Name | Description |
+|------|------|-------------|
+| 1 | InvalidInput | Invalid JSON or address |
+| 2 | SendFailed | Send operation failed |
+| 3 | InsufficientBalance | Insufficient balance |
+| 4 | InternalError | Internal error |
+| 5 | Unauthorized | Unauthorized operation |
+
+## Key Features
+
+- Send native Cosmos coins directly from EVM without ERC20 wrapping
+- All accounting kept in `x/bank` (Cosmos side)
+- Supports standard denoms (`ubadge`) and alias denoms (`badgeslp:1:ubadge`)
+- Recipient must be a Cosmos bech32 address (`bb1...`)
+- Sender automatically set from `msg.sender`
 
 
 ## File: ./evm/evm-precompiles/setup-and-configuration.md
@@ -4995,8 +5630,13 @@ contract ComplianceToken {
     }
     
     function isKYCd(address user) public view returns (bool) {
-        bytes memory result = precompile.getDynamicStoreValue(kycRegistryId, user);
-        return abi.decode(result, (bool));
+        string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
+            kycRegistryId,
+            user
+        );
+        DynamicStoreValueResult memory result = precompile.getDynamicStoreValue(getValueJson);
+        // Use the field that matches your store's value type (e.g. result.verified for a boolean store)
+        return result.verified;
     }
     
     function transfer(address to, uint256 amount, uint256 tokenId) external {
@@ -5128,14 +5768,15 @@ interface ITokenizationPrecompile {
     function castVote(string calldata msgJson) external returns (bool);
     function executeMultiple(MessageInput[] calldata messages) external returns (bool success, bytes[] memory results);
     
-    // Query methods
-    function getCollection(string calldata msgJson) external view returns (bytes memory);
-    function getBalance(string calldata msgJson) external view returns (bytes memory);
+    // Query methods (all return ABI-encoded structs; define matching struct types in your contract)
+    function getCollection(string calldata msgJson) external view returns (TokenCollection memory);
+    function getBalance(string calldata msgJson) external view returns (UserBalanceStore memory);
     function getBalanceAmount(string calldata msgJson) external view returns (uint256);
     function getTotalSupply(string calldata msgJson) external view returns (uint256);
-    function getDynamicStore(string calldata msgJson) external view returns (bytes memory);
-    function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory);
-    function getAddressList(string calldata msgJson) external view returns (bytes memory);
+    function getDynamicStore(string calldata msgJson) external view returns (DynamicStore memory);
+    function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory);
+    function getAddressList(string calldata msgJson) external view returns (AddressList memory);
+    function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory);
 }
 ```
 
@@ -5154,10 +5795,23 @@ function transferTokens(string calldata msgJson) external returns (bool success)
 ```json
 {
   "collectionId": "123",
-  "toAddresses": ["0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"],
-  "amount": "1000",
-  "tokenIds": [{"start": "1", "end": "1"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "transfers": [
+    {
+      "from": "bb1sender...",
+      "toAddresses": ["bb1recipient..."],
+      "balances": [
+        {
+          "amount": "1000",
+          "tokenIds": [{"start": "1", "end": "1"}],
+          "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+        }
+      ],
+      "prioritizedApprovals": [],
+      "onlyCheckPrioritizedCollectionApprovals": false,
+      "onlyCheckPrioritizedIncomingApprovals": false,
+      "onlyCheckPrioritizedOutgoingApprovals": false
+    }
+  ]
 }
 ```
 
@@ -5165,27 +5819,28 @@ function transferTokens(string calldata msgJson) external returns (bool success)
 ```solidity
 string memory json = TokenizationJSONHelpers.transferTokensJSON(
     collectionId,
-    toAddresses,
-    amount,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
+    fromAddress,       // Sender address (Cosmos format)
+    toAddresses,       // Recipient addresses array
+    balancesJson       // Use balanceToJson helper
 );
 ```
 
 **Example:**
 ```solidity
-address[] memory recipients = new address[](1);
-recipients[0] = to;
+string memory balancesJson = TokenizationJSONHelpers.balanceToJson(
+    amount,
+    TokenizationJSONHelpers.uintRangeToJson(1, 1),           // tokenIds
+    TokenizationJSONHelpers.uintRangeToJson(1, type(uint64).max)  // ownershipTimes
+);
 
-string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+string[] memory recipients = new string[](1);
+recipients[0] = "bb1recipient...";
 
 string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
     collectionId,
+    "bb1sender...",    // from address
     recipients,
-    amount,
-    tokenIdsJson,
-    ownershipJson
+    balancesJson
 );
 
 bool success = TOKENIZATION.transferTokens(transferJson);
@@ -5480,7 +6135,7 @@ Get collection details by ID.
 
 **Signature:**
 ```solidity
-function getCollection(string calldata msgJson) external view returns (bytes memory collection)
+function getCollection(string calldata msgJson) external view returns (TokenCollection memory collection)
 ```
 
 **JSON Format:**
@@ -5498,15 +6153,17 @@ string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
 **Example:**
 ```solidity
 string memory queryJson = TokenizationJSONHelpers.getCollectionJSON(collectionId);
-bytes memory collection = TOKENIZATION.getCollection(queryJson);
-// Decode off-chain using TypeScript SDK
+TokenCollection memory collection = TOKENIZATION.getCollection(queryJson);
+// Use collection fields directly in contract logic
 ```
 
 ---
 
 ### `getBalanceAmount`
 
-Get balance amount for specific token/ownership ranges. Returns `uint256` directly.
+Get the exact balance amount for a specific (tokenId, ownershipTime) combination. Returns `uint256` directly.
+
+This function queries a single token ID and single ownership time, returning the exact balance amount the user owns. For querying multiple token IDs or time ranges, use `getBalance` instead and process the full balance store off-chain.
 
 **Signature:**
 ```solidity
@@ -5517,42 +6174,42 @@ function getBalanceAmount(string calldata msgJson) external view returns (uint25
 ```json
 {
   "collectionId": "123",
-  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-  "tokenIds": [{"start": "1", "end": "100"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "address": "bb1...",
+  "tokenId": "1",
+  "ownershipTime": "1609459200000"
 }
 ```
 
-**Helper Function:**
-```solidity
-string memory json = TokenizationJSONHelpers.getBalanceAmountJSON(
-    collectionId,
-    userAddress,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
-);
-```
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+| `address` | string | User address (bech32 or 0x hex) |
+| `tokenId` | string | Single token ID to query (uint as string) |
+| `ownershipTime` | string | Single ownership time to query (uint as string, typically ms timestamp) |
 
 **Example:**
 ```solidity
-string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-
-string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
-    collectionId,
-    user,
-    tokenIdsJson,
-    ownershipJson
-);
+// Build JSON manually or use a helper
+string memory balanceJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId),
+    '","address":"', userAddress,
+    '","tokenId":"', Strings.toString(tokenId),
+    '","ownershipTime":"', Strings.toString(block.timestamp * 1000),
+    '"}'
+));
 
 uint256 balance = TOKENIZATION.getBalanceAmount(balanceJson);
 ```
+
+**Note:** For complex balance queries involving ranges, use `getBalance` to retrieve the full `UserBalanceStore` and calculate amounts off-chain.
 
 ---
 
 ### `getTotalSupply`
 
-Get total supply for specific token/ownership ranges. Returns `uint256` directly.
+Get the total supply for a specific (tokenId, ownershipTime) combination. Returns `uint256` directly.
+
+This function queries the total minted supply for a single token ID and ownership time.
 
 **Signature:**
 ```solidity
@@ -5563,36 +6220,45 @@ function getTotalSupply(string calldata msgJson) external view returns (uint256 
 ```json
 {
   "collectionId": "123",
-  "tokenIds": [{"start": "1", "end": "100"}],
-  "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+  "tokenId": "1",
+  "ownershipTime": "1609459200000"
 }
 ```
 
-**Helper Function:**
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+| `tokenId` | string | Single token ID to query (uint as string) |
+| `ownershipTime` | string | Single ownership time to query (uint as string, typically ms timestamp) |
+
+**Example:**
 ```solidity
-string memory json = TokenizationJSONHelpers.getTotalSupplyJSON(
-    collectionId,
-    tokenIdsJson,      // Use uintRangeToJson or uintRangeArrayToJson
-    ownershipTimesJson // Use uintRangeToJson or uintRangeArrayToJson
-);
+string memory supplyJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId),
+    '","tokenId":"', Strings.toString(tokenId),
+    '","ownershipTime":"', Strings.toString(block.timestamp * 1000),
+    '"}'
+));
+
+uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
 ```
 
 ---
 
 ### `getDynamicStoreValue`
 
-Get a value from a dynamic store. Returns protobuf-encoded `bytes`.
+Get a value from a dynamic store. Returns a struct matching the store’s value type.
 
 **Signature:**
 ```solidity
-function getDynamicStoreValue(string calldata msgJson) external view returns (bytes memory value)
+function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory value)
 ```
 
 **JSON Format:**
 ```json
 {
   "storeId": "123",
-  "userAddress": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
+  "address": "bb1..."
 }
 ```
 
@@ -5611,9 +6277,8 @@ string memory getValueJson = TokenizationJSONHelpers.getDynamicStoreValueJSON(
     user
 );
 
-bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-if (result.length == 0) return false;
-return abi.decode(result, (bool));  // For boolean stores
+DynamicStoreValueResult memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+// Access result fields based on your store's value type (e.g. boolean, string)
 ```
 
 ---
@@ -5624,7 +6289,7 @@ Get an address list by ID.
 
 **Signature:**
 ```solidity
-function getAddressList(string calldata msgJson) external view returns (bytes memory list)
+function getAddressList(string calldata msgJson) external view returns (AddressList memory list)
 ```
 
 **JSON Format:**
@@ -5637,6 +6302,40 @@ function getAddressList(string calldata msgJson) external view returns (bytes me
 **Helper Function:**
 ```solidity
 string memory json = TokenizationJSONHelpers.getAddressListJSON(listId);
+```
+
+---
+
+### `getCollectionStats`
+
+Get collection statistics including holder count and circulating supply.
+
+**Signature:**
+```solidity
+function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory stats)
+```
+
+**JSON Format:**
+```json
+{
+  "collectionId": "123"
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `collectionId` | string | Collection ID (uint as string) |
+
+**Response structure:** The returned `CollectionStats` struct includes `holderCount` (uint256) and `balances` (array of Balance structs with amount, tokenIds, ownershipTimes).
+
+**Example:**
+```solidity
+string memory queryJson = string(abi.encodePacked(
+    '{"collectionId":"', Strings.toString(collectionId), '"}'
+));
+
+CollectionStats memory stats = TOKENIZATION.getCollectionStats(queryJson);
+uint256 holders = stats.holderCount;
 ```
 
 ---
@@ -5715,6 +6414,59 @@ Convert uint256 to string.
 string memory str = TokenizationJSONHelpers.uintToString(123);
 // Returns: "123"
 ```
+
+## Struct Return Types
+
+All query methods (except `getBalanceAmount` and `getTotalSupply`, which return `uint256`) return ABI-encoded structs. Define struct types in your contract that match the precompile’s response layout and use an interface that declares those return types.
+
+**Example:**
+```solidity
+// Define matching struct types
+struct UintRange {
+    uint256 start;
+    uint256 end;
+}
+
+struct Balance {
+    uint256 amount;
+    UintRange[] tokenIds;
+    UintRange[] ownershipTimes;
+}
+
+struct CollectionStats {
+    uint256 holderCount;
+    Balance[] balances;
+}
+
+// Interface with struct return types
+interface ITokenizationPrecompile {
+    function getCollectionStats(string calldata msgJson)
+        external view returns (CollectionStats memory);
+}
+
+// Usage
+CollectionStats memory stats = ITokenizationPrecompile(TOKENIZATION_ADDRESS)
+    .getCollectionStats(queryJson);
+
+// Access fields directly
+uint256 holders = stats.holderCount;
+```
+
+**How it works:**
+- Data is packed as ABI-encoded structs matching Solidity’s decoding expectations
+- All numeric types are converted to `uint256` for Solidity compatibility
+- Nested structures (e.g. `Balance[]` within `CollectionStats`) are supported
+
+**Supported struct return types:**
+- `TokenCollection` – full collection data
+- `UserBalanceStore` – user balance and approval data
+- `AddressList` – address list data
+- `CollectionStats` – holder count and circulating supply
+- `DynamicStore` – dynamic store configuration
+- `DynamicStoreValueResult` – dynamic store value
+- Other query response types as defined by the precompile
+
+---
 
 ## JSON Format Reference
 
@@ -5844,7 +6596,7 @@ import "./libraries/TokenizationJSONHelpers.sol";
 
 // Simple operations
 string memory json = TokenizationJSONHelpers.getCollectionJSON(collectionId);
-bytes memory collection = TOKENIZATION.getCollection(json);
+TokenCollection memory collection = TOKENIZATION.getCollection(json);
 
 // Complex operations with ranges
 string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 100);
@@ -5960,9 +6712,10 @@ function isKYCVerified(address user) external view returns (bool) {
         user
     );
     
-    bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-    if (result.length == 0) return false;
-    return abi.decode(result, (bool));
+    DynamicStoreValueResult memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
+    // Use the field that matches your store's value type (e.g. for a boolean store, the struct's bool field)
+    return result.verified;  // field name depends on your DynamicStoreValueResult definition
+}
 }
 ```
 
@@ -6135,17 +6888,43 @@ See [API Reference](API.md) for complete `executeMultiple` documentation.
 
 ### Query Methods
 
-Query methods return `bytes` (protobuf-encoded) or `uint256` (for amount queries):
+Query methods return structs (ABI-encoded; define matching struct types in your contract) or `uint256` for amount/supply queries:
 
-- `getCollection(string calldata msgJson) → bytes`
-- `getBalance(string calldata msgJson) → bytes`
+- `getCollection(string calldata msgJson) → TokenCollection`
+- `getBalance(string calldata msgJson) → UserBalanceStore`
 - `getBalanceAmount(string calldata msgJson) → uint256`
 - `getTotalSupply(string calldata msgJson) → uint256`
-- `getDynamicStore(string calldata msgJson) → bytes`
-- `getDynamicStoreValue(string calldata msgJson) → bytes`
-- `getAddressList(string calldata msgJson) → bytes`
+- `getCollectionStats(string calldata msgJson) → CollectionStats` - Get holder count and circulating supply
+- `getDynamicStore(string calldata msgJson) → DynamicStore`
+- `getDynamicStoreValue(string calldata msgJson) → DynamicStoreValueResult`
+- `getAddressList(string calldata msgJson) → AddressList`
 
 See [API Reference](API.md) for complete method documentation.
+
+### Struct Return Types
+
+Query methods (except `getBalanceAmount` and `getTotalSupply`) return ABI-encoded structs. Define struct types in your contract that match the precompile’s response layout:
+
+```solidity
+// Define matching struct types
+struct CollectionStats {
+    uint256 holderCount;
+    Balance[] balances;
+}
+
+// Interface with struct return types
+interface ITokenizationPrecompile {
+    function getCollectionStats(string calldata msgJson)
+        external view returns (CollectionStats memory);
+}
+
+// Usage - access fields directly in contract logic
+CollectionStats memory stats = ITokenizationPrecompile(TOKENIZATION_ADDRESS)
+    .getCollectionStats(queryJson);
+uint256 holders = stats.holderCount;
+```
+
+See [API Reference - Struct Return Types](API.md#struct-return-types) for supported struct types and layout.
 
 ## Helper Library Functions
 
@@ -6194,17 +6973,9 @@ uint256 supply = TOKENIZATION.getTotalSupply(supplyJson);
 uint256 collectionId = TOKENIZATION.createCollection(createJson);
 ```
 
-### Protobuf Bytes
+### Struct Returns (Query Methods)
 
-Most query methods return protobuf-encoded `bytes`. For simple boolean stores:
-
-```solidity
-bytes memory result = TOKENIZATION.getDynamicStoreValue(getValueJson);
-if (result.length == 0) return false;
-return abi.decode(result, (bool));
-```
-
-For complex types, decode off-chain using the TypeScript SDK or emit events for indexing.
+Query methods (e.g. `getCollection`, `getBalance`, `getCollectionStats`, `getDynamicStore`, `getDynamicStoreValue`, `getAddressList`) return ABI-encoded structs. Define matching struct types in your contract and use an interface that declares those return types; then use the returned struct fields directly in your logic. See [Struct Return Types](API.md#struct-return-types) for supported types and examples.
 
 ## Security Considerations
 
@@ -6358,6 +7129,78 @@ function safeTransfer(...) external {
 }
 ```
 
+## Common Errors and Solutions
+
+### Range Value Overflow
+
+**Error:**
+```
+precompile error [code=4]: transaction failed: invalid balance times: range at index 0 has end 115792089237316195423570985008687907853269984665640564039457584007913129639935 greater than max 18446744073709551615
+```
+
+**Cause:** Using `type(uint256).max` instead of `type(uint64).max` for ownership times or badge ID ranges.
+
+**Solution:**
+```solidity
+// ❌ Wrong - uint256 max is too large
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+
+// ✅ Correct - use uint64 max
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint64).max);
+```
+
+**Note:** The precompile stores timestamps and IDs as uint64 internally. The max value is `18446744073709551615`.
+
+---
+
+### Address Cannot Be Empty
+
+**Error:**
+```
+precompile error [code=1]: invalid input parameters: address cannot be empty
+```
+
+**Cause:** Using wrong field name in JSON for dynamic store operations.
+
+**Solution:**
+```solidity
+// ❌ Wrong - "userAddress" is not recognized
+'{"storeId":"1","userAddress":"0x...","value":true}'
+
+// ✅ Correct - use "address"
+'{"storeId":"1","address":"0x...","value":true}'
+```
+
+Both `setDynamicStoreValue` and `getDynamicStoreValue` use `"address"` as the field name.
+
+---
+
+### Failed to Unmarshal JSON
+
+**Error:**
+```
+failed to unmarshal JSON for method X: precompile error [code=...]
+```
+
+**Cause:** Invalid JSON format or missing required fields.
+
+**Solution:**
+- Verify JSON is valid (no trailing commas, proper quoting)
+- Check all required fields are present
+- Ensure numbers are strings in JSON (e.g., `"123"` not `123`)
+- Ensure booleans are not strings (e.g., `true` not `"true"`)
+
+**Example correct format:**
+```json
+{
+  "storeId": "123",
+  "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+  "value": true
+}
+```
+
+---
+
 ## Common Error Scenarios
 
 - **Invalid Input**: Check that all addresses are non-zero, ranges are valid (start <= end), and amounts are positive
@@ -6365,6 +7208,16 @@ function safeTransfer(...) external {
 - **Insufficient Balance**: Ensure the caller has sufficient balance for transfers
 - **Unauthorized**: Check that approvals and permissions are configured correctly
 - **Collection Archived**: Archived collections are read-only
+
+## JSON Format Quick Reference
+
+| Type | Format | Example |
+|------|--------|---------|
+| Numbers | String | `"123"` |
+| Booleans | Raw | `true` or `false` |
+| Addresses | Hex string | `"0x742d35..."` |
+| Ranges | Object array | `[{"start":"1","end":"100"}]` |
+| Max uint64 | String | `"18446744073709551615"` |
 
 For complete error code definitions and detailed error handling, see the [precompile implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile).
 
@@ -7113,6 +7966,390 @@ This is to be used as a developer tool and not a user-facing solution.
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
+## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client.md
+
+# BitBadgesSigningClient (Streamlined)
+
+The `BitBadgesSigningClient` provides a streamlined, wallet-agnostic interface for signing and broadcasting transactions. It handles account info fetching, gas estimation, signing, and broadcasting in a single call.
+
+## When to Use
+
+**Use BitBadgesSigningClient when:**
+- You want a simple, all-in-one signing solution
+- You don't need fine-grained control over the signing process
+- You want automatic gas estimation and sequence management
+- You want automatic retry on sequence mismatch errors
+
+**Use manual signing ([Cosmos](./signing-cosmos.md) / [Ethereum](./signing-ethereum.md)) when:**
+- You need full control over the transaction lifecycle
+- You need to customize the signing flow (e.g., custom fee logic)
+- You need to handle simulation separately from signing
+- You're integrating with existing transaction management infrastructure
+
+## Installation
+
+The signing client is included in the main SDK:
+
+```bash
+npm install bitbadgesjs-sdk
+```
+
+## Quick Start
+
+### Cosmos Wallet (Keplr, Leap, etc.)
+
+```typescript
+import { BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+
+// Create adapter from browser wallet
+const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
+// Or: GenericCosmosAdapter.fromLeap('bitbadges-1')
+// Or: GenericCosmosAdapter.fromCosmostation('bitbadges-1')
+
+// Create signing client
+const client = new BitBadgesSigningClient({ adapter });
+
+// Create and broadcast transaction
+const result = await client.signAndBroadcast([
+  MsgTransferTokens.create({
+    creator: client.address,
+    collectionId: '1',
+    transfers: [/* ... */]
+  })
+]);
+
+if (result.success) {
+  console.log('Transaction hash:', result.txHash);
+} else {
+  console.error('Transaction failed:', result.error);
+}
+```
+
+### EVM Wallet (MetaMask, etc.)
+
+```typescript
+import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BrowserProvider } from 'ethers';
+
+// Create adapter from ethers.js signer
+const provider = new BrowserProvider(window.ethereum);
+const signer = await provider.getSigner();
+const adapter = await GenericEvmAdapter.fromSigner(signer);
+
+// Or directly from window.ethereum
+// const adapter = await GenericEvmAdapter.fromBrowserWallet();
+
+// Create signing client
+const client = new BitBadgesSigningClient({ adapter });
+
+// Create and broadcast transaction (uses precompile path automatically)
+const result = await client.signAndBroadcast([
+  MsgTransferTokens.create({
+    creator: client.address,
+    collectionId: '1',
+    transfers: [/* ... */]
+  })
+]);
+
+console.log('Transaction hash:', result.txHash);
+```
+
+### Server-Side Signing
+
+```typescript
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+
+// From mnemonic (secure server-side only!)
+const adapter = await GenericCosmosAdapter.fromMnemonic(
+  'word1 word2 word3 ...', // 12 or 24 word mnemonic
+  'bitbadges-1'
+);
+
+// Or from private key
+const adapter = await GenericCosmosAdapter.fromPrivateKey(
+  '0x...', // hex private key
+  'bitbadges-1'
+);
+
+const client = new BitBadgesSigningClient({ adapter });
+const result = await client.signAndBroadcast([/* messages */]);
+```
+
+## Client Options
+
+```typescript
+interface SigningClientOptions {
+  adapter: WalletAdapter;              // Required - the wallet adapter
+  network?: NetworkMode;               // 'mainnet' | 'testnet' | 'local' (default: 'mainnet')
+  apiUrl?: string;                     // Override API URL from network preset
+  nodeUrl?: string;                    // Override node LCD URL from network preset
+  cosmosChainId?: string;              // Override Cosmos chain ID from network preset
+  evmChainId?: number;                 // Override EVM chain ID from network preset
+  sequenceRetryEnabled?: boolean;      // Auto-retry on sequence mismatch (default: true)
+  maxSequenceRetries?: number;         // Max retry attempts (default: 3)
+  gasMultiplier?: number;              // Gas estimation multiplier (default: 1.3)
+  defaultGasLimit?: number;            // Default gas limit (default: 400000)
+  evmPrecompileGasLimit?: number;      // EVM precompile gas limit (default: 2000000)
+  apiKey?: string;                     // BitBadges API key for authenticated requests
+}
+```
+
+## Network Presets
+
+The SDK provides built-in network configurations via `NETWORK_CONFIGS`:
+
+```typescript
+import { NETWORK_CONFIGS, type NetworkMode } from 'bitbadgesjs-sdk';
+
+// Available presets
+const mainnet = NETWORK_CONFIGS['mainnet'];
+// {
+//   apiUrl: 'https://api.bitbadges.io',
+//   nodeUrl: 'https://lcd.bitbadges.io',
+//   cosmosChainId: 'bitbadges-1',
+//   evmChainId: 50024
+// }
+
+const testnet = NETWORK_CONFIGS['testnet'];
+// {
+//   apiUrl: 'https://api.bitbadges.io/testnet',
+//   nodeUrl: 'https://lcd-testnet.bitbadges.io',
+//   cosmosChainId: 'bitbadges-2',
+//   evmChainId: 50025
+// }
+
+const local = NETWORK_CONFIGS['local'];
+// {
+//   apiUrl: 'http://localhost:3001',
+//   nodeUrl: 'http://localhost:1317',
+//   cosmosChainId: 'bitbadges-1',
+//   evmChainId: 90123
+// }
+```
+
+Use network presets with optional overrides:
+
+```typescript
+// Use mainnet preset (default)
+const client = new BitBadgesSigningClient({ adapter });
+
+// Use testnet preset
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'testnet'
+});
+
+// Use preset with custom override
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'mainnet',
+  apiUrl: 'https://custom-api.example.com'  // overrides preset's apiUrl
+});
+```
+
+## Sign and Broadcast Options
+
+```typescript
+interface SignAndBroadcastOptions {
+  memo?: string;           // Transaction memo
+  fee?: SigningFee;        // Custom fee (overrides auto-calculation)
+  simulate?: boolean;      // Simulate first for gas estimation (default: true for Cosmos)
+  gasMultiplier?: number;  // Override gas multiplier for this transaction
+}
+```
+
+## Broadcast Result
+
+```typescript
+interface BroadcastResult {
+  txHash: string;       // Transaction hash
+  success: boolean;     // Whether broadcast succeeded
+  error?: string;       // Error message if failed
+  code: number;         // Transaction code (0 = success)
+  rawResponse: any;     // Raw response from broadcast endpoint
+}
+```
+
+## Wallet Adapters
+
+### GenericCosmosAdapter
+
+Factory methods for Cosmos wallets:
+
+```typescript
+// Browser wallets
+GenericCosmosAdapter.fromKeplr(chainId: string)
+GenericCosmosAdapter.fromLeap(chainId: string)
+GenericCosmosAdapter.fromCosmostation(chainId: string)
+GenericCosmosAdapter.fromBrowserWallet(wallet: KeplrLike, chainId: string)
+
+// Server-side
+GenericCosmosAdapter.fromMnemonic(mnemonic: string, chainId: string)
+GenericCosmosAdapter.fromPrivateKey(privateKey: string, chainId: string)
+```
+
+### GenericEvmAdapter
+
+Factory methods for EVM wallets:
+
+```typescript
+// From ethers.js signer
+GenericEvmAdapter.fromSigner(signer: EthersSigner, options?: EvmAdapterOptions)
+
+// From EIP-1193 provider
+GenericEvmAdapter.fromProvider(provider: EIP1193Provider, options?: EvmAdapterOptions)
+
+// From window.ethereum
+GenericEvmAdapter.fromBrowserWallet(options?: EvmAdapterOptions)
+```
+
+#### EVM Chain ID Validation
+
+You can validate that the wallet is connected to the correct EVM network:
+
+```typescript
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+
+// Validate chain ID when creating adapter
+const adapter = await GenericEvmAdapter.fromSigner(signer, {
+  expectedChainId: NETWORK_CONFIGS['mainnet'].evmChainId  // 50024
+});
+
+// Or for local development
+const adapter = await GenericEvmAdapter.fromBrowserWallet({
+  expectedChainId: NETWORK_CONFIGS['local'].evmChainId  // 90123
+});
+
+// Throws error if wallet is on wrong network:
+// "Wallet is connected to chain X, but expected chain Y. Please switch your wallet to the correct network."
+```
+
+## Network Selection
+
+```typescript
+// Mainnet (default)
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'mainnet'
+});
+
+// Testnet
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'testnet'
+});
+
+// Local development
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'local'
+});
+```
+
+## Gas Estimation
+
+By default, the client simulates transactions to estimate gas:
+
+```typescript
+// Auto gas estimation (default)
+const result = await client.signAndBroadcast(messages);
+
+// Skip simulation, use default gas
+const result = await client.signAndBroadcast(messages, {
+  simulate: false
+});
+
+// Custom fee
+const result = await client.signAndBroadcast(messages, {
+  fee: {
+    amount: '10000000',
+    denom: 'ubadge',
+    gas: '500000'
+  }
+});
+```
+
+## Sequence Management
+
+The client automatically handles account sequence (nonce) management:
+
+```typescript
+const client = new BitBadgesSigningClient({
+  adapter,
+  sequenceRetryEnabled: true,  // Auto-retry on sequence mismatch (default)
+  maxSequenceRetries: 3        // Max retries (default)
+});
+
+// Cached sequence is incremented after successful transactions
+// If sequence mismatch occurs, client will:
+// 1. Clear cached account info
+// 2. Fetch fresh sequence from chain
+// 3. Retry the transaction
+```
+
+## Account Info
+
+```typescript
+// Get account info (cached)
+const info = await client.getAccountInfo();
+console.log(info.address, info.accountNumber, info.sequence);
+
+// Force refresh from chain
+const freshInfo = await client.getAccountInfo(true);
+
+// Clear cache manually
+client.clearCache();
+```
+
+## Multiple Messages
+
+```typescript
+const result = await client.signAndBroadcast([
+  MsgTransferTokens.create({ /* ... */ }),
+  MsgSetTokenMetadata.create({ /* ... */ }),
+  MsgSetCollectionMetadata.create({ /* ... */ })
+], {
+  memo: 'Batch update'
+});
+```
+
+## Error Handling
+
+```typescript
+try {
+  const result = await client.signAndBroadcast(messages);
+
+  if (!result.success) {
+    // Transaction was broadcast but failed on-chain
+    console.error('Transaction failed:', result.error);
+    console.error('Error code:', result.code);
+  }
+} catch (error) {
+  // Pre-broadcast error (wallet rejected, network error, etc.)
+  console.error('Signing error:', error.message);
+}
+```
+
+## Comparison with Manual Signing
+
+| Feature | BitBadgesSigningClient | Manual Signing |
+|---------|----------------------|----------------|
+| Complexity | Simple, all-in-one | More setup required |
+| Control | Abstracted | Full control |
+| Account Info | Auto-fetched & cached | Manual fetch |
+| Gas Estimation | Built-in simulation | Manual simulation |
+| Sequence Retry | Automatic | Manual handling |
+| Broadcasting | Built-in | Separate step |
+| Custom Flow | Limited | Fully customizable |
+
+## See Also
+
+- [Signing - Cosmos](./signing-cosmos.md) - Manual Cosmos wallet signing
+- [Signing - Ethereum](./signing-ethereum.md) - Manual EVM wallet signing
+- [Transaction Context](./transaction-context.md) - Understanding TxContext
+- [Broadcast to Node](./broadcast-to-a-node.md) - Manual broadcasting
+
+
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
 
 # Signing - Cosmos
@@ -7631,11 +8868,152 @@ const feeInUbadge = BigIntify(Math.round(Number(gasUsed) * baseGasPrice));
 ```
 
 
+## File: ./for-developers/bitbadges-blockchain/cross-chain-queries.md
+
+# Cross-Chain Token Ownership Queries (ICQ)
+
+BitBadges supports Interchain Queries (ICQ) that allow other Cosmos chains to verify token ownership without transferring tokens. This enables cross-chain gating, proof-of-ownership, and other interoperability use cases.
+
+## Overview
+
+The ICQ system provides two main query types:
+
+1. **OwnershipQuery**: Streamlined lookup for a single (tokenId, ownershipTime) combination - returns the exact balance amount
+2. **FullBalanceQuery**: Returns the complete UserBalanceStore including all balances, approvals, and permissions
+
+Tokens remain in the BitBadges "silo" - for value transfer across chains, use the wrapping mechanism to convert to standard IBC-transferable tokens (BADGE, ATOM, etc).
+
+## Packet Types
+
+### OwnershipQueryPacket
+
+Query the balance amount for a specific token ID and ownership time.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `query_id` | string | Unique identifier for correlation |
+| `address` | string | Address to check (bech32 or 0x hex) |
+| `collection_id` | string | Collection ID to query |
+| `token_id` | string | Single token ID to check (uint as string) |
+| `ownership_time` | string | Single ownership time to check (uint as string, typically ms timestamp) |
+
+### OwnershipQueryResponsePacket
+
+Response with ownership verification result.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `query_id` | string | Correlation ID from request |
+| `owns_tokens` | bool | True if total_amount > 0 |
+| `total_amount` | Uint | Exact balance amount for the specified (tokenId, ownershipTime) |
+| `balance_proof` | bytes | Optional IAVL Merkle proof |
+| `proof_height` | uint64 | Block height at which response was generated |
+| `error` | string | Error message (empty on success) |
+
+### FullBalanceQueryPacket
+
+Query the complete balance store for a user (balances, approvals, permissions).
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `query_id` | string | Unique identifier for correlation |
+| `address` | string | Address to check (bech32 or 0x hex) |
+| `collection_id` | string | Collection ID to query |
+
+### FullBalanceQueryResponsePacket
+
+Response with the complete UserBalanceStore.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `query_id` | string | Correlation ID from request |
+| `balance_store` | bytes | Serialized UserBalanceStore (protobuf bytes) |
+| `proof_height` | uint64 | Block height at which response was generated |
+| `error` | string | Error message (empty on success) |
+
+The `balance_store` contains:
+- `balances` - List of Balance objects (amount, tokenIds ranges, ownershipTimes ranges)
+- `outgoingApprovals` - Outgoing transfer approvals
+- `incomingApprovals` - Incoming transfer approvals
+- `autoApproveSelfInitiatedOutgoingTransfers` - Auto-approve setting
+- `autoApproveSelfInitiatedIncomingTransfers` - Auto-approve setting
+- `autoApproveAllIncomingTransfers` - Auto-approve setting
+- `userPermissions` - User's permissions
+
+### Bulk Queries
+
+`BulkOwnershipQueryPacket` and `BulkOwnershipQueryResponsePacket` allow querying multiple addresses in a single IBC packet (max 100 queries).
+
+## IBC Channel Setup
+
+- **Port:** `tokenization`
+- **Version:** `tokenization-1`
+- **Channel Ordering:** `UNORDERED`
+
+## Example Usage
+
+### Simple Ownership Check (Single ID/Time)
+
+```go
+// Create ownership query packet for a single token ID and time
+query := &types.OwnershipQueryPacket{
+    QueryId:       "my-query-123",
+    Address:       "bb1abc...",      // or "0x..." format
+    CollectionId:  "5",
+    TokenId:       "1",              // Single token ID
+    OwnershipTime: "1609459200000",  // Single timestamp (ms)
+}
+
+// Wrap in packet data
+packetData := &types.TokenizationPacketData{
+    Packet: &types.TokenizationPacketData_OwnershipQuery{
+        OwnershipQuery: query,
+    },
+}
+
+// Send via IBC channel to BitBadges
+// Response contains exact balance amount for that token/time
+```
+
+### Full Balance Store Query
+
+```go
+// Create full balance query packet
+query := &types.FullBalanceQueryPacket{
+    QueryId:      "my-query-456",
+    Address:      "bb1abc...",
+    CollectionId: "5",
+}
+
+// Wrap in packet data
+packetData := &types.TokenizationPacketData{
+    Packet: &types.TokenizationPacketData_FullBalanceQuery{
+        FullBalanceQuery: query,
+    },
+}
+
+// Send via IBC channel to BitBadges
+// Response contains serialized UserBalanceStore with all data
+```
+
+## Use Cases
+
+- **Cross-chain token gating:** Verify badge ownership before allowing access on another chain
+- **DeFi collateral verification:** Prove token ownership without transferring
+- **Multi-chain identity:** Use BitBadges tokens as credentials across Cosmos ecosystem
+- **Governance:** Weight votes based on token holdings verified via ICQ
+- **Cross-chain approval checking:** Query full balance store to check approval status
+
+
 ## File: ./for-developers/bitbadges-blockchain/evm-rpc-endpoints.md
 
 # EVM RPC Endpoints
 
 BitBadges Chain provides Ethereum-compatible JSON-RPC endpoints for interacting with the blockchain using standard Ethereum tools and libraries.
+
+> **Important:** EVM RPC endpoints are different from Cosmos RPC endpoints. Use the correct endpoint type for your tooling:
+> - **EVM Tools** (MetaMask, Hardhat, ethers.js): Use `evm-rpc*.bitbadges.io` URLs
+> - **Cosmos Tools** (cosmjs, LCD queries): Use `rpc*.bitbadges.io` or `lcd*.bitbadges.io` URLs
 
 ## Overview
 
@@ -7953,6 +9331,17 @@ See [Run a Mainnet Node](run-a-mainnet-node.md#evm-json-rpc-configuration) for c
 - [Setup and Configuration](../evm/evm-precompiles/setup-and-configuration.md) - Local development setup
 - [Developer Guide](../evm/evm-precompiles/developer-guide.md) - EVM development best practices
 - [Tokenization Precompile API](../evm/evm-precompiles/tokenization-precompile/API.md) - Precompile contract reference
+
+## Quick Reference: All Endpoints
+
+| Network | Type | URL | Use For |
+|---------|------|-----|---------|
+| **Mainnet** | EVM JSON-RPC | `https://evm-rpc.bitbadges.io` | MetaMask, Hardhat, ethers.js |
+| **Mainnet** | Cosmos RPC | `https://rpc.bitbadges.io` | Cosmos SDK queries |
+| **Mainnet** | Cosmos REST/LCD | `https://lcd.bitbadges.io` | REST API queries |
+| **Testnet** | EVM JSON-RPC | `https://evm-rpc-testnet.bitbadges.io` | MetaMask, Hardhat, ethers.js |
+| **Testnet** | Cosmos RPC | `https://rpc-testnet.bitbadges.io` | Cosmos SDK queries |
+| **Testnet** | Cosmos REST/LCD | `https://lcd-testnet.bitbadges.io` | REST API queries |
 
 ## Other Endpoints
 
@@ -11247,6 +12636,8 @@ const ethAddress = cosmosToEth(bitbadgesAddress);
 
 
 
+
+
 ## File: ./for-developers/concepts/address-mappings-lists.md
 
 # 📧 Address Lists (Lists)
@@ -13815,6 +15206,7 @@ const collection: MsgCreateCollection = {
         maxSupplyPerId: '0',
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
+        evmQueryChallenges: [],
     },
     // ... other fields (collectionPermissions, manager, etc.)
 };
@@ -13910,6 +15302,7 @@ const collection: MsgCreateCollection = {
         maxSupplyPerId: '0',
         noForcefulPostMintTransfers: false,
         disablePoolCreation: false,
+        evmQueryChallenges: [],
     },
     collectionPermissions: {
         // ... permission fields
@@ -16272,6 +17665,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     allowBackedMinting?: boolean;
     /** Whether this approval can be used for cosmos coin wrapper path operations (collection-level only). */
     allowSpecialWrapping?: boolean;
+    /** The list of EVM query challenges that must pass for approval. Executes read-only calls to EVM contracts. */
+    evmQueryChallenges?: iEVMQueryChallenge[];
 }
 ```
 
@@ -16295,6 +17690,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Alt Time Checks**](../../../x-tokenization/concepts/approval-criteria/alt-time-checks.md) - Time-based restrictions (offline hours/days)
 * [**Must Prioritize**](../../../x-tokenization/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 * [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
+* [**EVM Query Challenges**](evm-query-challenges.md) - Read-only EVM contract queries as approval conditions
 
 ## Key Concepts
 
@@ -17175,6 +18571,243 @@ Changing the `challengeTrackerId` resets the usage tracker, allowing signatures 
 -   Creating new challenge periods
 
 However, care should be taken to ensure old signatures cannot be maliciously reused when tracker IDs are changed.
+
+
+## File: ./token-standard/learn/approval-criteria/evm-query-challenges.md
+
+# EVM Query Challenges
+
+EVM Query Challenges allow approvals to be gated by read-only EVM contract queries. The same challenge structure is also used in **invariants** (`invariants.evmQueryChallenges`), which run after every transfer and are typically used for supply control, balance caps, or max-holder checks rather than per-transfer approval gating.
+
+- **Approval criteria:** `approvalCriteria.evmQueryChallenges` — checked before a transfer is allowed; placeholders: `$initiator`, `$sender`, `$recipient`, `$collectionId`.
+- **Invariants:** `invariants.evmQueryChallenges` — checked after all balance updates; same placeholders plus `$recipients` (all recipients as concatenated 32-byte hex). See [Collection setup – invariants](../collection-setup-fields.md#invariants) for where invariants are configured.
+
+The challenge executes a `staticcall` to the specified contract with the given calldata. The result is compared against the expected result using the specified comparison operator. All challenges must pass for the transfer to be approved (or for the invariant to pass).
+
+## Structure
+
+### Challenge Fields
+
+| Field                | Type   | Description                                                                                  |
+| -------------------- | ------ | -------------------------------------------------------------------------------------------- |
+| `contractAddress`    | string | EVM contract address to query (0x format or bb1 format)                                      |
+| `calldata`           | string | ABI-encoded function selector + arguments (hex string without 0x prefix)                     |
+| `expectedResult`     | string | Expected return value (hex string without 0x prefix). If empty, any non-error result passes. |
+| `comparisonOperator` | string | How to compare: `eq`, `ne`, `gt`, `gte`, `lt`, `lte`. Default is `eq`.                       |
+| `gasLimit`           | string | Gas limit for the query (default 100000, max 500000)                                         |
+| `uri`                | string | Optional metadata URI                                                                        |
+| `customData`         | string | Optional custom data                                                                         |
+
+## Placeholders
+
+The `calldata` field supports dynamic placeholders that are replaced at runtime. **Placeholders differ between approval criteria and invariants** because approval checks run per (from, to) pair while invariants run once after all transfers and can see multiple recipients.
+
+### Approval criteria (transfer gating)
+
+Used in `approvalCriteria.evmQueryChallenges` on collection or user approvals. One recipient per check.
+
+| Placeholder     | Description                              |
+| --------------- | ---------------------------------------- |
+| `$initiator`    | Address of the transfer initiator        |
+| `$sender`       | Address sending the tokens (from)       |
+| `$recipient`    | Address receiving the tokens (to)        |
+| `$collectionId` | Collection ID (uint256, 32-byte hex)     |
+
+**Not available in approval context:** `$recipients` (approval runs per single recipient).
+
+### Invariants (post-transfer)
+
+Used in `invariants.evmQueryChallenges`. Checked once after all balance updates; can reference multiple recipients.
+
+| Placeholder     | Description                                                                 |
+| --------------- | --------------------------------------------------------------------------- |
+| `$initiator`    | Address of the transfer initiator                                          |
+| `$sender`       | Address sending the tokens (from)                                          |
+| `$recipient`    | First recipient only (convenience for single-recipient transfers)          |
+| `$recipients`   | All recipient addresses concatenated as 32-byte-padded hex (no separator)  |
+| `$collectionId` | Collection ID (uint256, 32-byte hex)                                       |
+
+**Note:** `$recipients` is each address ABI-padded to 32 bytes then concatenated (e.g. for two recipients, 64 hex chars + 64 hex chars). It is not comma-separated.
+
+**Example with placeholder:**
+
+```json
+{
+    "evmQueryChallenges": [
+        {
+            "contractAddress": "0x1234567890123456789012345678901234567890",
+            "calldata": "70a08231000000000000000000000000$initiator",
+            "expectedResult": "0000000000000000000000000000000000000000000000000000000000000001",
+            "comparisonOperator": "gte",
+            "gasLimit": "100000"
+        }
+    ]
+}
+```
+
+This checks that the initiator has at least 1 token balance in the ERC-20 contract.
+
+## Comparison Operators
+
+| Operator | Description              | Use Case                              |
+| -------- | ------------------------ | ------------------------------------- |
+| `eq`     | Equals                   | Exact value matching                  |
+| `ne`     | Not equals               | Exclusion checks                      |
+| `gt`     | Greater than             | Minimum balance/value requirements    |
+| `gte`    | Greater than or equal    | Minimum threshold checks              |
+| `lt`     | Less than                | Maximum limit checks                  |
+| `lte`    | Less than or equal       | Maximum threshold checks              |
+
+**Note:** Only `eq` and `ne` work reliably for non-numeric return types.
+
+## Query Execution
+
+1. **Placeholder Replacement**: All placeholders in `calldata` are replaced with actual addresses
+2. **Static Call**: Execute `eth_call` (staticcall) to the contract with the calldata
+3. **Gas Limit**: Query is limited by the specified `gasLimit` to prevent DoS attacks
+4. **Result Comparison**: Compare the returned value against `expectedResult` using `comparisonOperator`
+5. **Pass/Fail**: If comparison succeeds, challenge passes; otherwise, transfer is rejected
+
+## Type Definitions
+
+```typescript
+interface EVMQueryChallenge {
+    contractAddress: string;     // EVM contract address to query
+    calldata: string;            // ABI-encoded function call (hex without 0x)
+    expectedResult?: string;     // Expected return value (hex without 0x)
+    comparisonOperator?: string; // eq, ne, gt, gte, lt, lte (default: eq)
+    gasLimit: string;            // Gas limit for query (default 100000, max 500000)
+    uri?: string;                // Optional metadata URI
+    customData?: string;         // Optional custom data
+}
+```
+
+## Use Cases
+
+### ERC-20 Balance Check
+
+Require the sender to hold at least 100 tokens of an ERC-20:
+
+```json
+{
+    "evmQueryChallenges": [
+        {
+            "contractAddress": "0xUSDCAddress...",
+            "calldata": "70a08231000000000000000000000000$sender",
+            "expectedResult": "0000000000000000000000000000000000000000000000000000000000000064",
+            "comparisonOperator": "gte",
+            "gasLimit": "100000"
+        }
+    ]
+}
+```
+
+The `70a08231` is the function selector for `balanceOf(address)`.
+
+### NFT Ownership Verification
+
+Require the initiator to own a specific NFT:
+
+```json
+{
+    "evmQueryChallenges": [
+        {
+            "contractAddress": "0xNFTContract...",
+            "calldata": "6352211e0000000000000000000000000000000000000000000000000000000000000001",
+            "expectedResult": "$initiator",
+            "comparisonOperator": "eq",
+            "gasLimit": "100000"
+        }
+    ]
+}
+```
+
+The `6352211e` is the function selector for `ownerOf(uint256)`.
+
+## Building Calldata
+
+To build the calldata for a function call:
+
+1. **Get Function Selector**: First 4 bytes of `keccak256(functionSignature)`
+2. **Encode Parameters**: ABI-encode the function parameters
+3. **Concatenate**: Combine selector + encoded parameters
+4. **Add Placeholders**: Replace address parameters with placeholders as needed
+
+**Example for `balanceOf(address)`:**
+
+1. Function signature: `balanceOf(address)`
+2. Selector: `keccak256("balanceOf(address)")` → `70a08231`
+3. Address parameter: Pad to 32 bytes → `000000000000000000000000<address>`
+4. With placeholder: `70a08231000000000000000000000000$initiator`
+
+## Gas Limits
+
+| Query Type      | Recommended Gas |
+| --------------- | --------------- |
+| Simple storage  | 30,000          |
+| Balance check   | 50,000          |
+| Complex logic   | 100,000         |
+| Multiple calls  | 200,000         |
+| Maximum allowed | 500,000         |
+
+## Error Conditions
+
+The challenge fails if:
+
+- Contract address is invalid or doesn't exist
+- Calldata is malformed or empty
+- Contract reverts during the call
+- Query exceeds gas limit
+- Return value doesn't match expected result
+- Comparison operator is invalid
+- Result cannot be compared (e.g., numeric comparison on non-numeric data)
+
+## Security Considerations
+
+### Read-Only Execution
+
+EVM Query Challenges execute as `staticcall`, which:
+- Cannot modify state
+- Cannot emit events
+- Cannot create or destroy contracts
+- Is fully deterministic within a block
+
+### Gas Limit Protection
+
+Set appropriate gas limits to prevent:
+- DoS attacks through expensive queries
+- Excessive resource consumption
+- Unpredictable execution costs
+
+### Contract Trust
+
+Only query trusted contracts:
+- Malicious contracts could return misleading data
+- Ensure the contract's logic is verified
+- Consider upgrade risks for proxy contracts
+
+### Determinism
+
+All queries are deterministic within a block because:
+- EVM state is consistent within a block
+- `staticcall` cannot modify state
+- Results are reproducible
+
+### Placeholder Security
+
+Placeholders are replaced at runtime:
+- Cannot be manipulated by users
+- Values come from the transfer context
+- Prevents injection attacks
+
+## Best Practices
+
+1. **Use verified contracts**: Only query well-audited contracts
+2. **Set appropriate gas limits**: Balance between reliability and cost
+3. **Test thoroughly**: Verify calldata produces expected results
+4. **Document requirements**: Use `uri` to explain what the challenge verifies
+5. **Handle edge cases**: Consider what happens with zero balances, non-existent tokens, etc.
+6. **Combine with other challenges**: Use alongside merkle challenges, voting, etc. for defense in depth
 
 
 ## File: ./token-standard/learn/approval-criteria/max-number-of-transfers.md
@@ -18980,6 +20613,7 @@ const invariants: CollectionInvariants<bigint> = {
     cosmosCoinBackedPath: undefined,
     noForcefulPostMintTransfers: false,
     disablePoolCreation: false,
+    evmQueryChallenges: [],
 };
 ```
 
@@ -19015,6 +20649,29 @@ const invariants: CollectionInvariants<bigint> = {
 
 -   Prevents creation of liquidity pools using assets from this collection in our gamm module.
 -   When enabled, pool creation attempts will fail
+
+**evmQueryChallenges**
+
+-   Post-transfer EVM query invariants that are checked after all balance updates
+-   Each challenge executes a read-only EVM contract query via staticcall
+-   If any query returns a result that doesn't match the expected result, the transfer is reverted
+-   Useful for enforcing global invariants like maximum holder count, balance caps, or custom compliance rules
+-   Placeholders: `$collectionId`, `$sender`, `$initiator`, `$recipient` (first recipient), `$recipients` (all recipients as concatenated 32-byte hex). See [EVM Query Challenges – Placeholders](approval-criteria/evm-query-challenges.md#placeholders) for approval vs invariant placeholder details.
+-   See [EVM Query Challenges](approval-criteria/evm-query-challenges.md) for the full challenge structure (fields, operators, gas limits)
+
+```typescript
+const evmQueryChallenges: EVMQueryChallenge<bigint>[] = [
+    {
+        contractAddress: '0xComplianceContract...',
+        calldata: '70a08231000000000000000000000000$collectionId',
+        expectedResult: '0000000000000000000000000000000000000000000000000000000000000001',
+        comparisonOperator: 'eq',
+        gasLimit: '100000',
+        uri: '',
+        customData: '',
+    },
+];
+```
 
 **Important:** Invariants can only be set during collection creation and cannot be updated or removed afterward.
 
@@ -22026,12 +23683,13 @@ For approval criteria examples, see:
 * [Transferable Approval](approvals/transferable-approval.md) - Basic transfer restrictions
 * [Burnable Approval](approvals/burnable-approval.md) - Burn functionality
 * [Address Checks](../../token-standard/learn/approval-criteria/address-checks.md) - Address type restrictions
+* [EVM Query Challenges](../../token-standard/learn/approval-criteria/evm-query-challenges.md) - Token-gating via EVM contract queries
 * [Building Collection Approvals](building-collection-approvals.md) - Collection-level patterns
 
 For concepts, see:
 
 * [Transferability](../../learn/transferability.md)
-* [Approval Criteria](broken-reference/)
+* [Approval Criteria](../../token-standard/learn/approval-criteria/README.md)
 
 
 ## File: ./x-tokenization/examples/building-user-permissions.md
@@ -22405,6 +24063,10 @@ const EmptyApprovalCriteria = {
         },
         // No priority requirement
         mustPrioritize: false,
+        // No EVM query challenges
+        evmQueryChallenges: [],
+        // No voting challenges
+        votingChallenges: [],
     },
 };
 ```
@@ -23372,7 +25034,33 @@ This example demonstrates creating a quest collection.
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "senderChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             }
@@ -23385,7 +25073,16 @@ This example demonstrates creating a quest collection.
                 "amount": "5000000000"
             }
         ],
-        "cosmosCoinWrapperPathsToAdd": []
+        "cosmosCoinWrapperPathsToAdd": [],
+        "aliasPathsToAdd": [],
+        "invariants": {
+            "noCustomOwnershipTimes": false,
+            "maxSupplyPerId": "0",
+            "cosmosCoinBackedPath": null,
+            "noForcefulPostMintTransfers": false,
+            "disablePoolCreation": false,
+            "evmQueryChallenges": []
+        }
     }
 ]
 ```
@@ -23600,7 +25297,33 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "senderChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             },
@@ -23692,7 +25415,33 @@ This example demonstrates creating a tradable collection that supports orderbook
                         "percentage": "0",
                         "payoutAddress": ""
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "senderChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             }
@@ -23704,7 +25453,16 @@ This example demonstrates creating a tradable collection that supports orderbook
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
-        "cosmosCoinWrapperPathsToAdd": [] // No wrapping allowed
+        "cosmosCoinWrapperPathsToAdd": [],
+        "aliasPathsToAdd": [],
+        "invariants": {
+            "noCustomOwnershipTimes": false,
+            "maxSupplyPerId": "0",
+            "cosmosCoinBackedPath": null,
+            "noForcefulPostMintTransfers": false,
+            "disablePoolCreation": false,
+            "evmQueryChallenges": []
+        }
     }
 ]
 ```
@@ -23816,7 +25574,31 @@ This example demonstrates how to update user outgoing approvals to control what 
                         "afterOneUse": false,
                         "afterOverallMaxNumTransfers": false
                     },
-                    "mustOwnTokens": []
+                    "mustOwnTokens": [],
+                    "dynamicStoreChallenges": [],
+                    "votingChallenges": [],
+                    "evmQueryChallenges": [],
+                    "userRoyalties": {
+                        "percentage": "0",
+                        "payoutAddress": ""
+                    },
+                    "recipientChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "initiatorChecks": {
+                        "mustBeEvmContract": false,
+                        "mustNotBeEvmContract": false,
+                        "mustBeLiquidityPool": false,
+                        "mustNotBeLiquidityPool": false
+                    },
+                    "altTimeChecks": {
+                        "offlineHours": [],
+                        "offlineDays": []
+                    },
+                    "mustPrioritize": false
                 },
                 "version": "0"
             }
@@ -24211,7 +25993,8 @@ For complete transaction examples, see [MsgCreateCollection Examples](../example
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```
@@ -25768,7 +27551,8 @@ bitbadgeschaind tx tokenization universal-update-collection '[tx-json]' --from c
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```
@@ -25829,7 +27613,8 @@ When creating a new collection (collectionId = "0"), you can set collection inva
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```
@@ -25948,7 +27733,8 @@ bitbadgeschaind tx tokenization update-collection '[tx-json]' --from manager-key
         "maxSupplyPerId": "0",
         "cosmosCoinBackedPath": undefined,
         "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false
+        "disablePoolCreation": false,
+        "evmQueryChallenges": []
     }
 }
 ```
@@ -26159,6 +27945,7 @@ This directory contains detailed documentation for all query types supported by 
 ### Collection Queries
 
 -   [GetCollection](./get-collection.md) - Retrieve collection data and properties
+-   [GetCollectionStats](./get-collection-stats.md) - Get holder count and circulating supply statistics
 
 ### Balance Queries
 
@@ -26408,6 +28195,102 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_challen
     "numUsed": "1"
 }
 ```
+
+
+## File: ./x-tokenization/queries/get-collection-stats.md
+
+# GetCollectionStats
+
+Retrieves statistics for a collection including holder count and circulating supply.
+
+## Proto Definition
+
+```protobuf
+message QueryGetCollectionStatsRequest {
+  string collectionId = 1; // Collection ID to query
+}
+
+message QueryGetCollectionStatsResponse {
+  CollectionStats stats = 1;
+}
+
+message CollectionStats {
+  string holderCount = 1;      // Number of unique addresses with non-zero balances
+  repeated Balance balances = 2; // Circulating supply represented as Balance structures
+}
+
+// See all the proto definitions [here](https://github.com/BitBadges/bitbadgeschain/tree/master/proto/tokenization)
+```
+
+## Fields
+
+### holderCount
+
+The number of unique addresses that currently hold a non-zero balance in the collection.
+
+**Excluded from count:**
+- Special addresses: "Mint", "Total"
+- IBC backing path addresses (cosmosCoinBackedPath)
+- Cosmos coin wrapper path addresses
+
+**Updated dynamically** as balances change through minting, transfers, backing, and unbacking operations.
+
+### balances
+
+The circulating supply of the collection represented as an array of `Balance` structures. Each balance includes:
+- `amount`: The quantity of tokens
+- `tokenIds`: Array of token ID ranges
+- `ownershipTimes`: Array of ownership time ranges
+
+This tracks the total minted supply minus any tokens that have been backed (locked for IBC operations).
+
+## Usage Example
+
+```bash
+# CLI query
+bitbadgeschaind query tokenization get-collection-stats [collection-id]
+
+# REST API
+curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/get_collection_stats/1"
+```
+
+### Response Example
+
+```json
+{
+    "stats": {
+        "holderCount": "150",
+        "balances": [
+            {
+                "amount": "10000",
+                "tokenIds": [{ "start": "1", "end": "100" }],
+                "ownershipTimes": [
+                    { "start": "1", "end": "18446744073709551615" }
+                ]
+            }
+        ]
+    }
+}
+```
+
+## Use Cases
+
+### Token Analytics
+- Track the number of unique holders over time
+- Monitor circulating supply for tokenomics
+
+### Compliance
+- Verify holder count limits for regulatory compliance
+- Track distribution metrics
+
+### Display
+- Show holder count on collection pages
+- Display circulating supply in UIs
+
+## Related Queries
+
+- [GetCollection](./get-collection.md) - Full collection details
+- [GetBalance](./get-balance.md) - Individual user balances
 
 
 ## File: ./x-tokenization/queries/get-collection.md
@@ -26751,6 +28634,19 @@ curl "https://lcd.bitbadges.io/bitbadges/bitbadgeschain/tokenization/params"
 ```
 
 
+## File: ./.github/dependabot.yml
+
+```
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+```
+
+
 ## File: ./.github/workflows/for--llms.yml
 
 ```
@@ -26769,6 +28665,8 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
+              with:
+                  token: ${{ secrets.ADMIN_PAT }}
 
             - name: Set up Python
               uses: actions/setup-python@v4
@@ -26838,6 +28736,8 @@ jobs:
   "workbench.colorCustomizations": {
     "activityBar.background": "#2E2461",
     "titleBar.activeBackground": "#403287",
-    "titleBar.activeForeground": "#FBFBFE"
+    "titleBar.activeForeground": "#FBFBFE",
+    "titleBar.inactiveBackground": "#0E1B89",
+    "titleBar.inactiveForeground": "#F9FAFE"
   }
 }```
