@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Feb 28 16:14:44 UTC 2026
+Generated on Sat Feb 28 16:15:43 UTC 2026
 
 
 
@@ -28724,7 +28724,7 @@ jobs:
                   git config --local user.email "action@github.com"
                   git config --local user.name "GitHub Action"
                   git add for-llms.txt
-                  git commit -m "Update for-llms.txt via GitHub Action" || echo "No changes to commit"
+                  git commit -m "Update for-llms.txt via GitHub Action [skip ci]" || echo "No changes to commit"
                   git push
 ```
 
