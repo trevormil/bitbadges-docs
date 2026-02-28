@@ -177,6 +177,7 @@
   * [Supported Denoms](for-developers/bitbadges-blockchain/supported-denoms.md)
   * [Run a Mainnet Node](for-developers/bitbadges-blockchain/run-a-mainnet-node.md)
   * [Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+    * [Signing Client (Recommended)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client.md)
     * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
     * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
     * [Signing - Cosmos](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md)
