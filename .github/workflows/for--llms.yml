@@ -13,6 +13,8 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
+              with:
+                  token: ${{ secrets.ADMIN_PAT }}
 
             - name: Set up Python
               uses: actions/setup-python@v4
@@ -70,5 +72,5 @@ jobs:
                   git config --local user.email "action@github.com"
                   git config --local user.name "GitHub Action"
                   git add for-llms.txt
-                  git commit -m "Update for-llms.txt via GitHub Action" || echo "No changes to commit"
+                  git commit -m "Update for-llms.txt via GitHub Action [skip ci]" || echo "No changes to commit"
                   git push
