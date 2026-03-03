@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [README](README.md)
+* [Solidity Quickstart](solidity-quickstart.md)
 * [Setup and Configuration](setup-and-configuration.md)
 * [Developer Guide](developer-guide.md)
 * [Architecture](architecture.md)

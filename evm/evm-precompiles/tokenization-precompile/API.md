@@ -40,6 +40,15 @@ interface ITokenizationPrecompile {
     function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory);
     function getAddressList(string calldata msgJson) external view returns (AddressList memory);
     function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory);
+
+    // Utility helper methods (pure functions)
+    function convertEvmAddressToBech32(address evmAddress) external pure returns (string memory);
+    function convertBech32ToEvmAddress(string calldata bech32Address) external pure returns (address);
+    function rangeContains(uint256 start, uint256 end, uint256 value) external pure returns (bool);
+    function rangesOverlap(uint256 start1, uint256 end1, uint256 start2, uint256 end2) external pure returns (bool);
+    function searchInRanges(string calldata rangesJson, uint256 value) external pure returns (bool);
+    function getBalanceForIdAndTime(string calldata balancesJson, uint256 tokenId, uint256 time) external pure returns (uint256);
+    function getReservedListId(address addr) external pure returns (string memory);
 }
 ```
 
@@ -751,6 +760,103 @@ Invalid JSON or missing required fields will cause the transaction to revert. Se
 2. All addresses are validated before processing
 3. JSON is validated against protobuf schema
 4. Invalid operations revert with clear error messages
+
+## Utility Helper Methods
+
+The precompile includes utility helper methods for common operations. These are `pure` functions that don't require state access.
+
+### Address Conversion
+
+#### `convertEvmAddressToBech32(address evmAddress) → string`
+
+Convert an EVM address (0x...) to a BitBadges bech32 address (bb1...).
+
+```solidity
+string memory bech32 = TOKENIZATION.convertEvmAddressToBech32(msg.sender);
+// Returns: "bb1qy2q3j4k5l6m7n8p9q0r..."
+```
+
+#### `convertBech32ToEvmAddress(string bech32Address) → address`
+
+Convert a bech32 address (bb1...) to an EVM address (0x...).
+
+```solidity
+address evm = TOKENIZATION.convertBech32ToEvmAddress("bb1qy2q3j4k5l6m7n8p9q0r...");
+// Returns: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+```
+
+### Range Utilities
+
+These methods help work with UintRange structures used for token IDs and ownership times.
+
+#### `rangeContains(uint256 start, uint256 end, uint256 value) → bool`
+
+Check if a value is within a range (inclusive).
+
+```solidity
+bool isInRange = TOKENIZATION.rangeContains(10, 20, 15);
+// Returns: true (15 is in [10, 20])
+
+bool notInRange = TOKENIZATION.rangeContains(10, 20, 25);
+// Returns: false (25 is not in [10, 20])
+```
+
+#### `rangesOverlap(uint256 start1, uint256 end1, uint256 start2, uint256 end2) → bool`
+
+Check if two ranges overlap.
+
+```solidity
+bool overlap = TOKENIZATION.rangesOverlap(10, 20, 15, 25);
+// Returns: true (ranges [10,20] and [15,25] overlap)
+
+bool noOverlap = TOKENIZATION.rangesOverlap(10, 20, 25, 35);
+// Returns: false (ranges [10,20] and [25,35] don't overlap)
+```
+
+#### `searchInRanges(string rangesJson, uint256 value) → bool`
+
+Search if a value exists in any range within a JSON-encoded array.
+
+```solidity
+string memory rangesJson = '[{"start":"1","end":"100"},{"start":"200","end":"300"}]';
+
+bool found = TOKENIZATION.searchInRanges(rangesJson, 50);
+// Returns: true (50 is in [1,100])
+
+bool notFound = TOKENIZATION.searchInRanges(rangesJson, 150);
+// Returns: false (150 is not in any range)
+```
+
+### Balance Utilities
+
+#### `getBalanceForIdAndTime(string balancesJson, uint256 tokenId, uint256 time) → uint256`
+
+Get the balance amount for a specific token ID and time from a JSON-encoded balances array. This is useful for processing balance data returned from `getBalance` queries.
+
+```solidity
+string memory balancesJson = '[{"amount":"100","badgeIds":[{"start":"1","end":"10"}],"ownershipTimes":[{"start":"0","end":"18446744073709551615"}]}]';
+
+uint256 amount = TOKENIZATION.getBalanceForIdAndTime(balancesJson, 5, block.timestamp * 1000);
+// Returns: 100 (token ID 5 is in range [1,10] and time is in [0, max])
+
+uint256 notFound = TOKENIZATION.getBalanceForIdAndTime(balancesJson, 15, block.timestamp * 1000);
+// Returns: 0 (token ID 15 is not in any range)
+```
+
+### List ID Utilities
+
+#### `getReservedListId(address addr) → string`
+
+Get the reserved list ID for a specific address. Reserved list IDs are automatically created for each address and are the bech32 representation of the address.
+
+```solidity
+string memory listId = TOKENIZATION.getReservedListId(msg.sender);
+// Returns: "bb1qy2q3j4k5l6m7n8p9q0r..." (the bech32 address)
+```
+
+**Note:** To check if a list ID represents "All" addresses, simply compare the string: `keccak256(bytes(listId)) == keccak256(bytes("All"))`.
+
+---
 
 ## See Also
 

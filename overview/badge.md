@@ -7,7 +7,7 @@ BADGE is the native gas token for the BitBadges blockchain. Please read our poli
 BADGE has 3 primary purposes:
 
 1. Gas / Transaction Fees
-2. Proof of Stake/ Governance - Validators bonding BADGE for the security of the network via staking.
+2. Proof of Stake/Authority - Validators bonding BADGE for the security of the network via staking.
 3. In-Site Currency - Although note that we will prioritize others like USDC and other more established ones for in-site use.
 4. 0.1% Taker Fees on all transactions go to community pool
 
@@ -15,23 +15,18 @@ BADGE has 3 primary purposes:
 
 For current distributions, supply, and more, we refer you to our explorer: [https://explorer.bitbadges.io](https://explorer.bitbadges.io/).
 
-Relevant addresses for undistributed BADGE are:
-
-* bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
-* bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
-
-BADGE is listed on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
+BADGE is on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
 
 Excluding block rewards, the initial circulating supply of BADGE was 100M.&#x20;
 
-### **Alternative Chain Deployments**
-
-BitBadges plans to pursue deploying our standard on other chains. BADGE also does not apply here. BADGE is the gas / governance token for the BitBadges blockchain only. Although when exploring agreements for deploying on other chains, we will strongly consider BADGE holders in any licensing agreement.
-
 ### **Security Model**
 
-We do recognize that in the short term, BADGE is not worth enough to adequately secure a proof-of-stake network. That is why we adopt a short-term more centralized approach and will look to decentralize over time. Couple notes on our approach to this:
+BitBadges operates under a hybrid model combining existing proof-of-stake validator rewards with a proof-of-authority delegation model.
 
-* In the short term, BitBadges still controls a large amount of the supply (>50%+) and operates on a more centralized governance at the moment, simply due to the fact that we have almost enough voting power to make any proposal pass.
+**1. Existing Validator Rewards Program (~20% of supply)**
 
-In other words, treat BitBadges as much more of a proof of authority chain at the moment.
+An incentivized rewards program runs until 8/12/2026 (one year from the initial start date of 8/12/2025). Validators earn BADGE based on uptime, measured by sampling block signatures. Mission Decentralization candidates (the first \~40 validators) receive a base allocation of 200,000 BADGE scaled by uptime % (with a 50,000 BADGE floor). All other eligible validators (registered by block 8,998,000) receive a base of 100,000 BADGE scaled by uptime %. Upon reaching the end of this program, earned BADGE will be awarded and current delegations will shift to the proof of authority model. Note that current delegations are not reflective of awards — most validators are delegated \~200K+ which will go away at this time.
+
+**2. Proof of Authority Model (~60% of supply)**
+
+The proof of authority model is effective immediately and runs in parallel with the rewards program until 8/12/2026, at which point it becomes the sole delegation model. The remaining BADGE allocations — including the 50M community pool, other team delegations, and leftover awards — will be allocated to well-known, trusted validators via governance proposals, following a know-your-validator setup with preference given to institutions and well-known brands. These delegated tokens can only be delegated, never sold, cutting the effective circulating supply by >60M BADGE.

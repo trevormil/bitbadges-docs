@@ -1,4 +1,8 @@
-# Signing - Cosmos
+# Signing - Cosmos (Manual)
+
+> **Looking for a simpler approach?** Check out [BitBadgesSigningClient](./signing-client.md) for a streamlined, all-in-one signing solution that handles account info, gas estimation, signing, and broadcasting automatically.
+
+This page covers manual Cosmos signing, which gives you fine-grained control over the transaction lifecycle.
 
 #### Signing with Keplr
 

@@ -29,7 +29,7 @@ contract MyTokenContract {
         
         // Build JSON using helpers
         string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
-        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
         
         string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
             collectionId,
@@ -47,8 +47,8 @@ contract MyTokenContract {
         uint256 collectionId,
         address user
     ) external view returns (uint256) {
-        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
         
         string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
             collectionId,
@@ -134,7 +134,7 @@ function transferToken(
     
     // Full ownership (no expiration)
     string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
-    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
     
     string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
         collectionId,
@@ -302,7 +302,7 @@ function createAndTransfer(
     address[] memory recipients = new address[](1);
     recipients[0] = recipient;
     string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
-    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
     
     string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
         0,  // collectionId = 0 means "use previous collection" (auto-prev)
@@ -456,6 +456,29 @@ The `TokenizationJSONHelpers` library provides functions for all common operatio
 - `deleteCollectionJSON(collectionId)` - Build delete JSON
 - `deleteIncomingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
 - `deleteOutgoingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
+
+### Precompile Utility Methods
+
+The precompile also provides `pure` utility methods for common operations:
+
+```solidity
+// Address conversion
+string memory bech32 = TOKENIZATION.convertEvmAddressToBech32(evmAddress);
+address evm = TOKENIZATION.convertBech32ToEvmAddress("bb1...");
+
+// Range utilities
+bool inRange = TOKENIZATION.rangeContains(10, 20, 15);  // true
+bool overlap = TOKENIZATION.rangesOverlap(10, 20, 15, 25);  // true
+bool found = TOKENIZATION.searchInRanges('[{"start":"1","end":"100"}]', 50);  // true
+
+// Balance utilities
+uint256 amount = TOKENIZATION.getBalanceForIdAndTime(balancesJson, tokenId, timestamp);
+
+// List ID utilities
+string memory listId = TOKENIZATION.getReservedListId(address);  // returns bb1...
+```
+
+See [API Reference - Utility Helper Methods](API.md#utility-helper-methods) for complete documentation.
 
 ### Multi-Message Helpers
 When using `executeMultiple`, build individual message JSONs using the helpers above, then construct the `MessageInput` array in Solidity.

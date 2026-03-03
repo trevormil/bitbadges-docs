@@ -1,4 +1,8 @@
-# Signing - Ethereum
+# Signing - Ethereum (Manual)
+
+> **Looking for a simpler approach?** Check out [BitBadgesSigningClient](./signing-client.md) for a streamlined, all-in-one signing solution that handles account info, gas estimation, signing, and broadcasting automatically.
+
+This page covers manual EVM signing, which gives you fine-grained control over the transaction lifecycle.
 
 BitBadges Chain supports Ethereum-compatible transactions through EVM precompiles. The SDK automatically converts Cosmos SDK messages to EVM precompile function calls when an EVM address is provided in the transaction context.
 
