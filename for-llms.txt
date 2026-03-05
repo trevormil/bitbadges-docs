@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Feb 28 16:15:43 UTC 2026
+Generated on Tue Mar  3 16:19:41 UTC 2026
 
 
 
@@ -3049,6 +3049,7 @@ Default precompiles from [cosmos/evm](https://github.com/cosmos/evm) for interac
 ## Table of Contents
 
 * [README](README.md)
+* [Solidity Quickstart](solidity-quickstart.md)
 * [Setup and Configuration](setup-and-configuration.md)
 * [Developer Guide](developer-guide.md)
 * [Architecture](architecture.md)
@@ -5733,6 +5734,357 @@ See the [examples README](https://github.com/BitBadges/bitbadgeschain/tree/evm-p
 
 
 
+## File: ./evm/evm-precompiles/solidity-quickstart.md
+
+# Solidity Developer Quickstart
+
+This guide gets you from zero to building on BitBadges precompiles in 5 minutes.
+
+## TL;DR - The Essentials
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "./interfaces/ITokenizationPrecompile.sol";
+import "./libraries/TokenizationJSONHelpers.sol";
+
+contract MyToken {
+    // Precompile address (same on all BitBadges networks)
+    ITokenizationPrecompile constant PRECOMPILE =
+        ITokenizationPrecompile(0x0000000000000000000000000000000000001001);
+
+    function transfer(uint256 collectionId, address to, uint256 amount) external {
+        address[] memory recipients = new address[](1);
+        recipients[0] = to;
+
+        // CRITICAL: Use FOREVER, not type(uint256).max!
+        string memory tokenIds = TokenizationJSONHelpers.uintRangeToJson(1, 1);
+        string memory times = TokenizationJSONHelpers.uintRangeToJson(
+            1,
+            TokenizationJSONHelpers.FOREVER  // NOT type(uint256).max!
+        );
+
+        string memory json = TokenizationJSONHelpers.transferTokensJSON(
+            collectionId, recipients, amount, tokenIds, times
+        );
+
+        require(PRECOMPILE.transferTokens(json), "Transfer failed");
+    }
+}
+```
+
+---
+
+## 1. Critical Constants
+
+**BitBadges uses uint64 internally.** Using `type(uint256).max` will cause errors.
+
+```solidity
+// ❌ WRONG - Will fail with "range overflow" error
+TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+
+// ✅ CORRECT - Use the FOREVER constant
+TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
+```
+
+**Available Constants:**
+
+| Constant | Value | When to Use |
+|----------|-------|-------------|
+| `FOREVER` | `18446744073709551615` | Ownership that never expires |
+| `MAX_TIME` | `18446744073709551615` | Maximum timestamp |
+| `MAX_ID` | `18446744073709551615` | Maximum token ID |
+| `MIN_ID` | `1` | Minimum ID (ranges start at 1, not 0) |
+
+---
+
+## 2. Precompile Addresses
+
+| Precompile | Address | Purpose |
+|------------|---------|---------|
+| Tokenization | `0x0000000000000000000000000000000000001001` | Collections, transfers, balances |
+| GAMM | `0x0000000000000000000000000000000000001002` | Liquidity pools, swaps |
+| SendManager | `0x0000000000000000000000000000000000001003` | Escrow, scheduled sends |
+
+---
+
+## 3. Why JSON?
+
+BitBadges precompiles use JSON strings instead of Solidity structs:
+
+```solidity
+// This is how BitBadges precompiles work:
+precompile.transferTokens('{"collectionId":"1",...}');
+
+// NOT like traditional ERC20:
+token.transfer(to, amount);  // BitBadges doesn't use this pattern
+```
+
+**Why?**
+- Direct compatibility with Cosmos SDK protobuf messages
+- Flexible and extensible without breaking changes
+- Same format works across EVM and Cosmos interfaces
+
+**Don't worry:** Helper libraries construct the JSON for you - you rarely write JSON manually.
+
+---
+
+## 4. Import the Libraries
+
+```solidity
+// Interface for calling the precompile
+import "./interfaces/ITokenizationPrecompile.sol";
+
+// Helpers for constructing JSON (ALWAYS use these)
+import "./libraries/TokenizationJSONHelpers.sol";
+
+// Helpers for constructing structs
+import "./libraries/TokenizationHelpers.sol";
+
+// Type definitions
+import "./types/TokenizationTypes.sol";
+
+// Error handling
+import "./libraries/TokenizationErrors.sol";
+```
+
+---
+
+## 5. Common Patterns
+
+### Pattern 1: Transfer Tokens
+
+```solidity
+function transfer(
+    uint256 collectionId,
+    address to,
+    uint256 amount,
+    uint256 tokenId
+) external returns (bool) {
+    address[] memory recipients = new address[](1);
+    recipients[0] = to;
+
+    string memory tokenIds = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
+    string memory times = TokenizationJSONHelpers.uintRangeToJson(
+        1, TokenizationJSONHelpers.FOREVER
+    );
+
+    string memory json = TokenizationJSONHelpers.transferTokensJSON(
+        collectionId, recipients, amount, tokenIds, times
+    );
+
+    return PRECOMPILE.transferTokens(json);
+}
+```
+
+### Pattern 2: Check Balance
+
+```solidity
+function balanceOf(uint256 collectionId, address user) external view returns (uint256) {
+    string memory json = TokenizationJSONHelpers.getBalanceAmountJSON(
+        collectionId,
+        user,
+        1,  // tokenId
+        block.timestamp  // ownershipTime
+    );
+
+    return PRECOMPILE.getBalanceAmount(json);
+}
+```
+
+### Pattern 3: Create Collection
+
+```solidity
+function createCollection() external returns (uint256) {
+    string memory validTokenIds = TokenizationJSONHelpers.uintRangeToJson(
+        1, 1000  // Token IDs 1-1000
+    );
+
+    string memory metadata = TokenizationJSONHelpers.collectionMetadataToJson(
+        "ipfs://my-metadata", ""
+    );
+
+    string memory balances = TokenizationJSONHelpers.simpleUserBalanceStoreToJson(
+        true, true, false  // auto-approve settings
+    );
+
+    string[] memory standards = new string[](0);
+    string memory standardsJson = TokenizationJSONHelpers.stringArrayToJson(standards);
+
+    string memory json = TokenizationJSONHelpers.createCollectionJSON(
+        validTokenIds,
+        TokenizationJSONHelpers.addressToString(address(this)),  // manager
+        metadata,
+        balances,
+        "{}",  // permissions (empty = default)
+        standardsJson,
+        "",    // customData
+        false  // isArchived
+    );
+
+    return PRECOMPILE.createCollection(json);
+}
+```
+
+### Pattern 4: KYC Registry (Dynamic Store)
+
+```solidity
+uint256 public kycStoreId;
+
+function initKYC() external {
+    string memory json = TokenizationJSONHelpers.createDynamicStoreJSON(
+        false,  // default: not KYC'd
+        "", ""  // metadata
+    );
+    kycStoreId = PRECOMPILE.createDynamicStore(json);
+}
+
+function setKYC(address user, bool status) external {
+    string memory json = TokenizationJSONHelpers.setDynamicStoreValueJSON(
+        kycStoreId, user, status
+    );
+    PRECOMPILE.setDynamicStoreValue(json);
+}
+```
+
+---
+
+## 6. Error Handling
+
+```solidity
+import "./libraries/TokenizationErrors.sol";
+
+contract MyContract {
+    function safeTransfer(...) external {
+        // Validate before calling precompile
+        TokenizationErrors.requireValidCollectionId(collectionId);
+
+        try PRECOMPILE.transferTokens(json) returns (bool success) {
+            require(success, "Transfer failed");
+        } catch Error(string memory reason) {
+            revert(reason);
+        }
+    }
+}
+```
+
+**Common Errors:**
+- `"range overflow"` → Use `FOREVER` instead of `type(uint256).max`
+- `"address cannot be empty"` → Check JSON field names
+- `"failed to unmarshal"` → Invalid JSON format
+
+See [Error Handling](tokenization-precompile/errors.md) for full error reference.
+
+---
+
+## 7. UintRange Explained
+
+Token IDs and ownership times use ranges:
+
+```solidity
+// Single value: token ID 5
+TokenizationJSONHelpers.uintRangeToJson(5, 5);
+// Produces: [{"start":"5","end":"5"}]
+
+// Range: token IDs 1-100
+TokenizationJSONHelpers.uintRangeToJson(1, 100);
+// Produces: [{"start":"1","end":"100"}]
+
+// Forever ownership (never expires)
+TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
+// Produces: [{"start":"1","end":"18446744073709551615"}]
+
+// Multiple ranges
+uint256[] memory starts = new uint256[](2);
+uint256[] memory ends = new uint256[](2);
+starts[0] = 1; ends[0] = 100;
+starts[1] = 200; ends[1] = 300;
+TokenizationJSONHelpers.uintRangeArrayToJson(starts, ends);
+// Produces: [{"start":"1","end":"100"},{"start":"200","end":"300"}]
+```
+
+---
+
+## 8. Address Formats
+
+BitBadges supports both EVM and Cosmos addresses:
+
+```solidity
+// In Solidity, use EVM addresses (0x...)
+address user = 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb;
+
+// Convert to Cosmos bech32 format if needed
+string memory bech32 = PRECOMPILE.convertEvmAddressToBech32(user);
+// Returns: "bb1ws5a0nfzue5cxetfmx56y0gu30aw7h08agd7fg"
+
+// Convert back
+address evm = PRECOMPILE.convertBech32ToEvmAddress("bb1...");
+```
+
+---
+
+## 9. Utility Methods
+
+The precompile includes helpful utilities:
+
+```solidity
+// Address conversion
+string memory bech32 = PRECOMPILE.convertEvmAddressToBech32(evmAddress);
+address evm = PRECOMPILE.convertBech32ToEvmAddress(bech32Address);
+
+// Range checks
+bool inRange = PRECOMPILE.rangeContains(10, 20, 15);  // true
+bool overlap = PRECOMPILE.rangesOverlap(10, 20, 15, 25);  // true
+
+// Search in range array
+bool found = PRECOMPILE.searchInRanges('[{"start":"1","end":"100"}]', 50);
+
+// Get balance for specific token/time
+uint256 amount = PRECOMPILE.getBalanceForIdAndTime(balancesJson, tokenId, timestamp);
+
+// Get reserved list ID for address
+string memory listId = PRECOMPILE.getReservedListId(userAddress);
+```
+
+---
+
+## 10. Quick Reference
+
+### Helper Libraries
+| Library | Purpose |
+|---------|---------|
+| `TokenizationJSONHelpers` | Build JSON strings for precompile calls |
+| `TokenizationHelpers` | Build structs, constants, utilities |
+| `TokenizationErrors` | Input validation, custom errors |
+| `TokenizationTypes` | Type definitions |
+
+### Key Methods
+| Method | Returns | Purpose |
+|--------|---------|---------|
+| `transferTokens(json)` | `bool` | Transfer tokens |
+| `createCollection(json)` | `uint256` | Create collection, returns ID |
+| `getBalanceAmount(json)` | `uint256` | Get balance amount |
+| `createDynamicStore(json)` | `uint256` | Create store, returns ID |
+
+### Constants
+| Constant | Value | Location |
+|----------|-------|----------|
+| `FOREVER` | `type(uint64).max` | JSONHelpers, Helpers |
+| `MAX_TIME` | `type(uint64).max` | JSONHelpers, Helpers |
+| `MAX_ID` | `type(uint64).max` | JSONHelpers, Helpers |
+| `MIN_ID` | `1` | JSONHelpers, Helpers |
+
+---
+
+## Next Steps
+
+1. **[Full API Reference](tokenization-precompile/API.md)** - All methods documented
+2. **[Error Handling](tokenization-precompile/errors.md)** - Debug common issues
+3. **[Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples)** - Real implementations
+4. **[GAMM Precompile](gamm-precompile/README.md)** - Liquidity pools and swaps
+
+
 ## File: ./evm/evm-precompiles/tokenization-precompile/API.md
 
 # Tokenization Precompile API Reference
@@ -5777,6 +6129,15 @@ interface ITokenizationPrecompile {
     function getDynamicStoreValue(string calldata msgJson) external view returns (DynamicStoreValueResult memory);
     function getAddressList(string calldata msgJson) external view returns (AddressList memory);
     function getCollectionStats(string calldata msgJson) external view returns (CollectionStats memory);
+
+    // Utility helper methods (pure functions)
+    function convertEvmAddressToBech32(address evmAddress) external pure returns (string memory);
+    function convertBech32ToEvmAddress(string calldata bech32Address) external pure returns (address);
+    function rangeContains(uint256 start, uint256 end, uint256 value) external pure returns (bool);
+    function rangesOverlap(uint256 start1, uint256 end1, uint256 start2, uint256 end2) external pure returns (bool);
+    function searchInRanges(string calldata rangesJson, uint256 value) external pure returns (bool);
+    function getBalanceForIdAndTime(string calldata balancesJson, uint256 tokenId, uint256 time) external pure returns (uint256);
+    function getReservedListId(address addr) external pure returns (string memory);
 }
 ```
 
@@ -6489,6 +6850,103 @@ Invalid JSON or missing required fields will cause the transaction to revert. Se
 3. JSON is validated against protobuf schema
 4. Invalid operations revert with clear error messages
 
+## Utility Helper Methods
+
+The precompile includes utility helper methods for common operations. These are `pure` functions that don't require state access.
+
+### Address Conversion
+
+#### `convertEvmAddressToBech32(address evmAddress) → string`
+
+Convert an EVM address (0x...) to a BitBadges bech32 address (bb1...).
+
+```solidity
+string memory bech32 = TOKENIZATION.convertEvmAddressToBech32(msg.sender);
+// Returns: "bb1qy2q3j4k5l6m7n8p9q0r..."
+```
+
+#### `convertBech32ToEvmAddress(string bech32Address) → address`
+
+Convert a bech32 address (bb1...) to an EVM address (0x...).
+
+```solidity
+address evm = TOKENIZATION.convertBech32ToEvmAddress("bb1qy2q3j4k5l6m7n8p9q0r...");
+// Returns: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+```
+
+### Range Utilities
+
+These methods help work with UintRange structures used for token IDs and ownership times.
+
+#### `rangeContains(uint256 start, uint256 end, uint256 value) → bool`
+
+Check if a value is within a range (inclusive).
+
+```solidity
+bool isInRange = TOKENIZATION.rangeContains(10, 20, 15);
+// Returns: true (15 is in [10, 20])
+
+bool notInRange = TOKENIZATION.rangeContains(10, 20, 25);
+// Returns: false (25 is not in [10, 20])
+```
+
+#### `rangesOverlap(uint256 start1, uint256 end1, uint256 start2, uint256 end2) → bool`
+
+Check if two ranges overlap.
+
+```solidity
+bool overlap = TOKENIZATION.rangesOverlap(10, 20, 15, 25);
+// Returns: true (ranges [10,20] and [15,25] overlap)
+
+bool noOverlap = TOKENIZATION.rangesOverlap(10, 20, 25, 35);
+// Returns: false (ranges [10,20] and [25,35] don't overlap)
+```
+
+#### `searchInRanges(string rangesJson, uint256 value) → bool`
+
+Search if a value exists in any range within a JSON-encoded array.
+
+```solidity
+string memory rangesJson = '[{"start":"1","end":"100"},{"start":"200","end":"300"}]';
+
+bool found = TOKENIZATION.searchInRanges(rangesJson, 50);
+// Returns: true (50 is in [1,100])
+
+bool notFound = TOKENIZATION.searchInRanges(rangesJson, 150);
+// Returns: false (150 is not in any range)
+```
+
+### Balance Utilities
+
+#### `getBalanceForIdAndTime(string balancesJson, uint256 tokenId, uint256 time) → uint256`
+
+Get the balance amount for a specific token ID and time from a JSON-encoded balances array. This is useful for processing balance data returned from `getBalance` queries.
+
+```solidity
+string memory balancesJson = '[{"amount":"100","badgeIds":[{"start":"1","end":"10"}],"ownershipTimes":[{"start":"0","end":"18446744073709551615"}]}]';
+
+uint256 amount = TOKENIZATION.getBalanceForIdAndTime(balancesJson, 5, block.timestamp * 1000);
+// Returns: 100 (token ID 5 is in range [1,10] and time is in [0, max])
+
+uint256 notFound = TOKENIZATION.getBalanceForIdAndTime(balancesJson, 15, block.timestamp * 1000);
+// Returns: 0 (token ID 15 is not in any range)
+```
+
+### List ID Utilities
+
+#### `getReservedListId(address addr) → string`
+
+Get the reserved list ID for a specific address. Reserved list IDs are automatically created for each address and are the bech32 representation of the address.
+
+```solidity
+string memory listId = TOKENIZATION.getReservedListId(msg.sender);
+// Returns: "bb1qy2q3j4k5l6m7n8p9q0r..." (the bech32 address)
+```
+
+**Note:** To check if a list ID represents "All" addresses, simply compare the string: `keccak256(bytes(listId)) == keccak256(bytes("All"))`.
+
+---
+
 ## See Also
 
 - [Complete README](README.md) - Overview and examples
@@ -6530,7 +6988,7 @@ contract MyTokenContract {
         
         // Build JSON using helpers
         string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
-        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
         
         string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
             collectionId,
@@ -6548,8 +7006,8 @@ contract MyTokenContract {
         uint256 collectionId,
         address user
     ) external view returns (uint256) {
-        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
-        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+        string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
+        string memory ownershipTimesJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
         
         string memory balanceJson = TokenizationJSONHelpers.getBalanceAmountJSON(
             collectionId,
@@ -6635,7 +7093,7 @@ function transferToken(
     
     // Full ownership (no expiration)
     string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(tokenId, tokenId);
-    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
     
     string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
         collectionId,
@@ -6803,7 +7261,7 @@ function createAndTransfer(
     address[] memory recipients = new address[](1);
     recipients[0] = recipient;
     string memory tokenIdsJson = TokenizationJSONHelpers.uintRangeToJson(1, 1);
-    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+    string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, TokenizationJSONHelpers.FOREVER);
     
     string memory transferJson = TokenizationJSONHelpers.transferTokensJSON(
         0,  // collectionId = 0 means "use previous collection" (auto-prev)
@@ -6958,6 +7416,29 @@ The `TokenizationJSONHelpers` library provides functions for all common operatio
 - `deleteIncomingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
 - `deleteOutgoingApprovalJSON(collectionId, approvalId)` - Build delete approval JSON
 
+### Precompile Utility Methods
+
+The precompile also provides `pure` utility methods for common operations:
+
+```solidity
+// Address conversion
+string memory bech32 = TOKENIZATION.convertEvmAddressToBech32(evmAddress);
+address evm = TOKENIZATION.convertBech32ToEvmAddress("bb1...");
+
+// Range utilities
+bool inRange = TOKENIZATION.rangeContains(10, 20, 15);  // true
+bool overlap = TOKENIZATION.rangesOverlap(10, 20, 15, 25);  // true
+bool found = TOKENIZATION.searchInRanges('[{"start":"1","end":"100"}]', 50);  // true
+
+// Balance utilities
+uint256 amount = TOKENIZATION.getBalanceForIdAndTime(balancesJson, tokenId, timestamp);
+
+// List ID utilities
+string memory listId = TOKENIZATION.getReservedListId(address);  // returns bb1...
+```
+
+See [API Reference - Utility Helper Methods](API.md#utility-helper-methods) for complete documentation.
+
 ### Multi-Message Helpers
 When using `executeMultiple`, build individual message JSONs using the helpers above, then construct the `MessageInput` array in Solidity.
 
@@ -7109,58 +7590,113 @@ See the example contracts for complete implementations:
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/errors.md
 
-# Error Handling
+# Error Handling & Debugging
 
-The precompile uses structured error handling. All methods can revert with descriptive error messages.
+This guide covers common errors, debugging techniques, and solutions for the Tokenization Precompile.
+
+## Critical: uint64 vs uint256
+
+**The #1 cause of errors for new developers.**
+
+BitBadges uses `uint64` internally for timestamps and IDs. Using `uint256` max values will cause errors.
+
+```solidity
+// ❌ WRONG - Will cause "range overflow" error
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+
+// ✅ CORRECT - Use the FOREVER constant
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(
+    1,
+    TokenizationJSONHelpers.FOREVER  // = type(uint64).max = 18446744073709551615
+);
+```
+
+**Available Constants (in TokenizationJSONHelpers and TokenizationHelpers):**
+
+| Constant | Value | Use Case |
+|----------|-------|----------|
+| `FOREVER` | `18446744073709551615` | Ownership times that never expire |
+| `MAX_TIME` | `18446744073709551615` | Maximum valid timestamp |
+| `MAX_ID` | `18446744073709551615` | Maximum valid token ID |
+| `MIN_ID` | `1` | Minimum valid ID (ranges typically start at 1) |
+| `FOREVER_STR` | `"18446744073709551615"` | For direct JSON string use |
+
+---
 
 ## Error Handling in Solidity
 
-Handle errors using standard Solidity error handling:
+### Basic Error Handling
 
 ```solidity
 function safeTransfer(...) external {
-    try precompile.transferTokens(...) returns (bool success) {
+    try precompile.transferTokens(json) returns (bool success) {
         require(success, "Transfer failed");
     } catch Error(string memory reason) {
+        // Precompile error with message
         revert(reason);
-    } catch {
-        revert("Unknown error");
+    } catch (bytes memory lowLevelData) {
+        // Low-level error - decode if possible
+        revert("Unknown precompile error");
     }
 }
 ```
 
-## Common Errors and Solutions
+### Using TokenizationErrors Library
 
-### Range Value Overflow
-
-**Error:**
-```
-precompile error [code=4]: transaction failed: invalid balance times: range at index 0 has end 115792089237316195423570985008687907853269984665640564039457584007913129639935 greater than max 18446744073709551615
-```
-
-**Cause:** Using `type(uint256).max` instead of `type(uint64).max` for ownership times or badge ID ranges.
-
-**Solution:**
 ```solidity
-// ❌ Wrong - uint256 max is too large
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint256).max);
+import "./libraries/TokenizationErrors.sol";
 
-// ✅ Correct - use uint64 max
-string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(1, type(uint64).max);
+contract MyContract {
+    using TokenizationErrors for *;
+
+    function transfer(...) external {
+        // Validate inputs before calling precompile
+        TokenizationErrors.requireValidCollectionId(collectionId);
+        TokenizationErrors.requireNonEmptyString(json, "JSON");
+
+        bool success = precompile.transferTokens(json);
+        require(success, "Transfer failed");
+    }
+}
 ```
-
-**Note:** The precompile stores timestamps and IDs as uint64 internally. The max value is `18446744073709551615`.
 
 ---
 
-### Address Cannot Be Empty
+## Common Errors and Solutions
+
+### 1. Range Value Overflow
+
+**Error:**
+```
+precompile error [code=4]: transaction failed: invalid balance times:
+range at index 0 has end 115792089237316195423570985008687907853269984665640564039457584007913129639935
+greater than max 18446744073709551615
+```
+
+**Cause:** Using `type(uint256).max` instead of `type(uint64).max`.
+
+**Solution:**
+```solidity
+// Use the FOREVER constant
+string memory ownershipJson = TokenizationJSONHelpers.uintRangeToJson(
+    1,
+    TokenizationJSONHelpers.FOREVER
+);
+
+// Or use the MAX_TIME/MAX_ID constants from TokenizationHelpers
+uint64 maxTime = TokenizationHelpers.MAX_TIME;
+```
+
+---
+
+### 2. Address Cannot Be Empty
 
 **Error:**
 ```
 precompile error [code=1]: invalid input parameters: address cannot be empty
 ```
 
-**Cause:** Using wrong field name in JSON for dynamic store operations.
+**Cause:** Wrong field name in JSON, or empty address.
 
 **Solution:**
 ```solidity
@@ -7169,28 +7705,39 @@ precompile error [code=1]: invalid input parameters: address cannot be empty
 
 // ✅ Correct - use "address"
 '{"storeId":"1","address":"0x...","value":true}'
-```
 
-Both `setDynamicStoreValue` and `getDynamicStoreValue` use `"address"` as the field name.
+// ✅ Or use the helper
+string memory json = TokenizationJSONHelpers.setDynamicStoreValueJSON(
+    storeId,
+    userAddress,  // address type, not string
+    true
+);
+```
 
 ---
 
-### Failed to Unmarshal JSON
+### 3. Failed to Unmarshal JSON
 
 **Error:**
 ```
 failed to unmarshal JSON for method X: precompile error [code=...]
 ```
 
-**Cause:** Invalid JSON format or missing required fields.
+**Causes:**
+- Invalid JSON syntax (missing quotes, commas, brackets)
+- Wrong field types (numbers as strings vs raw, booleans as strings)
+- Missing required fields
 
-**Solution:**
-- Verify JSON is valid (no trailing commas, proper quoting)
-- Check all required fields are present
-- Ensure numbers are strings in JSON (e.g., `"123"` not `123`)
-- Ensure booleans are not strings (e.g., `true` not `"true"`)
+**Solution - Check JSON Format:**
 
-**Example correct format:**
+| Type | Correct | Wrong |
+|------|---------|-------|
+| Numbers | `"123"` | `123` |
+| Booleans | `true` / `false` | `"true"` / `"false"` |
+| Addresses | `"0x742d..."` | `0x742d...` |
+| Ranges | `[{"start":"1","end":"100"}]` | `[{start:1,end:100}]` |
+
+**Correct Example:**
 ```json
 {
   "storeId": "123",
@@ -7201,25 +7748,309 @@ failed to unmarshal JSON for method X: precompile error [code=...]
 
 ---
 
-## Common Error Scenarios
+### 4. Collection Not Found
 
-- **Invalid Input**: Check that all addresses are non-zero, ranges are valid (start <= end), and amounts are positive
-- **Collection Not Found**: Verify the collection ID exists
-- **Insufficient Balance**: Ensure the caller has sufficient balance for transfers
-- **Unauthorized**: Check that approvals and permissions are configured correctly
-- **Collection Archived**: Archived collections are read-only
+**Error:**
+```
+precompile error [code=5]: collection not found: collection 12345 does not exist
+```
+
+**Cause:** The collection ID doesn't exist.
+
+**Solution:**
+```solidity
+// Check collection exists before operations
+try precompile.getCollection(TokenizationJSONHelpers.getCollectionJSON(collectionId)) {
+    // Collection exists, proceed
+} catch {
+    revert("Collection does not exist");
+}
+```
+
+---
+
+### 5. Insufficient Balance
+
+**Error:**
+```
+precompile error [code=6]: insufficient balance: user has 50 but tried to transfer 100
+```
+
+**Cause:** Attempting to transfer more tokens than the user owns.
+
+**Solution:**
+```solidity
+// Check balance before transfer
+uint256 balance = precompile.getBalanceAmount(
+    TokenizationJSONHelpers.getBalanceAmountJSON(
+        collectionId,
+        msg.sender,
+        tokenId,
+        block.timestamp
+    )
+);
+require(balance >= amount, "Insufficient balance");
+```
+
+---
+
+### 6. Not Authorized / Permission Denied
+
+**Error:**
+```
+precompile error [code=7]: not authorized: caller is not the collection manager
+```
+
+**Causes:**
+- Caller is not the collection manager
+- Missing approval for transfer
+- Permission locked in collection permissions
+- Time window expired for operation
+
+**Debugging Steps:**
+1. Check who the collection manager is
+2. Verify approvals are set correctly
+3. Check if permissions are locked (permanentlyForbiddenTimes)
+4. Verify current time is within allowed window
+
+**Solution:**
+```solidity
+// Get collection to check manager
+bytes memory collectionBytes = precompile.getCollection(
+    TokenizationJSONHelpers.getCollectionJSON(collectionId)
+);
+// Decode and check manager field
+
+// For transfers, ensure approvals are set
+// Check outgoing approval from sender
+// Check incoming approval for recipient
+```
+
+---
+
+### 7. Collection Archived
+
+**Error:**
+```
+precompile error [code=8]: collection archived: cannot modify archived collection
+```
+
+**Cause:** Attempting to modify an archived collection.
+
+**Solution:**
+```solidity
+// Check if collection is archived before operations
+// If you're the manager and need to modify, unarchive first
+string memory json = TokenizationJSONHelpers.setIsArchivedJSON(
+    collectionId,
+    false,  // unarchive
+    "[]"    // canArchiveCollection permission
+);
+precompile.updateCollection(json);
+```
+
+---
+
+### 8. Invalid Range (start > end)
+
+**Error:**
+```
+precompile error [code=4]: invalid range: start 100 is greater than end 50
+```
+
+**Cause:** Range has start value greater than end value.
+
+**Solution:**
+```solidity
+// Validate ranges before building JSON
+require(startTime <= endTime, "Invalid time range");
+require(startTokenId <= endTokenId, "Invalid token ID range");
+
+string memory rangeJson = TokenizationJSONHelpers.uintRangeToJson(startTime, endTime);
+```
+
+---
+
+### 9. EVM Query Challenge Failed
+
+**Error:**
+```
+precompile error [code=9]: EVM query challenge failed: contract returned 0, expected >= 1
+```
+
+**Cause:** An EVM query challenge in the collection invariants failed.
+
+**Debugging:**
+1. Check what contract is being called
+2. Verify the calldata is correct
+3. Check the expected result and comparison operator
+4. Ensure the target contract is deployed and working
+
+**Solution:**
+```solidity
+// Test the EVM query manually before using in invariants
+(bool success, bytes memory result) = targetContract.staticcall(calldata);
+require(success, "EVM call failed");
+// Decode result and compare with expected
+```
+
+---
+
+### 10. Dynamic Store Not Found
+
+**Error:**
+```
+precompile error [code=10]: dynamic store not found: store 999 does not exist
+```
+
+**Cause:** The dynamic store ID doesn't exist.
+
+**Solution:**
+```solidity
+// Verify store exists
+try precompile.getDynamicStore(TokenizationJSONHelpers.getDynamicStoreJSON(storeId)) {
+    // Store exists
+} catch {
+    // Create the store first
+    uint256 newStoreId = precompile.createDynamicStore(
+        TokenizationJSONHelpers.createDynamicStoreJSON(false, "", "")
+    );
+}
+```
+
+---
+
+### 11. Approval Not Found
+
+**Error:**
+```
+precompile error [code=11]: approval not found: approval "my-approval" does not exist
+```
+
+**Cause:** Trying to delete or reference a non-existent approval.
+
+**Solution:**
+```solidity
+// Check if approval exists before deleting
+// Approvals are identified by approvalId string
+```
+
+---
+
+### 12. Invalid Approval Criteria
+
+**Error:**
+```
+precompile error [code=12]: invalid approval criteria: merkle root is required for merkle challenge
+```
+
+**Cause:** Approval criteria configuration is incomplete or invalid.
+
+**Common Issues:**
+- Merkle challenge without merkle root
+- Vote criteria without proposal ID
+- Amount tracker without proper limits
+
+---
+
+## Error Codes Reference
+
+| Code | Name | Description |
+|------|------|-------------|
+| 1 | `InvalidInput` | Invalid input parameters |
+| 2 | `JSONUnmarshal` | Failed to parse JSON |
+| 3 | `InternalError` | Internal precompile error |
+| 4 | `InvalidRange` | Range validation failed |
+| 5 | `NotFound` | Resource not found (collection, store, etc.) |
+| 6 | `InsufficientBalance` | Not enough tokens |
+| 7 | `NotAuthorized` | Permission denied |
+| 8 | `Archived` | Collection is archived |
+| 9 | `EVMQueryFailed` | EVM query challenge failed |
+| 10 | `StoreNotFound` | Dynamic store not found |
+| 11 | `ApprovalNotFound` | Approval not found |
+| 12 | `InvalidCriteria` | Invalid approval criteria |
+
+---
+
+## Debugging Tips
+
+### 1. Log JSON Before Sending
+
+```solidity
+// Emit event with JSON for debugging (remove in production)
+event DebugJSON(string json);
+
+function debugTransfer(...) external {
+    string memory json = TokenizationJSONHelpers.transferTokensJSON(...);
+    emit DebugJSON(json);
+    precompile.transferTokens(json);
+}
+```
+
+### 2. Validate JSON Externally
+
+Copy the JSON from logs and validate it:
+- Use online JSON validators
+- Check against proto message definition
+- Ensure field names match exactly
+
+### 3. Test Individual Components
+
+```solidity
+// Test range construction
+string memory rangeJson = TokenizationJSONHelpers.uintRangeToJson(1, 100);
+// Expected: [{"start":"1","end":"100"}]
+
+// Test address conversion
+string memory addrStr = TokenizationJSONHelpers.addressToString(msg.sender);
+// Expected: 0x742d35cc6634c0532925a3b844bc9e7595f0beb
+```
+
+### 4. Check Precompile is Responding
+
+```solidity
+// Simple connectivity test
+try precompile.params("{}") {
+    // Precompile is responding
+} catch {
+    revert("Precompile not available");
+}
+```
+
+### 5. Use Address Conversion for Debugging
+
+```solidity
+// Convert EVM address to bech32 for checking on Cosmos side
+string memory bech32 = precompile.convertEvmAddressToBech32(msg.sender);
+// Returns: bb1...
+```
+
+---
 
 ## JSON Format Quick Reference
 
-| Type | Format | Example |
-|------|--------|---------|
-| Numbers | String | `"123"` |
-| Booleans | Raw | `true` or `false` |
-| Addresses | Hex string | `"0x742d35..."` |
-| Ranges | Object array | `[{"start":"1","end":"100"}]` |
-| Max uint64 | String | `"18446744073709551615"` |
+| Field Type | JSON Format | Example |
+|------------|-------------|---------|
+| `uint256` | String | `"123456789"` |
+| `uint64` | String | `"18446744073709551615"` |
+| `bool` | Raw boolean | `true` or `false` |
+| `address` | Hex string | `"0x742d35Cc..."` |
+| `string` | Quoted string | `"hello world"` |
+| `UintRange[]` | Object array | `[{"start":"1","end":"100"}]` |
+| `string[]` | String array | `["a","b","c"]` |
+| Empty object | `{}` | `{}` |
+| Empty array | `[]` | `[]` |
 
-For complete error code definitions and detailed error handling, see the [precompile implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile).
+---
+
+## Getting Help
+
+If you encounter an error not covered here:
+
+1. Check the [API Reference](API.md) for correct method signatures
+2. Review the [Security Best Practices](security.md)
+3. Look at [Example Contracts](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/contracts/examples)
+4. Check the [precompile implementation](https://github.com/BitBadges/bitbadgeschain/tree/evm-poc/x/tokenization/precompile) for error definitions
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/gas.md
@@ -7237,12 +8068,27 @@ For detailed gas calculations and optimization strategies, see the implementatio
 - **Query operations** are generally cheaper than transactions
 - **Batch operations** are more gas-efficient than multiple individual calls
 
+## Utility Method Gas Costs
+
+Utility helper methods have low fixed gas costs:
+
+| Method | Gas Cost | Description |
+|--------|----------|-------------|
+| `convertEvmAddressToBech32` | 100 | Convert EVM to bech32 address |
+| `convertBech32ToEvmAddress` | 100 | Convert bech32 to EVM address |
+| `rangeContains` | 200 | Check if value is in range |
+| `rangesOverlap` | 200 | Check if two ranges overlap |
+| `searchInRanges` | 500 | Search value in JSON range array |
+| `getBalanceForIdAndTime` | 500 | Get balance from JSON balances |
+| `getReservedListId` | 300 | Get reserved list ID for address |
+
 ## Optimization Tips
 
 - Minimize the number of recipients when transferring
 - Consolidate token ID and ownership time ranges when possible
 - Use direct return methods (`getBalanceAmount`, `getTotalSupply`) instead of protobuf-encoded methods when you only need amounts
 - Batch multiple operations in a single transaction when possible
+- Use utility helper methods (`rangeContains`, `searchInRanges`) for on-chain validation instead of implementing range logic in Solidity
 
 
 ## File: ./evm/evm-precompiles/tokenization-precompile/security.md
@@ -7759,14 +8605,68 @@ There are multiple ways you can create, generate, and sign transactions.&#x20;
 
 We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
 
-## Signing Methods
+## Two Approaches
 
-BitBadges Chain supports two signing methods:
+The SDK offers two approaches for signing transactions:
 
-- **[Signing - Cosmos](./signing-cosmos.md)**: Sign transactions using Cosmos wallets (Keplr, Leap, etc.)
-- **[Signing - Ethereum](./signing-ethereum.md)**: Sign transactions using Ethereum wallets (MetaMask, Privy, etc.) via EVM precompiles
+### 1. BitBadgesSigningClient (Streamlined)
 
-The SDK automatically handles message conversion to EVM precompile calls when an EVM address is provided in the transaction context.
+The **[BitBadgesSigningClient](./signing-client.md)** provides a simple, all-in-one solution that handles everything automatically:
+- Account info fetching and caching
+- Gas estimation via simulation
+- Signing with any wallet (Cosmos or EVM)
+- Broadcasting to the network
+- Automatic sequence retry on mismatch
+
+```typescript
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+
+const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
+const client = new BitBadgesSigningClient({ adapter });
+
+const result = await client.signAndBroadcast([msg]);
+console.log('TX Hash:', result.txHash);
+```
+
+**Best for:** Quick integration, simple use cases, when you don't need fine-grained control.
+
+### 2. Manual Signing (Fine-Grained Control)
+
+For more control over the transaction lifecycle, use the manual signing approach:
+- **[Signing - Cosmos](./signing-cosmos.md)**: Sign with Keplr, Leap, Cosmostation, etc.
+- **[Signing - Ethereum](./signing-ethereum.md)**: Sign with MetaMask, Privy, etc. via EVM precompiles
+
+This approach gives you full control over:
+- Transaction context construction
+- Fee and gas configuration
+- Simulation and gas estimation
+- Signing flow customization
+- Broadcasting timing and retry logic
+
+**Best for:** Custom integrations, complex transaction flows, when you need full control.
+
+## Comparison
+
+| Feature | BitBadgesSigningClient | Manual Signing |
+|---------|----------------------|----------------|
+| Setup | Minimal | More code required |
+| Control | Abstracted | Full control |
+| Account Info | Auto-fetched & cached | Manual fetch |
+| Gas Estimation | Built-in | Manual simulation |
+| Sequence Retry | Automatic | Manual handling |
+| Custom Flows | Limited | Fully customizable |
+
+## Wallet Support
+
+Both approaches support:
+
+| Wallet Type | Examples |
+|-------------|----------|
+| Cosmos | Keplr, Leap, Cosmostation |
+| EVM | MetaMask, Privy, any EIP-1193 provider |
+| Server-side | Mnemonic, Private Key |
+
+The SDK automatically handles message conversion to EVM precompile calls when using an EVM wallet.
 
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/broadcast-to-a-node.md
@@ -8352,7 +9252,11 @@ try {
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-cosmos.md
 
-# Signing - Cosmos
+# Signing - Cosmos (Manual)
+
+> **Looking for a simpler approach?** Check out [BitBadgesSigningClient](./signing-client.md) for a streamlined, all-in-one signing solution that handles account info, gas estimation, signing, and broadcasting automatically.
+
+This page covers manual Cosmos signing, which gives you fine-grained control over the transaction lifecycle.
 
 #### Signing with Keplr
 
@@ -8403,7 +9307,11 @@ const signTxn = async (
 
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-ethereum.md
 
-# Signing - Ethereum
+# Signing - Ethereum (Manual)
+
+> **Looking for a simpler approach?** Check out [BitBadgesSigningClient](./signing-client.md) for a streamlined, all-in-one signing solution that handles account info, gas estimation, signing, and broadcasting automatically.
+
+This page covers manual EVM signing, which gives you fine-grained control over the transaction lifecycle.
 
 BitBadges Chain supports Ethereum-compatible transactions through EVM precompiles. The SDK automatically converts Cosmos SDK messages to EVM precompile function calls when an EVM address is provided in the transaction context.
 
@@ -16630,7 +17538,7 @@ BADGE is the native gas token for the BitBadges blockchain. Please read our poli
 BADGE has 3 primary purposes:
 
 1. Gas / Transaction Fees
-2. Proof of Stake/ Governance - Validators bonding BADGE for the security of the network via staking.
+2. Proof of Stake/Authority - Validators bonding BADGE for the security of the network via staking.
 3. In-Site Currency - Although note that we will prioritize others like USDC and other more established ones for in-site use.
 4. 0.1% Taker Fees on all transactions go to community pool
 
@@ -16638,26 +17546,21 @@ BADGE has 3 primary purposes:
 
 For current distributions, supply, and more, we refer you to our explorer: [https://explorer.bitbadges.io](https://explorer.bitbadges.io/).
 
-Relevant addresses for undistributed BADGE are:
-
-* bb1kx9532ujful8vgg2dht6k544ax4k9qzsp0sany
-* bb1akp5qudlhyp08m4k6826hn8mhqwmely6xvr7t2
-
-BADGE is listed on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
+BADGE is on Osmosis at [https://app.osmosis.zone/assets/BADGE](https://app.osmosis.zone/assets/BADGE) and compatible with other IBC-enabled services.
 
 Excluding block rewards, the initial circulating supply of BADGE was 100M.&#x20;
 
-### **Alternative Chain Deployments**
-
-BitBadges plans to pursue deploying our standard on other chains. BADGE also does not apply here. BADGE is the gas / governance token for the BitBadges blockchain only. Although when exploring agreements for deploying on other chains, we will strongly consider BADGE holders in any licensing agreement.
-
 ### **Security Model**
 
-We do recognize that in the short term, BADGE is not worth enough to adequately secure a proof-of-stake network. That is why we adopt a short-term more centralized approach and will look to decentralize over time. Couple notes on our approach to this:
+BitBadges operates under a hybrid model combining existing proof-of-stake validator rewards with a proof-of-authority delegation model.
 
-* In the short term, BitBadges still controls a large amount of the supply (>50%+) and operates on a more centralized governance at the moment, simply due to the fact that we have almost enough voting power to make any proposal pass.
+**1. Existing Validator Rewards Program (~20% of supply)**
 
-In other words, treat BitBadges as much more of a proof of authority chain at the moment.
+An incentivized rewards program runs until 8/12/2026 (one year from the initial start date of 8/12/2025). Validators earn BADGE based on uptime, measured by sampling block signatures. Mission Decentralization candidates (the first \~40 validators) receive a base allocation of 200,000 BADGE scaled by uptime % (with a 50,000 BADGE floor). All other eligible validators (registered by block 8,998,000) receive a base of 100,000 BADGE scaled by uptime %. Upon reaching the end of this program, earned BADGE will be awarded and current delegations will shift to the proof of authority model. Note that current delegations are not reflective of awards — most validators are delegated \~200K+ which will go away at this time.
+
+**2. Proof of Authority Model (~60% of supply)**
+
+The proof of authority model is effective immediately and runs in parallel with the rewards program until 8/12/2026, at which point it becomes the sole delegation model. The remaining BADGE allocations — including the 50M community pool, other team delegations, and leftover awards — will be allocated to well-known, trusted validators via governance proposals, following a know-your-validator setup with preference given to institutions and well-known brands. These delegated tokens can only be delegated, never sold, cutting the effective circulating supply by >60M BADGE.
 
 
 ## File: ./overview/claim-builder/README.md
