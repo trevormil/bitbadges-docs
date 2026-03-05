@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Mar  5 15:19:01 UTC 2026
+Generated on Thu Mar  5 21:42:44 UTC 2026
 
 
 
@@ -1951,6 +1951,8 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
+* [🔒 BB-402: Token-Gated API Access](token-standard/bb-402-gated-access.md)
+  * [Full Specification](token-standard/bb-402-spec.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
@@ -2037,6 +2039,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
   * [Bot Examples](for-developers/ai-agents/bot-examples.md)
   * [Machine Discovery](for-developers/ai-agents/capabilities-json.md)
+  * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
 * [🎁 BitBadges Claims](overview/claim-builder/README.md)
   * [Overview](for-developers/claim-builder/overview.md)
   * [Concepts](for-developers/claim-builder/concepts/README.md)
@@ -8215,6 +8218,20 @@ Additional endpoints (testnet):
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [Machine Discovery](capabilities-json.md) | Machine-readable capability discovery |
+| [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
+
+## BB-402: Token-Gated API Access
+
+BB-402 lets any server gate API access behind on-chain token ownership using the standard HTTP 402 status code. Unlike x402 (Coinbase) which only supports per-request USDC payments, BB-402 uses token ownership as a universal primitive -- a soulbound token costing X USDC is a verifiable on-chain receipt (equivalent to x402), but the same protocol also handles subscriptions, tiered access, reputation, blocklists, and compound conditions with `$and`/`$or` logic.
+
+```
+Agent --> Server:  GET /api/data
+Server --> Agent:  402 { ownershipRequirements, message }
+Agent --> Server:  GET /api/data + X-BB-Proof: { address, chain, message, signature }
+Server --> Agent:  200 OK (or 403)
+```
+
+See the full [BB-402 guide and quickstart](../../token-standard/bb-402-gated-access.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402-spec.md).
 
 ## Further Reading
 
@@ -8745,6 +8762,340 @@ The MCP server also exposes documentation as resources:
 | `bitbadges://docs/api` | API reference |
 
 Access these via your MCP client's resource reading capabilities.
+
+
+## File: ./for-developers/ai-agents/openclaw-vault-tutorial.md
+
+# E2E Tutorial: AI Agent with a USDC Vault
+
+This tutorial walks through setting up an AI agent (e.g., OpenClaw or any framework) with its own USDC-backed smart token vault on BitBadges. The agent gets a wallet, a vault with configurable rules, and the ability to withdraw funds programmatically.
+
+## Architecture Overview
+
+```
+Your AI Agent (OpenClaw, etc.)
+    │
+    ├── Wallet (Cosmos or EVM key pair)
+    │
+    └── BitBadges Smart Token Vault
+         ├── 1:1 USDC backing
+         ├── Spending rules (limits, whitelists, etc.)
+         └── Withdraw via MsgTransferTokens
+```
+
+The agent holds vault tokens. To spend, it withdraws (unbacking) tokens back to USDC by sending a `MsgTransferTokens` to the vault's backing address. The vault rules (daily limits, recipient whitelists, 2FA thresholds, etc.) are enforced at the protocol level.
+
+## Step 1: Create the Vault (Website)
+
+Go to the BitBadges website **Create** tab and select **Smart Token**.
+
+1. Configure a **1:1 USDC-backed** smart token
+2. Add your custom rules (spending limits, recipient whitelists, time gates, etc.)
+3. Optionally check **AI Agent Vault** to enable the AI Prompt tab on the token view page
+4. Submit the transaction to create the collection
+
+After creation, note your **Collection ID** - you'll need it for the agent.
+
+## Step 2: Set Up the Agent Wallet
+
+Your AI agent needs a wallet to sign transactions. You can use either a Cosmos (mnemonic) or EVM (private key) approach.
+
+### Option A: Cosmos Wallet (Recommended for Server-Side)
+
+Generate a mnemonic and derive a BitBadges address:
+
+```typescript
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+
+// Store this mnemonic securely (env var, secret manager, etc.)
+const adapter = await GenericCosmosAdapter.fromMnemonic(
+  process.env.AGENT_MNEMONIC!, // 12 or 24 word mnemonic
+  'bitbadges-1' // mainnet (or 'bitbadges-2' for testnet)
+);
+
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'mainnet' // or 'testnet'
+});
+
+console.log('Agent address:', client.address); // bb1...
+```
+
+### Option B: Cosmos Wallet from Private Key
+
+```typescript
+const adapter = await GenericCosmosAdapter.fromPrivateKey(
+  process.env.AGENT_PRIVATE_KEY!, // hex private key
+  'bitbadges-1'
+);
+
+const client = new BitBadgesSigningClient({ adapter });
+```
+
+### Option C: EVM Wallet
+
+If your agent framework already manages an EVM key:
+
+```typescript
+import { BitBadgesSigningClient, GenericEvmAdapter } from 'bitbadgesjs-sdk';
+import { Wallet } from 'ethers';
+
+const wallet = new Wallet(process.env.AGENT_EVM_PRIVATE_KEY!);
+const adapter = await GenericEvmAdapter.fromSigner(wallet, {
+  expectedChainId: 50024 // BitBadges mainnet EVM chain ID (50025 for testnet)
+});
+
+const client = new BitBadgesSigningClient({
+  adapter,
+  network: 'mainnet'
+});
+
+console.log('Agent address:', client.address);
+```
+
+### Fund the Wallet
+
+The agent address needs a small amount of `$BADGE` for gas fees. Transfer some from your main wallet, or use the [testnet faucet](testnet-faucet.md) if testing:
+
+```typescript
+await fetch('https://api.bitbadges.io/testnet/api/v0/faucet', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ address: client.address })
+});
+```
+
+### Deposit USDC into the Vault
+
+Transfer USDC to the vault's backing address, then mint vault tokens to the agent's address. This is the deposit (backing) operation - see the AI Prompt tab on your token's page for the exact transaction format with your vault's specific approval IDs and versions.
+
+## Step 3: Understand Vault Rules
+
+Your vault's transferability rules determine what the agent can and can't do. These are enforced at the protocol level - the agent cannot bypass them regardless of what code it runs.
+
+### Reading Rules Programmatically
+
+```typescript
+import { BitBadgesAPI } from 'bitbadgesjs-sdk';
+
+const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
+
+const collectionRes = await api.getCollection({ collectionId: 'YOUR_COLLECTION_ID' });
+const collection = collectionRes.collection;
+
+// The collectionApprovals array defines all transfer rules
+const approvals = collection.collectionApprovals;
+
+for (const approval of approvals) {
+  console.log(`Approval: ${approval.approvalId}`);
+  console.log(`  From: ${approval.fromListId}`);
+  console.log(`  To: ${approval.toListId}`);
+  console.log(`  Criteria:`, JSON.stringify(approval.approvalCriteria, null, 2));
+}
+```
+
+### Common Rule Types
+
+| Rule | What It Does | Protocol Enforcement |
+|------|-------------|---------------------|
+| Daily spending limit | Caps total amount per day | `approvalAmounts` with `resetTimeIntervals` |
+| Recipient whitelist | Only approved addresses | `toListId` pointing to an address list |
+| Transaction rate limit | Max N transfers per period | `maxNumTransfers` with `resetTimeIntervals` |
+| 2FA for large amounts | Human approval above threshold | ETH signature challenges or external checks |
+| Emergency freeze | Halt all activity | Locked `canUpdateCollectionApprovals` permission |
+
+### Using the AI Prompt Tab
+
+If you checked "AI Agent Vault" when creating your token, the token view page on BitBadges has an **AI Prompt** tab. This generates a ready-to-use prompt containing:
+
+- Collection ID and token name
+- Backing address
+- Denomination (USDC)
+- Exact approval IDs and versions for deposit/withdraw
+- Step-by-step deposit and withdraw instructions
+
+Copy this prompt and provide it to your AI agent as part of its system instructions or context.
+
+## Step 4: Withdraw from the Vault (Spending)
+
+Withdrawing converts vault tokens back to USDC. The agent sends its vault tokens **to** the backing address, and the protocol releases equivalent USDC to the agent's account.
+
+### Building the Withdraw Transaction
+
+```typescript
+import { MsgTransferTokens } from 'bitbadgesjs-sdk';
+
+const COLLECTION_ID = 'YOUR_COLLECTION_ID';
+const BACKING_ADDRESS = 'bb1...'; // The vault's backing address (from AI Prompt tab)
+const WITHDRAW_APPROVAL_ID = 'smart-account-unbacking'; // Check your vault's approval IDs
+const WITHDRAW_VERSION = '0'; // Check your vault's approval versions
+
+// Withdraw 10 USDC worth of vault tokens
+// Note: amounts are in base units. For USDC (6 decimals), 10 USDC = 10000000 base units
+const withdrawMsg = MsgTransferTokens.create({
+  creator: client.address,
+  collectionId: COLLECTION_ID,
+  transfers: [{
+    from: client.address,
+    toAddresses: [BACKING_ADDRESS],
+    balances: [{
+      amount: 10000000n, // 10 USDC in base units
+      tokenIds: [{ start: 1n, end: 1n }],
+      ownershipTimes: [{ start: 1n, end: 18446744073709551615n }]
+    }],
+    prioritizedApprovals: [{
+      approvalId: WITHDRAW_APPROVAL_ID,
+      approvalLevel: 'collection',
+      approverAddress: '',
+      version: WITHDRAW_VERSION
+    }],
+    onlyCheckPrioritizedCollectionApprovals: true,
+    merkleProofs: [],
+    ethSignatureProofs: [],
+    memo: ''
+  }]
+});
+```
+
+### Signing and Broadcasting
+
+```typescript
+const result = await client.signAndBroadcast([withdrawMsg]);
+
+if (result.success) {
+  console.log('Withdrawal successful! TX:', result.txHash);
+  // USDC is now in the agent's account
+} else {
+  console.error('Withdrawal failed:', result.error);
+  // Common failures:
+  // - Exceeds daily spending limit
+  // - Recipient not on whitelist
+  // - Insufficient vault balance
+  // - Rate limit exceeded
+}
+```
+
+### Depositing Back (Backing)
+
+To deposit USDC back into the vault, the direction is reversed - transfer **from** the backing address **to** your address:
+
+```typescript
+const DEPOSIT_APPROVAL_ID = 'smart-account-backing'; // Check your vault's approval IDs
+const DEPOSIT_VERSION = '0';
+
+const depositMsg = MsgTransferTokens.create({
+  creator: client.address,
+  collectionId: COLLECTION_ID,
+  transfers: [{
+    from: BACKING_ADDRESS,
+    toAddresses: [client.address],
+    balances: [{
+      amount: 5000000n, // 5 USDC in base units
+      tokenIds: [{ start: 1n, end: 1n }],
+      ownershipTimes: [{ start: 1n, end: 18446744073709551615n }]
+    }],
+    prioritizedApprovals: [{
+      approvalId: DEPOSIT_APPROVAL_ID,
+      approvalLevel: 'collection',
+      approverAddress: '',
+      version: DEPOSIT_VERSION
+    }],
+    onlyCheckPrioritizedCollectionApprovals: true,
+    merkleProofs: [],
+    ethSignatureProofs: [],
+    memo: ''
+  }]
+});
+
+const result = await client.signAndBroadcast([depositMsg]);
+```
+
+## Step 5: Integrate with Your Agent Framework
+
+Wire the wallet and vault operations into your AI agent's tool set. The specifics depend on your framework (OpenClaw, LangChain, custom, etc.).
+
+### Example: Expose as Agent Tools
+
+```typescript
+// These are the tools your agent needs
+const agentTools = {
+  checkBalance: async () => {
+    const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
+    const res = await api.getBalance({
+      collectionId: COLLECTION_ID,
+      address: client.address
+    });
+    return res.balance;
+  },
+
+  withdraw: async (amountBaseUnits: bigint) => {
+    const msg = MsgTransferTokens.create({
+      creator: client.address,
+      collectionId: COLLECTION_ID,
+      transfers: [{
+        from: client.address,
+        toAddresses: [BACKING_ADDRESS],
+        balances: [{
+          amount: amountBaseUnits,
+          tokenIds: [{ start: 1n, end: 1n }],
+          ownershipTimes: [{ start: 1n, end: 18446744073709551615n }]
+        }],
+        prioritizedApprovals: [{
+          approvalId: WITHDRAW_APPROVAL_ID,
+          approvalLevel: 'collection',
+          approverAddress: '',
+          version: WITHDRAW_VERSION
+        }],
+        onlyCheckPrioritizedCollectionApprovals: true,
+        merkleProofs: [],
+        ethSignatureProofs: [],
+        memo: ''
+      }]
+    });
+    return client.signAndBroadcast([msg]);
+  },
+
+  getVaultRules: async () => {
+    const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io' });
+    const res = await api.getCollection({ collectionId: COLLECTION_ID });
+    return res.collection.collectionApprovals;
+  }
+};
+```
+
+### Providing Context to the Agent
+
+Give your agent the prompt from the **AI Prompt** tab (Step 3) as part of its system context. This tells the agent what vault it has access to, what the rules are, and how to construct transactions.
+
+## Key Concepts Summary
+
+| Concept | Details |
+|---------|---------|
+| **Vault tokens** | Smart tokens backed 1:1 by USDC. Agent holds these. |
+| **Backing address** | Protocol-controlled escrow. Holds the actual USDC. |
+| **Withdraw (unback)** | Send vault tokens TO backing address -> receive USDC |
+| **Deposit (back)** | Transfer FROM backing address to your address -> receive vault tokens |
+| **Rules** | Encoded in `collectionApprovals`. Protocol-enforced, not bypassable. |
+| **Gas** | Agent needs `$BADGE` for tx fees (separate from USDC vault balance) |
+
+## Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| Insufficient balance | Not enough vault tokens | Check balance, deposit more USDC |
+| No valid approval | Wrong approval ID/version | Check AI Prompt tab for correct values |
+| Amount exceeds limit | Hit daily spending cap | Wait for reset period or reduce amount |
+| Sequence mismatch | Nonce out of sync | Client retries automatically (up to 3x) |
+| Insufficient gas | Not enough $BADGE | Fund the agent address with $BADGE |
+
+## Further Reading
+
+- [Signing Client Reference](../bitbadges-blockchain/create-and-broadcast-txs/signing-client.md) - Full signing client docs
+- [MsgTransferTokens](../../x-tokenization/messages/msg-transfer-tokens.md) - Transfer message details
+- [IBC Backed Paths](../../x-tokenization/concepts/ibc-backed-paths.md) - How backing works
+- [Bot Examples](bot-examples.md) - More agent patterns
+- [MCP Builder Tools](mcp-builder-tools.md) - If your agent uses MCP (Claude, etc.)
+- [Testnet Faucet](testnet-faucet.md) - Get testnet tokens for testing
 
 
 ## File: ./for-developers/ai-agents/testnet-faucet.md
@@ -18959,6 +19310,519 @@ Each token collection can have a manager that can execute administrative actions
 #### Smart Contract Extendibility
 
 While our approach is no-code by default, we do support EVM for any custom applications or advanced logic. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
+
+
+## File: ./token-standard/bb-402-gated-access.md
+
+# BB-402: Token-Gated API Access
+
+BB-402 is an HTTP protocol for gating API access behind on-chain token ownership. Servers return a standard `402 Payment Required` response describing what tokens the caller must own. Agents prove identity by signing a server-provided message, and the server verifies ownership before serving the response.
+
+## Why BB-402?
+
+x402 (Coinbase) pioneered HTTP 402 for AI agent payments, but it only supports one thing: "transfer USDC per request." BB-402 replaces that with a general-purpose ownership check -- and since token ownership can represent anything, it covers the full spectrum:
+
+**In its simplest form, BB-402 replicates x402 exactly.** A soulbound token that costs X USDC to mint is a verifiable on-chain receipt -- the token IS the proof of payment, persists on-chain, and can be reused. But this is just one of many possible configurations. BB-402 is not limited to payments -- everything is just how you configure the collection:
+
+| Use Case | How It Works |
+|---|---|
+| **Pay per request** | Soulbound token costing X USDC = verifiable receipt |
+| **Subscriptions** | Time-bounded token ownership (BitBadges `ownershipTimes`) |
+| **Tiered access** | Different token ID ranges = different tiers |
+| **Reputation gates** | Non-transferable tokens from prior services |
+| **Prepaid credits** | Fungible token balance |
+| **2FA** | Short-lived token proving a recent action |
+| **Milestone access** | `$and`: own token A (phase 1) AND token B (payment) |
+| **Blocklists** | Must NOT own a ban token |
+| **Compound** | `$and`/`$or` nesting: "subscribed AND reputable AND not banned" |
+| **Cross-chain** | Tokens on BitBadges, Ethereum, Polygon, or Solana |
+
+Token rules (non-transferable, revocable, time-bounded, supply-capped, approval-gated) are all defined at the collection level and enforced automatically.
+
+## Protocol Flow
+
+```
+Agent  -->  Server:   GET /api/data
+Server -->  Agent:    402 Payment Required
+                      { version, ownershipRequirements, message }
+
+Agent signs the message, resubmits:
+
+Agent  -->  Server:   GET /api/data
+                      X-BB-Proof: { address, chain, message, signature }
+
+Server verifies signature + ownership:
+
+Server -->  Agent:    200 OK  (or 403 if ownership fails)
+```
+
+### 402 Response
+
+```json
+{
+  "version": "1",
+  "ownershipRequirements": {
+    "tokens": [{
+      "chain": "BitBadges",
+      "collectionId": "42",
+      "tokenIds": [{ "start": "1", "end": "1" }],
+      "mustOwnAmounts": { "start": "1", "end": "1" }
+    }]
+  },
+  "message": "nonce:8f3a2b1c"
+}
+```
+
+- **`ownershipRequirements`** -- An `AccessCondition` describing what tokens the caller must own (see spec below).
+- **`message`** -- An opaque string the agent must sign. Format is entirely server-defined (nonce, SIWE, JWT, etc.).
+
+### Proof Header (`X-BB-Proof`)
+
+Base64-encoded JSON with `address`, `chain` (signing scheme), `message` (echoed back), and `signature`.
+
+### Response Codes
+
+| Code | Meaning | Agent Action |
+|---|---|---|
+| `200` | Authenticated and authorized | Consume response |
+| `402` | No proof / invalid / expired | Sign message, retry |
+| `403` | Valid identity, insufficient ownership | Acquire tokens, retry |
+
+## Ownership Requirements (`AccessCondition`)
+
+A recursive type combining boolean logic with token checks:
+
+```
+AccessCondition = { "$and": AccessCondition[] }
+                | { "$or":  AccessCondition[] }
+                | TokenCheck
+```
+
+### `TokenCheck`
+
+```json
+{
+  "tokens": [
+    {
+      "chain": "BitBadges",
+      "collectionId": "100",
+      "tokenIds": [{ "start": "1", "end": "1" }],
+      "ownershipTimes": [{ "start": "1709654400000", "end": "1712332800000" }],
+      "mustOwnAmounts": { "start": "1", "end": "1" }
+    }
+  ],
+  "options": { "numMatchesForVerification": "3" }
+}
+```
+
+| Field | Description |
+|---|---|
+| `chain` | `"BitBadges"`, `"Ethereum"`, `"Polygon"`, `"Solana"` |
+| `collectionId` | Collection or contract identifier |
+| `tokenIds` | Token ID ranges `{ start, end }` (inclusive) |
+| `ownershipTimes` | **BitBadges-specific.** Time ranges (Unix ms) when ownership must hold. BitBadges tracks ownership across time natively. Not supported on other chains. Leave empty (= "owns right now") for cross-chain compatibility. |
+| `mustOwnAmounts` | Quantity range. `{1,1}` = exactly one. `{0,0}` = must NOT own. |
+| `numMatchesForVerification` | Only N token IDs need to match (e.g., "any 3 of 10") |
+
+### Example: Subscription + Not Banned
+
+```json
+{
+  "$and": [
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "100",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "ownershipTimes": [{ "start": "1709654400000", "end": "1712332800000" }],
+        "mustOwnAmounts": { "start": "1", "end": "1" }
+      }]
+    },
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "999",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "mustOwnAmounts": { "start": "0", "end": "0" }
+      }]
+    }
+  ]
+}
+```
+
+## Quickstart: Server (Express)
+
+```typescript
+import express from 'express';
+import crypto from 'crypto';
+import { BitBadgesApi, verifySignature, convertToBitBadgesAddress } from 'bitbadgesjs-sdk';
+
+const app = express();
+app.use(express.json());
+
+// Store active nonces (use Redis/DB in production)
+const activeNonces = new Map<string, number>();
+
+// The ownership requirements for this endpoint
+const REQUIREMENTS = {
+  tokens: [{
+    chain: 'BitBadges',
+    collectionId: '42',
+    tokenIds: [{ start: '1', end: '1' }],
+    ownershipTimes: [],
+    mustOwnAmounts: { start: '1', end: '1' }
+  }]
+};
+
+app.get('/api/data', async (req, res) => {
+  const proofHeader = req.headers['x-bb-proof'];
+
+  // No proof? Return 402 with requirements + message to sign
+  if (!proofHeader) {
+    const nonce = crypto.randomBytes(16).toString('hex');
+    activeNonces.set(nonce, Date.now());
+    return res.status(402).json({
+      version: '1',
+      ownershipRequirements: REQUIREMENTS,
+      message: nonce
+    });
+  }
+
+  try {
+    // Decode proof
+    const proof = JSON.parse(
+      Buffer.from(proofHeader as string, 'base64').toString()
+    );
+
+    // Validate nonce
+    const nonceTime = activeNonces.get(proof.message);
+    if (!nonceTime || Date.now() - nonceTime > 30_000) {
+      activeNonces.delete(proof.message);
+      const nonce = crypto.randomBytes(16).toString('hex');
+      activeNonces.set(nonce, Date.now());
+      return res.status(402).json({
+        version: '1',
+        ownershipRequirements: REQUIREMENTS,
+        message: nonce
+      });
+    }
+    activeNonces.delete(proof.message);
+
+    // Verify signature (chain-specific)
+    const isValid = await verifySignature(
+      proof.chain, proof.message, proof.signature, proof.address
+    );
+    if (!isValid) {
+      return res.status(402).json({ error: 'Invalid signature' });
+    }
+
+    // Check token ownership via BitBadges API
+    const bbAddress = convertToBitBadgesAddress(proof.address);
+    const balances = await BitBadgesApi.getBalance(
+      REQUIREMENTS.tokens[0].collectionId, bbAddress
+    );
+
+    // Verify the address owns the required tokens
+    const hasToken = balances.some(b =>
+      b.tokenIds.some(id => id >= 1n && id <= 1n) && b.amount >= 1n
+    );
+
+    if (!hasToken) {
+      return res.status(403).json({ error: 'Ownership requirements not met' });
+    }
+
+    // Success!
+    res.json({ data: 'Here is your gated content' });
+  } catch (err) {
+    return res.status(402).json({ error: 'Invalid proof' });
+  }
+});
+
+app.listen(3000);
+```
+
+## Quickstart: Agent (Client)
+
+```typescript
+import { ethers } from 'ethers';
+
+const AGENT_PRIVATE_KEY = process.env.AGENT_KEY!;
+const wallet = new ethers.Wallet(AGENT_PRIVATE_KEY);
+
+async function fetchWithBB402(url: string) {
+  // 1. Initial request
+  let res = await fetch(url);
+
+  // 2. Handle 402 -- sign the message and retry
+  if (res.status === 402) {
+    const { ownershipRequirements, message } = await res.json();
+    const signature = await wallet.signMessage(message);
+
+    const proof = Buffer.from(JSON.stringify({
+      address: wallet.address,
+      chain: 'Ethereum',
+      message,
+      signature
+    })).toString('base64');
+
+    res = await fetch(url, {
+      headers: { 'X-BB-Proof': proof }
+    });
+  }
+
+  // 3. Handle 403 -- need to acquire tokens
+  if (res.status === 403) {
+    console.log('Need to acquire required tokens. Check collection on-chain.');
+    return null;
+  }
+
+  return res.json();
+}
+
+// Usage
+const data = await fetchWithBB402('https://example.com/api/data');
+```
+
+## Security Notes
+
+- **HTTPS only** -- proof headers are replayable over plaintext HTTP.
+- **Replay protection** -- the server controls the `message` content. Use nonces, timestamps, or endpoint binding.
+- **Ownership can change** -- tokens may be transferred between verification and response. Use short windows; re-verify for critical operations.
+- **Rate limit 402 responses** -- the endpoint is unauthenticated. Use HMAC-signed timestamps for stateless nonce generation.
+
+## Full Specification
+
+See the complete [BB-402 Specification](bb-402-spec.md) for the full protocol details, security considerations, versioning, and x402 comparison.
+
+
+## File: ./token-standard/bb-402-spec.md
+
+# BB-402: BitBadges Gated Access Protocol
+
+**Version:** 1
+**Status:** Draft
+**Date:** 2026-03-05
+
+## Abstract
+
+BB-402 is an HTTP-based protocol for gating API access behind on-chain token ownership requirements. A server returns a `402 Payment Required` response containing an `AccessCondition` describing what the caller must own. The caller proves identity by signing a server-provided message, and the server verifies the signature, checks on-chain ownership, and serves the response if requirements are met.
+
+## Why Not x402?
+
+x402 (Coinbase, 2025) pioneered using HTTP 402 for AI agent payments. BB-402 builds on the same HTTP pattern but replaces x402's single-dimensional payment model with a general-purpose ownership verification system.
+
+### x402 Is One-Dimensional
+
+x402 is designed around a single operation: transfer a token payment to an address (primarily USDC on Base, though the spec allows other tokens and chains). Every request is a standalone payment with no memory, state, or conditions beyond "did the money arrive." Subscriptions, tiered access, reputation requirements, and complex multi-condition invoicing all require custom server logic built on top of the protocol.
+
+### BB-402 Is Multi-Dimensional
+
+BB-402 replaces "did they pay?" with "do they own the right tokens?" This is a strictly more powerful primitive because token ownership can represent anything -- including payment itself.
+
+**In its simplest form, BB-402 replicates x402 exactly.** A soulbound (non-transferable) token that costs X USDC to mint is a verifiable on-chain receipt. The agent pays to mint it, and ownership of that token proves they paid -- permanently, verifiably, and without the server needing to track payment state. The receipt can be checked on any future request without paying again, composed with other conditions, and verified by any third party. The token IS the proof of payment. But this is just one of many possible configurations -- BB-402 is not limited to payments:
+
+| x402 | BB-402 |
+|---|---|
+| Pay per request (USDC transfer) | **Pay per request**: Soulbound token costing X USDC = verifiable on-chain receipt |
+| -- | **Subscriptions**: Time-bounded token ownership (BitBadges). Check once, valid for the period. |
+| -- | **Tiered access**: Different token ID ranges = different service tiers. |
+| -- | **Reputation gates**: Non-transferable tokens from prior services. Cannot be faked. |
+| -- | **Prepaid credits**: Fungible token balance decremented over time. |
+| -- | **Short-lived 2FA**: Token valid for seconds. Proves a recent action. |
+| -- | **Milestone access**: Own token A (phase 1) AND token B (payment) to unlock phase 2. |
+| -- | **Blocklists**: Must NOT own a ban token (`mustOwnAmounts: {0, 0}`). |
+| -- | **Compound conditions**: `$and`/`$or` nesting. "Subscribed AND reputable AND not banned." |
+| -- | **Cross-chain**: Tokens on BitBadges, Ethereum, Polygon, or Solana in a single condition. |
+| Single payment type (ERC-20 transfer) | **Custom token rules**: Non-transferable, revocable, frozen, approval-gated, supply-capped, time-bounded. |
+| Fixed EIP-712 payment signature | **Server-defined auth**: Message format is opaque -- nonce, SIWE, JWT, anything. |
+
+### Custom Token Rules
+
+With x402, once USDC is transferred, it is gone -- no refunds, no revocation, no restrictions. BB-402 tokens inherit the rules of their underlying collection:
+
+- **Non-transferable**: Identity-bound access. Prevents secondary markets for credentials.
+- **Revocable**: Service provider can revoke tokens on-chain. Immediate enforcement on next request.
+- **Approval-gated transfers**: Controlled resale -- transfers require creator approval.
+- **Time-bounded ownership**: On-chain expiry. No stale state to manage.
+- **Supply caps**: Natural scarcity for premium tiers.
+
+**Tradeoff**: This flexibility means agents must understand the collection's rules. A non-transferable token cannot be resold; a revocable token means the issuer can pull access. The collection creator chooses the right tradeoffs, and agents can inspect the on-chain configuration before acquiring tokens.
+
+### Infrastructure Comparison
+
+Both protocols depend on infrastructure, but the trust models differ.
+
+x402 introduces a "facilitator" (e.g., Coinbase) that verifies payment signatures, checks funds, and handles on-chain settlement. The server trusts the facilitator to confirm payments before serving responses. Anyone can run a facilitator in theory; Coinbase operates the reference implementation.
+
+BB-402 has no settlement step -- it only performs read-only ownership checks. The server queries the BitBadges API/indexer (or another chain's indexer) for token balances. Servers that want to minimize trust can run their own node.
+
+| | x402 | BB-402 |
+|---|---|---|
+| **What's verified** | Payment validity + fund transfer | Token ownership (read-only) |
+| **Who verifies** | Facilitator service | Indexer/API or own node |
+| **Settlement** | Facilitator settles on-chain | None -- ownership is pre-existing state |
+| **Self-hostable** | Yes (run own facilitator) | Yes (run own node/indexer) |
+
+## Protocol Flow
+
+```
+1. Agent sends a normal HTTP request.
+
+   GET /api/data HTTP/1.1
+   Host: example.com
+
+2. Server returns 402 with ownership requirements and a message to sign.
+
+   HTTP/1.1 402 Payment Required
+   Content-Type: application/json
+
+   {
+     "version": "1",
+     "ownershipRequirements": { ... },
+     "message": "..."
+   }
+
+3. Agent signs the message, resubmits with proof header.
+
+   GET /api/data HTTP/1.1
+   Host: example.com
+   X-BB-Proof: <base64-encoded JSON proof>
+
+4. Server verifies signature, checks ownership, returns response.
+
+   HTTP/1.1 200 OK
+   (or 403 if ownership check fails)
+```
+
+### 402 Response Body
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `version` | `string` | Yes | Protocol version. Currently `"1"`. |
+| `ownershipRequirements` | `AccessCondition` | Yes | Token ownership the caller must satisfy. |
+| `message` | `string` | Yes | Opaque string the agent must sign. Server-defined format (nonce, SIWE, JWT, etc.). Server is responsible for generating, validating, and deciding validity duration. |
+
+### Proof Header (`X-BB-Proof`)
+
+Base64-encoded JSON:
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `address` | `string` | Yes | Address claiming to meet requirements. |
+| `chain` | `string` | Yes | Signing scheme: `"BitBadges"` (secp256k1), `"Ethereum"` (EIP-191/712), `"Solana"` (ed25519). |
+| `message` | `string` | Yes | Exact message from 402 response. |
+| `signature` | `string` | Yes | Cryptographic signature over `message` by `address`. |
+
+### Server Verification
+
+1. **Decode** proof header, parse JSON.
+2. **Validate message** -- confirm it was server-issued (nonce check, expiry, etc.).
+3. **Verify signature** using the `chain` signing scheme.
+4. **Resolve address** to canonical format for ownership lookup.
+5. **Check ownership** against `ownershipRequirements`.
+6. **Return**: `200` if all pass, `403` if signature valid but ownership fails, `402` (with fresh message) if proof is invalid/expired.
+
+The 402 vs 403 distinction matters for agents: 403 means "your identity is confirmed, go acquire tokens" while 402 means "start the auth flow over."
+
+## Ownership Requirements (`AccessCondition`)
+
+A recursive type: either a boolean combinator or a leaf `TokenCheck`.
+
+```
+AccessCondition = { "$and": AccessCondition[] }
+                | { "$or":  AccessCondition[] }
+                | TokenCheck
+```
+
+### `TokenCheck`
+
+```json
+{
+  "tokens": [<TokenRequirement>, ...],
+  "options": { "numMatchesForVerification": "3" }
+}
+```
+
+### `TokenRequirement`
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `chain` | `string` | Yes | `"BitBadges"`, `"Ethereum"`, `"Polygon"`, `"Solana"`. |
+| `collectionId` | `string` | Yes | Collection or contract identifier. |
+| `tokenIds` | `Range[]` | Yes | Token ID ranges. `{ "start": string, "end": string }` (inclusive). |
+| `ownershipTimes` | `Range[]` | No | Time ranges (Unix ms) during which ownership must hold. **BitBadges-specific primitive** -- BitBadges natively tracks ownership across time, so you can query "did this address own token X during March 2026?" For other chains (Ethereum, Polygon, Solana), this field is not supported and should be omitted. When omitted (or empty), defaults to "owns at time of request" which works universally across all chains. Most use cases should leave this empty. |
+| `mustOwnAmounts` | `Range` | Yes | Quantity range (inclusive). `{1, 1}` = exactly one. `{0, 0}` = must NOT own. |
+
+`options.numMatchesForVerification`: If set, only this many token IDs need to satisfy the requirement (e.g., "own any 3 of these 10").
+
+### Example: Compound Condition
+
+"Has an active subscription AND does not hold a ban token":
+
+```json
+{
+  "$and": [
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "100",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "ownershipTimes": [{ "start": "1709654400000", "end": "1712332800000" }],
+        "mustOwnAmounts": { "start": "1", "end": "1" }
+      }]
+    },
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "999",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "mustOwnAmounts": { "start": "0", "end": "0" }
+      }]
+    }
+  ]
+}
+```
+
+## Security Considerations
+
+### Replay Attacks
+
+A signed proof could be replayed if not properly scoped. The server controls the `message` content and SHOULD include sufficient entropy and/or expiry. Specific mitigations:
+
+- **Nonce tracking**: Stateful servers SHOULD track issued nonces and reject reuse.
+- **Timestamp embedding**: Servers MAY embed a timestamp and reject proofs older than a threshold (e.g., 30s). Enables stateless replay protection.
+- **Endpoint binding**: Servers MAY include method and path in the message to prevent cross-endpoint replay.
+
+Agents SHOULD treat signed proofs as sensitive credentials and never log or share them.
+
+### Ownership State Changes
+
+On-chain state is not static. Tokens can be transferred, time-bounded ownership can expire, and balances can decrease between verification and response delivery. This is inherent to any on-chain verification system, including x402.
+
+- Servers SHOULD keep the gap between verification and response delivery minimal.
+- For most API use cases, a brief window of stale state is acceptable.
+- For high-value operations, servers SHOULD re-verify at the point of execution.
+- Servers caching verification results should document the cache TTL. 30 seconds is reasonable for general API access; 0 seconds for sensitive operations.
+
+### Transport Security
+
+BB-402 MUST only be used over HTTPS. Proof headers intercepted over plaintext HTTP can be replayed by MITM attackers within the message's validity window.
+
+### 402 Endpoint Abuse
+
+The 402 response is unauthenticated. Servers SHOULD apply rate limiting to prevent nonce exhaustion attacks. Servers using self-contained messages (e.g., HMAC-signed timestamps) avoid nonce-tracking state entirely. Ownership requirements in 402 responses should be assumed public.
+
+## Versioning
+
+The `version` field enables protocol evolution. Agents SHOULD check the version and fail gracefully on unsupported versions. Agents MAY send `Accept-BB-Version: 1, 2` to negotiate. Servers and agents MUST ignore unrecognized fields for forward compatibility.
+
+Future versions may introduce: multi-address proofs, delegated proofs, session tokens, bidirectional authentication, and batch requests.
+
+## Implementation Notes
+
+**Servers**: Verify signatures per chain scheme, convert addresses to canonical format, evaluate the `AccessCondition` tree recursively (`$and` = all pass, `$or` = any passes, `TokenCheck` = verify balances). Consider middleware (Express, Hono, etc.) that wraps route handlers.
+
+**Agents**: Detect 402 responses, parse requirements, check if already satisfied (optional optimization), sign the message, resubmit with `X-BB-Proof`. On 403, acquire the required tokens and retry. Fulfillment logic (minting, purchasing) is agent-specific and outside protocol scope.
 
 
 ## File: ./token-standard/concepts/permissions/token-id-action-permissions.md
