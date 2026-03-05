@@ -1,5 +1,7 @@
 # Leveraging AI
 
+> **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, MCP tools, and bot examples.
+
 A great way to implement both criteria and utility is through AI models and agents. This will follow along with the plugins / webhooks that we already have in place!
 
 **Reward Side**

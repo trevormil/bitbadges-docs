@@ -56,6 +56,8 @@ await BitBadgesAPI.getCollection(...);
 
 ## Developing with AI
 
+Building an AI agent or bot? See the dedicated [AI Agents & Bots](ai-agents/) section for quickstart guides, MCP tool reference, bot examples, and testnet faucet docs.
+
 Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
 
 [https://github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai)

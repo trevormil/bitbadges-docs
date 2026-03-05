@@ -86,6 +86,8 @@ console.log('Transaction hash:', result.txHash);
 
 ### Server-Side Signing
 
+> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and MCP tool reference.
+
 ```typescript
 import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
 

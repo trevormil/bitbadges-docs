@@ -1,0 +1,181 @@
+# MCP Builder Tools Reference
+
+The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 23+ tools for AI assistants to build, sign, and broadcast BitBadges transactions. It works with Claude Desktop, Claude Code, and any MCP-compatible client.
+
+## Installation
+
+### Claude Desktop
+
+Add to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "bitbadges-builder": {
+      "command": "npx",
+      "args": ["-y", "bitbadges-builder-mcp"],
+      "env": {
+        "BITBADGES_API_KEY": "your-api-key",
+        "BITBADGES_MNEMONIC": "your mnemonic phrase"
+      }
+    }
+  }
+}
+```
+
+### Claude Code
+
+```bash
+claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+```
+
+Set environment variables for signing capabilities:
+- `BITBADGES_API_KEY` - Your BitBadges API key
+- `BITBADGES_MNEMONIC` - Mnemonic for server-side signing (testnet recommended)
+
+## Tools by Category
+
+### High-Level Builders
+
+| Tool | Description |
+|------|-------------|
+| `build_smart_token` | Build a complete smart token (badge) collection transaction |
+| `build_fungible_token` | Build a fungible token collection transaction |
+| `build_nft_collection` | Build an NFT collection transaction |
+
+### Component Builders
+
+| Tool | Description |
+|------|-------------|
+| `generate_backing_address` | Generate a backing address for off-chain balances |
+| `generate_approval` | Generate an approval configuration |
+| `generate_permissions` | Generate permission configurations |
+| `generate_alias_path` | Generate alias path for address lookups |
+
+### Signing & Broadcasting
+
+| Tool | Description |
+|------|-------------|
+| `sign_and_broadcast` | Sign a transaction and broadcast it (recommended) |
+| `broadcast` | Broadcast a pre-signed transaction |
+| `simulate_transaction` | Dry-run a transaction without broadcasting |
+
+### Queries
+
+| Tool | Description |
+|------|-------------|
+| `query_collection` | Fetch collection details from the BitBadges API |
+| `query_balance` | Check token balance for an address |
+| `verify_ownership` | Verify if an address meets ownership requirements |
+| `search` | Search collections, accounts, and tokens |
+| `lookup_token_info` | Look up token metadata and info |
+
+### Utilities
+
+| Tool | Description |
+|------|-------------|
+| `validate_transaction` | Validate a transaction before broadcasting |
+| `validate_address` | Validate a BitBadges address |
+| `convert_address` | Convert between address formats (ETH, Cosmos, etc.) |
+| `get_current_timestamp` | Get the current timestamp (for time-based configs) |
+| `publish_to_bitbadges` | Publish metadata to BitBadges |
+
+### Instructions & Docs
+
+| Tool | Description |
+|------|-------------|
+| `get_skill_instructions` | Get detailed instructions for specific skills (smart-token, fungible-token, nft-collection, subscription) |
+| `get_master_prompt` | Get the master system prompt for BitBadges building |
+| `fetch_docs` | Fetch documentation pages |
+
+## Key Tool Schemas
+
+### `sign_and_broadcast`
+
+The primary tool for autonomous transaction execution. Signs with a private key or mnemonic and broadcasts to the network.
+
+**Input:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `transactionJson` | string | Yes | Full transaction JSON from builder tools (with messages array, optional memo and fee) |
+| `signingMethod` | `'privateKey'` \| `'mnemonic'` | Yes | Signing method |
+| `credential` | string | Yes | Private key (hex) or mnemonic phrase |
+| `network` | `'mainnet'` \| `'testnet'` \| `'local'` | No | Default: `'testnet'` (safe default for agents) |
+| `apiKey` | string | No | Falls back to `BITBADGES_API_KEY` env var |
+
+**Output:**
+
+```json
+{
+  "success": true,
+  "txHash": "ABC123...",
+  "signerAddress": "bb1...",
+  "network": "testnet",
+  "gasUsed": "150000",
+  "fee": { "amount": "5000", "denom": "ubadge", "gas": "500000" },
+  "explorerUrl": "https://explorer.bitbadges.io/BitBadges%20Testnet/tx/ABC123...",
+  "signingDetails": {
+    "chainType": "cosmos",
+    "cosmosChainId": "bitbadges-2",
+    "accountNumber": 42,
+    "sequence": 7,
+    "messagesCount": 1,
+    "messageTypes": ["MsgCreateCollection"]
+  }
+}
+```
+
+### `broadcast`
+
+For pre-signed transactions (e.g., signed externally via SDK, hardware wallet, or custodial service).
+
+**Input:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `signedTxBody` | string | Yes | Signed transaction body as JSON (standard Cosmos `BroadcastTxRequest` format with `tx_bytes` and `mode`) |
+| `network` | `'mainnet'` \| `'testnet'` \| `'local'` | No | Default: `'testnet'` |
+| `apiKey` | string | No | Falls back to `BITBADGES_API_KEY` env var |
+
+**Output:**
+
+```json
+{
+  "success": true,
+  "txHash": "ABC123...",
+  "code": 0,
+  "explorerUrl": "https://explorer.bitbadges.io/BitBadges%20Testnet/tx/ABC123..."
+}
+```
+
+## Typical Workflow
+
+A typical MCP agent workflow follows this pattern:
+
+1. **Build** - Use a builder tool (`build_fungible_token`, `build_nft_collection`, etc.) to generate transaction JSON
+2. **Validate** - Use `validate_transaction` to check the transaction is well-formed
+3. **Simulate** - Use `simulate_transaction` to dry-run and estimate gas
+4. **Sign & Broadcast** - Use `sign_and_broadcast` to execute the transaction
+
+```
+build_fungible_token → validate_transaction → simulate_transaction → sign_and_broadcast
+```
+
+For queries and verification (no signing needed):
+
+```
+query_collection → verify_ownership → (take action based on result)
+```
+
+## MCP Resources
+
+The MCP server also exposes documentation as resources:
+
+| Resource URI | Description |
+|-------------|-------------|
+| `bitbadges://docs/overview` | BitBadges platform overview |
+| `bitbadges://docs/sdk` | SDK reference |
+| `bitbadges://docs/api` | API reference |
+
+Access these via your MCP client's resource reading capabilities.

@@ -40,6 +40,16 @@ Testnet Node:
 
 For detailed information about EVM RPC endpoints, see [EVM RPC Endpoints](evm-rpc-endpoints.md).
 
+### Faucet API
+
+The testnet faucet provides free BADGE tokens for testing and bot development. No API key required.
+
+```
+POST https://api.bitbadges.io/testnet/api/v0/faucet
+```
+
+See [Testnet Faucet API](../ai-agents/testnet-faucet.md) for full details, examples, and rate limits.
+
 ### Feedback
 
 If there is anything we can do to make development easier, let us know.
