@@ -85,7 +85,7 @@ Agent --> Server:  GET /api/data + X-BB-Proof: { address, chain, message, signat
 Server --> Agent:  200 OK (or 403)
 ```
 
-See the full [BB-402 guide and quickstart](../../token-standard/bb-402-gated-access.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402-spec.md).
+See the full [BB-402 guide and quickstart](../../token-standard/bb-402/overview.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402/spec.md).
 
 ## Further Reading
 

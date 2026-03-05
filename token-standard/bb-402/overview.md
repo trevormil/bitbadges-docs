@@ -276,4 +276,4 @@ const data = await fetchWithBB402('https://example.com/api/data');
 
 ## Full Specification
 
-See the complete [BB-402 Specification](bb-402-spec.md) for the full protocol details, security considerations, versioning, and x402 comparison.
+See the complete [BB-402 Specification](spec.md) for the full protocol details, security considerations, versioning, and x402 comparison.
