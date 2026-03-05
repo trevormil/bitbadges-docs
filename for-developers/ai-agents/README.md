@@ -72,6 +72,20 @@ Additional endpoints (testnet):
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [Machine Discovery](capabilities-json.md) | Machine-readable capability discovery |
+| [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
+
+## BB-402: Token-Gated API Access
+
+BB-402 lets any server gate API access behind on-chain token ownership using the standard HTTP 402 status code. Unlike x402 (Coinbase) which only supports per-request USDC payments, BB-402 uses token ownership as a universal primitive -- a soulbound token costing X USDC is a verifiable on-chain receipt (equivalent to x402), but the same protocol also handles subscriptions, tiered access, reputation, blocklists, and compound conditions with `$and`/`$or` logic.
+
+```
+Agent --> Server:  GET /api/data
+Server --> Agent:  402 { ownershipRequirements, message }
+Agent --> Server:  GET /api/data + X-BB-Proof: { address, chain, message, signature }
+Server --> Agent:  200 OK (or 403)
+```
+
+See the full [BB-402 guide and quickstart](../../token-standard/bb-402-gated-access.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402-spec.md).
 
 ## Further Reading
 
