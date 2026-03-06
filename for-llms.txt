@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Mar  5 21:42:44 UTC 2026
+Generated on Thu Mar  5 21:46:29 UTC 2026
 
 
 
@@ -1951,8 +1951,9 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [🔒 BB-402: Token-Gated API Access](token-standard/bb-402-gated-access.md)
-  * [Full Specification](token-standard/bb-402-spec.md)
+* [🔒 BB-402: Token-Gated API Access](token-standard/bb-402/README.md)
+  * [Overview](token-standard/bb-402/overview.md)
+  * [Full Specification](token-standard/bb-402/spec.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
@@ -8231,7 +8232,7 @@ Agent --> Server:  GET /api/data + X-BB-Proof: { address, chain, message, signat
 Server --> Agent:  200 OK (or 403)
 ```
 
-See the full [BB-402 guide and quickstart](../../token-standard/bb-402-gated-access.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402-spec.md).
+See the full [BB-402 guide and quickstart](../../token-standard/bb-402/overview.md) in the Token Standard section, or the [complete specification](../../token-standard/bb-402/spec.md).
 
 ## Further Reading
 
@@ -19312,7 +19313,21 @@ Each token collection can have a manager that can execute administrative actions
 While our approach is no-code by default, we do support EVM for any custom applications or advanced logic. Our goal is to make it so that 100% of use cases are supported natively without ever needing to extend it. If something is missing, we will add it.
 
 
-## File: ./token-standard/bb-402-gated-access.md
+## File: ./token-standard/bb-402/README.md
+
+# BB-402: Token-Gated API Access
+
+Gate any API behind on-chain token ownership using the standard HTTP 402 status code. Built for AI agents, bots, and any programmatic client that needs to authenticate and pay for services.
+
+## Pages
+
+| Page | Description |
+|------|-------------|
+| [Overview](overview.md) | How it works, why it matters, quickstart code |
+| [Full Specification](spec.md) | Complete protocol spec, security considerations, x402 comparison |
+
+
+## File: ./token-standard/bb-402/overview.md
 
 # BB-402: Token-Gated API Access
 
@@ -19592,10 +19607,10 @@ const data = await fetchWithBB402('https://example.com/api/data');
 
 ## Full Specification
 
-See the complete [BB-402 Specification](bb-402-spec.md) for the full protocol details, security considerations, versioning, and x402 comparison.
+See the complete [BB-402 Specification](spec.md) for the full protocol details, security considerations, versioning, and x402 comparison.
 
 
-## File: ./token-standard/bb-402-spec.md
+## File: ./token-standard/bb-402/spec.md
 
 # BB-402: BitBadges Gated Access Protocol
 
