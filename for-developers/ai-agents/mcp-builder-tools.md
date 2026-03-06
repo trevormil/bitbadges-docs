@@ -1,8 +1,16 @@
 # MCP Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 23+ tools for AI assistants to build, sign, and broadcast BitBadges transactions. It works with Claude Desktop, Claude Code, and any MCP-compatible client.
+The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 30+ tools for AI assistants to build, audit, sign, and broadcast BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
 ## Installation
+
+```bash
+# Install globally
+npm install -g bitbadges-builder-mcp
+
+# Or run directly (no install)
+npx bitbadges-builder-mcp
+```
 
 ### Claude Desktop
 
@@ -29,9 +37,31 @@ Add to your `claude_desktop_config.json`:
 claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
 ```
 
-Set environment variables for signing capabilities:
-- `BITBADGES_API_KEY` - Your BitBadges API key
-- `BITBADGES_MNEMONIC` - Mnemonic for server-side signing (testnet recommended)
+### Cursor
+
+Add to `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "bitbadges-builder": {
+      "command": "npx",
+      "args": ["-y", "bitbadges-builder-mcp"],
+      "env": {
+        "BITBADGES_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+### Environment Variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `BITBADGES_API_KEY` | For queries/broadcast | Your BitBadges API key ([get one here](https://bitbadges.io/developer)) |
+| `BITBADGES_MNEMONIC` | For signing | Mnemonic for server-side signing (testnet recommended) |
+| `BITBADGES_PRIVATE_KEY` | For signing | Alternative: hex private key |
 
 ## Tools by Category
 
@@ -42,6 +72,13 @@ Set environment variables for signing capabilities:
 | `build_smart_token` | Build a complete smart token (badge) collection transaction |
 | `build_fungible_token` | Build a fungible token collection transaction |
 | `build_nft_collection` | Build an NFT collection transaction |
+
+### Audit & Analysis
+
+| Tool | Description |
+|------|-------------|
+| `audit_collection` | Security audit: centralization, supply inflation, approval flaws, common bugs (9 categories) |
+| `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
 
 ### Component Builders
 
@@ -151,15 +188,17 @@ For pre-signed transactions (e.g., signed externally via SDK, hardware wallet, o
 
 ## Typical Workflow
 
-A typical MCP agent workflow follows this pattern:
+The recommended Build → Audit → Deploy pipeline:
 
-1. **Build** - Use a builder tool (`build_fungible_token`, `build_nft_collection`, etc.) to generate transaction JSON
-2. **Validate** - Use `validate_transaction` to check the transaction is well-formed
-3. **Simulate** - Use `simulate_transaction` to dry-run and estimate gas
-4. **Sign & Broadcast** - Use `sign_and_broadcast` to execute the transaction
+1. **Build** - Use a builder tool (`build_fungible_token`, `build_nft_collection`, `build_smart_token`) to generate transaction JSON
+2. **Audit** - Use `audit_collection` to check for security risks and common bugs
+3. **Fix** - Address any critical/warning findings, re-audit if needed
+4. **Validate** - Use `validate_transaction` to check the transaction is well-formed
+5. **Simulate** - Use `simulate_transaction` to dry-run and estimate gas
+6. **Sign & Broadcast** - Use `sign_and_broadcast` to execute the transaction
 
 ```
-build_fungible_token → validate_transaction → simulate_transaction → sign_and_broadcast
+build_fungible_token → audit_collection → validate_transaction → simulate_transaction → sign_and_broadcast
 ```
 
 For queries and verification (no signing needed):
@@ -168,14 +207,43 @@ For queries and verification (no signing needed):
 query_collection → verify_ownership → (take action based on result)
 ```
 
+## Skills (Guided Workflows)
+
+The MCP server includes 30+ skill instructions accessible via `get_skill_instructions`. These guide AI agents through complex tasks:
+
+| Skill | Description |
+|-------|-------------|
+| `smart-token` | Build IBC-backed smart tokens (stablecoins, wrapped assets) |
+| `fungible-token` | Build ERC-20 style fungible tokens |
+| `nft-collection` | Build NFT collections with minting config |
+| `collection-audit` | Audit collections for security risks |
+| `explain-collection` | Generate human-readable collection reports |
+| `update-collection` | Update existing collections (permissions, metadata, approvals) |
+| `collection-recipes` | Decision matrix: which builder tool for which use case |
+| `ibc-and-hooks` | IBC integration, custom hooks, ICQ queries |
+| `permissions` | Permission system deep-dive |
+| `approval` | Approval configuration patterns |
+| `subscription` | Subscription/recurring token patterns |
+
+## Related Tools
+
+| Tool | Install | Description |
+|------|---------|-------------|
+| **BitBadges SDK** | `npm i bitbadgesjs-sdk` | TypeScript SDK for direct blockchain interaction |
+| **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
+| **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
+
 ## MCP Resources
 
-The MCP server also exposes documentation as resources:
+The MCP server also exposes embedded documentation as resources:
 
 | Resource URI | Description |
 |-------------|-------------|
-| `bitbadges://docs/overview` | BitBadges platform overview |
+| `bitbadges://rules/critical` | Critical rules for transaction building |
+| `bitbadges://docs/concepts` | Core concepts (approvals, permissions, balances) |
 | `bitbadges://docs/sdk` | SDK reference |
 | `bitbadges://docs/api` | API reference |
+| `bitbadges://docs/messages` | Message type reference |
+| `bitbadges://docs/examples` | Example transactions |
 
 Access these via your MCP client's resource reading capabilities.

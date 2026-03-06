@@ -44,11 +44,23 @@ console.log('TX Hash:', result.txHash);
 
 ## Integration Paths
 
-| Path | Best For | Setup |
-|------|----------|-------|
-| **SDK Signing Client** | Full-featured bots, server-side agents | `npm i bitbadgesjs-sdk` + mnemonic/private key |
-| **MCP Tools** | AI assistants (Claude, etc.) | Install MCP server, use tool calls |
+| Path | Best For | Install |
+|------|----------|---------|
+| **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
+| **SDK Signing Client** | Full-featured bots, server-side agents | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
+
+### MCP Quick Setup
+
+```bash
+# Claude Code (one command)
+claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+
+# Or install globally
+npm install -g bitbadges-builder-mcp
+```
+
+See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 30+ tools, configuration for Claude Desktop / Cursor, and workflow guides.
 
 ## Network Configuration
 
@@ -68,7 +80,7 @@ Additional endpoints (testnet):
 | Page | Description |
 |------|-------------|
 | [Testnet Faucet API](testnet-faucet.md) | Get free testnet BADGE tokens for your bot |
-| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 23+ MCP tools for AI assistants |
+| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 30+ MCP tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [Machine Discovery](capabilities-json.md) | Machine-readable capability discovery |

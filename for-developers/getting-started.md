@@ -54,20 +54,53 @@ const api = new BitBadgesAPI({
 await BitBadgesAPI.getCollection(...);
 ```
 
-## Developing with AI
+## Quick Start - MCP Builder Tools (AI)
 
-Building an AI agent or bot? See the dedicated [AI Agents & Bots](ai-agents/) section for quickstart guides, MCP tool reference, bot examples, and testnet faucet docs.
+The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
+
+```bash
+# Install globally
+npm install -g bitbadges-builder-mcp
+
+# Or run directly with npx
+npx bitbadges-builder-mcp
+```
+
+**Claude Desktop** — add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "bitbadges-builder": {
+      "command": "npx",
+      "args": ["-y", "bitbadges-builder-mcp"],
+      "env": {
+        "BITBADGES_API_KEY": "your-api-key"
+      }
+    }
+  }
+}
+```
+
+**Claude Code:**
+
+```bash
+claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+```
+
+See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
+
+## Developing with AI
 
 Below, we provide some resources that may be helpful for developing with AI. If there is anything else we can do to make development easier, let us know!
 
-[https://github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai)
-
-[https://docs.bitbadges.io/\~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) - GitBook Provided MCP with searchDocumentation tool
-
-[Cosmos Msg Proto Definitions](https://github.com/BitBadges/bitbadgeschain/tree/master/proto)
-
-[BitBadges API OpenAPI Spec](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json)
-
-[Full Documentation .txt](../for-llms.txt)
-
-[Full SDK Reference](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) - [Full Types Reference](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json)
+| Resource | Link |
+|----------|------|
+| **MCP Builder Tools** | `npm i -g bitbadges-builder-mcp` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
+| **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
+| **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
+| **API OpenAPI Spec** | [openapi.json](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json) |
+| **Proto Definitions** | [github.com/BitBadges/bitbadgeschain/tree/master/proto](https://github.com/BitBadges/bitbadgeschain/tree/master/proto) |
+| **Full Docs (.txt)** | [for-llms.txt](../for-llms.txt) |
+| **SDK Reference** | [TypeDoc](https://bitbadges.github.io/bitbadgesjs/classes/BitBadgesAPI.html) — [Types JSON](https://github.com/BitBadges/bitbadgesjs/blob/main/packages/bitbadgesjs-sdk/type-map/typedoc-output.json) |
