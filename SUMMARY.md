@@ -107,7 +107,7 @@
       * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [🔒 BB-402: Token-Gated API Access](token-standard/bb-402/README.md)
+* [🔒 BB-402](token-standard/bb-402/README.md)
   * [Overview](token-standard/bb-402/overview.md)
   * [Full Specification](token-standard/bb-402/spec.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)

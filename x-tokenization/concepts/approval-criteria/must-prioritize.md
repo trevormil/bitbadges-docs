@@ -133,6 +133,7 @@ The `mustPrioritize` field works in conjunction with the auto-scan system:
 ## Important Notes
 
 -   **Default Behavior**: If `mustPrioritize` is not specified, it defaults to `false` (auto-scan compatible)
+-   **Automatic Enforcement**: The chain automatically normalizes `mustPrioritize: true` for any approval that is not auto-scannable (has coin transfers, merkle challenges, ETH signature challenges, or predetermined balances). This is informational — non-auto-scannable approvals already require explicit prioritization regardless, but this ensures the stored value accurately reflects the behavior.
 -   **Side Effects**: Approvals with side effects (coin transfers, custom logic) should typically use `mustPrioritize: true`
 -   **Race Conditions**: Using `mustPrioritize: true` with version control prevents race conditions from approval updates
 -   **Transfer Flags**: When using prioritized approvals, set `onlyCheckPrioritizedCollectionApprovals` (or corresponding flags) to `true` for deterministic behavior

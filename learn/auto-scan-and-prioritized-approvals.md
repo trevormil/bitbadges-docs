@@ -262,6 +262,8 @@ const msg: MsgTransferTokens = {
 
 The `mustPrioritize` flag explicitly requires an approval to be prioritized. This is an easy way to prevent auto-scanning of approvals that you do not want to be auto-scanned.
 
+> **Note:** The chain automatically sets `mustPrioritize: true` for any approval that is not auto-scannable (has coin transfers, merkle challenges, ETH signature challenges, or predetermined balances). Non-auto-scannable approvals already require explicit prioritization in the transfer logic, so this normalization ensures the stored value accurately reflects the actual behavior.
+
 ```typescript
 const approval: CollectionApproval<bigint> = {
     approvalCriteria: {

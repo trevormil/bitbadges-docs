@@ -1,4 +1,4 @@
-# BB-402: Token-Gated API Access
+# BB-402
 
 Gate any API behind on-chain token ownership using the standard HTTP 402 status code. Built for AI agents, bots, and any programmatic client that needs to authenticate and pay for services.
 
