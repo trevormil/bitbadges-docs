@@ -7,11 +7,11 @@ Copy-paste examples for common bot and AI agent patterns. All examples use testn
 Create a new fungible token collection with server-side signing.
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter, MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadgesjs-sdk';
 
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
-  'bitbadges-2'
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 const client = new BitBadgesSigningClient({
@@ -39,7 +39,7 @@ if (result.success) {
 Check a user's token balance and transfer tokens based on a condition.
 
 ```typescript
-import { BitBadgesAPI, BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadgesjs-sdk';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io/testnet' });
 
@@ -53,9 +53,9 @@ const balance = balanceRes.balance; // Check specific badge IDs and ownership ti
 
 // Conditional transfer
 if (/* condition based on balance */) {
-  const adapter = await GenericCosmosAdapter.fromMnemonic(
+  const adapter = await GenericEvmAdapter.fromMnemonic(
     process.env.BOT_MNEMONIC!,
-    'bitbadges-2'
+    NETWORK_CONFIGS['testnet'].evmRpcUrl
   );
 
   const client = new BitBadgesSigningClient({
@@ -128,7 +128,7 @@ Listen for transfers on a specific collection and take action.
 
 ```typescript
 import WebSocket from 'ws';
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 const ws = new WebSocket('wss://rpc-testnet.bitbadges.io/websocket');
 

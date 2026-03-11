@@ -134,6 +134,17 @@ Dynamically calculate ownership times from a timestamp plus a set duration. This
 -   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
 -   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
 
+**Common Duration Values (milliseconds):**
+
+| Duration | Milliseconds |
+|----------|-------------|
+| 5 minutes | 300000 |
+| 1 hour | 3600000 |
+| 1 day | 86400000 |
+| 1 week | 604800000 |
+| 30 days | 2592000000 |
+| 1 year | 31536000000 |
+
 #### Recurring Ownership Times
 
 Define repeating time intervals for subscriptions or periodic rewards:

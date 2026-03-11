@@ -18,11 +18,16 @@ Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank ass
 
 ### Hook Data Format
 
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
+Hook data is specified in the IBC transfer memo using JSON format. The module supports two hook types:
+
+1. **`swap_and_action`**: Swap received tokens and perform a post-swap action (local transfer or IBC transfer). Similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
+2. **`transfer_tokens`**: Execute BitBadges token transfers (minting, distributing, etc.) triggered by the incoming IBC transfer. See [IBC Transfer Tokens Hook](../learn/ibc-transfer-tokens-hook.md) for full documentation.
+
+Only one hook type can be used per IBC transfer — they are mutually exclusive.
 
 ### Swap and Action
 
-The primary hook type is `swap_and_action`, which:
+The `swap_and_action` hook type:
 
 1. Executes a swap operation using the received tokens
 2. Performs a post-swap action (local transfer or IBC transfer)
@@ -57,9 +62,12 @@ All operations are executed atomically:
 
 ```go
 type HookData struct {
-    SwapAndAction *SwapAndAction `json:"swap_and_action,omitempty"`
+    SwapAndAction  *SwapAndAction       `json:"swap_and_action,omitempty"`
+    TransferTokens *TransferTokensAction `json:"transfer_tokens,omitempty"`
 }
 ```
+
+> **Note:** Only one of `swap_and_action` or `transfer_tokens` can be specified per memo. See [IBC Transfer Tokens Hook](../learn/ibc-transfer-tokens-hook.md) for full `transfer_tokens` documentation.
 
 ### SwapAndAction
 

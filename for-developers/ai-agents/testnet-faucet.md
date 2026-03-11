@@ -65,12 +65,12 @@ if (!response.ok) {
 ### Bot Pattern
 
 ```typescript
-import { GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // Generate a new bot wallet
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
-  'bitbadges-2'
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 // Fund it (one-time)

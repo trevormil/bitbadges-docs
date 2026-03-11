@@ -9,12 +9,12 @@ npm install bitbadgesjs-sdk
 ```
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // 1. Create adapter from mnemonic (server-side)
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   'your twelve word mnemonic phrase here ...',
-  'bitbadges-2' // testnet chain ID
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 // 2. Create signing client (testnet)
@@ -64,11 +64,11 @@ See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 30+ too
 
 ## Network Configuration
 
-| Network | API URL | Node LCD | Cosmos Chain ID | EVM Chain ID |
-|---------|---------|----------|-----------------|--------------|
-| **Mainnet** | `https://api.bitbadges.io` | `https://lcd.bitbadges.io` | `bitbadges-1` | 50024 |
-| **Testnet** | `https://api.bitbadges.io/testnet` | `https://lcd-testnet.bitbadges.io` | `bitbadges-2` | 50025 |
-| **Local** | `http://localhost:3001` | `http://localhost:1317` | `bitbadges-1` | 90123 |
+| Network | API URL | Node LCD | Cosmos Chain ID | EVM Chain ID | EVM RPC |
+|---------|---------|----------|-----------------|--------------|---------|
+| **Mainnet** | `https://api.bitbadges.io` | `https://lcd.bitbadges.io` | `bitbadges-1` | 50024 | `https://evm-rpc.bitbadges.io` |
+| **Testnet** | `https://api.bitbadges.io/testnet` | `https://lcd-testnet.bitbadges.io` | `bitbadges-2` | 50025 | `https://evm-rpc-testnet.bitbadges.io` |
+| **Local** | `http://localhost:3001` | `http://localhost:1317` | `bitbadges-1` | 90123 | `http://localhost:8545` |
 
 Additional endpoints (testnet):
 - **RPC:** `https://rpc-testnet.bitbadges.io`

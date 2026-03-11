@@ -17,7 +17,7 @@ While we do offer a ton of functionality directly in-site, your desired function
 * Can you implement everything with a token and then check token ownership?
 * Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
 * Can your users be identified by email? Addresses? Use those plugins or dynamic stores
-* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+* Does Zapier support your approach? They have 7000+ apps and integrations natively.
 
 ### **How to create / manage claims?**
 

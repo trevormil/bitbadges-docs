@@ -32,17 +32,17 @@ After creation, note your **Collection ID** - you'll need it for the agent.
 
 Your AI agent needs a wallet to sign transactions. You can use either a Cosmos (mnemonic) or EVM (private key) approach.
 
-### Option A: Cosmos Wallet (Recommended for Server-Side)
+### Option A: EVM Wallet (Recommended for Server-Side)
 
 Generate a mnemonic and derive a BitBadges address:
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // Store this mnemonic securely (env var, secret manager, etc.)
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.AGENT_MNEMONIC!, // 12 or 24 word mnemonic
-  'bitbadges-1' // mainnet (or 'bitbadges-2' for testnet)
+  NETWORK_CONFIGS['mainnet'].evmRpcUrl // 'https://evm-rpc.bitbadges.io'
 );
 
 const client = new BitBadgesSigningClient({
@@ -50,40 +50,41 @@ const client = new BitBadgesSigningClient({
   network: 'mainnet' // or 'testnet'
 });
 
-console.log('Agent address:', client.address); // bb1...
+console.log('Agent address:', client.address); // 0x...
 ```
 
-### Option B: Cosmos Wallet from Private Key
+### Option B: EVM Wallet from Private Key
 
 ```typescript
-const adapter = await GenericCosmosAdapter.fromPrivateKey(
-  process.env.AGENT_PRIVATE_KEY!, // hex private key
-  'bitbadges-1'
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+
+const adapter = await GenericEvmAdapter.fromPrivateKey(
+  process.env.AGENT_PRIVATE_KEY!, // hex private key (with or without 0x prefix)
+  NETWORK_CONFIGS['mainnet'].evmRpcUrl
 );
 
 const client = new BitBadgesSigningClient({ adapter });
 ```
 
-### Option C: EVM Wallet
-
-If your agent framework already manages an EVM key:
+### Option C: Cosmos Wallet
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter } from 'bitbadgesjs-sdk';
-import { Wallet } from 'ethers';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
 
-const wallet = new Wallet(process.env.AGENT_EVM_PRIVATE_KEY!);
-const adapter = await GenericEvmAdapter.fromSigner(wallet, {
-  expectedChainId: 50024 // BitBadges mainnet EVM chain ID (50025 for testnet)
-});
+const adapter = await GenericCosmosAdapter.fromMnemonic(
+  process.env.AGENT_MNEMONIC!,
+  'bitbadges-1' // mainnet (or 'bitbadges-2' for testnet)
+);
 
 const client = new BitBadgesSigningClient({
   adapter,
   network: 'mainnet'
 });
 
-console.log('Agent address:', client.address);
+console.log('Agent address:', client.address); // bb1...
 ```
+
+> **Note:** The same mnemonic produces a different address with the Cosmos adapter vs EVM adapter. Make sure you fund the correct address for your chosen adapter.
 
 ### Fund the Wallet
 
