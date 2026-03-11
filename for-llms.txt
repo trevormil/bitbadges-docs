@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Mar  6 17:07:58 UTC 2026
+Generated on Wed Mar 11 01:30:59 UTC 2026
 
 
 
@@ -1882,6 +1882,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Alias Compatibility](learn/alias-compatibility.md)
   * [IBC Backed Minting](learn/ibc-backed-minting.md)
   * [Cosmos Coin Wrapper Paths](learn/cosmos-coin-wrapper-paths.md)
+  * [IBC Transfer Tokens Hook](learn/ibc-transfer-tokens-hook.md)
   * [Collection Configuration](token-standard/learn/collection-setup-fields.md)
   * [Address Lists](token-standard/learn/address-lists.md)
   * [UintRanges](token-standard/learn/uintrange.md)
@@ -2051,7 +2052,6 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Success Logic](for-developers/claim-builder/success-logic.md)
     * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
     * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-    * [Identify By Socials / Emails?](for-developers/claim-builder/concepts/identify-by-socials-emails.md)
   * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
   * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
   * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
@@ -2062,9 +2062,8 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
     * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
     * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-  * [Custom Plugins / Webhooks](for-developers/claim-builder/plugins/README.md)
+  * [Custom Plugins](for-developers/claim-builder/plugins/README.md)
     * [Overview](for-developers/claim-builder/plugins/overview.md)
-    * [Pre-Built Webhook Plugins](for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md)
     * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
       * [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
         * [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
@@ -2075,37 +2074,8 @@ BitBadges addresses these fundamental issues through core design decisions:
         * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
       * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
       * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-    * [Configuration Tools](for-developers/claim-builder/plugins/configuration-tools.md)
-  * [Integrate with Zapier](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md)
-    * [Overview](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md)
-    * [Dynamic Store Zaps](for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md)
-    * [Automatic Claim Tutorial](for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md)
-    * [Post-Success Zaps](for-developers/claim-builder/automate-w-zapier/post-success-zaps.md)
-    * [Leveraging Zapier AI Actions / MCP](for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md)
-    * [Automate Any Part of the Process](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md)
-      * [Google Forms](for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md)
-  * [Integrate with Pipedream](for-developers/claim-builder/integrate-with-pipedream/README.md)
-    * [Overview](for-developers/claim-builder/integrate-with-pipedream/overview.md)
-    * [Leveraging Pipedream MCP](for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md)
-    * [Build Custom Plugins](for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md)
-    * [Workflow Actions](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md)
-      * [Complete Claim](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md)
-      * [Get Claim Attempt Status](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md)
-      * [Get Claim Code by Idx](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md)
-      * [Add User to Dynamic Store](for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md)
-    * [Workflow Triggers](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md)
-      * [Poll Claim Attempts](for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md)
-    * [End to End Example](for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md)
-  * [In-Site Plugins](for-developers/claim-builder/bitbadges-created-plugins/README.md)
-    * [Plugins Directory](https://bitbadges.io/plugin-directory)
-    * [Ownership Requirements](for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md)
   * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
     * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
-    * [Get Integration User IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md)
-      * [Get Discord User ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md)
-      * [Get Discord Server ID](for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md)
-      * [X / Twitch / GitHub IDs](for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md)
-    * [Add Telegram Bot to Channel](for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md)
 
 ## Other Modules
 
@@ -2122,6 +2092,7 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [🔗 x/custom-ibc-hooks](other-modules/x-custom-ibc-hooks/README.md)
   * [Overview](x-custom-ibc-hooks/README.md)
   * [Introduction](x-custom-ibc-hooks/overview.md)
+  * [Transfer Tokens Hook](learn/ibc-transfer-tokens-hook.md)
 * [🚦 x/ibc-rate-limit](other-modules/x-ibc-rate-limit/README.md)
   * [Overview](x-ibc-rate-limit/README.md)
   * [Introduction](x-ibc-rate-limit/overview.md)
@@ -8156,12 +8127,12 @@ npm install bitbadgesjs-sdk
 ```
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // 1. Create adapter from mnemonic (server-side)
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   'your twelve word mnemonic phrase here ...',
-  'bitbadges-2' // testnet chain ID
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 // 2. Create signing client (testnet)
@@ -8211,11 +8182,11 @@ See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 30+ too
 
 ## Network Configuration
 
-| Network | API URL | Node LCD | Cosmos Chain ID | EVM Chain ID |
-|---------|---------|----------|-----------------|--------------|
-| **Mainnet** | `https://api.bitbadges.io` | `https://lcd.bitbadges.io` | `bitbadges-1` | 50024 |
-| **Testnet** | `https://api.bitbadges.io/testnet` | `https://lcd-testnet.bitbadges.io` | `bitbadges-2` | 50025 |
-| **Local** | `http://localhost:3001` | `http://localhost:1317` | `bitbadges-1` | 90123 |
+| Network | API URL | Node LCD | Cosmos Chain ID | EVM Chain ID | EVM RPC |
+|---------|---------|----------|-----------------|--------------|---------|
+| **Mainnet** | `https://api.bitbadges.io` | `https://lcd.bitbadges.io` | `bitbadges-1` | 50024 | `https://evm-rpc.bitbadges.io` |
+| **Testnet** | `https://api.bitbadges.io/testnet` | `https://lcd-testnet.bitbadges.io` | `bitbadges-2` | 50025 | `https://evm-rpc-testnet.bitbadges.io` |
+| **Local** | `http://localhost:3001` | `http://localhost:1317` | `bitbadges-1` | 90123 | `http://localhost:8545` |
 
 Additional endpoints (testnet):
 - **RPC:** `https://rpc-testnet.bitbadges.io`
@@ -8266,11 +8237,11 @@ Copy-paste examples for common bot and AI agent patterns. All examples use testn
 Create a new fungible token collection with server-side signing.
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter, MsgCreateCollection } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgCreateCollection } from 'bitbadgesjs-sdk';
 
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
-  'bitbadges-2'
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 const client = new BitBadgesSigningClient({
@@ -8298,7 +8269,7 @@ if (result.success) {
 Check a user's token balance and transfer tokens based on a condition.
 
 ```typescript
-import { BitBadgesAPI, BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import { BitBadgesAPI, BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS, MsgTransferTokens } from 'bitbadgesjs-sdk';
 
 const api = new BitBadgesAPI({ apiUrl: 'https://api.bitbadges.io/testnet' });
 
@@ -8312,9 +8283,9 @@ const balance = balanceRes.balance; // Check specific badge IDs and ownership ti
 
 // Conditional transfer
 if (/* condition based on balance */) {
-  const adapter = await GenericCosmosAdapter.fromMnemonic(
+  const adapter = await GenericEvmAdapter.fromMnemonic(
     process.env.BOT_MNEMONIC!,
-    'bitbadges-2'
+    NETWORK_CONFIGS['testnet'].evmRpcUrl
   );
 
   const client = new BitBadgesSigningClient({
@@ -8387,7 +8358,7 @@ Listen for transfers on a specific collection and take action.
 
 ```typescript
 import WebSocket from 'ws';
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 const ws = new WebSocket('wss://rpc-testnet.bitbadges.io/websocket');
 
@@ -8881,17 +8852,17 @@ After creation, note your **Collection ID** - you'll need it for the agent.
 
 Your AI agent needs a wallet to sign transactions. You can use either a Cosmos (mnemonic) or EVM (private key) approach.
 
-### Option A: Cosmos Wallet (Recommended for Server-Side)
+### Option A: EVM Wallet (Recommended for Server-Side)
 
 Generate a mnemonic and derive a BitBadges address:
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { BitBadgesSigningClient, GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // Store this mnemonic securely (env var, secret manager, etc.)
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.AGENT_MNEMONIC!, // 12 or 24 word mnemonic
-  'bitbadges-1' // mainnet (or 'bitbadges-2' for testnet)
+  NETWORK_CONFIGS['mainnet'].evmRpcUrl // 'https://evm-rpc.bitbadges.io'
 );
 
 const client = new BitBadgesSigningClient({
@@ -8899,40 +8870,41 @@ const client = new BitBadgesSigningClient({
   network: 'mainnet' // or 'testnet'
 });
 
-console.log('Agent address:', client.address); // bb1...
+console.log('Agent address:', client.address); // 0x...
 ```
 
-### Option B: Cosmos Wallet from Private Key
+### Option B: EVM Wallet from Private Key
 
 ```typescript
-const adapter = await GenericCosmosAdapter.fromPrivateKey(
-  process.env.AGENT_PRIVATE_KEY!, // hex private key
-  'bitbadges-1'
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
+
+const adapter = await GenericEvmAdapter.fromPrivateKey(
+  process.env.AGENT_PRIVATE_KEY!, // hex private key (with or without 0x prefix)
+  NETWORK_CONFIGS['mainnet'].evmRpcUrl
 );
 
 const client = new BitBadgesSigningClient({ adapter });
 ```
 
-### Option C: EVM Wallet
-
-If your agent framework already manages an EVM key:
+### Option C: Cosmos Wallet
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter } from 'bitbadgesjs-sdk';
-import { Wallet } from 'ethers';
+import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
 
-const wallet = new Wallet(process.env.AGENT_EVM_PRIVATE_KEY!);
-const adapter = await GenericEvmAdapter.fromSigner(wallet, {
-  expectedChainId: 50024 // BitBadges mainnet EVM chain ID (50025 for testnet)
-});
+const adapter = await GenericCosmosAdapter.fromMnemonic(
+  process.env.AGENT_MNEMONIC!,
+  'bitbadges-1' // mainnet (or 'bitbadges-2' for testnet)
+);
 
 const client = new BitBadgesSigningClient({
   adapter,
   network: 'mainnet'
 });
 
-console.log('Agent address:', client.address);
+console.log('Agent address:', client.address); // bb1...
 ```
+
+> **Note:** The same mnemonic produces a different address with the Cosmos adapter vs EVM adapter. Make sure you fund the correct address for your chosen adapter.
 
 ### Fund the Wallet
 
@@ -9248,12 +9220,12 @@ if (!response.ok) {
 ### Bot Pattern
 
 ```typescript
-import { GenericCosmosAdapter } from 'bitbadgesjs-sdk';
+import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // Generate a new bot wallet
-const adapter = await GenericCosmosAdapter.fromMnemonic(
+const adapter = await GenericEvmAdapter.fromMnemonic(
   process.env.BOT_MNEMONIC!,
-  'bitbadges-2'
+  NETWORK_CONFIGS['testnet'].evmRpcUrl
 );
 
 // Fund it (one-time)
@@ -10190,12 +10162,14 @@ The `BitBadgesSigningClient` provides a streamlined, wallet-agnostic interface f
 ## When to Use
 
 **Use BitBadgesSigningClient when:**
+
 - You want a simple, all-in-one signing solution
 - You don't need fine-grained control over the signing process
 - You want automatic gas estimation and sequence management
 - You want automatic retry on sequence mismatch errors
 
 **Use manual signing ([Cosmos](./signing-cosmos.md) / [Ethereum](./signing-ethereum.md)) when:**
+
 - You need full control over the transaction lifecycle
 - You need to customize the signing flow (e.g., custom fee logic)
 - You need to handle simulation separately from signing
@@ -10214,7 +10188,11 @@ npm install bitbadgesjs-sdk
 ### Cosmos Wallet (Keplr, Leap, etc.)
 
 ```typescript
-import { BitBadgesSigningClient, GenericCosmosAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import {
+    BitBadgesSigningClient,
+    GenericCosmosAdapter,
+    MsgTransferTokens,
+} from 'bitbadgesjs-sdk';
 
 // Create adapter from browser wallet
 const adapter = await GenericCosmosAdapter.fromKeplr('bitbadges-1');
@@ -10226,24 +10204,30 @@ const client = new BitBadgesSigningClient({ adapter });
 
 // Create and broadcast transaction
 const result = await client.signAndBroadcast([
-  MsgTransferTokens.create({
-    creator: client.address,
-    collectionId: '1',
-    transfers: [/* ... */]
-  })
+    MsgTransferTokens.create({
+        creator: client.address,
+        collectionId: '1',
+        transfers: [
+            /* ... */
+        ],
+    }),
 ]);
 
 if (result.success) {
-  console.log('Transaction hash:', result.txHash);
+    console.log('Transaction hash:', result.txHash);
 } else {
-  console.error('Transaction failed:', result.error);
+    console.error('Transaction failed:', result.error);
 }
 ```
 
 ### EVM Wallet (MetaMask, etc.)
 
 ```typescript
-import { BitBadgesSigningClient, GenericEvmAdapter, MsgTransferTokens } from 'bitbadgesjs-sdk';
+import {
+    BitBadgesSigningClient,
+    GenericEvmAdapter,
+    MsgTransferTokens,
+} from 'bitbadgesjs-sdk';
 import { BrowserProvider } from 'ethers';
 
 // Create adapter from ethers.js signer
@@ -10259,55 +10243,86 @@ const client = new BitBadgesSigningClient({ adapter });
 
 // Create and broadcast transaction (uses precompile path automatically)
 const result = await client.signAndBroadcast([
-  MsgTransferTokens.create({
-    creator: client.address,
-    collectionId: '1',
-    transfers: [/* ... */]
-  })
+    MsgTransferTokens.create({
+        creator: client.address,
+        collectionId: '1',
+        transfers: [
+            /* ... */
+        ],
+    }),
 ]);
 
 console.log('Transaction hash:', result.txHash);
 ```
 
-### Server-Side Signing
+### Server-Side Signing (EVM Path — Recommended)
 
 > **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and MCP tool reference.
+
+Server-side signing uses `GenericEvmAdapter` which connects to the EVM JSON-RPC endpoint and broadcasts via precompile calls. This is the recommended path for bots, agents, and backend services.
+
+```typescript
+import {
+    BitBadgesSigningClient,
+    GenericEvmAdapter,
+    NETWORK_CONFIGS,
+} from 'bitbadgesjs-sdk';
+
+// From mnemonic (secure server-side only!)
+const adapter = await GenericEvmAdapter.fromMnemonic(
+    'word1 word2 word3 ...', // 12 or 24 word mnemonic
+    NETWORK_CONFIGS['mainnet'].evmRpcUrl, // 'https://evm-rpc.bitbadges.io'
+);
+
+// Or from private key
+const adapter = await GenericEvmAdapter.fromPrivateKey(
+    '0x...', // hex private key
+    NETWORK_CONFIGS['mainnet'].evmRpcUrl,
+);
+
+const client = new BitBadgesSigningClient({ adapter });
+const result = await client.signAndBroadcast([
+    /* messages */
+]);
+```
+
+### Server-Side Signing (Cosmos Path)
+
+The Cosmos path uses `GenericCosmosAdapter` with Cosmos-derived addresses and standard signDirect broadcasting. This produces a **different address** from the same key (Cosmos derivation vs ETH derivation).
 
 ```typescript
 import { BitBadgesSigningClient, GenericCosmosAdapter } from 'bitbadgesjs-sdk';
 
-// From mnemonic (secure server-side only!)
 const adapter = await GenericCosmosAdapter.fromMnemonic(
-  'word1 word2 word3 ...', // 12 or 24 word mnemonic
-  'bitbadges-1'
-);
-
-// Or from private key
-const adapter = await GenericCosmosAdapter.fromPrivateKey(
-  '0x...', // hex private key
-  'bitbadges-1'
+    'word1 word2 word3 ...', // 12 or 24 word mnemonic
+    'bitbadges-1',
 );
 
 const client = new BitBadgesSigningClient({ adapter });
-const result = await client.signAndBroadcast([/* messages */]);
+const result = await client.signAndBroadcast([
+    /* messages */
+]);
 ```
+
+> **Note:** The same mnemonic/private key produces different addresses depending on which adapter you use. EVM adapter uses keccak256 (ETH-style) with coin type 60 HD path (`m/44'/60'/0'/0/0`), while Cosmos adapter uses ripemd160/sha256 with coin type 118 HD path (`m/44'/118'/0'/0/0`). The default for Keplr and the Cosmos chain registry is coin type 118. Make sure you fund the correct address for your chosen adapter.
 
 ## Client Options
 
 ```typescript
 interface SigningClientOptions {
-  adapter: WalletAdapter;              // Required - the wallet adapter
-  network?: NetworkMode;               // 'mainnet' | 'testnet' | 'local' (default: 'mainnet')
-  apiUrl?: string;                     // Override API URL from network preset
-  nodeUrl?: string;                    // Override node LCD URL from network preset
-  cosmosChainId?: string;              // Override Cosmos chain ID from network preset
-  evmChainId?: number;                 // Override EVM chain ID from network preset
-  sequenceRetryEnabled?: boolean;      // Auto-retry on sequence mismatch (default: true)
-  maxSequenceRetries?: number;         // Max retry attempts (default: 3)
-  gasMultiplier?: number;              // Gas estimation multiplier (default: 1.3)
-  defaultGasLimit?: number;            // Default gas limit (default: 400000)
-  evmPrecompileGasLimit?: number;      // EVM precompile gas limit (default: 2000000)
-  apiKey?: string;                     // BitBadges API key for authenticated requests
+    adapter: WalletAdapter; // Required - the wallet adapter
+    network?: NetworkMode; // 'mainnet' | 'testnet' | 'local' (default: 'mainnet')
+    apiUrl?: string; // Override API URL from network preset
+    nodeUrl?: string; // Override node LCD URL from network preset
+    cosmosChainId?: string; // Override Cosmos chain ID from network preset
+    evmChainId?: number; // Override EVM chain ID from network preset
+    evmRpcUrl?: string; // Override EVM JSON-RPC URL from network preset
+    sequenceRetryEnabled?: boolean; // Auto-retry on sequence mismatch (default: true)
+    maxSequenceRetries?: number; // Max retry attempts (default: 3)
+    gasMultiplier?: number; // Gas estimation multiplier (default: 1.3)
+    defaultGasLimit?: number; // Default gas limit (default: 400000)
+    evmPrecompileGasLimit?: number; // EVM precompile gas limit (default: 2000000)
+    apiKey?: string; // BitBadges API key for authenticated requests
 }
 ```
 
@@ -10324,7 +10339,8 @@ const mainnet = NETWORK_CONFIGS['mainnet'];
 //   apiUrl: 'https://api.bitbadges.io',
 //   nodeUrl: 'https://lcd.bitbadges.io',
 //   cosmosChainId: 'bitbadges-1',
-//   evmChainId: 50024
+//   evmChainId: 50024,
+//   evmRpcUrl: 'https://evm-rpc.bitbadges.io'
 // }
 
 const testnet = NETWORK_CONFIGS['testnet'];
@@ -10332,7 +10348,8 @@ const testnet = NETWORK_CONFIGS['testnet'];
 //   apiUrl: 'https://api.bitbadges.io/testnet',
 //   nodeUrl: 'https://lcd-testnet.bitbadges.io',
 //   cosmosChainId: 'bitbadges-2',
-//   evmChainId: 50025
+//   evmChainId: 50025,
+//   evmRpcUrl: 'https://evm-rpc-testnet.bitbadges.io'
 // }
 
 const local = NETWORK_CONFIGS['local'];
@@ -10340,7 +10357,8 @@ const local = NETWORK_CONFIGS['local'];
 //   apiUrl: 'http://localhost:3001',
 //   nodeUrl: 'http://localhost:1317',
 //   cosmosChainId: 'bitbadges-1',
-//   evmChainId: 90123
+//   evmChainId: 90123,
+//   evmRpcUrl: 'http://localhost:8545'
 // }
 ```
 
@@ -10352,15 +10370,15 @@ const client = new BitBadgesSigningClient({ adapter });
 
 // Use testnet preset
 const client = new BitBadgesSigningClient({
-  adapter,
-  network: 'testnet'
+    adapter,
+    network: 'testnet',
 });
 
 // Use preset with custom override
 const client = new BitBadgesSigningClient({
-  adapter,
-  network: 'mainnet',
-  apiUrl: 'https://custom-api.example.com'  // overrides preset's apiUrl
+    adapter,
+    network: 'mainnet',
+    apiUrl: 'https://custom-api.example.com', // overrides preset's apiUrl
 });
 ```
 
@@ -10368,10 +10386,10 @@ const client = new BitBadgesSigningClient({
 
 ```typescript
 interface SignAndBroadcastOptions {
-  memo?: string;           // Transaction memo
-  fee?: SigningFee;        // Custom fee (overrides auto-calculation)
-  simulate?: boolean;      // Simulate first for gas estimation (default: true for Cosmos)
-  gasMultiplier?: number;  // Override gas multiplier for this transaction
+    memo?: string; // Transaction memo
+    fee?: SigningFee; // Custom fee (overrides auto-calculation)
+    simulate?: boolean; // Simulate first for gas estimation (default: true for Cosmos)
+    gasMultiplier?: number; // Override gas multiplier for this transaction
 }
 ```
 
@@ -10379,11 +10397,11 @@ interface SignAndBroadcastOptions {
 
 ```typescript
 interface BroadcastResult {
-  txHash: string;       // Transaction hash
-  success: boolean;     // Whether broadcast succeeded
-  error?: string;       // Error message if failed
-  code: number;         // Transaction code (0 = success)
-  rawResponse: any;     // Raw response from broadcast endpoint
+    txHash: string; // Transaction hash
+    success: boolean; // Whether broadcast succeeded
+    error?: string; // Error message if failed
+    code: number; // Transaction code (0 = success)
+    rawResponse: any; // Raw response from broadcast endpoint
 }
 ```
 
@@ -10391,7 +10409,7 @@ interface BroadcastResult {
 
 ### GenericCosmosAdapter
 
-Factory methods for Cosmos wallets:
+For browser wallets (Keplr, Leap, etc.) and server-side Cosmos signing:
 
 ```typescript
 // Browser wallets
@@ -10400,25 +10418,27 @@ GenericCosmosAdapter.fromLeap(chainId: string)
 GenericCosmosAdapter.fromCosmostation(chainId: string)
 GenericCosmosAdapter.fromBrowserWallet(wallet: KeplrLike, chainId: string)
 
-// Server-side
+// Server-side (Cosmos derivation — different address than EVM adapter)
 GenericCosmosAdapter.fromMnemonic(mnemonic: string, chainId: string)
 GenericCosmosAdapter.fromPrivateKey(privateKey: string, chainId: string)
 ```
 
 ### GenericEvmAdapter
 
-Factory methods for EVM wallets:
+For browser EVM wallets and **server-side signing (recommended for bots/agents)**:
 
 ```typescript
-// From ethers.js signer
+// Server-side (recommended for bots, agents, backends)
+GenericEvmAdapter.fromMnemonic(mnemonic: string, evmRpcUrl: string, options?: EvmAdapterOptions)
+GenericEvmAdapter.fromPrivateKey(privateKey: string, evmRpcUrl: string, options?: EvmAdapterOptions)
+
+// Browser wallets
 GenericEvmAdapter.fromSigner(signer: EthersSigner, options?: EvmAdapterOptions)
-
-// From EIP-1193 provider
 GenericEvmAdapter.fromProvider(provider: EIP1193Provider, options?: EvmAdapterOptions)
-
-// From window.ethereum
 GenericEvmAdapter.fromBrowserWallet(options?: EvmAdapterOptions)
 ```
+
+> EVM adapters only support `sendEvmTransaction` — they do not support `signDirect`. The `BitBadgesSigningClient` handles routing automatically based on the adapter type.
 
 #### EVM Chain ID Validation
 
@@ -10429,12 +10449,12 @@ import { GenericEvmAdapter, NETWORK_CONFIGS } from 'bitbadgesjs-sdk';
 
 // Validate chain ID when creating adapter
 const adapter = await GenericEvmAdapter.fromSigner(signer, {
-  expectedChainId: NETWORK_CONFIGS['mainnet'].evmChainId  // 50024
+    expectedChainId: NETWORK_CONFIGS['mainnet'].evmChainId, // 50024
 });
 
 // Or for local development
 const adapter = await GenericEvmAdapter.fromBrowserWallet({
-  expectedChainId: NETWORK_CONFIGS['local'].evmChainId  // 90123
+    expectedChainId: NETWORK_CONFIGS['local'].evmChainId, // 90123
 });
 
 // Throws error if wallet is on wrong network:
@@ -10446,20 +10466,20 @@ const adapter = await GenericEvmAdapter.fromBrowserWallet({
 ```typescript
 // Mainnet (default)
 const client = new BitBadgesSigningClient({
-  adapter,
-  network: 'mainnet'
+    adapter,
+    network: 'mainnet',
 });
 
 // Testnet
 const client = new BitBadgesSigningClient({
-  adapter,
-  network: 'testnet'
+    adapter,
+    network: 'testnet',
 });
 
 // Local development
 const client = new BitBadgesSigningClient({
-  adapter,
-  network: 'local'
+    adapter,
+    network: 'local',
 });
 ```
 
@@ -10473,16 +10493,16 @@ const result = await client.signAndBroadcast(messages);
 
 // Skip simulation, use default gas
 const result = await client.signAndBroadcast(messages, {
-  simulate: false
+    simulate: false,
 });
 
 // Custom fee
 const result = await client.signAndBroadcast(messages, {
-  fee: {
-    amount: '10000000',
-    denom: 'ubadge',
-    gas: '500000'
-  }
+    fee: {
+        amount: '10000000',
+        denom: 'ubadge',
+        gas: '500000',
+    },
 });
 ```
 
@@ -10492,9 +10512,9 @@ The client automatically handles account sequence (nonce) management:
 
 ```typescript
 const client = new BitBadgesSigningClient({
-  adapter,
-  sequenceRetryEnabled: true,  // Auto-retry on sequence mismatch (default)
-  maxSequenceRetries: 3        // Max retries (default)
+    adapter,
+    sequenceRetryEnabled: true, // Auto-retry on sequence mismatch (default)
+    maxSequenceRetries: 3, // Max retries (default)
 });
 
 // Cached sequence is incremented after successful transactions
@@ -10521,43 +10541,52 @@ client.clearCache();
 ## Multiple Messages
 
 ```typescript
-const result = await client.signAndBroadcast([
-  MsgTransferTokens.create({ /* ... */ }),
-  MsgSetTokenMetadata.create({ /* ... */ }),
-  MsgSetCollectionMetadata.create({ /* ... */ })
-], {
-  memo: 'Batch update'
-});
+const result = await client.signAndBroadcast(
+    [
+        MsgTransferTokens.create({
+            /* ... */
+        }),
+        MsgSetTokenMetadata.create({
+            /* ... */
+        }),
+        MsgSetCollectionMetadata.create({
+            /* ... */
+        }),
+    ],
+    {
+        memo: 'Batch update',
+    },
+);
 ```
 
 ## Error Handling
 
 ```typescript
 try {
-  const result = await client.signAndBroadcast(messages);
+    const result = await client.signAndBroadcast(messages);
 
-  if (!result.success) {
-    // Transaction was broadcast but failed on-chain
-    console.error('Transaction failed:', result.error);
-    console.error('Error code:', result.code);
-  }
+    if (!result.success) {
+        // Transaction was broadcast but failed on-chain
+        console.error('Transaction failed:', result.error);
+        console.error('Error code:', result.code);
+    }
 } catch (error) {
-  // Pre-broadcast error (wallet rejected, network error, etc.)
-  console.error('Signing error:', error.message);
+    // Pre-broadcast error (wallet rejected, network error, etc.)
+    console.error('Signing error:', error.message);
 }
 ```
 
 ## Comparison with Manual Signing
 
-| Feature | BitBadgesSigningClient | Manual Signing |
-|---------|----------------------|----------------|
-| Complexity | Simple, all-in-one | More setup required |
-| Control | Abstracted | Full control |
-| Account Info | Auto-fetched & cached | Manual fetch |
-| Gas Estimation | Built-in simulation | Manual simulation |
-| Sequence Retry | Automatic | Manual handling |
-| Broadcasting | Built-in | Separate step |
-| Custom Flow | Limited | Fully customizable |
+| Feature        | BitBadgesSigningClient | Manual Signing      |
+| -------------- | ---------------------- | ------------------- |
+| Complexity     | Simple, all-in-one     | More setup required |
+| Control        | Abstracted             | Full control        |
+| Account Info   | Auto-fetched & cached  | Manual fetch        |
+| Gas Estimation | Built-in simulation    | Manual simulation   |
+| Sequence Retry | Automatic              | Manual handling     |
+| Broadcasting   | Built-in               | Separate step       |
+| Custom Flow    | Limited                | Fully customizable  |
 
 ## See Also
 
@@ -12524,308 +12553,6 @@ import { MsgUpdateCollection } from "bitbadgesjs-sdk/dist/proto/tokenization";
 ```
 
 
-## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/README.md
-
-# Integrate with Zapier
-
-
-
-## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/automatic-claim-tutorial.md
-
-# Automatic Claim Tutorial
-
-### Overview
-
-The other option is to trigger claims automatically with Zapier. You will configure the Zap to automatically complete the claim for the user upon a custom trigger. For example, upon purchasing an item, auto-send them a purchased item token.
-
-To do this, you **MUST** get the users' crypto addresses somehow before the action is executed. This can be beforehand or somehow obtained during the duration of the Zap. We leave this up to you. If you cannot obtain users' addresses, this approach will not work.
-
-We want to note that functionality is slightly different for tokens with on-chain balances as opposed to off-chain claims.
-
-* On-Chain: The check and complete claim action will **RESERVE** the right for the user to complete the claim. However, it does not actually automatically trigger anything on the blockchain. This is because such a transaction requires a signature from the recipient. Thus, the user still has to go to the BitBadges site and complete the claim process, although the reservation process is automatic.
-* Off-Chain Claims: For off-chain claim types, there is no reservation process. The claims are automatically completed.
-
-You will use the BitBadges API Zapier plugin with the Complete Claim action to perform the final claim completion. This approach takes special configuration explained in the tutorial below to ensure the claim process is correct and only executable by the Zap. See the tutorial for more information.
-
-<figure><img src="../../../../.gitbook/assets/image (146) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Create the Claim
-
-The first step is to create the claim via the Bitbadges site; however, note that the configuration of the claim must be correct to ensure correct behavior of the claim process and allow Zapier to communicate. Select the Zapier approach when creating, and it should guide you through the process.
-
-Note: Many in-site plugins may become incompatible due to the user not completing in-site. However, you gain access to any custom trigger from 7000+ apps on Zapier.
-
-<figure><img src="../../../../.gitbook/assets/image (368).png" alt=""><figcaption></figcaption></figure>
-
-## Tutorial
-
-Example walkthrough of a custom Zap. Customize to your use case.
-
-Step 1: Create and setup your Zap on [https://zapier.com/](https://zapier.com/). The site will walk you through it all.
-
-Step 2: Select and configure your trigger. Triggers are the action that initiate the automation flow. In this cases, this is a new Udemy course being completed. We leave the selection of the trigger up to you. This will depend on your intended use case.
-
-<figure><img src="../../../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
-
-Step 3: Configure the Complete Claim by BitBadges integration. The password and other config parameters will be constant and obtained when creating the claim. However, the address may be fetched from prior integrations or manually provided. This is up to you.
-
-<figure><img src="../../../../.gitbook/assets/image (280).png" alt=""><figcaption></figcaption></figure>
-
-You can get the claim information from the form when you are creating the claim.
-
-Step 4: Simulate / Test
-
-You may use the simulation feature to test that your claim communicates and will pass without actually executing the action.
-
-Note that behind the scenes, this is just a simulation (does not actually complete the claim) if sent manually from the test step. The claim will actually be completed for successful Zaps once live.
-
-Step 5: Track Progress
-
-For most use cases, just submitting the claim is typically adequate. However, you can also track it with the other BitBadges action in Zapier (Get Claim Attempt Status). You will pass the ID received from the submission to this. Note that we use a queue system so it may take some time to officially process.
-
-And, it is as easy as that!
-
-
-## File: ./for-developers/claim-builder/auto-completing-claims/automate-w-zapier/overview.md
-
-# Overview
-
-Zapier BitBadges Integration: [https://zapier.com/apps/bitbadges/integrations](https://zapier.com/apps/bitbadges/integrations)
-
-**What is Zapier?**
-
-Zapier is an online automation tool that connects your favorite apps, such as Gmail, Slack, Mailchimp, and more than 2,000 others. You can automate repetitive tasks with workflows known as Zaps. A Zap connects two or more apps to automate part of your business or personal tasks. A Zap is created using a trigger and one or more actions. A trigger is an event in an app that starts the Zap. After a trigger occurs, Zapier automatically completes an action—or series of actions—in another app. This seamless connection between apps enables complex tasks to be completed automatically, saving time and improving productivity.
-
-See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
-
-<figure><img src="../../../../.gitbook/assets/image (245).png" alt=""><figcaption></figcaption></figure>
-
-**How does Zapier x BitBadges work?**
-
-Couple ways:
-
-* Claims can be auto-completed from Zapier
-* Post-success Zaps can implement utility or rewards
-* Dynamic stores can be implemented with automatic updates of the list
-* Claim infomration like codes can be automatically distributed to users
-
-<figure><img src="../../../../.gitbook/assets/image (369).png" alt=""><figcaption></figcaption></figure>
-
-When automating claims with Zapier, you will follow the approach of upon doing something (custom trigger), perform an action (claim a token, distribute a code, add to dynamic store).
-
-<figure><img src="../../../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
-
-## **Error Handling**
-
-You should also account for the fact that Zaps can partially execute. For example, if you have a Zap with 10 plugins and it fails on the 8th plugin, the Zap will not be considered a success but 8/10 plugins would be executed already. There is no rollback feature.
-
-Similarly, if you are triggering a Zap during a claim's execution, there is no guarantee that the overall claim is successful because other plugins might fail.
-
-## Triggers
-
-The custom trigger step is left up to you to implement from any of the 7000+ app integrations.
-
-## **Actions**
-
-With the claim or action step of the automated flow, you have a couple options depending on your use case.
-
-{% content-ref url="../../automate-w-zapier/distribute-claim-information-tutorial/" %}
-[distribute-claim-information-tutorial](../../automate-w-zapier/distribute-claim-information-tutorial/)
-{% endcontent-ref %}
-
-{% content-ref url="automatic-claim-tutorial.md" %}
-[automatic-claim-tutorial.md](automatic-claim-tutorial.md)
-{% endcontent-ref %}
-
-
-## File: ./for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/README.md
-
-# Automate Any Part of the Process
-
-You can also get creative and customize other parts of the claim too, like the distribution of secret information like codes.
-
-<figure><img src="../../../../.gitbook/assets/image (369).png" alt=""><figcaption></figcaption></figure>
-
-You can send the claim code, for example, via the Email by Zapier Plugin or Gmail plugin, and once the user receives the email, they can log on to the BitBadges site and select their address to receive the tokens for when claiming.
-
-<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/automate-w-zapier/distribute-claim-information-tutorial/google-forms.md
-
-# Google Forms
-
-## Setting Up a Claim with Google Forms Zapier
-
-The easiest way is to simply create a Zap using the Google Forms and BitBadges integrations. See the link below for a full tutorial.
-
-<figure><img src="../../../../.gitbook/assets/image (318).png" alt=""><figcaption></figcaption></figure>
-
-{% content-ref url="./" %}
-[.](./)
-{% endcontent-ref %}
-
-## Setting Up a Claim with Google Forms Script Editor
-
-This guide will walk you through setting up a Google Form to generate unique claim codes using a seed code from the BitBadges Codes plugin.
-
-### Prerequisites
-
-* A Google account
-* Access to Google Forms
-* A claim with the BitBadges Codes plugin
-
-### Steps
-
-#### 1. Create a Google Form
-
-* Go to Google Forms.
-* Create a new form or open an existing one. Customize as needed.
-
-#### 2. Open the Script Editor
-
-* In your Google Form, click on the three dots in the upper right corner.
-* Select Script editor.
-
-<figure><img src="../../../../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
-
-#### 3. Add the Script
-
-1\. Delete any existing code in the script editor.
-
-2\. Copy and paste the following code into the script editor.\
-
-
-```javascript
-var SEED_CODE = 'ENTER_SEED_CODE_HERE';
-
-function onFormSubmit(e) {
-  var form = FormApp.getActiveForm();
-  var submissionNumber = getSubmissionNumber();
-  var code = generateCodeFromSeed(SEED_CODE, submissionNumber);
-  setCustomConfirmation(form, code);
-}
-
-function generateCodeFromSeed(seedCode, submissionNumber) {
-  var data = seedCode + '-' + submissionNumber;
-  var hash = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, data);
-  var hexHash = hash.map(function(byte) {
-    var hex = (byte & 0xFF).toString(16);
-    return (hex.length === 1 ? '0' : '') + hex;
-  }).join('');
-  return hexHash + '-' + submissionNumber;
-}
-
-function getSubmissionNumber() {
-  var form = FormApp.getActiveForm();
-  return form.getResponses().length;
-}
-
-function setCustomConfirmation(form, code) {
-  var confirmationMessage = "Thank you for completing the survey. Your unique code is: " + code + '. Provide this in the form on BitBadges when claiming.'
-  form.setConfirmationMessage(confirmationMessage);
-}
-```
-
-3\. Replace 'ENTER\_SEED\_CODE\_HERE' with your actual seed code. To get your seed code, use the Codes plugin on BitBadges:
-
-* Click on the Distribute button which opens up the modal.
-* Select Batch.
-* Copy the seed code.
-
-<figure><img src="../../../../.gitbook/assets/image (312).png" alt=""><figcaption></figcaption></figure>
-
-#### 4. Set Up the Trigger
-
-* In the script editor, click on the clock icon to open the Triggers page.
-* Click on + Add Trigger.
-* Set the following options:
-  * Choose which function to run: onFormSubmit
-  * Choose which deployment should run: Head
-  * Select event source: From form
-  * Select event type: On form submit
-
-<figure><img src="../../../../.gitbook/assets/image (313).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (310).png" alt="" width="554"><figcaption></figcaption></figure>
-
-#### 5. Save and Close
-
-Save your script by clicking on the disk icon or pressing Ctrl + S. Close the script editor.
-
-#### 6. Test Your Form
-
-Submit a response to your form.
-
-* Check the confirmation message to see your unique code.
-* Note that the forms are assigned based on number of responses (including any test submissions). If you want to reset from scratch, you can delete all saved responses in your form.
-
-
-
-**Add-Ons**
-
-Consider adding functionality to the script like sending the code via emails, protecting against multiple submissions, etc. We leave thi sup to you and your needs.
-
-
-
-## File: ./for-developers/claim-builder/automate-w-zapier/dynamic-store-zaps.md
-
-# Dynamic Store Zaps
-
-We refer you [here](../dynamic-stores/adding-data.md) for more information.&#x20;
-
-Zaps to add users to a dynamic store may be the most common use case for the BitBadges Zapier integration, notably because they can operate without crypto addresses in favor of emails. You can simply just use the Zap to parse email or user ID or username -> add to the store and let BitBadges handle the rest of the crypto-native stuff.
-
-<figure><img src="../../../.gitbook/assets/image (348).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/automate-w-zapier/leveraging-zapier-ai-actions-mcp.md
-
-# Leveraging Zapier AI Actions / MCP
-
-Leverage Zapier AI actions to build cool use cases with BitBadges x AI. This is applciable ot both the criteria and rewards side.
-
-{% content-ref url="../leveraging-ai.md" %}
-[leveraging-ai.md](../leveraging-ai.md)
-{% endcontent-ref %}
-
-<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/automate-w-zapier/post-success-zaps.md
-
-# Post-Success Zaps
-
-Post-success Zaps are a great way to implement custom utility from over 7000+ apps upon claim successes.
-
-There are two options:
-
-1. Use Webhooks by Zapier plugin and catch a POST request + Post-Success Zap plugin in your claim. This is recommended as it is much more feature complete and allows you to get social identifiers like emails, apps, etc.
-2. Use the Claim Success trigger provided by BitBadges x Zapier Integration
-
-
-
-For this tutorial, we will showcase Option 1 (recommended):
-
-1. Setup your Zap (in the Zapier interface) with Webhooks by Zapier and catch a POST request
-
-<figure><img src="../../../.gitbook/assets/image (377).png" alt=""><figcaption></figcaption></figure>
-
-2. Configure your Post-Success Zapier Webhook plugin in the BitBadges site. Add the webhook URL it gives you from Step 1. For Zapier, the validation secret is not as important, but you can additionally add a step to check it within the Zap. The JSON preview it shows you will give you all the available fields you can use.
-
-<figure><img src="../../../.gitbook/assets/image (380).png" alt=""><figcaption></figcaption></figure>
-
-3. Use the Send Test Request in the BitBadges site to complete the test / simulation step in your Zap.
-
-<figure><img src="../../../.gitbook/assets/image (378).png" alt=""><figcaption></figcaption></figure>
-
-4. Configure your action with any app and dynamically replace values where needed. For example, if your action is an outbound send email, you will need to parse the email from the webhook and automatically populate the recipient address for the email.
-
-<figure><img src="../../../.gitbook/assets/image (379).png" alt=""><figcaption></figcaption></figure>
-
-5. Setup the rest of your Zap, create the claim, and you are good to go!
-
-
 ## File: ./for-developers/claim-builder/bitbadges-api-claims/README.md
 
 # BitBadges API & Claims
@@ -12838,7 +12565,7 @@ For this tutorial, we will showcase Option 1 (recommended):
 
 Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.
 
-Typically, we recommend making a custom webhook / plugin over this. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
+Typically, we recommend making a custom plugin (via the developer portal) over this.
 
 <figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -12869,7 +12596,7 @@ When creating on the BitBadges site, go to the API Code tab, and you should see 
 
 Couple notes with auto-completing claims:
 
-* If your claim is setup to require proof of sign in, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled.
+* If your claim requires proof of sign in, you must have the proper session authentication handled.
 * Otherwise, you can setup your claim to be open to anyone but restricted by non-session criteria. For example, do not require proof of address but all claimees must present a valid password (potentially only known by you or the code which is expected to claim).
 
 **Simulating**
@@ -12948,8 +12675,6 @@ IMPORTANT: Verifying claim attempts are two-fold:
 * Authentication: Authenticate the user (can be done with Sign In with BitBadges or however)
 * Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the user has satisfied the criteria
 
-Note: You may opt to simply receive a post-success webhook which would take the API verification step out of it.
-
 ```typescript
 // Pre-Req: Set up your claim at https://bitbadges.io/create
 // Pre-Req: User is authenticated
@@ -12980,11 +12705,7 @@ if (res.success) { doSomething() }
 
 If you already have the user address, you can simply use option 1.
 
-If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via Zapier or the API), or you can set up a custom webhook to receive it.
-
-Note: If you are receiving a post-success webhook, you already know the claim has gone through by the nature of it, so you do not need to verify it.
-
-This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
+If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via the API), or you can set up a custom webhook to receive it.
 
 <figure><img src="../../../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -12994,134 +12715,7 @@ Use one of the plugins pictured below or a custom plugin to do so when setting u
 
 **More Advanced Ways**
 
-Note: You may also implement other ways of verifying claim attempts such as parsing state directly, storing data yourself from webhooks, etc. You can also trust the post-success webook to only be fired upon success. For these, we refer you to the corresponding documentation such as the API. The process is flexible, but the above should be all you need.
-
-
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/README.md
-
-# BitBadges Created Plugins
-
-##
-
-
-## File: ./for-developers/claim-builder/bitbadges-created-plugins/ownership-requirements.md
-
-# Ownership Requirements
-
-Below we explain more about the ownership requirements field and schema. This is used in certain plugins for checking token / list ownership.
-
-```typescript
-const ownershipRequirements = {
-    $and: [
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 1n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 2n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-    ],
-};
-
-const popupParams = {
-    ...ownershipRequirements,
-};
-```
-
-#### **Asset Ownership Requirements**
-
-The **assetOwnershipRequirements** uses an $and, $or, and base case schema to allow you to implement custom logical requirements. For $and requirements, all criteria in the array must be satisfied. For $or, one of the criteria in the array needs tobe satisfied. You can implement the "not" case by saying owns x0 of a token.
-
-```typescript
-assetOwnershipRequirements: {
-    $or: [
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 1n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 0n, end: 0n },
-                },
-            ],
-        },
-        {
-            assets: [
-                {
-                    chain: 'BitBadges',
-                    collectionId: 2n,
-                    assetIds: [{ start: 1n, end: 1n }],
-                    ownershipTimes: UintRangeArray.FullRanges(),
-                    mustOwnAmounts: { start: 1n, end: 1n },
-                },
-            ],
-        },
-    ];
-}
-```
-
-**Options**
-
-As an alternative to $or, we also support specifying **options.numMatchesForVerification** which sets a threshold for how many assets in the current group the criteria needs to pass for. For example, below requires 1 / 1000 tokens to be owned out of the IDs 1-1000.
-
-```typescript
-assetOwnershipRequirements: {
-  assets: [
-    {
-      chain: 'BitBadges',
-      collectionId: 1n,
-      assetIds: [{ start: 1n, end: 1000n }],
-      ownershipTimes: UintRangeArray.FullRanges(),
-      mustOwnAmounts: { start: 1n, end: 1n }
-    }
-  ],
-  options: { numMatchesForVerification: 1n }
-}
-```
-
-**BitBadges Token Collections**
-
-For BitBadges assets, we expect the chain = ' BitBadges', all collection IDs to be numeric, and all assetIds to be UintRanges. Querying a user owns a token at a specific time is also supported via ownership times.
-
-```typescript
-{
-  chain: 'BitBadges',
-  collectionId: 1n,
-  assetIds: [{ start: 1n, end: 1000n }],
-  ownershipTimes: UintRangeArray.FullRanges(),
-  mustOwnAmounts: { start: 0n, end: 0n }
-}
-```
-
-#### **Ownership Times** <a href="#ownership-times" id="ownership-times"></a>
-
-```
-ownershipTimes: []
-```
-
-The default when ownership times is empty or missing is to verify at the current time. If this is the case, we dynamically add the current time as \[{ start: currTime, end: currTime }].
-
-```typescript
-ownershipTimes: UintRangeArray.FullRanges();
-```
-
-For assets that support ownership times like BitBadges tokens, you can specify custom times to check.
+You may also implement other ways of verifying claim attempts such as parsing state directly or storing data yourself.
 
 
 ## File: ./for-developers/claim-builder/checking-custom-criteria.md
@@ -13140,7 +12734,7 @@ You can:
 
 1. Update users manually in-site
 2. Update programmatically via the API
-3. Update via Zapier - Triggers from 7000+ apps -> add to dynamic store
+
 
 {% content-ref url="dynamic-stores/" %}
 [dynamic-stores](dynamic-stores/)
@@ -13150,9 +12744,7 @@ You can:
 
 ## Custom Webhooks / Plugins
 
-Configure your claim with custom webhooks. Use the "Check Your Own Criteria" plugin. Alternatively, you can use the Forms / Collect Inputs plugin to instead let us store the requests for you, and you can fetch the details in-site / export to CSV format.
-
-Note: The in-site webhook plugins are streamlined alternatives to building your own custom plugins which are a little more feature-rich and reusable.
+Create custom plugins in the [developer portal](https://bitbadges.io/developer) to check your own criteria. Your plugin receives the user's address and any custom inputs, and returns success/failure.
 
 Be mindful though that if you are checking criteria, you should have verification BEFORE the claim is completed. Post-success hooks cannot affect the outcome.
 
@@ -13164,7 +12756,7 @@ Be mindful though that if you are checking criteria, you should have verificatio
 
 ## Auto-Completion
 
-You could also initiate the completion of claims on behalf of users with the API or via Zapier. This is advanced and a custom plugin / webhook is oftnetimes a better alternative.
+You could also initiate the completion of claims on behalf of users with the API. This is advanced and a custom plugin is oftentimes a better alternative.
 
 
 ## File: ./for-developers/claim-builder/completion-methods.md
@@ -13179,17 +12771,7 @@ Users can claim directly on the corresponding page directly in the BitBadges sit
 
 <figure><img src="../../.gitbook/assets/image (84) (1).png" alt=""><figcaption></figcaption></figure>
 
-**Option 2: Auto-Claim by Zapier**
-
-You can can extend BitBadges Claims with our custom Zapier integration that allows you to connect claims with over 7000+ apps. See all supported apps here: [https://zapier.com/apps](https://zapier.com/apps).
-
-For example, make a purchase on Shopify -> get allocated a token or complete a course on Udemy -> get a completion token. The "airdrop" is a claim completion.
-
-<figure><img src="../../.gitbook/assets/image (147) (1).png" alt=""><figcaption></figcaption></figure>
-
-Note: Zapier can also be used to automate other parts of the claim, like specific plugins or implementing post-claim rewards.
-
-**Option 3: Auto-Claim by API**
+**Option 2: Auto-Claim by API**
 
 You can implement a hybrid approach on your own using the BitBadges API and connect it behind the scenes. This allows you full flexibility over the claiming process.
 
@@ -13204,7 +12786,7 @@ A common theme you may see when implementing claims is to get creative and think
 For example,
 
 * Give out claim codes / passwords to those who meet the criteria on your end rather than needing a direct integration.
-* Many apps and services are email based rather than username based. Consider using the Email plugin universally.
+
 
 ## Claiming on Behalf of Others
 
@@ -13212,15 +12794,11 @@ With each claim, there is only one address (the claiming address). There is no i
 
 **Password (Secrets) Approach**
 
-The typical approach (used for Zapier and other examples) is to disable all user authentication (Signed In to BitBadges) but gate the claim with a password or other secret information. This allows you (who has knowledge of the password) to complete claims.
+The typical approach is to disable all user authentication (Signed In to BitBadges) but gate the claim with a password or other secret information. This allows you (who has knowledge of the password) to complete claims.
 
 Because the authentication check is disabled, you can specify any claiming address. However, note that this disables the authentication check for everyone. You must gate the claim in other ways (like the password).
 
 <figure><img src="../../.gitbook/assets/image (360).png" alt=""><figcaption></figcaption></figure>
-
-**OAuth - Complete Claim Scope**
-
-Or, you could also be authorized to complete claims on behalf of the user via the BitBadges API, but this is only used in some cases. You will need separate authorizations from every claiming user. See Sign In with BitBadges for how to implement.
 
 
 ## File: ./for-developers/claim-builder/concepts/README.md
@@ -13253,23 +12831,6 @@ It is important to note the hybrid apporach here. Claims are checked off-chain. 
 On-chain, these are the leaves of [Merkle challenge](../../../token-standard/learn/approval-criteria/merkle-challenges.md) in the approval criteria and are one-time use only to prevent replay attacks. These are not the same codes as the Codes plugin, if en
 
 
-## File: ./for-developers/claim-builder/concepts/identify-by-socials-emails.md
-
-# Identify By Socials / Emails?
-
-Do you identify your users by emails or a supported social username?
-
-Select one of the webhook plugins (or forms for serverless) when setting up your claim. This will set you up to be able to track and maintain a map of (attempt ID / address) -> user socials or emails, enabling you to continue identifying your users how you already do!
-
-Note: Verifying claim attempts are two-fold: 1) authenticate the user and 2) verify the claim. In this instance, step 1 would be authenticating the user email / social on your end if needed.
-
-{% content-ref url="../plugins/creating-a-custom-plugin/alternatives.md" %}
-[alternatives.md](../plugins/creating-a-custom-plugin/alternatives.md)
-{% endcontent-ref %}
-
-<figure><img src="../../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
-
-
 ## File: ./for-developers/claim-builder/concepts/signed-in-vs-select-address.md
 
 # Signed In vs Select Address
@@ -13280,10 +12841,7 @@ By not including a sign-in requirement, this makes the user experience better (n
 
 **Auto-Completing Claims**
 
-If you are planning to auto complete claims behind the scenes via the API or via Zapier, note that you have two approaches.
-
-1. OAuth Sign In with BitBadges - The Signed In requirement will pass if you have the Complete Claims ("completeClaims") scope.
-2. Disable + Gate In Another Way - For example, our Zapier flow does not check user sign in but gates with a password that only Zapier knows.
+If you are planning to auto complete claims behind the scenes via the API, disable the sign-in requirement and gate the claim in another way (e.g. a password that only your backend knows).
 
 <figure><img src="../../../.gitbook/assets/image (371).png" alt=""><figcaption></figcaption></figure>
 
@@ -13498,12 +13056,6 @@ When creating your store, you will get a store ID and secret. These are to be pr
 
 Need to perform some additional action upon the user claiming successfully?
 
-## **Preconfigured Plugins**
-
-The easiest and most typical approach is to just do this with preconfigured plugins. No code required. Many use cases are already implemented for you and will auto execute for you if configured. For example, the Send BitBadges Notification plugin or Assign Discord Role.
-
-<figure><img src="../../.gitbook/assets/image (362).png" alt=""><figcaption></figcaption></figure>
-
 ## **Integrations**
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
@@ -13524,583 +13076,6 @@ To lookup claim state or recent claim attempts by address or other claim informa
 [verifying-claim-attempts-w-the-api.md](bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
-## Use Post-Success Zaps
-
-If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.
-
-For example, new claim -> add to Mailchimp list or add to Google Sheets.
-
-<figure><img src="../../.gitbook/assets/image (392).png" alt=""><figcaption></figcaption></figure>
-
-{% content-ref url="automate-w-zapier/post-success-zaps.md" %}
-[post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
-{% endcontent-ref %}
-
-## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
-
-<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
-
-Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
-
-Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
-
-<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/README.md
-
-# Integrate with Pipedream
-
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/build-custom-plugins.md
-
-# Build Custom Plugins
-
-Building custom plugins with Pipedream could streamline a lot of the development process for you. This is a unique feature that Zapier doesn't offer because you can execute custom code from their SDK rather than just automated workflows that are setup.
-
-Below, we provide an overview in how to do so. For further implementation guides, see the official Pipedream docs and the Custom Plugins docs. All principles of creating and setting up your custom BitBadges plugin apply. This will just streamline the authentication and logic handling on your end.&#x20;
-
-{% content-ref url="../plugins/" %}
-[plugins](../plugins/)
-{% endcontent-ref %}
-
-Note when building custom plugins, it is typically not recommended to trust full on automation workflows since these are asynchronous and may not handle the claim plugin logic quick enough. Please use direct API calls or code executed directly, or if you do trigger a full automation workflow, return a quick 200 OK and expect logic to be processed asynchronously (e.g. post-claim rewards).
-
-[https://pipedream.com/docs](https://pipedream.com/docs)
-
-**Pipedream SDK**
-
-If you only need your own authentication and not end users, you can simply set this up with the standard SDK code.&#x20;
-
-```javascript
-import { axios } from "@pipedream/platform"
-export default defineComponent({
-  props: {
-    slack: {
-      type: "app",
-      app: "slack",
-    }
-  },
-  async run({steps, $}) {
-    return await axios($, {
-      url: `https://slack.com/api/users.profile.get`,
-      headers: {
-        Authorization: `Bearer ${this.slack.$auth.oauth_access_token}`,
-      },
-    })
-  },
-})
-```
-
-**Pipedream Connect**
-
-Pipedream Connect allows you to actually obtain the access tokens for your users and directly execute API requests on their behalf all programmatically. This takes all of the authentication setup out for you. This is great for seamlessly building third-party custom plugins. Simply setup Pipedream Connect in your app, and then, you have SDK access to 1000s of API integrations at your fingertips. We refer you to their docs for setting this up.
-
-Note that there are two flows for authenticating users:
-
-* Manually triggered by your frontend - If you already have a frontend, you may consider just handling it all there.
-* [Connect links](https://pipedream.com/docs/connect/connect-link) - You redirect the user to a Pipedream connect URL and Pipedream handles it for you. This could be useful if you want to make a headless plugin without a custom frontend.
-
-Your frontend URL or connect URL can be configured in the tutorial / user input redirect URI when building your custom plugin. Then, once you have the authentication, you can handle your logic in the plugin handler as you see fit.&#x20;
-
-Or, alternatives including adding custom instructions or developing a configuration tool.
-
-<figure><img src="../../../.gitbook/assets/image (384).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/end-to-end-example.md
-
-# End to End Example
-
-This will walk you through an entire end-to-end auto-completion flow for Pipedream. This will assume you need the whole stack of per-user authorizatioon and auto-completing claims. If you do not, you can remove some of these steps and adapt for your use case.
-
-Note: This is not the only way to implement. It is just a guided tutorial.
-
-With user authentication, you will need your users to go through the Pipedream Connect authorize flow somehow. Each user will be identified by an `external_user_id` that you set, and once they authorize, you can specify to use that user's authorization details in the automation workflow. Their authorization details are stored under that user ID within your Connect app.
-
-See docs here: [https://pipedream.com/docs/connect](https://pipedream.com/docs/connect). When creating a project, you can also get a step by step tutorial through the Connect tab.
-
-<figure><img src="../../../.gitbook/assets/image (50) (1).png" alt=""><figcaption></figcaption></figure>
-
-We leave this step open ended up to you. For the sake of the tutorial, we are going to assume that the claim is to be auto-completed upon user authorization. We will also use the Pipedream SDK Connect Link feature to outsource the frontend code, but Pipedream also is flexible for more custom flows.
-
-You will need to create a **token** (short-lived) which can be used to create a Connect Link (see [https://pipedream.com/docs/connect/connect-link](https://pipedream.com/docs/connect/connect-link)). Note the `external_user_id`you use for this user. This is done server-side.
-
-This is also open-ended. For this tutorial, we are going to use a proxy handler endpoint to generate the Connect Link to not need frontend code at all.
-
-If you want to have a headless no frontend plugin, you can consider adding the Custom Instructions plugin in a claim with a link to a proxy handler endpoint. Because tokens are short-lived and generated dynamically, this should be a proxy one that generates the Connect URL and redirects users there (User -> Proxy Handler -> Generate Connect Link -> Redirect to Connect Link).
-
-Let's say our proxy handler endpoint is hosted on `https://my-proxy-handler.com/generate-connect-link`. You will redirect your users to this endpoint to initiate the Connect Link flow. Consider adding this in the claim description or custom instructions plugin or however you want to expose it to your users.
-
-The proxy handler endpoint is as follows:
-
-```typescript
-import express from 'express';
-import { serverConnectTokenCreate } from '@pipedream/sdk/server';
-
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Configuration for Pipedream
-const PIPEDREAM_CONFIG = {
-    clientId: process.env.PIPEDREAM_CLIENT_ID,
-    clientSecret: process.env.PIPEDREAM_CLIENT_SECRET,
-    appSlug: process.env.PIPEDREAM_APP_SLUG, // Your app's slug from Pipedream
-};
-
-// Proxy handler endpoint
-app.get('/generate-connect-link', async (req, res) => {
-    try {
-        //TODO: Get the user ID from query params or however you want to identify the user
-        const externalUserId = req.query.userId;
-
-        if (!externalUserId) {
-            return res.status(400).json({ error: 'Missing userId parameter' });
-        }
-
-        // Generate the short-lived token
-        const { token, expires_at } = await serverConnectTokenCreate({
-            external_user_id: externalUserId,
-            credentials: {
-                clientId: PIPEDREAM_CONFIG.clientId,
-                clientSecret: PIPEDREAM_CONFIG.clientSecret,
-            },
-        });
-
-        // Success / error handler URIs
-        const successRedirectUrl =
-            'https://my-success-redirect-url.com/auth-callback';
-        const errorRedirectUrl =
-            'https://my-error-redirect-url.com/error-callback';
-
-        // Construct the Connect Link URL
-        const connectUrl = `https://pipedream.com/_static/connect.html?token=${token}&connectLink=true&app=${PIPEDREAM_CONFIG.appSlug}&success_redirect_url=${successRedirectUrl}&error_redirect_url=${errorRedirectUrl}`;
-
-        // Redirect the user to the Pipedream Connect flow
-        res.redirect(connectUrl);
-    } catch (error) {
-        console.error('Error generating Connect link:', error);
-        res.status(500).json({
-            error: 'Failed to generate Connect link',
-            details: error.message,
-        });
-    }
-});
-
-// Optional: Callback endpoint for after authorization
-app.get('/auth-callback', (req, res) => {
-    res.send('Authorization successful! You can close this window.');
-
-    //TODO: Trigger the workflow here if you want to auto-complete the claim automatically (see below)
-});
-
-app.get('/error-callback', (req, res) => {
-    res.send('Authorization failed!');
-});
-
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Proxy handler running on port ${PORT}`);
-});
-```
-
-The final Pipedream Connect URL the user will be redirected to is:
-
-```
-https://pipedream.com/_static/connect.html?token={token}&connectLink=true&app={appSlug}&success_redirect_url={successRedirectUrl}&error_redirect_url={errorRedirectUrl}
-```
-
-Once the user has completed the authorization, you can now use that `external_user_id`to perform authenticated requests. If you want to do this in a headless way, you can use the success callback URL to automatically do it upon completion.
-
-<figure><img src="../../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
-
-For this tutorial, we will auto-complete a claim with their no-code workflow interface ([https://pipedream.com/docs/connect/workflows](https://pipedream.com/docs/connect/workflows)). Follow along here for implementation details. Alternatively, you can directly execute code too without a workflow using their SDK or also fetch the user's authorization credentials and use them in your own code. We recommend the interface for ease of use and testing.
-
-Below, we will explain at a high level and will skip over some lower level details.
-
-1. Create a workflow in the Pipedream site with a HTTP POST webhook trigger.
-2. Configure authorization for the webhook. This can be done in a couple ways.
-   1. Use Pipedream OAuth
-   2. Check for a secret hardcoded value (add a step after) to make sure you are the origin of the request
-   3. No authentication - if you do not add authentication, the only thing saving the endpoint from unwanted requests is the knowledge of the endpoint itself. It is important to not leak it if this is your approach
-3. When adding your custom actions, select to use the end user's authentication. See the Pipedream docs for testing this. You will probably need to generate a test account and specify the external user ID in the headers.
-   1. Ex: For adding a Slack action with the user's authentication, add another step with Slack and select the little switch icon to use user authentication.
-4. We recommend using the API request w/ code (NodeJS) feature. You customize your criteria checks here. You may setup custom parameters parsed from the trigger per claim or static hardcoded props. We leave this open-ended up to you. The only requirement is that if a user that does not meet the criteria, this step should throw an error / fail.
-
-<figure><img src="../../../.gitbook/assets/image (52) (1).png" alt=""><figcaption></figcaption></figure>
-
-5. Lastly, set up the BitBadges action step as the final action in the workflow. We refer you to the workflow actions for the options here. Typically, you will auto-complete claims if you have the user's crypto address. If not, it may involve setting up and adding a dynamic store. Make sure to test or simulate before actually claiming for real. Also, ensure you are dynamically adding the user info from prior steps and not hardcoding it.
-
-<figure><img src="../../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
-
-6. The workflow setup is now complete. The workflow will be triggered upon the HTTP request. It will then use the provided `external_user_id`and execute the claim criteria checks from your configured apps and finally, it will complete a BitBadges claim or add to a dynamic store as the final action properly gating the claim.
-
-You can then invoke the workflow per unique `external_user_id`as shown here with the SDK. Or, you can also trigger via HTTP.
-
-```typescript
-import { createBackendClient, HTTPAuthType } from "@pipedream/sdk/server";
-
-// These secrets should be saved securely and passed to your environment
-const pd = createBackendClient({
-  environment: "development", // change to production if running for a test production account, or in production
-  credentials: {
-    clientId: "{oauth_client_id}",
-    clientSecret: "{oauth_client_secret}",
-  },
-  projectId: "{your_project_id}"
-});
-
-await pd.invokeWorkflowForExternalUser(
-  "{your_endpoint_url}", // pass the endpoint ID or full URL here
-  "{your_external_user_id}" // The end user's ID in your system
-  {
-    method: "POST",
-    body: {
-      message: "Hello World"
-    }
-  },
-  HTTPAuthType.OAuth // Will automatically send the Authorization header with a fresh token
-)
-```
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/leveraging-pipedream-mcp.md
-
-# Leveraging Pipedream MCP
-
-Pipedream Connect / MCP is super powerful as you can connect BitBadges to 3000+ integrations on the criteria and the rewards side.  We refer youy here for more information!
-
-{% content-ref url="../leveraging-ai.md" %}
-[leveraging-ai.md](../leveraging-ai.md)
-{% endcontent-ref %}
-
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/overview.md
-
-# Overview
-
-Similar to Zapier, Pipedream allows you to build automation workflows. We recommend checking out what is possible via Zapier first. Everything there can be done with Pipedream as well. Pipedream may have less connected apps, but it is more extendible and developer friendly.
-
-**Custom Plugins**
-
-Because Pipedream allows more customization on your level (in addition to just automation workflows), you can use their SDK to implement custom plugins seamlessly. This streamlines the development process and helps you connect to 1000s of applications seamlessly!
-
-{% content-ref url="build-custom-plugins.md" %}
-[build-custom-plugins.md](build-custom-plugins.md)
-{% endcontent-ref %}
-
-**Automation Workflows**
-
-Automation workflows with Pipedream and BitBadges allow you to auto-complete claims, auto-add users to dynamic stores, implement post-claim logic, and more
-
-Get started by creating a workflow with the BitBadges configuration. Then, you can copy/paste the code provided from the actions / triggers in the subpages of this section to programmatically interact with the BitBadges API. We refer you to the Zapier flows documentation for the high-level concepts and designs.
-
-{% embed url="https://pipedream.com/apps/bitbadges" %}
-
-{% content-ref url="../auto-completing-claims/automate-w-zapier/" %}
-[automate-w-zapier](../auto-completing-claims/automate-w-zapier/)
-{% endcontent-ref %}
-
-{% content-ref url="workflow-actions/" %}
-[workflow-actions](workflow-actions/)
-{% endcontent-ref %}
-
-{% content-ref url="workflow-triggers/" %}
-[workflow-triggers](workflow-triggers/)
-{% endcontent-ref %}
-
-For the inputs, there are two ways of configuring. You may nee dto slightly adapt the templates to fit your desired flow.
-
-Props - You set it manually via the props
-
-```typescript
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    },
-    claimInfo: {
-      type: "string",
-      "label":  "Claim Information",
-      optional: false, // Use optional: false instead of required: true
-    },
-...
-```
-
-Dynamic - Parse from the trigger / another step (steps.trigger.event)
-
-```typescript
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    }
-  },
-  async run({steps, $}) {
-    try {
-      const response = await axios($, {
-        method: 'POST',
-        url: `https://api.bitbadges.io/api/v0/claims/status/${steps.trigger.event.claimAttemptId}`,
- ...
-```
-
-<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
-
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-actions/README.md
-
-# Workflow Actions
-
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-actions/add-user-to-dynamic-store.md
-
-# Add User to Dynamic Store
-
-```typescript
-import { axios } from "@pipedream/platform"
-
-//TODO: Edit where you get the props from. Static manually entered props are in via
-//      the props field. Or you can configure to use steps.trigger.event.propName
-//      for dynamic props from the trigger or other steps
-
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    }
-  },
-  async run({steps, $}) {
-    try {
-      await axios($, {
-        method: 'POST',
-        url: `https://api.bitbadges.io/api/v0/storeActions/add/${steps.trigger.event.dynamicDataId}/${steps.trigger.event.dataSecret}`,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'x-api-key': this.bitbadges.$auth.api_key
-        },
-        data: {
-          "address": steps.trigger.event.address,
-          "id": steps.trigger.event.id,
-          "email": steps.trigger.event.email,
-          "username": steps.trigger.event.username
-        }
-      })
-
-      return { success: true }
-    } catch (error) {
-      $.export('error', error)
-      throw error
-    }
-  },
-})
-```
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-actions/complete-claim.md
-
-# Complete Claim
-
-To complete a claim, enter this code in your workflow with [the BitBadges integration](https://pipedream.com/apps/bitbadges) and adapt as needed.
-
-The **claimInfo** is in the format: ${claimId}-${passwordPluginInstanceId}-${password}. You can setup the password plugin manually or select the Automation Workflow completion method -> Copy.
-
-This is the approach we use for automation workflows. We remove any sign in requirements, but anyone claim must specify the secret password (only known to Pipedream / Zapier).
-
-```
-62f59244fc1003e331f183c4b3907f87-ecdb0ed0513716af3124899f6e7b5da70eb85c4399dafe2bf970236b34940da9-30892aa1bb0f84b19ecf244958c9cd4676400e13a24791e7512bc88efa217c89
-```
-
-<figure><img src="../../../../.gitbook/assets/image (55) (1).png" alt=""><figcaption></figcaption></figure>
-
-```typescript
-import { axios } from "@pipedream/platform";
-
-//TODO: Edit where you get the props from. Static manually entered props are in via
-//      the props field. Or you can configure to use steps.trigger.event.propName
-//      for dynamic props from the trigger or other steps
-
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    },
-    claimInfo: {
-      type: "string", // Claim details passed as a string in the format "claimId-passwordPluginId-password"
-    },
-    address: {
-      type: "string", // Address of the user (can be BitBadges bb-prefixed or Ethereum 0x-prefixed format)
-    },
-    isSimulation: {
-      type: "boolean", // Boolean to determine if this is a simulated run
-      default: false,
-    },
-  },
-  async run({ steps, $ }) {
-    const details = this.claimInfo.split("-");
-    if (details.length !== 3) {
-      throw new Error("Invalid claim details parsed");
-    }
-
-    const claimId = details[0];
-    const passwordPluginId = details[1];
-    const password = details[2];
-
-    const endpoint = `https://api.bitbadges.io/api/v0/claims/${
-      this.isSimulation ? "simulate" : "complete"
-    }/${claimId}/${this.address}`;
-
-    const data = {
-      _expectedVersion: -1, 
-      [`${passwordPluginId}`]: {
-        password: password,
-      },
-    };
-
-    try {
-      const response = await axios($, {
-        method: "post",
-        url: endpoint,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "x-api-key": `${this.bitbadges.$auth.api_key}`,
-        },
-        data,
-      });
-
-      const result = response;
-
-      // Note: This means a successful trigger (add to queue), not a claim completion
-      // You can use the claimAttemptId to poll
-      return {
-        success: true,
-        claimAttemptId: result.claimAttemptId || "",
-        currentTimestamp: Date.now()
-      };
-    } catch (error) {
-      throw new Error(`Failed to complete claim: ${error.message}`);
-    }
-  },
-});
-```
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-attempt-status.md
-
-# Get Claim Attempt Status
-
-```typescript
-import { axios } from "@pipedream/platform"
-
-//TODO: Edit where you get the props from. Static manually entered props are in via
-//      the props field. Or you can configure to use steps.trigger.event.propName
-//      for dynamic props from the trigger or other steps
-
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    }
-  },
-  async run({steps, $}) {
-    try {
-      const response = await axios($, {
-        method: 'POST',
-        url: `https://api.bitbadges.io/api/v0/claims/status/${steps.trigger.event.claimAttemptId}`,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'x-api-key': this.bitbadges.$auth.api_key
-        },
-        data: {}
-      })
-
-      return {
-        success: response.success,
-        error: response.error
-      }
-    } catch (error) {
-      $.export('error', error)
-      throw error
-    }
-  },
-})
-```
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-actions/get-claim-code-by-idx.md
-
-# Get Claim Code by Idx
-
-```typescript
-import { axios } from "@pipedream/platform"
-
-//TODO: Edit where you get the props from. Static manually entered props are in via
-//      the props field. Or you can configure to use steps.trigger.event.propName
-//      for dynamic props from the trigger or other steps
-
-export default defineComponent({
-  props: {
-    bitbadges: {
-      type: "app",
-      app: "bitbadges",
-    }
-  },
-  async run({steps, $}) {
-    try {
-      const codeIdx = this.sub_by_one 
-        ? steps.trigger.event.code_idx - 1 
-        : steps.trigger.event.code_idx;
-
-      const response = await axios($, {
-        method: 'POST',
-        url: 'https://api.bitbadges.io/api/v0/codes',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'x-api-key': this.bitbadges.$auth.api_key
-        },
-        data: {
-          'seedCode': steps.trigger.event.seed_code,
-          'idx': codeIdx
-        }
-      })
-
-      return response;
-    } catch (error) {
-      $.export('error', error)
-      throw error
-    }
-  },
-})
-```
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/README.md
-
-# Workflow Triggers
-
-
-
-## File: ./for-developers/claim-builder/integrate-with-pipedream/workflow-triggers/poll-claim-attempts.md
-
-# Poll Claim Attempts
-
-For polling claim attempts, we recommend that you jsut set up a custom success webhook with the HTTP trigger on Pipedream. This can be directly configured into your workflow by just adding the POST endpoint URL it gives you.
-
-<figure><img src="../../../../.gitbook/assets/image (385).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../../../.gitbook/assets/image (386).png" alt=""><figcaption></figcaption></figure>
 
 
 ## File: ./for-developers/claim-builder/leveraging-ai.md
@@ -14109,129 +13084,25 @@ For polling claim attempts, we recommend that you jsut set up a custom success w
 
 > **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, MCP tools, and bot examples.
 
-A great way to implement both criteria and utility is through AI models and agents. This will follow along with the plugins / webhooks that we already have in place!
-
-**Reward Side**
-
-On the reward side, simply set up a post-success claim, receive any user identifiers or inputs needed, and trigger your actions. This can be custom webhooks to any model or service of your choice (Pipedream Connect / MCP, Zapier MCP, anything!), and we also have an in-site plugin for you to use the Zapier AI Actions / MCP service!
-
-<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+A great way to implement both criteria and utility is through AI models and agents. This can be done through custom plugins created in the [developer portal](https://bitbadges.io/developer).
 
 **Criteria Side**
 
-On the criteria side, this is recommended to follow the dynamic stores approach. While you can check and trigger AI models during execution time, we typically recommend against this due to long wait times and poor UX. If you pre-add a user to a dynamic store, the claim process is good UX for the user.
+On the criteria side, we recommend the dynamic stores approach. While you can check and trigger AI models during execution time, we typically recommend against this due to long wait times and poor UX. If you pre-add a user to a dynamic store, the claim process is good UX for the user.
 
 {% content-ref url="dynamic-stores/" %}
 [dynamic-stores](dynamic-stores/)
 {% endcontent-ref %}
 
-This is left open-ended. You could leverage Zapier AI Actions / MCP and the BitBadges integration to do this automatically.
+**Reward Side**
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
-
-```typescript
-import fetch from 'node-fetch';
-
-const ZAPIER_API_KEY = 'ADD_YOURS';
-
-const options = { method: 'GET', headers: { 'x-api-key': ZAPIER_API_KEY } };
-
-const fetchActions = async () => {
-  const response = await fetch('https://actions.zapier.com/api/v2/ai-actions/', options);
-  const data = await response.json();
-  return data;
-};
-
-const executeAction = async (actionId: string, email: string) => {
-  const options = {
-    method: 'POST',
-    headers: { 'x-api-key': ZAPIER_API_KEY, 'Content-Type': 'application/json' },
-    body: `{"instructions":"Add ${email} to the store" ,"params":{}}`
-  };
-
-  await fetch(`https://actions.zapier.com/api/v2/ai-actions/${actionId}/execute/`, options)
-    .then((response) => response.json())
-    .then((response) => console.log(response));
-};
-```
+On the reward side, create a custom plugin in the developer portal. Your plugin's endpoint can trigger any AI model or service upon successful claim processing.
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/README.md
 
 # Other
 
-
-
-## File: ./for-developers/claim-builder/other-tutorials/add-telegram-bot-to-channel.md
-
-# Add Telegram Bot to Channel
-
-This guide will walk you through the process of adding the BitBadges bot (@bitbadges\_bot) to your Telegram channel. By integrating this bot, you can enhance your channel with BitBadges functionality.
-
-### Prerequisites
-
-* You must be an admin of the Telegram channel where you want to add the bot.
-* You need to have the Telegram app installed on your device.
-
-### Steps to Add the BitBadges Bot
-
-#### 1. Find the BitBadges Bot
-
-1. Open your Telegram app.
-2. In the search bar at the top, type "@bitbadges\_bot".
-3. Tap on the BitBadges bot in the search results.
-
-#### 2. Start a Chat with the Bot
-
-1. Tap on the "Start" button to initiate a conversation with the bot.
-2. The bot may send you a welcome message with instructions.
-
-#### 3. Add the Bot to Your Channel
-
-1. Go to your Telegram channel.
-2. Tap on the channel name at the top to open the channel info.
-3. Scroll down and tap on "Administrators".
-4. Tap on "Add Administrator".
-5. Search for "@bitbadges\_bot" and select it from the results.
-6. Review the bot's permissions. Ensure it has the necessary permissions to function properly in your channel.
-7. Tap "Done" to add the bot as an administrator.
-
-####
-
-
-## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/README.md
-
-# Get Integration User IDs
-
-
-
-## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/discord.md
-
-# Get Discord Server ID
-
-To get your discord server ID, this can be done by right clicking on the  server -> Copy Server ID,
-
-<figure><img src="../../../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/get-discord-user-id.md
-
-# Get Discord User ID
-
-<figure><img src="../../../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
-
-
-## File: ./for-developers/claim-builder/other-tutorials/get-integration-user-ids/x-twitch-github-ids.md
-
-# X / Twitch / GitHub IDs
-
-X / Twitter - [https://www.wikihow.com/Find-Your-User-ID-on-Twitter#:\~:text=Visit%20a%20site%20like%20What's,as%20you%20know%20their%20username.](https://www.wikihow.com/Find-Your-User-ID-on-Twitter)
-
-GitHub  - [https://caius.github.io/github\_id/](https://caius.github.io/github\_id/)
-
-Twitch - [https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/](https://www.wikihow.com/Find-Your-User-ID-on-Twitter)
 
 
 ## File: ./for-developers/claim-builder/other-tutorials/in-site-guides.md
@@ -14257,7 +13128,7 @@ BitBadges claims are designed to be a comprehensive tool directly within the sit
 
 ### **How do claims work? What are plugins?**
 
-Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
+Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, our API, and more!
 
 ### **Get Creative**
 
@@ -14265,8 +13136,7 @@ While we do offer a ton of functionality directly in-site, your desired function
 
 * Can you implement everything with a token and then check token ownership?
 * Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
-* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
-* Does Zapier support your approach? They have 7000+ apps and integrations natively. Pipedream?
+* Can your users be identified by their address? Use the whitelist or initiatedBy plugins
 
 ### **How to create / manage claims?**
 
@@ -14277,7 +13147,6 @@ Claims are created and managed in the developer portal.
 Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
 * Gate URLs / Content to those who claim with the Rewards tab
-* Use the Discord Role Assigner plugin to create gated channels
 * And much more
 
 ### **Can claims connect to other BitBadges services?**
@@ -14293,88 +13162,10 @@ Claims are the universal connector. You can not only check criteria from any Bit
 
 
 
-## File: ./for-developers/claim-builder/plugins/configuration-tools.md
-
-# Configuration Tools
-
-Configuration tools are a helper layer abstracted over the core plugin implementations. Instead of creating new, individual plugins for each use case, you can often reuse existing ones. Configuration tools help the user configure the parameters of existing plugins.
-
-For example,&#x20;
-
--   Google Calendar can be implemented by configuring the Email plugin with the attendee emails
--   Auto-configure approved user addresses with the Address Restrictions plugin
--   Or any application can be implemented by issuing claim codes with the Codes plugin.
-
-```
-Note: This is a more advanced option and is not a great user experience.
-This should only be used in select cases.
-
-Please create custom plugins for better UX.
-```
-
-Prompt the user to add the copy / paste the stringified JSON to the Configuration Tools tab on the claim builder.
-
-<figure><img src="../../../.gitbook/assets/image (387).png" alt=""><figcaption></figcaption></figure>
-
-```json
-{
-    "pluginId": "codes",
-    "version": "0",
-    "publicParams": { "numCodes": 1 },
-    "privateParams": { "codes": ["code123"] }
-}
-```
-
-
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md
 
 # Creating a Custom Plugin
 
-
-
-## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/alternatives.md
-
-# Pre-Built Webhook Plugins
-
-Configure prebuilt webhook plugins in the claim builder without needing to create an entirely new custom plugin. Just enter the endpoint and configure what you want to receive.If you do not want to actually set up a full handler, you can also use the Forms plugin which allows you to store and view the requests in-site (serverless).
-
-<figure><img src="../../../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
-
-**Note**: These plugins only support a simple POST request and expect a 200 OK response. If you require more custom logic or reusability, a custom plugin is necessary.
-
-### Configuration
-
-* **POST Routes**: Customizable routes for your needs.
-* **User Details**: Optionally select to receive user details, like their address, custom inputs, or connected socials (only identifying information and no authentication tokens or details)
-* **Validation Secret**: Customize a validation secret to confirm requests are from BitBadges. This is what is entered in the form.
-* **Expected Response:** 200 OK within 10 seconds
-  * For non-critical logic, consider returning 200 early and asynchronously process.
-  * Stateless
-
-### Forms Plugin - Serverless
-
-The forms plugin is a serverless alternative. This is titled "Collect User Inputs" in the site.
-
-Think of this like a request storage bin. We store the requests that would've been sent to the webhooks for you. You can then view them in-site or fetch them from the API when needed.
-
-```typescript
-// Pre: Get the attempt ID. If you do not have it already, see the API reference endpoints
-
-// GET /api/v0/requestBin/attemptData/{claimId}/{claimAttemptId}
-const res = await BitBadgesApi.getAttemptDataFromRequestBin("claim123", "attempt123", { ... });
-console.log(res);
-// { bitbadgesAddress, ethAddress, email, claimAttemptId } 
-```
-
-<figure><img src="../../../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
-
-### Implementation - Handlers
-
-The request/response flow mirrors that of custom plugins, with the `pluginSecret` replaced by the inputted validation secret. For detailed implementation guidance, refer to the respective documentation. The configuration is done in-site via the claim builder.
-
-1. Setup your plugin handler (see plugin documentation for more information)
-2. Create your claim and configure the webhook as one of the plugins, specifying your endpoint
-3. Test it out to make sure it is working
 
 
 ## File: ./for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md
@@ -14392,10 +13183,10 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 
 -   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
 -   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address). If the user is using an Ethereum address, it will be automatically converted to the BitBadges address format. You may also receive the **ethAddress** field if the user is using an Ethereum wallet (0x-prefixed address).
-    -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
+    -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
 -   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 -   **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
--   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
+-   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim.
 -   **Simulation (Dry Run) Flag:** The **\_isSimulation** flag tells you whether this is a known dry run.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
@@ -14407,12 +13198,6 @@ const payload = {
 
     // Context info
 
-    email: 'bob@abc.com', //If pass email is configured
-    discord: { id: '...', username: '...', discriminator: '...' }, //If configured
-    twitch: { id: '...', username: '...' }, //If configured
-    twitter: { id: '...', username: '...' }, //If configured
-    github: { id: '...', username: '...' }, //If configured
-    google: { id: '...', username: '...' }, //If configured
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
@@ -14427,7 +13212,7 @@ const payload = {
 
 ### **Identifying the Claiming User**
 
-If you need to identify the claiming user, we pass their address + other requested socials to your endpoint. The socials will all be verified and signed in on our side. The address will be authorized if your plugin specifies the require sign in? option or the claim creator requires sign in.
+If you need to identify the claiming user, we pass their address to your endpoint. The address will be authorized if your plugin specifies the require sign in option or the claim creator requires sign in.
 
 Although that may not be enough if you identify your users in another way, or you may just not want to fully trust BitBadges. You can also simply check via a secret authorization code. Give them the authorization code on your end while authenticated. Have them enter it as a custom user input in-site. Then, verify it on your end.
 
@@ -14454,12 +13239,6 @@ This preset expects a { claimToken} in the response. The claim token is a one-ti
 This preset expects a { claimNumber } in the response. The claim number is the claim number that will be assigned if the claim number is successful. Claim numbers are 0-based, so claimNumber === 0 is the first claim, and so on.
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
-
-### **Success Hook Responses**
-
-For success hooks (\_attemptStatus=success), we also expect a 200 OK within 10 seconds. If you need to do asynchronous processing, return 200 OK early and process as you desire.
-
-Otherwise, for failed attempts, we will retry later with an exponential backoff policy.
 
 ### **Error Responses**
 
@@ -14510,7 +13289,7 @@ export default handlePlugin;
 
 For processing hooks, note that your plugin may succeed, but this does not mean the overall claim will succeed. Other plugins may fail, or other stuff may go wrong.
 
-If you receive a post-success hook, you can be sure the claim has succeeded. Or, you can use the attempt ID to verify it on your end as well,
+You can use the attempt ID to verify claim success on your end via the API.
 
 ### Asynchronous Processing
 
@@ -14520,8 +13299,6 @@ Best practices:
 
 * If using state management on BitBadges end for custom plugins, design your plugin to avoid race conditions. For example, do not return the same one-time use claim token to multiple attempts. Most plugins are stateless (on BitBadges end) though and do not have to worry about this. It should always be eventually oconsistent.
 * Do not depend on the BitBadges claim state like number of claims completed. It may not be up to date or real-tie at the time of your plugin's execution. Your custom parameters are okay to depend on.
-
-This is not really applicable to post-success hooks.
 
 ### State Management
 
@@ -14538,7 +13315,7 @@ You have a couple options:
 To be used with on-demand claims, the plugin must meet specific requirements and have specific properties:
 
 * Stateless - No per-attempt state
-* No User Inputs - The plugin should be able to function at any time without any custom user inputs. Note this also includes socials or connected sessions.
+* No User Inputs - The plugin should be able to function at any time without any custom user inputs.
 * Only Needs Context - The plugin should be able to function with just the contextual information passed. The context mainly includes the plugin information, claim information, and the claimee's address (both bitbadgesAddress and optionally ethAddress if using Ethereum wallet).
 
 Typically, these are only possible with crypto-native plugins. For example,
@@ -14551,7 +13328,7 @@ Parameters are okay because they are hardcoded and not changed (e.g. set min ETH
 
 ### **Authentication / Sensitive Values**
 
-As a design decision, we do NOT want to handle your authentication or sensitive values. Treat BitBadges as a middleman. Authentication should either be fully managed by BitBadges (identifers passed to you like email, usernames) or fully managed by you from start to finish. This applies to both the creator and the end claiming user.
+As a design decision, we do NOT want to handle your authentication or sensitive values. Treat BitBadges as a middleman. Authentication should be fully managed by you from start to finish. This applies to both the creator and the end claiming user.
 
 If you need to make authenticated requests on behalf of the user (beyond just receving identification information), you will need to implement authentication on your end. You may let the claim creator store sensitive information in the private parameters of the plugin.
 
@@ -14568,7 +13345,7 @@ This approach follows the same flow as OAuth authorization codes, except with a 
 
 To create, publish, and maintain your plugin, go to [https://bitbadges.io/developer](https://bitbadges.io/developer) and use the Plugins tab. This should walk you through the whole process of configuration and submitting it to be used on the BitBadges site. If you are confused at any point, refer back to this documentation.
 
-For testing purposes, you can setup using Pipedream's request bin ([https://pipedream.com/requestbin](https://pipedream.com/requestbin)) and just monitor incoming requests that way.
+For testing purposes, you can use any request bin service (e.g. webhook.site) to monitor incoming requests.
 
 <figure><img src="../../../../../.gitbook/assets/image (104) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -14579,12 +13356,7 @@ For testing purposes, you can setup using Pipedream's request bin ([https://pipe
 
 ### Timing of Hooks
 
-BitBadges can send the request at two different times (during processing hooks and success hooks after successful claim). Certain settings in the creation form can be set to customize how or if we send these. You may choose to receive or ignore them.
-
--   Processing hooks (\_attemptStatus = "executing") are checked during the execution of the claim, and the results could influence whether the claim succeeds or not.
--   Post-Success hooks (\_attemptStatus = "success") are only sent after the claim is successful and cannot affect the outcome of the claim. Typically used for post-claim actions or success logic. If a 200 OK is not received, we will use exponential backoff to retry until successful.
-
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+Plugins are processing hooks — they are checked during the execution of the claim, and the results influence whether the claim succeeds or not. The `_attemptStatus` will be "executing" during claim processing.
 
 ### Simulations
 
@@ -14633,7 +13405,7 @@ If your plugin requires inputs from the claiming user or claim creator, you can 
 
 <figure><img src="../../../../../.gitbook/assets/image (338).png" alt=""><figcaption></figcaption></figure>
 
-Note to be compatible with Zapier (and possibly API auto-claiming) or on-demand claims, user inputs are typically not allowed (because the user is not manually initiating anything).
+Note: For on-demand claims or API auto-completion, user inputs are typically not allowed (because the user is not manually initiating anything).
 
 **Option 1: Completely In-Site**
 
@@ -14655,9 +13427,9 @@ URL: Stringified URL
 
 ### Identifying the Claiming User
 
-You can also select to automatically pass supported identifying details about the user (e.g. crypto addresses, Discord, X, GitHub, etc). Note no access tokens or auth details are passed along so private, authorized requests are not possible with this information.
+You can select to automatically pass the user's address to your plugin endpoint. No access tokens or auth details are passed along.
 
-We will authenticate the user on our end where needed, and you can use their identifying information to execute queries (e.g. public GitHub contributions). The only one that may not be verified in some cases is the claiming address. This depends on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, check the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
+The claiming address may not be verified (signed in) depending on the configuration. If you need to make sure that the user is signed in, check the **isAddressSignedIn** field.
 
 **Address Formats:** The plugin payload will include both **bitbadgesAddress** (bb-prefixed Cosmos address) and optionally **ethAddress** (0x-prefixed Ethereum address) if the user is using an Ethereum wallet. Both addresses represent the same account.
 
@@ -14717,10 +13489,10 @@ The easiest way to test your plugin integration with BitBadges is with the Claim
 
 # Overview
 
-Plugins / webhooks are simply HTTP requests.
+Plugins are HTTP-based extensions that let you add custom logic to claims. When a claim is executed, BitBadges sends a request to your plugin's endpoint, and your plugin responds to indicate success or failure.
 
-1. Configure your plugin / webhook in the BitBadges site
-2. Set up your handler at the specified URL / method. Use the payload to implement your logic. The payload includes context about the attempt plus can include the user address, email, social usernames, custom inputs, and more.
+1. Create your plugin in the [developer portal](https://bitbadges.io/developer)
+2. Set up your handler at the specified URL / method. The payload includes context about the attempt plus the user's address and any custom inputs.
    1. Check the pluginSecret to verify BitBadges as the origin of the request if this is important
 3. Return the expected response that was configured (e.g. 200 OK)
 
@@ -14732,18 +13504,18 @@ const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
   const body = req.body; //For POST
   const { _isSimulation, claimId, pluginSecret, bitbadgesAddress, ethAddress, lastUpdated, createdAt } = body;
   const { ...otherCustomProvidedInputs } = body;
-  
+
   //Step 1.5: Catch simulations if applicable. Don't run success logic on a dry run
   // if (_isSimulation) return doDryRunStuffOnly();
-  
+
   //Step 2: Verify BitBadges as origin by checking plugin secret is correct
   const YOUR_PLUGIN_SECRET = '';
   if (pluginSecret !== YOUR_PLUGIN_SECRET) {
     return res.status(401).json({ message: 'Invalid plugin secret' });
   }
-  
+
   //Step 3: Implement your custom logic here. Consider checking the plugin's creation / last updated time to implement version control.
-  
+
   //Step 4: Return expected responses
   return res.status(200).json({});
 };
@@ -14761,18 +13533,15 @@ We have designed plugins in a way to allow you maximum customization by letting 
 
 **Timing of Requests**
 
-Plugins can either be:
+Plugins are processing hooks: sent during execution and can affect the overall outcome of the claim depending on the response.
 
-* Success hooks: Only sent after the claim succeeds. Typically for post-claim logic or rewards
-* Processing hooks: Sent during execution and can affect the overall outcome of the claim depending on the response.
-
-We also allow users to simulate (dry run) their claim attempts. Plugins are expected to handle these as necessary. These are all configurable in the creation process in-site.
+We also allow users to simulate (dry run) their claim attempts. Plugins are expected to handle these as necessary. These are all configurable in the creation process in the developer portal.
 
 **Parts of the Plugin**
 
 * Backend Handler (Your API) - All plugins have a backend handler that we expect a 200 OK response from, along with other details depending on the configuration, at claim time.
-* Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameter, if applicable. This can be done in-site or outsourced to a configuration tool.
-* User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt. This can also be done in-site or outsourced to your own custom frontend.
+* Claim Creator Input Handlers (Public / Private Parameters) - The creator will need to configure public and private parameters, if applicable.
+* User Input Handlers (Custom Input Body) - The user may also need to enter inputs for the claim attempt.
 
 <figure><img src="../../../.gitbook/assets/image (120) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -14782,17 +13551,45 @@ If there is any core state required to be used, this must be managed on BitBadge
 
 The golden rule here is that a successful response from your plugin DOES NOT mean the overall claim attempt was successful. Other plugins might fail. The other way around is also true. If your plugin fails, the overall claim may still be successful (e.g. 1 out of 10 plugins must pass but yours fails).
 
-**Published Plugins**
-
-Plugins are private and only usable by the creator and approved users by default, but you can publish them as well. Published plugins will be displayable in the directory (after a review process) and selectable by anyone creating a claim.
-
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
 **Plugin IDs vs Instance IDs**
 
 Plugin IDs are constant and specific to a specific plugin type. For example, the password pluginId is "password".
 
 Instance IDs are a unique identifier for a specific plugin in your claim. This is to handle duplicates. For example, you may have two password plugins, one with instance Id "abc" and one with "def". This is just used as a unique identifier and can really be anything. If you only have one instance of a specific type, you can name it the same as the pluginId as well.
+
+## Supported Plugins
+
+### Core Plugins (Built-In)
+
+These are built into BitBadges and require no external setup:
+
+| Plugin ID | Description |
+|-----------|-------------|
+| `codes` | Gate claims with one-time use claim codes |
+| `password` | Gate claims with a shared password / secret |
+| `numUses` | Limit the total number of successful claims |
+| `transferTimes` | Restrict when claims can be completed |
+| `initiatedBy` | Restrict which addresses can initiate the claim |
+| `whitelist` | Gate claims to a specific address list |
+| `halt` | Temporarily halt all claims |
+| `anonymous` | Allow anonymous claiming (no address required) |
+
+### Plugin-Based (Custom Plugins)
+
+These are pre-built plugins available by plugin ID:
+
+| Plugin Base ID | Description |
+|----------------|-------------|
+| `min-badge` | Require minimum badge/token ownership |
+| `must-own-badges` | Require ownership of specific badges |
+| `url-clicker` | Require visiting a specific URL |
+| `custom-instructions` | Display custom instructions to the user |
+| `satisfies-claim` | Require completion of another claim |
+| `username-set` | Require the user to have a username set |
+
+### Your Own Custom Plugins
+
+For any logic not covered above, create your own custom plugin in the [developer portal](https://bitbadges.io/developer). See [Creating a Custom Plugin](creating-a-custom-plugin/) for the full guide.
 
 
 ## File: ./for-developers/claim-builder/success-logic.md
@@ -17738,6 +16535,180 @@ const unbackTokens: MsgTransferTokens = {
 | **Denom Source**     | Existing IBC denom                     | Generated denom              |
 | **Configuration**    | Collection invariant                   | Can add paths, no edits      |
 | **Standard Minting** | Disabled                               | Enabled                      |
+
+
+## File: ./learn/ibc-transfer-tokens-hook.md
+
+# IBC Transfer Tokens Hook
+
+The `transfer_tokens` IBC hook allows incoming IBC token transfers to automatically trigger BitBadges token transfers (minting, distributing, etc.) in a single atomic cross-chain transaction. This is a powerful primitive for cross-chain minting, airdrops, purchases, and more.
+
+## Overview
+
+When an IBC transfer arrives with a `transfer_tokens` memo, the module:
+
+1. Receives the IBC token transfer (x/bank assets)
+2. Derives an **intermediate sender** address from the IBC channel + original sender
+3. Parses the `transfer_tokens` hook data from the memo
+4. Executes a `MsgTransferTokens` on the specified collection **as the intermediate sender** (the intermediate sender is the `creator` of the transaction)
+5. Returns an error acknowledgement if the transfer fails, rolling back the entire IBC transfer
+
+This means you can, for example, send ATOM from Osmosis and atomically mint a badge on BitBadges in a single transaction.
+
+> **Important:** The `creator` of the resulting `MsgTransferTokens` is always the **intermediate sender** — not the original sender on the source chain. Your collection's approval rules must authorize this intermediate address. The module automatically tries to initiate the transfer as the intermediate sender, but your collection approvals must still permit the transfer (e.g. a mint approval that allows the intermediate sender as the initiator).
+
+## Memo Format
+
+The hook data is specified in the IBC transfer memo as JSON:
+
+```json
+{
+  "transfer_tokens": {
+    "collection_id": "123",
+    "transfers": [
+      {
+        "from": "Mint",
+        "to_addresses": ["bb1..."],
+        "balances": [
+          {
+            "amount": "1",
+            "badge_ids": [{ "start": "1", "end": "1" }],
+            "ownership_times": [{ "start": "1", "end": "18446744073709551615" }]
+          }
+        ],
+        "prioritized_approvals": [],
+        "only_check_prioritized_collection_approvals": false,
+        "only_check_prioritized_incoming_approvals": false,
+        "only_check_prioritized_outgoing_approvals": false
+      }
+    ],
+    "fail_on_error": true,
+    "recover_address": ""
+  }
+}
+```
+
+> **Note:** The memo JSON uses **snake_case** keys (e.g. `to_addresses`, `badge_ids`, `ownership_times`). These are automatically converted to camelCase internally for protobuf processing.
+
+## Fields
+
+### TransferTokensAction
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `collection_id` | string | Yes | The collection ID to execute transfers on |
+| `transfers` | Transfer[] | Yes | Array of transfers to execute (same format as `MsgTransferTokens`) |
+| `fail_on_error` | bool | Yes | If `true`, fail the entire IBC transfer on error. If `false`, fall back to `recover_address` |
+| `recover_address` | string | Conditional | Required if `fail_on_error` is `false`. Address to send IBC tokens to on failure |
+
+### Transfer Object
+
+The `transfers` array uses the same structure as [MsgTransferTokens](../x-tokenization/messages/msg-transfer-tokens.md) transfers, but with snake_case JSON keys:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `from` | string | Sender address (use `"Mint"` for minting) |
+| `to_addresses` | string[] | Recipient addresses |
+| `balances` | Balance[] | Token balances to transfer |
+| `prioritized_approvals` | ApprovalIdentifierDetails[] | Priority approval identifiers |
+| `merkle_proofs` | MerkleProof[] | Merkle challenge solutions (if applicable) |
+| `eth_signature_proofs` | ETHSignatureProof[] | ETH signature proofs (if applicable) |
+| `memo` | string | Transfer memo |
+| `only_check_prioritized_collection_approvals` | bool | Only check collection-level approvals |
+| `only_check_prioritized_incoming_approvals` | bool | Only check incoming approvals |
+| `only_check_prioritized_outgoing_approvals` | bool | Only check outgoing approvals |
+
+## Error Handling
+
+### fail_on_error: true (Default)
+
+If the token transfer fails, the entire IBC transfer is rolled back. The sender receives their tokens back on the source chain via the standard IBC error acknowledgement flow.
+
+### fail_on_error: false (With Recovery)
+
+If the token transfer fails, the IBC tokens are sent to the `recover_address` instead. The IBC transfer itself succeeds (success acknowledgement), but the token transfer does not execute. This is useful when you don't want the sender to have to recover tokens on the source chain.
+
+```json
+{
+  "transfer_tokens": {
+    "collection_id": "123",
+    "transfers": [{ "..." }],
+    "fail_on_error": false,
+    "recover_address": "bb1recoveryaddress..."
+  }
+}
+```
+
+## Intermediate Sender (Transaction Creator)
+
+The `creator` of the `MsgTransferTokens` is **not** the original sender on the source chain. Instead, the module derives a deterministic **intermediate sender** address from the IBC channel and original sender. This is important because:
+
+- The intermediate sender is the `creator` of the executed `MsgTransferTokens`
+- It receives the IBC tokens on BitBadges
+- It is automatically granted auto-approval flags on the collection
+- **Your collection approvals must authorize this address** — for example, if you want cross-chain minting, your mint approval's `initiatedByList` must include the intermediate sender (or use a wildcard list)
+
+You can derive this address ahead of time to configure your approvals:
+
+```typescript
+import { deriveIntermediateSender } from 'bitbadgesjs-sdk';
+
+// Derive the intermediate sender for a given channel + source address
+const creator = deriveIntermediateSender('channel-0', 'osmo1...', 'bb');
+// Use this address in your collection's approval initiatedByList
+```
+
+## Using Minimal-Value Triggers
+
+The `transfer_tokens` hook rides on standard IBC / ICS-20 transfer rails. There is **no restriction on what denomination or amount is transferred** — the hook simply needs an IBC transfer to carry the memo. This means you can use a negligible amount of any ICS-20 asset as a pure trigger:
+
+```json
+// IBC MsgTransfer fields:
+// token: { denom: "ubadge", amount: "1" }   ← 0.000001 BADGE, effectively free
+// memo: { "transfer_tokens": { ... } }
+```
+
+The IBC token being transferred does not need to relate to the token transfer being executed. For example:
+
+- Send **1 ubadge** (~zero value) to trigger a mint of an NFT badge
+- Send **1 uatom** to trigger a badge distribution
+- Send **any ICS-20 asset** available on the source chain
+
+This makes the hook useful as a **cross-chain trigger mechanism** where the IBC transfer itself is just a vehicle for the memo, not a meaningful value transfer. The actual business logic lives entirely in the `transfers` array and the collection's approval rules.
+
+> **Tip:** If you're building a system where the IBC transfer is purely a trigger, consider using the cheapest available denomination on the source chain. The transferred tokens will end up with the intermediate sender (or `recover_address` on failure).
+
+## Mutual Exclusivity
+
+An IBC transfer memo cannot contain both `swap_and_action` and `transfer_tokens` hooks. Only one hook type is allowed per transfer. If both are present, the transfer will fail.
+
+## Atomicity
+
+All operations execute atomically using a cached context:
+
+- If the IBC transfer succeeds but the token transfer fails (and `fail_on_error` is `true`), everything is rolled back
+- State changes are only committed if all operations succeed
+- When `fail_on_error` is `false`, the fallback to `recover_address` is also atomic
+
+## Use Cases
+
+- **Cross-chain minting**: Send tokens from another chain to mint badges on BitBadges
+- **Cross-chain purchases**: Pay with IBC tokens and receive badges atomically
+- **Cross-chain airdrops**: Distribute badges triggered by IBC transfers
+- **Bridge-and-transfer**: Receive IBC tokens and redistribute BitBadges tokens in one step
+
+## Limitations
+
+- **Memo size**: Maximum 64KB for the IBC transfer memo (DoS prevention)
+- **Native assets**: x/tokenization assets cannot be IBC transferred — only x/bank assets can trigger this hook
+- **Collection must exist**: The target collection must already exist on BitBadges
+- **Approval rules apply**: Standard collection approval rules apply to the transfer — the intermediate sender must be authorized
+
+## See Also
+
+- [MsgTransferTokens](../x-tokenization/messages/msg-transfer-tokens.md) — Transfer message reference
+- [Swap and Action Hook](../x-custom-ibc-hooks/overview.md) — The other IBC hook type
+- [IBC Backed Minting](ibc-backed-minting.md) — Minting tokens backed by IBC assets
 
 
 ## File: ./learn/minting-and-circulating-supply.md
@@ -22242,6 +21213,17 @@ Dynamically calculate ownership times from a timestamp plus a set duration. This
 -   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
 -   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
 
+**Common Duration Values (milliseconds):**
+
+| Duration | Milliseconds |
+|----------|-------------|
+| 5 minutes | 300000 |
+| 1 hour | 3600000 |
+| 1 day | 86400000 |
+| 1 week | 604800000 |
+| 30 days | 2592000000 |
+| 1 year | 31536000000 |
+
 #### Recurring Ownership Times
 
 Define repeating time intervals for subscriptions or periodic rewards:
@@ -23686,11 +22668,16 @@ Warning: Native x/tokenization assets cannot be IBC transferred. Only x/bank ass
 
 ### Hook Data Format
 
-Hook data is specified in the IBC transfer memo using JSON format. The module supports the `swap_and_action` format, similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
+Hook data is specified in the IBC transfer memo using JSON format. The module supports two hook types:
+
+1. **`swap_and_action`**: Swap received tokens and perform a post-swap action (local transfer or IBC transfer). Similar to Skip Protocol's implementation with a couple minor differences (some features may not be supported).
+2. **`transfer_tokens`**: Execute BitBadges token transfers (minting, distributing, etc.) triggered by the incoming IBC transfer. See [IBC Transfer Tokens Hook](../learn/ibc-transfer-tokens-hook.md) for full documentation.
+
+Only one hook type can be used per IBC transfer — they are mutually exclusive.
 
 ### Swap and Action
 
-The primary hook type is `swap_and_action`, which:
+The `swap_and_action` hook type:
 
 1. Executes a swap operation using the received tokens
 2. Performs a post-swap action (local transfer or IBC transfer)
@@ -23725,9 +22712,12 @@ All operations are executed atomically:
 
 ```go
 type HookData struct {
-    SwapAndAction *SwapAndAction `json:"swap_and_action,omitempty"`
+    SwapAndAction  *SwapAndAction       `json:"swap_and_action,omitempty"`
+    TransferTokens *TransferTokensAction `json:"transfer_tokens,omitempty"`
 }
 ```
+
+> **Note:** Only one of `swap_and_action` or `transfer_tokens` can be specified per memo. See [IBC Transfer Tokens Hook](../learn/ibc-transfer-tokens-hook.md) for full `transfer_tokens` documentation.
 
 ### SwapAndAction
 
