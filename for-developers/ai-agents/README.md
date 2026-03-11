@@ -83,7 +83,6 @@ Additional endpoints (testnet):
 | [MCP Builder Tools Reference](mcp-builder-tools.md) | All 30+ MCP tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
-| [Machine Discovery](capabilities-json.md) | Machine-readable capability discovery |
 | [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
 
 ## BB-402: Token-Gated API Access
