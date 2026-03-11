@@ -1,2 +1,0 @@
-# Get Integration User IDs
-

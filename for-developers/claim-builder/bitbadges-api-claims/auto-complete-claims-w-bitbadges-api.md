@@ -2,7 +2,7 @@
 
 Note: This is a more advanced option that is incompatible with in-site plugins. Before going through the entire process, consider whether you can implement your use case with a plugin-only approach.
 
-Typically, we recommend making a custom webhook / plugin over this. Get creative! Use existing plugins, Zapier, create custom plugins, etc as an alternative to needing a complete auto-complete implementation.
+Typically, we recommend making a custom plugin (via the developer portal) over this.
 
 <figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -33,7 +33,7 @@ When creating on the BitBadges site, go to the API Code tab, and you should see 
 
 Couple notes with auto-completing claims:
 
-* If your claim is setup to require proof of sign in, proof of other socials sign ins (Sign In with Discord, etc), you must have the proper session authentication handled.
+* If your claim requires proof of sign in, you must have the proper session authentication handled.
 * Otherwise, you can setup your claim to be open to anyone but restricted by non-session criteria. For example, do not require proof of address but all claimees must present a valid password (potentially only known by you or the code which is expected to claim).
 
 **Simulating**

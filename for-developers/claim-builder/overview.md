@@ -8,7 +8,7 @@ BitBadges claims are designed to be a comprehensive tool directly within the sit
 
 ### **How do claims work? What are plugins?**
 
-Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, Zapier, our API, and more!
+Claims are made up of one or more plugins executed in order. By default, all must pass, but this can be customized. Out of the box, we offer plenty of built-in plugins and features with no code required and directly claimable by users in the site. Or, you can extend its functionality with helper tools, custom plugins, our API, and more!
 
 ### **Get Creative**
 
@@ -16,8 +16,7 @@ While we do offer a ton of functionality directly in-site, your desired function
 
 * Can you implement everything with a token and then check token ownership?
 * Use claim codes or a password which can be used as a universal approach (no need for a specific app integration)
-* Can your users be identified by email? Addresses? Use those plugins or dynamic stores
-* Does Zapier support your approach? They have 7000+ apps and integrations natively.
+* Can your users be identified by their address? Use the whitelist or initiatedBy plugins
 
 ### **How to create / manage claims?**
 
@@ -28,7 +27,6 @@ Claims are created and managed in the developer portal.
 Most of the time, you can directly do everything without a line of code. Get creative and experiment!
 
 * Gate URLs / Content to those who claim with the Rewards tab
-* Use the Discord Role Assigner plugin to create gated channels
 * And much more
 
 ### **Can claims connect to other BitBadges services?**

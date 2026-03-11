@@ -1,3 +1,0 @@
-# BitBadges Created Plugins
-
-##

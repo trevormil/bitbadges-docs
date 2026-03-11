@@ -5,8 +5,6 @@ IMPORTANT: Verifying claim attempts are two-fold:
 * Authentication: Authenticate the user (can be done with Sign In with BitBadges or however)
 * Verifying Claim Attempt: Lookup the claim attempt via the BitBadges API and cross-check the user has satisfied the criteria
 
-Note: You may opt to simply receive a post-success webhook which would take the API verification step out of it.
-
 ```typescript
 // Pre-Req: Set up your claim at https://bitbadges.io/create
 // Pre-Req: User is authenticated
@@ -37,11 +35,7 @@ if (res.success) { doSomething() }
 
 If you already have the user address, you can simply use option 1.
 
-If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via Zapier or the API), or you can set up a custom webhook to receive it.
-
-Note: If you are receiving a post-success webhook, you already know the claim has gone through by the nature of it, so you do not need to verify it.
-
-This will also allow you to map a user address / claim attempt to another social that you may identify your users by. For example, if you authenticate with email, you can request us to verify the user email, receive the email, and use the (ID, email) pair instead of an address.
+If you want to verify by claim attempt ID, you can use option 2. Claim attempt IDs can be obtained if you are completing the claim on behalf of the user (e.g. via the API), or you can set up a custom webhook to receive it.
 
 <figure><img src="../../../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
 
@@ -51,4 +45,4 @@ Use one of the plugins pictured below or a custom plugin to do so when setting u
 
 **More Advanced Ways**
 
-Note: You may also implement other ways of verifying claim attempts such as parsing state directly, storing data yourself from webhooks, etc. You can also trust the post-success webook to only be fired upon success. For these, we refer you to the corresponding documentation such as the API. The process is flexible, but the above should be all you need.
+You may also implement other ways of verifying claim attempts such as parsing state directly or storing data yourself.

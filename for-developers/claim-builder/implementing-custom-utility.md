@@ -2,12 +2,6 @@
 
 Need to perform some additional action upon the user claiming successfully?
 
-## **Preconfigured Plugins**
-
-The easiest and most typical approach is to just do this with preconfigured plugins. No code required. Many use cases are already implemented for you and will auto execute for you if configured. For example, the Send BitBadges Notification plugin or Assign Discord Role.
-
-<figure><img src="../../.gitbook/assets/image (362).png" alt=""><figcaption></figcaption></figure>
-
 ## **Integrations**
 
 Some integrations may check claims automatically for you. For example, create a WordPress gated site by just entering the claim ID to check in the settings.
@@ -28,24 +22,3 @@ To lookup claim state or recent claim attempts by address or other claim informa
 [verifying-claim-attempts-w-the-api.md](bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
 {% endcontent-ref %}
 
-## Use Post-Success Zaps
-
-If you want to automate this process, consider using Zapier to auto-execute logic upon claim successes per user.
-
-For example, new claim -> add to Mailchimp list or add to Google Sheets.
-
-<figure><img src="../../.gitbook/assets/image (392).png" alt=""><figcaption></figcaption></figure>
-
-{% content-ref url="automate-w-zapier/post-success-zaps.md" %}
-[post-success-zaps.md](automate-w-zapier/post-success-zaps.md)
-{% endcontent-ref %}
-
-## **Use Post-Success Webhooks / Plugins / Serverless Request Bin**
-
-<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
-
-Set up a custom success webhook or plugin (post-success) and receive the configured information (plus any custom user inputs or configured user socials you want to receive) via the payload. By the nature of it being a post-success webhook, you do not even need to verify the claim attempt was successful.
-
-Or, the Collect User Inputs (request bin) plugin is a serverless alternative! Instead of needing your own handler, we store the requests for you. You access them in-site or via the API.
-
-<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>

@@ -4,10 +4,10 @@ The outgoing request (from BitBadges to your plugin) will be made up of the cust
 
 -   **Plugin Secret:** A plugin secret value that you can use to verify BitBadges as the origin of the call. This is secret only to you and can be obtained via the developer portal when creating your plugin.
 -   **Claiming Address:** The **bitbadgesAddress** of the user who is attempting to claim (bb-prefixed Cosmos address). If the user is using an Ethereum address, it will be automatically converted to the BitBadges address format. You may also receive the **ethAddress** field if the user is using an Ethereum wallet (0x-prefixed address).
-    -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address. All other socials you can assume have been verified / signed in.
+    -   Note the claiming address may not be verified (signed in) dependeing on the configuration (the user must have the Signed In to BitBadges plugin). If you need to make sure that the user is signed in, use the **isAddressSignedIn** field. This will be true if the claiming user is signed in as the claiming address.
 -   **Claim Information**: Lastly, we also pass the **claimId,** as well as the claim's **createdAt** and **lastUpdated** timestamps. These can be used, for example, to implement version control systems on your end.
 -   **Claim Attempt ID:** The claim attempt ID is the ID of the attempt, and you can use it to track the status of the claim (whether it eventually fails or succeeds).
--   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim. If you subscribe to success status webhooks (in the configuration), we will also send a second request (with same body and headers) and \_attemptStatus='success'. This can be used to trigger post-claim logic that needs to wait until completion.
+-   **Attempt Status:** The attempt status (attemptStatus) will be 'executing' during the execution of the claim.
 -   **Simulation (Dry Run) Flag:** The **\_isSimulation** flag tells you whether this is a known dry run.
 
 For POST, PUT, and DELETE requests, we pass the values over the body. For GET, we pass them over the GET params. You are responsible for making sure the endpoint is accessible (e.g. no CORS errors, etc.). Make sure it is the desired type as well (i.e. GET vs POST vs DELETE vs PUT).
@@ -19,12 +19,6 @@ const payload = {
 
     // Context info
 
-    email: 'bob@abc.com', //If pass email is configured
-    discord: { id: '...', username: '...', discriminator: '...' }, //If configured
-    twitch: { id: '...', username: '...' }, //If configured
-    twitter: { id: '...', username: '...' }, //If configured
-    github: { id: '...', username: '...' }, //If configured
-    google: { id: '...', username: '...' }, //If configured
     pluginSecret: pluginDoc.pluginSecret,
     claimId: context.claimId,
     claimAttemptId: context.claimAttemptId,
@@ -39,7 +33,7 @@ const payload = {
 
 ### **Identifying the Claiming User**
 
-If you need to identify the claiming user, we pass their address + other requested socials to your endpoint. The socials will all be verified and signed in on our side. The address will be authorized if your plugin specifies the require sign in? option or the claim creator requires sign in.
+If you need to identify the claiming user, we pass their address to your endpoint. The address will be authorized if your plugin specifies the require sign in option or the claim creator requires sign in.
 
 Although that may not be enough if you identify your users in another way, or you may just not want to fully trust BitBadges. You can also simply check via a secret authorization code. Give them the authorization code on your end while authenticated. Have them enter it as a custom user input in-site. Then, verify it on your end.
 
@@ -66,12 +60,6 @@ This preset expects a { claimToken} in the response. The claim token is a one-ti
 This preset expects a { claimNumber } in the response. The claim number is the claim number that will be assigned if the claim number is successful. Claim numbers are 0-based, so claimNumber === 0 is the first claim, and so on.
 
 IMPORTANT: Only one plugin can control claim number assignment. If you select this approach, claims that use this plugin will not be compatible with any other plugin that uses the claim number preset.
-
-### **Success Hook Responses**
-
-For success hooks (\_attemptStatus=success), we also expect a 200 OK within 10 seconds. If you need to do asynchronous processing, return 200 OK early and process as you desire.
-
-Otherwise, for failed attempts, we will retry later with an exponential backoff policy.
 
 ### **Error Responses**
 
