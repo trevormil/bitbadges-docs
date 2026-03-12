@@ -197,6 +197,7 @@
   * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
   * [Bot Examples](for-developers/ai-agents/bot-examples.md)
   * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
+  * [Claims for Agents](for-developers/ai-agents/claims-for-agents.md)
 * [🎁 BitBadges Claims](for-developers/claims/README.md)
   * [Overview](for-developers/claims/overview.md)
   * [Core Concepts](for-developers/claims/concepts.md)

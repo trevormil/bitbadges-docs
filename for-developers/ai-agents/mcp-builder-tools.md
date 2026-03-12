@@ -72,6 +72,7 @@ Add to `.cursor/mcp.json`:
 | `build_smart_token` | Build a complete smart token (badge) collection transaction |
 | `build_fungible_token` | Build a fungible token collection transaction |
 | `build_nft_collection` | Build an NFT collection transaction |
+| `build_claim` | Build claim JSON for the API (code-gated, password-gated, whitelist-gated, open) |
 
 ### Audit & Analysis
 
