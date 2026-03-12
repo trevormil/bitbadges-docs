@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 11 01:30:59 UTC 2026
+Generated on Wed Mar 11 03:16:54 UTC 2026
 
 
 
@@ -2040,42 +2040,18 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [MCP Builder Tools Reference](for-developers/ai-agents/mcp-builder-tools.md)
   * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
   * [Bot Examples](for-developers/ai-agents/bot-examples.md)
-  * [Machine Discovery](for-developers/ai-agents/capabilities-json.md)
   * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
-* [🎁 BitBadges Claims](overview/claim-builder/README.md)
-  * [Overview](for-developers/claim-builder/overview.md)
-  * [Concepts](for-developers/claim-builder/concepts/README.md)
-    * [Standard vs On-Demand](for-developers/claim-builder/concepts/standard-vs-on-demand.md)
-    * [Completion Methods](for-developers/claim-builder/completion-methods.md)
-    * [Gating On-Chain Approvals](for-developers/claim-builder/concepts/gating-badge-distribution.md)
-    * [Claim Numbers](for-developers/claim-builder/concepts/claim-numbers.md)
-    * [Success Logic](for-developers/claim-builder/success-logic.md)
-    * [Signed In vs Select Address](for-developers/claim-builder/concepts/signed-in-vs-select-address.md)
-    * [Universal Approach - Claim Codes](for-developers/claim-builder/concepts/universal-approach-claim-codes.md)
-  * [Checking Custom Criteria](for-developers/claim-builder/checking-custom-criteria.md)
-  * [Implementing Custom Utility](for-developers/claim-builder/implementing-custom-utility.md)
-  * [Leveraging AI](for-developers/claim-builder/leveraging-ai.md)
-  * [BitBadges API & Claims](for-developers/claim-builder/bitbadges-api-claims/README.md)
-    * [Verifying Claim Attempts w/ the API](for-developers/claim-builder/bitbadges-api-claims/verifying-claim-attempts-w-the-api.md)
-    * [Fetching Claims](for-developers/claim-builder/bitbadges-api-claims/fetching-claims.md)
-    * [Auto-Complete Claims w/ BitBadges API](for-developers/claim-builder/bitbadges-api-claims/auto-complete-claims-w-bitbadges-api.md)
-  * [Dynamic Stores](for-developers/claim-builder/dynamic-stores/README.md)
-    * [Overview](for-developers/claim-builder/dynamic-stores/overview.md)
-    * [Adding Data](for-developers/claim-builder/dynamic-stores/adding-data.md)
-  * [Custom Plugins](for-developers/claim-builder/plugins/README.md)
-    * [Overview](for-developers/claim-builder/plugins/overview.md)
-    * [Creating a Custom Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/README.md)
-      * [Implement Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/README.md)
-        * [Getting Started](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/getting-started.md)
-        * [Hook Types and Simulations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/hook-types-and-simulations.md)
-        * [Design Considerations](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/design-considerations.md)
-        * [Parameters](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/parameters.md)
-        * [Custom Inputs](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/user-inputs.md)
-        * [API Handler](for-developers/claim-builder/plugins/creating-a-custom-plugin/implementing-your-plugin/api-handler.md)
-      * [Managing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/managing-your-plugin.md)
-      * [Testing Your Plugin](for-developers/claim-builder/plugins/creating-a-custom-plugin/testing-your-plugin.md)
-  * [Tutorials](for-developers/claim-builder/other-tutorials/README.md)
-    * [In-Site Guides](for-developers/claim-builder/other-tutorials/in-site-guides.md)
+* [🎁 BitBadges Claims](for-developers/claims/README.md)
+  * [Overview](for-developers/claims/overview.md)
+  * [Core Concepts](for-developers/claims/concepts.md)
+  * [Built-In Plugins](for-developers/claims/built-in-plugins.md)
+  * [Dynamic Stores](for-developers/claims/dynamic-stores.md)
+  * [Custom Plugins](for-developers/claims/custom-plugins.md)
+  * [Gating On-Chain Approvals](for-developers/claims/gating-approvals.md)
+  * [Security & Trust Assumptions](for-developers/claims/security.md)
+  * [API Reference](for-developers/claims/api-reference.md)
+  * [Examples](for-developers/claims/examples.md)
+  * [Designing Claims](for-developers/claims/designing-claims.md)
 
 ## Other Modules
 
@@ -8201,7 +8177,6 @@ Additional endpoints (testnet):
 | [MCP Builder Tools Reference](mcp-builder-tools.md) | All 30+ MCP tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
-| [Machine Discovery](capabilities-json.md) | Machine-readable capability discovery |
 | [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
 
 ## BB-402: Token-Gated API Access
@@ -8460,107 +8435,6 @@ search({ query: "my collection name" })
 - **Handle errors gracefully.** Check `result.success` and `result.error` after every broadcast.
 - **Sequence management.** The signing client handles nonce/sequence automatically with retries. For MCP tools, `sign_and_broadcast` handles this internally.
 - **Store credentials securely.** Use environment variables (`BITBADGES_MNEMONIC`, `BITBADGES_API_KEY`) rather than hardcoding secrets.
-
-
-## File: ./for-developers/ai-agents/capabilities-json.md
-
-# Machine Discovery
-
-How can AI agents discover what BitBadges can do and how to interact with it? This page describes the current mechanisms and a proposed convention for structured capability discovery.
-
-## Current Mechanisms
-
-BitBadges already provides several machine-readable entry points:
-
-| Mechanism | URL / Location | What It Provides |
-|-----------|---------------|-----------------|
-| **for-llms.txt** | [docs.bitbadges.io/for-llms.txt](https://docs.bitbadges.io/for-llms.txt) | Full documentation as plain text, optimized for LLM context windows |
-| **OpenAPI Spec** | [GitHub](https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json) | Complete API schema with all endpoints, request/response types |
-| **MCP Server** | `npx bitbadges-builder-mcp` | 23+ tools discoverable via MCP protocol's `tools/list` |
-| **MCP Resources** | `bitbadges://docs/*` | Documentation pages as MCP resources |
-| **GitBook MCP** | `docs.bitbadges.io/~gitbook/mcp` | GitBook-provided `searchDocumentation` tool |
-
-These are sufficient for most AI agents today. An LLM with access to the MCP server can discover all available tools, and the OpenAPI spec provides complete API coverage.
-
-## Proposed: capabilities.json
-
-For more structured, automated discovery, we propose a `capabilities.json` manifest that agents could fetch to understand the full integration surface at a glance.
-
-### Proposed Schema
-
-```json
-{
-  "name": "BitBadges",
-  "version": "1.0.0",
-  "description": "Digital token infrastructure for badges, credentials, and access control",
-  "capabilities": {
-    "tokens": {
-      "create": true,
-      "transfer": true,
-      "burn": true,
-      "query": true,
-      "types": ["fungible", "non-fungible", "semi-fungible"]
-    },
-    "claims": {
-      "create": true,
-      "verify": true,
-      "gate": true
-    },
-    "identity": {
-      "addressFormats": ["cosmos", "ethereum", "solana", "bitcoin"],
-      "verification": true,
-      "addressLists": true
-    }
-  },
-  "integrationPoints": {
-    "api": {
-      "baseUrl": "https://api.bitbadges.io",
-      "specUrl": "https://raw.githubusercontent.com/bitbadges/bitbadgesjs/main/packages/bitbadgesjs-sdk/openapi-hosted/openapi.json",
-      "authentication": "apiKey"
-    },
-    "mcp": {
-      "package": "bitbadges-builder-mcp",
-      "toolCount": 23,
-      "signingCapable": true
-    },
-    "sdk": {
-      "package": "bitbadgesjs-sdk",
-      "language": "typescript",
-      "signingCapable": true
-    },
-    "websocket": {
-      "mainnet": "wss://rpc.bitbadges.io/websocket",
-      "testnet": "wss://rpc-testnet.bitbadges.io/websocket"
-    }
-  },
-  "networks": {
-    "mainnet": {
-      "apiUrl": "https://api.bitbadges.io",
-      "chainId": "bitbadges-1",
-      "evmChainId": 50024
-    },
-    "testnet": {
-      "apiUrl": "https://api.bitbadges.io/testnet",
-      "chainId": "bitbadges-2",
-      "evmChainId": 50025,
-      "faucet": "https://api.bitbadges.io/testnet/api/v0/faucet"
-    }
-  }
-}
-```
-
-### How Agents Would Use It
-
-1. **Discovery:** Agent fetches `https://bitbadges.io/capabilities.json` (or a well-known URL)
-2. **Capability Check:** Agent inspects `capabilities` to determine if BitBadges supports the needed operation
-3. **Integration Selection:** Agent chooses the best integration point (API, MCP, SDK) based on its runtime
-4. **Configuration:** Agent uses `networks` to connect to the correct environment
-
-### Status
-
-This is a **proposed convention**, not yet deployed. The current mechanisms (`for-llms.txt`, MCP `tools/list`, OpenAPI spec) serve the same purpose and are available today.
-
-If you'd like to see this convention adopted, or have feedback on the schema, reach out on [Discord](https://discord.gg/bitbadges) or open an issue on [GitHub](https://github.com/BitBadges).
 
 
 ## File: ./for-developers/ai-agents/mcp-builder-tools.md
@@ -13620,6 +13494,2132 @@ export interface iSatisfyMethod {
 }
 ```
 
+
+
+## File: ./for-developers/claims/README.md
+
+# BitBadges Claims
+
+Claims are BitBadges' universal off-chain gating primitive: **Meet criteria → Receive rewards.**
+
+Claims are composed of plugins executed in a configurable pipeline. Built-in plugins handle common patterns (codes, passwords, address whitelists, token ownership). Custom plugins let you add any logic via HTTP endpoints.
+
+## Pages
+
+| Page                                    | Description                                                          |
+| --------------------------------------- | -------------------------------------------------------------------- |
+| [Overview](overview.md)                 | How claims work, standard vs on-demand, supported plugins            |
+| [Core Concepts](concepts.md)            | Claim numbers, success logic, sign-in, gating approvals, claim codes |
+| [Built-In Plugins](built-in-plugins.md) | Schemas and configuration for all core + pre-built plugins           |
+| [Dynamic Stores](dynamic-stores.md)     | BitBadges-hosted user lists for gating claims                        |
+| [Custom Plugins](custom-plugins.md)     | Build your own plugins with HTTP endpoints                           |
+| [Gating On-Chain Approvals](gating-approvals.md) | Hybrid off-chain/on-chain Merkle proof process, consistency requirements |
+| [Security & Trust Assumptions](security.md) | Versioning, oracle trust, plugin risks, minimizing trust |
+| [API Reference](api-reference.md)       | Complete, fetch, simulate, and verify claims programmatically        |
+| [Examples](examples.md)                 | Full E2E claim configurations and completion snippets                |
+| [Designing Claims](designing-claims.md) | Criteria approaches, rewards, automation, and design tips            |
+
+
+## File: ./for-developers/claims/api-reference.md
+
+# Claims API Reference
+
+## Completing Claims
+
+```typescript
+// Both address formats work (Ethereum 0x or BitBadges bb-prefixed)
+const res = await BitBadgesApi.completeClaim(claimId, address, body);
+console.log(res.claimAttemptId);
+
+// Wait ~2 seconds for processing, then check status
+const status = await BitBadgesApi.getClaimAttemptStatus(res.claimAttemptId);
+console.log(status); // { success: true }
+```
+
+### Request Body
+
+```typescript
+{
+  _expectedVersion: '0',  // Required: claim.version (use -1 to unsafely skip check — not recommended)
+  [instanceId]: {          // Per-plugin inputs, keyed by instance ID
+    ...pluginInputs
+  }
+}
+```
+
+**Example:**
+
+```typescript
+await BitBadgesApi.completeClaim(claimId, 'bb1...', {
+    _expectedVersion: '0',
+    'password-instance': { password: 'secret123' },
+    'codes-instance': { code: 'abc-def-ghi' },
+});
+```
+
+### Notes
+
+- `_expectedVersion` prevents the claim creator from changing criteria without you knowing. Obtain from `getClaim()`.
+- If sign-in is required, you must have proper session authentication.
+- If sign-in is disabled, gate the claim another way (e.g., password only your backend knows).
+- The `completeClaim` route auto-simulates first. If simulation fails, it returns immediately without queuing.
+
+## Simulating Claims
+
+```typescript
+const res = await BitBadgesApi.simulateClaim(claimId, address, body);
+```
+
+- Instant (not queued) — returns result immediately
+- Same body format as `completeClaim`
+- Use `_specificInstanceIds` to simulate only certain plugins:
+
+```typescript
+await BitBadgesApi.simulateClaim(claimId, address, {
+  _expectedVersion: '0',
+  _specificInstanceIds: ['plugin-a', 'plugin-b'],  // Only test these
+  'plugin-a': { ... }
+});
+```
+
+## Verifying Claim Attempts
+
+### By Address
+
+```typescript
+// GET /api/v0/claims/success/{claimId}/{address}
+const res = await BitBadgesApi.checkClaimSuccess(claimId, address);
+if (res.successCount >= 1) {
+    // User has successfully claimed
+}
+```
+
+- `successCount` = number of completions (1 for on-demand, N for standard)
+- Both `0x` and `bb1` address formats work
+
+### By Attempt ID
+
+```typescript
+// GET /api/v0/claims/status/{claimAttemptId}
+const res = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+if (res.success) {
+    // This specific attempt succeeded
+}
+```
+
+Obtain `claimAttemptId` from the `completeClaim()` response or from a custom plugin.
+
+### Polling Pattern
+
+Claims process asynchronously. After calling `completeClaim()`, poll for the result:
+
+```typescript
+const res = await BitBadgesApi.completeClaim(claimId, address, body);
+
+// Poll every 2-3 seconds until resolved
+const pollStatus = async (
+    attemptId: string,
+    maxRetries = 10,
+): Promise<boolean> => {
+    for (let i = 0; i < maxRetries; i++) {
+        await new Promise((r) => setTimeout(r, 2000));
+        const status = await BitBadgesApi.getClaimAttemptStatus(attemptId);
+        if (status.success !== undefined) return status.success;
+    }
+    throw new Error('Claim processing timed out');
+};
+
+const success = await pollStatus(res.claimAttemptId);
+```
+
+Typical processing time is 1-5 seconds. Claims for the same collection process sequentially; different collections process in parallel.
+
+## Fetching Claims
+
+```typescript
+const claim = await BitBadgesApi.getClaim({
+    claimId: 'your-claim-id',
+    fetchPrivateParams: false, // true = include private params (owner only + auth)
+    fetchAllClaimedUsers: true, // Include list of all claimed users
+    privateStatesToFetch: ['instanceId'], // Fetch private state for specific plugins
+});
+```
+
+## Looking Up Plugins
+
+### Get a Single Plugin
+
+```typescript
+// GET /api/v0/plugins/{pluginId}
+const plugin = await BitBadgesApi.getPlugin('must-own-badges');
+
+// Inspect the latest version's schemas
+const latest = plugin.versions[plugin.versions.length - 1];
+console.log(latest.userInputsSchema); // What users provide
+console.log(latest.publicParamsSchema); // Creator-configured public params
+console.log(latest.privateParamsSchema); // Creator-configured private params
+console.log(latest.verificationCall); // HTTP endpoint config
+console.log(latest.stateFunctionPreset); // 'Stateless' | 'ClaimToken' | 'ClaimNumbers' | 'CustomResponseHandler'
+```
+
+### Fetch Multiple Plugins
+
+```typescript
+// POST /api/v0/plugins/fetch
+const res = await BitBadgesApi.getPlugins({
+    pluginIds: ['must-own-badges', 'min-badge', 'url-clicker'],
+    returnSensitiveData: false, // true = include pluginSecret (owner only)
+});
+```
+
+### Search Published Plugins
+
+```typescript
+// GET /api/v0/plugins/search
+const res = await BitBadgesApi.searchPlugins({
+    searchValue: 'badge', // Filter by name
+    bookmark: undefined, // Pagination cursor
+    locale: 'en',
+});
+```
+
+### Get Plugin Errors
+
+```typescript
+const errors = await BitBadgesApi.getPluginErrors({
+    pluginId: 'your-plugin-id',
+    // ... pagination options
+});
+```
+
+Useful for debugging failed plugin executions during development.
+
+## Deleting Claims
+
+```typescript
+await BitBadgesApi.deleteClaims({ claimIds: ['claim-id-1', 'claim-id-2'] });
+```
+
+Deletion is a soft-delete — the claim is marked with `deletedAt` and excluded from queries. Existing claim attempt records are preserved for history.
+
+## Searching Claims
+
+```typescript
+const res = await BitBadgesApi.searchClaims({
+    searchValue: 'nft mint',
+    bookmark: undefined, // Pagination cursor
+});
+```
+
+Only claims with `showInSearchResults: true` appear in search results.
+
+
+## File: ./for-developers/claims/built-in-plugins.md
+
+# Built-In Plugins
+
+This page documents the schemas for all core plugins and pre-built plugin-based plugins.
+
+## Core Plugins
+
+Core plugins are built into BitBadges and handled in-memory. They require no external HTTP calls.
+
+### `codes` — Claim Codes
+
+One-time use codes that users must present to claim.
+
+**User Input:**
+```typescript
+{ code: string }
+```
+
+**Public Params:**
+```typescript
+{
+  numCodes: number;           // Total number of codes
+  hideCurrentState?: boolean; // Hide usage state from users
+}
+```
+
+**Private Params:**
+```typescript
+{
+  codes: string[];   // The actual codes
+  seedCode: string;  // Seed used to generate codes
+}
+```
+
+**Public State:**
+```typescript
+{
+  usedCodeRanges?: UintRange[];  // Ranges of used code indices
+}
+```
+
+---
+
+### `password` — Password Gate
+
+Gate claims behind a shared secret.
+
+**User Input:**
+```typescript
+{ password: string }
+```
+
+**Private Params:**
+```typescript
+{
+  password: string;  // The password to check against
+}
+```
+
+No public params or state.
+
+---
+
+### `numUses` — Max Claims Limit
+
+Limit the total number of successful claims. This plugin is **always required** and cannot be made optional via success logic.
+
+**Public Params:**
+```typescript
+{
+  maxUses: number;              // Maximum total claims allowed
+  hideCurrentState?: boolean;   // Hide current count from users
+  displayAsUnlimited?: boolean; // Display as "unlimited" in UI
+}
+```
+
+**Public State:**
+```typescript
+{
+  numUses?: number;                          // Current claim count
+  usedClaimNumbers?: UintRange[];            // Which claim numbers are taken
+  claimedUsers?: {
+    [bitbadgesAddress: string]: number[];    // Claim numbers per address
+  };
+}
+```
+
+No user input.
+
+---
+
+### `transferTimes` — Time Windows
+
+Restrict when claims can be completed.
+
+**Public Params:**
+```typescript
+{
+  transferTimes: UintRange[];  // Array of allowed time ranges (UNIX ms)
+}
+```
+
+No user input, state, or private params.
+
+---
+
+### `initiatedBy` — Sign-In Requirement
+
+Requires the user to be signed in to BitBadges. This verifies the claiming address is authenticated.
+
+No configurable params — configuration is handled in the claim builder UI.
+
+---
+
+### `whitelist` — Address List Gate
+
+Gate claims to a specific set of addresses. Supports both static address lists and dynamic stores.
+
+**Public Params:**
+```typescript
+{
+  listId?: string;              // Reference to an existing address list
+  list?: AddressList;           // Inline address list
+  maxUsesPerAddress?: number;   // Max claims per address
+  hasPrivateList?: boolean;     // True if the list is hidden from public
+}
+```
+
+**Private Params:**
+```typescript
+{
+  useDynamicStore?: boolean;  // Use a dynamic store instead of static list
+  dynamicDataId?: string;     // Dynamic store ID
+  dataSecret?: string;        // Dynamic store secret
+  listId?: string;            // Address list ID (private variant)
+  list?: AddressList;         // Inline list (private variant)
+}
+```
+
+**Private State:**
+```typescript
+{
+  addresses: { [address: string]: number };  // Claims per address
+}
+```
+
+---
+
+### `halt` — Pause Claims
+
+Temporarily halt all claim attempts. No params — just add/remove from the plugin list.
+
+---
+
+### `anonymous` — Anonymous Claiming
+
+Allow claims without requiring an address. No params.
+
+---
+
+## Pre-Built Custom Plugins
+
+These are pre-built plugins available by their plugin ID. They function as custom plugins (HTTP-based) but are maintained by BitBadges.
+
+To look up their full schema (user inputs, public/private params), use the API:
+
+```typescript
+const plugin = await BitBadgesApi.getPlugin('must-own-badges');
+// plugin.versions[0].userInputsSchema
+// plugin.versions[0].publicParamsSchema
+// plugin.versions[0].privateParamsSchema
+```
+
+| Plugin ID | Description |
+|-----------|-------------|
+| `must-own-badges` | Require ownership of specific badges/tokens. Configure which collection + token IDs. |
+| `min-badge` | Require a minimum token/badge balance. |
+| `url-clicker` | Require the user to visit a specific URL. |
+| `custom-instructions` | Display custom instructions to the user (informational only). |
+| `satisfies-claim` | Require the user to have completed another claim first. |
+| `username-set` | Require the user to have set a BitBadges username. |
+
+## Looking Up Plugin Schemas
+
+You can look up any plugin's configuration schema via the API:
+
+```typescript
+// Get a single plugin by ID
+const res = await BitBadgesApi.getPlugin('must-own-badges');
+const latestVersion = res.versions[res.versions.length - 1];
+
+console.log(latestVersion.userInputsSchema);    // What users must provide
+console.log(latestVersion.publicParamsSchema);   // Creator-configured public params
+console.log(latestVersion.privateParamsSchema);  // Creator-configured private params
+console.log(latestVersion.stateFunctionPreset);  // State management type
+console.log(latestVersion.verificationCall);     // HTTP endpoint config
+
+// Fetch multiple plugins at once
+const res = await BitBadgesApi.getPlugins({
+  pluginIds: ['must-own-badges', 'min-badge', 'url-clicker'],
+  returnSensitiveData: false  // true = include pluginSecret (owner only)
+});
+
+// Search published plugins by name
+const res = await BitBadgesApi.searchPlugins({
+  searchValue: 'badge',
+  bookmark: undefined,  // For pagination
+  locale: 'en'
+});
+```
+
+### Plugin Version Config
+
+Each plugin version contains the full configuration:
+
+```typescript
+interface PluginVersionConfig {
+  version: number;
+  finalized: boolean;              // Only finalized versions are usable
+  stateFunctionPreset: 'Stateless' | 'ClaimToken' | 'ClaimNumbers' | 'CustomResponseHandler';
+  duplicatesAllowed: boolean;      // Can a claim have multiple instances?
+  requiresSessions: boolean;       // Needs authenticated session?
+  requiresUserInputs: boolean;     // Needs user interaction?
+  reuseForNonIndexed: boolean;     // Compatible with on-demand claims?
+  receiveStatusWebhook: boolean;   // Receive status updates?
+  skipProcessingWebhook?: boolean; // Auto-pass without calling endpoint?
+  ignoreSimulations?: boolean;     // Skip during dry-runs?
+  requireSignIn?: boolean;         // Require BitBadges sign-in?
+
+  // Schemas (JsonBodyInputSchema arrays)
+  userInputsSchema: JsonBodyInputSchema[];
+  publicParamsSchema: JsonBodyInputSchema[];
+  privateParamsSchema: JsonBodyInputSchema[];
+
+  // HTTP endpoint configuration
+  verificationCall?: {
+    uri: string;
+    hardcodedInputs: JsonBodyInputWithValue[];
+    passAddress?: boolean;
+  };
+
+  // UI customization
+  customDetailsDisplay?: string;   // Template: "Requires {{minBalance}} tokens"
+}
+```
+
+### Schema Field Types
+
+Each schema field (`JsonBodyInputSchema`) describes one input:
+
+```typescript
+interface JsonBodyInputSchema {
+  key: string;                 // Field name in payload
+  label: string;               // Display label
+  type: string;                // 'string' | 'number' | 'boolean' | 'date' | 'url'
+  required?: boolean;
+  defaultValue?: string | number | boolean;
+  helper?: string;             // Help text
+  options?: { label: string; value: string | number | boolean }[];  // Dropdown
+  arrayField?: boolean;        // Is this an array?
+  headerField?: boolean;       // Pass as HTTP header instead of body?
+  hideFromDetailsDisplay?: boolean;  // Hide from public view (public params only)
+  hyperlink?: { url: string; showAsGenericView?: boolean };
+}
+```
+
+
+## File: ./for-developers/claims/concepts.md
+
+# Core Concepts
+
+## Signed-In vs Select Address
+
+The `initiatedBy` or sign-in plugin controls whether the claiming address is verified.
+
+| Mode                 | Behavior                                                    |
+| -------------------- | ----------------------------------------------------------- |
+| **Sign-in required** | User must authenticate with BitBadges. Address is verified. |
+| **No sign-in**       | Any address can be manually entered. No verification.       |
+
+Disabling sign-in is useful for:
+
+- Better UX (no wallet signatures needed)
+- Mobile / limited wallet access
+- Auto-completion via API (your backend specifies the address)
+
+However, for most use cases, you will want to require sign-in.
+
+> **Auto-completion tip:** Disable sign-in and gate with a password only your backend knows. You can then call `completeClaim()` on behalf any address.
+
+## Gating On-Chain Approvals / Transfers
+
+Claims can gate on-chain token operations (e.g., minting). This is the primary use case for claims on BitBadges. The flow:
+
+1. User completes a claim → receives a Merkle proof leaf (a one-time use code - handled behind the scenes by the BitBadges site / API)
+2. User submits the proof on-chain in their transfer/mint transaction (using the one-time use code). The code is pre-signed by BitBadges ensuring it can only be used by the approved address.
+3. On-chain approval criteria validates the Merkle proof
+
+This is a two-step hybrid off-chain / on-chain process: claims gate the **right to initiate** a transfer, not the transfer itself. Proofs are one-time use (replay attack prevention). Then, the final transfer is executed on-chain with the proof.
+
+> BitBadges acts as a centralized oracle for the off-chain criteria checking and distributing the codes. The on-chain Merkle verification ensures the proof is valid.
+
+## Parallel Plugin Execution
+
+All plugins in a claim execute **in parallel**, not sequentially. This is a critical design constraint:
+
+- Plugins cannot depend on each other's state mutations within the same claim attempt
+- Each plugin sees the state as it was **before** the claim attempt started
+- State mutations from all passing plugins are collected and committed atomically after all plugins complete
+- If a plugin needs to coordinate with another plugin, use shared external state (your own backend) rather than claim state
+
+This design maximizes throughput — all plugin HTTP calls and validations happen concurrently, keeping claim processing fast.
+
+> **Timeout:** Each plugin has a 6-second timeout. If your custom plugin doesn't respond in time, it fails.
+
+## Plugin ID vs Instance ID
+
+A **plugin ID** identifies the plugin itself (e.g., `"codes"`, `"whitelist"`, `"must-own-badges"`). An **instance ID** identifies a specific usage of that plugin within a claim. A single claim can use the same plugin multiple times, each with a different instance ID and configuration.
+
+```typescript
+// A claim with two instances of the same plugin
+const claim: iClaimBuilderDoc = {
+    plugins: [
+        {
+            pluginId: 'whitelist', // The plugin type
+            instanceId: 'vip-whitelist', // Unique within this claim
+            publicParams: { maxUsesPerAddress: 1 },
+            privateParams: { listId: 'vip-list' },
+        },
+        {
+            pluginId: 'whitelist', // Same plugin type
+            instanceId: 'early-access', // Different instance
+            publicParams: { maxUsesPerAddress: 1 },
+            privateParams: { listId: 'early-access-list' },
+        },
+    ],
+    // OR logic: user must be on either list
+    satisfyMethod: {
+        type: 'OR',
+        conditions: ['vip-whitelist', 'early-access'], // References instanceIds
+    },
+};
+```
+
+Instance IDs are used throughout:
+
+- **Success logic** (`satisfyMethod.conditions`) references instance IDs
+- **Completing claims** — user inputs are keyed by instance ID:
+
+```typescript
+await BitBadgesApi.completeClaim(claimId, address, {
+    _expectedVersion: '0',
+    'codes-instance': { code: 'abc-123' }, // instanceId: value
+    'password-instance': { password: 'secret' }, // instanceId: value
+});
+```
+
+- **Plugin state** is tracked per instance ID
+- **`_specificInstanceIds`** lets users select which instances to attempt
+
+Whether a plugin allows multiple instances per claim is controlled by `duplicatesAllowed` in the plugin's version config.
+
+## Claim Numbers
+
+By default, claims use an incrementing number system: claim #0, #1, #2, etc. In advanced cases, this can be customized via plugins that use the `ClaimNumbers` response preset (return `{ claimNumber }` from your handler).
+
+Only **one plugin** can control claim number assignment per claim.
+
+## Success Logic
+
+By default, all plugins must pass. You can customize this with the `satisfyMethod` property:
+
+```typescript
+interface iSatisfyMethod {
+    type: 'AND' | 'OR' | 'NOT';
+    conditions: Array<string | iSatisfyMethod>; // instanceId or nested logic
+    options?: {
+        minNumSatisfied?: number; // M-of-N for OR logic
+    };
+}
+```
+
+**Examples:**
+
+- All must pass (default): `satisfyMethod` is falsy — all plugins required
+- 2 of 5 must pass: `{ type: 'OR', conditions: [...ids], options: { minNumSatisfied: 2 } }`
+- NOT logic: `{ type: 'NOT', conditions: ['pluginInstanceId'] }`
+- Nested: `{ type: 'AND', conditions: [{ type: 'OR', conditions: [...] }, 'requiredPlugin'] }`
+
+**Notes:**
+
+- `numUses` is always required and cannot be made optional
+- The system short-circuits: if 2 of 8 pass and that's sufficient, the other 6 aren't checked
+- Users can specify `_specificInstanceIds` to select which plugins to attempt
+- State is only updated for plugins in the success path
+
+## Rewards
+
+Claims can define rewards that are shown to users upon successful completion — gated content, URLs, or custom data.
+
+```typescript
+interface iClaimReward<T extends NumberType> {
+    rewardId: string; // Reward type identifier
+    instanceId: string; // Unique per reward within the claim
+    metadata?: iMetadata<T>; // Name, description, image
+    automatic?: boolean; // Automatically grant on success?
+    gatedContent: {
+        content?: string; // Text content revealed on success
+        url?: string; // URL revealed on success
+        params?: object; // Additional parameters
+    };
+    calculationMethod?: {
+        alwaysShow?: boolean; // Always visible regardless of claim count
+        minClaimSuccesses?: number; // Minimum successful claims to reveal
+    };
+}
+```
+
+Configure rewards in the claim builder UI or via the `rewards` field on `iClaimBuilderDoc`. Sensitive reward data (URLs, content) is only visible to users who have successfully claimed.
+
+## Cache Policy (On-Demand Claims)
+
+For on-demand claims (stateless, real-time checks), BitBadges caches eligibility results to avoid re-evaluating on every request. Configure caching with the `cachePolicy` field:
+
+```typescript
+interface iClaimCachePolicy<T extends NumberType> {
+    ttl?: T; // Cache duration in seconds (default: 300)
+    alwaysPermanent?: boolean; // Cache result forever once evaluated
+    permanentAfter?: UNIXMilliTimestamp<T>; // Cache permanently after this timestamp
+}
+```
+
+| Strategy                    | Behavior                                                   |
+| --------------------------- | ---------------------------------------------------------- |
+| Default (no policy)         | Cache for 5 minutes                                        |
+| `ttl: 60`                   | Cache for 60 seconds                                       |
+| `alwaysPermanent: true`     | Cache forever after first evaluation                       |
+| `permanentAfter: timestamp` | Cache with TTL until the timestamp, then cache permanently |
+
+Use shorter TTLs for frequently changing criteria (e.g., token ownership that may transfer). Use permanent caching for one-time checks that won't change.
+
+## Claim Metadata & Discoverability
+
+Claims support optional metadata and discoverability settings:
+
+- **`metadata`** — Name, description, and image for the claim. Shown in the UI and search results.
+- **`showInSearchResults`** — If `true`, the claim appears in public search results on BitBadges.
+- **`categories`** — String array for filtering/categorizing claims (e.g., `["nft", "gaming"]`).
+- **`estimatedCost`** / **`estimatedTime`** — Display-only strings shown to users (e.g., `"$10"`, `"5 minutes"`). Not enforced.
+- **`testOnly`** — If `true`, the claim is excluded from public queries and production distribution. Use for development and testing.
+
+
+## File: ./for-developers/claims/custom-plugins.md
+
+# Custom Plugins
+
+Custom plugins are HTTP endpoints that extend claim logic. BitBadges sends a POST request to your endpoint during simulation, execution and/or post-success, and your response determines whether the plugin passes or fails.
+
+Any logic you can express as an HTTP handler can become a claim plugin — authentication checks, API calls, database lookups, AI evaluations, webhook triggers, or anything else.
+
+## Getting Started
+
+1. Go to [bitbadges.io/developer](https://bitbadges.io/developer) → Plugins tab
+2. Create a new plugin
+3. Configure endpoint URL, schemas, and settings
+4. Implement your handler
+5. Test with the built-in claim tester
+6. Finalize the version
+7. Use the plugin in claims by its plugin ID
+
+## Architecture
+
+```
+User claims → BitBadges sends POST to your endpoint → You return 200 OK or error
+```
+
+**Three parties:**
+- **Claim Creator** — configures the claim, selects plugins, sets public/private params
+- **Claiming User** — attempts the claim, provides user inputs
+- **Plugin Creator** — builds and maintains the plugin endpoint (you)
+
+The claim creator configures public/private params when adding the plugin to a claim. The user provides user inputs at claim time. All three are merged into a single request payload sent to your handler.
+
+## Handler Implementation
+
+```typescript
+import { NextApiRequest, NextApiResponse } from 'next';
+
+const handlePlugin = async (req: NextApiRequest, res: NextApiResponse) => {
+  try {
+    const {
+      // Context
+      pluginSecret,         // Verify BitBadges as the caller
+      claimId,              // Which claim is being attempted
+      claimAttemptId,       // Unique attempt ID (empty for simulations)
+      _isSimulation,        // true = dry run, don't execute side effects
+      _attemptStatus,       // 'executing' during claim processing
+      lastUpdated,          // Claim last updated timestamp (UNIX ms)
+      createdAt,            // Claim creation timestamp (UNIX ms)
+      version,              // Claim version string
+      locale,               // User's locale
+
+      // User identification
+      bitbadgesAddress,     // bb-prefixed Cosmos address
+      ethAddress,           // 0x-prefixed Ethereum address
+      isAddressSignedIn,    // true if address is verified via sign-in
+
+      // Claim number context
+      assignMethod,         // Claim number assignment method
+      isClaimNumberAssigner, // true if this plugin assigns claim numbers
+
+      // Your custom inputs (merged from all param sources)
+      ...customInputs
+    } = req.body;
+
+    // 1. Verify origin
+    if (pluginSecret !== process.env.PLUGIN_SECRET) {
+      return res.status(401).json({ message: 'Invalid plugin secret' });
+    }
+
+    // 2. Handle simulations
+    if (_isSimulation) {
+      // Validate inputs, check preconditions, but don't mutate state
+      return res.status(200).json({});
+    }
+
+    // 3. Your custom logic
+    // ...
+
+    // 4. Return response based on your preset
+    return res.status(200).json({});
+  } catch (err) {
+    return res.status(401).json({ message: String(err) });
+  }
+};
+
+export default handlePlugin;
+```
+
+## Context Info Reference
+
+Every request includes these context fields:
+
+```typescript
+interface ContextInfo {
+  locale: string;               // User's locale
+  bitbadgesAddress: string;     // bb-prefixed address (if passAddress enabled)
+  ethAddress: string;           // 0x address (if applicable)
+  isAddressSignedIn: boolean;   // Whether the address is verified
+  claimId: string;              // The claim being attempted
+  _isQueueHandler: boolean;     // Internal: true if processing from queue
+  _isSimulation: boolean;       // true for dry-run attempts
+  _attemptStatus: string;       // 'executing' during processing
+  lastUpdated: number;          // Claim last updated (UNIX ms)
+  createdAt: number;            // Claim creation time (UNIX ms)
+  claimAttemptId: string;       // Unique attempt ID (empty for simulations)
+  assignMethod: string;         // Claim number assignment method
+  isClaimNumberAssigner: boolean; // true if this plugin assigns claim numbers
+}
+```
+
+Additionally, `pluginSecret` and `version` are included in every request. All custom params (public, private, user inputs) are merged into the top level of the request body alongside these fields.
+
+## Parameters
+
+Three types of parameters, all merged into the handler payload:
+
+```typescript
+{
+  ...contextFields,     // pluginSecret, claimId, addresses, etc.
+  ...publicParams,      // Visible to everyone (set by claim creator)
+  ...privateParams,     // Visible only to BitBadges + claim creator
+  ...userInputs         // Provided by the claiming user at claim time
+}
+```
+
+- **Public params** — Configured by the claim creator when adding the plugin to a claim. Visible in the claim's public configuration. Claim users can see these. Example: minimum token balance, a URL to display.
+- **Private params** — Configured by the claim creator. Hidden from claim users, only visible to BitBadges and the claim creator. Example: API keys, internal thresholds, webhook URLs.
+- **User inputs** — Provided by the user at claim time via a form rendered by BitBadges (or a custom frontend). Example: a code, an answer to a question, a file upload URL.
+
+All three are defined as `JsonBodyInputSchema[]` arrays in your plugin's version config.
+
+## User Inputs
+
+### In-Site Forms (Recommended)
+
+Define input schemas when creating your plugin. BitBadges renders a form for the user based on your schema.
+
+Each field is defined as:
+
+```typescript
+interface JsonBodyInputSchema {
+  key: string;                 // Field name in payload
+  label: string;               // Display label shown to user
+  type: string;                // 'string' | 'number' | 'boolean' | 'date' | 'url'
+  required?: boolean;          // Is this field required?
+  defaultValue?: string | number | boolean;  // Pre-filled value
+  helper?: string;             // Help text displayed below the field
+  options?: {                  // If provided, renders a dropdown select
+    label: string;
+    value: string | number | boolean;
+  }[];
+  arrayField?: boolean;        // Render as array input (multiple values)
+  headerField?: boolean;       // Pass as HTTP header instead of body
+  hideFromDetailsDisplay?: boolean;  // Hide from public display (for public params)
+  hyperlink?: {                // Link associated with this field
+    url: string;
+    showAsGenericView?: boolean;
+  };
+}
+```
+
+**Supported types:**
+- `string` — free text input
+- `number` — numeric input
+- `boolean` — checkbox/toggle
+- `date` — date picker (value is UNIX ms)
+- `url` — URL input with validation
+
+### Custom Frontend
+
+If the in-site form isn't sufficient, redirect users to your own UI via a redirect URL. Typical flow:
+
+1. User is redirected to your frontend
+2. User authenticates / completes action on your side
+3. You issue a one-time code or token
+4. User enters the code back in-site
+5. Your handler validates the code
+
+## Response Presets
+
+Configure your plugin's `stateFunctionPreset` when creating a version. This determines how BitBadges handles your response and manages state.
+
+### `Stateless`
+
+Return `200 OK` with an empty body. Plugin passes if status is 200. No state is tracked.
+
+```json
+{}
+```
+
+Best for: validation checks, API verifications, webhook triggers — anything where you just need pass/fail.
+
+### `ClaimToken`
+
+Return a one-time use token that you generate. BitBadges tracks which tokens have been used. If the overall claim succeeds, the token is marked as used. If the claim fails (another plugin fails), the token remains available for retry.
+
+```json
+{ "claimToken": "unique-token-abc123" }
+```
+
+Best for: custom authentication flows, external code validation, third-party integrations that issue tokens.
+
+### `ClaimNumbers`
+
+Return the claim number to assign for this attempt. Only **one plugin** per claim can use this preset.
+
+```json
+{ "claimNumber": 0 }
+```
+
+Best for: custom claim number assignment logic (non-sequential, based on external data, etc.).
+
+### `CustomResponseHandler`
+
+Full control over state management and response handling. You manage everything yourself.
+
+Best for: advanced use cases that don't fit the other presets.
+
+## Error Handling
+
+- **Timeout:** All responses must arrive within **10 seconds**. If your endpoint doesn't respond in time, the plugin fails.
+- **Error format:** Return `{ "message": "..." }` with a non-200 status code. The message may be shown to the user — be informative but don't reveal secrets or internal details.
+- **Key restriction:** Do not use `.` in returned JSON keys (e.g., use `bob@abc[dot]com` not `bob@abc.com`). This is a storage constraint.
+
+## Simulations (Dry Runs)
+
+BitBadges simulates claims before real submission. Your plugin receives a simulation request first, then (if simulation passes) the real execution request.
+
+**Detection:** `_isSimulation === true` and `claimAttemptId` is empty.
+
+**Your plugin should:**
+- Validate inputs and check preconditions
+- Return the appropriate status code (200 = would pass, non-200 = would fail)
+- **NOT** execute side effects, mutate state, send notifications, or consume tokens
+
+You can opt out of simulation requests by setting `ignoreSimulations: true` in your version config. If opted out, your plugin won't be called during simulation — it will only be called during real execution.
+
+## State Management
+
+**Critical rule:** A 200 from your plugin does NOT mean the overall claim succeeded. Other plugins in the pipeline may fail, causing the claim to fail even though your plugin passed.
+
+### BitBadges-Managed State (Recommended)
+
+Use response presets (`Stateless`, `ClaimToken`, `ClaimNumbers`). BitBadges only commits state changes if:
+1. Your plugin returned 200, **AND**
+2. The overall claim succeeded (all required plugins passed per the success logic)
+
+This eliminates race conditions and ensures consistency. If the claim fails, any state your plugin would have changed is rolled back.
+
+### Self-Managed State
+
+If you manage state in your own backend (external database, third-party API, etc.):
+
+- **Don't update state on plugin success.** Your plugin passing doesn't mean the claim succeeded.
+- **Verify claim outcomes** via the [API](api-reference.md) before committing external state changes:
+
+```typescript
+// After some delay, check if the claim actually succeeded
+const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+if (status.success) {
+  // Now safe to update your external state
+}
+```
+
+- **Handle race conditions.** Multiple claim attempts can execute concurrently. Use idempotency keys or atomic operations in your backend.
+- **Consider using `receiveStatusWebhook`** — BitBadges can POST to your endpoint with the final claim outcome, so you don't have to poll.
+
+### Success Webhooks & Retry Strategy
+
+If your plugin version has `receiveStatusWebhook: true`, BitBadges POSTs to your endpoint after the claim completes with `_attemptStatus: 'success'` or `'failure'` in the body. This is separate from the plugin validation call.
+
+Webhooks use exponential backoff for retries:
+- **Base delay:** 1 hour
+- **Formula:** `2^retries × base_delay`
+- **Max delay:** 7 days
+- **Example:** 1h → 2h → 4h → 8h → 16h → ...
+
+Design your webhook handler to be **idempotent** — the same webhook may be delivered multiple times due to retries. Use the `claimAttemptId` as a deduplication key.
+
+## Plugin Version Config
+
+Each plugin version contains the full configuration. When creating or updating a version in the developer portal, you configure all of these fields:
+
+```typescript
+interface PluginVersionConfig {
+  // Identity
+  version: number;                // Auto-incrementing version number
+  finalized: boolean;             // Only finalized versions are usable by other users
+
+  // State management
+  stateFunctionPreset: 'Stateless' | 'ClaimToken' | 'ClaimNumbers' | 'CustomResponseHandler';
+
+  // Behavior flags
+  duplicatesAllowed: boolean;     // Can a claim have multiple instances of this plugin?
+  requiresSessions: boolean;      // Does the plugin need an authenticated BitBadges session?
+  requiresUserInputs: boolean;    // Does the user need to provide inputs at claim time?
+  reuseForNonIndexed: boolean;    // Compatible with on-demand (stateless) claims?
+  receiveStatusWebhook: boolean;  // Receive POST with final claim outcome (success/failure)?
+  skipProcessingWebhook?: boolean; // Auto-pass without calling your endpoint?
+  ignoreSimulations?: boolean;    // Don't call your endpoint during dry-runs?
+  requireSignIn?: boolean;        // Require the user to be signed in to BitBadges?
+
+  // Schemas — define what params/inputs your plugin accepts
+  userInputsSchema: JsonBodyInputSchema[];    // What the claiming user provides
+  publicParamsSchema: JsonBodyInputSchema[];   // What the claim creator configures (public)
+  privateParamsSchema: JsonBodyInputSchema[];  // What the claim creator configures (hidden)
+
+  // HTTP endpoint configuration
+  verificationCall?: {
+    uri: string;                              // Your handler URL
+    hardcodedInputs: JsonBodyInputWithValue[]; // Static values always included in requests
+    passAddress?: boolean;                    // Include the user's address in the payload
+  };
+
+  // UI customization
+  customDetailsDisplay?: string;   // Template string shown to users
+                                   // Example: "Requires {{minBalance}} tokens"
+                                   // Variables reference publicParams keys
+}
+```
+
+### Field Details
+
+| Field | Description |
+|-------|-------------|
+| `finalized` | Once finalized, a version is immutable and available to all users. Unfinalized versions are only usable by the plugin creator (for testing). |
+| `duplicatesAllowed` | If `true`, a claim can include multiple instances of this plugin (each with different params). If `false`, only one instance is allowed. |
+| `requiresSessions` | If `true`, the claim requires an active BitBadges session (user must be signed in). |
+| `requiresUserInputs` | If `true`, the user must provide inputs at claim time (BitBadges renders a form). If `false`, the plugin operates with only creator-configured params. |
+| `reuseForNonIndexed` | If `true`, the plugin is compatible with on-demand claims (stateless evaluation, no claim action needed). Requires the plugin to be stateless with no user inputs. |
+| `receiveStatusWebhook` | If `true`, BitBadges POSTs to your endpoint after the claim completes with the final outcome. Useful for self-managed state — you learn whether the claim succeeded or failed without polling. |
+| `skipProcessingWebhook` | If `true`, BitBadges auto-passes this plugin without calling your endpoint. Useful for display-only plugins (like `custom-instructions`) that don't need server-side validation. |
+| `ignoreSimulations` | If `true`, your endpoint is not called during simulation/dry-run requests. The plugin auto-passes simulation. |
+| `requireSignIn` | If `true`, the user must be signed in to BitBadges before this plugin is evaluated. |
+| `hardcodedInputs` | Static key-value pairs always included in requests to your endpoint. Useful for API keys or configuration that doesn't change per claim. |
+| `passAddress` | If `true`, the user's `bitbadgesAddress` and `ethAddress` are included in the payload. If `false`, the plugin operates without knowing the user's address. |
+| `customDetailsDisplay` | A template string displayed to users in the claim UI. Use `{{key}}` to reference public param values. Example: `"Must own at least {{minBalance}} tokens from collection {{collectionId}}"`. |
+
+## Versioning
+
+Plugins support multiple versions for safe iteration:
+
+- **Creating versions:** Each new version gets an incrementing version number. Start unfinalized for testing.
+- **Finalizing:** Once finalized, a version is immutable — schemas, endpoint URL, and all settings are locked. This protects claims that depend on your plugin from breaking changes.
+- **Version selection:** When a claim creator adds your plugin, they use the latest finalized version. That version is locked to the claim — even if you release new versions, existing claims stay on the version they were created with.
+- **Testing unfinalized versions:** Only the plugin creator can use unfinalized versions. Use the Claim Tester in the developer portal to test before finalizing.
+- **Handler versioning:** Your handler receives `version` and `createdAt` in every request. Use these to handle version-specific logic if needed (e.g., backwards-compatible changes to your handler that serves multiple versions).
+
+### Version Lifecycle
+
+```
+Create v0 (unfinalized) → Test → Finalize v0 → Claims use v0
+Create v1 (unfinalized) → Test → Finalize v1 → New claims use v1, existing claims stay on v0
+```
+
+## Publishing to the Plugin Directory
+
+Plugins can be published to the BitBadges plugin directory, making them discoverable by other users.
+
+- **Private plugins** (default) — only you can add them to claims. Useful for internal tools, custom integrations, or plugins that require your specific backend.
+- **Published plugins** — visible in the plugin directory. Anyone can add them to their claims. Useful for building reusable tools that serve the broader BitBadges ecosystem.
+
+To publish, configure your plugin's visibility settings in the developer portal. Published plugins should have clear descriptions, well-documented schemas, and stable, finalized versions.
+
+Users can discover published plugins via the API:
+
+```typescript
+const results = await BitBadgesApi.searchPlugins({
+  searchValue: 'badge ownership',
+  bookmark: undefined,
+  locale: 'en'
+});
+```
+
+## Design Considerations
+
+### Plugin Success ≠ Claim Success
+
+Your plugin may pass but the claim fails (other plugins fail). Or your plugin fails but the claim succeeds (OR logic). Only update external state based on verified claim outcomes.
+
+### Parallel Execution
+
+All plugins in a claim execute **in parallel**. Your plugin cannot depend on another plugin's state mutations within the same claim attempt. Each plugin sees state as it was before the attempt started.
+
+### Async Processing
+
+Claims are processed asynchronously via a queue. Don't depend on real-time BitBadges claim state (like total claims completed) — it may be stale by the time your plugin runs. Your own parameters and the context info passed to your handler are safe to depend on.
+
+### Nested Claim Depth
+
+If your plugin uses the `satisfies-claim` pattern (checking another claim's success), be aware that nested on-demand claims have a **depth limit of 5 levels**. Circular references are detected and rejected.
+
+### On-Demand Compatibility
+
+For on-demand claims (stateless, no explicit claim action), your plugin must be:
+
+- **Stateless** — no per-attempt state tracking
+- **No user inputs** — operates with just address + hardcoded params
+- **Context-only** — works with only the passed context info
+
+Set `reuseForNonIndexed: true` in your version config.
+
+### Authentication
+
+BitBadges does not handle your authentication. If you need the user to authenticate with your service, manage auth end-to-end yourself. Common pattern:
+
+1. User visits your frontend and authenticates
+2. You issue a one-time code
+3. User enters the code as a user input in-site
+4. Your handler validates the code
+
+### Security
+
+- **Verify `pluginSecret`** on every request to confirm BitBadges is the caller
+- **Never expose `pluginSecret` client-side** — it should only exist on your backend
+- **Sanitize all inputs** — user inputs are untrusted data from the claiming user
+- **Rate-limit your endpoint** independently of BitBadges — your endpoint is publicly addressable
+- **Don't reveal internal details** in error messages — they may be shown to the user
+
+## Testing
+
+### curl
+
+```bash
+curl -X POST https://your-handler.com \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "pluginSecret": "your-secret",
+    "claimId": "test-claim",
+    "claimAttemptId": "test-attempt",
+    "_isSimulation": false,
+    "_attemptStatus": "executing",
+    "bitbadgesAddress": "bb1...",
+    "lastUpdated": 1800000000000,
+    "createdAt": 1800000000000,
+    "version": "0"
+  }'
+```
+
+### Developer Portal
+
+- **"Send Test Request"** button sends mocked data to your endpoint — verify your handler responds correctly
+- **Claim Tester** — test the full claim flow with your plugin included. This is the only place to test unfinalized versions in a real claim context.
+
+### Request Bin
+
+Use [webhook.site](https://webhook.site) or similar to inspect incoming payloads during development. Set your plugin's endpoint to the request bin URL, trigger a test, and examine exactly what BitBadges sends.
+
+## Internal Plugin Architecture
+
+For reference, core (built-in) plugins follow the same pattern internally:
+
+```typescript
+interface BackendIntegrationPlugin<P extends ClaimIntegrationPluginType> {
+  pluginId: P;
+  metadata: {
+    name: string;
+    description: string;
+    image: string;
+    createdBy: string;
+    stateless: boolean;         // No state tracking needed
+    scoped: boolean;            // State scoped to claim instance
+    duplicatesAllowed: boolean; // Multiple instances per claim
+    mandatoryToSucceed?: boolean; // Cannot be made optional via success logic
+    toSkipIfSuccessfulSimulation: boolean;
+  };
+  validate: (args: {
+    context: ContextInfo & { instanceId: string; pluginId: string; version: string };
+    publicParams: PublicParamsType;
+    privateParams: PrivateParamsType;
+    customBody?: UserInputType;
+    priorState?: any;
+    adminInfo?: any;
+    simulationResult?: CachedPluginResult;
+  }) => Promise<{
+    success: boolean;
+    error?: string;
+    toSet?: object[];       // State updates (only applied if claim succeeds)
+    data?: any;
+    claimNumber?: number;   // For ClaimNumbers preset
+    apiCall?: {             // Outbound HTTP call to make
+      uri: string;
+      method: string;
+      body: object;
+      headers: object;
+    };
+  }>;
+  defaultState: any;
+  getPublicState: (currState: any) => PublicStateType;
+  getBlankPublicState: () => PublicStateType;
+}
+```
+
+The key takeaway: state updates (`toSet`) are only applied if the overall claim succeeds. This is the same atomicity guarantee your custom plugins get with BitBadges-managed state presets.
+
+
+## File: ./for-developers/claims/designing-claims.md
+
+# Designing Claims
+
+This page walks through common approaches for designing claims — how to gate criteria, distribute rewards, and integrate with external systems. Claims are very flexible and versatile. There are many ways to achieve your desired outcome.
+
+## Think About Your Flow
+
+Every claim boils down to three questions:
+
+1. **How do you identify the user?** (address, etc)
+2. **How do you verify the user meets the criteria?** (codes, address lists, token ownership, custom logic, etc.)
+3. **What happens when they succeed?** (mint a token, unlock content, grant access, trigger an external action)
+
+And with the in-built plugins, universal claim codes, dynamic stores potentially controlled by you, or custom plugins, you can gate anything and implement any rewards.
+
+## Gating Criteria
+
+### Claim Codes
+
+Generate codes and distribute them however you want — email, SMS, in-person, QR codes. Users redeem codes in-site. No integrations required.
+
+```typescript
+import CryptoJS from 'crypto-js';
+
+// Generate deterministic codes from a seed
+const generateCodesFromSeed = (
+    seedCode: string,
+    numCodes: number,
+): string[] => {
+    const codes = [];
+    for (let i = 0; i < numCodes; i++) {
+        const hash = CryptoJS.SHA256(`${seedCode}-${i}`).toString();
+        codes.push(`${hash}-${i}`);
+    }
+    return codes;
+};
+```
+
+Codes are one-time use by default. You can also use a shared **password** for simpler cases where uniqueness isn't needed. These are registered through the `codes` plugin (or `password` for passwords).
+
+### Address Whitelists
+
+Gate claims to a known set of addresses. Use the `whitelist` plugin with either a static address list or a dynamic store.
+
+### Dynamic Stores
+
+Serverless address lists hosted by BitBadges. You add and remove addresses via API calls — from your backend, a Zapier automation, an LLM agent, a cron job, or any system that can make HTTP requests. Attach a store to a claim, and only users in the store can claim. The store updates independently of the claim configuration, so you can change eligibility in real-time without reconfiguring the claim itself. See [Dynamic Stores](dynamic-stores.md) for full details.
+
+```typescript
+// Add a user to a store via API — triggered from anywhere
+await BitBadgesApi.performStoreAction({
+    dynamicDataId: 'eligible-users',
+    dataSecret: 'your-store-secret',
+    actionName: 'add',
+    payload: { address: 'bb1...' }
+});
+```
+
+### Token Ownership
+
+Use the `must-own-badges` or `min-badge` plugins to require on-chain token ownership. No external setup needed — these check balances directly.
+
+### Custom Plugins
+
+For any criteria not covered by built-in plugins, create a custom plugin in the [developer portal](https://bitbadges.io/developer). Your HTTP endpoint receives the user's address and returns success/failure. See [Custom Plugins](custom-plugins.md) for implementation details.
+
+## Rewards & Utility
+
+### Gated Content / URLs
+
+Use the in-site rewards tab to link content or URLs that become visible only after a successful claim. For additional security, combine with Sign In with BitBadges for authenticated redirect support.
+
+### Success Webhooks
+
+Create custom plugins to trigger external actions when a claim succeeds. This can be used to send an email, call an API, update a database, trigger a webhook, trigger an AI agent, or any other action you need.
+
+### On-Chain Token Mints (Gating Approvals)
+
+Claims can gate on-chain approvals (mints), giving users a permanent, verifiable on-chain credential. See [Gating On-Chain Approvals](gating-approvals.md) for the full hybrid process, consistency requirements, and trust assumptions.
+
+### External Actions
+
+Trigger any external action from your custom plugin endpoint — send an email, call an API, update a database, trigger a webhook. Your plugin runs during claim processing, so you can execute side effects on success.
+
+### Points & Rewards Systems
+
+Claims integrate with BitBadges' points system. Award points on successful claims and use point balances as criteria for other claims or access control.
+
+## Leveraging Automation
+
+### AI-Powered Criteria
+
+With AI x MCP x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
+
+**Criteria side:** Pre-evaluate users with your AI model and add eligible addresses to a dynamic store. This avoids long wait times during claim execution and provides better UX.
+
+```typescript
+// AI model evaluates eligibility, adds to store
+const eligible = await yourAIModel.evaluate(userAddress);
+if (eligible) {
+    await BitBadgesApi.performStoreAction({
+        dynamicDataId: 'ai-eligible',
+        dataSecret: process.env.STORE_SECRET,
+        actionName: 'add',
+        payload: { address: userAddress }
+    });
+}
+```
+
+**Reward side:** Create a custom plugin whose endpoint triggers your AI model or any downstream service upon claim processing.
+
+### Webhooks & Integrations
+
+Some services can check claims natively (e.g., WordPress gated sites just need the claim ID). For everything else, use the [Claims API](api-reference.md) to verify claim success programmatically:
+
+```typescript
+const res = await BitBadgesApi.checkClaimSuccess(claimId, userAddress);
+if (res.successCount >= 1) {
+    // User has claimed — grant access
+}
+```
+
+## Combining Approaches
+
+Claims support configurable success logic (AND/OR/NOT). This lets you combine multiple approaches:
+
+- **AND:** User must own a badge AND enter a valid code
+- **OR:** User can claim with a code OR by being on the whitelist
+- **M-of-N:** User must satisfy at least 2 of 5 plugins
+
+See [Success Logic](concepts.md#success-logic) for the full `iSatisfyMethod` interface.
+
+## Design Tips
+
+- **Start simple.** Use built-in plugins before building custom ones. Codes and passwords solve most distribution problems. Serverless dynamic stores offer more flexibility and are less complex to manage than full custom plugin endpoints.
+- **Decouple criteria from claims.** Dynamic stores let you change eligibility without reconfiguring the claim.
+- **Use on-chain tokens for permanence or a reusable primitive.** If you need criteria that persists and is verifiable by third parties, mint a non-transferable badge as the claim reward. You can also then use this as proof of criteria in on-chain contexts.
+- **Gate with passwords for auto-completion.** Any time your backend completes claims on behalf of users, disable sign-in and use a password only your backend knows. Claim on behalf of addresses without requiring them to sign in.
+- **Test with simulations.** Use `simulateClaim()` or the in-site claim tester before going live.
+
+
+## File: ./for-developers/claims/dynamic-stores.md
+
+# Dynamic Stores
+
+Dynamic stores are serverless address lists hosted by BitBadges. You create a store, and BitBadges stores and manages the list for you. You add and remove addresses via API calls — from anywhere: your backend, a Zapier automation, an LLM agent, a cron job, or any system that can make HTTP requests. The store is then attached to claims as a gating mechanism.
+
+The core idea: **decouple eligibility management from claim configuration.** Instead of hardcoding who can claim, maintain a living list that updates in real-time as your business logic dictates.
+
+## How It Works
+
+1. **Create a store** in the developer portal → receive a store ID and secret
+2. **Add/remove addresses** via API whenever your eligibility criteria change
+3. **Attach the store** to one or more claims using the `whitelist` plugin
+4. **Users claim** — BitBadges checks if the user's address is in the store
+
+Stores are reusable — attach one store to multiple claims. Update the store once, and all claims using it reflect the change.
+
+## Queue-Based Processing
+
+Store actions (add/remove) are processed through a queue system. When you call the API, the action is queued and processed asynchronously. There may be a **1-2 second delay** between when you trigger an action and when it's finalized in the store.
+
+This means:
+- If you add an address and the user immediately tries to claim, the store may not have updated yet
+- For time-sensitive flows, build in a small buffer or retry logic on the user side
+- Batch actions are processed together, so they're consistent relative to each other
+
+## Creating a Store
+
+Create stores in the [developer portal](https://bitbadges.io/developer). You receive:
+
+- **Store ID** (`dynamicDataId`) — identifies the store in API calls and claim configuration
+- **Store secret** (`dataSecret`) — authenticates API requests (keep this secret on your backend)
+
+## Managing Entries
+
+### Via UI
+
+Manage entries directly in the developer portal — add, remove, and view addresses.
+
+### Via API — Single Action
+
+```typescript
+// POST /api/v0/storeActions/single
+await BitBadgesApi.performStoreAction({
+  dynamicDataId: 'your-store-id',
+  dataSecret: 'your-store-secret',  // Omit if signed in as creator
+  actionName: 'add',                // 'add' or 'remove'
+  payload: {
+    address: 'bb1...'
+  }
+});
+```
+
+### Via API — Batch Actions
+
+```typescript
+// POST /api/v0/storeActions/batch
+await BitBadgesApi.performBatchStoreAction({
+  dynamicDataId: 'your-store-id',
+  dataSecret: 'your-store-secret',
+  actions: [
+    { actionName: 'add', payload: { address: 'bb1abc...' } },
+    { actionName: 'add', payload: { address: 'bb1def...' } },
+    { actionName: 'remove', payload: { address: 'bb1xyz...' } }
+  ]
+});
+```
+
+### API Payload Reference
+
+```typescript
+interface iPerformStoreActionSingleWithBodyAuthPayload {
+  _isSimulation?: boolean;     // Dry-run mode
+  dynamicDataId: string;       // Store ID
+  dataSecret?: string;         // Auth secret (omit if signed in as creator)
+  actionName: string;          // 'add' | 'remove'
+  payload: {
+    address: string;           // BitBadges address to add/remove
+  };
+}
+
+interface iPerformStoreActionBatchWithBodyAuthPayload {
+  _isSimulation?: boolean;
+  dynamicDataId: string;
+  dataSecret?: string;
+  actions: {
+    actionName: string;
+    payload: { address: string };
+  }[];
+}
+```
+
+## Data Model
+
+```typescript
+interface iDynamicDataDoc {
+  handlerId: 'addresses';       // Only "addresses" is supported
+  dynamicDataId: string;        // Unique store ID
+  label: string;                // Display label
+  dataSecret: string;           // Authentication secret
+  data: string[];               // The stored addresses
+  createdBy: BitBadgesAddress;
+  managedBy: BitBadgesAddress;
+  publicUseInClaims?: boolean;  // If true, anyone can attach this store to a claim
+  createdAt?: number;           // UNIX ms
+  lastUpdated?: number;         // UNIX ms
+}
+```
+
+## Authentication
+
+- **Signed in as creator/manager:** No `dataSecret` needed
+- **API access:** Include `dataSecret` in the request body
+- **Public stores:** If `publicUseInClaims` is true, anyone can reference the store in claims, but management (add/remove) still requires authentication
+
+## Attaching to Claims
+
+Use the `whitelist` plugin with dynamic store configuration:
+
+```typescript
+{
+  pluginId: 'whitelist',
+  instanceId: 'my-whitelist',
+  publicParams: {
+    maxUsesPerAddress: 1
+  },
+  privateParams: {
+    useDynamicStore: true,
+    dynamicDataId: 'your-store-id',
+    dataSecret: 'your-store-secret'
+  }
+}
+```
+
+Or use the claim builder UI: select your store from the templates section, or navigate to the store's page and click "Create Claim."
+
+## Integration Patterns
+
+The API-driven design means you can trigger add/remove from **any system** that can make HTTP requests:
+
+**Backend webhook:**
+```typescript
+// Shopify purchase → add buyer to eligible list
+app.post('/webhooks/shopify-purchase', async (req, res) => {
+  const buyerAddress = await lookupAddress(req.body.customer.email);
+  await BitBadgesApi.performStoreAction({
+    dynamicDataId: 'eligible-buyers',
+    dataSecret: process.env.STORE_SECRET,
+    actionName: 'add',
+    payload: { address: buyerAddress }
+  });
+  res.sendStatus(200);
+});
+```
+
+**AI agent / LLM:**
+```typescript
+// AI evaluates eligibility and populates the store
+const eligible = await yourAIModel.evaluate(userAddress);
+if (eligible) {
+  await BitBadgesApi.performStoreAction({
+    dynamicDataId: 'ai-eligible',
+    dataSecret: process.env.STORE_SECRET,
+    actionName: 'add',
+    payload: { address: userAddress }
+  });
+}
+```
+
+**Zapier / no-code automation:**
+- Use Zapier's webhook action to call the BitBadges API
+- Trigger from any Zapier-supported event (form submission, CRM update, calendar event, etc.)
+- No code required — just configure the HTTP request in Zapier
+
+**Cron job / scheduled task:**
+```typescript
+// Daily job: sync eligible users from your database
+const eligibleUsers = await db.query('SELECT address FROM users WHERE eligible = true');
+await BitBadgesApi.performBatchStoreAction({
+  dynamicDataId: 'daily-eligible',
+  dataSecret: process.env.STORE_SECRET,
+  actions: eligibleUsers.map(u => ({
+    actionName: 'add',
+    payload: { address: u.address }
+  }))
+});
+```
+
+**Custom plugin (success webhook):**
+A custom plugin can add addresses to a store as a side effect of claim success — effectively chaining claims together.
+
+## Limitations
+
+- Off-chain stores can only be used in **off-chain contexts** (claims via the `whitelist` plugin). They are not accessible on-chain.
+- Only **addresses** are supported as identifiers (no emails, usernames, etc.)
+- Queue processing introduces a **1-2 second delay** between API call and store update
+
+---
+
+## On-Chain Dynamic Stores
+
+BitBadges also supports on-chain dynamic stores — boolean address-value stores on the blockchain that integrate with approval criteria via `DynamicStoreChallenge`. These are separate from the off-chain stores described above and are managed via blockchain transactions, not the API. Similar concepts, just on vs off-chain.
+
+See [Dynamic Store Challenges](../../token-standard/learn/approval-criteria/dynamic-store-challenges.md) and [MsgCreateDynamicStore](../../x-tokenization/messages/msg-create-dynamic-store.md) for full documentation.
+
+
+## File: ./for-developers/claims/examples.md
+
+# Claim Examples
+
+Full end-to-end examples showing how to configure and complete claims.
+
+## Claim Configuration
+
+A claim is defined by an `iClaimBuilderDoc`. Each plugin in the `plugins` array has this shape:
+
+```typescript
+interface IntegrationPluginParams<T extends ClaimIntegrationPluginType> {
+  instanceId: string;       // Unique ID for this plugin instance within the claim
+  pluginId: T;              // Plugin type: "numUses", "codes", "password", etc.
+  version: string;          // Plugin version (usually "0")
+  publicParams: object;     // Plugin-specific config (visible to users)
+  privateParams: object;    // Plugin-specific secrets (hidden from users)
+}
+```
+
+## Example: Code-Gated Claim
+
+A claim where users redeem one-time codes. Limited to 100 claims total.
+
+```typescript
+import crypto from 'crypto';
+import CryptoJS from 'crypto-js';
+
+const seedCode = crypto.randomBytes(32).toString('hex');
+const numCodes = 100;
+
+// Generate codes from seed
+const codes = [];
+for (let i = 0; i < numCodes; i++) {
+  const hash = CryptoJS.SHA256(`${seedCode}-${i}`).toString();
+  codes.push(`${hash}-${i}`);
+}
+
+const claim: iClaimBuilderDoc = {
+  plugins: [
+    {
+      pluginId: 'numUses',
+      instanceId: 'num-uses-instance',
+      version: '0',
+      publicParams: { maxUses: 100 },
+      privateParams: {}
+    },
+    {
+      pluginId: 'codes',
+      instanceId: 'codes-instance',
+      version: '0',
+      publicParams: { numCodes: 100 },
+      privateParams: { codes, seedCode }
+    }
+  ],
+  state: {},
+  action: { seedCode },
+  // ... other required fields (collectionId, createdBy, etc.)
+};
+```
+
+**Completing this claim:**
+
+```typescript
+const res = await BitBadgesApi.completeClaim(claimId, 'bb1...', {
+  _expectedVersion: '0',
+  'codes-instance': { code: codes[0] }  // Keyed by instanceId
+});
+
+// Check status after ~2 seconds
+const status = await BitBadgesApi.getClaimAttemptStatus(res.claimAttemptId);
+```
+
+## Example: Password-Gated Auto-Completion
+
+A backend-driven claim where your server completes claims on behalf of users. No sign-in required — gated by a password only your backend knows.
+
+```typescript
+const claim: iClaimBuilderDoc = {
+  plugins: [
+    {
+      pluginId: 'numUses',
+      instanceId: 'num-uses',
+      version: '0',
+      publicParams: { maxUses: 1000, displayAsUnlimited: true },
+      privateParams: {}
+    },
+    {
+      pluginId: 'password',
+      instanceId: 'backend-password',
+      version: '0',
+      publicParams: {},
+      privateParams: { password: 'my-backend-secret-password' }
+    }
+  ],
+  state: {},
+  action: {},
+  approach: 'api',
+  // ... other required fields
+};
+```
+
+**Auto-completing from your backend:**
+
+```typescript
+// Your backend completes the claim on behalf of the user
+await BitBadgesApi.completeClaim(claimId, userAddress, {
+  _expectedVersion: '0',
+  'backend-password': { password: 'my-backend-secret-password' }
+});
+```
+
+## Example: Whitelist + Token Ownership (AND Logic)
+
+User must be on a whitelist AND own a specific badge. Both plugins must pass (default AND logic).
+
+```typescript
+const claim: iClaimBuilderDoc = {
+  plugins: [
+    {
+      pluginId: 'numUses',
+      instanceId: 'num-uses',
+      version: '0',
+      publicParams: { maxUses: 500 },
+      privateParams: {}
+    },
+    {
+      pluginId: 'initiatedBy',
+      instanceId: 'sign-in',
+      version: '0',
+      publicParams: {},
+      privateParams: {}
+    },
+    {
+      pluginId: 'whitelist',
+      instanceId: 'vip-list',
+      version: '0',
+      publicParams: { maxUsesPerAddress: 1 },
+      privateParams: {
+        list: {
+          listId: '',
+          addresses: ['bb1abc...', 'bb1def...', 'bb1ghi...'],
+          whitelist: true
+        }
+      }
+    },
+    {
+      pluginId: 'must-own-badges',
+      instanceId: 'badge-gate',
+      version: '0',
+      publicParams: {},
+      privateParams: {
+        ownershipRequirements: {
+          $and: [{
+            assets: [{
+              collectionId: '1',
+              assetIds: [{ start: '1', end: '1' }],
+              ownershipTimes: [{ start: '1', end: 'MAX' }],
+              mustOwnAmounts: { start: '1', end: 'MAX' }
+            }]
+          }]
+        }
+      }
+    }
+  ],
+  state: {},
+  action: {},
+  // ... other required fields
+};
+```
+
+## Example: OR Logic with Multiple Paths
+
+User can claim by entering a code OR by being on the whitelist. Uses `satisfyMethod` for OR logic. Note `numUses` is always required regardless of success logic.
+
+```typescript
+const claim: iClaimBuilderDoc = {
+  plugins: [
+    {
+      pluginId: 'numUses',
+      instanceId: 'num-uses',
+      version: '0',
+      publicParams: { maxUses: 200 },
+      privateParams: {}
+    },
+    {
+      pluginId: 'codes',
+      instanceId: 'codes-path',
+      version: '0',
+      publicParams: { numCodes: 100 },
+      privateParams: { codes: [...], seedCode: '...' }
+    },
+    {
+      pluginId: 'whitelist',
+      instanceId: 'whitelist-path',
+      version: '0',
+      publicParams: { maxUsesPerAddress: 1 },
+      privateParams: {
+        useDynamicStore: true,
+        dynamicDataId: 'my-store-id',
+        dataSecret: 'my-store-secret'
+      }
+    }
+  ],
+  satisfyMethod: {
+    type: 'OR',
+    conditions: ['codes-path', 'whitelist-path']
+    // numUses is always required and not included in OR conditions
+  },
+  state: {},
+  action: {},
+  // ... other required fields
+};
+```
+
+**Completing via the code path:**
+
+```typescript
+await BitBadgesApi.completeClaim(claimId, 'bb1...', {
+  _expectedVersion: '0',
+  _specificInstanceIds: ['codes-path'],  // Only attempt the code path
+  'codes-path': { code: 'abc-123' }
+});
+```
+
+## Example: Time-Windowed Claim
+
+Only claimable during a specific time window.
+
+```typescript
+const claim: iClaimBuilderDoc = {
+  plugins: [
+    {
+      pluginId: 'numUses',
+      instanceId: 'num-uses',
+      version: '0',
+      publicParams: { maxUses: 50 },
+      privateParams: {}
+    },
+    {
+      pluginId: 'transferTimes',
+      instanceId: 'time-window',
+      version: '0',
+      publicParams: {
+        transferTimes: [{
+          start: '1741564800000',  // March 10, 2025 00:00 UTC
+          end: '1742169600000'     // March 17, 2025 00:00 UTC
+        }]
+      },
+      privateParams: {}
+    },
+    {
+      pluginId: 'initiatedBy',
+      instanceId: 'sign-in',
+      version: '0',
+      publicParams: {},
+      privateParams: {}
+    }
+  ],
+  state: {},
+  action: {},
+  // ... other required fields
+};
+```
+
+## Simulating Before Completing
+
+Always simulate first to check if a claim would succeed:
+
+```typescript
+// Simulate (instant, no side effects)
+const sim = await BitBadgesApi.simulateClaim(claimId, 'bb1...', {
+  _expectedVersion: '0',
+  'codes-instance': { code: 'abc-123' }
+});
+
+// If simulation passes, complete for real
+const res = await BitBadgesApi.completeClaim(claimId, 'bb1...', {
+  _expectedVersion: '0',
+  'codes-instance': { code: 'abc-123' }
+});
+```
+
+## Verifying Claim Success
+
+```typescript
+// Check if an address has claimed
+const result = await BitBadgesApi.checkClaimSuccess(claimId, 'bb1...');
+if (result.successCount >= 1) {
+  // Grant access, show content, etc.
+}
+
+// Check a specific attempt
+const status = await BitBadgesApi.getClaimAttemptStatus(claimAttemptId);
+if (status.success) {
+  // This attempt succeeded
+}
+```
+
+
+## File: ./for-developers/claims/gating-approvals.md
+
+# Gating On-Chain Approvals
+
+Claims can gate on-chain token operations (mints, transfers). This is a hybrid off-chain/on-chain process where claims control the **right to initiate** a transfer, not the transfer itself.
+
+## How It Works
+
+```
+1. User completes claim  →  receives Merkle proof leaf (one-time use code - handled behind the scenes)
+2. User submits proof on-chain  →  in a transfer/mint transaction
+3. On-chain approval criteria  →  validates the Merkle proof
+```
+
+The claim issues a Merkle proof leaf — a one-time use code signed by BitBadges for the approved address. The user then includes this proof in their on-chain `MsgTransferTokens`. The on-chain Merkle challenge verifies the proof is valid and hasn't been used before and was signed by BitBadges intended for the approved address.
+
+## On-Chain Types
+
+### Merkle Challenge (Approval Criteria)
+
+Configured on the collection's approval criteria:
+
+```typescript
+interface iMerkleChallenge<T extends NumberType> {
+    root: string; // Merkle tree root hash
+    maxUsesPerLeaf: T; // Max uses per leaf (1 = one-time use)
+    uri: string; // Where to fetch merkle metadata
+    customData: string; // Arbitrary on-chain data
+    challengeTrackerId: string; // Tracker ID for usage tracking
+    leafSigner: string; // Address that signs leaves (ETH address)
+}
+```
+
+`merkleChallenges` is a field on `iOutgoingApprovalCriteria`, `iIncomingApprovalCriteria`, and collection-level approval criteria. It can be used on any level - collection, sender, or recipient.
+
+### Merkle Proof (User Submission)
+
+Passed in `MsgTransferTokens`:
+
+```typescript
+interface iMerkleProof {
+    aunts: iMerklePathItem[]; // Path from leaf to root
+    leaf: string; // The leaf value (one-time use code)
+    leafSignature: string; // ETH signature: sign(leaf + "-" + intendedBitBadgesAddress)
+}
+
+interface iMerklePathItem {
+    aunt: string; // Sibling hash at this level
+    onRight: boolean; // Whether the sibling is on the right
+}
+```
+
+### Challenge Tracker
+
+The chain tracks which leaves have been used:
+
+```typescript
+interface iMerkleChallengeTrackerDoc<T extends NumberType> {
+    collectionId: CollectionId;
+    challengeTrackerId: string;
+    approvalId: string;
+    approvalLevel: 'collection' | 'incoming' | 'outgoing' | '';
+    approverAddress: BitBadgesAddress;
+    usedLeafIndices: iUsedLeafStatus<T>[]; // Which leaves are consumed
+}
+```
+
+## The Hybrid Process
+
+### Step 1: Off-Chain Claim
+
+The user completes the claim on BitBadges. All configured plugins are evaluated (codes, passwords, whitelists, custom logic, etc.). If successful, BitBadges assigns the user a Merkle proof leaf from the pre-built Merkle tree.
+
+### Step 2: On-Chain Transaction
+
+The user submits a `MsgTransferTokens` with the Merkle proof. The chain:
+
+1. Verifies the leaf signature matches the sender's address
+2. Verifies the Merkle path from leaf to root
+3. Checks the root matches the approval criteria's `merkleChallenges`
+4. Marks the leaf as used in the challenge tracker (preventing replay)
+5. Executes the transfer if all other approval criteria also pass
+
+### What the User Sees
+
+On the BitBadges site, this is seamless — the user completes the claim, then signs and submits the transaction. The Merkle proof is handled behind the scenes. Via API, you receive the proof from `completeClaim()` and include it in the transaction.
+
+## Linking Claims to On-Chain Approvals
+
+When a claim gates an on-chain approval, the claim document stores the link via `trackerDetails`:
+
+```typescript
+interface iChallengeTrackerIdDetails<T extends NumberType> {
+  collectionId: CollectionId;          // The collection this claim is linked to
+  approvalId: string;                  // The specific approval ID
+  challengeTrackerId: string;          // The Merkle challenge tracker ID
+  approvalLevel: 'collection' | 'incoming' | 'outgoing' | '';  // Which approval level
+  approverAddress: BitBadgesAddress;   // The approver (manager, sender, or recipient)
+}
+```
+
+Other relevant fields on the claim document:
+
+| Field | Purpose |
+|-------|---------|
+| `collectionId` | Positive integer = on-chain claim linked to that collection. Off-chain claims use a non-positive value. |
+| `docClaimed` | Must be `true` for the claim to be active and distributable. Set when the claim is finalized and linked to the collection on-chain. |
+| `cid` | For on-chain claims, this matches the `challengeTrackerId` and is used to match claims to their on-chain Merkle challenge trackers. |
+| `action.seedCode` | The encrypted seed used to generate one-time codes / Merkle leaves. Only decrypted for authorized managers. |
+
+These fields are managed automatically when you create claims through the claim builder UI. If building claims programmatically via the API, ensure `trackerDetails` matches the on-chain approval's Merkle challenge configuration.
+
+## Consistency Requirements
+
+Because this is a hybrid system, **off-chain criteria and on-chain approval criteria must be aligned for proper design**. The off-chain claim checks your plugins and issues Merkle proofs; the on-chain approval validates the proof and executes the transfer. Misalignment causes failures. For example, if you allow 100 codes, but the Merkle tree has 50 leaves, the last 50 users will claim successfully off-chain but fail on-chain.
+
+### Common Misalignment Scenarios
+
+| Scenario                                                       | Result                                                                        |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Claim allows 100 codes, but Merkle tree has 50 leaves          | Last 50 users claim successfully off-chain but fail on-chain                  |
+| On-chain approval updated without updating the claim           | Users receive proofs for a stale Merkle root                                  |
+| Claim time window differs from on-chain `transferTimes`        | Users claim outside the on-chain window, proof is valid but transfer rejected |
+| On-chain `initiatedBy` doesn't match claim's allowed addresses | Proof is valid but sender is rejected by the approval                         |
+
+### Best Practices
+
+- **Use the claim builder.** The in-site claim builder generates the on-chain Merkle tree and off-chain claim together, ensuring alignment.
+- **Update both sides together.** If you change on-chain approval criteria, update the corresponding claim. If you update the claim, regenerate the Merkle tree.
+- **Match limits.** `numUses` on the claim should equal the number of Merkle leaves and overall maximum number of transfers. `transferTimes` on the claim should fall within the on-chain approval's time window.
+
+For trust assumptions, security risks, and mitigation strategies, see [Security & Trust Assumptions](security.md). It is recommended to NOT use this approach for high-stakes use cases.
+
+## Permissions & Manager Authority
+
+On-chain claims are linked to approvals at different levels, and the permission to manage them depends on who owns the approval:
+
+- **Collection-level approvals:** Only the collection **manager** can create and manage claims linked to collection approvals. BitBadges verifies the claim creator is the current manager.
+- **Sender (outgoing) approvals:** Only the **sender address** can manage claims linked to their outgoing approvals.
+- **Recipient (incoming) approvals:** Only the **recipient address** can manage claims linked to their incoming approvals.
+
+### Manager Transfers
+
+The most important implication is for collection-level approvals: **if the manager role is transferred to a new address, claim management permissions transfer with it.** The new manager gains full control over all claims linked to the collection's approvals, and the previous manager loses access.
+
+This means:
+- Transferring the manager role is effectively transferring control of the collection's claim infrastructure
+- The new manager can update, reconfigure, or disable existing claims
+- If you use a manager splitter or multisig, all signers share claim management authority
+
+
+## File: ./for-developers/claims/overview.md
+
+# Overview
+
+Claims follow a simple model: **Meet criteria → Receive rewards.** They are composed of one or more plugins executed in order. By default all must pass, but you can configure AND/OR/NOT logic (see [success logic](concepts.md#success-logic)).
+
+## How Claims Work
+
+1. A claim is created with a set of plugins (built-in / BitBadges-provided or custom)
+2. A user attempts to claim (in-site, via API, or programmatically)
+3. All plugins are executed **in parallel** — each receives the user's address, parameters, and returns success/failure independently
+4. If the configured success logic is satisfied for the group of plugins (typically all must pass), the claim succeeds
+5. Rewards can be distributed (token mints, gated content, points, etc.) based on the claim success
+
+## Indexed vs Non-Indexed Claims
+
+**Indexed claims** (standard) include a `numUses` plugin and track every successful attempt with an incrementing claim number (#0, #1, #2, ...). They maintain a permanent ledger of who claimed and when, and support usage limits, per-address tracking, and claim number assignment.
+
+**On-demand claims** (non-indexed) have no `numUses` plugin. They evaluate criteria in real-time without tracking individual attempts — useful for stateless checks like token ownership. Results are cached according to the claim's [cache policy](concepts.md#cache-policy-on-demand-claims).
+
+Most claims are indexed. On-demand claims are for scenarios where you just need a real-time yes/no eligibility check without recording state.
+
+## Async Processing
+
+Claim completion is **asynchronous**. When you call `completeClaim()`:
+
+1. BitBadges auto-simulates first (instant validation)
+2. If simulation passes, the claim is added to a **processing queue**
+3. You receive a `claimAttemptId` immediately
+4. The claim processes in the queue (typically 1-5 seconds)
+5. Poll `getClaimAttemptStatus(claimAttemptId)` for the result
+
+Claims for the same collection are processed sequentially to ensure consistency. Claims for different collections can process in parallel.
+
+State mutations from plugins are only committed if the overall claim succeeds. If any required plugin fails, no state changes are persisted.
+
+## Example Use Cases
+
+1. **Claim Success → Mint NFT** The user can immediately receive a minted NFT as a reward if the claim succeeds.
+2. **Claim Success → Access to Gated Content** The user can immediately access gated content if the claim succeeds.
+
+In very simple terms, a claim checks criteria. You decide what claim success means (rewards) and in what form you want to verify claim success (direct claim lookups, users get an NFT -> use NFT ownership as a credential, or so on).
+
+## Completion Methods
+
+**In-Site (Recommended):** Users claim directly on the BitBadges site, providing the necessary information to the plugins. Custom logic is handled by plugins — no code required for most use cases.
+
+**API Auto-Completion:** Complete claims programmatically on behalf of users. Useful for backend-driven flows.
+
+```typescript
+const res = await BitBadgesApi.completeClaim(claimId, address, {
+    _expectedVersion: '0',
+    passwordInstanceId: { password: 'backend-secret' },
+});
+```
+
+See [API Reference](api-reference.md) for full details on completing, simulating, and verifying claims.
+
+## Plugins
+
+Claims are composed of plugins — 8 core built-in plugins, 6 pre-built plugins maintained by BitBadges, and support for custom plugins (your own HTTP endpoints). See [Built-In Plugins](built-in-plugins.md) for schemas and details, or [Custom Plugins](custom-plugins.md) to build your own.
+
+## Creating Claims
+
+Claims are created and managed in the [developer portal](https://bitbadges.io/developer). Use the in-site claim builder and forms for no-code setup, or the API for programmatic creation.
+
+## Do You Even Need Claims?
+
+Claims are a convenience service — not a requirement. There is nothing special about them that you can't replicate yourself.
+
+**You can self-host everything.** The on-chain Merkle challenge system is fully decentralized. You can generate your own Merkle trees, distribute leaves yourself, and let users submit proofs on-chain — no BitBadges claims involved. Any criteria-gating logic you want is just a script or a prompt away. Build your own system if you prefer full control.
+
+**Claims are often overkill.** For many use cases, simpler alternatives exist:
+
+- **Fully on-chain** — Use on-chain approval criteria directly (token ownership, dynamic store challenges, address checks). No off-chain component needed.
+- **Snapshots** — Take a snapshot of eligible addresses and set approvals accordingly. No real-time criteria checking.
+- **Direct API gating** — Check token ownership via the SDK/API in your own backend. No claims infrastructure needed.
+- **Manual distribution** — Just send tokens directly to addresses. Not everything needs a claim flow.
+
+**When claims make sense:**
+
+- You want a **turnkey in-site experience** — claim builder UI, hosted forms, no frontend code
+- You need **composable criteria** — combine multiple checks (codes + whitelist + token ownership) with AND/OR/NOT logic
+- You want **managed state** — BitBadges tracks who claimed, usage limits, and code redemption
+- You need **off-chain → on-chain gating** — claims handle Merkle proof generation and distribution seamlessly
+- You want **plugin extensibility** — custom HTTP endpoints for any logic, with managed state and webhooks
+
+Claims are one tool in the toolbox. Use them when the convenience outweighs the trust tradeoffs, and use simpler approaches when they don't.
+
+
+## File: ./for-developers/claims/security.md
+
+# Security & Trust Assumptions
+
+Claims are an off-chain system managed by BitBadges. Understanding the trust model is important, especially when claims gate on-chain actions.
+
+## Claim Creator Authority
+
+The claim creator controls which plugins are used and how criteria are evaluated. They can update claim configuration at any time — add/remove plugins, change params, modify success logic. Each update increments the claim's `version`.
+
+When completing claims via API, pass `_expectedVersion` to guard against silent changes:
+
+```typescript
+await BitBadgesApi.completeClaim(claimId, address, {
+  _expectedVersion: '0',  // Fails if the claim has been updated
+  'password-instance': { password: 'secret' }
+});
+```
+
+If the version doesn't match, the call fails rather than silently using new criteria. Obtain the current version from `getClaim()`. Pass `_expectedVersion: '-1'` to skip the check (not recommended).
+
+## BitBadges as Oracle
+
+BitBadges servers evaluate off-chain criteria, manage claim state, and (when gating on-chain approvals) distribute Merkle proofs. You trust BitBadges to:
+
+- Honestly check plugin criteria
+- Correctly issue proofs only to eligible users
+- Not distribute proofs to ineligible users
+- Accurately maintain claim state (attempt counts, used codes, etc.)
+
+When [gating on-chain approvals](gating-approvals.md), the on-chain Merkle verification ensures proofs are **structurally valid** but cannot verify that the off-chain criteria were applied correctly.
+
+## Third-Party Plugin Dependencies
+
+If your claim uses custom plugins hosted by third parties, you trust those endpoints to be:
+
+- **Honest** — approving only eligible users
+- **Available** — responding within the 10-second timeout
+- **Secure** — not compromised or manipulated
+
+A compromised plugin could approve ineligible users or deny eligible ones. Fewer plugins = fewer trust dependencies.
+
+## Code & Password Distribution
+
+If using claim codes, whoever distributes the codes controls access. Leaked or stolen codes grant claim access regardless of the intended recipient.
+
+For on-chain gating, the Merkle proof leaf signature binds the proof to a specific address, so a leaked code can only be used by the address that claimed it. But the claim itself (off-chain step) can be completed by anyone with the code.
+
+Passwords have the same risk — anyone with the password can attempt the claim. Use passwords primarily for backend auto-completion flows where only your server knows the password.
+
+## On-Chain Gating Risks
+
+When claims gate on-chain approvals, additional risks arise from the hybrid off-chain/on-chain architecture. See [Gating On-Chain Approvals — Consistency Requirements](gating-approvals.md#consistency-requirements) for misalignment scenarios and best practices.
+
+Key risks:
+
+- **Misaligned limits** — claim allows more users than the Merkle tree has leaves
+- **Stale proofs** — on-chain approval updated without updating the claim
+- **Time window mismatch** — claim and on-chain `transferTimes` don't align
+
+## Minimizing Trust
+
+For high-stakes use cases:
+
+- **Use on-chain-only criteria** where possible (token ownership, on-chain dynamic store challenges)
+- **Use claims as a convenience layer** where the on-chain approval criteria independently enforces constraints
+- **Design for failure** — rollbacks, snapshots, or other mechanisms to handle off-chain trust breaches
+- **Audit your plugin pipeline** — review what each plugin does and who controls it
+- **Monitor claim activity** via the API to detect anomalies
 
 
 ## File: ./for-developers/concepts/README.md
