@@ -51,10 +51,10 @@ const collection: MsgCreateCollection = {
 Each IBC backed path has a **special address** automatically generated from the IBC denomination in `conversion.sideA.denom`:
 
 ```typescript
-import { generateAliasAddressForIBCDenom } from 'bitbadgesjs-sdk';
+import { generateAliasAddressForIBCBackedDenom } from 'bitbadgesjs-sdk';
 
 const ibcDenom = 'ibc/1234567890ABCDEF';
-const specialAddress = generateAliasAddressForIBCDenom(ibcDenom);
+const specialAddress = generateAliasAddressForIBCBackedDenom(ibcDenom);
 console.log('Special Address:', specialAddress);
 ```
 
@@ -194,6 +194,8 @@ const collectionApprovals = [
         version: 0n,
         approvalCriteria: {
             allowBackedMinting: true, // Required for IBC backed path operations
+            overridesFromOutgoingApprovals: true, // Recommended — backing addresses auto-set their approvals but this is good practice
+            mustPrioritize: true, // Required for IBC backed operations
             maxNumTransfers: {
                 perInitiatedByAddressMaxNumTransfers: 10n, // 10 backs per day
                 // ... reset time intervals
