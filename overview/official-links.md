@@ -18,7 +18,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 * [Discord](https://discord.com/invite/TJMaEd9bar)
 * [LinkedIn](https://linkedin.com/company/bitbadges)
 * [Twitter](https://twitter.com/bitbadges_io)
-* [Telegram](https://t.me/BitBadges)
+* [Telegram](https://t.me/bitbadges_chat)
 * [GitHub](https://github.com/bitbadges)
 
 ### Integrations
