@@ -131,8 +131,8 @@ Dynamically calculate ownership times from a timestamp plus a set duration. This
 
 -   **Default**: Uses transfer time as the base timestamp
 -   **Override**: If `allowOverrideTimestamp` is true, users can specify a custom timestamp in `MsgTransferTokens` `precalculationOptions`
--   **Calculation**: `ownershipTime = baseTimestamp + durationFromTimestamp`
--   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp }]
+-   **Calculation**: `ownershipTime end = baseTimestamp + durationFromTimestamp - 1`
+-   **Overwrite**: All ownership times in starting balances are replaced with [{ "start": baseTimestamp, "end": baseTimestamp + durationFromTimestamp - 1 }]
 
 **Common Duration Values (milliseconds):**
 
