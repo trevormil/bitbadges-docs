@@ -11939,14 +11939,14 @@ Documentation Link: [Here](https://bitbadges.github.io/bitbadgesjs/packages/bitb
 BitBadges supports both Ethereum addresses (0x-prefixed hex) and Cosmos addresses (bb-prefixed bech32). You can convert between these formats using the address converter functions.
 
 ```ts
-import {ethToCosmos, cosmosToEth} from "bitbadgesjs-address-converter"
+import { convertToBitBadgesAddress, convertToEthAddress } from "bitbadgesjs-sdk"
 
-// Convert Ethereum address to Cosmos address
-let cosmosAddress = ethToCosmos("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
+// Convert Ethereum address to BitBadges address
+let bitbadgesAddress = convertToBitBadgesAddress("0x14574a6DFF2Ddf9e07828b4345d3040919AF5652")
 // "bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw"
 
-// Convert Cosmos address to Ethereum address
-let ethAddress = cosmosToEth("bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw")
+// Convert BitBadges address to Ethereum address
+let ethAddress = convertToEthAddress("bb1z3t55m0l9h0eupuz3dp5t5cypyv674jj7mz2jw")
 // "0x14574a6DFF2Ddf9e07828b4345d3040919AF5652"
 ```
 
@@ -12263,7 +12263,7 @@ const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... 
 To convert between different number types, all types come with a converter function (**.convert()**). This allows you to convert all the stringified numbers to another format (such as JS number or JS bigint). To convert, you can simply do the following:
 
 ```typescript
-import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType, convertTokenMetadata } from "bitbadgesjs-sdk";
+import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadgesjs-sdk";
 
 const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
 const bigIntifiedMetadata = stringifiedTokenMetadata.convert(BigIntify);
@@ -12461,10 +12461,10 @@ This library provides miscellaneous functionality to help you interact with BitB
 The SDK includes address conversion utilities to convert between Ethereum addresses (0x-prefixed) and BitBadges addresses (bb-prefixed). See [Address Conversions](common-snippets/address-conversions.md) for more details.
 
 ```typescript
-import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
 
-const bitbadgesAddress = ethToCosmos(address);
-const ethAddress = cosmosToEth(bitbadgesAddress);
+const bitbadgesAddress = convertToBitBadgesAddress(address);
+const ethAddress = convertToEthAddress(bitbadgesAddress);
 ```
 
 
@@ -15787,10 +15787,10 @@ We typically refer to the native address as simply **address** and the correspon
 For user experience, you should always display the user's native address. Just note, certain behind the scenes state will be using the mapped Cosmos address.
 
 ```typescript
-import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-address-converter';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
 
-const bitbadgesAddress = ethToCosmos(address);
-const ethAddress = cosmosToEth(bitbadgesAddress);
+const bitbadgesAddress = convertToBitBadgesAddress(address);
+const ethAddress = convertToEthAddress(bitbadgesAddress);
 ```
 
 

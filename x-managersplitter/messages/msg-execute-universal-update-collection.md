@@ -48,7 +48,7 @@ Note that you should only set the fields you are allowed to update. Use the upda
 The module checks permissions based on which fields are being updated in the `UniversalUpdateCollection` message:
 
 -   **UpdateValidTokenIds**: Requires `canUpdateValidTokenIds` permission
--   **UpdateCollectionPermissions**: Requires `canUpdateCollectionApprovals` permission
+-   **UpdateCollectionPermissions**: Admin only (cannot be delegated to approved addresses)
 -   **UpdateManager**: Requires `canUpdateManager` permission
 -   **UpdateCollectionMetadata**: Requires `canUpdateCollectionMetadata` permission
 -   **UpdateTokenMetadata**: Requires `canUpdateTokenMetadata` permission
@@ -92,6 +92,8 @@ The executor must be:
 -   An approved address for all permissions required by the update
 
 If the executor doesn't have the required permissions, the transaction will fail with a permission denied error.
+
+**Note**: `UpdateCollectionPermissions` is the one operation that cannot be delegated to approved addresses, even if they hold specific permissions. Only the admin of the manager splitter can update collection permissions.
 
 ## Usage Example
 

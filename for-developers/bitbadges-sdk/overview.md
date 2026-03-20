@@ -17,8 +17,8 @@ This library provides miscellaneous functionality to help you interact with BitB
 The SDK includes address conversion utilities to convert between Ethereum addresses (0x-prefixed) and BitBadges addresses (bb-prefixed). See [Address Conversions](common-snippets/address-conversions.md) for more details.
 
 ```typescript
-import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-sdk';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
 
-const bitbadgesAddress = ethToCosmos(address);
-const ethAddress = cosmosToEth(bitbadgesAddress);
+const bitbadgesAddress = convertToBitBadgesAddress(address);
+const ethAddress = convertToEthAddress(bitbadgesAddress);
 ```
