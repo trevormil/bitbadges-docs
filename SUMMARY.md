@@ -173,6 +173,7 @@
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
 * [✍️ Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
+  * [Chain CLI (bitbadgeschaind)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/chain-cli.md)
   * [Signing Client (Recommended)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client.md)
   * [Transaction Context](for-developers/bitbadges-blockchain/create-and-broadcast-txs/transaction-context.md)
   * [Generate Msg Contents](for-developers/bitbadges-blockchain/create-and-broadcast-txs/generate-msg-contents.md)
