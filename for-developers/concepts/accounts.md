@@ -15,10 +15,10 @@ We typically refer to the native address as simply **address** and the correspon
 For user experience, you should always display the user's native address. Just note, certain behind the scenes state will be using the mapped Cosmos address.
 
 ```typescript
-import { ethToCosmos, cosmosToEth } from 'bitbadgesjs-address-converter';
+import { convertToBitBadgesAddress, convertToEthAddress } from 'bitbadgesjs-sdk';
 
-const bitbadgesAddress = ethToCosmos(address);
-const ethAddress = cosmosToEth(bitbadgesAddress);
+const bitbadgesAddress = convertToBitBadgesAddress(address);
+const ethAddress = convertToEthAddress(bitbadgesAddress);
 ```
 
 
