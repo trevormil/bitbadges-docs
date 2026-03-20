@@ -8,3 +8,4 @@ Gate any API behind on-chain token ownership using the standard HTTP 402 status 
 |------|-------------|
 | [Overview](overview.md) | How it works, why it matters, quickstart code |
 | [Full Specification](spec.md) | Complete protocol spec, security considerations, x402 comparison |
+| [Middleware Recipes](middleware-recipes.md) | Production-ready Express/Hono middleware, gate composition, nonce management |
