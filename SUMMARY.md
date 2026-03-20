@@ -112,6 +112,7 @@
   * [Overview](token-standard/bb-402/overview.md)
   * [Full Specification](token-standard/bb-402/spec.md)
   * [Middleware Recipes](token-standard/bb-402/middleware-recipes.md)
+  * [Collection Recipes](token-standard/bb-402/collection-recipes.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
