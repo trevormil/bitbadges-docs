@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Fri Mar 20 19:32:22 UTC 2026
+Generated on Fri Mar 20 19:44:16 UTC 2026
 
 
 
@@ -1955,6 +1955,7 @@ BitBadges addresses these fundamental issues through core design decisions:
 * [🔒 BB-402](token-standard/bb-402/README.md)
   * [Overview](token-standard/bb-402/overview.md)
   * [Full Specification](token-standard/bb-402/spec.md)
+  * [Middleware Recipes](token-standard/bb-402/middleware-recipes.md)
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
@@ -20879,6 +20880,351 @@ Gate any API behind on-chain token ownership using the standard HTTP 402 status 
 |------|-------------|
 | [Overview](overview.md) | How it works, why it matters, quickstart code |
 | [Full Specification](spec.md) | Complete protocol spec, security considerations, x402 comparison |
+| [Code Snippets](middleware-recipes.md) | Server-side verification snippets: signatures, ownership checks, nonces |
+| [Collection Recipes](collection-recipes.md) | How to configure collections for auth patterns: soulbound, revocable, 2FA, bans |
+
+
+## File: ./token-standard/bb-402/collection-recipes.md
+
+# Collection Recipes
+
+How to configure BitBadges collections for common BB-402 authentication patterns.
+
+## The Core Pattern
+
+Most authentication protocols built on BB-402 follow the same structure:
+
+1. **You (the provider) have free mint power** — you can mint tokens to anyone, either for all times or specific time windows
+2. **Soulbound** — tokens are non-transferable after minting (no post-mint transfers)
+3. **Revocable (optional)** — you can burn/revoke tokens from users if needed
+
+Everything else is just variations on this. You control who has access by minting and revoking.
+
+## Recipe: Basic Access Token
+
+Provider-minted, soulbound, no transfers. The simplest BB-402 gate.
+
+**Collection approvals:**
+
+```typescript
+collectionApprovals: [
+  // Provider can mint to anyone, anytime
+  {
+    approvalId: 'provider-mint',
+    fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'bb1_YOUR_ADDRESS',  // only you can mint
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 1n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
+    approvalCriteria: {
+      overridesFromOutgoingApprovals: true,  // required for Mint
+      overridesToIncomingApprovals: true,
+    },
+  },
+  // No post-mint transfer approval = soulbound
+]
+```
+
+**BB-402 check:** `mustOwnAmounts: { start: '1', end: '1' }` on this collection.
+
+## Recipe: Revocable Access Token
+
+Same as above, but provider can also burn tokens (revoke access).
+
+```typescript
+collectionApprovals: [
+  // Provider can mint
+  {
+    approvalId: 'provider-mint',
+    fromListId: 'Mint',
+    toListId: 'All',
+    initiatedByListId: 'bb1_YOUR_ADDRESS',
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 1n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
+    approvalCriteria: {
+      overridesFromOutgoingApprovals: true,
+      overridesToIncomingApprovals: true,
+    },
+  },
+  // Provider can revoke (transfer from anyone back to Mint)
+  {
+    approvalId: 'provider-revoke',
+    fromListId: '!Mint',
+    toListId: 'Mint',
+    initiatedByListId: 'bb1_YOUR_ADDRESS',  // only you can revoke
+    transferTimes: [{ start: 1n, end: 18446744073709551615n }],
+    tokenIds: [{ start: 1n, end: 1n }],
+    ownershipTimes: [{ start: 1n, end: 18446744073709551615n }],
+    version: 0n,
+    approvalCriteria: {
+      overridesFromOutgoingApprovals: true,  // bypass user's outgoing approvals
+      overridesToIncomingApprovals: true,
+    },
+  },
+]
+```
+
+## Recipe: Short-Lived 2FA Token
+
+For sensitive operations, mint a token that is only valid for a brief window (e.g., 60 seconds). The user completes a 2FA challenge on your frontend, you mint the short-lived token, and your API checks for it.
+
+**Recommended: use 2FA on the frontend standard flow.** When a user passes 2FA on your site, mint a token valid for the next 60 seconds. Your BB-402 gated endpoint then checks for this token alongside the main access token.
+
+```typescript
+// After user passes 2FA on your frontend:
+const now = BigInt(Date.now());
+const sixtySeconds = 60n * 1000n;
+
+const transfer = {
+  from: 'Mint',
+  toAddresses: ['bb1_USER_ADDRESS'],
+  balances: [{
+    amount: 1n,
+    tokenIds: [{ start: 1n, end: 1n }],
+    ownershipTimes: [{ start: now, end: now + sixtySeconds }],
+  }],
+};
+```
+
+**BB-402 check:** Combine with `$and` — must own the main access token AND the short-lived 2FA token:
+
+```json
+{
+  "$and": [
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "42",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "mustOwnAmounts": { "start": "1", "end": "1" }
+      }]
+    },
+    {
+      "tokens": [{
+        "chain": "BitBadges",
+        "collectionId": "99",
+        "tokenIds": [{ "start": "1", "end": "1" }],
+        "mustOwnAmounts": { "start": "1", "end": "1" }
+      }]
+    }
+  ]
+}
+```
+
+The 2FA token expires automatically — no revocation, no cleanup.
+
+## Recipe: Ban List
+
+A separate collection where owning a token means you are banned. Check with `mustOwnAmounts: { start: '0', end: '0' }` (must NOT own).
+
+```typescript
+// Ban collection — same provider-mint + soulbound pattern
+// To ban: mint token to the user
+// To unban: revoke (use the revocable pattern above)
+```
+
+**BB-402 check:**
+
+```json
+{
+  "tokens": [{
+    "chain": "BitBadges",
+    "collectionId": "999",
+    "tokenIds": [{ "start": "1", "end": "1" }],
+    "mustOwnAmounts": { "start": "0", "end": "0" }
+  }]
+}
+```
+
+## Recipe: Tiered Access
+
+Use different token IDs for different tiers within the same collection.
+
+- Token ID 1 = basic tier
+- Token ID 2 = premium tier
+- Token ID 3 = enterprise tier
+
+Mint the appropriate token ID to each user. Check with `$or` for "any tier" or specific token IDs for tier-specific endpoints.
+
+## How to Create
+
+Collections can be created:
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/BitBadges/bitbadges-plugins/tree/main/packages/bitbadges-builder-mcp) to help configure collections.
+- **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
+- **Via chain CLI** using `bitbadgeschaind tx tokenization`
+
+Most providers will create their collection on-site and then use the SDK or API to mint/revoke programmatically.
+
+
+## File: ./token-standard/bb-402/middleware-recipes.md
+
+# Code Snippets
+
+Reference snippets for implementing BB-402 server-side verification. Adapt these to your framework of choice.
+
+## Nonce Management
+
+```typescript
+import crypto from 'crypto';
+
+const nonces = new Map<string, number>();
+const NONCE_TTL_MS = 60_000;
+
+function generateNonce(): string {
+  const nonce = crypto.randomBytes(16).toString('hex');
+  nonces.set(nonce, Date.now());
+  return nonce;
+}
+
+function validateNonce(nonce: string): boolean {
+  const created = nonces.get(nonce);
+  if (!created || Date.now() - created > NONCE_TTL_MS) {
+    nonces.delete(nonce);
+    return false;
+  }
+  nonces.delete(nonce); // single-use
+  return true;
+}
+```
+
+## Signature Verification (Cosmos ADR-036)
+
+```typescript
+import { Secp256k1, Secp256k1Signature, Sha256 } from '@cosmjs/crypto';
+import { fromBase64, toBase64 } from '@cosmjs/encoding';
+import { serializeSignDoc, encodeSecp256k1Pubkey, pubkeyToAddress } from '@cosmjs/amino';
+
+async function verifyCosmosSignature(
+  message: string, signature: string, publicKey: string
+): Promise<{ valid: boolean; address: string }> {
+  const pubKeyBytes = fromBase64(publicKey);
+  const sigBytes = fromBase64(signature);
+  const aminoPubKey = encodeSecp256k1Pubkey(pubKeyBytes);
+  const address = pubkeyToAddress(aminoPubKey, 'bb');
+
+  const signDoc = {
+    chain_id: '',
+    account_number: '0',
+    sequence: '0',
+    fee: { gas: '0', amount: [] },
+    msgs: [{
+      type: 'sign/MsgSignData',
+      value: {
+        signer: address,
+        data: toBase64(new TextEncoder().encode(message)),
+      },
+    }],
+    memo: '',
+  };
+
+  const hash = new Sha256(serializeSignDoc(signDoc)).digest();
+  const valid = await Secp256k1.verifySignature(
+    Secp256k1Signature.fromFixedLength(sigBytes), hash, pubKeyBytes
+  );
+  return { valid, address };
+}
+```
+
+## Signature Verification (EVM EIP-191)
+
+```typescript
+import { ethers } from 'ethers';
+
+function verifyEvmSignature(
+  message: string, signature: string, address: string
+): boolean {
+  const recovered = ethers.verifyMessage(message, signature);
+  return recovered.toLowerCase() === address.toLowerCase();
+}
+```
+
+## Ownership Check (BitBadges API)
+
+```typescript
+async function checkOwnership(
+  address: string,
+  requirements: object,
+  apiKey: string
+): Promise<boolean> {
+  const res = await fetch('https://api.bitbadges.io/api/v0/verifyOwnershipRequirements', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey },
+    body: JSON.stringify({ address, assetOwnershipRequirements: requirements }),
+  });
+  if (!res.ok) return false;
+  const data = await res.json();
+  return data.verified === true;
+}
+```
+
+## Proof Decoding
+
+```typescript
+function decodeProof(header: string) {
+  return JSON.parse(Buffer.from(header, 'base64').toString());
+}
+
+// Proof shape: { address, chain, message, signature, publicKey? }
+```
+
+## 402 Challenge Response
+
+When no proof header is present, return a 402 with this shape:
+
+```json
+{
+  "version": "1",
+  "ownershipRequirements": { "tokens": [{ "...": "..." }] },
+  "message": "{\"nonce\":\"...\",\"timestamp\":...,\"expiresAt\":...,\"domain\":\"...\",\"method\":\"GET\",\"path\":\"/api/resource\"}"
+}
+```
+
+The `message` field is a JSON string that the client signs and sends back.
+
+## Amount Patterns
+
+| Goal | `mustOwnAmounts` |
+|------|-------------------|
+| Must own at least 1 | `{ start: '1', end: '1' }` |
+| Must NOT own (ban list) | `{ start: '0', end: '0' }` |
+
+## Client: Handling a 402
+
+```typescript
+async function fetchWithBB402(url: string, signMessage: (msg: string) => Promise<{
+  address: string; chain: string; signature: string; publicKey?: string;
+}>) {
+  const res = await fetch(url);
+  if (res.status !== 402) return res;
+
+  const { message } = await res.json();
+  const signed = await signMessage(message);
+
+  const proof = Buffer.from(JSON.stringify({
+    address: signed.address,
+    chain: signed.chain,
+    message,
+    signature: signed.signature,
+    ...(signed.publicKey ? { publicKey: signed.publicKey } : {}),
+  })).toString('base64');
+
+  return fetch(url, { headers: { 'X-BB-Proof': proof } });
+}
+```
+
+## Dependencies
+
+```bash
+# Cosmos signature verification
+npm install @cosmjs/crypto @cosmjs/encoding @cosmjs/amino
+
+# EVM signature verification (optional)
+npm install ethers
+```
 
 
 ## File: ./token-standard/bb-402/overview.md
