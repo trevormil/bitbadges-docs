@@ -80,29 +80,6 @@ collectionApprovals: [
 ]
 ```
 
-## Recipe: Time-Bounded Subscription
-
-Mint tokens with specific `ownershipTimes` so they automatically expire. No revocation needed — the token just stops being valid after the window closes.
-
-```typescript
-// Mint a 30-day subscription token
-const now = BigInt(Date.now());
-const thirtyDays = 30n * 24n * 60n * 60n * 1000n;
-
-// When minting, specify ownershipTimes on the transfer
-const transfer = {
-  from: 'Mint',
-  toAddresses: ['bb1_USER_ADDRESS'],
-  balances: [{
-    amount: 1n,
-    tokenIds: [{ start: 1n, end: 1n }],
-    ownershipTimes: [{ start: now, end: now + thirtyDays }],
-  }],
-};
-```
-
-**BB-402 check:** Use `ownershipTimes` in your requirements to check the current time window. The user owns the token only during the minted window — no cleanup needed.
-
 ## Recipe: Short-Lived 2FA Token
 
 For sensitive operations, mint a token that is only valid for a brief window (e.g., 60 seconds). The user completes a 2FA challenge on your frontend, you mint the short-lived token, and your API checks for it.
@@ -188,8 +165,8 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 ## How to Create
 
 Collections can be created:
-- **On-site** at [bitbadges.io](https://bitbadges.io) (recommended for most cases)
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/BitBadges/bitbadges-plugins/tree/main/packages/bitbadges-builder-mcp) to help configure collections.
 - **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
-- **Via chain CLI** using `bitbadgeschaind tx badges`
+- **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
 Most providers will create their collection on-site and then use the SDK or API to mint/revoke programmatically.
