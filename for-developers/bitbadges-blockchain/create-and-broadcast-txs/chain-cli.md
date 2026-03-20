@@ -4,7 +4,11 @@ The BitBadges chain ships a standard Cosmos SDK binary called `bitbadgeschaind`.
 
 ## Installation
 
-Build from source (requires Go 1.22+):
+You can install `bitbadgeschaind` from a pre-built release or build from source.
+
+**Pre-built releases:** Download the latest binary for your platform from the [GitHub Releases page](https://github.com/BitBadges/bitbadgeschain/releases). See [Run a Mainnet Node](../run-a-mainnet-node.md) for additional setup details.
+
+**Build from source** (requires Go 1.22+):
 
 ```bash
 git clone https://github.com/BitBadges/bitbadgeschain.git
@@ -18,9 +22,11 @@ After installation, verify:
 bitbadgeschaind version
 ```
 
+**Important:** BitBadges periodically performs chain upgrades. To ensure compatibility with the latest on-chain changes, always use the correct binary version for the current chain height. Check the [releases page](https://github.com/BitBadges/bitbadgeschain/releases) for the latest version.
+
 ## Key Management
 
-BitBadges uses Ethereum-compatible keys (`eth_secp256k1`). The default keyring backend is `test` (unencrypted, for development). For production, use `--keyring-backend os` or `--keyring-backend file`.
+BitBadges supports both Ethereum-compatible keys (`eth_secp256k1`) and standard Cosmos keys (`secp256k1`). The default keyring backend is `test` (unencrypted, for development). For production, use `--keyring-backend os` or `--keyring-backend file`.
 
 ### Create a New Key
 
