@@ -2,17 +2,28 @@
 
 There are multiple ways you can create, generate, and sign transactions.&#x20;
 
--   CLI: Directly interact with the blockchain node's CLI in a terminal
--   Directly via Cosmos SDK practices like Keplr signing
--   Via our SDK
+-   **CLI**: Use the [`bitbadgeschaind` CLI](./chain-cli.md) to manage keys and submit transactions directly from a terminal -- no code required
+-   **SDK (Recommended)**: Use the [BitBadges SDK](../../bitbadges-sdk/) for TypeScript-based signing and broadcasting
+-   **Manual Signing**: Directly via Cosmos SDK practices like Keplr or MetaMask signing for fine-grained control
 
-We recommend generating, signing, and broadcasting your transactions with the [BitBadges SDK](../../bitbadges-sdk/). The SDK provides easy-to-use TypeScript functions to construct transactions of all types and broadcast them to a blockchain node.
+## Three Approaches
 
-## Two Approaches
+### 1. Chain CLI (No Code)
 
-The SDK offers two approaches for signing transactions:
+The **[`bitbadgeschaind` CLI](./chain-cli.md)** lets you manage keys and submit transactions directly from a terminal. No TypeScript or SDK required.
 
-### 1. BitBadgesSigningClient (Streamlined)
+```bash
+# Create a key
+bitbadgeschaind keys add mykey
+
+# Create a collection
+bitbadgeschaind tx tokenization create-collection ./collection.json \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+```
+
+**Best for:** Quick testing, server-side automation, scripting, agent wallets, environments without Node.js.
+
+### 2. BitBadgesSigningClient (Streamlined)
 
 The **[BitBadgesSigningClient](./signing-client.md)** provides a simple, all-in-one solution that handles everything automatically:
 - Account info fetching and caching
@@ -33,7 +44,7 @@ console.log('TX Hash:', result.txHash);
 
 **Best for:** Quick integration, simple use cases, when you don't need fine-grained control.
 
-### 2. Manual Signing (Fine-Grained Control)
+### 3. Manual Signing (Fine-Grained Control)
 
 For more control over the transaction lifecycle, use the manual signing approach:
 - **[Signing - Cosmos](./signing-cosmos.md)**: Sign with Keplr, Leap, Cosmostation, etc.
@@ -50,14 +61,15 @@ This approach gives you full control over:
 
 ## Comparison
 
-| Feature | BitBadgesSigningClient | Manual Signing |
-|---------|----------------------|----------------|
-| Setup | Minimal | More code required |
-| Control | Abstracted | Full control |
-| Account Info | Auto-fetched & cached | Manual fetch |
-| Gas Estimation | Built-in | Manual simulation |
-| Sequence Retry | Automatic | Manual handling |
-| Custom Flows | Limited | Fully customizable |
+| Feature | Chain CLI | BitBadgesSigningClient | Manual Signing |
+|---------|-----------|----------------------|----------------|
+| Language | None (terminal) | TypeScript | TypeScript |
+| Setup | Build binary | Minimal | More code required |
+| Control | Flag-based | Abstracted | Full control |
+| Account Info | Automatic | Auto-fetched & cached | Manual fetch |
+| Gas Estimation | `--gas auto` | Built-in | Manual simulation |
+| Sequence Retry | N/A | Automatic | Manual handling |
+| Custom Flows | Shell scripts | Limited | Fully customizable |
 
 ## Wallet Support
 
