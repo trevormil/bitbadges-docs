@@ -1,6 +1,6 @@
 # MCP Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 30+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 30 tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
 ## Installation
 
@@ -156,21 +156,27 @@ query_collection → verify_ownership → (take action based on result)
 
 ## Skills (Guided Workflows)
 
-The MCP server includes 30+ skill instructions accessible via `get_skill_instructions`. These guide AI agents through complex tasks:
+The MCP server includes 17 skill instructions accessible via `get_skill_instructions`. These guide AI agents through complex tasks:
 
-| Skill | Description |
-|-------|-------------|
-| `smart-token` | Build IBC-backed smart tokens (stablecoins, wrapped assets) |
-| `fungible-token` | Build ERC-20 style fungible tokens |
-| `nft-collection` | Build NFT collections with minting config |
-| `collection-audit` | Audit collections for security risks |
-| `explain-collection` | Generate human-readable collection reports |
-| `update-collection` | Update existing collections (permissions, metadata, approvals) |
-| `collection-recipes` | Decision matrix: which builder tool for which use case |
-| `ibc-and-hooks` | IBC integration, custom hooks, ICQ queries |
-| `permissions` | Permission system deep-dive |
-| `approval` | Approval configuration patterns |
-| `subscription` | Subscription/recurring token patterns |
+| Skill ID | Name | Description |
+|----------|------|-------------|
+| `smart-token` | Smart Token | IBC-backed smart token with 1:1 backing and two required approvals (backing + unbacking) |
+| `minting` | Minting | Mint approval patterns including public mint, whitelist mint, creator-only mint, payment-gated mint, and escrow payouts |
+| `liquidity-pools` | Liquidity Pools | Liquidity pool standard with the "Liquidity Pools" protocol standard tag |
+| `fungible-token` | Fungible Token | Simple fungible token with fixed or unlimited supply and configurable mint/transfer approvals |
+| `nft-collection` | NFT Collection | Non-fungible token collection with unique token IDs, metadata URIs, and badge-based ownership |
+| `subscription` | Subscription | Time-based subscription token with recurring payment approvals and auto-deletion on expiry |
+| `immutability` | Transferability & Update Rules | Lock collection permissions to make properties permanently immutable or permanently permitted |
+| `custom-2fa` | Custom 2FA | Two-factor authentication for transfers using a secondary approval address |
+| `address-list` | Address List | On-chain managed address list where membership = owning x1 of token ID 1 |
+| `bb-402` | BB-402 Token-Gated Access | Token-gated access protocol where ownership of specific badges grants API/resource access |
+| `burnable` | Burnable | Allow token holders to burn tokens by sending them to the burn address |
+| `multi-sig-voting` | Multi-Sig / Voting | Require weighted quorum voting from multiple parties before transfers can proceed |
+| `ai-criteria-gate` | AI Criteria Gate | AI-evaluated criteria gate using attestation NFTs and dynamic store for automated access decisions |
+| `verified` | Verified Gate | Gate access based on BitBadges verified credential badges (collection ID 1) |
+| `payment-protocol` | Payment Protocol | Invoices, escrows, bounties, and payment receipts using ListView standard and coinTransfer-based approvals |
+| `tradable` | Tradable NFTs | Tradable token standard enabling peer-to-peer transfers with the "Tradable" protocol standard tag |
+| `credit-token` | Credit Token | Increment-only, non-transferable credit token purchased with any ICS20 denom |
 
 ## Related Tools
 
@@ -184,13 +190,18 @@ The MCP server includes 30+ skill instructions accessible via `get_skill_instruc
 
 The MCP server also exposes embedded documentation as resources:
 
-| Resource URI | Description |
-|-------------|-------------|
-| `bitbadges://rules/critical` | Critical rules for transaction building |
-| `bitbadges://docs/concepts` | Core concepts (approvals, permissions, balances) |
-| `bitbadges://docs/sdk` | SDK reference |
-| `bitbadges://docs/api` | API reference |
-| `bitbadges://docs/messages` | Message type reference |
-| `bitbadges://docs/examples` | Example transactions |
+| Resource URI | Name | Description |
+|-------------|------|-------------|
+| `bitbadges://tokens/registry` | Token Registry | IBC denoms, symbols, decimals, and pre-generated backing addresses |
+| `bitbadges://rules/critical` | Critical Rules | Critical rules that must be followed when building transactions |
+| `bitbadges://skills/all` | Skill Instructions | Instructions for all 17 builder skills |
+| `bitbadges://docs/concepts` | Core Concepts | Core BitBadges concepts: transferability, approvals, permissions, balances, and address lists |
+| `bitbadges://docs/examples` | Full Examples | Complete transaction JSON examples for NFT collections, fungible tokens, and Smart Tokens |
+| `bitbadges://recipes/all` | Code Recipes & Decision Matrices | Code snippets and decision matrices for common operations |
+| `bitbadges://learnings/all` | Learnings & Gotchas | Known gotchas, tips, and discoveries from building with BitBadges |
+| `bitbadges://errors/patterns` | Error Patterns | Common error messages mapped to diagnoses and fixes |
+| `bitbadges://docs/frontend` | Reference Frontend Patterns | Patterns from the BitBadges reference frontend (Next.js + Ant Design) |
+| `bitbadges://workflows/all` | Workflow Chains | Step-by-step tool chains for common multi-step operations |
+| `bitbadges://schema/token-builder` | Token Builder Schema | Annotated schema for build_token: design axes, field reference, approval patterns, and validation checklist |
 
 Access these via your MCP client's resource reading capabilities.

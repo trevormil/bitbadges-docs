@@ -26,7 +26,7 @@ To convert between different number types, all types come with a converter funct
 import { BigIntify, TokenMetadata, JSPrimitiveNumberType, NumberType } from "bitbadgesjs-sdk";
 
 const stringifiedMetadata: TokenMetadata<string> = new TokenMetadata({ uri: ... });
-const bigIntifiedMetadata = stringifiedTokenMetadata.convert(BigIntify);
+const bigIntifiedMetadata = stringifiedMetadata.convert(BigIntify);
 ```
 
 We export the following types and converter functions for your convenience.
@@ -46,4 +46,4 @@ export const NumberifyIfPossible = (item: NumberType) => numberify(item, StringN
 In our API, JS bigints cannot be natively sent over HTTP. So, we use the following execution flow:
 
 1. Before sending to the client, stringify everything before sending over HTTP
-2. The client can use the converter functions to coonvert all types to their preferred method
+2. The client can use the converter functions to convert all types to their preferred method
