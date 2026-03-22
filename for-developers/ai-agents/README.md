@@ -49,6 +49,7 @@ console.log('TX Hash:', result.txHash);
 | **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
 | **SDK Signing Client** | Full-featured bots, server-side agents | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
+| **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
 ### MCP Quick Setup
 
