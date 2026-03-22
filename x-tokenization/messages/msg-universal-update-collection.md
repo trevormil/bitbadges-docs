@@ -168,10 +168,11 @@ bitbadgeschaind tx tokenization universal-update-collection '[tx-json]' --from c
     "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
-    "aliasPathsToAdd": [],
-    "invariants": {}
+    "aliasPathsToAdd": []
 }
 ```
+
+> **Note:** When updating an existing collection (`collectionId != "0"`), the `invariants` field must be omitted entirely. Invariants are creation-only and are ignored (or may cause errors) if included in update transactions. Only include `invariants` when creating a new collection (`collectionId = "0"`).
 
 ## Key Differences from Other Messages
 

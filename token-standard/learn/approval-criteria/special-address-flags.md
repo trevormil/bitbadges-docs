@@ -49,10 +49,18 @@ const backingApproval: CollectionApproval<bigint> = {
     version: 0n,
     approvalCriteria: {
         allowBackedMinting: true, // Required for IBC backed path operations
+        mustPrioritize: true, // Chain-enforced: must be true for backed minting approvals
         overridesFromOutgoingApprovals: true,
     },
 };
 ```
+
+> **Chain-enforced requirements for `allowBackedMinting`:**
+>
+> The chain validates the following when `allowBackedMinting` is set to `true`:
+>
+> - `mustPrioritize` must be `true`
+> - Exactly one of `fromListId` or `toListId` must resolve to a single-address whitelist containing exactly the backing address (the `CosmosCoinBackedPath` address for this collection)
 
 ### Example: Wrapper Approval
 
