@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Mar 21 11:45:27 UTC 2026
+Generated on Sun Mar 22 12:29:56 UTC 2026
 
 
 
@@ -24326,10 +24326,18 @@ const backingApproval: CollectionApproval<bigint> = {
     version: 0n,
     approvalCriteria: {
         allowBackedMinting: true, // Required for IBC backed path operations
+        mustPrioritize: true, // Chain-enforced: must be true for backed minting approvals
         overridesFromOutgoingApprovals: true,
     },
 };
 ```
+
+> **Chain-enforced requirements for `allowBackedMinting`:**
+>
+> The chain validates the following when `allowBackedMinting` is set to `true`:
+>
+> - `mustPrioritize` must be `true`
+> - Exactly one of `fromListId` or `toListId` must resolve to a single-address whitelist containing exactly the backing address (the `CosmosCoinBackedPath` address for this collection)
 
 ### Example: Wrapper Approval
 
@@ -25070,7 +25078,7 @@ const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
 
 **Key points:**
 
--   Set during collection creation or via `MsgUpdateCollection`
+-   Set during collection creation or updated via `MsgUpdateCollection` (not invariants — see below)
 -   Controlled by `canUpdateValidTokenIds` permission
 -   Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
 
@@ -25213,6 +25221,8 @@ const isArchived: boolean = false;
 **Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchived` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
 
 ## Invariants
+
+> **Important: Invariants are creation-only.** Once a collection is created, its invariants cannot be modified or removed. Do not include invariants in update transactions — they will be ignored or may cause unexpected behavior. Set invariants only when creating a new collection (`collectionId = "0"` in `MsgUniversalUpdateCollection`, or via `MsgCreateCollection`).
 
 `invariants` are immutable rules set upon collection creation that cannot be broken or modified afterward. They enforce fundamental constraints on collection behavior.
 
@@ -32204,10 +32214,11 @@ bitbadgeschaind tx tokenization universal-update-collection '[tx-json]' --from c
     "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
-    "aliasPathsToAdd": [],
-    "invariants": {}
+    "aliasPathsToAdd": []
 }
 ```
+
+> **Note:** When updating an existing collection (`collectionId != "0"`), the `invariants` field must be omitted entirely. Invariants are creation-only and are ignored (or may cause errors) if included in update transactions. Only include `invariants` when creating a new collection (`collectionId = "0"`).
 
 ## Key Differences from Other Messages
 
@@ -32295,7 +32306,6 @@ message MsgUpdateCollection {
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
   repeated AliasPathAddObject aliasPathsToAdd = 23;
-  CollectionInvariants invariants = 24;
 }
 
 message MsgUpdateCollectionResponse {
@@ -32348,17 +32358,11 @@ bitbadgeschaind tx tokenization update-collection '[tx-json]' --from manager-key
     "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
-    "aliasPathsToAdd": [],
-    "invariants": {
-        "noCustomOwnershipTimes": false,
-        "maxSupplyPerId": "0",
-        "cosmosCoinBackedPath": undefined,
-        "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false,
-        "evmQueryChallenges": []
-    }
+    "aliasPathsToAdd": []
 }
 ```
+
+> **Note:** Invariants are creation-only and cannot be set or modified via `MsgUpdateCollection`. Use the `invariants` field in `MsgUniversalUpdateCollection` or `MsgCreateCollection` when creating a new collection (`collectionId = '0'`).
 
 
 ## File: ./x-tokenization/messages/msg-update-dynamic-store.md
