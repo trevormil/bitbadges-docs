@@ -24,24 +24,6 @@ The key building blocks are:
 
 The approval configuration encodes all of this directly. The relevant fields are the tallied transfer tracking with time-based resets for daily caps, time-range constraints on when transfers are valid, and address-based allowlists for tokens and recipients.
 
-## Four Canonical Agent Authorization Patterns
-
-### AI Research Agent
-
-A research agent needs to pay for API calls, data queries, and computation credits throughout the day, but the controller wants a hard ceiling to prevent runaway spending. The approval is configured with a daily spending cap — say, 100 credits per day — using a tallied transfer tracker with a 24-hour reset window. When the agent hits 100 credits, every subsequent transaction is rejected until midnight resets the counter. The valid time window can be set to expire at end of day, forcing a daily re-authorization from the human controller. This pattern ensures the agent can never accumulate multi-day debt even if it runs continuously.
-
-### Employee Expense Wallet
-
-An employee receives a delegated wallet for business expenses. The approval carries a monthly budget with an expiry date matching the end of the pay period. When the month ends, the approval expires automatically — the employee's wallet stops working without any action from HR. Each month, the controller broadcasts one transaction to write the new time window and budget. The old approval is gone; the new one is live. This pattern replaces manual revocation workflows with a calendar-driven, trustless cycle.
-
-### DAO Sub-Committee
-
-A sub-committee is allocated a 90-day sprint budget of up to 10,000 tokens to deploy toward grants and partnerships. The approval is configured with a cumulative cap (the entire 90-day total cannot exceed 10,000 tokens) and a hard expiry at the sprint end date. Trustees hold a separate key with manager-level permissions that can override or reduce the cap at any time. The sub-committee can spend freely within the envelope but cannot exceed it — even if all members vote to do so. The protocol ignores the vote; only the approval configuration matters.
-
-### Contractor Wallet
-
-A contractor is granted spending access for the duration of an engagement. Rather than time-windowing the approval, access is gated through a dynamic store challenge — a condition that checks an on-chain flag controlled by the client. While the flag is set, the contractor's wallet works. The moment the client broadcasts a single transaction to flip the flag, every subsequent transfer from the contractor's wallet is rejected. There is no waiting period, no support ticket, no API call to a third party. One transaction, instant revocation, provable on-chain.
-
 ## Instant Revocation and Audit Trail
 
 Revocation in the BitBadges model is a first-class operation, not an afterthought. The controller broadcasts one transaction to remove or modify the approval. From the next block forward, the agent's wallet cannot move tokens under that approval. No delay, no batch processing window, no platform intermediary.
