@@ -67,7 +67,7 @@ const validTokenIds: UintRange<bigint>[] = [{ start: 1n, end: 100n }];
 
 **Key points:**
 
--   Set during collection creation or via `MsgUpdateCollection`
+-   Set during collection creation or updated via `MsgUpdateCollection` (not invariants — see below)
 -   Controlled by `canUpdateValidTokenIds` permission
 -   Strongly recommended to be set at genesis and locked forever. Expanding / reducing valid token IDs is not recommended in most cases and advanced.
 
@@ -210,6 +210,8 @@ const isArchived: boolean = false;
 **Permission Control:** Updates controlled by `canArchiveCollection` permission. Note that this permission controls the updatability of the `isArchived` field, not the current archive status. You can lock the archive status forever (either `true` or `false`) by permanently forbidding updates.
 
 ## Invariants
+
+> **Important: Invariants are creation-only.** Once a collection is created, its invariants cannot be modified or removed. Do not include invariants in update transactions — they will be ignored or may cause unexpected behavior. Set invariants only when creating a new collection (`collectionId = "0"` in `MsgUniversalUpdateCollection`, or via `MsgCreateCollection`).
 
 `invariants` are immutable rules set upon collection creation that cannot be broken or modified afterward. They enforce fundamental constraints on collection behavior.
 

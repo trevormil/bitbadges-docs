@@ -44,7 +44,6 @@ message MsgUpdateCollection {
   repeated cosmos.base.v1beta1.Coin mintEscrowCoinsToTransfer = 21;
   repeated CosmosCoinWrapperPathAddObject cosmosCoinWrapperPathsToAdd = 22;
   repeated AliasPathAddObject aliasPathsToAdd = 23;
-  CollectionInvariants invariants = 24;
 }
 
 message MsgUpdateCollectionResponse {
@@ -97,14 +96,8 @@ bitbadgeschaind tx tokenization update-collection '[tx-json]' --from manager-key
     "isArchived": false,
     "mintEscrowCoinsToTransfer": [],
     "cosmosCoinWrapperPathsToAdd": [],
-    "aliasPathsToAdd": [],
-    "invariants": {
-        "noCustomOwnershipTimes": false,
-        "maxSupplyPerId": "0",
-        "cosmosCoinBackedPath": undefined,
-        "noForcefulPostMintTransfers": false,
-        "disablePoolCreation": false,
-        "evmQueryChallenges": []
-    }
+    "aliasPathsToAdd": []
 }
 ```
+
+> **Note:** Invariants are creation-only and cannot be set or modified via `MsgUpdateCollection`. Use the `invariants` field in `MsgUniversalUpdateCollection` or `MsgCreateCollection` when creating a new collection (`collectionId = '0'`).
