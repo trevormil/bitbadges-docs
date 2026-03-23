@@ -311,9 +311,9 @@ This example demonstrates creating a tradable collection that supports orderbook
             }
         ],
         "standards": [
-            "Tradable",
+            "NFTMarketplace",
             "NFTs",
-            "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
+            "NFTPricingDenom:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
