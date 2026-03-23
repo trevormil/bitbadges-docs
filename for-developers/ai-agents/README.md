@@ -61,7 +61,7 @@ claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
 npm install -g bitbadges-builder-mcp
 ```
 
-See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 30+ tools, configuration for Claude Desktop / Cursor, and workflow guides.
+See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
 
 ## Network Configuration
 
@@ -81,7 +81,7 @@ Additional endpoints (testnet):
 | Page | Description |
 |------|-------------|
 | [Testnet Faucet API](testnet-faucet.md) | Get free testnet BADGE tokens for your bot |
-| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 30+ MCP tools for AI assistants |
+| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 50+ MCP tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
