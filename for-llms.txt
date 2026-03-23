@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Mon Mar 23 16:56:13 UTC 2026
+Generated on Mon Mar 23 17:15:54 UTC 2026
 
 
 
@@ -30168,9 +30168,9 @@ This example demonstrates creating a tradable collection that supports orderbook
             }
         ],
         "standards": [
-            "Tradable",
+            "NFTMarketplace",
             "NFTs",
-            "DefaultDisplayCurrency:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
+            "NFTPricingDenom:ibc/F082B65C88E4B6D5EF1DB243CDA1D331D002759E938A0F5CD3FFDC5D53B3E349"
         ],
         "isArchived": false,
         "mintEscrowCoinsToTransfer": [],
