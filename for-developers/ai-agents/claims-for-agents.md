@@ -60,7 +60,7 @@ await api.createClaim({
 });
 ```
 
-If you are using the BitBadges MCP tools, use the `build_claim` tool instead of constructing the payload manually (see MCP Tool Workflow below).
+If you are using the BitBadges MCP tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see MCP Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
 
 ## Completing a Claim
 
@@ -168,11 +168,14 @@ If you are using the BitBadges MCP builder tools, the `build_claim` tool handles
 build_claim({
   claimType: "code-gated",
   name: "My Drop",
-  maxUses: 100
+  maxUses: 100,
+  action: { seedCode: "auto" }
 })
 ```
 
-The tool returns a claim payload ready for submission to the API. From there, the agent follows the same complete -> get codes -> submit proof flow described above.
+The tool returns a claim payload ready for submission to the API. For the `codes` plugin, set `publicParams.numCodes` as a JS number (not a string) and leave `privateParams` empty — the server generates codes automatically. Use `search_plugins` to see all available claim plugins and their parameters.
+
+From there, the agent follows the same complete -> get codes -> submit proof flow described above.
 
 ## Tips
 

@@ -174,44 +174,45 @@ ws.on('close', () => {
 
 ## Example 5: MCP Agent Workflow
 
-When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), a typical workflow looks like this:
+When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
 
-### Tool Call Sequence
+### Session-Based Build (Recommended)
 
-1. **Get instructions** for what you want to build:
-   ```
-   get_skill_instructions({ skill: "fungible-token" })
-   ```
+Use per-field tools to build the collection incrementally, then verify:
 
-2. **Build the transaction**:
-   ```
-   build_fungible_token({
-     name: "My Bot Token",
-     description: "Token managed by my AI agent",
-     initialSupply: "1000000",
-     ...
-   })
-   ```
+```
+# 1. Get skill instructions
+get_skill_instructions({ skill: "fungible-token" })
 
-3. **Validate** the transaction is well-formed:
-   ```
-   validate_transaction({ transactionJson: "<output from step 2>" })
-   ```
+# 2. Build with per-field tools (all in parallel)
+set_standards({ standards: ["Fungible Token"] })
+set_valid_token_ids({ tokenIds: [{ start: "1", end: "1" }] })
+set_default_balances({ ... })
+set_permissions({ preset: "locked-approvals" })
+set_collection_metadata({ name: "My Bot Token", description: "Token managed by my AI agent" })
+add_approval({ approvalId: "public-mint", fromListId: "Mint", toListId: "All", ... })
 
-4. **Simulate** to check gas and catch errors:
-   ```
-   simulate_transaction({ transactionJson: "<output from step 2>" })
-   ```
+# 3. (Optional) Auto-mint to yourself at creation
+add_transfer({ from: "Mint", toAddresses: ["bb1youraddress..."], balances: [...] })
 
-5. **Sign and broadcast**:
-   ```
-   sign_and_broadcast({
-     transactionJson: "<output from step 2>",
-     signingMethod: "mnemonic",
-     credential: "<from env>",
-     network: "testnet"
-   })
-   ```
+# 4. Verify (in parallel)
+validate_transaction()
+audit_collection()
+simulate_transaction()
+
+# 5. Export the final transaction JSON
+get_transaction()
+```
+
+### One-Shot Build
+
+For simple cases, use `build_token` to generate everything in one call:
+
+```
+build_token({ tokenType: "fungible", name: "My Bot Token", ... })
+  → validate_transaction({ transactionJson: "<output>" })
+  → simulate_transaction({ transactionJson: "<output>" })
+```
 
 ### Query Sequence (No Signing)
 
@@ -222,11 +223,13 @@ search({ query: "my collection name" })
   → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
 ```
 
+> **Note:** The MCP server builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
+
 ## Tips for AI Agents
 
-- **Always start on testnet.** The `sign_and_broadcast` MCP tool defaults to testnet for safety. Only switch to mainnet when you're confident in your workflow.
+- **Always start on testnet.** Use the testnet API and signing client until you're confident in your workflow.
 - **Simulate before broadcasting.** Use `simulate_transaction` or the signing client's `simulate: true` option to catch errors before spending gas.
-- **Use the faucet for testnet tokens.** See [Testnet Faucet API](testnet-faucet.md) - one request per address, no API key needed.
+- **Use the faucet for testnet tokens.** See [Testnet Faucet API](testnet-faucet.md) — one request per address, no API key needed.
 - **Handle errors gracefully.** Check `result.success` and `result.error` after every broadcast.
-- **Sequence management.** The signing client handles nonce/sequence automatically with retries. For MCP tools, `sign_and_broadcast` handles this internally.
+- **Sequence management.** The signing client handles nonce/sequence automatically with retries.
 - **Store credentials securely.** Use environment variables (`BITBADGES_MNEMONIC`, `BITBADGES_API_KEY`) rather than hardcoding secrets.

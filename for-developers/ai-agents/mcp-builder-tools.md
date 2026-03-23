@@ -1,6 +1,6 @@
 # MCP Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 30 tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
 ## Installation
 
@@ -65,42 +65,59 @@ Add to `.cursor/mcp.json`:
 
 ## Tools by Category
 
-### High-Level Builders
+### Session-Based Per-Field Builders (Recommended)
+
+The recommended way to build collections. Each tool sets one field on a session-scoped transaction, allowing incremental construction with full control. All tools can be called in parallel within the same round.
 
 | Tool | Description |
 |------|-------------|
-| `build_smart_token` | Build a complete smart token (badge) collection transaction |
-| `build_fungible_token` | Build a fungible token collection transaction |
-| `build_nft_collection` | Build an NFT collection transaction |
-| `build_token` | Universal token builder -- single entry point for all collection types. Set tokenType for simplified inputs, or use the full design axes directly |
+| `set_standards` | Set the collection's protocol standards (e.g., "Subscription", "Smart Token") |
+| `set_valid_token_ids` | Set which token IDs exist in the collection |
+| `set_default_balances` | Set default balance configuration and user-level auto-approve flags |
+| `set_permissions` | Set collection permissions (use presets like "locked-approvals" or custom) |
+| `set_invariants` | Set collection-level invariants (e.g., noCustomOwnershipTimes, maxSupplyPerId) |
+| `set_manager` | Set the collection manager address |
+| `set_collection_metadata` | Set collection-level metadata (name, description, image) |
+| `set_token_metadata` | Set per-token metadata URIs |
+| `set_custom_data` | Set custom data on the collection |
+| `add_approval` | Add a collection approval with approvalCriteria |
+| `remove_approval` | Remove a collection approval by approvalId |
+| `set_approval_metadata` | Set metadata for a specific approval |
+| `add_alias_path` | Add an alias path (for ICS20-backed smart tokens) |
+| `remove_alias_path` | Remove an alias path |
+| `add_cosmos_wrapper_path` | Add a Cosmos wrapper path |
+| `remove_cosmos_wrapper_path` | Remove a Cosmos wrapper path |
+| `add_transfer` | Append a MsgTransferTokens to the transaction (for auto-minting at creation) |
+| `remove_transfer` | Remove a transfer message from the transaction |
+| `get_transaction` | Return the current session transaction as JSON |
+
+### One-Shot Builders
+
+Build entire collections in a single call. Useful for simple cases or when you want a quick starting point.
+
+| Tool | Description |
+|------|-------------|
+| `build_token` | Universal token builder — single entry point for all collection types |
 | `build_claim` | Build claim JSON for the API (code-gated, password-gated, whitelist-gated, open) |
-| `build_address_list` | Build an on-chain address list collection. List membership = owning x1 of token ID 1 |
-| `build_transfer` | Build a MsgTransferTokens by auto-querying the collection, analyzing its approvals, and constructing the correct transaction |
-| `build_dynamic_store` | Build transaction JSON for dynamic store operations: create, update, delete, or set values for on-chain allowlists/blocklists |
+| `build_address_list` | Build an on-chain address list collection |
+| `build_transfer` | Build a MsgTransferTokens by auto-querying the collection and constructing the correct transaction |
+| `build_dynamic_store` | Build transaction JSON for dynamic store operations (create, update, delete, set values) |
 
 ### Audit & Analysis
 
 | Tool | Description |
 |------|-------------|
 | `audit_collection` | Security audit: centralization, supply inflation, approval flaws, common bugs (9 categories) |
+| `verify_standards` | Verify a collection transaction complies with BitBadges protocol standards. Returns violations with severity levels |
 | `explain_collection` | Human-readable collection report with Q&A mode (user/developer/auditor audiences) |
-| `analyze_collection` | Query a collection and produce a structured analysis of its transferability, approvals, permissions, and how to obtain/transfer tokens |
-
-### Component Builders
-
-| Tool | Description |
-|------|-------------|
-| `generate_backing_address` | Generate a backing address for IBC-backed smart tokens |
-| `generate_approval` | Generate an approval configuration |
-| `generate_permissions` | Generate permission configurations |
-| `generate_alias_path` | Generate alias path for address lookups |
+| `analyze_collection` | Structured analysis of transferability, approvals, permissions, and how to obtain/transfer tokens |
 
 ### Simulation & Validation
 
 | Tool | Description |
 |------|-------------|
 | `simulate_transaction` | Dry-run a transaction without broadcasting |
-| `validate_transaction` | Validate a transaction before broadcasting |
+| `validate_transaction` | Validate a transaction is well-formed before broadcasting |
 
 ### Queries
 
@@ -122,31 +139,45 @@ Add to `.cursor/mcp.json`:
 | `convert_address` | Convert between address formats (ETH, Cosmos, etc.) |
 | `get_current_timestamp` | Get the current timestamp (for time-based configs) |
 | `diagnose_error` | Diagnose BitBadges transaction errors and get suggested fixes |
-| `search_knowledge_base` | Search across all BitBadges knowledge -- embedded docs, learnings, recipes, error patterns, and critical rules |
+| `search_knowledge_base` | Search across all BitBadges knowledge — docs, learnings, recipes, error patterns, critical rules |
 
 ### Instructions & Docs
 
 | Tool | Description |
 |------|-------------|
-| `get_skill_instructions` | Get detailed instructions for specific skills (smart-token, fungible-token, nft-collection, subscription) |
+| `get_skill_instructions` | Get detailed build instructions for specific skills (smart-token, fungible-token, subscription, etc.) |
 | `fetch_docs` | Fetch documentation pages |
 
-## Typical Workflow
+## Workflows
 
-The recommended Build → Audit → Validate → Simulate pipeline:
+### Session-Based Build (Recommended)
 
-1. **Build** - Use a builder tool (`build_fungible_token`, `build_nft_collection`, `build_smart_token`, or `build_token`) to generate transaction JSON
-2. **Audit** - Use `audit_collection` to check for security risks and common bugs
-3. **Fix** - Address any critical/warning findings, re-audit if needed
-4. **Validate** - Use `validate_transaction` to check the transaction is well-formed
-5. **Simulate** - Use `simulate_transaction` to dry-run and estimate gas
-6. **Broadcast** - The user signs and broadcasts manually via the BitBadges SDK or frontend
+The per-field tools build up a collection incrementally in a session. This is the recommended approach — it gives full control and supports parallel tool calls.
 
 ```
-build_token → audit_collection → validate_transaction → simulate_transaction → (user broadcasts via SDK/frontend)
+set_standards + set_valid_token_ids + set_invariants + add_approval + set_permissions + set_default_balances + set_collection_metadata + set_token_metadata
+  → (optional) add_transfer (for auto-mint at creation)
+  → validate_transaction + audit_collection + simulate_transaction (in parallel)
+  → fix errors with remove_approval + re-add (max 3 attempts)
+  → get_transaction (final JSON)
 ```
 
-For queries and verification (no signing needed):
+**Step-by-step:**
+
+1. **Build** — Call per-field tools in parallel to define the collection: standards, token IDs, invariants, approvals, permissions, metadata, balances.
+2. **Auto-Mint** (optional) — If the user wants tokens minted to specific addresses at creation, call `add_transfer` to append a `MsgTransferTokens` alongside the collection creation.
+3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
+4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
+
+### One-Shot Build
+
+For simple collections, use `build_token` to generate everything in one call, then verify:
+
+```
+build_token → audit_collection → validate_transaction → simulate_transaction → (user signs via SDK/frontend)
+```
+
+### Query & Verification (No Signing)
 
 ```
 query_collection → verify_ownership → (take action based on result)
@@ -154,29 +185,43 @@ query_collection → verify_ownership → (take action based on result)
 
 > **Note:** The MCP server does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
 
+## Auto-Mint at Creation
+
+The `add_transfer` tool lets you mint tokens to specific addresses at the same time as collection creation. This produces a transaction with two messages: `MsgUniversalUpdateCollection` + `MsgTransferTokens`.
+
+**When to use:** "Mint 100 tokens to myself", "distribute tokens to team members", "auto-mint at creation".
+
+**How it works:**
+1. Build the collection normally with a mint approval (e.g., `add_approval` with `fromListId: "Mint"`, `initiatedByListId: <creator address>`)
+2. Call `add_transfer` with the recipient addresses, balances, and `prioritizedApprovals` referencing the mint approval
+3. Verify and export as normal — the transaction will contain both messages
+
+Maximum 4 transfer messages per transaction.
+
 ## Skills (Guided Workflows)
 
-The MCP server includes 17 skill instructions accessible via `get_skill_instructions`. These guide AI agents through complex tasks:
+The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types:
 
 | Skill ID | Name | Description |
 |----------|------|-------------|
-| `smart-token` | Smart Token | IBC-backed smart token with 1:1 backing and two required approvals (backing + unbacking) |
-| `minting` | Minting | Mint approval patterns including public mint, whitelist mint, creator-only mint, payment-gated mint, and escrow payouts |
-| `liquidity-pools` | Liquidity Pools | Liquidity pool standard with the "Liquidity Pools" protocol standard tag |
+| `smart-token` | Smart Token | ICS20-backed smart token with 1:1 backing and required backing/unbacking approvals |
 | `fungible-token` | Fungible Token | Simple fungible token with fixed or unlimited supply and configurable mint/transfer approvals |
 | `nft-collection` | NFT Collection | Non-fungible token collection with unique token IDs, metadata URIs, and badge-based ownership |
 | `subscription` | Subscription | Time-based subscription token with recurring payment approvals and auto-deletion on expiry |
-| `immutability` | Transferability & Update Rules | Lock collection permissions to make properties permanently immutable or permanently permitted |
+| `liquidity-pools` | Liquidity Pools | Liquidity pool standard with the "Liquidity Pools" protocol standard tag |
+| `minting` | Minting | Mint approval patterns including public mint, whitelist mint, creator-only mint, payment-gated mint |
+| `immutability` | Transferability & Update Rules | Lock collection permissions to make properties permanently immutable or permitted |
 | `custom-2fa` | Custom 2FA | Two-factor authentication for transfers using a secondary approval address |
 | `address-list` | Address List | On-chain managed address list where membership = owning x1 of token ID 1 |
 | `bb-402` | BB-402 Token-Gated Access | Token-gated access protocol where ownership of specific badges grants API/resource access |
-| `burnable` | Burnable | Allow token holders to burn tokens by sending them to the burn address |
-| `multi-sig-voting` | Multi-Sig / Voting | Require weighted quorum voting from multiple parties before transfers can proceed |
 | `ai-criteria-gate` | AI Criteria Gate | AI-evaluated criteria gate using attestation NFTs and dynamic store for automated access decisions |
 | `verified` | Verified Gate | Gate access based on BitBadges verified credential badges (collection ID 1) |
-| `payment-protocol` | Payment Protocol | Invoices, escrows, bounties, and payment receipts using ListView standard and coinTransfer-based approvals |
-| `tradable` | Tradable NFTs | Tradable token standard enabling peer-to-peer transfers with the "Tradable" protocol standard tag |
+| `payment-protocol` | Payment Protocol | Invoices, escrows, bounties, and payment receipts using coinTransfer-based approvals |
+| `escrow-pact` | Escrow Pact | Multi-party escrow with configurable deposit, release, refund, and dispute flows |
+| `tradable` | Tradable NFTs | Tradable token standard enabling peer-to-peer transfers |
 | `credit-token` | Credit Token | Increment-only, non-transferable credit token purchased with any ICS20 denom |
+
+Common features like burnable tokens, multi-sig voting, ownership requirements, codes, and passwords are built into the approval system directly — no separate skill needed. The AI builder handles these as part of any collection type when requested.
 
 ## Related Tools
 
@@ -194,7 +239,7 @@ The MCP server also exposes embedded documentation as resources:
 |-------------|------|-------------|
 | `bitbadges://tokens/registry` | Token Registry | IBC denoms, symbols, decimals, and pre-generated backing addresses |
 | `bitbadges://rules/critical` | Critical Rules | Critical rules that must be followed when building transactions |
-| `bitbadges://skills/all` | Skill Instructions | Instructions for all 17 builder skills |
+| `bitbadges://skills/all` | Skill Instructions | Instructions for all builder skills |
 | `bitbadges://docs/concepts` | Core Concepts | Core BitBadges concepts: transferability, approvals, permissions, balances, and address lists |
 | `bitbadges://docs/examples` | Full Examples | Complete transaction JSON examples for NFT collections, fungible tokens, and Smart Tokens |
 | `bitbadges://recipes/all` | Code Recipes & Decision Matrices | Code snippets and decision matrices for common operations |
