@@ -215,7 +215,7 @@ The system automatically detects transfers involving the special address:
 -   Checks if `from` address matches the backed path address (unbacking)
 -   Triggers the appropriate conversion logic
 
-**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Approvals of the special address are handled behind the scenes by the system. Note: The approval must be prioritized as this is a special context / environment. We also verify that the initiator is equal to the recipient / sender. There is no doing this on behalf of another user.
+**Important:** Detection happens in `MsgTransferTokens` implementation. Using the bank module alone won't work because it doesn't know about IBC backed paths. To trigger a minting or unminting, you simply wire up a `MsgTransferTokens` message to the special address. Approvals of the special address are handled behind the scenes by the system. Note: The approval must be prioritized as this is a special context / environment.
 
 ## Example: Backing Tokens
 
