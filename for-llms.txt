@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Tue Mar 24 18:13:46 UTC 2026
+Generated on Wed Mar 25 15:51:21 UTC 2026
 
 
 
@@ -8762,6 +8762,8 @@ The recommended way to build collections. Each tool sets one field on a session-
 | `remove_alias_path` | Remove an alias path |
 | `add_cosmos_wrapper_path` | Add a Cosmos wrapper path |
 | `remove_cosmos_wrapper_path` | Remove a Cosmos wrapper path |
+| `set_is_archived` | Set whether the collection is archived |
+| `set_mint_escrow_coins` | Fund the mint escrow address at creation (for quest rewards, payment overrides) |
 | `add_transfer` | Append a MsgTransferTokens to the transaction (for auto-minting at creation) |
 | `remove_transfer` | Remove a transfer message from the transaction |
 | `get_transaction` | Return the current session transaction as JSON |
@@ -8805,6 +8807,19 @@ Build entire collections in a single call. Useful for simple cases or when you w
 | `search` | Search collections, accounts, and tokens |
 | `search_plugins` | Search for off-chain claim plugins or fetch specific plugins by ID |
 | `lookup_token_info` | Look up token metadata and info |
+
+### Component Generators
+
+Helper tools that generate specific pieces of a collection (approvals, permissions, addresses) without managing session state.
+
+| Tool | Description |
+|------|-------------|
+| `generate_approval` | Generate approval structures by pattern (public-mint, manager-mint, smart-token-backing, subscription, etc.) |
+| `generate_permissions` | Generate permission presets (fully-immutable, manager-controlled, locked-approvals) |
+| `generate_backing_address` | Compute the deterministic IBC backing address for a given denom |
+| `generate_alias_path` | Generate alias path config for token display on DEX |
+| `generate_wrapper_address` | Compute the deterministic wrapper address for a custom denom |
+| `generate_unique_id` | Generate collision-free IDs for approvals (prefix + random hash) |
 
 ### Utilities
 
@@ -8892,11 +8907,14 @@ The MCP server includes skill instructions accessible via `get_skill_instruction
 | `ai-criteria-gate` | AI Criteria Gate | AI-evaluated criteria gate using attestation NFTs and dynamic store for automated access decisions |
 | `verified` | Verified Gate | Gate access based on BitBadges verified credential badges (collection ID 1) |
 | `payment-protocol` | Payment Protocol | Invoices, escrows, bounties, and payment receipts using coinTransfer-based approvals |
-| `escrow-pact` | Escrow Pact | Multi-party escrow with configurable deposit, release, refund, and dispute flows |
 | `tradable` | Tradable NFTs | Tradable token standard enabling peer-to-peer transfers |
 | `credit-token` | Credit Token | Increment-only, non-transferable credit token purchased with any ICS20 denom |
+| `quest` | Quest | Reward claims with escrow, claim plugins, and configurable payout |
+| `auto-mint` | Auto-Mint | Mint tokens to specific addresses at collection creation using multi-message transactions |
+| `burnable` | Burnable | Token destruction via forceDelete pattern |
+| `multi-sig-voting` | Multi-Sig Voting | Governance voting with configurable thresholds and delegation |
 
-Common features like burnable tokens, multi-sig voting, ownership requirements, codes, and passwords are built into the approval system directly — no separate skill needed. The AI builder handles these as part of any collection type when requested.
+Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
 
 ## Related Tools
 
