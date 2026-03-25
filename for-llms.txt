@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 25 15:51:21 UTC 2026
+Generated on Wed Mar 25 20:34:09 UTC 2026
 
 
 
@@ -2018,6 +2018,8 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
+    * [Collection Interpreter](for-developers/bitbadges-sdk/common-snippets/interpret-collection.md)
+    * [Simulation Balance Diffs](for-developers/bitbadges-sdk/common-snippets/simulation-balance-diffs.md)
 * [✍️ Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Chain CLI (bitbadgeschaind)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/chain-cli.md)
   * [Signing Client (Recommended)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/signing-client.md)
@@ -8793,7 +8795,7 @@ Build entire collections in a single call. Useful for simple cases or when you w
 
 | Tool | Description |
 |------|-------------|
-| `simulate_transaction` | Dry-run a transaction without broadcasting |
+| `simulate_transaction` | Dry-run a transaction without broadcasting. Returns `parsedEvents` (coin, badge, and IBC transfers) and `netChanges` (per-address balance diffs) |
 | `validate_transaction` | Validate a transaction is well-formed before broadcasting |
 
 ### Queries
@@ -11049,6 +11051,18 @@ try {
 | Broadcasting   | Built-in               | Separate step       |
 | Custom Flow    | Limited                | Fully customizable  |
 
+## Simulate and Review
+
+Before broadcasting, you can simulate a transaction and see exactly what will change:
+
+```typescript
+const review = await client.simulateAndReview(messages);
+// review.netChanges shows per-address coin and badge balance changes
+// review.parsed shows individual transfer events
+```
+
+See [Simulation Balance Diffs](../../bitbadges-sdk/common-snippets/simulation-balance-diffs.md) for full details.
+
 ## See Also
 
 - [Signing - Cosmos](./signing-cosmos.md) - Manual Cosmos wallet signing
@@ -12690,6 +12704,47 @@ export function appendSelfInitiatedIncomingApproval(currApprovals: UserIncomingA
 ```
 
 
+## File: ./for-developers/bitbadges-sdk/common-snippets/interpret-collection.md
+
+# Collection Interpreter
+
+The `interpretCollection` function generates a thorough, human-readable explanation of any collection — permissions, approvals, claims, invariants, metadata, and risks. It works with the full `BitBadgesCollection` object including metadata and claims.
+
+## Usage
+
+```typescript
+import { interpretCollection } from 'bitbadgesjs-sdk';
+import { BitBadgesApi } from 'bitbadgesjs-sdk';
+
+// After fetching a collection
+const collection = await BitBadgesApi.getCollections({
+  collectionsToFetch: [{ collectionId: '1' }]
+});
+const explanation = interpretCollection(collection.collections[0]);
+console.log(explanation);
+```
+
+## What's Included in the Output
+
+- **Collection overview** — name, type, token range, standards
+- **How tokens are created/obtained** — every mint approval explained
+- **Transferability rules** — every transfer approval explained
+- **Default balances** and auto-approve settings
+- **What the manager can and cannot change** — every permission's state
+- **On-chain invariants and guarantees**
+- **Claims** — plugin types, flow, rewards (no secrets)
+- **IBC/cross-chain details**
+
+## Privacy
+
+The function automatically strips sensitive claim parameters (`seedCode`, `preimages`, private params) from the output. Safe to display to any user.
+
+## Also Available Via
+
+- **MCP**: The `explain_collection` tool uses this under the hood
+- **Frontend**: Displayed on collection overview pages
+
+
 ## File: ./for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md
 
 # NumberType Conversions
@@ -12741,6 +12796,66 @@ In our API, JS bigints cannot be natively sent over HTTP. So, we use the followi
 
 1. Before sending to the client, stringify everything before sending over HTTP
 2. The client can use the converter functions to convert all types to their preferred method
+
+
+## File: ./for-developers/bitbadges-sdk/common-snippets/simulation-balance-diffs.md
+
+# Simulation Balance Diffs
+
+Parse chain simulation events into structured balance changes — see exactly what coins and tokens move in each direction before signing.
+
+## Quick Start: simulateAndReview()
+
+```typescript
+import { BitBadgesSigningClient } from 'bitbadgesjs-sdk';
+
+const client = new BitBadgesSigningClient({ adapter });
+const review = await client.simulateAndReview(messages);
+
+console.log('Gas used:', review.gasUsed);
+console.log('Fee:', review.fee);
+
+// See what moves
+for (const [address, denoms] of Object.entries(review.netChanges.coinChanges)) {
+  for (const [denom, amount] of Object.entries(denoms)) {
+    console.log(`${address}: ${amount > 0n ? '+' : ''}${amount} ${denom}`);
+  }
+}
+
+// If acceptable, broadcast
+if (agentApprovesChanges(review.netChanges)) {
+  const result = await client.signAndBroadcast(messages);
+}
+```
+
+## Low-Level: parseSimulationEvents + calculateNetChanges
+
+```typescript
+import { parseSimulationEvents, calculateNetChanges } from 'bitbadgesjs-sdk';
+
+// If you have raw simulation events (e.g., from the API)
+const parsed = parseSimulationEvents(events, txMessageInfos);
+// parsed.coinTransferEvents — coins moving between addresses
+// parsed.badgeTransferEvents — badges/tokens moving
+// parsed.ibcTransferEvents — IBC transfers
+
+const netChanges = calculateNetChanges(parsed, fee, signerAddress);
+// netChanges.coinChanges — per-address coin deltas
+// netChanges.badgeChanges — per-address badge deltas
+```
+
+## What Events Are Parsed
+
+- Coin transfers (send, delegate, redelegate)
+- Mint and burn events
+- Badge/token transfers
+- IBC transfers
+- Protocol fees
+
+## Also Available Via
+
+- **MCP**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
+- **Frontend**: The TxModal "Net Changes" tab uses this under the hood
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md
