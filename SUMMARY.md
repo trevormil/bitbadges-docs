@@ -170,6 +170,7 @@
     * [NumberType Conversions](for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md)
     * [Uint Ranges](for-developers/bitbadges-sdk/common-snippets/uint-ranges.md)
     * [Balances](for-developers/bitbadges-sdk/common-snippets/balances.md)
+    * [Balance Lookups](for-developers/bitbadges-sdk/common-snippets/balance-lookups.md)
     * [Transfers](for-developers/bitbadges-sdk/common-snippets/transfers-w-increments.md)
     * [Address Lists](for-developers/bitbadges-sdk/common-snippets/address-lists.md)
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
