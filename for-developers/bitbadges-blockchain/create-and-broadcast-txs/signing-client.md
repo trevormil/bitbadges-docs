@@ -431,6 +431,18 @@ try {
 | Broadcasting   | Built-in               | Separate step       |
 | Custom Flow    | Limited                | Fully customizable  |
 
+## Simulate and Review
+
+Before broadcasting, you can simulate a transaction and see exactly what will change:
+
+```typescript
+const review = await client.simulateAndReview(messages);
+// review.netChanges shows per-address coin and badge balance changes
+// review.parsed shows individual transfer events
+```
+
+See [Simulation Balance Diffs](../../bitbadges-sdk/common-snippets/simulation-balance-diffs.md) for full details.
+
 ## See Also
 
 - [Signing - Cosmos](./signing-cosmos.md) - Manual Cosmos wallet signing

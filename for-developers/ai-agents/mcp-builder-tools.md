@@ -118,7 +118,7 @@ Build entire collections in a single call. Useful for simple cases or when you w
 
 | Tool | Description |
 |------|-------------|
-| `simulate_transaction` | Dry-run a transaction without broadcasting |
+| `simulate_transaction` | Dry-run a transaction without broadcasting. Returns `parsedEvents` (coin, badge, and IBC transfers) and `netChanges` (per-address balance diffs) |
 | `validate_transaction` | Validate a transaction is well-formed before broadcasting |
 
 ### Queries
