@@ -18,26 +18,27 @@ This page covers both flows across every entrypoint.
 ### Full flow
 
 ```typescript
-const res = await api.getCollections({
-  collectionsToFetch: [{ collectionId: '1' }]
-});
-const balances = res.collections[0].getBalances('bb1...');
+// Direct balance endpoint — returns full 3D array + approvals
+const balanceDoc = await api.getBalanceByAddress('1', 'bb1...');
+const balances = balanceDoc.balances;
 // Returns: BalanceArray<bigint> — 3D array with amounts, tokenIds, ownershipTimes
 ```
 
 ### Simple flow
 
 ```typescript
+// Direct single-token endpoint — returns just the amount
+const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...');
+console.log(res.balance); // e.g. 100n
+
+// With a specific time (milliseconds since epoch)
+const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...', undefined, { time: 1700000000000n });
+
+// If you already have a balances array, use the helpers directly
 import { getBalanceForIdNow, getBalanceForIdAndTime } from 'bitbadgesjs-sdk';
 
-// Get balance for token 5 right now
 const amount = getBalanceForIdNow(5n, balances);
-
-// Get balance for token 5 at a specific time (milliseconds)
 const historicalAmount = getBalanceForIdAndTime(5n, 1700000000000n, balances);
-
-// Or use the collection method directly
-const amount = collection.getBalanceAmountForToken('bb1...', 5n);
 ```
 
 ---
@@ -93,11 +94,22 @@ Returns a flat object with the resolved amount:
 
 ## Chain CLI
 
+### Full flow
+
 ```bash
-bitbadgeschain query balance [collection-id] [address]
+bitbadgeschain query tokenization balance [collection-id] [address]
 ```
 
-Returns the full balance object. There is no simplified CLI variant — use the API or SDK simple flow instead.
+Returns the full balance object.
+
+### Simple flow
+
+```bash
+bitbadgeschain query tokenization get-balance-for-token [collection-id] [address] [token-id]
+bitbadgeschain query tokenization get-balance-for-token [collection-id] [address] [token-id] [time]
+```
+
+Returns a single balance amount. Time is optional (defaults to current block time).
 
 ---
 
