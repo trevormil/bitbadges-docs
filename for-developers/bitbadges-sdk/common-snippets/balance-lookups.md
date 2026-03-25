@@ -107,8 +107,8 @@ Returns the full balance object.
 ### Simple flow
 
 ```bash
-bitbadgeschain query tokenization get-balance-for-token [collection-id] [address] [token-id]
-bitbadgeschain query tokenization get-balance-for-token [collection-id] [address] [token-id] [time]
+bitbadgeschain query tokenization balance-for-token [collection-id] [address] [token-id]
+bitbadgeschain query tokenization balance-for-token [collection-id] [address] [token-id] [time]
 ```
 
 Returns a single balance amount. Time is optional (defaults to current block time).
