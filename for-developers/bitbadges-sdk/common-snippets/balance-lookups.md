@@ -31,7 +31,9 @@ const balances = balanceDoc.balances;
 const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...');
 console.log(res.balance); // e.g. 100n
 
-// With a specific time (milliseconds since epoch)
+// With a specific ownership time (milliseconds since epoch)
+// Note: this queries the token's ownership time ranges, NOT historical chain state.
+// Ownership times define WHEN a balance is valid (e.g., a token valid from Jan–Mar 2025).
 const res = await api.getBalanceByAddressSpecificToken('1', '5', 'bb1...', undefined, { time: 1700000000000n });
 
 // If you already have a balances array, use the helpers directly
