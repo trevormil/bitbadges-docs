@@ -1,7 +1,7 @@
 # MsgSetStandards
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetStandards
 

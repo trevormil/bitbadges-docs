@@ -1,7 +1,7 @@
 # MsgSetManager
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetManager
 
@@ -69,5 +69,5 @@ bitbadgeschaind tx tokenization set-manager '[tx-json]' --from manager-key
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message

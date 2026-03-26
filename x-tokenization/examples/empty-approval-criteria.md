@@ -125,6 +125,6 @@ const EmptyApprovalCriteria = {
 
 ## Related Documentation
 
--   [Approval Criteria Overview](broken-reference)
+-   [Approval Criteria Overview](../../token-standard/learn/approval-criteria/README.md)
 -   [Building Collection Approvals](building-collection-approvals.md)
 -   [Transferability](../../learn/transferability.md)

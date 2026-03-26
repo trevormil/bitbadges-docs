@@ -4,7 +4,7 @@ This example demonstrates how to create an approval that allows the Cosmos coin 
 
 You pretty much: 1) figure out your address and 2) figure out a path that users can send from this address without needing the address to control its approvals.
 
-Full example: [Cosmos Coin Wrapper Example](broken-reference/)
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
 

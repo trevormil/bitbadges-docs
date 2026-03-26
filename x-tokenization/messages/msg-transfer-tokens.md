@@ -127,7 +127,7 @@ The versioning control ensures that before submitting, the user knows the exact 
 ### Related Documentation
 
 -   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
--   [Approval Criteria](broken-reference/) - Understanding approval complexity
+-   [Approval Criteria](../../token-standard/learn/approval-criteria/README.md) - Understanding approval complexity
 -   [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
@@ -202,7 +202,7 @@ ETH Signature Proofs are required when transfers use [ETH Signature Challenges](
 ### Related Documentation
 
 -   [Transferability](../../learn/transferability.md) - Approval system overview
--   [Collection Approvals](broken-reference/) - Collection-level controls
+-   [Collection Approvals](../examples/building-collection-approvals.md) - Collection-level controls
 -   [User Approvals](../examples/building-user-approvals.md) - User-level settings
 -   [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
 

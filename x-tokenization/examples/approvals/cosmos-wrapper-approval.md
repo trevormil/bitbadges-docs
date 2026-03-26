@@ -4,7 +4,7 @@ This example demonstrates how to create an approval that allows tokens to be sen
 
 You pretty much: 1) figure out your address and 2) figure out a path that users can send to this address without needing the address to control its approvals. Oftentimes, you may not even need to forcefully override the incoming approvals because you default allow all incoming transfers which also applies to the wrapper address automatically.
 
-Full example: [Cosmos Coin Wrapper Example](broken-reference/)
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
 
@@ -36,6 +36,7 @@ export const wrapperApproval = ({
         approvalCriteria: {
             ...EmptyApprovalCriteria,
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
             overridesToIncomingApprovals: true,
         },
     };
