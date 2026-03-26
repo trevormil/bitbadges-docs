@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Mar 25 20:40:15 UTC 2026
+Generated on Thu Mar 26 14:54:43 UTC 2026
 
 
 
@@ -24702,10 +24702,18 @@ const wrapperApproval: CollectionApproval<bigint> = {
     version: 0n,
     approvalCriteria: {
         allowSpecialWrapping: true, // Required for wrapper path operations
+        mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
         overridesToIncomingApprovals: true,
     },
 };
 ```
+
+> **Chain-enforced requirements for `allowSpecialWrapping`:**
+>
+> The chain validates the following when `allowSpecialWrapping` is set to `true`:
+>
+> - `mustPrioritize` must be `true`
+> - Exactly one of `fromListId` or `toListId` must resolve to a single-address whitelist containing exactly the wrapper address (the `CosmosCoinWrapperPath` address for this collection)
 
 ## Important Notes
 
@@ -26313,7 +26321,7 @@ Behind the scenes, pool operations involving badge tokens are treated as transfe
 
 ## Table of Contents
 
-1. [Introduction](broken-reference/) - Overview and key concepts
+1. [Introduction](introduction.md) - Overview and key concepts
 2. [Messages](messages/) - Transaction messages and handlers
 
 ## Message Reference
@@ -28224,7 +28232,7 @@ This example demonstrates how to create an approval that allows the Cosmos coin 
 
 You pretty much: 1) figure out your address and 2) figure out a path that users can send from this address without needing the address to control its approvals.
 
-Full example: [Cosmos Coin Wrapper Example](broken-reference/)
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
 
@@ -28273,7 +28281,7 @@ This example demonstrates how to create an approval that allows tokens to be sen
 
 You pretty much: 1) figure out your address and 2) figure out a path that users can send to this address without needing the address to control its approvals. Oftentimes, you may not even need to forcefully override the incoming approvals because you default allow all incoming transfers which also applies to the wrapper address automatically.
 
-Full example: [Cosmos Coin Wrapper Example](broken-reference/)
+Full example: [Cosmos Coin Wrapper Example](../cosmos-coin-wrapper-example.md)
 
 ## Code Example
 
@@ -28305,6 +28313,7 @@ export const wrapperApproval = ({
         approvalCriteria: {
             ...EmptyApprovalCriteria,
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
             overridesToIncomingApprovals: true,
         },
     };
@@ -29053,7 +29062,7 @@ const EmptyApprovalCriteria = {
 
 ## Related Documentation
 
--   [Approval Criteria Overview](broken-reference)
+-   [Approval Criteria Overview](../../token-standard/learn/approval-criteria/README.md)
 -   [Building Collection Approvals](building-collection-approvals.md)
 -   [Transferability](../../learn/transferability.md)
 
@@ -31307,7 +31316,7 @@ The response includes the number of approvals that were successfully purged:
 # MsgSetCollectionApprovals
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetCollectionApprovals
 
@@ -31403,8 +31412,8 @@ bitbadgeschaind tx tokenization set-collection-approvals '[tx-json]' --from mana
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+* [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+* [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-collection-metadata.md
@@ -31412,7 +31421,7 @@ bitbadgeschaind tx tokenization set-collection-approvals '[tx-json]' --from mana
 # MsgSetCollectionMetadata
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetCollectionMetadata
 
@@ -31483,8 +31492,8 @@ bitbadgeschaind tx tokenization set-collection-metadata '[tx-json]' --from manag
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-custom-data.md
@@ -31492,7 +31501,7 @@ bitbadgeschaind tx tokenization set-collection-metadata '[tx-json]' --from manag
 # MsgSetCustomData
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetCustomData
 
@@ -31560,8 +31569,8 @@ bitbadgeschaind tx tokenization set-custom-data '[tx-json]' --from manager-key
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-dynamic-store-value.md
@@ -31652,7 +31661,7 @@ Users can only set their own incoming approvals. The operation must be performed
 # MsgSetIsArchived
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetIsArchived
 
@@ -31720,8 +31729,8 @@ bitbadgeschaind tx tokenization set-is-archived '[tx-json]' --from manager-key
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-manager.md
@@ -31729,7 +31738,7 @@ bitbadgeschaind tx tokenization set-is-archived '[tx-json]' --from manager-key
 # MsgSetManager
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetManager
 
@@ -31797,8 +31806,8 @@ bitbadgeschaind tx tokenization set-manager '[tx-json]' --from manager-key
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-outgoing-approval.md
@@ -31853,7 +31862,7 @@ Users can only set their own outgoing approvals. The operation must be performed
 # MsgSetStandards
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetStandards
 
@@ -31925,7 +31934,7 @@ bitbadgeschaind tx tokenization set-standards '[tx-json]' --from manager-key
 # MsgSetTokenMetadata
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetTokenMetadata
 
@@ -32000,8 +32009,8 @@ bitbadgeschaind tx tokenization set-badge-metadata '[tx-json]' --from manager-ke
 
 ### Related Messages
 
--   [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
--   [MsgUpdateCollection](broken-reference) - Legacy update message
+-   [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+-   [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-set-valid-token-ids.md
@@ -32009,7 +32018,7 @@ bitbadgeschaind tx tokenization set-badge-metadata '[tx-json]' --from manager-ke
 # MsgSetValidTokenIds
 
 **Disclaimer:**\
-This message is a streamlined alternative to [MsgUpdateCollection](broken-reference). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
+This message is a streamlined alternative to [MsgUpdateCollection](msg-update-collection.md). If you need to update many fields at once, we recommend using MsgUpdateCollection instead.
 
 ## MsgSetValidTokenIds
 
@@ -32081,8 +32090,8 @@ bitbadgeschaind tx tokenization set-valid-token-ids '[tx-json]' --from manager-k
 
 ### Related Messages
 
-* [MsgUniversalUpdateCollection](broken-reference) - Full collection update with all fields
-* [MsgUpdateCollection](broken-reference) - Legacy update message
+* [MsgUniversalUpdateCollection](msg-universal-update-collection.md) - Full collection update with all fields
+* [MsgUpdateCollection](msg-update-collection.md) - Legacy update message
 
 
 ## File: ./x-tokenization/messages/msg-transfer-tokens.md
@@ -32216,7 +32225,7 @@ The versioning control ensures that before submitting, the user knows the exact 
 ### Related Documentation
 
 -   [Empty Approval Criteria](../examples/empty-approval-criteria.md) - Template for auto-scan compatible approvals
--   [Approval Criteria](broken-reference/) - Understanding approval complexity
+-   [Approval Criteria](../../token-standard/learn/approval-criteria/README.md) - Understanding approval complexity
 -   [Coin Transfers](../../token-standard/learn/approval-criteria/usdbadge-transfers.md) - Side effect examples
 
 ## Transfer Validation Process
@@ -32291,7 +32300,7 @@ ETH Signature Proofs are required when transfers use [ETH Signature Challenges](
 ### Related Documentation
 
 -   [Transferability](../../learn/transferability.md) - Approval system overview
--   [Collection Approvals](broken-reference/) - Collection-level controls
+-   [Collection Approvals](../examples/building-collection-approvals.md) - Collection-level controls
 -   [User Approvals](../examples/building-user-approvals.md) - User-level settings
 -   [ETH Signature Challenges](../../token-standard/learn/approval-criteria/eth-signature-challenges.md) - Ethereum signature requirements
 
