@@ -1,6 +1,8 @@
-# Overview
+# Claims: No-Code Token Distribution, Airdrops, and Eligibility Gating
 
-Claims follow a simple model: **Meet criteria → Receive rewards.** They are composed of one or more plugins executed in order. By default all must pass, but you can configure AND/OR/NOT logic (see [success logic](concepts.md#success-logic)).
+Claims are BitBadges' universal distribution and gating system. Use them to run airdrops, whitelist mints, code redemptions, attendance rewards, and any flow where users must meet criteria before receiving tokens or access. Claims are composed of plugins -- combine built-in checks (codes, passwords, address lists, token ownership) with custom logic via HTTP endpoints. No smart contract or frontend code required.
+
+The model is simple: **Meet criteria → Receive rewards.** Plugins are executed for each claim attempt. By default all must pass, but you can configure AND/OR/NOT logic (see [success logic](concepts.md#success-logic)).
 
 ## How Claims Work
 
@@ -34,10 +36,16 @@ State mutations from plugins are only committed if the overall claim succeeds. I
 
 ## Example Use Cases
 
-1. **Claim Success → Mint NFT** The user can immediately receive a minted NFT as a reward if the claim succeeds.
-2. **Claim Success → Access to Gated Content** The user can immediately access gated content if the claim succeeds.
+1. **Airdrop** -- Distribute tokens to a whitelist of addresses. Users on the list claim their allocation; the claim tracks who has already received theirs.
+2. **Whitelist Mint** -- Only approved addresses can mint an NFT. Combine an address list plugin with the mint reward.
+3. **Code Redemption** -- Generate unique codes (or passwords) that unlock a token claim. Each code is single-use.
+4. **Attendance Badge** -- Claim a badge by scanning a QR code at an event. The code plugin acts as proof of attendance.
+5. **Quest Completion** -- Chain multiple plugins (token ownership + custom endpoint check) so users must complete tasks before claiming a reward.
+6. **Subscription Activation** -- Claim a time-bounded access token that gates API access or premium content via BB-402.
+7. **AI Agent Claim** -- Complete claims programmatically on behalf of users via the API. See [Claims for Agents](../ai-agents/claims-for-agents.md).
+8. **Gated Content Unlock** -- Prove eligibility (token ownership, address list membership) to access premium content without minting anything.
 
-In very simple terms, a claim checks criteria. You decide what claim success means (rewards) and in what form you want to verify claim success (direct claim lookups, users get an NFT -> use NFT ownership as a credential, or so on).
+In very simple terms, a claim checks criteria. You decide what claim success means (rewards) and in what form you want to verify claim success (direct claim lookups, users get an NFT and use NFT ownership as a credential, or so on).
 
 ## Completion Methods
 
