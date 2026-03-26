@@ -76,10 +76,18 @@ const wrapperApproval: CollectionApproval<bigint> = {
     version: 0n,
     approvalCriteria: {
         allowSpecialWrapping: true, // Required for wrapper path operations
+        mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
         overridesToIncomingApprovals: true,
     },
 };
 ```
+
+> **Chain-enforced requirements for `allowSpecialWrapping`:**
+>
+> The chain validates the following when `allowSpecialWrapping` is set to `true`:
+>
+> - `mustPrioritize` must be `true`
+> - Exactly one of `fromListId` or `toListId` must resolve to a single-address whitelist containing exactly the wrapper address (the `CosmosCoinWrapperPath` address for this collection)
 
 ## Important Notes
 

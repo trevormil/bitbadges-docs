@@ -61,7 +61,7 @@ Behind the scenes, pool operations involving badge tokens are treated as transfe
 
 ## Table of Contents
 
-1. [Introduction](broken-reference/) - Overview and key concepts
+1. [Introduction](introduction.md) - Overview and key concepts
 2. [Messages](messages/) - Transaction messages and handlers
 
 ## Message Reference
