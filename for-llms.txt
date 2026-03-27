@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Thu Mar 26 14:54:43 UTC 2026
+Generated on Fri Mar 27 12:06:14 UTC 2026
 
 
 
@@ -18794,6 +18794,7 @@ const collectionApprovals = [
         version: 0n,
         approvalCriteria: {
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: required for allowSpecialWrapping
             maxNumTransfers: {
                 perInitiatedByAddressMaxNumTransfers: 10n, // 10 wraps per day
                 // ... reset time intervals
@@ -18811,8 +18812,9 @@ const collectionApprovals = [
         version: 0n,
         approvalCriteria: {
             allowSpecialWrapping: true, // Required for wrapper path operations
-            // Override wrapper's incoming approvals
-            overridesToIncomingApprovals: true,
+            mustPrioritize: true, // Chain-enforced: required for allowSpecialWrapping
+            // Override wrapper's outgoing approvals (wrapper is the sender for unwrapping)
+            overridesFromOutgoingApprovals: true,
         },
     },
 ];
@@ -28264,6 +28266,7 @@ export const unwrapperApproval = ({
         approvalCriteria: {
             ...EmptyApprovalCriteria,
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
             overridesFromOutgoingApprovals: true,
         },
     };
@@ -28774,12 +28777,12 @@ This tutorial walks you through setting up cosmos coin wrappers to bridge BitBad
 
 ## Prerequisites
 
-* Understanding of [Cosmos Wrapper Paths](/broken/pages/QmxEDk1kIqoymCdRaTfg)
+* Understanding of [Cosmos Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md)
 * Basic knowledge of BitBadges collections and approvals
 
 ## Step 1: Set Up Your Cosmos Denominations
 
-First, define your cosmos coin wrapper paths. For detailed information about available options, see [Cosmos Wrapper Paths](/broken/pages/QmxEDk1kIqoymCdRaTfg).
+First, define your cosmos coin wrapper paths. For detailed information about available options, see [Cosmos Wrapper Paths](../../learn/cosmos-coin-wrapper-paths.md).
 
 ```typescript
 const cosmosCoinWrapperPaths = [ ... ];
