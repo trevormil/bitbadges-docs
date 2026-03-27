@@ -386,6 +386,7 @@ const collectionApprovals = [
         version: 0n,
         approvalCriteria: {
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: required for allowSpecialWrapping
             maxNumTransfers: {
                 perInitiatedByAddressMaxNumTransfers: 10n, // 10 wraps per day
                 // ... reset time intervals
@@ -403,8 +404,9 @@ const collectionApprovals = [
         version: 0n,
         approvalCriteria: {
             allowSpecialWrapping: true, // Required for wrapper path operations
-            // Override wrapper's incoming approvals
-            overridesToIncomingApprovals: true,
+            mustPrioritize: true, // Chain-enforced: required for allowSpecialWrapping
+            // Override wrapper's outgoing approvals (wrapper is the sender for unwrapping)
+            overridesFromOutgoingApprovals: true,
         },
     },
 ];
