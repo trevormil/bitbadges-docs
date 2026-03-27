@@ -36,6 +36,7 @@ export const unwrapperApproval = ({
         approvalCriteria: {
             ...EmptyApprovalCriteria,
             allowSpecialWrapping: true, // Required for wrapper path operations
+            mustPrioritize: true, // Chain-enforced: must be true for special wrapping approvals
             overridesFromOutgoingApprovals: true,
         },
     };
