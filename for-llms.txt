@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Sat Mar 28 13:11:02 UTC 2026
+Generated on Sat Mar 28 13:17:52 UTC 2026
 
 
 
@@ -2020,6 +2020,7 @@ BitBadges addresses these fundamental issues through core design decisions:
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Collection Interpreter](for-developers/bitbadges-sdk/common-snippets/interpret-collection.md)
+    * [Transaction Interpreter](for-developers/bitbadges-sdk/common-snippets/interpret-transaction.md)
     * [Simulation Balance Diffs](for-developers/bitbadges-sdk/common-snippets/simulation-balance-diffs.md)
 * [✍️ Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Chain CLI (bitbadgeschaind)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/chain-cli.md)
@@ -12869,6 +12870,45 @@ The function automatically strips sensitive claim parameters (`seedCode`, `preim
 
 - **MCP**: The `explain_collection` tool uses this under the hood
 - **Frontend**: Displayed on collection overview pages
+
+
+## File: ./for-developers/bitbadges-sdk/common-snippets/interpret-transaction.md
+
+# 🔍 Transaction Interpreter
+
+`interpretTransaction` generates a human-readable markdown explanation of a raw `MsgUniversalUpdateCollection` transaction body — the transaction-level counterpart to `interpretCollection`.
+
+## Usage
+
+```typescript
+import { interpretTransaction } from 'bitbadgesjs-sdk';
+
+// New collection creation
+const explanation = interpretTransaction(txBody);
+
+// Update — only describes changed fields
+const explanation = interpretTransaction(txBody, true, ['updateCollectionApprovals', 'updatePermissions']);
+
+// Multi-message — also explains bundled MsgTransferTokens
+const explanation = interpretTransaction(txBody, false, [], messages);
+```
+
+## Parameters
+
+| Parameter           | Type                  | Default | Description                                                      |
+| ------------------- | --------------------- | ------- | ---------------------------------------------------------------- |
+| `txBody`            | `Record<string, any>` | —       | Raw `value` from `MsgUniversalUpdateCollection`                  |
+| `isUpdate`          | `boolean`             | `false` | Scope output to only changed fields                              |
+| `activeUpdateFlags` | `string[]`            | `[]`    | Which fields are being updated (e.g. `updateCollectionApprovals`) |
+| `messages`          | `any[]`               | —       | Full messages array to explain bundled transfers                 |
+
+## vs interpretCollection
+
+| Aspect | `interpretCollection`                     | `interpretTransaction`                        |
+| ------ | ----------------------------------------- | --------------------------------------------- |
+| Input  | Hydrated `BitBadgesCollection` from API   | Raw `MsgUniversalUpdateCollection` JSON value |
+| When   | Explaining an existing on-chain collection | Reviewing a transaction before/after signing |
+| Claims | Includes claim plugin details             | No claim data (not in the transaction)        |
 
 
 ## File: ./for-developers/bitbadges-sdk/common-snippets/numbertype-conversions.md
