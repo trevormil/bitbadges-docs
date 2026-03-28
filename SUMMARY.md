@@ -176,6 +176,7 @@
     * [Token Metadata](for-developers/bitbadges-sdk/common-snippets/badge-metadata.md)
     * [Approvals / Transferability](for-developers/bitbadges-sdk/common-snippets/get-unhandled-approvals.md)
     * [Collection Interpreter](for-developers/bitbadges-sdk/common-snippets/interpret-collection.md)
+    * [Transaction Interpreter](for-developers/bitbadges-sdk/common-snippets/interpret-transaction.md)
     * [Simulation Balance Diffs](for-developers/bitbadges-sdk/common-snippets/simulation-balance-diffs.md)
 * [✍️ Create, Generate, and Sign Txs](for-developers/bitbadges-blockchain/create-and-broadcast-txs/README.md)
   * [Chain CLI (bitbadgeschaind)](for-developers/bitbadges-blockchain/create-and-broadcast-txs/chain-cli.md)
