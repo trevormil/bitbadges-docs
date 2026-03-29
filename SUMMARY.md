@@ -116,6 +116,7 @@
 * [⛓️ Integrating The Module?](token-standard/integrating-the-module/README.md)
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
+  * [Ante Handler Token Gates](token-standard/integrating-the-module/ante-handler-token-gates.md)
 * [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
   * [Setup and Configuration](evm/evm-precompiles/setup-and-configuration.md)
   * [Developer Guide](evm/evm-precompiles/developer-guide.md)
