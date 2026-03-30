@@ -117,6 +117,7 @@
   * [Supporting Multiple Standards](token-standard/integrating-the-module/support-multiple-standards.md)
   * [Custom Extension Hooks](token-standard/integrating-the-module/custom-extension-hooks.md)
   * [Ante Handler Token Gates](token-standard/integrating-the-module/ante-handler-token-gates.md)
+  * [Proof-of-Token Voting Power (x/pot)](token-standard/integrating-the-module/proof-of-token-voting-power.md)
 * [🔷 EVM Compatibility](evm/EVM_INTEGRATION.md)
   * [Setup and Configuration](evm/evm-precompiles/setup-and-configuration.md)
   * [Developer Guide](evm/evm-precompiles/developer-guide.md)
