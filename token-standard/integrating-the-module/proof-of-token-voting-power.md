@@ -1,23 +1,29 @@
 # Proof-of-Token Voting Power (x/pot)
 
+{% hint style="warning" %}
+**Experimental** — This module is under active development and not yet production-ready. If you're interested in using credential-gated consensus for your chain, [reach out to us](https://bitbadges.io/contact) to learn more or discuss your use case.
+{% endhint %}
+
 What if your chain could have all the economic security of Proof of Stake — staking, delegation, slashing — but only credentialed validators could produce blocks?
 
-`x/pot` is a module that gates validator voting power on token ownership. It works with both **PoS** (x/staking) and **PoA** chains: if a validator holds the required credential token, they keep their power. If they don't, they're compliance-jailed and their power drops to zero. One binary check, zero changes to your existing consensus economics.
+That's the idea behind x/pot. It adds a compliance gate on top of your existing consensus model — whether that's PoS or PoA. If a validator holds the required credential token, they keep their power. If they don't, their power drops to zero. One binary check, zero changes to your existing consensus economics.
 
-The credential token is a regular `x/tokenization` token, so you get every primitive for free: time-dependent expiry, multi-sig issuance, KYC gates, instant revocation, on-chain audit trail. No custom governance proposals, no manual validator management.
+The credential token is a regular token on the BitBadges token standard, so you get every primitive for free: time-dependent expiry, multi-sig issuance, KYC gates, instant revocation, on-chain audit trail. No custom governance proposals, no manual validator management.
 
-## Why Use x/pot?
+## The Problem
 
-**PoA** gives you permissioned validators but no slashing — there's no economic stake at risk. **PoS** gives you slashing but anyone who stakes enough can validate. `x/pot` lets you add a programmable compliance gate on top of *either* model:
+**PoA** gives you permissioned validators but no slashing — there's no economic stake at risk. **PoS** gives you slashing but anyone who stakes enough can validate. Neither model alone gives you compliant consensus with real economic security.
 
-- **On a PoS chain (x/staking):** Validators must hold a credential to have voting power. Lose the credential and x/pot jails them. Regain it and they're automatically unjailed. All staking economics (delegation, slashing, rewards) work normally.
-- **On a PoA chain:** Validators must hold a credential to keep their power. Lose it and x/pot sets their power to 0. Regain it and power is restored. The PoA authority structure stays the same — x/pot just adds a token-based compliance layer.
+x/pot bridges the gap by adding a **programmable credential layer** on top of either model:
+
+- **PoS chains:** Validators must hold a credential to have voting power. Lose the credential and they're automatically disabled. Regain it and they're restored. All staking economics (delegation, slashing, rewards) continue working normally.
+- **PoA chains:** Validators must hold a credential to keep their power. The existing authority structure stays the same — x/pot just adds a token-based compliance layer on top.
 
 In both cases, who can validate is governed by token rules — not a single admin. Credentials expire, require multi-sig approval, gate on KYC status, and leave a full on-chain audit trail.
 
 ## How It Works
 
-The formula is a binary gate:
+The core idea is a binary gate on voting power:
 
 ```
 voting_power = normal_power * (1 if credential_balance >= minBalance, else 0)
@@ -26,26 +32,16 @@ voting_power = normal_power * (1 if credential_balance >= minBalance, else 0)
 | Scenario | Voting Power |
 |---|---|
 | 1M staked + holds credential | 1M (normal PoS) |
-| 1M staked + no credential | 0 (compliance-jailed) |
-| Jailed for slashing (any credential status) | 0 (x/staking respected) |
+| 1M staked + no credential | 0 (disabled) |
+| Jailed for slashing (any credential status) | 0 (existing rules respected) |
 
-Everything else stays the same: `MsgCreateValidator`, delegation, undelegation, slashing, jailing, evidence, rewards — all handled by existing modules. `x/pot` doesn't replace any of it.
+Everything else stays the same — delegation, undelegation, slashing, jailing, evidence, rewards. x/pot doesn't replace any existing module; it layers on top.
 
-### Architecture: EndBlocker with Jail/Unjail
-
-Every block, the EndBlocker iterates all active validators and checks their credential token balance at the current block time. This catches both transfer-based changes and time-dependent credential expiry.
-
-- **Lost credential:** Validator is compliance-jailed (power set to 0). x/pot tracks this separately from slashing jails so it knows the difference.
-- **Regained credential:** Validator is auto-unjailed — but only if they aren't also jailed for slashing or tombstoned.
-- **Safety:** x/pot will never disable ALL validators. If removing non-compliant validators would leave zero active validators, it skips disabling and logs a critical warning instead of halting the chain.
-
-All state changes run inside a `CacheContext` for atomicity. If anything fails, the entire block's changes roll back cleanly.
-
-**For PoA chains:** Instead of jailing, the PoA adapter saves the validator's current power, sets it to 0 on disable, and restores the saved power on re-enable.
+Each block, the module checks every active validator's credential balance. This catches both token transfers and time-dependent credential expiry. Validators who lose their credential are disabled; validators who regain it are automatically restored (as long as they aren't also jailed for slashing). As a safety measure, the module will never disable *all* validators — it would rather leave non-compliant validators running than halt the chain.
 
 ## The Credential Token
 
-The credential is a standard `x/tokenization` token. Every primitive you already know applies automatically:
+The credential is a standard BitBadges token. Every primitive you already know applies automatically:
 
 | Primitive | What It Does for Validators |
 |---|---|
@@ -60,43 +56,26 @@ The credential is a standard `x/tokenization` token. Every primitive you already
 
 No extra code. These are all features of the token standard that the credential inherits automatically.
 
-## Module Parameters
-
-```protobuf
-message Params {
-  uint64 credential_collection_id = 1;  // x/tokenization collection ID (0 = disabled)
-  uint64 credential_token_id = 2;       // token ID within the collection
-  uint64 min_credential_balance = 3;    // minimum balance to pass the gate (default: 1)
-  string mode = 4;                      // "staked_multiplier" (default)
-}
-```
-
-The module is disabled when `credential_collection_id` is 0 — the EndBlocker becomes a no-op.
-
-Currently, `staked_multiplier` is the only supported mode. This is the binary compliance gate: full PoS/PoA power when the credential is held, zero power when it isn't.
-
 ## Validator Lifecycle
 
-1. **Join:** Validator creates via `MsgCreateValidator` (normal x/staking) or is added to the PoA set. Without a credential, power = 0.
-2. **Credentialed:** Receives credential token. Next block, x/pot detects the credential and auto-unjails (PoS) or restores power (PoA).
-3. **Active:** Produces blocks with normal power. Everything works as usual.
-4. **Renewal:** Credential has a time-dependent balance. When it expires, the EndBlocker detects the zero balance and compliance-jails the validator. Must re-certify to regain power.
-5. **Revocation:** Authority burns or freezes credential. Compliance-jailed next block.
-6. **Slashing jail:** Normal x/staking jailing. Power = 0 regardless of credential. x/pot won't auto-unjail a validator that's also jailed for slashing.
-7. **Exit:** Validator unbonds normally. Credential can be burned or returned.
+1. **Join:** Validator joins the network normally. Without a credential, they have no voting power.
+2. **Credentialed:** Receives a credential token. Next block, their power is restored.
+3. **Active:** Produces blocks normally. Everything works as usual.
+4. **Renewal:** Credential has a time-dependent balance. When it expires, power drops to 0. Validator must re-certify.
+5. **Revocation:** Authority burns or freezes the credential. Power drops to 0 next block.
+6. **Exit:** Validator leaves the network normally. Credential can be burned or returned.
 
-## PoS vs PoA Integration
+## Works with PoS and PoA
 
-x/pot uses a `ValidatorSetKeeper` abstraction with two adapters:
+x/pot is designed to work with both consensus models:
 
-| | **PoS (x/staking)** | **PoA** |
+| | **PoS** | **PoA** |
 |---|---|---|
-| **Disable** | Jail the validator | Save power, set to 0 |
-| **Enable** | Unjail the validator | Restore saved power |
-| **Safety check** | Respects tombstone/slashing jail | Always safe to enable |
-| **Slashing** | Yes (staked tokens at risk) | No |
+| **Credential lost** | Validator jailed | Power set to 0 |
+| **Credential regained** | Validator unjailed | Power restored |
+| **Slashing** | Yes (staked tokens at risk) | N/A |
 
-Wire the appropriate adapter in your `app.go`. The x/pot EndBlocker logic is identical for both — only the adapter changes.
+The module logic is identical for both — only the underlying consensus integration differs.
 
 ## Use Cases
 
@@ -107,26 +86,13 @@ Regulators require known, KYC'd validators. Credential = KYC verification + regu
 Government-issued chain where validators must be licensed financial institutions. Credential issued by central bank multi-sig. Full PoS economics for security, compliance gate for participation.
 
 ### Consortium / Permissioned Networks
-Members of a consortium each hold a credential token. Same trust model as PoA but with programmable membership: credentials expire, multi-sig committee issues new credentials, KYC-gated entry, full on-chain audit trail. No single admin controls the validator set.
+Members of a consortium each hold a credential token. Same trust model as PoA but with programmable membership: credentials expire automatically, multi-sig committee issues new credentials, KYC-gated entry, full on-chain audit trail. No single admin controls the validator set.
 
 ### Cross-Chain Validator Compliance
-Validators on multiple Cosmos chains can share a credential. Hold one KYC credential token and qualify across every chain that uses `x/pot` with the same credential collection.
+Validators on multiple Cosmos chains can share a credential. Hold one KYC credential token and qualify across every chain that recognizes the same credential collection.
 
 ## Relationship to Ante Handler Token Gates
 
-The [Ante Handler Token Gates](ante-handler-token-gates.md) page shows how to gate **transactions** on token ownership — blocking specific message types unless the sender holds a credential. `x/pot` operates at a different level: it gates **consensus participation** on token ownership.
+The [Ante Handler Token Gates](ante-handler-token-gates.md) page shows how to gate **transactions** on token ownership — blocking specific message types unless the sender holds a credential. x/pot operates at a different level: it gates **consensus participation** on token ownership.
 
-You can use both together. Ante handlers gate what users can *do*. `x/pot` gates who can *validate*. A fully compliant chain might use ante handlers for KYC-gated transfers **and** `x/pot` for credentialed validators.
-
-## Getting Started
-
-To integrate `x/pot` into your chain:
-
-1. Import the `x/pot` module in your `app.go`
-2. Wire either the **staking adapter** (for PoS chains) or the **PoA adapter** (for PoA chains) as the `ValidatorSetKeeper`
-3. Create a credential token collection using `x/tokenization`
-4. Configure the module params with your collection ID and token ID
-5. Set up credential issuance rules on the token (time-dependent expiry, multi-sig approval, KYC gates — whatever your compliance model requires)
-6. Issue credential tokens to approved validators
-
-The module handles the rest. Validators without credentials are automatically compliance-jailed. Validators who regain credentials are automatically restored. No manual intervention required.
+You can use both together. Ante handlers gate what users can *do*. x/pot gates who can *validate*. A fully compliant chain might use ante handlers for KYC-gated transfers **and** x/pot for credentialed validators.
