@@ -41,20 +41,7 @@ Each block, the module checks every active validator's credential balance. This 
 
 ## The Credential Token
 
-The credential is a standard BitBadges token. Every primitive you already know applies automatically:
-
-| Primitive | What It Does for Validators |
-|---|---|
-| **Time-dependent balances** | Credential expires annually — validator must re-certify or loses power |
-| **mustOwnTokens** | Must hold a KYC token + jurisdiction license to receive the credential |
-| **Multi-sig issuance** | Voting challenge on mint approval — no single admin can credential a validator |
-| **Non-transferable** | Credentials can't be sold or traded without issuer approval |
-| **Freezable / revocable** | Regulator can instantly revoke a validator's credential |
-| **Max supply** | Caps the maximum number of credentialed validators |
-| **Dynamic address stores** | Approved jurisdictions list — credential only issuable to addresses in approved regions |
-| **Off-chain criteria** | Gate credential issuance on an off-chain KYC provider |
-
-No extra code. These are all features of the token standard that the credential inherits automatically.
+The credential is a standard BitBadges token, so every primitive applies automatically — time-dependent expiry, multi-sig issuance, non-transferability, freezing/revocation, max supply caps, KYC gates, off-chain criteria, and more. No extra code. A credential that expires annually, requires multi-sig approval to issue, and can be instantly revoked by a regulator is just a token with the right configuration.
 
 ## Validator Lifecycle
 
