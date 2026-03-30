@@ -12,6 +12,7 @@ This directory contains practical examples and building blocks for x/tokenizatio
 * [Building Collection Permissions](building-collection-permissions.md) - Guide to configuring collection permissions
 * [Building User Permissions](building-user-permissions.md) - Guide to configuring user-level permissions
 * [Cosmos Coin Wrapper Example](cosmos-coin-wrapper-example.md) - Example of wrapping tokens as Cosmos coins
+* [Intent / OTC Offer](intent-otc-offer.md) - How to create an OTC swap offer with partitioned fills and coin transfers
 * [Mint All to Self Tutorial](mint-all-to-self-tutorial.md) - Tutorial for creating collection and minting tokens to yourself
 * [Approvals](approvals/) - Common approval patterns and examples
   * [Transferable Approval](approvals/transferable-approval.md) - Basic transferable approval configuration

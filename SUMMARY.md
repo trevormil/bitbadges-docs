@@ -85,6 +85,7 @@
   * [Building User-Level Approvals](x-tokenization/examples/building-user-approvals.md)
   * [Building User-Level Permissions](x-tokenization/examples/building-user-permissions.md)
   * [Cosmos Coin Wrapper Tutorial](x-tokenization/examples/cosmos-coin-wrapper-example.md)
+  * [Intent / OTC Offer](x-tokenization/examples/intent-otc-offer.md)
   * [Defining and Locking Circulating Supply](x-tokenization/examples/defining-circulating-supply.md)
   * [Empty Approval Criteria Template](x-tokenization/examples/empty-approval-criteria.md)
   * [Mint All Tokens to Self - Tutorial](x-tokenization/examples/mint-all-to-self-tutorial.md)
