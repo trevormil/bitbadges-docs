@@ -96,6 +96,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
         "durationFromTimestamp": "0",
         "allowOverrideTimestamp": false,
         "allowOverrideWithAnyValidToken": false,
+        "allowAmountScaling": false,
         "recurringOwnershipTimes": {
             "startTime": "0",
             "intervalLength": "0",
@@ -114,6 +115,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
 | `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
 | `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
 | `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
+| `allowAmountScaling`             | Allow proportional integer multiples of startBalances | `true` = transfer any quantity, coinTransfers scale  |
 | `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
 #### Duration From Timestamp
@@ -160,6 +162,48 @@ Define repeating time intervals for subscriptions or periodic rewards:
 ```
 
 **Example**: Monthly subscription starting August 13, 2023, with 7-day advance charging period.
+
+#### Amount Scaling
+
+Enable proportional transfers where users can transfer any integer multiple of the base amount. When `allowAmountScaling` is true, `startBalances` defines the 1x base unit, and `approvalCriteria.coinTransfers` scale by the same multiplier automatically.
+
+```json
+{
+    "incrementedBalances": {
+        "startBalances": [
+            {
+                "amount": "1",
+                "tokenIds": [{"start": "1", "end": "1"}],
+                "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+            }
+        ],
+        "incrementTokenIdsBy": "0",
+        "incrementOwnershipTimesBy": "0",
+        "durationFromTimestamp": "0",
+        "allowOverrideTimestamp": false,
+        "allowOverrideWithAnyValidToken": false,
+        "allowAmountScaling": true,
+        "recurringOwnershipTimes": {
+            "startTime": "0",
+            "intervalLength": "0",
+            "chargePeriodLength": "0"
+        }
+    }
+}
+```
+
+**Constraints**: When `allowAmountScaling` is true, all other incrementedBalances fields must be zero/false/nil. The base must be a static balance set — no dynamic behavior.
+
+**How it works**:
+- The chain computes `multiplier = transferAmount / baseAmount`
+- The multiplier must be an integer >= 1 (no fractional scaling)
+- Each `approvalCriteria.coinTransfers` amount is multiplied by the same factor
+- Precalculation returns the 1x base; the frontend sets `balances` directly for Nx
+
+**Use cases**:
+- **Pay-per-token**: Set coinTransfers to 1000 ubadge per base unit, users buy any quantity
+- **Prediction market deposits**: Deposit N USDC, receive N YES + N NO tokens in a single transaction
+- **Credit token purchases**: Buy N credits for N * price in one transaction
 
 ## Precalculating Balances
 

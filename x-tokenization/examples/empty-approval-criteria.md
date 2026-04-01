@@ -24,6 +24,7 @@ const EmptyApprovalCriteria = {
                     chargePeriodLength: '0',
                 },
                 allowOverrideWithAnyValidToken: false,
+                allowAmountScaling: false,
             },
             orderCalculationMethod: {
                 useOverallNumTransfers: false,
