@@ -25,6 +25,7 @@ const EmptyApprovalCriteria = {
                 },
                 allowOverrideWithAnyValidToken: false,
                 allowAmountScaling: false,
+                maxScalingMultiplier: '0',
             },
             orderCalculationMethod: {
                 useOverallNumTransfers: false,

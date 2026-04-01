@@ -116,6 +116,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
 | `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
 | `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
 | `allowAmountScaling`             | Allow proportional integer multiples of startBalances | `true` = transfer any quantity, coinTransfers scale  |
+| `maxScalingMultiplier`           | Maximum scaling multiplier (required when scaling on) | `"100"` = max 100x the base amount per transfer      |
 | `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
 #### Duration From Timestamp
@@ -183,6 +184,7 @@ Enable proportional transfers where users can transfer any integer multiple of t
         "allowOverrideTimestamp": false,
         "allowOverrideWithAnyValidToken": false,
         "allowAmountScaling": true,
+        "maxScalingMultiplier": "100",
         "recurringOwnershipTimes": {
             "startTime": "0",
             "intervalLength": "0",
@@ -192,18 +194,25 @@ Enable proportional transfers where users can transfer any integer multiple of t
 }
 ```
 
-**Constraints**: When `allowAmountScaling` is true, all other incrementedBalances fields must be zero/false/nil. The base must be a static balance set — no dynamic behavior.
+**Constraints**: When `allowAmountScaling` is true, all other incrementedBalances fields must be zero/false/nil. The base must be a static balance set — no dynamic behavior. `maxScalingMultiplier` must be > 0.
 
 **How it works**:
 - The chain computes `multiplier = transferAmount / baseAmount`
 - The multiplier must be an integer >= 1 (no fractional scaling)
+- The multiplier must be <= `maxScalingMultiplier`
 - Each `approvalCriteria.coinTransfers` amount is multiplied by the same factor
 - Precalculation returns the 1x base; the frontend sets `balances` directly for Nx
 
 **Use cases**:
-- **Pay-per-token**: Set coinTransfers to 1000 ubadge per base unit, users buy any quantity
+- **Pay-per-token**: Set coinTransfers to 1000 ubadge per base unit, users buy any quantity up to the cap
 - **Prediction market deposits**: Deposit N USDC, receive N YES + N NO tokens in a single transaction
 - **Credit token purchases**: Buy N credits for N * price in one transaction
+
+**Security considerations**:
+- `maxScalingMultiplier` MUST be > 0 when `allowAmountScaling` is true — the chain rejects 0 (no unlimited scaling)
+- When `coinTransfers` use `overrideFromWithApproverAddress: true`, the escrow/approver pays `multiplier * baseAmount` per transfer — set `maxScalingMultiplier` conservatively to cap exposure
+- Amount scaling is **incompatible** with Quest, Subscription, and Invoice standards (these require fixed amounts per transfer)
+- The `audit_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
 
 ## Precalculating Balances
 
