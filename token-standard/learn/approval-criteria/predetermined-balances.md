@@ -116,7 +116,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
 | `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
 | `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
 | `allowAmountScaling`             | Allow proportional integer multiples of startBalances | `true` = transfer any quantity, coinTransfers scale  |
-| `maxScalingMultiplier`           | Maximum scaling multiplier (required when scaling on) | `"100"` = max 100x the base amount per transfer      |
+| `maxScalingMultiplier`           | Maximum scaling multiplier (required when scaling on) | `"1000000000000"` = set high for micro-unit bases    |
 | `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
 #### Duration From Timestamp
@@ -184,7 +184,7 @@ Enable proportional transfers where users can transfer any integer multiple of t
         "allowOverrideTimestamp": false,
         "allowOverrideWithAnyValidToken": false,
         "allowAmountScaling": true,
-        "maxScalingMultiplier": "100",
+        "maxScalingMultiplier": "1000000000000",
         "recurringOwnershipTimes": {
             "startTime": "0",
             "intervalLength": "0",
@@ -203,10 +203,12 @@ Enable proportional transfers where users can transfer any integer multiple of t
 - Each `approvalCriteria.coinTransfers` amount is multiplied by the same factor
 - Precalculation returns the 1x base; the frontend sets `balances` directly for Nx
 
+**Best practice**: Set `startBalances` to the smallest possible base unit (e.g., `amount: "1"` for 1 micro-unit) and use a large `maxScalingMultiplier`. This ensures users can transfer any granular amount — since scaling only works with integer multiples, a micro-unit base avoids fractional limitations.
+
 **Use cases**:
-- **Pay-per-token**: Set coinTransfers to 1000 ubadge per base unit, users buy any quantity up to the cap
-- **Prediction market deposits**: Deposit N USDC, receive N YES + N NO tokens in a single transaction
-- **Credit token purchases**: Buy N credits for N * price in one transaction
+- **Pay-per-token**: Base = 1 micro-unit, coinTransfers = 1 micro-unit of payment denom. Users buy any exact amount.
+- **Prediction market deposits**: Base = 1 micro-YES + 1 micro-NO. Deposit 1 USDC (1,000,000 micro) → 1,000,000x multiplier.
+- **Credit token purchases**: Base = 1 micro-credit for 1 micro-payment. Buy any amount in one transaction.
 
 **Security considerations**:
 - `maxScalingMultiplier` MUST be > 0 when `allowAmountScaling` is true — the chain rejects 0 (no unlimited scaling)
