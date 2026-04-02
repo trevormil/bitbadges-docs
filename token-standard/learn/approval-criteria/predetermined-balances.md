@@ -96,6 +96,7 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
         "durationFromTimestamp": "0",
         "allowOverrideTimestamp": false,
         "allowOverrideWithAnyValidToken": false,
+        "allowAmountScaling": false,
         "recurringOwnershipTimes": {
             "startTime": "0",
             "intervalLength": "0",
@@ -114,6 +115,8 @@ Define starting balances and rules for subsequent transfers. Perfect for sequent
 | `durationFromTimestamp`          | Calculate ownership times from timestamp + duration  | `"2592000000"` = 30 days from transfer time          |
 | `allowOverrideTimestamp`         | Allow custom timestamp override in transfer          | `true` = users can specify custom start time         |
 | `allowOverrideWithAnyValidToken` | Allow any valid token ID (one) override              | `true` = users can specify any single valid token ID |
+| `allowAmountScaling`             | Allow proportional integer multiples of startBalances | `true` = transfer any quantity, coinTransfers scale  |
+| `maxScalingMultiplier`           | Maximum scaling multiplier (required when scaling on) | `"1000000000000"` = set high for micro-unit bases    |
 | `recurringOwnershipTimes`        | Define recurring time intervals                      | Monthly subscriptions, weekly rewards                |
 
 #### Duration From Timestamp
@@ -160,6 +163,59 @@ Define repeating time intervals for subscriptions or periodic rewards:
 ```
 
 **Example**: Monthly subscription starting August 13, 2023, with 7-day advance charging period.
+
+#### Amount Scaling
+
+Enable proportional transfers where users can transfer any integer multiple of the base amount. When `allowAmountScaling` is true, `startBalances` defines the 1x base unit, and `approvalCriteria.coinTransfers` scale by the same multiplier automatically.
+
+```json
+{
+    "incrementedBalances": {
+        "startBalances": [
+            {
+                "amount": "1",
+                "tokenIds": [{"start": "1", "end": "1"}],
+                "ownershipTimes": [{"start": "1", "end": "18446744073709551615"}]
+            }
+        ],
+        "incrementTokenIdsBy": "0",
+        "incrementOwnershipTimesBy": "0",
+        "durationFromTimestamp": "0",
+        "allowOverrideTimestamp": false,
+        "allowOverrideWithAnyValidToken": false,
+        "allowAmountScaling": true,
+        "maxScalingMultiplier": "1000000000000",
+        "recurringOwnershipTimes": {
+            "startTime": "0",
+            "intervalLength": "0",
+            "chargePeriodLength": "0"
+        }
+    }
+}
+```
+
+**Constraints**: When `allowAmountScaling` is true, all other incrementedBalances fields must be zero/false/nil. The base must be a static balance set — no dynamic behavior. `maxScalingMultiplier` must be > 0.
+
+**How it works**:
+- The chain computes `multiplier = transferAmount / baseAmount`
+- The multiplier must be an integer >= 1 (no fractional scaling)
+- The multiplier must be <= `maxScalingMultiplier`
+- Each `approvalCriteria.coinTransfers` amount is multiplied by the same factor
+- Precalculation returns the 1x base; the frontend sets `balances` directly for Nx
+
+**Best practice**: Set `startBalances` to the smallest possible base unit (e.g., `amount: "1"` for 1 micro-unit) and use a large `maxScalingMultiplier`. This ensures users can transfer any granular amount — since scaling only works with integer multiples, a micro-unit base avoids fractional limitations.
+
+**Use cases**:
+- **Pay-per-token**: Base = 1 micro-unit, coinTransfers = 1 micro-unit of payment denom. Users buy any exact amount.
+- **Prediction market deposits**: Base = 1 micro-YES + 1 micro-NO. Deposit 1 USDC (1,000,000 micro) → 1,000,000x multiplier.
+- **Credit token purchases**: Base = 1 micro-credit for 1 micro-payment. Buy any amount in one transaction.
+
+**Security considerations**:
+- `maxScalingMultiplier` MUST be > 0 when `allowAmountScaling` is true — the chain rejects 0 (no unlimited scaling)
+- **`maxScalingMultiplier` is enforced per transfer, not cumulatively.** A user can execute multiple transfers each up to the max. To cap total exposure, pair scaling with `maxNumTransfers` (limit number of uses) or `approvalAmounts` (limit total token quantity). Without these, the only limit is the escrow/approver's available balance.
+- When `coinTransfers` use `overrideFromWithApproverAddress: true`, the escrow/approver pays `multiplier * baseAmount` per transfer — set `maxScalingMultiplier` conservatively and always set `maxNumTransfers` or `approvalAmounts` to bound total payout
+- Amount scaling is **incompatible** with Quest, Subscription, Invoice, Product, Bid/Listing, and Scheduled Payment standards (these require fixed amounts per transfer)
+- The `audit_collection` tool flags `allowAmountScaling + overrideFromWithApproverAddress` as a warning for review
 
 ## Precalculating Balances
 
