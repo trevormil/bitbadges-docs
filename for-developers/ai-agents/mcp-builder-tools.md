@@ -215,29 +215,9 @@ Maximum 4 transfer messages per transaction.
 
 ## Skills (Guided Workflows)
 
-The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types:
+The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
 
-| Skill ID | Name | Description |
-|----------|------|-------------|
-| `smart-token` | Smart Token | ICS20-backed smart token with 1:1 backing and required backing/unbacking approvals |
-| `fungible-token` | Fungible Token | Simple fungible token with fixed or unlimited supply and configurable mint/transfer approvals |
-| `nft-collection` | NFT Collection | Non-fungible token collection with unique token IDs, metadata URIs, and badge-based ownership |
-| `subscription` | Subscription | Time-based subscription token with recurring payment approvals and auto-deletion on expiry |
-| `liquidity-pools` | Liquidity Pools | Liquidity pool standard with the "Liquidity Pools" protocol standard tag |
-| `minting` | Minting | Mint approval patterns including public mint, whitelist mint, creator-only mint, payment-gated mint |
-| `immutability` | Transferability & Update Rules | Lock collection permissions to make properties permanently immutable or permitted |
-| `custom-2fa` | Custom 2FA | Two-factor authentication for transfers using a secondary approval address |
-| `address-list` | Address List | On-chain managed address list where membership = owning x1 of token ID 1 |
-| `bb-402` | BB-402 Token-Gated Access | Token-gated access protocol where ownership of specific badges grants API/resource access |
-| `ai-criteria-gate` | AI Criteria Gate | AI-evaluated criteria gate using attestation NFTs and dynamic store for automated access decisions |
-| `verified` | Verified Gate | Gate access based on BitBadges verified credential badges (collection ID 1) |
-| `payment-protocol` | Payment Protocol | Invoices, escrows, bounties, and payment receipts using coinTransfer-based approvals |
-| `tradable` | Tradable NFTs | Tradable token standard enabling peer-to-peer transfers |
-| `credit-token` | Credit Token | Increment-only, non-transferable credit token purchased with any ICS20 denom |
-| `quest` | Quest | Reward claims with escrow, claim plugins, and configurable payout |
-| `auto-mint` | Auto-Mint | Mint tokens to specific addresses at collection creation using multi-message transactions |
-| `burnable` | Burnable | Token destruction via forceDelete pattern |
-| `multi-sig-voting` | Multi-Sig Voting | Governance voting with configurable thresholds and delegation |
+For full instructions and examples for each skill, see the **[MCP Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
 
 Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
 
