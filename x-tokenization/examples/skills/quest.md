@@ -113,7 +113,3 @@ Without this, the escrow has no funds and claims will fail.
 - DON'T set maxUsesPerLeaf to anything other than "1" — each user claims once
 - DON'T set allowOverrideTimestamp: true — quests require false
 - DON'T set useCreatorAddressAsLeaf: true — quests require false
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

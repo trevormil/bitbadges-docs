@@ -235,7 +235,3 @@ Key escrow rules:
 - DON'T forget to add prioritizedApprovals in MsgTransferTokens — even if empty ([]), this field must be present or the transfer fails.
 - DON'T use predeterminedBalances and approvalAmounts together — they are incompatible. Use one or the other.
 - DON'T set multiple methods to true in orderCalculationMethod — exactly ONE must be true (default: useOverallNumTransfers).
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

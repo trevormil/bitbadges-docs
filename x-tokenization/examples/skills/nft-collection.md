@@ -128,7 +128,3 @@ IMPORTANT: predeterminedBalances and approvalAmounts are INCOMPATIBLE — use on
 - DON'T use {id} in metadata name, description, or image fields — the {id} placeholder only works in the URI string itself (e.g. "ipfs://abc/{id}").
 - DON'T forget overridesFromOutgoingApprovals: true on Mint approvals — required for all minting operations.
 - DON'T use custom list IDs — only reserved IDs are valid: "All", "Mint", "!Mint", "AllWithoutMint", or direct bb1... addresses.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

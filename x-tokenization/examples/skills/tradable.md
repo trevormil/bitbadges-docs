@@ -58,7 +58,3 @@ When enabling trading for NFTs, follow these requirements:
 - Typically used with NFT collections
 - The currency denom determines how prices are displayed in marketplaces
 - Legacy names "Tradable" and "DefaultDisplayCurrency" still work for existing collections
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

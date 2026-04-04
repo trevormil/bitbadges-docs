@@ -22,4 +22,3 @@ This directory contains practical examples and building blocks for x/tokenizatio
 * [Permissions](permissions/) - Common permission patterns and examples
 * [Transactions](txs/) - Full transaction examples
   * [MsgCreateCollection](txs/msgcreatecollection/) - Complete transaction examples for creating collections
-* [🤖 MCP Builder Skills](skills/README.md) - Auto-generated guides for every token type and feature supported by the MCP builder

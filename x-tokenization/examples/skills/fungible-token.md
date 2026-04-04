@@ -86,7 +86,3 @@ Fungible tokens use approvalAmounts (NOT predeterminedBalances) to track minting
   }]
 }
 ```
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

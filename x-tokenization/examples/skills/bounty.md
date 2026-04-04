@@ -140,7 +140,3 @@ All permissions MUST be frozen (permanentlyForbiddenTimes: fullRange):
 - DON'T omit fields in orderCalculationMethod — include ALL boolean fields
 - DON'T make expiration transferTimes overlap with accept/deny transferTimes
 - DON'T forget set_mint_escrow_coins — without it, the escrow is empty and payouts fail
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

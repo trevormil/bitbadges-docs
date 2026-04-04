@@ -110,7 +110,3 @@ Different stakeholders have different voting power:
 - Set realistic thresholds — high thresholds with many voters may be hard to meet if voters abstain
 - **Vote state does not reset** — votingChallenges are scoped to the approval and are typically used for one-time transfers (e.g., releasing funds once). Once the quorum is met, the approval remains satisfied. For more advanced recurring multi-sig solutions, you may need to get creative with other primitives (e.g., rotating proposalIds, dynamic stores, or manager-controlled approval updates).
 - For full documentation, see the BitBadges docs on voting challenges
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

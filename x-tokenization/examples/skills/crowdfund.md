@@ -231,7 +231,3 @@ On-chain crowdfunding with automatic goal tracking. Contributors deposit coins a
 - DON'T forget that success transferTimes must start AFTER the deadline (deadline + 1)
 - DON'T forget that refund mustOwnTokens amountRange.end = goal - 1 (strictly less than goal)
 - DON'T set maxNumTransfers = 0 on refund approval — overrideFromWithApproverAddress requires non-zero
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

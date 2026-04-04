@@ -192,7 +192,3 @@ The primitives (mustOwnTokens, transferTimes, votingChallenges, amount caps, bal
 - DON'T forget to lock ALL permissions for escrow — any unlocked permission lets someone change the rules.
 - DON'T use the same amountTrackerId across multiple approvals unless you want them to share a counter.
 - DON'T forget mustOwnBadges for deposit verification — this is how you on-chain gate releases on deposits.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

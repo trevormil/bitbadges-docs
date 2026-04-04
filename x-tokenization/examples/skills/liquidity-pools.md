@@ -64,7 +64,3 @@ When enabling liquidity pools for a collection, follow these requirements:
 - All alias path and denomUnit metadata MUST include an `image` field with a valid URL (token logo)
 - Merkle challenges are NOT compatible with liquidity pools
 - This enables decentralized exchange (DEX) trading interfaces
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

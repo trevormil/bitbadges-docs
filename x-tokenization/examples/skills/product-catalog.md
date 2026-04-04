@@ -123,7 +123,3 @@ Each product gets its own purchase approval. There's also an optional global bur
 - DON'T set maxNumTransfers > 0 on the burn approval — burns should be unlimited
 - DON'T use votingChallenges, merkleChallenges, or mustOwnTokens — purchases are open to all
 - DON'T forget to set toListId to burn address for burn-on-purchase products
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

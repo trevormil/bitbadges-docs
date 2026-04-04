@@ -36,14 +36,9 @@ These pages document every guided build skill available in the [BitBadges MCP Bu
 ## Features
 
 - [BB-402 Token-Gated Access](bb-402.md) — Token-gated access protocol where ownership of specific badges grants API/resource access
-- [AI Criteria Gate](ai-criteria-gate.md) — AI-evaluated criteria gate using attestation NFTs and dynamic store for automated access decisions
-- [Verified Gate](verified.md) — Gate access based on BitBadges verified credential badges (collection ID 1)
 - [Auto-Mint](auto-mint.md) — Mint and distribute tokens to recipients at collection creation time using MsgTransferTokens
 
 ## Advanced
 
 - [Transferability & Update Rules](immutability.md) — Lock collection permissions to make properties permanently immutable or permanently permitted
 
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

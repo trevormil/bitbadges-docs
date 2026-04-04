@@ -120,7 +120,3 @@ When creating a subscription collection, you MUST follow these EXACT requirement
 - DON'T use multiple token IDs — subscriptions must use exactly one token ID [{ "start": "1", "end": "1" }].
 - DON'T set coinTransfers override flags to true — for standard subscription payments, both overrideFromWithApproverAddress and overrideToWithInitiator must be false.
 - DON'T set noCustomOwnershipTimes: true in invariants — subscriptions require noCustomOwnershipTimes: false (or omit the invariant) because each subscription period mints a new ownershipTime window.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

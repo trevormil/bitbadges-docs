@@ -83,7 +83,3 @@ When creating a Custom-2FA collection, follow these requirements:
 - Use time-dependent ownershipTimes in transfers (not forever)
 - Calculate expiration timestamps correctly (milliseconds since epoch)
 - Tokens automatically expire and can be purged after expiration
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

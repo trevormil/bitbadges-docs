@@ -293,7 +293,3 @@ Require ownership of a 2FA token to withdraw. Add mustOwnTokens to the unbacking
 - DON'T use "All" as fromListId or toListId for backing/unbacking operations — use the exact deterministic backing address from generate_backing_address.
 - DON'T use number types for amounts or IDs — all values must be strings ("1" not 1, "18446744073709551615" not Number.MAX_SAFE_INTEGER).
 - DON'T forget to configure an alias path — smart tokens will not function without one, and the alias decimals must match the IBC denom decimals.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

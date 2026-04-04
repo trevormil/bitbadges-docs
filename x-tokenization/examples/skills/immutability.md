@@ -175,7 +175,3 @@ Three common permission configurations:
 - DON'T leave both permanentlyPermittedTimes and permanentlyForbiddenTimes as empty arrays in a permission entry — this is redundant. Replace the entire entry with an empty array [].
 - DON'T forget that unfrozen Mint approval permissions means the manager can mint unlimited tokens — freeze canUpdateCollectionApprovals for Mint if supply should be fixed.
 - DON'T confuse empty permission array [] (neutral/unset) with a frozen permission — empty means the field is still updatable.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

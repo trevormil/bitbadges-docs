@@ -104,7 +104,3 @@ Lock approvals and token IDs:
 - DON'T add a peer-to-peer transfer approval — only the manager should modify the list.
 - DON'T use build_token — use build_address_list instead for this type.
 - DON'T forget overridesFromOutgoingApprovals: true on BOTH approvals.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

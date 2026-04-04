@@ -90,7 +90,3 @@ The burnable approval is additive — it sits alongside other collection approva
 - **Credit tokens**: These are increment-only by design; burning defeats the purpose
 - **Soulbound tokens**: If tokens should be permanently bound to an address, don't add a burn approval
 - **Subscription tokens**: Typically managed by the issuer, not burned by holders
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

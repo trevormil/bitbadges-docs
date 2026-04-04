@@ -206,7 +206,3 @@ The Credit Token standard has a dedicated view page that shows:
 ## Reference Collections
 
 - [Collection 23](https://bitbadges.io/collections/23)
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

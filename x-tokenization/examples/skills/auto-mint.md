@@ -106,7 +106,3 @@ For expiring tokens, calculate timestamps:
 - DON'T forget to add prioritizedApprovals in MsgTransferTokens — even if empty ([]), this field must be present or the transfer fails.
 - DON'T forget that the collection must have a mint approval that allows the creator as initiatedBy.
 - DON'T add transfer messages for subscription, smart token, or public mint collections — minting happens post-creation through approvals.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

@@ -453,7 +453,3 @@ After creating the collection and minting initial pairs:
 - DON'T use `set_permissions` preset "locked-approvals" — use "fully-immutable" to freeze ALL permissions including validTokenIds
 - DON'T use lowercase "prediction-market" as the standard — the correct name is "Prediction Market" (title case with space)
 - DON'T set invariants.disablePoolCreation to true — prediction markets REQUIRE liquidity pools for YES/NO trading. Set it to false.
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*

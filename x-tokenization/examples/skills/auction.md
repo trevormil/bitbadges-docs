@@ -125,7 +125,3 @@ Bids must have transferTimes that stay valid through the END of the accept windo
 - DON'T create a separate mint-to-seller approval — the token should not exist until the seller accepts a bid
 - DON'T forget autoDeletionOptions on mint-to-winner — without afterOneUse: true, the seller could mint to multiple bidders
 - DON'T forget that bids must have transferTimes valid through the END of the accept window, not just the bid deadline
-
----
-
-*Auto-generated from [bitbadges-builder-mcp](https://github.com/bitbadges/bitbadges-builder-mcp) skill instructions. Do not edit manually — run `npx tsx scripts/gen-skill-docs.ts` to regenerate.*
