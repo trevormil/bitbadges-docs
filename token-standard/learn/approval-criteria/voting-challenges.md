@@ -15,6 +15,8 @@ The system requires a minimum percentage of total voter weight to vote "yes" bef
 | `voters`          | Voter[] | List of voters with addresses and weights                        |
 | `uri`             | string  | Optional metadata URI                                            |
 | `customData`      | string  | Optional custom data                                             |
+| `resetAfterExecution` | boolean | If true, all votes are cleared after a successful transfer uses this challenge |
+| `delayAfterQuorum` | string (Uint, ms) | Mandatory wait period (in milliseconds) after quorum is reached before the transfer can execute |
 
 ### Vote Fields
 
@@ -119,6 +121,8 @@ interface VotingChallenge {
     voters: Voter[]; // List of voters with their weights
     uri?: string; // Optional metadata URI
     customData?: string; // Optional custom data
+    resetAfterExecution?: boolean; // If true, votes clear after successful transfer
+    delayAfterQuorum?: string; // Mandatory wait (ms) after quorum before execution
 }
 
 interface Voter {
@@ -128,6 +132,29 @@ interface Voter {
 ```
 
 Cast votes using [MsgCastVote](../../x-tokenization/messages/msg-cast-vote.md).
+
+## Vote Reset Behavior
+
+When `resetAfterExecution` is set to `true`, all votes for the challenge are cleared after a transfer successfully uses the challenge. This makes the challenge reusable without needing to change the `proposalId`.
+
+**Use cases:**
+
+-   **Vault withdrawals** — a multi-sig vault that requires fresh approval for every withdrawal. After each approved transfer, votes reset and signers must re-approve the next one.
+-   **Recurring multi-sig** — any scenario where the same set of voters needs to repeatedly approve transfers, such as a treasury that pays out monthly.
+
+Without `resetAfterExecution`, votes persist indefinitely. Once quorum is reached, any subsequent transfer matching the approval would also pass the challenge (assuming votes are not manually changed). Setting this flag ensures each transfer requires a new round of voting.
+
+## Quorum Delay
+
+The `delayAfterQuorum` field specifies a mandatory waiting period (in milliseconds) between when quorum is reached and when the transfer can actually execute. The chain records the timestamp when quorum is first reached; any transfer attempt before the delay elapses will be rejected.
+
+**Use cases:**
+
+-   **Vault timelocks** — require a 24-hour (86400000 ms) delay after quorum so that stakeholders have time to review and potentially revoke votes before execution.
+-   **Safety delays** — prevent rushed execution of high-value transfers by enforcing a cooling-off period after quorum.
+-   **Governance windows** — give dissenting voters time to change their votes or escalate concerns before the transfer proceeds.
+
+If `delayAfterQuorum` is not set or is `"0"`, the transfer can execute immediately once quorum is met.
 
 ## Use Cases
 
