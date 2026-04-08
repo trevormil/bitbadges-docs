@@ -67,7 +67,6 @@
   * [MsgUpdateCollection](x-tokenization/messages/msg-update-collection.md)
   * [MsgUpdateDynamicStore](x-tokenization/messages/msg-update-dynamic-store.md)
   * [MsgUpdateUserApprovals](x-tokenization/messages/msg-update-user-approvals.md)
-* [📖 Concepts](x-tokenization/concepts/README.md)
 * [🔍 Queries](x-tokenization/queries/README.md)
   * [Node API](https://lcd.bitbadges.io/)
   * [GetAddressList](x-tokenization/queries/get-address-list.md)
