@@ -41,6 +41,7 @@
   * [IBC Transfer Tokens Hook](learn/ibc-transfer-tokens-hook.md)
   * [Collection Configuration](token-standard/learn/collection-setup-fields.md)
   * [Address Lists](token-standard/learn/address-lists.md)
+  * [Address Aliases](learn/address-aliases.md)
   * [UintRanges](token-standard/learn/uintrange.md)
 * [📨 Messages](x-tokenization/messages/README.md)
   * [MsgCreateAddressLists](x-tokenization/messages/msg-create-address-lists.md)
