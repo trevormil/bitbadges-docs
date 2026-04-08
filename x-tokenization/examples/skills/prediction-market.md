@@ -234,7 +234,7 @@ Note: The deposit coinTransfer uses `to: "Mint"` with no overrides: initiator pa
     },
     "votingChallenges": [{
       "proposalId": "yes-wins-proposal",
-      "quorumThreshold": "100",
+      "quorumThreshold": "1",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -290,7 +290,7 @@ Same as YES Wins but with token ID 2, separate proposalId, and separate amountTr
     },
     "votingChallenges": [{
       "proposalId": "no-wins-proposal",
-      "quorumThreshold": "100",
+      "quorumThreshold": "1",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -344,7 +344,7 @@ Same as YES Wins but with token ID 2, separate proposalId, and separate amountTr
     },
     "votingChallenges": [{
       "proposalId": "push-yes-proposal",
-      "quorumThreshold": "100",
+      "quorumThreshold": "1",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -400,7 +400,7 @@ Same as Push YES but with token ID 2 and a separate proposalId:
     },
     "votingChallenges": [{
       "proposalId": "push-no-proposal",
-      "quorumThreshold": "100",
+      "quorumThreshold": "1",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }

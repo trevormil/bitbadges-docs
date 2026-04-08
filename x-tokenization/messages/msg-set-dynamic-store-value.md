@@ -12,8 +12,18 @@ message MsgSetDynamicStoreValue {
   bool value = 4; // Boolean value to set
 }
 
-message MsgSetDynamicStoreValueResponse {}
+message MsgSetDynamicStoreValueResponse {
+  bool previousValue = 1; // The previous value before the update
+  repeated string reviewItems = 2; // Advisory review items about the transaction
+}
 ```
+
+## Response
+
+The response includes:
+
+-   **`previousValue`**: The boolean value that was stored before this update
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 

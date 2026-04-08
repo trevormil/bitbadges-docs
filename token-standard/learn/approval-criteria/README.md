@@ -56,6 +56,8 @@ export interface iApprovalCriteria<T extends NumberType> {
     allowSpecialWrapping?: boolean;
     /** The list of EVM query challenges that must pass for approval. Executes read-only calls to EVM contracts. */
     evmQueryChallenges?: iEVMQueryChallenge[];
+    /** User-level approval settings propagated during transfer matching (collection-level only). */
+    userApprovalSettings?: iUserApprovalSettings<T>;
 }
 ```
 
@@ -80,6 +82,7 @@ export interface iApprovalCriteria<T extends NumberType> {
 * [**Must Prioritize**](../../../x-tokenization/concepts/approval-criteria/must-prioritize.md) - Requiring explicit approval prioritization
 * [**Special Address Flags**](special-address-flags.md) - Control approval eligibility for backed minting and special wrapping (collection-level only)
 * [**EVM Query Challenges**](evm-query-challenges.md) - Read-only EVM contract queries as approval conditions
+* [**User Approval Settings**](user-approval-settings.md) - Denom restrictions, coin transfer controls, and royalties (collection-level only)
 
 ## Key Concepts
 
