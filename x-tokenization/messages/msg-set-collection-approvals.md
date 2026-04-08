@@ -41,8 +41,20 @@ message MsgSetCollectionApprovals {
 message MsgSetCollectionApprovalsResponse {
   // ID of the collection.
   string collectionId = 1 [(gogoproto.customtype) = "Uint", (gogoproto.nullable) = false];
+  // Details of each approval that was created, edited, or deleted.
+  repeated ApprovalChange approvalChanges = 2;
+  // Advisory review items about the transaction.
+  repeated string reviewItems = 3;
 }
 ```
+
+### Response
+
+The response includes:
+
+-   **`collectionId`**: The ID of the updated collection
+-   **`approvalChanges`**: A list of `ApprovalChange` entries describing each approval that was created, edited, or deleted (see [Approval Change Events](../concepts/approval-change-events.md))
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ### Usage Example
 

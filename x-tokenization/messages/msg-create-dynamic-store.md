@@ -14,8 +14,16 @@ message MsgCreateDynamicStore {
 
 message MsgCreateDynamicStoreResponse {
   string storeId = 1; // ID of the created dynamic store
+  repeated string reviewItems = 2; // Advisory review items about the transaction
 }
 ```
+
+## Response
+
+The response includes:
+
+-   **`storeId`**: The ID of the newly created dynamic store
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 

@@ -15,8 +15,20 @@ message MsgDeleteOutgoingApproval {
   string approvalId = 3; // The ID of the approval to delete
 }
 
-message MsgDeleteOutgoingApprovalResponse {}
+message MsgDeleteOutgoingApprovalResponse {
+  bool found = 1; // Whether the approval was found and deleted
+  string version = 2; // The version of the deleted approval
+  repeated string reviewItems = 3; // Advisory review items about the transaction
+}
 ```
+
+## Response
+
+The response includes:
+
+-   **`found`**: Whether the approval was found and successfully deleted
+-   **`version`**: The version of the approval that was deleted
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 
