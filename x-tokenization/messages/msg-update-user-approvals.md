@@ -41,8 +41,22 @@ message MsgUpdateUserApprovals {
   UserPermissions userPermissions = 14;
 }
 
-message MsgUpdateUserApprovalsResponse {}
+message MsgUpdateUserApprovalsResponse {
+  repeated ApprovalChange incomingChanges = 1; // Details of each incoming approval created/edited/deleted
+  repeated ApprovalChange outgoingChanges = 2; // Details of each outgoing approval created/edited/deleted
+  repeated string reviewItems = 3; // Advisory review items about the transaction
+}
 ```
+
+## Response
+
+The response includes:
+
+-   **`incomingChanges`**: A list of `ApprovalChange` entries for incoming approvals that were created, edited, or deleted
+-   **`outgoingChanges`**: A list of `ApprovalChange` entries for outgoing approvals that were created, edited, or deleted
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
+
+For more on approval changes, see [Approval Change Events](../concepts/approval-change-events.md).
 
 ## Usage Example
 

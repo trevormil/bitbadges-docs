@@ -11,7 +11,12 @@ message MsgTransferTokens {
   repeated Transfer transfers = 3; // Transfer operations (must pass approvals)
 }
 
-message MsgTransferTokensResponse {}
+message MsgTransferTokensResponse {
+  repeated ApprovalUsed approvalsUsed = 1;
+  repeated CoinTransferProto coinTransfers = 2;
+  repeated Balance balancesTransferred = 3;
+  repeated string reviewItems = 4;
+}
 
 message Transfer {
   // The address of the sender of the transfer.
@@ -59,6 +64,15 @@ message PrecalculationOptions {
   repeated UintRange tokenIdsOverride = 2;
 }
 ```
+
+## Response
+
+The response includes structured data about the transfer execution:
+
+-   **`approvalsUsed`**: Details of which approvals were matched and consumed for the transfer
+-   **`coinTransfers`**: Any coin transfers that occurred as side effects (e.g., from approval criteria with coin transfer requirements)
+-   **`balancesTransferred`**: The actual token balances that were transferred
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Auto-Scan vs Prioritized Approvals
 

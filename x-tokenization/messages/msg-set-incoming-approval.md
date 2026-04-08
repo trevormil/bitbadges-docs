@@ -15,8 +15,20 @@ message MsgSetIncomingApproval {
   UserIncomingApproval approval = 3; // The incoming approval to set
 }
 
-message MsgSetIncomingApprovalResponse {}
+message MsgSetIncomingApprovalResponse {
+  string action = 1; // "created" or "edited"
+  string version = 2; // The new version of the approval
+  repeated string reviewItems = 3; // Advisory review items about the transaction
+}
 ```
+
+## Response
+
+The response includes:
+
+-   **`action`**: Whether the approval was `"created"` or `"edited"`
+-   **`version`**: The new version number of the approval after the operation
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 

@@ -68,8 +68,18 @@ message MsgUniversalUpdateCollection {
 
 message MsgUniversalUpdateCollectionResponse {
   string collectionId = 1; // ID of created/updated collection
+  repeated ApprovalChange approvalChanges = 2; // Details of each approval created/edited/deleted
+  repeated string reviewItems = 3; // Advisory review items about the transaction
 }
 ```
+
+## Response
+
+The response includes:
+
+-   **`collectionId`**: The ID of the created or updated collection
+-   **`approvalChanges`**: A list of `ApprovalChange` entries describing each approval that was created, edited, or deleted (see [Approval Change Events](../concepts/approval-change-events.md))
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 

@@ -35,8 +35,18 @@ message MsgCreateCollection {
 
 message MsgCreateCollectionResponse {
   string collectionId = 1; // ID of the created collection
+  repeated ApprovalChange approvalChanges = 2; // Details of each approval created
+  repeated string reviewItems = 3; // Advisory review items about the transaction
 }
 ```
+
+## Response
+
+The response includes:
+
+-   **`collectionId`**: The ID of the newly created collection
+-   **`approvalChanges`**: A list of `ApprovalChange` entries describing each approval that was created during collection setup (see [Approval Change Events](../concepts/approval-change-events.md))
+-   **`reviewItems`**: Advisory strings about the transaction (see [Review Items](../concepts/approval-change-events.md#review-items))
 
 ## Usage Example
 
