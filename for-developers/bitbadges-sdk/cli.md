@@ -1,5 +1,7 @@
 # BitBadges CLI
 
+> **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/). See [Installation](../cli/installation.md), [SDK Commands](../cli/sdk-commands.md), and [API Commands](../cli/api-commands.md).
+
 The BitBadges CLI provides SDK utilities and API access from your terminal. It ships with the SDK package and is also available via the chain binary.
 
 ## Installation

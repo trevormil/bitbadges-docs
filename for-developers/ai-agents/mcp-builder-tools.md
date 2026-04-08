@@ -2,6 +2,8 @@
 
 The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
+> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
+
 ## Installation
 
 ```bash

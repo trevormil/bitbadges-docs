@@ -1,5 +1,7 @@
 # Chain CLI (bitbadgeschaind)
 
+> **This page has moved.** The canonical chain binary documentation is now at [CLI & Chain Binary — Chain Commands](../../cli/chain-commands.md). See also [Installation](../../cli/installation.md) for the one-liner installer.
+
 The BitBadges chain ships a standard Cosmos SDK binary called `bitbadgeschaind`. You can use it for key management, transaction signing, querying, and broadcasting without writing any code.
 
 ## Installation
