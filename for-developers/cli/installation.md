@@ -5,7 +5,7 @@
 The fastest way to install everything. Detects your OS and architecture automatically, downloads the chain binary, and installs the SDK CLI.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
 ```
 
 This installs:
@@ -16,16 +16,16 @@ This installs:
 
 ```bash
 # Testnet binary
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --testnet
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --testnet
 
 # Specific version
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --version v29
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --version v29
 
 # Custom install directory
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --install-dir ~/.local/bin
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --install-dir ~/.local/bin
 
 # Skip sudo
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --no-sudo
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh -s -- --no-sudo
 ```
 
 ### Supported Platforms

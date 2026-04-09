@@ -5,7 +5,7 @@ The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. 
 ## Install (One-Liner)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
 ```
 
 This installs both:

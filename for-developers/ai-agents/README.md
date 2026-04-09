@@ -5,7 +5,7 @@ This section is for developers building AI agents, bots, and automated systems t
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/master/install.sh | sh
 ```
 
 This installs the chain binary and SDK CLI. For CLI-based agent workflows (query, review, transact — no TypeScript needed), see [CLI for AI Agents](../cli/for-ai-agents.md).
