@@ -1,16 +1,36 @@
 # 🔨 Getting Started
 
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
+## Quick Start — Install the CLI
+
+The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`) and the SDK CLI (`bitbadges-cli`) with 104+ API routes, review tools, and built-in docs.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+Works on Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [Installation](cli/installation.md) for all options.
+
+After installing, set your API key and start querying:
+
+```bash
+bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
+bitbadges-cli api tokens get-collection 1   # query any collection
+bitbadges-cli sdk docs                      # browse docs from terminal
+```
+
+> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [MCP Builder Tools](ai-agents/mcp-builder-tools.md) for building tokens with Claude/Cursor.
+
+---
+
+## No-Code / Low-Code
+
+BitBadges also offers no-code flows for all major services. Navigate to the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) to create tokens, claims, address lists, and more — no integration needed.
 
 <figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
 > **Need BADGE?** Contact us on Discord - get subsidized credits for developers during chaosnet!
->
-> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
->
-> Get creative. You can gate URLs, Discords, and integrate with many of your favorite tools without a single line of code!
 
 ## Explore First, Read Later
 

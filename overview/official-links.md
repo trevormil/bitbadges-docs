@@ -5,6 +5,20 @@ Below is a list of official links for socials and other platforms. Our preferred
 * [BitBadges App](https://bitbadges.io)
 * [Explorer](https://explorer.bitbadges.io)
 
+### Install
+
+One command installs everything — the chain binary, SDK CLI, and 104+ API routes:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.
+
+* [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
+* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
+* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadges-builder-mcp) — `npm install -g bitbadges-builder-mcp`
+
 ### Get Featured
 
 * [Get Featured](https://tally.so/r/mBy2aR) - Explore Page
@@ -12,6 +26,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 ### Documentation
 
 * [LLM .txt](../for-llms.txt) - Entire documentation dumped into one file
+* [CLI Docs](../for-developers/cli/) - Full CLI reference
 
 ### Socials
 

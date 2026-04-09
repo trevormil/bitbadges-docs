@@ -2,7 +2,15 @@
 
 This section is for developers building AI agents, bots, and automated systems that interact with the BitBadges blockchain. Whether you're building an autonomous minting agent, a gating bot, or an AI-powered claim system, you'll find everything you need here.
 
-## 5-Minute Quickstart
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+This installs the chain binary and SDK CLI. For CLI-based agent workflows (query, review, transact — no TypeScript needed), see [CLI for AI Agents](../cli/for-ai-agents.md).
+
+## 5-Minute Quickstart (TypeScript)
 
 ```bash
 npm install bitbadgesjs-sdk
@@ -46,8 +54,9 @@ console.log('TX Hash:', result.txHash);
 
 | Path | Best For | Install |
 |------|----------|---------|
+| **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
 | **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
-| **SDK Signing Client** | Full-featured bots, server-side agents | `npm i bitbadgesjs-sdk` |
+| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
