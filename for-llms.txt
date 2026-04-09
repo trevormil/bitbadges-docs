@@ -1,5 +1,5 @@
 # Gitbook Documentation Compilation
-Generated on Wed Apr  8 20:05:59 UTC 2026
+Generated on Thu Apr  9 00:05:26 UTC 2026
 
 
 
@@ -2001,6 +2001,20 @@ BitBadges addresses these fundamental issues through core design decisions:
 ## ⌨️ For Developers
 
 * [🔨 Getting Started](for-developers/getting-started.md)
+* [🖥️ CLI & Chain Binary](for-developers/cli/README.md)
+  * [Installation](for-developers/cli/installation.md)
+  * [SDK Commands](for-developers/cli/sdk-commands.md)
+  * [API Commands](for-developers/cli/api-commands.md)
+  * [Chain Commands](for-developers/cli/chain-commands.md)
+  * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
+* [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
+  * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
+  * [MCP Builder Tools Reference](for-developers/ai-agents/mcp-builder-tools.md)
+  * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
+  * [Bot Examples](for-developers/ai-agents/bot-examples.md)
+  * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
+  * [Claims for Agents](for-developers/ai-agents/claims-for-agents.md)
+  * [Agent Spending Authorization](for-developers/ai-agents/agent-spending-authorization.md)
 * [📚 BitBadges API](for-developers/bitbadges-api/README.md)
   * [Getting Started](for-developers/bitbadges-api/api.md)
   * [Estimating Swaps](for-developers/bitbadges-api/estimating-swaps.md)
@@ -2067,14 +2081,6 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [Testnet Mode](for-developers/bitbadges-blockchain/testnet-mode.md)
   * [EVM RPC Endpoints](for-developers/bitbadges-blockchain/evm-rpc-endpoints.md)
   * [Cross-Chain Queries (ICQ)](for-developers/bitbadges-blockchain/cross-chain-queries.md)
-* [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
-  * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
-  * [MCP Builder Tools Reference](for-developers/ai-agents/mcp-builder-tools.md)
-  * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
-  * [Bot Examples](for-developers/ai-agents/bot-examples.md)
-  * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
-  * [Claims for Agents](for-developers/ai-agents/claims-for-agents.md)
-  * [Agent Spending Authorization](for-developers/ai-agents/agent-spending-authorization.md)
 * [🎁 BitBadges Claims](for-developers/claims/README.md)
   * [Overview](for-developers/claims/overview.md)
   * [Core Concepts](for-developers/claims/concepts.md)
@@ -8130,7 +8136,15 @@ For detailed security implementation, see the [precompile code](https://github.c
 
 This section is for developers building AI agents, bots, and automated systems that interact with the BitBadges blockchain. Whether you're building an autonomous minting agent, a gating bot, or an AI-powered claim system, you'll find everything you need here.
 
-## 5-Minute Quickstart
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+This installs the chain binary and SDK CLI. For CLI-based agent workflows (query, review, transact — no TypeScript needed), see [CLI for AI Agents](../cli/for-ai-agents.md).
+
+## 5-Minute Quickstart (TypeScript)
 
 ```bash
 npm install bitbadgesjs-sdk
@@ -8174,8 +8188,9 @@ console.log('TX Hash:', result.txHash);
 
 | Path | Best For | Install |
 |------|----------|---------|
+| **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
 | **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
-| **SDK Signing Client** | Full-featured bots, server-side agents | `npm i bitbadgesjs-sdk` |
+| **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
@@ -8706,6 +8721,8 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 # MCP Builder Tools Reference
 
 The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+
+> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
 ## Installation
 
@@ -10233,6 +10250,8 @@ There are also other polling methods: websockets + parsing txs as they come thro
 ## File: ./for-developers/bitbadges-blockchain/create-and-broadcast-txs/chain-cli.md
 
 # Chain CLI (bitbadgeschaind)
+
+> **This page has moved.** The canonical chain binary documentation is now at [CLI & Chain Binary — Chain Commands](../../cli/chain-commands.md). See also [Installation](../../cli/installation.md) for the one-liner installer.
 
 The BitBadges chain ships a standard Cosmos SDK binary called `bitbadgeschaind`. You can use it for key management, transaction signing, querying, and broadcasting without writing any code.
 
@@ -12400,6 +12419,8 @@ If there is anything we can do to make development easier, let us know.
 ## File: ./for-developers/bitbadges-sdk/cli.md
 
 # BitBadges CLI
+
+> **This page has moved.** The canonical CLI documentation is now at [CLI & Chain Binary](../cli/). See [Installation](../cli/installation.md), [SDK Commands](../cli/sdk-commands.md), and [API Commands](../cli/api-commands.md).
 
 The BitBadges CLI provides SDK utilities and API access from your terminal. It ships with the SDK package and is also available via the chain binary.
 
@@ -16822,6 +16843,809 @@ For high-stakes use cases:
 - **Monitor claim activity** via the API to detect anomalies
 
 
+## File: ./for-developers/cli/README.md
+
+# CLI & Chain Binary
+
+The BitBadges CLI is the fastest way to interact with the BitBadges blockchain. A single install gives you everything: the chain binary (`bitbadgeschaind`), the SDK CLI (`bitbadges-cli`), and 104+ API routes — all from your terminal.
+
+## Install (One-Liner)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+This installs both:
+- **`bitbadgeschaind`** — the chain binary (key management, signing, broadcasting, on-chain queries)
+- **`bitbadges-cli`** — the SDK CLI (API access, review/audit, docs browser, skills, address tools)
+
+Verify your installation:
+
+```bash
+bitbadgeschaind version
+bitbadges-cli sdk status
+```
+
+## How They Work Together
+
+The chain binary delegates `sdk` and `api` subcommands to the Node.js CLI. These are equivalent:
+
+```bash
+bitbadgeschaind sdk review tx.json
+bitbadges-cli sdk review tx.json
+
+bitbadgeschaind api tokens get-collection 1
+bitbadges-cli api tokens get-collection 1
+```
+
+Use whichever you prefer. The chain binary adds key management, transaction signing, and on-chain queries on top of what the SDK CLI provides.
+
+## What You Can Do
+
+| Capability | Command | Example |
+|-----------|---------|---------|
+| **Query any collection** | `bitbadges-cli api tokens get-collection` | `bitbadges-cli api tokens get-collection 1` |
+| **Review and audit tokens** | `bitbadges-cli sdk review` | `bitbadges-cli sdk review tx.json` |
+| **Browse 104+ API routes** | `bitbadges-cli api` | `bitbadges-cli api tokens --help` |
+| **Convert addresses** | `bitbadges-cli sdk address convert` | `bitbadges-cli sdk address convert 0x1234... --to bb1` |
+| **Look up token info** | `bitbadges-cli sdk lookup-token` | `bitbadges-cli sdk lookup-token USDC` |
+| **Browse docs** | `bitbadges-cli sdk docs` | `bitbadges-cli sdk docs learn/approvals` |
+| **List builder skills** | `bitbadges-cli sdk skills` | `bitbadges-cli sdk skills smart-token` |
+| **Create/sign transactions** | `bitbadgeschaind tx` | `bitbadgeschaind tx tokenization create-collection ./col.json --from mykey` |
+| **Manage keys** | `bitbadgeschaind keys` | `bitbadgeschaind keys add mykey` |
+| **Query on-chain state** | `bitbadgeschaind query` | `bitbadgeschaind query tokenization collection 1` |
+
+## For AI Agents
+
+The CLI is the recommended interface for AI agents and automation. It provides:
+
+- **Structured JSON output** for every command — easy to parse programmatically
+- **`--help-json`** flag that outputs the full command tree as structured JSON for LLM tool discovery
+- **`--dry-run`** for safe simulation before broadcasting
+- **Shell completion** for interactive use: `eval "$(bitbadges-cli completion)"`
+- **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
+
+See [CLI for AI Agents](for-ai-agents.md) for end-to-end agent workflows.
+
+For building token collections with AI assistants (Claude, Cursor, etc.), see the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) which provide 50+ tools on top of the CLI.
+
+## Next Steps
+
+- [Installation](installation.md) — all install methods and configuration
+- [SDK Commands](sdk-commands.md) — review, interpret, address tools, docs, skills
+- [API Commands](api-commands.md) — 104+ API routes from your terminal
+- [Chain Commands](chain-commands.md) — keys, transactions, on-chain queries
+- [CLI for AI Agents](for-ai-agents.md) — agent workflows and automation patterns
+
+
+## File: ./for-developers/cli/api-commands.md
+
+# API Commands
+
+The `api` subcommand provides access to all 104+ indexer API routes, auto-generated from the OpenAPI spec. Routes are grouped by category. Available via both `bitbadges-cli api` and `bitbadgeschaind api`.
+
+## Route Groups
+
+| Group | Description |
+|---|---|
+| `api accounts` | Account and user routes |
+| `api tokens` | Collection and token routes |
+| `api claims` | Claim management routes |
+| `api auth` | Sign In with BitBadges / OAuth routes |
+| `api tx` | Transaction broadcast and simulation |
+| `api apps` | Developer apps and applications |
+| `api plugins` | Plugin management routes |
+| `api stores` | Dynamic data store routes |
+| `api onchain-stores` | On-chain dynamic store routes |
+| `api pages` | Utility page routes |
+| `api maps` | On-chain map and protocol routes |
+| `api assets` | DEX, pools, and asset pair routes |
+| `api misc` | Miscellaneous routes |
+| `api all` | All routes ungrouped (flat list) |
+
+## Usage
+
+```bash
+bitbadges-cli api <group> <route-name> [path-params...] [options]
+```
+
+Path parameters are positional arguments. Request bodies can be inline JSON, a file reference with `@`, or `-` for stdin.
+
+## Common Flags
+
+| Flag | Description |
+|---|---|
+| `--body <json>` | Request body: inline JSON, `@file.json`, or `-` for stdin |
+| `--query <json>` | Query string params as a JSON object |
+| `--api-key <key>` | Override the API key for this request |
+| `--testnet` | Use testnet API |
+| `--local` | Use local API (localhost:3001) |
+| `--url <url>` | Custom API base URL |
+| `--condensed` | Output condensed JSON (no whitespace) |
+| `--dry-run` | Show request details without sending |
+| `--output-file <path>` | Write output to file instead of stdout |
+
+## Examples
+
+```bash
+# GET routes
+bitbadges-cli api tokens get-collection 1
+bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+
+# POST routes (with body)
+bitbadges-cli api accounts get-accounts --body '{"accountsToFetch":[{"address":"bb1..."}]}'
+bitbadges-cli api tx broadcast-tx --body @tx.json
+
+# GET routes auto-convert --body to query params
+bitbadges-cli api accounts get-tokens-for-user bb1... --body '{"viewType":"collected"}'
+
+# Testnet with dry-run
+bitbadges-cli api tokens get-collection 1 --testnet --dry-run
+
+# List routes in a group
+bitbadges-cli api tokens --help
+```
+
+## Help and Type Schemas
+
+Each route's `--help` includes the HTTP method, path template, SDK type names, key body/query fields, and an SDK code example (where available).
+
+```bash
+bitbadges-cli api tokens get-collections --help
+```
+
+## Global Options
+
+| Flag | Description |
+|---|---|
+| `--help-json` | Output the full command tree as structured JSON (useful for LLMs) |
+| `--help` | Standard help output |
+
+
+## File: ./for-developers/cli/chain-commands.md
+
+# Chain Commands (bitbadgeschaind)
+
+The `bitbadgeschaind` binary provides key management, transaction signing, broadcasting, and on-chain queries. It is a standard Cosmos SDK binary with BitBadges-specific modules.
+
+## Key Management
+
+BitBadges supports both Ethereum-compatible keys (`eth_secp256k1`) and standard Cosmos keys (`secp256k1`). The default keyring backend is `test` (unencrypted, for development). For production, use `--keyring-backend os` or `--keyring-backend file`.
+
+```bash
+# Create a new key
+bitbadgeschaind keys add mykey
+
+# Recover from mnemonic
+bitbadgeschaind keys add mykey --recover
+
+# List keys
+bitbadgeschaind keys list
+
+# Show key details (add --bech val for validator address)
+bitbadgeschaind keys show mykey
+
+# Export / Import
+bitbadgeschaind keys export mykey
+bitbadgeschaind keys import mykey keyfile.armor
+
+# Delete a key
+bitbadgeschaind keys delete mykey
+```
+
+## Submitting Transactions
+
+All transaction commands follow this pattern:
+
+```bash
+bitbadgeschaind tx <module> <command> [args...] \
+  --from mykey \
+  --chain-id bitbadges-1 \
+  --node https://lcd.bitbadges.io:443 \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --fees 10000ubadge
+```
+
+### Common Flags
+
+| Flag | Description | Default |
+|------|-------------|---------|
+| `--from` | Key name or address to sign with | (required) |
+| `--chain-id` | Cosmos chain ID | `bitbadgeschain` |
+| `--node` | Node RPC endpoint | `tcp://localhost:26657` |
+| `--gas` | Gas limit (`auto` to simulate) | `200000` |
+| `--gas-adjustment` | Multiplier when using `auto` gas | `1.0` |
+| `--fees` | Transaction fee (e.g. `10000ubadge`) | |
+| `--keyring-backend` | Keyring backend (`os`, `file`, `test`) | `test` |
+| `--broadcast-mode` | `sync`, `async`, or `block` | `sync` |
+| `--dry-run` | Simulate without broadcasting | `false` |
+| `--generate-only` | Generate unsigned tx JSON | `false` |
+
+### Network Endpoints
+
+| Network | Cosmos Chain ID | Node LCD | EVM Chain ID |
+|---------|----------------|----------|--------------|
+| **Mainnet** | `bitbadges-1` | `https://lcd.bitbadges.io` | 50024 |
+| **Testnet** | `bitbadges-2` | `https://lcd-testnet.bitbadges.io` | 50025 |
+
+## Tokenization Module
+
+The `tokenization` module handles collections, tokens, transfers, approvals, and dynamic stores. Most commands accept a JSON argument (inline or file path).
+
+### Collections
+
+```bash
+# Create a collection
+bitbadgeschaind tx tokenization create-collection ./create-collection.json \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+
+# Universal update (can modify any field)
+bitbadgeschaind tx tokenization universal-update-collection ./update.json \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+
+# Update collection
+bitbadgeschaind tx tokenization update-collection ./update.json \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+
+# Delete collection
+bitbadgeschaind tx tokenization delete-collection 1 \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+```
+
+### Transfers
+
+```bash
+bitbadgeschaind tx tokenization transfer-tokens ./transfer.json \
+  --from mykey --chain-id bitbadges-1 --node https://lcd.bitbadges.io:443
+```
+
+Example `transfer.json`:
+
+```json
+{
+  "collectionId": "1",
+  "transfers": [
+    {
+      "from": "bb1...",
+      "toAddresses": ["bb1..."],
+      "balances": [
+        {
+          "amount": "1",
+          "badgeIds": [{ "start": "1", "end": "1" }],
+          "ownershipTimes": [{ "start": "1", "end": "18446744073709551615" }]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Approvals
+
+```bash
+# Set incoming / outgoing approval
+bitbadgeschaind tx tokenization set-incoming-approval 1 ./approval.json --from mykey ...
+bitbadgeschaind tx tokenization set-outgoing-approval 1 ./approval.json --from mykey ...
+
+# Delete approvals
+bitbadgeschaind tx tokenization delete-incoming-approval 1 my-approval-id --from mykey ...
+bitbadgeschaind tx tokenization delete-outgoing-approval 1 my-approval-id --from mykey ...
+
+# Update all user approvals at once
+bitbadgeschaind tx tokenization update-user-approved-transfers ./approvals.json --from mykey ...
+
+# Purge expired approvals
+bitbadgeschaind tx tokenization purge-approvals 1 true "" false '[]' --from mykey ...
+```
+
+### Metadata and Configuration
+
+```bash
+bitbadgeschaind tx tokenization set-setcollectionmetadata ./metadata.json --from mykey ...
+bitbadgeschaind tx tokenization set-settokenmetadata ./metadata.json --from mykey ...
+bitbadgeschaind tx tokenization set-setcustomdata ./data.json --from mykey ...
+bitbadgeschaind tx tokenization set-setstandards ./standards.json --from mykey ...
+bitbadgeschaind tx tokenization set-setcollectionapprovals ./approvals.json --from mykey ...
+bitbadgeschaind tx tokenization set-valid-token-ids ./tokenids.json --from mykey ...
+bitbadgeschaind tx tokenization set-manager ./manager.json --from mykey ...
+bitbadgeschaind tx tokenization set-setisarchived ./archived.json --from mykey ...
+```
+
+### Dynamic Stores
+
+```bash
+bitbadgeschaind tx tokenization create-dynamic-store true --from mykey ...
+bitbadgeschaind tx tokenization update-dynamic-store 1 false true --from mykey ...
+bitbadgeschaind tx tokenization set-dynamic-store-value 1 bb1... true --from mykey ...
+bitbadgeschaind tx tokenization delete-dynamic-store 1 --from mykey ...
+```
+
+### Address Lists
+
+```bash
+bitbadgeschaind tx tokenization create-address-lists ./lists.json --from mykey ...
+```
+
+## Query Commands
+
+```bash
+# Collection details
+bitbadgeschaind query tokenization collection 1
+
+# Balance for an address
+bitbadgeschaind query tokenization balance 1 bb1...
+
+# Collection statistics
+bitbadgeschaind query tokenization get-collection-stats 1
+
+# Module parameters
+bitbadgeschaind query tokenization params
+
+# Dynamic store queries
+bitbadgeschaind query tokenization get-dynamic-store
+bitbadgeschaind query tokenization get-dynamic-store-value
+```
+
+All query commands support `--node` to specify which node to query and `--output json` for JSON output.
+
+## JSON Input
+
+Most transaction commands accept JSON either inline or from a file path:
+
+```bash
+# From a file
+bitbadgeschaind tx tokenization create-collection ./my-collection.json --from mykey ...
+
+# Inline JSON
+bitbadgeschaind tx tokenization create-collection '{"collectionMetadataTimeline": [...]}' --from mykey ...
+```
+
+Using files is recommended for complex transactions. The JSON schema for each message matches the protobuf definitions documented in the [Messages](../../x-tokenization/messages/README.md) section.
+
+
+## File: ./for-developers/cli/for-ai-agents.md
+
+# CLI for AI Agents
+
+The BitBadges CLI is the recommended interface for AI agents, bots, and automated systems. It provides structured JSON output, pipe-friendly input, and LLM-consumable command discovery — everything an agent needs without writing TypeScript.
+
+## Why CLI for Agents?
+
+- **Structured JSON output** — every command returns parseable JSON
+- **`--help-json`** — outputs the full command tree as structured JSON, perfect for LLM tool discovery
+- **`--dry-run`** — simulate any API call without side effects
+- **Pipe-friendly** — accepts stdin (`-`), file paths (`@file.json`), and inline JSON
+- **Self-documenting** — `bitbadges-cli sdk docs all` dumps the entire documentation
+- **No build step** — no TypeScript compilation, no bundling, just install and run
+
+## Quick Setup for Agents
+
+```bash
+# 1. Install everything
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+
+# 2. Configure API key
+bitbadges-cli config set apiKey YOUR_KEY
+
+# 3. Verify
+bitbadges-cli sdk status
+```
+
+## Agent Workflow: Query, Review, Transact
+
+### Step 1: Discover available commands
+
+```bash
+# Get full command tree as JSON (for LLM tool discovery)
+bitbadges-cli --help-json
+
+# List all API route groups
+bitbadges-cli api --help
+
+# List routes in a specific group
+bitbadges-cli api tokens --help
+```
+
+### Step 2: Query data
+
+```bash
+# Get a collection
+bitbadges-cli api tokens get-collection 1
+
+# Check a balance
+bitbadges-cli api tokens get-balance --body '{"collectionId":"1","address":"bb1..."}'
+
+# Look up an account
+bitbadges-cli api accounts get-account --body '{"address":"bb1..."}'
+
+# Search
+bitbadges-cli api misc search --body '{"query":"my-token"}'
+```
+
+### Step 3: Review and audit
+
+```bash
+# Review a transaction before broadcasting
+bitbadges-cli sdk review tx.json
+
+# Get human-readable explanation
+bitbadges-cli sdk interpret-tx tx.json
+
+# Review a live collection
+bitbadges-cli sdk review 42 --testnet
+
+# Interpret what a collection does
+bitbadges-cli sdk interpret-collection 42
+```
+
+### Step 4: Browse docs and skills
+
+```bash
+# Dump full docs for context
+bitbadges-cli sdk docs all
+
+# Browse a specific topic
+bitbadges-cli sdk docs learn/approvals
+
+# List available builder skills
+bitbadges-cli sdk skills
+
+# Get instructions for building a specific token type
+bitbadges-cli sdk skills smart-token
+```
+
+### Step 5: Sign and broadcast (with chain binary)
+
+```bash
+# Create a key for the agent
+bitbadgeschaind keys add agent-wallet
+
+# Sign and broadcast a transaction
+bitbadgeschaind tx tokenization create-collection ./collection.json \
+  --from agent-wallet --chain-id bitbadges-1 \
+  --node https://lcd.bitbadges.io:443 \
+  --gas auto --gas-adjustment 1.5 --fees 10000ubadge
+
+# Or broadcast via the API
+bitbadges-cli api tx broadcast-tx --body @signed-tx.json
+```
+
+## Combining with MCP Builder Tools
+
+For AI assistants that support MCP (Claude, Cursor, etc.), the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and MCP tools are complementary:
+
+| Use Case | Tool |
+|----------|------|
+| Query data, browse docs, review transactions | **CLI** (`bitbadges-cli`) |
+| Build token collections with guided workflows | **MCP Builder Tools** |
+| Sign and broadcast transactions | **Chain binary** (`bitbadgeschaind`) or **SDK Signing Client** |
+| Key management | **Chain binary** (`bitbadgeschaind`) |
+
+## Example: Fully Automated Agent Script
+
+```bash
+#!/bin/bash
+# Agent that checks a balance and conditionally transfers tokens
+
+COLLECTION_ID=1
+ADDRESS="bb1..."
+THRESHOLD=10
+
+# Query current balance
+BALANCE=$(bitbadges-cli api tokens get-balance \
+  --body "{\"collectionId\":\"$COLLECTION_ID\",\"address\":\"$ADDRESS\"}" \
+  --condensed)
+
+# Parse and decide
+AMOUNT=$(echo "$BALANCE" | jq -r '.balances[0].amount // "0"')
+
+if [ "$AMOUNT" -lt "$THRESHOLD" ]; then
+  echo "Balance $AMOUNT below threshold $THRESHOLD, minting..."
+  
+  # Review the transaction first
+  bitbadges-cli sdk review ./mint-tx.json --testnet
+  
+  # If review passes, broadcast
+  bitbadgeschaind tx tokenization transfer-tokens ./mint-tx.json \
+    --from agent-wallet --chain-id bitbadges-2 \
+    --node https://lcd-testnet.bitbadges.io:443 \
+    --gas auto --fees 10000ubadge
+fi
+```
+
+## Further Reading
+
+- [Bot Examples](../ai-agents/bot-examples.md) — TypeScript bot patterns
+- [Agent Spending Authorization](../ai-agents/agent-spending-authorization.md) — on-chain spending limits for agents
+- [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) — 50+ tools for AI assistants
+- [Claims for Agents](../ai-agents/claims-for-agents.md) — automated minting via claims
+
+
+## File: ./for-developers/cli/installation.md
+
+# Installation
+
+## One-Liner (Recommended)
+
+The fastest way to install everything. Detects your OS and architecture automatically, downloads the chain binary, and installs the SDK CLI.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+This installs:
+1. **`bitbadgeschaind`** — chain binary to `/usr/local/bin/`
+2. **`bitbadges-cli`** — SDK CLI via npm or bun (whichever is available)
+
+### Options
+
+```bash
+# Testnet binary
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --testnet
+
+# Specific version
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --version v29
+
+# Custom install directory
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --install-dir ~/.local/bin
+
+# Skip sudo
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh -s -- --no-sudo
+```
+
+### Supported Platforms
+
+| Platform | Architecture | Status |
+|----------|-------------|--------|
+| Linux | x86_64 (amd64) | Supported |
+| Linux | ARM64 (aarch64) | Supported |
+| macOS | Intel (amd64) | Supported |
+| macOS | Apple Silicon (arm64) | Supported |
+| Windows | x86_64 (via Git Bash, MSYS2, WSL) | Supported |
+
+## SDK CLI Only (npm / bun)
+
+If you only need the SDK CLI (API access, review tools, docs) without the chain binary:
+
+```bash
+# npm
+npm install -g bitbadgesjs-sdk
+
+# bun
+bun install -g bitbadgesjs-sdk
+```
+
+Verify:
+
+```bash
+bitbadges-cli --help
+```
+
+## Chain Binary Only (From Source)
+
+If you only need the chain binary and want to build from source (requires Go 1.24+):
+
+```bash
+git clone https://github.com/BitBadges/bitbadgeschain.git
+cd bitbadgeschain
+make build-mainnet-linux/amd64   # or your platform
+```
+
+Pre-built binaries are also available on the [GitHub Releases page](https://github.com/BitBadges/bitbadgeschain/releases).
+
+## Configuration
+
+### API Key
+
+Get an API key from the [BitBadges Developer Portal](https://bitbadges.io/developer), then configure it:
+
+```bash
+bitbadges-cli config set apiKey YOUR_KEY
+```
+
+Or use environment variables:
+
+```bash
+export BITBADGES_API_KEY=YOUR_KEY
+```
+
+### Config File
+
+The CLI reads `~/.bitbadges/config.json`. Manage it with:
+
+```bash
+# Set values
+bitbadges-cli config set apiKey YOUR_KEY
+bitbadges-cli config set apiKeyTestnet YOUR_TESTNET_KEY
+bitbadges-cli config set network testnet
+bitbadges-cli config set url https://custom-api.example.com/api/v0
+
+# View current config
+bitbadges-cli config show
+
+# Remove a value
+bitbadges-cli config unset apiKeyTestnet
+```
+
+Supported keys: `apiKey`, `apiKeyTestnet`, `apiKeyLocal`, `network` (`mainnet` | `testnet` | `local`), `url`.
+
+### Environment Variables
+
+| Variable | Description |
+|---|---|
+| `BITBADGES_API_KEY` | Default API key (all networks) |
+| `BITBADGES_API_KEY_TESTNET` | Testnet-specific API key |
+| `BITBADGES_API_KEY_LOCAL` | Local-specific API key |
+| `BITBADGES_API_URL` | Custom base URL (overrides config) |
+
+### Network Flags
+
+| Flag | Description |
+|---|---|
+| `--testnet` | Use testnet API |
+| `--local` | Use local API (`http://localhost:3001`) |
+| `--url <url>` | Custom API base URL (overrides all others) |
+
+### Resolution Order
+
+**API key:** `--api-key` flag > network-specific env var > `BITBADGES_API_KEY` env var > network-specific config key > default config `apiKey`.
+
+**Base URL:** `--url` flag > `--local` > `--testnet` > `BITBADGES_API_URL` env > config file > default production URL.
+
+## Verify Installation
+
+```bash
+# Check chain binary
+bitbadgeschaind version
+
+# Check SDK CLI
+bitbadges-cli sdk status
+
+# Check API connectivity
+bitbadges-cli sdk status --testnet
+```
+
+## Shell Completion
+
+Generate bash/zsh completions for tab-completion:
+
+```bash
+eval "$(bitbadges-cli completion)"
+```
+
+Add that line to your `.bashrc` or `.zshrc` for persistent completions.
+
+
+## File: ./for-developers/cli/sdk-commands.md
+
+# SDK Commands
+
+The `sdk` subcommand provides utilities for reviewing, interpreting, and working with BitBadges data. All commands are available via both `bitbadges-cli sdk` and `bitbadgeschaind sdk`.
+
+## review
+
+Run validation, audit, and standards checks on a transaction or collection. Accepts a JSON file, inline JSON, collection ID (numeric), or `-` for stdin.
+
+```bash
+bitbadges-cli sdk review tx.json
+bitbadges-cli sdk review collection.json --human
+bitbadges-cli sdk review 42 --testnet
+echo '{"messages":[...]}' | bitbadges-cli sdk review -
+```
+
+If `BITBADGES_API_KEY` is set, transactions are sent to the enriched simulate endpoint. Falls back to local analysis (`validateTransaction` + `auditCollection` + `verifyStandardsCompliance`) if the API is unavailable.
+
+For collection JSON (no `messages` field), runs `auditCollection` and `verifyStandardsCompliance` locally.
+
+## interpret-tx
+
+Generate a human-readable explanation of a transaction.
+
+```bash
+bitbadges-cli sdk interpret-tx tx.json
+bitbadges-cli sdk interpret-tx '{"messages":[...]}' --output-file summary.txt
+```
+
+## interpret-collection
+
+Generate a human-readable explanation of a collection. Accepts a JSON file, inline JSON, numeric collection ID (fetched via API), or `-` for stdin.
+
+```bash
+bitbadges-cli sdk interpret-collection collection.json
+bitbadges-cli sdk interpret-collection 42 --testnet
+```
+
+## address convert
+
+Convert addresses between `bb1` (Cosmos) and `0x` (Ethereum) formats.
+
+```bash
+bitbadges-cli sdk address convert 0x1234...abcd --to bb1
+bitbadges-cli sdk address convert bb1qpzm... --to 0x
+```
+
+## address validate
+
+Check if an address is valid and detect its chain type.
+
+```bash
+bitbadges-cli sdk address validate bb1qpzm...
+# { "valid": true, "chain": "BitBadges", "address": "bb1qpzm..." }
+```
+
+## lookup-token
+
+Look up token info by symbol. Returns IBC denom, decimals, supported networks, and backing address (for IBC tokens). Omit the symbol to list all known tokens.
+
+```bash
+bitbadges-cli sdk lookup-token          # list all tokens
+bitbadges-cli sdk lookup-token BADGE    # specific token info
+```
+
+## alias for-ibc-backing
+
+Generate the backing address for an IBC-backed smart token.
+
+```bash
+bitbadges-cli sdk alias for-ibc-backing ibc/27394FB092D2ECCD...
+```
+
+## alias for-wrapper
+
+Generate the wrapper path address for a cosmos coin wrapper.
+
+```bash
+bitbadges-cli sdk alias for-wrapper ubadge
+```
+
+## alias for-mint-escrow
+
+Generate the mint escrow address for a collection (where quest reward funds are sent, etc.).
+
+```bash
+bitbadges-cli sdk alias for-mint-escrow 42
+```
+
+## gen-list-id
+
+Generate a reserved address list ID from a set of addresses.
+
+```bash
+bitbadges-cli sdk gen-list-id bb1abc... bb1def...
+bitbadges-cli sdk gen-list-id bb1abc... --blacklist
+```
+
+## skills
+
+List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+
+```bash
+bitbadges-cli sdk skills               # list all skills
+bitbadges-cli sdk skills smart-token   # show specific skill
+```
+
+## docs
+
+Browse bundled BitBadges documentation.
+
+```bash
+bitbadges-cli sdk docs                      # show section tree
+bitbadges-cli sdk docs all                  # dump full documentation
+bitbadges-cli sdk docs learn                # specific section
+bitbadges-cli sdk docs learn/approvals      # navigate deeper with slash paths
+```
+
+## status
+
+Show CLI status: active API key (masked), network, base URL, config path, SDK version, and API health check.
+
+```bash
+bitbadges-cli sdk status
+bitbadges-cli sdk status --testnet
+```
+
+
 ## File: ./for-developers/concepts/README.md
 
 # 👥 Concepts
@@ -17240,17 +18064,37 @@ const txn = createTransactionPayload(txContext, msgs);
 
 # 🔨 Getting Started
 
-BitBadges is proud to offer no-code / low-code flows for all our major services. Simply navigate to the Create tab in-site, and get started creating tokens, claims, address lists, explore listings, applications, and more!
+## Quick Start — Install the CLI
+
+The fastest way to start building. One command installs the chain binary (`bitbadgeschaind`) and the SDK CLI (`bitbadges-cli`) with 104+ API routes, review tools, and built-in docs.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+Works on Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [Installation](cli/installation.md) for all options.
+
+After installing, set your API key and start querying:
+
+```bash
+bitbadges-cli config set apiKey YOUR_KEY    # get one at bitbadges.io/developer
+bitbadges-cli api tokens get-collection 1   # query any collection
+bitbadges-cli sdk docs                      # browse docs from terminal
+```
+
+> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [MCP Builder Tools](ai-agents/mcp-builder-tools.md) for building tokens with Claude/Cursor.
+
+---
+
+## No-Code / Low-Code
+
+BitBadges also offers no-code flows for all major services. Navigate to the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) to create tokens, claims, address lists, and more — no integration needed.
 
 <figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 > **Need help?** Join our Discord for support from the BitBadges team and community developers.
 >
 > **Need BADGE?** Contact us on Discord - get subsidized credits for developers during chaosnet!
->
-> **No-Code / In-Site Solutions** Check out the [Create tab](https://bitbadges.io/create) or the [developer portal](https://bitbadges.io/developer) first to see what all is possible. Most of the time, you can just do everything with no code directly in-site! No need for any direct integration. Let us handle everything!
->
-> Get creative. You can gate URLs, Discords, and integrate with many of your favorite tools without a single line of code!
 
 ## Explore First, Read Later
 
@@ -21263,6 +22107,20 @@ Below is a list of official links for socials and other platforms. Our preferred
 * [BitBadges App](https://bitbadges.io)
 * [Explorer](https://explorer.bitbadges.io)
 
+### Install
+
+One command installs everything — the chain binary, SDK CLI, and 104+ API routes:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BitBadges/bitbadgeschain/main/install.sh | sh
+```
+
+Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See [CLI & Chain Binary](../for-developers/cli/) for full documentation.
+
+* [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
+* [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
+* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadges-builder-mcp) — `npm install -g bitbadges-builder-mcp`
+
 ### Get Featured
 
 * [Get Featured](https://tally.so/r/mBy2aR) - Explore Page
@@ -21270,6 +22128,7 @@ Below is a list of official links for socials and other platforms. Our preferred
 ### Documentation
 
 * [LLM .txt](../for-llms.txt) - Entire documentation dumped into one file
+* [CLI Docs](../for-developers/cli/) - Full CLI reference
 
 ### Socials
 
