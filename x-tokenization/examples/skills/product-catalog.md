@@ -102,17 +102,16 @@ Each product gets its own purchase approval. There's also an optional global bur
 
 ### Creation Flow (Tool Calls)
 
-1. \`build_token\` — initialize collection
-2. \`set_valid_token_ids\` — set [{ start: "1", end: "<NUM_PRODUCTS>" }]
-3. \`set_standards\` — set ["Products"]
-4. \`set_invariants\` — set { noCustomOwnershipTimes: true }
-5. \`add_approval\` xN — one purchase approval per product
-6. \`add_approval\` — optional burn approval
-7. \`set_collection_metadata\` — store name, description, image
-8. \`set_token_metadata\` xN — metadata for each product
-9. \`set_permissions\` — preset "fully-immutable"
-10. \`validate_transaction\` — verify structure
-11. \`simulate_transaction\` — dry run
+1. \`set_valid_token_ids\` — set [{ start: "1", end: "<NUM_PRODUCTS>" }]
+2. \`set_standards\` — set ["Products"]
+3. \`set_invariants\` — set { noCustomOwnershipTimes: true }
+4. \`add_approval\` xN — one purchase approval per product
+5. \`add_approval\` — optional burn approval
+6. \`set_collection_metadata\` — store name, description, image
+7. \`set_token_metadata\` xN — metadata for each product
+8. \`set_permissions\` — preset "fully-immutable"
+9. \`validate_transaction\` — verify structure
+10. \`simulate_transaction\` — dry run
 
 ### Common Mistakes
 

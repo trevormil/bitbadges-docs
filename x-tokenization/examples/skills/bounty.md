@@ -102,7 +102,7 @@ Same as Deny but:
 
 ## Creation Flow (Tool Calls)
 
-1. `build_token` — initialize collection
+1. Use per-field tools to initialize the collection
 2. `set_valid_token_ids` — set [{ start: "1", end: "1" }]
 3. `set_standards` — set ["Bounty"]
 4. `set_invariants` — set { noCustomOwnershipTimes: true, disablePoolCreation: true }
@@ -140,3 +140,7 @@ All permissions MUST be frozen (permanentlyForbiddenTimes: fullRange):
 - DON'T omit fields in orderCalculationMethod — include ALL boolean fields
 - DON'T make expiration transferTimes overlap with accept/deny transferTimes
 - DON'T forget set_mint_escrow_coins — without it, the escrow is empty and payouts fail
+
+### Advanced: Self-Referencing with mustOwnTokens
+
+For bounties that require the verifier or submitter to hold a token from THIS collection (e.g., a reputation badge), use collectionId "0" in mustOwnTokens. The chain resolves "0" to the current collection ID at runtime, which is especially useful at creation time when the real ID is not yet known.

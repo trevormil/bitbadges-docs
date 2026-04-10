@@ -105,16 +105,15 @@ Bids must have transferTimes that stay valid through the END of the accept windo
 
 ### Creation Flow (Tool Calls)
 
-1. \`build_token\` — initialize collection
-2. \`set_valid_token_ids\` — set [{ start: "1", end: "1" }]
-3. \`set_standards\` — set ["Auction"]
-4. \`set_invariants\` — set { noCustomOwnershipTimes: true }
-5. \`add_approval\` x2 — mint-to-winner, burn
-6. \`set_collection_metadata\` — auction title, description, image
-7. \`set_token_metadata\` — token 1 metadata (the item being auctioned)
-8. \`set_permissions\` — preset "fully-immutable"
-9. \`validate_transaction\` — verify structure
-10. \`simulate_transaction\` — dry run
+1. \`set_valid_token_ids\` — set [{ start: "1", end: "1" }]
+2. \`set_standards\` — set ["Auction"]
+3. \`set_invariants\` — set { noCustomOwnershipTimes: true }
+4. \`add_approval\` x2 — mint-to-winner, burn
+5. \`set_collection_metadata\` — auction title, description, image
+6. \`set_token_metadata\` — token 1 metadata (the item being auctioned)
+7. \`set_permissions\` — preset "fully-immutable"
+8. \`validate_transaction\` — verify structure
+9. \`simulate_transaction\` — dry run
 
 ### Common Mistakes
 

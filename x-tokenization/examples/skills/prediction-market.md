@@ -234,7 +234,7 @@ Note: The deposit coinTransfer uses `to: "Mint"` with no overrides: initiator pa
     },
     "votingChallenges": [{
       "proposalId": "yes-wins-proposal",
-      "quorumThreshold": "1",
+      "quorumThreshold": "100",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -290,7 +290,7 @@ Same as YES Wins but with token ID 2, separate proposalId, and separate amountTr
     },
     "votingChallenges": [{
       "proposalId": "no-wins-proposal",
-      "quorumThreshold": "1",
+      "quorumThreshold": "100",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -344,7 +344,7 @@ Same as YES Wins but with token ID 2, separate proposalId, and separate amountTr
     },
     "votingChallenges": [{
       "proposalId": "push-yes-proposal",
-      "quorumThreshold": "1",
+      "quorumThreshold": "100",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -400,7 +400,7 @@ Same as Push YES but with token ID 2 and a separate proposalId:
     },
     "votingChallenges": [{
       "proposalId": "push-no-proposal",
-      "quorumThreshold": "1",
+      "quorumThreshold": "100",
       "voters": [{ "address": "<VERIFIER_ADDRESS>", "weight": "1" }]
     }]
   }
@@ -421,7 +421,7 @@ After creating the collection and minting initial pairs:
 
 ### Steps for AI Builder
 
-1. `build_token` with 2 token IDs, standard 'Prediction Market'
+1. Use per-field tools to initialize the collection (set_standards, set_valid_token_ids, etc.)
 2. `set_token_metadata` for YES (token 1) and NO (token 2)
 3. `set_invariants` with `{ "noCustomOwnershipTimes": true, "disablePoolCreation": false }` — MUST set disablePoolCreation to false
 4. Add 7 approvals via `add_approval`:

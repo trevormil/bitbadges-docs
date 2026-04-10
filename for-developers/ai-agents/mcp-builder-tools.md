@@ -95,17 +95,18 @@ The recommended way to build collections. Each tool sets one field on a session-
 | `remove_transfer` | Remove a transfer message from the transaction |
 | `get_transaction` | Return the current session transaction as JSON |
 
-### One-Shot Builders
+### Helper Builders
 
-Build entire collections in a single call. Useful for simple cases or when you want a quick starting point.
+Standalone tools for building specific non-collection resources.
 
 | Tool | Description |
 |------|-------------|
-| `build_token` | Universal token builder — single entry point for all collection types |
 | `build_claim` | Build claim JSON for the API (code-gated, password-gated, whitelist-gated, open) |
 | `build_address_list` | Build an on-chain address list collection |
 | `build_transfer` | Build a MsgTransferTokens by auto-querying the collection and constructing the correct transaction |
 | `build_dynamic_store` | Build transaction JSON for dynamic store operations (create, update, delete, set values) |
+
+> **Note:** For building collections, use the session-based per-field tools above. They provide full control, support parallel calls, and are the recommended approach for all collection types.
 
 ### Audit & Analysis
 
@@ -186,14 +187,6 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 3. **Verify** — Call `validate_transaction`, `audit_collection`, and `simulate_transaction` in parallel. Fix any errors with targeted `remove_approval` + re-add.
 4. **Export** — Call `get_transaction` to get the final transaction JSON for signing.
 
-### One-Shot Build
-
-For simple collections, use `build_token` to generate everything in one call, then verify:
-
-```
-build_token → audit_collection → validate_transaction → simulate_transaction → (user signs via SDK/frontend)
-```
-
 ### Query & Verification (No Signing)
 
 ```
@@ -247,6 +240,6 @@ The MCP server also exposes embedded documentation as resources:
 | `bitbadges://errors/patterns` | Error Patterns | Common error messages mapped to diagnoses and fixes |
 | `bitbadges://docs/frontend` | Reference Frontend Patterns | Patterns from the BitBadges reference frontend (Next.js + Ant Design) |
 | `bitbadges://workflows/all` | Workflow Chains | Step-by-step tool chains for common multi-step operations |
-| `bitbadges://schema/token-builder` | Token Builder Schema | Annotated schema for build_token: design axes, field reference, approval patterns, and validation checklist |
+| `bitbadges://schema/token-builder` | Token Builder Schema | Annotated schema for per-field session builders: design axes, field reference, approval patterns, and validation checklist |
 
 Access these via your MCP client's resource reading capabilities.

@@ -15,7 +15,7 @@ Required standards: ["Address List"]
 - BOTH approvals MUST have overridesFromOutgoingApprovals: true
 - NO peer-to-peer transfer approval — only manager can modify the list
 - Standard is "Address List" (NOT "Non-Transferable")
-- Use build_address_list tool instead of build_token for this type
+- Use per-field tools (set_standards, add_approval, set_permissions, set_invariants)
 
 ## Instructions
 
@@ -102,5 +102,4 @@ Lock approvals and token IDs:
 - DON'T use approvalId other than "manager-add" and "manager-remove" — the frontend depends on these exact strings.
 - DON'T use standard "Non-Transferable" — address lists use "Address List".
 - DON'T add a peer-to-peer transfer approval — only the manager should modify the list.
-- DON'T use build_token — use build_address_list instead for this type.
 - DON'T forget overridesFromOutgoingApprovals: true on BOTH approvals.
