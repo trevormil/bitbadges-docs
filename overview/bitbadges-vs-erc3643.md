@@ -1,22 +1,26 @@
-# BitBadges vs ERC-3643: Comparing Compliance Token Standards
+# BitBadges and ERC-3643: How They Work Together
 
-Looking for a compliance token standard comparison? BitBadges and ERC-3643 (T-REX) are two programmable token standards that take fundamentally different approaches to regulated and permissioned tokenization. This page provides a fair, side-by-side look at how they compare so you can choose the right fit for your use case.
+Looking to understand how BitBadges and ERC-3643 (T-REX) relate? They are not competing standards -- they operate at different layers, and you can use both together. BitBadges is a Layer 1 blockchain with EVM compatibility, meaning you can deploy ERC-3643 contracts directly on BitBadges while also taking advantage of the protocol-level token standard.
 
 ## Overview
 
 **ERC-3643** (also known as T-REX, Token for Regulated EXchanges) is an Ethereum-based standard for compliant security tokens. It has been ratified by the ERC process and has facilitated over $32 billion in tokenized assets. It is the most widely adopted standard for institutional-grade tokenized securities, with strong backing from the financial sector.
 
-**BitBadges** is a Cosmos-based Layer 1 blockchain with a built-in programmable token standard. Rather than deploying individual smart contracts for each token, BitBadges builds compliance rules, transfer restrictions, and approval logic directly into the protocol layer. This means all token behavior is configured through structured messages rather than custom code.
+**BitBadges** is a Cosmos-based Layer 1 blockchain with EVM compatibility via precompiles. It offers two paths for token creation:
+
+1. **The built-in protocol-level token standard** -- compliance rules, transfer restrictions, and approval logic are configured directly through structured messages with no smart contract development required.
+2. **EVM smart contracts** -- deploy any Solidity contract (including ERC-3643) on BitBadges through its EVM execution environment, with full access to Cosmos-native features like IBC.
+
+This means BitBadges is not an alternative to ERC-3643 -- it is a chain where you can deploy ERC-3643 *and* access additional protocol-level primitives that are not available on Ethereum.
 
 ## Feature Comparison
 
-| Feature | BitBadges | ERC-3643 |
+| Feature | BitBadges Protocol Standard | ERC-3643 (deployable on BitBadges or Ethereum) |
 |---------|-----------|----------|
 | **Enforcement layer** | Protocol-level -- rules are enforced by the chain itself | Contract-level -- rules are enforced by Solidity smart contracts |
 | **Smart contracts required** | No -- collections are configured through structured transaction messages | Yes -- each token requires deploying multiple Solidity contracts (token, identity registry, compliance module, claim topics) |
 | **Deployment experience** | No-code UI, CLI template builders, or AI-assisted MCP tools | Developer-only -- requires Solidity expertise and contract deployment |
-| **Blockchain** | Cosmos-native Layer 1 with EVM compatibility | Ethereum and EVM-compatible chains |
-| **Multi-chain support** | Native IBC (Inter-Blockchain Communication) to all Cosmos chains | Bridge-dependent for cross-chain transfers |
+| **Multi-chain support** | Native IBC (Inter-Blockchain Communication) to all Cosmos chains | Bridge-dependent for cross-chain transfers (unless deployed on BitBadges, which has native IBC) |
 | **Identity and compliance** | Built-in approval criteria with configurable checks (ownership requirements, merkle proofs, signature challenges, on-chain queries) | ONCHAINID identity framework with claim topics and trusted issuers |
 | **Transfer restrictions** | Configurable per-approval rules: address allowlists, time windows, amount limits, tracker-based caps, 2FA gating, coin payment requirements | Compliance modules with modular rule contracts (country restrictions, investor limits, time locks) |
 | **Permissioning** | Granular, lockable permission system -- each field can be frozen or made manager-controlled independently | Owner/agent role system with recovery mechanisms |
@@ -24,15 +28,14 @@ Looking for a compliance token standard comparison? BitBadges and ERC-3643 (T-RE
 | **Forced transfers** | Supported via admin override approvals | Supported via recovery and forced transfer functions |
 | **Supply control** | Configurable mint/burn rules with lockable permissions | Mint/burn controlled by token agents |
 
-## Where ERC-3643 Excels
+## ERC-3643 Strengths
 
 - **Institutional adoption** -- ERC-3643 is a ratified Ethereum standard with $32B+ in tokenized assets and adoption by major financial institutions
 - **Regulatory track record** -- Purpose-built for securities compliance with established legal frameworks
 - **Ecosystem maturity** -- Rich ecosystem of identity providers, compliance modules, and institutional tooling
-- **Ethereum network effects** -- Direct access to the largest DeFi ecosystem and liquidity pools
 - **ONCHAINID framework** -- Mature decentralized identity solution for KYC/AML compliance
 
-## Where BitBadges Excels
+## BitBadges Protocol Standard Strengths
 
 - **No smart contract development** -- Creating a compliant token requires zero code; everything is configured through transaction parameters or the no-code UI
 - **Protocol-level guarantees** -- Transfer rules cannot be bypassed by contract bugs or upgradeable proxy exploits because they are enforced by the chain itself
@@ -41,20 +44,16 @@ Looking for a compliance token standard comparison? BitBadges and ERC-3643 (T-RE
 - **Cosmos ecosystem** -- Native IBC connectivity to 50+ Cosmos chains without bridges
 - **Lower barrier to entry** -- No Solidity expertise, gas optimization, or contract auditing required
 
-## Choosing Between Them
+## Using Both Together
 
-**Choose ERC-3643 if:**
-- You are tokenizing regulated securities and need a standard with established legal precedent
-- Your investors and counterparties are already in the Ethereum ecosystem
-- You need integration with existing institutional custody and compliance infrastructure
-- You require ONCHAINID or a similar established on-chain identity framework
+Because BitBadges has full EVM compatibility, you don't have to choose one approach. You can:
 
-**Choose BitBadges if:**
-- You want to launch compliant tokens without writing or auditing smart contracts
-- You need a single standard that handles multiple token types beyond securities
-- You prefer protocol-level enforcement over contract-level enforcement
-- You want AI-assisted or no-code deployment options
-- You need native multi-chain support through IBC
+- **Deploy ERC-3643 contracts on BitBadges** and gain native IBC multi-chain support that isn't available on Ethereum
+- **Use the protocol-level standard** for tokens that don't need the ERC-3643 contract architecture
+- **Combine both** -- use ERC-3643 for regulated securities while using the protocol standard for access passes, subscriptions, or other token types in the same ecosystem
+- **Migrate existing ERC-3643 deployments** to BitBadges with minimal contract changes, gaining access to Cosmos-native features
+
+The right choice depends on your use case. If you have existing Solidity contracts and institutional tooling built around ERC-3643, deploy them on BitBadges and get IBC for free. If you want to launch compliant tokens without writing code, use the protocol standard. For complex deployments, use both.
 
 ## Further Reading
 
