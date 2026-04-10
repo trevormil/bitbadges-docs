@@ -90,7 +90,7 @@ Use approvalId `"quest-approval"`. The EXACT approvalCriteria structure:
 
 **Gating** — add ONE OR MORE of these to approvalCriteria based on the user's request:
 - **Off-chain claim**: `"merkleChallenges": [{ "root": "", "expectedProofLength": "0", "maxUsesPerLeaf": "1", "uri": "", "customData": "", "useCreatorAddressAsLeaf": false, "claimConfig": { "approach": "in-site", "label": "...", "plugins": [...] } }]`
-- **Token ownership**: `"mustOwnTokens": [{ "collectionId": "...", "amountRange": {"start":"1","end":"18446744073709551615"}, ... }]`
+- **Token ownership**: `"mustOwnTokens": [{ "collectionId": "...", "amountRange": {"start":"1","end":"18446744073709551615"}, ... }]` — Use collectionId "0" to self-reference this collection (e.g., require holding token 1 from this quest collection itself).
 - **Dynamic store**: `"dynamicStoreChallenges": [...]`
 - **EVM query**: `"evmQueryChallenges": [...]`
 

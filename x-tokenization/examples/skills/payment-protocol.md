@@ -168,7 +168,7 @@ Happy path uses #1, #3, #6. Dispute uses #1, #2, #5, #7, #8. Timeout uses #1, #4
 All approvals are effectively **OR logic** — any approval can be satisfied as long as its criteria match. The chain doesn't enforce "if A then B" directly. To implement conditional flows, get creative with criteria composition:
 
 - **Balance depletion as mutex**: approve-release and deny-refund target the same tokens. Once one fires, balance depletes and the other can't execute. Natural mutual exclusion.
-- **mustOwnTokens for state gating**: mint soulbound tokens (from this or another collection) to represent state transitions, then require them via mustOwnTokens on downstream approvals. E.g., mint a "work-completed" badge, then the release approval requires holding it.
+- **mustOwnTokens for state gating**: mint soulbound tokens (from this or another collection) to represent state transitions, then require them via mustOwnTokens on downstream approvals. E.g., mint a "work-completed" badge, then the release approval requires holding it. Use collectionId "0" to self-reference this collection — the chain resolves it at runtime, avoiding the need to hardcode the collection ID.
 - **transferTimes for temporal gating**: only allow certain approvals after a deadline passes.
 - **votingChallenges for human decisions**: gate approvals behind explicit votes from designated parties.
 - **Amount caps for partial flows**: use approvalAmounts to limit how much each branch can move, preventing over-claiming.

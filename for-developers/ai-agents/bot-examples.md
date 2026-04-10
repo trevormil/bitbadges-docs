@@ -204,15 +204,19 @@ simulate_transaction()
 get_transaction()
 ```
 
-### One-Shot Build
+### CLI Template Build
 
-For simple cases, use `build_token` to generate everything in one call:
+For quick collection creation from the terminal, use the CLI build commands:
 
+```bash
+# Generate a vault token (outputs transaction JSON)
+bitbadges-cli build vault --backing-coin USDC --name "My Vault" --dry-run --explain
+
+# Generate a subscription collection
+bitbadges-cli build subscription --interval monthly --price 10 --denom USDC --recipient bb1...
 ```
-build_token({ tokenType: "fungible", name: "My Bot Token", ... })
-  → validate_transaction({ transactionJson: "<output>" })
-  → simulate_transaction({ transactionJson: "<output>" })
-```
+
+See [CLI Build Commands](../cli/build-commands.md) for the full list of 18 template builders.
 
 ### Query Sequence (No Signing)
 

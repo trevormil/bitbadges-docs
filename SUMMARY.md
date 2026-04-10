@@ -7,6 +7,7 @@
 * [🪙 BADGE](overview/badge.md)
 * [🔗 Official Links and Resources](overview/official-links.md)
 * [🤝 Brand Guidelines](overview/link-sharing.md)
+* [⚖️ BitBadges vs ERC-3643](overview/bitbadges-vs-erc3643.md)
 
 ## 🏗️ Token Standard
 
@@ -162,6 +163,7 @@
   * [SDK Commands](for-developers/cli/sdk-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
+  * [Build Commands](for-developers/cli/build-commands.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)

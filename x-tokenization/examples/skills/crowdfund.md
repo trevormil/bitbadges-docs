@@ -208,16 +208,15 @@ On-chain crowdfunding with automatic goal tracking. Contributors deposit coins a
 
 ### Creation Flow (Tool Calls)
 
-1. \`build_token\` — initialize collection
-2. \`set_valid_token_ids\` — set [{ start: "1", end: "2" }]
-3. \`set_standards\` — set ["Crowdfund"]
-4. \`set_invariants\` — set { noCustomOwnershipTimes: true }
-5. \`add_approval\` x4 — deposit-refund, deposit-progress, success, refund
-6. \`set_collection_metadata\` — name, description, image
-7. \`set_token_metadata\` x2 — Token 1 (Refund), Token 2 (Progress)
-8. \`set_permissions\` — preset "fully-immutable"
-9. \`validate_transaction\` — verify structure
-10. \`simulate_transaction\` — dry run
+1. \`set_valid_token_ids\` — set [{ start: "1", end: "2" }]
+2. \`set_standards\` — set ["Crowdfund"]
+3. \`set_invariants\` — set { noCustomOwnershipTimes: true }
+4. \`add_approval\` x4 — deposit-refund, deposit-progress, success, refund
+5. \`set_collection_metadata\` — name, description, image
+6. \`set_token_metadata\` x2 — Token 1 (Refund), Token 2 (Progress)
+7. \`set_permissions\` — preset "fully-immutable"
+8. \`validate_transaction\` — verify structure
+9. \`simulate_transaction\` — dry run
 
 ### Common Mistakes
 

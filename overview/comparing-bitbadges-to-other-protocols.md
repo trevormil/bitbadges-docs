@@ -33,3 +33,7 @@ This approach vastly differs to existing ones requiring an individual smart cont
 While BitBadges does not natively support ERC-20 contracts, it does support EVM contracts, allowing for the extension of functionality and the creation of dApps. However, our goal is to keep evolving our token standard so that no custom contracts are EVER needed.
 
 Protocols like Ethereum and Solana have robust smart contract support, enabling a wide range of decentralized applications.
+
+### Compliance Token Standards
+
+For a detailed comparison of BitBadges with ERC-3643 (T-REX), the leading compliance token standard for regulated securities, see [BitBadges vs ERC-3643](bitbadges-vs-erc3643.md).

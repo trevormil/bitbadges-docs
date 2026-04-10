@@ -18,6 +18,9 @@ These pages document every guided build skill available in the [BitBadges MCP Bu
 - [Quest](quest.md) — Quest/reward collection — users complete criteria and claim a badge + coin payout
 - [Prediction Market](prediction-market.md) — Binary prediction market with YES/NO outcome tokens, liquidity pool trading, and vote-based settlement
 - [Bounty](bounty.md) — Escrow-based bounty with verifier arbitration. Submitter escrows coins, verifier accepts (pays recipient) or denies (refunds submitter). Expires if no decision.
+- [Crowdfund](crowdfund.md) — On-chain crowdfunding with goal tracking via mustOwnTokens. Contributors deposit funds, receive refund tokens. Crowdfunder withdraws if goal met, contributors refund if not.
+- [Auction](auction.md) — Single-item auction with intent-based bidding. Seller mints NFT directly to the winning bidder during the accept window.
+- [Products](product-catalog.md) — Multi-product storefront with per-product pricing, supply limits, and optional burn-on-purchase. Each product is a separate token ID.
 
 ## Standards
 
