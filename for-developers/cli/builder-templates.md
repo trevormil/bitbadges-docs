@@ -107,7 +107,8 @@ Create an auction collection with configurable bidding and acceptance windows.
 
 ```bash
 bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
-  --name "Rare Item" --description "Limited edition collectible"
+  --name "Rare Item" --description "Limited edition collectible" \
+  --seller bb1seller...
 ```
 
 | Flag | Required | Description |
@@ -117,6 +118,7 @@ bitbadges-cli builder templates auction --bid-deadline 7d --accept-window 7d \
 | `--name <name>` | No | Item name (default: "Auction") |
 | `--description <text>` | No | Item description |
 | `--image <url>` | No | Item image URL |
+| `--seller <address>` | No | Seller address — only this address can accept the winning bid (defaults to `--creator`) |
 
 ### `build product-catalog`
 
