@@ -8189,7 +8189,7 @@ console.log('TX Hash:', result.txHash);
 | Path | Best For | Install |
 |------|----------|---------|
 | **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadges-builder-mcp` |
+| **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
@@ -8198,10 +8198,10 @@ console.log('TX Hash:', result.txHash);
 
 ```bash
 # Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
 
 # Or install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 ```
 
 See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
@@ -8720,7 +8720,7 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 
 # MCP Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
 > For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
@@ -8728,10 +8728,10 @@ The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builde
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly (no install)
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 ### Claude Desktop
@@ -8743,7 +8743,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -8756,7 +8756,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 ### Cursor
@@ -8768,7 +8768,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -18144,10 +18144,10 @@ The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly with npx
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -18157,7 +18157,7 @@ npx bitbadges-builder-mcp
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -18169,7 +18169,7 @@ npx bitbadges-builder-mcp
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
@@ -18180,7 +18180,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **MCP Builder Tools** | `npm i -g bitbadges-builder-mcp` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **MCP Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/mcp-builder-tools.md) |
 | **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
@@ -22119,7 +22119,7 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
 * [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadges-builder-mcp) — `npm install -g bitbadges-builder-mcp`
+* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
 
 ### Get Featured
 
@@ -22647,7 +22647,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 ## How to Create
 
 Collections can be created:
-- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/BitBadges/bitbadges-plugins/tree/main/packages/bitbadges-builder-mcp) to help configure collections.
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) to help configure collections.
 - **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
@@ -31749,7 +31749,7 @@ const createCollection = {
 
 # 🤖 MCP Builder Skills
 
-These pages document every guided build skill available in the [BitBadges MCP Builder](https://github.com/bitbadges/bitbadges-builder-mcp). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
+These pages document every guided build skill available in the [BitBadges MCP Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
 
 > **Tip:** If you're using the MCP builder in Claude, Cursor, or another AI tool, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
 

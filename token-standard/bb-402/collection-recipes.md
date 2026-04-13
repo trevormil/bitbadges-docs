@@ -165,7 +165,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 ## How to Create
 
 Collections can be created:
-- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/BitBadges/bitbadges-plugins/tree/main/packages/bitbadges-builder-mcp) to help configure collections.
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) to help configure collections.
 - **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 

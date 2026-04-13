@@ -17,7 +17,7 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
 * [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadges-builder-mcp) — `npm install -g bitbadges-builder-mcp`
+* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
 
 ### Get Featured
 

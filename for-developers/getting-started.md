@@ -80,10 +80,10 @@ The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly with npx
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -93,7 +93,7 @@ npx bitbadges-builder-mcp
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -105,7 +105,7 @@ npx bitbadges-builder-mcp
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
@@ -116,7 +116,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **MCP Builder Tools** | `npm i -g bitbadges-builder-mcp` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **MCP Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/mcp-builder-tools.md) |
 | **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |

@@ -1,6 +1,6 @@
 # MCP Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builder-mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
 > For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
@@ -8,10 +8,10 @@ The [BitBadges Builder MCP server](https://github.com/BitBadges/bitbadges-builde
 
 ```bash
 # Install globally
-npm install -g bitbadges-builder-mcp
+npm install -g bitbadgesjs-sdk
 
 # Or run directly (no install)
-npx bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 ### Claude Desktop
@@ -23,7 +23,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -36,7 +36,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
 ```
 
 ### Cursor
@@ -48,7 +48,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
