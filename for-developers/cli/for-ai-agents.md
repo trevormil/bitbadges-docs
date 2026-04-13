@@ -103,14 +103,14 @@ bitbadgeschaind tx tokenization create-collection ./collection.json \
 bitbadges-cli api tx broadcast-tx --body @signed-tx.json
 ```
 
-## Combining with MCP Builder Tools
+## Combining with BitBadges Builder Tools
 
-For AI assistants that support MCP (Claude, Cursor, etc.), the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and MCP tools are complementary:
+For AI assistants that speak MCP (Claude, Cursor, etc.), the [BitBadges Builder Tools](../ai-agents/builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and builder tools are complementary:
 
 | Use Case | Tool |
 |----------|------|
 | Query data, browse docs, review transactions | **CLI** (`bitbadges-cli`) |
-| Build token collections with guided workflows | **MCP Builder Tools** |
+| Build token collections with guided workflows | **BitBadges Builder Tools** |
 | Sign and broadcast transactions | **Chain binary** (`bitbadgeschaind`) or **SDK Signing Client** |
 | Key management | **Chain binary** (`bitbadgeschaind`) |
 
@@ -150,5 +150,5 @@ fi
 
 - [Bot Examples](../ai-agents/bot-examples.md) — TypeScript bot patterns
 - [Agent Spending Authorization](../ai-agents/agent-spending-authorization.md) — on-chain spending limits for agents
-- [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) — 50+ tools for AI assistants
+- [BitBadges Builder Tools](../ai-agents/builder-tools.md) — 50+ tools for AI assistants
 - [Claims for Agents](../ai-agents/claims-for-agents.md) — automated minting via claims

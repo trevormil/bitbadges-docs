@@ -70,7 +70,7 @@ Returns a single amount. Defaults to the current time if `time` is omitted.
 
 ---
 
-## MCP Tools
+## Builder Tools
 
 ### Full flow
 

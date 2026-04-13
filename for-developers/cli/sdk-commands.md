@@ -97,7 +97,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ## skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills

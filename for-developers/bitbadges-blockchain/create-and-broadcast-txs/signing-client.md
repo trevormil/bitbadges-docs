@@ -100,7 +100,7 @@ console.log('Transaction hash:', result.txHash);
 
 ### Server-Side Signing (EVM Path — Recommended)
 
-> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and MCP tool reference.
+> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and builder tool reference.
 
 Server-side signing uses `GenericEvmAdapter` which connects to the EVM JSON-RPC endpoint and broadcasts via precompile calls. This is the recommended path for bots, agents, and backend services.
 

@@ -1,8 +1,8 @@
-# MCP Builder Tools Reference
+# Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
-> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
+> For terminal-based workflows without an MCP client, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
 ## Installation
 
@@ -11,7 +11,7 @@ The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree
 npm install -g bitbadgesjs-sdk
 
 # Or run directly (no install)
-npx -p bitbadgesjs-sdk bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Claude Desktop
@@ -23,7 +23,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -36,7 +36,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Cursor
@@ -48,7 +48,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -193,7 +193,7 @@ set_standards + set_valid_token_ids + set_invariants + add_approval + set_permis
 query_collection → verify_ownership → (take action based on result)
 ```
 
-> **Note:** The MCP server does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
+> **Note:** The builder does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
 
 ## Auto-Mint at Creation
 
@@ -210,9 +210,9 @@ Maximum 4 transfer messages per transaction.
 
 ## Skills (Guided Workflows)
 
-The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
+The builder includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
 
-For full instructions and examples for each skill, see the **[MCP Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
+For full instructions and examples for each skill, see the **[Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
 
 Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
 
@@ -224,9 +224,9 @@ Common features like ownership requirements, codes, and passwords are built into
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
 | **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
 
-## MCP Resources
+## Builder Resources
 
-The MCP server also exposes embedded documentation as resources:
+The builder also exposes embedded documentation as resources:
 
 | Resource URI | Name | Description |
 |-------------|------|-------------|

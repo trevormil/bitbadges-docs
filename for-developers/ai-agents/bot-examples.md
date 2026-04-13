@@ -172,9 +172,9 @@ ws.on('close', () => {
 });
 ```
 
-## Example 5: MCP Agent Workflow
+## Example 5: Builder Agent Workflow
 
-When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
+When using the BitBadges builder tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
 
 ### Session-Based Build (Recommended)
 
@@ -227,7 +227,7 @@ search({ query: "my collection name" })
   → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
 ```
 
-> **Note:** The MCP server builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
+> **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
 
 ## Tips for AI Agents
 

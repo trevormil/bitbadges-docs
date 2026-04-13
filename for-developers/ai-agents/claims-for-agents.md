@@ -60,7 +60,7 @@ await api.createClaim({
 });
 ```
 
-If you are using the BitBadges MCP tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see MCP Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
+If you are using the BitBadges Builder tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see Builder Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
 
 ## Completing a Claim
 
@@ -160,9 +160,9 @@ The `prioritizedApprovals` array tells the chain which approval to check. The `a
 - **Ownership-gated minting**: Use the `must-own-badges` plugin to gate minting based on existing token ownership. Users who hold token X can mint token Y.
 - **Time-windowed drops**: Add `transferTimes` constraints to limit when claims can be completed.
 
-## MCP Tool Workflow
+## Builder Tool Workflow
 
-If you are using the BitBadges MCP builder tools, the `build_claim` tool handles payload construction:
+If you are using the BitBadges Builder tools, the `build_claim` tool handles payload construction:
 
 ```
 build_claim({

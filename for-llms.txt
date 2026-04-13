@@ -1952,7 +1952,7 @@ BitBadges addresses these fundamental issues through core design decisions:
       * [Tradable Collection Example](x-tokenization/examples/txs/msgcreatecollection/tradable-nft-collection.md)
     * [MsgUpdateUserApprovals Examples](x-tokenization/examples/txs/msgupdate-user-approvals/README.md)
       * [Updating Outgoing Approvals](x-tokenization/examples/txs/msgupdate-user-approvals/updating-outgoing-approvals.md)
-* [🤖 MCP Builder Skills](x-tokenization/examples/skills/README.md)
+* [🤖 Builder Skills](x-tokenization/examples/skills/README.md)
   * [Smart Token](x-tokenization/examples/skills/smart-token.md)
   * [Minting](x-tokenization/examples/skills/minting.md)
   * [Liquidity Pools](x-tokenization/examples/skills/liquidity-pools.md)
@@ -2009,7 +2009,7 @@ BitBadges addresses these fundamental issues through core design decisions:
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
-  * [MCP Builder Tools Reference](for-developers/ai-agents/mcp-builder-tools.md)
+  * [Builder Tools Reference](for-developers/ai-agents/builder-tools.md)
   * [WebSocket Events](for-developers/ai-agents/websocket-events.md)
   * [Bot Examples](for-developers/ai-agents/bot-examples.md)
   * [E2E: AI Agent with USDC Vault](for-developers/ai-agents/openclaw-vault-tutorial.md)
@@ -8189,22 +8189,22 @@ console.log('TX Hash:', result.txHash);
 | Path | Best For | Install |
 |------|----------|---------|
 | **CLI & Chain Binary** | Terminal agents, shell scripts, any language | `curl -fsSL .../install.sh \| sh` — [guide](../cli/for-ai-agents.md) |
-| **MCP Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
+| **BitBadges Builder Tools** | AI assistants (Claude, Cursor, etc.) | `npm i -g bitbadgesjs-sdk` |
 | **SDK Signing Client** | Full-featured TypeScript bots | `npm i bitbadgesjs-sdk` |
 | **Direct HTTP** | Lightweight scripts, any language | REST calls to `api.bitbadges.io` |
 | **Agent Spending Authorization** | Set daily caps, time windows, and revocation | [guide](agent-spending-authorization.md) |
 
-### MCP Quick Setup
+### Quick Setup
 
 ```bash
 # Claude Code (one command)
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 
 # Or install globally
 npm install -g bitbadgesjs-sdk
 ```
 
-See the full [MCP Builder Tools Reference](mcp-builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
+See the full [Builder Tools Reference](builder-tools.md) for all 50+ tools (including session-based per-field builders), configuration for Claude Desktop / Cursor, and workflow guides.
 
 ## Network Configuration
 
@@ -8224,7 +8224,7 @@ Additional endpoints (testnet):
 | Page | Description |
 |------|-------------|
 | [Testnet Faucet API](testnet-faucet.md) | Get free testnet BADGE tokens for your bot |
-| [MCP Builder Tools Reference](mcp-builder-tools.md) | All 50+ MCP tools for AI assistants |
+| [Builder Tools Reference](builder-tools.md) | All 50+ builder tools for AI assistants |
 | [WebSocket Events](websocket-events.md) | Subscribe to real-time blockchain events |
 | [Bot Examples](bot-examples.md) | Copy-paste examples for common bot patterns |
 | [E2E: AI Agent with USDC Vault](openclaw-vault-tutorial.md) | Full tutorial: wallet setup, vault rules, withdraw/deposit |
@@ -8464,9 +8464,9 @@ ws.on('close', () => {
 });
 ```
 
-## Example 5: MCP Agent Workflow
+## Example 5: Builder Agent Workflow
 
-When using the BitBadges MCP tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
+When using the BitBadges builder tools (e.g., in Claude Desktop or Claude Code), there are two build approaches:
 
 ### Session-Based Build (Recommended)
 
@@ -8515,7 +8515,7 @@ search({ query: "my collection name" })
   → verify_ownership({ collectionId: "123", address: "bb1...", badgeIds: [...] })
 ```
 
-> **Note:** The MCP server builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
+> **Note:** The builder builds and validates transactions but does not sign or broadcast. Use the BitBadges SDK signing client or the BitBadges frontend to sign and submit.
 
 ## Tips for AI Agents
 
@@ -8591,7 +8591,7 @@ await api.createClaim({
 });
 ```
 
-If you are using the BitBadges MCP tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see MCP Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
+If you are using the BitBadges Builder tools or the AI builder, use the `build_claim` tool instead of constructing the payload manually (see Builder Tool Workflow below). The AI builder auto-generates `seedCode` and codes server-side for the `codes` plugin — you only need to specify `numCodes` in `publicParams`.
 
 ## Completing a Claim
 
@@ -8691,9 +8691,9 @@ The `prioritizedApprovals` array tells the chain which approval to check. The `a
 - **Ownership-gated minting**: Use the `must-own-badges` plugin to gate minting based on existing token ownership. Users who hold token X can mint token Y.
 - **Time-windowed drops**: Add `transferTimes` constraints to limit when claims can be completed.
 
-## MCP Tool Workflow
+## Builder Tool Workflow
 
-If you are using the BitBadges MCP builder tools, the `build_claim` tool handles payload construction:
+If you are using the BitBadges Builder tools, the `build_claim` tool handles payload construction:
 
 ```
 build_claim({
@@ -8716,13 +8716,13 @@ From there, the agent follows the same complete -> get codes -> submit proof flo
 - Poll `getClaimAttemptStatus` after submitting. Claims process asynchronously and typically resolve in 2-5 seconds.
 
 
-## File: ./for-developers/ai-agents/mcp-builder-tools.md
+## File: ./for-developers/ai-agents/builder-tools.md
 
-# MCP Builder Tools Reference
+# Builder Tools Reference
 
-The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
+The [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) provides 50+ tools for AI assistants to build, audit, and validate BitBadges transactions. It works with Claude Desktop, Claude Code, Cursor, and any MCP-compatible client.
 
-> For terminal-based workflows without MCP, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
+> For terminal-based workflows without an MCP client, use the [BitBadges CLI](../cli/) — it provides 104+ API routes, review/audit tools, and built-in docs from the command line. See [CLI for AI Agents](../cli/for-ai-agents.md).
 
 ## Installation
 
@@ -8731,7 +8731,7 @@ The [BitBadges Builder MCP server](https://github.com/bitbadges/bitbadgesjs/tree
 npm install -g bitbadgesjs-sdk
 
 # Or run directly (no install)
-npx -p bitbadgesjs-sdk bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Claude Desktop
@@ -8743,7 +8743,7 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key",
         "BITBADGES_MNEMONIC": "your mnemonic phrase"
@@ -8756,7 +8756,7 @@ Add to your `claude_desktop_config.json`:
 ### Claude Code
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 ### Cursor
@@ -8768,7 +8768,7 @@ Add to `.cursor/mcp.json`:
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -8920,7 +8920,7 @@ build_token → audit_collection → validate_transaction → simulate_transacti
 query_collection → verify_ownership → (take action based on result)
 ```
 
-> **Note:** The MCP server does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
+> **Note:** The builder does not handle signing or broadcasting. Transaction signing must be done externally using the BitBadges SDK, a wallet, or the BitBadges frontend.
 
 ## Auto-Mint at Creation
 
@@ -8937,9 +8937,9 @@ Maximum 4 transfer messages per transaction.
 
 ## Skills (Guided Workflows)
 
-The MCP server includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
+The builder includes skill instructions accessible via `get_skill_instructions`. These guide AI agents through building specific collection types.
 
-For full instructions and examples for each skill, see the **[MCP Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
+For full instructions and examples for each skill, see the **[Builder Skills reference](../../x-tokenization/examples/skills/README.md)**.
 
 Common features like ownership requirements, codes, and passwords are built into the approval system directly and can be composed with any skill.
 
@@ -8951,9 +8951,9 @@ Common features like ownership requirements, codes, and passwords are built into
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) | Search BitBadges documentation |
 | **BitBadges API** | [api.bitbadges.io](https://api.bitbadges.io) | REST API for queries and data |
 
-## MCP Resources
+## Builder Resources
 
-The MCP server also exposes embedded documentation as resources:
+The builder also exposes embedded documentation as resources:
 
 | Resource URI | Name | Description |
 |-------------|------|-------------|
@@ -9303,7 +9303,7 @@ Give your agent the prompt from the **AI Prompt** tab (Step 3) as part of its sy
 - [MsgTransferTokens](../../x-tokenization/messages/msg-transfer-tokens.md) - Transfer message details
 - [IBC Backed Paths](../../x-tokenization/concepts/ibc-backed-paths.md) - How backing works
 - [Bot Examples](bot-examples.md) - More agent patterns
-- [MCP Builder Tools](mcp-builder-tools.md) - If your agent uses MCP (Claude, etc.)
+- [BitBadges Builder Tools](builder-tools.md) - If your agent speaks MCP (Claude, etc.)
 - [Testnet Faucet](testnet-faucet.md) - Get testnet tokens for testing
 
 
@@ -10747,7 +10747,7 @@ console.log('Transaction hash:', result.txHash);
 
 ### Server-Side Signing (EVM Path — Recommended)
 
-> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and MCP tool reference.
+> **Building an AI agent or bot?** See the [AI Agents & Bots](../../ai-agents/) section for end-to-end examples, testnet faucet, and builder tool reference.
 
 Server-side signing uses `GenericEvmAdapter` which connects to the EVM JSON-RPC endpoint and broadcasts via precompile calls. This is the recommended path for bots, agents, and backend services.
 
@@ -12592,7 +12592,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ### skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills
@@ -12712,7 +12712,7 @@ Add that line to your `.bashrc` or `.zshrc` for persistent completions.
 
 ## Build Commands
 
-Token building (creating collections, generating approvals, etc.) is handled by the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
+Token building (creating collections, generating approvals, etc.) is handled by the [BitBadges Builder Tools](../ai-agents/builder-tools.md), not the CLI directly. The CLI focuses on analysis, review, and API access.
 
 ## bitbadgeschaind Delegation
 
@@ -12957,7 +12957,7 @@ Returns a single amount. Defaults to the current time if `time` is omitted.
 
 ---
 
-## MCP Tools
+## Builder Tools
 
 ### Full flow
 
@@ -13213,7 +13213,7 @@ The function automatically strips sensitive claim parameters (`seedCode`, `preim
 
 ## Also Available Via
 
-- **MCP**: The `explain_collection` tool uses this under the hood
+- **Builder**: The `explain_collection` tool uses this under the hood
 - **Frontend**: Displayed on collection overview pages
 
 
@@ -13365,7 +13365,7 @@ const netChanges = calculateNetChanges(parsed, fee, signerAddress);
 
 ## Also Available Via
 
-- **MCP**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
+- **Builder**: The `simulate_transaction` tool returns structured `parsedEvents` and `netChanges`
 - **Frontend**: The TxModal "Net Changes" tab uses this under the hood
 
 
@@ -14169,7 +14169,7 @@ To lookup claim state or recent claim attempts by address or other claim informa
 
 # Leveraging AI
 
-> **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, MCP tools, and bot examples.
+> **Building an AI agent or bot that interacts with BitBadges directly?** See the [AI Agents & Bots](../ai-agents/) section for signing, broadcasting, builder tools, and bot examples.
 
 A great way to implement both criteria and utility is through AI models and agents. This can be done through custom plugins created in the [developer portal](https://bitbadges.io/developer).
 
@@ -14207,7 +14207,7 @@ If you need to see the resulting claim JSON (for advanced implementations), you 
 
 # Overview
 
-> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with MCP, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
+> 💡 **Note:** This documentation is intended to provide developer documentation for more advanced use cases. Most of the time, you can directly do everything in-site. Or if you need custom functionality, it is oftentimes a better approach to just self-implement the functionality you need rather than deal with the complexities of connecting with claims. LLMs, especially with builder tools, are great for implementing all of this stuff. We just provide claims as an out of the box tool in-site.
 
 BitBadges claims are designed to be a comprehensive tool directly within the site or via the API for you to custom gate your utility. Claims can be simply thought of as: **Meet criteria? -> Offer utility / rewards.** The implementation process aims to be super flexible, allowing you maximum customization.
 
@@ -15968,7 +15968,7 @@ Claims integrate with BitBadges' points system. Award points on successful claim
 
 ### AI-Powered Criteria
 
-With AI x MCP x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
+With AI x Builder x LLMs and services like Zapier or Pipedream, you really have endless possibilities for checking criteria and implementing rewards on your own. It is all just one prompt away.
 
 **Criteria side:** Pre-evaluate users with your AI model and add eligible addresses to a dynamic store. This avoids long wait times during claim execution and provides better UX.
 
@@ -16907,7 +16907,7 @@ The CLI is the recommended interface for AI agents and automation. It provides:
 
 See [CLI for AI Agents](for-ai-agents.md) for end-to-end agent workflows.
 
-For building token collections with AI assistants (Claude, Cursor, etc.), see the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) which provide 50+ tools on top of the CLI.
+For building token collections with AI assistants (Claude, Cursor, etc.), see the [BitBadges Builder Tools](../ai-agents/builder-tools.md) which provide 50+ tools on top of the CLI.
 
 ## Next Steps
 
@@ -17311,14 +17311,14 @@ bitbadgeschaind tx tokenization create-collection ./collection.json \
 bitbadges-cli api tx broadcast-tx --body @signed-tx.json
 ```
 
-## Combining with MCP Builder Tools
+## Combining with BitBadges Builder Tools
 
-For AI assistants that support MCP (Claude, Cursor, etc.), the [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and MCP tools are complementary:
+For AI assistants that speak MCP (Claude, Cursor, etc.), the [BitBadges Builder Tools](../ai-agents/builder-tools.md) provide 50+ higher-level tools for building token collections. The CLI and builder tools are complementary:
 
 | Use Case | Tool |
 |----------|------|
 | Query data, browse docs, review transactions | **CLI** (`bitbadges-cli`) |
-| Build token collections with guided workflows | **MCP Builder Tools** |
+| Build token collections with guided workflows | **BitBadges Builder Tools** |
 | Sign and broadcast transactions | **Chain binary** (`bitbadgeschaind`) or **SDK Signing Client** |
 | Key management | **Chain binary** (`bitbadgeschaind`) |
 
@@ -17358,7 +17358,7 @@ fi
 
 - [Bot Examples](../ai-agents/bot-examples.md) — TypeScript bot patterns
 - [Agent Spending Authorization](../ai-agents/agent-spending-authorization.md) — on-chain spending limits for agents
-- [MCP Builder Tools](../ai-agents/mcp-builder-tools.md) — 50+ tools for AI assistants
+- [BitBadges Builder Tools](../ai-agents/builder-tools.md) — 50+ tools for AI assistants
 - [Claims for Agents](../ai-agents/claims-for-agents.md) — automated minting via claims
 
 
@@ -17618,7 +17618,7 @@ bitbadges-cli sdk gen-list-id bb1abc... --blacklist
 
 ## skills
 
-List available MCP Builder skills or fetch a specific skill's instructions from the bundled docs.
+List available Builder skills or fetch a specific skill's instructions from the bundled docs.
 
 ```bash
 bitbadges-cli sdk skills               # list all skills
@@ -18082,7 +18082,7 @@ bitbadges-cli api tokens get-collection 1   # query any collection
 bitbadges-cli sdk docs                      # browse docs from terminal
 ```
 
-> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [MCP Builder Tools](ai-agents/mcp-builder-tools.md) for building tokens with Claude/Cursor.
+> **For AI agents:** The CLI is the recommended interface. See [CLI for AI Agents](cli/for-ai-agents.md) for end-to-end workflows, or use the [BitBadges Builder Tools](ai-agents/builder-tools.md) for building tokens with Claude/Cursor.
 
 ---
 
@@ -18138,16 +18138,16 @@ const api = new BitBadgesAPI({
 await BitBadgesAPI.getCollection(...);
 ```
 
-## Quick Start - MCP Builder Tools (AI)
+## Quick Start - BitBadges Builder Tools (AI)
 
-The BitBadges MCP server gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
+The BitBadges Builder gives any AI assistant (Claude, Cursor, etc.) 30+ tools to build, audit, sign, and broadcast BitBadges transactions — no manual JSON required.
 
 ```bash
 # Install globally
 npm install -g bitbadgesjs-sdk
 
 # Or run directly with npx
-npx -p bitbadgesjs-sdk bitbadges-builder-mcp
+npx -p bitbadgesjs-sdk bitbadges-builder
 ```
 
 **Claude Desktop** — add to `claude_desktop_config.json`:
@@ -18157,7 +18157,7 @@ npx -p bitbadgesjs-sdk bitbadges-builder-mcp
   "mcpServers": {
     "bitbadges-builder": {
       "command": "npx",
-      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder-mcp"],
+      "args": ["-y", "-p", "bitbadgesjs-sdk", "bitbadges-builder"],
       "env": {
         "BITBADGES_API_KEY": "your-api-key"
       }
@@ -18169,10 +18169,10 @@ npx -p bitbadgesjs-sdk bitbadges-builder-mcp
 **Claude Code:**
 
 ```bash
-claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder-mcp
+claude mcp add bitbadges-builder -- npx -y -p bitbadgesjs-sdk bitbadges-builder
 ```
 
-See the full [MCP Builder Tools Reference](ai-agents/mcp-builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
+See the full [Builder Tools Reference](ai-agents/builder-tools.md) for all tools, schemas, and workflows. For bot/agent guides, see [AI Agents & Bots](ai-agents/).
 
 ## Developing with AI
 
@@ -18180,7 +18180,7 @@ Below, we provide some resources that may be helpful for developing with AI. If 
 
 | Resource | Link |
 |----------|------|
-| **MCP Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/mcp-builder-tools.md) |
+| **BitBadges Builder Tools** | `npm i -g bitbadgesjs-sdk` — [Reference](ai-agents/builder-tools.md) |
 | **BitBadges SDK** | `npm i bitbadgesjs-sdk` — [Docs](bitbadges-sdk/overview.md) |
 | **AI Quickstarter Repo** | [github.com/BitBadges/bitbadges-quickstarter-ai](https://github.com/BitBadges/bitbadges-quickstarter-ai) |
 | **GitBook MCP** | [docs.bitbadges.io/~gitbook/mcp](https://docs.bitbadges.io/~gitbook/mcp) — searchDocumentation tool |
@@ -22119,7 +22119,7 @@ Supports Linux, macOS (Intel + Apple Silicon), and Windows (Git Bash / WSL). See
 
 * [Chain Binary Releases](https://github.com/BitBadges/bitbadgeschain/releases)
 * [SDK CLI (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
-* [MCP Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
+* [BitBadges Builder Tools (npm)](https://www.npmjs.com/package/bitbadgesjs-sdk) — `npm install -g bitbadgesjs-sdk`
 
 ### Get Featured
 
@@ -22647,7 +22647,7 @@ Mint the appropriate token ID to each user. Check with `$or` for "any tier" or s
 ## How to Create
 
 Collections can be created:
-- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder MCP](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp) to help configure collections.
+- **On-site** at [bitbadges.io](https://bitbadges.io) — recommended for most cases. You can also use an LLM with the [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder) to help configure collections.
 - **Via SDK** using `MsgUniversalUpdateCollection` from `bitbadgesjs-sdk`
 - **Via chain CLI** using `bitbadgeschaind tx tokenization`
 
@@ -31747,11 +31747,11 @@ const createCollection = {
 
 ## File: ./x-tokenization/examples/skills/README.md
 
-# 🤖 MCP Builder Skills
+# 🤖 Builder Skills
 
-These pages document every guided build skill available in the [BitBadges MCP Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/mcp). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
+These pages document every guided build skill available in the [BitBadges Builder](https://github.com/bitbadges/bitbadgesjs/tree/main/packages/bitbadgesjs-sdk/src/builder). Each skill provides step-by-step instructions for building a specific type of token or configuring a specific feature.
 
-> **Tip:** If you're using the MCP builder in Claude, Cursor, or another AI tool, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
+> **Tip:** If you're using the BitBadges Builder in Claude, Cursor, or another AI tool, these instructions are loaded automatically when you select a skill. These pages are provided as a human-readable reference.
 
 ## Token Types
 
