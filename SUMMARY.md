@@ -163,7 +163,7 @@
   * [SDK Commands](for-developers/cli/sdk-commands.md)
   * [API Commands](for-developers/cli/api-commands.md)
   * [Chain Commands](for-developers/cli/chain-commands.md)
-  * [Build Commands](for-developers/cli/build-commands.md)
+  * [Builder Templates](for-developers/cli/builder-templates.md)
   * [CLI for AI Agents](for-developers/cli/for-ai-agents.md)
 * [🤖 AI Agents & Bots](for-developers/ai-agents/README.md)
   * [Testnet Faucet API](for-developers/ai-agents/testnet-faucet.md)
